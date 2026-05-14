@@ -6,6 +6,8 @@ import { Menu } from "lucide-react";
 import { BariBrandLogo } from "@/components/brand/bari-brand-logo";
 import { HomeContainer } from "@/components/home/section-frame";
 import { Button } from "@/components/ui/button";
+import { siteHeaderHeightClass } from "@/lib/site-layout";
+import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetContent,
@@ -23,9 +25,9 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/85 backdrop-blur-xl supports-[backdrop-filter]:bg-white/75">
+    <header className="sticky top-0 z-50 border-b border-zinc-200/60 bg-white">
       <HomeContainer>
-        <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.25rem]">
+        <div className={cn("flex items-center justify-between gap-4", siteHeaderHeightClass)}>
           <Link href="/" aria-label="בית Bari" className="flex shrink-0 items-center">
             <BariBrandLogo />
           </Link>
@@ -43,7 +45,7 @@ export function SiteHeader() {
             <Button
               variant="outline"
               size="sm"
-              className="ms-3 rounded-xl border-zinc-200 bg-white/80"
+              className="ms-3 rounded-xl border-zinc-200 bg-white"
               asChild
             >
               <Link href="/products/demo">מסך הדגמה</Link>
@@ -62,7 +64,7 @@ export function SiteHeader() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="gap-0 pt-14">
-              <SheetHeader className="border-b border-zinc-200/70 pb-4 text-right">
+              <SheetHeader className="pb-4 text-right">
                 <SheetTitle className="text-right">
                   <Link href="/" aria-label="בית Bari">
                     <BariBrandLogo />

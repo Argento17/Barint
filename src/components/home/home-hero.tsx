@@ -6,10 +6,29 @@ import { Button } from "@/components/ui/button";
 
 import { heroTrust } from "./content";
 import { HomeContainer } from "./section-frame";
+import { siteHeaderOffsetClass } from "@/lib/site-layout";
+import { cn } from "@/lib/utils";
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-[82vh] items-center overflow-hidden">
+    <section
+      className={cn(
+        "relative flex min-h-[82vh] items-center overflow-hidden",
+        siteHeaderOffsetClass
+      )}
+    >
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-gradient-to-b from-zinc-100/55 via-zinc-50/15 to-transparent"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-emerald-200/20 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -start-16 top-24 -z-10 size-[22rem] rounded-full bg-sky-100/35 blur-3xl"
+        aria-hidden
+      />
       <HomeContainer className="py-16 md:py-20">
         <div className="mx-auto max-w-5xl text-center">
           <Badge

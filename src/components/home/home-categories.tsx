@@ -5,7 +5,7 @@ import { HomeContainer, SectionHeading } from "./section-frame";
 
 export function HomeCategories() {
   return (
-    <section className="bg-white py-16 md:py-20" id="categories">
+    <section className="relative py-16 md:py-20" id="categories">
       <HomeContainer>
         <SectionHeading
           title="קטגוריות מובילות"

@@ -8,10 +8,7 @@ import { HomeContainer } from "./section-frame";
 
 export function HomeComparisons() {
   return (
-    <section
-      className="bg-gradient-to-b from-white via-white to-zinc-50 py-16 md:py-20"
-      id="comparisons"
-    >
+    <section className="relative py-16 md:py-20" id="comparisons">
       <HomeContainer>
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:mb-12 md:flex-row md:items-end">
           <div className="max-w-2xl space-y-3 text-right">

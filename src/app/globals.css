@@ -2,8 +2,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@source "../**/*.{js,ts,jsx,tsx,mdx}";
-@source "./[[]**[]]/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../lib/**/*.{js,ts,jsx,tsx,mdx}";
+@source "./**/*.{js,ts,jsx,tsx,mdx}";
+@source inline(
+  "from-red-50 to-orange-50 from-red-500 to-orange-500 from-amber-50 to-yellow-50 from-amber-500 to-yellow-600 from-yellow-50 to-amber-50 from-yellow-600 to-amber-700 from-blue-50 to-cyan-50 from-blue-500 to-cyan-500 from-emerald-50 to-green-50 from-emerald-500 to-green-600 from-purple-50 to-pink-50 from-purple-500 to-pink-500 from-indigo-50 to-blue-50 from-indigo-500 to-blue-500 from-pink-50 to-rose-50 from-pink-500 to-rose-500 from-orange-50 to-red-50 from-orange-600 to-red-600 from-emerald-600 to-green-700"
+);
 
 @custom-variant dark (&:is(.dark *));
 
@@ -52,6 +56,9 @@
 }
 
 :root {
+  --site-header-height: 4rem;
+  --site-header-height-sm: 4.25rem;
+  --home-canvas-base: #f7f8f6;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -125,9 +132,43 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--home-canvas-base);
+    @apply text-foreground;
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .home-canvas {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    background-color: var(--home-canvas-base);
+  }
+
+  .home-canvas::before,
+  .home-canvas::after {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+  }
+
+  .home-canvas::before {
+    background-color: var(--home-canvas-base);
+    background-image:
+      radial-gradient(1200px circle at 82% -12%, rgba(16, 185, 129, 0.09), transparent 48%),
+      radial-gradient(900px circle at 8% 28%, rgba(212, 239, 232, 0.55), transparent 52%),
+      radial-gradient(700px circle at 50% -4%, rgba(250, 250, 249, 0.92), transparent 68%),
+      linear-gradient(to bottom, rgba(244, 244, 245, 0.55) 0%, transparent 40%, rgba(236, 253, 245, 0.2) 100%);
+  }
+
+  .home-canvas::after {
+    opacity: 0.035;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
