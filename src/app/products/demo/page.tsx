@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { BariBrandLogo } from "@/components/brand/bari-brand-logo";
 import {
   Accordion,
   AccordionContent,
@@ -879,13 +880,10 @@ export default function ProductPage() {
         </section>
 
         <footer className="mt-24 text-center md:mt-32">
-          <div className="inline-flex flex-col items-center gap-2 rounded-2xl border border-white/50 bg-white/40 px-8 py-6 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.1)] backdrop-blur-md">
-            <p className="text-xs font-medium text-zinc-500">
-              Bari — מודיעין מזון
-            </p>
-            <p className="text-[11px] text-zinc-400">
-              נתונים לצורכי השוואה ומחקר צרכן
-            </p>
+          <div className="inline-flex flex-col items-center gap-3 rounded-2xl border border-white/50 bg-white/40 px-8 py-6 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.1)] backdrop-blur-md">
+            <BariBrandLogo />
+            <p className="text-xs font-medium text-zinc-500">ידע ומדע במזון שאתם צורכים</p>
+            <p className="text-[11px] text-zinc-400">נתונים לצורכי השוואה ומחקר צרכן</p>
           </div>
         </footer>
       </main>
