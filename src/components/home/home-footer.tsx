@@ -8,18 +8,8 @@ import { HomeContainer } from "./section-frame";
 const footerLinks = {
   content: [
     { label: "השוואות", href: "#comparisons" },
-    { label: "דירוגים", href: "#rankings" },
-    { label: "מדריך רכיבים", href: "#ingredients" },
-    { label: "מאמרים", href: "#guides" },
-  ],
-  about: [
-    { label: "מי אנחנו", href: "#methodology" },
-    { label: "המתודולוגיה שלנו", href: "#methodology" },
-    { label: "קהילה", href: "#community" },
-  ],
-  legal: [
-    { label: "תנאי שימוש", href: "#" },
-    { label: "מדיניות פרטיות", href: "#" },
+    { label: "דירוגים", href: "#comparisons" },
+    { label: "מדריכים", href: "#guides" },
   ],
 } as const;
 
@@ -27,46 +17,23 @@ export function HomeFooter() {
   return (
     <footer className="bg-zinc-900 py-14 text-zinc-300 md:py-16">
       <HomeContainer>
-        <div className="grid gap-10 md:grid-cols-4 md:gap-12">
-          <div className="space-y-4">
+        <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-right">
+          <div className="space-y-3">
             <Link href="/" aria-label="בית Bari" className="inline-flex w-fit">
               <BariBrandLogo surface="dark" />
             </Link>
-            <p className="text-sm leading-relaxed text-zinc-400">המדריך הישראלי החכם למזון — השוואות, דירוגים ומדריכים.</p>
+            <p className="max-w-md text-sm leading-relaxed text-zinc-400">
+              אינטליגנציית מזון ישראלית להשוואה, דירוג והבנה טובה יותר של מוצרים.
+            </p>
           </div>
 
-          <div>
-            <h4 className="mb-4 font-semibold text-white">תוכן</h4>
-            <nav className="flex flex-col gap-2 text-sm">
-              {footerLinks.content.map((l) => (
-                <Link key={l.label} href={l.href} className="text-zinc-400 transition hover:text-emerald-400">
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <h4 className="mb-4 font-semibold text-white">על Bari</h4>
-            <nav className="flex flex-col gap-2 text-sm">
-              {footerLinks.about.map((l) => (
-                <Link key={l.label} href={l.href} className="text-zinc-400 transition hover:text-emerald-400">
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <h4 className="mb-4 font-semibold text-white">משפטי</h4>
-            <nav className="flex flex-col gap-2 text-sm">
-              {footerLinks.legal.map((l) => (
-                <a key={l.label} href={l.href} className="text-zinc-400 transition hover:text-emerald-400">
-                  {l.label}
-                </a>
-              ))}
-            </nav>
-          </div>
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm md:justify-end">
+            {footerLinks.content.map((l) => (
+              <Link key={l.label} href={l.href} className="text-zinc-400 transition hover:text-emerald-400">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         <Separator className="my-8 bg-zinc-800" />

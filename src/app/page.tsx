@@ -1,16 +1,13 @@
 import { Heebo } from "next/font/google";
 
 import { HomeCategories } from "@/components/home/home-categories";
-import { HomeCommunity } from "@/components/home/home-community";
 import { HomeComparisons } from "@/components/home/home-comparisons";
 import { HomeFinalCta } from "@/components/home/home-final-cta";
 import { HomeFooter } from "@/components/home/home-footer";
 import { HomeGuides } from "@/components/home/home-guides";
 import { HomeHero } from "@/components/home/home-hero";
-import { HomeIngredients } from "@/components/home/home-ingredients";
 import { HomeMethodology } from "@/components/home/home-methodology";
 import { HomeNewsletter } from "@/components/home/home-newsletter";
-import { HomeRankings } from "@/components/home/home-rankings";
 import { HomeTrust } from "@/components/home/home-trust";
 import { cn } from "@/lib/utils";
 
@@ -33,11 +30,8 @@ export default function HomePage() {
         <HomeCategories />
         <HomeComparisons />
         <HomeGuides />
-        <HomeRankings />
         <HomeMethodology />
-        <HomeIngredients />
         <HomeTrust />
-        <HomeCommunity />
         <HomeNewsletter />
         <HomeFinalCta />
         <HomeFooter />

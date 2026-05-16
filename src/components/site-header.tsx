@@ -18,8 +18,7 @@ import {
 
 const navLinks = [
   { label: "השוואות", href: "/#comparisons" },
-  { label: "דירוגים", href: "/#rankings" },
-  { label: "רכיבים", href: "/#ingredients" },
+  { label: "דירוגים", href: "/#comparisons" },
   { label: "מדריכים", href: "/#guides" },
 ] as const;
 
@@ -43,12 +42,11 @@ export function SiteHeader() {
               </Link>
             ))}
             <Button
-              variant="outline"
               size="sm"
-              className="ms-3 rounded-xl border-zinc-200 bg-white"
+              className="ms-3 rounded-xl bg-emerald-600 px-4 font-semibold text-white shadow-sm shadow-emerald-600/15 hover:bg-emerald-700"
               asChild
             >
-              <Link href="/products/demo">מסך הדגמה</Link>
+              <Link href="/#newsletter">הירשמו לניוזלטר</Link>
             </Button>
           </nav>
 
@@ -82,10 +80,10 @@ export function SiteHeader() {
                   </Link>
                 ))}
                 <Link
-                  href="/products/demo"
-                  className="rounded-xl px-3 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50"
+                  href="/#newsletter"
+                  className="mt-2 rounded-xl bg-emerald-600 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-emerald-600/15 transition hover:bg-emerald-700"
                 >
-                  מסך הדגמה
+                  הירשמו לניוזלטר
                 </Link>
               </nav>
             </SheetContent>

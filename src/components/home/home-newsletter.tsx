@@ -9,7 +9,7 @@ export function HomeNewsletter() {
           <NewsletterIcon />
           <SectionHeading
             title="הצטרפו לקהילה שבוחרת טוב יותר"
-            description="קבלו ניתוחים, דירוגים והשוואות ישירות למייל — עדכונים שבועיים על מוצרים, רכיבים ומחקרים חדשים."
+            description="קבלו ניתוחים, דירוגים והשוואות ישירות למייל — עדכונים שבועיים על מוצרים ומחקרים חדשים."
           />
           <NewsletterSignup />
           <p className="text-sm text-zinc-600">ללא ספאם. ביטול בכל עת.</p>

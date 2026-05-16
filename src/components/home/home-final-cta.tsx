@@ -21,7 +21,7 @@ export function HomeFinalCta() {
           מזון מושכלות
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-emerald-50 md:text-xl">
-          גלו השוואות, דירוגים ומדריכי רכיבים שעוזרים לכם לבחור טוב יותר — בלי חיפוש מוצרים מזויף.
+          גלו השוואות, דירוגים ומדריכים שעוזרים לכם לבחור טוב יותר — בלי חיפוש מוצרים מזויף.
         </p>
         <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:justify-center">
           <Button

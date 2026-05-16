@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BookOpen, ChevronLeft } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -40,14 +39,12 @@ export function HomeHero() {
           </Badge>
 
           <h1 className="text-balance bg-gradient-to-l from-zinc-900 via-zinc-800 to-zinc-900 bg-clip-text text-4xl font-extrabold leading-[1.1] tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            המדריך הישראלי
-            <br />
-            החכם למזון
+            אינטליגנציית מזון ישראלית
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl md:leading-relaxed">
-            Bari עוזרת לכם לקבל החלטות מזון מושכלות דרך השוואות עמוקות, דירוגים שקופים ומדריכי
-            רכיבים ברורים — בלי חיפוש מוצרים מדומה, רק תוכן עומק.
+            Bari בודקת אלפי מוצרים בעזרת אלגוריתמים, מזהה דפוסים תזונתיים, משווה בין מוצרים
+            ומדרגת אוכל בצורה שקופה ומבוססת נתונים.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -57,7 +54,7 @@ export function HomeHero() {
               asChild
             >
               <a href="#comparisons" className="inline-flex items-center justify-center gap-2">
-                גלו השוואות מובילות
+                עיינו בדירוגים
                 <ChevronLeft
                   className="size-5 transition-transform group-hover:-translate-x-0.5"
                   aria-hidden
@@ -70,7 +67,7 @@ export function HomeHero() {
               className="h-12 w-full rounded-2xl border-zinc-200 bg-white/80 px-8 text-base font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white sm:w-auto"
               asChild
             >
-              <a href="#rankings">עיינו בדירוגים</a>
+              <a href="#comparisons">גלו השוואות</a>
             </Button>
           </div>
 
@@ -85,13 +82,6 @@ export function HomeHero() {
               );
             })}
           </div>
-
-          <p className="mt-10 text-center text-xs text-zinc-500">
-            רוצים פרופיל מוצר מלא?{" "}
-            <Link href="/products/demo" className="font-semibold text-emerald-700 underline-offset-4 hover:underline">
-              מסך הדגמה
-            </Link>
-          </p>
         </div>
       </HomeContainer>
     </section>

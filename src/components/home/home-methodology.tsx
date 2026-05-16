@@ -6,8 +6,8 @@ export function HomeMethodology() {
     <section className="bg-white py-20 md:py-24" id="methodology">
       <HomeContainer>
         <SectionHeading
-          title="איך אנחנו עובדים"
-          description="מתודולוגיה שקופה, מבוססת מקורות, ומכבדת את המשתמש — בלי הבטחות רפואיות."
+          title="איך Bari מנתחת מזון"
+          description="אנחנו משלבים נתוני מוצרים, רכיבים, ערכים תזונתיים ואלגוריתמים כדי לזהות דפוסים — לא להסתמך על הבטחות שיווקיות."
         />
 
         <div className="grid gap-6 md:grid-cols-3 md:gap-8">

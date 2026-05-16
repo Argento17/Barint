@@ -7,12 +7,10 @@ import {
   BookOpen,
   Coffee,
   Cookie,
-  MessageCircle,
   Microscope,
   Milk,
   Sandwich,
   Shield,
-  Sparkles,
   TrendingUp,
   Users,
   Zap,
@@ -20,7 +18,7 @@ import {
 
 export const heroTrust: { icon: LucideIcon; label: string }[] = [
   { icon: Award, label: "השוואות חדשות מדי שבוע" },
-  { icon: Microscope, label: "מדריכי רכיבים ומחקרים" },
+  { icon: Microscope, label: "ניתוח מוצרים ומחקרים" },
   { icon: Shield, label: "דירוגים שקופים ומבוססי קריטריונים" },
 ];
 
@@ -86,61 +84,28 @@ export const guides: {
   { title: "לחם מלא: איך לבחור נכון", type: "השוואה", icon: TrendingUp, time: "5 דקות" },
 ];
 
-export const rankings: { title: string; score: string; note: string }[] = [
-  { title: "משקאות סויה — פאנל Bari", score: "עדכני", note: "12 מותגים" },
-  { title: "חטיפי חלבון — דירוג שקיפות תווית", score: "חדש", note: "9 מותגים" },
-  { title: "יוגורטים עם פחות סוכר", score: "מעודכן", note: "קטגוריה" },
-  { title: "דגני בוקר — סיבים ותוספים", score: "בבדיקה", note: "מדריך" },
-];
-
 export const methodology: {
   icon: LucideIcon;
   title: string;
   description: string;
 }[] = [
   {
-    icon: Microscope,
-    title: "מחקר מעמיק",
+    icon: BookOpen,
+    title: "איסוף נתונים",
     description:
-      "כל השוואה ודירוג מתחילים מניתוח רכיבים, תזונה ל־100 גרם והקשר רגולטורי — בלי קיצורי דרך.",
+      "מוצרים, רכיבים וערכים תזונתיים נאספים ממקורות זמינים ומאורגנים למבנה אחיד.",
+  },
+  {
+    icon: Microscope,
+    title: "ניתוח אלגוריתמי",
+    description:
+      "המערכת מזהה דפוסים כמו צפיפות קלורית, איכות רכיבים, רמות סוכר, חלבון, סיבים ועיבוד.",
   },
   {
     icon: Shield,
-    title: "אובייקטיביות",
-    description: "קריטריונים ברורים, ציון עם רמת ביטחון ותאריך — בלי ניסוחים שיווקיים.",
-  },
-  {
-    icon: BookOpen,
-    title: "תוכן חינוכי",
-    description: "מדריכים והסברים שמחברים בין המספרים למה שחשוב לכם בפועל.",
-  },
-];
-
-export const ingredients: {
-  name: string;
-  status: string;
-  description: string;
-  color: string;
-  bgColor: string;
-  badge: string;
-}[] = [
-  {
-    name: "E171 (טיטניום דו־חמצני)",
-    status: "שנוי במחלוקת",
+    title: "דירוג והשוואה",
     description:
-      "צבע מאכל לבן שנמצא במוצרים רבים. נאסר באיחוד האירופי ב־2022; בישראל הסטטוס עשוי להשתנות — עקבו אחרי עדכוני הרשות.",
-    color: "from-orange-600 to-red-600",
-    bgColor: "from-orange-50 to-red-50",
-    badge: "מבוסס מקורות",
-  },
-  {
-    name: "אינולין (Inulin)",
-    status: "מוסבר בקצרה",
-    description:
-      "סיב תזונתי טבעי המופק מצמחים. שימושי להבנת רשימת רכיבים — לא המלצה אישית.",
-    color: "from-emerald-600 to-green-700",
-    bgColor: "from-emerald-50 to-green-50",
-    badge: "נבדק ע״י צוות Bari",
+      "המוצרים מדורגים ומושווים בתוך קטגוריות דומות, כדי שההשוואה תהיה הוגנת ושימושית.",
   },
 ];
 
@@ -149,34 +114,4 @@ export const trustPillars: { icon: LucideIcon; label: string; desc: string }[] =
   { icon: Microscope, label: "מבוסס מקורות", desc: "תווית + רגולציה" },
   { icon: BookOpen, label: "מתודולוגיה גלויה", desc: "כל קריטריון מוסבר" },
   { icon: Users, label: "קהילת קוראים", desc: "דיונים ושאלות" },
-];
-
-export const community: {
-  icon: LucideIcon;
-  title: string;
-  body: string;
-  cta: string;
-  href: string;
-}[] = [
-  {
-    icon: MessageCircle,
-    title: "פורום דיונים",
-    body: "שאלות על רכיבים, קריאת תווית והשוואות בין קטגוריות — עם ניטור איכות תוכן.",
-    cta: "לכניסה לפורום",
-    href: "#comparisons",
-  },
-  {
-    icon: Sparkles,
-    title: "מדריכי קהילה",
-    body: "סיכומים קצרים של קוראים לצד עורכים — כדי ללמוד מהר בלי לזנוח את המקורות.",
-    cta: "למדריכים",
-    href: "#guides",
-  },
-  {
-    icon: Users,
-    title: "ניוזלטר שבועי",
-    body: "דירוגים חדשים, השוואות שעלו לאוויר וזרקור רכיב — בלי רעש.",
-    cta: "להרשמה",
-    href: "#newsletter",
-  },
 ];
