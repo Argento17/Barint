@@ -24,26 +24,30 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/60 bg-white">
+    <header className="reveal-up sticky top-0 z-50 border-b border-zinc-200/20 bg-[#f7f8f6]/50 shadow-[0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl">
       <HomeContainer>
-        <div className={cn("flex items-center justify-between gap-4", siteHeaderHeightClass)}>
-          <Link href="/" aria-label="בית Bari" className="flex shrink-0 items-center">
+        <div className={cn("flex items-center justify-between gap-10", siteHeaderHeightClass)}>
+          <Link
+            href="/"
+            aria-label="בית Bari"
+            className="group flex shrink-0 items-center transition-opacity duration-500 ease-out hover:opacity-90"
+          >
             <BariBrandLogo />
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label="ניווט ראשי">
+          <nav className="hidden items-center gap-3.5 md:flex" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-2 text-sm font-medium text-zinc-600 transition hover:bg-emerald-50 hover:text-emerald-800"
+                className="rounded-2xl px-3 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-500 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/35 hover:text-zinc-900"
               >
                 {link.label}
               </Link>
             ))}
             <Button
               size="sm"
-              className="ms-3 rounded-xl bg-emerald-600 px-4 font-semibold text-white shadow-sm shadow-emerald-600/15 hover:bg-emerald-700"
+              className="ms-5 h-9 rounded-2xl bg-zinc-950/95 px-4 text-[0.92rem] font-semibold tracking-[-0.012em] text-white shadow-sm shadow-zinc-950/10 transition-[background-color,opacity,transform,box-shadow] duration-500 ease-out hover:-translate-y-px hover:bg-zinc-900 hover:shadow-zinc-950/15"
               asChild
             >
               <Link href="/#newsletter">הירשמו לניוזלטר</Link>
@@ -55,7 +59,7 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-xl text-zinc-700 md:hidden"
+                className="rounded-2xl text-zinc-700 transition-[background-color,opacity] duration-500 ease-out hover:bg-white/35 md:hidden"
                 aria-label="פתיחת תפריט"
               >
                 <Menu className="size-5" />
@@ -74,14 +78,14 @@ export function SiteHeader() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-xl px-3 py-3 text-sm font-medium text-zinc-700 transition hover:bg-emerald-50 hover:text-emerald-800"
+                    className="rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-700 transition-[background-color,color] duration-500 ease-out hover:bg-zinc-50 hover:text-zinc-950"
                   >
                     {link.label}
                   </Link>
                 ))}
                 <Link
                   href="/#newsletter"
-                  className="mt-2 rounded-xl bg-emerald-600 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-emerald-600/15 transition hover:bg-emerald-700"
+                  className="mt-2 rounded-2xl bg-zinc-950 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-zinc-950/10 transition-colors duration-500 ease-out hover:bg-zinc-800"
                 >
                   הירשמו לניוזלטר
                 </Link>

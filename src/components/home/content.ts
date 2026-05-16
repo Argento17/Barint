@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 
 export const heroTrust: { icon: LucideIcon; label: string }[] = [
-  { icon: Award, label: "השוואות חדשות מדי שבוע" },
-  { icon: Microscope, label: "ניתוח מוצרים ומחקרים" },
-  { icon: Shield, label: "דירוגים שקופים ומבוססי קריטריונים" },
+  { icon: Award, label: "קריטריונים ברורים" },
+  { icon: Microscope, label: "זיהוי דפוסים במוצרים" },
+  { icon: Shield, label: "מקורות גלויים ורמת ביטחון" },
 ];
 
 export const categories: {
@@ -45,14 +45,53 @@ export const comparisons: {
   readTime: string;
   updated: string;
   gradient: string;
+  score: number;
+  confidence: number;
+  sources: number;
+  signals: string[];
+  benchmark: string;
+  rankingReason: string;
+  criteria: {
+    label: string;
+    value: string;
+    context: string;
+    impact: "positive" | "neutral" | "caution";
+  }[];
 }[] = [
   {
-    title: "חלב שקד: איזה מותג הכי בריא?",
+    title: "חלב שקד: איזה מותג מוביל?",
     category: "משקאות צמחיים",
     products: "אלפרו, שופרסל, נטורה, טרה",
     readTime: "6 דקות",
     updated: "עודכן השבוע",
-    gradient: "from-amber-50 to-orange-50",
+    gradient: "from-zinc-50 to-emerald-50",
+    score: 86,
+    confidence: 92,
+    sources: 7,
+    signals: ["סוכר נמוך", "רכיבים קצרים", "ביטחון גבוה"],
+    benchmark: "יחסית לקטגוריית משקאות צמחיים",
+    rankingReason:
+      "מדורג גבוה יותר בעיקר בזכות סוכר נמוך מהממוצע ורשימת רכיבים קצרה יותר; חלבון אינו יתרון מרכזי כאן.",
+    criteria: [
+      {
+        label: "סוכר",
+        value: "נמוך מהממוצע",
+        context: "פער עקבי מול רוב המתחרים",
+        impact: "positive",
+      },
+      {
+        label: "חלבון",
+        value: "קרוב לממוצע",
+        context: "לא מקבל משקל עודף בדירוג",
+        impact: "neutral",
+      },
+      {
+        label: "רכיבים",
+        value: "רשימה קצרה יותר",
+        context: "פחות מייצבים וממתיקים",
+        impact: "positive",
+      },
+    ],
   },
   {
     title: "יוגורט יווני מול יוגורט רגיל",
@@ -60,7 +99,34 @@ export const comparisons: {
     products: "השוואה מעמיקה",
     readTime: "5 דקות",
     updated: "נבדק ע״י צוות Bari",
-    gradient: "from-blue-50 to-cyan-50",
+    gradient: "from-zinc-50 to-emerald-50",
+    score: 81,
+    confidence: 88,
+    sources: 5,
+    signals: ["חלבון גבוה", "שובע", "סוכר בינוני"],
+    benchmark: "יחסית ליוגורטים באותה קטגוריית שומן",
+    rankingReason:
+      "הדירוג עולה כשהחלבון גבוה והסוכר נשאר בשליטה; מוצרים עם תוספות מתוקות יורדים למרות ערך חלבון טוב.",
+    criteria: [
+      {
+        label: "חלבון",
+        value: "גבוה מהממוצע",
+        context: "יתרון עקבי ל־100 גרם",
+        impact: "positive",
+      },
+      {
+        label: "סוכר",
+        value: "בינוני",
+        context: "דורש בדיקה לפי טעם ותוספות",
+        impact: "neutral",
+      },
+      {
+        label: "שובע",
+        value: "אות חיובי",
+        context: "שילוב חלבון ומרקם צפוף יותר",
+        impact: "positive",
+      },
+    ],
   },
   {
     title: "חטיפי חלבון: האם באמת בריאים?",
@@ -68,7 +134,34 @@ export const comparisons: {
     products: "יולו, פרוטאין קומפני, טעים",
     readTime: "8 דקות",
     updated: "מבוסס מקורות",
-    gradient: "from-purple-50 to-pink-50",
+    gradient: "from-zinc-50 to-emerald-50",
+    score: 74,
+    confidence: 84,
+    sources: 9,
+    signals: ["עיבוד גבוה", "ממתיקים", "חלבון"],
+    benchmark: "יחסית לחטיפי חלבון שנמכרים בישראל",
+    rankingReason:
+      "חלבון גבוה לא מספיק כדי להוביל אם רמת העיבוד, הממתיקים ורשימת הרכיבים יוצרים אותות סותרים.",
+    criteria: [
+      {
+        label: "חלבון",
+        value: "גבוה",
+        context: "יתרון ברור מול חטיפים רגילים",
+        impact: "positive",
+      },
+      {
+        label: "עיבוד",
+        value: "גבוה",
+        context: "רשימת רכיבים ארוכה יחסית",
+        impact: "caution",
+      },
+      {
+        label: "ממתיקים",
+        value: "נפוצים",
+        context: "משפיעים על שקיפות ההשוואה",
+        impact: "caution",
+      },
+    ],
   },
 ];
 
@@ -86,26 +179,38 @@ export const guides: {
 
 export const methodology: {
   icon: LucideIcon;
+  step: string;
   title: string;
   description: string;
+  signals: string[];
+  metric: string;
 }[] = [
   {
     icon: BookOpen,
-    title: "איסוף נתונים",
+    step: "01",
+    title: "ניתוח אותות תזונתיים",
     description:
-      "מוצרים, רכיבים וערכים תזונתיים נאספים ממקורות זמינים ומאורגנים למבנה אחיד.",
+      "רכיבים, ערכים ל־100 גרם וסימון מוצר עוברים למבנה אחיד שניתן להשוות.",
+    signals: ["רכיבים", "ערכים", "סימון"],
+    metric: "אחידות נתונים",
   },
   {
     icon: Microscope,
-    title: "ניתוח אלגוריתמי",
+    step: "02",
+    title: "השוואה יחסית לקטגוריה",
     description:
-      "המערכת מזהה דפוסים כמו צפיפות קלורית, איכות רכיבים, רמות סוכר, חלבון, סיבים ועיבוד.",
+      "כל אות נמדד מול מוצרים דומים כדי למנוע דירוג מנותק מהקשר.",
+    signals: ["קטגוריה", "יחסיות", "פערים"],
+    metric: "Benchmark קטגוריאלי",
   },
   {
     icon: Shield,
-    title: "דירוג והשוואה",
+    step: "03",
+    title: "דירוג מבוסס ראיות",
     description:
-      "המוצרים מדורגים ומושווים בתוך קטגוריות דומות, כדי שההשוואה תהיה הוגנת ושימושית.",
+      "הציון מלווה ברמת ביטחון, מקורות ונימוק שמסביר את ההבדל.",
+    signals: ["מקורות", "ביטחון", "הסבר"],
+    metric: "ביטחון + נימוק",
   },
 ];
 

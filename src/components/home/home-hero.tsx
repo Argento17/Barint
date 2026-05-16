@@ -1,5 +1,6 @@
-import { BookOpen, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
+import { BariSignalMark } from "@/components/brand/bari-brand-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -17,44 +18,46 @@ export function HomeHero() {
       )}
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-gradient-to-b from-zinc-100/55 via-zinc-50/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-gradient-to-b from-zinc-200/45 via-zinc-50/10 to-transparent"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-emerald-200/20 blur-3xl"
+        className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-emerald-900/10 blur-3xl"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -start-16 top-24 -z-10 size-[22rem] rounded-full bg-sky-100/35 blur-3xl"
+        className="pointer-events-none absolute -start-16 top-24 -z-10 size-[22rem] rounded-full bg-zinc-950/[0.04] blur-3xl"
         aria-hidden
       />
-      <HomeContainer className="py-16 md:py-20">
+      <HomeContainer className="py-[4.5rem] md:py-24">
         <div className="mx-auto max-w-5xl text-center">
           <Badge
             variant="outline"
-            className="mb-6 inline-flex items-center gap-2 rounded-full border-emerald-200/80 bg-gradient-to-l from-emerald-50 to-green-50 px-4 py-2 text-sm font-medium text-emerald-800 shadow-sm"
+            className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-emerald-900/10 bg-white/60 px-4 py-2 text-sm font-semibold text-emerald-900 shadow-sm shadow-zinc-950/[0.03] backdrop-blur-sm"
           >
-            <BookOpen className="size-4 shrink-0" aria-hidden />
-            השוואות, דירוגים ומדריכי מזון מבוססי מקורות
+            <BariSignalMark className="size-4" />
+            מערכת השוואות מזון מבוססת נתונים
           </Badge>
 
-          <h1 className="text-balance bg-gradient-to-l from-zinc-900 via-zinc-800 to-zinc-900 bg-clip-text text-4xl font-extrabold leading-[1.1] tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            אינטליגנציית מזון ישראלית
+          <h1 className="reveal-up delay-100 text-balance bg-gradient-to-l from-zinc-950 via-zinc-900 to-zinc-950 bg-clip-text text-4xl font-extrabold leading-[1.08] tracking-[-0.045em] text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            Bari מנתחת מוצרי מזון
+            <br />
+            ומזהה את מה שחשוב באמת
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl md:leading-relaxed">
-            Bari בודקת אלפי מוצרים בעזרת אלגוריתמים, מזהה דפוסים תזונתיים, משווה בין מוצרים
-            ומדרגת אוכל בצורה שקופה ומבוססת נתונים.
+          <p className="reveal-up delay-200 mx-auto mt-7 max-w-3xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl md:leading-relaxed">
+            השוואות, דירוגים ומדריכי רכיבים שמתרגמים תוויות, מקורות ודפוסים תזונתיים
+            להחלטה ברורה יותר — בלי שפה שיווקית ובלי הבטחות בריאות ריקות.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <div className="reveal-up delay-300 mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <Button
               size="lg"
-              className="group h-12 w-full rounded-2xl bg-gradient-to-l from-emerald-600 to-emerald-700 px-8 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 transition hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
+              className="group h-12 w-full rounded-2xl bg-zinc-950 px-8 text-base font-semibold text-white shadow-lg shadow-zinc-950/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-zinc-900 hover:shadow-xl hover:shadow-zinc-950/15 sm:w-auto"
               asChild
             >
               <a href="#comparisons" className="inline-flex items-center justify-center gap-2">
-                עיינו בדירוגים
+                ראו השוואות
                 <ChevronLeft
                   className="size-5 transition-transform group-hover:-translate-x-0.5"
                   aria-hidden
@@ -64,14 +67,14 @@ export function HomeHero() {
             <Button
               size="lg"
               variant="outline"
-              className="h-12 w-full rounded-2xl border-zinc-200 bg-white/80 px-8 text-base font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white sm:w-auto"
+              className="h-12 w-full rounded-2xl border-zinc-200/80 bg-white/65 px-8 text-base font-semibold text-zinc-800 shadow-sm shadow-zinc-950/[0.03] backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-white hover:shadow-md hover:shadow-zinc-950/[0.06] sm:w-auto"
               asChild
             >
-              <a href="#comparisons">גלו השוואות</a>
+              <a href="#methodology">איך Bari מדרגת</a>
             </Button>
           </div>
 
-          <div className="mx-auto mt-14 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-zinc-600">
+          <div className="reveal-up delay-300 mx-auto mt-16 flex max-w-3xl flex-wrap items-center justify-center gap-x-9 gap-y-4 text-sm text-zinc-600">
             {heroTrust.map((item) => {
               const Icon = item.icon;
               return (
