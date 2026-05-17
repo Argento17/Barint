@@ -3,8 +3,6 @@ import { ChevronLeft } from "lucide-react";
 import { categories } from "./content";
 import { HomeContainer, SectionHeading } from "./section-frame";
 
-const signalLabels = ["עיבוד", "שונות", "תוספים"] as const;
-
 export function HomeCategories() {
   return (
     <section className="relative py-16 md:py-20" id="categories">
@@ -21,7 +19,7 @@ export function HomeCategories() {
               <a
                 key={category.name}
                 href={category.href}
-                className="group relative min-h-[14.5rem] overflow-hidden rounded-[1.65rem] border border-stone-200/80 bg-white/90 p-5 shadow-sm shadow-zinc-950/[0.025] transition-[border-color,box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-emerald-900/15 hover:bg-white hover:shadow-[0_22px_68px_-52px_rgba(24,24,27,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-800/20 md:p-5"
+                className="group relative min-h-[13.5rem] overflow-hidden rounded-[1.65rem] border border-stone-200/80 bg-white/90 p-5 shadow-sm shadow-zinc-950/[0.025] transition-[border-color,box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-emerald-900/15 hover:bg-white hover:shadow-[0_22px_68px_-52px_rgba(24,24,27,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-800/20 md:p-5"
               >
                 <div
                   className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_8%,rgba(4,120,87,0.075),transparent_34%),linear-gradient(135deg,rgba(245,245,244,0.9),rgba(255,255,255,0.25)_44%,rgba(236,253,245,0.24))] opacity-80 transition-opacity duration-500 group-hover:opacity-100"
@@ -70,19 +68,14 @@ export function HomeCategories() {
                   </div>
 
                   <div className="mt-auto pt-6">
-                    <div className="space-y-2.5">
-                      {category.signals.map((value, index) => (
-                        <div key={signalLabels[index]} className="grid grid-cols-[3.2rem_1fr] items-center gap-2">
-                          <span className="text-[0.68rem] font-semibold text-zinc-500">
-                            {signalLabels[index]}
-                          </span>
-                          <span className="relative h-1.5 overflow-hidden rounded-full bg-stone-200/80 shadow-inner shadow-zinc-950/[0.035]">
-                            <span
-                              className="absolute inset-y-0 end-0 rounded-full bg-zinc-800 transition-[width,background-color] duration-700 ease-out group-hover:bg-emerald-800"
-                              style={{ width: `${value}%` }}
-                            />
-                          </span>
-                        </div>
+                    <div className="flex flex-wrap gap-2">
+                      {category.signals.map((signal) => (
+                        <span
+                          key={signal}
+                          className="rounded-full border border-stone-200/80 bg-white/72 px-3 py-1 text-[0.72rem] font-semibold text-zinc-600 shadow-sm shadow-zinc-950/[0.015] backdrop-blur-sm transition-[border-color,background-color,color] duration-300 group-hover:border-emerald-900/12 group-hover:bg-emerald-50/60 group-hover:text-emerald-950"
+                        >
+                          {signal}
+                        </span>
                       ))}
                     </div>
 

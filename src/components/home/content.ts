@@ -28,7 +28,7 @@ export const categories: {
   href: string;
   products: string;
   insight: string;
-  signals: [number, number, number];
+  signals: string[];
 }[] = [
   {
     icon: Beef,
@@ -36,7 +36,7 @@ export const categories: {
     href: "#comparisons",
     products: "184 מוצרים",
     insight: "פערים גדולים באיכות מקור",
-    signals: [42, 68, 35],
+    signals: ["חלבון משתנה", "מקור רכיבי", "שובע"],
   },
   {
     icon: Sandwich,
@@ -44,7 +44,7 @@ export const categories: {
     href: "#comparisons",
     products: "312 מוצרים",
     insight: "עומס עיבוד משתנה",
-    signals: [58, 74, 46],
+    signals: ["עיבוד משתנה", "סיבים", "נתרן"],
   },
   {
     icon: Coffee,
@@ -52,7 +52,7 @@ export const categories: {
     href: "#comparisons",
     products: "128 מוצרים",
     insight: "פערי סוכר ותוספים בולטים",
-    signals: [76, 63, 82],
+    signals: ["פערי סוכר", "ריבוי תוספים", "דגנים מלאים"],
   },
   {
     icon: Apple,
@@ -60,7 +60,7 @@ export const categories: {
     href: "#comparisons",
     products: "246 מוצרים",
     insight: "הבדלים חדים ברכיבים",
-    signals: [51, 57, 69],
+    signals: ["סוכר מוסף", "תחליפים", "רכיבים קצרים"],
   },
   {
     icon: Zap,
@@ -68,7 +68,7 @@ export const categories: {
     href: "#comparisons",
     products: "96 מוצרים",
     insight: "רמת ביטחון תלויה מקור",
-    signals: [36, 52, 61],
+    signals: ["מקור נתונים", "מינון", "הבטחות שיווק"],
   },
   {
     icon: Cookie,
@@ -76,7 +76,7 @@ export const categories: {
     href: "/categories/snacks",
     products: "275 מוצרים",
     insight: "תוספים ועיבוד נפוצים",
-    signals: [82, 71, 78],
+    signals: ["עיבוד גבוה", "פערי סוכר", "ריבוי תוספים"],
   },
   {
     icon: Milk,
@@ -84,7 +84,7 @@ export const categories: {
     href: "#comparisons",
     products: "167 מוצרים",
     insight: "חלבון ושומן משנים הקשר",
-    signals: [39, 66, 43],
+    signals: ["חלבון משתנה", "שומן", "נתרן"],
   },
   {
     icon: Baby,
@@ -92,7 +92,7 @@ export const categories: {
     href: "#comparisons",
     products: "203 מוצרים",
     insight: "פערים גדולים בין מותגים",
-    signals: [69, 62, 74],
+    signals: ["שונות גבוהה", "סוכר", "רכיבים לילדים"],
   },
 ];
 

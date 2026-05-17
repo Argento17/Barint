@@ -32,9 +32,9 @@ export function NewsletterSignup() {
         type="submit"
         size="lg"
         disabled={sent}
-        className="h-12 shrink-0 rounded-2xl bg-gradient-to-l from-emerald-600 to-emerald-700 px-8 font-semibold text-white shadow-md"
+        className="newsletter-cta-attention h-12 shrink-0 rounded-2xl bg-gradient-to-l from-emerald-700 via-emerald-800 to-zinc-950 px-8 font-semibold text-white shadow-md shadow-emerald-950/10 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:shadow-lg hover:shadow-emerald-950/15 disabled:animate-none disabled:opacity-80"
       >
-        {sent ? "תודה, נרשמתם" : "הירשמו עכשיו"}
+        {sent ? "תודה, נרשמתם" : "הירשמו לניוזלטר"}
       </Button>
     </form>
   );

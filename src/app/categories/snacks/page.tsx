@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   BarChart3,
   ChevronLeft,
@@ -219,10 +220,10 @@ export default function SnacksCategoryPage() {
               בדף אמיתי, הערכים יוזנו ממסד נתוני מוצרים ותוויות. כרגע זו דוגמת UX שמראה איך Bari
               מסביר הבדלים בתוך קטגוריה בלי להפוך אותם לפסק דין פשטני.
             </p>
-            <a href="/#categories" className="inline-flex shrink-0 items-center gap-1 font-bold text-emerald-900">
+            <Link href="/#categories" className="inline-flex shrink-0 items-center gap-1 font-bold text-emerald-900">
               חזרה לתחומי הניתוח
               <ChevronLeft className="size-4" aria-hidden />
-            </a>
+            </Link>
           </div>
         </section>
       </HomeContainer>

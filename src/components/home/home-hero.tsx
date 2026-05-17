@@ -21,6 +21,43 @@ export function HomeHero() {
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-gradient-to-b from-zinc-200/45 via-zinc-50/10 to-transparent"
         aria-hidden
       />
+      <div className="home-hero-signal-network pointer-events-none absolute inset-0 -z-10" aria-hidden>
+        <svg className="size-full" viewBox="0 0 1200 760" preserveAspectRatio="none" focusable="false">
+          <g className="signal-network-group signal-network-group-a">
+            <path d="M82 112 L176 76 L286 132 L386 88" />
+            <path d="M128 236 L232 194 L334 254 L446 210" />
+            <path d="M76 556 L194 508 L312 590 L424 532" />
+            <circle cx="82" cy="112" r="2.2" />
+            <circle cx="176" cy="76" r="1.8" />
+            <circle cx="286" cy="132" r="2" />
+            <circle cx="386" cy="88" r="1.7" />
+            <circle cx="128" cy="236" r="1.7" />
+            <circle cx="232" cy="194" r="2.1" />
+            <circle cx="334" cy="254" r="1.8" />
+            <circle cx="446" cy="210" r="1.5" />
+            <circle cx="76" cy="556" r="2" />
+            <circle cx="194" cy="508" r="1.7" />
+            <circle cx="312" cy="590" r="2.2" />
+            <circle cx="424" cy="532" r="1.6" />
+          </g>
+          <g className="signal-network-group signal-network-group-b">
+            <path d="M792 92 L918 146 L1034 96 L1130 154" />
+            <path d="M770 578 L882 520 L996 588 L1128 526" />
+            <path d="M884 304 L982 262 L1098 318" />
+            <circle cx="792" cy="92" r="1.8" />
+            <circle cx="918" cy="146" r="2.2" />
+            <circle cx="1034" cy="96" r="1.8" />
+            <circle cx="1130" cy="154" r="2" />
+            <circle cx="770" cy="578" r="1.7" />
+            <circle cx="882" cy="520" r="2" />
+            <circle cx="996" cy="588" r="1.8" />
+            <circle cx="1128" cy="526" r="2.1" />
+            <circle cx="884" cy="304" r="1.6" />
+            <circle cx="982" cy="262" r="2" />
+            <circle cx="1098" cy="318" r="1.7" />
+          </g>
+        </svg>
+      </div>
       <div
         className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-emerald-900/10 blur-3xl"
         aria-hidden

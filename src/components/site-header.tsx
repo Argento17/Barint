@@ -38,7 +38,7 @@ export function SiteHeader() {
           <nav className="hidden items-center gap-4 md:flex" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={`${link.label}-${link.href}`}
                 href={link.href}
                 className="inline-flex items-center rounded-2xl px-3.5 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-500 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/35 hover:text-zinc-900"
               >
@@ -47,10 +47,15 @@ export function SiteHeader() {
             ))}
             <Button
               size="sm"
-              className="ms-5 h-9 rounded-2xl bg-zinc-950/95 px-4 text-[0.92rem] font-semibold tracking-[-0.012em] text-white shadow-sm shadow-zinc-950/10 transition-[background-color,opacity,transform,box-shadow] duration-500 ease-out hover:-translate-y-px hover:bg-zinc-900 hover:shadow-zinc-950/15"
+              className="nav-newsletter-cta ms-5 h-9 rounded-full border border-white/10 bg-neutral-950 px-4 text-[0.92rem] font-semibold tracking-[-0.012em] text-white shadow-sm shadow-zinc-950/10 transition-[background-color,border-color,opacity,transform] duration-500 ease-out hover:-translate-y-px hover:border-emerald-400/30 hover:bg-zinc-900"
               asChild
             >
-              <Link href="/#newsletter">הירשמו לניוזלטר</Link>
+              <Link href="/#newsletter">
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  הרשמו לניוזלטר
+                  <span className="size-1.5 rounded-full bg-emerald-400/80" aria-hidden />
+                </span>
+              </Link>
             </Button>
           </nav>
 
@@ -76,7 +81,7 @@ export function SiteHeader() {
               <nav className="flex flex-col gap-1 p-4" aria-label="ניווט נייד">
                 {navLinks.map((link) => (
                   <Link
-                    key={link.href}
+                    key={`${link.label}-${link.href}`}
                     href={link.href}
                     className="inline-flex items-center rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-700 transition-[background-color,color] duration-500 ease-out hover:bg-zinc-50 hover:text-zinc-950"
                   >
@@ -85,9 +90,12 @@ export function SiteHeader() {
                 ))}
                 <Link
                   href="/#newsletter"
-                  className="mt-2 rounded-2xl bg-zinc-950 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-zinc-950/10 transition-colors duration-500 ease-out hover:bg-zinc-800"
+                  className="nav-newsletter-cta mt-2 rounded-full border border-white/10 bg-neutral-950 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm shadow-zinc-950/10 transition-[background-color,border-color] duration-500 ease-out hover:border-emerald-400/30 hover:bg-zinc-800"
                 >
-                  הירשמו לניוזלטר
+                  <span className="relative z-10 inline-flex items-center justify-center gap-2">
+                    הרשמו לניוזלטר
+                    <span className="size-1.5 rounded-full bg-emerald-400/80" aria-hidden />
+                  </span>
                 </Link>
               </nav>
             </SheetContent>
