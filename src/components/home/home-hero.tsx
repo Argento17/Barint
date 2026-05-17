@@ -45,9 +45,8 @@ export function HomeHero() {
             ומזהה את מה שחשוב באמת
           </h1>
 
-          <p className="reveal-up delay-200 mx-auto mt-7 max-w-3xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl md:leading-relaxed">
-            השוואות, דירוגים ומדריכי רכיבים שמתרגמים תוויות, מקורות ודפוסים תזונתיים
-            להחלטה ברורה יותר — בלי שפה שיווקית ובלי הבטחות בריאות ריקות.
+          <p className="reveal-up delay-200 mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl md:leading-relaxed">
+            Bari מנתח מוצרים דרך עשרות אותות תזונתיים ורכיביים — ולא לפי נתון בודד.
           </p>
 
           <div className="reveal-up delay-300 mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -56,8 +55,8 @@ export function HomeHero() {
               className="group h-12 w-full rounded-2xl bg-zinc-950 px-8 text-base font-semibold text-white shadow-lg shadow-zinc-950/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-zinc-900 hover:shadow-xl hover:shadow-zinc-950/15 sm:w-auto"
               asChild
             >
-              <a href="#comparisons" className="inline-flex items-center justify-center gap-2">
-                ראו השוואות
+              <a href="#methodology" className="inline-flex items-center justify-center gap-2">
+                איך Bari מנתח מזון
                 <ChevronLeft
                   className="size-5 transition-transform group-hover:-translate-x-0.5"
                   aria-hidden
@@ -70,7 +69,7 @@ export function HomeHero() {
               className="h-12 w-full rounded-2xl border-zinc-200/80 bg-white/65 px-8 text-base font-semibold text-zinc-800 shadow-sm shadow-zinc-950/[0.03] backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-white hover:shadow-md hover:shadow-zinc-950/[0.06] sm:w-auto"
               asChild
             >
-              <a href="#methodology">איך Bari מדרגת</a>
+              <a href="#comparisons">כך Bari משווה מוצרים</a>
             </Button>
           </div>
 

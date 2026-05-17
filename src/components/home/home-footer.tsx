@@ -27,9 +27,13 @@ export function HomeFooter() {
             </p>
           </div>
 
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm md:justify-end">
+          <nav className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm md:justify-end">
             {footerLinks.content.map((l) => (
-              <Link key={l.label} href={l.href} className="text-zinc-400 transition hover:text-emerald-400">
+              <Link
+                key={l.label}
+                href={l.href}
+                className="inline-flex px-1 text-zinc-400 transition hover:text-emerald-400"
+              >
                 {l.label}
               </Link>
             ))}

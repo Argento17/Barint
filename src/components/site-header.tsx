@@ -35,12 +35,12 @@ export function SiteHeader() {
             <BariBrandLogo />
           </Link>
 
-          <nav className="hidden items-center gap-3.5 md:flex" aria-label="ניווט ראשי">
+          <nav className="hidden items-center gap-4 md:flex" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-2xl px-3 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-500 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/35 hover:text-zinc-900"
+                className="inline-flex items-center rounded-2xl px-3.5 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-500 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/35 hover:text-zinc-900"
               >
                 {link.label}
               </Link>
@@ -78,7 +78,7 @@ export function SiteHeader() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-700 transition-[background-color,color] duration-500 ease-out hover:bg-zinc-50 hover:text-zinc-950"
+                    className="inline-flex items-center rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-700 transition-[background-color,color] duration-500 ease-out hover:bg-zinc-50 hover:text-zinc-950"
                   >
                     {link.label}
                   </Link>

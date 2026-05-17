@@ -13,9 +13,6 @@ export function HomeNewsletter() {
           />
           <NewsletterSignup />
           <p className="text-sm text-zinc-600">ללא ספאם. ביטול בכל עת.</p>
-          <p className="mt-3 text-xs text-zinc-500">
-            בגרסת פיתוח זו אין שליחה לשרת — הטופס מדגים חוויית הרשמה בלבד.
-          </p>
         </div>
       </HomeContainer>
     </section>

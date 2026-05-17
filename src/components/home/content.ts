@@ -25,17 +25,75 @@ export const heroTrust: { icon: LucideIcon; label: string }[] = [
 export const categories: {
   icon: LucideIcon;
   name: string;
-  color: string;
-  bg: string;
+  href: string;
+  products: string;
+  insight: string;
+  signals: [number, number, number];
 }[] = [
-  { icon: Beef, name: "חלבון", color: "from-red-500 to-orange-500", bg: "from-red-50 to-orange-50" },
-  { icon: Sandwich, name: "לחמים", color: "from-amber-500 to-yellow-600", bg: "from-amber-50 to-yellow-50" },
-  { icon: Coffee, name: "דגני בוקר", color: "from-yellow-600 to-amber-700", bg: "from-yellow-50 to-amber-50" },
-  { icon: Apple, name: "משקאות", color: "from-blue-500 to-cyan-500", bg: "from-blue-50 to-cyan-50" },
-  { icon: Zap, name: "תוספי תזונה", color: "from-emerald-500 to-green-600", bg: "from-emerald-50 to-green-50" },
-  { icon: Cookie, name: "חטיפים", color: "from-purple-500 to-pink-500", bg: "from-purple-50 to-pink-50" },
-  { icon: Milk, name: "גבינות", color: "from-indigo-500 to-blue-500", bg: "from-indigo-50 to-blue-50" },
-  { icon: Baby, name: "מוצרים לילדים", color: "from-pink-500 to-rose-500", bg: "from-pink-50 to-rose-50" },
+  {
+    icon: Beef,
+    name: "ניתוח חלבונים",
+    href: "#comparisons",
+    products: "184 מוצרים",
+    insight: "פערים גדולים באיכות מקור",
+    signals: [42, 68, 35],
+  },
+  {
+    icon: Sandwich,
+    name: "לחמים ודגנים",
+    href: "#comparisons",
+    products: "312 מוצרים",
+    insight: "עומס עיבוד משתנה",
+    signals: [58, 74, 46],
+  },
+  {
+    icon: Coffee,
+    name: "דגני בוקר",
+    href: "#comparisons",
+    products: "128 מוצרים",
+    insight: "פערי סוכר ותוספים בולטים",
+    signals: [76, 63, 82],
+  },
+  {
+    icon: Apple,
+    name: "משקאות ותחליפים",
+    href: "#comparisons",
+    products: "246 מוצרים",
+    insight: "הבדלים חדים ברכיבים",
+    signals: [51, 57, 69],
+  },
+  {
+    icon: Zap,
+    name: "תוספי תזונה",
+    href: "#comparisons",
+    products: "96 מוצרים",
+    insight: "רמת ביטחון תלויה מקור",
+    signals: [36, 52, 61],
+  },
+  {
+    icon: Cookie,
+    name: "השוואות חטיפים",
+    href: "/categories/snacks",
+    products: "275 מוצרים",
+    insight: "תוספים ועיבוד נפוצים",
+    signals: [82, 71, 78],
+  },
+  {
+    icon: Milk,
+    name: "גבינות ומוצרי חלב",
+    href: "#comparisons",
+    products: "167 מוצרים",
+    insight: "חלבון ושומן משנים הקשר",
+    signals: [39, 66, 43],
+  },
+  {
+    icon: Baby,
+    name: "מזון לילדים",
+    href: "#comparisons",
+    products: "203 מוצרים",
+    insight: "פערים גדולים בין מותגים",
+    signals: [69, 62, 74],
+  },
 ];
 
 export const comparisons: {
@@ -46,8 +104,9 @@ export const comparisons: {
   updated: string;
   gradient: string;
   score: number;
-  confidence: number;
-  sources: number;
+  confidenceLevel: "high" | "mediumHigh" | "medium";
+  confidenceLabel: string;
+  sourceLabel: string;
   signals: string[];
   benchmark: string;
   rankingReason: string;
@@ -66,8 +125,9 @@ export const comparisons: {
     updated: "עודכן השבוע",
     gradient: "from-zinc-50 to-emerald-50",
     score: 86,
-    confidence: 92,
-    sources: 7,
+    confidenceLevel: "high",
+    confidenceLabel: "ביטחון גבוה",
+    sourceLabel: "מקורות זמינים",
     signals: ["סוכר נמוך", "רכיבים קצרים", "ביטחון גבוה"],
     benchmark: "יחסית לקטגוריית משקאות צמחיים",
     rankingReason:
@@ -98,11 +158,12 @@ export const comparisons: {
     category: "מוצרי חלב",
     products: "השוואה מעמיקה",
     readTime: "5 דקות",
-    updated: "נבדק ע״י צוות Bari",
+    updated: "השוואה מתעדכנת",
     gradient: "from-zinc-50 to-emerald-50",
     score: 81,
-    confidence: 88,
-    sources: 5,
+    confidenceLevel: "mediumHigh",
+    confidenceLabel: "ביטחון בינוני-גבוה",
+    sourceLabel: "נתוני תווית",
     signals: ["חלבון גבוה", "שובע", "סוכר בינוני"],
     benchmark: "יחסית ליוגורטים באותה קטגוריית שומן",
     rankingReason:
@@ -133,11 +194,12 @@ export const comparisons: {
     category: "חלבון וחטיפים",
     products: "יולו, פרוטאין קומפני, טעים",
     readTime: "8 דקות",
-    updated: "מבוסס מקורות",
+    updated: "דורש קריאה ביקורתית",
     gradient: "from-zinc-50 to-emerald-50",
     score: 74,
-    confidence: 84,
-    sources: 9,
+    confidenceLevel: "medium",
+    confidenceLabel: "ביטחון בינוני",
+    sourceLabel: "מקורות זמינים",
     signals: ["עיבוד גבוה", "ממתיקים", "חלבון"],
     benchmark: "יחסית לחטיפי חלבון שנמכרים בישראל",
     rankingReason:
@@ -165,6 +227,37 @@ export const comparisons: {
   },
 ];
 
+export const productComparisonExample = {
+  category: "חלב שיבולת שועל",
+  sticker: "בחירה עדיפה בקטגוריה",
+  basis: "דירוג יחסי לקטגוריית חלב שיבולת שועל · מבוסס על נתוני תווית זמינים",
+  summary:
+    "Bari משווה מוצרים דומים ומבליטה את הסיבה להעדפה: פחות סוכר, פחות תוספים ופרופיל רכיבים נקי יותר בתוך אותה קטגוריה.",
+  products: [
+    {
+      name: "חלב שיבולת שועל A",
+      label: "מוביל יחסי",
+      score: "גבוה",
+      tone: "preferred",
+      signals: ["פחות סוכר", "פחות תוספים", "רכיבים קצרים", "ביטחון גבוה"],
+      note: "מקבל יתרון בגלל שילוב עקבי של סוכר נמוך ורשימת רכיבים קצרה יותר.",
+    },
+    {
+      name: "חלב שיבולת שועל B",
+      label: "חלופה סבירה",
+      score: "בינוני",
+      tone: "baseline",
+      signals: ["סוכר גבוה יותר", "יותר מייצבים", "רכיבים דומים", "ביטחון בינוני"],
+      note: "נשאר רלוונטי להשוואה, אך מפסיד במדדי סוכר ותוספים יחסית למוצר A.",
+    },
+  ],
+  criteria: [
+    { label: "סוכר", winner: "A", detail: "פער יחסי לטובת מוצר A" },
+    { label: "תוספים", winner: "A", detail: "רשימה קצרה ונקייה יותר" },
+    { label: "מקורות", winner: "A/B", detail: "מבוסס על נתוני תווית זמינים" },
+  ],
+} as const;
+
 export const guides: {
   title: string;
   type: string;
@@ -188,29 +281,47 @@ export const methodology: {
   {
     icon: BookOpen,
     step: "01",
-    title: "ניתוח אותות תזונתיים",
+    title: "איחוד נתוני מוצר",
     description:
-      "רכיבים, ערכים ל־100 גרם וסימון מוצר עוברים למבנה אחיד שניתן להשוות.",
-    signals: ["רכיבים", "ערכים", "סימון"],
-    metric: "אחידות נתונים",
+      "שם, קטגוריה, רכיבים וערכים תזונתיים עוברים למבנה אחיד כדי שמוצרים דומים יהיו באמת בני־השוואה.",
+    signals: ["שם מוצר", "קטגוריה", "נתוני תווית"],
+    metric: "Normalization",
+  },
+  {
+    icon: TrendingUp,
+    step: "02",
+    title: "Benchmark קטגורי",
+    description:
+      "כל מוצר נמדד מול מוצרים מאותה קטגוריה, כדי שהדירוג לא יעניש או יתגמל בלי הקשר תחרותי.",
+    signals: ["מוצרים דומים", "פער יחסי", "הקשר שוק"],
+    metric: "Category-relative",
   },
   {
     icon: Microscope,
-    step: "02",
-    title: "השוואה יחסית לקטגוריה",
+    step: "03",
+    title: "זיהוי אותות תזונתיים",
     description:
-      "כל אות נמדד מול מוצרים דומים כדי למנוע דירוג מנותק מהקשר.",
-    signals: ["קטגוריה", "יחסיות", "פערים"],
-    metric: "Benchmark קטגוריאלי",
+      "המערכת בודקת דפוסים כמו סוכר, חלבון, סיבים וצפיפות קלורית ומציגה את האותות שמשפיעים על ההשוואה.",
+    signals: ["סוכר", "חלבון", "סיבים"],
+    metric: "Nutrition signals",
+  },
+  {
+    icon: Zap,
+    step: "04",
+    title: "ניתוח רכיבים ועיבוד",
+    description:
+      "רשימת הרכיבים נבחנת לפי אורך, תוספים, ממתיקים וסימני עיבוד כדי להוסיף שכבת הסבר מעבר לערכים המספריים.",
+    signals: ["תוספים", "ממתיקים", "עיבוד"],
+    metric: "Processing signals",
   },
   {
     icon: Shield,
-    step: "03",
-    title: "דירוג מבוסס ראיות",
+    step: "05",
+    title: "רמת ביטחון והסבר",
     description:
-      "הציון מלווה ברמת ביטחון, מקורות ונימוק שמסביר את ההבדל.",
-    signals: ["מקורות", "ביטחון", "הסבר"],
-    metric: "ביטחון + נימוק",
+      "כל מסקנה מוצגת עם בסיס מקור איכותי ונימוק קצר שמסביר למה מוצר אחד עדיף בתוך ההשוואה.",
+    signals: ["מקורות", "ביטחון", "נימוק"],
+    metric: "Evidence basis",
   },
 ];
 

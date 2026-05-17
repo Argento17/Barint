@@ -16,7 +16,7 @@ export function NewsletterSignup() {
         e.preventDefault();
         setSent(true);
       }}
-      aria-label="הרשמה לניוזלטר (דמו מקומי)"
+      aria-label="הרשמה לניוזלטר"
     >
       <Input
         type="email"
@@ -34,7 +34,7 @@ export function NewsletterSignup() {
         disabled={sent}
         className="h-12 shrink-0 rounded-2xl bg-gradient-to-l from-emerald-600 to-emerald-700 px-8 font-semibold text-white shadow-md"
       >
-        {sent ? "נרשמתם (דמו)" : "הירשמו עכשיו"}
+        {sent ? "תודה, נרשמתם" : "הירשמו עכשיו"}
       </Button>
     </form>
   );
