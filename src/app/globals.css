@@ -58,7 +58,7 @@
 :root {
   --site-header-height: 4rem;
   --site-header-height-sm: 4.25rem;
-  --home-canvas-base: #f7f8f6;
+  --home-canvas-base: #050706;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -228,7 +228,7 @@
 
   .home-hero-signal-network {
     opacity: 0.78;
-    color: rgba(4, 120, 87, 0.28);
+    color: rgba(52, 211, 153, 0.22);
     mask-image: radial-gradient(ellipse at center, transparent 0%, transparent 31%, rgba(0, 0, 0, 0.15) 48%, black 84%);
     -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, transparent 31%, rgba(0, 0, 0, 0.15) 48%, black 84%);
   }
@@ -276,7 +276,7 @@
   }
 
   .signal-network-group-b {
-    color: rgba(24, 24, 27, 0.16);
+    color: rgba(16, 185, 129, 0.16);
     animation-duration: 42s, 11s;
     animation-delay: -8s, -3s;
   }
@@ -369,15 +369,51 @@
   .home-canvas::before {
     background-color: var(--home-canvas-base);
     background-image:
-      radial-gradient(1200px circle at 82% -12%, rgba(16, 185, 129, 0.09), transparent 48%),
-      radial-gradient(900px circle at 8% 28%, rgba(212, 239, 232, 0.55), transparent 52%),
-      radial-gradient(700px circle at 50% -4%, rgba(250, 250, 249, 0.92), transparent 68%),
-      linear-gradient(to bottom, rgba(244, 244, 245, 0.55) 0%, transparent 40%, rgba(236, 253, 245, 0.2) 100%);
+      radial-gradient(1200px circle at 82% -12%, rgba(16, 185, 129, 0.15), transparent 48%),
+      radial-gradient(900px circle at 8% 28%, rgba(5, 46, 22, 0.22), transparent 52%),
+      radial-gradient(700px circle at 50% -4%, rgba(24, 24, 27, 0.65), transparent 68%),
+      linear-gradient(to bottom, rgba(5, 7, 6, 0.96) 0%, rgba(5, 7, 6, 0.88) 44%, rgba(3, 10, 7, 0.98) 100%);
   }
 
   .home-canvas::after {
-    opacity: 0.035;
+    opacity: 0.12;
     mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image:
+      linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 42px 42px, 42px 42px, auto;
+  }
+
+  .bari-product-demo [class*="bg-white"],
+  .bari-product-demo [class*="from-white"],
+  .bari-product-demo [class*="via-white"],
+  .bari-product-demo [class*="to-white"],
+  .bari-product-demo [class*="bg-zinc-900/["],
+  .bari-product-demo [class*="bg-amber-50"],
+  .bari-product-demo [class*="bg-emerald-50"],
+  .bari-product-demo [class*="bg-sky-50"] {
+    background-color: rgba(255, 255, 255, 0.045) !important;
+    background-image:
+      radial-gradient(circle at 80% 12%, rgba(16, 185, 129, 0.09), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 58%) !important;
+    border-color: rgba(110, 231, 183, 0.1) !important;
+  }
+
+  .bari-product-demo :is([class*="text-zinc-950"], [class*="text-zinc-900"], [class*="text-zinc-800"], [class*="text-emerald-950"], [class*="text-amber-950"], [class*="text-rose-950"]) {
+    color: rgb(244, 244, 245) !important;
+  }
+
+  .bari-product-demo :is([class*="text-zinc-700"], [class*="text-zinc-600"], [class*="text-zinc-500"]) {
+    color: rgb(161, 161, 170) !important;
+  }
+
+  .bari-product-demo :is([class*="ring-white"], [class*="border-white"], [class*="ring-emerald-950"]) {
+    --tw-ring-color: rgba(110, 231, 183, 0.12) !important;
+    border-color: rgba(110, 231, 183, 0.12) !important;
+  }
+
+  .bari-product-demo svg:not([class*="text-"]) {
+    color: rgb(167, 243, 208);
   }
 }

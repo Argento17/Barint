@@ -33,7 +33,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -234,7 +233,7 @@ function MeshBackdrop() {
   return (
     <>
       <div
-        className="pointer-events-none fixed inset-0 -z-20 bg-[#f4f9f7]"
+        className="pointer-events-none fixed inset-0 -z-20 bg-[#050706]"
         aria-hidden
       />
       <div
@@ -242,14 +241,14 @@ function MeshBackdrop() {
         aria-hidden
         style={{
           background: `
-            radial-gradient(900px 520px at 85% -8%, rgba(167, 243, 208, 0.55), transparent 55%),
-            radial-gradient(700px 480px at 0% 40%, rgba(224, 242, 254, 0.35), transparent 50%),
-            radial-gradient(600px 500px at 100% 85%, rgba(209, 250, 229, 0.5), transparent 50%)
+            radial-gradient(900px 520px at 85% -8%, rgba(16, 185, 129, 0.18), transparent 55%),
+            radial-gradient(700px 480px at 0% 40%, rgba(5, 46, 22, 0.22), transparent 50%),
+            radial-gradient(600px 500px at 100% 85%, rgba(20, 83, 45, 0.15), transparent 50%)
           `,
         }}
       />
       <div
-        className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-white/50 via-transparent to-emerald-50/30"
+        className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.028)_1px,transparent_1px)] bg-[length:42px_42px]"
         aria-hidden
       />
     </>
@@ -365,8 +364,8 @@ export default function ProductPage() {
     <div
       className={cn(
         hebrew.className,
-        "relative min-h-screen overflow-x-hidden text-zinc-900 antialiased",
-        "selection:bg-emerald-500/20 selection:text-emerald-950"
+        "bari-product-demo relative min-h-screen overflow-x-hidden text-zinc-100 antialiased",
+        "selection:bg-emerald-400/20 selection:text-emerald-50"
       )}
     >
       <MeshBackdrop />

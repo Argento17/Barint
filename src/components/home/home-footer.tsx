@@ -15,7 +15,7 @@ const footerLinks = {
 
 export function HomeFooter() {
   return (
-    <footer className="bg-zinc-900 py-14 text-zinc-300 md:py-16">
+    <footer className="border-t border-emerald-300/10 bg-[#050706] py-14 text-zinc-300 md:py-16">
       <HomeContainer>
         <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-right">
           <div className="space-y-3">
@@ -40,7 +40,7 @@ export function HomeFooter() {
           </nav>
         </div>
 
-        <Separator className="my-8 bg-zinc-800" />
+        <Separator className="my-8 bg-emerald-300/10" />
 
         <p className="text-center text-sm text-zinc-500">© {new Date().getFullYear()} Bari. כל הזכויות שמורות.</p>
       </HomeContainer>

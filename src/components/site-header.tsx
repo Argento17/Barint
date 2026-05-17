@@ -24,7 +24,7 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="reveal-up sticky top-0 z-50 border-b border-zinc-200/20 bg-[#f7f8f6]/50 shadow-[0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-xl">
+    <header className="reveal-up sticky top-0 z-50 border-b border-emerald-300/10 bg-[#050706]/72 shadow-[0_1px_0_rgba(16,185,129,0.08)] backdrop-blur-xl">
       <HomeContainer>
         <div className={cn("flex items-center justify-between gap-10", siteHeaderHeightClass)}>
           <Link
@@ -32,7 +32,7 @@ export function SiteHeader() {
             aria-label="בית Bari"
             className="group flex shrink-0 items-center transition-opacity duration-500 ease-out hover:opacity-90"
           >
-            <BariBrandLogo />
+            <BariBrandLogo surface="dark" />
           </Link>
 
           <nav className="hidden items-center gap-4 md:flex" aria-label="ניווט ראשי">
@@ -40,7 +40,7 @@ export function SiteHeader() {
               <Link
                 key={`${link.label}-${link.href}`}
                 href={link.href}
-                className="inline-flex items-center rounded-2xl px-3.5 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-500 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/35 hover:text-zinc-900"
+                className="inline-flex items-center rounded-2xl px-3.5 py-2 text-[0.95rem] font-semibold tracking-[-0.012em] text-zinc-400 transition-[color,background-color,opacity] duration-500 ease-out hover:bg-white/[0.045] hover:text-zinc-100"
               >
                 {link.label}
               </Link>
@@ -64,17 +64,17 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-2xl text-zinc-700 transition-[background-color,opacity] duration-500 ease-out hover:bg-white/35 md:hidden"
+                className="rounded-2xl text-zinc-200 transition-[background-color,opacity] duration-500 ease-out hover:bg-white/[0.055] md:hidden"
                 aria-label="פתיחת תפריט"
               >
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="gap-0 pt-14">
+            <SheetContent side="right" className="gap-0 border-emerald-300/10 bg-zinc-950 pt-14 text-white">
               <SheetHeader className="pb-4 text-right">
                 <SheetTitle className="text-right">
                   <Link href="/" aria-label="בית Bari">
-                    <BariBrandLogo />
+                    <BariBrandLogo surface="dark" />
                   </Link>
                 </SheetTitle>
               </SheetHeader>
@@ -83,7 +83,7 @@ export function SiteHeader() {
                   <Link
                     key={`${link.label}-${link.href}`}
                     href={link.href}
-                    className="inline-flex items-center rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-700 transition-[background-color,color] duration-500 ease-out hover:bg-zinc-50 hover:text-zinc-950"
+                    className="inline-flex items-center rounded-2xl px-3 py-3 text-base font-semibold tracking-[-0.012em] text-zinc-300 transition-[background-color,color] duration-500 ease-out hover:bg-white/[0.055] hover:text-white"
                   >
                     {link.label}
                   </Link>

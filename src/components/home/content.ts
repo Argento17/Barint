@@ -1,18 +1,10 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Apple,
   Award,
-  Baby,
-  Beef,
   BookOpen,
-  Coffee,
-  Cookie,
   Microscope,
-  Milk,
-  Sandwich,
   Shield,
   TrendingUp,
-  Users,
   Zap,
 } from "lucide-react";
 
@@ -20,80 +12,6 @@ export const heroTrust: { icon: LucideIcon; label: string }[] = [
   { icon: Award, label: "קריטריונים ברורים" },
   { icon: Microscope, label: "זיהוי דפוסים במוצרים" },
   { icon: Shield, label: "מקורות גלויים ורמת ביטחון" },
-];
-
-export const categories: {
-  icon: LucideIcon;
-  name: string;
-  href: string;
-  products: string;
-  insight: string;
-  signals: string[];
-}[] = [
-  {
-    icon: Beef,
-    name: "ניתוח חלבונים",
-    href: "#comparisons",
-    products: "184 מוצרים",
-    insight: "פערים גדולים באיכות מקור",
-    signals: ["חלבון משתנה", "מקור רכיבי", "שובע"],
-  },
-  {
-    icon: Sandwich,
-    name: "לחמים ודגנים",
-    href: "#comparisons",
-    products: "312 מוצרים",
-    insight: "עומס עיבוד משתנה",
-    signals: ["עיבוד משתנה", "סיבים", "נתרן"],
-  },
-  {
-    icon: Coffee,
-    name: "דגני בוקר",
-    href: "#comparisons",
-    products: "128 מוצרים",
-    insight: "פערי סוכר ותוספים בולטים",
-    signals: ["פערי סוכר", "ריבוי תוספים", "דגנים מלאים"],
-  },
-  {
-    icon: Apple,
-    name: "משקאות ותחליפים",
-    href: "#comparisons",
-    products: "246 מוצרים",
-    insight: "הבדלים חדים ברכיבים",
-    signals: ["סוכר מוסף", "תחליפים", "רכיבים קצרים"],
-  },
-  {
-    icon: Zap,
-    name: "תוספי תזונה",
-    href: "#comparisons",
-    products: "96 מוצרים",
-    insight: "רמת ביטחון תלויה מקור",
-    signals: ["מקור נתונים", "מינון", "הבטחות שיווק"],
-  },
-  {
-    icon: Cookie,
-    name: "השוואות חטיפים",
-    href: "/categories/snacks",
-    products: "275 מוצרים",
-    insight: "תוספים ועיבוד נפוצים",
-    signals: ["עיבוד גבוה", "פערי סוכר", "ריבוי תוספים"],
-  },
-  {
-    icon: Milk,
-    name: "גבינות ומוצרי חלב",
-    href: "#comparisons",
-    products: "167 מוצרים",
-    insight: "חלבון ושומן משנים הקשר",
-    signals: ["חלבון משתנה", "שומן", "נתרן"],
-  },
-  {
-    icon: Baby,
-    name: "מזון לילדים",
-    href: "#comparisons",
-    products: "203 מוצרים",
-    insight: "פערים גדולים בין מותגים",
-    signals: ["שונות גבוהה", "סוכר", "רכיבים לילדים"],
-  },
 ];
 
 export const comparisons: {
@@ -323,11 +241,4 @@ export const methodology: {
     signals: ["מקורות", "ביטחון", "נימוק"],
     metric: "Evidence basis",
   },
-];
-
-export const trustPillars: { icon: LucideIcon; label: string; desc: string }[] = [
-  { icon: Shield, label: "ללא ניגודי עניינים", desc: "עקרון עצמאות תוכן" },
-  { icon: Microscope, label: "מבוסס מקורות", desc: "תווית + רגולציה" },
-  { icon: BookOpen, label: "מתודולוגיה גלויה", desc: "כל קריטריון מוסבר" },
-  { icon: Users, label: "קהילת קוראים", desc: "דיונים ושאלות" },
 ];
