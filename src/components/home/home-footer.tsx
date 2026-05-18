@@ -13,16 +13,18 @@ const footerLinks = {
   ],
 } as const;
 
+const copyrightYear = 2026;
+
 export function HomeFooter() {
   return (
-    <footer className="border-t border-emerald-300/10 bg-[#050706] py-14 text-zinc-300 md:py-16">
+    <footer className="border-t border-black/[0.08] bg-[#F7F7F2] py-14 text-[#4E5663] md:py-16">
       <HomeContainer>
         <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-right">
           <div className="space-y-3">
             <Link href="/" aria-label="בית Bari" className="inline-flex w-fit">
               <BariBrandLogo surface="dark" />
             </Link>
-            <p className="max-w-md text-sm leading-relaxed text-zinc-400">
+            <p className="max-w-md text-sm leading-relaxed text-[#4E5663]">
               אינטליגנציית מזון ישראלית להשוואה, דירוג והבנה טובה יותר של מוצרים.
             </p>
           </div>
@@ -32,7 +34,7 @@ export function HomeFooter() {
               <Link
                 key={l.label}
                 href={l.href}
-                className="inline-flex px-1 text-zinc-400 transition hover:text-emerald-400"
+                className="inline-flex px-1 text-[#4E5663] transition hover:text-[#2FAE82]"
               >
                 {l.label}
               </Link>
@@ -40,9 +42,9 @@ export function HomeFooter() {
           </nav>
         </div>
 
-        <Separator className="my-8 bg-emerald-300/10" />
+        <Separator className="my-8 bg-black/[0.08]" />
 
-        <p className="text-center text-sm text-zinc-500">© {new Date().getFullYear()} Bari. כל הזכויות שמורות.</p>
+        <p className="text-center text-sm text-[#7A817C]">© {copyrightYear} Bari. כל הזכויות שמורות.</p>
       </HomeContainer>
     </footer>
   );

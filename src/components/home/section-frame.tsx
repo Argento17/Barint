@@ -37,7 +37,7 @@ export function SectionHeading({
         <p
           className={cn(
             "text-xs font-semibold tracking-wide",
-            isInverted ? "text-emerald-300" : "text-emerald-700"
+            isInverted ? "text-[#1F8F6A]" : "text-[#2FAE82]"
           )}
         >
           {eyebrow}
@@ -46,7 +46,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "text-balance text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl",
-          isInverted ? "text-white" : "text-zinc-900"
+          isInverted ? "text-[#111318]" : "text-[#111318]"
         )}
       >
         {title}
@@ -55,7 +55,7 @@ export function SectionHeading({
         <p
           className={cn(
             "text-pretty text-base md:text-lg",
-            isInverted ? "text-zinc-300" : "text-zinc-600"
+            isInverted ? "text-[#4E5663]" : "text-[#4E5663]"
           )}
         >
           {description}

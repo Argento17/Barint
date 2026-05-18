@@ -15,73 +15,73 @@ const radarSignals = [
     detail: "זיהוי רכיבים מוכרים, מקורות מלאים וסדר הופעה ברשימה.",
   },
   {
-    axis: "עומס עיבוד",
+    axis: "עומס סוכר ומלח",
     value: 38,
     benchmark: 63,
-    detail: "אות נמוך עדיף כאן: פחות סימני עיבוד, מייצבים ומניפולציות טקסטורה.",
+    detail: "רמות סוכר, מלח וצפיפות קלורית ביחס למוצרים דומים.",
   },
   {
-    axis: "איכות פחמימה",
+    axis: "רמת עיבוד",
     value: 76,
     benchmark: 51,
-    detail: "פחמימות נבחנות לפי מקור, סיבים והקשר קטגורי, לא נענשות אוטומטית.",
-  },
-  {
-    axis: "צפיפות חלבון",
-    value: 68,
-    benchmark: 47,
-    detail: "יחס חלבון למשקל, לאנרגיה ולציפייה ממוצרים באותה קטגוריה.",
-  },
-  {
-    axis: "מורכבות תוספים",
-    value: 35,
-    benchmark: 59,
-    detail: "אות נמוך עדיף: פחות תוספים, ממתיקים ורכיבי עזר לא הכרחיים.",
+    detail: "עד כמה המוצר מעובד או תעשייתי.",
   },
   {
     axis: "צפיפות תזונתית",
+    value: 68,
+    benchmark: 47,
+    detail: "ערך תזונתי ביחס לקלוריות ולציפייה מהקטגוריה.",
+  },
+  {
+    axis: "סיבים וחלבון",
+    value: 35,
+    benchmark: 59,
+    detail: "תרומת סיבים וחלבון ביחס למוצרים באותה קטגוריה.",
+  },
+  {
+    axis: "השוואה לקטגוריה",
     value: 79,
     benchmark: 54,
-    detail: "כמה ערך תזונתי ממשי מתקבל ביחס לנפח, אנרגיה וקטגוריה.",
+    detail: "כל מוצר נבחן מול מוצרים דומים ולא מול קטגוריות אחרות.",
   },
   {
-    axis: "איכות שומנים",
+    axis: "אמינות הנתונים",
     value: 64,
     benchmark: 49,
-    detail: "מקור השומן, איזון יחסי וסימנים לרכיבים עתירי שומן בעייתי.",
+    detail: "רמת בהירות הנתונים והיכולת להסביר את המסקנה.",
   },
   {
-    axis: "ביטחון ניתוח",
+    axis: "פשטות המוצר",
     value: 82,
     benchmark: 58,
-    detail: "רמת בהירות הנתונים, התאמה לקטגוריה ויכולת להסביר את המסקנה.",
+    detail: "עד כמה המוצר פשוט וברור ביחס למוצרים דומים.",
   },
 ] as const;
 
 const benchmarkRows = [
   {
-    label: "מקור פחמימה",
+    label: "איכות רכיבים",
     value: 76,
     category: 51,
-    note: "מקור וסיבים לפני ספירת גרמים",
+    note: "עד כמה רשימת הרכיבים פשוטה ומוכרת",
   },
   {
-    label: "רכיבים מזוהים",
+    label: "סוכר ומלח",
     value: 84,
     category: 56,
-    note: "רשימה קצרה וברורה יותר",
+    note: "רמות סוכר, מלח וצפיפות קלורית",
   },
   {
-    label: "עיבוד ותוספים",
+    label: "רמת עיבוד",
     value: 65,
     category: 41,
-    note: "פחות סימני עיבוד ביחס למדף",
+    note: "עד כמה המוצר מעובד או תעשייתי",
   },
   {
     label: "צפיפות תזונתית",
     value: 79,
     category: 54,
-    note: "יותר ערך תזונתי לכל החלטה",
+    note: "ערך תזונתי ביחס לקלוריות",
   },
 ] as const;
 
@@ -93,7 +93,7 @@ const interpretationCards = [
   },
   {
     icon: Activity,
-    title: "אותות במקביל",
+    title: "פרמטרים במקביל",
     text: "רכיבים, עיבוד, צפיפות, פחמימה, חלבון וביטחון נקראים יחד במקום להפוך הכול למספר בודד.",
   },
   {
@@ -203,7 +203,7 @@ function SignalRadar({
     <div className="relative mx-auto w-full max-w-[32rem]">
       <div
         className={cn(
-          "absolute inset-6 rounded-full border border-emerald-300/10 bg-emerald-300/[0.03] transition-opacity duration-700",
+          "absolute inset-6 rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.025] transition-opacity duration-700",
           inView ? "opacity-100" : "opacity-0"
         )}
         aria-hidden
@@ -212,9 +212,9 @@ function SignalRadar({
         viewBox="0 0 360 360"
         className="relative z-10 aspect-square w-full overflow-visible"
         role="img"
-        aria-label="פרופיל רדאר של אותות תזונתיים ורכיביים"
+        aria-label="פרופיל רדאר של פרמטרים תזונתיים ורכיביים"
       >
-        <g className="text-white/10">
+        <g className="text-[#111318]/10">
           {[0.25, 0.5, 0.75, 1].map((level) => (
             <polygon
               key={level}
@@ -260,15 +260,15 @@ function SignalRadar({
         >
           <polygon
             points={pointsToString(productPoints)}
-            fill="rgba(4,120,87,0.13)"
-            stroke="#34d399"
+            fill="rgba(47,174,130,0.06)"
+            stroke="#1F8F6A"
             strokeLinejoin="round"
             strokeWidth="2.5"
           />
           <polyline
             points={`${pointsToString(productPoints)} ${productPoints[0].x},${productPoints[0].y}`}
             fill="none"
-            stroke="rgba(5,150,105,0.28)"
+            stroke="rgba(47,174,130,0.06)"
             strokeWidth="8"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -280,7 +280,7 @@ function SignalRadar({
           y1="180"
           x2={activePoint.x}
           y2={activePoint.y}
-          stroke="#34d399"
+          stroke="#1F8F6A"
           strokeWidth="1.5"
           strokeDasharray="3 5"
           className="transition-all duration-500 ease-out"
@@ -308,8 +308,8 @@ function SignalRadar({
                 cx={point.x}
                 cy={point.y}
                 r={isActive ? 6 : 4}
-                fill={isActive ? "#34d399" : "#10b981"}
-                stroke="#07110c"
+                fill={isActive ? "#1F8F6A" : "#2FAE82"}
+                stroke="#F7F7F2"
                 strokeWidth="2"
                 className="transition-all duration-300"
                 style={{
@@ -327,7 +327,7 @@ function SignalRadar({
                 dominantBaseline="middle"
                 className={cn(
                   "fill-zinc-500 text-[0.62rem] font-bold transition-colors duration-300",
-                  isActive && "fill-emerald-100"
+                  isActive && "fill-[#111318]"
                 )}
               >
                 {signal.axis}
@@ -338,14 +338,14 @@ function SignalRadar({
       </svg>
 
       <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center">
-        <div className="w-36 rounded-[1.4rem] border border-emerald-300/12 bg-zinc-950/75 px-4 py-3 text-center shadow-sm shadow-black/30 backdrop-blur-md">
-          <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-emerald-200/80">
-            Signal Focus
+        <div className="w-36 rounded-[1.4rem] border border-black/[0.08] bg-[#FFFFFF]/85 px-4 py-3 text-center shadow-sm shadow-slate-900/25 backdrop-blur-md">
+          <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]/80">
+            פרמטר מוביל
           </div>
-          <div className="mt-1 text-sm font-extrabold tracking-[-0.02em] text-white">
+          <div className="mt-1 text-sm font-extrabold tracking-[-0.02em] text-[#111318]">
             {activeSignalData.axis}
           </div>
-          <div className="mt-1 text-xs font-semibold text-zinc-500">{activeSignalData.value}/100</div>
+          <div className="mt-1 text-xs font-semibold text-[#7A817C]">{activeSignalData.value}/100</div>
         </div>
       </div>
     </div>
@@ -380,29 +380,29 @@ function SignalBenchmarkRow({
 
   return (
     <motion.div
-      className="group rounded-2xl border border-emerald-300/10 bg-white/[0.045] px-4 py-3 shadow-sm shadow-black/20 backdrop-blur-sm transition-[border-color,box-shadow,background-color] duration-500 ease-out hover:border-emerald-300/20 hover:bg-white/[0.06] hover:shadow-md hover:shadow-emerald-950/15"
+      className="group rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-3 shadow-sm shadow-slate-900/20 backdrop-blur-sm transition-[border-color,box-shadow,background-color] duration-500 ease-out hover:border-[#1F8F6A]/20 hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10"
       whileHover={reduceMotion ? undefined : { y: -2 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
     >
       <div className="mb-2 flex items-center justify-between gap-4">
         <div>
-          <div className="text-sm font-bold text-white transition-colors duration-300 group-hover:text-emerald-100">
+          <div className="text-sm font-bold text-[#111318] transition-colors duration-300 group-hover:text-[#1F8F6A]">
             {row.label}
           </div>
-          <div className="mt-0.5 text-xs text-zinc-500 transition-colors duration-300 group-hover:text-zinc-400">
+          <div className="mt-0.5 text-xs text-[#7A817C] transition-colors duration-300 group-hover:text-[#4E5663]">
             {row.note}
           </div>
         </div>
         <div className="text-left">
-          <div className="text-sm font-extrabold text-emerald-200">{row.value}</div>
-          <div className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-zinc-400">Bari</div>
+          <div className="text-sm font-extrabold text-[#1F8F6A]">{row.value}</div>
+          <div className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[#4E5663]">Bari</div>
         </div>
       </div>
 
-      <div className="relative h-3 overflow-visible rounded-full bg-zinc-950/70 shadow-inner shadow-black/30">
+      <div className="relative h-3 overflow-visible rounded-full bg-[#F7F7F2]/75 shadow-inner shadow-slate-900/25">
         <div className="absolute inset-y-0 end-0 w-full overflow-hidden rounded-full">
           <motion.div
-            className="h-full rounded-full bg-emerald-300/70 transition-[width,background-color,box-shadow] ease-out group-hover:bg-emerald-300 group-hover:shadow-[0_0_18px_rgba(16,185,129,0.18)]"
+            className="h-full rounded-full bg-[#1F8F6A]/60 transition-[width,background-color,box-shadow] ease-out group-hover:bg-[#1F8F6A] group-hover:shadow-[0_0_18px_rgba(47,174,130,0.06)]"
             initial={false}
             animate={{ width: inView ? (reduceMotion ? `${row.value}%` : fillMotion) : "0%" }}
             transition={{
@@ -415,7 +415,7 @@ function SignalBenchmarkRow({
         </div>
 
         <motion.div
-          className="absolute z-10 size-3 rounded-full border-2 border-zinc-950 bg-emerald-300 shadow-sm shadow-emerald-950/20 transition-colors duration-300 group-hover:bg-emerald-200"
+          className="absolute z-10 size-3 rounded-full border-2 border-[#F7F7F2] bg-[#1F8F6A] shadow-sm shadow-slate-900/10 transition-colors duration-300 group-hover:bg-[#1F8F6A]"
           initial={false}
           animate={
             inView
@@ -446,9 +446,9 @@ function SignalBenchmarkRow({
         />
       </div>
 
-      <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-zinc-500">
+      <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-[#7A817C]">
         <span>חלש</span>
-        <span className="transition-colors duration-300 group-hover:text-emerald-200">קו קטגוריה</span>
+        <span className="transition-colors duration-300 group-hover:text-[#1F8F6A]">קו קטגוריה</span>
         <span>חזק</span>
       </div>
     </motion.div>
@@ -474,7 +474,7 @@ function SignalBenchmarkBars({ inView, reduceMotion }: { inView: boolean; reduce
 export function HomeMethodology() {
   const { ref, inView } = useInView<HTMLElement>();
   const reduceMotion = usePrefersReducedMotion();
-  const [activeSignal, setActiveSignal] = useState(2);
+  const [activeSignal, setActiveSignal] = useState(0);
 
   useEffect(() => {
     if (!inView || reduceMotion) {
@@ -491,13 +491,13 @@ export function HomeMethodology() {
   const activeSignalData = radarSignals[activeSignal];
 
   return (
-    <section ref={ref} className="relative overflow-hidden py-20 md:py-28" id="methodology">
+    <section ref={ref} className="relative overflow-hidden bg-[#F7F7F2] py-20 md:py-28" id="methodology">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_22%,rgba(16,185,129,0.08),transparent_32%),radial-gradient(circle_at_84%_72%,rgba(16,185,129,0.045),transparent_34%)]"
+        className="pointer-events-none absolute inset-0 bg-transparent"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-6 top-24 h-px bg-gradient-to-l from-transparent via-emerald-300/12 to-transparent"
+        className="pointer-events-none absolute inset-x-6 top-24 h-px bg-gradient-to-l from-transparent via-[#1F8F6A]/10 to-transparent"
         aria-hidden
       />
 
@@ -508,34 +508,34 @@ export function HomeMethodology() {
             inView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
         >
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-200/80">
-            Multidimensional food intelligence
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
+            BSIP2 ANALYSIS PARAMETERS
           </p>
-          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-white md:text-5xl">
-            לא ציון אחד. מערכת אותות.
+          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
+            ניתוח רב-ממדי של מספר רב של פרמטרים.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-400 md:text-lg">
-            Bari מנתחת את המציאות הנראית של המוצר: רכיבים, עיבוד, ערכים תזונתיים והקשר קטגורי
-            נקראים יחד כדי לייצר תמונה עמוקה אבל קריאה.
+          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-[#4E5663] md:text-lg">
+            Bari מנתחת כל מוצר לפי פרמטרים תזונתיים, רכיביים ועיבודיים — כדי להבין לא רק אם מוצר
+            “טוב” או “רע”, אלא במה הוא חזק, איפה הוא חלש, ובאיזה הקשר הוא נבחן.
           </p>
         </div>
 
         <div
           className={cn(
-            "grid gap-6 rounded-[2rem] border border-emerald-300/10 bg-white/[0.045] p-4 shadow-[0_36px_120px_-74px_rgba(0,0,0,0.95)] backdrop-blur-xl transition-all duration-1000 ease-out md:p-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch",
+            "grid gap-6 rounded-[2rem] border border-black/[0.08] bg-[#FFFFFF]/68 p-4 shadow-[0_36px_120px_-74px_rgba(17,19,24,0.78)] backdrop-blur-xl transition-all duration-1000 ease-out md:p-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-stretch",
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           )}
         >
-          <div className="relative overflow-hidden rounded-[1.65rem] border border-emerald-300/10 bg-zinc-950/45 p-4 md:p-6">
+          <div className="relative overflow-hidden rounded-[1.65rem] border border-black/[0.08] bg-[#FFFFFF]/72 p-4 md:p-6">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">Live product profile</p>
-                <h3 className="mt-1 text-xl font-extrabold tracking-[-0.035em] text-white">
-                  ניתוח מוצר רב־ממדי
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#7A817C]">פרופיל מוצר לדוגמה</p>
+                <h3 className="mt-1 text-xl font-extrabold tracking-[-0.035em] text-[#111318]">
+                  ניתוח רב־ממדי של מוצר
                 </h3>
               </div>
-              <div className="rounded-full border border-emerald-300/10 bg-emerald-300/[0.06] px-3 py-1 text-xs font-bold text-emerald-100">
-                8 אותות
+              <div className="rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
+                8 פרמטרים
               </div>
             </div>
 
@@ -546,26 +546,26 @@ export function HomeMethodology() {
               reduceMotion={reduceMotion}
             />
 
-            <div className="mt-5 rounded-2xl border border-emerald-300/10 bg-white/[0.045] p-4 shadow-sm shadow-black/20">
-              <div className="mb-2 flex items-center gap-2 text-sm font-extrabold text-white">
-                <Sparkles className="size-4 text-emerald-200" aria-hidden />
+            <div className="mt-5 rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/68 p-4 shadow-sm shadow-slate-900/20">
+              <div className="mb-2 flex items-center gap-2 text-sm font-extrabold text-[#111318]">
+                <Sparkles className="size-4 text-[#1F8F6A]" aria-hidden />
                 {activeSignalData.axis}
               </div>
-              <p className="text-sm leading-relaxed text-zinc-400">{activeSignalData.detail}</p>
+              <p className="text-sm leading-relaxed text-[#4E5663]">{activeSignalData.detail}</p>
             </div>
           </div>
 
           <div className="flex flex-col justify-between gap-7 p-1 md:p-2">
             <div className="space-y-3">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                Category-adjusted benchmarks
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#7A817C]">
+                CATEGORY-ADJUSTED PARAMETERS
               </p>
-              <h3 className="text-2xl font-extrabold tracking-[-0.04em] text-white md:text-3xl">
-                ההשוואה מתרחשת בתוך ההקשר של המזון.
+              <h3 className="text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">
+                השוואה בתוך קטגוריית המוצר.
               </h3>
-              <p className="text-pretty text-sm leading-relaxed text-zinc-400 md:text-base">
-                כל פס מציג אות אחד מול ציפייה קטגורית. כך Bari יכולה לזהות מוצר עם פחמימה איכותית,
-                רשימת רכיבים טובה או עיבוד נמוך בלי להפוך את הניתוח לספירת קלוריות.
+              <p className="text-pretty text-sm leading-relaxed text-[#4E5663] md:text-base">
+                כל פרמטר נבחן ביחס למוצרים דומים באותה קטגוריה, כדי למנוע השוואות לא הוגנות בין
+                מוצרים מסוגים שונים.
               </p>
             </div>
 
@@ -579,7 +579,7 @@ export function HomeMethodology() {
                   <div
                     key={card.title}
                     className={cn(
-                      "rounded-2xl border border-emerald-300/10 bg-white/[0.035] p-4 transition-all duration-700 ease-out",
+                      "rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/52 p-4 transition-all duration-700 ease-out",
                       inView ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
                     )}
                     style={{
@@ -587,9 +587,9 @@ export function HomeMethodology() {
                       transitionDuration: reduceMotion ? "0ms" : undefined,
                     }}
                   >
-                    <Icon className="mb-3 size-5 text-emerald-200" aria-hidden />
-                    <h4 className="text-sm font-extrabold text-white">{card.title}</h4>
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-500">{card.text}</p>
+                    <Icon className="mb-3 size-5 text-[#1F8F6A]" aria-hidden />
+                    <h4 className="text-sm font-extrabold text-[#111318]">{card.title}</h4>
+                    <p className="mt-2 text-xs leading-relaxed text-[#7A817C]">{card.text}</p>
                   </div>
                 );
               })}

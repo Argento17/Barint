@@ -24,7 +24,7 @@ export function NewsletterSignup() {
         required
         dir="ltr"
         placeholder="you@example.com"
-        className="h-12 rounded-2xl border-emerald-300/12 bg-zinc-950/60 text-left text-sm text-white shadow-inner shadow-black/25 placeholder:text-zinc-600 focus-visible:ring-emerald-300/25"
+        className="h-12 rounded-2xl border-black/[0.08] bg-[#FFFFFF]/80 text-left text-sm text-[#111318] shadow-inner shadow-slate-900/25 placeholder:text-[#7A817C] focus-visible:ring-[#1F8F6A]/25"
         disabled={sent}
         autoComplete="email"
       />
@@ -32,7 +32,7 @@ export function NewsletterSignup() {
         type="submit"
         size="lg"
         disabled={sent}
-        className="newsletter-cta-attention h-12 shrink-0 rounded-2xl border border-emerald-300/12 bg-gradient-to-l from-emerald-700 via-emerald-800 to-zinc-950 px-8 font-semibold text-white shadow-md shadow-emerald-950/20 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:shadow-lg hover:shadow-emerald-950/25 disabled:animate-none disabled:opacity-80"
+        className="newsletter-cta-attention h-12 shrink-0 rounded-2xl border border-[#1F8F6A]/10 bg-[#1F8F6A] px-8 font-semibold text-[#F7F7F2] shadow-md shadow-slate-900/10 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#1F8F6A] hover:shadow-lg hover:shadow-slate-900/25 disabled:animate-none disabled:opacity-80"
       >
         {sent ? "תודה, נרשמתם" : "הירשמו לניוזלטר"}
       </Button>
@@ -42,7 +42,7 @@ export function NewsletterSignup() {
 
 export function NewsletterIcon() {
   return (
-    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-emerald-300/12 bg-emerald-300/[0.06] text-emerald-200 shadow-md shadow-black/20">
+    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#1F8F6A]/[0.035] text-[#1F8F6A] shadow-md shadow-slate-900/20">
       <Mail className="size-8" aria-hidden />
     </div>
   );

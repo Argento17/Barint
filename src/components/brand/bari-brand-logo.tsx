@@ -20,7 +20,7 @@ export function BariSignalMark({
       viewBox="0 0 48 48"
       className={cn(
         "size-8 shrink-0 transition-[opacity,transform] duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-90",
-        isDark ? "text-white" : "text-zinc-950",
+        isDark ? "text-[#111318]" : "text-[#111318]",
         className
       )}
       fill="none"
@@ -41,14 +41,14 @@ export function BariSignalMark({
         <circle cx="32" cy="32" r="2.35" />
         <circle cx="24" cy="40" r="2.7" />
       </g>
-      <g className={isDark ? "fill-emerald-300" : "fill-emerald-700"}>
+      <g className={isDark ? "fill-[#1F8F6A]" : "fill-[#2FAE82]"}>
         <circle cx="24" cy="16" r="2.45" />
         <circle cx="24" cy="24" r="2.65" />
         <circle cx="24" cy="32" r="2.45" />
       </g>
       <path
         d="M24 16v16"
-        className={isDark ? "stroke-emerald-300" : "stroke-emerald-700"}
+        className={isDark ? "stroke-[#1F8F6A]" : "stroke-[#2FAE82]"}
         strokeLinecap="round"
         strokeWidth="3.2"
       />
@@ -63,7 +63,7 @@ export function BariBrandLogo({ className, surface = "light", mark = true }: Bar
     <span
       className={cn(
         "inline-flex max-w-full shrink-0 items-center gap-2.5 rounded-full",
-        isDark ? "text-white" : "text-zinc-950",
+        isDark ? "text-[#111318]" : "text-[#111318]",
         className
       )}
       aria-label="Bari"

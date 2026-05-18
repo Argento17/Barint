@@ -21,7 +21,7 @@ export default function HomePage() {
     <div
       className={cn(
         heebo.className,
-        "home-canvas relative text-zinc-100 antialiased selection:bg-emerald-400/20"
+        "home-canvas relative text-[#111318] antialiased selection:bg-[#2FAE82]/20"
       )}
     >
       <main lang="he" className="relative">

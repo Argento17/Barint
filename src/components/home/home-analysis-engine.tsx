@@ -16,20 +16,20 @@ import { HomeContainer } from "./section-frame";
 const observedSignals = [
   {
     icon: Leaf,
-    title: "מרכיבים אמיתיים",
-    text: "כמה המוצר קרוב למזון אמיתי לעומת רכיבים מעובדים",
-    tags: ["רמת ביטחון: גבוהה", "NOVA 2–4"],
+    title: "איכות הרכיבים",
+    text: "עד כמה רשימת הרכיבים פשוטה ומוכרת",
+    tags: ["אמינות מידע גבוהה", "NOVA 2–4"],
   },
   {
     icon: CircleGauge,
-    title: "עומס סוכר ומלח",
-    text: "כמות הסוכר, המלח והאנרגיה בהשוואה למה שמומלץ",
-    tags: ["סוכר גבוה", "רמת ביטחון: גבוהה"],
+    title: "סוכר ומלח",
+    text: "רמות סוכר, מלח וצפיפות קלורית",
+    tags: ["אמינות מידע גבוהה", "סוכר גבוה"],
   },
   {
     icon: FlaskConical,
-    title: "פשטות המוצר",
-    text: "כמה המוצר פשוט וברור לעומת מורכב ומתועש",
+    title: "רמת עיבוד",
+    text: "עד כמה המוצר מעובד או תעשייתי",
     tags: ["תוספים רבים", "רמת ביטחון: בינונית"],
   },
 ] as const;
@@ -40,23 +40,23 @@ const outputs = [
   {
     icon: Scale,
     label: "RELATIVE SCORE",
-    title: "דירוג יחסי בקטגוריה",
+    title: "מיקום ביחס למוצרים דומים",
     result: "C · 65 / 100",
-    text: "בהשוואה למוצרים דומים בקטגוריה",
+    text: "השוואה למוצרים באותה קטגוריה",
   },
   {
     icon: Sparkles,
     label: "TRADEOFFS",
     title: "יתרונות מול חסרונות",
-    result: "חוזקות: סיבים · שומן איכותי",
-    text: "לשיפור: סוכר גבוה · עיבוד מתקדם",
+    result: "יתרונות: סיבים תזונתיים · רכיבים פשוטים",
+    text: "חסרונות: יותר סוכר · עיבוד גבוה",
   },
   {
     icon: MessageSquareText,
     label: "WHY IT MATTERS",
     title: "למה זה חשוב?",
     result: "ניתוח מבוסס הקשר",
-    text: "המוצר מספק ערך תזונתי מסוים, אך הוא מעובד ומכיל כמות סוכר גבוהה יחסית — מה שמשפיע על איכות התזונה הכוללת.",
+    text: "המוצר נבחן ביחס למוצרים דומים — לא לפי רכיב בודד.",
   },
 ] as const;
 
@@ -115,30 +115,30 @@ function SignalModule({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={reduceMotion ? undefined : { y: -3 }}
-      className="group relative flex min-h-[10.75rem] overflow-hidden rounded-[1.45rem] border border-emerald-300/10 bg-white/[0.045] p-5 text-white shadow-[0_24px_78px_-62px_rgba(0,0,0,0.95)] backdrop-blur-xl transition-colors duration-500 hover:border-emerald-300/24 lg:h-[10.75rem]"
+      className="group relative flex min-h-[10.75rem] overflow-hidden rounded-[1.45rem] border border-black/[0.08] bg-[#FFFFFF]/76 p-5 text-[#111318] shadow-[0_20px_58px_-44px_rgba(17,19,24,0.22)] backdrop-blur-xl transition-colors duration-500 hover:border-[#1F8F6A]/24 lg:h-[10.75rem]"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_14%,rgba(16,185,129,0.1),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.06),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_14%,rgba(47,174,130,0.025),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_55%)]"
         aria-hidden
       />
       <motion.div
         animate={reduceMotion ? undefined : { opacity: [0.65, 0.95, 0.65] }}
         transition={{ duration: 5 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-emerald-300/20 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-[#1F8F6A]/16 to-transparent"
         aria-hidden
       />
       <div className="relative z-10 flex w-full flex-col justify-between">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-2xl font-extrabold tracking-[-0.045em] text-white">{signal.title}</h3>
-            <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-zinc-300">{signal.text}</p>
+            <h3 className="text-2xl font-extrabold tracking-[-0.045em] text-[#111318]">{signal.title}</h3>
+            <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-[#4E5663]">{signal.text}</p>
           </div>
-          <div className="relative grid size-12 shrink-0 place-items-center rounded-full border border-emerald-300/14 bg-emerald-300/[0.045] text-emerald-200">
+          <div className="relative grid size-12 shrink-0 place-items-center rounded-full border border-[#1F8F6A]/14 bg-[#1F8F6A]/[0.035] text-[#1F8F6A]">
             <Icon className="size-5" aria-hidden />
             <motion.span
               animate={reduceMotion ? undefined : { opacity: [0.25, 0.85, 0.25], scale: [1, 1.35, 1] }}
               transition={{ duration: 3.5 + index * 0.25, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 rounded-full border border-emerald-300/20"
+              className="absolute inset-0 rounded-full border border-[#1F8F6A]/16"
               aria-hidden
             />
           </div>
@@ -147,7 +147,7 @@ function SignalModule({
           {signal.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-emerald-300/10 bg-white/[0.035] px-2.5 py-1 text-[0.68rem] font-semibold text-zinc-300 transition-colors duration-300 group-hover:border-emerald-300/20 group-hover:text-emerald-100"
+              className="rounded-full border border-black/[0.08] bg-[#FFFFFF]/52 px-2.5 py-1 text-[0.68rem] font-semibold text-[#4E5663] transition-colors duration-300 group-hover:border-[#1F8F6A]/20 group-hover:text-[#1F8F6A]"
             >
               {tag}
             </span>
@@ -165,27 +165,27 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
       whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.45 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="relative h-full overflow-hidden rounded-[2rem] border border-emerald-300/12 bg-zinc-950 p-5 text-white shadow-[0_36px_120px_-74px_rgba(0,0,0,0.95)] md:p-7"
+      className="relative h-full overflow-hidden rounded-[2rem] border border-black/[0.08] bg-[#FFFFFF] p-5 text-[#111318] shadow-[0_28px_80px_-58px_rgba(17,19,24,0.24)] md:p-7"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px),radial-gradient(circle_at_50%_42%,rgba(16,185,129,0.18),transparent_34%),radial-gradient(circle_at_74%_18%,rgba(16,185,129,0.12),transparent_34%),radial-gradient(circle_at_18%_84%,rgba(255,255,255,0.07),transparent_32%)] bg-[size:28px_28px,28px_28px,100%_100%,100%_100%,100%_100%]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(17,19,24,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(17,19,24,0.022)_1px,transparent_1px),radial-gradient(circle_at_50%_42%,rgba(47,174,130,0.035),transparent_36%),radial-gradient(circle_at_74%_18%,rgba(47,174,130,0.025),transparent_36%),radial-gradient(circle_at_18%_84%,rgba(247,247,242,0.72),transparent_32%)] bg-[size:28px_28px,28px_28px,100%_100%,100%_100%,100%_100%]"
         aria-hidden
       />
       <div className="relative z-10">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-200">BARI ENGINE</p>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">מנוע הניתוח של Bari</p>
             <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">מנוע אותות</h3>
-            <p className="mt-2 text-sm font-medium text-zinc-400">
+            <p className="mt-2 text-sm font-medium text-[#4E5663]">
               ניתוח רב־ממדי • חישוב דינמי • הסבר שקוף
             </p>
           </div>
           <motion.div
             animate={reduceMotion ? undefined : { scale: [1, 1.04, 1], opacity: [0.9, 1, 0.9] }}
             transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
-            className="grid size-12 place-items-center rounded-2xl border border-emerald-300/15 bg-white/5"
+            className="grid size-12 place-items-center rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/60"
           >
-            <BrainCircuit className="size-6 text-emerald-200" aria-hidden />
+            <BrainCircuit className="size-6 text-[#1F8F6A]" aria-hidden />
           </motion.div>
         </div>
 
@@ -193,8 +193,8 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
           <svg className="size-full overflow-visible" viewBox="0 0 440 330" role="img" aria-label="מנוע אותות אנליטי של Bari">
             <defs>
               <radialGradient id="bari-engine-center" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(52,211,153,0.95)" />
-                <stop offset="100%" stopColor="rgba(52,211,153,0.16)" />
+                <stop offset="0%" stopColor="rgba(31,143,106,0.68)" />
+                <stop offset="100%" stopColor="rgba(47,174,130,0.06)" />
               </radialGradient>
               <filter id="bari-engine-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
                 <feGaussianBlur stdDeviation="4" result="blur" />
@@ -210,8 +210,8 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
                 <motion.path
                   key={path}
                   d={path}
-                  stroke={index < 3 ? "rgba(167,243,208,0.24)" : "rgba(255,255,255,0.12)"}
-                  strokeWidth={index < 3 ? 1.15 : 0.9}
+                  stroke={index < 3 ? "rgba(31,143,106,0.46)" : "rgba(17,19,24,0.22)"}
+                  strokeWidth={index < 3 ? 1.8 : 1.35}
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 1 }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -229,7 +229,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
                   <motion.circle
                     key={`pulse-${path}`}
                     r="3.2"
-                    fill={index % 2 === 0 ? "rgba(52,211,153,0.88)" : "rgba(236,253,245,0.72)"}
+                    fill={index % 2 === 0 ? "rgba(31,143,106,0.78)" : "rgba(17,19,24,0.38)"}
                     filter="url(#bari-engine-soft-glow)"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 0.95, 0] }}
@@ -245,14 +245,12 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
                 ))
               : null}
 
-            <motion.circle
+            <circle
               cx="228"
               cy="154"
               r="34"
               fill="url(#bari-engine-center)"
-              opacity="0.18"
-              animate={reduceMotion ? undefined : { r: [30, 38, 30], opacity: [0.12, 0.2, 0.12] }}
-              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              opacity="0.14"
             />
             {engineNodes.map(([cx, cy, radius], index) => {
               const isCenter = cx === 228 && cy === 154;
@@ -262,9 +260,9 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
                   cx={cx}
                   cy={cy}
                   r={radius}
-                  fill={isCenter ? "rgba(52,211,153,0.94)" : "rgba(236,253,245,0.78)"}
-                  stroke={isCenter ? "rgba(167,243,208,0.4)" : "rgba(255,255,255,0.16)"}
-                  strokeWidth={isCenter ? 1.5 : 0.8}
+                  fill={isCenter ? "rgba(31,143,106,0.78)" : "rgba(255,255,255,0.96)"}
+                  stroke={isCenter ? "rgba(31,143,106,0.32)" : "rgba(17,19,24,0.26)"}
+                  strokeWidth={isCenter ? 1.7 : 1.15}
                   filter={isCenter ? "url(#bari-engine-soft-glow)" : undefined}
                   initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
                   whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -296,7 +294,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: reduceMotion ? 0 : 0.55 + index * 0.08, duration: reduceMotion ? 0 : 0.45 }}
-              className="rounded-full border border-emerald-300/[0.08] bg-white/[0.026] px-3 py-2 text-center text-[0.66rem] font-semibold text-zinc-400"
+              className="rounded-full border border-black/[0.08] bg-[#FFFFFF]/46 px-3 py-2 text-center text-[0.66rem] font-semibold text-[#4E5663]"
             >
               {signal}
             </motion.div>
@@ -325,39 +323,39 @@ function OutputCard({
       viewport={{ once: true, amount: 0.4 }}
       transition={{ delay: reduceMotion ? 0 : 0.25 + index * 0.12, duration: reduceMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduceMotion ? undefined : { y: -3 }}
-      className="group relative flex min-h-[10.75rem] overflow-hidden rounded-[1.45rem] border border-emerald-300/10 bg-white/[0.045] p-5 text-white shadow-[0_24px_78px_-62px_rgba(0,0,0,0.95)] backdrop-blur-xl transition-colors duration-500 hover:border-emerald-300/24 lg:h-[10.75rem]"
+      className="group relative flex min-h-[10.75rem] overflow-hidden rounded-[1.45rem] border border-black/[0.08] bg-[#FFFFFF]/76 p-5 text-[#111318] shadow-[0_20px_58px_-44px_rgba(17,19,24,0.22)] backdrop-blur-xl transition-colors duration-500 hover:border-[#1F8F6A]/24 lg:h-[10.75rem]"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_16%,rgba(16,185,129,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.055),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_16%,rgba(47,174,130,0.025),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_55%)]"
         aria-hidden
       />
       <motion.div
         animate={reduceMotion ? undefined : { opacity: [0.55, 0.9, 0.55] }}
         transition={{ duration: 5.4 + index * 0.35, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-emerald-300/18 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-[#1F8F6A]/14 to-transparent"
         aria-hidden
       />
       <div className="relative z-10 flex w-full flex-col justify-between">
         <div className="mb-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="grid size-12 place-items-center rounded-full border border-emerald-300/14 bg-emerald-300/[0.045] text-emerald-200">
+            <span className="grid size-12 place-items-center rounded-full border border-[#1F8F6A]/14 bg-[#1F8F6A]/[0.035] text-[#1F8F6A]">
               <Icon className="size-4" aria-hidden />
             </span>
             <div>
-              <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-emerald-200/80">{item.label}</p>
-              <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.045em] text-white">{item.title}</h3>
+              <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]/80">{item.label}</p>
+              <h3 className="mt-1 text-2xl font-extrabold tracking-[-0.045em] text-[#111318]">{item.title}</h3>
             </div>
           </div>
           <motion.span
             animate={reduceMotion ? undefined : { opacity: [0.45, 1, 0.45] }}
             transition={{ duration: 3.4 + index * 0.25, repeat: Infinity, ease: "easeInOut" }}
-            className="size-1.5 rounded-full bg-emerald-300"
+            className="size-1.5 rounded-full bg-[#1F8F6A]"
             aria-hidden
           />
         </div>
         <div>
-          <p className="mb-2 text-xs font-bold text-emerald-100/90">{item.result}</p>
-          <p className="text-sm leading-relaxed text-zinc-300">{item.text}</p>
+          <p className="mb-2 text-xs font-bold text-[#1F8F6A]/90">{item.result}</p>
+          <p className="text-sm leading-relaxed text-[#4E5663]">{item.text}</p>
         </div>
       </div>
     </motion.div>
@@ -369,9 +367,9 @@ export function HomeAnalysisEngine() {
   const reduceMotion = Boolean(shouldReduceMotion);
 
   return (
-    <section className="relative overflow-hidden bg-[#050706] py-20 text-white md:py-28" id="analysis-engine">
+    <section className="relative overflow-hidden bg-[#F7F7F2] py-20 text-[#111318] md:py-28" id="analysis-engine">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(16,185,129,0.14),transparent_32%),radial-gradient(circle_at_10%_78%,rgba(16,185,129,0.08),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.035),transparent_42%)]"
+        className="pointer-events-none absolute inset-0 bg-transparent"
         aria-hidden
       />
       <HomeContainer>
@@ -383,13 +381,12 @@ export function HomeAnalysisEngine() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mx-auto mb-12 max-w-3xl text-center"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-200/80">Analysis engine</p>
-          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-white md:text-5xl">
-            איך Bari הופכת מוצרים לתובנות
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">Analysis engine</p>
+          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
+            איך Bari מנתחת מוצרים
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-400 md:text-lg">
-            מוצרים דומים נכנסים למערכת, Bari מזהה אותות תזונתיים ודפוסי רכיבים — ומחזירה דירוג יחסי,
-            הסבר והשוואה ברורה.
+          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-[#4E5663] md:text-lg">
+            Bari משווה בין מוצרים דומים כדי לזהות הבדלים אמיתיים ברכיבים, בערכים התזונתיים וברמת העיבוד.
           </p>
         </motion.div>
 
@@ -403,9 +400,9 @@ export function HomeAnalysisEngine() {
             <motion.path
               d="M1010 130 C880 130 760 180 640 232"
               fill="none"
-              stroke="rgba(16,185,129,0.18)"
+              stroke="rgba(31,143,106,0.34)"
               strokeLinecap="round"
-              strokeWidth="1"
+              strokeWidth="1.8"
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -414,9 +411,9 @@ export function HomeAnalysisEngine() {
             <motion.path
               d="M640 288 C500 322 360 374 190 374"
               fill="none"
-              stroke="rgba(16,185,129,0.16)"
+              stroke="rgba(31,143,106,0.34)"
               strokeLinecap="round"
-              strokeWidth="1"
+              strokeWidth="1.8"
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -424,10 +421,10 @@ export function HomeAnalysisEngine() {
             />
             {!reduceMotion ? (
               <>
-                <motion.circle r="3" fill="rgba(52,211,153,0.75)" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}>
+                <motion.circle r="3" fill="rgba(31,143,106,0.5)" animate={{ opacity: [0, 0.75, 0] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}>
                   <animateMotion dur="8s" repeatCount="indefinite" path="M1010 130 C880 130 760 180 640 232" />
                 </motion.circle>
-                <motion.circle r="3" fill="rgba(52,211,153,0.65)" animate={{ opacity: [0, 1, 0] }} transition={{ delay: 1, duration: 4.2, repeat: Infinity, ease: "easeInOut" }}>
+                <motion.circle r="3" fill="rgba(31,143,106,0.34)" animate={{ opacity: [0, 0.75, 0] }} transition={{ delay: 1, duration: 4.2, repeat: Infinity, ease: "easeInOut" }}>
                   <animateMotion dur="9s" repeatCount="indefinite" path="M640 288 C500 322 360 374 190 374" />
                 </motion.circle>
               </>
@@ -435,7 +432,7 @@ export function HomeAnalysisEngine() {
           </motion.svg>
 
           <div className="relative z-10 order-1 flex flex-col gap-4 lg:order-none lg:col-start-1 lg:row-start-1 lg:h-full lg:justify-between">
-            <p className="text-sm font-extrabold text-zinc-300">מה אנחנו רואים במוצר</p>
+            <p className="text-sm font-extrabold text-[#4E5663]">מה אנחנו רואים במוצר</p>
             {observedSignals.map((signal, index) => (
               <SignalModule key={signal.title} signal={signal} index={index} reduceMotion={reduceMotion} />
             ))}
@@ -446,7 +443,7 @@ export function HomeAnalysisEngine() {
           </div>
 
           <div className="relative z-10 order-3 flex flex-col gap-4 lg:order-none lg:col-start-3 lg:row-start-1 lg:h-full lg:justify-between">
-            <p className="text-sm font-extrabold text-zinc-300">מה בארי מבין מהמוצר</p>
+            <p className="text-sm font-extrabold text-[#4E5663]">מה בארי מבין מהמוצר</p>
             {outputs.map((item, index) => (
               <OutputCard key={item.title} item={item} index={index} reduceMotion={reduceMotion} />
             ))}

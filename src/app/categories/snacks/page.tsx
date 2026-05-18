@@ -86,13 +86,13 @@ function SignalBar({ label, value, note }: { label: string; value: number; note?
   return (
     <div>
       <div className="mb-2 flex items-center justify-between gap-4 text-sm">
-        <span className="font-bold text-white">{label}</span>
-        <span className="font-semibold text-zinc-500">{value}</span>
+        <span className="font-bold text-[#111318]">{label}</span>
+        <span className="font-semibold text-[#7A817C]">{value}</span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-zinc-950/70 shadow-inner shadow-black/30">
-        <div className="h-full rounded-full bg-emerald-300/75" style={{ width: `${value}%` }} />
+      <div className="h-2 overflow-hidden rounded-full bg-[#F7F7F2]/75 shadow-inner shadow-slate-900/25">
+        <div className="h-full rounded-full bg-[#1F8F6A]/65" style={{ width: `${value}%` }} />
       </div>
-      {note ? <p className="mt-2 text-xs leading-relaxed text-zinc-500">{note}</p> : null}
+      {note ? <p className="mt-2 text-xs leading-relaxed text-[#7A817C]">{note}</p> : null}
     </div>
   );
 }
@@ -101,29 +101,29 @@ function ProductPanel({ product, highlighted = false }: { product: (typeof produ
   return (
     <article
       className={cn(
-        "flex min-h-full flex-col rounded-[1.6rem] border bg-white/[0.045] p-5 text-white shadow-sm shadow-black/20 backdrop-blur-xl md:p-6",
-        highlighted ? "border-emerald-300/22" : "border-emerald-300/10"
+        "flex min-h-full flex-col rounded-[1.6rem] border bg-[#FFFFFF]/68 p-5 text-[#111318] shadow-sm shadow-slate-900/20 backdrop-blur-xl md:p-6",
+        highlighted ? "border-[#1F8F6A]/22" : "border-black/[0.08]"
       )}
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">{product.label}</p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] text-white">{product.name}</h2>
-          <p className="mt-2 text-sm font-bold text-emerald-200">{product.position}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#7A817C]">{product.label}</p>
+          <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] text-[#111318]">{product.name}</h2>
+          <p className="mt-2 text-sm font-bold text-[#1F8F6A]">{product.position}</p>
         </div>
-        <div className="rounded-2xl border border-emerald-300/10 bg-zinc-950/55 px-4 py-3 text-center">
-          <div className="text-2xl font-extrabold tracking-[-0.05em] text-white">{product.score}</div>
-          <div className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-zinc-400">יחסי</div>
+        <div className="rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/75 px-4 py-3 text-center">
+          <div className="text-2xl font-extrabold tracking-[-0.05em] text-[#111318]">{product.score}</div>
+          <div className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#4E5663]">יחסי</div>
         </div>
       </div>
 
-      <p className="mt-5 text-sm leading-relaxed text-zinc-400">{product.summary}</p>
+      <p className="mt-5 text-sm leading-relaxed text-[#4E5663]">{product.summary}</p>
 
       <div className="mt-5 flex flex-wrap gap-2">
         {product.facts.map((fact) => (
           <span
             key={fact}
-            className="rounded-full border border-emerald-300/10 bg-white/[0.035] px-3 py-1 text-xs font-semibold text-zinc-300"
+            className="rounded-full border border-black/[0.08] bg-[#FFFFFF]/52 px-3 py-1 text-xs font-semibold text-[#4E5663]"
           >
             {fact}
           </span>
@@ -141,32 +141,32 @@ function ProductPanel({ product, highlighted = false }: { product: (typeof produ
 
 export default function SnacksCategoryPage() {
   return (
-    <main className={cn("relative overflow-hidden bg-[#050706] text-zinc-100", siteHeaderOffsetClass)}>
+    <main className={cn("relative overflow-hidden bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_80%_5%,rgba(16,185,129,0.14),transparent_34%),linear-gradient(to_bottom,rgba(15,23,20,0.72),rgba(5,7,6,0))]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-transparent"
         aria-hidden
       />
 
       <HomeContainer className="relative py-16 md:py-24">
         <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-300/12 bg-white/[0.045] px-4 py-2 text-sm font-bold text-emerald-100 shadow-sm shadow-black/20 backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-bold text-[#1F8F6A] shadow-sm shadow-slate-900/20 backdrop-blur-sm">
               <Cookie className="size-4" aria-hidden />
               השוואות חטיפים
             </div>
-            <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-[-0.055em] text-white md:text-6xl">
+            <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-[-0.055em] text-[#111318] md:text-6xl">
               חטיפים נמדדים לפי דפוס, לא לפי רושם.
             </h1>
-            <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-400">
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663]">
               Bari מנתח חטיפים דרך רכיבים, סוכר, עיבוד, תוספים, חלבון ושובע, ואז משווה אותם
               לציפיות של קטגוריית החטיפים עצמה.
             </p>
           </div>
 
-          <div className="rounded-[1.5rem] border border-emerald-300/10 bg-white/[0.045] p-5 shadow-sm shadow-black/20 backdrop-blur-xl">
+          <div className="rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF]/68 p-5 shadow-sm shadow-slate-900/20 backdrop-blur-xl">
             <div className="mb-5 flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">Category profile</span>
-              <Sparkles className="size-4 text-emerald-200" aria-hidden />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#7A817C]">Category profile</span>
+              <Sparkles className="size-4 text-[#1F8F6A]" aria-hidden />
             </div>
             <div className="space-y-4">
               {categorySignals.map((signal) => (
@@ -176,20 +176,20 @@ export default function SnacksCategoryPage() {
           </div>
         </section>
 
-        <section className="mt-14 rounded-[2rem] border border-emerald-300/10 bg-white/[0.045] p-4 shadow-[0_36px_120px_-74px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-6">
+        <section className="mt-14 rounded-[2rem] border border-black/[0.08] bg-[#FFFFFF]/68 p-4 shadow-[0_36px_120px_-74px_rgba(17,19,24,0.78)] backdrop-blur-xl md:p-6">
           <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-200/80">Side-by-side analysis</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.045em] text-white md:text-4xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1F8F6A]/80">Side-by-side analysis</p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
                 למה שני חטיפים דומים מקבלים פרופיל שונה?
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400 md:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-[#4E5663] md:text-base">
                 הדוגמה מדגימה דירוג יחסי. מוצר A אינו “אידיאלי”, ומוצר B אינו “אסור”, אבל האותות
                 מראים הבדל ברור באיכות ההרכב וביכולת השובע.
               </p>
             </div>
-            <div className="flex items-center gap-2 rounded-full border border-emerald-300/10 bg-white/[0.035] px-4 py-2 text-sm font-bold text-zinc-300">
-              <BarChart3 className="size-4 text-emerald-200" aria-hidden />
+            <div className="flex items-center gap-2 rounded-full border border-black/[0.08] bg-[#FFFFFF]/52 px-4 py-2 text-sm font-bold text-[#4E5663]">
+              <BarChart3 className="size-4 text-[#1F8F6A]" aria-hidden />
               מבוסס אותות קטגוריים
             </div>
           </div>
@@ -205,22 +205,22 @@ export default function SnacksCategoryPage() {
             const Icon = item.icon;
 
             return (
-              <div key={item.title} className="rounded-[1.5rem] border border-emerald-300/10 bg-white/[0.045] p-5 shadow-sm shadow-black/20 backdrop-blur-xl">
-                <Icon className="mb-4 size-5 text-emerald-200" aria-hidden />
-                <h3 className="text-lg font-extrabold tracking-[-0.035em] text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{item.text}</p>
+              <div key={item.title} className="rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF]/68 p-5 shadow-sm shadow-slate-900/20 backdrop-blur-xl">
+                <Icon className="mb-4 size-5 text-[#1F8F6A]" aria-hidden />
+                <h3 className="text-lg font-extrabold tracking-[-0.035em] text-[#111318]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#4E5663]">{item.text}</p>
               </div>
             );
           })}
         </section>
 
-        <section className="mt-8 rounded-[1.5rem] border border-emerald-300/10 bg-emerald-300/[0.055] p-5 text-sm leading-relaxed text-emerald-50 md:p-6">
+        <section className="mt-8 rounded-[1.5rem] border border-black/[0.08] bg-[#1F8F6A]/[0.04] p-5 text-sm leading-relaxed text-[#1F8F6A] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p>
               בדף אמיתי, הערכים יוזנו ממסד נתוני מוצרים ותוויות. כרגע זו דוגמת UX שמראה איך Bari
               מסביר הבדלים בתוך קטגוריה בלי להפוך אותם לפסק דין פשטני.
             </p>
-            <Link href="/#comparisons" className="inline-flex shrink-0 items-center gap-1 font-bold text-emerald-200">
+            <Link href="/#comparisons" className="inline-flex shrink-0 items-center gap-1 font-bold text-[#1F8F6A]">
               חזרה להשוואות
               <ChevronLeft className="size-4" aria-hidden />
             </Link>
