@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
 import { BariSignalMark } from "@/components/brand/bari-brand-logo";
@@ -13,7 +14,7 @@ export function HomeHero() {
   return (
     <section
       className={cn(
-        "relative flex min-h-[82vh] items-center overflow-hidden",
+        "relative flex min-h-[72vh] items-center overflow-hidden md:min-h-[78vh]",
         siteHeaderOffsetClass
       )}
     >
@@ -71,9 +72,12 @@ export function HomeHero() {
           <Badge
             variant="outline"
             className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#1F8F6A] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
+            asChild
           >
-            <BariSignalMark className="size-4" />
-            מערכת השוואות מזון מבוססת נתונים
+            <Link href="/blog/milk-analysis">
+              <BariSignalMark className="size-4" />
+              ניתוח מוביל: מדף החלב בישראל
+            </Link>
           </Badge>
 
           <h1 className="reveal-up delay-100 text-balance bg-gradient-to-l from-[#111318] via-[#111318] to-[#4E5663] bg-clip-text text-4xl font-extrabold leading-[1.08] tracking-[-0.045em] text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
@@ -106,7 +110,7 @@ export function HomeHero() {
               className="h-12 w-full rounded-2xl border-black/[0.08] bg-[#FFFFFF]/68 px-8 text-base font-semibold text-[#111318] shadow-sm shadow-slate-900/10 backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10 sm:w-auto"
               asChild
             >
-              <a href="#comparisons">כך Bari משווה מוצרים</a>
+              <Link href="/blog/milk-analysis">ניתוח מדף החלב</Link>
             </Button>
           </div>
 

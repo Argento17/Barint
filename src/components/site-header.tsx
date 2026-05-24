@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { label: "השוואות", href: "/#comparisons" },
-  { label: "דירוגים", href: "/#comparisons" },
+  { label: "השוואות", href: "/hashvaot" },
+  { label: "בלוג", href: "/blog" },
   { label: "מדריכים", href: "/#guides" },
 ] as const;
 

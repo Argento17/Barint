@@ -381,7 +381,7 @@ export function HomeAnalysisEngine() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mx-auto mb-12 max-w-3xl text-center"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">Analysis engine</p>
+          <p className="text-sm font-bold text-[#1F8F6A]">מנוע הניתוח</p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
             איך Bari מנתחת מוצרים
           </h2>

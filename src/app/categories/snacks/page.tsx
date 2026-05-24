@@ -220,7 +220,7 @@ export default function SnacksCategoryPage() {
               בדף אמיתי, הערכים יוזנו ממסד נתוני מוצרים ותוויות. כרגע זו דוגמת UX שמראה איך Bari
               מסביר הבדלים בתוך קטגוריה בלי להפוך אותם לפסק דין פשטני.
             </p>
-            <Link href="/#comparisons" className="inline-flex shrink-0 items-center gap-1 font-bold text-[#1F8F6A]">
+            <Link href="/hashvaot" className="inline-flex shrink-0 items-center gap-1 font-bold text-[#1F8F6A]">
               חזרה להשוואות
               <ChevronLeft className="size-4" aria-hidden />
             </Link>

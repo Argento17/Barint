@@ -2,6 +2,7 @@ import { Heebo } from "next/font/google";
 
 import { HomeAnalysisEngine } from "@/components/home/home-analysis-engine";
 import { HomeComparisons } from "@/components/home/home-comparisons";
+import { HomeFlagshipAnalysis } from "@/components/home/home-flagship-analysis";
 import { HomeFinalCta } from "@/components/home/home-final-cta";
 import { HomeFooter } from "@/components/home/home-footer";
 import { HomeGuides } from "@/components/home/home-guides";
@@ -26,6 +27,7 @@ export default function HomePage() {
     >
       <main lang="he" className="relative">
         <HomeHero />
+        <HomeFlagshipAnalysis />
         <HomeAnalysisEngine />
         <HomeMethodology />
         <HomeComparisons />

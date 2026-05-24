@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 import { HomeContainer } from "./section-frame";
@@ -19,14 +21,14 @@ export function HomeFinalCta() {
       />
 
       <HomeContainer className="relative text-center">
-        <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">Food intelligence system</p>
-        <h2 className="text-balance text-3xl font-extrabold leading-tight tracking-[-0.045em] text-[#111318] md:text-5xl lg:text-6xl">
-          התחילו לקבל החלטות
+        <p className="mb-4 text-sm font-bold text-[#1F8F6A]">הצעד הבא</p>
+        <h2 className="text-balance text-3xl font-extrabold leading-tight tracking-[-0.045em] text-[#111318] md:text-5xl">
+          התחילו ממדף החלב —
           <br />
-          מזון מושכלות
+          או מכל השוואה אינטראקטיבית
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#4E5663] md:text-xl">
-          השוואות, דירוגים והסברים קצרים שמחזירים את ההקשר לבחירת המזון.
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#4E5663] md:text-lg">
+          הניתוח העיתונאי מסביר את הדפוסים. מנוע ההשוואה מציג את כל 18 המוצרים בפירוט.
         </p>
         <div className="mt-10 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-5">
           <Button
@@ -34,9 +36,9 @@ export function HomeFinalCta() {
             className="h-12 rounded-2xl border border-[#1F8F6A]/10 bg-[#1F8F6A] px-10 text-base font-bold text-[#F7F7F2] shadow-xl shadow-slate-900/10 hover:bg-[#1F8F6A] sm:min-w-44"
             asChild
           >
-            <a href="#comparisons" className="inline-flex items-center justify-center">
-              עיינו בהשוואות
-            </a>
+            <Link href="/blog/milk-analysis" className="inline-flex items-center justify-center">
+              ניתוח מדף החלב
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -44,9 +46,9 @@ export function HomeFinalCta() {
             className="h-12 rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/68 px-10 text-base font-semibold text-[#111318] backdrop-blur-sm hover:bg-[#FFFFFF]/82 sm:min-w-44"
             asChild
           >
-            <a href="#guides" className="inline-flex items-center justify-center">
-              קראו את המדריכים
-            </a>
+            <Link href="/hashvaot/milk-comparison" className="inline-flex items-center justify-center">
+              דוח ההשוואה המלא
+            </Link>
           </Button>
         </div>
       </HomeContainer>

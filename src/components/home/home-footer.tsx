@@ -7,8 +7,7 @@ import { HomeContainer } from "./section-frame";
 
 const footerLinks = {
   content: [
-    { label: "השוואות", href: "#comparisons" },
-    { label: "דירוגים", href: "#comparisons" },
+    { label: "השוואות", href: "/hashvaot" },
     { label: "מדריכים", href: "#guides" },
   ],
 } as const;
