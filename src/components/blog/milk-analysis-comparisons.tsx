@@ -15,9 +15,11 @@ import type { MilkComparisonProduct } from "@/lib/comparisons/milk-types";
 function InvestigationPanel({
   product,
   ingredientDelta,
+  scoreDelta,
 }: {
   product: MilkComparisonProduct;
   ingredientDelta?: string;
+  scoreDelta?: { delta: number; higherName: string };
 }) {
   const title = product.displayTitle ?? product.shortName;
 
@@ -52,6 +54,13 @@ function InvestigationPanel({
           {ingredientDelta ? (
             <p className="mt-2 text-xs font-semibold text-[#4E5663]">{ingredientDelta}</p>
           ) : null}
+          {scoreDelta ? (
+            <p className="mt-1 text-xs text-[#7A817C]">
+              הפרש ציון:{" "}
+              <span className="font-bold text-[#111318]">+{scoreDelta.delta}</span> לטובת{" "}
+              {scoreDelta.higherName}
+            </p>
+          ) : null}
         </div>
       </div>
     </div>
@@ -78,6 +87,14 @@ function ComparisonBlock({
       ? `אותו מספר רכיבים (${leftCount}) — ההבדל ברכיבים עצמם`
       : `פער מורכבות: ${leftCount} רכיבים לעומת ${rightCount}`;
 
+  const scoreGap = Math.abs(left.score - right.score);
+  const higherName =
+    left.score >= right.score
+      ? (left.displayTitle ?? left.shortName)
+      : (right.displayTitle ?? right.shortName);
+  const scoreDeltaInfo =
+    scoreGap > 0 ? { delta: scoreGap, higherName } : undefined;
+
   return (
     <motion.article
       initial={reduceMotion ? false : { opacity: 0, y: 14 }}
@@ -92,19 +109,22 @@ function ComparisonBlock({
       <p className="mt-1 text-sm text-[#4E5663]">{narrative.subtitle}</p>
       <p className="mt-4 text-base leading-relaxed text-[#111318]">{narrative.story}</p>
 
-      <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-stretch">
+      <div className="relative mt-6 flex flex-col gap-3 md:flex-row md:items-stretch">
         <InvestigationPanel
           product={left}
           ingredientDelta={`${leftCount} רכיבים ברשימה`}
+          scoreDelta={scoreDeltaInfo}
         />
-        <div className="flex shrink-0 items-center justify-center py-1 md:py-0">
-          <span className="rounded-full bg-[#F7F7F2] px-3 py-1 text-xs font-bold text-[#4E5663]">
+        <div className="relative flex items-center justify-center py-3 md:absolute md:inset-y-0 md:left-1/2 md:flex md:-translate-x-1/2 md:py-0">
+          <span className="relative z-10 rounded-full border border-black/[0.08] bg-[#F7F7F2] px-3 py-1 text-xs font-bold text-[#7A817C]">
             לעומת
           </span>
+          <div className="absolute inset-x-0 top-1/2 h-px bg-black/[0.06] md:hidden" />
         </div>
         <InvestigationPanel
           product={right}
           ingredientDelta={`${rightCount} רכיבים ברשימה`}
+          scoreDelta={scoreDeltaInfo}
         />
       </div>
 
@@ -114,11 +134,11 @@ function ComparisonBlock({
           <dd className="mt-1 leading-relaxed text-[#4E5663]">{narrative.divergence}</dd>
         </div>
         <div>
-          <dt className="font-bold text-[#111318]">הערת פורמולציה</dt>
+          <dt className="font-bold text-[#111318]">מה ההבדל בהרכב</dt>
           <dd className="mt-1 leading-relaxed text-[#4E5663]">{narrative.formulationNote}</dd>
         </div>
         <div>
-          <dt className="font-bold text-[#111318]">מה השתנה?</dt>
+          <dt className="font-bold text-[#111318]">מה משתנה כשבוחרים</dt>
           <dd className="mt-1 leading-relaxed text-[#4E5663]">{narrative.whatChanged}</dd>
         </div>
         <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2 text-xs font-semibold text-[#4E5663]">

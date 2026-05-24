@@ -1,79 +1,126 @@
-import { getProductByBarcode } from "@/lib/blog/milk-analysis-chart-data";
-import type { MilkComparisonProduct } from "@/lib/comparisons/milk-types";
+export type ComparisonProductData = {
+  name: string;
+  brand: string;
+  score: number;
+  imageUrl?: string;
+  strengths: [string, string];
+};
 
-export type MicroComparisonSnapshot = {
+export type ComparisonCard = {
+  archetype: "comparison";
   id: string;
   category: string;
   title: string;
   href: string;
-  leftBarcode: string;
-  rightBarcode: string;
   tradeoff: string;
-  leftStrengths: [string, string];
-  rightStrengths: [string, string];
+  leftProduct: ComparisonProductData;
+  rightProduct: ComparisonProductData;
 };
 
-const SNAPSHOTS: MicroComparisonSnapshot[] = [
+export type EditorialArchetype =
+  | "investigation"
+  | "category-report"
+  | "ingredient"
+  | "methodology"
+  | "what-surprised-us";
+
+export type EditorialCard = {
+  archetype: EditorialArchetype;
+  id: string;
+  category: string;
+  title: string;
+  href: string;
+  eyebrow: string;
+  finding: string;
+  context?: string;
+  stat?: { value: string; label: string };
+};
+
+export type HomepageCard = ComparisonCard | EditorialCard;
+
+const CARDS: HomepageCard[] = [
   {
-    id: "soy-enriched",
-    category: "תחליפי חלב",
-    title: "סויה בסיסית מול סויה מועשרת",
-    href: "/blog/milk-analysis#comparisons",
-    leftBarcode: "7290110324926",
-    rightBarcode: "7290116936116",
-    tradeoff:
-      "משקה הסויה המועשר מוסיף חלבון — אבל עם מבנה רכיבים מורכב יותר ויותר שכבות ייצוב.",
-    leftStrengths: ["רכיבים פשוטים יותר", "פחות שכבות העשרה"],
-    rightStrengths: ["יותר חלבון", "יציבות גבוהה יותר"],
-  },
-  {
-    id: "oat-barista",
-    category: "שיבולת שועל",
-    title: "שיבולת שועל לקפה מול גרסה קלה יותר",
-    href: "/blog/milk-analysis#comparisons",
-    leftBarcode: "7394376619939",
-    rightBarcode: "7394376620904",
-    tradeoff:
-      "גרסת הבריסטה נבנית להקצפה ולמרקם — לרוב עם יותר רכיבי מרקם מאשר גרסת ללא סוכר.",
-    leftStrengths: ["מרקם לקפה", "הקצפה נעימה"],
-    rightStrengths: ["פחות סוכר", "רשימה קצרה יותר"],
-  },
-  {
-    id: "dairy-protein",
-    category: "חלב פרה",
-    title: "חלב מלא מול חלב מועשר בחלבון",
+    archetype: "comparison",
+    id: "dairy-vs-soy",
+    category: "חלב ותחליפים",
+    title: "חלב מלא מול משקה סויה",
     href: "/hashvaot/milk-comparison",
-    leftBarcode: "7290000051352",
-    rightBarcode: "7290114313865",
     tradeoff:
-      "חלבון מועשר פותר שובע — אבל דורש יותר עיבוד והרכבה מאשר חלב בסיסי עם רשימה קצרה.",
-    leftStrengths: ["רכיבים פשוטים", "מבנה ישיר"],
-    rightStrengths: ["חלבון גבוה", "ערך פונקציונלי"],
+      "חלב הפרה המלא מוביל במבנה פשוט ואפס תוספים; הסויה — ביתרון חלבוני ממוקד ומתאים לנמנעים מחלב.",
+    leftProduct: {
+      name: "חלב מלא תנובה",
+      brand: "חלב פרה",
+      score: 85,
+      imageUrl:
+        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
+      strengths: ["מבנה פשוט, ללא תוספים", "ציון A — מהטובים בקטגוריה"],
+    },
+    rightProduct: {
+      name: "משקה סויה ללא סוכרים",
+      brand: "תנובה אלטרנטיב · סויה",
+      score: 67,
+      imageUrl:
+        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
+      strengths: ["3.3 ג׳ חלבון / 100 מ״ל", "מתאים לנמנעים מחלב"],
+    },
   },
   {
-    id: "milk-flagship",
-    category: "ניתוח מדף",
-    title: "18 מוצרי חלב על אותו מדף",
-    href: "/blog/milk-analysis",
-    leftBarcode: "7290000051352",
-    rightBarcode: "7290116936116",
-    tradeoff:
-      "הניתוח המלא מראה איך מוצרים שנראים דומים מתפצלים ברכיבים, בעיבוד ובתזונה — לא רק בציון.",
-    leftStrengths: ["מבנה פשוט", "רמת עיבוד נמוכה"],
-    rightStrengths: ["יותר חלבון", "יעד תזונתי ברור"],
+    archetype: "investigation",
+    id: "bread-investigation",
+    category: "לחם וקמח",
+    title: "מה מסתיר לחם 'דגן מלא'",
+    href: "/hashvaot",
+    eyebrow: "חקירת קטגוריה",
+    finding:
+      "רוב לחמי הדגנים המלאים מכילים פחות מ-50% קמח מלא — והתווית חוקית לחלוטין",
+    context: "מתוך ניתוח 32 מוצרי לחם מהמדף הישראלי",
+    stat: { value: "32", label: "מוצרים נבדקו" },
+  },
+  {
+    archetype: "category-report",
+    id: "snack-bars-report",
+    category: "חטיפי גרנולה",
+    title: "גרנולה: המיתוס הבריאותי הכי יקר במדף",
+    href: "/hashvaot",
+    eyebrow: "דוח קטגוריה",
+    finding:
+      "גרנולה בר ממוצע — 35–45% מהמשקל סוכרים ושמנים. השיווק מוביל; הנתונים, פחות",
+    context: "14 חטיפים מובילים · 6 ארכיטיפים",
+    stat: { value: "14", label: "מוצרים" },
+  },
+  {
+    archetype: "ingredient",
+    id: "sugar-names",
+    category: "מרכיב · סוכר",
+    title: "12 שמות לסוכר, שם אחד שמחפשים פחות",
+    href: "/hashvaot",
+    eyebrow: "תובנת מרכיב",
+    finding:
+      "סירופ מייפל, דבש, טאפיוקה, מאלטוזה — כולם סוכר בצורות שונות. ממצא מתוך 200+ מוצרים",
+  },
+  {
+    archetype: "methodology",
+    id: "bari-methodology",
+    category: "מתודולוגיה",
+    title: "מה ציון Bari בודק שתזונאים לא מציגים",
+    href: "/hashvaot",
+    eyebrow: "מתודולוגיה",
+    finding:
+      "7 ממדים, 40+ אותות — מדד שמשקף מבנה תזונתי, לא הבטחות שיווקיות",
+    stat: { value: "7", label: "ממדי ניתוח" },
+  },
+  {
+    archetype: "what-surprised-us",
+    id: "almond-surprise",
+    category: "מה הפתיע אותנו",
+    title: "חלב שקדים עם 1–2% שקדים",
+    href: "/hashvaot/milk-comparison",
+    eyebrow: "ממצא מפתיע",
+    finding:
+      "בדקנו: רוב משקאות השקדים בישראל מכילים 1–2% שקדים בלבד. המרכיב העיקרי — מים",
   },
 ];
 
-export type ResolvedMicroSnapshot = MicroComparisonSnapshot & {
-  left: MilkComparisonProduct;
-  right: MilkComparisonProduct;
-};
-
-export function getMicroComparisonSnapshots(): ResolvedMicroSnapshot[] {
-  return SNAPSHOTS.map((snap) => {
-    const left = getProductByBarcode(snap.leftBarcode);
-    const right = getProductByBarcode(snap.rightBarcode);
-    if (!left || !right) return null;
-    return { ...snap, left, right };
-  }).filter((s): s is ResolvedMicroSnapshot => s != null);
+export function getHomepageCards(): HomepageCard[] {
+  return CARDS;
 }

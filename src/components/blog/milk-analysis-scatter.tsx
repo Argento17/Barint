@@ -39,6 +39,7 @@ export function MilkAnalysisScatter() {
   const { scatter } = milkAnalysisArticle;
   const points = useMemo(() => buildScatterPoints(), []);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [pinned, setPinned] = useState<string | null>(null);
 
   const legendTypes = useMemo(() => {
     const present = new Set(points.map((p) => p.product.productType));
@@ -63,7 +64,7 @@ export function MilkAnalysisScatter() {
     });
   }, [points]);
 
-  const active = placed.find((p) => p.product.barcode === hovered);
+  const active = placed.find((p) => p.product.barcode === (pinned ?? hovered));
   const midX = PLOT_W / 2;
   const midY = PLOT_H / 2;
 
@@ -79,7 +80,7 @@ export function MilkAnalysisScatter() {
         </p>
       </header>
 
-      <div className="border border-black/[0.08] bg-[#FFFFFF] p-5 md:p-7">
+      <div className="rounded-[1.2rem] border border-black/[0.08] bg-[#FFFFFF] p-5 md:p-7">
         <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#4E5663]">
           {legendTypes.map((type) => {
             const sample = points.find((p) => p.product.productType === type);
@@ -149,7 +150,8 @@ export function MilkAnalysisScatter() {
                   strokeDasharray="4 4"
                 />
                 {placed.map((p) => {
-                  const isActive = hovered === p.product.barcode;
+                  const activeBarcode = pinned ?? hovered;
+                  const isActive = activeBarcode === p.product.barcode;
                   const color = PRODUCT_TYPE_COLORS[p.product.productType];
                   return (
                     <g
@@ -158,8 +160,30 @@ export function MilkAnalysisScatter() {
                       onMouseLeave={() => setHovered(null)}
                       onFocus={() => setHovered(p.product.barcode)}
                       onBlur={() => setHovered(null)}
+                      onClick={() =>
+                        setPinned((prev) =>
+                          prev === p.product.barcode ? null : p.product.barcode
+                        )
+                      }
+                      onTouchStart={() =>
+                        setPinned((prev) =>
+                          prev === p.product.barcode ? null : p.product.barcode
+                        )
+                      }
                       style={{ cursor: "pointer" }}
                     >
+                      {pinned === p.product.barcode ? (
+                        <circle
+                          cx={p.cx}
+                          cy={p.cy}
+                          r={p.r + 8}
+                          fill="none"
+                          stroke={color}
+                          strokeWidth={1.5}
+                          opacity={0.35}
+                          strokeDasharray="3 3"
+                        />
+                      ) : null}
                       {isActive ? (
                         <circle
                           cx={p.cx}
@@ -176,7 +200,7 @@ export function MilkAnalysisScatter() {
                         fill={color}
                         stroke={isActive ? "#111318" : "#FFFFFF"}
                         strokeWidth={isActive ? 2 : 1.5}
-                        opacity={hovered && !isActive ? 0.45 : 1}
+                        opacity={activeBarcode && !isActive ? 0.45 : 1}
                       />
                     </g>
                   );
@@ -219,19 +243,24 @@ export function MilkAnalysisScatter() {
         </div>
 
         {active ? (
-          <div className="mt-4 rounded-lg border border-black/[0.06] bg-[#F7F7F2]/60 px-4 py-3">
-            <p className="text-sm font-bold text-[#111318]">{active.label}</p>
-            <p className="mt-1 text-sm leading-relaxed text-[#4E5663]">
+          <div className="mt-4 rounded-[1.1rem] border border-black/[0.06] bg-[#F7F7F2]/60 px-4 py-3.5">
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-sm font-extrabold text-[#111318]">{active.label}</p>
+              <span className="shrink-0 rounded-full bg-[#1F8F6A] px-2.5 py-0.5 text-xs font-extrabold text-[#F7F7F2]">
+                {active.product.score}
+              </span>
+            </div>
+            <p className="mt-1.5 text-sm leading-relaxed text-[#4E5663]">
               {active.placementInsight}
             </p>
             <p className="mt-2 text-xs text-[#7A817C]">
-              ציון Bari {active.product.score} · {active.product.productTypeLabel} ·{" "}
-              {active.ingredientCount} רכיבים ברשימה
+              {active.product.productTypeLabel} · {active.ingredientCount} רכיבים ברשימה
+              {pinned ? " · לחצו שוב לביטול הנעיצה" : ""}
             </p>
           </div>
         ) : (
           <p className="mt-4 text-xs text-[#7A817C]">
-            העבירו את העכבר על נקודה לשם המוצר והסבר קצר למיקום
+            העבירו את העכבר על נקודה — או לחצו לנעיצה — לפרטי המוצר
           </p>
         )}
 

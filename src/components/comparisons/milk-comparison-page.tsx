@@ -96,27 +96,27 @@ function ProductShelfRow({
       </div>
 
       <div className="grid gap-2 px-4 pb-3 sm:grid-cols-2 lg:grid-cols-4 lg:pl-14">
-        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2">
-          <p className="text-[0.65rem] font-bold text-[#7A817C]">חלבון</p>
-          <p className="text-sm font-semibold text-[#111318]">
+        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2.5">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.08em] text-[#7A817C]">חלבון / 100 מ״ל</p>
+          <p className="mt-0.5 text-base font-extrabold tabular-nums text-[#111318]">
             {formatNutrient(product.proteinPer100ml)}
           </p>
         </div>
-        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2">
-          <p className="text-[0.65rem] font-bold text-[#7A817C]">סוכר</p>
-          <p className="text-sm font-semibold text-[#111318]">
+        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2.5">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.08em] text-[#7A817C]">סוכר / 100 מ״ל</p>
+          <p className="mt-0.5 text-base font-extrabold tabular-nums text-[#111318]">
             {formatNutrient(product.sugarPer100ml)}
           </p>
         </div>
-        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2">
-          <p className="text-[0.65rem] font-bold text-[#7A817C]">תוספים</p>
-          <p className="text-xs font-medium leading-snug text-[#4E5663]">
+        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2.5">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.08em] text-[#7A817C]">תוספים</p>
+          <p className="mt-0.5 text-xs font-medium leading-snug text-[#4E5663]">
             {product.additivesLabel}
           </p>
         </div>
-        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2">
-          <p className="text-[0.65rem] font-bold text-[#7A817C]">רכיב עיקרי</p>
-          <p className="text-xs font-medium leading-snug text-[#4E5663]">
+        <div className="rounded-lg bg-[#F7F7F2]/80 px-3 py-2.5">
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.08em] text-[#7A817C]">רכיב עיקרי</p>
+          <p className="mt-0.5 text-xs font-medium leading-snug text-[#4E5663]">
             {product.mainIngredient}
           </p>
         </div>

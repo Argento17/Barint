@@ -66,7 +66,8 @@ export const howToReadComparison = [
 
 export function formatNutrient(value: number | null, unit = " ג׳"): string {
   if (value == null) return "לא מוצהר";
-  return `${value}${unit}`;
+  const rounded = Math.round(value * 10) / 10;
+  return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)}${unit}`;
 }
 
 export function productMatchesFilters(

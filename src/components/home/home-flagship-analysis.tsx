@@ -56,12 +56,22 @@ export function HomeFlagshipAnalysis() {
                       sizes="56px"
                     />
                   ) : null}
+                  {p.grade ? (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-[#111318] px-1.5 py-0.5 text-[0.55rem] font-extrabold leading-none text-[#F7F7F2]">
+                      {p.grade}
+                    </span>
+                  ) : null}
                 </div>
               ))}
             </div>
-            <p className="mt-5 border-r-2 border-[#1F8F6A] pr-3 text-sm font-semibold leading-relaxed text-[#111318]">
-              מוצרים שנראים דומים על המדף — מתפצלים ברכיבים, בעיבוד ובתזונה.
-            </p>
+            <blockquote className="mt-5 border-r-2 border-[#1F8F6A] pr-4">
+              <p className="text-base font-extrabold leading-snug tracking-[-0.02em] text-[#111318]">
+                מוצרים שנראים דומים על המדף — מתפצלים ברכיבים, בעיבוד ובתזונה.
+              </p>
+              <p className="mt-1 text-xs text-[#7A817C]">
+                מסקנה מניתוח 18 מוצרי חלב ושתייה צמחית
+              </p>
+            </blockquote>
           </div>
         </div>
       </HomeContainer>
