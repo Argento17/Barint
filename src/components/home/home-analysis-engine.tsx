@@ -1,5 +1,6 @@
 "use client";
 
+import type { ComponentType } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   BrainCircuit,
@@ -14,7 +15,7 @@ import {
 import { HomeContainer } from "./section-frame";
 
 type InsightItem = {
-  icon: typeof Leaf;
+  icon: ComponentType<any>;
   title: string;
   text: string;
 };
@@ -103,7 +104,7 @@ function InsightCard({
   direction,
   reduceMotion,
 }: {
-  item: (typeof leftInsights)[number];
+  item: InsightItem;
   index: number;
   direction: "left" | "right";
   reduceMotion: boolean;
