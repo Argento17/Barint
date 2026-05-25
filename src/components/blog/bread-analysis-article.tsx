@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, Layers3 } from "lucide-react";
 
@@ -16,9 +16,26 @@ import {
 } from "@/lib/blog/bread-analysis-content";
 import { breadEditorial } from "@/lib/comparisons/bread-editorial-content";
 import { ARCHETYPE_META, breadProducts } from "@/lib/comparisons/bread-page-data";
-import type { BreadProduct } from "@/lib/comparisons/bread-types";
+import type { BreadGrade, BreadProduct } from "@/lib/comparisons/bread-types";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
+
+function breadGradeLabel(grade?: BreadGrade) {
+  switch (grade) {
+    case "A":
+      return "מצוין";
+    case "B":
+      return "טוב";
+    case "C":
+      return "בינוני";
+    case "D":
+      return "חלש";
+    case "E":
+      return "נמוך";
+    default:
+      return "בינוני";
+  }
+}
 
 function categoryLabel(category: BreadProduct["category"]) {
   switch (category) {
@@ -406,8 +423,8 @@ function LookalikeCard({
                     </div>
                     <BariGradeBadge
                       score={side.score}
-                      grade={side.grade}
-                      gradeLabel={side.grade === "A" ? "מצוין" : side.grade === "B" ? "טוב" : side.grade === "C" ? "בינוני" : side.grade === "D" ? "חלש" : "נמוך"}
+                      grade={side.grade ?? "C"}
+                      gradeLabel={breadGradeLabel(side.grade)}
                       size="sm"
                     />
                   </div>
@@ -436,7 +453,6 @@ export function BreadAnalysisArticle() {
   const article = breadAnalysisArticle;
   const previewProducts = getBreadPreviewProducts();
   const [highlighted, setHighlighted] = useState(previewProducts[0]?.id ?? "");
-  const reduceMotion = useReducedMotion();
 
   return (
     <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
