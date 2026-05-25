@@ -14,7 +14,9 @@ export function HomeFlagshipAnalysis() {
       <HomeContainer>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div className="text-right">
-            <p className="text-sm font-bold text-[#1F8F6A]">ניתוח מוביל · מדף ישראלי</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1F8F6A]">
+              חקירה מובילה · לא הזהות היחידה
+            </p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#111318] md:text-4xl">
               {featuredArticle.title}
             </h2>

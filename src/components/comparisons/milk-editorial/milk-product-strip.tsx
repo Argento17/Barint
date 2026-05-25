@@ -24,7 +24,7 @@ export function MilkProductStrip({
     <EditorialSection
       id="product-strip"
       eyebrow="מדף · השוואה"
-      title="שישה מוצרים, ששה מבנים"
+      title="שישה מוצרים, שישה מבנים"
       description="לחצו על מוצר לעומק הניתוח — ציון, דרגה ותובנה קצרה מהמדף."
       tone="canvas"
       fullWidth

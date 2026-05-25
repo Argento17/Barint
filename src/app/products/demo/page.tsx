@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { BariBrandLogo } from "@/components/brand/bari-brand-logo";
+import { formatScore } from "@/lib/format/numbers";
 import {
   Accordion,
   AccordionContent,
@@ -471,7 +472,7 @@ export default function ProductPage() {
                                   {row.name}
                                 </td>
                                 <td className="px-4 py-3.5 tabular-nums font-semibold text-[#2FAE82]">
-                                  {row.score}
+                                  {formatScore(row.score)}
                                 </td>
                                 <td className="px-4 py-3.5 tabular-nums text-[#4E5663]">
                                   {row.kcal}

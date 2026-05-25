@@ -1,4 +1,5 @@
 import rawPage from "@/data/milk-comparison.json";
+import { formatGram } from "@/lib/format/numbers";
 
 import type {
   ComparisonFilterId,
@@ -65,9 +66,7 @@ export const howToReadComparison = [
 ] as const;
 
 export function formatNutrient(value: number | null, unit = " ג׳"): string {
-  if (value == null) return "לא מוצהר";
-  const rounded = Math.round(value * 10) / 10;
-  return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)}${unit}`;
+  return formatGram(value, unit);
 }
 
 export function productMatchesFilters(

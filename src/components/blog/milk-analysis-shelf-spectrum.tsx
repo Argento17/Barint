@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
+import { ProductThumbnail } from "@/components/comparisons/product-thumbnail";
 import {
   getProductByBarcode,
   shelfAnchors,
@@ -38,17 +38,12 @@ export function MilkAnalysisShelfSpectrum() {
               transition={{ delay: i * 0.06 }}
               className="min-w-[11.5rem] shrink-0 snap-center rounded-[1.1rem] border border-black/[0.07] bg-[#FFFFFF] p-4 md:min-w-0"
             >
-              <div className="relative mx-auto h-20 w-14">
-                {product.image_url ? (
-                  <Image
-                    src={product.image_url}
-                    alt=""
-                    fill
-                    className="object-contain"
-                    sizes="56px"
-                  />
-                ) : null}
-              </div>
+              <ProductThumbnail
+                product={product}
+                wrapperClassName="mx-auto h-20 w-14 rounded-[1rem] shadow-none"
+                imageClassName="p-0.5"
+                imageSizes="56px"
+              />
               <p className="mt-3 text-[0.65rem] font-bold uppercase tracking-wide text-[#1F8F6A]">
                 {anchor.title}
               </p>

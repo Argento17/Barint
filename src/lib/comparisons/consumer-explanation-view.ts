@@ -1,3 +1,4 @@
+import { getProductInsight } from "@/lib/comparisons/milk-product-insights";
 import type { BariInterpretationPillar, MilkComparisonProduct, ProductType } from "@/lib/comparisons/milk-types";
 
 /** Consumer-facing copy — multidimensional, category-aware; scoring unchanged. */
@@ -7,9 +8,9 @@ const PLANT_TYPES: Set<ProductType> = new Set(["oat", "soy", "almond", "rice", "
 type ReplacementRule = { pattern: RegExp; replacement: string; gentleProcessingOnly?: boolean };
 
 const REPLACEMENTS: ReplacementRule[] = [
-  { pattern: /ערך תזונתי נמוך יחסית/g, replacement: "תרומה תזונתית מוגבלת ביחס לקטגוריה" },
-  { pattern: /ערך תזונתי ביחס למוצר נמוך/g, replacement: "תרומה תזונתית מוגבלת ביחס לציפיות מהקטגוריה" },
-  { pattern: /ערך תזונתי נמוך/g, replacement: "תרומה תזונתית מוגבלת" },
+  { pattern: /ערך תזונתי נמוך יחסית/g, replacement: "פרופיל תזונתי דל יחסית בקטגוריה" },
+  { pattern: /ערך תזונתי ביחס למוצר נמוך/g, replacement: "חלבון וסיבים לא בולטים מול דומים" },
+  { pattern: /ערך תזונתי נמוך/g, replacement: "תרומה תזונתית צנועה" },
   { pattern: /עיבוד בינוני-גבוה/g, replacement: "רמת עיבוד מורגשת" },
   { pattern: /מעובד מאוד — הרבה רכיבים תפקודיים/g, replacement: "מורכבות רכיבים גבוהה יותר (רבים תפקודיים) בהשוואה לגרסאות פשוטות יותר", gentleProcessingOnly: true },
   { pattern: /מעובד מאוד/g, replacement: "עם רמת מורכבות/עיבוד גבוהה יותר", gentleProcessingOnly: true },
@@ -141,9 +142,9 @@ export function buildPeerComparisonSentence(
     return "ההשוואה כאן היא יחסית למוצרים מאותה משפחה ברשימה — לא מול כל סוגי המזונות.";
   }
 
-  parts.push(
-    "הפער בין מוצרים דומים נובע גם ממרקם, היציבות וההעשרה — לא רק מחלבון או סוכר."
-  );
+  if (parts.length === 1) {
+    return parts[0]!;
+  }
   return parts.join(" ");
 }
 
@@ -178,6 +179,18 @@ export function buildConsumerExplanationView(
   product: MilkComparisonProduct,
   allProducts: MilkComparisonProduct[]
 ): ConsumerExplanationView {
+  const curated = getProductInsight(product.barcode);
+  if (curated) {
+    return {
+      whatToKnow: curated.whatMatters,
+      raisesScore: curated.positives,
+      lowersScore: curated.cautions,
+      relativeToPeers: curated.comparisonContext,
+      tradeoffNote: null,
+      takeawayLine: curated.takeaway,
+    };
+  }
+
   const exp = product.consumerExplanation;
   const score = product.score;
   const plant = plantCategorySentence(product);

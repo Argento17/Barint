@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -11,9 +10,9 @@ import { MilkAnalysisHowToRead } from "@/components/blog/milk-analysis-how-to-re
 import { MilkAnalysisInsightBlock } from "@/components/blog/milk-analysis-insight-block";
 import { MilkAnalysisScatter } from "@/components/blog/milk-analysis-scatter";
 import { MilkAnalysisShelfSpectrum } from "@/components/blog/milk-analysis-shelf-spectrum";
-import { MilkAnalysisComparisons } from "@/components/blog/milk-analysis-comparisons";
 import { MilkAnalysisRecent } from "@/components/blog/milk-analysis-recent";
 import { MilkAnalysisSimplicity } from "@/components/blog/milk-analysis-simplicity";
+import { ProductThumbnail } from "@/components/comparisons/product-thumbnail";
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
 import { HomeContainer } from "@/components/home/section-frame";
 import {
@@ -147,17 +146,12 @@ function PreviewCard({
       )}
     >
       <div className="flex items-start gap-4">
-        <div className="relative h-[5.5rem] w-[3.75rem] shrink-0">
-          {product.image_url ? (
-            <Image
-              src={product.image_url}
-              alt={product.name_he}
-              fill
-              className="object-contain"
-              sizes="60px"
-            />
-          ) : null}
-        </div>
+        <ProductThumbnail
+          product={product}
+          wrapperClassName="h-[5.5rem] w-[3.75rem] shrink-0 rounded-[1rem] shadow-none"
+          imageClassName="p-1"
+          imageSizes="60px"
+        />
         <div className="min-w-0 flex-1">
           <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{product.productTypeLabel}</p>
           <h3 className="mt-1 text-base font-extrabold leading-snug text-[#111318]">{title}</h3>
@@ -251,7 +245,7 @@ export function MilkAnalysisArticle() {
         {/* Centerpiece scatter — full width band */}
         <div className="bg-[#F7F7F2] py-14 md:py-20">
           <HomeContainer>
-            <div className="mx-auto max-w-4xl">
+            <div className="mx-auto max-w-[76rem]">
               <MilkAnalysisScatter />
             </div>
           </HomeContainer>
@@ -269,8 +263,6 @@ export function MilkAnalysisArticle() {
             <MilkAnalysisSimplicity />
 
             <MilkAnalysisInsightBlock quote={article.editorialInsights[2]!} index={2} />
-
-            <MilkAnalysisComparisons />
 
             {/* Product preview */}
             <section id="preview">

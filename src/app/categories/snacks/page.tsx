@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { HomeContainer } from "@/components/home/section-frame";
+import { formatScore } from "@/lib/format/numbers";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 
@@ -112,7 +113,9 @@ function ProductPanel({ product, highlighted = false }: { product: (typeof produ
           <p className="mt-2 text-sm font-bold text-[#1F8F6A]">{product.position}</p>
         </div>
         <div className="rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/75 px-4 py-3 text-center">
-          <div className="text-2xl font-extrabold tracking-[-0.05em] text-[#111318]">{product.score}</div>
+          <div className="text-2xl font-extrabold tracking-[-0.05em] text-[#111318]">
+            {formatScore(product.score)}
+          </div>
           <div className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#4E5663]">יחסי</div>
         </div>
       </div>

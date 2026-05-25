@@ -10,6 +10,7 @@ import type {
   EditorialCard,
   HomepageCard,
 } from "@/lib/home/micro-comparison-snapshots";
+import { formatScore } from "@/lib/format/numbers";
 import { cn } from "@/lib/utils";
 
 const CARD_SHELL =
@@ -25,6 +26,7 @@ const ARCHETYPE_BADGE: Record<
   ingredient: "bg-[#F0FAFA] text-[#0E7490]",
   methodology: "bg-[#F1F5F9] text-[#475569]",
   "what-surprised-us": "bg-[#FFF1F2] text-[#9F1239]",
+  "product-spotlight": "bg-[#E8F5EF] text-[#1F8F6A]",
 };
 
 function CardHeader({
@@ -93,7 +95,7 @@ function ProductMiniColumn({
       </div>
       <div className="flex items-baseline gap-2">
         <span className="text-2xl font-extrabold tabular-nums tracking-[-0.04em] text-[#111318]">
-          {product.score}
+          {formatScore(product.score)}
         </span>
         <span className="text-[0.65rem] font-semibold text-[#7A817C]">ציון Bari</span>
       </div>
@@ -191,3 +193,6 @@ export function HomepageCardItem({ card }: { card: HomepageCard }) {
   }
   return <EditorialCardLayout card={card} />;
 }
+
+/** @deprecated Use HomepageCardItem */
+export const MicroComparisonSnapshotCard = HomepageCardItem;

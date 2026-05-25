@@ -15,10 +15,10 @@ const radarSignals = [
     detail: "זיהוי רכיבים מוכרים, מקורות מלאים וסדר הופעה ברשימה.",
   },
   {
-    axis: "עומס סוכר ומלח",
+    axis: "איזון תזונתי",
     value: 38,
     benchmark: 63,
-    detail: "רמות סוכר, מלח וצפיפות קלורית ביחס למוצרים דומים.",
+    detail: "איזון בין חלבון, סיבים, סוכר, שומן וערכים נוספים.",
   },
   {
     axis: "רמת עיבוד",
@@ -66,10 +66,10 @@ const benchmarkRows = [
     note: "עד כמה רשימת הרכיבים פשוטה ומוכרת",
   },
   {
-    label: "סוכר ומלח",
+    label: "איזון תזונתי",
     value: 84,
     category: 56,
-    note: "רמות סוכר, מלח וצפיפות קלורית",
+    note: "איזון בין חלבון, סיבים, סוכר, שומן וערכים נוספים",
   },
   {
     label: "רמת עיבוד",
@@ -508,9 +508,7 @@ export function HomeMethodology() {
             inView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
         >
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
-            BSIP2 ANALYSIS PARAMETERS
-          </p>
+          <p className="text-xs font-bold tracking-[0.16em] text-[#1F8F6A]/80">פרמטרים לניתוח</p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
             ניתוח רב-ממדי של מספר רב של פרמטרים.
           </h2>
@@ -557,9 +555,7 @@ export function HomeMethodology() {
 
           <div className="flex flex-col justify-between gap-7 p-1 md:p-2">
             <div className="space-y-3">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#7A817C]">
-                CATEGORY-ADJUSTED PARAMETERS
-              </p>
+              <p className="text-xs font-bold tracking-[0.16em] text-[#7A817C]">השוואה לפי קטגוריה</p>
               <h3 className="text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">
                 השוואה בתוך קטגוריית המוצר.
               </h3>

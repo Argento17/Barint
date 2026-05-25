@@ -22,7 +22,8 @@ export type EditorialArchetype =
   | "category-report"
   | "ingredient"
   | "methodology"
-  | "what-surprised-us";
+  | "what-surprised-us"
+  | "product-spotlight";
 
 export type EditorialCard = {
   archetype: EditorialArchetype;
@@ -38,32 +39,8 @@ export type EditorialCard = {
 
 export type HomepageCard = ComparisonCard | EditorialCard;
 
+/** Homepage carousel — max 1–2 milk touches; diverse categories */
 const CARDS: HomepageCard[] = [
-  {
-    archetype: "comparison",
-    id: "dairy-vs-soy",
-    category: "חלב ותחליפים",
-    title: "חלב מלא מול משקה סויה",
-    href: "/hashvaot/milk-comparison",
-    tradeoff:
-      "חלב הפרה המלא מוביל במבנה פשוט ואפס תוספים; הסויה — ביתרון חלבוני ממוקד ומתאים לנמנעים מחלב.",
-    leftProduct: {
-      name: "חלב מלא תנובה",
-      brand: "חלב פרה",
-      score: 85,
-      imageUrl:
-        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
-      strengths: ["מבנה פשוט, ללא תוספים", "ציון A — מהטובים בקטגוריה"],
-    },
-    rightProduct: {
-      name: "משקה סויה ללא סוכרים",
-      brand: "תנובה אלטרנטיב · סויה",
-      score: 67,
-      imageUrl:
-        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
-      strengths: ["3.3 ג׳ חלבון / 100 מ״ל", "מתאים לנמנעים מחלב"],
-    },
-  },
   {
     archetype: "investigation",
     id: "bread-investigation",
@@ -71,56 +48,92 @@ const CARDS: HomepageCard[] = [
     title: "מה מסתיר לחם 'דגן מלא'",
     href: "/hashvaot",
     eyebrow: "חקירת קטגוריה",
-    finding:
-      "רוב לחמי הדגנים המלאים מכילים פחות מ-50% קמח מלא — והתווית חוקית לחלוטין",
-    context: "מתוך ניתוח 32 מוצרי לחם מהמדף הישראלי",
-    stat: { value: "32", label: "מוצרים נבדקו" },
+    finding: "לעיתים פחות ממחצית הקמח הוא מלא — והתווית עדיין חוקית",
+    context: "32 מוצרי לחם מהמדף הישראלי",
+    stat: { value: "32", label: "מוצרים" },
+  },
+  {
+    archetype: "category-report",
+    id: "cereals-report",
+    category: "דגנים וחטיפי בוקר",
+    title: "דגני בוקר: מה באמת שולט בקופסה",
+    href: "/hashvaot",
+    eyebrow: "דוח קטגוריה",
+    finding: "סוכר, דגנים מעובדים ושומנים — לעיתים יותר מאשר «דגנים מלאים» על האריזה",
+    context: "24 מוצרים מובילים · 4 ארכיטיפים",
+    stat: { value: "24", label: "מוצרים" },
   },
   {
     archetype: "category-report",
     id: "snack-bars-report",
     category: "חטיפי גרנולה",
-    title: "גרנולה: המיתוס הבריאותי הכי יקר במדף",
+    title: "גרנולה: המחיר השקט של «בריא»",
     href: "/hashvaot",
     eyebrow: "דוח קטגוריה",
-    finding:
-      "גרנולה בר ממוצע — 35–45% מהמשקל סוכרים ושמנים. השיווק מוביל; הנתונים, פחות",
-    context: "14 חטיפים מובילים · 6 ארכיטיפים",
+    finding: "לעיתים שליש עד מחצית מהמשקל — סוכרים ושומנים, לא רק «גרנולה»",
+    context: "14 חטיפים · 6 ארכיטיפים",
     stat: { value: "14", label: "מוצרים" },
   },
   {
     archetype: "ingredient",
     id: "sugar-names",
-    category: "מרכיב · סוכר",
+    category: "חקירת מרכיב",
     title: "12 שמות לסוכר, שם אחד שמחפשים פחות",
     href: "/hashvaot",
     eyebrow: "תובנת מרכיב",
-    finding:
-      "סירופ מייפל, דבש, טאפיוקה, מאלטוזה — כולם סוכר בצורות שונות. ממצא מתוך 200+ מוצרים",
+    finding: "מייפל, דבש, טאפיוקה, מאלטוזה — אותו סוכר, שמות שונים על התווית",
   },
   {
     archetype: "methodology",
     id: "bari-methodology",
     category: "מתודולוגיה",
     title: "מה ציון Bari בודק שתזונאים לא מציגים",
-    href: "/hashvaot",
+    href: "/#methodology",
     eyebrow: "מתודולוגיה",
-    finding:
-      "7 ממדים, 40+ אותות — מדד שמשקף מבנה תזונתי, לא הבטחות שיווקיות",
-    stat: { value: "7", label: "ממדי ניתוח" },
+    finding: "8 אותות, השוואה לקטגוריה — מבנה ורכיבים, לא סיסמאות שיווק",
+    stat: { value: "8", label: "אותות" },
   },
   {
-    archetype: "what-surprised-us",
-    id: "almond-surprise",
-    category: "מה הפתיע אותנו",
-    title: "חלב שקדים עם 1–2% שקדים",
+    archetype: "investigation",
+    id: "protein-products",
+    category: "מוצרי חלבון",
+    title: "14 גרם על האריזה — מה עוד ברשימה?",
+    href: "/hashvaot",
+    eyebrow: "חקירת קטגוריה",
+    finding: "חלבון גבוה לא תמיד אומר רשימה קצרה; לעיתים יותר העשרה וייצוב",
+    context: "יוגורטים, משקאות וחטיפים · בקרוב במלואם",
+    stat: { value: "26", label: "מוצרים" },
+  },
+  {
+    archetype: "comparison",
+    id: "dairy-vs-plant",
+    category: "חלב ותחליפים",
+    title: "חלב מלא מול סויה ללא סוכר",
     href: "/hashvaot/milk-comparison",
-    eyebrow: "ממצא מפתיע",
-    finding:
-      "בדקנו: רוב משקאות השקדים בישראל מכילים 1–2% שקדים בלבד. המרכיב העיקרי — מים",
+    tradeoff: "חלב — פשטות רכיבים; סויה — חלבון צמחי ולעיתים יותר שכבות בפורמולה.",
+    leftProduct: {
+      name: "חלב מלא",
+      brand: "חלב פרה",
+      score: 85,
+      imageUrl:
+        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
+      strengths: ["רשימה קצרה", "ציון גבוה בקטגוריה"],
+    },
+    rightProduct: {
+      name: "סויה ללא סוכרים",
+      brand: "תחליף צמחי · סויה",
+      score: 67,
+      imageUrl:
+        "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
+      strengths: ["חלבון סויה בולט", "ללא סוכר מוסף"],
+    },
   },
 ];
 
 export function getHomepageCards(): HomepageCard[] {
   return CARDS;
+}
+
+export function getMicroComparisonSnapshots(): HomepageCard[] {
+  return getHomepageCards();
 }

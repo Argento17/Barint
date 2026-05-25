@@ -13,21 +13,47 @@ export const FEATURED_MAP_BARCODES = [
 
 export type ScatterPoint = {
   product: MilkComparisonProduct;
-  /** 0 = פשוט, 100 = מורכב */
-  ingredientComplexity: number;
-  /** 0 = יותר עיבוד, 100 = פחות עיבוד */
-  lessProcessing: number;
+  /** 0 = פחות עיבוד, 100 = יותר עיבוד */
+  processingIntensity: number;
+  /** grams protein per 100ml */
+  proteinLevel: number;
   ingredientCount: number;
   label: string;
   shortLabel: string;
   placementInsight: string;
 };
 
-export const SCATTER_EDITORIAL_NOTES = [
-  "חלב פרה בסיסי נוטה לפשטות רכיבים",
-  "שיבולת שועל נוטה למבנה מורכב יותר",
-  "סויה מובילה בחלבון אך לעיתים כוללת יותר רכיבים",
-] as const;
+export type ScatterEditorialNote = {
+  id: string;
+  title: string;
+  text: string;
+  productTypes: ProductType[];
+  representativeBarcodes: string[];
+};
+
+export const SCATTER_EDITORIAL_NOTES: ScatterEditorialNote[] = [
+  {
+    id: "dairy",
+    title: "חלב פרה — בסיס ישיר",
+    text: "נשאר באזור פחות מעובד, עם חלבון יציב יחסית לקטגוריה. פשוט מבנית — לא בהכרח הכי עשיר בכל מדד.",
+    productTypes: ["dairy"],
+    representativeBarcodes: ["7290000051352", "7290019790259"],
+  },
+  {
+    id: "oat",
+    title: "שיבולת שועל — מרקם כמוצר",
+    text: "גרסאות הבריסטה נודדות ימינה: יותר עיבוד כדי לייצר הקצפה ומרקם, לאו דווקא כדי לספק יותר חלבון.",
+    productTypes: ["oat"],
+    representativeBarcodes: ["7394376621451", "7394376620904", "7394376619939"],
+  },
+  {
+    id: "soy",
+    title: "סויה — פיצול בתוך קטגוריה",
+    text: "נוטה לטפס גבוה יותר בציר החלבון, אך הפער בין גרסה בסיסית למועשרת נשאר מורגש גם בעיבוד.",
+    productTypes: ["soy"],
+    representativeBarcodes: ["7290116936116", "7290110324926"],
+  },
+];
 
 export type HeroShelfCluster = {
   id: string;
@@ -59,19 +85,6 @@ export const PRODUCT_TYPE_LABELS: Record<ProductType, string> = {
 
 function dimScore(product: MilkComparisonProduct, key: string): number {
   return product.dimensions[key]?.score ?? 0;
-}
-
-function normalizeNutrientDensity(products: MilkComparisonProduct[]): Map<string, number> {
-  const values = products.map((p) => dimScore(p, "nutrient_density"));
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const span = max - min || 1;
-  return new Map(
-    products.map((p) => [
-      p.barcode,
-      ((dimScore(p, "nutrient_density") - min) / span) * 100,
-    ])
-  );
 }
 
 const INGREDIENT_SEP = /[,،·]/;
@@ -119,17 +132,6 @@ export function compositionSimplicity(product: MilkComparisonProduct): number {
   return (additive + integrity) / 2;
 }
 
-/** תרומה תזונתית — higher = stronger nutritional profile in category */
-export function nutritionalContribution(
-  product: MilkComparisonProduct,
-  densityNorm: Map<string, number>
-): number {
-  const protein = dimScore(product, "protein_quality");
-  const density = densityNorm.get(product.barcode) ?? 0;
-  const satiety = dimScore(product, "satiety_support");
-  return protein * 0.45 + density * 0.35 + satiety * 0.2;
-}
-
 export function getPlacementInsight(product: MilkComparisonProduct): string {
   const count = countIngredients(product);
   const protein = product.proteinPer100ml ?? 0;
@@ -148,37 +150,30 @@ export function getPlacementInsight(product: MilkComparisonProduct): string {
     return "נבנה לטעם ולהקצפה — מרקם נעים שמגיע עם יותר סוכר ורכיבי מרקם.";
   }
   if (product.productType === "almond" && protein < 1) {
-    return "קל יחסית בקלוריות, עם תרומת חלבון מוגבלת — מבנה פשוט יותר.";
+    return "קל בקלוריות, חלבון זניח — משקה, לא מקור חלבון.";
   }
   if (complex && hasAdditives) {
-    return "הרכבה שכבתית: מייצבים, רכיבי מרקם או העשרה שמסבירים את מיקום המוצר.";
+    return "יותר מייצבים והעשרה ברשימה — מיקום המוצר משקף עומק פורמולציה.";
   }
   if (simple && protein >= 2) {
-    return "תרומה תזונתית סבירה עם מבנה יחסית ישיר — פחות שכבות ביניים.";
+    return "מבנה ישיר יחסית, עם חלבון סביר לקטגוריה.";
   }
 
-  const takeaway = product.consumerTakeaway?.trim();
-  if (takeaway && takeaway.length > 20) {
-    return takeaway.length > 110 ? `${takeaway.slice(0, 107)}…` : takeaway;
-  }
-  return "מיקום המוצר משקף את האיזון בין פשטות הרכב לתרומה התזונתית בקטגוריה.";
+  return "מיקום לפי איזון בין אורך רשימת רכיבים, עיבוד ופרופיל תזונתי בקטגוריה.";
 }
 
 function highProteinInsight(protein: number): boolean {
   return protein >= 2.8;
 }
 
-/** Higher = more ingredient complexity */
-export function ingredientComplexityScore(product: MilkComparisonProduct): number {
-  const simplicity = compositionSimplicity(product);
-  const count = countIngredients(product);
-  const countNorm = Math.min(100, (count / 12) * 100);
-  return 100 - simplicity * 0.65 - countNorm * 0.35;
-}
-
 /** Higher = less processing (פחות עיבוד at top) */
 export function lessProcessingScore(product: MilkComparisonProduct): number {
   return dimScore(product, "processing_quality");
+}
+
+/** Higher = more processing (יותר עיבוד at right) */
+export function processingIntensityScore(product: MilkComparisonProduct): number {
+  return 100 - lessProcessingScore(product);
 }
 
 function shortLabel(product: MilkComparisonProduct): string {
@@ -191,8 +186,8 @@ function shortLabel(product: MilkComparisonProduct): string {
 function toScatterPoint(product: MilkComparisonProduct): ScatterPoint {
   return {
     product,
-    ingredientComplexity: ingredientComplexityScore(product),
-    lessProcessing: lessProcessingScore(product),
+    processingIntensity: processingIntensityScore(product),
+    proteinLevel: product.proteinPer100ml ?? 0,
     ingredientCount: countIngredients(product),
     label: product.displayTitle ?? product.shortName,
     shortLabel: shortLabel(product),
@@ -229,12 +224,12 @@ export const heroShelfClusters: HeroShelfCluster[] = [
   {
     id: "oat",
     label: "שיבולת שועל",
-    barcodes: ["5411188112709", "5411188300328"],
+    barcodes: ["7394376621451", "7394376620904"],
   },
   {
     id: "protein",
-    label: "עתיר חלבון",
-    barcodes: ["8000215204219", "8000215204554"],
+    label: "חלבון מועשר",
+    barcodes: ["7290114313865", "7290000051352"],
   },
 ];
 
@@ -263,42 +258,48 @@ export type MilkComparisonNarrative = {
 export const milkComparisonNarratives: MilkComparisonNarrative[] = [
   {
     id: "soy-simple-vs-enriched",
-    title: "סויה בסיסית מול סויה עם אסטרטגיית העשרה",
-    subtitle: "אותה קטגוריה — שתי תפיסות פורמולציה שונות לחלוטין.",
-    leftBarcode: "7290110324926",
-    rightBarcode: "7290116936116",
+    title: "סויה בסיסית מול סויה מועשרת",
+    subtitle: "אותה משפחה — שני מסלולי פורמולציה.",
+    leftBarcode: "7290116936116",
+    rightBarcode: "7290110324926",
     story:
-      "שני המשקאות מתחילים מפולי סויה, אבל אחד שומר על מטריצה קרובה למקורית — והשני בנוי אסטרטגיית העשרה: ויטמינים, מינרלים ומייצבי מרקם שנוספו אחרי שהמבנה המקורי עבר פירוק חלקי. הציון אינו שיפוט; הוא מדד עומק ההרכבה.",
+      "משמאל: סויה ללא סוכר, בלי תוספים מזוהים — רשימה קצרה יחסית. מימין: אותו בסיס סויה, עם סידן, ויטמינים ומווסתי חומציות. הציון מודד עומק הרכבה, לא כוונה.",
     divergence:
-      "הפער אינו בגרם חלבון בודד על האריזה — אלא בנתיב: מבנה ראשוני מול הרכבה מחדש עם שכבות ייצוב והעשרה. שתיהן עונות על שאלה שונה.",
-    formulationNote: "מוצר עם אסטרטגיית העשרה נוטה להכיל שכבות נוספות גם כשהכוונה מאחוריהן תזונתית לחלוטין. Bari מודד את עומק ההרכבה — לא את הכוונה.",
-    whatChanged: "מייצבי מרקם, ויטמינים ומינרלים נוספו כדי לייצב פרופיל עקבי — על חשבון קיצור רשימת הרכיבים. הטריידאוף הוא בין ביצוע תזונתי לפשטות מבנית.",
+      "הפער הוא במספר השכבות — לא בגרם חלבון בודד. מי שמחפש מינימום רכיבים בוחר אחרת ממי שמחפש העשרה מלאה.",
+    formulationNote:
+      "בגרסה המועשרת: יותר מינרלים וויטמינים, יותר רכיבי ייצוב. בבסיסית: פחות תוספים, פחות «בנייה מחדש».",
+    whatChanged:
+      "מעבר מימין לשמאל: מורידים העשרה ומווסתים — ומקבלים רשימה קצרה יותר.",
   },
   {
     id: "oat-barista-vs-lighter",
-    title: "שיבולת שועל לקפה מול שיבולת שועל מינימלית",
-    subtitle: "הנדסת מרקם מכוונת מול פשטות בחירה — שתי תשובות לשתי שאלות שונות.",
-    leftBarcode: "5411188112709",
-    rightBarcode: "5411188300328",
+    title: "שיבולת בריסטה מול שיבולת ללא סוכר",
+    subtitle: "שתי גרסאות שיבולת — שאלות שימוש שונות.",
+    leftBarcode: "7394376621451",
+    rightBarcode: "7394376620904",
     story:
-      "גרסת הקפה עוצבה סביב דרישה טכנית: יצירת קצף עקבי מתחת לאספרסו. שמן חמניות, מייצבים וסיבים מבודדים אינם שגיאה בפורמולה — הם תנאי הכרחי לביצוע קולינרי. הגרסה הקלה ויתרה על הביצוע הזה כדי להרוויח פשטות.",
+      "משמאל: אוטלי בריסטה להקצפה — שמן קנולה, מווסתים, מינרלים. מימין: שיבולת ללא סוכר — פחות ממוקדת בקצף, פחות שכבות ביצוע. שתיהן שיבולת; לא אותה מטרה.",
     divergence:
-      "גרסת הקפה אופטימלית לביצוע בכוס קפה; הגרסה הקלה אופטימלית לרשימת רכיבים מינימלית. Bari לא שופט איזו שאלה חשובה יותר — הוא מודד כמה שכבות כל תשובה דרשה.",
-    formulationNote: "הנדסת מרקם אינה ניטרלית מבחינת ציון — מייצבים ורכיבי תמיכה מוסיפים שכבות. ההקשר חשוב: שאלת השימוש קודמת לשאלת הפשטות.",
-    whatChanged: "שמן, מייצבים וסיבים מבודדים נוספו בגרסת הקפה — לא כמילוי, אלא כמנגנון ביצועי. הגרסה הקלה מוותרת על הביצוע ומקבלת פרופיל רכיבים קצר יותר.",
+      "בריסטה נבנתה לכוס קפה; הגרסה ללא סוכר נוטה לשימוש יומיומי פשוט יותר. Bari לא בוחר «מנצח» — מודד כמה שכבות כל גרסה דרשה.",
+    formulationNote:
+      "בבריסטה: שמן ומווסתים תומכים במרקם והקצפה. בללא סוכר: פחות דגש על ביצוע, יותר פרופיל «נייטרלי».",
+    whatChanged:
+      "כשעוברים מבריסטה לגרסה קלה — מורידים חלק משכבות המרקם, לא רק סוכר.",
   },
   {
     id: "dairy-vs-protein-system",
-    title: "חלב פרה בסיסי מול מערכת חלבון מתוכננת",
-    subtitle: "מבנה שהתפתח מול מבנה שתוכנן — שני לוגיקות של הגעה למדף.",
+    title: "חלב מלא מול חלב מועשר בחלבון",
+    subtitle: "שני מוצרי חלב פרה — מטרות שונות.",
     leftBarcode: "7290000051352",
-    rightBarcode: "8000215204219",
+    rightBarcode: "7290114313865",
     story:
-      "חלב מלא לא תוכנן — הוא קיים. מבנה הפרוטאין, השומן והלקטוז שלו נוצר אבולוציונית. משקה החלבון, לעומתו, תוכנן: פרוטאין יעד, שובע ממוקד ויציבות במדף. כל אחד מהרכיבים בא לענות על דרישה ספציפית של המוצר הסופי.",
+      "משמאל: חלב מלא — חלב בלבד, ציון גבוה, מבנה ישיר. מימין: חלב נטול לקטוז עם כ־6.5 גרם חלבון ל־100 מ״ל — תהליך עשיר יותר, רשימה ארוכה יותר.",
     divergence:
-      "ההבדל אינו בין «טבעי» ל«מעובד» — אלא בין מבנה שהתפתח לבין מבנה שתוכנן. Bari מודד את עומק ההרכבה; לא את הנכונות או ה«טבעיות» של המוצר.",
-    formulationNote: "משקה שיוצר פרופיל חלבון כפול מחלב רגיל מחייב הרכבה שונה בתכלית. הביצועים גבוהים יותר; מורכבות הרכיבים גבוהה יותר. זהו טריידאוף, לא כישלון.",
-    whatChanged: "בחלב: רשימת רכיבים בת פריט אחד. במשקה החלבון: מבודדי חלבון, מייצבים, העשרת ויטמינים ורכיבי מרקם — כל אחד מהם חלק מפתרון תזונתי שתוכנן מראש.",
+      "החלבון הגבוה במוצר מימין מגיע מסינון והעשרה — לא מאותה פשטות כמו חלב בסיסי. השאלה: חלב יומיומי או מקור חלבון מרוכז.",
+    formulationNote:
+      "במועשר: יותר חלבון, יותר עומק ייצור. במלא: פחות שכבות, פחות פונקציונליות ממוקדת.",
+    whatChanged:
+      "מעבר לחלב מועשר: יותר חלבון בכוס, פחות «פריט אחד ברשימה».",
   },
 ];
 
@@ -330,14 +331,14 @@ export const shelfAnchors: ShelfAnchor[] = [
     title: "שיבולת שועל לקפה",
     subtitle: "מרקם נעים, לעיתים יותר סוכר",
     insight: "נבנה לטעם ולהקצפה, לא רק לטבלה תזונתית.",
-    barcode: "5411188112709",
+    barcode: "7394376621451",
   },
   {
     id: "protein",
-    title: "משקה חלבון",
-    subtitle: "ערך פונקציונלי ברור",
-    insight: "מכוון ליעד — שובע וחלבון — עם הרכב מורכב יותר.",
-    barcode: "8000215204219",
+    title: "חלב מועשר בחלבון",
+    subtitle: "חלבון גבוה בתוך משפחת החלב",
+    insight: "יותר חלבון בכוס — עם תהליך ייצור עמוק יותר מחלב בסיסי.",
+    barcode: "7290114313865",
   },
   {
     id: "almond",

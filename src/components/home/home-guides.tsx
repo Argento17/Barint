@@ -18,7 +18,8 @@ export function HomeGuides() {
               מהמדף ומהמעבדה
             </h2>
             <p className="mt-3 text-base leading-relaxed text-[#4E5663]">
-              ניתוחי מוצרים אמיתיים — לא תבניות גנריות. מתחילים במדף החלב.
+              ניתוחים עיתונאיים ממוצרים אמיתיים — חלב, לחם, דגנים ומרכיבים. הניתוח המוביל
+              מופיע כאן; שאר הקטגוריות נפתחות בהדרגה.
             </p>
           </div>
           <Link
@@ -30,14 +31,14 @@ export function HomeGuides() {
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2">
           {teasers.map((article, i) => (
             <article
               key={article.slug}
               className={
                 i === 0
-                  ? "flex flex-col rounded-[1.25rem] border border-[#1F8F6A]/20 bg-[#FFFFFF] p-5 md:col-span-2 lg:col-span-2"
-                  : "flex flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
+                  ? "flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-[#1F8F6A]/22 bg-[#FFFFFF] p-5 shadow-[0_18px_40px_-34px_rgba(31,143,106,0.28)]"
+                  : "flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
               }
             >
               <p className="text-xs font-bold text-[#1F8F6A]">{article.categoryLabel}</p>

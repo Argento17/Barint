@@ -14,7 +14,7 @@ export function HomeHero() {
   return (
     <section
       className={cn(
-        "relative flex min-h-[72vh] items-center overflow-hidden md:min-h-[78vh]",
+        "relative flex min-h-[72vh] items-center overflow-hidden border-b border-black/[0.06] md:min-h-[78vh]",
         siteHeaderOffsetClass
       )}
     >
@@ -74,9 +74,9 @@ export function HomeHero() {
             className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#1F8F6A] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
             asChild
           >
-            <Link href="/blog/milk-analysis">
+            <Link href="#analysis-engine">
               <BariSignalMark className="size-4" />
-              ניתוח מוביל: מדף החלב בישראל
+              ניתוח מוצרים · המדף הישראלי
             </Link>
           </Badge>
 
@@ -87,7 +87,7 @@ export function HomeHero() {
           </h1>
 
           <p className="reveal-up delay-200 mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663] md:text-xl md:leading-relaxed">
-            Bari מנתח מוצרים דרך עשרות אותות תזונתיים ורכיביים — ולא לפי נתון בודד.
+            פלטפורמה שמפרקת מוצרים מהמדף — רכיבים, עיבוד והקשר קטגוריאלי, לא נתון בודד.
           </p>
 
           <div className="reveal-up delay-300 mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -96,8 +96,8 @@ export function HomeHero() {
               className="group h-12 w-full rounded-2xl border border-[#1F8F6A]/10 bg-[#1F8F6A] px-8 text-base font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#1F8F6A] hover:shadow-xl hover:shadow-slate-900/10 sm:w-auto"
               asChild
             >
-              <a href="#methodology" className="inline-flex items-center justify-center gap-2">
-                איך Bari מנתח מזון
+              <a href="#analysis-engine" className="inline-flex items-center justify-center gap-2">
+                איך Bari מנתחת מוצרים
                 <ChevronLeft
                   className="size-5 transition-transform group-hover:-translate-x-0.5"
                   aria-hidden
@@ -110,7 +110,7 @@ export function HomeHero() {
               className="h-12 w-full rounded-2xl border-black/[0.08] bg-[#FFFFFF]/68 px-8 text-base font-semibold text-[#111318] shadow-sm shadow-slate-900/10 backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10 sm:w-auto"
               asChild
             >
-              <Link href="/blog/milk-analysis">ניתוח מדף החלב</Link>
+              <Link href="/hashvaot">השוואות מהמדף</Link>
             </Button>
           </div>
 

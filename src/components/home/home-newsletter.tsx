@@ -25,7 +25,7 @@ export function HomeNewsletter() {
               ניתוחים, דירוגים והשוואות מזון ישירות למייל.
             </p>
           </div>
-          <NewsletterSignup />
+          <NewsletterSignup source="homepage" />
           <p className="text-sm text-[#7A817C]">ללא ספאם. ביטול בכל עת.</p>
           </div>
         </div>

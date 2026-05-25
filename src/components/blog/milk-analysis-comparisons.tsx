@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
+import { formatScore } from "@/lib/format/numbers";
 import {
   countIngredients,
   getProductByBarcode,
@@ -57,7 +58,8 @@ function InvestigationPanel({
           {scoreDelta ? (
             <p className="mt-1 text-xs text-[#7A817C]">
               הפרש ציון:{" "}
-              <span className="font-bold text-[#111318]">+{scoreDelta.delta}</span> לטובת{" "}
+              <span className="font-bold text-[#111318]">+{formatScore(scoreDelta.delta)}</span>{" "}
+              לטובת{" "}
               {scoreDelta.higherName}
             </p>
           ) : null}

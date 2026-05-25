@@ -244,6 +244,15 @@ export function MilkComparisonPage() {
         className="border-t border-black/[0.08] bg-[#F7F7F2] py-14 md:py-20"
       >
         <HomeContainer className="space-y-8">
+          <p className="rounded-[1rem] border border-black/[0.06] bg-[#FFFFFF] px-4 py-3 text-sm leading-relaxed text-[#4E5663]">
+            <span className="font-bold text-[#111318]">מידע, לא המלצה.</span> הציון משקף מבנה
+            ורכיבים בהשוואה למוצרים דומים — לא שיפוט «טוב/רע». לסיפור העיתונאי על המדף:{" "}
+            <Link href="/blog/milk-analysis" className="font-semibold text-[#1F8F6A] hover:underline">
+              הניתוח בבלוג
+            </Link>
+            .
+          </p>
+
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">

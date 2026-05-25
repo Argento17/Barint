@@ -30,17 +30,18 @@ export function DimensionBars({
       {PRIMARY_DIMENSION_KEYS.map((key) => {
         const dim = product.dimensions[key];
         if (!dim) return null;
+        const scoreRounded = Math.round(dim.score);
         return (
           <div key={key}>
             <div className="mb-1 flex justify-between text-[0.7rem] font-semibold">
               <span className="text-[#4E5663]">{DIM_LABELS[key] ?? dim.display_name}</span>
-              <span className="tabular-nums text-[#111318]">{Math.round(dim.score)}</span>
+              <span className="tabular-nums text-[#111318]">{scoreRounded}</span>
             </div>
             <div className="h-1.5 overflow-hidden rounded-full bg-[#F7F7F2]">
               <motion.div
                 className="h-full rounded-full bg-[#1F8F6A]/85"
-                initial={reduceMotion ? { width: `${dim.score}%` } : { width: 0 }}
-                animate={{ width: `${dim.score}%` }}
+                initial={reduceMotion ? { width: `${scoreRounded}%` } : { width: 0 }}
+                animate={{ width: `${scoreRounded}%` }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>

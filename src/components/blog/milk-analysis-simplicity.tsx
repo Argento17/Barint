@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
+import { ProductThumbnail } from "@/components/comparisons/product-thumbnail";
 import {
   countIngredients,
   parseIngredientsDisplay,
@@ -79,11 +79,12 @@ function SimplicityProductRow({
       className="flex flex-col gap-4 rounded-[1.1rem] border border-black/[0.06] bg-[#FFFFFF] p-4 md:p-5"
     >
       <div className="flex items-center gap-4">
-        <div className="relative h-16 w-11 shrink-0">
-          {product.image_url ? (
-            <Image src={product.image_url} alt="" fill className="object-contain" sizes="44px" />
-          ) : null}
-        </div>
+        <ProductThumbnail
+          product={product}
+          wrapperClassName="h-16 w-11 shrink-0 rounded-[0.9rem] shadow-none"
+          imageClassName="p-0.5"
+          imageSizes="44px"
+        />
         <div className="min-w-0 flex-1 text-right">
           <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{product.productTypeLabel}</p>
           <p className="text-sm font-extrabold text-[#111318]">{title}</p>

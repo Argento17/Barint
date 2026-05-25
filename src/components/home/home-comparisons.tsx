@@ -6,9 +6,9 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { MicroComparisonSnapshotCard } from "@/components/home/micro-comparison-snapshot-card";
+import { HomepageCardItem } from "@/components/home/micro-comparison-snapshot-card";
 import { Button } from "@/components/ui/button";
-import { getMicroComparisonSnapshots } from "@/lib/home/micro-comparison-snapshots";
+import { getHomepageCards } from "@/lib/home/micro-comparison-snapshots";
 
 import { HomeContainer } from "./section-frame";
 
@@ -30,7 +30,7 @@ function usePrefersReducedMotion() {
 
 export function HomeComparisons() {
   const prefersReducedMotion = usePrefersReducedMotion();
-  const snapshots = useMemo(() => getMicroComparisonSnapshots(), []);
+  const snapshots = useMemo(() => getHomepageCards(), []);
   const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const carouselItems = useMemo(
@@ -95,24 +95,24 @@ export function HomeComparisons() {
       <HomeContainer>
         <div className="reveal-up mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl space-y-3 text-right">
-            <p className="text-sm font-bold text-[#1F8F6A]">השוואות ממוצרים אמיתיים</p>
+            <p className="text-sm font-bold text-[#1F8F6A]">ניתוחי קטגוריה · מוצרים אמיתיים</p>
             <h2 className="text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
-              השוואות ברורות בין מוצרים דומים
+              מוצרים שנראים דומים — לא תמיד אותו דבר
             </h2>
             <p className="text-pretty text-base leading-relaxed text-[#4E5663]">
-              לא דמו — מוצרים מהמדף הישראלי, ציון Bari, חוזקות ופער מרכזי בכל כרטיס.
+              חלב, לחם, גרנולה, דגנים — השוואות, ממצאים ופירוט מבני לפי קטגוריה.
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-3">
             <Button variant="ghost" className="gap-2 text-[#1F8F6A]" asChild>
-              <Link href="/hashvaot/milk-comparison" className="font-semibold">
-                השוואת החלב המלאה
+              <Link href="/hashvaot" className="font-semibold">
+                כל ההשוואות
                 <ChevronLeft className="size-5" aria-hidden />
               </Link>
             </Button>
             <Button variant="ghost" className="gap-2 text-[#4E5663]" asChild>
-              <Link href="/blog/milk-analysis" className="font-semibold">
-                הניתוח בבלוג
+              <Link href="/blog" className="font-semibold">
+                לבלוג
               </Link>
             </Button>
           </div>
@@ -152,7 +152,7 @@ export function HomeComparisons() {
           <div className="flex gap-4 px-5 sm:px-6">
             {carouselItems.map((snapshot, index) => (
               <div key={`${snapshot.id}-${index}`} className="flex flex-[0_0_auto]">
-                <MicroComparisonSnapshotCard snapshot={snapshot} />
+                <HomepageCardItem card={snapshot} />
               </div>
             ))}
           </div>

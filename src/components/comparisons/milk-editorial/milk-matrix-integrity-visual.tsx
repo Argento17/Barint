@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 import { EditorialSection } from "@/components/comparisons/milk-editorial/editorial-section";
+import { formatDecimal } from "@/lib/format/numbers";
 import { DEGRADATION_LABELS } from "@/lib/comparisons/milk-page-data";
 import { maxEngineeringIntensity } from "@/lib/comparisons/milk-editorial-content";
 import type { MilkComparisonProduct } from "@/lib/comparisons/milk-types";
@@ -87,7 +88,7 @@ export function MilkMatrixIntegrityVisual({
             </div>
           </div>
           <p className="text-sm text-[#7A817C]">
-            {levelLabel} · עוצמת הנדסה {m.engineering_intensity.toFixed(1)}
+            {levelLabel} · עוצמת הנדסה {formatDecimal(m.engineering_intensity, 1)}
           </p>
           <p className="rounded-xl border border-black/[0.06] bg-[#FFFFFF] px-4 py-3 text-sm leading-relaxed text-[#4E5663]">
             {product.displayTitle ?? product.shortName} — {product.mainIngredient}

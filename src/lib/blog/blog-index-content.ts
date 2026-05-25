@@ -65,6 +65,18 @@ export const featuredArticle: BlogArticleCard = {
 
 export const secondaryArticles: BlogArticleCard[] = [
   {
+    slug: "bread-analysis",
+    href: "/blog/bread-analysis",
+    title: "מה באמת קורה במדף הלחמים?",
+    description:
+      "בדקנו 32 מוצרי לחם, קרקר וקריספ כדי להבין איפה המדף באמת מתפצל: מחמצת, סיבים, רכיבים ורמת עיבוד.",
+    cta: "לקריאת הניתוח",
+    category: "israeli-shelf",
+    categoryLabel: "מדף ישראלי",
+    readTime: "7 דקות",
+    metaLine: "מאי 2026 · 7 דקות קריאה · 32 מוצרים נותחו",
+  },
+  {
     slug: "sourdough-label",
     href: "#",
     title: "מה באמת מסתתר מאחורי מחמצת?",
