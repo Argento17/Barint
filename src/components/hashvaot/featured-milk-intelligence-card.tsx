@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -378,12 +377,13 @@ export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
                         rotate: `${cfg.rot}deg`,
                       }}
                     >
-                      <Image
+                      <img
                         src={p.image_url!}
                         alt=""
-                        fill
-                        className="object-contain p-3"
+                        className="h-full w-full object-contain p-3"
                         sizes={cfg.w >= 132 ? "150px" : "110px"}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </motion.div>
                   </div>

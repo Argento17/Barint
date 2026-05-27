@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
@@ -50,12 +49,13 @@ export function HomeFlagshipAnalysis() {
               {PREVIEW_PACKS.map((p) => (
                 <div key={p.barcode} className="relative h-20 w-12 md:h-24 md:w-14">
                   {p.image_url ? (
-                    <Image
+                    <img
                       src={p.image_url}
                       alt=""
-                      fill
-                      className="object-contain drop-shadow-md"
+                      className="h-full w-full object-contain drop-shadow-md"
                       sizes="56px"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : null}
                   {p.grade ? (

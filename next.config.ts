@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "api.yochananof.co.il",
         pathname: "/media/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/shufersal/**",
+      },
     ],
   },
 };

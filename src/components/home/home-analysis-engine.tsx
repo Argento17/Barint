@@ -1,6 +1,5 @@
 "use client";
 
-import type { ComponentType } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   BrainCircuit,
@@ -8,6 +7,7 @@ import {
   FlaskConical,
   GitCompareArrows,
   Leaf,
+  type LucideIcon,
   Scale,
   ShieldCheck,
 } from "lucide-react";
@@ -15,7 +15,7 @@ import {
 import { HomeContainer } from "./section-frame";
 
 type InsightItem = {
-  icon: ComponentType<any>;
+  icon: LucideIcon;
   title: string;
   text: string;
 };
@@ -153,7 +153,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">מנוע הניתוח של Bari</p>
-            <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של ברי</h3>
+            <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של בריא</h3>
             <p className="mt-2 text-sm font-medium text-[#4E5663]">
               ניתוח רב־ממדי • חישוב דינמי
             </p>
@@ -168,7 +168,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
         </div>
 
         <div className="relative mx-auto aspect-[1.25] max-w-[32rem]">
-          <svg className="size-full overflow-visible" viewBox="0 0 440 330" role="img" aria-label="המנוע של ברי">
+          <svg className="size-full overflow-visible" viewBox="0 0 440 330" role="img" aria-label="המנוע של בריא">
             <defs>
               <radialGradient id="bari-engine-center" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="rgba(31,143,106,0.68)" />

@@ -7,9 +7,9 @@ const CATEGORIES = [
   {
     id: "bread",
     label: "לחם וקמח",
-    hint: "דגן מלא, מחמצת, רשימות רכיבים",
-    href: "/hashvaot",
-    status: "בקרוב",
+    hint: "256 מוצרים נסרקו · 31 נבחרו לדוח · מחמצת, דגנים ושקיפות",
+    href: "/compare/bread-comparison",
+    status: "זמין",
   },
   {
     id: "cereals",

@@ -1,205 +1,305 @@
-import rawData from "@/data/bread-comparison.json";
-import type { BreadArchetype, BreadComparisonPage, BreadFilterId, BreadGrade, BreadProduct } from "./bread-types";
+import rawData from "@/data/bread-retail-curated.json";
 
-export const breadComparisonPage = rawData as BreadComparisonPage;
-export const breadProducts: BreadProduct[] = breadComparisonPage.products;
+import type {
+  BreadCategory,
+  BreadClusterId,
+  BreadComparisonPair,
+  BreadConfidenceLabel,
+  BreadConfidenceLevel,
+  BreadDataset,
+  BreadFilterId,
+  BreadGrade,
+  BreadInsightBlock,
+  BreadProduct,
+} from "./bread-types";
 
-export const BREAD_GRADE_COLORS: Record<BreadGrade, { bg: string; text: string; border: string }> = {
-  A: { bg: "#2E7D32", text: "#FFFFFF", border: "#2E7D3215" },
-  B: { bg: "#558B2F", text: "#FFFFFF", border: "#558B2F15" },
-  C: { bg: "#F9A825", text: "#111318", border: "#F9A82520" },
-  D: { bg: "#EF6C00", text: "#FFFFFF", border: "#EF6C0020" },
-  E: { bg: "#C62828", text: "#FFFFFF", border: "#C6282820" },
-};
+const dataset = rawData as BreadDataset;
 
-export const ARCHETYPE_META: Record<
-  BreadArchetype,
-  { label: string; labelShort: string; color: string; bgClass: string; textClass: string; borderClass: string }
-> = {
-  sourdough_traditional: {
-    label: "מחמצת מסורתית",
-    labelShort: "מחמצת",
-    color: "#92400E",
-    bgClass: "bg-amber-50",
-    textClass: "text-amber-800",
-    borderClass: "border-amber-200",
-  },
-  nordic_whole_grain: {
-    label: "קריספ נורדי / דגן שלם",
-    labelShort: "דגן שלם",
-    color: "#1F8F6A",
-    bgClass: "bg-emerald-50",
-    textClass: "text-emerald-800",
-    borderClass: "border-emerald-200",
-  },
-  seeds_multigrain: {
-    label: "גרעינים ורב-דגן",
-    labelShort: "גרעינים",
-    color: "#854D0E",
-    bgClass: "bg-yellow-50",
-    textClass: "text-yellow-800",
-    borderClass: "border-yellow-200",
-  },
-  sourdough_theater: {
-    label: "מחמצת כטעם",
-    labelShort: "מחמצת-תיאטרלי",
-    color: "#9A3412",
-    bgClass: "bg-orange-50",
-    textClass: "text-orange-800",
-    borderClass: "border-orange-200",
-  },
-  fiber_inflation: {
-    label: "ניפוח סיבים",
-    labelShort: "ניפוח סיבים",
-    color: "#9F1239",
-    bgClass: "bg-rose-50",
-    textClass: "text-rose-800",
-    borderClass: "border-rose-200",
-  },
-  engineered_functional: {
-    label: "הנדסה פונקציונלית",
-    labelShort: "פונקציונלי",
-    color: "#3730A3",
-    bgClass: "bg-indigo-50",
-    textClass: "text-indigo-800",
-    borderClass: "border-indigo-200",
-  },
-  simple_white: {
-    label: "בסיס לבן / תעשייתי",
-    labelShort: "לבן / תעשייתי",
-    color: "#374151",
-    bgClass: "bg-slate-50",
-    textClass: "text-slate-700",
-    borderClass: "border-slate-200",
-  },
-  treat_salty: {
-    label: "פינוק / מלוח",
-    labelShort: "פינוק",
-    color: "#6B3B2E",
-    bgClass: "bg-stone-50",
-    textClass: "text-stone-700",
-    borderClass: "border-stone-200",
-  },
-};
-
-export const BREAD_FILTERS: { id: BreadFilterId; label: string }[] = [
-  { id: "all", label: "הכל" },
-  { id: "sourdough_traditional", label: "מחמצת מסורתית" },
-  { id: "nordic_whole_grain", label: "דגן שלם" },
-  { id: "seeds_multigrain", label: "גרעינים" },
-  { id: "sourdough_theater", label: "מחמצת-תיאטרלי" },
-  { id: "fiber_inflation", label: "ניפוח סיבים" },
-  { id: "engineered_functional", label: "פונקציונלי" },
-  { id: "simple_white", label: "לבן / תעשייתי" },
-  { id: "grade_a", label: "ציון A" },
-  { id: "has_fermentation", label: "תסיסה" },
-  { id: "isolated_fiber", label: "סיב מופרד" },
-];
-
-export const breadComparisonFilters: {
-  id: BreadFilterId;
-  label: string;
-  group: "archetype" | "trait";
-}[] = [
-  { id: "sourdough_traditional", label: "מחמצת מסורתית", group: "archetype" },
-  { id: "nordic_whole_grain", label: "דגן שלם", group: "archetype" },
-  { id: "seeds_multigrain", label: "גרעינים", group: "archetype" },
-  { id: "sourdough_theater", label: "מחמצת כתוסף", group: "archetype" },
-  { id: "engineered_functional", label: "פונקציונלי", group: "archetype" },
-  { id: "grade_a", label: "ציון A", group: "trait" },
-  { id: "has_fermentation", label: "תסיסה", group: "trait" },
-  { id: "isolated_fiber", label: "סיב מופרד", group: "trait" },
-];
-
-const BREAD_ARCHETYPE_FILTERS = new Set<BreadFilterId>([
-  "sourdough_traditional",
-  "nordic_whole_grain",
-  "seeds_multigrain",
-  "sourdough_theater",
-  "fiber_inflation",
-  "engineered_functional",
-  "simple_white",
-  "treat_salty",
-]);
-
-export function filterBreadProducts(products: BreadProduct[], filterId: BreadFilterId): BreadProduct[] {
-  switch (filterId) {
-    case "all":
-      return products;
-    case "grade_a":
-      return products.filter((p) => p.grade === "A");
-    case "grade_b_plus":
-      return products.filter((p) => p.grade === "A" || p.grade === "B");
-    case "has_fermentation":
-      return products.filter((p) => p.ferm_q === "traditional" || p.ferm_q === "mixed");
-    case "isolated_fiber":
-      return products.filter((p) => p.fiber_q === "isolated");
+function normalizeConfidenceLevel(label: BreadConfidenceLabel): BreadConfidenceLevel {
+  switch (label) {
+    case "נתונים מלאים יחסית":
+      return "full";
+    case "נתונים חלקיים":
+      return "partial";
+    case "חסרים נתונים מהותיים":
+      return "missing";
     default:
-      return products.filter((p) => p.archetype === filterId);
+      return "insufficient";
   }
 }
 
-export function sortBreadProducts(
-  products: BreadProduct[],
-  by: "score" | "fiber" | "protein" | "delta"
-): BreadProduct[] {
-  return [...products].sort((a, b) => {
-    switch (by) {
-      case "score":
-        return b.score - a.score;
-      case "fiber":
-        return b.nutrition.fiber_g - a.nutrition.fiber_g;
-      case "protein":
-        return b.nutrition.protein_g - a.nutrition.protein_g;
-      case "delta":
-        return b.delta - a.delta;
-    }
-  });
-}
-
-export function getProductById(id: string): BreadProduct | undefined {
-  return breadProducts.find((p) => p.id === id);
-}
-
-export function breadMatchesFilters(product: BreadProduct, active: Set<BreadFilterId>): boolean {
-  if (active.size === 0) return true;
-
-  const archetypeFilters = [...active].filter((filterId) => BREAD_ARCHETYPE_FILTERS.has(filterId));
-  const traitFilters = [...active].filter((filterId) => !BREAD_ARCHETYPE_FILTERS.has(filterId));
-
-  if (archetypeFilters.length > 0) {
-    const archetypeMatch = archetypeFilters.some((filterId) => product.archetype === filterId);
-    if (!archetypeMatch) return false;
+function normalizeCategory(category?: string): BreadCategory {
+  if (category === "bread" || category === "cracker" || category === "whole_food_fat") {
+    return category;
   }
 
-  for (const trait of traitFilters) {
-    if (filterBreadProducts([product], trait).length === 0) return false;
+  if (category === "default") return "default";
+  return "unknown";
+}
+
+function normalizeProduct(product: BreadDataset["all_products"][number]): BreadProduct {
+  return {
+    ...product,
+    id: product.product_id,
+    category: normalizeCategory(product._category_internal),
+    category_label_he: product.category_display_he,
+    displayable: product.display_score_boolean,
+    confidence_level: normalizeConfidenceLevel(product.confidence_label_he),
+  };
+}
+
+export const breadDataset = dataset;
+export const breadMeta = dataset.meta;
+
+export const BREAD_REPORT_STATS = {
+  scanned: 256,
+  sufficient: 81,
+  featured: 31,
+  transparencyGapPercent: 46,
+} as const;
+
+export const BREAD_CLUSTER_FILTERS: Array<{ id: BreadFilterId; label: string }> = [
+  { id: "all", label: "הכל" },
+  { id: "everyday", label: "יומיומי" },
+  { id: "fermentation", label: "מחמצת" },
+  { id: "strong", label: "מלא ודגנים" },
+  { id: "wellness_ambig", label: "לחמי בריאות" },
+  { id: "crackers", label: "קרקרים" },
+];
+
+export const breadProducts = dataset.all_products.map(normalizeProduct);
+
+const productMap = new Map(breadProducts.map((product) => [product.id, product] as const));
+
+function requireBreadProduct(id: string) {
+  const product = productMap.get(id);
+  if (!product) {
+    throw new Error(`Bread product not found: ${id}`);
   }
-
-  return true;
+  return product;
 }
 
-export function getBreadRowEmphasis(
-  product: BreadProduct,
-  active: Set<BreadFilterId>
-): "emphasized" | "muted" | "neutral" {
-  if (active.size === 0) return "neutral";
-  return breadMatchesFilters(product, active) ? "emphasized" : "muted";
+export function getBreadProductById(id: string) {
+  return productMap.get(id);
 }
 
-export function breadCountVisible(active: Set<BreadFilterId>): number {
-  return breadProducts.filter((product) => breadMatchesFilters(product, active)).length;
+export const breadProductsByCluster = dataset.clusters.reduce<Record<BreadClusterId, BreadProduct[]>>(
+  (acc, cluster) => {
+    acc[cluster.cluster_id] = cluster.products.map(normalizeProduct);
+    return acc;
+  },
+  {
+    everyday: [],
+    strong: [],
+    fermentation: [],
+    wellness_ambig: [],
+    crackers: [],
+    transparency: [],
+  }
+);
+
+export const breadScoredProducts = breadProducts.filter((product) => product.displayable);
+export const breadTransparencyProducts = breadProductsByCluster.transparency;
+
+export const breadHeroProducts = [
+  "shufersal_497044",
+  "shufersal_3268429",
+  "shufersal_481203",
+  "shufersal_7290016245325",
+  "shufersal_96086000966",
+]
+  .map((id) => getBreadProductById(id))
+  .filter((product): product is BreadProduct => Boolean(product));
+
+export const flagshipBreadProducts = [
+  "shufersal_497044",
+  "shufersal_2079996",
+  "shufersal_3268429",
+  "shufersal_481203",
+  "shufersal_7290016245325",
+  "shufersal_96086000966",
+]
+  .map((id) => getBreadProductById(id))
+  .filter((product): product is BreadProduct => Boolean(product));
+
+export const breadInsightBlocks: BreadInsightBlock[] = [
+  {
+    id: "genuine-fermentation",
+    title: "מחמצת אמיתית נדירה יותר ממה שנראה",
+    body:
+      "לא מעט מוצרים משתמשים בשפה של מחמצת, אבל ברשימת הרכיבים מופיעים בעיקר שמרים תעשייתיים. לכן אנחנו מבדילים בין מחמצת בשם לבין מחמצת שמזוהה בפועל.",
+    supporting: ["לחם ברמן אקטיב", "לחם מחמצת קמח מלא", "לחם מחמצת מכוסמין"],
+  },
+  {
+    id: "everyday-surprises",
+    title: "כמה מהמוצרים הפשוטים קיבלו ציונים מפתיעים",
+    body:
+      "הדף לא מספר סיפור של 'יומיומי מול פרימיום'. בחלק מהמקרים דווקא מוצרים בסיסיים עם מבנה פשוט וברור עלו מעל מוצרים יקרים יותר עם הבטחות גדולות יותר על האריזה.",
+    supporting: ["לחם אחיד פרוס קל", "לחם ברמן אקטיב", "לחם מחמצת אגוזים צימוקים"],
+  },
+  {
+    id: "spelt-gap",
+    title: "כוסמין לא תמיד אומר מלא",
+    body:
+      "כוסמין הוא סוג דגן, לא תיאור של מידת מלאות. לכן מוצר שנראה 'טבעי יותר' בשם יכול עדיין להגיע עם סיבים נמוכים יותר או עם מבנה פחות מרשים מהציפייה.",
+    supporting: ["לחם כוסמין לבן", "לחם מחמצת מכוסמין", "לחם שיפון מלא מסטמכר"],
+  },
+  {
+    id: "data-gap",
+    title: "46% מהמוצרים לא קיבלו מספיק נתונים",
+    body:
+      "כשאין נתוני רכיבים מספקים, אנחנו לא מציגים ציון. זו בחירה מערכתית: לא להפוך חוסר שקיפות לציון מלאכותי.",
+    supporting: ["מארז פיתות אסליות", "לחם מחמצת אגוזים פרוס", "לחם אחיד"],
+  },
+];
+
+export const breadComparisonPairs: BreadComparisonPair[] = [
+  {
+    id: "berman-vs-spelt-sourdough",
+    title: "מיינסטרים מול תווית מחמצת",
+    kicker: "ברמן אקטיב מול מחמצת כוסמין",
+    caption:
+      "לחם ברמן אקטיב מציג מחמצת ברכיבים ומבנה יציב יותר. מולו, לחם מחמצת מכוסמין נשען על שם שמבטיח מחמצת, אבל ברכיבים מופיעים שמרים תעשייתיים.",
+    left: requireBreadProduct("shufersal_497044"),
+    right: requireBreadProduct("shufersal_6451507"),
+  },
+  {
+    id: "plain-vs-premium-nuts",
+    title: "לחם פשוט מול לחם פרימיום",
+    kicker: "אחיד פרוס קל מול אגוזים וצימוקים",
+    caption:
+      "לחם אחיד פרוס קל קיבל ציון גבוה יותר ועם יותר סיבים. זה לא הופך אותו ל'טוב יותר תמיד', אבל כן מראה ששם פרימיום לא מחליף מבנה בפועל.",
+    left: requireBreadProduct("shufersal_2079996"),
+    right: requireBreadProduct("shufersal_6451484"),
+  },
+  {
+    id: "spelt-vs-white-spelt",
+    title: "כוסמין מול כוסמין לבן",
+    kicker: "אותו דגן, ציפייה אחרת",
+    caption:
+      "כוסמין לבן לא אומר כוסמין מלא, ולחם שמזכיר כוסמין בשם לא בהכרח מגובה באותו מבנה. הזוג הזה מדגים כמה מהר השפה על האריזה יכולה לייצר ציפייה שלא תמיד עומדת בנתון.",
+    left: requireBreadProduct("shufersal_6451507"),
+    right: requireBreadProduct("shufersal_7290018500316"),
+  },
+];
+
+export const breadStandoutProducts = [
+  "shufersal_3268429",
+  "shufersal_481203",
+  "shufersal_3054183",
+  "shufersal_2079927",
+  "shufersal_3268252",
+  "shufersal_481197",
+  "shufersal_574370",
+]
+  .map((id) => getBreadProductById(id))
+  .filter((product): product is BreadProduct => Boolean(product));
+
+export function breadGradeLabel(grade: BreadGrade | null) {
+  switch (grade) {
+    case "A":
+      return "חזק מאוד";
+    case "B":
+      return "חזק";
+    case "C":
+      return "ביניים";
+    case "D":
+      return "חלש";
+    case "E":
+      return "נמוך";
+    default:
+      return "ללא ציון";
+  }
 }
 
-export function getBreadFlagshipProducts(): BreadProduct[] {
-  return [
-    "9990001000018",
-    "9990001000017",
-    "9990001000013",
-    "9990001000003",
-    "9990001000010",
-    "9990001000016",
-  ]
-    .map((id) => getProductById(id))
-    .filter((product): product is BreadProduct => Boolean(product));
+export function breadCategoryLabel(product: Pick<BreadProduct, "category" | "category_label_he">) {
+  if (product.category_label_he) return product.category_label_he;
+  if (product.category === "bread") return "לחם";
+  if (product.category === "cracker") return "קרקר";
+  if (product.category === "whole_food_fat") return "לחם / מוצר שמן";
+  return "מוצר מדף";
+}
+
+export function gradeTone(grade: BreadGrade | null) {
+  switch (grade) {
+    case "A":
+      return "border-[#1F8F6A]/15 bg-[#E8F5EF] text-[#176F53]";
+    case "B":
+      return "border-[#2D5BFF]/12 bg-[#EEF3FF] text-[#2442B5]";
+    case "C":
+      return "border-[#C98A00]/14 bg-[#FBF4DE] text-[#8F6600]";
+    case "D":
+    case "E":
+      return "border-[#D1583D]/14 bg-[#FDECE8] text-[#A63F2A]";
+    default:
+      return "border-black/[0.08] bg-[#F3F4F5] text-[#5E6672]";
+  }
+}
+
+export function confidenceTone(level: BreadConfidenceLevel) {
+  switch (level) {
+    case "full":
+      return {
+        pill: "border-[#1F8F6A]/18 bg-[#E8F5EF] text-[#176F53]",
+        dot: "bg-[#1F8F6A]",
+      };
+    case "partial":
+      return {
+        pill: "border-[#C98A00]/16 bg-[#FBF4DE] text-[#8F6600]",
+        dot: "bg-[#C98A00]",
+      };
+    case "missing":
+      return {
+        pill: "border-[#D8743C]/16 bg-[#FDECE8] text-[#A54A22]",
+        dot: "bg-[#D8743C]",
+      };
+    default:
+      return {
+        pill: "border-[#8A8F98]/16 bg-[#EEF0F2] text-[#4E5663]",
+        dot: "bg-[#8A8F98]",
+      };
+  }
+}
+
+export function getConfidenceLabel(
+  product: Pick<BreadProduct, "confidence_label_he">
+) {
+  return product.confidence_label_he;
+}
+
+export function formatBreadNumber(value: number | null, suffix = "") {
+  if (value == null) return "אין נתון";
+  const formatted = Number.isInteger(value) ? `${value}` : `${value.toFixed(1)}`;
+  return `${formatted}${suffix}`;
+}
+
+export function fermentationSignal(status: BreadProduct["fermentation_status_he"]) {
+  switch (status) {
+    case "מחמצת אמיתית (מזוהה ברכיבים)":
+      return { icon: "✅", label: "מחמצת ברכיבים" };
+    case "מחמצת אמיתית (עם שמרים עזר)":
+      return { icon: "✅", label: "מחמצת + שמרים עזר" };
+    case "מחמצת בשם, שמרים ברכיבים":
+      return {
+        icon: "⚠️",
+        label: "שמרים ברכיבים",
+        tooltip:
+          "שם המוצר מכיל 'מחמצת', אך רשימת הרכיבים מציגה שמרים תעשייתיים — לא מחמצת ברכיבים.",
+      };
+    case "שמרים תעשייתיים בלבד":
+      return { icon: "○", label: "שמרים תעשייתיים" };
+    case "לא ידוע — חסרים נתוני רכיבים":
+      return { icon: "—", label: "לא ידוע" };
+    default:
+      return { icon: "—", label: "לא רלוונטי" };
+  }
+}
+
+export function breadProductMatchesFilter(product: BreadProduct, filter: BreadFilterId) {
+  if (filter === "all") return product.website_cluster !== "transparency";
+  return product.website_cluster === filter;
+}
+
+export function clusterProducts(filter: BreadFilterId) {
+  return breadScoredProducts.filter((product) => breadProductMatchesFilter(product, filter));
 }

@@ -1,3 +1,9 @@
+import {
+  BREAD_EVERYDAY_HREF,
+  BREAD_STANDOUTS_HREF,
+  BREAD_WELLNESS_HREF,
+} from "@/lib/blog/bread-analysis-content";
+
 export type BlogCategoryId =
   | "all"
   | "comparisons"
@@ -65,28 +71,40 @@ export const featuredArticle: BlogArticleCard = {
 
 export const secondaryArticles: BlogArticleCard[] = [
   {
-    slug: "bread-analysis",
-    href: "/blog/bread-analysis",
-    title: "מה באמת קורה במדף הלחמים?",
+    slug: "bread-everyday",
+    href: BREAD_EVERYDAY_HREF,
+    title: "הלחם היומיומי שלכם — מה הניתוח אומר בפועל?",
     description:
-      "בדקנו 32 מוצרי לחם, קרקר וקריספ כדי להבין איפה המדף באמת מתפצל: מחמצת, סיבים, רכיבים ורמת עיבוד.",
+      "בדקנו את הלחמים הכי יומיומיים על המדף וגילינו שהפער בין 'פשוט' ל'בריאות' פחות חד ממה שנדמה.",
     cta: "לקריאת הניתוח",
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",
-    readTime: "7 דקות",
-    metaLine: "מאי 2026 · 7 דקות קריאה · 32 מוצרים נותחו",
+    readTime: "5 דקות",
+    metaLine: "מאי 2026 · 5 דקות קריאה · לחם יומיומי",
   },
   {
-    slug: "sourdough-label",
-    href: "#",
-    title: "מה באמת מסתתר מאחורי מחמצת?",
+    slug: "bread-standouts",
+    href: BREAD_STANDOUTS_HREF,
+    title: "המוצרים שבלטו בניתוח — ורק מה שיש לנו נתונים עליו",
     description:
-      "כשהאריזה מבטיחה מסורת — מה רשימת הרכיבים והעיבוד מספרים בפועל.",
-    cta: "בקרוב",
+      "רשימה עובדתית של המוצרים שקיבלו את הניתוח החזק ביותר בתוך מדף שופרסל שנבדק.",
+    cta: "לקריאת הניתוח",
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",
-    readTime: "5 דקות",
-    comingSoon: true,
+    readTime: "6 דקות",
+    metaLine: "מאי 2026 · 6 דקות קריאה · מוצרים בולטים",
+  },
+  {
+    slug: "bread-wellness-gap",
+    href: BREAD_WELLNESS_HREF,
+    title: "מחמצת, כוסמין ו'לחמי בריאות' — הפרמיום קיים, אבל כדאי לדעת ממה הוא בנוי",
+    description:
+      "ניתוח ההבטחות של קטגוריית ה-wellness: מחמצת בשם, כוסמין לבן, טחינה כמקור סיבים ופערי שקיפות.",
+    cta: "לקריאת הניתוח",
+    category: "israeli-shelf",
+    categoryLabel: "מדף ישראלי",
+    readTime: "6 דקות",
+    metaLine: "מאי 2026 · 6 דקות קריאה · פרמיום מול מבנה",
   },
   {
     slug: "fiber-crackers-vs-bread",

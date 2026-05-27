@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
@@ -29,12 +28,13 @@ function InvestigationPanel({
       <div className="flex items-start gap-3">
         <div className="relative h-[5rem] w-[3.5rem] shrink-0">
           {product.image_url ? (
-            <Image
+            <img
               src={product.image_url}
               alt={product.name_he}
-              fill
-              className="object-contain"
+              className="h-full w-full object-contain"
               sizes="56px"
+              loading="lazy"
+              decoding="async"
             />
           ) : null}
         </div>

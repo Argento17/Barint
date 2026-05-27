@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 import type { MilkComparisonProduct } from "@/lib/comparisons/milk-types";
 import { cn } from "@/lib/utils";
@@ -58,13 +57,13 @@ export function ProductThumbnail({
           wrapperClassName
         )}
       >
-        <Image
+        <img
           src={product.image_url}
           alt={product.name_he}
-          fill
-          className={cn("object-contain p-2", imageClassName)}
+          className={cn("h-full w-full object-contain p-2", imageClassName)}
           sizes={imageSizes ?? (size === "sm" ? "48px" : size === "lg" ? "128px" : "64px")}
           loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
         />
       </div>

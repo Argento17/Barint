@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Layers3 } from "lucide-react";
 
-import { FeaturedBreadIntelligenceCard } from "@/components/hashvaot/featured-bread-intelligence-card";
+import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
+import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { breadProducts } from "@/lib/comparisons/bread-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
-const BREAD_COMPARISON_HREF = "/hashvaot/bread-comparison";
 
 const upcomingComparisons = [
   {
@@ -33,7 +33,7 @@ const upcomingComparisons = [
 export default function HashvaotIndexPage() {
   const productCount = milkProducts.length;
   const milkDescription = `השוואה בין ${productCount} מוצרי חלב ומשקאות חלב פופולריים בישראל — כולל חלב פרה, סויה, שיבולת שועל, שקדים ומוצרים עתירי חלבון. Bari מנתחת רכיבים, ערכים תזונתיים, רמת עיבוד ותוספים כדי להציג את הטריידאופים בין המוצרים.`;
-  const breadDescription = `השוואה בין ${breadProducts.length} מוצרי לחם, קרקר וקריספ פופולריים בישראל. Bari בוחנת מבנה רכיבים, מחמצת, מקור סיבים ורמת עיבוד כדי להראות איפה המדף באמת מתפצל.`;
+  const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
 
   return (
     <main
@@ -77,7 +77,7 @@ export default function HashvaotIndexPage() {
           <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
             ניתוח עדכני
           </h2>
-          <FeaturedBreadIntelligenceCard href={BREAD_COMPARISON_HREF} description={breadDescription} />
+          <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
         </div>
 
         <div className="mt-16">

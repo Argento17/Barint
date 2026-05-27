@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -91,13 +90,13 @@ function ShelfPack({
       >
         {product.image_url ? (
           <div className="relative aspect-[3/4] w-full">
-            <Image
+            <img
               src={product.image_url}
               alt=""
-              fill
-              className="object-contain object-bottom drop-shadow-[0_4px_12px_rgba(17,19,24,0.12)]"
+              className="h-full w-full object-contain object-bottom drop-shadow-[0_4px_12px_rgba(17,19,24,0.12)]"
               sizes="72px"
-              priority={index >= 2 && index <= 3}
+              loading={index >= 2 && index <= 3 ? "eager" : "lazy"}
+              decoding="async"
             />
           </div>
         ) : null}

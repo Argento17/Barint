@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { AnimatedScoreRing } from "@/components/comparisons/milk-editorial/animated-score-ring";
@@ -63,12 +62,13 @@ export function MilkProductStrip({
                   <div className="flex items-start justify-between gap-3">
                     <div className="relative h-28 w-20 shrink-0">
                       {product.image_url ? (
-                        <Image
+                        <img
                           src={product.image_url}
                           alt={product.name_he}
-                          fill
-                          className="object-contain drop-shadow-md"
+                          className="h-full w-full object-contain drop-shadow-md"
                           sizes="80px"
+                          loading="lazy"
+                          decoding="async"
                         />
                       ) : null}
                     </div>
