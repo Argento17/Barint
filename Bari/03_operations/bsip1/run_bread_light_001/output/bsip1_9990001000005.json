@@ -1,0 +1,178 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_bread_light_9990001000005",
+  "barcode": "9990001000005",
+  "canonical_name_he": "לחם לבן פרוס פשוט",
+  "canonical_name_en": null,
+  "brand": "אנגלו",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "synthetic_bread_light_001"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 265,
+    "fat_g": 3.5,
+    "fat_saturated_g": 0.7,
+    "fat_trans_g": 0.1,
+    "sodium_mg": 420,
+    "carbohydrates_g": 49,
+    "sugars_g": 4,
+    "dietary_fiber_g": 2,
+    "protein_g": 8,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "קמח חיטה, מים, סוכר, שמן צמחי, שמרים, מלח, E-471, E-481, חומר שימור E-282",
+  "ingredients_list": [
+    "קמח חיטה",
+    "מים",
+    "סוכר",
+    "שמן צמחי",
+    "שמרים",
+    "מלח",
+    "E-471",
+    "E-481",
+    "חומר שימור E-282"
+  ],
+  "ingredients_raw": "קמח חיטה, מים, סוכר, שמן צמחי, שמרים, מלח, E-471, E-481, חומר שימור E-282",
+  "ingredients_raw_provenance": {
+    "source": "synthetic_corpus",
+    "bsip0_status": "synthetic",
+    "populated_at": "bread_light_corpus_v1",
+    "missing": false,
+    "note": "Synthetic product designed for ontology stress testing"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח חיטה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "מים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "שמן צמחי",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "שמרים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "E-471",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "E-481",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "חומר שימור E-282",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "allergens_contains": [
+    "גלוטן"
+  ],
+  "allergens_may_contain": [],
+  "claims": [],
+  "front_of_pack_claims": [],
+  "confidence": {
+    "identity_confidence": "synthetic",
+    "barcode_confidence": "synthetic",
+    "nutrition_confidence": "synthetic_per_100g",
+    "matched_by": "synthetic_corpus",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "synthetic",
+  "barcode_confidence_reason": "Synthetic product for bread-light stress test corpus v1",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "synthetic_product"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "synthetic_bsip1_bread_light_9990001000005_audit.json",
+  "bsip_bread_subtype": "white_bread_sliced",
+  "bsip_stress_group": "A",
+  "bsip_design_note": "Industrial white bread baseline. Refined flour, added sugar, emulsifiers, preservative. NOVA 4. Structural class D. No redeeming nutritional structure. Standard supermarket loaf.",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "extracted_fermentation_markers": [
+    "שמרים"
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_sweeteners": [],
+  "extracted_additives": [
+    "emulsifier",
+    "preservative"
+  ],
+  "extracted_flavors": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 9,
+    "additive_count": 2,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 1,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  }
+}

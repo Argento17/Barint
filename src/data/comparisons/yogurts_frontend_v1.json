@@ -1,0 +1,453 @@
+{
+  "_meta": {
+    "generated": "2026-05-30T00:00:00Z",
+    "category": "yogurts",
+    "product_count": 14,
+    "scored_count": 14,
+    "schema": "BariProductVM[]",
+    "version": "v1-mvp-manual",
+    "expansion": "interpretive_expansion_system_v2",
+    "scope_note": "מדגם מדף ישראלי — ציונים מכווננים ידנית לפי מסגרת BSIP2 (R-01/R-02/R-04/R-05)",
+    "production_pass": "MVP manual corpus 2026-05-30: 14 products, expansion content, cluster filters"
+  },
+  "products": [
+    {
+      "id": "yog-001",
+      "name": "יוגורט מלא 3% תנובה",
+      "imageUrl": null,
+      "score": 88,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "חלב, תרבית — 2 מרכיבים בלבד. הבסיס הפשוט ביותר ביוגורט ישראלי",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 3.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "חלב, תרבית",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "2 מרכיבים בלבד — חלב ותרבית",
+          "ללא סוכר מוסף ברשימת הרכיבים"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "88/A: הבסיס הפשוט ביותר — חלב ותרבית בלבד. המוצר שממנו כדאי לצאת כשמשווים",
+        "comparisonContext": "הציון הגבוה ביותר בקטגוריה — 19 נקודות מעל יופלה GO (69/B). ההבדל: 2 מרכיבים מול 8+"
+      }
+    },
+    {
+      "id": "yog-002",
+      "name": "יוגורט ביו 1.5% תנובה",
+      "imageUrl": null,
+      "score": 87,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "תרביות פרוביוטיות מאומתות. בסיס פשוט, תסיסה נוספת — מה שביו אמור להיות",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 4.1,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תרבית פרוביוטית מאומתת ברכיבים",
+          "בסיס חלבי פשוט עם שומן מופחת"
+        ],
+        "limitingFactors": [
+          "עמילן מעט מוסף לעיתים בגרסאות ביו"
+        ],
+        "bottomLine": "87/A: ביו כפי שצריך — תרביות מעבר ליוגורט רגיל, בלי לרדת לטעמים",
+        "comparisonContext": "נקודה אחת מתחת ליוגורט מלא 3% — ההבדל העיקרי בשומן, לא במבנה"
+      }
+    },
+    {
+      "id": "yog-004",
+      "name": "יוגורט יווני 5% שטראוס",
+      "imageUrl": null,
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "מסוי כפול: 2× חלבון יחסית ליוגורט רגיל. מתאים לשימוש כתחליף גבינה",
+      "_cluster": "greek",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 9.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "9.5g חלבון ל-100 גרם — גבוה מיוגורט רגיל",
+          "מסוי כפול מגביר צפיפות חלבון ללא תוספים פונקציונליים"
+        ],
+        "limitingFactors": [
+          "שומן 5% — לא מתאים למי שמחפש 0%"
+        ],
+        "bottomLine": "85/A: יווני קלאסי — חלבון גבוה ממסוי, לא מממתיקים",
+        "comparisonContext": "מוביל את קטע היווני/מסוי — 5 נקודות מעל גרסת 0% באותה משפחה"
+      }
+    },
+    {
+      "id": "yog-003",
+      "name": "יוגורט 0% שומן",
+      "imageUrl": null,
+      "score": 82,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "ללא שומן, ללא תוספים. חלבון טוב ל-100 גרם",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 4.8,
+          "sugar": null,
+          "fat": 0,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "0% שומן ללא ממתיקים",
+          "4.8g חלבון ל-100 גרם בבסיס פשוט"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "82/A: יוגורט רזה בלי לשלם בממתיקים — בסיס נקי",
+        "comparisonContext": "מתחת ליווני 5% בחלבון, אבל מעל רוב מוצרי הטעמים בציון"
+      }
+    },
+    {
+      "id": "yog-005",
+      "name": "יוגורט יווני 0% שטראוס",
+      "imageUrl": null,
+      "score": 80,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "גרסת 0% עם פרופיל חלבון גבוה. הפשרה בין שומן לחלבון",
+      "_cluster": "greek",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 8.2,
+          "sugar": null,
+          "fat": 0,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "8.2g חלבון ל-100 גרם ב-0% שומן",
+          "מסוי ללא סוכר מוסף"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "80/A: הפשרה הגיונית — חלבון יווני בלי שומן",
+        "comparisonContext": "5 נקודות מתחת ליווני 5% — אותו מסוי, פחות שומן"
+      }
+    },
+    {
+      "id": "yog-006",
+      "name": "אקטיביה טבעית דנונה",
+      "imageUrl": null,
+      "score": 78,
+      "grade": "B",
+      "confidence": "partial",
+      "insightLine": "תרביות ביו מאומתות. מעט עמילן מוסף — עדיין קרוב לבסיס",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 3.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תרביות ביו מאומתות בגרסה הטבעית",
+          "ללא טעמי פירות בגרסה זו"
+        ],
+        "limitingFactors": [
+          "עמילן מוסף לעיתים ליציבות"
+        ],
+        "bottomLine": "78/B: אקטיביה טבעית — קרוב לבסיס, עם תוספת ביו ועמילן קל",
+        "comparisonContext": "מתחת ליוגורט ביו תנובה — יותר מרכיבים, פחות פשוט"
+      }
+    },
+    {
+      "id": "yog-010",
+      "name": "יוגורט סויה טבעי",
+      "imageUrl": null,
+      "score": 72,
+      "grade": "B",
+      "confidence": "partial",
+      "insightLine": "חלבון סויה + תרבית. ללא סוכר מוסף. מייצבים מינימליים",
+      "_cluster": "dairy-free",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 3.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "ללא סוכר מוסף",
+          "בסיס סויה + תרבית — מתאים ללא חלב"
+        ],
+        "limitingFactors": [
+          "2+ מייצבים/מסמיכים טיפוסיים ליוגורט צמחי"
+        ],
+        "bottomLine": "72/B: חלופה צמחית סבירה — לא מושלם, אבל לא ממתוק מלאכותי",
+        "comparisonContext": "מוביל את קטע ללא-חלב הטבעי — 4 נקודות מעל יוגורט קוקוס"
+      }
+    },
+    {
+      "id": "yog-012",
+      "name": "יופלה GO פירות יער",
+      "imageUrl": null,
+      "score": 69,
+      "grade": "B",
+      "confidence": "partial",
+      "insightLine": "פרוטאין גבוה יחסית ל-100 גרם, אבל חומרי מתיקות ורמת עיבוד גבוהה",
+      "_cluster": "high-protein",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 7.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "7.2g חלבון ל-100 גרם — גבוה לקטגוריה"
+        ],
+        "limitingFactors": [
+          "חומרי מתיקות וטעמים",
+          "8+ מרכיבים — מוצר פונקציונלי מעובד"
+        ],
+        "bottomLine": "69/B: חלבון גבוה, אבל המחיר הוא עיבוד ומתיקות",
+        "comparisonContext": "מעל יופלה בטעמים (62/C) — החלבון מרים, המתיקות מורידות"
+      }
+    },
+    {
+      "id": "yog-009",
+      "name": "יוגורט קוקוס טבעי (ללא גלוטן)",
+      "imageUrl": null,
+      "score": 68,
+      "grade": "B",
+      "confidence": "partial",
+      "insightLine": "תחליף ללא-חלב. קוקוס + תרבית — תוספים מייצבים, אבל בסיס סביר",
+      "_cluster": "dairy-free",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 1.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קוקוס + תרבית — ללא חלב"
+        ],
+        "limitingFactors": [
+          "חלבון נמוך (1.2g/100g)",
+          "מייצבים נדרשים לבסיס קוקוס"
+        ],
+        "bottomLine": "68/B: חלופה ללא חלב — בסיס סביר, לא עתיר חלבון",
+        "comparisonContext": "4 נקודות מתחת ליוגורט סויה טבעי"
+      }
+    },
+    {
+      "id": "yog-008",
+      "name": "אקטיביה טעמים דנונה",
+      "imageUrl": null,
+      "score": 65,
+      "grade": "B",
+      "confidence": "partial",
+      "insightLine": "אקטיביה עם טעמי פירות. יותר מרכיבים, סוכר מוסף, אבל תרביות ביו",
+      "_cluster": "flavored",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 3.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תרביות ביו נשמרות גם בטעמים"
+        ],
+        "limitingFactors": [
+          "סוכר מוסף ברשימת הרכיבים",
+          "טעמי פירות + חומרי טעם"
+        ],
+        "bottomLine": "65/B: ביו עם טעם — התרביות נשארות, הסוכר נכנס",
+        "comparisonContext": "3 נקודות מעל יופלה בטעמים — עדיין מעובד, אבל פחות קיצוני מ-GO"
+      }
+    },
+    {
+      "id": "yog-007",
+      "name": "יופלה בטעמי פירות",
+      "imageUrl": null,
+      "score": 62,
+      "grade": "C",
+      "confidence": "partial",
+      "insightLine": "5 מרכיבים + טעמי פירות: סוכר מוסף + חומרי טעם וריח — ציון ממוצע",
+      "_cluster": "flavored",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 3.1,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון בסיס סביר ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "סוכר מוסף ברשימת הרכיבים",
+          "5+ מרכיבים כולל טעמים"
+        ],
+        "bottomLine": "62/C: יוגורט בטעם — ממוצע, לא בסיס נקי",
+        "comparisonContext": "מתחת לאקטивיה טעמים — פחות ביו, יותר מתיקות"
+      }
+    },
+    {
+      "id": "yog-011",
+      "name": "יוגורט שתיה בניחוח וניל",
+      "imageUrl": null,
+      "score": 55,
+      "grade": "C",
+      "confidence": "partial",
+      "insightLine": "יוגורט שתיה = תוספי סמיכות + סוכר מוסף + טעמים. ציון ממוצע",
+      "_cluster": "flavored",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 2.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "תוספי סמיכות ליוגורט נוזלי",
+          "סוכר מוסף + ניחוח וניל"
+        ],
+        "bottomLine": "55/C: שתיה מתוקה — לא אותו מוצר כמו יוגורט כף",
+        "comparisonContext": "מעל מילקי (38/D) — עדיין מעובד, פחות מעדן"
+      }
+    },
+    {
+      "id": "yog-014",
+      "name": "יוגורט 0% ממותק ממתיק",
+      "imageUrl": null,
+      "score": 51,
+      "grade": "C",
+      "confidence": "partial",
+      "insightLine": "0% שומן + ממתיק מלאכותי. פשרה: קלוריות נמוכות, ממתיק סינטטי",
+      "_cluster": "flavored",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 4,
+          "sugar": null,
+          "fat": 0,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "0% שומן, ללא סוכר מוסף"
+        ],
+        "limitingFactors": [
+          "ממתיק מלאכותי — טעם מתוק ללא סוכר",
+          "רשימת רכיבים ארוכה יותר מטבעי"
+        ],
+        "bottomLine": "51/C: 0% עם ממתיק — פשרה ברורה בין קלוריות לרכיבים",
+        "comparisonContext": "מתחת ליוגורט 0% טבעי (82/A) — אותו 0%, ממתיק במקום פשטות"
+      }
+    },
+    {
+      "id": "yog-013",
+      "name": "מילקי יוגורט קרם-שוקולד",
+      "imageUrl": null,
+      "score": 38,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "מעדן עם שכבת שוקולד: 4 מקורות סוכר, ממתיקים, חומרי ייצוב. מוצר הנאה",
+      "_cluster": "flavored",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 2.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "4 מקורות סוכר",
+          "ממתיקים וחומרי ייצוב — מעדן, לא יוגורט בסיס"
+        ],
+        "bottomLine": "38/D: מוצר הנאה — לא נקודת יציאה להשוואת יוגורט",
+        "comparisonContext": "הציון הנמוך בקטגוריה — 50 נקודות מתחת ליוגורט מלא 3%"
+      }
+    }
+  ]
+}

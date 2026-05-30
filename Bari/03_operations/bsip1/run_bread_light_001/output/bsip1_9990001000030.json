@@ -1,0 +1,198 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_bread_light_9990001000030",
+  "barcode": "9990001000030",
+  "canonical_name_he": "פצפוצי דגנים \"פצ'פץ'\" בטעם דבש",
+  "canonical_name_en": null,
+  "brand": "פצ'פץ'",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "synthetic_bread_light_001"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 468,
+    "fat_g": 15,
+    "fat_saturated_g": 6,
+    "fat_trans_g": 0.3,
+    "sodium_mg": 520,
+    "carbohydrates_g": 74,
+    "sugars_g": 12,
+    "dietary_fiber_g": 2,
+    "protein_g": 6,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "קמח תירס (70%), קמח חיטה (15%), סוכר, שמן דקל, דבש (2%), מלח, ארומה, לציטין (E-322), מעכב חמצון E-320, E-321, צבעי מאכל",
+  "ingredients_list": [
+    "קמח תירס (70%)",
+    "קמח חיטה (15%)",
+    "סוכר",
+    "שמן דקל",
+    "דבש (2%)",
+    "מלח",
+    "ארומה",
+    "לציטין (E-322)",
+    "מעכב חמצון E-320",
+    "E-321",
+    "צבעי מאכל"
+  ],
+  "ingredients_raw": "קמח תירס (70%), קמח חיטה (15%), סוכר, שמן דקל, דבש (2%), מלח, ארומה, לציטין (E-322), מעכב חמצון E-320, E-321, צבעי מאכל",
+  "ingredients_raw_provenance": {
+    "source": "synthetic_corpus",
+    "bsip0_status": "synthetic",
+    "populated_at": "bread_light_corpus_v1",
+    "missing": false,
+    "note": "Synthetic product designed for ontology stress testing"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח תירס (70%)",
+      "percentage_declared": 70.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "קמח חיטה (15%)",
+      "percentage_declared": 15.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "שמן דקל",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "דבש (2%)",
+      "percentage_declared": 2.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "ארומה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "לציטין (E-322)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "מעכב חמצון E-320",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "E-321",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "צבעי מאכל",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "allergens_contains": [
+    "גלוטן"
+  ],
+  "allergens_may_contain": [],
+  "claims": [
+    "דגנים טבעיים",
+    "בטעם דבש",
+    "ללא קולורנטים מלאכותיים"
+  ],
+  "front_of_pack_claims": [
+    "דגנים טבעיים",
+    "בטעם דבש",
+    "ללא קולורנטים מלאכותיים"
+  ],
+  "confidence": {
+    "identity_confidence": "synthetic",
+    "barcode_confidence": "synthetic",
+    "nutrition_confidence": "synthetic_per_100g",
+    "matched_by": "synthetic_corpus",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "synthetic",
+  "barcode_confidence_reason": "Synthetic product for bread-light stress test corpus v1",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "synthetic_product"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "synthetic_bsip1_bread_light_9990001000030_audit.json",
+  "bsip_bread_subtype": "puffed_corn_snack",
+  "bsip_stress_group": "F",
+  "bsip_design_note": "STRUCTURAL VOID — corn puff product. Honey at 2% is a flavor token justifying 'natural honey taste' marketing. BHA/BHT antioxidants (E-320/E-321) in cheap oil. Trans fat from palm. 'ללא קולורנטים מלאכותיים' claim but has artificial flavoring. Classic hyper-palatable corn snack in bakery format.",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "extracted_fermentation_markers": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_sweeteners": [],
+  "extracted_additives": [
+    "antioxidant",
+    "emulsifier"
+  ],
+  "extracted_flavors": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 11,
+    "additive_count": 2,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  }
+}

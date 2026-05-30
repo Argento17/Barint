@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { BreadConfidencePill } from "@/components/bread/bread-confidence-pill";
 import { BreadShelfProductImage } from "@/components/bread/bread-shelf-product-image";
 import { HomeContainer } from "@/components/home/section-frame";
+import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { BREAD_BLOG_HREF } from "@/lib/blog/bread-analysis-content";
 import {
   BREAD_CLUSTER_FILTERS,
@@ -20,7 +21,8 @@ import {
   breadTransparencyProducts,
   fermentationSignal,
   formatBreadNumber,
-  gradeTone,
+  breadScoreObservation,
+  formatBreadScoreLine,
 } from "@/lib/comparisons/bread-page-data";
 import type { BreadFilterId, BreadProduct } from "@/lib/comparisons/bread-types";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -114,19 +116,20 @@ function ComparisonHero() {
 }
 
 function ScoreCell({ product }: { product: BreadProduct }) {
+  const scoreLine = formatBreadScoreLine(product);
+
   return (
-    <div className="min-w-[8rem]">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="text-lg font-extrabold tabular-nums text-[#111318]">{product.score}</span>
-        <span
-          className={cn(
-            "inline-flex rounded-full border px-2.5 py-1 text-[0.72rem] font-bold",
-            gradeTone(product.grade)
-          )}
-        >
-          {product.grade}
-        </span>
-      </div>
+    <div className="min-w-[9.5rem]">
+      {scoreLine ? (
+        <>
+          <p className="text-lg font-extrabold tabular-nums leading-none text-[#111318]">{scoreLine}</p>
+          <p className="mt-1.5 text-xs font-medium leading-5 text-[#4E5663]">
+            {breadScoreObservation(product)}
+          </p>
+        </>
+      ) : (
+        <p className="text-sm font-semibold text-[#5E6672]">ללא ציון</p>
+      )}
       <BreadConfidencePill
         label={product.confidence_label_he}
         level={product.confidence_level}
@@ -138,8 +141,8 @@ function ScoreCell({ product }: { product: BreadProduct }) {
 
 function ComparisonTable({ products }: { products: BreadProduct[] }) {
   return (
-    <div className="overflow-hidden rounded-[1.35rem] border border-black/[0.08] bg-[#FFFFFF]/95 shadow-sm">
-      <div className="border-b border-black/[0.06] px-5 py-4">
+    <div className="overflow-hidden bg-[#FFFFFF]/95">
+      <div className="px-5 py-4">
         <h2 className="text-2xl font-extrabold tracking-[-0.04em] text-[#111318]">טבלת ההשוואה</h2>
         <p className="mt-1 text-sm text-[#4E5663]">
           קריאה מהירה של המדף: מוצר, ציון, סיבים, תסיסה, מבנה והערה אחת שמסבירה למה הוא כאן.
@@ -158,12 +161,12 @@ function ComparisonTable({ products }: { products: BreadProduct[] }) {
               <th className="px-5 py-3 font-bold">הערה</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={BARI_COMPARISON_TOKENS.rows.zebraContainerClass}>
             {products.map((product) => {
               const fermentation = fermentationSignal(product.fermentation_status_he);
 
               return (
-                <tr key={product.id} className="border-t border-black/[0.06] align-top">
+                <tr key={product.id} className={cn("align-top", BARI_COMPARISON_TOKENS.rows.zebraRowClass)}>
                   <td className="px-5 py-4">
                     <a
                       href={product.source_url}
@@ -258,24 +261,29 @@ function PairCard({ pair }: { pair: (typeof breadComparisonPairs)[number] }) {
               <div className="min-w-0">
                 <p className="font-extrabold leading-snug text-[#111318]">{product.name_he}</p>
                 <p className="mt-1 text-xs text-[#7A817C]">{product.category_label_he}</p>
+                <div className="mt-3 space-y-1.5">
+                  {formatBreadScoreLine(product) ? (
+                    <>
+                      <p className="text-base font-extrabold tabular-nums text-[#111318]">
+                        {formatBreadScoreLine(product)}
+                      </p>
+                      <p className="text-sm leading-6 text-[#4E5663]">
+                        {breadScoreObservation(product)}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm font-semibold text-[#5E6672]">ללא ציון</p>
+                  )}
+                </div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {product.score != null ? (
-                    <span
-                      className={cn(
-                        "inline-flex rounded-full border px-2.5 py-1 text-[0.72rem] font-bold",
-                        gradeTone(product.grade)
-                      )}
-                    >
-                      {product.score} · {product.grade}
-                    </span>
-                  ) : null}
+                  <BreadConfidencePill
+                    label={product.confidence_label_he}
+                    level={product.confidence_level}
+                  />
                   <span className="rounded-full border border-black/[0.06] bg-[#FFFFFF] px-2.5 py-1 text-[0.72rem] font-semibold text-[#4E5663]">
                     סיבים {formatBreadNumber(product.fiber_g, "g")}
                   </span>
                 </div>
-                <p className="mt-3 text-sm text-[#313834]">
-                  {fermentationSignal(product.fermentation_status_he).label}
-                </p>
               </div>
             </div>
           </div>

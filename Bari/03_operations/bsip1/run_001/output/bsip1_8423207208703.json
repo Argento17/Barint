@@ -1,0 +1,102 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_8423207208703",
+  "barcode": "8423207208703",
+  "canonical_name_he": "חטיף דגנים מצופה שוקולד מריר סלים דליס",
+  "canonical_name_en": null,
+  "brand": "Slim Delice",
+  "package_size_g": 120.0,
+  "unit_count": 6,
+  "unit_size_g": 20.0,
+  "serving_size_g": 20.0,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "carrefour_israel"
+  ],
+  "normalized_nutrition_per_100g": {},
+  "energy_source_unit": null,
+  "ingredients_text_he": null,
+  "ingredients_list": [],
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "inferred",
+    "nutrition_confidence": "absent",
+    "matched_by": "barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "inferred_from_text",
+  "barcode_confidence_reason": "Single-source 13-digit barcode from carrefour_israel; GS1 check digit valid but not confirmed by cross-retailer match.",
+  "nutrition_basis_claimed": null,
+  "nutrition_basis_detected": "absent",
+  "nutrition_consistency_status": "no_data",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "missing",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.03,
+  "canonical_trust_level": "low",
+  "canonical_risk_flags": [
+    "nutrition_data_absent",
+    "missing_ingredient_text",
+    "inferred_barcode_only",
+    "single_source_only"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [
+    "kosher_certification",
+    "canonical_name_en"
+  ],
+  "inferred_fields": [
+    "package_size_g",
+    "serving_size_g"
+  ],
+  "audit_ref": "bsip1_audit_8423207208703.json",
+  "ingredients_raw": null,
+  "ingredients_raw_provenance": {
+    "source": "missing",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": true,
+    "note": "No ingredient text available (bsip0_file_not_found)"
+  },
+  "ingredient_order": [],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 0,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [
+    "ingredients_raw: no text available from any source"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "bsip1_audit_v0_1",
+  "file_type": "audit",
+  "canonical_product_id": "bsip1_7394376621451",
+  "barcode": "7394376621451",
+  "canonicalization_strategy": "single_retailer_passthrough",
+  "run_date": "2026-05-17T19:45:31",
+  "retailer_observations": [
+    {
+      "retailer_id": "yohananof",
+      "scrape_mode": "product_modal_html_tabs",
+      "barcode_source": "image_url_or_folder_name",
+      "nutrition_completeness": "full",
+      "observation_quality_score": 0.85,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "ingredients_captured",
+        "nutrition_captured"
+      ],
+      "folder_path": "C:\\Bari\\03_operations\\bsip0\\scrape\\yohananof_milk\\outputs\\yohananof_milk\\7394376621451",
+      "capture_status": {
+        "ingredients": "success",
+        "nutrition": "success",
+        "allergens": "success"
+      }
+    }
+  ],
+  "field_resolution_log": [],
+  "trust_derivation": {
+    "base_score": 0.85,
+    "deductions": {
+      "partial_capture": 0,
+      "nutrition_missing": 0
+    },
+    "final_score": 0.85
+  }
+}

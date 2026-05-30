@@ -136,9 +136,8 @@ export type BreadArticleProductMention = {
 export type BreadArticleStatRow = {
   productId: string;
   score: string;
-  fiber: string;
-  fermentation: string;
-  note?: string;
+  whatWeChecked: string;
+  whatWeLearned: string;
 };
 
 export type BreadArticleBlockTone = "neutral" | "positive" | "warning";

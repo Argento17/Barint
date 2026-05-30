@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
+import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
+import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
+import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
+import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { HomeContainer } from "./section-frame";
 
 const CATEGORIES = [
@@ -8,7 +12,7 @@ const CATEGORIES = [
     id: "bread",
     label: "לחם וקמח",
     hint: "256 מוצרים נסרקו · 31 נבחרו לדוח · מחמצת, דגנים ושקיפות",
-    href: "/compare/bread-comparison",
+    href: BREAD_COMPARISON_HREF,
     status: "זמין",
   },
   {
@@ -21,9 +25,9 @@ const CATEGORIES = [
   {
     id: "bars",
     label: "חטיפי גרנולה וחלבון",
-    hint: "חלבון על האריזה מול מבנה בפועל",
-    href: "/hashvaot",
-    status: "בקרוב",
+    hint: `${SNACK_REPORT_STATS.scraped} נסרקו · ${snacksProducts.length} בדף · ${SNACK_REPORT_STATS.retailer}`,
+    href: SNACK_COMPARISON_HREF,
+    status: "זמין",
   },
   {
     id: "dairy",

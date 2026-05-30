@@ -7,11 +7,11 @@ import { BreadShelfProductImage } from "@/components/bread/bread-shelf-product-i
 import { BreadConfidencePill } from "@/components/bread/bread-confidence-pill";
 import { HomeContainer } from "@/components/home/section-frame";
 import {
-  breadGradeLabel,
+  breadScoreObservation,
   fermentationSignal,
   formatBreadNumber,
+  formatBreadScoreLine,
   getBreadProductById,
-  gradeTone,
 } from "@/lib/comparisons/bread-page-data";
 import type {
   BreadArticleBlockTone,
@@ -26,28 +26,30 @@ const toneStyles = {
   warning: "border-[#C98A00]/18 bg-[#FCF5E6] text-[#5E4B13]",
 } as const satisfies Record<BreadArticleBlockTone, string>;
 
-function productScoreLabel(product: NonNullable<ReturnType<typeof getBreadProductById>>) {
-  if (product.score == null || !product.displayable) return "ללא ציון";
-  return `${Math.round(product.score)} · ${breadGradeLabel(product.grade)}`;
-}
-
 function ProductMetaRow({
   product,
 }: {
   product: NonNullable<ReturnType<typeof getBreadProductById>>;
 }) {
   const fermentation = fermentationSignal(product.fermentation_status_he);
+  const scoreLine = formatBreadScoreLine(product);
 
   return (
-    <div className="mt-3 flex flex-wrap gap-2">
-      <span
-        className={cn(
-          "inline-flex rounded-full border px-2.5 py-1 text-[0.68rem] font-bold",
-          gradeTone(product.grade)
-        )}
-      >
-        {productScoreLabel(product)}
-      </span>
+    <div className="mt-3 flex flex-wrap items-start gap-2">
+      {scoreLine ? (
+        <div className="inline-flex min-w-[7.5rem] flex-col gap-0.5 rounded-[0.85rem] border border-black/[0.08] bg-[#FFFFFF] px-2.5 py-2">
+          <span className="text-[0.8rem] font-extrabold tabular-nums leading-none text-[#111318]">
+            {scoreLine}
+          </span>
+          <span className="text-[0.65rem] font-medium leading-4 text-[#5A6170]">
+            {breadScoreObservation(product)}
+          </span>
+        </div>
+      ) : (
+        <span className="inline-flex rounded-full border border-black/[0.08] bg-[#F3F4F5] px-2.5 py-1 text-[0.68rem] font-bold text-[#5E6672]">
+          ללא ציון
+        </span>
+      )}
       <BreadConfidencePill label={product.confidence_label_he} level={product.confidence_level} />
       <span className="inline-flex items-center rounded-full border border-black/[0.08] bg-[#FFFFFF] px-2.5 py-1 text-[0.68rem] font-semibold text-[#4E5663]">
         סיבים {formatBreadNumber(product.fiber_g, "g")}
@@ -274,9 +276,12 @@ function ArticleBlock({
       );
     case "table":
       return (
-        <section className="overflow-hidden rounded-[1.2rem] border border-black/[0.08] bg-[#FFFFFF]/95 shadow-sm">
-          <div className="border-b border-black/[0.06] px-5 py-4">
+        <section className="overflow-hidden bg-[#FFFFFF]/95">
+          <div className="px-5 py-4">
             <h2 className="text-[1.55rem] font-extrabold tracking-[-0.04em] text-[#111318]">{block.title}</h2>
+            {block.note ? (
+              <p className="mt-1 text-sm leading-6 text-[#4E5663]">{block.note}</p>
+            ) : null}
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full text-right">
@@ -284,43 +289,29 @@ function ArticleBlock({
                 <tr className="text-sm text-[#5F6762]">
                   <th className="px-4 py-3 font-bold">מוצר</th>
                   <th className="px-4 py-3 font-bold">ציון</th>
-                  <th className="px-4 py-3 font-bold">סיבים</th>
-                  <th className="px-4 py-3 font-bold">תסיסה</th>
-                  <th className="px-4 py-3 font-bold">הערת מערכת</th>
+                  <th className="px-4 py-3 font-bold">מה בדקנו</th>
+                  <th className="px-4 py-3 font-bold">מה למדנו</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bari-zebra-rows">
                 {block.rows.map((row) => {
                   const product = getBreadProductById(row.productId);
                   if (!product) return null;
 
                   return (
-                    <tr key={row.productId} className="border-t border-black/[0.06] align-top text-sm">
+                    <tr key={row.productId} className="align-top text-sm odd:bg-[#FFFFFF] even:bg-[#F9F9F9]">
                       <td className="px-4 py-4 font-semibold text-[#111318]">
-                        <div>{product.name_he}</div>
-                        <div className="mt-1 text-xs font-medium text-[#7A817C]">
-                          {product.structural_summary_he}
-                        </div>
+                        {product.name_he}
                       </td>
-                      <td className="px-4 py-4 text-[#313834]">{row.score}</td>
-                      <td className="px-4 py-4 text-[#313834]">{row.fiber}</td>
-                      <td className="px-4 py-4 text-[#313834]">{row.fermentation}</td>
-                      <td className="px-4 py-4 text-[#4E5663]">{row.note ?? "—"}</td>
+                      <td className="px-4 py-4 font-semibold tabular-nums text-[#313834]">{row.score}</td>
+                      <td className="px-4 py-4 text-[#4E5663]">{row.whatWeChecked}</td>
+                      <td className="px-4 py-4 text-[#4E5663]">{row.whatWeLearned}</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
           </div>
-          <p className="border-t border-black/[0.06] px-5 py-4 text-sm leading-7 text-[#4E5663]">{block.note}</p>
-        </section>
-      );
-    case "quote":
-      return (
-        <section>
-          <blockquote className="rounded-[1.25rem] border border-[#1F8F6A]/14 bg-[#FFFFFF]/86 px-6 py-7 text-[1.6rem] font-extrabold leading-relaxed tracking-[-0.04em] text-[#111318] shadow-[0_20px_56px_-44px_rgba(31,143,106,0.34)] md:px-8">
-            “{block.text}”
-          </blockquote>
         </section>
       );
     default:

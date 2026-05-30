@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Layers3 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
+import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
+import { FeaturedYogurtsIntelligenceCard } from "@/components/hashvaot/featured-yogurts-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
+import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
 import { breadProducts } from "@/lib/comparisons/bread-page-data";
+import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
+import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
+import { yogurtsPrologueSentences } from "@/lib/comparisons/yogurts-comparison-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -18,22 +24,14 @@ export const metadata: Metadata = {
 };
 
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
-
-const upcomingComparisons = [
-  {
-    title: "יוגורטים ומוצרי חלבון",
-    description: "בקרוב — השוואה קטגורית עם פרמטרים מותאמים.",
-  },
-  {
-    title: "חטיפי אנרגיה וחטיפי חלבון",
-    description: "בקרוב — ניתוח שובע, עיבוד ופשטות רכיבים.",
-  },
-] as const;
+const YOGURTS_COMPARISON_HREF = "/hashvaot/yogurts";
 
 export default function HashvaotIndexPage() {
   const productCount = milkProducts.length;
   const milkDescription = `השוואה בין ${productCount} מוצרי חלב ומשקאות חלב פופולריים בישראל — כולל חלב פרה, סויה, שיבולת שועל, שקדים ומוצרים עתירי חלבון. Bari מנתחת רכיבים, ערכים תזונתיים, רמת עיבוד ותוספים כדי להציג את הטריידאופים בין המוצרים.`;
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
+  const snacksDescription = `דוח השוואה לחטיפי המדף: ${SNACK_REPORT_STATS.scraped} נסרקו ב${SNACK_REPORT_STATS.retailer}, ${snacksProducts.length} מוצרים בדף ההשוואה.`;
+  const yogurtsDescription = yogurtsPrologueSentences.join(" ");
 
   return (
     <main
@@ -78,22 +76,11 @@ export default function HashvaotIndexPage() {
             ניתוח עדכני
           </h2>
           <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
-        </div>
-
-        <div className="mt-16">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">בקרוב</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {upcomingComparisons.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[1.35rem] border border-black/[0.08] bg-[#FFFFFF]/60 p-5 opacity-80"
-              >
-                <Layers3 className="mb-3 size-5 text-[#7A817C]" aria-hidden />
-                <h3 className="font-extrabold text-[#111318]">{item.title}</h3>
-                <p className="mt-2 text-sm text-[#4E5663]">{item.description}</p>
-              </div>
-            ))}
-          </div>
+          <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
+          <FeaturedYogurtsIntelligenceCard
+            href={YOGURTS_COMPARISON_HREF}
+            description={yogurtsDescription}
+          />
         </div>
 
         <Link

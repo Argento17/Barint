@@ -125,30 +125,30 @@ export const flagshipBreadProducts = [
 export const breadInsightBlocks: BreadInsightBlock[] = [
   {
     id: "genuine-fermentation",
-    title: "מחמצת אמיתית נדירה יותר ממה שנראה",
+    title: "13 מוצרים כוללים \"מחמצת\" בשם — שמרים מופיעים לפני המחמצת",
     body:
-      "לא מעט מוצרים משתמשים בשפה של מחמצת, אבל ברשימת הרכיבים מופיעים בעיקר שמרים תעשייתיים. לכן אנחנו מבדילים בין מחמצת בשם לבין מחמצת שמזוהה בפועל.",
+      "מחמצת מצוינת בשם, אבל ברשימת הרכיבים שמרים תעשייתיים מופיעים קודם. לכן ההבדל המשמעותי הוא בין מה שכתוב על האריזה למה שמופיע בפועל ברשימה.",
     supporting: ["לחם ברמן אקטיב", "לחם מחמצת קמח מלא", "לחם מחמצת מכוסמין"],
   },
   {
     id: "everyday-surprises",
-    title: "כמה מהמוצרים הפשוטים קיבלו ציונים מפתיעים",
+    title: "מוצרים יומיומיים פשוטים יצרו פערים ברורים על אותו מדף",
     body:
-      "הדף לא מספר סיפור של 'יומיומי מול פרימיום'. בחלק מהמקרים דווקא מוצרים בסיסיים עם מבנה פשוט וברור עלו מעל מוצרים יקרים יותר עם הבטחות גדולות יותר על האריזה.",
+      "המדף לא מתחלק ליומיומי מול פרימיום. גם מוצרים שנראים פשוטים וגם מוצרים עם שם גדול נבדלו בעיקר לפי מה שמופיע ראשון ברשימת הרכיבים.",
     supporting: ["לחם אחיד פרוס קל", "לחם ברמן אקטיב", "לחם מחמצת אגוזים צימוקים"],
   },
   {
     id: "spelt-gap",
-    title: "כוסמין לא תמיד אומר מלא",
+    title: "\"כוסמין\" ו-\"כוסמין מלא\" — לא אותו דבר",
     body:
-      "כוסמין הוא סוג דגן, לא תיאור של מידת מלאות. לכן מוצר שנראה 'טבעי יותר' בשם יכול עדיין להגיע עם סיבים נמוכים יותר או עם מבנה פחות מרשים מהציפייה.",
+      "כשהמילה \"מלא\" לא מופיעה לצד שם הדגן ברשימת הרכיבים, אי אפשר לאמת כוסמין מלא. שם המוצר לבדו לא פותר את הפער הזה.",
     supporting: ["לחם כוסמין לבן", "לחם מחמצת מכוסמין", "לחם שיפון מלא מסטמכר"],
   },
   {
     id: "data-gap",
     title: "46% מהמוצרים לא קיבלו מספיק נתונים",
     body:
-      "כשאין נתוני רכיבים מספקים, אנחנו לא מציגים ציון. זו בחירה מערכתית: לא להפוך חוסר שקיפות לציון מלאכותי.",
+      "רשימת רכיבים לא הייתה זמינה לציבור עבור חלק גדול מהמוצרים במדף, ולכן הם לא קיבלו ציון.",
     supporting: ["מארז פיתות אסליות", "לחם מחמצת אגוזים פרוס", "לחם אחיד"],
   },
 ];
@@ -168,7 +168,7 @@ export const breadComparisonPairs: BreadComparisonPair[] = [
     title: "לחם פשוט מול לחם פרימיום",
     kicker: "אחיד פרוס קל מול אגוזים וצימוקים",
     caption:
-      "לחם אחיד פרוס קל קיבל ציון גבוה יותר ועם יותר סיבים. זה לא הופך אותו ל'טוב יותר תמיד', אבל כן מראה ששם פרימיום לא מחליף מבנה בפועל.",
+      "לחם אחיד פרוס קל קיבל ציון גבוה יותר ועם יותר סיבים. זה מראה ששם פרימיום לא מחליף את מה שמופיע בפועל ברשימת הרכיבים.",
     left: requireBreadProduct("shufersal_2079996"),
     right: requireBreadProduct("shufersal_6451484"),
   },
@@ -177,7 +177,7 @@ export const breadComparisonPairs: BreadComparisonPair[] = [
     title: "כוסמין מול כוסמין לבן",
     kicker: "אותו דגן, ציפייה אחרת",
     caption:
-      "כוסמין לבן לא אומר כוסמין מלא, ולחם שמזכיר כוסמין בשם לא בהכרח מגובה באותו מבנה. הזוג הזה מדגים כמה מהר השפה על האריזה יכולה לייצר ציפייה שלא תמיד עומדת בנתון.",
+      "כוסמין לבן לא אומר כוסמין מלא, ושם שמזכיר כוסמין לא בהכרח מגובה באותו בסיס ברשימת הרכיבים.",
     left: requireBreadProduct("shufersal_6451507"),
     right: requireBreadProduct("shufersal_7290018500316"),
   },
@@ -195,21 +195,75 @@ export const breadStandoutProducts = [
   .map((id) => getBreadProductById(id))
   .filter((product): product is BreadProduct => Boolean(product));
 
-export function breadGradeLabel(grade: BreadGrade | null) {
-  switch (grade) {
-    case "A":
-      return "חזק מאוד";
-    case "B":
-      return "חזק";
-    case "C":
-      return "ביניים";
-    case "D":
-      return "חלש";
-    case "E":
-      return "נמוך";
-    default:
-      return "ללא ציון";
+export function formatBreadScoreLine(
+  product: Pick<BreadProduct, "score" | "grade" | "displayable">
+): string | null {
+  if (product.score == null || !product.displayable || !product.grade) {
+    return null;
   }
+
+  return `${Math.round(product.score)} / ${product.grade}`;
+}
+
+function sanitizeBreadBlurb(blurb: string) {
+  const cleaned = blurb
+    .replace(/ציון\s+[^.—–]+/gi, "")
+    .replace(/\b(חזק|חלש|בינוני|טוב|מצוין|נמוך)(\-[א-ת]+)?\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  return cleaned.split(/[.—–]/)[0]?.trim() ?? "";
+}
+
+export function breadScoreObservation(
+  product: Pick<
+    BreadProduct,
+    | "fermentation_status_he"
+    | "fiber_source_status_he"
+    | "structural_summary_he"
+    | "suggested_card_blurb_he"
+  >
+) {
+  if (product.fermentation_status_he.startsWith("מחמצת אמיתית")) {
+    return "מחמצת מופיעה ברכיבים";
+  }
+
+  if (product.fermentation_status_he === "מחמצת בשם, שמרים ברכיבים") {
+    return "מחמצת בשם · שמרים ברכיבים";
+  }
+
+  if (product.fermentation_status_he === "שמרים תעשייתיים בלבד") {
+    return "שמרים תעשייתיים ברכיבים";
+  }
+
+  const fiberSource = product.fiber_source_status_he?.trim();
+  if (fiberSource && fiberSource !== "מקור הסיבים לא ברור") {
+    return fiberSource;
+  }
+
+  const summaryParts = product.structural_summary_he
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  const informative = summaryParts.find(
+    (part) =>
+      !part.startsWith("בסיס קמח מזוקק") &&
+      !part.startsWith("בסיס קמח לבן") &&
+      !part.includes("אפקט הילה") &&
+      !part.startsWith("שמרים תעשייתיים")
+  );
+
+  if (informative) {
+    return informative
+      .replace(/^תסיסת /, "")
+      .replace(/^עשיר בסיבים/, "סיבים גבוהים ברשימה");
+  }
+
+  const blurb = sanitizeBreadBlurb(product.suggested_card_blurb_he);
+  if (blurb) return blurb;
+
+  return summaryParts[0] ?? "נתונים חלקיים";
 }
 
 export function breadCategoryLabel(product: Pick<BreadProduct, "category" | "category_label_he">) {

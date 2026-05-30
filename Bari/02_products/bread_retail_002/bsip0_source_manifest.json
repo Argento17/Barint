@@ -1,0 +1,76 @@
+{
+  "run_id": "real_bread_retail_002",
+  "run_timestamp": "2026-05-25T15:56:01",
+  "gate_passed": false,
+  "gate_result": {
+    "passed": false,
+    "reason": "zero_products — no real retailer bread/cracker products could be extracted",
+    "n_products": 0,
+    "n_with_nutrition": 0,
+    "n_with_ingredients": 0,
+    "n_with_url": 0,
+    "pct_nutrition": 0.0,
+    "pct_ingredients": 0.0,
+    "n_categories": 0,
+    "categories": []
+  },
+  "n_products": 0,
+  "investigation_date": "2026-05-25",
+  "retailer_summary": {
+    "shufersal": {
+      "name": "Shufersal",
+      "known_blocker": "maintenance_mode",
+      "api_access": false,
+      "html_access": false,
+      "product_extraction": "impossible",
+      "products_extracted": 0,
+      "blocker_detail": "All URLs return HTTP 200 with a 444-byte maintenance page (maintenance image from S3). Content is not accessible."
+    },
+    "rami_levy": {
+      "name": "Rami Levy",
+      "known_blocker": "http_403",
+      "api_access": false,
+      "html_access": false,
+      "product_extraction": "impossible",
+      "products_extracted": 0,
+      "blocker_detail": "HTTP 403 on all endpoints including home page and API endpoints."
+    },
+    "victory": {
+      "name": "Victory",
+      "known_blocker": "angularjs_spa",
+      "api_access": false,
+      "html_access": false,
+      "product_extraction": "requires_headless_browser",
+      "products_extracted": 0,
+      "blocker_detail": "HTTP 200 on all URLs, but all return identical 6716-byte AngularJS app shell (ng-version attribute visible in source). Content is not server-rendered. Requires headless browser."
+    },
+    "carrefour": {
+      "name": "Carrefour Israel",
+      "known_blocker": "http_403",
+      "api_access": false,
+      "html_access": false,
+      "product_extraction": "impossible",
+      "products_extracted": 0,
+      "blocker_detail": "HTTP 403 on all endpoints."
+    },
+    "tiv_taam": {
+      "name": "Tiv Taam",
+      "known_blocker": "http_403",
+      "api_access": false,
+      "html_access": false,
+      "product_extraction": "impossible",
+      "products_extracted": 0,
+      "blocker_detail": "HTTP 403 on all endpoints."
+    },
+    "wolt_market": {
+      "name": "Wolt Market",
+      "known_blocker": "dynamic_api_requires_auth",
+      "api_access": true,
+      "html_access": true,
+      "product_extraction": "partial_ssr_only_non_bread",
+      "products_extracted": 0,
+      "blocker_detail": "Consumer API front page accessible (698KB JSON, 20 sections, 307+ venue listings). Venue SSR page accessible (1.6MB HTML). React Query dehydrated state in page contains category structure (44 categories: מאפייה with subcategories לחם פרוס ושלם, קרקרים, etc.) but product items in SSR are only 24 promoted non-bread items. Category-specific product listings require dynamic API calls with authentication. restaurant-api.wolt.com menu endpoint returns 410 (deprecated). consumer-api.wolt.com venue endpoints return 404. No bread/cracker products extractable without auth token or headless browser."
+    }
+  },
+  "products": []
+}

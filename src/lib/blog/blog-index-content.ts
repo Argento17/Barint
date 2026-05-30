@@ -73,9 +73,9 @@ export const secondaryArticles: BlogArticleCard[] = [
   {
     slug: "bread-everyday",
     href: BREAD_EVERYDAY_HREF,
-    title: "הלחם היומיומי שלכם — מה הניתוח אומר בפועל?",
+    title: "לחם יומיומי: למה מוצרים שנשמעים דומים מתפצלים בציון",
     description:
-      "בדקנו את הלחמים הכי יומיומיים על המדף וגילינו שהפער בין 'פשוט' ל'בריאות' פחות חד ממה שנדמה.",
+      "שיפון מלא (76) מול מחמצת בשם (61) — מה ברשימת הרכיבים מסביר את הפער על אותו מדף.",
     cta: "לקריאת הניתוח",
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",
@@ -85,9 +85,9 @@ export const secondaryArticles: BlogArticleCard[] = [
   {
     slug: "bread-standouts",
     href: BREAD_STANDOUTS_HREF,
-    title: "המוצרים שבלטו בניתוח — ורק מה שיש לנו נתונים עליו",
+    title: "לחם שבלט — ולחם שנשמע פרימיום אבל לא מחזיק",
     description:
-      "רשימה עובדתית של המוצרים שקיבלו את הניתוח החזק ביותר בתוך מדף שופרסל שנבדק.",
+      "פער של 20 נקודות בין לחם ירוק מקמח מלא ללחם מחמצת אגוזים צימוקים — שניהם על אותו מדף.",
     cta: "לקריאת הניתוח",
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",
@@ -97,9 +97,9 @@ export const secondaryArticles: BlogArticleCard[] = [
   {
     slug: "bread-wellness-gap",
     href: BREAD_WELLNESS_HREF,
-    title: "מחמצת, כוסמין ו'לחמי בריאות' — הפרמיום קיים, אבל כדאי לדעת ממה הוא בנוי",
+    title: "לחמי בריאות: אותו מדף, פערים של 22 נקודות",
     description:
-      "ניתוח ההבטחות של קטגוריית ה-wellness: מחמצת בשם, כוסמין לבן, טחינה כמקור סיבים ופערי שקיפות.",
+      "לחם טחינה (82) מול מחמצת אגוזים צימוקים (60) — למה מוצרים שנשמעים דומים נפרדו בניתוח.",
     cta: "לקריאת הניתוח",
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",

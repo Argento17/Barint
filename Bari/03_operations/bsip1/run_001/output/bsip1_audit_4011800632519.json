@@ -1,0 +1,104 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "audit",
+  "canonical_product_id": "bsip1_4011800632519",
+  "audited_at": "2026-05-17T05:22:56.312037+00:00",
+  "merge_metadata": {
+    "merge_strategy_used": "multi_retailer_barcode_merge",
+    "matched_by": "barcode:4011800632519",
+    "primary_observation_retailer": "yohananof",
+    "name_selection_strategy": "longest_non_promotional",
+    "field_sources": {},
+    "canonicalization_notes": [
+      "package_size_g (150.0g) = unit_count (6) × unit_size_g (25.0g); detected via card_text of carrefour_israel (raw: '25 גרם').",
+      "package_size_g confirmed: yohananof reported '150 גרם' = 150.0g.",
+      "serving_size_g set to unit_size_g (25.0g); no explicit serving declaration in any observation."
+    ],
+    "bsip1_schema_version": "bsip1_v0_1"
+  },
+  "energy_normalization": {
+    "energy_source_unit": "kcal",
+    "energy_conversion_applied": "kcal_to_kj",
+    "energy_conversion_note": "energy_kj derived as 468.0 kcal × 4.184 = 1958.1 kJ. Stored in audit only; not included in compact product to avoid mixing observed and derived nutrition values.",
+    "energy_kj_derived": 1958.1
+  },
+  "retailer_observations": [
+    {
+      "retailer_id": "carrefour_israel",
+      "retailer_name": "Carrefour Israel",
+      "bsip0_schema_version": "bsip0_v0_2",
+      "retailer_parser_version": "carrefour_v0_2",
+      "scrape_mode": "shelf_card_only",
+      "product_url": null,
+      "scraped_at": "2026-05-16T15:50:30",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\carrefour\\outputs\\carrefour\\4011800632519",
+      "barcode_source": "visible_text",
+      "nutrition_completeness": "absent",
+      "observation_quality_score": 0.16,
+      "observation_quality_level": "low",
+      "observation_quality_signals": [
+        "inferred_barcode_1213",
+        "shelf_card_only",
+        "absent_nutrition",
+        "absent_ingredient_text",
+        "has_price_data"
+      ]
+    },
+    {
+      "retailer_id": "yohananof",
+      "retailer_name": "Yohananof",
+      "bsip0_schema_version": "bsip0.v1",
+      "retailer_parser_version": "yohananof_v0_1",
+      "scrape_mode": "product_page",
+      "product_url": null,
+      "scraped_at": "2026-05-15T14:36:33",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\yohananof\\outputs\\yohananof\\4011800632519",
+      "barcode_source": "inferred",
+      "nutrition_completeness": "full",
+      "observation_quality_score": 0.9,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "inferred_barcode_1213",
+        "full_product_page",
+        "full_nutrition_explicit_per_100g",
+        "clean_ingredient_text",
+        "has_product_image",
+        "has_allergen_data",
+        "has_price_data"
+      ]
+    }
+  ],
+  "source_urls": [],
+  "scrape_modes": [
+    "product_page",
+    "shelf_card_only"
+  ],
+  "first_seen_at": "2026-05-15T14:36:33",
+  "last_updated_at": "2026-05-16T15:50:30",
+  "retailer_versions": {
+    "carrefour_israel": "carrefour_v0_2",
+    "yohananof": "yohananof_v0_1"
+  },
+  "conflicts": [
+    {
+      "field": "canonical_name_he",
+      "retailer_a": "yohananof",
+      "value_a": "קורני חטיפי דגנים קוקוס שוקולד",
+      "retailer_b": "carrefour_israel",
+      "value_b": "חטיף דגנים עם שוקולד חלב וקוקוס קורני",
+      "delta": null,
+      "resolution": "preferred_retailer_b",
+      "resolution_reason": "longest_non_promotional strategy: other retailer name is longer."
+    },
+    {
+      "field": "brand",
+      "retailer_a": "yohananof",
+      "value_a": "קורני",
+      "retailer_b": "carrefour_israel",
+      "value_b": "Corny",
+      "delta": null,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Primary observation preferred; brand variants expected across retailers."
+    }
+  ]
+}

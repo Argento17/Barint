@@ -418,4 +418,11 @@
     background-size: 42px 42px, 42px 42px, auto;
   }
 
+  /* Comparison web template: hairline between product blocks (desktop scan aid). */
+  @media (min-width: 64rem) {
+    .bari-zebra-rows.bari-zebra-rows--web > .bari-shelf-row + .bari-shelf-row {
+      border-block-start: 1px solid rgba(17, 19, 24, 0.05);
+    }
+  }
+
 }

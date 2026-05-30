@@ -1,52 +1,97 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { GRADE_COLORS } from "@/lib/comparisons/milk-page-data";
 import type { BariGrade } from "@/lib/comparisons/milk-types";
+import {
+  BARI_COMPARISON_TOKENS,
+  warnComparisonImplementationDeviation,
+} from "@/lib/design/bari-comparison-tokens";
 
 export function BariGradeBadge({
   score,
   grade,
   gradeLabel,
   size = "md",
+  context = "row",
 }: {
   score: number;
   grade: BariGrade;
   gradeLabel: string;
   size?: "sm" | "md" | "lg";
+  context?: "row" | "hero";
 }) {
-  const colors = GRADE_COLORS[grade] ?? GRADE_COLORS.C;
+  const colors =
+    BARI_COMPARISON_TOKENS.gradePalette[grade] ??
+    BARI_COMPARISON_TOKENS.gradePalette.C;
+
+  if (context === "hero") {
+    const heroTokens = BARI_COMPARISON_TOKENS.score.hero;
+    return (
+      <div className={heroTokens.container}>
+        <p
+          className={cn(
+            heroTokens.scoreClass,
+            size === "sm" && heroTokens.scoreSize.sm,
+            size === "md" && heroTokens.scoreSize.md,
+            size === "lg" && heroTokens.scoreSize.lg
+          )}
+          style={{ color: colors.text }}
+        >
+          {Math.round(score)}
+        </p>
+        <p
+          className={cn(
+            heroTokens.labelClass,
+            size === "sm" && heroTokens.labelSize.sm,
+            size === "md" && heroTokens.labelSize.md,
+            size === "lg" && heroTokens.labelSize.lg
+          )}
+          style={{ color: colors.text }}
+        >
+          {grade} · {gradeLabel}
+        </p>
+      </div>
+    );
+  }
+
+  const rowTokens = BARI_COMPARISON_TOKENS.score.rowChip;
+  if (context !== "row") {
+    warnComparisonImplementationDeviation(
+      "BariGradeBadge",
+      `unexpected score context "${context}"`
+    );
+  }
 
   return (
     <div
       className={cn(
-        "inline-flex flex-col items-center justify-center rounded-xl border text-center shadow-sm",
-        size === "sm" && "min-w-[3.25rem] px-2 py-1.5",
-        size === "md" && "min-w-[4rem] px-2.5 py-2",
-        size === "lg" && "min-w-[4.5rem] px-3 py-2.5"
+        rowTokens.container,
+        size === "sm" && rowTokens.size.sm,
+        size === "md" && rowTokens.size.md,
+        size === "lg" && rowTokens.size.lg
       )}
       style={{
-        backgroundColor: colors.bg,
-        color: colors.text,
-        borderColor: colors.border,
+        backgroundColor: rowTokens.backgroundColor,
+        color: "#313834",
+        borderColor: rowTokens.borderColor,
       }}
     >
       <span
         className={cn(
-          "font-extrabold tabular-nums leading-none",
-          size === "sm" && "text-lg",
-          size === "md" && "text-xl",
-          size === "lg" && "text-2xl"
+          rowTokens.scoreClass,
+          size === "sm" && rowTokens.scoreSize.sm,
+          size === "md" && rowTokens.scoreSize.md,
+          size === "lg" && rowTokens.scoreSize.lg
         )}
       >
         {Math.round(score)}
       </span>
       <span
         className={cn(
-          "mt-0.5 font-bold opacity-90",
-          size === "sm" && "text-[0.6rem]",
-          size === "md" && "text-[0.65rem]",
-          size === "lg" && "text-xs"
+          rowTokens.labelClass,
+          size === "sm" && rowTokens.labelSize.sm,
+          size === "md" && rowTokens.labelSize.md,
+          size === "lg" && rowTokens.labelSize.lg
         )}
       >
         {grade} · {gradeLabel}

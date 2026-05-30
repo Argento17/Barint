@@ -1,0 +1,189 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "audit",
+  "canonical_product_id": "bsip1_7290118427896",
+  "audited_at": "2026-05-17T05:22:56.480821+00:00",
+  "merge_metadata": {
+    "merge_strategy_used": "multi_retailer_barcode_merge",
+    "matched_by": "barcode:7290118427896",
+    "primary_observation_retailer": "yohananof",
+    "name_selection_strategy": "longest_non_promotional",
+    "field_sources": {
+      "allergens_contains": "carrefour_israel"
+    },
+    "canonicalization_notes": [
+      "package_size_g (190.0g) = unit_count (5) × unit_size_g (38.0g); detected via card_text of carrefour_israel (raw: '38 גרם').",
+      "package_size_g: yohananof reported '38 גרם' = 38.0g vs computed 190.0g. Computed value used.",
+      "serving_size_g set to unit_size_g (38.0g); no explicit serving declaration in any observation."
+    ],
+    "bsip1_schema_version": "bsip1_v0_1"
+  },
+  "energy_normalization": {
+    "energy_source_unit": "kcal",
+    "energy_conversion_applied": "kcal_to_kj",
+    "energy_conversion_note": "energy_kj derived as 89.0 kcal × 4.184 = 372.4 kJ. Stored in audit only; not included in compact product to avoid mixing observed and derived nutrition values.",
+    "energy_kj_derived": 372.4
+  },
+  "retailer_observations": [
+    {
+      "retailer_id": "carrefour_israel",
+      "retailer_name": "Carrefour Israel",
+      "bsip0_schema_version": "bsip0_v0_2",
+      "retailer_parser_version": "carrefour_v0_2",
+      "scrape_mode": "product_page",
+      "product_url": "https://www.carrefour.co.il/categories/95814/products?page=2&catalogProduct=7807801",
+      "scraped_at": "2026-05-16T15:50:30",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\carrefour\\outputs\\carrefour\\7290118427896",
+      "barcode_source": "product_page",
+      "nutrition_completeness": "full",
+      "observation_quality_score": 0.88,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "product_page_barcode_1213",
+        "full_product_page",
+        "full_nutrition_explicit_per_100g",
+        "energy_unit_ambiguous",
+        "clean_ingredient_text",
+        "has_allergen_data",
+        "has_price_data"
+      ]
+    },
+    {
+      "retailer_id": "yohananof",
+      "retailer_name": "Yohananof",
+      "bsip0_schema_version": "bsip0.v1",
+      "retailer_parser_version": "yohananof_v0_1",
+      "scrape_mode": "product_page",
+      "product_url": null,
+      "scraped_at": "2026-05-15T14:45:36",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\yohananof\\outputs\\yohananof\\7290118247896",
+      "barcode_source": "inferred",
+      "nutrition_completeness": "full",
+      "observation_quality_score": 0.9,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "inferred_barcode_1213",
+        "full_product_page",
+        "full_nutrition_explicit_per_100g",
+        "clean_ingredient_text",
+        "has_product_image",
+        "has_allergen_data",
+        "has_price_data"
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://www.carrefour.co.il/categories/95814/products?page=2&catalogProduct=7807801"
+  ],
+  "scrape_modes": [
+    "product_page"
+  ],
+  "first_seen_at": "2026-05-15T14:45:36",
+  "last_updated_at": "2026-05-16T15:50:30",
+  "retailer_versions": {
+    "carrefour_israel": "carrefour_v0_2",
+    "yohananof": "yohananof_v0_1"
+  },
+  "conflicts": [
+    {
+      "field": "canonical_name_he",
+      "retailer_a": "yohananof",
+      "value_a": "חטיפי פיטנס שיבולת שועל דבש 5*38 גרם",
+      "retailer_b": "carrefour_israel",
+      "value_b": "פיטנס בר גרנולה דבש",
+      "delta": null,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "longest_non_promotional strategy: primary name is longer."
+    },
+    {
+      "field": "brand",
+      "retailer_a": "yohananof",
+      "value_a": "פיטנס",
+      "retailer_b": "carrefour_israel",
+      "value_b": "Fitness",
+      "delta": null,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Primary observation preferred; brand variants expected across retailers."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.carbohydrates_g",
+      "retailer_a": "yohananof",
+      "value_a": 13.1,
+      "retailer_b": "carrefour_israel",
+      "value_b": 68.8,
+      "delta": 55.7,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 55.7; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.dietary_fiber_g",
+      "retailer_a": "yohananof",
+      "value_a": 1.4,
+      "retailer_b": "carrefour_israel",
+      "value_b": 7.4,
+      "delta": 6.0,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 6.0; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.energy_kcal",
+      "retailer_a": "yohananof",
+      "value_a": 89.0,
+      "retailer_b": "carrefour_israel",
+      "value_b": 466.0,
+      "delta": 377.0,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 377.0; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.fat_g",
+      "retailer_a": "yohananof",
+      "value_a": 3.4,
+      "retailer_b": "carrefour_israel",
+      "value_b": 17.7,
+      "delta": 14.3,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 14.3; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.fat_saturated_g",
+      "retailer_a": "yohananof",
+      "value_a": 1.2,
+      "retailer_b": "carrefour_israel",
+      "value_b": 6.3,
+      "delta": 5.1,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 5.1; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.protein_g",
+      "retailer_a": "yohananof",
+      "value_a": 0.8,
+      "retailer_b": "carrefour_israel",
+      "value_b": 4.2,
+      "delta": 3.4,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 3.4; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.sodium_mg",
+      "retailer_a": "yohananof",
+      "value_a": 21.0,
+      "retailer_b": "carrefour_israel",
+      "value_b": 110.0,
+      "delta": 89.0,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 89.0; primary observation used."
+    },
+    {
+      "field": "normalized_nutrition_per_100g.sugars_g",
+      "retailer_a": "yohananof",
+      "value_a": 3.6,
+      "retailer_b": "carrefour_israel",
+      "value_b": 19.1,
+      "delta": 15.5,
+      "resolution": "preferred_retailer_a",
+      "resolution_reason": "Absolute difference 15.5; primary observation used."
+    }
+  ]
+}

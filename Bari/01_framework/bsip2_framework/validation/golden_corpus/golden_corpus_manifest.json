@@ -1,0 +1,283 @@
+{
+  "manifest_version": "v1",
+  "created": "2026-05-20",
+  "description": "Curated benchmark set for structural class stability and regression testing. Each entry defines expected behavior that must hold across engine versions. Entries with a 'barcode' reference real products in the corpus. Entries with 'signal_bundle' are synthetic anchors for structural class logic testing.",
+  "regression_alert_threshold": 5.0,
+  "structural_class_drift_alert": true,
+
+  "entries": [
+
+    {
+      "id": "anchor_whole_milk_tnuva",
+      "description": "Plain whole dairy milk — single ingredient, 3.4% fat, no additives",
+      "type": "real_product",
+      "barcode": "7290000051352",
+      "canonical_product_id": "bsip1_7290000051352",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_7290000051352\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "A",
+        "acceptable_secondary": ["B"],
+        "must_not_primary": ["D", "E", "F"]
+      },
+      "expected_score_band": { "min": 70, "max": 100 },
+      "expected_nova_band": [1, 2],
+      "expected_signals": {
+        "additive_quality_min": 100,
+        "sweetener_detected": false,
+        "additive_marker_count_max": 0
+      },
+      "structural_class_rationale": "Single-ingredient whole food. Intact food matrix. Floor applies.",
+      "edge_case_notes": "NOVA1 floor (85) applies. Score may land at 85 due to floor, not high dimension scores. Sat_fat penalty possible but shouldn't dominate."
+    },
+
+    {
+      "id": "anchor_oat_drink_oatly",
+      "description": "Oatly oat drink — oat base with gums and emulsifiers, industrially homogenized",
+      "type": "real_product",
+      "barcode": "7394376619939",
+      "canonical_product_id": "bsip1_7394376619939",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_7394376619939\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "D",
+        "acceptable_secondary": ["C", "E"],
+        "must_not_primary": ["A", "B"]
+      },
+      "expected_score_band": { "min": 35, "max": 65 },
+      "expected_nova_band": [3, 4],
+      "expected_signals": {
+        "sweetener_detected": false,
+        "additive_marker_count_min": 1
+      },
+      "structural_class_rationale": "Oat base mechanically and industrially processed into homogeneous liquid. Gums and emulsifiers = industrial reconstruction.",
+      "edge_case_notes": "May show C-D boundary ambiguity depending on additive detection. Oat fiber content may boost score slightly vs other plant milks."
+    },
+
+    {
+      "id": "anchor_soy_drink",
+      "description": "Soy drink — soy protein base with regulators/emulsifiers",
+      "type": "real_product",
+      "barcode": "7290116936116",
+      "canonical_product_id": "bsip1_7290116936116",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_7290116936116\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "C",
+        "acceptable_secondary": ["B", "D"],
+        "must_not_primary": ["A", "E", "F"]
+      },
+      "expected_score_band": { "min": 52, "max": 78 },
+      "expected_nova_band": [2, 3],
+      "expected_signals": {
+        "sweetener_detected": false
+      },
+      "structural_class_rationale": "Soy protein is mechanically/chemically extracted but soy is a whole food base. Genuine C-D ambiguity.",
+      "edge_case_notes": "Between C and D. Protein source classification matters: 'whole_food' vs 'mixed' will shift archetype."
+    },
+
+    {
+      "id": "anchor_protein_drink_go_milk",
+      "description": "Go Milk high-protein drink — added whey/isolate, fortified",
+      "type": "real_product",
+      "barcode": "7290110324773",
+      "canonical_product_id": "bsip1_7290110324773",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_7290110324773\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "E",
+        "acceptable_secondary": ["D"],
+        "must_not_primary": ["A", "B", "F"]
+      },
+      "expected_score_band": { "min": 25, "max": 55 },
+      "expected_nova_band": [3, 4],
+      "expected_signals": {
+        "additive_marker_count_min": 2
+      },
+      "structural_class_rationale": "Dairy base with added protein isolates and fortification = engineered wellness system.",
+      "edge_case_notes": "If protein isolate detection fails, may misclassify as D. Protein source field is critical here."
+    },
+
+    {
+      "id": "anchor_almond_drink_alpro",
+      "description": "Alpro almond drink — almond base with gums, stabilizers, vitamins",
+      "type": "real_product",
+      "barcode": "5411188112709",
+      "canonical_product_id": "bsip1_5411188112709",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_5411188112709\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "D",
+        "acceptable_secondary": ["E"],
+        "must_not_primary": ["A", "B"]
+      },
+      "expected_score_band": { "min": 30, "max": 58 },
+      "expected_nova_band": [3, 4],
+      "expected_signals": {
+        "additive_marker_count_min": 1
+      },
+      "structural_class_rationale": "Very low almond content (typically 2%), highly diluted and stabilized. Near-structural-void zone.",
+      "edge_case_notes": "Low almond content means food matrix is minimal. D is correct but F boundary is close. If fortification detected, E may co-express."
+    },
+
+    {
+      "id": "anchor_rice_drink_vitariz",
+      "description": "Vitariz rice drink — rice base with vitamins, minimal structure",
+      "type": "real_product",
+      "barcode": "8000215204219",
+      "canonical_product_id": "bsip1_8000215204219",
+      "canonical_run": "milk_004_recalibrated",
+      "trace_path": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_004_recalibrated\\products\\bsip1_8000215204219\\bsip2_trace.json",
+      "expected_structural_class": {
+        "primary": "B",
+        "acceptable_secondary": ["A", "D"],
+        "must_not_primary": ["E", "F"]
+      },
+      "expected_score_band": { "min": 35, "max": 65 },
+      "expected_nova_band": [1, 2, 3],
+      "expected_signals": {},
+      "structural_class_rationale": "Rice hydrolysate is structurally processed but NOVA proxy currently classifies as NOVA 2 (insufficient rice processing signals). With NOVA 2 and no additives, archetype B is the correct current output.",
+      "edge_case_notes": "KNOWN LIMITATION: NOVA proxy does not detect rice enzymatic hydrolysis. When NOVA proxy is updated to correctly classify rice drinks as NOVA 3-4, this entry's expected archetype should shift to D. This entry acts as a sentinel for that future change."
+    },
+
+    {
+      "id": "concept_plain_yogurt_clean",
+      "description": "Plain fermented yogurt — milk + live cultures, no additives",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 2,
+        "additive_quality": 100,
+        "whole_food_integrity": 85,
+        "protein_source": "whole_food",
+        "ingredient_count": 2,
+        "sweetener_detected": false,
+        "additive_marker_count": 0
+      },
+      "expected_structural_class": {
+        "primary": "B",
+        "acceptable_secondary": ["A"],
+        "must_not_primary": ["D", "E", "F"]
+      },
+      "expected_score_band": { "min": 78, "max": 100 },
+      "structural_class_rationale": "Fermented whole food. Traditional transformation = B. Minimal ingredients. No additives.",
+      "edge_case_notes": "NOVA2 because fermentation = minimal processing. Should be firmly B, not A (fermentation is a real transformation)."
+    },
+
+    {
+      "id": "concept_rolled_oats_pure",
+      "description": "Pure rolled oats — single grain, mechanically flattened, no additives",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 2,
+        "additive_quality": 100,
+        "whole_food_integrity": 82,
+        "protein_source": "whole_food",
+        "ingredient_count": 1,
+        "sweetener_detected": false,
+        "additive_marker_count": 0
+      },
+      "expected_structural_class": {
+        "primary": "B",
+        "acceptable_secondary": ["A"],
+        "must_not_primary": ["D", "E", "F"]
+      },
+      "expected_score_band": { "min": 88, "max": 100 },
+      "structural_class_rationale": "Rolled oats are mechanically flattened but not chemically altered. B (lightly transformed traditional) is correct.",
+      "edge_case_notes": "B vs A ambiguity is expected and acceptable — rolled oats are the canonical B/A boundary product."
+    },
+
+    {
+      "id": "concept_date_nut_bar_clean",
+      "description": "Clean date-nut bar — dates + nuts, no additives, no added sugar",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 2,
+        "additive_quality": 100,
+        "whole_food_integrity": 80,
+        "protein_source": "whole_food",
+        "ingredient_count": 4,
+        "sweetener_detected": false,
+        "additive_marker_count": 0
+      },
+      "expected_structural_class": {
+        "primary": "B",
+        "acceptable_secondary": ["C"],
+        "must_not_primary": ["D", "E", "F"]
+      },
+      "expected_score_band": { "min": 72, "max": 95 },
+      "structural_class_rationale": "Compressed whole foods. Natural date sugar is not added sugar. B is correct.",
+      "edge_case_notes": "High sugar from dates will trigger regulatory concerns but archetype is B. Score and archetype can legitimately diverge."
+    },
+
+    {
+      "id": "concept_protein_bar_with_isolates",
+      "description": "Protein bar with isolates — whey isolate, additives, sweeteners, fortification",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 4,
+        "additive_quality": 46,
+        "whole_food_integrity": 30,
+        "protein_source": "isolate",
+        "ingredient_count": 18,
+        "sweetener_detected": true,
+        "additive_marker_count": 4
+      },
+      "expected_structural_class": {
+        "primary": "E",
+        "acceptable_secondary": ["D", "F"],
+        "must_not_primary": ["A", "B"]
+      },
+      "expected_score_band": { "min": 25, "max": 60 },
+      "structural_class_rationale": "Protein isolate + high additive load + sweeteners = engineered wellness system. Canonical E.",
+      "edge_case_notes": "E vs F distinction: E has nutritional intent (protein, fortification); F does not. High protein score may partially compensate."
+    },
+
+    {
+      "id": "concept_sweetened_puffed_cereal",
+      "description": "Sweetened puffed cereal (Nesquik-type) — extruded, sugar-coated, NOVA4",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 4,
+        "additive_quality": 55,
+        "whole_food_integrity": 30,
+        "protein_quality": 15,
+        "protein_source": "whole_food",
+        "ingredient_count": 8,
+        "sweetener_detected": true,
+        "additive_marker_count": 3
+      },
+      "expected_structural_class": {
+        "primary": "F",
+        "acceptable_secondary": ["D"],
+        "must_not_primary": ["A", "B"]
+      },
+      "expected_score_band": { "min": 20, "max": 50 },
+      "structural_class_rationale": "Extruded + sugar-coated + synthetic additives. Minimal intact food structure. F or D boundary.",
+      "edge_case_notes": "The D-F boundary is intentionally fuzzy here. The distinguishing factor: F has sweetener as dominant signal; D may not. Either classification is defensible."
+    },
+
+    {
+      "id": "concept_plain_whole_nuts",
+      "description": "Plain whole nuts — single ingredient, no processing",
+      "type": "signal_bundle",
+      "signal_bundle": {
+        "nova_proxy": 1,
+        "additive_quality": 100,
+        "whole_food_integrity": 100,
+        "protein_source": "whole_food",
+        "ingredient_count": 1,
+        "sweetener_detected": false,
+        "additive_marker_count": 0
+      },
+      "expected_structural_class": {
+        "primary": "A",
+        "acceptable_secondary": null,
+        "must_not_primary": ["C", "D", "E", "F"]
+      },
+      "expected_score_band": { "min": 85, "max": 100 },
+      "structural_class_rationale": "Single-ingredient intact whole food. Canonical A. No transformation of any kind.",
+      "edge_case_notes": "Fat quality dimension may penalize due to sat_fat (for cashews, macadamia). Score may be 75-90 even though archetype is clearly A."
+    }
+
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_7290011498870",
+  "barcode": "7290011498870",
+  "canonical_name_he": "חטיף תמרים במילוי חמאת שקדים",
+  "canonical_name_en": null,
+  "brand": "תמר",
+  "package_size_g": 150.0,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": "ישראל",
+  "kosher_certification": null,
+  "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290011498870_s1_0004-09-2026_10-52-18.jpg",
+  "source_retailers": [
+    "yohananof"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 92.0,
+    "fat_g": 0.0,
+    "carbohydrates_g": 17.6,
+    "sugars_g": 15.5,
+    "protein_g": 1.6
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "תמרים ( 76%), מחית שקדים מולבנים (22%), שקדים מולבנים גרוסים וטחונים.",
+  "ingredients_list": [
+    "תמרים ( 76%)",
+    "מחית שקדים מולבנים (22%)",
+    "שקדים מולבנים גרוסים וטחונים."
+  ],
+  "allergens_contains": [
+    "שקדים"
+  ],
+  "allergens_may_contain": [
+    "אגוזי פקאן",
+    "בוטנים",
+    "שומשום",
+    "סויה",
+    "שקדים",
+    "אגוזי לוז",
+    "אגוזי מלך",
+    "פיסטוק",
+    "אגוזי קשיו",
+    "אגוזי מקדמיה",
+    "אגוזי קוקוס",
+    "רכיבי אגוז קוקוס"
+  ],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "inferred",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "inferred_from_text",
+  "barcode_confidence_reason": "Single-source 13-digit barcode from yohananof; GS1 check digit valid but not confirmed by cross-retailer match.",
+  "nutrition_basis_claimed": "ל-100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.78,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "inferred_barcode_only",
+    "single_source_only"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [
+    "kosher_certification",
+    "serving_size_g",
+    "canonical_name_en"
+  ],
+  "inferred_fields": [],
+  "audit_ref": "bsip1_audit_7290011498870.json",
+  "ingredients_raw": "תמרים ( 76%), מחית שקדים מולבנים (22%), שקדים מולבנים גרוסים וטחונים.",
+  "ingredients_raw_provenance": {
+    "source": "bsip0_scrape",
+    "bsip0_status": "bsip0_scrape",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "Original retailer ingredient string from BSIP0 raw observation"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "תמרים ( 76%)",
+      "percentage_declared": 76.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "מחית שקדים מולבנים (22%)",
+      "percentage_declared": 22.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "שקדים מולבנים גרוסים וטחונים.",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 3,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

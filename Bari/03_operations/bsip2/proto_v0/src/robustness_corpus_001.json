@@ -1,0 +1,4633 @@
+{
+  "corpus_id": "robustness_corpus_001",
+  "sprint": "BSIP2 Robustness & Uncertainty Sprint v1",
+  "created": "2026-05-25",
+  "product_count": 50,
+  "groups": {
+    "A_clean_baselines": 5,
+    "B_missing_nutrition": 8,
+    "C_missing_corrupted_ingredients": 8,
+    "D_routing_instability": 8,
+    "E_claim_vs_reality": 8,
+    "F_missing_identity": 5,
+    "G_data_consistency_failures": 4,
+    "H_hybrid_edge_cases": 4
+  },
+  "products": [
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "תירס מלא (98%), ויטמינים ומינרלים (תיאמין, ריבופלאבין, נקוטינאמיד, ויטמין B6, חומצה פולית, ויטמין B12, ויטמין D), מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_A1",
+      "barcode": "7290000001001",
+      "canonical_name_he": "קורנפלקס דגני בוקר קלאסי",
+      "brand": "תלמה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 370,
+        "fat_g": 1.2,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 710,
+        "carbohydrates_g": 84,
+        "sugars_g": 8,
+        "dietary_fiber_g": 3.2,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "תירס מלא (98%), ויטמינים ומינרלים (תיאמין, ריבופלאבין, נקוטינאמיד, ויטמין B6, חומצה פולית, ויטמין B12, ויטמין D), מלח",
+      "ingredients_list": [
+        "תירס מלא (98%)",
+        "ויטמינים ומינרלים",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "A1",
+        "noise_scenarios": [],
+        "noise_profile": "clean_baseline",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "very_high",
+        "test_purpose": "Baseline clean cereal — expects confident routing + high score",
+        "failure_risk_categories": []
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל מלאה (55%), סוכר חום, שמן קנולה, דבש (4%), גרעיני חמניות, גרעיני דלעת, מלח, חומר טעם וריח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_A2",
+      "barcode": "7290000001002",
+      "canonical_name_he": "חטיף גרנולה שיבולת שועל ודבש",
+      "brand": "תלמה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 440,
+        "fat_g": 16,
+        "fat_saturated_g": 2.8,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 95,
+        "carbohydrates_g": 64,
+        "sugars_g": 22,
+        "dietary_fiber_g": 5.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "שיבולת שועל מלאה (55%), סוכר חום, שמן קנולה, דבש (4%), גרעיני חמניות, גרעיני דלעת, מלח, חומר טעם וריח",
+      "ingredients_list": [
+        "שיבולת שועל מלאה (55%)",
+        "סוכר חום",
+        "שמן קנולה",
+        "דבש (4%)",
+        "גרעיני חמניות",
+        "גרעיני דלעת",
+        "מלח",
+        "חומר טעם וריח"
+      ],
+      "_robustness_meta": {
+        "test_id": "A2",
+        "noise_scenarios": [],
+        "noise_profile": "clean_baseline",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "Baseline clean granola bar — expects snack_bar routing",
+        "failure_risk_categories": []
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיפון מלא (95%), מחמצת שיפון (שיפון, מים, שמרי בר), מים, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_A3",
+      "barcode": "7394376621451",
+      "canonical_name_he": "לחמי קריספ שיפון מחמצת ויקינג",
+      "brand": "ויקינג",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 340,
+        "fat_g": 2.1,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 510,
+        "carbohydrates_g": 71,
+        "sugars_g": 1.2,
+        "dietary_fiber_g": 12,
+        "protein_g": 12
+      },
+      "ingredients_text_he": "שיפון מלא (95%), מחמצת שיפון (שיפון, מים, שמרי בר), מים, מלח",
+      "ingredients_list": [
+        "שיפון מלא (95%)",
+        "מחמצת שיפון (שיפון, מים, שמרי בר)",
+        "מים",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "A3",
+        "noise_scenarios": [],
+        "noise_profile": "clean_baseline",
+        "expected_routing": "crispbread",
+        "expected_confidence_band": "very_high",
+        "test_purpose": "Baseline clean crispbread — hard anchor should fire on 'לחמי קריספ'",
+        "failure_risk_categories": []
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מים, שיבולת שועל (10%), שמן חמניות, ויטמינים (ויטמין D, ריבופלאבין, ויטמין B12), מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_A4",
+      "barcode": "7394376620000",
+      "canonical_name_he": "משקה שיבולת שועל אוטלי",
+      "brand": "אוטלי",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 47,
+        "fat_g": 1.5,
+        "fat_saturated_g": 0.2,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 100,
+        "carbohydrates_g": 6.5,
+        "sugars_g": 4.0,
+        "dietary_fiber_g": 0.8,
+        "protein_g": 1.0
+      },
+      "ingredients_text_he": "מים, שיבולת שועל (10%), שמן חמניות, ויטמינים (ויטמין D, ריבופלאבין, ויטמין B12), מלח",
+      "ingredients_list": [
+        "מים",
+        "שיבולת שועל (10%)",
+        "שמן חמניות",
+        "ויטמינים",
+        "מלח"
+      ],
+      "brand_override": null,
+      "_robustness_meta": {
+        "test_id": "A4",
+        "noise_scenarios": [],
+        "noise_profile": "clean_baseline",
+        "expected_routing": "beverage",
+        "expected_confidence_band": "very_high",
+        "test_purpose": "Baseline clean oat milk — known plant milk brand should activate beverage gate",
+        "failure_risk_categories": []
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, חיידקי חמצת (Lactobacillus bulgaricus, Streptococcus thermophilus)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_A5",
+      "barcode": "7290000001005",
+      "canonical_name_he": "יוגורט 3% שומן דנונה",
+      "brand": "דנונה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 67,
+        "fat_g": 3.2,
+        "fat_saturated_g": 2.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 45,
+        "carbohydrates_g": 4.8,
+        "sugars_g": 4.5,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 4.5
+      },
+      "ingredients_text_he": "חלב מפוסטר, חיידקי חמצת (Lactobacillus bulgaricus, Streptococcus thermophilus)",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "חיידקי חמצת (Lactobacillus bulgaricus, Streptococcus thermophilus)"
+      ],
+      "_robustness_meta": {
+        "test_id": "A5",
+        "noise_scenarios": [],
+        "noise_profile": "clean_baseline",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "very_high",
+        "test_purpose": "Baseline clean yogurt — hard anchor on 'יוגורט' should fire",
+        "failure_risk_categories": []
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חיטה מלאה (65%), סוכר, מלח, ויטמינים ומינרלים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B1",
+      "barcode": "7290000002001",
+      "canonical_name_he": "דגני בוקר מלאים עם סיבים",
+      "brand": "קלוגס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 360,
+        "fat_g": 2.0,
+        "fat_saturated_g": 0.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 580,
+        "carbohydrates_g": 74,
+        "sugars_g": 6,
+        "dietary_fiber_g": null,
+        "protein_g": 10
+      },
+      "ingredients_text_he": "חיטה מלאה (65%), סוכר, מלח, ויטמינים ומינרלים",
+      "ingredients_list": [
+        "חיטה מלאה (65%)",
+        "סוכר",
+        "מלח",
+        "ויטמינים ומינרלים"
+      ],
+      "_robustness_meta": {
+        "test_id": "B1",
+        "noise_scenarios": [
+          "missing_nutrition:dietary_fiber_g"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "high",
+        "test_purpose": "Fiber value absent — fiber-driven dimensions should fall back to 0",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "תמרים (45%), שקדים (22%), שיבולת שועל, גרעיני דלעת, קוקוס טחון, שמן קוקוס",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B2",
+      "barcode": "7290000002002",
+      "canonical_name_he": "חטיף אנרגיה שקדים ותמרים",
+      "brand": "טבעי טעים",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 430,
+        "fat_g": 18,
+        "fat_saturated_g": 1.8,
+        "fat_trans_g": 0.0,
+        "sodium_mg": null,
+        "carbohydrates_g": 55,
+        "sugars_g": 28,
+        "dietary_fiber_g": 4.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "תמרים (45%), שקדים (22%), שיבולת שועל, גרעיני דלעת, קוקוס טחון, שמן קוקוס",
+      "ingredients_list": [
+        "תמרים (45%)",
+        "שקדים (22%)",
+        "שיבולת שועל",
+        "גרעיני דלעת",
+        "קוקוס טחון",
+        "שמן קוקוס"
+      ],
+      "_robustness_meta": {
+        "test_id": "B2",
+        "noise_scenarios": [
+          "missing_nutrition:sodium_mg"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "Sodium absent — red label check for sodium cannot fire; score should not be penalized for absent value",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח שיפון מלא (52%), מחמצת שיפון (5%), מים, קמח חיטה, גרעיני כוסמת, מלח, שמרים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B3",
+      "barcode": "7290000002003",
+      "canonical_name_he": "לחם מחמצת כפרי שחור",
+      "brand": "אחלה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 240,
+        "fat_g": 2.8,
+        "fat_saturated_g": null,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 440,
+        "carbohydrates_g": 46,
+        "sugars_g": 1.5,
+        "dietary_fiber_g": 5.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "קמח שיפון מלא (52%), מחמצת שיפון (5%), מים, קמח חיטה, גרעיני כוסמת, מלח, שמרים",
+      "ingredients_list": [
+        "קמח שיפון מלא (52%)",
+        "מחמצת שיפון (5%)",
+        "מים",
+        "קמח חיטה",
+        "גרעיני כוסמת",
+        "מלח",
+        "שמרים"
+      ],
+      "_robustness_meta": {
+        "test_id": "B3",
+        "noise_scenarios": [
+          "missing_nutrition:fat_saturated_g"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "bread",
+        "expected_confidence_band": "high",
+        "test_purpose": "Saturated fat absent — fat_quality dimension should return neutral 50",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, שמנת, חיידקי חמצת (Lactobacillus bulgaricus, Streptococcus thermophilus)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B4",
+      "barcode": "7290000002004",
+      "canonical_name_he": "יוגורט יווני עשיר",
+      "brand": "שטראוס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 95,
+        "fat_g": 5.0,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 50,
+        "carbohydrates_g": 4.2,
+        "sugars_g": 4.0,
+        "dietary_fiber_g": 0.0,
+        "protein_g": null
+      },
+      "ingredients_text_he": "חלב מפוסטר, שמנת, חיידקי חמצת (Lactobacillus bulgaricus, Streptococcus thermophilus)",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "שמנת",
+        "חיידקי חמצת"
+      ],
+      "_robustness_meta": {
+        "test_id": "B4",
+        "noise_scenarios": [
+          "missing_nutrition:protein_g"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "high",
+        "test_purpose": "Protein absent — protein_quality and nutrient_density dimensions degraded",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח שיפון (80%), שמן צמחי, מלח, שמרים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B5",
+      "barcode": "7290000002005",
+      "canonical_name_he": "קרקר קמח שיפון מלוח",
+      "brand": "ריץ",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": null,
+        "fat_g": null,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "sodium_mg": null,
+        "carbohydrates_g": null,
+        "sugars_g": null,
+        "dietary_fiber_g": null,
+        "protein_g": null
+      },
+      "ingredients_text_he": "קמח שיפון (80%), שמן צמחי, מלח, שמרים",
+      "ingredients_list": [
+        "קמח שיפון (80%)",
+        "שמן צמחי",
+        "מלח",
+        "שמרים"
+      ],
+      "_robustness_meta": {
+        "test_id": "B5",
+        "noise_scenarios": [
+          "missing_nutrition:all_fields"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "cracker",
+        "expected_confidence_band": "insufficient_context",
+        "test_purpose": "All nutrition fields absent — should reach INSUFFICIENT degradation level",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מים, שיבולת שועל (9.7%), סוכר, קקאו, שמן חמניות, מלח, ויטמינים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B6",
+      "barcode": "7290000002006",
+      "canonical_name_he": "משקה שיבולת שועל בטעם שוקולד",
+      "brand": "אלפרו",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": null,
+        "fat_g": 1.8,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 95,
+        "carbohydrates_g": 7.2,
+        "sugars_g": 5.5,
+        "dietary_fiber_g": 0.8,
+        "protein_g": 1.5
+      },
+      "ingredients_text_he": "מים, שיבולת שועל (9.7%), סוכר, קקאו, שמן חמניות, מלח, ויטמינים",
+      "ingredients_list": [
+        "מים",
+        "שיבולת שועל (9.7%)",
+        "סוכר",
+        "קקאו",
+        "שמן חמניות",
+        "מלח",
+        "ויטמינים"
+      ],
+      "_robustness_meta": {
+        "test_id": "B6",
+        "noise_scenarios": [
+          "missing_nutrition:energy_kcal"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "beverage",
+        "expected_confidence_band": "high",
+        "test_purpose": "Energy absent — calorie_density dimension returns neutral 50",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל (35%), שוקולד חלב (20%), אגוזי לוז, סוכר, שמן דקלים, מלח, לציטין",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B7",
+      "barcode": "7290000002007",
+      "canonical_name_he": "חטיף דגנים שוקולד ואגוזים",
+      "brand": "בריגס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 450,
+        "fat_g": 20,
+        "fat_saturated_g": 7.5,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 130,
+        "carbohydrates_g": null,
+        "sugars_g": 22,
+        "dietary_fiber_g": 3.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "שיבולת שועל (35%), שוקולד חלב (20%), אגוזי לוז, סוכר, שמן דקלים, מלח, לציטין",
+      "ingredients_list": [
+        "שיבולת שועל (35%)",
+        "שוקולד חלב (20%)",
+        "אגוזי לוז",
+        "סוכר",
+        "שמן דקלים",
+        "מלח",
+        "לציטין"
+      ],
+      "_robustness_meta": {
+        "test_id": "B7",
+        "noise_scenarios": [
+          "missing_nutrition:carbohydrates_g"
+        ],
+        "noise_profile": "missing_nutrition",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "Carbs absent — sugar-over-carbs consistency check cannot run; SC classification ambiguous",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "suspicious",
+      "nutrition_consistency_warnings": [
+        "sugar_g=30 is 62% of carbohydrates_g=48 — possible per-serving confusion"
+      ],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה, קמח שיפון (15%), מים, שמרים, מלח, סוכר, שמן קנולה",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_B8",
+      "barcode": "7290000002008",
+      "canonical_name_he": "לחם אחיד עם שיפון",
+      "brand": "אנגל",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 265,
+        "fat_g": 2.5,
+        "fat_saturated_g": 0.4,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 590,
+        "carbohydrates_g": 48,
+        "sugars_g": 30,
+        "dietary_fiber_g": 4.0,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "קמח חיטה, קמח שיפון (15%), מים, שמרים, מלח, סוכר, שמן קנולה",
+      "ingredients_list": [
+        "קמח חיטה",
+        "קמח שיפון (15%)",
+        "מים",
+        "שמרים",
+        "מלח",
+        "סוכר",
+        "שמן קנולה"
+      ],
+      "_robustness_meta": {
+        "test_id": "B8",
+        "noise_scenarios": [
+          "nutrition_inconsistency:sugar_le_carbs_violated"
+        ],
+        "noise_profile": "data_inconsistency",
+        "expected_routing": "bread",
+        "expected_confidence_band": "low",
+        "test_purpose": "sugar (30g) < carbs (48g) is valid here, but high ratio creates suspicious flag; test confidence impact",
+        "failure_risk_categories": [
+          "RETAILER_INCONSISTENCY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C1",
+      "barcode": "7290000003001",
+      "canonical_name_he": "לחם מחמצת שיפון ארטיזנלי",
+      "brand": "לחמיה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 235,
+        "fat_g": 1.8,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 480,
+        "carbohydrates_g": 44,
+        "sugars_g": 1.8,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "",
+      "ingredients_list": [],
+      "_robustness_meta": {
+        "test_id": "C1",
+        "noise_scenarios": [
+          "missing_ingredients:text_and_list"
+        ],
+        "noise_profile": "missing_ingredients",
+        "expected_routing": "bread",
+        "expected_confidence_band": "low",
+        "test_purpose": "No ingredient data at all — NOVA, additive, fiber source signals all absent",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C2",
+      "barcode": "7290000003002",
+      "canonical_name_he": "דגני בוקר חיטה מלאה ופירות יבשים",
+      "brand": "קלוגס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 350,
+        "fat_g": 1.5,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 500,
+        "carbohydrates_g": 72,
+        "sugars_g": 18,
+        "dietary_fiber_g": 8,
+        "protein_g": 10
+      },
+      "ingredients_text_he": "",
+      "ingredients_list": [
+        "חיטה מלאה (62%)",
+        "פירות יבשים (12%)",
+        "סוכר",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "C2",
+        "noise_scenarios": [
+          "missing_ingredients:text_only"
+        ],
+        "noise_profile": "missing_ingredients",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Ingredient list present but no text — L3 extraction works but claims analysis limited",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "partial",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "ש‌י‌ב‌ו‌ל‌ת ש‌ו‌ע‌ל (3‌5‌%)‌, ת‌מ‌ר‌י‌ם (2‌5‌%)‌, ג‌ר‌ע‌י‌נ‌י‌ם‌, ס‌ו‌כ‌ ‌ר‌ ‌ח‌ ‌ו‌ ‌מ‌ ‌ג‌ ‌ר‌",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C3",
+      "barcode": "7290000003003",
+      "canonical_name_he": "חטיף אנרגיה שיבולת שועל ותמרים",
+      "brand": "ספורטמיקס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 415,
+        "fat_g": 14,
+        "fat_saturated_g": 2.1,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 85,
+        "carbohydrates_g": 62,
+        "sugars_g": 30,
+        "dietary_fiber_g": 5.5,
+        "protein_g": 7
+      },
+      "ingredients_text_he": "ש‌י‌ב‌ו‌ל‌ת ש‌ו‌ע‌ל (3‌5‌%)‌, ת‌מ‌ר‌י‌ם (2‌5‌%)‌, ג‌ר‌ע‌י‌נ‌י‌ם‌, ס‌ו‌כ‌ ‌ר‌ ‌ח‌ ‌ו‌ ‌מ‌ ‌ג‌ ‌ר‌",
+      "ingredients_list": [
+        "שיבולת שועל (35%)",
+        "תמרים (25%)",
+        "גרעינים",
+        "סוכר"
+      ],
+      "_robustness_meta": {
+        "test_id": "C3",
+        "noise_scenarios": [
+          "ocr_corruption:mild_zws_insertion"
+        ],
+        "noise_profile": "ocr_mild",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Mild OCR: zero-width space insertions between characters simulate OCR artifact",
+        "failure_risk_categories": [
+          "OCR_DEGRADATION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "malformed",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח כוס מ1ן מ?אה (50%!), שמן זPת, מלח, שמN ים צמ@חיים, מ$ח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C4",
+      "barcode": "7290000003004",
+      "canonical_name_he": "קרקר כוסמין מלוח",
+      "brand": "אנה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 410,
+        "fat_g": 12,
+        "fat_saturated_g": 1.8,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 620,
+        "carbohydrates_g": 66,
+        "sugars_g": 2.5,
+        "dietary_fiber_g": 4.5,
+        "protein_g": 11
+      },
+      "ingredients_text_he": "קמח כוס מ1ן מ?אה (50%!), שמן זPת, מלח, שמN ים צמ@חיים, מ$ח",
+      "ingredients_list": [
+        "קמח כוסמין מלא (50%)",
+        "שמן זית",
+        "מלח",
+        "שמנים צמחיים"
+      ],
+      "_robustness_meta": {
+        "test_id": "C4",
+        "noise_scenarios": [
+          "ocr_corruption:moderate_char_substitution"
+        ],
+        "noise_profile": "ocr_moderate",
+        "expected_routing": "cracker",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Moderate OCR: character substitutions in ingredient text simulate scanner artifacts",
+        "failure_risk_categories": [
+          "OCR_DEGRADATION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, פירות יער (תות, אוכמנית), סוכר, עמילן, מייצב, חומצת לקטית",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C5",
+      "barcode": "7290000003005",
+      "canonical_name_he": "יוגורט פירות יער 1.5% שומן",
+      "brand": "תנובה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 72,
+        "fat_g": 1.5,
+        "fat_saturated_g": 1.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 55,
+        "carbohydrates_g": 11,
+        "sugars_g": 10,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 4.2
+      },
+      "ingredients_text_he": "חלב מפוסטר, פירות יער (תות, אוכמנית), סוכר, עמילן, מייצב, חומצת לקטית",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "פירות יער"
+      ],
+      "_robustness_meta": {
+        "test_id": "C5",
+        "noise_scenarios": [
+          "ingredient_list:truncated_to_2_items"
+        ],
+        "noise_profile": "ingredient_truncation",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Ingredient list truncated — stabilizers and additives invisible; NOVA likely under-estimated",
+        "failure_risk_categories": [
+          "INGREDIENT_TRUNCATION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "corrupted",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שי פ ון מ לא ( 9 8% ), מ ח מ צ ת ש י פ ו ן ( שיפון, מי ם, ש מ ר י ב ר ), מ ל ח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C6",
+      "barcode": "7290000003006",
+      "canonical_name_he": "לחמי קריספ דגן מלא שיפון",
+      "brand": "פינבו",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 330,
+        "fat_g": 1.8,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 480,
+        "carbohydrates_g": 70,
+        "sugars_g": 0.8,
+        "dietary_fiber_g": 14,
+        "protein_g": 11
+      },
+      "ingredients_text_he": "שי פ ון מ לא ( 9 8% ), מ ח מ צ ת ש י פ ו ן ( שיפון, מי ם, ש מ ר י ב ר ), מ ל ח",
+      "ingredients_list": [
+        "שיפון מלא (98%)",
+        "מחמצת שיפון",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "C6",
+        "noise_scenarios": [
+          "ocr_corruption:severe_space_injection"
+        ],
+        "noise_profile": "ocr_severe",
+        "expected_routing": "crispbread",
+        "expected_confidence_band": "low",
+        "test_purpose": "Severe OCR: spaces injected throughout text. Hard anchor on name still routes correctly; ingredient signals degraded",
+        "failure_risk_categories": [
+          "OCR_DEGRADATION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "corrupted",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "##$$תמ(רים)&& אג%%וזי לוז, @#!שקדים%%,  כ-ל-ו-ב-ר-ג-נ-ז, פרי יב{ש},,, שמן",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C7",
+      "barcode": "7290000003007",
+      "canonical_name_he": "חטיף פירות ואגוזים טבעי",
+      "brand": "רייזינבראן",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 380,
+        "fat_g": 12,
+        "fat_saturated_g": 1.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 60,
+        "carbohydrates_g": 55,
+        "sugars_g": 38,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 6
+      },
+      "ingredients_text_he": "##$$תמ(רים)&& אג%%וזי לוז, @#!שקדים%%,  כ-ל-ו-ב-ר-ג-נ-ז, פרי יב{ש},,, שמן",
+      "ingredients_list": [
+        "תמרים",
+        "אגוזי לוז",
+        "שקדים"
+      ],
+      "_robustness_meta": {
+        "test_id": "C7",
+        "noise_scenarios": [
+          "ocr_corruption:garbled_with_symbols"
+        ],
+        "noise_profile": "ocr_severe",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "low",
+        "test_purpose": "Severe OCR: special characters throughout. Hebrew keywords still partially present but extraction unreliable",
+        "failure_risk_categories": [
+          "OCR_DEGRADATION",
+          "INGREDIENT_TRUNCATION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "corrupted",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_C8",
+      "barcode": "7290000003008",
+      "canonical_name_he": "לחם קמח חיטה מלאה ושיפון",
+      "brand": "בריד'ס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 252,
+        "fat_g": 2.1,
+        "fat_saturated_g": 0.4,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 510,
+        "carbohydrates_g": 48,
+        "sugars_g": 3.5,
+        "dietary_fiber_g": 6.8,
+        "protein_g": 8.5
+      },
+      "ingredients_text_he": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+      "ingredients_list": [],
+      "_robustness_meta": {
+        "test_id": "C8",
+        "noise_scenarios": [
+          "ocr_corruption:complete_unreadable"
+        ],
+        "noise_profile": "ocr_complete_failure",
+        "expected_routing": "bread",
+        "expected_confidence_band": "low",
+        "test_purpose": "Complete OCR failure — ingredient text is garbage. Routing from name only",
+        "failure_risk_categories": [
+          "OCR_DEGRADATION",
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל (45%), אגוזים מעורבים (18%), פירות יבשים (15%), דבש, שמן קנולה, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D1",
+      "barcode": "7290000004001",
+      "canonical_name_he": "גרנולה לבוקר עם פירות ואגוזים",
+      "brand": "שחר",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 395,
+        "fat_g": 13,
+        "fat_saturated_g": 2.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 110,
+        "carbohydrates_g": 60,
+        "sugars_g": 18,
+        "dietary_fiber_g": 6,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "שיבולת שועל (45%), אגוזים מעורבים (18%), פירות יבשים (15%), דבש, שמן קנולה, מלח",
+      "ingredients_list": [
+        "שיבולת שועל (45%)",
+        "אגוזים מעורבים (18%)",
+        "פירות יבשים (15%)",
+        "דבש",
+        "שמן קנולה",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "D1",
+        "noise_scenarios": [
+          "routing:cereal_vs_snack_bar"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "high",
+        "test_purpose": "'גרנולה לבוקר' hard anchor routes to cereal; product is genuinely on the cereal/granola boundary. Test anchor dominance",
+        "failure_risk_categories": [
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, שמנת, חיידקי חמצת, ויטמין D",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D2",
+      "barcode": "7290000004002",
+      "canonical_name_he": "יוגורט שתייה עשיר חלבון",
+      "brand": "דנונה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 82,
+        "fat_g": 2.0,
+        "fat_saturated_g": 1.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 65,
+        "carbohydrates_g": 7.5,
+        "sugars_g": 6.8,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 8.5
+      },
+      "ingredients_text_he": "חלב מפוסטר, שמנת, חיידקי חמצת, ויטמין D",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "שמנת",
+        "חיידקי חמצת",
+        "ויטמין D"
+      ],
+      "_robustness_meta": {
+        "test_id": "D2",
+        "noise_scenarios": [
+          "routing:dairy_vs_beverage"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "high",
+        "test_purpose": "'יוגורט שתייה' — contains 'יוגורט' (dairy anchor) AND 'שתייה' (beverage signal). Dairy anchor must prevail",
+        "failure_risk_categories": [
+          "HYBRID_CONFLICT",
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח שיבולת שועל (40%), שוקולד חלב (22%) (סוכר, חמאת קקאו, חלב, קקאו), שמן דקלים, סוכר, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D3",
+      "barcode": "7290000004003",
+      "canonical_name_he": "קרקר שיבולת שועל מתוק עם ציפוי שוקולד",
+      "brand": "גוברניץ",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 470,
+        "fat_g": 22,
+        "fat_saturated_g": 12,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 115,
+        "carbohydrates_g": 60,
+        "sugars_g": 28,
+        "dietary_fiber_g": 3.5,
+        "protein_g": 6
+      },
+      "ingredients_text_he": "קמח שיבולת שועל (40%), שוקולד חלב (22%) (סוכר, חמאת קקאו, חלב, קקאו), שמן דקלים, סוכר, מלח",
+      "ingredients_list": [
+        "קמח שיבולת שועל (40%)",
+        "שוקולד חלב (22%)",
+        "שמן דקלים",
+        "סוכר",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "D3",
+        "noise_scenarios": [
+          "routing:cracker_vs_snack_bar"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Sweet chocolate-covered cracker — 'קרקר' anchor fires but product profile is more snack_bar. Test anchor vs signal tension",
+        "failure_risk_categories": [
+          "HYBRID_CONFLICT",
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה, שיבולת שועל (25%), שמן צמחי מוקשה, סוכר, ענבים מיובשים, מלח, לציטין, חומר תפיחה",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D4",
+      "barcode": "7290000004004",
+      "canonical_name_he": "עוגיות שיבולת שועל וענבים ביסקוויט",
+      "brand": "פרינגלס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 430,
+        "fat_g": 16,
+        "fat_saturated_g": 7.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 280,
+        "carbohydrates_g": 66,
+        "sugars_g": 25,
+        "dietary_fiber_g": 3.8,
+        "protein_g": 7
+      },
+      "ingredients_text_he": "קמח חיטה, שיבולת שועל (25%), שמן צמחי מוקשה, סוכר, ענבים מיובשים, מלח, לציטין, חומר תפיחה",
+      "ingredients_list": [
+        "קמח חיטה",
+        "שיבולת שועל (25%)",
+        "שמן צמחי מוקשה",
+        "סוכר",
+        "ענבים מיובשים",
+        "מלח",
+        "לציטין",
+        "חומר תפיחה"
+      ],
+      "_robustness_meta": {
+        "test_id": "D4",
+        "noise_scenarios": [
+          "routing:snack_bar_vs_dessert"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Oat biscuit — 'עוגיות' and 'ביסקוויט' both present; snack vs dessert ambiguity. Test if snack signals dominate",
+        "failure_risk_categories": [
+          "SEMANTIC_AMBIGUITY",
+          "HYBRID_CONFLICT"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שקדים (35%), אגוזי קשיו (25%), גרעיני חמניות, גרעיני דלעת, בוטנים קלויים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D5",
+      "barcode": "7290000004005",
+      "canonical_name_he": "תערובת אגוזים וגרעינים קלויים",
+      "brand": "שבת שלום",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 580,
+        "fat_g": 48,
+        "fat_saturated_g": 6.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 5,
+        "carbohydrates_g": 18,
+        "sugars_g": 5,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 18
+      },
+      "ingredients_text_he": "שקדים (35%), אגוזי קשיו (25%), גרעיני חמניות, גרעיני דלעת, בוטנים קלויים",
+      "ingredients_list": [
+        "שקדים (35%)",
+        "אגוזי קשיו (25%)",
+        "גרעיני חמניות",
+        "גרעיני דלעת",
+        "בוטנים קלויים"
+      ],
+      "_robustness_meta": {
+        "test_id": "D5",
+        "noise_scenarios": [
+          "routing:whole_food_fat_vs_snack_bar"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "whole_food_fat",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Nut mix — whole_food_fat vs snack_bar boundary. High fat% + name 'תערובת' should tip WFF",
+        "failure_risk_categories": [
+          "SEMANTIC_AMBIGUITY",
+          "CATEGORY_LEAKAGE"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, שמנת (15%), סוכר, קקאו (3%), מייצב (קרגינן E407), חיידקי חמצת",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D6",
+      "barcode": "7290000004006",
+      "canonical_name_he": "קרם יוגורט שוקולד פרמיום",
+      "brand": "אלית",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 155,
+        "fat_g": 7.5,
+        "fat_saturated_g": 5.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 60,
+        "carbohydrates_g": 19,
+        "sugars_g": 17,
+        "dietary_fiber_g": 0.5,
+        "protein_g": 5
+      },
+      "ingredients_text_he": "חלב מפוסטר, שמנת (15%), סוכר, קקאו (3%), מייצב (קרגינן E407), חיידקי חמצת",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "שמנת (15%)",
+        "סוכר",
+        "קקאו (3%)",
+        "מייצב (קרגינן E407)",
+        "חיידקי חמצת"
+      ],
+      "_robustness_meta": {
+        "test_id": "D6",
+        "noise_scenarios": [
+          "routing:dairy_vs_dessert"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "'קרם יוגורט' — 'קרם' is a dessert signal; 'יוגורט' is a dairy anchor. Anchor must override 'קרם'",
+        "failure_risk_categories": [
+          "HYBRID_CONFLICT"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מים, סויה (7%), סוכר, תרכיז לימון, חיידקי חמצת, ויטמינים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D7",
+      "barcode": "7290000004007",
+      "canonical_name_he": "משקה סויה בטעם יוגורט",
+      "brand": "אלפרו",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 60,
+        "fat_g": 1.8,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 80,
+        "carbohydrates_g": 5.8,
+        "sugars_g": 4.5,
+        "dietary_fiber_g": 0.5,
+        "protein_g": 3.5
+      },
+      "ingredients_text_he": "מים, סויה (7%), סוכר, תרכיז לימון, חיידקי חמצת, ויטמינים",
+      "ingredients_list": [
+        "מים",
+        "סויה (7%)",
+        "סוכר",
+        "תרכיז לימון",
+        "חיידקי חמצת",
+        "ויטמינים"
+      ],
+      "_robustness_meta": {
+        "test_id": "D7",
+        "noise_scenarios": [
+          "routing:beverage_vs_dairy"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "beverage",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "'משקה סויה בטעם יוגורט' — plant milk brand + 'משקה' both point beverage. 'בטעם יוגורט' should be suppressed as flavor",
+        "failure_risk_categories": [
+          "HYBRID_CONFLICT",
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל מלאה (45%), פירות יבשים (20%), גרעינים (10%), דבש, שמן קוקוס מזוקק",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_D8",
+      "barcode": "7290000004008",
+      "canonical_name_he": "מוסלי פירות וגרעינים",
+      "brand": "ברביקן",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 375,
+        "fat_g": 8.5,
+        "fat_saturated_g": 1.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 55,
+        "carbohydrates_g": 67,
+        "sugars_g": 25,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "שיבולת שועל מלאה (45%), פירות יבשים (20%), גרעינים (10%), דבש, שמן קוקוס מזוקק",
+      "ingredients_list": [
+        "שיבולת שועל מלאה (45%)",
+        "פירות יבשים (20%)",
+        "גרעינים (10%)",
+        "דבש",
+        "שמן קוקוס מזוקק"
+      ],
+      "_robustness_meta": {
+        "test_id": "D8",
+        "noise_scenarios": [
+          "routing:muesli_anchor_cereal_vs_snack"
+        ],
+        "noise_profile": "routing_instability",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "'מוסלי' anchor routes snack_bar_granola; test whether WFF signals from coconut oil contaminate routing",
+        "failure_risk_categories": [
+          "CATEGORY_LEAKAGE"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "עשיר בחלבון",
+        "30g חלבון"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל (40%), מי גבינה (10%), סוכר, שמן קנולה, מלח, חומר טעם",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E1",
+      "barcode": "7290000005001",
+      "canonical_name_he": "חטיף חלבון גבוה 30g",
+      "brand": "גולדר",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 390,
+        "fat_g": 12,
+        "fat_saturated_g": 4.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 280,
+        "carbohydrates_g": 45,
+        "sugars_g": 15,
+        "dietary_fiber_g": 3.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "שיבולת שועל (40%), מי גבינה (10%), סוכר, שמן קנולה, מלח, חומר טעם",
+      "ingredients_list": [
+        "שיבולת שועל (40%)",
+        "מי גבינה (10%)",
+        "סוכר",
+        "שמן קנולה",
+        "מלח",
+        "חומר טעם"
+      ],
+      "_robustness_meta": {
+        "test_id": "E1",
+        "noise_scenarios": [
+          "claim:protein_claim_vs_reality"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "Packaging says '30g protein' but nutrition panel shows 8g. Test that BSIP2 uses actual nutrition, not marketing",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "דגן מלא"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה (68%), מים, קמח חיטה מלאה (12%), שמרים, שמן קנולה, מלח, גלוטן, סוכר",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E2",
+      "barcode": "7290000005002",
+      "canonical_name_he": "לחם דגן מלא בריא",
+      "brand": "אנגל",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 265,
+        "fat_g": 3.5,
+        "fat_saturated_g": 0.6,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 550,
+        "carbohydrates_g": 50,
+        "sugars_g": 4.5,
+        "dietary_fiber_g": 4.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "קמח חיטה (68%), מים, קמח חיטה מלאה (12%), שמרים, שמן קנולה, מלח, גלוטן, סוכר",
+      "ingredients_list": [
+        "קמח חיטה (68%)",
+        "מים",
+        "קמח חיטה מלאה (12%)",
+        "שמרים",
+        "שמן קנולה",
+        "מלח",
+        "גלוטן",
+        "סוכר"
+      ],
+      "_robustness_meta": {
+        "test_id": "E2",
+        "noise_scenarios": [
+          "claim:whole_grain_claim_refined_flour_first"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "bread",
+        "expected_confidence_band": "high",
+        "test_purpose": "Claims 'whole grain' but refined flour (68%) is first ingredient. GSS should be low; bakery semantics should discount",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "100% טבעי",
+        "ללא מלאכותי"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל, שוקולד חלב (E471, E476), שמן דקלים, סוכר, גלוקוז, מולסה, שמרי בירה, E250, E220, E202, לציטין (E322)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E3",
+      "barcode": "7290000005003",
+      "canonical_name_he": "חטיף טבעי 100% טבע",
+      "brand": "ביו-נייטשר",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 440,
+        "fat_g": 22,
+        "fat_saturated_g": 8.5,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 220,
+        "carbohydrates_g": 52,
+        "sugars_g": 18,
+        "dietary_fiber_g": 4.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "שיבולת שועל, שוקולד חלב (E471, E476), שמן דקלים, סוכר, גלוקוז, מולסה, שמרי בירה, E250, E220, E202, לציטין (E322)",
+      "ingredients_list": [
+        "שיבולת שועל",
+        "שוקולד חלב",
+        "שמן דקלים",
+        "סוכר",
+        "גלוקוז",
+        "מולסה",
+        "שמרי בירה",
+        "E250",
+        "E220",
+        "E202",
+        "לציטין (E322)"
+      ],
+      "_robustness_meta": {
+        "test_id": "E3",
+        "noise_scenarios": [
+          "claim:natural_claim_with_additives"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "'100% natural' claim but 5+ additive E-numbers. Additive_quality should drop significantly",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "ללא תוספת סוכר"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, רכז תפוחים (8%), רכז פרות יער, מחית פטל, חיידקי חמצת",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E4",
+      "barcode": "7290000005004",
+      "canonical_name_he": "יוגורט ללא תוספת סוכר עם פירות",
+      "brand": "תנובה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 78,
+        "fat_g": 2.5,
+        "fat_saturated_g": 1.8,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 50,
+        "carbohydrates_g": 9.5,
+        "sugars_g": 9.2,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 4.5
+      },
+      "ingredients_text_he": "חלב מפוסטר, רכז תפוחים (8%), רכז פרות יער, מחית פטל, חיידקי חמצת",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "רכז תפוחים (8%)",
+        "רכז פרות יער",
+        "מחית פטל",
+        "חיידקי חמצת"
+      ],
+      "_robustness_meta": {
+        "test_id": "E4",
+        "noise_scenarios": [
+          "claim:no_sugar_with_concentrates"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "high",
+        "test_purpose": "'No added sugar' but contains 3 fruit concentrates. SC classification should detect SC-4; cap behavior tested",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "מחמצת"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה (72%), מים, שמרים (2%), מלח, חומץ (1%), שמן קנולה, גלוטן",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E5",
+      "barcode": "7290000005005",
+      "canonical_name_he": "לחם מחמצת ביתי",
+      "brand": "מגדל",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 255,
+        "fat_g": 3.2,
+        "fat_saturated_g": 0.6,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 560,
+        "carbohydrates_g": 49,
+        "sugars_g": 3.5,
+        "dietary_fiber_g": 5.5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "קמח חיטה (72%), מים, שמרים (2%), מלח, חומץ (1%), שמן קנולה, גלוטן",
+      "ingredients_list": [
+        "קמח חיטה (72%)",
+        "מים",
+        "שמרים (2%)",
+        "מלח",
+        "חומץ (1%)",
+        "שמן קנולה",
+        "גלוטן"
+      ],
+      "_robustness_meta": {
+        "test_id": "E5",
+        "noise_scenarios": [
+          "claim:sourdough_no_fermentation"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "bread",
+        "expected_confidence_band": "high",
+        "test_purpose": "Name says 'מחמצת' but ingredients list has commercial yeast + vinegar (not sourdough). Bakery semantics should classify as sourdough_theater",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "עשיר בסיבים",
+        "8g סיבים"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה (55%), מים, אינולין (7%), גסטרוגן (פסיליום), שמרים, מלח, שמן, E422, סוכר",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E6",
+      "barcode": "7290000005006",
+      "canonical_name_he": "לחם סיבים גבוה עשיר בסיבים 8g",
+      "brand": "שפע",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 220,
+        "fat_g": 2.8,
+        "fat_saturated_g": 0.4,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 520,
+        "carbohydrates_g": 40,
+        "sugars_g": 2,
+        "dietary_fiber_g": 8.5,
+        "protein_g": 9.5
+      },
+      "ingredients_text_he": "קמח חיטה (55%), מים, אינולין (7%), גסטרוגן (פסיליום), שמרים, מלח, שמן, E422, סוכר",
+      "ingredients_list": [
+        "קמח חיטה (55%)",
+        "מים",
+        "אינולין (7%)",
+        "גסטרוגן (פסיליום)",
+        "שמרים",
+        "מלח",
+        "שמן",
+        "E422",
+        "סוכר"
+      ],
+      "_robustness_meta": {
+        "test_id": "E6",
+        "noise_scenarios": [
+          "claim:high_fiber_isolated_sources"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "bread",
+        "expected_confidence_band": "high",
+        "test_purpose": "Claims '8g fiber' but all fiber from inulin+psyllium on refined base. Synthesis fiber discount should fire",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "קלוריות מופחתות",
+        "מוצר לדיאטה"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה (60%), שמן קנולה, מלח, שמרים, סוכר",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E7",
+      "barcode": "7290000005007",
+      "canonical_name_he": "קרקר קל קלוריות דיאטה",
+      "brand": "שדמות",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 455,
+        "fat_g": 18,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 720,
+        "carbohydrates_g": 64,
+        "sugars_g": 2,
+        "dietary_fiber_g": 3.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "קמח חיטה (60%), שמן קנולה, מלח, שמרים, סוכר",
+      "ingredients_list": [
+        "קמח חיטה (60%)",
+        "שמן קנולה",
+        "מלח",
+        "שמרים",
+        "סוכר"
+      ],
+      "_robustness_meta": {
+        "test_id": "E7",
+        "noise_scenarios": [
+          "claim:light_high_calorie_density"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "cracker",
+        "expected_confidence_band": "high",
+        "test_purpose": "Claims 'light/diet' but 455kcal/100g. Calorie density score should not be relaxed by misleading label",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [
+        "100% טבעי",
+        "אנרגיה מיידית"
+      ],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "סירופ גלוקוז-פרוקטוז (42%), מיץ תפוחים מרוכז, ג'ל מלתודקסטרין, מלח ים, ויטמין C",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_E8",
+      "barcode": "7290000005008",
+      "canonical_name_he": "חטיף ג'ל אנרגיה טבעי ספורט",
+      "brand": "גו-נייטשר",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 280,
+        "fat_g": 0.5,
+        "fat_saturated_g": 0.1,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 55,
+        "carbohydrates_g": 68,
+        "sugars_g": 65,
+        "dietary_fiber_g": 0.5,
+        "protein_g": 1.5
+      },
+      "ingredients_text_he": "סירופ גלוקוז-פרוקטוז (42%), מיץ תפוחים מרוכז, ג'ל מלתודקסטרין, מלח ים, ויטמין C",
+      "ingredients_list": [
+        "סירופ גלוקוז-פרוקטוז (42%)",
+        "מיץ תפוחים מרוכז",
+        "ג'ל מלתודקסטרין",
+        "מלח ים",
+        "ויטמין C"
+      ],
+      "_robustness_meta": {
+        "test_id": "E8",
+        "noise_scenarios": [
+          "claim:natural_energy_high_sugar"
+        ],
+        "noise_profile": "claim_vs_reality",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "'Natural energy gel' with 65g/100g sugar. Multiple sugar guardrails should fire. Tests SC classification with glucose-fructose syrup",
+        "failure_risk_categories": [
+          "WEAK_SUPPRESSION"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל אורגנית מלאה (100%)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_F1",
+      "barcode": null,
+      "canonical_name_he": "שיבולת שועל אורגנית מלאה",
+      "brand": "אורגני פלוס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 375,
+        "fat_g": 7.5,
+        "fat_saturated_g": 1.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 5,
+        "carbohydrates_g": 61,
+        "sugars_g": 1.5,
+        "dietary_fiber_g": 10,
+        "protein_g": 13
+      },
+      "ingredients_text_he": "שיבולת שועל אורגנית מלאה (100%)",
+      "ingredients_list": [
+        "שיבולת שועל אורגנית מלאה (100%)"
+      ],
+      "_robustness_meta": {
+        "test_id": "F1",
+        "noise_scenarios": [
+          "missing_identity:barcode_null"
+        ],
+        "noise_profile": "missing_identity",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "high",
+        "test_purpose": "Barcode is null — identity rests on name+brand only. Confidence penalized for missing barcode",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שומשום (100%)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_F2",
+      "barcode": "7290000006002",
+      "canonical_name_he": "טחינה גולמית 100%",
+      "brand": "",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 570,
+        "fat_g": 48,
+        "fat_saturated_g": 7.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 40,
+        "carbohydrates_g": 25,
+        "sugars_g": 0.5,
+        "dietary_fiber_g": 10,
+        "protein_g": 20
+      },
+      "ingredients_text_he": "שומשום (100%)",
+      "ingredients_list": [
+        "שומשום (100%)"
+      ],
+      "_robustness_meta": {
+        "test_id": "F2",
+        "noise_scenarios": [
+          "missing_identity:brand_empty"
+        ],
+        "noise_profile": "missing_identity",
+        "expected_routing": "whole_food_fat",
+        "expected_confidence_band": "high",
+        "test_purpose": "Brand is empty — 'טחינה' hard anchor still fires; test that missing brand doesn't break routing",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח תירס, סוכר, מלח, ויטמינים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_F3",
+      "barcode": "7290000006003",
+      "canonical_name_he": "מוצר דגנים לבוקר",
+      "brand": "כוכב",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 360,
+        "fat_g": 2.5,
+        "fat_saturated_g": 0.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 610,
+        "carbohydrates_g": 76,
+        "sugars_g": 12,
+        "dietary_fiber_g": 4,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "קמח תירס, סוכר, מלח, ויטמינים",
+      "ingredients_list": [
+        "קמח תירס",
+        "סוכר",
+        "מלח",
+        "ויטמינים"
+      ],
+      "_robustness_meta": {
+        "test_id": "F3",
+        "noise_scenarios": [
+          "missing_identity:vague_name"
+        ],
+        "noise_profile": "missing_identity",
+        "expected_routing": "cereal",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Vague name 'מוצר דגנים לבוקר' — no hard anchor; signal scoring must carry the routing",
+        "failure_risk_categories": [
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל (50%), תמרים (20%), אגוזים, שמן קוקוס, דבש",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_F4",
+      "barcode": "7290000006004",
+      "canonical_name_he": "",
+      "brand": "תמרסל",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 420,
+        "fat_g": 14,
+        "fat_saturated_g": 2.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 180,
+        "carbohydrates_g": 65,
+        "sugars_g": 24,
+        "dietary_fiber_g": 5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "שיבולת שועל (50%), תמרים (20%), אגוזים, שמן קוקוס, דבש",
+      "ingredients_list": [
+        "שיבולת שועל (50%)",
+        "תמרים (20%)",
+        "אגוזים",
+        "שמן קוקוס",
+        "דבש"
+      ],
+      "_robustness_meta": {
+        "test_id": "F4",
+        "noise_scenarios": [
+          "missing_identity:name_empty"
+        ],
+        "noise_profile": "missing_identity",
+        "expected_routing": "default",
+        "expected_confidence_band": "low",
+        "test_purpose": "Product name is empty — no anchors can fire; routing based on signals from ingredient text only",
+        "failure_risk_categories": [
+          "MISSINGNESS",
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.45,
+      "canonical_trust_level": "low",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל, סוכר, שמן, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_F5",
+      "barcode": "7290000006005",
+      "canonical_name_he": "חטיף דגנים בסיסי",
+      "brand": "כללי",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 400,
+        "fat_g": 10,
+        "fat_saturated_g": 2.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 350,
+        "carbohydrates_g": 68,
+        "sugars_g": 14,
+        "dietary_fiber_g": 4.5,
+        "protein_g": 8
+      },
+      "ingredients_text_he": "שיבולת שועל, סוכר, שמן, מלח",
+      "ingredients_list": [
+        "שיבולת שועל",
+        "סוכר",
+        "שמן",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "F5",
+        "noise_scenarios": [
+          "missing_identity:low_trust_single_source"
+        ],
+        "noise_profile": "missing_identity",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Low trust level (single-source, unvalidated). Confidence reduction for trust=low",
+        "failure_risk_categories": [
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "suspicious",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל, סוכר, דבש, אגוזים, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_G1",
+      "barcode": "7290000007001",
+      "canonical_name_he": "חטיף מלטי-דגן בריא",
+      "brand": "ברנד",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 380,
+        "fat_g": 8.5,
+        "fat_saturated_g": 2.0,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 160,
+        "carbohydrates_g": 30,
+        "sugars_g": 45,
+        "dietary_fiber_g": 5,
+        "protein_g": 9
+      },
+      "ingredients_text_he": "שיבולת שועל, סוכר, דבש, אגוזים, מלח",
+      "ingredients_list": [
+        "שיבולת שועל",
+        "סוכר",
+        "דבש",
+        "אגוזים",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "G1",
+        "noise_scenarios": [
+          "consistency:sugar_greater_than_carbs"
+        ],
+        "noise_profile": "data_inconsistency",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "low",
+        "test_purpose": "sugar(45g) > carbs(30g): physically impossible. Critical consistency failure should trigger RETAILER_INCONSISTENCY",
+        "failure_risk_categories": [
+          "RETAILER_INCONSISTENCY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "suspicious",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "חלב מפוסטר, מלח, חיידקי חמצת, נוגד חמצון (לקטט)",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_G2",
+      "barcode": "7290000007002",
+      "canonical_name_he": "גבינה צהובה 30%",
+      "brand": "תנובה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 360,
+        "fat_g": 28,
+        "fat_saturated_g": 35,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 680,
+        "carbohydrates_g": 1.5,
+        "sugars_g": 0.5,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 25
+      },
+      "ingredients_text_he": "חלב מפוסטר, מלח, חיידקי חמצת, נוגד חמצון (לקטט)",
+      "ingredients_list": [
+        "חלב מפוסטר",
+        "מלח",
+        "חיידקי חמצת",
+        "נוגד חמצון (לקטט)"
+      ],
+      "_robustness_meta": {
+        "test_id": "G2",
+        "noise_scenarios": [
+          "consistency:satfat_greater_than_fat"
+        ],
+        "noise_profile": "data_inconsistency",
+        "expected_routing": "dairy_protein",
+        "expected_confidence_band": "low",
+        "test_purpose": "sat_fat(35g) > fat(28g): physically impossible. Critical consistency failure in dairy product",
+        "failure_risk_categories": [
+          "RETAILER_INCONSISTENCY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "warnings",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מי גבינה, קקאו, ממתיק (סוכרלוזה), ויטמינים, מינרלים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_G3",
+      "barcode": "7290000007003",
+      "canonical_name_he": "אבקת חלבון ספורט וניל",
+      "brand": "מקסי",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 1800,
+        "fat_g": 5,
+        "fat_saturated_g": 1.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 350,
+        "carbohydrates_g": 45,
+        "sugars_g": 12,
+        "dietary_fiber_g": 2,
+        "protein_g": 72
+      },
+      "ingredients_text_he": "מי גבינה, קקאו, ממתיק (סוכרלוזה), ויטמינים, מינרלים",
+      "ingredients_list": [
+        "מי גבינה",
+        "קקאו",
+        "ממתיק (סוכרלוזה)",
+        "ויטמינים",
+        "מינרלים"
+      ],
+      "_robustness_meta": {
+        "test_id": "G3",
+        "noise_scenarios": [
+          "consistency:kcal_outside_plausible_range"
+        ],
+        "noise_profile": "data_inconsistency",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "low",
+        "test_purpose": "1800 kcal/100g is outside plausible solid food range (700 ceiling). kcal_plausible check should fire",
+        "failure_risk_categories": [
+          "RETAILER_INCONSISTENCY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "suspicious",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מי גבינה, ממתיקים, ויטמינים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_G4",
+      "barcode": "7290000007004",
+      "canonical_name_he": "שייק חלבון תחליף ארוחה",
+      "brand": "קמפו",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 600,
+        "fat_g": 5,
+        "fat_saturated_g": 8,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 1200,
+        "carbohydrates_g": 20,
+        "sugars_g": 55,
+        "dietary_fiber_g": 0.5,
+        "protein_g": 30
+      },
+      "ingredients_text_he": "מי גבינה, ממתיקים, ויטמינים",
+      "ingredients_list": [
+        "מי גבינה",
+        "ממתיקים",
+        "ויטמינים"
+      ],
+      "_robustness_meta": {
+        "test_id": "G4",
+        "noise_scenarios": [
+          "consistency:multiple_failures"
+        ],
+        "noise_profile": "data_inconsistency",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "insufficient_context",
+        "test_purpose": "Multiple simultaneous consistency failures. System should reach INSUFFICIENT or very low confidence",
+        "failure_risk_categories": [
+          "RETAILER_INCONSISTENCY",
+          "MISSINGNESS"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שיבולת שועל מלאה (52%), אגוזים, פירות יבשים, דבש, שמן קנולה",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_H1",
+      "barcode": "7290000008001",
+      "canonical_name_he": "חטיפי גרנולה לבוקר ולחטיף",
+      "brand": "ויטה",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 410,
+        "fat_g": 14,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 125,
+        "carbohydrates_g": 60,
+        "sugars_g": 20,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 9.5
+      },
+      "ingredients_text_he": "שיבולת שועל מלאה (52%), אגוזים, פירות יבשים, דבש, שמן קנולה",
+      "ingredients_list": [
+        "שיבולת שועל מלאה (52%)",
+        "אגוזים",
+        "פירות יבשים",
+        "דבש",
+        "שמן קנולה"
+      ],
+      "_robustness_meta": {
+        "test_id": "H1",
+        "noise_scenarios": [
+          "hybrid:cereal_and_snack_bar"
+        ],
+        "noise_profile": "hybrid_product",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "high",
+        "test_purpose": "Genuinely dual-use granola — marketed as both breakfast cereal and snack. 'גרנולה לבוקר' in name should anchor to cereal; without it, snack signals dominate",
+        "failure_risk_categories": [
+          "HYBRID_CONFLICT"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "קמח חיטה (55%), גבינה צהובה (15%), מים, שמרים, מלח, שמן קנולה, עשבי תיבול",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_H2",
+      "barcode": "7290000008002",
+      "canonical_name_he": "לחם גבינה ועשבי תיבול",
+      "brand": "בייקרס",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 285,
+        "fat_g": 8.5,
+        "fat_saturated_g": 4.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 580,
+        "carbohydrates_g": 42,
+        "sugars_g": 2.5,
+        "dietary_fiber_g": 3.5,
+        "protein_g": 11
+      },
+      "ingredients_text_he": "קמח חיטה (55%), גבינה צהובה (15%), מים, שמרים, מלח, שמן קנולה, עשבי תיבול",
+      "ingredients_list": [
+        "קמח חיטה (55%)",
+        "גבינה צהובה (15%)",
+        "מים",
+        "שמרים",
+        "מלח",
+        "שמן קנולה",
+        "עשבי תיבול"
+      ],
+      "_robustness_meta": {
+        "test_id": "H2",
+        "noise_scenarios": [
+          "hybrid:bread_with_dairy_ingredient"
+        ],
+        "noise_profile": "hybrid_product",
+        "expected_routing": "bread",
+        "expected_confidence_band": "high",
+        "test_purpose": "Bread with 15% cheese — 'לחם' anchor fires. Dairy ingredient (cheese) in text must not trigger dairy_protein routing",
+        "failure_risk_categories": [
+          "CATEGORY_LEAKAGE"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "שקדים (52%), תמרים (35%), שמן קוקוס, מלח",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_H3",
+      "barcode": "7290000008003",
+      "canonical_name_he": "ממרח שקדים ותמרים",
+      "brand": "רוגל",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 480,
+        "fat_g": 30,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 20,
+        "carbohydrates_g": 38,
+        "sugars_g": 28,
+        "dietary_fiber_g": 7,
+        "protein_g": 12
+      },
+      "ingredients_text_he": "שקדים (52%), תמרים (35%), שמן קוקוס, מלח",
+      "ingredients_list": [
+        "שקדים (52%)",
+        "תמרים (35%)",
+        "שמן קוקוס",
+        "מלח"
+      ],
+      "_robustness_meta": {
+        "test_id": "H3",
+        "noise_scenarios": [
+          "hybrid:spread_vs_whole_food_fat"
+        ],
+        "noise_profile": "hybrid_product",
+        "expected_routing": "whole_food_fat",
+        "expected_confidence_band": "high",
+        "test_purpose": "'ממרח שקדים' — spread signal + nut content. Test whether 'ממרח' is correctly weighted with nut anchor",
+        "failure_risk_categories": [
+          "SEMANTIC_AMBIGUITY"
+        ]
+      }
+    },
+    {
+      "schema_version": "bsip1_v0_1",
+      "file_type": "product",
+      "canonical_name_en": null,
+      "package_size_g": null,
+      "unit_count": null,
+      "unit_size_g": null,
+      "serving_size_g": null,
+      "country_of_origin": "ישראל",
+      "kosher_certification": "הרבנות הראשית",
+      "image_url": null,
+      "source_retailers": [
+        "synthetic_robustness_test"
+      ],
+      "energy_source_unit": "kcal",
+      "allergens_contains": [],
+      "allergens_may_contain": [],
+      "claims": [],
+      "confidence": {
+        "identity_confidence": "high",
+        "barcode_confidence": "synthetic",
+        "nutrition_confidence": "confirmed_per_100g",
+        "matched_by": "synthetic_test",
+        "observation_count": 1
+      },
+      "barcode_validation_status": "synthetic",
+      "nutrition_basis_claimed": "ל-100 גרם",
+      "nutrition_basis_detected": "per_100g",
+      "nutrition_consistency_status": "consistent",
+      "nutrition_consistency_warnings": [],
+      "ingredient_text_quality": "clean",
+      "ingredient_warnings": [],
+      "canonical_trust_score": 0.88,
+      "canonical_trust_level": "high",
+      "canonical_risk_flags": [],
+      "conflicts_summary": {
+        "count": 0,
+        "has_unresolved": false,
+        "fields_in_conflict": [],
+        "identity_conflicts": [],
+        "nutrition_conflicts": [],
+        "ingredient_conflicts": [],
+        "labeling_conflicts": [],
+        "completeness_conflicts": []
+      },
+      "missing_fields": [],
+      "inferred_fields": [],
+      "audit_ref": "robustness_sprint_v1",
+      "ingredients_raw": "מי גבינה (60%), קקאו, מלתודקסטרין, ממתיק (סוכרלוזה E955), חומצה אסקורבית, ויטמינים, מינרלים",
+      "ingredients_raw_provenance": {
+        "source": "synthetic_test",
+        "bsip0_status": "synthetic",
+        "populated_at": "robustness_sprint_v1",
+        "missing": false
+      },
+      "canonical_product_id": "robustness_H4",
+      "barcode": "7290000008004",
+      "canonical_name_he": "אבקת שייק חלבון שוקולד",
+      "brand": "טרמינייטור",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 390,
+        "fat_g": 6,
+        "fat_saturated_g": 2.5,
+        "fat_trans_g": 0.0,
+        "sodium_mg": 420,
+        "carbohydrates_g": 45,
+        "sugars_g": 10,
+        "dietary_fiber_g": 4,
+        "protein_g": 35
+      },
+      "ingredients_text_he": "מי גבינה (60%), קקאו, מלתודקסטרין, ממתיק (סוכרלוזה E955), חומצה אסקורבית, ויטמינים, מינרלים",
+      "ingredients_list": [
+        "מי גבינה (60%)",
+        "קקאו",
+        "מלתודקסטרין",
+        "ממתיק (סוכרלוזה E955)",
+        "חומצה אסקורבית",
+        "ויטמינים",
+        "מינרלים"
+      ],
+      "_robustness_meta": {
+        "test_id": "H4",
+        "noise_scenarios": [
+          "hybrid:protein_powder_category_gap"
+        ],
+        "noise_profile": "hybrid_product",
+        "expected_routing": "snack_bar_granola",
+        "expected_confidence_band": "moderate",
+        "test_purpose": "Protein powder — no specific category for this product type. Routes to snack_bar_granola by default; tests ONTOLOGY_GAP exposure",
+        "failure_risk_categories": [
+          "ONTOLOGY_GAP",
+          "HYBRID_CONFLICT"
+        ]
+      }
+    }
+  ]
+}

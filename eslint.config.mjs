@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local Python / ops trees — not part of the Next.js app
+    "Bari/**",
+    ".venv/**",
+    "node_modules/**",
   ]),
 ]);
 
