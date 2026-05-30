@@ -164,7 +164,7 @@ export const BREAD_EVERYDAY_ARTICLE: BreadArticleContent = {
     },
   ],
   ctaLabel: "לכל השוואת הלחם",
-  ctaHref: "/comparisons/bread",
+  ctaHref: "/hashvaot/bread",
 };
 
 export const BREAD_STANDOUTS_ARTICLE: BreadArticleContent = {
@@ -333,7 +333,7 @@ export const BREAD_STANDOUTS_ARTICLE: BreadArticleContent = {
     },
   ],
   ctaLabel: "לכל השוואת הלחם",
-  ctaHref: "/comparisons/bread",
+  ctaHref: "/hashvaot/bread",
 };
 
 export const BREAD_WELLNESS_GAP_ARTICLE: BreadArticleContent = {
@@ -518,7 +518,7 @@ export const BREAD_WELLNESS_GAP_ARTICLE: BreadArticleContent = {
     },
   ],
   ctaLabel: "לכל השוואת הלחם",
-  ctaHref: "/comparisons/bread",
+  ctaHref: "/hashvaot/bread",
 };
 
 export const BREAD_COMPARISON_HREF = "/hashvaot/bread";

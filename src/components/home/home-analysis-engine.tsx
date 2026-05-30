@@ -289,7 +289,7 @@ export function HomeAnalysisEngine() {
 
   return (
     <section
-      className="relative overflow-hidden border-t border-black/[0.06] bg-[#F7F7F2] py-20 text-[#111318] md:py-28"
+      className="relative overflow-hidden border-t border-black/[0.06] bg-[#F7F7F2] py-20 text-[#111318] scroll-mt-[var(--site-header-height)] sm:scroll-mt-[var(--site-header-height-sm)] md:py-28"
       id="analysis-engine"
     >
       <div
