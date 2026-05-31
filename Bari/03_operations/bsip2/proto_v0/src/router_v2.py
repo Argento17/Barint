@@ -78,6 +78,16 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("קפיר",           "dairy_protein",     "kefir",          0.93),
     # ── Whole-food fats ───────────────────────────────────────────────────────
     ("טחינה",          "whole_food_fat",    "tahini",         0.93),
+    # ── Vegetable spreads (sauce_spread) — required for EXCEPTION-002 ────────
+    # Longest/most-specific first within this group.
+    # "ממרח פלפלים" / "סלט פלפלים" before bare "מטבוח" so specificity wins on ties.
+    # Exclusions prevent "חומוס עם מטבוחה" from being rerouted away from sauce_spread
+    # (it stays sauce_spread either way; family detection in score_engine handles legume/veg split).
+    ("ממרח פלפלים",    "sauce_spread",      "pepper_spread",  0.92),
+    ("סלט פלפלים",     "sauce_spread",      "pepper_spread",  0.90),
+    ("ממרח חציל",      "sauce_spread",      "eggplant_spread",0.92),
+    ("סלט חציל",       "sauce_spread",      "eggplant_spread",0.92),
+    ("מטבוח",          "sauce_spread",      "matbucha",       0.90),
     # ── Dairy desserts (מעדנים) ─────────────────────────────────────────────────
     ("מילקי",          "dessert",           "milky_style",    0.96),
     ("מעדן חלבון",     "dessert",           "protein_dessert",0.95),
@@ -118,6 +128,12 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "לחמי קריספ":     [],
     # Puffed crackers: "פריכיות" must not fire when it's a pure oat-drink brand context
     "פריכיות":        ["משקה", "שתייה"],
+    # Vegetable spread anchors — exclusions prevent firing on non-spread contexts
+    "ממרח פלפלים":    [],                             # specific enough; no exclusions needed
+    "סלט פלפלים":     [],
+    "ממרח חציל":      [],
+    "סלט חציל":       [],
+    "מטבוח":          [],                             # "חומוס עם מטבוחה" → still sauce_spread ✓
     # Dairy dessert anchors — prevent mis-fires
     "מעדן":           ["אבקת", "מיקס", "שייק"],     # "אבקת מעדן" = powder, not shelf dessert
     "עדנה":           ["גבינת", "שמנת", "חמאת"],    # "גבינת עדנה" = soft cheese brand

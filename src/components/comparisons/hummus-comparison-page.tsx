@@ -32,8 +32,8 @@ const hummusShelfFilters = {
 
 // Category-level insight lines. Product-specific lines pending content integration.
 const HUMMUS_INSIGHT_LINES = [
-  "63 מוצרים בדירוג — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
-  "2 מוצרים בציון A: הרכב חזק עם תוספים מוגבלים",
+  "59 מוצרים בדירוג — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
+  "מוצר אחד בציון A: הרכב חזק עם תוספים מוגבלים",
   "פער ציון של 37 נקודות בין הממרח המוביל לתחתית הרשימה",
   "ערכי שומן אינם מוצגים — מגבלת נתוני מקור, מפורטת בתחתית הדף",
 ] as const;
@@ -50,6 +50,12 @@ export function HummusComparisonPage({
   // Using category-level fallback until that integration is complete.
   const insightLines = HUMMUS_INSIGHT_LINES;
 
+  // TASK-087C: hero chips use display-level counts derived from the products
+  // actually rendered on the page — not the factory-audit corpus metadata.
+  const displayedCount = products.length;
+  const scoredCount = products.filter((product) => product.score != null).length;
+  const aGradeCount = products.filter((product) => product.grade === "A").length;
+
   const desktopHero = {
     badge: "השוואה חדשה",
     categoryTags: "חומוס וממרחים · שופרסל",
@@ -59,9 +65,9 @@ export function HummusComparisonPage({
       `דוח השוואה לחומוס וממרחים: ${products.length} מוצרים בדף.`,
     insightLines,
     stats: [
-      { value: hummusCorpusMeta.product_count, label: "מוצרים נבדקו" },
-      { value: hummusCorpusMeta.scored_count ?? products.length, label: "קיבלו ציון" },
-      { value: products.length, label: "בדף ההשוואה" },
+      { value: displayedCount, label: "מוצרים בהשוואה" },
+      { value: scoredCount, label: "קיבלו ציון" },
+      { value: aGradeCount, label: "בציון A" },
     ],
     updatedLabel: formatComparisonUpdatedLine(hummusCorpusMeta.generated),
   };

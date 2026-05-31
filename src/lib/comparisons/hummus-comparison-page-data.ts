@@ -34,6 +34,27 @@ const EXCLUDED_NOVA1_IDS = new Set([
   "bsip1_7296073705505", // חומוס מוקפא — גרגרים קפואים, NOVA-1
 ]);
 
+// TASK-087A category-boundary decision (implemented in TASK-087B): non-spread
+// chickpea products that do not belong on the prepared ready-to-eat hummus-spread
+// shelf. Two are canned/preserved whole chickpeas whose ingredient structure goes
+// beyond a basic spread ("מבנה רכיבים מעובד — מעבר לממרח בסיסי"); two carry
+// insufficient nutrition data and rendered an empty "score unavailable" state.
+// All four are removed entirely from the comparison experience (rankings,
+// comparison table, product count, grade tally and explanation layer).
+const EXCLUDED_NON_SPREAD_IDS = new Set([
+  "bsip1_7290018359686", // הקיסר חומוס ענק — חומוס שלם בשימור (לא ממרח)
+  "bsip1_208428",        // חומוס שלם יכין — חומוס שלם בשימור (לא ממרח)
+  "bsip1_7296073733317", // חומוס — נתוני תזונה חסרים, ציון לא זמין
+  "bsip1_7296073733348", // חומוס ענק — נתוני תזונה חסרים, ציון לא זמין
+]);
+
+// Combined exclusion set applied to the ranked display. Both groups are removed
+// for the same reason: they are not prepared ready-to-eat hummus spreads.
+const EXCLUDED_PRODUCT_IDS = new Set([
+  ...EXCLUDED_NOVA1_IDS,
+  ...EXCLUDED_NON_SPREAD_IDS,
+]);
+
 // TASK-086: generic grade-level fallback text was REMOVED. Per the BSIP2 → Web
 // Translation Contract, a scored product must never rely on per-grade boilerplate
 // such as "פרופיל הרכב טוב ביחס לקטגוריה". Each product now carries a
@@ -44,7 +65,7 @@ const EXCLUDED_NOVA1_IDS = new Set([
 
 function stripHummusInternalFields(products: HummusCorpusProduct[]): BariProductVM[] {
   return products
-    .filter((product) => !EXCLUDED_NOVA1_IDS.has(product.id))
+    .filter((product) => !EXCLUDED_PRODUCT_IDS.has(product.id))
     .map((product) => {
       const { _product_type, ...rest } = product;
       void _product_type;
@@ -70,7 +91,7 @@ export const hummusHero = {
 export const hummusPrologueSentences = [
   "בדקנו 69 מוצרי חומוס וממרחים הנמכרים בשופרסל — לפי הרכב המוצר, רשימת הרכיבים, סימוני האריזה ומבנה המוצר.",
   "הקטגוריה כוללת ממרחי חומוס, מטבוחה, ממרח חצילים, ממרח פלפלים ומסבחה.",
-  "61 מוצרים מקבלים ציון; שני מוצרים אינם מוצגים עם ציון בשל היעדר נתוני תזונה.",
+  "כל 59 המוצרים המוצגים מקבלים ציון.",
   "ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים.",
 ] as const;
 

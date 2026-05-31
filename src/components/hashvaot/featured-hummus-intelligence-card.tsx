@@ -17,14 +17,20 @@ type Props = {
 };
 
 const HUMMUS_CARD_INSIGHT_LINES = [
-  "63 מוצרים — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
-  "2 מוצרים בציון A: הרכב חזק עם תוספים מוגבלים",
+  "59 מוצרים — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
+  "מוצר אחד בציון A: הרכב חזק עם תוספים מוגבלים",
   "פער ציון של 37 נקודות בין הממרח המוביל לתחתית",
   "ערכי שומן אינם מוצגים — מגבלת נתוני מקור",
 ] as const;
 
 export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? hummusPrologueSentences[0];
+
+  // TASK-087C: display-level counts derived from the products actually shown on
+  // /hashvaot/hummus — keeps the card in step with the page, not corpus metadata.
+  const displayedCount = hummusProducts.length;
+  const scoredCount = hummusProducts.filter((product) => product.score != null).length;
+  const aGradeCount = hummusProducts.filter((product) => product.grade === "A").length;
 
   return (
     <Link
@@ -41,9 +47,9 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
         description={cardDescription}
         insightLines={HUMMUS_CARD_INSIGHT_LINES}
         stats={[
-          { value: hummusCorpusMeta.product_count, label: "מוצרים נבדקו" },
-          { value: hummusCorpusMeta.scored_count ?? hummusProducts.length, label: "קיבלו ציון" },
-          { value: hummusProducts.length, label: "בדף ההשוואה" },
+          { value: displayedCount, label: "מוצרים בהשוואה" },
+          { value: scoredCount, label: "קיבלו ציון" },
+          { value: aGradeCount, label: "בציון A" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(hummusCorpusMeta.generated)}
         asLinkChild

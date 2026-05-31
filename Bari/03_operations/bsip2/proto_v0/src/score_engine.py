@@ -25,7 +25,101 @@ from constants import (
     ABSOLUTE_SCORE_FLOOR, GRADE_E_FLOOR_STANDARD,
     CAT_CONF_HIGH, CAT_CONF_MEDIUM, CAT_MEDIUM_THRESHOLD_RELAX,
     score_to_grade,
+    VEG_SPREAD_WEIGHTS, SAUCE_SPREAD_VEG_PROTEIN_GUARD,
 )
+
+# ---------------------------------------------------------------------------
+# sauce_spread subtype detection (EXCEPTION-002)
+# Operates on Hebrew product name only. Legume signals take unconditional
+# priority; a vegetable signal requires a second condition (protein guard).
+# No consumer-visible output — internal routing only.
+# ---------------------------------------------------------------------------
+
+_LEGUME_NAME_SIGNALS = ["חומוס", "מסבח", "מסבחה", "פולים", "עדשים", "פלאפל"]
+_VEG_NAME_SIGNALS    = ["מטבוח", "חציל", "פלפל", "עגבני", "ירק"]
+
+
+def _detect_sauce_spread_family(name_he: str, protein_g) -> dict:
+    """
+    Resolve spread_family for a sauce_spread product.
+    Returns a trace dict; never raises.
+
+    Rules (TASK-094):
+      1. Any legume name signal → family=legume unconditionally.
+      2. Vegetable name signal present + no legume signal → candidate.
+         Guard: protein_g must be < SAUCE_SPREAD_VEG_PROTEIN_GUARD (4.0 g).
+         If protein absent or >= guard → fallback to legume + optional trace flag.
+      3. No signal → legume (safe default; current vector).
+    tahini_rich is not an active calibration subtype (pending_tahini_corpus).
+    """
+    name = (name_he or "").lower()
+
+    for sig in _LEGUME_NAME_SIGNALS:
+        if sig in name:
+            return {
+                "family":              "legume",
+                "weights_applied":     "current",
+                "name_signal":         sig,
+                "protein_guard_check": "not_required",
+                "fallback_reason":     None,
+                "trace_flag":          None,
+            }
+
+    veg_hits = [sig for sig in _VEG_NAME_SIGNALS if sig in name]
+    if not veg_hits:
+        return {
+            "family":              "legume",
+            "weights_applied":     "current",
+            "name_signal":         None,
+            "protein_guard_check": "not_applicable",
+            "fallback_reason":     "no_vegetable_name_signal",
+            "trace_flag":          None,
+        }
+
+    # Vegetable name signal detected — apply protein guard.
+    if protein_g is None:
+        return {
+            "family":              "legume",
+            "weights_applied":     "current",
+            "name_signal":         veg_hits[0],
+            "protein_guard_check": "failed_data_absent",
+            "fallback_reason":     "protein_data_absent",
+            "trace_flag":          "SPREAD_SUBTYPE_GUARD_PROTEIN_ABSENT",
+        }
+
+    if protein_g >= SAUCE_SPREAD_VEG_PROTEIN_GUARD:
+        return {
+            "family":              "legume",
+            "weights_applied":     "current",
+            "name_signal":         veg_hits[0],
+            "protein_guard_check": f"failed: {protein_g}g >= {SAUCE_SPREAD_VEG_PROTEIN_GUARD}g",
+            "fallback_reason":     "protein_guard_not_passed",
+            "trace_flag":          None,
+        }
+
+    return {
+        "family":              "vegetable",
+        "weights_applied":     "veg_spread_v1",
+        "name_signal":         "|".join(veg_hits),
+        "protein_guard_check": f"passed: {protein_g}g < {SAUCE_SPREAD_VEG_PROTEIN_GUARD}g",
+        "fallback_reason":     None,
+        "trace_flag":          None,
+    }
+
+
+def _resolve_spread_weights(category: str, product: dict, nn: dict) -> tuple[dict, dict | None]:
+    """
+    Return (active_weights, spread_family_result).
+    For non-sauce_spread, returns (DIMENSION_WEIGHTS, None).
+    """
+    if category != "sauce_spread":
+        return DIMENSION_WEIGHTS, None
+    name_he  = product.get("canonical_name_he")
+    protein  = nn.get("protein_g")
+    result   = _detect_sauce_spread_family(name_he, protein)
+    weights  = VEG_SPREAD_WEIGHTS if result["family"] == "vegetable" else DIMENSION_WEIGHTS
+    result["weights_applied"] = "veg_spread_v1" if weights is VEG_SPREAD_WEIGHTS else "current"
+    return weights, result
 
 
 # ---------------------------------------------------------------------------
@@ -730,9 +824,12 @@ def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
 # ---------------------------------------------------------------------------
 
 def score_product(product: dict, signals: dict, cat_result: dict,
-                  nova_result: dict, eval_result: dict) -> dict:
+                  nova_result: dict, eval_result: dict,
+                  _force_weights: dict | None = None) -> dict:
     """
     Full scoring pipeline. Returns complete score trace.
+    _force_weights: testing/regression only — bypasses subtype weight selection and
+    forces this dict as the active weights. Do not pass in production callers.
     """
     pid = product.get("canonical_product_id", "unknown")
     nn  = product.get("normalized_nutrition_per_100g") or {}
@@ -749,6 +846,14 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     nova_level   = nova_result["nova_level"]
     nova_conf    = nova_result["nova_confidence"]
     red_label_ct = l3.get("red_label_count", 0)
+
+    # EXCEPTION-002: resolve subtype-aware weights for sauce_spread.
+    # Non-sauce_spread categories always return DIMENSION_WEIGHTS unchanged.
+    _active_weights, spread_family_result = _resolve_spread_weights(category, product, nn)
+    if _force_weights is not None:
+        _active_weights = _force_weights
+        if spread_family_result:
+            spread_family_result = {**spread_family_result, "weights_applied": "forced_baseline"}
 
     # Stage 0 gate: out_of_scope
     if eval_result.get("evaluation_status") == "out_of_scope":
@@ -799,7 +904,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "regulatory_quality": rq_note, "whole_food_integrity": wfi_note,
     }
 
-    weighted_sum = sum(dim_scores[k] * DIMENSION_WEIGHTS[k] for k in dim_scores)
+    weighted_sum = sum(dim_scores[k] * _active_weights[k] for k in dim_scores)
     weighted_dim_score = round(weighted_sum, 2)
 
     # Stage 4: Guardrail evaluation
@@ -869,7 +974,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
 
     # Unresolved flags
     flags = _collect_flags(product, signals, cat_result, nova_result, gr, floor_result,
-                            se_result, eval_result)
+                            se_result, eval_result, spread_family_result)
 
     return {
         "product_id": pid,
@@ -880,7 +985,8 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "confidence_result": conf_result,
         "dimension_scores": dim_scores,
         "dimension_notes": dim_notes,
-        "dimension_weights": DIMENSION_WEIGHTS,
+        "dimension_weights": _active_weights,
+        "spread_family_result": spread_family_result,
         "weighted_dimension_score": weighted_dim_score,
         "caps_considered": gr.get("caps_considered", []),
         "caps_applied":    gr.get("caps_applied", []),
@@ -926,10 +1032,18 @@ def _identify_drivers(gr, floor_result, conf_result, dim_scores, binding_cap, ce
     return drivers[:4]
 
 
-def _collect_flags(product, signals, cat_result, nova_result, gr, floor_result, se_result, eval_result):
+def _collect_flags(product, signals, cat_result, nova_result, gr, floor_result,
+                   se_result, eval_result, spread_family_result=None):
     flags = []
     l1 = signals["L1_observed_signals"]
     l4 = signals["L4_interpreted_concerns"]
+
+    # EXCEPTION-002: emit guard flag only when a veg signal was detected but the
+    # guard prevented the vector from firing — useful signal for data operators.
+    if spread_family_result and spread_family_result.get("trace_flag"):
+        flags.append(f"SPREAD_SUBTYPE: {spread_family_result['trace_flag']} "
+                     f"(name_signal={spread_family_result.get('name_signal')}, "
+                     f"fallback={spread_family_result.get('fallback_reason')})")
 
     # Data quality flags
     for f in l4.get("pre_evaluation_flags", []):

@@ -221,6 +221,38 @@ def score_to_grade(score):
             return grade
     return "E"
 
+# ---------------------------------------------------------------------------
+# sauce_spread subtype calibration (EXCEPTION-002)
+# Applies only inside sauce_spread; all other categories are unaffected.
+# ---------------------------------------------------------------------------
+
+# Vegetable-family weight vector — approved via TASK-094 / TASK-095.
+# Freed weight (protein_quality −0.07, satiety_support −0.03) redistributed to
+# glycemic_quality, additive_quality, regulatory_quality.
+# nutrient_density and calorie_density are intentionally held at 0.15 (same as
+# legume vector) per TASK-091: do not cut the fiber-bearing dimension; do not
+# reward caloric dilution.
+VEG_SPREAD_WEIGHTS = {
+    "processing_quality":   0.15,
+    "nutrient_density":     0.15,
+    "calorie_density":      0.15,
+    "glycemic_quality":     0.16,
+    "protein_quality":      0.03,
+    "additive_quality":     0.14,
+    "satiety_support":      0.03,
+    "fat_quality":          0.08,
+    "regulatory_quality":   0.07,
+    "whole_food_integrity": 0.04,
+}
+# Guard: vegetable vector requires protein_g strictly below this threshold.
+# Legume spreads carry 6–9 g; vegetable spreads carry 0.5–2 g.
+# A misclassified hummus (7–8 g protein) cannot pass this guard.
+SAUCE_SPREAD_VEG_PROTEIN_GUARD = 4.0   # g/100g
+
+# tahini_rich is not an active calibration subtype.
+# Dense tahini products may need whole_food_fat routing review (separate task).
+TAHINI_RICH_SUBTYPE_STATUS = "pending_tahini_corpus"
+
 def lookup_calorie_density(kcal, category):
     table = CALORIE_DENSITY_TABLES.get(category, CALORIE_DENSITY_TABLES["default"])
     for ceiling, score in table:

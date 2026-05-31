@@ -86,6 +86,72 @@ Maximum 2 sentences. No additional explanation.
 
 ---
 
+### EXCEPTION-002 — sauce_spread Subtype-Aware Dimension Weights
+
+**Status:** Approved
+**Category:** ממרחים (Spreads — `sauce_spread`)
+**Date approved:** 2026-05-31
+**Tasks:** TASK-089 (assessment) → TASK-089A (quantified proposal) → TASK-091 (nutrition review: MODIFY) → TASK-094 (revised methodology) → TASK-095 (implementation)
+**Rule violated:** Uniform `DIMENSION_WEIGHTS` applied to all products regardless of food type (`constants.py`)
+
+---
+
+**What it is:**
+
+A second dimension-weight vector (`VEG_SPREAD_WEIGHTS`, defined in `constants.py`) applied to vegetable-family spreads (matbucha, roasted-pepper, eggplant) within the `sauce_spread` category. The legume-family (hummus, masabacha) keeps `DIMENSION_WEIGHTS` unchanged.
+
+The active vector is selected by `_resolve_spread_weights()` in `score_engine.py`. It fires only when **both** conditions hold:
+
+1. The product name contains a vegetable-family name signal (`מטבוח`, `חציל`, `פלפל`, `עגבני`, `ירק`) and no legume signal (`חומוס`, `מסבח`, etc.).
+2. `protein_g < 4.0 g/100g` (nutrition-anchored guard per TASK-091 requirement).
+
+No cap, penalty, floor, or ceiling logic is altered.
+
+**Weight changes (vegetable vector vs. current):**
+
+| Dimension | Current | Vegetable | Δ |
+|-----------|:-------:|:---------:|:--:|
+| protein_quality | 0.10 | 0.03 | −0.07 |
+| satiety_support | 0.06 | 0.03 | −0.03 |
+| glycemic_quality | 0.12 | 0.16 | +0.04 |
+| additive_quality | 0.10 | 0.14 | +0.04 |
+| regulatory_quality | 0.05 | 0.07 | +0.02 |
+| nutrient_density | 0.15 | 0.15 | 0 |
+| calorie_density | 0.15 | 0.15 | 0 |
+| (all others) | — | — | 0 |
+
+`nutrient_density` and `calorie_density` are intentionally held at 0.15 each: the fiber signal must not be cut (TASK-091), and calorie density must not reward dilution (TASK-091).
+
+---
+
+**Why it is allowed:**
+
+Legume spreads (hummus, masabacha) carry 6–9 g protein per 100 g. Vegetable condiments (matbucha, roasted pepper, eggplant) carry 0.5–2 g. The single-vector model penalises vegetable spreads for absence of protein they are nutritionally not expected to provide — this was established as a calibration error, not a nutritional fact, by TASK-089 assessment and TASK-089A quantified impact analysis. The modification was reviewed by the Nutrition Agent (TASK-091) with required changes applied (TASK-094) before implementation.
+
+Quantified validation: legume corpus (n=46) — **0 items move**; vegetable corpus (n=23) — avg +9.5 pts, 8 items correctly held at D by sodium/additive guardrails.
+
+---
+
+**Why it does not violate the ontology-leakage policy:**
+
+The subtype detection and weight resolution run entirely inside `score_engine.py`. No internal weight constant, family label, routing decision, or methodology term is surfaced in consumer language. The consumer sees only the final score and grade, both of which are already surfaced under the existing model.
+
+---
+
+**Constraints preventing multiplication:**
+
+1. **Scoped strictly to `sauce_spread`.** No other category may introduce a second weight vector by citing this exception. A second exception entry with explicit authority is required for any other category.
+
+2. **Legume/masabacha and tahini-rich families keep `DIMENSION_WEIGHTS` bit-for-bit.** The regression gate in `run_spread_subtype_regression.py` must pass (0 legume movement) before any change to either vector is shipped.
+
+3. **Both conditions required.** Vegetable name signal alone is insufficient. Protein guard alone is insufficient. Changing either threshold (name signals list or 4.0 g cutoff) requires a new TASK and re-registration here.
+
+4. **`tahini_rich` is not an active calibration subtype.** Its status is `pending_tahini_corpus` (`constants.TAHINI_RICH_SUBTYPE_STATUS`). Any future tahini vector requires a new exception entry — it cannot inherit this approval.
+
+5. **Regression gate is mandatory.** `run_spread_subtype_regression.py` must be re-run and must show 0.0 legume score movement for any subsequent change to weight vectors, name-signal lists, or protein guard threshold.
+
+---
+
 ## Rejected Exception Requests
 
 *None yet. This section will log exception requests that were reviewed and denied, with rationale, so future contributors understand the boundaries.*
