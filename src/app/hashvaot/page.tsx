@@ -6,6 +6,7 @@ import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/feature
 import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-hummus-intelligence-card";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
+import { FeaturedVegetableSpreadsIntelligenceCard } from "@/components/hashvaot/featured-vegetable-spreads-intelligence-card";
 import { FeaturedYogurtsIntelligenceCard } from "@/components/hashvaot/featured-yogurts-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
@@ -14,6 +15,7 @@ import { breadProducts } from "@/lib/comparisons/bread-page-data";
 import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
+import { vegetableSpreadsProducts, vegetableSpreadsPrologueSentences } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
 import { yogurtsPrologueSentences } from "@/lib/comparisons/yogurts-comparison-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
 };
 
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
+const VEGETABLE_SPREADS_COMPARISON_HREF = "/hashvaot/vegetable-spreads";
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
 const YOGURTS_COMPARISON_HREF = "/hashvaot/yogurts";
 
@@ -35,6 +38,7 @@ export default function HashvaotIndexPage() {
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
   const snacksDescription = `דוח השוואה לחטיפי המדף: ${SNACK_REPORT_STATS.scraped} נסרקו ב${SNACK_REPORT_STATS.retailer}, ${snacksProducts.length} מוצרים בדף ההשוואה.`;
   const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
+  const vegetableSpreadsDescription = `${vegetableSpreadsPrologueSentences[0]} ${vegetableSpreadsProducts.length} מוצרים בדף ההשוואה.`;
   const yogurtsDescription = yogurtsPrologueSentences.join(" ");
 
   return (
@@ -88,6 +92,10 @@ export default function HashvaotIndexPage() {
           <FeaturedHummusIntelligenceCard
             href={HUMMUS_COMPARISON_HREF}
             description={hummusDescription}
+          />
+          <FeaturedVegetableSpreadsIntelligenceCard
+            href={VEGETABLE_SPREADS_COMPARISON_HREF}
+            description={vegetableSpreadsDescription}
           />
         </div>
 

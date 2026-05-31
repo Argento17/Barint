@@ -16,8 +16,9 @@ type Props = {
   description?: string;
 };
 
+// TASK-100: updated to reflect hummus/legume-only page (vegetable spreads moved to separate page).
 const HUMMUS_CARD_INSIGHT_LINES = [
-  "59 מוצרים — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
+  "ממרחי חומוס ומסבחה בלבד — ממרחי ירקות עברו לדף נפרד",
   "מוצר אחד בציון A: הרכב חזק עם תוספים מוגבלים",
   "פער ציון של 37 נקודות בין הממרח המוביל לתחתית",
   "ערכי שומן אינם מוצגים — מגבלת נתוני מקור",
@@ -42,8 +43,8 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
     >
       <ComparisonIntelligenceHero
         badge="חדש"
-        categoryTags="חומוס וממרחים · שופרסל"
-        title="חומוס וממרחים: מה באמת יש במדף?"
+        categoryTags="חומוס · שופרסל"
+        title="חומוס: מה באמת יש במדף?"
         description={cardDescription}
         insightLines={HUMMUS_CARD_INSIGHT_LINES}
         stats={[

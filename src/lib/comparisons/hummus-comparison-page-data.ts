@@ -55,6 +55,15 @@ const EXCLUDED_PRODUCT_IDS = new Set([
   ...EXCLUDED_NON_SPREAD_IDS,
 ]);
 
+// TASK-100: vegetable-spread product types are displayed on their own page
+// (/hashvaot/vegetable-spreads). They are excluded here so the hummus page
+// shows only hummus/legume-spread products (hummus_spread, masabacha).
+const VEGETABLE_SPREAD_TYPES = new Set([
+  "matbucha",
+  "eggplant_spread",
+  "pepper_spread",
+]);
+
 // TASK-086: generic grade-level fallback text was REMOVED. Per the BSIP2 → Web
 // Translation Contract, a scored product must never rely on per-grade boilerplate
 // such as "פרופיל הרכב טוב ביחס לקטגוריה". Each product now carries a
@@ -66,6 +75,7 @@ const EXCLUDED_PRODUCT_IDS = new Set([
 function stripHummusInternalFields(products: HummusCorpusProduct[]): BariProductVM[] {
   return products
     .filter((product) => !EXCLUDED_PRODUCT_IDS.has(product.id))
+    .filter((product) => !VEGETABLE_SPREAD_TYPES.has(product._product_type ?? ""))
     .map((product) => {
       const { _product_type, ...rest } = product;
       void _product_type;
@@ -84,28 +94,28 @@ export { hummusCorpusMeta, hummusProducts };
 export const hummusMetadataLine = `${hummusProducts.length} מוצרים בדירוג · שופרסל, מאי 2026 · ממוין לפי ציון Bari`;
 
 export const hummusHero = {
-  eyebrow: "מנוע השוואה · חומוס וממרחים",
-  title: "חומוס וממרחים: מה באמת יש במדף?",
+  eyebrow: "מנוע השוואה · חומוס",
+  title: "חומוס: מה באמת יש במדף?",
 } as const;
 
 export const hummusPrologueSentences = [
-  "בדקנו 69 מוצרי חומוס וממרחים הנמכרים בשופרסל — לפי הרכב המוצר, רשימת הרכיבים, סימוני האריזה ומבנה המוצר.",
-  "הקטגוריה כוללת ממרחי חומוס, מטבוחה, ממרח חצילים, ממרח פלפלים ומסבחה.",
-  "כל 59 המוצרים המוצגים מקבלים ציון.",
+  "בדקנו ממרחי חומוס ומסבחה הנמכרים בשופרסל — לפי הרכב המוצר, רשימת הרכיבים, סימוני האריזה ומבנה המוצר.",
+  "הקטגוריה כוללת ממרחי חומוס ומסבחה בלבד. ממרחי ירקות (מטבוחה, חצילים, פלפלים) מוצגים בדף נפרד.",
+  `כל ${hummusProducts.length} המוצרים המוצגים מקבלים ציון.`,
   "ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים.",
 ] as const;
 
 export const hummusMethodologyLines = [
   "הציון מחושב לפי מדדים מרובים: רמת עיבוד המוצר, נטל תוספי המזון, הרכב הערכים התזונתיים ומדדים נוספים הנוגעים למבנה המוצר.",
-  "הציון הסופי הוא ממוצע משוקלל על סולם של 0 עד 100. ההשוואה היא קטגורית בלבד — כל מוצר מוערך ביחס לממרחים ותוספות בלבד.",
+  "הציון הסופי הוא ממוצע משוקלל על סולם של 0 עד 100. ההשוואה היא קטגורית בלבד — כל מוצר מוערך ביחס לממרחי חומוס ומסבחה בלבד.",
   "ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים.",
   "הדירוג נועד לעזור בהשוואה בין מוצרים ואינו מהווה המלצה תזונתית אישית.",
 ] as const;
 
 export const hummusComparisonMetadata: Metadata = {
-  title: "השוואת חומוס וממרחים | Bari",
+  title: "השוואת חומוס | Bari",
   description:
-    "בדקנו 69 מוצרי חומוס וממרחים בשופרסל לפי הרכב המוצר, רשימת הרכיבים ומבנה המוצר.",
+    "בדקנו ממרחי חומוס ומסבחה בשופרסל לפי הרכב המוצר, רשימת הרכיבים ומבנה המוצר.",
 };
 
 function isHummusShelfFilterId(filter: string): filter is HummusShelfFilterId {

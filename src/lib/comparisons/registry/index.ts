@@ -2,6 +2,7 @@ import { breadCategoryDefinition } from "./categories/bread";
 import { hummusCategoryDefinition } from "./categories/hummus";
 import { maadanimCategoryDefinition } from "./categories/maadanim";
 import { snacksCategoryDefinition } from "./categories/snacks";
+import { vegetableSpreadsCategoryDefinition } from "./categories/vegetable-spreads";
 import { yogurtsCategoryDefinition } from "./categories/yogurts";
 import type {
   ComparisonCategoryDefinition,
@@ -15,6 +16,7 @@ const comparisonCategoryRegistry = {
   snacks: snacksCategoryDefinition,
   yogurts: yogurtsCategoryDefinition,
   hummus: hummusCategoryDefinition,
+  "vegetable-spreads": vegetableSpreadsCategoryDefinition,
 } as const satisfies Record<ComparisonCategoryId, ComparisonCategoryDefinition>;
 
 export type { ComparisonCategoryDefinition, ComparisonCategoryId, ComparisonCategoryPageData };

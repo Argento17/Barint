@@ -31,8 +31,9 @@ const hummusShelfFilters = {
 } as const;
 
 // Category-level insight lines. Product-specific lines pending content integration.
+// TASK-100: updated counts and description to reflect hummus/legume-only page.
 const HUMMUS_INSIGHT_LINES = [
-  "59 מוצרים בדירוג — ממרחי חומוס, מטבוחה, חצילים, פלפלים ומסבחה",
+  "ממרחי חומוס ומסבחה בלבד — ממרחי ירקות עברו לדף נפרד",
   "מוצר אחד בציון A: הרכב חזק עם תוספים מוגבלים",
   "פער ציון של 37 נקודות בין הממרח המוביל לתחתית הרשימה",
   "ערכי שומן אינם מוצגים — מגבלת נתוני מקור, מפורטת בתחתית הדף",
@@ -58,7 +59,7 @@ export function HummusComparisonPage({
 
   const desktopHero = {
     badge: "השוואה חדשה",
-    categoryTags: "חומוס וממרחים · שופרסל",
+    categoryTags: "חומוס · שופרסל",
     title: hero.title,
     description:
       prologueSentences[0] ??
