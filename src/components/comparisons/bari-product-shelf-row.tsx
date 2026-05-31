@@ -20,6 +20,8 @@ const GRADE_LABELS: Record<BariGrade, string> = {
 
 const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
 const LABEL_LIMITING = "מה מגביל את הציון?";
+const LABEL_UNKNOWNS = "מה שלא ניתן לאמת";
+const LABEL_CAVEATS = "הערות";
 const LABEL_BOTTOM = "בשורה התחתונה";
 const LABEL_COMPARISON = "הקשר במדף";
 
@@ -36,6 +38,8 @@ export function BariProductShelfRow({
   const { expansion } = product;
   const hasPositive = (expansion.positiveSignals?.length ?? 0) > 0;
   const hasLimiting = (expansion.limitingFactors?.length ?? 0) > 0;
+  const hasUnknowns = (expansion.unknowns?.length ?? 0) > 0;
+  const hasCaveats = (expansion.caveats?.length ?? 0) > 0;
   const hasTechnical =
     Boolean(expansion.ingredients?.trim()) ||
     (expansion.nutrition != null &&
@@ -115,6 +119,28 @@ export function BariProductShelfRow({
                 <h4 className="text-xs font-bold text-[#111318]">{LABEL_LIMITING}</h4>
                 <ul className="mt-1.5 list-inside list-disc space-y-1.5 text-sm leading-relaxed text-[#4E5663]">
                   {expansion.limitingFactors!.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {hasUnknowns ? (
+              <div>
+                <h4 className="text-xs font-bold text-[#111318]">{LABEL_UNKNOWNS}</h4>
+                <ul className="mt-1.5 list-inside list-disc space-y-1.5 text-sm leading-relaxed text-[#7A817C]">
+                  {expansion.unknowns!.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {hasCaveats ? (
+              <div>
+                <h4 className="text-xs font-bold text-[#111318]">{LABEL_CAVEATS}</h4>
+                <ul className="mt-1.5 list-inside list-disc space-y-1.5 text-sm leading-relaxed text-[#7A817C]">
+                  {expansion.caveats!.map((line) => (
                     <li key={line}>{line}</li>
                   ))}
                 </ul>

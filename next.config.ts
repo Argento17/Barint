@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
         pathname: "/shufersal/**",
       },
+      {
+        protocol: "https",
+        hostname: "media.shufersal.co.il",
+      },
     ],
   },
 };

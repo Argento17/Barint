@@ -22,6 +22,8 @@ const CONFIDENCE_LABELS: Record<BariConfidence, string> = {
 
 const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
 const LABEL_LIMITING = "מה מגביל את הציון?";
+const LABEL_UNKNOWNS = "מה שלא ניתן לאמת";
+const LABEL_CAVEATS = "הערות";
 const LABEL_BOTTOM = "בשורה התחתונה";
 const LABEL_COMPARISON = "הקשר במדף";
 
@@ -55,7 +57,24 @@ function hasInterpretiveContent(expansion: BariExpansionVM): boolean {
     expansion.bottomLine?.trim() ||
       expansion.comparisonContext?.trim() ||
       (expansion.positiveSignals?.length ?? 0) > 0 ||
-      (expansion.limitingFactors?.length ?? 0) > 0
+      (expansion.limitingFactors?.length ?? 0) > 0 ||
+      (expansion.unknowns?.length ?? 0) > 0 ||
+      (expansion.caveats?.length ?? 0) > 0
+  );
+}
+
+function NoteList({ lines }: { lines: string[] }) {
+  return (
+    <ul className="mt-1.5 space-y-1">
+      {lines.map((line) => (
+        <li key={line} className="flex gap-1.5 text-[12px] leading-relaxed text-[#7A817C]">
+          <span className="shrink-0 text-[#C5CAC6]" aria-hidden>
+            ·
+          </span>
+          <span>{line}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -90,11 +109,13 @@ function InterpretiveExpansion({
 }) {
   if (!hasInterpretiveContent(expansion)) return null;
 
-  const { bottomLine, positiveSignals, limitingFactors, comparisonContext } =
+  const { bottomLine, positiveSignals, limitingFactors, unknowns, caveats, comparisonContext } =
     expansion;
 
   const hasPositive = (positiveSignals?.length ?? 0) > 0;
   const hasLimiting = (limitingFactors?.length ?? 0) > 0;
+  const hasUnknowns = (unknowns?.length ?? 0) > 0;
+  const hasCaveats = (caveats?.length ?? 0) > 0;
 
   if (wide) {
     return (
@@ -119,10 +140,25 @@ function InterpretiveExpansion({
           </div>
         ) : null}
 
+        {hasUnknowns ? (
+          <InterpretiveSection label={LABEL_UNKNOWNS} spaced={hasPositive || hasLimiting}>
+            <NoteList lines={unknowns!} />
+          </InterpretiveSection>
+        ) : null}
+
+        {hasCaveats ? (
+          <InterpretiveSection
+            label={LABEL_CAVEATS}
+            spaced={hasPositive || hasLimiting || hasUnknowns}
+          >
+            <NoteList lines={caveats!} />
+          </InterpretiveSection>
+        ) : null}
+
         {bottomLine?.trim() ? (
           <InterpretiveSection
             label={LABEL_BOTTOM}
-            spaced={hasPositive || hasLimiting}
+            spaced={hasPositive || hasLimiting || hasUnknowns || hasCaveats}
           >
             <p className="mt-1.5 text-[13px] leading-[1.55] text-[#2F3531]">{bottomLine}</p>
           </InterpretiveSection>
@@ -152,6 +188,20 @@ function InterpretiveExpansion({
     sections.push({
       label: LABEL_LIMITING,
       body: <SignalList lines={limitingFactors!} tone="limiting" />,
+    });
+  }
+
+  if (hasUnknowns) {
+    sections.push({
+      label: LABEL_UNKNOWNS,
+      body: <NoteList lines={unknowns!} />,
+    });
+  }
+
+  if (hasCaveats) {
+    sections.push({
+      label: LABEL_CAVEATS,
+      body: <NoteList lines={caveats!} />,
     });
   }
 

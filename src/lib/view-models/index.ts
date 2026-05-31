@@ -35,6 +35,10 @@ export interface BariExpansionVM {
   positiveSignals?: string[];
   /** מה שהגביל — 0–2 compositional limits (no cap/score language). */
   limitingFactors?: string[];
+  /** מה שלא ניתן לאמת — data gaps Bari could not verify (e.g. suppressed fat). */
+  unknowns?: string[];
+  /** הערות — product-level caveats (partial-data, confidence, routing). */
+  caveats?: string[];
   /** Editorial synthesis — בשורה התחתונה. */
   bottomLine?: string;
   /** Shelf-relative context without algorithm vocabulary. */
