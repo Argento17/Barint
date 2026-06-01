@@ -1,0 +1,191 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_bread_light_9990001000023",
+  "barcode": "9990001000023",
+  "canonical_name_he": "לחם \"קטו\" דל פחמימות",
+  "canonical_name_en": null,
+  "brand": "קטו בייק",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "synthetic_bread_light_001"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 330,
+    "fat_g": 27,
+    "fat_saturated_g": 10,
+    "fat_trans_g": 0.0,
+    "sodium_mg": 380,
+    "carbohydrates_g": 12,
+    "sugars_g": 0.5,
+    "dietary_fiber_g": 9,
+    "protein_g": 11,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "קמח שקדים (40%), psyllium husk (15%), ביצים, שמן קוקוס, אינולין (8%), אבקת אפייה, מלח, אריתריטול (5%), ממתיק: E-955",
+  "ingredients_list": [
+    "קמח שקדים (40%)",
+    "psyllium husk (15%)",
+    "ביצים",
+    "שמן קוקוס",
+    "אינולין (8%)",
+    "אבקת אפייה",
+    "מלח",
+    "אריתריטול (5%)",
+    "ממתיק: E-955"
+  ],
+  "ingredients_raw": "קמח שקדים (40%), psyllium husk (15%), ביצים, שמן קוקוס, אינולין (8%), אבקת אפייה, מלח, אריתריטול (5%), ממתיק: E-955",
+  "ingredients_raw_provenance": {
+    "source": "synthetic_corpus",
+    "bsip0_status": "synthetic",
+    "populated_at": "bread_light_corpus_v1",
+    "missing": false,
+    "note": "Synthetic product designed for ontology stress testing"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח שקדים (40%)",
+      "percentage_declared": 40.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "psyllium husk (15%)",
+      "percentage_declared": 15.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "ביצים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "שמן קוקוס",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "אינולין (8%)",
+      "percentage_declared": 8.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "אבקת אפייה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "אריתריטול (5%)",
+      "percentage_declared": 5.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "ממתיק: E-955",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "allergens_contains": [
+    "אגוזי עץ",
+    "ביצים"
+  ],
+  "allergens_may_contain": [],
+  "claims": [
+    "3 גרם פחמימות נטו",
+    "ידידותי לקטו",
+    "ללא גלוטן",
+    "ללא דגנים"
+  ],
+  "front_of_pack_claims": [
+    "3 גרם פחמימות נטו",
+    "ידידותי לקטו",
+    "ללא גלוטן",
+    "ללא דגנים"
+  ],
+  "confidence": {
+    "identity_confidence": "synthetic",
+    "barcode_confidence": "synthetic",
+    "nutrition_confidence": "synthetic_per_100g",
+    "matched_by": "synthetic_corpus",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "synthetic",
+  "barcode_confidence_reason": "Synthetic product for bread-light stress test corpus v1",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "synthetic_product"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "synthetic_bsip1_bread_light_9990001000023_audit.json",
+  "bsip_bread_subtype": "keto_bread",
+  "bsip_stress_group": "E",
+  "bsip_design_note": "KETO BREAD SYSTEM — no cereal grains. Nut flour base (almond) + psyllium husk fiber + inulin + erythritol + sucralose. Structurally mimics bread without grain matrix. Fiber is 100% extracted. Sweetener present. Tests structural class interpretation when the product lacks cereal backbone entirely.",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "extracted_fermentation_markers": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [
+    "אינולין",
+    "psyllium",
+    "psyllium husk"
+  ],
+  "extracted_sweeteners": [
+    "אריתריטול",
+    "ממתיק"
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 9,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 2,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 3,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": true,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  }
+}

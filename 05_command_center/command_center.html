@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  BARI COMMAND CENTER — TASK BOARD  (TASK-125 redesign)
+  ════════════════════════════════════════════════════════════════
+  One page, one question: "what can I action right now?"
+  Work is OBJECTIVES (TASK-125) with SUB-TASKS (TASK-125A/B).
+    • Objective  = the goal. Only CLOSE (cascades — closes its open sub-tasks).
+    • Sub-task   = the work. Full lifecycle buttons.
+  Closed items disappear from the board. No blockers/launch/audit sections.
+
+  RUN (required for the action buttons — adds POST /api/action):
+    cd C:\Bari\05_command_center
+    python serve.py
+    open http://localhost:8080/command_center.html
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bari Command Center · Tasks</title>
+  <style>
+    :root{
+      --bg:#05070e; --surface:rgba(12,22,40,.66); --surface-2:rgba(20,34,58,.82);
+      --border:rgba(56,189,248,.24); --border-sub:rgba(56,189,248,.10);
+      --text:#dcefff; --text-muted:#84aecb; --text-dim:#52708c;
+      --green:#34f5c5; --green-bg:rgba(52,245,197,.12);
+      --red:#ff5d6c; --red-bg:rgba(255,93,108,.13);
+      --amber:#ffd166; --amber-bg:rgba(255,209,102,.13);
+      --blue:#38bdf8; --blue-bg:rgba(56,189,248,.14);
+      --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,.15);
+      --orange:#fb923c; --orange-bg:rgba(251,146,60,.15);
+      --gray:#84aecb; --gray-bg:rgba(132,174,203,.10);
+      --glow:0 0 18px rgba(34,211,238,.22);
+      --mono:ui-monospace,'Cascadia Code','SF Mono',Consolas,monospace;
+      --sans:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --r:10px; --r-sm:5px;
+    }
+    @keyframes hudpulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:
+        radial-gradient(1200px 620px at 78% -12%, rgba(34,211,238,.10), transparent 60%),
+        linear-gradient(0deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/100% 36px,
+        linear-gradient(90deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/36px 100%,
+        var(--bg);
+      color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.55;min-height:100vh;
+      -webkit-font-smoothing:antialiased;}
+    .hdr{position:sticky;top:0;z-index:100;
+      background:linear-gradient(180deg, rgba(8,15,28,.94), rgba(8,15,28,.66));
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(34,211,238,.18),0 10px 34px rgba(0,0,0,.55);
+      padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .hdr-brand{display:flex;align-items:center;gap:10px;}
+    .hdr-title{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+      color:#eafaff;text-shadow:0 0 12px rgba(34,211,238,.55);}
+    .hdr-badge{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:var(--surface-2);
+      padding:2px 7px;border-radius:var(--r-sm);border:1px solid var(--border);}
+    .hdr-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    .hdr-health{display:flex;align-items:center;gap:7px;font-size:12px;}
+    .hdr-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);}
+    .hdr-link{font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--border);
+      padding:4px 10px;border-radius:var(--r-sm);background:var(--surface);white-space:nowrap;}
+    .hdr-link:hover{border-color:var(--blue);}
+    .reg{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);}
+    .reg.clean{color:var(--green);border-color:rgba(52,245,197,.4);}
+    .reg.warn{color:var(--amber);border-color:rgba(255,209,102,.45);}
+    .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;animation:hudpulse 2.4s ease-in-out infinite;}
+    .dot.GREEN{background:var(--green);box-shadow:0 0 10px var(--green);}
+    .dot.YELLOW{background:var(--amber);box-shadow:0 0 10px var(--amber);}
+    .dot.RED{background:var(--red);box-shadow:0 0 10px var(--red);}
+
+    .main{padding:18px 24px;max-width:1020px;margin:0 auto;}
+    .sec-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--cyan);margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.35);}
+    .sec-lbl .cap{font-family:var(--mono);color:var(--text-dim);letter-spacing:0;}
+    .hint{font-size:11px;color:var(--text-dim);margin:0 2px 14px;}
+    .hint code{font-family:var(--mono);color:var(--text-muted);}
+
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px 16px;
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 6px 22px rgba(0,0,0,.45);}
+    .calm{display:flex;align-items:center;gap:9px;color:var(--green);font-size:13px;padding:14px 2px;}
+
+    /* objective group */
+    .obj-group{padding:10px 0;border-bottom:1px solid var(--border-sub);}
+    .obj-group:last-child{border-bottom:none;}
+    .obj{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+      border-left:3px solid var(--blue);padding:4px 0 4px 12px;}
+    .obj-id{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
+    .obj-title{font-size:14px;font-weight:600;}
+    .obj-orphan{border-left-color:var(--text-dim);}
+    .obj-orphan .obj-id{color:var(--text-dim);}
+    .obj-meta{display:inline-flex;gap:8px;align-items:center;}
+
+    /* sub-task rows */
+    .subs{margin:6px 0 2px 14px;border-left:1px dashed var(--border-sub);}
+    .row{display:grid;grid-template-columns:90px 1fr auto;gap:10px;align-items:center;
+      padding:7px 0 7px 14px;border-bottom:1px solid var(--border-sub);}
+    .row:last-child{border-bottom:none;}
+    .row-id{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
+    .row-title{font-size:12px;}
+    .row-meta{display:inline-flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+    .no-subs{font-size:11px;color:var(--text-dim);padding:2px 0 2px 16px;}
+
+    .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;font-family:var(--mono);
+      text-transform:uppercase;letter-spacing:.03em;padding:1px 7px;border-radius:10px;white-space:nowrap;}
+    .p-green{background:var(--green-bg);color:var(--green);} .p-red{background:var(--red-bg);color:var(--red);}
+    .p-amber{background:var(--amber-bg);color:var(--amber);} .p-blue{background:var(--blue-bg);color:var(--blue);}
+    .p-cyan{background:var(--cyan-bg);color:var(--cyan);} .p-orange{background:var(--orange-bg);color:var(--orange);}
+    .p-gray{background:var(--gray-bg);color:var(--gray);}
+    .owner{font-size:10px;font-family:var(--mono);color:var(--text-dim);background:var(--surface-2);
+      border:1px solid var(--border);padding:1px 6px;border-radius:var(--r-sm);}
+
+    .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+      cursor:pointer;border-radius:var(--r-sm);padding:3px 9px;border:1px solid var(--border);
+      background:var(--surface-2);color:var(--text-muted);transition:border-color .12s,color .12s,background .12s,box-shadow .12s;}
+    .btn:hover{color:var(--text);border-color:var(--blue);box-shadow:var(--glow);}
+    .btn:disabled{opacity:.45;cursor:default;box-shadow:none;}
+    .btn-accept,.btn-close{color:var(--green);border-color:rgba(52,245,197,.4);}
+    .btn-accept:hover,.btn-close:hover{background:var(--green-bg);border-color:var(--green);}
+    .btn-changes{color:var(--orange);border-color:rgba(251,146,60,.4);} .btn-changes:hover{background:var(--orange-bg);border-color:var(--orange);}
+    .btn-block{color:var(--red);border-color:rgba(255,93,108,.4);} .btn-block:hover{background:var(--red-bg);border-color:var(--red);}
+    .btn-resume{color:var(--blue);border-color:rgba(56,189,248,.4);} .btn-resume:hover{background:var(--blue-bg);border-color:var(--blue);}
+    .btn-return{color:var(--cyan);border-color:rgba(34,211,238,.4);} .btn-return:hover{background:var(--cyan-bg);border-color:var(--cyan);}
+
+    .stale{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);padding:10px 14px;margin-bottom:14px;}
+    .stale.red{background:rgba(248,81,73,.14);border:1px solid rgba(248,81,73,.55);}
+    .stale.amber{background:rgba(227,179,65,.10);border:1px solid rgba(227,179,65,.40);}
+    .stale-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;margin-top:1px;}
+    .stale.red .stale-lbl{color:var(--red);} .stale.amber .stale-lbl{color:var(--amber);}
+    .stale-txt{font-size:12px;color:var(--text-muted);} .stale-txt code{font-family:var(--mono);color:var(--text);}
+    /* collapsed "closed" log */
+    .closed{margin-top:18px;}
+    .closed>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--text-dim);padding:6px 2px;list-style:none;display:flex;align-items:center;gap:8px;}
+    .closed>summary::-webkit-details-marker{display:none;}
+    .closed>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
+    .closed[open]>summary::before{transform:rotate(90deg);}
+    .closed>summary:hover{color:var(--text-muted);}
+    .closed .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;}
+    .closed .card{padding:4px 16px;margin-top:4px;}
+    .crow{display:grid;grid-template-columns:82px 84px 1fr auto;gap:10px;align-items:baseline;
+      padding:5px 0;border-bottom:1px solid var(--border-sub);font-size:11px;}
+    .crow:last-child{border-bottom:none;}
+    .cdate{font-family:var(--mono);color:var(--text-dim);font-size:10px;}
+    .cid{font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
+    .ctitle{color:var(--text-muted);}
+    .creason{color:var(--text-dim);font-style:italic;}
+    .creason::before{content:'— ';font-style:normal;}
+    .footer{margin-top:22px;padding:14px 24px;border-top:1px solid var(--border);font-size:11px;
+      color:var(--text-dim);font-family:var(--mono);}
+    .error{margin:24px;padding:16px 20px;background:var(--red-bg);border:1px solid rgba(248,81,73,.3);
+      border-radius:var(--r);color:var(--red);font-family:var(--mono);font-size:12px;line-height:1.8;}
+  </style>
+</head>
+<body>
+<div id="app"><div style="padding:80px;text-align:center;color:var(--text-dim)">Loading…</div></div>
+<script>
+const esc=s=>s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const OWNER_SHORT={'product-agent':'product','nutrition-agent':'nutrition','research-agent':'research','data-agent':'data',
+  'frontend-agent':'frontend','design-agent':'design','qa-agent':'qa','content-agent':'content','marketing-agent':'marketing'};
+const owner=o=>`<span class="owner">${esc(OWNER_SHORT[o]||o||'—')}</span>`;
+const PRI={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};
+const statusColor={CLOSED:'green',IN_PROGRESS:'blue',RETURNED:'cyan',BLOCKED:'red',CHANGES_REQUESTED:'orange'};
+const pill=(t,c)=>`<span class="p p-${c}">${esc(t)}</span>`;
+const sPill=s=>s?pill(s.replace(/_/g,' '),statusColor[s]||'gray'):'';
+
+// ── id shape: objective (TASK-125) vs sub-task (TASK-125A) ──
+const isObjective=id=>/^TASK-\d+$/.test(id);
+const parentOf=id=>{const m=/^(TASK-\d+)[A-Z]+$/.exec(id);return m?m[1]:null;};
+
+// sub-task lifecycle (mirrors serve.py ACTIONS). Objectives get CLOSE only.
+const TASK_ACTIONS={
+  IN_PROGRESS:       [{a:'mark_returned',cls:'btn-return',label:'Mark Returned'},
+                      {a:'close',cls:'btn-close',label:'Close'},{a:'block',cls:'btn-block',label:'Block'}],
+  RETURNED:          [{a:'accept',cls:'btn-accept',label:'Accept'},{a:'request_changes',cls:'btn-changes',label:'Request Changes'}],
+  CHANGES_REQUESTED: [{a:'resume',cls:'btn-resume',label:'Resume'},{a:'close',cls:'btn-close',label:'Close'}],
+  BLOCKED:           [{a:'resume',cls:'btn-resume',label:'Resume'},{a:'close',cls:'btn-close',label:'Close'}],
+};
+const ACTION_PROMPT={block:'Reason for blocking',request_changes:'What changes are requested for',close:'Reason for closing'};
+
+function subButtons(id,status){
+  const defs=TASK_ACTIONS[status]; if(!defs) return '';
+  return `<span class="row-meta">${sPill(status)} ${owner(window.__owner[id]||'')}`+
+    defs.map(d=>`<button class="btn ${d.cls}" onclick="doAction('${esc(id)}','${d.a}')">${d.label}</button>`).join('')+`</span>`;
+}
+function objClose(id,status){
+  if(status==='CLOSED') return sPill(status);
+  return `${sPill(status)} <button class="btn btn-close" onclick="doAction('${esc(id)}','close')">Close</button>`;
+}
+
+let actionBusy=false;
+async function doAction(taskId,action){
+  if(actionBusy) return;
+  let reason=null;
+  const objClosing = action==='close' && isObjective(taskId);
+  if(ACTION_PROMPT[action]){
+    const label = objClosing ? `Reason for closing objective ${taskId} (also closes its open sub-tasks)`
+                             : `${ACTION_PROMPT[action]} ${taskId}`;
+    reason=window.prompt(`${label}:`);
+    if(reason===null) return;
+    reason=reason.trim();
+    if(!reason){ window.alert('A reason is required for this action.'); return; }
+  }
+  actionBusy=true;
+  document.querySelectorAll('.btn').forEach(b=>b.disabled=true);
+  try{
+    const res=await fetch('./api/action',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({task_id:taskId,action,reason})});
+    let data={}; try{ data=await res.json(); }catch(_){}
+    if(!res.ok||!data.ok){
+      const msg=(res.status===501||res.status===405)
+        ? `This page is served by a process that can't apply actions (HTTP ${res.status}).\n\nRestart with:\n    python serve.py\n\nthen hard-refresh (Ctrl+F5).`
+        : `Action failed: ${data.error||('HTTP '+res.status)}`;
+      window.alert(msg);
+      document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
+      return;
+    }
+    await init();
+  }catch(err){
+    window.alert(`Action failed: ${err.message}\n\nIs serve.py running?`);
+    document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
+  }finally{ actionBusy=false; }
+}
+
+function renderStale(meta,drift){
+  meta=meta||{}; const snap=(drift?.counts?.SNAPSHOT_DRIFT)||0;
+  if(meta.stale===true||snap>0){
+    return `<div class="stale red"><span class="stale-lbl">⚠ Stale</span><span class="stale-txt">
+      <b>Dashboard is out of date.</b> ${esc(meta.stale_reason||'Source files changed since this snapshot.')}<br>
+      Run <code>python generate_dashboard.py</code> and refresh.</span></div>`;
+  }
+  return '';
+}
+
+function render(d){
+  const tasks=d.tasks||[];
+  window.__owner={}; tasks.forEach(t=>window.__owner[t.id]=t.owner);
+  const open=tasks.filter(t=>t.status!=='CLOSED');
+  const byId={}; tasks.forEach(t=>byId[t.id]=t);
+  const health=d.executive?.system_health||'GREEN';
+
+  // group open tasks by objective id
+  const objIds=[...new Set(open.map(t=>isObjective(t.id)?t.id:parentOf(t.id)).filter(Boolean))];
+  objIds.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+  const byPri=(a,b)=>(PRI[a.priority]??9)-(PRI[b.priority]??9)||a.id.localeCompare(b.id);
+
+  const groups=objIds.map(oid=>{
+    const obj=byId[oid];
+    const subs=open.filter(t=>parentOf(t.id)===oid).sort(byPri);
+    const orphan=!obj||obj.status==='CLOSED';   // open sub-tasks with no open objective
+    const head = orphan
+      ? `<div class="obj obj-orphan"><span class="obj-id">${esc(oid)}</span>
+           <span class="obj-title">${esc(obj?obj.title:'(objective not open)')}</span>
+           <span class="obj-meta muted">${obj?sPill(obj.status):''}</span></div>`
+      : `<div class="obj"><span class="obj-id">${esc(obj.id)}</span>
+           <span class="obj-title">${esc(obj.title)}</span>
+           <span class="obj-meta">${objClose(obj.id,obj.status)}</span></div>`;
+    const subsHTML = subs.length
+      ? `<div class="subs">${subs.map(t=>`<div class="row">
+           <span class="row-id">${esc(t.id)}</span>
+           <span class="row-title">${esc(t.title)}</span>
+           ${subButtons(t.id,t.status)}</div>`).join('')}</div>`
+      : (orphan ? '' : `<div class="no-subs">No open sub-tasks — close the objective when the goal is met.</div>`);
+    return `<div class="obj-group">${head}${subsHTML}</div>`;
+  });
+
+  const body = groups.length
+    ? `<div class="card">${groups.join('')}</div>`
+    : `<div class="card"><div class="calm"><span class="ic">✓</span>Nothing to action — no open work.</div></div>`;
+
+  // recently closed — collapsed reference log, last 20, newest first
+  const allClosed=tasks.filter(t=>t.status==='CLOSED')
+    .sort((a,b)=>String(b.completed_at||'').localeCompare(String(a.completed_at||''))
+                 ||b.id.localeCompare(a.id,undefined,{numeric:true}));
+  const closed=allClosed.slice(0,20);
+  const closedHTML = allClosed.length===0 ? '' : `
+    <details class="closed">
+      <summary>Closed <span class="cap">(last ${closed.length} of ${allClosed.length})</span></summary>
+      <div class="card">${closed.map(t=>`<div class="crow">
+        <span class="cdate">${esc(t.completed_at||'—')}</span>
+        <span class="cid">${esc(t.id)}</span>
+        <span class="ctitle">${esc(t.title)}${t.close_reason?`<span class="creason">${esc(t.close_reason)}</span>`:''}</span>
+        <span>${owner(t.owner)}</span></div>`).join('')}</div>
+    </details>`;
+
+  const dc=d.drift?.counts||{}; const issues=(dc.PHANTOM_TASK||0)+(dc.CLOSURE_DRIFT||0)+(dc.REGISTRY_UNPARSEABLE||0);
+  const reg=issues? `<span class="reg warn" title="registry hygiene">registry: ${issues} issue${issues===1?'':'s'}</span>`
+                  : `<span class="reg clean" title="no phantom / unparseable / closure drift">registry: clean</span>`;
+
+  const objCount=groups.length, subCount=open.filter(t=>parentOf(t.id)).length;
+  return `
+  <header class="hdr">
+    <div class="hdr-brand"><span class="dot ${health}" title="${health}"></span>
+      <span class="hdr-title">Bari Command Center</span><span class="hdr-badge">tasks</span></div>
+    <div class="hdr-right">
+      ${reg}
+      <span class="hdr-date">updated ${esc(d.meta?.last_updated||'—')}</span>
+      <a class="hdr-link" href="./seo.html">SEO →</a></div>
+  </header>
+  <div class="main">
+    ${renderStale(d.meta,d.drift)}
+    <div class="sec-lbl">Actions <span class="cap">(${objCount} objective${objCount===1?'':'s'} · ${subCount} sub-task${subCount===1?'':'s'})</span></div>
+    <div class="hint">Objectives (TASK-NNN) only <b>Close</b> — and closing one closes its open sub-tasks. Sub-tasks (TASK-NNN·A) carry the lifecycle. Add work with <code>python new_task.py --parent TASK-NNN --title "…" --owner …</code></div>
+    ${body}
+    ${closedHTML}
+  </div>
+  <div class="footer">Bari Command Center · task board · data: command_center.json · ${esc(d.meta?.generated_at||'—')}</div>`;
+}
+
+async function init(){
+  const app=document.getElementById('app');
+  try{
+    const res=await fetch('./command_center.json',{cache:'no-store'});
+    if(!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+    app.innerHTML=render(await res.json());
+  }catch(err){
+    app.innerHTML=`<div class="error">✗ Failed to load command_center.json<br><br>${esc(err.message)}<br><br>
+      Run:&nbsp; cd C:\\Bari\\05_command_center &nbsp;then&nbsp; python serve.py</div>`;
+  }
+}
+init();
+setInterval(init,60000);
+</script>
+</body>
+</html>

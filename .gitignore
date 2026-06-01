@@ -1,0 +1,21 @@
+# Python virtualenv (658M — never track)
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+
+# Local-only Claude settings — agents/skills/hooks ARE tracked, local prefs are not
+.claude/settings.local.json
+
+# Derived backups / scratch (use 99_archive for anything worth keeping)
+*.audit_bak
+/tmp_*
+
+# OS
+Thumbs.db
+.DS_Store

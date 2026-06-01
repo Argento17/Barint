@@ -1,0 +1,56 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "audit",
+  "canonical_product_id": "bsip1_7290011498948",
+  "audited_at": "2026-05-17T05:22:56.409577+00:00",
+  "merge_metadata": {
+    "merge_strategy_used": "single_retailer_passthrough",
+    "matched_by": "barcode:7290011498948",
+    "primary_observation_retailer": "yohananof",
+    "name_selection_strategy": "longest_non_promotional",
+    "field_sources": {},
+    "canonicalization_notes": [],
+    "bsip1_schema_version": "bsip1_v0_1"
+  },
+  "energy_normalization": {
+    "energy_source_unit": "kcal",
+    "energy_conversion_applied": "kcal_to_kj",
+    "energy_conversion_note": "energy_kj derived as 93.0 kcal × 4.184 = 389.1 kJ. Stored in audit only; not included in compact product to avoid mixing observed and derived nutrition values.",
+    "energy_kj_derived": 389.1
+  },
+  "retailer_observations": [
+    {
+      "retailer_id": "yohananof",
+      "retailer_name": "Yohananof",
+      "bsip0_schema_version": "bsip0.v1",
+      "retailer_parser_version": "yohananof_v0_1",
+      "scrape_mode": "product_page",
+      "product_url": null,
+      "scraped_at": "2026-05-15T14:40:09",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\yohananof\\outputs\\yohananof\\7290011498948",
+      "barcode_source": "inferred",
+      "nutrition_completeness": "partial",
+      "observation_quality_score": 0.81,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "inferred_barcode_1213",
+        "full_product_page",
+        "partial_nutrition_explicit_per_100g",
+        "clean_ingredient_text",
+        "has_product_image",
+        "has_allergen_data",
+        "has_price_data"
+      ]
+    }
+  ],
+  "source_urls": [],
+  "scrape_modes": [
+    "product_page"
+  ],
+  "first_seen_at": "2026-05-15T14:40:09",
+  "last_updated_at": "2026-05-15T14:40:09",
+  "retailer_versions": {
+    "yohananof": "yohananof_v0_1"
+  },
+  "conflicts": []
+}

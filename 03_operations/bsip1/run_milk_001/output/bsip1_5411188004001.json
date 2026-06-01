@@ -1,0 +1,201 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_5411188004001",
+  "barcode": "5411188004001",
+  "canonical_name_he": "משקה שיבולת שועל ללא תוספת סוכר מ\"ל 1000",
+  "canonical_name_en": "Oat Drink No Added Sugar 1000ml",
+  "brand": "Alpro",
+  "package_size_g": 1000.0,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": 250.0,
+  "country_of_origin": "בלגיה",
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "yohananof"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 30.0,
+    "fat_g": 1.4,
+    "fat_saturated_g": 0.2,
+    "fat_trans_g": 0.0,
+    "cholesterol_mg": 0.0,
+    "sodium_mg": 105.0,
+    "carbohydrates_g": 3.4,
+    "sugars_g": 0.5,
+    "dietary_fiber_g": 0.5,
+    "protein_g": 0.6
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "מים, שיבולת שועל (9%), מסמיך (E418, E415), מלח, ממתיק (סטביה E-960), חומרי טעם וריח (ווניל), ויטמינים (ריבופלאבין, ויטמין B12, ויטמין D2)",
+  "ingredients_list": [
+    "מים",
+    "שיבולת שועל (9%)",
+    "מסמיך (E418, E415)",
+    "מלח",
+    "ממתיק (סטביה E-960)",
+    "חומרי טעם וריח (ווניל)",
+    "ויטמינים (ריבופלאבין, ויטמין B12, ויטמין D2)"
+  ],
+  "allergens_contains": [
+    "שיבולת שועל (גלוטן)"
+  ],
+  "allergens_may_contain": [
+    "אגוזים",
+    "סויה"
+  ],
+  "claims": [
+    "ללא תוספת סוכר",
+    "ללא לקטוז",
+    "טבעוני"
+  ],
+  "confidence": {
+    "identity_confidence": "high",
+    "barcode_confidence": "inferred",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "simulated_milk_corpus",
+  "barcode_confidence_reason": "Simulated BSIP0 observation. Alpro Oat No Added Sugar with stevia — sweetener taxonomy test (no-sugar-added vs genuinely unsweetened).",
+  "nutrition_basis_claimed": "ל-100 מ\"ל",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.84,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [
+    "simulated_observation",
+    "single_source_only"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "bsip1_audit_5411188004001.json",
+  "ingredients_raw": "מים, שיבולת שועל (9%), מסמיך (E418, E415), מלח, ממתיק (סטביה E-960), חומרי טעם וריח (ווניל), ויטמינים (ריבופלאבין, ויטמין B12, ויטמין D2)",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "מים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "שיבולת שועל (9%)",
+      "percentage_declared": 9.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "מסמיך (E418, E415)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "ממתיק (סטביה E-960)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "חומרי טעם וריח (ווניל)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "ויטמינים (ריבופלאבין, ויטמין B12, ויטמין D2)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
+  ],
+  "extracted_additives": [
+    {
+      "term": "מסמיך",
+      "category": "thickener",
+      "position": 3
+    },
+    {
+      "term": "E415",
+      "category": "stabilizer_thickener",
+      "position": 3
+    }
+  ],
+  "extracted_flavors": [
+    {
+      "term": "חומרי טעם וריח",
+      "category": "flavor_generic",
+      "position": 6
+    },
+    {
+      "term": "חומרי טעם",
+      "category": "flavor_generic",
+      "position": 6
+    },
+    {
+      "term": "וניל",
+      "category": "vanilla",
+      "position": 6
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "ממתיק",
+      "category": "sweetener_generic",
+      "position": 5
+    },
+    {
+      "term": "סטביה",
+      "category": "stevia",
+      "position": 5
+    }
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 7,
+    "additive_count": 2,
+    "flavor_marker_count": 3,
+    "sweetener_count": 2,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

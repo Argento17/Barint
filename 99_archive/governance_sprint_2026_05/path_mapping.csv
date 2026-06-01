@@ -1,0 +1,28 @@
+current_path,proposed_new_path,classification,action_required,risk_level,notes
+C:\Bari\BISP0,99_archive\bisp0_placeholder,archive,archive,low,Empty directory; uppercase inconsistency; no content; purpose unclear
+C:\Bari\bisp2_concept,99_archive\bisp2_concept_prototype,archive,archive,medium,Superseded Python prototype; ancestor of bsip2_proto_v0; tests may have research value; Barinew_v3.zip redundant
+C:\Bari\bisp2_concept\__pycache__,DELETE,artifact,delete,low,Regenerable Python bytecode cache; no informational value
+C:\Bari\bisp2_concept\Barinew_v3.zip,99_archive\bisp2_concept_prototype\Barinew_v3.zip,archive,archive_with_parent,low,Redundant archive of already-archived code; keep with directory for completeness
+C:\Bari\bisp2_concept_v1,01_framework\bsip2_framework,framework,move,medium,Primary BSIP2 design document repository; all content is documentation-only; no Python code
+C:\Bari\bisp2_concept_v1\docs\positive_structure_v1,01_framework\bsip2_framework\docs\positive_structure_v1,framework,move_with_parent,low,New positive structure design documents (2026-05-17); move with parent directory
+C:\Bari\bsip0_pipeline,03_operations\bsip0\pipeline,operations,move,low,OCR/image extraction prototype; 10-product test set; active but paused
+C:\Bari\bsip0_pipeline\data\raw\snack_bars,03_operations\bsip0\pipeline\data\raw\snack_bars,operations,move_with_parent,low,40 product images; move with pipeline directory
+C:\Bari\bsip0_pipeline\cache\ocr_cache.json,03_operations\bsip0\pipeline\cache\ocr_cache.json,operations,move_with_parent,low,OCR API cache; move with pipeline directory to avoid re-billing on re-run
+C:\Bari\bsip0_scrape,03_operations\bsip0\scrape,operations,move,low,Web scraper for Carrefour and Yohananof; active but paused
+C:\Bari\bsip0_scrape\carrefour,03_operations\bsip0\scrape\carrefour,operations,move_with_parent,low,Carrefour scraping pipeline; 14+ product outputs
+C:\Bari\bsip0_scrape\yohananof,03_operations\bsip0\scrape\yohananof,operations,move_with_parent,low,Yohananof scraping pipeline; 50+ product outputs
+C:\Bari\bsip0_scrape\bsip_freezes\bsip0_v0_2,01_framework\freezes\bsip0_v0_2,freeze,extract_and_move,medium,v0.2 freeze artifacts; extract from bsip0_scrape to top-level freeze archive; update any cross-references
+C:\Bari\bsip0_scrape\docs\CHANGELOG_BSIP0_v0_2.md,DELETE,duplicate,delete,low,Exact duplicate of bsip_freezes\bsip0_v0_2\CHANGELOG_BSIP0_v0_2.md; canonical copy is in the freeze
+C:\Bari\bsip0_scrape\schemas,DELETE,empty,delete,low,Empty directory; schemas were planned but never written
+C:\Bari\bsip0_scrape\retailer_capabilities\carrefour.yaml,03_operations\bsip0\scrape\retailer_capabilities\carrefour.yaml,operations,move_with_parent,low,Carrefour capability spec; move with scrape directory
+C:\Bari\bsip1_concept,03_operations\bsip1,operations,move,low,BSIP1 cross-retailer consolidation; 53 product outputs + audit trail
+C:\Bari\bsip1_concept\batch_test_001,03_operations\bsip1\run_001,operations,move_and_rename,low,Rename from batch_test_001 to run_001 to clarify it is an operational run artifact
+C:\Bari\bsip1_concept\batch_test_001\output,03_operations\bsip1\run_001\output,operations,move_with_parent,low,53 BSIP1 JSONs + 53 audit JSONs; move with parent
+C:\Bari\bsip2_proto_v0,03_operations\bsip2\proto_v0,operations,move,medium,Active BSIP2 prototype; 13 source files + 53 scored products + reports + review dashboard
+C:\Bari\bsip2_proto_v0\src,03_operations\bsip2\proto_v0\src,operations,move_with_parent,medium,All Python source files; internal imports use relative paths — verify before moving
+C:\Bari\bsip2_proto_v0\outputs\products,03_operations\bsip2\proto_v0\outputs\products,operations,move_with_parent,low,53 bsip2_trace.json files; output artifacts
+C:\Bari\bsip2_proto_v0\reports,03_operations\bsip2\proto_v0\reports,operations,move_with_parent,low,8 markdown analysis reports
+C:\Bari\bsip2_proto_v0\review,03_operations\bsip2\proto_v0\review,operations,move_with_parent,low,CSV + XLSX + HTML review dashboard; generated artifacts
+C:\Bari\bsip2_proto_v0\visuals,03_operations\bsip2\proto_v0\visuals,operations,move_with_parent,low,11 PNGs + 5 waterfall PNGs + 6 CSVs; generated artifacts
+C:\Bari\bsip2_proto_v0\src\diagnose_positive_structure.py,03_operations\bsip2\proto_v0\reports\diagnose_positive_structure.py,operations,move,low,Diagnostic script; not a permanent source file; better stored in reports/
+C:\Bari\freezes\bsip2_concept_v1,REVIEW_REQUIRED,incomplete_freeze,review_manually,medium,Partial snapshot — missing docs/ subdirectories and validation/; either update with complete snapshot or label as superseded

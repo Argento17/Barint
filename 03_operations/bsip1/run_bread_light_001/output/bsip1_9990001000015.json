@@ -1,0 +1,162 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_bread_light_9990001000015",
+  "barcode": "9990001000015",
+  "canonical_name_he": "לחמי קריספ שיפון וגרעינים נורדי",
+  "canonical_name_en": null,
+  "brand": "נורדיק קריספ",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "synthetic_bread_light_001"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 378,
+    "fat_g": 11,
+    "fat_saturated_g": 1.2,
+    "fat_trans_g": 0.0,
+    "sodium_mg": 290,
+    "carbohydrates_g": 54,
+    "sugars_g": 1,
+    "dietary_fiber_g": 11,
+    "protein_g": 13,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "קמח שיפון מלא (65%), זרעי חמנייה (12%), זרעי פשתן (8%), זרעי שומשום (5%), מלח, שמרים",
+  "ingredients_list": [
+    "קמח שיפון מלא (65%)",
+    "זרעי חמנייה (12%)",
+    "זרעי פשתן (8%)",
+    "זרעי שומשום (5%)",
+    "מלח",
+    "שמרים"
+  ],
+  "ingredients_raw": "קמח שיפון מלא (65%), זרעי חמנייה (12%), זרעי פשתן (8%), זרעי שומשום (5%), מלח, שמרים",
+  "ingredients_raw_provenance": {
+    "source": "synthetic_corpus",
+    "bsip0_status": "synthetic",
+    "populated_at": "bread_light_corpus_v1",
+    "missing": false,
+    "note": "Synthetic product designed for ontology stress testing"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח שיפון מלא (65%)",
+      "percentage_declared": 65.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "זרעי חמנייה (12%)",
+      "percentage_declared": 12.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "זרעי פשתן (8%)",
+      "percentage_declared": 8.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "זרעי שומשום (5%)",
+      "percentage_declared": 5.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "שמרים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "allergens_contains": [
+    "גלוטן"
+  ],
+  "allergens_may_contain": [],
+  "claims": [
+    "גרעינים מלאים",
+    "עשיר בסיבים",
+    "ללא תוספת סוכר"
+  ],
+  "front_of_pack_claims": [
+    "גרעינים מלאים",
+    "עשיר בסיבים",
+    "ללא תוספת סוכר"
+  ],
+  "confidence": {
+    "identity_confidence": "synthetic",
+    "barcode_confidence": "synthetic",
+    "nutrition_confidence": "synthetic_per_100g",
+    "matched_by": "synthetic_corpus",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "synthetic",
+  "barcode_confidence_reason": "Synthetic product for bread-light stress test corpus v1",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "synthetic_product"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "synthetic_bsip1_bread_light_9990001000015_audit.json",
+  "bsip_bread_subtype": "nordic_seed_crispbread",
+  "bsip_stress_group": "C",
+  "bsip_design_note": "GENUINE NORDIC CRISPBREAD — seeds 25% structurally significant. Whole rye base (65%). No additives. High fiber (11g) from real grain + seeds. High protein (13g). This is a good product. Can the system reward it correctly vs the seed-halo products?",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "extracted_fermentation_markers": [
+    "שמרים"
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_sweeteners": [],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 6,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 1,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  }
+}

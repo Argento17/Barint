@@ -1,0 +1,13 @@
+{
+  "sample": true,
+  "as_of": "2026-05-30",
+  "source_note": "SAMPLE figures for layout only. Replace `by_category` with your weekly Google Search Console export (impressions / clicks / ctr / avg position per page) plus a Core Web Vitals verdict (CrUX or PageSpeed Insights). Keyed by category_id so it joins to the categories the Command Center already tracks. Refresh WEEKLY — Search Console lags ~2-3 days.",
+  "by_category": {
+    "maadanim":  {"target_query": "השוואת מעדני חלב", "indexed": true, "position": 4,  "impressions": 3100, "clicks": 410, "ctr": 0.132, "cwv": {"lcp": 2.0, "inp": 120, "cls": 0.03, "verdict": "PASS"}, "ai_visibility": "cited",  "as_of": "2026-05-30"},
+    "hummus":    {"target_query": "השוואת חומוס",      "indexed": true, "position": 6,  "impressions": 4200, "clicks": 390, "ctr": 0.093, "cwv": {"lcp": 2.1, "inp": 140, "cls": 0.04, "verdict": "PASS"}, "ai_visibility": "cited",  "as_of": "2026-05-30"},
+    "snacks":    {"target_query": "השוואת חטיפי בריאות", "indexed": true, "position": 8,  "impressions": 1900, "clicks": 160, "ctr": 0.084, "cwv": {"lcp": 2.2, "inp": 150, "cls": 0.05, "verdict": "PASS"}, "ai_visibility": "none",   "as_of": "2026-05-30"},
+    "bread":     {"target_query": "השוואת לחם",        "indexed": true, "position": 12, "impressions": 2600, "clicks": 150, "ctr": 0.058, "cwv": {"lcp": 2.4, "inp": 180, "cls": 0.06, "verdict": "PASS"}, "ai_visibility": "none",   "as_of": "2026-05-30"},
+    "yogurts":   {"target_query": "השוואת יוגורט",     "indexed": true, "position": 15, "impressions": 1500, "clicks": 70,  "ctr": 0.047, "cwv": {"lcp": 2.6, "inp": 210, "cls": 0.07, "verdict": "PASS"}, "ai_visibility": "none",   "as_of": "2026-05-30"},
+    "milk":      {"target_query": "השוואת חלב",        "indexed": true, "position": 24, "impressions": 900,  "clicks": 20,  "ctr": 0.022, "cwv": {"lcp": 3.4, "inp": 320, "cls": 0.18, "verdict": "FAIL"}, "ai_visibility": "none",   "as_of": "2026-05-30"}
+  }
+}

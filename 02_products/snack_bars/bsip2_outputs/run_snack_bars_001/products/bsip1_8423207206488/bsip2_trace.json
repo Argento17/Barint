@@ -1,0 +1,547 @@
+{
+  "bsip2_version": "proto_v0",
+  "trace_generated_at": "2026-05-30T05:14:33.402271Z",
+  "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
+  "input_reference": {
+    "canonical_product_id": "bsip1_8423207206488",
+    "barcode": "8423207206488",
+    "product_name_he": "חטיף דגנים מלאים מצופה שוקולד חלב",
+    "brand": "סלים דליס",
+    "source_retailers": [
+      "carrefour_israel",
+      "yohananof"
+    ],
+    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_001\\output\\bsip1_8423207206488.json",
+    "audit_ref": "bsip1_audit_8423207206488.json",
+    "bsip1_schema_version": "bsip1_v0_1",
+    "load_errors": []
+  },
+  "evaluation_status": "standard",
+  "context_flag": null,
+  "context_note": null,
+  "scope_basis": [
+    "no out_of_scope or context_limited signals detected"
+  ],
+  "category": "snack_bar_granola",
+  "category_confidence": 0.81,
+  "secondary_category": "bread",
+  "secondary_confidence": 0.1,
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
+  "classification_basis": [
+    "snack_bar_granola:חטיף דגנים(name×2)",
+    "snack_bar_granola:חטיף(name×2)",
+    "snack_bar_granola:דגנים(name×2)",
+    "snack_bar_granola:שוקולד(name×2)",
+    "snack_bar_granola:ציפוי(ing×0.5)",
+    "snack_bar_granola:שוקו(name×2)"
+  ],
+  "nova_proxy": 4,
+  "nova_confidence": 0.6,
+  "nova_confidence_band": "medium",
+  "nova_evidence_for": [
+    "artificial_color_detected (צבע מאכל)",
+    "multiple_added_sugar_sources: 5",
+    "emulsifier+humectant combination",
+    "high_additive_category_count: 4"
+  ],
+  "nova_evidence_against": [
+    "whole_grain_present (consistent with NOVA 2-3)"
+  ],
+  "nova_uncertainty_notes": [
+    "ingredient_quality=corrupted: confidence reduced",
+    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
+    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+  ],
+  "L1_observed_signals": {
+    "energy_kcal": 99.0,
+    "fat_g": 5.0,
+    "fat_saturated_g": 2.8,
+    "fat_trans_g": 0.5,
+    "sodium_mg": 42.0,
+    "carbohydrates_g": 12.0,
+    "sugars_g": 8.2,
+    "dietary_fiber_g": 1.0,
+    "protein_g": 1.1,
+    "ingredient_count": 7,
+    "ingredient_list": [
+      "שוקולד חלב74%: סוכר",
+      "חמאת קקאו",
+      "עיסת קקאו",
+      "אבקת חלב רזה",
+      "חמאה נטולת מים",
+      "מתחלב: לציטין סויה",
+      "חומרי טעם(, דגנים ) 24% ( )קמח חיטה מלאה )מכיל גלוטן( ) 16% (, קמח תירס(, דקסטרין, מלח, פרוקטוז, ויטמינים B6 ,B3 ,B2 ,B1 ,E ,D ,A , חומצה פולית B12 ,B9- , ביוטין,????עוגייה עם 8% שוקולד מריר, 20% מילוי קרמל ו 20% ציפוי שוקולד חלב ,סוכר, קמח חיטה (מכיל גלוטן), שמן צמחי (דקל,חמניות), גליצרין,עיסת קקא, אבקת חלב מלא, חמאת קקאו, דקסטרוזה, סירופ גלוקוזה פרוקטוזה, עמילן, חומרי התפחה (E-500, E-450) מלח, פקטין, מתחלב (לציטין,"
+    ],
+    "ingredient_text_quality": "corrupted",
+    "bsip1_trust_level": "medium",
+    "bsip1_trust_score": 0.72,
+    "bsip1_risk_flags": [
+      "nutrition_consistency_issue",
+      "corrupted_ingredient_text",
+      "high_conflict_count"
+    ],
+    "nutrition_consistency_status": "warnings",
+    "nutrition_consistency_warnings": [
+      "Cross-retailer disagreement on energy_kcal: carrefour_israel=497.0, yohananof=99.0 (402.0% spread, threshold 10%).",
+      "Cross-retailer disagreement on fat_g: carrefour_israel=25.0, yohananof=5.0 (400.0% spread, threshold 10%).",
+      "Cross-retailer disagreement on carbohydrates_g: carrefour_israel=61.0, yohananof=12.0 (408.3% spread, threshold 10%).",
+      "Cross-retailer disagreement on protein_g: carrefour_israel=6.0, yohananof=1.1 (445.5% spread, threshold 10%).",
+      "Cross-retailer disagreement on sodium_mg: carrefour_israel=212.0, yohananof=42.0 (404.8% spread, threshold 10%)."
+    ],
+    "missing_nutrition_fields": [],
+    "consistency_checks": {
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true
+    }
+  },
+  "L2_derived_signals": {
+    "fat_pct_of_kcal": 45.45,
+    "saturated_fat_fraction": 0.56,
+    "sugar_to_carb_ratio": 0.683,
+    "protein_per_kcal": 0.0111,
+    "derivation_notes": [
+      "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
+      "saturated_fat_fraction = fat_saturated_g / fat_g",
+      "sugar_to_carb_ratio = sugars_g / carbohydrates_g",
+      "protein_per_kcal = protein_g / energy_kcal"
+    ]
+  },
+  "L3_inferred_classifications": {
+    "sweetener_detected": false,
+    "sweetener_tier": null,
+    "sweetener_matches": [],
+    "additive_marker_count": 4,
+    "additive_categories": [
+      "color",
+      "emulsifier",
+      "humectant",
+      "leavening_agent"
+    ],
+    "has_flavor_enhancer": false,
+    "has_artificial_color": true,
+    "has_seed_oil": true,
+    "seed_oil_matches": [
+      "שמן צמחי"
+    ],
+    "has_palm_oil": true,
+    "palm_oil_matches": [
+      "דקל"
+    ],
+    "has_whole_grain": true,
+    "whole_grain_matches": [
+      "חיטה מלאה",
+      "קמח חיטה מלא"
+    ],
+    "protein_source": "mixed",
+    "protein_source_basis": [
+      "אבקת חלב"
+    ],
+    "added_sugar_sources_count": 5,
+    "added_sugar_matches": [
+      "סוכר",
+      "סירופ גלוקוזה",
+      "סירופ גלוקוז",
+      "פרוקטוזה",
+      "דקסטרוזה"
+    ],
+    "has_fruit_concentrate": false,
+    "has_fermentation": false,
+    "has_fortification": true,
+    "fortification_evidence": [
+      "חומצה פולית",
+      "ביוטין"
+    ],
+    "trans_fat_status": "threshold_declaration",
+    "trans_fat_threshold_declaration_possible": true,
+    "red_labels": [],
+    "red_label_count": 0,
+    "hp_fat_sugar_pattern_raw": false,
+    "hp_fat_sodium_pattern_raw": false,
+    "inference_confidence_notes": [
+      "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
+      "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
+      "Additive count reflects distinct functional categories detected, not total additive instances"
+    ],
+    "fat_pct_of_kcal": 45.45,
+    "ingredient_list": [
+      "שוקולד חלב74%: סוכר",
+      "חמאת קקאו",
+      "עיסת קקאו",
+      "אבקת חלב רזה",
+      "חמאה נטולת מים",
+      "מתחלב: לציטין סויה",
+      "חומרי טעם(, דגנים ) 24% ( )קמח חיטה מלאה )מכיל גלוטן( ) 16% (, קמח תירס(, דקסטרין, מלח, פרוקטוז, ויטמינים B6 ,B3 ,B2 ,B1 ,E ,D ,A , חומצה פולית B12 ,B9- , ביוטין,????עוגייה עם 8% שוקולד מריר, 20% מילוי קרמל ו 20% ציפוי שוקולד חלב ,סוכר, קמח חיטה (מכיל גלוטן), שמן צמחי (דקל,חמניות), גליצרין,עיסת קקא, אבקת חלב מלא, חמאת קקאו, דקסטרוזה, סירופ גלוקוזה פרוקטוזה, עמילן, חומרי התפחה (E-500, E-450) מלח, פקטין, מתחלב (לציטין,"
+    ]
+  },
+  "L4_interpreted_concerns": {
+    "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
+    "pre_evaluation_flags": [
+      "BSIP1_NUTRITION_WARNINGS: cross-retailer disagreement detected"
+    ]
+  },
+  "L5_behavioral_hypotheses": {
+    "hypotheses_active": [
+      "High added sugar (>17.5g) correlates with poorer glycemic outcomes at population level",
+      "NOVA 4 ultra-processed foods associate with poorer health outcomes at population level (epidemiological evidence)",
+      "HP patterns (fat+sugar, fat+sodium) may override satiety signaling",
+      "Whole grain presence modulates glycemic response",
+      "Low calorie density (within whole-food context) associates with lower energy intake"
+    ],
+    "hypothesis_limitations": [
+      "Per-100g frame does not reflect actual consumption volume",
+      "Individual product does not establish population-level risk",
+      "HP patterns rely on compositional thresholds, not behavioral evidence for specific product"
+    ]
+  },
+  "L6_policy_decisions": {
+    "policy_commitments": [
+      "NOVA 1 single-ingredient whole foods receive minimum score of 75 (normative floor, not empirical)",
+      "Sweetener presence caps score at 70 regardless of other signals (policy commitment: sweeteners ≠ quality improvement)",
+      "Trans fat veto (score=0) is a hard safety commitment, not a continuous signal",
+      "Israeli red labels are incorporated as regulatory signals (policy: regulatory alignment)",
+      "Whole-food floors override architecture-mismatch caps (SRC-01 policy)"
+    ],
+    "architecture_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1"
+  },
+  "structural_emptiness_result": {
+    "structurally_empty": false,
+    "se_conditions": {
+      "kcal_below_threshold": false,
+      "protein_below_threshold": true,
+      "fiber_below_threshold": true,
+      "fat_below_threshold": false,
+      "engineered_signal_present": true
+    },
+    "se_note": null
+  },
+  "confidence_score": 70,
+  "confidence_band": "medium",
+  "confidence_reductions": [
+    {
+      "factor": "ingredient_quality=corrupted",
+      "reduction": -10
+    },
+    {
+      "factor": "bsip1_trust_level=medium",
+      "reduction": -5
+    },
+    {
+      "factor": "bsip1_nutrition_consistency=warnings (cross-retailer disagreement)",
+      "reduction": -10
+    },
+    {
+      "factor": "nova_confidence=medium",
+      "reduction": -5
+    }
+  ],
+  "dimension_scores": {
+    "processing_quality": 35,
+    "nutrient_density": 5.7,
+    "calorie_density": 90.0,
+    "glycemic_quality": 76.5,
+    "protein_quality": 4.7,
+    "additive_quality": 28,
+    "satiety_support": 33.5,
+    "fat_quality": 67.6,
+    "regulatory_quality": 95.0,
+    "whole_food_integrity": 30
+  },
+  "dimension_notes": {
+    "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
+    "nutrient_density": "protein=1.1g→5.5, fiber=1.0g→10.0, weighted 65/35=7.1 × 0.80 fortification_discount → 5.7",
+    "calorie_density": "kcal=99.0, category=snack_bar_granola → 90",
+    "glycemic_quality": "90 - sugar_penalty(20.5) + fiber_bonus(2.0) + wg_bonus(5) = 76.5",
+    "protein_quality": "protein=1.1g base=5.5, source=mixed(×0.85) → 4.7",
+    "additive_quality": "additive_categories=4 → base=28, sweetener_penalty=0 → 28",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (1.1×3 + 1.0×5) / 99.0 × 400 = 33.5",
+    "fat_quality": "sat_fat=2.8g, frac=0.56: base=77.6 - seed_oil_pen=10 - trans_pen=0 = 67.6",
+    "regulatory_quality": "no Israeli red labels",
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=7 complexity_pen=0 → 30"
+  },
+  "dimension_weights": {
+    "processing_quality": 0.15,
+    "nutrient_density": 0.15,
+    "calorie_density": 0.15,
+    "glycemic_quality": 0.12,
+    "protein_quality": 0.1,
+    "additive_quality": 0.1,
+    "satiety_support": 0.06,
+    "fat_quality": 0.08,
+    "regulatory_quality": 0.05,
+    "whole_food_integrity": 0.04
+  },
+  "weighted_dimension_score": 45.42,
+  "caps_considered": [
+    {
+      "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
+      "cap": 50,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "HIGH_CAL_HIGH_SUGAR_MODERATE",
+      "cap": 60,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "HIGH_SUGAR_25G_PLUS",
+      "cap": 60,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "SNACK_BAR_HIGH_CAL_SUGAR",
+      "cap": 60,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "SNACK_BAR_RED_SUGAR_LABEL",
+      "cap": 55,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SUGAR",
+      "cap": 55,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "ISRAELI_RED_LABELS_2_PLUS",
+      "cap": 45,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "HIGH_CAL_LOW_SATIETY_SEVERE",
+      "cap": 55,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "SNACK_BAR_HIGH_CAL",
+      "cap": 70,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
+      "cap": 68,
+      "condition": true,
+      "fired": true
+    },
+    {
+      "rule": "ADDITIVE_MARKERS_5_PLUS",
+      "cap": 60,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "ADDITIVE_MARKERS_3_PLUS",
+      "cap": 72,
+      "condition": true,
+      "fired": true
+    },
+    {
+      "rule": "NOVA_PROXY_3_PROCESSED",
+      "cap": 82,
+      "condition": false,
+      "fired": false
+    },
+    {
+      "rule": "HIGH_SODIUM_700MG_PLUS",
+      "cap": 60,
+      "fired": false,
+      "condition": "sodium=42.0<700"
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
+      "cap": 55,
+      "condition": false,
+      "fired": false
+    }
+  ],
+  "caps_applied": [
+    {
+      "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
+      "cap": 68
+    },
+    {
+      "rule": "ADDITIVE_MARKERS_3_PLUS",
+      "cap": 72
+    }
+  ],
+  "binding_cap": 68,
+  "score_after_cap": 45.42,
+  "penalties_considered": [
+    {
+      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
+      "amount": 5,
+      "condition": "True",
+      "fired": true
+    },
+    {
+      "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
+      "amount": 5,
+      "condition": "False",
+      "fired": false
+    },
+    {
+      "rule": "HIGH_CAL_LOW_SATIETY_SOFT",
+      "amount": 6,
+      "condition": "False",
+      "fired": false
+    },
+    {
+      "rule": "LONG_INGREDIENT_LIST",
+      "amount": 4,
+      "condition": "False",
+      "fired": false
+    },
+    {
+      "rule": "SEED_OIL_PRESENT",
+      "amount": 3,
+      "condition": "True",
+      "fired": true
+    },
+    {
+      "rule": "HP_FAT_SUGAR_COMBO",
+      "fired": false,
+      "condition": "fat_pct=45.5<30.0 or sugar=8.2<20.0"
+    },
+    {
+      "rule": "HP_FAT_SODIUM_COMBO",
+      "fired": false
+    },
+    {
+      "rule": "HP_CRUNCH_SWEET_COMBO",
+      "fired": false,
+      "note": "only applies to cereal category"
+    }
+  ],
+  "penalties_applied": [
+    {
+      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
+      "amount": 5,
+      "note": "added_sugar_sources=5"
+    },
+    {
+      "rule": "SEED_OIL_PRESENT",
+      "amount": 3,
+      "note": ""
+    }
+  ],
+  "total_penalty_before_scaling": 8.0,
+  "total_penalty_after_scaling": 8.0,
+  "penalty_scaling_note": null,
+  "score_after_penalty": 37.42,
+  "concern_family_coordination": {
+    "sugar_load": {
+      "binding_cap": null,
+      "coordinated_penalty": 5,
+      "detail": {
+        "winner": {
+          "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "amount": 5
+        },
+        "supporters": [],
+        "total_before_budget": 5,
+        "budget_applied": false
+      }
+    },
+    "calorie_load": {
+      "binding_cap": null,
+      "coordinated_penalty": 0.0,
+      "detail": {
+        "winner": null,
+        "supporters": [],
+        "total_before_budget": 0
+      }
+    },
+    "processing_load": {
+      "binding_cap": 68,
+      "coordinated_penalty": 0.0,
+      "detail": {
+        "winner": null,
+        "supporters": [],
+        "total_before_budget": 0
+      }
+    },
+    "sodium_load": {
+      "binding_cap": null,
+      "coordinated_penalty": 0.0,
+      "detail": {
+        "winner": null,
+        "supporters": [],
+        "total_before_budget": 0
+      }
+    },
+    "fat_quality": {
+      "binding_cap": null,
+      "coordinated_penalty": 3,
+      "detail": {
+        "winner": {
+          "rule": "SEED_OIL_PRESENT",
+          "amount": 3
+        },
+        "supporters": [],
+        "total_before_budget": 3,
+        "budget_applied": false
+      }
+    },
+    "hp": {
+      "binding_cap": null,
+      "coordinated_penalty": 0.0,
+      "detail": {
+        "winner": null,
+        "supporters": [],
+        "total_before_budget": 0
+      }
+    }
+  },
+  "floors_considered": [
+    "no_applicable_floor"
+  ],
+  "floors_applied": [],
+  "score_after_floors": 37.42,
+  "confidence_ceiling_applied": null,
+  "sugar_context_class": "SC-5",
+  "hp_nova_weight": 1.0,
+  "final_score_estimate": 37.4,
+  "grade_estimate": "D",
+  "data_sufficiency": "sufficient",
+  "explanation_drivers": [
+    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
+    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'SEED_OIL_PRESENT']"
+  ],
+  "unresolved_flags": [
+    "BSIP1_NUTRITION_WARNINGS: cross-retailer disagreement detected"
+  ],
+  "structural_class": {
+    "primary": "E",
+    "primary_label": "Engineered Wellness System",
+    "primary_confidence": 0.425,
+    "secondary": "F",
+    "secondary_label": "Structurally Void System",
+    "secondary_confidence": 0.354,
+    "class_weights": {
+      "A": 0.014,
+      "B": 0.028,
+      "C": 0.024,
+      "D": 0.156,
+      "E": 0.425,
+      "F": 0.354
+    },
+    "is_between_worlds": true,
+    "classification_notes": [
+      "nova_4_signal",
+      "high_additive_load",
+      "whole_food_integrity_low"
+    ],
+    "classifier_version": "structural_classifier_v1"
+  }
+}

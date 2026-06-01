@@ -1,0 +1,283 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_8423207209885",
+  "barcode": "8423207209885",
+  "canonical_name_he": "מרבה סלים דליס מהדורה מיוחדת שוקולד חלב",
+  "canonical_name_en": null,
+  "brand": "סלים דליס",
+  "package_size_g": 120.0,
+  "unit_count": 6,
+  "unit_size_g": 20.0,
+  "serving_size_g": 20.0,
+  "country_of_origin": "ספרד",
+  "kosher_certification": "הרבנות הראשית לישראל,בהשגחת הרב אריה רלבג",
+  "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8423207209885_h105-15-2023_13-23-35.jpg",
+  "source_retailers": [
+    "carrefour_israel",
+    "yohananof"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 99.0,
+    "fat_g": 5.0,
+    "fat_saturated_g": 2.8,
+    "fat_trans_g": 0.5,
+    "cholesterol_mg": 2.5,
+    "sodium_mg": 38.4,
+    "carbohydrates_g": 12.0,
+    "sugars_g": 8.2,
+    "dietary_fiber_g": 1.2,
+    "protein_g": 0.9
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "שוקולד חלב (74%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב רזה, חמאה שאינה מכילה מים, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי אפונה, סיבי שיטה), עמילן תירס, סוכר, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A, D, E, B1, B2, B3, B6, B9, חומצה פולית, B12, ביוטין וחומצה פנטותנית)",
+  "ingredients_list": [
+    "שוקולד חלב (74%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב רזה, חמאה שאינה מכילה מים, מתחלב: לציטין סויה, חומרי טעם)",
+    "דגנים (19%) (קמח תירס, קמח אורז)",
+    "סיבים תזונתיים (סיבי אפונה, סיבי שיטה)",
+    "עמילן תירס",
+    "סוכר",
+    "אבקת קקאו",
+    "מתחלב: לציטין סויה",
+    "חומרי טעם (מכילים לקטוז)",
+    "מלח",
+    "ויטמינים (A, D, E, B1, B2, B3, B6, B9, חומצה פולית, B12, ביוטין וחומצה פנטותנית)"
+  ],
+  "allergens_contains": [
+    "חלב",
+    "סויה"
+  ],
+  "allergens_may_contain": [
+    "אגוזים",
+    "גלוטן"
+  ],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "high",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "exact_barcode",
+    "observation_count": 2
+  },
+  "barcode_validation_status": "confirmed_gs1",
+  "barcode_confidence_reason": "Multi-source 13-digit barcode; GS1 check digit valid.",
+  "nutrition_basis_claimed": "ל-100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "warnings",
+  "nutrition_consistency_warnings": [
+    "Cross-retailer disagreement on energy_kcal: carrefour_israel=495.0, yohananof=99.0 (400.0% spread, threshold 10%).",
+    "Cross-retailer disagreement on fat_g: carrefour_israel=25.0, yohananof=5.0 (400.0% spread, threshold 10%).",
+    "Cross-retailer disagreement on carbohydrates_g: carrefour_israel=60.0, yohananof=12.0 (400.0% spread, threshold 10%).",
+    "Cross-retailer disagreement on protein_g: carrefour_israel=4.6, yohananof=0.9 (411.1% spread, threshold 10%).",
+    "Cross-retailer disagreement on sodium_mg: carrefour_israel=192.0, yohananof=38.4 (400.0% spread, threshold 10%)."
+  ],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.9,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "nutrition_consistency_issue",
+    "high_conflict_count"
+  ],
+  "conflicts_summary": {
+    "count": 11,
+    "has_unresolved": false,
+    "fields_in_conflict": [
+      "canonical_name_he",
+      "brand",
+      "normalized_nutrition_per_100g.carbohydrates_g",
+      "normalized_nutrition_per_100g.cholesterol_mg",
+      "normalized_nutrition_per_100g.dietary_fiber_g",
+      "normalized_nutrition_per_100g.energy_kcal",
+      "normalized_nutrition_per_100g.fat_g",
+      "normalized_nutrition_per_100g.fat_saturated_g",
+      "normalized_nutrition_per_100g.protein_g",
+      "normalized_nutrition_per_100g.sodium_mg",
+      "normalized_nutrition_per_100g.sugars_g"
+    ],
+    "identity_conflicts": [
+      "canonical_name_he",
+      "brand"
+    ],
+    "nutrition_conflicts": [
+      "normalized_nutrition_per_100g.carbohydrates_g",
+      "normalized_nutrition_per_100g.cholesterol_mg",
+      "normalized_nutrition_per_100g.dietary_fiber_g",
+      "normalized_nutrition_per_100g.energy_kcal",
+      "normalized_nutrition_per_100g.fat_g",
+      "normalized_nutrition_per_100g.fat_saturated_g",
+      "normalized_nutrition_per_100g.protein_g",
+      "normalized_nutrition_per_100g.sodium_mg",
+      "normalized_nutrition_per_100g.sugars_g"
+    ],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [
+    "canonical_name_en"
+  ],
+  "inferred_fields": [
+    "package_size_g",
+    "serving_size_g"
+  ],
+  "audit_ref": "bsip1_audit_8423207209885.json",
+  "ingredients_raw": "שוקולד חלב (74%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב רזה, חמאה שאינה מכילה מים, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי אפונה, סיבי שיטה), עמילן תירס, סוכר, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A, D, E, B1, B2, B3, B6, B9, חומצה פולית, B12, ביוטין וחומצה פנטותנית)",
+  "ingredients_raw_provenance": {
+    "source": "bsip0_scrape",
+    "bsip0_status": "bsip0_scrape",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "Original retailer ingredient string from BSIP0 raw observation"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "שוקולד חלב (74%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב רזה, חמאה שאינה מכילה מים, מתחלב: לציטין סויה, חומרי טעם)",
+      "percentage_declared": 74.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "דגנים (19%) (קמח תירס, קמח אורז)",
+      "percentage_declared": 19.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "סיבים תזונתיים (סיבי אפונה, סיבי שיטה)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "עמילן תירס",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "אבקת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "מתחלב: לציטין סויה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "חומרי טעם (מכילים לקטוז)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "ויטמינים (A, D, E, B1, B2, B3, B6, B9, חומצה פולית, B12, ביוטין וחומצה פנטותנית)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
+  ],
+  "extracted_additives": [
+    {
+      "term": "לציטין סויה",
+      "category": "emulsifier",
+      "position": 1
+    },
+    {
+      "term": "לציטין",
+      "category": "emulsifier",
+      "position": 1
+    },
+    {
+      "term": "מתחלב",
+      "category": "emulsifier",
+      "position": 1
+    }
+  ],
+  "extracted_flavors": [
+    {
+      "term": "חומרי טעם",
+      "category": "flavor_generic",
+      "position": 1
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "לקטוז",
+      "category": "lactose",
+      "position": 8
+    },
+    {
+      "term": "סוכר",
+      "category": "added_sugar",
+      "position": 1
+    }
+  ],
+  "extracted_protein_markers": [
+    {
+      "term": "אבקת חלב",
+      "category": "milk_powder",
+      "position": 1
+    }
+  ],
+  "extracted_matrix_markers": [
+    {
+      "term": "עמילן תירס",
+      "category": "corn_starch",
+      "position": 4
+    },
+    {
+      "term": "קמח אורז",
+      "category": "rice_flour",
+      "position": 2
+    },
+    {
+      "term": "קמח תירס",
+      "category": "corn_flour",
+      "position": 2
+    },
+    {
+      "term": "עמילן",
+      "category": "starch_generic",
+      "position": 4
+    },
+    {
+      "term": "קמח",
+      "category": "flour_generic",
+      "position": 2
+    }
+  ],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 10,
+    "additive_count": 3,
+    "flavor_marker_count": 1,
+    "sweetener_count": 2,
+    "protein_marker_count": 1,
+    "matrix_marker_count": 5,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

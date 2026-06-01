@@ -1,0 +1,190 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_bread_light_9990001000026",
+  "barcode": "9990001000026",
+  "canonical_name_he": "קרקר \"סיבים+\" אינולין וסיליום",
+  "canonical_name_en": null,
+  "brand": "ביו פייבר",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "synthetic_bread_light_001"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 382,
+    "fat_g": 6,
+    "fat_saturated_g": 0.9,
+    "fat_trans_g": 0.0,
+    "sodium_mg": 480,
+    "carbohydrates_g": 63,
+    "sugars_g": 1,
+    "dietary_fiber_g": 15,
+    "protein_g": 9,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "קמח חיטה (50%), אינולין מצ'יקורי (12%), קמח שיפון (15%), psyllium husk (5%), מלח, שמן קנולה, לציטין (E-322), E-450, E-500",
+  "ingredients_list": [
+    "קמח חיטה (50%)",
+    "אינולין מצ'יקורי (12%)",
+    "קמח שיפון (15%)",
+    "psyllium husk (5%)",
+    "מלח",
+    "שמן קנולה",
+    "לציטין (E-322)",
+    "E-450",
+    "E-500"
+  ],
+  "ingredients_raw": "קמח חיטה (50%), אינולין מצ'יקורי (12%), קמח שיפון (15%), psyllium husk (5%), מלח, שמן קנולה, לציטין (E-322), E-450, E-500",
+  "ingredients_raw_provenance": {
+    "source": "synthetic_corpus",
+    "bsip0_status": "synthetic",
+    "populated_at": "bread_light_corpus_v1",
+    "missing": false,
+    "note": "Synthetic product designed for ontology stress testing"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח חיטה (50%)",
+      "percentage_declared": 50.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "אינולין מצ'יקורי (12%)",
+      "percentage_declared": 12.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "קמח שיפון (15%)",
+      "percentage_declared": 15.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "psyllium husk (5%)",
+      "percentage_declared": 5.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "שמן קנולה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "לציטין (E-322)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 8,
+      "text": "E-450",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "E-500",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "allergens_contains": [
+    "גלוטן"
+  ],
+  "allergens_may_contain": [],
+  "claims": [
+    "15 גרם סיבים",
+    "תומך בעיכול",
+    "סיבים טבעיים",
+    "צ'יקורי"
+  ],
+  "front_of_pack_claims": [
+    "15 גרם סיבים",
+    "תומך בעיכול",
+    "סיבים טבעיים",
+    "צ'יקורי"
+  ],
+  "confidence": {
+    "identity_confidence": "synthetic",
+    "barcode_confidence": "synthetic",
+    "nutrition_confidence": "synthetic_per_100g",
+    "matched_by": "synthetic_corpus",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "synthetic",
+  "barcode_confidence_reason": "Synthetic product for bread-light stress test corpus v1",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "synthetic_product"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "synthetic_bsip1_bread_light_9990001000026_audit.json",
+  "bsip_bread_subtype": "fiber_system_cracker",
+  "bsip_stress_group": "E",
+  "bsip_design_note": "FIBER SYSTEM — 15g fiber but: chicory inulin 12% + psyllium husk 5% = 17% extracted fiber systems. Refined flour first. Rye only 15%. 'Naturally sourced' fiber is true but non-structural. Tests fiber laundering detection at extreme fiber claims. Most aggressive fiber engineering in corpus.",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "extracted_fermentation_markers": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [
+    "אינולין",
+    "psyllium",
+    "psyllium husk"
+  ],
+  "extracted_sweeteners": [],
+  "extracted_additives": [
+    "emulsifier",
+    "leavening_agent"
+  ],
+  "extracted_flavors": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 9,
+    "additive_count": 2,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 3,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": true,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  }
+}

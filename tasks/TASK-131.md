@@ -1,0 +1,51 @@
+---
+id: TASK-131
+title: Consolidate the two Bari directories (C:\Bari vs C:\Users\HP\bari)
+owner: data-agent
+status: IN_PROGRESS
+priority: HIGH
+created_at: 2026-06-01
+depends_on: []
+blocks: []
+category_id: null
+summary: >
+  Evaluate and plan the cleanup of the two colliding Bari roots plus the stale nested C:\Users\HP\bari\Bari snapshot (4112 tracked files) that cause operating-model confusion. Deliverable: a clear consolidation plan (target structure, migration steps, dedup, rename to end the name collision). Sibling of TASK-130 operating-model hardening.
+---
+
+# TASK-131 — Consolidate the two Bari directories (C:\Bari vs C:\Users\HP\bari)
+
+## Decision
+Chosen topology: **Option A — two clean homes with a rename** (Agent OS stays at `C:\Bari`;
+website renamed `C:\Users\HP\bari` → `C:\bari-web`). Rejected a single merged folder (would
+leak the internal scoring brain + research + `.venv` into the publicly deployable repo) and a
+true monorepo (more rewiring, deferred).
+
+## Deliverable
+Migration plan: `C:\Bari\directory_consolidation_plan_v1.md` — 6 phases (baseline/pre-flight →
+delete stale nested snapshot → consolidate governance docs → rename website → git-init Agent OS
+→ guards & verify). Each phase independently revertable; awaiting go-ahead to execute.
+
+## Key findings
+- Nested `C:\Users\HP\bari\Bari\` is a stale partial Agent-OS snapshot, **4,112 files tracked**
+  in the website git repo and NOT gitignored — primary confusion source.
+- Name collision `C:\Bari` vs folder `bari`; governance docs scattered across both roots;
+  `C:\Bari` (authoritative) has no git history while its snapshot does.
+
+## Progress log
+- 2026-06-01 — **Phase 0 + 1 done.** Pre-flight grep gate: no `src/` runtime imports from the
+  snapshot; tsconfig alias is `@/*→./src/*` only. Salvaged 5 snapshot-unique files to
+  `99_archive/website_snapshot_salvage_2026-06-01/` (3 bsip2 proto scripts = evaluate; 2 md =
+  disposable). Removed nested `Bari/`: `git rm -r` (4,112 tracked) + `rm -rf` residual `.venv`
+  (~18.9k untracked files) + `.idea`. Added `/Bari/` to website `.gitignore`. Website commit
+  `938e13e`. Working-tree edits left untouched.
+  - Stale refs to fix later (Phase 2/5): `AGENTS.md:17` and
+    `docs/bsip2_spread_subtype_calibration_proposal_v1.md:28` point into the now-deleted snapshot;
+    `scripts/audit-snacks-data-lineage.mjs` hardcodes `c:/Users/HP/bari` (breaks at Phase-3 rename).
+- 2026-06-01 — **Phase 2 done.** Moved 12 root governance/operating-model docs → `C:\Bari\docs\governance\`
+  and 8 data/scoring docs → `C:\Bari\docs\data\`; moved stale `command-center/index.html` →
+  `05_command_center\legacy_website_render\`. Repointed the bsip2 proposal's broken snapshot link to
+  the salvage folder; fixed `AGENTS.md` (no registry copy in website). Website commit `aeb632b`.
+  Website root now holds only orientation files (AGENTS/CLAUDE/README/SKILL/IMPLEMENTATION_PROMPT).
+  Frontend-impl docs kept in website `docs/`. **Deferred for owner classification** (borderline
+  rollout/release reports left in website `docs/`): `bread_rollout_report_v1`, `snacks_rollout_report_v1`,
+  `mvp_rollout_summary_v1`, `rollout_readiness_report_v1`, `hummus_v1_release_summary_v1`.

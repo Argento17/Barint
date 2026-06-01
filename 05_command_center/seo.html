@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  BARI COMMAND CENTER — SEO  (TASK-125, MVP)
+  ════════════════════════════════════════════════════════════════
+  Read-only, operational SEO view. One question: "which page needs me?"
+  Derived: seo/metrics.json (operator weekly export) + command_center.json
+  categories  →  generate_seo.py  →  seo.json  →  this page.
+  Refresh weekly:  python generate_dashboard.py && python generate_seo.py
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bari Command Center · SEO</title>
+  <style>
+    :root{
+      --bg:#05070e; --surface:rgba(12,22,40,.66); --surface-2:rgba(20,34,58,.82);
+      --border:rgba(56,189,248,.24); --border-sub:rgba(56,189,248,.10);
+      --text:#dcefff; --text-muted:#84aecb; --text-dim:#52708c;
+      --green:#34f5c5; --green-bg:rgba(52,245,197,.12);
+      --red:#ff5d6c; --red-bg:rgba(255,93,108,.13);
+      --amber:#ffd166; --amber-bg:rgba(255,209,102,.13);
+      --blue:#38bdf8; --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,.15);
+      --gray:#84aecb; --gray-bg:rgba(132,174,203,.10);
+      --mono:ui-monospace,'Cascadia Code','SF Mono',Consolas,monospace;
+      --sans:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --r:10px; --r-sm:5px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:
+        radial-gradient(1200px 620px at 78% -12%, rgba(34,211,238,.10), transparent 60%),
+        linear-gradient(0deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/100% 36px,
+        linear-gradient(90deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/36px 100%,
+        var(--bg);
+      color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
+    .hdr{position:sticky;top:0;z-index:100;background:linear-gradient(180deg, rgba(8,15,28,.94), rgba(8,15,28,.66));
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+      box-shadow:0 1px 0 rgba(34,211,238,.18),0 10px 34px rgba(0,0,0,.55);
+      padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .hdr-brand{display:flex;align-items:center;gap:10px;}
+    .hdr-title{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#eafaff;text-shadow:0 0 12px rgba(34,211,238,.55);}
+    .hdr-badge{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:var(--surface-2);padding:2px 7px;border-radius:var(--r-sm);border:1px solid var(--border);}
+    .hdr-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    .hdr-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);}
+    .hdr-link{font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:var(--r-sm);background:var(--surface);white-space:nowrap;}
+    .hdr-link:hover{border-color:var(--blue);}
+    .main{padding:18px 24px;max-width:1120px;margin:0 auto;}
+    .sec-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin:14px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.35);}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 6px 22px rgba(0,0,0,.45);}
+    .calm{display:flex;align-items:center;gap:9px;color:var(--green);font-size:13px;}
+
+    .banner{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);padding:10px 14px;margin-bottom:14px;background:var(--amber-bg);border:1px solid rgba(227,179,65,.45);}
+    .banner-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber);white-space:nowrap;margin-top:1px;}
+    .banner-txt{font-size:12px;color:var(--text-muted);} .banner-txt code{font-family:var(--mono);color:var(--text);}
+
+    .kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 16px;min-width:120px;}
+    .kpi .v{font-size:20px;font-weight:700;font-family:var(--mono);color:var(--text);}
+    .kpi .l{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);}
+
+    .att{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-sub);}
+    .att:last-child{border-bottom:none;} .att-txt{font-size:12px;}
+    .att-txt b{font-family:var(--mono);color:var(--cyan);}
+
+    table{width:100%;border-collapse:collapse;font-size:12px;}
+    th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);font-weight:600;
+      padding:6px 8px;border-bottom:1px solid var(--border);white-space:nowrap;}
+    td{padding:7px 8px;border-bottom:1px solid var(--border-sub);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    td.num{font-family:var(--mono);text-align:right;}
+    .he{direction:rtl;unicode-bidi:isolate;font-size:13px;}
+    .en{color:var(--text-dim);font-size:10px;}
+    .route{font-family:var(--mono);font-size:10px;color:var(--text-muted);}
+    .q{direction:rtl;unicode-bidi:isolate;color:var(--text-muted);font-size:11px;}
+    .nd{color:var(--text-dim);}
+    .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;font-family:var(--mono);text-transform:uppercase;letter-spacing:.03em;padding:1px 7px;border-radius:10px;white-space:nowrap;}
+    .p-green{background:var(--green-bg);color:var(--green);} .p-red{background:var(--red-bg);color:var(--red);}
+    .p-amber{background:var(--amber-bg);color:var(--amber);} .p-cyan{background:var(--cyan-bg);color:var(--cyan);} .p-gray{background:var(--gray-bg);color:var(--gray);}
+    .footer{margin-top:22px;padding:14px 24px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);font-family:var(--mono);}
+    .error{margin:24px;padding:16px 20px;background:var(--red-bg);border:1px solid rgba(248,81,73,.3);border-radius:var(--r);color:var(--red);font-family:var(--mono);font-size:12px;line-height:1.8;}
+  </style>
+</head>
+<body>
+<div id="app"><div style="padding:80px;text-align:center;color:var(--text-dim)">Loading…</div></div>
+<script>
+const esc=s=>s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const pill=(t,c)=>`<span class="p p-${c}">${esc(t)}</span>`;
+const num=n=>n==null?'<span class="nd">—</span>':String(n);
+const pct=n=>n==null?'<span class="nd">—</span>':(n*100).toFixed(1)+'%';
+const sev={CRITICAL:'red',HIGH:'amber',MEDIUM:'cyan',LOW:'gray'};
+
+function cwvPill(c){ if(!c||!c.verdict) return '<span class="nd">—</span>';
+  return pill(c.verdict, c.verdict==='PASS'?'green':c.verdict==='FAIL'?'red':'amber'); }
+function aiPill(v){ if(!v||v==='none') return '<span class="nd">none</span>';
+  return pill(v, v==='cited'?'cyan':'gray'); }
+function idxPill(b){ if(b==null) return '<span class="nd">no data</span>';
+  return b? pill('indexed','green') : pill('not indexed','red'); }
+function webPill(s){ const c={LIVE:'green',LEGACY:'amber',IN_PROGRESS:'cyan',NOT_STARTED:'gray'}[s]||'gray';
+  return pill((s||'—').replace(/_/g,' '),c); }
+
+function render(d){
+  const m=d.meta||{}, s=d.summary||{}, pages=d.pages||[], att=d.attention||[];
+  const banner = m.sample
+    ? `<div class="banner"><span class="banner-lbl">Sample data</span><span class="banner-txt">
+        ${esc(m.source_note||'Sample figures — replace seo/metrics.json with your weekly export.')}</span></div>` : '';
+
+  const kpis = `<div class="kpis">
+    <div class="kpi"><div class="v">${s.pages_live??0}/${s.pages_total??0}</div><div class="l">Live pages</div></div>
+    <div class="kpi"><div class="v">${(s.clicks??0).toLocaleString()}</div><div class="l">Clicks / wk</div></div>
+    <div class="kpi"><div class="v">${(s.impressions??0).toLocaleString()}</div><div class="l">Impressions / wk</div></div>
+    <div class="kpi"><div class="v" style="color:${s.attention?'var(--amber)':'var(--green)'}">${s.attention??0}</div><div class="l">Need attention</div></div>
+  </div>`;
+
+  const attHTML = att.length===0
+    ? `<div class="card"><div class="calm">✓ No SEO issues flagged.</div></div>`
+    : `<div class="card">${att.map(a=>`<div class="att">${pill(a.severity,sev[a.severity]||'gray')}
+        <div class="att-txt"><b>${esc(a.name_en||a.category_id)}</b> — ${esc(a.message)}</div></div>`).join('')}</div>`;
+
+  const rows = pages.map(p=>{const x=p.metrics||{};return `<tr>
+      <td><div class="he">${esc(p.name_he||'')}</div><div class="en">${esc(p.name_en||p.category_id)}</div></td>
+      <td><span class="route">${esc(p.route||'—')}</span><br>${webPill(p.web_status)}</td>
+      <td><span class="q">${esc(p.target_query||'—')}</span></td>
+      <td>${idxPill(x.indexed)}</td>
+      <td class="num">${num(x.position)}</td>
+      <td class="num">${num(x.clicks)}</td>
+      <td class="num">${num(x.impressions)}</td>
+      <td class="num">${pct(x.ctr)}</td>
+      <td>${cwvPill(x.cwv)}</td>
+      <td>${aiPill(x.ai_visibility)}</td></tr>`;}).join('');
+
+  return `
+  <header class="hdr">
+    <div class="hdr-brand"><span class="hdr-title">Bari Command Center</span><span class="hdr-badge">SEO</span></div>
+    <div class="hdr-right">
+      <span class="hdr-date">data as of ${esc(m.as_of||'—')} · ${esc(m.cadence||'weekly')}</span>
+      <a class="hdr-link" href="./command_center.html">← Tasks</a></div>
+  </header>
+  <div class="main">
+    ${banner}
+    ${kpis}
+    <div class="sec-lbl">Needs attention</div>
+    ${attHTML}
+    <div class="sec-lbl">Pages</div>
+    <div class="card"><table>
+      <thead><tr><th>Page</th><th>Route / status</th><th>Target query</th><th>Indexed</th>
+        <th>Pos</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>CWV</th><th>AI</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+  </div>
+  <div class="footer">Bari Command Center · SEO (MVP) · data: seo.json · ${esc(m.generated_at||'—')} · update: edit seo/metrics.json → python generate_seo.py</div>`;
+}
+
+async function init(){
+  const app=document.getElementById('app');
+  try{
+    const res=await fetch('./seo.json',{cache:'no-store'});
+    if(!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+    app.innerHTML=render(await res.json());
+  }catch(err){
+    app.innerHTML=`<div class="error">✗ Failed to load seo.json<br><br>${esc(err.message)}<br><br>
+      Run:&nbsp; python generate_dashboard.py &amp;&amp; python generate_seo.py</div>`;
+  }
+}
+init();
+</script>
+</body>
+</html>

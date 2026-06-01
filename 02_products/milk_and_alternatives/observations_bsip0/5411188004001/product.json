@@ -1,0 +1,22 @@
+﻿{
+  "schema_version": "bsip0.v1",
+  "source": {"retailer": "Yohananof", "retailer_id": "yohananof", "source_type": "simulated_corpus_milk_v1"},
+  "product_identity": {
+    "name": "משקה שיבולת שועל ללא תוספת סוכר",
+    "brand": "Alpro",
+    "barcode": "5411188004001",
+    "category_path": ["מוצרי חלב ותחליפים"],
+    "observation_note": "Simulated BSIP0 record for milk_and_alternatives adversarial corpus run_001"
+  },
+  "nutrition_per_100g": {
+    "energy_kcal_100g": 30,
+    "protein_g_100g": 0.6,
+    "fat_g_100g": 1.4,
+    "carbohydrates_g_100g": 3.4,
+    "sugars_g_100g": 0.5,
+    "fiber_g_100g": 0.5
+  },
+  "nutrition_basis": {"basis_raw": "ל-100 מ\"ל", "basis_type": "per_100ml"},
+  "provenance": {"capture_status": {"ingredients": "simulated", "nutrition": "simulated"}},
+  "parser_status": {"ingredients_present": true, "nutrition_present": true, "nutrition_basis_confirmed_per_100g": true}
+}

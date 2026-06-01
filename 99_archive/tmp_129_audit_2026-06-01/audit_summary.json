@@ -1,0 +1,5892 @@
+{
+  "hummus": {
+    "n_traces": 69,
+    "n_scored": 69,
+    "conf_mean": 87.5,
+    "conf_min": 5,
+    "conf_max": 100,
+    "cat_conf_mean": 0.915,
+    "cat_conf_min": 0.3,
+    "nova_conf_mean": 0.563,
+    "score_mean": 65.2,
+    "score_min": 42.8,
+    "score_max": 85.5,
+    "band_counts": {
+      "low": 2,
+      "high": 64,
+      "medium": 1,
+      "insufficient": 2
+    },
+    "grade_counts": {
+      "B": 28,
+      "A": 8,
+      "C": 27,
+      "D": 4,
+      "insufficient_data": 2
+    },
+    "n_flagged": 64,
+    "n_marketing_ing": 15,
+    "n_low_catconf": 2,
+    "n_eval_nonstd": 2,
+    "n_data_insuff": 2,
+    "n_scprimary_guess": 16,
+    "n_single_cap_driver": 19,
+    "top6": [
+      [
+        "חומוס ענק",
+        85.5,
+        "A",
+        90
+      ],
+      [
+        "חומוס",
+        85.5,
+        "A",
+        90
+      ],
+      [
+        "חומוס גדול שופרסל",
+        85.4,
+        "A",
+        100
+      ],
+      [
+        "חומוס לבן ענק שופרסל",
+        85.4,
+        "A",
+        100
+      ],
+      [
+        "חומוס מוקפא",
+        85,
+        "A",
+        100
+      ],
+      [
+        "חומוס ענק",
+        85,
+        "A",
+        95
+      ]
+    ],
+    "bottom6": [
+      [
+        "ממרח פלפלים קלויים",
+        42.8,
+        "D",
+        90
+      ],
+      [
+        "ממרח פלפלים קלויים",
+        48.0,
+        "D",
+        95
+      ],
+      [
+        "מטבוחה אמיתית",
+        48.7,
+        "D",
+        90
+      ],
+      [
+        "מטבוחה חריפה",
+        49.6,
+        "D",
+        90
+      ],
+      [
+        "חציל על האש בטחינה",
+        50.0,
+        "C",
+        90
+      ],
+      [
+        "חומוס",
+        50,
+        "insufficient_data",
+        5
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_1990261",
+        "name": "חומוס",
+        "score": 72.6,
+        "grade": "B",
+        "conf": 50,
+        "conf_band": "low",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_208428",
+        "name": "חומוס שלם יכין",
+        "score": 79.9,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_2987963",
+        "name": "חומוס",
+        "score": 68.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_3643714",
+        "name": "חומוס",
+        "score": 72.6,
+        "grade": "B",
+        "conf": 50,
+        "conf_band": "low",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_3643820",
+        "name": "חומוס ענק",
+        "score": 85,
+        "grade": "A",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_3727667",
+        "name": "חומוס מסעדה",
+        "score": 68.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_3989096",
+        "name": "סלט חציל פיקנטי",
+        "score": 54.2,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_467153",
+        "name": "מלך החומוס סמיר הגדול",
+        "score": 64.4,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_467320",
+        "name": "מלך החומוס אבו מרוואן",
+        "score": 65.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_5174551",
+        "name": "חומוס יום יום",
+        "score": 68.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_6666307",
+        "name": "סלט חומוס",
+        "score": 80.2,
+        "grade": "A",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_6666444",
+        "name": "סלט מטבוחה",
+        "score": 60.4,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_6724786",
+        "name": "ממרח פלפלים קלויים",
+        "score": 42.8,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290010154265",
+        "name": "פלפל צ'ומה",
+        "score": 51.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290010931330",
+        "name": "סלט מטבוחה",
+        "score": 61.8,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290011800642",
+        "name": "סלט מטבוחה מרוקאית",
+        "score": 61.5,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290018359686",
+        "name": "הקיסר חומוס ענק",
+        "score": 80.4,
+        "grade": "A",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290104061417",
+        "name": "חומוס עם טחינה אחלה",
+        "score": 63.5,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290104061424",
+        "name": "חומוס עם זעתר",
+        "score": 65.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290104061431",
+        "name": "חומוס עם צנובר אחלה",
+        "score": 65.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290104061448",
+        "name": "חומוס עם חריף אחלה",
+        "score": 63.1,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290104721533",
+        "name": "סלט פלפלים קלויים",
+        "score": 63.5,
+        "grade": "C",
+        "conf": 65,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290105366023",
+        "name": "סלט חציל בטעם כבד",
+        "score": 56.1,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290105964564",
+        "name": "חומוס",
+        "score": 68.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290106520905",
+        "name": "סלט טורקי",
+        "score": 60.4,
+        "grade": "C",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290106573598",
+        "name": "חומוס לבנוני צבר",
+        "score": 65.1,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106573628",
+        "name": "חומוס עם טחינה צבר",
+        "score": 63.4,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106573642",
+        "name": "חומוס צנובר צבר",
+        "score": 67.1,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106573819",
+        "name": "חומוס אבו גוש+צנובר+חריף",
+        "score": 64.2,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106576513",
+        "name": "חומוס מסעדה",
+        "score": 68.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290106576537",
+        "name": "חומוס מסעדה צבר",
+        "score": 65.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106577480",
+        "name": "חציל על האש בטחינה",
+        "score": 50.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290106577572",
+        "name": "מטבוחה אמיתית",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290107958639",
+        "name": "מטבוחה חריפה אש",
+        "score": 62.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290110557478",
+        "name": "חומוס גלילי",
+        "score": 68.9,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290110564360",
+        "name": "חומוס עשיר ב40% טחינה",
+        "score": 68.3,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290110579319",
+        "name": "חומוס גלילי",
+        "score": 69.1,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290111563492",
+        "name": "מטבוחה חריפה",
+        "score": 49.6,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290112968685",
+        "name": "חומוס גרגרים בתטבילה",
+        "score": 63.1,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290115202434",
+        "name": "חומוס עם זעתר",
+        "score": 64.8,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290115202687",
+        "name": "חומוס עם חריף",
+        "score": 62.7,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290115207484",
+        "name": "חציל על האש",
+        "score": 58.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290119373710",
+        "name": "חומוס מועשר 40% עם חריף",
+        "score": 65.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290119374885",
+        "name": "חומוס עם חציל פיקנטי",
+        "score": 57.9,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290119374892",
+        "name": "חומוס עם מלא מטבוחה חריף",
+        "score": 65.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290119387434",
+        "name": "חומוס ישראלי",
+        "score": 68.3,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290122780314",
+        "name": "חומוס אבו מרוואן26%טחינה",
+        "score": 65.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7296073005889",
+        "name": "חומוס לבן ענק שופרסל",
+        "score": 85.4,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7296073006015",
+        "name": "חומוס גדול שופרסל",
+        "score": 85.4,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7296073705505",
+        "name": "חומוס מוקפא",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725367",
+        "name": "סלט חומוס+מסבחה",
+        "score": 68.2,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725374",
+        "name": "סלט חומוס עם טחינה",
+        "score": 68.5,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725381",
+        "name": "חומוס אבו גוש",
+        "score": 69.9,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725398",
+        "name": "חומוס מסבחה",
+        "score": 64.2,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725404",
+        "name": "חומוס מסעדות",
+        "score": 75.7,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725497",
+        "name": "סלט חצילים על האש",
+        "score": 61.6,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725565",
+        "name": "חומוס אסלי",
+        "score": 70.6,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7296073725589",
+        "name": "חומוס",
+        "score": 70.6,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7296073733317",
+        "name": "חומוס",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7296073733324",
+        "name": "חומוס",
+        "score": 85.5,
+        "grade": "A",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7296073733331",
+        "name": "חומוס ענק",
+        "score": 85.5,
+        "grade": "A",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7296073733348",
+        "name": "חומוס ענק",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8644112",
+        "name": "סלט מטבוחה יום יום",
+        "score": 61.8,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_8645935",
+        "name": "חומוס",
+        "score": 68.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.94,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      }
+    ]
+  },
+  "maadanim": {
+    "n_traces": 200,
+    "n_scored": 200,
+    "conf_mean": 76.3,
+    "conf_min": 0,
+    "conf_max": 100,
+    "cat_conf_mean": 0.709,
+    "cat_conf_min": 0.3,
+    "nova_conf_mean": 0.675,
+    "score_mean": 45.1,
+    "score_min": 21.5,
+    "score_max": 77.0,
+    "band_counts": {
+      "insufficient": 29,
+      "medium": 10,
+      "high": 150,
+      "low": 11
+    },
+    "grade_counts": {
+      "insufficient_data": 31,
+      "D": 98,
+      "E": 28,
+      "C": 39,
+      "B": 4
+    },
+    "n_flagged": 179,
+    "n_marketing_ing": 63,
+    "n_low_catconf": 71,
+    "n_eval_nonstd": 31,
+    "n_data_insuff": 31,
+    "n_scprimary_guess": 48,
+    "n_single_cap_driver": 59,
+    "top6": [
+      [
+        "יוגורט גו נטול לקטוז",
+        77.0,
+        "B",
+        90
+      ],
+      [
+        "ביו 25 פרוביוטיקה",
+        75,
+        "insufficient_data",
+        40
+      ],
+      [
+        "גבינה צפתית מעודנת 5%",
+        71.2,
+        "B",
+        90
+      ],
+      [
+        "יופלה GO מועשר בחלבון",
+        69.6,
+        "B",
+        90
+      ],
+      [
+        "ברנפלקס ללא תוספת סוכר",
+        65.7,
+        "B",
+        80
+      ],
+      [
+        "מולר פרוטאין טופ בוטנים",
+        64.3,
+        "C",
+        95
+      ]
+    ],
+    "bottom6": [
+      [
+        "טארטלטים לקינוח",
+        21.5,
+        "insufficient_data",
+        40
+      ],
+      [
+        "מילקי קייק מארז",
+        26.6,
+        "E",
+        90
+      ],
+      [
+        "מילקי קייק",
+        26.6,
+        "E",
+        90
+      ],
+      [
+        "מילקי קייק מיניס קרם חלב",
+        26.9,
+        "E",
+        90
+      ],
+      [
+        "סירופ דיאט לימונענע",
+        27.3,
+        "E",
+        70
+      ],
+      [
+        "קונפיטורה תות שדה לייט",
+        29.3,
+        "E",
+        85
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_maadanim_1471272",
+        "name": "פרוביוטיק פמינה",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_209517",
+        "name": "סירופ דיאט לימון",
+        "score": 40.3,
+        "grade": "D",
+        "conf": 65,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_209524",
+        "name": "סירופ דיאט פטל יכין",
+        "score": 30.4,
+        "grade": "E",
+        "conf": 70,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_209531",
+        "name": "סירופ דיאט אשכוליות",
+        "score": 31.4,
+        "grade": "E",
+        "conf": 70,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2304203",
+        "name": "קונפיטורה תות שדה לייט",
+        "score": 29.3,
+        "grade": "E",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2304210",
+        "name": "קונפיטורה מישמש לייט",
+        "score": 38.5,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2304234",
+        "name": "קונפיטורה אוכמניות לייט",
+        "score": 47.4,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2304241",
+        "name": "קונפיטורה פירות יער לייט",
+        "score": 43.3,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2385455",
+        "name": "בולגרית מעודנת 24%",
+        "score": 60.0,
+        "grade": "C",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_2859048",
+        "name": "שריר הזרוע (8) בעדני",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4014400907902",
+        "name": "סוכ.וורטר ללא סוכר בוקס",
+        "score": 37.4,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4120061",
+        "name": "מעדן קרלו שוניל 3% שומן",
+        "score": 41.6,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4135225",
+        "name": "מעדן דיאט שוקולד 0.2%",
+        "score": 35.0,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4136857",
+        "name": "מעדן ג'לי פטל",
+        "score": 41.5,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4584306",
+        "name": "סופר גמדים תות בננה מארז",
+        "score": 52.8,
+        "grade": "C",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4607001414445",
+        "name": "טארטלטים לקינוח",
+        "score": 21.5,
+        "grade": "insufficient_data",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_4820077162441",
+        "name": "קינוח קראנצ' דובאי",
+        "score": 43.6,
+        "grade": "D",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.69,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5014271300429",
+        "name": "מעדן משמש",
+        "score": 56.9,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5014271360423",
+        "name": "מעדן תפוז",
+        "score": 47.9,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_518220",
+        "name": "סוכרה דיאט",
+        "score": 41.2,
+        "grade": "D",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431883",
+        "name": "מלבי חלבי",
+        "score": 32.5,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431890",
+        "name": "בוואריה",
+        "score": 30.9,
+        "grade": "E",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.65,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431906",
+        "name": "קדאיף",
+        "score": 42.8,
+        "grade": "D",
+        "conf": 75,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431913",
+        "name": "עוגת גבינה פירורים",
+        "score": 33.4,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431920",
+        "name": "עוגת גבינה פירורים לייט",
+        "score": 34.8,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431937",
+        "name": "טירמיסו",
+        "score": 32.8,
+        "grade": "E",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5431968",
+        "name": "מלבי שמנת",
+        "score": 50.2,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_55329",
+        "name": "משקה יוגורט תות-מלון",
+        "score": 35.0,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_55336",
+        "name": "משקה יוגורט בננה אפרסק",
+        "score": 37.0,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_55343",
+        "name": "יופלה משקה יוגורט טרופי",
+        "score": 36.8,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_554402",
+        "name": "מלבי",
+        "score": 42.6,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_554532",
+        "name": "גבינה צפתית מעודנת 5%",
+        "score": 71.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_554624",
+        "name": "ירח מתוק מעדן חלב+אורז3%",
+        "score": 41.4,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_58030",
+        "name": "יופלה שטוזים משקה תות",
+        "score": 35.1,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5811227",
+        "name": "פנקייק מיקס",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.55,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence",
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_5839313",
+        "name": "מילקי טופ שוקולדה מגולגל",
+        "score": 45.6,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_6437044",
+        "name": "פרוביוטיק ואנזימי",
+        "score": 49.2,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_6492616",
+        "name": "פרוסות בולגרית מעודנת 5%",
+        "score": 60.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_6664532",
+        "name": "דנונה תות 3% שומן",
+        "score": 45.5,
+        "grade": "D",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_6664693",
+        "name": "דנונה אפרסק3% שומן",
+        "score": 40.1,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_67131",
+        "name": "ג'לי בטעם תות כשל\"פ",
+        "score": 31.9,
+        "grade": "E",
+        "conf": 45,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_67742",
+        "name": "אינסטנט פודינג וניל כשלפ",
+        "score": 46.0,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_68138",
+        "name": "אינסטנט פודינג וניל",
+        "score": 46.0,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_68190",
+        "name": "ג'לי בטעם תות",
+        "score": 29.9,
+        "grade": "E",
+        "conf": 50,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290010472307",
+        "name": "גמדים לשתיה תות בננה",
+        "score": 46.5,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011015862",
+        "name": "סירופ דיאט לימונענע",
+        "score": 50.4,
+        "grade": "C",
+        "conf": 75,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011194215",
+        "name": "דניאלה בננה",
+        "score": 46.7,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011387181",
+        "name": "פרוביוטיק פמינה",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011499129",
+        "name": "קוביות בולגרית מעודנת 5%",
+        "score": 60.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011499327",
+        "name": "גבינה בולגרית מעודנת 5%",
+        "score": 60.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290011899295",
+        "name": "ג'ארו דופילוס פרוביוטיקה",
+        "score": 49.2,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290012637315",
+        "name": "סחלב",
+        "score": 36.1,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290012760006",
+        "name": "ביו קיד אבקה",
+        "score": 49.2,
+        "grade": "insufficient_data",
+        "conf": 20,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290012760037",
+        "name": "ביו 25 פרוביוטיקה",
+        "score": 75,
+        "grade": "insufficient_data",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290013144232",
+        "name": "פודינג וניל",
+        "score": 31.6,
+        "grade": "E",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290013465009",
+        "name": "ביו בליס פרוביוטיקה",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290013531346",
+        "name": "סירופ דיאט לימונענע",
+        "score": 27.3,
+        "grade": "E",
+        "conf": 70,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290013621221",
+        "name": "מגה פרוביוטיק 500 מ\"ג",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014455467",
+        "name": "מעדן שיבולת שועל",
+        "score": 54.4,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014546530",
+        "name": "ביו LR 25 בד\"ץ",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014760134",
+        "name": "מעדן סויה בטעם וניל",
+        "score": 37.0,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014761414",
+        "name": "יולו שכבות שוקולד",
+        "score": 39.7,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.7,
+        "flags": [
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014762220",
+        "name": "ג'לי בטעם ענבים",
+        "score": 38.1,
+        "grade": "D",
+        "conf": 45,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290014762800",
+        "name": "מעדן סויה עם שוקולד",
+        "score": 42.7,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290015765589",
+        "name": "פרוביוטיק INTENSE",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290017065236",
+        "name": "בולגרית מעודנת 24%",
+        "score": 60.0,
+        "grade": "C",
+        "conf": 75,
+        "conf_band": "medium",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290017218007",
+        "name": "פרוביוטיק SHAPE",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290017242507",
+        "name": "ביו דופילוס פלוס בדץ",
+        "score": 42.7,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290017243221",
+        "name": "ביו 25",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290018249123",
+        "name": "אינסטנט פודינג בטעם וניל",
+        "score": 42.4,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290018249550",
+        "name": "אינסטנט פודינג שוקולד",
+        "score": 44.9,
+        "grade": "D",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "dessert",
+        "cat_conf": 0.78,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019056027",
+        "name": "שוופס ללא סוכר תפוח",
+        "score": 34.6,
+        "grade": "E",
+        "conf": 77,
+        "conf_band": "medium",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019167112",
+        "name": "קדאיף פרווה",
+        "score": 36.2,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019167129",
+        "name": "טירמיסו פרווה",
+        "score": 33.9,
+        "grade": "E",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.4,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019167136",
+        "name": "בוואריה פרווה",
+        "score": 36.3,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019297802",
+        "name": "מיקס לילד",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019401018",
+        "name": "חטיף פרוטאין קרם עוגיות",
+        "score": 52.4,
+        "grade": "C",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.49,
+        "flags": [
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019401544",
+        "name": "חטיף פרוטאין עוגיות טופי",
+        "score": 56.0,
+        "grade": "C",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.73,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019444114",
+        "name": "פרוביוטיק INTENSE",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019554110",
+        "name": "מוס ניקוי מיסלרי",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290019939429",
+        "name": "שוקולד מרירי ללא סוכר",
+        "score": 49.0,
+        "grade": "D",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.65,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290020398000",
+        "name": "נודלס חלבון בטעם עוף",
+        "score": 53.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.52,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290020398017",
+        "name": "נודלס חלבון בטעם בקר",
+        "score": 56.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.64,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290020398024",
+        "name": "נודלס חלבון עוף סצואן",
+        "score": 53.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.52,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290020398031",
+        "name": "נודלס חלבון ירקות וטופו",
+        "score": 53.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.5,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290102396399",
+        "name": "מעדן מוו בטעם שוקולד",
+        "score": 38.3,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290102396405",
+        "name": "מעדן  מוו בטעם וניל מארז",
+        "score": 32.2,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290102399819",
+        "name": "מולר פרוטאין יוגור.פירות",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290104062599",
+        "name": "גמדים תות בננה מארז",
+        "score": 53.2,
+        "grade": "C",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290104501661",
+        "name": "פודינג וניל צרפתי",
+        "score": 46.0,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290104726262",
+        "name": "דני שלוק שוקולד",
+        "score": 33.4,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.84,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290105368331",
+        "name": "מילקי בטעם תות",
+        "score": 36.7,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290106654099",
+        "name": "מילקי קייק מארז",
+        "score": 26.6,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290106663121",
+        "name": "מילקי קייק",
+        "score": 26.6,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290107950190",
+        "name": "מעדן דיאט ט.שוקולד מריר",
+        "score": 44.8,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290107957991",
+        "name": "מילקי קייק מיניס קרם חלב",
+        "score": 26.9,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290107958035",
+        "name": "דנונה במתיקות מעודנת",
+        "score": 50.5,
+        "grade": "C",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110321031",
+        "name": "יופלה GO מועשר בחלבון",
+        "score": 69.6,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110321680",
+        "name": "יופלה GO תות",
+        "score": 52.8,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110321697",
+        "name": "יופלה GO אפרסק",
+        "score": 57.2,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110321703",
+        "name": "יופלה GO פירות יער",
+        "score": 54.6,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110322946",
+        "name": "יופלה טיוב תות בננה",
+        "score": 42.5,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110323585",
+        "name": "יופלה GO דובדבן 0.7%",
+        "score": 47.9,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110323592",
+        "name": "יופלה GO אפרסק 0.7%",
+        "score": 52.4,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110324551",
+        "name": "יופלה טיוב תות",
+        "score": 42.5,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110325312",
+        "name": "מעדן סויה ביו טעם תות 3%",
+        "score": 46.4,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110325510",
+        "name": "יופלה טיוב בטעם וניל",
+        "score": 44.2,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110326210",
+        "name": "יופלה און טופ פצפוצים",
+        "score": 39.6,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110326234",
+        "name": "יופלה און טופ כוכבים",
+        "score": 39.6,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110328627",
+        "name": "יוגורט GO קרמי בננה קרמל",
+        "score": 56.5,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110328764",
+        "name": "יוגורט GO קרמי תות",
+        "score": 58.2,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110328788",
+        "name": "יוגורט GO קרמי אפרסק",
+        "score": 62.1,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110329143",
+        "name": "מעדן חלבון בטעם וניל",
+        "score": 54.4,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.95,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110329792",
+        "name": "מעדן סויה ביו אפרסק",
+        "score": 42.3,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110329808",
+        "name": "מעדן סויה עם תות",
+        "score": 42.3,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110329815",
+        "name": "מעדן סויה ביו מעודנת",
+        "score": 44.8,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110329846",
+        "name": "מעדן סויה ביו טבעי",
+        "score": 57.4,
+        "grade": "C",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110552244",
+        "name": "משקה דנונה פרו20 ללת\"ס",
+        "score": 42.9,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110557423",
+        "name": "מילקי שכבות שוקולד+קצפת",
+        "score": 30.7,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110558314",
+        "name": "דנונ.פרו ללא סוכר פיסטוק",
+        "score": 54.2,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110558703",
+        "name": "מעדן חלבון ללת\"ס שוקולד",
+        "score": 42.6,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110561604",
+        "name": "גמדים תות בננה מארז",
+        "score": 48.9,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110565435",
+        "name": "לימבו פטל קו חלבי",
+        "score": 38.1,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110566975",
+        "name": "דנונה פרו 20ג חלבון תות",
+        "score": 53.1,
+        "grade": "C",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "dairy_protein",
+        "cat_conf": 0.78,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110571382",
+        "name": "מעדן בטעם וניל מועשר",
+        "score": 43.4,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290110573751",
+        "name": "מילקי טופ עדשים",
+        "score": 33.0,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112197573",
+        "name": "ריבת תות",
+        "score": 33.2,
+        "grade": "E",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112197580",
+        "name": "טרו ריבת משמש",
+        "score": 37.3,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112197597",
+        "name": "ריבת פירות יער",
+        "score": 33.0,
+        "grade": "E",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112339867",
+        "name": "גמדים סקוויז לדרך תות",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112339874",
+        "name": "גמדים לדרך תות בננה",
+        "score": 48.9,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112347008",
+        "name": "גמדים ארוחת בוקר תות",
+        "score": 46.5,
+        "grade": "D",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "cereal",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112349606",
+        "name": "דניאלה תות בננה",
+        "score": 48.5,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112349637",
+        "name": "דניאלה בטעם ענבים",
+        "score": 48.8,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112355102",
+        "name": "גמדים לדרך סלט פירות",
+        "score": 48.9,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112497123",
+        "name": "תערובת להכנת סחלב",
+        "score": 48.5,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.89,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112966803",
+        "name": "אינסטנט פודינג שוקולד",
+        "score": 48.9,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.82,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290112966827",
+        "name": "פודינג אינסטנט שוקולד",
+        "score": 49.5,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.82,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290114312950",
+        "name": "משקה חלבון וניל פרוטאין",
+        "score": 49.2,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.81,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290114313278",
+        "name": "משקה חלבון קפה פרוטאין",
+        "score": 47.0,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290114313285",
+        "name": "משקה חלבון בננה פרוטאין",
+        "score": 47.3,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.81,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290114314596",
+        "name": "מולר פרוטאין טופ בוטנים",
+        "score": 64.3,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.8,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290115678376",
+        "name": "מעדן הגולן שוקולד",
+        "score": 53.3,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290116930718",
+        "name": "מעדן דיאט שוקו.קרמל מלוח",
+        "score": 35.5,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290116932620",
+        "name": "יוגורט גו נטול לקטוז",
+        "score": 77.0,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290116933801",
+        "name": "יופלה  טופ תות קורנפלקס",
+        "score": 44.7,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "cereal",
+        "cat_conf": 0.93,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290116933825",
+        "name": "משקה יופלה בננה תות1.6%",
+        "score": 34.1,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.91,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290116934556",
+        "name": "ג'לי תנובה בטעם אפרסק",
+        "score": 31.3,
+        "grade": "E",
+        "conf": 50,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119040322",
+        "name": "עוגיות אוזניים ללת\"ס",
+        "score": 33.3,
+        "grade": "insufficient_data",
+        "conf": 32,
+        "conf_band": "insufficient",
+        "cat": "cracker",
+        "cat_conf": 0.71,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119040773",
+        "name": "עוגיות שומשום ללת\"ס",
+        "score": 37.2,
+        "grade": "insufficient_data",
+        "conf": 32,
+        "conf_band": "insufficient",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.64,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119041305",
+        "name": "עוגיות מרוקאיות ללת\"ס",
+        "score": 41.7,
+        "grade": "insufficient_data",
+        "conf": 35,
+        "conf_band": "insufficient",
+        "cat": "cracker",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119041350",
+        "name": "עוגיות קוואקר ללת\"ס",
+        "score": 42.2,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.63,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119375356",
+        "name": "דנונה מולטי קולגן",
+        "score": 45.4,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119376636",
+        "name": "דנונה מולטי עם תפוח",
+        "score": 49.5,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119380558",
+        "name": "מילקי שכבות שוקולד קוקוס",
+        "score": 30.6,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.96,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290119384426",
+        "name": "מעדן פרו בטעם פסק זמן",
+        "score": 43.2,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7290122782431",
+        "name": "פודינג טעם פרלין אספרסו",
+        "score": 35.2,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073143437",
+        "name": "ברנפלקס ללא תוספת סוכר",
+        "score": 65.7,
+        "grade": "B",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073219897",
+        "name": "פודינג בטעם וניל",
+        "score": 31.6,
+        "grade": "E",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073320074",
+        "name": "חסה מעודנת הידרופונית",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 20,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073453116",
+        "name": "גבינת בולגרית 5% גד ארוז",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073552451",
+        "name": "המבורגר ילדים",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073593744",
+        "name": "בולגרית מעודנת 24%",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 0,
+        "conf_band": "insufficient",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "low_category_confidence",
+          "category_instability",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073659563",
+        "name": "סוכריות בטעם לימון לל\"ס",
+        "score": 46.0,
+        "grade": "D",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073659570",
+        "name": "סוכריות תפוז לל\"ס 80 גרם",
+        "score": 45.8,
+        "grade": "D",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073659587",
+        "name": "סוכריות מנטה לל\"ס 80 גרם",
+        "score": 50.2,
+        "grade": "C",
+        "conf": 40,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7296073659594",
+        "name": "סוכריות לימון צמחים לל\"ס",
+        "score": 37.7,
+        "grade": "D",
+        "conf": 45,
+        "conf_band": "low",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_72961506",
+        "name": "פרילי תות 1.5% שומן",
+        "score": 45.4,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_72961544",
+        "name": "באדי תות שדה 3% שומן",
+        "score": 49.5,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_7350012551797",
+        "name": "ביוגאיה טיפות פרוביוטיקה",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_77245110610",
+        "name": "סוכריות ללא סוכר מנטה",
+        "score": 43.2,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_80831402",
+        "name": "סוכריות מנטה עדינה לל\"ס",
+        "score": 42.9,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "default",
+        "cat_conf": 0.3,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8324007",
+        "name": "יומי פרוביוטיק בטעם תות",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8324038",
+        "name": "יומי פרוביוטיק בטעם תות",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8410076610379",
+        "name": "נייטשר פרוטאין שוקולד",
+        "score": 50.4,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.82,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8410076610386",
+        "name": "נייטשר פרוטאין קרמל מלוח",
+        "score": 57.9,
+        "grade": "C",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.6,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8410076900333",
+        "name": "חטיף פרוטאין בוטנים קרמל",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8533997",
+        "name": "פרוביוטיקה פלוס",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "dessert",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_maadanim_8693134",
+        "name": "דניאלה תות מוקצף5% שומן",
+        "score": 48.5,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dessert",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      }
+    ]
+  },
+  "snacks": {
+    "n_traces": 53,
+    "n_scored": 53,
+    "conf_mean": 75.5,
+    "conf_min": 5,
+    "conf_max": 100,
+    "cat_conf_mean": 0.742,
+    "cat_conf_min": 0.4,
+    "nova_conf_mean": 0.619,
+    "score_mean": 37.5,
+    "score_min": 13.4,
+    "score_max": 70,
+    "band_counts": {
+      "high": 35,
+      "insufficient": 5,
+      "medium": 13
+    },
+    "grade_counts": {
+      "C": 12,
+      "insufficient_data": 5,
+      "E": 23,
+      "D": 12,
+      "B": 1
+    },
+    "n_flagged": 38,
+    "n_marketing_ing": 14,
+    "n_low_catconf": 11,
+    "n_eval_nonstd": 5,
+    "n_data_insuff": 5,
+    "n_scprimary_guess": 11,
+    "n_single_cap_driver": 7,
+    "top6": [
+      [
+        "חטיף תמרים במילוי חמאת שקדים",
+        70,
+        "B",
+        72
+      ],
+      [
+        "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+        59.5,
+        "C",
+        82
+      ],
+      [
+        "מרבה סלים דליס שוקולד חלב ללא גלוטן חדש",
+        59.2,
+        "C",
+        67
+      ],
+      [
+        "מרבה סלים דליס שוקולד מריר חדש",
+        58.6,
+        "C",
+        82
+      ],
+      [
+        "חטיף תמרים בציפוי שוקולד 100% קקאו",
+        56.7,
+        "C",
+        60
+      ],
+      [
+        "חטיף תמרים במילוי חמאת בוטנים",
+        55.0,
+        "C",
+        82
+      ]
+    ],
+    "bottom6": [
+      [
+        "שחור ולבן חטיף דגנים בטעם שוקולד עם 30% מילוי קרם חלב",
+        13.4,
+        "E",
+        100
+      ],
+      [
+        "קורני חטיפי דגנים קוקוס שוקולד",
+        15.2,
+        "E",
+        95
+      ],
+      [
+        "חטיף דגנים שוגי שישייה 156 גרם",
+        15.6,
+        "E",
+        90
+      ],
+      [
+        "חטיף דגנים שוגי שוקו שישייה 156 גרם",
+        15.8,
+        "E",
+        90
+      ],
+      [
+        "קורני חטיפי דגנים+שוקולד חלב",
+        16.3,
+        "E",
+        72
+      ],
+      [
+        "קורני חטיפי דגנים שוקולד בננה",
+        16.4,
+        "E",
+        80
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_16000548909",
+        "name": "קראנצ'י חטיף שיבולת שועל מיקס חמישייה",
+        "score": 34.2,
+        "grade": "insufficient_data",
+        "conf": 27,
+        "conf_band": "insufficient",
+        "cat": "cereal",
+        "cat_conf": 0.65,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "structural_class_guess<0.35",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_4011800628512",
+        "name": "קורני חטיפי דגנים+שוקולד חלב",
+        "score": 16.3,
+        "grade": "E",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.77,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_4011800629519",
+        "name": "חטיף דגנים עם אגוזים",
+        "score": 19.1,
+        "grade": "E",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.73,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_4011800630515",
+        "name": "קורני חטיפי דגנים שוקולד בננה",
+        "score": 16.4,
+        "grade": "E",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.85,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "structural_class_guess<0.35",
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_4011800633516",
+        "name": "קורני חטיפי דגנים שוקולד מריר 58% קקאו",
+        "score": 16.6,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.84,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_5900020018908",
+        "name": "חטיפי דגנים פיטנס קרם ועוגיות שישייה",
+        "score": 25.7,
+        "grade": "E",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.47,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_5900020020710",
+        "name": "חטיף דגנים שוקו וניל נסטלה שישייה",
+        "score": 28.5,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_5900020022325",
+        "name": "סיני מיניס חטיף בטעם קינמון על שכבת קרם חלב 6 יח'",
+        "score": 27.0,
+        "grade": "E",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.62,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_5900020029669",
+        "name": "חטיף דגנים עם פירות יער",
+        "score": 25.0,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_5900020039620",
+        "name": "חטיפי דגנים פיטנס שקדים ודבש שישייה",
+        "score": 45.0,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.56,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290011498870",
+        "name": "חטיף תמרים במילוי חמאת שקדים",
+        "score": 70,
+        "grade": "B",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.75,
+        "flags": [
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290011498894",
+        "name": "חטיף תמרים במילוי חמאת בוטנים",
+        "score": 55.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.77,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290011498948",
+        "name": "חטיף תמרים בציפוי שוקולד 100% קקאו",
+        "score": 56.7,
+        "grade": "C",
+        "conf": 60,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290014525290",
+        "name": "מרבה סלים דליס קריספי תות 125 גר",
+        "score": 28.9,
+        "grade": "E",
+        "conf": 67,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.54,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290014525306",
+        "name": "מרבה סלים דליס קריספי אוכמניות 125 גר",
+        "score": 33.1,
+        "grade": "E",
+        "conf": 62,
+        "conf_band": "medium",
+        "cat": "crispbread",
+        "cat_conf": 0.68,
+        "flags": [
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290018333952",
+        "name": "חטיף אגוזים וחמוציות רפאלס 5*30 גרם",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.81,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290019545545",
+        "name": "חטיף פאי פקאן רפאלס 5*30 גרם",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290107646147",
+        "name": "חטיף דגנים שוגי שישייה 156 גרם",
+        "score": 15.6,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7290107646154",
+        "name": "קוקומן חטיף פצפוצי דגנים בטעם שוקולד 6 יח'",
+        "score": 40.1,
+        "grade": "D",
+        "conf": 80,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290107646826",
+        "name": "חטיף דגנים שוגי שוקו שישייה 156 גרם",
+        "score": 15.8,
+        "grade": "E",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7290111936784",
+        "name": "פרי מארז 5 חטיפים תמרים ואגוזי לוז כשלפ",
+        "score": 43.7,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.92,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_7290111937262",
+        "name": "פרי מארז חטיפי תמרים ושברי קקאו 5+1",
+        "score": 42.3,
+        "grade": "D",
+        "conf": 75,
+        "conf_band": "medium",
+        "cat": "whole_food_fat",
+        "cat_conf": 0.4,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "structural_class_guess<0.35",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290118427858",
+        "name": "פיטנס בר גרנולה שוקולד מריר",
+        "score": 17.9,
+        "grade": "E",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.9,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_7290118427872",
+        "name": "חטיפי פיטנס שיבולת שועל חמוציות 5*38 גרם",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "cereal",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290118427896",
+        "name": "חטיפי פיטנס שיבולת שועל דבש 5*38 גרם",
+        "score": 39.8,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "cereal",
+        "cat_conf": 0.87,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8410076602251",
+        "name": "קראנצ'י חטיף שיבולת שועל עם חתיכות בטעם שוקולד חמישייה.",
+        "score": 44.3,
+        "grade": "D",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.59,
+        "flags": [
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_8410076610379",
+        "name": "נייצר וואלי פרוטאין בוטנים ושבבי שוקולד רביעייה",
+        "score": 47.4,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.8,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients"
+        ]
+      },
+      {
+        "id": "bsip1_8410076610386",
+        "name": "נייצר וואלי פרוטאין בוטנים בציפוי קרמל מלוח רביעייה",
+        "score": 45.7,
+        "grade": "D",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.59,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_8410076610492",
+        "name": "נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה",
+        "score": 38.2,
+        "grade": "D",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.53,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8410076610508",
+        "name": "נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישייה",
+        "score": 38.7,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.51,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_8423207206488",
+        "name": "חטיף דגנים מלאים מצופה שוקולד חלב",
+        "score": 37.6,
+        "grade": "D",
+        "conf": 70,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.81,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8423207206495",
+        "name": "מרבה סלים דליס שוקולד מריר חדש",
+        "score": 58.6,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.75,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_8423207207362",
+        "name": "מרבה סלים דליס שוקולד לבן חדש",
+        "score": 51.9,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.59,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_8423207208260",
+        "name": "מרבה סלים דליס שוקולד חלב ללא גלוטן חדש",
+        "score": 59.2,
+        "grade": "C",
+        "conf": 67,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.56,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8423207208680",
+        "name": "מרבה סלים דליס לילדים עם שוקולד חלב חדש",
+        "score": 52.0,
+        "grade": "C",
+        "conf": 67,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.6,
+        "flags": [
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8423207208703",
+        "name": "חטיף דגנים מצופה שוקולד מריר סלים דליס",
+        "score": 50,
+        "grade": "insufficient_data",
+        "conf": 5,
+        "conf_band": "insufficient",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "eval_status=context_limited",
+          "data_suff=insufficient",
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8423207209885",
+        "name": "מרבה סלים דליס מהדורה מיוחדת שוקולד חלב",
+        "score": 51.8,
+        "grade": "C",
+        "conf": 72,
+        "conf_band": "medium",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.6,
+        "flags": [
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_8423207210287",
+        "name": "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+        "score": 59.5,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.57,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver"
+        ]
+      }
+    ]
+  },
+  "yogurts": {
+    "n_traces": 45,
+    "n_scored": 45,
+    "conf_mean": 93.6,
+    "conf_min": 75,
+    "conf_max": 100,
+    "cat_conf_mean": 0.827,
+    "cat_conf_min": 0.45,
+    "nova_conf_mean": 0.69,
+    "score_mean": 64.9,
+    "score_min": 31.3,
+    "score_max": 85,
+    "band_counts": {
+      "high": 44,
+      "medium": 1
+    },
+    "grade_counts": {
+      "A": 11,
+      "B": 9,
+      "C": 19,
+      "D": 5,
+      "E": 1
+    },
+    "n_flagged": 42,
+    "n_marketing_ing": 0,
+    "n_low_catconf": 8,
+    "n_eval_nonstd": 0,
+    "n_data_insuff": 0,
+    "n_scprimary_guess": 0,
+    "n_single_cap_driver": 26,
+    "top6": [
+      [
+        "לבן 1.5% חלב טנובה",
+        85,
+        "A",
+        100
+      ],
+      [
+        "קפיר שתייה 3%",
+        85,
+        "A",
+        92
+      ],
+      [
+        "לבן שתייה 3% טנובה",
+        85,
+        "A",
+        92
+      ],
+      [
+        "יוגורט יווני חלבון 18 טהור",
+        85,
+        "A",
+        100
+      ],
+      [
+        "קפיר 2% שומן",
+        85,
+        "A",
+        100
+      ],
+      [
+        "לבן שתייה 3% שומן",
+        85,
+        "A",
+        92
+      ]
+    ],
+    "bottom6": [
+      [
+        "מוס שוקולד יוגורט",
+        31.3,
+        "E",
+        85
+      ],
+      [
+        "יוגורט מולר קורנר דבש אגוזים",
+        36.3,
+        "D",
+        92
+      ],
+      [
+        "קרם יוגורט קרמל",
+        40.6,
+        "D",
+        92
+      ],
+      [
+        "יוגורט ילדים תות ואניל",
+        46.3,
+        "D",
+        100
+      ],
+      [
+        "יוגורט עם ריבת תות",
+        48.7,
+        "D",
+        95
+      ],
+      [
+        "אקטימל משקה חלב פרוביוטי",
+        49.8,
+        "D",
+        87
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_7290200000001",
+        "name": "יוגורט טבעי 1.5% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000002",
+        "name": "יוגורט טבעי 3% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000004",
+        "name": "יוגורט עיזים 9% שומן",
+        "score": 60,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000005",
+        "name": "יוגורט יווני 0% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000006",
+        "name": "יוגורט יווני 2% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000007",
+        "name": "יוגורט יווני 5% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000008",
+        "name": "יוגורט יווני 10% שומן פאג'",
+        "score": 55.0,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000009",
+        "name": "אקטימל משקה חלב פרוביוטי",
+        "score": 49.8,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.71,
+        "flags": [
+          "category_instability",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000010",
+        "name": "יוגורט אקטיביה פרוביוטי",
+        "score": 60.6,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000011",
+        "name": "לבן שתייה 3% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.75,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000012",
+        "name": "קפיר 2% שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000013",
+        "name": "יוגורט תות 1.5% שומן",
+        "score": 64.2,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000014",
+        "name": "יוגורט אוכמניות עם מייצב",
+        "score": 57.1,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000015",
+        "name": "יוגורט פירות יוטבתה 1.5%",
+        "score": 61.4,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000016",
+        "name": "יוגורט אפרסק עתיר סוכר",
+        "score": 51.3,
+        "grade": "C",
+        "conf": 75,
+        "conf_band": "medium",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000017",
+        "name": "יוגורט ילדים תות ואניל",
+        "score": 46.3,
+        "grade": "D",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000018",
+        "name": "יוגורט ילדים שוקולד",
+        "score": 55.3,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.53,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000019",
+        "name": "יוגורט ילדים תות טבעי",
+        "score": 60.1,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000020",
+        "name": "שתייה חלב לילדים פרוביוטיקה",
+        "score": 50.4,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.71,
+        "flags": [
+          "category_instability",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000021",
+        "name": "יוגורט חלבון 20 פרי יער",
+        "score": 75.5,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000022",
+        "name": "יוגורט חלבון ואניל",
+        "score": 62.0,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000023",
+        "name": "יוגורט יווני חלבון 18 טהור",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000024",
+        "name": "יוגורט חלבון ממרח שוקולד",
+        "score": 64.5,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.51,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000025",
+        "name": "סקיר טבעי 0.2% שומן",
+        "score": 74.8,
+        "grade": "B",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000026",
+        "name": "סקיר ואניל",
+        "score": 61.5,
+        "grade": "C",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000027",
+        "name": "סקיר תות",
+        "score": 67.0,
+        "grade": "B",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000029",
+        "name": "מוס שוקולד יוגורט",
+        "score": 31.3,
+        "grade": "E",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "sauce_spread",
+        "cat_conf": 0.45,
+        "flags": [
+          "low_category_confidence"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000030",
+        "name": "יוגורט עם ריבת תות",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000031",
+        "name": "קרם יוגורט קרמל",
+        "score": 40.6,
+        "grade": "D",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.69,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000032",
+        "name": "יוגורט 0% ללא סוכר תות",
+        "score": 54.8,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000033",
+        "name": "יוגורט דיאט ואניל 0%",
+        "score": 51.5,
+        "grade": "C",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000034",
+        "name": "יוגורט יווני 0% סטביה",
+        "score": 70.0,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000035",
+        "name": "יוגורט סויה טבעי",
+        "score": 74.8,
+        "grade": "B",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.71,
+        "flags": [
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000036",
+        "name": "יוגורט קוקוס",
+        "score": 55.0,
+        "grade": "C",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000037",
+        "name": "יוגורט שיבולת שועל",
+        "score": 71.7,
+        "grade": "B",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.53,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000038",
+        "name": "יוגורט שקדים ואניל",
+        "score": 59.3,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000039",
+        "name": "יוגורט נטול לקטוז 1.5%",
+        "score": 66.9,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000040",
+        "name": "יוגורט יווני נטול לקטוז",
+        "score": 71.0,
+        "grade": "B",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000042",
+        "name": "לבן שתייה 3% טנובה",
+        "score": 85,
+        "grade": "A",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.75,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000043",
+        "name": "יוגורט שתייה תות",
+        "score": 56.8,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.66,
+        "flags": [
+          "category_instability",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000044",
+        "name": "קפיר שתייה 3%",
+        "score": 85,
+        "grade": "A",
+        "conf": 92,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.66,
+        "flags": [
+          "category_instability",
+          "ingredient_count<=1",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290200000045",
+        "name": "לבן 1.5% חלב טנובה",
+        "score": 85,
+        "grade": "A",
+        "conf": 100,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      }
+    ]
+  },
+  "bread": {
+    "n_traces": 32,
+    "n_scored": 32,
+    "conf_mean": 90.1,
+    "conf_min": 82,
+    "conf_max": 95,
+    "cat_conf_mean": 0.905,
+    "cat_conf_min": 0.64,
+    "nova_conf_mean": 0.597,
+    "score_mean": 62.8,
+    "score_min": 28.4,
+    "score_max": 85,
+    "band_counts": {
+      "high": 32
+    },
+    "grade_counts": {
+      "D": 4,
+      "B": 15,
+      "A": 1,
+      "C": 11,
+      "E": 1
+    },
+    "n_flagged": 13,
+    "n_marketing_ing": 0,
+    "n_low_catconf": 0,
+    "n_eval_nonstd": 0,
+    "n_data_insuff": 0,
+    "n_scprimary_guess": 6,
+    "n_single_cap_driver": 8,
+    "top6": [
+      [
+        "עוגיות אורז ללא מלח",
+        85,
+        "A",
+        95
+      ],
+      [
+        "קרקר חיטה מלאה פשוט",
+        79.7,
+        "B",
+        90
+      ],
+      [
+        "לחמי קריספ מחמצת שיפון מסורתי",
+        79.4,
+        "B",
+        90
+      ],
+      [
+        "לחמי קריספ שיפון וגרעינים נורדי",
+        79.4,
+        "B",
+        90
+      ],
+      [
+        "לחמי קריספ שיפון פשוט",
+        79.3,
+        "B",
+        90
+      ],
+      [
+        "לחם מחמצת אמיתי ממחיטה מלאה",
+        79.0,
+        "B",
+        90
+      ]
+    ],
+    "bottom6": [
+      [
+        "קרקרים מתוקים לילדים \"גולדה קידס\"",
+        28.4,
+        "E",
+        95
+      ],
+      [
+        "פצפוצי דגנים \"פצ'פץ'\" בטעם דבש",
+        35.3,
+        "D",
+        90
+      ],
+      [
+        "קרקר מלוח פריך",
+        36.0,
+        "D",
+        90
+      ],
+      [
+        "לחמי קריספ \"שום ועשבים\" תעשייתי",
+        40.6,
+        "D",
+        95
+      ],
+      [
+        "לחם \"קטו\" דל פחמימות",
+        49.0,
+        "D",
+        95
+      ],
+      [
+        "עוגיות אורז שוקולד \"בלה שוקו\"",
+        51.0,
+        "C",
+        82
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_bread_light_9990001000001",
+        "name": "קרקר מלוח פריך",
+        "score": 36.0,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.93,
+        "flags": [
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000004",
+        "name": "עוגיות אורז ללא מלח",
+        "score": 85,
+        "grade": "A",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.92,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000008",
+        "name": "לחם \"7 דגנים\" תעשייתי",
+        "score": 53.0,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "bread",
+        "cat_conf": 0.9,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000009",
+        "name": "לחם \"100% חיטה מלאה\" מעורב",
+        "score": 71.1,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "bread",
+        "cat_conf": 0.9,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000011",
+        "name": "לחמי קריספ \"14 גרם סיבים\" תאית",
+        "score": 73.5,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "crispbread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000013",
+        "name": "לחם גרעינים אמיתי",
+        "score": 77.2,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "bread",
+        "cat_conf": 0.9,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000015",
+        "name": "לחמי קריספ שיפון וגרעינים נורדי",
+        "score": 79.4,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "crispbread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000019",
+        "name": "לחם \"בסגנון מחמצת\" תעשייתי",
+        "score": 64.8,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "bread",
+        "cat_conf": 0.9,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000021",
+        "name": "לחם כפרי \"מחמצת ושמרים\"",
+        "score": 70.3,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "bread",
+        "cat_conf": 0.9,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000024",
+        "name": "לחמי קריספ חלבון ופשתן \"17 גרם\"",
+        "score": 74.9,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "crispbread",
+        "cat_conf": 0.94,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000028",
+        "name": "עוגיות אורז שוקולד \"בלה שוקו\"",
+        "score": 51.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.64,
+        "flags": [
+          "structural_class_guess<0.35",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000030",
+        "name": "פצפוצי דגנים \"פצ'פץ'\" בטעם דבש",
+        "score": 35.3,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "snack_bar_granola",
+        "cat_conf": 0.92,
+        "flags": [
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_bread_light_9990001000032",
+        "name": "עוגיות אורז \"חמאה\" שמן דקל",
+        "score": 58.1,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "cracker",
+        "cat_conf": 0.69,
+        "flags": [
+          "single_cap_driver"
+        ]
+      }
+    ]
+  },
+  "milk": {
+    "n_traces": 20,
+    "n_scored": 20,
+    "conf_mean": 87,
+    "conf_min": 77,
+    "conf_max": 95,
+    "cat_conf_mean": 0.782,
+    "cat_conf_min": 0.5,
+    "nova_conf_mean": 0.638,
+    "score_mean": 57.1,
+    "score_min": 38.1,
+    "score_max": 85,
+    "band_counts": {
+      "medium": 2,
+      "high": 18
+    },
+    "grade_counts": {
+      "D": 8,
+      "C": 7,
+      "A": 3,
+      "B": 2
+    },
+    "n_flagged": 16,
+    "n_marketing_ing": 2,
+    "n_low_catconf": 5,
+    "n_eval_nonstd": 0,
+    "n_data_insuff": 0,
+    "n_scprimary_guess": 0,
+    "n_single_cap_driver": 6,
+    "top6": [
+      [
+        "חלב עיזים בקרטון 1 ליטר",
+        85,
+        "A",
+        95
+      ],
+      [
+        "חלב טבעי 4% 1 ליטר",
+        85,
+        "A",
+        90
+      ],
+      [
+        "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+        85,
+        "A",
+        95
+      ],
+      [
+        "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+        74.1,
+        "B",
+        90
+      ],
+      [
+        "משקה סויה ללא סוכרים 1 ליטר",
+        67.0,
+        "B",
+        90
+      ],
+      [
+        "חלב בבקבוק 1% מועשר- מהדרין",
+        60.2,
+        "C",
+        85
+      ]
+    ],
+    "bottom6": [
+      [
+        "אלפרו שוקו משקה סויה",
+        38.1,
+        "D",
+        90
+      ],
+      [
+        "משקה חלב גו 27 גרם חלבון 2% בטעם וניל 340 מ\"ל",
+        41.4,
+        "D",
+        87
+      ],
+      [
+        "אלפרו שקדים ללא סוכר",
+        45.3,
+        "D",
+        77
+      ],
+      [
+        "משקה שיבולת שועל",
+        48.5,
+        "D",
+        87
+      ],
+      [
+        "משקה סויה בריסטה אלפרו 500 מ\"ל",
+        48.7,
+        "D",
+        90
+      ],
+      [
+        "משקה אורז קוקוס אורגני",
+        49.1,
+        "D",
+        87
+      ]
+    ],
+    "flagged": [
+      {
+        "id": "bsip1_5411188112709",
+        "name": "אלפרו שקדים ללא סוכר",
+        "score": 45.3,
+        "grade": "D",
+        "conf": 77,
+        "conf_band": "medium",
+        "cat": "beverage",
+        "cat_conf": 0.79,
+        "flags": [
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_5411188124689",
+        "name": "אלפרו שיבולת שועל ללא סוכר",
+        "score": 51.0,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.55,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "missing>=3_nutr_fields",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290000051352",
+        "name": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+        "score": 85,
+        "grade": "A",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290014760141",
+        "name": "משקה שקדים",
+        "score": 52.7,
+        "grade": "C",
+        "conf": 82,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.71,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "category_instability",
+          "single_cap_driver",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290019790259",
+        "name": "חלב טבעי 4% 1 ליטר",
+        "score": 85,
+        "grade": "A",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1",
+          "missing>=3_nutr_fields"
+        ]
+      },
+      {
+        "id": "bsip1_7290102392094",
+        "name": "חלב עיזים בקרטון 1 ליטר",
+        "score": 85,
+        "grade": "A",
+        "conf": 95,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "ingredient_count<=1"
+        ]
+      },
+      {
+        "id": "bsip1_7290107932134",
+        "name": "חלב בבקבוק 1% מועשר- מהדרין",
+        "score": 60.2,
+        "grade": "C",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "dairy_protein",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290110324773",
+        "name": "משקה חלב גו 27 גרם חלבון 2% בטעם וניל 340 מ\"ל",
+        "score": 41.4,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.71,
+        "flags": [
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290110324926",
+        "name": "משקה סויה ללא תוספת סוכר",
+        "score": 58.1,
+        "grade": "C",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.95,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290110325619",
+        "name": "משקה שיבולת שועל",
+        "score": 48.5,
+        "grade": "D",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.56,
+        "flags": [
+          "ingredient_list=marketing_prose",
+          "HIGHCONF_on_bad_ingredients",
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290114313285",
+        "name": "מולר פרוטאין משקה חלבון בטעם בננה 25גרם חלבון 0%שומן",
+        "score": 49.6,
+        "grade": "D",
+        "conf": 85,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.8,
+        "flags": [
+          "missing>=3_nutr_fields",
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7290116936116",
+        "name": "משקה סויה ללא סוכרים 1 ליטר",
+        "score": 67.0,
+        "grade": "B",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.95,
+        "flags": [
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7290119385560",
+        "name": "משקה סויה בריסטה אלפרו 500 מ\"ל",
+        "score": 48.7,
+        "grade": "D",
+        "conf": 90,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.84,
+        "flags": [
+          "single_cap_driver"
+        ]
+      },
+      {
+        "id": "bsip1_7394376619939",
+        "name": "משקה בריסטה שיבולת שועל",
+        "score": 50.7,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.5,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7394376620904",
+        "name": "משקה שיבולת שועל ללא סוכר",
+        "score": 51.9,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.56,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      },
+      {
+        "id": "bsip1_7394376621451",
+        "name": "משקה בריסטה שיבולת שועל להקצפה",
+        "score": 50.7,
+        "grade": "C",
+        "conf": 87,
+        "conf_band": "high",
+        "cat": "beverage",
+        "cat_conf": 0.5,
+        "flags": [
+          "low_category_confidence",
+          "category_instability",
+          "unresolved_flags"
+        ]
+      }
+    ]
+  }
+}

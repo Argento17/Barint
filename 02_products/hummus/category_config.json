@@ -1,0 +1,36 @@
+{
+  "category_id": "hummus",
+  "name_he": "חומוס",
+  "name_en": "Hummus",
+  "route_name": "hummus",
+  "dataset_glob": "hummus_frontend_*.json",
+  "baseline": {
+    "bsip0": { "status": "PASS" },
+    "bsip1": { "status": "COMPLETE", "record_count": 69 },
+    "bsip2": { "status": "AUTHORITATIVE", "run_id": "run_hummus_002" },
+    "qa": { "status": "PASS" }
+  },
+  "known_issues": [
+    {
+      "id": "HUM-001",
+      "title": "Fat data corruption — 59/69 BSIP1 records have wrong fat_g (scraper captured sat fat sub-row)",
+      "severity": "HIGH",
+      "blocking": false,
+      "resolution": "DEC-001 resolved: Option B (suppress fat display). v2 correction Q3 2026."
+    },
+    {
+      "id": "HUM-002",
+      "title": "Sugar data absent — sugars_g 0% coverage",
+      "severity": "MEDIUM",
+      "blocking": false,
+      "resolution": "Accepted at category level per QA PASS verdict."
+    },
+    {
+      "id": "HUM-003",
+      "title": "run_hummus_001 INVALID — dessert routing bug (44/69 misrouted)",
+      "severity": "LOW",
+      "blocking": false,
+      "resolution": "Marked INVALID. run_hummus_002 is authoritative."
+    }
+  ]
+}

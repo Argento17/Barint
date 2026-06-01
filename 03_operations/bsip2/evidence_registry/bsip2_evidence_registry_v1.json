@@ -1,0 +1,570 @@
+{
+  "meta": {
+    "schema": "bsip2_evidence_registry_v1",
+    "version": "1.0.0",
+    "created": "2026-05-30",
+    "owner": "Chief Nutrition Officer",
+    "source_document": "Engineering Architecture for AI-Driven Food and Supplement Intelligence (78pp)",
+    "source_path": "C:\\Bari\\research\\Engineering Architecture for AI.pdf",
+    "scope_note": "BSIP2 packaged food engine only. Section 2 (Supplement Engine) explicitly excluded.",
+    "label_constraint": "Only signals observable or inferrable from packaged food labels are eligible for should_affect_score_now: true",
+    "sections": ["primary_findings", "guardrails", "do_not_model_yet", "roadmap"]
+  },
+
+  "primary_findings": [
+    {
+      "finding_id": "EV-001",
+      "concept": "Siga / MUP Five-Tier Processing Classification",
+      "scientific_rationale_short": "NOVA 4 is a single bucket that fails to differentiate nutritionally balanced industrial foods from high-risk ultra-processed formulations. Siga subdivides NOVA 4 into C0.1, C0.2, C1-C3 using MUP counts and risk levels: MUP1 (nature-identical), MUP2 (artificially synthesized), and At-risk additives (EFSA/IARC-scrutinized). Composite nutritional thresholds apply: sugar >12.5g/100g, fat >17.5g/100g, salt >0.75g/100g.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — BSIP2 NOVA proxy collapses all Group 4 products into a single penalty tier, producing scoring errors for processed-but-nutritious products",
+      "implementation_complexity": "High",
+      "recommended_action": "implement_now",
+      "affected_categories": ["all", "cereal_system", "snack_bars", "dairy_protein", "sauce_spread"],
+      "candidate_signal_name": ["siga_processing_intensity", "mup_density_score"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires MUP taxonomy dictionary and ingredient-to-tier mapping engine before scoring",
+      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "risk_of_misuse": "Over-penalising processed-but-nutritious foods if MUP1 (nature-identical) items are weighted equally to MUP2 (synthetic) items",
+      "notes": "Prerequisite for EV-002. Implement taxonomy dictionary first, scoring second."
+    },
+    {
+      "finding_id": "EV-002",
+      "concept": "At-Risk Additive Count",
+      "scientific_rationale_short": "Siga's At-risk additive category enumerates additives under active EFSA or IARC safety evaluation. Counting them enables additive risk to scale with formulation severity rather than applying a binary additive-present/absent penalty. A product with 5 at-risk additives represents categorically different risk than one with 1.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — replaces the all-additive-equal penalty with a risk-weighted count",
+      "implementation_complexity": "High",
+      "recommended_action": "implement_now",
+      "affected_categories": ["all", "snack_bars", "sauce_spread", "cereal_system", "dairy_protein"],
+      "candidate_signal_name": ["at_risk_additive_count"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires a maintained at-risk additive reference list mapped to Hebrew ingredient terms",
+      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "risk_of_misuse": "Regulatory lists change; a frozen v1 list risks penalising since-cleared additives or missing newly flagged ones",
+      "notes": "The at-risk list is a maintenance obligation and must be versioned alongside BSIP2 releases."
+    },
+    {
+      "finding_id": "EV-003",
+      "concept": "Emulsifier Risk Differentiation",
+      "scientific_rationale_short": "Controlled human trial confirmed CMC (E466) reduces beneficial gut bacteria (Faecalibacterium prausnitzii, Akkermansia muciniphila) and SCFA production. P80 (E433) promotes pro-inflammatory Proteobacteria and thins the mucosal lining. Carrageenan (E407) disrupts tight junctions via ZO-1 proteins. Soy/sunflower lecithin (E322) shows minimal microbiota impact. Gum arabic serves as a bifidogenic prebiotic substrate.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Critical — current BSIP2 applies undifferentiated emulsifier penalties; this finding supports a three-tier model: high-risk (CMC, P80, carrageenan), neutral (lecithin), prebiotic (gum arabic)",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["all", "snack_bars", "dairy_protein", "sauce_spread", "beverage"],
+      "candidate_signal_name": ["mucus_thinning_emulsifier_load"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Ingredient text matching is sufficient; no nutrition panel data required",
+      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "high_risk_ingredients_he": ["קרבוקסי מתיל צלולוז", "CMC", "E466", "פוליסורבט 80", "E433", "קרגינן", "E407"],
+      "exempt_ingredients_he": ["לציטין סויה", "לציטין חמניות", "E322", "גומי ערבי", "E414"],
+      "risk_of_misuse": "Carrageenan food-grade vs degraded distinction unresolvable from labels — apply penalty uniformly per label presence",
+      "notes": "Related to EV-019 (prebiotic gum reclassification). Implement as a tiered signal, not a binary additive flag."
+    },
+    {
+      "finding_id": "EV-004",
+      "concept": "Allulose Caloric and Glycemic Exemption",
+      "scientific_rationale_short": "D-Allulose provides 0.4 kcal/g (not 4.0 kcal/g like fructose). ~70% is absorbed in the small intestine and excreted unchanged in urine. Does not elevate blood glucose or insulin. Not converted to glycogen. FDA has exempted it from the added sugar declaration requirement.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — treating allulose as standard sugar produces false high-sugar penalties on keto/low-sugar products legitimately formulated with allulose",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["snack_bars", "beverage", "dairy_protein"],
+      "candidate_signal_name": ["allulose_adjusted_sugar_g", "allulose_detected"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Ingredient list text match sufficient; apply 90% metabolic reduction to sugar score when allulose detected",
+      "required_input_fields": ["ingredients_list", "extracted_sweeteners", "normalized_nutrition_per_100g.sugars_g"],
+      "risk_of_misuse": "Allulose quantity not declared on Israeli labels; flag-only approach until quantity becomes detectable",
+      "notes": "Long-term safety data limited but acute metabolic evidence is strong. Apply conservative partial credit only."
+    },
+    {
+      "finding_id": "EV-005",
+      "concept": "Polyol Osmotic Laxative Threshold",
+      "scientific_rationale_short": "Sugar alcohols (sorbitol, xylitol, erythritol, maltitol) act osmotically above 10g/serving, drawing water into the large intestine and triggering laxation, bloating, and flatulence. EU/UK regulation mandates a laxative warning on products with >10% added polyol content. Erythritol has higher individual tolerance than other polyols.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — keto and low-carb products relying on polyol sweetening may exceed the safe threshold without visible consumer warning in Israel",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["snack_bars", "beverage"],
+      "candidate_signal_name": ["polyol_laxative_potential"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Detect polyol presence and count in ingredient list; flag when multiple polyols are present or product is keto/sugar-free positioned",
+      "required_input_fields": ["ingredients_list", "extracted_sweeteners"],
+      "polyol_terms_he": ["סורביטול", "קסיליטול", "אריתריטול", "מלטיטול", "לקטיטול", "מניטול", "איזומלט"],
+      "risk_of_misuse": "Cannot calculate exact grams from label alone; count polyol types and apply graduated risk, not a binary flag",
+      "notes": "Erythritol should carry a lower risk weight than sorbitol/maltitol due to higher tolerance. Differentiate in risk weighting."
+    },
+    {
+      "finding_id": "EV-006",
+      "concept": "Viscous vs Non-Viscous Soluble Fiber",
+      "scientific_rationale_short": "Viscous soluble fibers (psyllium, beta-glucan, guar gum) form a thick gel in the GI tract that delays gastric emptying and slows glucose diffusion, producing measurable postprandial glycemic reduction. Non-viscous soluble prebiotic fibers (inulin, FOS, polydextrose) undergo colonic fermentation but do not form gels and have minimal impact on glycemic kinetics. Treating them identically is a systematic scoring error.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Critical — current BSIP2 treats all dietary fiber identically. Inulin-fortified products score high-fiber but provide no glycemic dampening.",
+      "implementation_complexity": "High",
+      "recommended_action": "implement_now",
+      "affected_categories": ["cereal_system", "snack_bars", "bread"],
+      "candidate_signal_name": ["viscosity_fiber_ratio", "viscous_fiber_g"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires viscous fiber vocabulary dictionary to parse ingredient text reliably",
+      "required_input_fields": ["ingredients_list", "normalized_nutrition_per_100g.dietary_fiber_g"],
+      "viscous_fiber_terms_he": ["פסיליום", "ביתא גלוקן", "גואר"],
+      "non_viscous_terms_he": ["אינולין", "שורש עולש", "פוליי-דקסטרוז", "דקסטרין"],
+      "risk_of_misuse": "Exact viscous fiber quantity not on label; presence-only detection risks under-crediting psyllium-dominant products",
+      "notes": "Implement vocabulary dictionary before modifying scoring. This finding is the scientific basis for fiber source differentiation."
+    },
+    {
+      "finding_id": "EV-007",
+      "concept": "Intrinsic vs Isolated Fiber Efficacy",
+      "scientific_rationale_short": "Intrinsic fibers remain integrated within plant cellular structures with physical matrix intact. Isolated fibers (chicory inulin, pea fiber isolate, resistant maltodextrin) extracted and added to processed foods do not replicate the full systemic effects of whole-plant fiber. A structural discount of approximately 30-40% efficacy applies to isolated fiber sources.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — high-fiber claims on processed foods frequently rely on added isolated fibers that do not deliver equivalent metabolic protection",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["cereal_system", "snack_bars", "bread", "dairy_protein"],
+      "candidate_signal_name": ["intrinsic_fiber_ratio", "fiber_source_quality"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires ingredient parsing to identify isolated fiber additions vs whole-grain intrinsic sources",
+      "required_input_fields": ["ingredients_list", "normalized_nutrition_per_100g.dietary_fiber_g", "extracted_matrix_markers"],
+      "isolated_fiber_signals": ["inulin", "chicory root extract", "pea fiber", "resistant dextrin", "wheat fiber", "cellulose"],
+      "intrinsic_fiber_signals": ["whole wheat flour", "rolled oats", "bran", "whole grain"],
+      "risk_of_misuse": "Ambiguous formulations can mix intrinsic and isolated fiber sources; cannot always distinguish without quantity data",
+      "notes": "Apply 30-40% efficacy discount to detected isolated fiber sources in carbohydrate quality scoring."
+    },
+    {
+      "finding_id": "EV-008",
+      "concept": "Liquid vs Solid Matrix Satiety",
+      "scientific_rationale_short": "Liquid food matrices bypass oral mechanoreceptors and fast-track gastric emptying, failing to activate stretch-sensitive vagal afferents that initiate PYY, GLP-1, and CCK-mediated satiety. This is mechanistically established. High-viscosity liquids can partially mimic solid-phase gastric retention but not fully.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — the beverage calorie density table partially captures this but the satiety dimension does not apply a liquid-state discount to protein drinks or meal replacement beverages",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["beverage", "dairy_liquid"],
+      "candidate_signal_name": ["matrix_state_factor"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Physical state is inferable from archetype routing and product name",
+      "required_input_fields": ["archetype", "canonical_name_he", "normalized_nutrition_per_100g.energy_kcal"],
+      "risk_of_misuse": "Viscous liquid products (yogurt, kefir, thick smoothies) should not receive the full liquid satiety penalty",
+      "notes": "Apply graduated penalty: thin liquid > viscous liquid > semi-solid > solid. Archetype routing already handles most of this."
+    },
+    {
+      "finding_id": "EV-009",
+      "concept": "Intact Grain / Cell Wall Insulation",
+      "scientific_rationale_short": "Intact plant cell walls insulate starch granules from pancreatic amylase, surviving cooking. Industrial milling destroys this insulation. Steel-cut oats and cracked grains retain protection; finely milled whole wheat flour does not, despite identical macronutrient content. The difference produces a substantially higher glycemic response for milled products.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — two products can have identical macronutrients but dramatically different glycemic impact based on grain processing state",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["cereal_system", "bread"],
+      "candidate_signal_name": ["grain_matrix_integrity_score", "milling_disruption_penalty"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires ingredient text classification of grain processing state",
+      "required_input_fields": ["ingredients_list", "extracted_matrix_markers", "normalized_nutrition_per_100g.dietary_fiber_g"],
+      "intact_grain_signals": ["שיבולת שועל גסה", "גריסים", "חיטה סדוקה", "שעורה שלמה"],
+      "disrupted_grain_signals": ["קמח חיטה מלאה", "קמח שיבולת שועל", "אורז מלא מעובד"],
+      "risk_of_misuse": "Whole grain marketing claims do not guarantee low milling disruption; whole grain flour is still fine-milled",
+      "notes": "The matrix_integrity_framework already exists in BSIP2. This finding formally registers its scientific basis and extends it to grain processing state detection."
+    },
+    {
+      "finding_id": "EV-010",
+      "concept": "Extrusion Matrix Destruction",
+      "scientific_rationale_short": "High-shear extrusion uses extreme temperature, pressure, and shear to physically obliterate the natural food matrix, fully gelatinise starches, denature proteins, and produce hyper-bioaccessible, hyper-palatable products. Extruded grain shapes have a higher glycemic index than boiled whole grains with identical macronutrient composition. Extrusion parameters are rarely disclosed on retail packaging.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — cereal puffs, extruded snack shapes, and textured soy proteins require a matrix destruction penalty not fully captured by standard NOVA processing scores",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["cereal_system", "snack_bars"],
+      "candidate_signal_name": ["extrusion_matrix_penalty"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Extruded product signals detectable from ingredient terms and product name",
+      "required_input_fields": ["ingredients_list", "canonical_name_he", "extracted_matrix_markers"],
+      "extrusion_signals_he": ["פריכית", "פצפוצים", "חטיף תירס", "נתחי סויה מרוקמת", "אורז פריח"],
+      "risk_of_misuse": "Apply penalty to refined-grain extrusion, not whole-grain puffed forms which retain fiber despite extrusion",
+      "notes": "Related to EV-009 (intact grain). Extrusion is the most severe form of milling disruption."
+    },
+    {
+      "finding_id": "EV-011",
+      "concept": "Sodium-to-Potassium Ratio",
+      "scientific_rationale_short": "The sodium-to-potassium ratio is a stronger predictor of stroke and cardiovascular disease than sodium intake in isolation, due to the central role of the Na+/K+-ATPase pump in cellular electrolyte balance. A ratio <1.0 (more potassium than sodium, by mg) is protective. Processed foods are typically high-sodium and potassium-depleted.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Medium — current scoring penalises sodium in isolation; products with high sodium but higher potassium should receive reduced cardiovascular risk penalty",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["all"],
+      "candidate_signal_name": ["na_k_ratio"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Potassium not required on Israeli nutrition labels; population coverage <30%",
+      "required_input_fields": ["normalized_nutrition_per_100g.sodium_mg", "normalized_nutrition_per_100g.potassium_mg"],
+      "risk_of_misuse": "Missing potassium field must never be treated as zero; must explicitly handle null potassium",
+      "notes": "Implement as a softening modifier on sodium penalty when potassium is present and Na:K < 1.0. When potassium absent, use sodium-only scoring unchanged."
+    },
+    {
+      "finding_id": "EV-012",
+      "concept": "Saturated-to-Unsaturated Fat Ratio",
+      "scientific_rationale_short": "Unsaturated-to-saturated fat ratios are stronger cardiovascular disease predictors than absolute saturated fat content. The Food Compass lipid ratio method evaluates lipid class proportion rather than absolute SFA. Scoring absolute SFA penalises products rich in healthy unsaturated fats (olive oil, nut butters) when moderate SFA is co-present.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — the current fat dimension uses absolute saturated fat, which systematically mismeasures lipid quality in whole_food_fat category products",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["whole_food_fat", "dairy_liquid", "dairy_protein", "all"],
+      "candidate_signal_name": ["unsaturated_to_saturated_ratio"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Fat and saturated fat are standard label fields; unsaturated fat is computable as (total fat - saturated fat) from existing BSIP1 data",
+      "required_input_fields": ["normalized_nutrition_per_100g.fat_g", "normalized_nutrition_per_100g.fat_saturated_g"],
+      "formula": "unsaturated_fat_g = fat_g - fat_saturated_g; ratio = unsaturated_fat_g / fat_saturated_g",
+      "thresholds": {
+        "protective": "ratio >= 2.0",
+        "high_cvd_risk": "ratio < 0.5"
+      },
+      "risk_of_misuse": "Does not differentiate MUFA vs PUFA vs specific SFA chain lengths; this is an approximation, not a fatty acid profile",
+      "notes": "This is computable TODAY from existing BSIP1 fields. Highest implementation priority among all EV findings."
+    },
+    {
+      "finding_id": "EV-013",
+      "concept": "Hyper-Palatability / Bliss Point",
+      "scientific_rationale_short": "The industrial bliss point is the engineered ratio of sugar, salt, fat, and flavour enhancers (MSG, natural flavourings) that maximises palatability and overrides sensory-specific satiety, driving overconsumption. Products hitting this formulation window are associated with overconsumption in controlled settings regardless of macronutrient profile compliance. The exact quantification is proprietary and product-dependent.",
+      "evidence_strength": "Strong (mechanism); Medium (quantification)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — a product can score well on macronutrients while being specifically engineered for overconsumption",
+      "implementation_complexity": "Medium",
+      "recommended_action": "research_further",
+      "affected_categories": ["snack_bars", "cereal_system", "sauce_spread"],
+      "candidate_signal_name": ["bliss_point_synergy_score"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Mathematical threshold calibration is product-dependent; requires research sprint before scoring",
+      "required_input_fields": [
+        "normalized_nutrition_per_100g.sugars_g",
+        "normalized_nutrition_per_100g.sodium_mg",
+        "normalized_nutrition_per_100g.fat_g",
+        "extracted_flavors",
+        "extracted_additives"
+      ],
+      "risk_of_misuse": "Without calibrated thresholds, will falsely penalise naturally sweet+salty+fatty foods (dates, mixed nuts, cheese)",
+      "notes": "Pre-condition: EV-001 (Siga MUP) and EV-002 (at-risk additive count) must be implemented first. Bliss point scoring should only activate on products with MUP > 0."
+    },
+    {
+      "finding_id": "EV-014",
+      "concept": "Hard Cheese Matrix Exception (Calcium Saponification)",
+      "scientific_rationale_short": "In solid dairy matrices, free calcium ions react with liberated saturated fatty acids during small intestinal transit to form insoluble calcium soaps (saponification) that resist lipolytic absorption and are excreted. This attenuates postprandial lipemia in hard cheese vs butter or liquid milk with equivalent fat content. The matrix must be solid; the calcium-to-saturated fat ratio must be sufficient.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — standard fat scoring overestimates absorbable lipid load of hard cheeses. This is the scientific basis for the hard cheese governance exception already in Bari.",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["dairy_protein"],
+      "candidate_signal_name": ["matrix_saponification_index"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires confirmed hard cheese sub-pool routing AND calcium data (not always on Israeli labels)",
+      "required_input_fields": [
+        "archetype",
+        "canonical_name_he",
+        "normalized_nutrition_per_100g.fat_saturated_g",
+        "normalized_nutrition_per_100g.fat_g"
+      ],
+      "scope_limit": "Hard cheese sub-pool ONLY. Must NOT apply to processed cheese, cream cheese, labaneh, or dairy spreads.",
+      "lipid_reduction_factor": 0.15,
+      "risk_of_misuse": "Application to soft/processed cheese products would incorrectly reduce their fat penalty",
+      "notes": "Governance Maturity Assessment v1 §4.2 already cleared Yellow Cheese for launch with DISTORTION-010 endemic note. This finding registers the saponification mechanism formally."
+    },
+    {
+      "finding_id": "EV-015",
+      "concept": "Fermentation Bonus (Phytate Degradation)",
+      "scientific_rationale_short": "Fermentation activates endogenous phytases that dephosphorylate phytic acid (an anti-nutritional factor), significantly increasing bioaccessibility of Fe2+, Zn2+, and Mg2+. Fermented grains (sourdough, tempeh) also show reduced glycemic response due to organic acid production. The effect is time- and strain-dependent but directionally consistent across fermented products.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — already partially implemented in BSIP2 for sourdough bread. This finding formally grounds the fermentation bonus and extends it to all fermented categories.",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["bread", "cereal_system", "dairy_protein", "whole_food_fat"],
+      "candidate_signal_name": ["fermentation_quality_bonus", "fermentation_marker_detected"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Fermentation markers already extracted by BSIP1 (extracted_fermentation_markers); scoring can use this signal now",
+      "required_input_fields": ["extracted_fermentation_markers", "ingredients_list"],
+      "risk_of_misuse": "Sourdough flavour additives (vinegar, acidulants) are not genuine fermentation; detection must verify authentic fermentation markers not just flavour claims",
+      "notes": "The sourdough D6 threshold problem (label data insufficient to confirm genuine sourdough) is documented in governance. This finding supports the bonus when authentic fermentation is confirmed."
+    },
+    {
+      "finding_id": "EV-016",
+      "concept": "Fortified vs Intrinsic Nutrient Distinction",
+      "scientific_rationale_short": "Intrinsic nutrients are structurally bound within the food matrix with co-factors and phytochemicals affecting absorption. Synthetic fortification (added vitamins, mineral salts) can make processed foods appear nutritionally superior to whole foods on simple profiling grids. Bioavailability of synthetic fortification is compound-specific and generally lower than intrinsic forms. Source document recommends a 30% discount to detected synthetic fortifications.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "High — maps to DISTORTION-004 (fortification inflation) already registered in Bari governance. Provides the 30% discount evidence basis.",
+      "implementation_complexity": "Medium",
+      "recommended_action": "implement_now",
+      "affected_categories": ["cereal_system", "dairy_protein", "beverage"],
+      "candidate_signal_name": ["fortification_discount_factor", "synthetic_fortification_detected"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Requires ingredient-level detection of synthetic fortification markers distinct from naturally occurring nutrients",
+      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "fortification_discount": 0.30,
+      "risk_of_misuse": "Some fortification compensates for genuine dietary deficiencies (iodised salt in low-iodine populations); apply discount to scoring but not consumer-facing disclosures",
+      "notes": "DISTORTION-004 implementation is a BSIP3 debt item. This finding provides the evidence magnitude (30%) for when it is implemented."
+    },
+    {
+      "finding_id": "EV-017",
+      "concept": "Sweetener-Induced Gut Dysbiosis",
+      "scientific_rationale_short": "Landmark human intervention studies show sucralose and saccharin can shift microbiome composition in a subset of responders, inducing impaired glucose tolerance. Steviol glycosides (stevia) and monk fruit (mogroside V) show better safety profiles. High inter-individual variability prevents population-level algorithmic penalisation; implement as a flag/disclosure, not a score deduction.",
+      "evidence_strength": "Moderate to Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Medium — current BSIP2 treats all non-caloric sweeteners as neutral; a tiered risk classification is evidence-supported",
+      "implementation_complexity": "Medium",
+      "recommended_action": "research_further",
+      "affected_categories": ["beverage", "snack_bars", "dairy_protein"],
+      "candidate_signal_name": ["sweetener_microflora_disruption_risk"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "High inter-individual variability prevents scoring application; implement as a consumer flag only",
+      "required_input_fields": ["ingredients_list", "extracted_sweeteners"],
+      "sweetener_risk_tiers": {
+        "preferred": ["allulose", "mogroside V", "monk fruit"],
+        "neutral": ["stevia", "erythritol"],
+        "flag": ["sucralose", "saccharin", "aspartame"]
+      },
+      "risk_of_misuse": "Applying a score penalty for saccharin would unfairly disadvantage products where the risk is statistical, not individual",
+      "notes": "Related to EV-004 (allulose) and EV-005 (polyols). Three sweetener findings together form a complete sweetener tier framework."
+    },
+    {
+      "finding_id": "EV-018",
+      "concept": "Reconstitution-Induced Matrix Destruction",
+      "scientific_rationale_short": "Reconstituting dried powders (milk powder, starch isolates, egg solids) back into liquid or semi-solid forms fails to re-establish the original cellular compartmentalisation. Reconstituted milk powder does not reform the protein-lipid microstructure of fresh milk. This produces accelerated enzymatic digestion similar to liquid matrices.",
+      "evidence_strength": "Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Medium — products listing reconstituted milk or milk powder as primary dairy source should receive a matrix quality downgrade relative to fresh dairy",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["dairy_liquid", "dairy_protein"],
+      "candidate_signal_name": ["reconstituted_matrix_flag"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Reconstituted and milk powder are detectable by simple ingredient text matching",
+      "required_input_fields": ["ingredients_list"],
+      "reconstitution_signals_he": ["חלב מחולב", "חלב מרוכז", "חלב אבקה", "מוחזר"],
+      "risk_of_misuse": "Apply as disclosure flag + minor score adjustment, not a hard penalty; some high-quality products use milk powder legitimately",
+      "notes": "Implementation is trivial and should be bundled with the dairy category pipeline run."
+    },
+    {
+      "finding_id": "EV-019",
+      "concept": "Prebiotic Gum Exemption",
+      "scientific_rationale_short": "Gum arabic (E414), arabinogalactan, and acacia gum serve as fermentable fiber substrates promoting Bifidobacterium and Lactobacillus growth and pathogen inhibition. They do not degrade the gut mucosal lining. Penalising them as generic processing additives conflates them with genuinely harmful synthetic surfactants.",
+      "evidence_strength": "Moderate",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — EV-003 emulsifier penalty framework must explicitly exempt gum arabic and similar prebiotic gums",
+      "implementation_complexity": "Low",
+      "recommended_action": "implement_now",
+      "affected_categories": ["all"],
+      "candidate_signal_name": ["prebiotic_gum_exemption"],
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Simple ingredient text exemption from emulsifier penalty; no calculation required",
+      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "exempt_gums": ["gum arabic", "acacia gum", "arabinogalactan", "גומי ערבי", "E414"],
+      "neutral_gums": ["xanthan gum", "locust bean gum", "guar gum"],
+      "risk_of_misuse": "Exemption from emulsifier penalty is correct; do not grant positive prebiotic credit without quantity data (excessive doses can cause bloating)",
+      "notes": "Implement as part of the EV-003 emulsifier differentiation system."
+    },
+    {
+      "finding_id": "EV-020",
+      "concept": "Resistant Starch Identification",
+      "scientific_rationale_short": "Resistant starches (RS1-RS4) resist pancreatic amylase, reduce net glycemic carbohydrate load, and improve insulin economy. RS-rich ingredients include green banana flour, raw potato starch, and high-amylose corn starch. These should be partially subtracted from net glycemic carbohydrate calculations. RS3 (retrograded starch) requires thermal history confirmation not available from labels.",
+      "evidence_strength": "Moderate to Strong",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Medium — clean-label keto products using green banana flour are incorrectly penalised as high-carb",
+      "implementation_complexity": "Medium",
+      "recommended_action": "research_further",
+      "affected_categories": ["snack_bars", "cereal_system", "whole_food_fat"],
+      "candidate_signal_name": ["resistant_starch_flag", "net_glycemic_carb_g"],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "RS quantity not label-readable; RS3 cannot be confirmed from packaging",
+      "required_input_fields": ["ingredients_list"],
+      "rs_ingredient_signals_he": ["קמח בננה ירוקה", "עמילן תפוח אדמה גולמי", "עמילן תירס עמילוזי גבוה"],
+      "risk_of_misuse": "RS content changes with cooking history; static RS bonus without process confirmation would be inaccurate",
+      "notes": "Implement as a flag + conservative partial credit pending better label data."
+    }
+  ],
+
+  "guardrails": [
+    {
+      "guardrail_id": "G-001",
+      "misconception": "Thermodynamic equivalence of calories — all calories are metabolically identical",
+      "bsip2_rule": "BSIP2 must apply food matrix and satiety adjustments; calorie count alone is never the final score"
+    },
+    {
+      "guardrail_id": "G-002",
+      "misconception": "Inherent harm of all ultra-processed foods — NOVA 4 is uniformly bad",
+      "bsip2_rule": "BSIP2 must use Siga-style differentiation; fortified cereals and fermented dairy are not equivalent to confectionery"
+    },
+    {
+      "guardrail_id": "G-003",
+      "misconception": "Insoluble fiber is non-functional / merely a bulking agent",
+      "bsip2_rule": "Insoluble grain fiber has metabolic benefits (T2D protection, intestinal transit regulation); do not penalise it"
+    },
+    {
+      "guardrail_id": "G-004",
+      "misconception": "PDCAAS is the definitive protein quality measure",
+      "bsip2_rule": "PDCAAS over-estimates quality due to fecal nitrogen contamination from microbial activity; do not rely on PDCAAS-derived protein quality claims"
+    },
+    {
+      "guardrail_id": "G-005",
+      "misconception": "Natural sugars (honey, agave, dates) are metabolically superior to sucrose",
+      "bsip2_rule": "Once fructose/glucose enter the portal vein, metabolic pathways are identical; do not grant natural sugar sources a scoring exemption"
+    },
+    {
+      "guardrail_id": "G-006",
+      "misconception": "All food emulsifiers are uniformly toxic",
+      "bsip2_rule": "BSIP2 must differentiate synthetic surfactants (CMC, P80) from lecithins and prebiotic gums (see EV-003, EV-019)"
+    },
+    {
+      "guardrail_id": "G-007",
+      "misconception": "Organic certification guarantees micronutrient superiority",
+      "bsip2_rule": "Organic certification verifies pesticide avoidance, not vitamin/mineral concentration; do not award a scoring bonus for organic label alone"
+    },
+    {
+      "guardrail_id": "G-008",
+      "misconception": "Folic acid is harmful for MTHFR carriers",
+      "bsip2_rule": "Clinical evidence shows 400µg/day folic acid raises protective red blood cell folate across all MTHFR genotypes; do not penalise folic acid in BSIP2"
+    },
+    {
+      "guardrail_id": "G-009",
+      "misconception": "Liquid and solid calories are equally satiating per kcal",
+      "bsip2_rule": "Liquid matrices produce substantially lower satiety; the mechanism is established (see EV-008); apply liquid-state satiety discount"
+    },
+    {
+      "guardrail_id": "G-010",
+      "misconception": "Added isolated fiber dampens glycemic response equivalently to intrinsic plant fiber",
+      "bsip2_rule": "Isolated non-viscous fibers (inulin, chicory root) do not form the physical gel barrier required to slow glucose absorption (see EV-006, EV-007)"
+    },
+    {
+      "guardrail_id": "G-011",
+      "misconception": "All saturated fats carry equivalent cardiovascular risk",
+      "bsip2_rule": "Hard cheese calcium saponification (EV-014) and the fat ratio model (EV-012) directly contradict this; context-specific treatment required"
+    },
+    {
+      "guardrail_id": "G-012",
+      "misconception": "Non-caloric sweeteners have zero metabolic impact",
+      "bsip2_rule": "Sucralose and saccharin can induce dysbiosis-mediated glucose impairment in susceptible individuals (see EV-017); treat as flag-level risk"
+    },
+    {
+      "guardrail_id": "G-013",
+      "misconception": "Industrial heating always degrades nutritional value",
+      "bsip2_rule": "HPP and controlled heat increase carotenoid bioaccessibility; heating is not uniformly harmful"
+    },
+    {
+      "guardrail_id": "G-014",
+      "misconception": "High protein content on label equals high protein quality",
+      "bsip2_rule": "Limiting amino acids (e.g., lysine in wheat) cap the utility of all other amino acids; protein density is not protein quality"
+    },
+    {
+      "guardrail_id": "G-015",
+      "misconception": "Sodium and potassium should be evaluated in isolation",
+      "bsip2_rule": "Na:K ratio is the correct cardiovascular metric when potassium data is available (see EV-011)"
+    },
+    {
+      "guardrail_id": "G-016",
+      "misconception": "Allulose and fructose are metabolically equivalent",
+      "bsip2_rule": "Allulose is excreted largely unchanged and does not contribute glycemic load (see EV-004); must be excluded from sugar scoring"
+    },
+    {
+      "guardrail_id": "G-017",
+      "misconception": "Raw ingredients are inherently more satiating than processed ones",
+      "bsip2_rule": "Processing can concentrate viscous fibers or restructure protein to increase satiety; raw ≠ satiating by definition"
+    },
+    {
+      "guardrail_id": "G-018",
+      "misconception": "Any dietary carrageenan causes bowel inflammation",
+      "bsip2_rule": "Food-grade undegraded carrageenan at label doses is distinct from degraded poligeenan used in high-dose in vitro studies; do not use the colitis claim in consumer messaging"
+    },
+    {
+      "guardrail_id": "G-019",
+      "misconception": "All fortified minerals on a nutrition label are bioavailable equivalently",
+      "bsip2_rule": "Non-haem iron bioavailability is highly sensitive to phytate and polyphenol inhibition (see EV-016); fortified listing ≠ absorption guarantee"
+    },
+    {
+      "guardrail_id": "G-020",
+      "misconception": "A single category-free algorithm can fairly score all foods",
+      "bsip2_rule": "BSIP2 must apply category-specific calorie density tables, guardrails, and pool rules; universal scoring is constitutionally rejected by Bari governance"
+    }
+  ],
+
+  "do_not_model_yet": [
+    {"id": "U-001", "domain": "Synergistic multi-additive toxicity", "reason": "Cumulative interactive effects across additive cocktails not characterized in humans"},
+    {"id": "U-002", "domain": "Individual gut microbiome emulsifier susceptibility", "reason": "CMC/P80 degradation rate varies by individual microbiome baseline; population-level penalty justified but individual prediction is not"},
+    {"id": "U-003", "domain": "Quantitative satiety prediction for mixed meals", "reason": "Complex multi-signal regulation; mathematical precision without physiological monitoring not achievable"},
+    {"id": "U-004", "domain": "Phytochemical bioavailability from commercial matrices", "reason": "Flavonoid/polyphenol absorption is highly matrix-, co-nutrient-, and microbiota-dependent"},
+    {"id": "U-005", "domain": "Long-term cardiometabolic effects of mogrosides", "reason": "Acute glycemic safety confirmed; long-term cohort data on insulin sensitivity and lipid profiles insufficient"},
+    {"id": "U-006", "domain": "Dietary AGE absorption kinetics", "reason": "Proportion absorbed vs endogenously generated under varying metabolic states is debated"},
+    {"id": "U-007", "domain": "Microbial synthesis of Vitamin K2 from dietary fiber", "reason": "Colonic menaquinone synthesis rate and systemic absorption not predictable from food label data"},
+    {"id": "U-008", "domain": "Interactive effects of pesticide residues and synthetic emulsifiers", "reason": "No clinical evaluation in humans; theoretical risk only"},
+    {"id": "U-009", "domain": "Chronic toxicological limits of 3-MCPD and glycidyl esters", "reason": "Established for infant formula; adult low-dose chronic impact under high uncertainty"},
+    {"id": "U-010", "domain": "Predictive modeling of postprandial insulin response from labels", "reason": "Incretin-modulated insulin response is too individual to model from macronutrients alone"},
+    {"id": "U-011", "domain": "Subclinical epithelial permeability from occasional additive exposure", "reason": "Chronic vs occasional exposure distinction not quantitatively established in humans"},
+    {"id": "U-012", "domain": "Comparative long-term efficacy of synthetic vs food-derived vitamin forms", "reason": "High statistical confounding between vitamin isomers and synthetic salts in long-term trials"},
+    {"id": "U-013", "domain": "Comparative satiating capacity of fermentable vs viscous fibers", "reason": "SCFA-mediated GLP-1 release from fermentable fiber is highly variable between individuals"},
+    {"id": "U-014", "domain": "Acrylamide variance within product batches", "reason": "Acrylamide levels fluctuate dramatically within batches based on minor processing shifts; not predictable from ingredient label"},
+    {"id": "U-015", "domain": "Micronutrient bioavailability under varying dietary tannin loads", "reason": "Inhibition of non-haem iron by coffee/tea tannins is meal-timing and gastric-pH dependent"},
+    {"id": "U-016", "domain": "Allulose-induced GLP-1 release thresholds in non-diabetic humans", "reason": "Minimum effective oral dose for clinically relevant GLP-1 stimulation not established"},
+    {"id": "U-017", "domain": "Systemic accumulation of 4-methylimidazole (4-MEI)", "reason": "Hepatic enzyme polymorphism variability prevents standardised toxicity calculation"},
+    {"id": "U-018", "domain": "Glycemic load modifiers in complex re-extruded multi-grain matrices", "reason": "Starch recrystallisation in re-extruded grains varies dynamically with factory cooling cycles"},
+    {"id": "U-019", "domain": "Impact of food matrix destruction on peptide hormone translocation", "reason": "PYY and GLP-1 signalling alteration under matrix destruction is highly individual"},
+    {"id": "U-020", "domain": "Calcium saponification efficiency in varying gastric pH", "reason": "Saponification rate depends on gastric acid and pancreatic lipase secretion which vary significantly with age and health status"}
+  ],
+
+  "roadmap": {
+    "implement_now_label_ready": [
+      {"rank": 1, "finding_id": "EV-012", "signal": "unsaturated_to_saturated_ratio", "reason": "Computed from existing BSIP1 fields today; no new data required"},
+      {"rank": 2, "finding_id": "EV-003", "signal": "mucus_thinning_emulsifier_load", "reason": "Ingredient text matching only; Hebrew vocabulary dictionary needed"},
+      {"rank": 3, "finding_id": "EV-015", "signal": "fermentation_quality_bonus", "reason": "BSIP1 fermentation markers already extracted; scoring activation only"}
+    ],
+    "implement_now_requires_prerequisite": [
+      {"finding_id": "EV-001", "signal": "siga_processing_intensity", "prerequisite": "MUP taxonomy dictionary"},
+      {"finding_id": "EV-002", "signal": "at_risk_additive_count", "prerequisite": "At-risk additive reference list (Hebrew-mapped, versioned)"},
+      {"finding_id": "EV-006", "signal": "viscosity_fiber_ratio", "prerequisite": "Viscous fiber vocabulary dictionary"},
+      {"finding_id": "EV-007", "signal": "fiber_source_quality", "prerequisite": "Isolated fiber ingredient term list"},
+      {"finding_id": "EV-009", "signal": "grain_matrix_integrity_score", "prerequisite": "Grain processing state classifier"},
+      {"finding_id": "EV-016", "signal": "fortification_discount_factor", "prerequisite": "Synthetic fortification ingredient detector"}
+    ],
+    "research_further": [
+      {"finding_id": "EV-013", "signal": "bliss_point_synergy_score", "gap": "Threshold calibration is product-dependent"},
+      {"finding_id": "EV-017", "signal": "sweetener_microflora_disruption_risk", "gap": "High inter-individual variability; implement as flag only"},
+      {"finding_id": "EV-020", "signal": "resistant_starch_flag", "gap": "RS quantity not label-readable"}
+    ],
+    "reject": [
+      {"signal": "refined_oil_contaminant_exposure", "reason": "3-MCPD levels require batch laboratory analysis not available from labels"},
+      {"signal": "direct_postprandial_insulin_prediction", "reason": "Too individual; contradicts BSIP2 population-level model"},
+      {"signal": "category_free_generic_scoring", "reason": "Constitutionally rejected by Bari Governance v1"}
+    ]
+  },
+
+  "recommended_first_three_upgrades": [
+    {
+      "rank": 1,
+      "title": "Implement unsaturated-to-saturated fat ratio (EV-012)",
+      "effort": "1 sprint",
+      "impact": "High — corrects systematic mismeasurement of lipid quality in whole_food_fat category (tahini, nut butters) and dairy. Zero new data required: computable from fat_g and fat_saturated_g already in BSIP1.",
+      "instruction": "In BSIP2 fat dimension scoring: compute unsaturated_fat_g = fat_g - fat_saturated_g. Replace absolute saturated fat score with ratio-based score: protective bonus when ratio >= 2.0; risk penalty when ratio < 0.5. Preserve existing red-label sodium check independently."
+    },
+    {
+      "rank": 2,
+      "title": "Implement emulsifier risk differentiation (EV-003 + EV-019)",
+      "effort": "1 sprint",
+      "impact": "High — replaces the undifferentiated emulsifier penalty with a three-tier model. Immediately corrects over-penalisation of lecithin-containing products and under-penalisation of CMC/P80-containing products.",
+      "instruction": "Build an emulsifier risk vocabulary in Hebrew. Tier 1 (high-risk: CMC/E466, P80/E433, carrageenan/E407): apply strong penalty. Tier 2 (neutral: soy lecithin/E322, sunflower lecithin): no penalty, no credit. Tier 3 (prebiotic gum: gum arabic/E414): exempt from all additive penalties. Flag output on product explanation as 'emulsifier risk level: high/neutral/prebiotic'."
+    },
+    {
+      "rank": 3,
+      "title": "Activate fermentation quality bonus (EV-015)",
+      "effort": "0.5 sprint",
+      "impact": "Medium — fermentation markers are already extracted by BSIP1 (extracted_fermentation_markers). Scoring activation is a configuration change, not new engineering. Immediately credits sourdough, yogurt, kefir, and tempeh products that already have authentic fermentation signals detected.",
+      "instruction": "In BSIP2 scoring: when extracted_fermentation_markers is non-empty AND contains authentic fermentation signals (not just flavour acids), apply a fermentation bonus to the structural/mineral dimension. Bonus magnitude: +5 to +8 points on the relevant dimension depending on fermentation depth signal. Guard: fermentation bonus must not apply when fermentation_markers contains only 'vinegar' or 'lactic acid' without microbial strain signals."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "audit",
+  "canonical_product_id": "bsip1_8423207206501",
+  "audited_at": "2026-05-17T05:22:56.522777+00:00",
+  "merge_metadata": {
+    "merge_strategy_used": "single_retailer_passthrough",
+    "matched_by": "barcode:8423207206501",
+    "primary_observation_retailer": "carrefour_israel",
+    "name_selection_strategy": "longest_non_promotional",
+    "field_sources": {},
+    "canonicalization_notes": [
+      "package_size_g (78.0g) = unit_count (6) × unit_size_g (13.0g); detected via card_text of carrefour_israel (raw: '13 גרם').",
+      "serving_size_g set to unit_size_g (13.0g); no explicit serving declaration in any observation."
+    ],
+    "bsip1_schema_version": "bsip1_v0_1"
+  },
+  "energy_normalization": {
+    "energy_source_unit": "ambiguous",
+    "energy_conversion_applied": "kcal_to_kj",
+    "energy_conversion_note": "energy_kj derived as 494.0 kcal × 4.184 = 2066.9 kJ. Stored in audit only; not included in compact product to avoid mixing observed and derived nutrition values.",
+    "energy_kj_derived": 2066.9
+  },
+  "retailer_observations": [
+    {
+      "retailer_id": "carrefour_israel",
+      "retailer_name": "Carrefour Israel",
+      "bsip0_schema_version": "bsip0_v0_2",
+      "retailer_parser_version": "carrefour_v0_2",
+      "scrape_mode": "product_page",
+      "product_url": "https://www.carrefour.co.il/categories/95814/products?page=2&catalogProduct=2353792",
+      "scraped_at": "2026-05-16T15:50:30",
+      "folder_path": "C:\\Bari\\bsip0_scrape\\carrefour\\outputs\\carrefour\\8423207206501",
+      "barcode_source": "product_page",
+      "nutrition_completeness": "full",
+      "observation_quality_score": 0.88,
+      "observation_quality_level": "high",
+      "observation_quality_signals": [
+        "product_page_barcode_1213",
+        "full_product_page",
+        "full_nutrition_explicit_per_100g",
+        "energy_unit_ambiguous",
+        "clean_ingredient_text",
+        "has_allergen_data",
+        "has_price_data"
+      ]
+    }
+  ],
+  "source_urls": [
+    "https://www.carrefour.co.il/categories/95814/products?page=2&catalogProduct=2353792"
+  ],
+  "scrape_modes": [
+    "product_page"
+  ],
+  "first_seen_at": "2026-05-16T15:50:30",
+  "last_updated_at": "2026-05-16T15:50:30",
+  "retailer_versions": {
+    "carrefour_israel": "carrefour_v0_2"
+  },
+  "conflicts": []
+}

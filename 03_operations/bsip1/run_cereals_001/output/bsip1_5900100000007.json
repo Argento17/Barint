@@ -1,0 +1,166 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_5900100000007",
+  "barcode": "5900100000007",
+  "canonical_name_he": "דייסת שיבולת שועל מיידית בטעם וניל קוואקר 340 גרם",
+  "canonical_name_en": null,
+  "brand": "קוואקר",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": 30.0,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "yohananof"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 372.0,
+    "fat_g": 6.5,
+    "fat_saturated_g": 1.3,
+    "fat_trans_g": 0.0,
+    "sodium_mg": 205.0,
+    "carbohydrates_g": 65.0,
+    "sugars_g": 16.0,
+    "dietary_fiber_g": 6.5,
+    "protein_g": 11.0,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "שיבולת שועל מלאה, סוכר, מלח, חומרי טעם וריח (ואניל), ויטמינים ומינרלים",
+  "ingredients_list": [
+    "שיבולת שועל מלאה",
+    "סוכר",
+    "מלח",
+    "חומרי טעם וריח (ואניל)",
+    "ויטמינים ומינרלים"
+  ],
+  "allergens_contains": [
+    "גלוטן"
+  ],
+  "allergens_may_contain": [
+    "חלב"
+  ],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "high",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "Scraped from Yohananof on 2026-05-18.",
+  "nutrition_basis_claimed": "ל100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [
+    "single_source_only"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "bsip1_audit_5900100000007.json",
+  "bsip_cereal_subtype": "oatmeal",
+  "ingredients_raw": "שיבולת שועל מלאה, סוכר, מלח, חומרי טעם וריח (ואניל), ויטמינים ומינרלים",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "שיבולת שועל מלאה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "חומרי טעם וריח (ואניל)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "ויטמינים ומינרלים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [
+    {
+      "term": "חומרי טעם וריח",
+      "category": "flavor_generic",
+      "position": 4
+    },
+    {
+      "term": "חומרי טעם",
+      "category": "flavor_generic",
+      "position": 4
+    },
+    {
+      "term": "ואניל",
+      "category": "vanilla",
+      "position": 4
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "סוכר",
+      "category": "added_sugar",
+      "position": 2
+    }
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 5,
+    "additive_count": 0,
+    "flavor_marker_count": 3,
+    "sweetener_count": 1,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

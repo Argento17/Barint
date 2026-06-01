@@ -1,0 +1,57 @@
+[
+  {
+    "id": "DEC-001",
+    "title": "HUM-001 fat data strategy for Hummus v1",
+    "type": "go_nogo_gate",
+    "required_from": "product-agent",
+    "status": "DECIDED",
+    "options": [
+      "A — Display fat values despite corruption",
+      "B — Suppress fat display in Hummus v1",
+      "C — Delay launch until fat values corrected"
+    ],
+    "recommendation": "Option B — Product Agent (TASK-060)",
+    "decided_at": "2026-05-31",
+    "decision": "Option B — Suppress fat_g and saturated_fat_g from hummus frontend JSON. Add disclosure sentence to MethodologyFooter. v2 fat correction scheduled Q3 2026.",
+    "urgency": "NOW",
+    "blocking": ["TASK-058-P1"],
+    "created_at": "2026-05-31",
+    "notes": "See TASK-060 for full evaluation and rationale."
+  },
+  {
+    "id": "DEC-002",
+    "title": "Hummus v1 go-live approval",
+    "type": "go_nogo_gate",
+    "required_from": "product-agent",
+    "status": "DECIDED",
+    "options": [
+      "Approve go-live",
+      "Hold until QA warning W-1 is resolved"
+    ],
+    "recommendation": "Hold until TASK-073 resolves QA warning W-1 (content spec update), then approve.",
+    "decided_at": "2026-05-31",
+    "decision": "Approve go-live. W-1 resolved and final QA passed (TASK-090); Hummus v1 is LIVE.",
+    "urgency": "THIS_WEEK",
+    "blocking": ["Hummus launch"],
+    "created_at": "2026-05-31",
+    "notes": "Gated on TASK-073. W-1 cleared and final QA passed (TASK-090); go-live approved (TASK-096)."
+  },
+  {
+    "id": "DEC-003",
+    "title": "Bari Launch Definition v1",
+    "type": "scope_definition",
+    "required_from": "CommandCenter",
+    "status": "DECIDED",
+    "options": [
+      "Ratify Launch Definition v1 (5 gen1 categories on v2 + amendments A/B)",
+      "Defer launch definition"
+    ],
+    "recommendation": "Ratify (TASK-126). Establishes a fixed, testable launch finish line so P1-P5 cannot creep.",
+    "decided_at": "2026-06-01",
+    "decision": "Ratify Launch Definition v1. LAUNCH = Operational Readiness (5 gen1 categories - maadanim, hummus, snacks, yogurts, bread - LIVE on v2, score-frozen, field-complete; methodology page; >=1 flagship article; v2 Phase 1+2; confidence gate passing; validate-corpus green; fresh mobile+lg QA baselines; 0 P0/P1; dashboard GREEN) AND Market-Facing Readiness (comparison pages publicly available + indexable; first flagship article published; 5/5 category coverage; user-feedback collection active; SEO baseline live; analytics active). Amendment A: milk launches LEGACY-labelled (double migration gen0->gen1->v2 is disproportionate for a 20-product non-shelf editorial corpus) with a COMMITTED post-launch migration (P1 sub-task 128E), not optional. Amendment B: Launch Success Indicators (market-facing, section 6.5) added. NOT gating launch: Wave 2, base_pct, BSIP2 next-gen, all 3 articles, milk v2.",
+    "urgency": "THIS_WEEK",
+    "blocking": ["P1-P5 success criteria"],
+    "created_at": "2026-06-01",
+    "notes": "Full definition: C:/Bari/launch_definition_v1.md. Roadmap: C:/Bari/bari_objective_roadmap_v1.md. P1-P5 success criteria inherit the launch dimension each objective owns (launch_definition_v1.md section 8)."
+  }
+]

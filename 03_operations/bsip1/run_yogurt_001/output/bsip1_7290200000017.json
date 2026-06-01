@@ -1,0 +1,190 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_7290200000017",
+  "barcode": "7290200000017",
+  "canonical_name_he": "יוגורט ילדים תות ואניל",
+  "canonical_name_en": null,
+  "brand": "טנובה",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": "ישראל",
+  "kosher_certification": null,
+  "image_url": null,
+  "source_retailers": [
+    "yohananof"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 90.0,
+    "fat_g": 2.0,
+    "fat_saturated_g": 1.4,
+    "fat_trans_g": 0.0,
+    "sodium_mg": 70.0,
+    "carbohydrates_g": 14.5,
+    "sugars_g": 13.0,
+    "dietary_fiber_g": 0.0,
+    "protein_g": 4.0,
+    "cholesterol_mg": null
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "חלב מפוסטר, תות 10%, סוכר, ואניל, צבע (E-129), מייצב (E-1442), תרבויות חיות",
+  "ingredients_list": [
+    "חלב מפוסטר",
+    "תות 10%",
+    "סוכר",
+    "ואניל",
+    "צבע (E-129)",
+    "מייצב (E-1442)",
+    "תרבויות חיות"
+  ],
+  "allergens_contains": [
+    "חלב"
+  ],
+  "allergens_may_contain": [],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "high",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "Scraped from Yohananof on 2026-05-18.",
+  "nutrition_basis_claimed": "ל-100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [
+    "single_source_only"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "bsip1_audit_7290200000017.json",
+  "bsip_yogurt_subtype": "kids",
+  "ingredients_raw": "חלב מפוסטר, תות 10%, סוכר, ואניל, צבע (E-129), מייצב (E-1442), תרבויות חיות",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "חלב מפוסטר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "תות 10%",
+      "percentage_declared": 10.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "ואניל",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "צבע (E-129)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "מייצב (E-1442)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "תרבויות חיות",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [
+    {
+      "term": "מייצב",
+      "category": "stabilizer",
+      "position": 6
+    },
+    {
+      "term": "צבע",
+      "category": "color",
+      "position": 5
+    }
+  ],
+  "extracted_flavors": [
+    {
+      "term": "ואניל",
+      "category": "vanilla",
+      "position": 4
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "סוכר",
+      "category": "added_sugar",
+      "position": 3
+    }
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "תרבויות חיות",
+      "category": "live_cultures",
+      "position": 7
+    },
+    {
+      "term": "תרבויות",
+      "category": "cultures_generic",
+      "position": 7
+    }
+  ],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 7,
+    "additive_count": 2,
+    "flavor_marker_count": 1,
+    "sweetener_count": 1,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 2,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": true,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

@@ -1,0 +1,599 @@
+{
+  "meta": {
+    "schema": "bari_qa_checklist_v1",
+    "version": "1.0.0",
+    "created": "2026-05-30",
+    "owner": "QA & Audit Lead",
+    "scope": "BSIP0 → BSIP1 pipeline only",
+    "reference_category": "hummus",
+    "companion_doc": "category_factory_qa_v1.md",
+    "automation_status": "manual — no automated execution yet",
+    "next_version_trigger": "new bsip1 schema version OR new retailer added OR 3 consecutive runs expose uncovered gap"
+  },
+
+  "verdict_types": {
+    "hard_fail": "Blocks BSIP2 entry. Must be resolved and check re-run before proceeding.",
+    "warning": "Does not block BSIP2 entry. Must be recorded in QA report and communicated to BSIP2 operator.",
+    "known_issue": "Expected pattern. Visible in report, generates no verdict."
+  },
+
+  "domains": [
+    {
+      "id": "D1",
+      "name": "Scope Integrity",
+      "description": "Verifies that the canonical corpus contains only in-scope products and that the exclusion decision record exists.",
+      "checks": [
+        {
+          "id": "SCP-001",
+          "name": "Corpus filter is locked",
+          "description": "corpus_filter.md exists and contains a lock marker ('Locked at:' or '*This document is locked.*')",
+          "data_source": "02_products/{category}/corpus_filter.md",
+          "check_method": "manual",
+          "pass_condition": "File exists AND contains lock marker",
+          "fail_condition": "File absent OR present but no lock marker",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": false,
+          "automation_note": "Simple file existence + text search — low priority; manual is fast"
+        },
+        {
+          "id": "SCP-002",
+          "name": "Exclusion register exists",
+          "description": "candidate_review.csv exists in observations_bsip0/{retailer}/ and contains a header row",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/candidate_review.csv",
+          "check_method": "manual",
+          "pass_condition": "File exists AND has header row",
+          "fail_condition": "File absent",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "File existence check — first candidate for automation alongside SCP-001"
+        },
+        {
+          "id": "SCP-003",
+          "name": "No known out-of-scope products in approved corpus",
+          "description": "Products approved in candidate_review.csv (approved_for_scrape=YES) do not match hard exclusion terms from corpus_filter.md. Exclusion terms are category-specific; defaults below apply to Hummus.",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/candidate_review.csv + corpus_filter.md",
+          "check_method": "semi_automated",
+          "pass_condition": "No approved product name_he matches any exclusion term",
+          "fail_condition": "One or more approved products match a hard exclusion term",
+          "verdict_on_fail": "hard_fail",
+          "category_specific_exclusion_terms": {
+            "hummus": ["טחינה", "לאבנה", "גבינה לבנה", "קוטג'", "סחוג", "זחוג", "חריסה", "אריסה", "ארוסה", "פסטו", "קולסלאו", "כרוב", "גזר מגורד", "סלט בולגרי", "ממרח שוקולד", "נוטלה", "ריבה"]
+          },
+          "automation_candidate": true,
+          "automation_note": "High priority — load approved rows from CSV, check name_he against term list. Category-specific term list must be injected per run."
+        },
+        {
+          "id": "SCP-004",
+          "name": "Product count within expected corpus range",
+          "description": "Total BSIP0 product files in observations_bsip0/{retailer}/ (excluding all_discovered_raw_*.json and candidate_review.csv) is within the range defined in corpus_filter.md",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/*.json (exclude all_discovered* and candidate_review.csv)",
+          "check_method": "semi_automated",
+          "pass_condition": "count >= hard_minimum AND count <= expected_maximum",
+          "warn_condition": "count >= hard_minimum AND count < expected_lower_bound",
+          "fail_condition": "count < hard_minimum",
+          "thresholds": {
+            "hummus": {
+              "hard_minimum": 30,
+              "expected_lower_bound": 47,
+              "expected_upper_bound": 70
+            }
+          },
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "File count + threshold lookup — high priority for automation"
+        },
+        {
+          "id": "SCP-005",
+          "name": "No multi-pack or catering-size products",
+          "description": "No approved BSIP0 product has multi-pack marketing or catering sizes (weight_g >= 1000)",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/*.json",
+          "check_method": "semi_automated",
+          "pass_condition": "No product has name_he containing multi-pack signals AND no product has weight_g >= 1000",
+          "fail_condition": "Any product matches multi-pack signals or catering weight",
+          "multi_pack_signals": ["מארז", "3×", "4×", "6×", "2×", "חבילה"],
+          "catering_weight_threshold_g": 1000,
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "String match on name_he + weight_g check — straightforward"
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "name": "Traceability",
+      "description": "Verifies that every BSIP1 enriched record can be traced back to its BSIP0 source observation.",
+      "checks": [
+        {
+          "id": "TRC-001",
+          "name": "Every BSIP1 file has a populated source_retailers field",
+          "description": "In every bsip1_*.json in 03_operations/bsip1/run_{category}_001/output/, the source_retailers array is non-empty",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "source_retailers",
+          "pass_condition": "source_retailers is a non-empty list for all files",
+          "fail_condition": "Any file has source_retailers = [] or field absent",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "JSON field check on all output files — part of the core traceability validator"
+        },
+        {
+          "id": "TRC-002",
+          "name": "Every BSIP1 barcode traces to a BSIP0 source file",
+          "description": "The barcode extracted from each bsip1_{BARCODE}.json filename corresponds to an observation file in observations_bsip0/{retailer}/. Shufersal uses P_{code}.json; Yohananof uses {barcode}/ directory.",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/ AND 02_products/{category}/observations_bsip0/",
+          "check_method": "semi_automated",
+          "retailer_bsip0_patterns": {
+            "shufersal": "P_{barcode}.json",
+            "yohananof": "{barcode}/ (directory)"
+          },
+          "pass_condition": "For every BSIP1 file, a matching BSIP0 observation exists in at least one retailer folder",
+          "fail_condition": "Any BSIP1 barcode has no matching BSIP0 observation across all scraped retailers",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "HIGHEST PRIORITY automation candidate. Cross-directory filename matching; catches silent provenance breaks."
+        },
+        {
+          "id": "TRC-003",
+          "name": "ingredients_raw_provenance.source is bsip0_scrape for all products with ingredients",
+          "description": "Where ingredients_list is non-empty in BSIP1 output, ingredients_raw_provenance.source must equal 'bsip0_scrape'",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "ingredients_raw_provenance.source",
+          "pass_condition": "All files with non-empty ingredients_list have provenance.source = 'bsip0_scrape'",
+          "fail_condition": "Any file has provenance.source != 'bsip0_scrape'",
+          "warn_condition": "ingredients_raw_provenance field absent when ingredients_list is non-empty",
+          "approved_sources": ["bsip0_scrape"],
+          "forbidden_sources": ["manual", "llm_generated", "synthetic", "unknown", null],
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "JSON field path check — part of core traceability validator"
+        },
+        {
+          "id": "TRC-004",
+          "name": "BSIP0 source files retain scraped_at timestamp and source_url",
+          "description": "Every BSIP0 P_*.json (or {barcode}/discovery.json for Yohananof) has a non-null scraped_at ISO timestamp and a non-empty source_url containing the retailer domain",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/",
+          "check_method": "semi_automated",
+          "required_fields": ["scraped_at", "source_url"],
+          "source_url_must_contain": {
+            "shufersal": "shufersal",
+            "yohananof": "yohananof"
+          },
+          "pass_condition": "All approved product files have non-null scraped_at and non-empty source_url with retailer domain",
+          "fail_condition": "Any approved product missing scraped_at or source_url",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "JSON field presence check on BSIP0 files — straightforward"
+        },
+        {
+          "id": "TRC-005",
+          "name": "audit_ref file exists for every BSIP1 product",
+          "description": "Every BSIP1 product file has an audit_ref field, and the referenced bsip1_audit_{barcode}.json file exists in the same output directory",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/",
+          "check_method": "semi_automated",
+          "field_path": "audit_ref",
+          "pass_condition": "audit_ref field present AND referenced file exists",
+          "warn_condition": "audit_ref present but referenced audit file absent",
+          "fail_condition": "audit_ref field absent entirely from any product file",
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": false,
+          "automation_note": "Low automation priority; audit file absence is rare and easy to spot manually"
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "name": "Coverage",
+      "description": "Verifies that the corpus has sufficient nutritional, ingredient, image, and barcode data to support BSIP2 scoring.",
+      "coverage_thresholds_note": "Thresholds below are Hummus defaults. Other categories define their own in corpus_filter.md.",
+      "checks": [
+        {
+          "id": "COV-001",
+          "name": "Nutrition coverage",
+          "description": "normalized_nutrition_per_100g in BSIP1 contains non-null values for all four core macros for at least 80% of products. Hard fail threshold is 60%.",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "required_macro_fields": ["energy_kcal", "protein_g", "carbohydrates_g", "fat_g"],
+          "field_path": "normalized_nutrition_per_100g",
+          "thresholds": {
+            "target_pct": 80,
+            "warn_below_pct": 80,
+            "hard_fail_below_pct": 60
+          },
+          "verdict_on_hard_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Null-check on four macro fields across all BSIP1 output — straightforward"
+        },
+        {
+          "id": "COV-002",
+          "name": "Ingredient list coverage",
+          "description": "ingredients_list in BSIP1 is non-empty for at least 70% of products",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "ingredients_list",
+          "thresholds": {
+            "target_pct": 70,
+            "warn_below_pct": 70,
+            "hard_fail_below_pct": 50
+          },
+          "verdict_on_hard_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Array length check across all BSIP1 output"
+        },
+        {
+          "id": "COV-003",
+          "name": "Image coverage",
+          "description": "image_url in BSIP1 is non-null and non-empty for at least 90% of products",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "image_url",
+          "thresholds": {
+            "target_pct": 90,
+            "warn_below_pct": 90,
+            "hard_fail_below_pct": 70
+          },
+          "verdict_on_hard_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Null/empty string check on image_url"
+        },
+        {
+          "id": "COV-004",
+          "name": "Barcode quality — EAN-13 vs retailer internal ID ratio",
+          "description": "Checks barcode_validation_status across BSIP1 output. Malformed barcodes (non-numeric, length < 4) are hard fail. >50% retailer internal IDs is a warning.",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "barcode_validation_status",
+          "valid_statuses": ["gs1_ean13", "gs1_ean8", "gs1_ean14", "retailer_internal_id", "unverified"],
+          "fail_on_status": ["malformed", null],
+          "warn_if_internal_id_ratio_above": 0.50,
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Status field check + ratio calculation"
+        },
+        {
+          "id": "COV-005",
+          "name": "Sodium and sugar coverage (informational)",
+          "description": "sodium_mg coverage >= 60% and sugars_g coverage >= 50%. Informational only — affects BSIP2 red-label detection quality.",
+          "data_source": "03_operations/bsip1/run_{category}_001/output/bsip1_*.json",
+          "check_method": "semi_automated",
+          "fields": [
+            {"name": "sodium_mg", "path": "normalized_nutrition_per_100g.sodium_mg", "warn_below_pct": 60},
+            {"name": "sugars_g", "path": "normalized_nutrition_per_100g.sugars_g", "warn_below_pct": 50}
+          ],
+          "verdict_on_warn": "warning",
+          "verdict_on_fail": "warning",
+          "automation_candidate": true,
+          "automation_note": "Extends COV-001 null-check to two additional fields"
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "name": "Canonical Structure",
+      "description": "Verifies that the canonical BSIP1 output folder is correctly populated and that excluded products have not leaked into it.",
+      "checks": [
+        {
+          "id": "CAN-001",
+          "name": "canonical_bsip1 folder exists and is populated",
+          "description": "02_products/{category}/canonical_bsip1/ exists and contains at least as many bsip1_*.json files as the BSIP0 approved product count (within 10% tolerance for BSIP1 enrichment failures)",
+          "data_source": "02_products/{category}/canonical_bsip1/",
+          "check_method": "semi_automated",
+          "pass_condition": "folder exists AND file_count >= floor(bsip0_approved_count * 0.90)",
+          "warn_condition": "file_count >= floor(bsip0_approved_count * 0.90) AND file_count < bsip0_approved_count",
+          "fail_condition": "folder absent OR file_count = 0 OR file_count < floor(bsip0_approved_count * 0.90)",
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Directory + file count check"
+        },
+        {
+          "id": "CAN-002",
+          "name": "Manifest file exists and entry count matches file count",
+          "description": "A manifest.json or manifest.md exists in 02_products/{category}/canonical_bsip1/ and its entry count matches the actual file count",
+          "data_source": "02_products/{category}/canonical_bsip1/manifest.json OR manifest.md",
+          "check_method": "manual",
+          "pass_condition": "manifest exists AND entry_count == actual_file_count",
+          "warn_condition": "manifest exists AND entry_count != actual_file_count",
+          "fail_condition": "manifest absent",
+          "manifest_expected_fields": ["canonical_product_id", "barcode", "filename"],
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Manifest generation should be part of the BSIP1 runner; validation is then a count comparison"
+        },
+        {
+          "id": "CAN-003",
+          "name": "schema_version consistent across all canonical files",
+          "description": "Every bsip1_*.json in canonical_bsip1/ has schema_version equal to the approved BSIP1 schema version",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "schema_version",
+          "approved_version": "bsip1_v0_1",
+          "pass_condition": "unique(schema_version values across all canonical files) == {approved_version}",
+          "fail_condition": "Any file has a different or absent schema_version",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "Single field value check across all files — trivial to automate"
+        },
+        {
+          "id": "CAN-004",
+          "name": "No excluded products in canonical_bsip1",
+          "description": "Products with approved_for_scrape=NO in candidate_review.csv are not present in canonical_bsip1/",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/candidate_review.csv AND 02_products/{category}/canonical_bsip1/",
+          "check_method": "semi_automated",
+          "pass_condition": "No barcode/code from rejected rows in candidate_review.csv matches any canonical file",
+          "fail_condition": "Any rejected barcode/code found in canonical_bsip1 filenames",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "Cross-reference CSV rejected codes against canonical filenames — part of the traceability validator scope"
+        },
+        {
+          "id": "CAN-005",
+          "name": "All canonical files have file_type 'product'",
+          "description": "file_type field in every canonical file equals 'product'. Audit files (bsip1_audit_*.json) must not be in the canonical folder.",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "file_type",
+          "expected_value": "product",
+          "forbidden_values": ["audit", "summary", "report", "metadata"],
+          "pass_condition": "unique(file_type values) == {'product'}",
+          "fail_condition": "Any file has file_type != 'product'",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "Single field value check — trivial"
+        }
+      ]
+    },
+    {
+      "id": "D5",
+      "name": "Regression Checks",
+      "description": "Verifies that BSIP1 output contains no fields from a later pipeline stage (BSIP2, frontend) and that no schema changes were introduced without approval.",
+      "checks": [
+        {
+          "id": "REG-001",
+          "name": "No BSIP2 scoring fields in BSIP1 output",
+          "description": "None of the BSIP2 scoring field names appear as top-level keys in any canonical BSIP1 file",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "forbidden_fields": [
+            "bsip2_score", "grade", "archetype", "nova_score", "score_trace",
+            "dimension_scores", "bsip2_version", "concern_flags", "structural_emptiness",
+            "satiety_score", "glycemic_score", "engineering_score", "nutritional_score",
+            "metabolic_score", "floor_applied", "cap_applied", "trace_output",
+            "final_score", "score_reason", "nova_proxy_result", "guardrail_caps",
+            "archetype_module", "calorie_density_score"
+          ],
+          "pass_condition": "No forbidden field name appears as a top-level key in any canonical file",
+          "fail_condition": "Any forbidden field found",
+          "grep_command": "grep -r \"bsip2_score\\|\\\"grade\\\"\\|\\\"archetype\\\"\\|nova_score\\|dimension_scores\\|score_trace\\|concern_flags\\|structural_emptiness\" canonical_bsip1/",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "HIGHEST PRIORITY for regression automation. Grep or JSON key union check. One-line Python."
+        },
+        {
+          "id": "REG-002",
+          "name": "No frontend or view-model fields in BSIP1 output",
+          "description": "None of the frontend/view-model field names appear as top-level keys in any canonical BSIP1 file",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "forbidden_fields": [
+            "display_name", "slug", "frontend_score", "view_model", "comparison_rank",
+            "shelf_position", "insight_line", "explanation_text", "is_displayable",
+            "display_score", "ui_label", "page_section", "frontend_confidence",
+            "score_display", "grade_display", "comparison_context"
+          ],
+          "pass_condition": "No forbidden field name appears as a top-level key in any canonical file",
+          "fail_condition": "Any forbidden field found",
+          "grep_command": "grep -r \"display_name\\|\\\"slug\\\"\\|frontend_\\|view_model\\|comparison_rank\\|insight_line\\|is_displayable\" canonical_bsip1/",
+          "verdict_on_fail": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "Same pattern as REG-001 — can be combined into a single forbidden-field scanner"
+        },
+        {
+          "id": "REG-003",
+          "name": "enrichment_version matches approved BSIP1 version",
+          "description": "enrichment_version in all canonical BSIP1 files equals the approved version string",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "field_path": "enrichment_version",
+          "approved_version": "bsip1_enrichment_v1",
+          "pass_condition": "unique(enrichment_version values) == {approved_version}",
+          "fail_condition": "Any unapproved version string found",
+          "warn_condition": "Version string is unrecognised (not in known version history)",
+          "known_version_history": ["bsip1_enrichment_v1"],
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": true,
+          "automation_note": "Extends CAN-003 pattern — same field value consistency check"
+        },
+        {
+          "id": "REG-004",
+          "name": "No unexpected top-level fields in BSIP1 output",
+          "description": "The union of top-level keys across all canonical files does not contain any field not in the approved bsip1_v0_1 schema field list",
+          "data_source": "02_products/{category}/canonical_bsip1/bsip1_*.json",
+          "check_method": "semi_automated",
+          "approved_top_level_fields": [
+            "schema_version", "file_type", "canonical_product_id", "barcode",
+            "canonical_name_he", "canonical_name_en", "brand", "package_size_g",
+            "unit_count", "unit_size_g", "serving_size_g", "country_of_origin",
+            "kosher_certification", "image_url", "source_retailers",
+            "normalized_nutrition_per_100g", "energy_source_unit",
+            "ingredients_text_he", "ingredients_list", "allergens_contains",
+            "allergens_may_contain", "claims", "confidence",
+            "barcode_validation_status", "barcode_confidence_reason",
+            "nutrition_basis_claimed", "nutrition_basis_detected",
+            "nutrition_consistency_status", "nutrition_consistency_warnings",
+            "ingredient_text_quality", "ingredient_warnings",
+            "canonical_trust_score", "canonical_trust_level", "canonical_risk_flags",
+            "conflicts_summary", "missing_fields", "inferred_fields", "audit_ref",
+            "ingredients_raw", "ingredients_raw_provenance", "ingredient_order",
+            "extracted_additives", "extracted_flavors", "extracted_sweeteners",
+            "extracted_protein_markers", "extracted_matrix_markers",
+            "extracted_fermentation_markers", "extracted_roasting_markers",
+            "enrichment_summary", "enrichment_version", "enrichment_warnings"
+          ],
+          "pass_condition": "union(all top-level keys) is a subset of approved_top_level_fields",
+          "warn_condition": "Unexpected field found that is NOT in REG-001 or REG-002 forbidden lists (those would be hard fail)",
+          "fail_condition": "Unexpected field matches a forbidden field from REG-001 or REG-002",
+          "verdict_on_unexpected_non_scoring": "warning",
+          "verdict_on_unexpected_scoring_or_frontend": "hard_fail",
+          "automation_candidate": true,
+          "automation_note": "Key union check — Python one-liner; run after REG-001 and REG-002 pass"
+        },
+        {
+          "id": "REG-005",
+          "name": "BSIP0 source files are unmodified after scrape",
+          "description": "Filesystem modification time (mtime) of BSIP0 product JSON files does not significantly exceed the scraped_at timestamp in the file. BSIP0 files are immutable once written.",
+          "data_source": "02_products/{category}/observations_bsip0/{retailer}/*.json",
+          "check_method": "semi_automated",
+          "pass_condition": "mtime <= scraped_at + 300 seconds for all files (allowing for filesystem timestamp artefacts on copy/move)",
+          "warn_condition": "mtime is 5 minutes to 24 hours after scraped_at",
+          "fail_condition": "mtime is > 24 hours after scraped_at AND file content shows manual field edits (non-scraper format values)",
+          "mtime_tolerance_seconds": 300,
+          "verdict_on_fail": "hard_fail",
+          "verdict_on_warn": "warning",
+          "automation_candidate": false,
+          "automation_note": "Low automation priority; filesystem mtime checks are fragile across copy/backup operations. Manual spot-check is more reliable."
+        }
+      ]
+    }
+  ],
+
+  "known_acceptable_issues": [
+    {
+      "id": "KI-001",
+      "pattern": "missing_fields contains 'serving_size_g'",
+      "reason": "Serving size is optional in bsip1_v0_1. Israeli retail labels often omit it.",
+      "action": "None required"
+    },
+    {
+      "id": "KI-002",
+      "pattern": "missing_fields contains 'canonical_name_en'",
+      "reason": "English name is not required. Bari is Hebrew-primary.",
+      "action": "None required"
+    },
+    {
+      "id": "KI-003",
+      "pattern": "barcode_confidence = 'inferred' on retailer-internal IDs",
+      "reason": "Expected for short-code Shufersal products and 16000-prefix Yohananof codes. Documented in barcode_confidence_reason.",
+      "action": "None required"
+    },
+    {
+      "id": "KI-004",
+      "pattern": "observation_count = 1 for all products",
+      "reason": "Expected on single-retailer scrape (Shufersal only). Multi-source enrichment improves on Yohananof supplementary pass.",
+      "action": "None required on single-retailer run"
+    },
+    {
+      "id": "KI-005",
+      "pattern": "canonical_trust_level = 'low' for single-source products",
+      "reason": "Expected. canonical_risk_flags: ['single_source_only'] documents the reason. Does not indicate bad data.",
+      "action": "None required"
+    },
+    {
+      "id": "KI-006",
+      "pattern": "enrichment_warnings contains non-fatal notes",
+      "reason": "Non-fatal enrichment observations. Reviewed in BSIP2 operator briefing.",
+      "action": "Pass to BSIP2 operator for awareness"
+    },
+    {
+      "id": "KI-007",
+      "pattern": "ingredient_text_quality = 'noisy' for a minority of products",
+      "reason": "Retailer HTML sometimes embeds nutrition text in the ingredient field. BSIP1 flags but does not fail.",
+      "action": "None required unless > 20% of corpus"
+    },
+    {
+      "id": "KI-008",
+      "pattern": "nutrition_consistency_warnings present for minor rounding differences",
+      "reason": "Rounding artefacts from retailer display. Not a data error.",
+      "action": "None required"
+    }
+  ],
+
+  "run_record_template": {
+    "category": null,
+    "run_date": null,
+    "operator": null,
+    "bsip0_source_retailer": null,
+    "bsip0_product_count": null,
+    "bsip1_run_id": null,
+    "bsip1_product_count": null,
+    "checks": {
+      "SCP-001": {"result": null, "note": null},
+      "SCP-002": {"result": null, "note": null},
+      "SCP-003": {"result": null, "affected_count": null, "note": null},
+      "SCP-004": {"result": null, "actual_count": null, "expected_range": null, "note": null},
+      "SCP-005": {"result": null, "affected_count": null, "note": null},
+      "TRC-001": {"result": null, "affected_count": null, "note": null},
+      "TRC-002": {"result": null, "unmatched_count": null, "note": null},
+      "TRC-003": {"result": null, "affected_count": null, "note": null},
+      "TRC-004": {"result": null, "affected_count": null, "note": null},
+      "TRC-005": {"result": null, "affected_count": null, "note": null},
+      "COV-001": {"result": null, "covered": null, "total": null, "pct": null, "note": null},
+      "COV-002": {"result": null, "covered": null, "total": null, "pct": null, "note": null},
+      "COV-003": {"result": null, "covered": null, "total": null, "pct": null, "note": null},
+      "COV-004": {"result": null, "ean13_count": null, "internal_id_count": null, "unknown_count": null, "note": null},
+      "COV-005": {"result": null, "sodium_pct": null, "sugar_pct": null, "note": null},
+      "CAN-001": {"result": null, "canonical_count": null, "bsip0_approved_count": null, "note": null},
+      "CAN-002": {"result": null, "manifest_entries": null, "actual_files": null, "note": null},
+      "CAN-003": {"result": null, "versions_found": null, "note": null},
+      "CAN-004": {"result": null, "leaked_count": null, "note": null},
+      "CAN-005": {"result": null, "unexpected_types": null, "note": null},
+      "REG-001": {"result": null, "forbidden_fields_found": [], "note": null},
+      "REG-002": {"result": null, "forbidden_fields_found": [], "note": null},
+      "REG-003": {"result": null, "versions_found": null, "note": null},
+      "REG-004": {"result": null, "unexpected_fields": [], "note": null},
+      "REG-005": {"result": null, "files_with_late_mtime": null, "note": null}
+    },
+    "hard_fails_open": [],
+    "warnings_open": [],
+    "overall_verdict": null,
+    "cleared_for_bsip2": null,
+    "report_filed_at": null
+  },
+
+  "automation_priority_ranking": [
+    {
+      "rank": 1,
+      "check_ids": ["TRC-002", "CAN-004"],
+      "name": "Cross-pipeline traceability validator",
+      "rationale": "Most likely to catch silent data errors — products enriched from wrong source, provenance broken, excluded products leaked into canonical. Cross-directory filename matching. One Python script covers both checks.",
+      "estimated_effort": "2–3 hours"
+    },
+    {
+      "rank": 2,
+      "check_ids": ["REG-001", "REG-002"],
+      "name": "Forbidden field scanner",
+      "rationale": "Catches the most damaging class of error — BSIP2 or frontend fields leaking into BSIP1 output. Simple JSON key union check; one grep command or five lines of Python.",
+      "estimated_effort": "1 hour"
+    },
+    {
+      "rank": 3,
+      "check_ids": ["COV-001", "COV-002", "COV-003", "COV-004", "COV-005"],
+      "name": "Coverage reporter",
+      "rationale": "Already partially implemented in 03_audit_bsip0_hummus.py for BSIP0. Extending to BSIP1 output reuses the same pattern with different field paths.",
+      "estimated_effort": "2 hours"
+    },
+    {
+      "rank": 4,
+      "check_ids": ["SCP-003", "SCP-004", "SCP-005"],
+      "name": "Scope integrity scanner",
+      "rationale": "Exclusion term matching and count thresholds. Requires category-specific term injection but the pattern is reusable. Highest operational value for Wave 2+ categories.",
+      "estimated_effort": "2–3 hours"
+    },
+    {
+      "rank": 5,
+      "check_ids": ["CAN-001", "CAN-002", "CAN-003", "CAN-005", "REG-003", "REG-004"],
+      "name": "Canonical structure validator",
+      "rationale": "File count, manifest consistency, schema version checks. Simple directory + JSON scans. Lower priority because canonical structure failures are usually visible during BSIP1 run completion.",
+      "estimated_effort": "2 hours"
+    }
+  ]
+}
