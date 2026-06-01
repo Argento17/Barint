@@ -5,8 +5,11 @@ import os
 
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
+from dotenv import load_dotenv
 
 from extractor import extract_product
+
+load_dotenv()  # reads AZURE_DI_KEY from C:\Bari\.env (gitignored)
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -21,7 +24,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 EXCLUDED_PRODUCTS = {"product_010"}
 
 AZURE_ENDPOINT = "https://bsip0ocr.cognitiveservices.azure.com/"
-AZURE_KEY = "AZURE_DI_KEY_REMOVED"
+AZURE_KEY = os.environ["AZURE_DI_KEY"]
 
 azure_client = DocumentIntelligenceClient(
     endpoint=AZURE_ENDPOINT,

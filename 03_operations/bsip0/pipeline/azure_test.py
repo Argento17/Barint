@@ -1,13 +1,18 @@
+import os
+
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
+from dotenv import load_dotenv
 
 # ---------------------------------------------------
 # AZURE CONFIG
 # ---------------------------------------------------
 
+load_dotenv()  # reads AZURE_DI_KEY from C:\Bari\.env (gitignored)
+
 ENDPOINT = "https://bsip0ocr.cognitiveservices.azure.com/"
 
-KEY = "AZURE_DI_KEY_REMOVED"
+KEY = os.environ["AZURE_DI_KEY"]
 
 IMAGE_PATH = r"C:\Bari\03_operations\bsip0\pipeline\data\raw\snack_bars\product_001\nutrition1.png"
 
