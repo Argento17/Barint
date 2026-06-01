@@ -43,7 +43,7 @@ Launch is a **conjunction** — any single failing dimension holds launch.
 ## 5. Required BSIP maturity
 
 - **BSIP2 = AUTHORITATIVE** for all 5 launch categories (already true on the dashboard).
-- **Confidence accuracy gate passing** on all 5 (`verified` only when ≥3/6 nutrition fields **and** ingredients present; else `partial`; null → `insufficient`).
+- **Confidence accuracy gate passing** on all 5 (`verified` only when ≥3/6 nutrition fields **and** the ingredient field is a **real ingredient list** — not a scraped nutrition panel, marketing prose, or an allergen/handling sentence; else `partial`; null → `insufficient`). When the ingredient field fails the quality check, the row is `partial` **and** ingredient-derived positive signals (additive-free / NOVA / sweetener / protein-from-ingredients claims) are suppressed. Quality check is the shared validator `03_operations/bsip2/sprint1/ingredient_quality_gate.py` (`gate_confidence` / `assess_ingredients`). *Amended per TASK-129A (2026-06-01); supersedes the prior presence-only wording — origin `03_operations/bsip2/confidence_gate_fix_129a_v1.md`.*
 - **Scores frozen per launch category** — no calibration in flight at launch.
 - **Golden-products suite green**; known failure modes documented.
 - **BSIP2 next-gen evolution is NOT required** for launch (post-launch, deferred slice of old O2).

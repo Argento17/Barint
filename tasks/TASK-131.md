@@ -2,9 +2,11 @@
 id: TASK-131
 title: Consolidate the two Bari directories (C:\Bari vs C:\Users\HP\bari)
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "Migration finished per recent confirmation from Claude."
 depends_on: []
 blocks: []
 category_id: null

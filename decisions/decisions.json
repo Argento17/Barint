@@ -53,5 +53,22 @@
     "blocking": ["P1-P5 success criteria"],
     "created_at": "2026-06-01",
     "notes": "Full definition: C:/Bari/launch_definition_v1.md. Roadmap: C:/Bari/bari_objective_roadmap_v1.md. P1-P5 success criteria inherit the launch dimension each objective owns (launch_definition_v1.md section 8)."
+  },
+  {
+    "id": "DEC-004",
+    "title": "BSIP2 TASK-133 revision calibration & scope sign-off (F2/F1/F4)",
+    "type": "calibration_signoff",
+    "required_from": "nutrition-agent",
+    "status": "PENDING",
+    "options": [
+      "A - Approve recommended package: build the structure now and defer numeric magnitudes (F2 discount curve, F1 penalty deltas, F4 penalty size) to a calibration run against real corpora; F2 discounts the Protein Quality dimension only; treat proto_v0 as source-of-truth and re-sync the frozen spec at Phase E",
+      "B - Approve build but fix calibration magnitudes up front before coding",
+      "C - Changes requested to scope before build proceeds"
+    ],
+    "recommendation": "Option A. Three gates not derivable from architecture: (G1) calibration magnitudes - 47-81% DIAAS is a band not a per-product number; constants.py states calibration is a separate phase, so build structure now and set numbers in a calibration run. (G2) F2 scope - discount the protein-QUALITY contribution only, leaving protein mass feeding satiety/nutrient-density (recommended). (G3) spec reconciliation - prototype has drifted from frozen spec (code: protein_quality 0.10, additive 0.10, processing 0.15; methodology.md says 9/7/18%); recommend proto_v0 as source-of-truth with a Phase-E spec re-sync. Directly affects F2's effective impact via protein weight.",
+    "urgency": "THIS_WEEK",
+    "blocking": ["TASK-133 closure", "TASK-133B calibration", "TASK-133C calibration", "TASK-133D calibration"],
+    "created_at": "2026-06-01",
+    "notes": "Does NOT block starting 133A (taxonomy) or the structural build of B/C/D - only the calibrated magnitudes and final closure. Full plan: C:/Bari/research/TASK-133_implementation_roadmap.md. Origin: TASK-132 evaluation."
   }
 ]

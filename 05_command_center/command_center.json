@@ -5,12 +5,12 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-01",
-    "generated_at": "2026-06-01T12:07:20",
-    "newest_source_at": "2026-06-01T12:06:11",
+    "generated_at": "2026-06-01T12:36:29",
+    "newest_source_at": "2026-06-01T12:36:22",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-01T12:07:20",
+    "drift_checked_at": "2026-06-01T12:36:29",
     "stale": false,
     "stale_reason": null
   },
@@ -18,50 +18,56 @@
     "system_health": "RED",
     "active_task_ids": [
       "TASK-128",
+      "TASK-129A",
       "TASK-129B",
       "TASK-129",
       "TASK-129C",
       "TASK-130",
-      "TASK-131"
+      "TASK-133",
+      "TASK-133A",
+      "TASK-133B",
+      "TASK-133C",
+      "TASK-133D"
     ],
     "latest_completed_task": {
-      "id": "TASK-121",
-      "title": "Investigate why TASK-120 return did not update the Command Center",
+      "id": "TASK-128A",
+      "title": "Author comparison_ui_reference_v2",
       "completed_at": "2026-06-01"
     },
-    "current_blocker": "6 active tasks exceeds capacity of 3",
+    "current_blocker": "11 active tasks exceeds capacity of 3",
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-128",
-    "title": "Comparison Platform v2 Completion (existing fleet)",
-    "owner": "frontend-agent",
-    "status": "IN_PROGRESS",
-    "priority": "CRITICAL",
-    "reason": "Currently in progress — finish this first.",
-    "unblocks": "TASK-131, TASK-132"
+    "task_id": "TASK-133B",
+    "title": "F2 - protein-bar matrix discount + collagen marker in Protein Quality dimension",
+    "owner": "nutrition-agent",
+    "status": "BLOCKED",
+    "priority": "HIGH",
+    "reason": "Blocked — waiting on TASK-133A (named-additive/fragmentation taxonomy)",
+    "unblocks": "—"
   },
   "task_summary": {
-    "active": 6,
-    "in_progress": 6,
-    "blocked": 0,
+    "active": 11,
+    "in_progress": 8,
+    "blocked": 3,
     "returned": 0,
     "changes_requested": 0,
-    "closed": 53
+    "closed": 55
   },
   "drift": {
-    "checked_at": "2026-06-01T12:07:22",
+    "checked_at": "2026-06-01T12:36:30",
     "clean": false,
     "counts": {
       "PHANTOM_TASK": 0,
-      "CLOSURE_DRIFT": 2,
+      "CLOSURE_DRIFT": 3,
       "SNAPSHOT_DRIFT": 0,
       "REGISTRY_UNPARSEABLE": 0
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [
       "TASK-129",
-      "TASK-130"
+      "TASK-130",
+      "TASK-132"
     ],
     "registry_unparseable": []
   },
@@ -83,6 +89,21 @@
       "blocker": null,
       "close_reason": null,
       "summary": "Drive the accepted v2 migration (TASK-098/118) across the 5 live gen1 categories to consumer- and publication-ready standard. Owns launch dimensions: categories on v2 + field-complete, platform capabilities (v2 Phase 1+2, hub, SEO). Prereq gate: author+sign comparison_ui_reference_v2.md; QA re-baseline. base_pct deferred to Phase 3 (does not gate launch). milk = 128E, committed post-launch (DEC-003 Amendment A)."
+    },
+    {
+      "id": "TASK-129A",
+      "title": "Fix P0 confidence gate validation",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "CRITICAL",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Confidence gate validates ingredient presence rather than ingredient quality; fix per hummus/maadanim/snacks/milk failure cases"
     },
     {
       "id": "TASK-129B",
@@ -151,9 +172,9 @@
       "summary": "New workstream (specified by category_scaling_readiness_v1): validate-corpus command enforcing v2 field-completeness (incl. closing bread limitingFactors gap), self-contained category-module contract, route/status governance + deprecation policy, clean committed baseline. Gate for Wave 2 (TASK-132). Owns launch dimension: QA threshold (validate-corpus, baselines)."
     },
     {
-      "id": "TASK-131",
-      "title": "Consolidate the two Bari directories (C:\\Bari vs C:\\Users\\HP\\bari)",
-      "owner": "data-agent",
+      "id": "TASK-133",
+      "title": "Implement approved BSIP2 Evidence-Watch 2026-06-01 revisions (F2, F1, F4)",
+      "owner": "nutrition-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
       "created_at": "2026-06-01",
@@ -163,7 +184,93 @@
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "Evaluate and plan the cleanup of the two colliding Bari roots plus the stale nested C:\\Users\\HP\\bari\\Bari snapshot (4112 tracked files) that cause operating-model confusion. Deliverable: a clear consolidation plan (target structure, migration steps, dedup, rename to end the name collision). Sibling of TASK-130 operating-model hardening."
+      "summary": "Objective: ship the owner-approved scoring revisions from the 2026-06-01 Evidence Watch evaluation (TASK-132) - F2 protein-bar matrix discount, F1 emulsifier identity tiering, F4 BHA named-additive penalty. F3 deferred. Sub-tasks A-D; taxonomy-first sequencing."
+    },
+    {
+      "id": "TASK-133A",
+      "title": "Named-additive + ingredient-fragmentation taxonomy (matrix Req 1) - enabling infra",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Build the ingredient taxonomy with fragmentation level + named-additive identity metadata that matrix_integrity_framework.md Req 1 specifies. Enabling infra for F2/F1/F4: lets the scorer distinguish ingredient FORM (oats vs oat isolate; carrageenan/CMC vs lecithin; native vs modified starch) and named additives. Build once; F2/F1/F4 all ride on it."
+    },
+    {
+      "id": "TASK-133B",
+      "title": "F2 - protein-bar matrix discount + collagen marker in Protein Quality dimension",
+      "owner": "nutrition-agent",
+      "status": "BLOCKED",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-133A"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": "waiting on TASK-133A (named-additive/fragmentation taxonomy)",
+      "close_reason": null,
+      "summary": "ADOPT (High). Discount the Protein Quality dimension contribution for bar-format + protein_isolate/reconstructed-source products (empirical DIAAS 47-81% of label; use as a conservative band, not per-product). Add collagen marker + extra discount (incomplete AA profile, lowest matrix DIAAS). Coordinate via PROCESSING_LOAD family to avoid double-count with NOVA-4/additive caps. Closes the documented protein-isolate-bar gaming hole."
+    },
+    {
+      "id": "TASK-133C",
+      "title": "F1 - identity-modulated emulsifier/stabilizer penalty weights",
+      "owner": "nutrition-agent",
+      "status": "BLOCKED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-133A"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": "waiting on TASK-133A (named-additive/fragmentation taxonomy)",
+      "close_reason": null,
+      "summary": "ADAPT (Med-High). Replace flat emulsifier -6 with identity-modulated weights: carrageenan (E407)/CMC (E466) up; soy lecithin (E322) down toward neutral (corrects current over-penalty); native (unmodified) rice starch excluded from additive burden, modified starch unchanged. Single RCT n=60 -> keep deltas modest; note food-grade vs degraded carrageenan. No new caps (Tension-5 rule budget)."
+    },
+    {
+      "id": "TASK-133D",
+      "title": "F4 - BHA named-additive penalty (differentiate BHT); verify FDA GRAS status first",
+      "owner": "nutrition-agent",
+      "status": "BLOCKED",
+      "priority": "LOW",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-133A"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": "waiting on TASK-133A (named-additive taxonomy)",
+      "close_reason": null,
+      "summary": "WATCH (Low). Cheap piggyback once the named-additive lookup exists: add BHA (E320) as a small named penalty in the existing additive/processing dimension; explicitly differentiate BHT (NOT under reassessment). Do NOT build regulatory-status tracking. Verify current FDA GRAS/reassessment outcome first - Apr-2026 comment window has closed and the spring-2026 GRAS rule may have landed."
+    },
+    {
+      "id": "TASK-128A",
+      "title": "Author comparison_ui_reference_v2",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "CRITICAL",
+      "created_at": "2026-06-01",
+      "completed_at": "2026-06-01",
+      "depends_on": [
+        "TASK-098",
+        "TASK-111",
+        "TASK-118",
+        "TASK-123"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "Task resolved",
+      "summary": "Author the binding comparison_ui_reference_v2.md engineering reference (Phase-1 prerequisite gate for TASK-128). Converts the accepted v2 direction (TASK-098 spec) + roadmap (TASK-118) + sign-off (TASK-123, READY_WITH_MODIFICATIONS) into the authoritative implementation reference: row layout, metric block, confidence display, disclosure handling, expansion/responsive behavior, and explicit Phase 1 vs deferred scope."
     },
     {
       "id": "TASK-058",
@@ -572,6 +679,21 @@
       "blocker": null,
       "close_reason": "Accepted with minor amendments (Controller). Direction + P1-P5 structure + Wave 2 gated-4 + Launch Definition (DEC-003) ratified; amendments A (milk LEGACY at launch, committed post-launch) and B (Launch Success Indicators) incorporated. Launch-critical trio opened active (TASK-128/129/130); per ratified roadmap section 9 (WIP capacity 3), P4/P5 reserved as TASK-131/132 and open when a slot frees.",
       "summary": "Central Controller strategic review: validate/challenge the 5 proposed Bari objectives (Comparison Platform V1, BSIP0-2 Evolution, Intelligence Articles, Comparison Wave 2, Hummus Production Verdict); challenge sequencing; identify missing/overlapping objectives; recommend final priority order, success criteria, and an approved objective roadmap on the highest-value path to launch. Deliverable: bari_objective_roadmap_v1.md."
+    },
+    {
+      "id": "TASK-131",
+      "title": "Consolidate the two Bari directories (C:\\Bari vs C:\\Users\\HP\\bari)",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": "2026-06-01",
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "Migration finished per recent confirmation from Claude.",
+      "summary": "Evaluate and plan the cleanup of the two colliding Bari roots plus the stale nested C:\\Users\\HP\\bari\\Bari snapshot (4112 tracked files) that cause operating-model confusion. Deliverable: a clear consolidation plan (target structure, migration steps, dedup, rename to end the name collision). Sibling of TASK-130 operating-model hardening."
     },
     {
       "id": "TASK-004",
@@ -1034,6 +1156,21 @@
       "blocker": null,
       "close_reason": "Seems alright",
       "summary": "Make dashboard generation interpreter-independent: new_task.py must invoke the venv Python for the regenerate (not sys.executable / whatever is on PATH), and generate_dashboard.py must re-exec under C:\\Bari\\.venv if not already running there. Fixes the PyYAML-missing regen failure observed when new_task.py ran under system Python (TASK-126)."
+    },
+    {
+      "id": "TASK-132",
+      "title": "Review BSIP2 Evidence Watch 2026-06-01 and evaluate potential BSIP2 revisions",
+      "owner": "research",
+      "status": "DONE",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Review BSIP2 Evidence Watch 2026-06-01 and evaluate potential BSIP2 revisions"
     }
   ],
   "decisions": [
@@ -1097,6 +1234,28 @@
       ],
       "created_at": "2026-06-01",
       "notes": "Full definition: C:/Bari/launch_definition_v1.md. Roadmap: C:/Bari/bari_objective_roadmap_v1.md. P1-P5 success criteria inherit the launch dimension each objective owns (launch_definition_v1.md section 8)."
+    },
+    {
+      "id": "DEC-004",
+      "title": "BSIP2 TASK-133 revision calibration & scope sign-off (F2/F1/F4)",
+      "type": "calibration_signoff",
+      "required_from": "nutrition-agent",
+      "status": "PENDING",
+      "options": [
+        "A - Approve recommended package: build the structure now and defer numeric magnitudes (F2 discount curve, F1 penalty deltas, F4 penalty size) to a calibration run against real corpora; F2 discounts the Protein Quality dimension only; treat proto_v0 as source-of-truth and re-sync the frozen spec at Phase E",
+        "B - Approve build but fix calibration magnitudes up front before coding",
+        "C - Changes requested to scope before build proceeds"
+      ],
+      "recommendation": "Option A. Three gates not derivable from architecture: (G1) calibration magnitudes - 47-81% DIAAS is a band not a per-product number; constants.py states calibration is a separate phase, so build structure now and set numbers in a calibration run. (G2) F2 scope - discount the protein-QUALITY contribution only, leaving protein mass feeding satiety/nutrient-density (recommended). (G3) spec reconciliation - prototype has drifted from frozen spec (code: protein_quality 0.10, additive 0.10, processing 0.15; methodology.md says 9/7/18%); recommend proto_v0 as source-of-truth with a Phase-E spec re-sync. Directly affects F2's effective impact via protein weight.",
+      "urgency": "THIS_WEEK",
+      "blocking": [
+        "TASK-133 closure",
+        "TASK-133B calibration",
+        "TASK-133C calibration",
+        "TASK-133D calibration"
+      ],
+      "created_at": "2026-06-01",
+      "notes": "Does NOT block starting 133A (taxonomy) or the structural build of B/C/D - only the calibrated magnitudes and final closure. Full plan: C:/Bari/research/TASK-133_implementation_roadmap.md. Origin: TASK-132 evaluation."
     }
   ],
   "categories": [
@@ -1465,7 +1624,7 @@
       "id": "ALT-001",
       "type": "CAPACITY_EXCEEDED",
       "severity": "CRITICAL",
-      "message": "6 active tasks exceeds capacity of 3",
+      "message": "11 active tasks exceeds capacity of 3",
       "related_category": null,
       "related_task": null,
       "related_agent": null,
@@ -1476,9 +1635,48 @@
     },
     {
       "id": "ALT-002",
+      "type": "BLOCKED_TASK",
+      "severity": "HIGH",
+      "message": "TASK-133B: waiting on TASK-133A (named-additive/fragmentation taxonomy)",
+      "related_category": null,
+      "related_task": "TASK-133B",
+      "related_agent": null,
+      "created_at": "2026-06-01",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
+    },
+    {
+      "id": "ALT-003",
+      "type": "BLOCKED_TASK",
+      "severity": "HIGH",
+      "message": "TASK-133C: waiting on TASK-133A (named-additive/fragmentation taxonomy)",
+      "related_category": null,
+      "related_task": "TASK-133C",
+      "related_agent": null,
+      "created_at": "2026-06-01",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
+    },
+    {
+      "id": "ALT-004",
+      "type": "BLOCKED_TASK",
+      "severity": "HIGH",
+      "message": "TASK-133D: waiting on TASK-133A (named-additive taxonomy)",
+      "related_category": null,
+      "related_task": "TASK-133D",
+      "related_agent": null,
+      "created_at": "2026-06-01",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
+    },
+    {
+      "id": "ALT-005",
       "type": "CLOSURE_DRIFT",
       "severity": "HIGH",
-      "message": "TASK-129: registry status is IN_PROGRESS but a deliverable authored by it exists (03_operations/bsip2/confidence_reaudit_launch_v1.md) — work appears delivered, registry not updated",
+      "message": "TASK-129: registry status is IN_PROGRESS but a deliverable authored by it exists (03_operations/bsip2/confidence_gate_fix_129a_v1.md, 03_operations/bsip2/confidence_reaudit_launch_v1.md) — work appears delivered, registry not updated",
       "related_category": null,
       "related_task": "TASK-129",
       "related_agent": null,
@@ -1488,7 +1686,7 @@
       "resolution_path": "Verify the deliverable; set tasks/TASK-129.md status: RETURNED (awaiting review) or CLOSED (+ completed_at) if accepted."
     },
     {
-      "id": "ALT-003",
+      "id": "ALT-006",
       "type": "CLOSURE_DRIFT",
       "severity": "HIGH",
       "message": "TASK-130: registry status is IN_PROGRESS but a deliverable authored by it exists (01_framework/operations/category_module_contract_v1.md) — work appears delivered, registry not updated",
@@ -1499,6 +1697,19 @@
       "resolved_at": null,
       "status": "OPEN",
       "resolution_path": "Verify the deliverable; set tasks/TASK-130.md status: RETURNED (awaiting review) or CLOSED (+ completed_at) if accepted."
+    },
+    {
+      "id": "ALT-007",
+      "type": "CLOSURE_DRIFT",
+      "severity": "HIGH",
+      "message": "TASK-132: registry status is DONE but a deliverable authored by it exists (research/BSIP2_Evidence_Watch_20260601_EVALUATION.md) — work appears delivered, registry not updated",
+      "related_category": null,
+      "related_task": "TASK-132",
+      "related_agent": null,
+      "created_at": "2026-06-01",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Verify the deliverable; set tasks/TASK-132.md status: RETURNED (awaiting review) or CLOSED (+ completed_at) if accepted."
     }
   ]
 }
