@@ -2,7 +2,7 @@
 
 **Status:** ACTIVE
 **Version:** 2.0
-**Supersedes:** `agent_os_v1.md` (archived â€” do not use for new work)
+**Supersedes:** `agent_os_v1.md` (archived — do not use for new work)
 **Published:** 2026-05-31
 **Owner:** Product Agent
 **Task:** TASK-049E
@@ -63,35 +63,35 @@ Bari operates across two physical workspaces:
 
 ```
 Product Agent initiates
-    â†“
+    ↓
 Research Agent produces market landscape
-    â†“
+    ↓
 Nutrition Agent confirms scoring approach exists
-    â†“
+    ↓
 Product Agent approves launch brief
-    â†“
-Data Agent: Shelf Mapping â†’ [Product Agent approval]
-    â†“
-Data Agent: Corpus Filter â†’ [Product Agent approval]
-    â†“
-Data Agent: BSIP0 Gate â†’ [Product Agent approval] + QA Agent verification
-    â†“
-Data Agent: BSIP1 Enrichment â†’ [Nutrition Agent approval]
-    â†“
-QA Agent: QA Gate â†’ hard fails block; warnings reviewed
-    â†“
-Data Agent: BSIP2 Readiness â†’ [Nutrition Agent + Product Agent approval]
-    â†“
+    ↓
+Data Agent: Shelf Mapping → [Product Agent approval]
+    ↓
+Data Agent: Corpus Filter → [Product Agent approval]
+    ↓
+Data Agent: BSIP0 Gate → [Product Agent approval] + QA Agent verification
+    ↓
+Data Agent: BSIP1 Enrichment → [Nutrition Agent approval]
+    ↓
+QA Agent: QA Gate → hard fails block; warnings reviewed
+    ↓
+Data Agent: BSIP2 Readiness → [Nutrition Agent + Product Agent approval]
+    ↓
 Data Agent: Frontend JSON generation
-    â†“
-Frontend Agent: Page implementation â†’ [Design Agent spec approval first]
-    â†“
-Content Agent: Copy authoring â†’ [Nutrition Agent + Product Agent approval]
-    â†“
-QA Agent: Pre-launch checklist â†’ PASS / FAIL verdict
-    â†“
+    ↓
+Frontend Agent: Page implementation → [Design Agent spec approval first]
+    ↓
+Content Agent: Copy authoring → [Nutrition Agent + Product Agent approval]
+    ↓
+QA Agent: Pre-launch checklist → PASS / FAIL verdict
+    ↓
 Product Agent: Go-live decision
-    â†“
+    ↓
 Marketing Agent: Launch campaign
 ```
 
@@ -99,25 +99,25 @@ Marketing Agent: Launch campaign
 
 ```
 Nutrition Agent proposes rule (with evidence registry reference)
-    â†“
+    ↓
 Data Agent reviews implementability
-    â†“
+    ↓
 bari-bsip2-scoring-governance checklist:
-    - Evidence registry reference âœ“
-    - Label observability âœ“
-    - Category activation scope âœ“
-    - Rollback plan âœ“
-    - Rule accumulation check âœ“
-    â†“
+    - Evidence registry reference ✓
+    - Label observability ✓
+    - Category activation scope ✓
+    - Rollback plan ✓
+    - Rule accumulation check ✓
+    ↓
 Nutrition Agent approves (scientific validity)
-    â†“
+    ↓
 Product Agent approves (scope and business impact)
-    [Both approvals required â€” either can block]
-    â†“
+    [Both approvals required — either can block]
+    ↓
 Data Agent implements
-    â†“
+    ↓
 Nutrition Agent verifies implementation matches spec
-    â†“
+    ↓
 QA Agent verifies score propagation
 ```
 
@@ -125,17 +125,17 @@ QA Agent verifies score propagation
 
 ```
 Product Agent approves scope
-    â†“
+    ↓
 Design Agent produces visual spec
-    â†“
+    ↓
 Product Agent approves spec (if it affects page structure or scope)
-    â†“
+    ↓
 Frontend Agent implements
-    â†“
+    ↓
 QA Agent verifies: geometry, leakage, drift, build pass
-    â†“
+    ↓
 Design Agent visual review
-    â†“
+    ↓
 Product Agent launch approval
 ```
 
@@ -143,13 +143,13 @@ Product Agent launch approval
 
 ```
 Content Agent drafts copy
-    â†“
+    ↓
 Nutrition Agent approves (accuracy of all nutrition-facing claims)
-    â†“
+    ↓
 Product Agent approves (positioning, product-level claims)
-    â†“
+    ↓
 Frontend Agent integrates copy into frontend JSON
-    â†“
+    ↓
 QA Agent verifies copy fields present in rendered page
 ```
 
@@ -157,17 +157,17 @@ QA Agent verifies copy fields present in rendered page
 
 ```
 Any agent identifies capability gap
-    â†“
+    ↓
 Agent documents: gap description, proposed skill, source URL
-    â†“
+    ↓
 Frontend Agent reviews: source verification, security review, content completeness
-    â†“
+    ↓
 Product Agent approves: capability gap justified, not covered by existing skills
-    â†“
+    ↓
 Frontend Agent installs: SKILL.md, registry update, activation test
-    â†“
+    ↓
 QA Agent validates: installation confirmed, no dependency issues
-    â†“
+    ↓
 capability_stack_matrix.md updated with new skill assignment
 ```
 
@@ -183,7 +183,7 @@ capability_stack_matrix.md updated with new skill assignment
 | Score discrepancy: logic issue | Nutrition Agent |
 | Frontend build failure | Frontend Agent |
 | Visual constraint violation | Design Agent |
-| QA hard fail blocks launch | QA Agent â†’ Product Agent (launch decision) |
+| QA hard fail blocks launch | QA Agent → Product Agent (launch decision) |
 | New skill needed | Frontend Agent (infrastructure) + Product Agent (approval) |
 | Agent OS conflict or gap | Product Agent |
 
@@ -192,14 +192,14 @@ capability_stack_matrix.md updated with new skill assignment
 1. State what you were doing and what blocked you
 2. Name which decision right you lack
 3. Name who holds that right
-4. Stop and wait â€” do not proceed past a blocked step
+4. Stop and wait — do not proceed past a blocked step
 5. Do not implement a workaround to avoid escalation
 
 ---
 
 ## Cross-Agent Collaboration Rules
 
-1. **Research â†’ Nutrition or Product, not Research â†’ Data.** Research outputs are interpreted by Nutrition Agent or Product Agent before feeding the pipeline.
+1. **Research → Nutrition or Product, not Research → Data.** Research outputs are interpreted by Nutrition Agent or Product Agent before feeding the pipeline.
 2. **Design spec before implementation.** Frontend Agent does not begin a new component without Design Agent's approved spec.
 3. **Frontend JSON is the interface.** Data Agent generates it; Frontend Agent consumes it. The `BariProductVM` contract is the schema boundary.
 4. **Content copy before integration.** Frontend Agent does not hardcode placeholder copy. Content Agent provides approved copy; Frontend Agent integrates it.
@@ -226,7 +226,7 @@ capability_stack_matrix.md updated with new skill assignment
 | `ownership_matrix_v2.md` | `C:\Bari\.claude\skills\` | Domain, artifact, and process ownership |
 | `migration_report.md` | `C:\Bari\.claude\skills\` | TASK-049E migration audit trail |
 | `deprecated_personas.md` | `C:\Bari\.claude\skills\` | Retirement plan for legacy persona files |
-| `agent_os_v1.md` | `C:\Bari\.claude\skills\` | Archived â€” do not use for new work |
+| `agent_os_v1.md` | `C:\Bari\.claude\skills\` | Archived — do not use for new work |
 
 ---
 
@@ -242,7 +242,7 @@ As of 2026-05-31, the Bari Skill Architecture v1 is frozen.
 
 **Pending (source required):** Git Worktrees, Superpowers (BLOCKED), Tapestry (BLOCKED)
 
-**MCP Servers (active):** Firecrawl (`firecrawl-mcp-server` â€” see `mcp_registry.md`)
+**MCP Servers (active):** Firecrawl (`firecrawl-mcp-server` — see `mcp_registry.md`)
 
 **Pending (MCP configuration):** Supermemory (blocked pending data residency policy review)
 

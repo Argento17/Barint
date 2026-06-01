@@ -7,7 +7,7 @@
 
 ---
 
-## Bari Repository Map â€” TWO SEPARATE LOCATIONS
+## Bari Repository Map — TWO SEPARATE LOCATIONS
 
 All scoring, BSIP, and research work in this document lives in the **product / data workspace**: `C:\Bari`.
 
@@ -16,16 +16,16 @@ All scoring, BSIP, and research work in this document lives in the **product / d
 | **Product / data workspace** | `C:\Bari` | BSIP scoring assets, Python pipelines, scoring research, CE reports, nutrition docs, category rollout |
 | **Website repo** | `C:\bari-web` | Next.js app, components, routes, the frontend JSON the site consumes, lint/build |
 
-- Scoring research, BSIP outputs, CE reports, category rollout â†’ **`C:\Bari`**.
+- Scoring research, BSIP outputs, CE reports, category rollout → **`C:\Bari`**.
 - The scoring engine and pipelines live under `C:\Bari\03_operations\`. The website consumes only the **generated JSON**, copied into `C:\bari-web\src\data\comparisons\`.
-- **Never assume `C:\Bari` is the website repo**, and never edit Next.js source here â€” there is none.
+- **Never assume `C:\Bari` is the website repo**, and never edit Next.js source here — there is none.
 
 ---
 
 ## BSIP Pipeline Overview
 
 ```
-BSIP0 â†’ BSIP1 â†’ BSIP2
+BSIP0 → BSIP1 → BSIP2
 ```
 
 | Layer | Role | Key scripts | Output |
@@ -36,16 +36,16 @@ BSIP0 â†’ BSIP1 â†’ BSIP2
 
 ---
 
-## BSIP0 â€” Extraction Layer
+## BSIP0 — Extraction Layer
 
 - **Retailers scraped:** Shufersal, Yohananof, Carrefour, Wolt
-- **Scraper:** `03_operations/bsip0/scrape/yohananof/` â€” 4-stage: discover â†’ approve â†’ scrape â†’ audit
-- **OCR pipeline:** `03_operations/bsip0/pipeline/` â€” Azure-based extractor for physical label images
+- **Scraper:** `03_operations/bsip0/scrape/yohananof/` — 4-stage: discover → approve → scrape → audit
+- **OCR pipeline:** `03_operations/bsip0/pipeline/` — Azure-based extractor for physical label images
 - **Outputs go to:** `02_products/{category}/observations_bsip0/{retailer}/`
 
 ---
 
-## BSIP1 â€” Enrichment Layer
+## BSIP1 — Enrichment Layer
 
 **Primary file:** `03_operations/bsip1/core/ingredient_enricher.py`
 
@@ -56,7 +56,7 @@ Enrichments performed:
 - Matrix integrity signals (whole grain ratio, fermentation presence)
 - BSIP1 trust level assignment (`high`, `medium`, `low`)
 
-**Test suite:** `bsip1/core/test_enricher.py` â€” 64 checks, run with pytest.
+**Test suite:** `bsip1/core/test_enricher.py` — 64 checks, run with pytest.
 
 **Active runs:**
 | Run | Category | Products |
@@ -68,42 +68,42 @@ Enrichments performed:
 
 ---
 
-## BSIP2 â€” Scoring Engine
+## BSIP2 — Scoring Engine
 
 ### Core Files
 
 | File | Role |
 |------|------|
-| `score_engine.py` | Main scoring engine â€” 10 dimensions, grade, trace |
-| `signal_extractor.py` | L1â€“L6 signal extraction layer |
+| `score_engine.py` | Main scoring engine — 10 dimensions, grade, trace |
+| `signal_extractor.py` | L1–L6 signal extraction layer |
 | `matrix_integrity.py` | Matrix Integrity Engine v2 (structural food interpretation) |
-| `structural_classifier.py` | Structural Class Classifier v1 â€” A-F soft assignment |
+| `structural_classifier.py` | Structural Class Classifier v1 — A-F soft assignment |
 | `nova_proxy.py` | NOVA proxy inference from Hebrew ingredient text |
-| `router_v2.py` | Router v2 â€” 3-stage routing (anchor â†’ context-gated signals â†’ resolution) |
+| `router_v2.py` | Router v2 — 3-stage routing (anchor → context-gated signals → resolution) |
 | `constants.py` | All thresholds, weights, grade bounds |
 | `evaluation_scope.py` | Scope assignment (imported by all batch runners) |
 | `input_loader.py` | BSIP1 record loader |
 | `trace_writer.py` | BSIP2 trace JSON writer |
 | `category_classifier.py` | V1 category classifier (superseded by router_v2) |
 
-### Signal Extraction Layers (L1â€“L6)
+### Signal Extraction Layers (L1–L6)
 
 Extracted by `signal_extractor.py` before scoring:
-- **L1** â€” Observed signals: raw nutrition fields, consistency checks
-- **L2** â€” Derived ratios: sugar/carb ratio, sat fat/fat ratio, etc.
-- **L3** â€” Ingredient signals: Hebrew term presence flags
-- **L4** â€” Additive signals: burden count, specific additive types
-- **L5** â€” NOVA proxy signals: processing level inference
-- **L6** â€” Matrix signals: whole grain, fermentation, food structure
+- **L1** — Observed signals: raw nutrition fields, consistency checks
+- **L2** — Derived ratios: sugar/carb ratio, sat fat/fat ratio, etc.
+- **L3** — Ingredient signals: Hebrew term presence flags
+- **L4** — Additive signals: burden count, specific additive types
+- **L5** — NOVA proxy signals: processing level inference
+- **L6** — Matrix signals: whole grain, fermentation, food structure
 
 ---
 
-## Scoring Pipeline â€” 6 Stages
+## Scoring Pipeline — 6 Stages
 
-### Stage 1 â€” Feature Extraction
+### Stage 1 — Feature Extraction
 50+ analytical features from: nutrition panel, ingredient list, category, regulatory labels. Missing fields recorded; no imputation.
 
-### Stage 2 â€” Dimension Scoring (10 dimensions, each 0â€“100)
+### Stage 2 — Dimension Scoring (10 dimensions, each 0–100)
 
 | Dimension | Weight | What it measures |
 |---|---|---|
@@ -120,18 +120,18 @@ Extracted by `signal_extractor.py` before scoring:
 
 **Note:** Weights in `constants.py` are prototype values (sum to 1.0). The methodology doc describes public-facing weights which may differ from current prototype constants. Calibration is a separate phase.
 
-### Stage 3 â€” Guardrail Evaluation
+### Stage 3 — Guardrail Evaluation
 
-- **Veto rules:** Trans fat above threshold â†’ score floor of 20
-- **Hard caps:** Binding upper limits (NOVA 4 â†’ cap, multiple red labels â†’ cap, high sugar â†’ cap, high sodium â†’ cap, additive burden â†’ cap). Most restrictive cap wins when multiple apply.
+- **Veto rules:** Trans fat above threshold → score floor of 20
+- **Hard caps:** Binding upper limits (NOVA 4 → cap, multiple red labels → cap, high sugar → cap, high sodium → cap, additive burden → cap). Most restrictive cap wins when multiple apply.
 - **Soft penalties:** Subtractive adjustments for non-hard concerns
 - **Floors:** 
-  - `NOVA1_SINGLE_FLOOR` â€” single-ingredient NOVA 1 foods
-  - `WHOLE_FOOD_FAT_FLOOR` â€” whole-food fat products (nuts, seeds)
+  - `NOVA1_SINGLE_FLOOR` — single-ingredient NOVA 1 foods
+  - `WHOLE_FOOD_FAT_FLOOR` — whole-food fat products (nuts, seeds)
 
 Defined in `constants.py`: `PROCESSING_CAPS`, `SWEETENER_CAP_A/B/C`, `TRANS_FAT_VETO_THRESHOLD`.
 
-### Stage 4 â€” Hyper-Palatability Detection
+### Stage 4 — Hyper-Palatability Detection
 
 Four combination patterns, each applies a penalty:
 | Pattern | Constant |
@@ -141,11 +141,11 @@ Four combination patterns, each applies a penalty:
 | Refined carb + fat | (carb_fat pattern) |
 | Crunch-sweet | `HP_CRUNCH_SWEET_PENALTY` |
 
-**Amplifiers:** chocolate coating, glucose syrup, emulsifiers, flavourings â†’ increase penalty.  
-**Relief factors:** whole nuts, whole grains, dates â†’ partial reduction.  
-**Family budget:** `HP_FAMILY_BUDGET` â€” cumulative HP penalty cap.
+**Amplifiers:** chocolate coating, glucose syrup, emulsifiers, flavourings → increase penalty.  
+**Relief factors:** whole nuts, whole grains, dates → partial reduction.  
+**Family budget:** `HP_FAMILY_BUDGET` — cumulative HP penalty cap.
 
-### Stage 5 â€” Concern Coordination
+### Stage 5 — Concern Coordination
 
 Prevents the same root concern from penalizing the score more than once.
 
@@ -158,7 +158,7 @@ Concern families with budget limits:
 
 When multiple rules in the same family fire, the primary signal is kept at full weight; others are demoted to reduced weight.
 
-### Stage 6 â€” Final Resolution
+### Stage 6 — Final Resolution
 
 1. Apply all caps (most restrictive wins, with family-specific floors)
 2. Apply all penalties (with per-family budget limits)
@@ -173,11 +173,11 @@ When multiple rules in the same family fire, the primary signal is kept at full 
 
 | Grade | Score range |
 |-------|-------------|
-| A | 85â€“100 |
-| B | 70â€“84 |
-| C | 55â€“69 |
-| D | 40â€“54 |
-| E | 0â€“39 |
+| A | 85–100 |
+| B | 70–84 |
+| C | 55–69 |
+| D | 40–54 |
+| E | 0–39 |
 
 ---
 
@@ -186,14 +186,14 @@ When multiple rules in the same family fire, the primary signal is kept at full 
 **File:** `router_v2.py`
 
 3-stage routing replaces the v1 `category_classifier.py`:
-1. **Anchor stage** â€” hard product-class anchors (e.g., nuts, seeds, plain yogurt)
-2. **Context-gated signals** â€” WFF contamination prevention, beverage gate, dairy-protein suppression
-3. **Resolution** â€” final category assignment from signal composite
+1. **Anchor stage** — hard product-class anchors (e.g., nuts, seeds, plain yogurt)
+2. **Context-gated signals** — WFF contamination prevention, beverage gate, dairy-protein suppression
+3. **Resolution** — final category assignment from signal composite
 
 Validated against:
-- `run_regression_check.py` â€” 12-case golden corpus regression
-- `run_router_regression.py` â€” 12-case router regression corpus
-- `generate_router_validation.py` â€” 163-product validation (82 anchored, 23 changes, 6 unstable)
+- `run_regression_check.py` — 12-case golden corpus regression
+- `run_router_regression.py` — 12-case router regression corpus
+- `generate_router_validation.py` — 163-product validation (82 anchored, 23 changes, 6 unstable)
 
 **Known router gaps (from bread-light stress test):**
 - No `bread` or `cracker` archetype in router v2 yet
@@ -209,15 +209,15 @@ Defined in `constants.py` (`CALORIE_DENSITY_TABLES`):
 
 | Category | Normal range (approx) |
 |---|---|
-| `whole_food_fat` | 350â€“900 kcal |
-| `snack_bar_granola` | 150â€“500 kcal |
-| `dessert` / `dairy_protein` | 80â€“350 kcal |
-| `beverage` | 10â€“100 kcal |
-| `bread` | 200â€“330 kcal |
-| `cracker` | 380â€“480 kcal |
-| `crispbread` | 300â€“380 kcal |
-| `yogurt` | 60â€“250 kcal |
-| `cereal` | 300â€“550 kcal |
+| `whole_food_fat` | 350–900 kcal |
+| `snack_bar_granola` | 150–500 kcal |
+| `dessert` / `dairy_protein` | 80–350 kcal |
+| `beverage` | 10–100 kcal |
+| `bread` | 200–330 kcal |
+| `cracker` | 380–480 kcal |
+| `crispbread` | 300–380 kcal |
+| `yogurt` | 60–250 kcal |
+| `cereal` | 300–550 kcal |
 
 ---
 
@@ -245,7 +245,7 @@ Source: Israeli Ministry of Health (per `constants.py`):
 
 ## Frontend Dataset Builder
 
-`build_frontend_dataset.py` â€” transforms BSIP2 trace JSONs â†’ consumer-facing dataset JSON.
+`build_frontend_dataset.py` — transforms BSIP2 trace JSONs → consumer-facing dataset JSON.
 
 Output structure (per product):
 ```json
@@ -273,7 +273,7 @@ This JSON is then transformed to `BariProductVM` in the frontend transformation 
 | No nutrition panel in formula | Score based on ingredients + processing, not caloric macros |
 | Fermentation quality scoring gap | Engine cannot distinguish genuine sourdough from industrial sourdough-powder |
 | Bread/cracker routing | No dedicated archetypes in router v2 yet |
-| Weights are prototype values | `constants.py` weights â‰  methodology doc weights; calibration not complete |
+| Weights are prototype values | `constants.py` weights ≠ methodology doc weights; calibration not complete |
 | Confidence ceiling | Low-confidence products cannot score high regardless of signals |
 
 ---
@@ -282,8 +282,8 @@ This JSON is then transformed to `BariProductVM` in the frontend transformation 
 
 | Script | Purpose |
 |---|---|
-| `run_regression_check.py` | Golden corpus regression â€” 12 structural class anchors |
-| `run_router_regression.py` | Router v2 regression â€” 12 routing cases |
+| `run_regression_check.py` | Golden corpus regression — 12 structural class anchors |
+| `run_router_regression.py` | Router v2 regression — 12 routing cases |
 | `generate_router_validation.py` | 163-product router analysis |
 | `generate_router_anchor_audit.py` | Per-term anchor activation + signal-anchor agreement |
 | `generate_bread_light_analysis.py` | 9 stress-test analysis outputs (routing, matrix, SC, deception, fiber, seed, fermentation) |

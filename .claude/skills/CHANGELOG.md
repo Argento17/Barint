@@ -11,7 +11,7 @@
 
 All Bari skills and persona files follow semantic versioning: `vMAJOR.MINOR.PATCH`
 
-### Major version increment (`v1.x â†’ v2.0`)
+### Major version increment (`v1.x → v2.0`)
 
 A major version increment is required when:
 - A workflow stage is added, removed, or reordered in a skill
@@ -23,7 +23,7 @@ A major version increment is required when:
 
 Major version changes require explicit approval from the skill owner and a corresponding entry in the skills registry.
 
-### Minor version increment (`v1.0 â†’ v1.1`)
+### Minor version increment (`v1.0 → v1.1`)
 
 A minor version increment is required when:
 - Prompt wording is improved for clarity without changing behavior
@@ -35,7 +35,7 @@ A minor version increment is required when:
 
 Minor version changes require owner review. A registry update is optional if the skill's core registration fields are unchanged.
 
-### Patch version increment (`v1.0.0 â†’ v1.0.1`)
+### Patch version increment (`v1.0.0 → v1.0.1`)
 
 A patch version increment is required when:
 - Typos are corrected
@@ -53,7 +53,7 @@ Patch changes may be made without owner sign-off. A changelog entry is required.
 
 ### 2026-05-31
 
-#### Skills Registry v1.0 â€” Created (TASK-050)
+#### Skills Registry v1.0 — Created (TASK-050)
 
 **Type:** New document
 **File:** `registry/skills_registry_v1.md`
@@ -67,47 +67,47 @@ All assets registered at v1.0. Registry version: v1.0.
 
 ---
 
-#### SKILL-001 bari-category-factory â€” v1.0 (TASK-050)
+#### SKILL-001 bari-category-factory — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `bari-category-factory/SKILL.md`
 **Owner:** Data Architecture / Category Team
 
-Initial registration of the category factory skill. Seven-stage pipeline: Shelf Mapping â†’ Corpus Filter â†’ BSIP0 Gate â†’ BSIP1 Enrichment â†’ QA Gate â†’ BSIP2 Readiness â†’ Frontend Packaging.
+Initial registration of the category factory skill. Seven-stage pipeline: Shelf Mapping → Corpus Filter → BSIP0 Gate → BSIP1 Enrichment → QA Gate → BSIP2 Readiness → Frontend Packaging.
 
 ---
 
-#### SKILL-002 bari-bsip2-scoring-governance â€” v1.0 (TASK-050)
+#### SKILL-002 bari-bsip2-scoring-governance — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `bari-bsip2-scoring-governance/SKILL.md`
 **Owner:** Scoring Governance Lead
 
-Initial registration of the BSIP2 scoring governance skill. Five-check governance protocol: Evidence Registry Reference â†’ Label Observability â†’ Category Activation Scope â†’ Rollback Plan â†’ Rule Accumulation Prevention.
+Initial registration of the BSIP2 scoring governance skill. Five-check governance protocol: Evidence Registry Reference → Label Observability → Category Activation Scope → Rollback Plan → Rule Accumulation Prevention.
 
 ---
 
-#### SKILL-003 bari-qa-audit â€” v1.0 (TASK-050)
+#### SKILL-003 bari-qa-audit — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `bari-qa-audit/SKILL.md`
 **Owner:** QA Lead
 
-Initial registration of the QA audit skill. Six-stage protocol: QA Runner â†’ Traceability â†’ Hard Fails â†’ Warnings â†’ Baseline Freeze â†’ Run Invalidation.
+Initial registration of the QA audit skill. Six-stage protocol: QA Runner → Traceability → Hard Fails → Warnings → Baseline Freeze → Run Invalidation.
 
 ---
 
-#### SKILL-004 bari-frontend-ui â€” v1.0 (TASK-050)
+#### SKILL-004 bari-frontend-ui — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `bari-frontend-ui/SKILL.md`
 **Owner:** Frontend Architect
 
-Initial registration of the frontend UI skill. Six-check compliance protocol: Comparison Structure â†’ Data Traceability â†’ RTL Layout â†’ Accessibility â†’ Component Consistency â†’ Generic AI UI Prevention.
+Initial registration of the frontend UI skill. Six-check compliance protocol: Comparison Structure → Data Traceability → RTL Layout → Accessibility → Component Consistency → Generic AI UI Prevention.
 
 ---
 
-#### PERSONA-001 chief-nutrition-officer â€” v1.0 (TASK-050)
+#### PERSONA-001 chief-nutrition-officer — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `chief-nutrition-officer.md`
@@ -117,7 +117,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 
 ---
 
-#### PERSONA-002 frontend-architect â€” v1.0 (TASK-050)
+#### PERSONA-002 frontend-architect — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `frontend-architect.md`
@@ -127,7 +127,7 @@ Initial registration. Primary workspace: `C:\bari-web`.
 
 ---
 
-#### PERSONA-003 head-of-product â€” v1.0 (TASK-050)
+#### PERSONA-003 head-of-product — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `head-of-product.md`
@@ -137,7 +137,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 
 ---
 
-#### PERSONA-004 design-director â€” v1.0 (TASK-050)
+#### PERSONA-004 design-director — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `design-director.md`
@@ -147,7 +147,7 @@ Initial registration. Primary workspaces: `C:\Bari\01_framework\frontend\` (desi
 
 ---
 
-#### PERSONA-005 research-analyst â€” v1.0 (TASK-050)
+#### PERSONA-005 research-analyst — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `research-analyst.md`
@@ -157,7 +157,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 
 ---
 
-#### PERSONA-006 qa-audit-lead â€” v1.0 (TASK-050)
+#### PERSONA-006 qa-audit-lead — v1.0 (TASK-050)
 
 **Type:** Initial registration
 **File:** `qa-audit-lead.md`
@@ -174,7 +174,7 @@ When making any change to a skill or persona file, add an entry here following t
 ```
 ### YYYY-MM-DD
 
-#### <SKILL-ID or PERSONA-ID> <skill-name> â€” <new version> (<task reference>)
+#### <SKILL-ID or PERSONA-ID> <skill-name> — <new version> (<task reference>)
 
 **Type:** New document | Major update | Minor update | Patch
 **File:** <relative path>
@@ -187,4 +187,4 @@ Entries within a date are listed in the order: new documents first, major update
 
 ---
 
-*Bari Skills Changelog â€” TASK-050 â€” Frontend Architect â€” 2026-05-31*
+*Bari Skills Changelog — TASK-050 — Frontend Architect — 2026-05-31*

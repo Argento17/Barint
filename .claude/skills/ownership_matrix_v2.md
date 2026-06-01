@@ -53,10 +53,10 @@ Ownership means: the designated agent is the single point of accountability for 
 | Corpus filter | Data Agent | Product Agent | QA Agent |
 | BSIP0 gate | Data Agent | Product Agent | QA Agent |
 | BSIP1 enrichment | Data Agent | Nutrition Agent | QA Agent |
-| QA gate execution | QA Agent | â€” (QA owns verdict) | â€” |
+| QA gate execution | QA Agent | — (QA owns verdict) | — |
 | BSIP2 readiness | Data Agent | Nutrition Agent + Product Agent | QA Agent |
-| Frontend JSON generation | Data Agent | â€” (after BSIP2 approval) | QA Agent |
-| Scoring rule design | Nutrition Agent | â€” | â€” |
+| Frontend JSON generation | Data Agent | — (after BSIP2 approval) | QA Agent |
+| Scoring rule design | Nutrition Agent | — | — |
 | Scoring rule approval | Nutrition Agent + Product Agent | Both must sign | QA Agent |
 | Scoring rule implementation | Data Agent | Nutrition Agent + Product Agent | QA Agent |
 | Frontend component implementation | Frontend Agent | Design Agent (spec) + Product Agent (scope) | QA Agent |
@@ -116,14 +116,14 @@ Ownership means: the designated agent is the single point of accountability for 
 | 9 agent definition files | Each agent (their own) | ACTIVE |
 | `deprecated_personas.md` | Product Agent + Frontend Agent | ACTIVE |
 | `mcp_registry.md` | Frontend Agent | ACTIVE |
-| `C:\Bari\.mcp.json` | Frontend Agent (config) | ACTIVE â€” not version controlled |
-| `agent_os_v1.md` | â€” | ARCHIVED |
-| `head-of-product.md` | â€” | DEPRECATED |
-| `chief-nutrition-officer.md` | â€” | DEPRECATED |
-| `research-analyst.md` | â€” | DEPRECATED |
-| `frontend-architect.md` | â€” | DEPRECATED |
-| `design-director.md` | â€” | DEPRECATED |
-| `qa-audit-lead.md` | â€” | DEPRECATED |
+| `C:\Bari\.mcp.json` | Frontend Agent (config) | ACTIVE — not version controlled |
+| `agent_os_v1.md` | — | ARCHIVED |
+| `head-of-product.md` | — | DEPRECATED |
+| `chief-nutrition-officer.md` | — | DEPRECATED |
+| `research-analyst.md` | — | DEPRECATED |
+| `frontend-architect.md` | — | DEPRECATED |
+| `design-director.md` | — | DEPRECATED |
+| `qa-audit-lead.md` | — | DEPRECATED |
 
 ---
 
@@ -132,30 +132,30 @@ Ownership means: the designated agent is the single point of accountability for 
 This shows who depends on whom, in sequence, for the primary category launch flow.
 
 ```
-Product Agent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-    â”‚ (initiates)                                         â”‚ (approves each gate)
-    â–¼                                                     â”‚
-Research Agent â”€â”€â–º Nutrition Agent â”€â”€â–º Data Agent â”€â”€â”€â”€â”€â”€â”€â”¤
-    â”‚ (evidence)     â”‚ (scoring)        â”‚ (pipeline)      â”‚
-    â”‚                â”‚                  â–¼                 â”‚
-    â”‚                â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–º Data Agent â—„â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-    â”‚                              (implements)           â”‚
-    â”‚                                   â”‚                 â”‚
-    â”‚                                   â–¼                 â”‚
-    â”‚                             Frontend Agent â—„â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-    â”‚                             (builds page)           â”‚ (scope approval)
-    â”‚                                   â”‚                 â”‚
-    â”‚                            Design Agent â—„â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-    â”‚                            (spec, review)
-    â”‚                                   â”‚
-    â”‚                             Content Agent
-    â”‚                             (copy authoring)
-    â”‚                                   â”‚
-    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–º QA Agent â—„â”€â”€â”€â”€ (all artifacts)
-                                          â”‚
+Product Agent ──────────────────────────────────────────┐
+    │ (initiates)                                         │ (approves each gate)
+    ▼                                                     │
+Research Agent ──► Nutrition Agent ──► Data Agent ───────┤
+    │ (evidence)     │ (scoring)        │ (pipeline)      │
+    │                │                  ▼                 │
+    │                └───────────► Data Agent ◄───────────┤
+    │                              (implements)           │
+    │                                   │                 │
+    │                                   ▼                 │
+    │                             Frontend Agent ◄────────┤
+    │                             (builds page)           │ (scope approval)
+    │                                   │                 │
+    │                            Design Agent ◄───────────┘
+    │                            (spec, review)
+    │                                   │
+    │                             Content Agent
+    │                             (copy authoring)
+    │                                   │
+    └──────────────────────────────► QA Agent ◄──── (all artifacts)
+                                          │
                                     Product Agent
                                     (go-live decision)
-                                          â”‚
+                                          │
                                    Marketing Agent
                                    (post-launch)
 ```
@@ -178,6 +178,6 @@ The following items do not yet have a dedicated owner. They are tracked here for
 
 | Version | Date | Change |
 |---|---|---|
-| v1 | â€” | Not published (v1 was capability_stack_matrix.md + agent_os_v1.md) |
+| v1 | — | Not published (v1 was capability_stack_matrix.md + agent_os_v1.md) |
 | v2.0 | 2026-05-31 | First dedicated ownership matrix. Covers domain, repository, process, artifact, and governance ownership. TASK-049E. |
 | v2.1 | 2026-05-31 | Added `mcp_registry.md` and `C:\Bari\.mcp.json` to governance artifacts. TASK-057. |

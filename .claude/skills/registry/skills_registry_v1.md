@@ -2,7 +2,7 @@
 
 **Document:** skills_registry_v1.md
 **Owner:** Frontend Architect
-**Status:** ACTIVE â€” Governance Reference
+**Status:** ACTIVE — Governance Reference
 **Created:** 2026-05-31
 **Task:** TASK-050
 **Versioning rules:** See CHANGELOG.md
@@ -22,11 +22,11 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 
 ---
 
-## Part 1 â€” Workflow Skills
+## Part 1 — Workflow Skills
 
 ---
 
-### SKILL-001 â€” bari-category-factory
+### SKILL-001 — bari-category-factory
 
 | Field | Value |
 |-------|-------|
@@ -61,9 +61,9 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 - Package for frontend before the QA gate passes
 
 **Dependencies:**
-- `bari-bsip2-scoring-governance` â€” called at BSIP2 Readiness stage
-- `bari-qa-audit` â€” called at QA Gate stage
-- `bari-frontend-ui` â€” downstream consumer of frontend packaging output
+- `bari-bsip2-scoring-governance` — called at BSIP2 Readiness stage
+- `bari-qa-audit` — called at QA Gate stage
+- `bari-frontend-ui` — downstream consumer of frontend packaging output
 - Shelf registry: must be consulted at Shelf Mapping stage
 - Evidence registry: required at BSIP2 Readiness stage via scoring governance
 
@@ -81,7 +81,7 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 
 ---
 
-### SKILL-002 â€” bari-bsip2-scoring-governance
+### SKILL-002 — bari-bsip2-scoring-governance
 
 | Field | Value |
 |-------|-------|
@@ -117,7 +117,7 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 **Dependencies:**
 - BSIP2 evidence registry: the primary reference for scoring justifications
 - Label registry: required for label observability check
-- `bari-category-factory` â€” this skill is called during BSIP2 Readiness stage of the factory
+- `bari-category-factory` — this skill is called during BSIP2 Readiness stage of the factory
 - Signal governance framework: `C:\Bari\03_operations\bsip2\governance\bsip2_signal_governance_v1.md`
 
 **Governance check sequence:**
@@ -132,7 +132,7 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 
 ---
 
-### SKILL-003 â€” bari-qa-audit
+### SKILL-003 — bari-qa-audit
 
 | Field | Value |
 |-------|-------|
@@ -167,8 +167,8 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 - Invalidate a run without recording the reason and initiating a replacement run
 
 **Dependencies:**
-- `bari-category-factory` â€” QA is embedded at the QA Gate stage of the factory pipeline
-- `bari-bsip2-scoring-governance` â€” QA must confirm scoring rules used are registered
+- `bari-category-factory` — QA is embedded at the QA Gate stage of the factory pipeline
+- `bari-bsip2-scoring-governance` — QA must confirm scoring rules used are registered
 - QA run registry: required for run ID management and invalidation records
 - Baseline registry: required for freeze operations
 
@@ -185,7 +185,7 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 
 ---
 
-### SKILL-004 â€” bari-frontend-ui
+### SKILL-004 — bari-frontend-ui
 
 | Field | Value |
 |-------|-------|
@@ -222,8 +222,8 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 **Dependencies:**
 - Bari component library: `src/components/shared/` in `C:\bari-web`
 - Label registry: all attribute labels must come from here
-- `bari-category-factory` â€” frontend packaging is the final stage of the factory pipeline
-- `bari-qa-audit` â€” QA verifies drift, leakage, and component constraint compliance post-build
+- `bari-category-factory` — frontend packaging is the final stage of the factory pipeline
+- `bari-qa-audit` — QA verifies drift, leakage, and component constraint compliance post-build
 
 **UI compliance checks:**
 
@@ -238,13 +238,13 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 
 ---
 
-## Part 2 â€” Persona Files
+## Part 2 — Persona Files
 
 Persona files define how Claude behaves when operating as a specific Bari team role. They establish role scope, decision rights, interaction rules with other roles, and hard behavioral constraints.
 
 ---
 
-### PERSONA-001 â€” Chief Nutrition Officer
+### PERSONA-001 — Chief Nutrition Officer
 
 | Field | Value |
 |-------|-------|
@@ -265,7 +265,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 ---
 
-### PERSONA-002 â€” Frontend Architect
+### PERSONA-002 — Frontend Architect
 
 | Field | Value |
 |-------|-------|
@@ -286,7 +286,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 ---
 
-### PERSONA-003 â€” Head of Product
+### PERSONA-003 — Head of Product
 
 | Field | Value |
 |-------|-------|
@@ -307,7 +307,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 ---
 
-### PERSONA-004 â€” Design Director
+### PERSONA-004 — Design Director
 
 | Field | Value |
 |-------|-------|
@@ -328,7 +328,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 ---
 
-### PERSONA-005 â€” Research Analyst
+### PERSONA-005 — Research Analyst
 
 | Field | Value |
 |-------|-------|
@@ -349,7 +349,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 ---
 
-### PERSONA-006 â€” QA & Audit Lead
+### PERSONA-006 — QA & Audit Lead
 
 | Field | Value |
 |-------|-------|
@@ -362,7 +362,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 
 **Activation triggers:** Tasks involving score propagation verification, JSON dataset auditing, route validation, build confirmation, regression detection, bug reproduction, or pre-launch checklist execution.
 
-**Responsibilities:** Pre-launch QA checklists (mobile geometry, leakage, drift, component constraints); score propagation verification across the BSIP2 trace â†’ frontend JSON â†’ rendered page chain; JSON validation; build validation; regression detection; bug documentation.
+**Responsibilities:** Pre-launch QA checklists (mobile geometry, leakage, drift, component constraints); score propagation verification across the BSIP2 trace → frontend JSON → rendered page chain; JSON validation; build validation; regression detection; bug documentation.
 
 **Prohibited actions:** Mark a launch PASS with unresolved leakage checklist failures; mark a launch PASS with unresolved score propagation discrepancies; propose design or scoring changes in a QA report; invent expected values; conflate data issues with scoring logic issues.
 
@@ -376,27 +376,27 @@ This map shows which skills and personas interact and in what direction.
 
 ```
 bari-category-factory
-    â”œâ”€â”€ calls â†’ bari-bsip2-scoring-governance (BSIP2 Readiness stage)
-    â”œâ”€â”€ calls â†’ bari-qa-audit (QA Gate stage)
-    â””â”€â”€ produces â†’ consumed by bari-frontend-ui (Frontend Packaging stage)
+    ├── calls → bari-bsip2-scoring-governance (BSIP2 Readiness stage)
+    ├── calls → bari-qa-audit (QA Gate stage)
+    └── produces → consumed by bari-frontend-ui (Frontend Packaging stage)
 
 bari-bsip2-scoring-governance
-    â”œâ”€â”€ governed by â†’ Chief Nutrition Officer persona
-    â””â”€â”€ references â†’ BSIP2 evidence registry
+    ├── governed by → Chief Nutrition Officer persona
+    └── references → BSIP2 evidence registry
 
 bari-qa-audit
-    â”œâ”€â”€ owned by â†’ QA & Audit Lead persona
-    â””â”€â”€ verifies â†’ bari-bsip2-scoring-governance compliance
+    ├── owned by → QA & Audit Lead persona
+    └── verifies → bari-bsip2-scoring-governance compliance
 
 bari-frontend-ui
-    â”œâ”€â”€ owned by â†’ Frontend Architect persona
-    â””â”€â”€ QA-verified by â†’ bari-qa-audit (drift, leakage, geometry checklists)
+    ├── owned by → Frontend Architect persona
+    └── QA-verified by → bari-qa-audit (drift, leakage, geometry checklists)
 
-Chief Nutrition Officer â†’ Research Analyst (evidence inputs upstream)
-Chief Nutrition Officer â†’ Frontend Architect (data contract for new signals)
-Head of Product â†’ all skills (scope and prioritization)
-Design Director â†’ Frontend Architect (visual spec before implementation)
-QA & Audit Lead â†’ all skills (rollout gate across all domains)
+Chief Nutrition Officer → Research Analyst (evidence inputs upstream)
+Chief Nutrition Officer → Frontend Architect (data contract for new signals)
+Head of Product → all skills (scope and prioritization)
+Design Director → Frontend Architect (visual spec before implementation)
+QA & Audit Lead → all skills (rollout gate across all domains)
 ```
 
 ---
@@ -405,9 +405,9 @@ QA & Audit Lead â†’ all skills (rollout gate across all domains)
 
 | Version | Date | Changes |
 |---------|------|---------|
-| v1.0 | 2026-05-31 | Initial registry â€” 4 workflow skills, 6 persona files |
+| v1.0 | 2026-05-31 | Initial registry — 4 workflow skills, 6 persona files |
 
 ---
 
-*Bari Skills Registry v1 â€” TASK-050 â€” Frontend Architect â€” 2026-05-31*
+*Bari Skills Registry v1 — TASK-050 — Frontend Architect — 2026-05-31*
 *Changes to any skill registration require owner approval and a CHANGELOG entry.*
