@@ -1,6 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "trace_generated_at": "2026-05-28T07:31:01.417626Z",
+  "algorithm_version": "0.4.0",
+  "trace_generated_at": "2026-06-01T12:33:21.234125Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7350012551797",
@@ -94,6 +95,7 @@
   },
   "L3_inferred_classifications": {
     "sweetener_detected": false,
+    "sweetener_tier": null,
     "sweetener_matches": [],
     "additive_marker_count": 0,
     "additive_categories": [],
@@ -113,16 +115,46 @@
     "added_sugar_matches": [],
     "has_fruit_concentrate": false,
     "has_fermentation": false,
+    "product_type_dairy": false,
+    "has_fortification": false,
+    "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
+    "sprint1_high_risk_emulsifier_detected": false,
+    "sprint1_high_risk_emulsifier_found": [],
+    "sprint1_neutral_emulsifier_detected": false,
+    "sprint1_neutral_emulsifier_found": [],
+    "sprint1_prebiotic_gum_detected": false,
+    "sprint1_prebiotic_gum_found": [],
+    "sprint1_additive_count": 0,
+    "sprint1_additive_correction": 0,
+    "sprint1_additive_correction_notes": [],
+    "sprint1_allulose_detected": false,
+    "sprint1_polyol_count": 0,
+    "sprint1_detected_polyols": [],
+    "sprint1_humectant_polyols": [],
+    "sprint1_penalty_polyol_count": 0,
+    "sprint1_penalty_polyols": [],
+    "tax_emulsifier_concern": [],
+    "tax_emulsifier_benign": [],
+    "tax_named_concern_additives": [],
+    "tax_native_starch": false,
+    "tax_modified_starch": false,
+    "tax_bha_present": false,
+    "tax_bht_present": false,
+    "has_collagen": false,
+    "protein_matrix_form": null,
+    "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
-      "Additive count reflects distinct functional categories detected, not total additive instances"
+      "Additive count reflects distinct functional categories detected, not total additive instances",
+      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 0,
     "ingredient_list": []
@@ -222,9 +254,9 @@
     "processing_quality": "NOVA 2 → processing_quality=85 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
     "calorie_density": "energy_kcal absent: neutral 50",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber_bonus(0.0) + wg_bonus(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
-    "additive_quality": "additive_categories=0 → base=100, sweetener_penalty=0 → 100",
+    "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
@@ -258,7 +290,7 @@
     },
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
-      "cap": 60,
+      "cap": 68,
       "condition": false,
       "fired": false
     },
@@ -270,13 +302,13 @@
     },
     {
       "rule": "SNACK_BAR_RED_SUGAR_LABEL",
-      "cap": 55,
+      "cap": 63,
       "condition": false,
       "fired": false
     },
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
-      "cap": 55,
+      "cap": 63,
       "condition": false,
       "fired": false
     },
@@ -318,7 +350,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 82,
+      "cap": 87,
       "condition": false,
       "fired": false
     },

@@ -1,6 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "trace_generated_at": "2026-05-28T07:31:00.588204Z",
+  "algorithm_version": "0.4.0",
+  "trace_generated_at": "2026-06-01T12:33:20.305792Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_4820077162441",
@@ -119,6 +120,7 @@
   },
   "L3_inferred_classifications": {
     "sweetener_detected": false,
+    "sweetener_tier": null,
     "sweetener_matches": [],
     "additive_marker_count": 1,
     "additive_categories": [
@@ -144,16 +146,53 @@
     ],
     "has_fruit_concentrate": false,
     "has_fermentation": false,
+    "product_type_dairy": true,
+    "has_fortification": false,
+    "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
+    "sprint1_high_risk_emulsifier_detected": false,
+    "sprint1_high_risk_emulsifier_found": [],
+    "sprint1_neutral_emulsifier_detected": true,
+    "sprint1_neutral_emulsifier_found": [
+      "לציטין סויה",
+      "לציטין"
+    ],
+    "sprint1_prebiotic_gum_detected": false,
+    "sprint1_prebiotic_gum_found": [],
+    "sprint1_additive_count": 1,
+    "sprint1_additive_correction": 0,
+    "sprint1_additive_correction_notes": [],
+    "sprint1_allulose_detected": false,
+    "sprint1_polyol_count": 0,
+    "sprint1_detected_polyols": [],
+    "sprint1_humectant_polyols": [],
+    "sprint1_penalty_polyol_count": 0,
+    "sprint1_penalty_polyols": [],
+    "tax_emulsifier_concern": [],
+    "tax_emulsifier_benign": [
+      "soy_lecithin"
+    ],
+    "tax_named_concern_additives": [
+      "soy_lecithin"
+    ],
+    "tax_native_starch": true,
+    "tax_modified_starch": false,
+    "tax_bha_present": false,
+    "tax_bht_present": false,
+    "has_collagen": false,
+    "protein_matrix_form": null,
+    "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
-      "Additive count reflects distinct functional categories detected, not total additive instances"
+      "Additive count reflects distinct functional categories detected, not total additive instances",
+      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 1.15,
     "ingredient_list": [
@@ -249,7 +288,7 @@
     "calorie_density": 40.0,
     "glycemic_quality": 90.0,
     "protein_quality": 24.6,
-    "additive_quality": 82,
+    "additive_quality": 82.0,
     "satiety_support": 17.7,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
@@ -259,9 +298,9 @@
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=5.8g→29.0, fiber=0g→0.0, weighted 65/35=18.9",
     "calorie_density": "kcal=393.0, category=dessert (conf 0.69, relaxed by 1.05x) → 40",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber_bonus(0.0) + wg_bonus(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=5.8g base=29.0, source=mixed(×0.85) → 24.6",
-    "additive_quality": "additive_categories=1 → base=82, sweetener_penalty=0 → 82",
+    "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.8×3 + 0×5) / 393.0 × 400 = 17.7",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
@@ -355,7 +394,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 82,
+      "cap": 87,
       "condition": true,
       "fired": true
     },
@@ -375,10 +414,10 @@
   "caps_applied": [
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 82
+      "cap": 87
     }
   ],
-  "binding_cap": 82,
+  "binding_cap": 87,
   "score_after_cap": 50.58,
   "penalties_considered": [
     {
@@ -462,7 +501,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 82,
+      "binding_cap": 87,
       "coordinated_penalty": 4,
       "detail": {
         "winner": {
@@ -518,7 +557,7 @@
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=82 from rules: ['NOVA_PROXY_3_PROCESSED']",
+    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']",
     "PENALTIES: ['LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
   ],
   "unresolved_flags": [],

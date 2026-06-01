@@ -1,6 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "trace_generated_at": "2026-05-28T07:31:00.537279Z",
+  "algorithm_version": "0.4.0",
+  "trace_generated_at": "2026-06-01T12:33:20.249110Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_209531",
@@ -103,6 +104,7 @@
   },
   "L3_inferred_classifications": {
     "sweetener_detected": true,
+    "sweetener_tier": "C",
     "sweetener_matches": [
       "ממתיק"
     ],
@@ -132,6 +134,9 @@
     ],
     "has_fruit_concentrate": true,
     "has_fermentation": false,
+    "product_type_dairy": false,
+    "has_fortification": false,
+    "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "red_labels": [
@@ -140,10 +145,47 @@
     "red_label_count": 1,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
+    "sprint1_high_risk_emulsifier_detected": true,
+    "sprint1_high_risk_emulsifier_found": [
+      "E466"
+    ],
+    "sprint1_neutral_emulsifier_detected": false,
+    "sprint1_neutral_emulsifier_found": [],
+    "sprint1_prebiotic_gum_detected": true,
+    "sprint1_prebiotic_gum_found": [
+      "E414"
+    ],
+    "sprint1_additive_count": 7,
+    "sprint1_additive_correction": 2,
+    "sprint1_additive_correction_notes": [
+      "EV-003: high-risk emulsifier (+2): ['E466']"
+    ],
+    "sprint1_allulose_detected": false,
+    "sprint1_polyol_count": 0,
+    "sprint1_detected_polyols": [],
+    "sprint1_humectant_polyols": [],
+    "sprint1_penalty_polyol_count": 0,
+    "sprint1_penalty_polyols": [],
+    "tax_emulsifier_concern": [
+      "cmc"
+    ],
+    "tax_emulsifier_benign": [],
+    "tax_named_concern_additives": [
+      "cmc"
+    ],
+    "tax_native_starch": false,
+    "tax_modified_starch": false,
+    "tax_bha_present": false,
+    "tax_bht_present": false,
+    "has_collagen": false,
+    "protein_matrix_form": null,
+    "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
-      "Additive count reflects distinct functional categories detected, not total additive instances"
+      "Additive count reflects distinct functional categories detected, not total additive instances",
+      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 0,
     "ingredient_list": [
@@ -234,9 +276,9 @@
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=2.4)",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber_bonus(0.0) + wg_bonus(0) = 90.0 (sweetener present; glycemic score reflects low sugar, but SWEETENER_CAP=70 applies)",
+    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
-    "additive_quality": "additive_categories=5 → base=10, sweetener_penalty=15 → 0",
+    "additive_quality": "sprint1_additives=7 base=0 sw tier-C_pen=15→0 [EV-003/019: v1=5→sprint1=7 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "1 red label: ['sodium']",
@@ -330,7 +372,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 82,
+      "cap": 87,
       "condition": false,
       "fired": false
     },

@@ -1,6 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "trace_generated_at": "2026-05-28T07:31:00.846124Z",
+  "algorithm_version": "0.4.0",
+  "trace_generated_at": "2026-06-01T12:33:20.586620Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290019167129",
@@ -132,6 +133,7 @@
   },
   "L3_inferred_classifications": {
     "sweetener_detected": false,
+    "sweetener_tier": null,
     "sweetener_matches": [],
     "additive_marker_count": 9,
     "additive_categories": [
@@ -165,16 +167,63 @@
     ],
     "has_fruit_concentrate": false,
     "has_fermentation": true,
+    "product_type_dairy": false,
+    "has_fortification": false,
+    "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
+    "sprint1_high_risk_emulsifier_detected": true,
+    "sprint1_high_risk_emulsifier_found": [
+      "E466",
+      "E407"
+    ],
+    "sprint1_neutral_emulsifier_detected": true,
+    "sprint1_neutral_emulsifier_found": [
+      "לציטין סויה",
+      "לציטין"
+    ],
+    "sprint1_prebiotic_gum_detected": false,
+    "sprint1_prebiotic_gum_found": [],
+    "sprint1_additive_count": 11,
+    "sprint1_additive_correction": 2,
+    "sprint1_additive_correction_notes": [
+      "EV-003: high-risk emulsifier (+2): ['E466', 'E407']"
+    ],
+    "sprint1_allulose_detected": false,
+    "sprint1_polyol_count": 0,
+    "sprint1_detected_polyols": [],
+    "sprint1_humectant_polyols": [],
+    "sprint1_penalty_polyol_count": 0,
+    "sprint1_penalty_polyols": [],
+    "tax_emulsifier_concern": [
+      "cmc",
+      "carrageenan"
+    ],
+    "tax_emulsifier_benign": [
+      "soy_lecithin"
+    ],
+    "tax_named_concern_additives": [
+      "cmc",
+      "carrageenan",
+      "soy_lecithin"
+    ],
+    "tax_native_starch": false,
+    "tax_modified_starch": false,
+    "tax_bha_present": false,
+    "tax_bht_present": false,
+    "has_collagen": false,
+    "protein_matrix_form": null,
+    "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
-      "Additive count reflects distinct functional categories detected, not total additive instances"
+      "Additive count reflects distinct functional categories detected, not total additive instances",
+      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 0,
     "ingredient_list": [
@@ -284,13 +333,13 @@
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=4.0g→20.0, fiber=0g→0.0, weighted 65/35=13.0",
     "calorie_density": "kcal=330.0, category=snack_bar_granola (conf 0.40, relaxed by 1.10x) → 55",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber_bonus(0.0) + wg_bonus(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=4.0g base=20.0, source=whole_food(×1.0) → 20.0",
-    "additive_quality": "additive_categories=9 → base=0, sweetener_penalty=0 → 0",
+    "additive_quality": "sprint1_additives=11 base=0 sw_pen=0→0 [EV-003/019: v1=9→sprint1=11 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.0×3 + 0×5) / 330.0 × 400 = 14.5",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=37 complexity_pen=58 → 0"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=37 complexity_pen=58 + ferm_bonus=5 → 0"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -380,7 +429,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 82,
+      "cap": 87,
       "condition": false,
       "fired": false
     },
