@@ -14,4 +14,4 @@ This is the **website** repo. Tracked tasks and their governance live in the **A
 
 - Lifecycle (no other states): `IN_PROGRESS · BLOCKED · RETURNED · CHANGES_REQUESTED · CLOSED`. Only the Central Controller records `CLOSED`; agents propose `RETURNED` / `BLOCKED`.
 - Canonical governance: `C:\Bari\01_framework\operations\` — `work_classification_v1.md`, `registry_first_rule_v1.md`, `registry_protocol_v1.md`.
-- The old markdown `Bari/01_framework/operations/task_registry_v1.md` in *this* repo is a frozen, non-authoritative snapshot.
+- The old `Bari/` Agent-OS snapshot was removed from this repo (TASK-131) and `/Bari/` is now gitignored. There is **no** registry copy here — consult `C:\Bari\tasks\` only.
