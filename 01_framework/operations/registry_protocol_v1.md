@@ -12,7 +12,7 @@
 
 **`C:\Bari\tasks\` — one `TASK-NNN.md` file per task; state lives in the YAML frontmatter `status:` field.**
 
-`generate_dashboard.py` reads these files → `command_center.json` → the dashboard. There is exactly one registry. (The former markdown registry at `C:\Users\HP\bari\Bari\01_framework\operations\task_registry_v1.md` is a frozen, non-authoritative historical snapshot — do not edit or consult it for live state.)
+`generate_dashboard.py` reads these files → `command_center.json` → the dashboard. There is exactly one registry. (The former markdown registry at `C:\bari-web\Bari\01_framework\operations\task_registry_v1.md` is a frozen, non-authoritative historical snapshot — do not edit or consult it for live state.)
 
 This protocol applies only to **Registry Work** (see [`work_classification_v1.md`](./work_classification_v1.md)). Conversation Work never enters the registry.
 

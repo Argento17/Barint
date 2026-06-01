@@ -28,7 +28,7 @@ from batch_run_bread_retail_003 import normalize_to_bsip1
 
 BREAD_RAW = pathlib.Path(r"C:\Bari\02_products\bread_retail_003\real_bread_retail_003_v1_20260525T194532_bsip0_raw.json")
 
-BARI = pathlib.Path(r"c:\Users\HP\bari")
+BARI = pathlib.Path(r"c:\bari-web")
 DOCS = BARI / "docs"
 TODAY = datetime.date.today().isoformat()
 

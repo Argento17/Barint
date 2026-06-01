@@ -13,4 +13,4 @@
 - `01_framework/operations/registry_protocol_v1.md` — lifecycle, return format, acceptance/rejection.
 
 ## Non-authoritative
-`C:\Users\HP\bari\Bari\01_framework\operations\task_registry_v1.md` is a **frozen historical snapshot only** — not a live registry. Do not edit or consult it for current state.
+`C:\bari-web\Bari\01_framework\operations\task_registry_v1.md` is a **frozen historical snapshot only** — not a live registry. Do not edit or consult it for current state.

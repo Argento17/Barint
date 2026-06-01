@@ -27,4 +27,4 @@ The website is a separate repo at `C:\bari-web`.
 - Architecture: `ARCHITECTURE.md`, `REPO_MAP.md`
 - Scoring: `.claude/scoring.md` — read before any BSIP/scoring task
 - Project context: `.claude/project.md`
-- Skills (canonical): `.claude/skills/` — mirror to the website repo after edits
+- Skills (canonical): `.claude/skills/` — the single source of truth. The website (`C:\bari-web`) holds **no** skills mirror (TASK-131); do not copy skills there.

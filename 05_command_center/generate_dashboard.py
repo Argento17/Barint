@@ -59,7 +59,7 @@ TASKS_DIR      = BARI_ROOT / "tasks"
 DECISIONS_FILE = BARI_ROOT / "decisions" / "decisions.json"
 QA_OPS_DIR     = BARI_ROOT / "03_operations" / "qa" / "reports"
 
-WEBSITE_SRC    = Path(r"C:\Users\HP\bari\src")
+WEBSITE_SRC    = Path(r"C:\bari-web\src")
 DATA_DIR       = WEBSITE_SRC / "data" / "comparisons"
 TYPES_TS       = WEBSITE_SRC / "lib" / "comparisons" / "registry" / "types.ts"
 INDEX_TS       = WEBSITE_SRC / "lib" / "comparisons" / "registry" / "index.ts"

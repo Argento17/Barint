@@ -32,12 +32,12 @@ import json, glob, os, io, sys, datetime
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 HERE     = os.path.dirname(os.path.abspath(__file__))
-V2       = r"C:\Users\HP\bari\src\data\comparisons\hummus_frontend_v2.json"
+V2       = r"C:\bari-web\src\data\comparisons\hummus_frontend_v2.json"
 BSIP1    = r"C:\Bari\02_products\hummus\canonical_bsip1\bsip1_*.json"
 TRACES   = r"C:\Bari\02_products\hummus\intelligence_bsip2\run_hummus_002\products"
 CONTENT  = r"C:\Bari\02_products\hummus\hummus_content_v3.json"
 OUT_WS   = os.path.join(HERE, "hummus_frontend_v3.json")
-OUT_WEB  = r"C:\Users\HP\bari\src\data\comparisons\hummus_frontend_v3.json"
+OUT_WEB  = r"C:\bari-web\src\data\comparisons\hummus_frontend_v3.json"
 
 # ── Fixed phrase table (the ONLY copy this layer emits) ───────────────────────
 # Category-wide mandatory fat disclosure (mirrors methodology footer Line 3 / KL-1).

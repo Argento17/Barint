@@ -13,7 +13,7 @@ The v1 dashboard (`command_center.json`) requires manual updates. Every time a p
 
 **Evidence of drift observed on 2026-05-31:**
 
-`hummus_frontend_v1.json` exists in `C:\Users\HP\bari\src\data\comparisons\` — the dataset was deployed. The command center shows `frontend_dataset.status: NOT_BUILT`. The truth changed; the JSON did not.
+`hummus_frontend_v1.json` exists in `C:\bari-web\src\data\comparisons\` — the dataset was deployed. The command center shows `frontend_dataset.status: NOT_BUILT`. The truth changed; the JSON did not.
 
 This is not a process failure. It is a structural failure. Manual maintenance cannot outrun operational pace. The architecture must make drift impossible, not harder to achieve.
 
@@ -89,7 +89,7 @@ AUTHORITATIVE SOURCES (never command_center.json)
 │     │     └── INVALID.md                     ← invalid marker
 │     └── qa\reports\qa_report_*.md            ← QA status
 │
-├── C:\Users\HP\bari\src\                      ← website state
+├── C:\bari-web\src\                      ← website state
 │     ├── data\comparisons\{cat}_*.json        ← dataset deployed?
 │     ├── lib\comparisons\registry\types.ts    ← category registered?
 │     └── app\hashvaot\{category}\page.tsx     ← route exists?

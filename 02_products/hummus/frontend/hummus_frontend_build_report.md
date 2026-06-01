@@ -84,7 +84,7 @@ the `suppressed_fields` documentation manifest — **0 products** carry a fat va
 
 1. This file is the **Data Agent canonical** dataset. It is written under
    `C:\Bari` and is **not** auto-copied to the website. Deployment to
-   `C:\Users\HP\bari\src\data\comparisons\` is the Frontend Agent's action,
+   `C:\bari-web\src\data\comparisons\` is the Frontend Agent's action,
    after reconciliation (below).
 2. `insightLine` is intentionally empty. Per-product editorial copy is owned by
    the Content Agent (TASK-067 content spec / TASK-073) and is injected downstream.

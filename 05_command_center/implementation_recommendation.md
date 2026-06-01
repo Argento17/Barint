@@ -34,12 +34,12 @@ Claude reads the key state files at session start and generates a formatted mark
 
 ### Option B: Next.js page in the website repo (`/internal/command-center`)
 
-Add an internal route to `C:\Users\HP\bari`.
+Add an internal route to `C:\bari-web`.
 
 **Why rejected for MVP:**
 - Requires a running dev server or production deploy to view
 - Couples an internal operational tool to the consumer website deployment cycle
-- `C:\Users\HP\bari` is the consumer product — internal tooling should not live there
+- `C:\bari-web` is the consumer product — internal tooling should not live there
 - Significantly higher implementation effort (TypeScript types, routing, data fetching contract)
 
 **Viable for v2** if the team wants to access the command center from a URL rather than the filesystem.

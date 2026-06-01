@@ -97,12 +97,12 @@ BariCategoryPageVM
 
 ### GAP-03 — Copy Frontend JSON to Website Repo
 
-**What is missing:** The file `hummus_frontend_v1.json` in `C:\Users\HP\bari\src\data\comparisons\`.
+**What is missing:** The file `hummus_frontend_v1.json` in `C:\bari-web\src\data\comparisons\`.
 
 **Action:**
 ```powershell
 Copy-Item "C:\Bari\03_operations\...\hummus_frontend_v1.json" `
-          "C:\Users\HP\bari\src\data\comparisons\hummus_frontend_v1.json"
+          "C:\bari-web\src\data\comparisons\hummus_frontend_v1.json"
 ```
 
 **Owner:** Data Agent  
@@ -113,7 +113,7 @@ Copy-Item "C:\Bari\03_operations\...\hummus_frontend_v1.json" `
 
 ### GAP-04 — Create Category Definition File (`hummus.ts`)
 
-**What is missing:** `C:\Users\HP\bari\src\lib\comparisons\registry\categories\hummus.ts`
+**What is missing:** `C:\bari-web\src\lib\comparisons\registry\categories\hummus.ts`
 
 **Template:** Model on `maadanim.ts` (most recently built Gen 1 category). Must implement `ComparisonCategoryDefinition`:
 
@@ -141,7 +141,7 @@ export const hummusCategoryDefinition: ComparisonCategoryDefinition = {
 
 ### GAP-05 — Update Category Registry
 
-**What is missing:** Two edits to existing files in `C:\Users\HP\bari\src\lib\comparisons\registry\`:
+**What is missing:** Two edits to existing files in `C:\bari-web\src\lib\comparisons\registry\`:
 
 **`types.ts`** — Add `"hummus"` to the union type:
 ```typescript
@@ -166,7 +166,7 @@ import { hummusCategoryDefinition } from './categories/hummus'
 
 ### GAP-06 — Create Route Page
 
-**What is missing:** `C:\Users\HP\bari\src\app\hashvaot\hummus\page.tsx`
+**What is missing:** `C:\bari-web\src\app\hashvaot\hummus\page.tsx`
 
 This is the Next.js App Router page file. Template from `src/app/hashvaot/maadanim/page.tsx` or equivalent. It calls `getComparisonCategory('hummus')` and renders the comparison page component.
 
@@ -189,7 +189,7 @@ export default async function HummusPage() {
 
 ### GAP-07 — Create Comparison Page Component
 
-**What is missing:** `C:\Users\HP\bari\src\components\comparisons\hummus-comparison-page.tsx`
+**What is missing:** `C:\bari-web\src\components\comparisons\hummus-comparison-page.tsx`
 
 This is the Gen 1 canonical comparison page component. It uses the shared component tree (`CategoryHero`, `CategoryPrologue`, `ProductTable`, `MethodologyFooter`) — no custom Gen 0 components.
 

@@ -149,15 +149,15 @@ else:
 
 ## Source 2 — Website State
 
-**Location:** `C:\Users\HP\bari\src\`  
+**Location:** `C:\bari-web\src\`  
 **Maintenance burden:** None — these files are created by normal frontend development.
 
 ### Frontend Dataset Status
 
-**Source:** `C:\Users\HP\bari\src\data\comparisons\`
+**Source:** `C:\bari-web\src\data\comparisons\`
 
 ```python
-data_dir = r"C:\Users\HP\bari\src\data\comparisons"
+data_dir = r"C:\bari-web\src\data\comparisons"
 matching = glob(f"{data_dir}/{category_id}*.json")
 
 if matching:
@@ -177,7 +177,7 @@ else:
 
 ### Website / Route Status
 
-**Source:** Three checks against `C:\Users\HP\bari\src\`
+**Source:** Three checks against `C:\bari-web\src\`
 
 ```python
 check_route = exists(f"app/hashvaot/{route_name}/page.tsx")
@@ -486,7 +486,7 @@ C:\Bari\
     ├── command_center.json               ← OUTPUT (never edit by hand in v2)
     └── command_center.html               ← renderer (unchanged from v1.1)
 
-C:\Users\HP\bari\src\
+C:\bari-web\src\
 ├── data\comparisons\{category}*.json     ← dataset deployment state
 ├── lib\comparisons\registry\types.ts    ← registered categories
 ├── lib\comparisons\registry\index.ts    ← registered categories

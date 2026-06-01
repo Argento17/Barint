@@ -405,7 +405,7 @@ Would reduce this stage to a 5-minute human confirmation step.
 
 **Outputs:**
 - `{category}_frontend_v1.json` in `03_operations/bsip2/...` or build output
-- JSON copied to `C:\Users\HP\bari\src\data\comparisons\`
+- JSON copied to `C:\bari-web\src\data\comparisons\`
 - Route page at `src/app/hashvaot/{category}/page.tsx`
 - Frontend comparison components (Cursor build, following `component_build_sequence_v1.md`)
 

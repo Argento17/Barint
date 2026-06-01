@@ -2,7 +2,7 @@
 id: TASK-131
 title: Consolidate the two Bari directories (C:\Bari vs C:\Users\HP\bari)
 owner: data-agent
-status: IN_PROGRESS
+status: RETURNED
 priority: HIGH
 created_at: 2026-06-01
 depends_on: []
@@ -65,3 +65,34 @@ delete stale nested snapshot → consolidate governance docs → rename website 
   one-shot handoff: `05_command_center/rename_website_phase3.ps1` (move + repoint both trees +
   commit; won't touch the website's uncommitted WIP). User must run it from a standalone
   PowerShell with VS Code closed. NOTE: dev server left stopped.
+- 2026-06-01 — **Phase 3 DONE** (user ran the script). Website is now `C:\bari-web`; commit
+  `8082bb9` repointed all Agent-OS docs. **Incident:** the script's `Get-Content`/`WriteAllText`
+  round-trip misread UTF-8 as Windows-1252 and baked mojibake into 29 patched docs. Fixed in
+  commit `6079711`: restored clean content from `18518f3` and re-applied the repoint UTF-8-safely
+  (path replacements correct; plan doc restored encoding-only). Lesson: never round-trip non-ASCII
+  files through PS5.1 `Get-Content -Raw`; use `[IO.File]::ReadAllText`/Python.
+- 2026-06-01 — **Lint check (post-rename):** `npm run lint` = 2 errors + 9 warnings. 9 warnings
+  are the known baseline (`<img>`, 1 unused var). 2 errors are `require()` in
+  `.claude/bari-qa-validate.js` — a standalone Node CJS helper, NOT app code; `next build` doesn't
+  lint `.claude/`, so build/deploy unaffected. Fix applied in website `eslint.config.mjs`: added
+  `.claude/**` to `globalIgnores`. Uncommitted — user to re-run lint + commit.
+- 2026-06-01 — **Phase 5 + 6 done.** Found the Phase-3 repoint was under-scoped (only root `*.md`
+  + `.claude/`); completed a full UTF-8-safe repoint of the remaining 25 files across both trees
+  (incl. functional scripts `propagate_frontend_dataset.ps1`, `build_hummus_*.py`,
+  `rescore_mvp_frontend_v1.py`, `compare-maadanim-v1-v2.py`, `generate_dashboard.py`). Final sweep:
+  **0 dangling old-path refs, 0 mojibake** (excl. intentional-keep: this log, the plan narrative,
+  the guard/rename scripts, and `99_archive`). Added `05_command_center/structure_guard.py`
+  (asserts the two-homes invariants) → CLEAN. Skills mirroring set to canonical-only in `CLAUDE.md`.
+  Website `npm run lint` = **0 errors, 9 warnings**. `generate_dashboard.py` regenerates fine.
+
+## Return — ready for closure
+All six phases complete. Outcome: name collision gone (`C:\Bari` + `C:\bari-web`); stale nested
+snapshot removed (4,112 files) with unique content salvaged to `99_archive`; governance/data docs
+consolidated under `C:\Bari\docs\`; Agent OS now git-versioned; all path references repointed;
+`structure_guard.py` guards against recurrence. **Proposing CLOSED** — for the Central Controller
+to record.
+
+Open follow-ups (not blockers): (1) 5 borderline rollout/release reports left in `C:\bari-web\docs\`
+pending owner classification; (2) 3 salvaged bsip2 scripts in `99_archive/website_snapshot_salvage_2026-06-01/`
+to evaluate for promotion; (3) website `eslint.config.mjs` + repoint of `compare-maadanim-v1-v2.py`
+are committed separately in the website repo; user's in-progress component edits left untouched.

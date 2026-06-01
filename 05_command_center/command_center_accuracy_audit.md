@@ -17,7 +17,7 @@
 | **Task registry** | `C:\Bari\tasks\TASK-*.md` (YAML frontmatter) | tasks, task_summary, next_action, executive, launch gating, alerts |
 | **Decision registry** | `C:\Bari\decisions\decisions.json` | decisions, pending-decision alerts, next_recommended_decision |
 | **Category config + pipeline files** | `C:\Bari\02_products\{cat}\category_config.json` + `reports/`, `canonical_bsip1/`, `intelligence_bsip2/`, `qa/` | category factory/bsip/qa state |
-| **Website / dataset** | `C:\Users\HP\bari\src\...` | website status, frontend_dataset status |
+| **Website / dataset** | `C:\bari-web\src\...` | website status, frontend_dataset status |
 
 Derivation logic per dashboard item:
 

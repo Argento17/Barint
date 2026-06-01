@@ -2,7 +2,7 @@
 
 **Type:** Design standard — frozen approved state  
 **Authority:** Design Director  
-**Source of truth:** Live component source in `C:\Users\HP\bari\src\components\shared\` and `bari-comparison-tokens.ts`  
+**Source of truth:** Live component source in `C:\bari-web\src\components\shared\` and `bari-comparison-tokens.ts`  
 **Canonical reference implementation:** `maadanim-comparison-page.tsx`  
 **Last verified against live source:** 2026-05-30  
 

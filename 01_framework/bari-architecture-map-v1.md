@@ -14,7 +14,7 @@ This document describes the Bari system as it exists today. It does not propose 
 Bari is two repositories that do not share code. They communicate through a single interface: JSON files copied from the data workspace into the website repo.
 
 ```
-C:\Bari                          C:\Users\HP\bari
+C:\Bari                          C:\bari-web
 (data workspace)                 (Next.js website)
         │                                │
         │  {category}_frontend_vN.json   │
@@ -62,12 +62,12 @@ C:\Bari\
   99_archive\                Superseded code — read only
 ```
 
-### C:\Users\HP\bari — Website
+### C:\bari-web — Website
 
 Purpose: Next.js frontend, served pages, comparison UI.
 
 ```
-C:\Users\HP\bari\
+C:\bari-web\
   .claude\                   Claude Code config for this repo
     hooks\                   guard-generated-json.ps1, check-forbidden-terms.ps1
     skills\                  Mirror of C:\Bari\.claude\skills\ (not canonical)
@@ -140,7 +140,7 @@ build_frontend_dataset.py
      │
      ▼  MANUAL COPY
      │
-C:\Users\HP\bari\src\data\comparisons\{category}_frontend_vN.json
+C:\bari-web\src\data\comparisons\{category}_frontend_vN.json
      │
      ▼
 corpus.ts  loadComparisonCorpus()
@@ -398,10 +398,10 @@ Six skills live in `C:\Bari\.claude\skills\` (canonical source):
 | `research-analyst` | Research synthesis, evidence inventory |
 | `qa-audit-lead` | QA execution, data verification, audit |
 
-A mirror lives at `C:\Users\HP\bari\.claude\skills\` so skills load as slash commands in both repos. The mirror is a copy — edit canonical, then re-copy:
+A mirror lives at `C:\bari-web\.claude\skills\` so skills load as slash commands in both repos. The mirror is a copy — edit canonical, then re-copy:
 
 ```powershell
-Copy-Item "C:\Bari\.claude\skills\*.md" "C:\Users\HP\bari\.claude\skills\" -Force
+Copy-Item "C:\Bari\.claude\skills\*.md" "C:\bari-web\.claude\skills\" -Force
 ```
 
 ---
@@ -410,7 +410,7 @@ Copy-Item "C:\Bari\.claude\skills\*.md" "C:\Users\HP\bari\.claude\skills\" -Forc
 
 ### Playwright MCP
 
-**Config:** `C:\Users\HP\bari\.mcp.json` (server definition) + `C:\Users\HP\bari\.claude\settings.json` (approval)
+**Config:** `C:\bari-web\.mcp.json` (server definition) + `C:\bari-web\.claude\settings.json` (approval)
 
 ```json
 {
@@ -430,7 +430,7 @@ The MCP is pre-approved via `"enabledMcpjsonServers": ["playwright"]` in setting
 
 ### Playwright validation script
 
-**File:** `C:\Users\HP\bari\.claude\bari-qa-validate.js`
+**File:** `C:\bari-web\.claude\bari-qa-validate.js`
 
 Node.js script using the project's `playwright` devDependency. Runs headless Chromium against the local dev server. Tests 4 routes and checks:
 
@@ -444,7 +444,7 @@ Node.js script using the project's `playwright` devDependency. Runs headless Chr
 **Usage:**
 ```powershell
 # Dev server must be running on localhost:3000
-cd C:\Users\HP\bari
+cd C:\bari-web
 node .claude/bari-qa-validate.js
 ```
 
@@ -460,7 +460,7 @@ Playwright v1.60.0 (in `devDependencies`) requires Chromium 1223. Installed at `
 
 Three hooks enforce architectural constraints automatically. They run in the Claude Code harness — not in Claude's context — so they fire even when Claude forgets the rules.
 
-### Website repo hooks (`C:\Users\HP\bari\.claude\`)
+### Website repo hooks (`C:\bari-web\.claude\`)
 
 **Hook 1: guard-generated-json.ps1**
 
@@ -498,7 +498,7 @@ Same script as website repo. Fires on `.tsx`, `.ts`, `.md` edits in the data wor
 ### Hook wiring
 
 ```
-C:\Users\HP\bari\.claude\settings.json
+C:\bari-web\.claude\settings.json
   PreToolUse  → guard-generated-json.ps1   [Write|Edit]
   PostToolUse → check-forbidden-terms.ps1  [Write|Edit]
 
@@ -560,12 +560,12 @@ The 15 files most important to understand before doing any work in Bari:
 | `constants.py` | `C:\Bari\03_operations\bsip2\proto_v0\src\` | Every threshold, weight, and cap value |
 | `score_engine.py` | `C:\Bari\03_operations\bsip2\proto_v0\src\` | Scoring pipeline orchestrator |
 | `build_frontend_dataset.py` | `C:\Bari\03_operations\bsip2\proto_v0\src\` | The only script that produces website-ready JSON |
-| `index.ts` (view-models) | `C:\Users\HP\bari\src\lib\view-models\` | The contract between scoring and UI |
-| `index.ts` (registry) | `C:\Users\HP\bari\src\lib\comparisons\registry\` | Category routing table |
-| `bari-comparison-tokens.ts` | `C:\Users\HP\bari\src\lib\design\` | All visual constants |
-| `product-row.tsx` | `C:\Users\HP\bari\src\components\shared\` | The core rendering unit |
-| `score-chip.tsx` | `C:\Users\HP\bari\src\components\shared\` | Score/grade display rules |
-| `maadanim-comparison-page.tsx` | `C:\Users\HP\bari\src\components\comparisons\` | Canonical Gen 1 page reference |
+| `index.ts` (view-models) | `C:\bari-web\src\lib\view-models\` | The contract between scoring and UI |
+| `index.ts` (registry) | `C:\bari-web\src\lib\comparisons\registry\` | Category routing table |
+| `bari-comparison-tokens.ts` | `C:\bari-web\src\lib\design\` | All visual constants |
+| `product-row.tsx` | `C:\bari-web\src\components\shared\` | The core rendering unit |
+| `score-chip.tsx` | `C:\bari-web\src\components\shared\` | Score/grade display rules |
+| `maadanim-comparison-page.tsx` | `C:\bari-web\src\components\comparisons\` | Canonical Gen 1 page reference |
 | `comparison_template_v1.md` | `C:\Bari\01_framework\frontend\` | Page structure authority document |
 | `architecture_generations_registry_v1.md` | `C:\Bari\01_framework\frontend\` | Gen 0 vs Gen 1 catalogue |
 | `legacy_isolation_policy_v1.md` | `C:\Bari\01_framework\frontend\` | Quarantine rules |
