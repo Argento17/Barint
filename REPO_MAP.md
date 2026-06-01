@@ -212,6 +212,6 @@ Do not edit. Read only. Preserved for traceability.
 
 ## What Does NOT Exist Yet
 
-- `04_frontend/` — no frontend exists. Milk comparison page (`/hashvaot/milk-comparison`) is the first page, handoff doc at `02_products/milk_and_alternatives/reports/cursor_handoff_milk_comparison.md`.
+- `04_frontend/` — there is no `04_frontend/` directory; the website lives at `bari-web/` (folded in as a git subtree, TASK-134, 2026-06-01). Run/modify the site there (`npm run dev` from `C:\bari\bari-web`). Milk comparison page (`/hashvaot/milk-comparison`) was the first page; handoff doc at `02_products/milk_and_alternatives/reports/cursor_handoff_milk_comparison.md`.
 - Bread/crackers router archetype — bread-light stress test identified 5 routing failure modes (WFF contamination, beverage FP, dairy-protein FP, snack-bar bleed, cereal overlap). Router expansion requires dedicated `bread` and `cracker` archetypes in router_v2.py. Stress test reports: `02_products/bread_light/reports/`.
 - Fermentation quality scoring — stress test confirmed engine cannot distinguish genuine sourdough from industrial sourdough-powder. Enrichment fix: flag `fermentation_quality=mixed` when מחמצת + שמרים co-appear; `fermentation_role=flavor` when sourdough percentage <10%.

@@ -1,11 +1,13 @@
-# Bari — Data / Product Workspace
+# Bari — Data / Product Workspace + Website (monorepo)
 
-This repo (`C:\Bari`) is the **product/data workspace**, NOT the website.
-The website is a separate repo at `C:\bari-web`.
+This repo (`C:\Bari`) is the **Agent OS / product-data workspace** AND, since the
+TASK-134 consolidation (2026-06-01), it also contains the **website** as a subtree
+at `C:\bari\bari-web\` (the Next.js app, formerly the standalone `C:\bari-web` repo).
 
 ## Hard rules
-- Never assume `C:\Bari` is the website repo. No Next.js source lives here.
-- Scoring/BSIP/research/CE work happens here; frontend work happens in `C:\bari-web`.
+- The repo root (`C:\Bari`) is the Agent OS brain. **No Next.js source at the root** —
+  all frontend code lives under `bari-web/`. Keep the two concerns in their own trees.
+- Scoring/BSIP/research/CE work happens at the root; frontend work happens in `C:\bari\bari-web`.
 - Do NOT change published scores or redesign scoring unless explicitly instructed.
 - Do NOT invent product, nutrition, or ingredient data.
 
@@ -27,4 +29,4 @@ The website is a separate repo at `C:\bari-web`.
 - Architecture: `ARCHITECTURE.md`, `REPO_MAP.md`
 - Scoring: `.claude/scoring.md` — read before any BSIP/scoring task
 - Project context: `.claude/project.md`
-- Skills (canonical): `.claude/skills/` — the single source of truth. The website (`C:\bari-web`) holds **no** skills mirror (TASK-131); do not copy skills there.
+- Skills (canonical): root `.claude/skills/` — the single source of truth for the Agent OS. The website's own scoped config lives at `bari-web/.claude/`; do not mirror Agent OS skills into it (TASK-131 → TASK-134).

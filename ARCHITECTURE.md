@@ -1,6 +1,6 @@
 # Bari Repository Architecture
 
-**Last updated:** 2026-05-17
+**Last updated:** 2026-06-01
 
 ---
 
@@ -22,6 +22,11 @@
 
 99_archive     =  Historical and Superseded Assets
                   Old prototypes and abandoned experiments. Read-only reference.
+
+bari-web       =  The Website (Next.js app)
+                  The deployable frontend, folded in as a git subtree (TASK-134,
+                  2026-06-01). Self-contained: its own package.json, src/, public/.
+                  This is where you go to run or modify the site.
 ```
 
 ---
@@ -36,6 +41,7 @@ C:\Bari\
 ├── 99_archive\         Historical/superseded assets
 ├── governance\         Repository governance and migration documents
 ├── ARCHITECTURE.md     This file
+├── bari-web\           The website (Next.js app) — git subtree, TASK-134
 │
 │   ── Development environment folders (do not delete without explicit approval) ──
 ├── .claude\            Claude Code project state

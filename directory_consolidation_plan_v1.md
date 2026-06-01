@@ -1,7 +1,14 @@
+> **⚠️ SUPERSEDED (2026-06-01, TASK-134).** The two-homes split below was executed,
+> then **deliberately reversed into a monorepo**: the website was folded into this repo
+> as a git subtree under `bari-web/`. The current topology is **one repo** (`C:\Bari`)
+> containing both the Agent OS (root) and the website (`bari-web/`). Do **not** re-split
+> based on this document — it is kept only as the historical record of the v1 decision.
+> See `tasks/TASK-134.md` and `structure_guard.py` for the live invariants.
+
 # Directory Consolidation Plan v1 (TASK-131)
 
-Date: 2026-06-01 · Owner: data-agent · Status: PLAN (awaiting go-ahead to execute)
-Chosen topology: **Option A — two clean homes with a rename** (not a monorepo, not a single merged folder).
+Date: 2026-06-01 · Owner: data-agent · Status: SUPERSEDED by TASK-134 (monorepo)
+Chosen topology (v1, since reversed): **Option A — two clean homes with a rename** (not a monorepo, not a single merged folder).
 
 ## Problem (root causes, not symptoms)
 
