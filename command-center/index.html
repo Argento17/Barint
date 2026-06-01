@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bari Command Center — Registry Protocol v1</title>
+<!--
+  Internal operations dashboard. Reads task_registry_v1.md (the single source of truth)
+  and routes tasks into operational sections by Registry Protocol v1 lifecycle state.
+
+  Contract: ../Bari/01_framework/operations/command_center_registry_support_v1.md
+  Not consumer-facing. No build step. No Bari app/product imports. Vanilla JS only.
+-->
+<style>
+  :root {
+    --bg: #0f1117; --panel: #171a22; --panel2: #1d212b; --line: #2a2f3a;
+    --text: #e7e9ee; --muted: #9aa1ad; --mono: "Inter Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --c-inprogress: #CC785C; --c-blocked: #DC2626; --c-returned: #2D3561;
+    --c-changes: #B45309; --c-closed: #059669; --c-unknown: #6B7280;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 Inter, "Helvetica Neue", system-ui, sans-serif; }
+  header { padding: 20px 24px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin: 0; }
+  header .meta { color: var(--muted); font: 12px/1.4 var(--mono); }
+  header .src { margin-inline-start: auto; color: var(--muted); font: 11px/1.4 var(--mono); }
+  main { padding: 20px 24px; display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  section > h2 { margin: 0; padding: 12px 16px; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  section > h2 .count { font: 12px/1 var(--mono); color: var(--text);
+    background: var(--panel2); padding: 3px 8px; border-radius: 999px; }
+  .body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .empty { color: var(--muted); font-style: italic; padding: 4px 4px 8px; }
+  .card { background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .card .id { font: 12px/1 var(--mono); color: var(--muted); }
+  .card .title { font-weight: 600; margin: 3px 0 6px; }
+  .card .agent { color: var(--muted); font-size: 12px; }
+  .chip { display: inline-flex; align-items: center; gap: 5px; font: 10px/1 var(--mono);
+    font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    padding: 5px 8px; border-radius: 999px; color: #fff; }
+  .accent { border-inline-start: 3px solid var(--line); }
+  .footer { padding: 14px 24px; border-top: 1px solid var(--line); color: var(--muted); font: 12px/1.5 var(--mono); }
+  .archive { padding: 0 24px 20px; }
+  .archive details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px; }
+  .archive summary { cursor: pointer; color: var(--muted); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; }
+  .archive ul { columns: 3; margin: 12px 0 4px; padding-inline-start: 18px; color: var(--muted); font-size: 13px; }
+  .loader { padding: 24px; }
+  textarea { width: 100%; min-height: 160px; background: var(--panel2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 8px; padding: 10px; font: 12px/1.5 var(--mono); }
+  button { background: var(--c-inprogress); color: #fff; border: 0; border-radius: 8px;
+    padding: 8px 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Bari Command Center</h1>
+  <span class="meta" id="sessionMeta">Registry Protocol v1</span>
+  <span class="src" id="sourceMeta">source: task_registry_v1.md</span>
+</header>
+
+<div id="app" class="loader">Loading registry…</div>
+
+<script>
+// ── Registry Protocol v1 lifecycle (the only model; no new states) ──────────────
+const STATES = {
+  IN_PROGRESS:       { label: "In Progress",        chip: "⬡ IN PROGRESS",        color: "#CC785C" },
+  BLOCKED:           { label: "Blocked",            chip: "✗ BLOCKED",            color: "#DC2626" },
+  RETURNED:          { label: "Returned",           chip: "⊟ AWAITING REVIEW",    color: "#2D3561" },
+  CHANGES_REQUESTED: { label: "Changes Requested",  chip: "↺ CHANGES REQUESTED",  color: "#B45309" },
+  CLOSED:            { label: "Closed",             chip: "✓ CLOSED",             color: "#059669" },
+};
+
+// state → operational section (CLOSED is excluded from operational sections)
+const SECTIONS = [
+  { key: "IN_PROGRESS",       title: "Active Work" },
+  { key: "RETURNED",          title: "Awaiting Review" },
+  { key: "BLOCKED",           title: "Blockers" },
+  { key: "CHANGES_REQUESTED", title: "Changes Requested" },
+];
+
+// Normalize a registry "**Status:**" value to a lifecycle state.
+// Recorded state only; trailing prose ignored; legacy ACTIVE -> IN_PROGRESS.
+function normalizeState(raw) {
+  const s = (raw || "").toUpperCase();
+  if (s.includes("CHANGES_REQUESTED") || s.includes("CHANGES REQUESTED")) return "CHANGES_REQUESTED";
+  if (s.includes("RETURNED")) return "RETURNED";
+  if (s.includes("BLOCKED")) return "BLOCKED";
+  if (s.includes("CLOSED")) return "CLOSED";
+  if (s.includes("IN_PROGRESS") || s.includes("IN PROGRESS")) return "IN_PROGRESS";
+  if (s.includes("ACTIVE")) return "IN_PROGRESS"; // legacy alias
+  return null; // unrecognized
+}
+
+// Parse the markdown registry into task records.
+function parseRegistry(md) {
+  const tasks = [];
+
+  // Active Tasks: "### TASK-NNN — Title" blocks with a "**Status:**" line.
+  const re = /^###\s+(TASK-[\w-]+)\s*[—-]\s*(.+)$/gm;
+  let m;
+  const heads = [];
+  while ((m = re.exec(md)) !== null) heads.push({ id: m[1], title: m[2].trim(), at: m.index });
+  for (let i = 0; i < heads.length; i++) {
+    const block = md.slice(heads[i].at, i + 1 < heads.length ? heads[i + 1].at : md.length);
+    const status = (block.match(/\*\*Status:\*\*\s*(.+)/) || [])[1] || "";
+    const agent = ((block.match(/\*\*Agent:\*\*\s*(.+)/) || [])[1] || "").trim();
+    tasks.push({ id: heads[i].id, title: heads[i].title, agent,
+      state: normalizeState(status), rawStatus: status.trim() });
+  }
+
+  // Recently Closed table rows: "| TASK-xxx | scope | agent | date |"
+  const seen = new Set(tasks.map(t => t.id));
+  const rowRe = /^\|\s*(TASK-[\w-]+)\s*\|([^|]*)\|([^|]*)\|([^|]*)\|/gm;
+  while ((m = rowRe.exec(md)) !== null) {
+    if (seen.has(m[1])) continue;
+    tasks.push({ id: m[1], title: m[2].trim(), agent: m[3].trim(),
+      state: "CLOSED", rawStatus: "CLOSED" });
+  }
+  return tasks;
+}
+
+function chip(state) {
+  const def = STATES[state] || { chip: "○ UNRECOGNIZED", color: "#6B7280" };
+  const s = document.createElement("span");
+  s.className = "chip"; s.style.background = def.color; s.textContent = def.chip;
+  return s;
+}
+
+function card(t) {
+  const def = STATES[t.state];
+  const el = document.createElement("div");
+  el.className = "card accent";
+  if (def) el.style.borderInlineStartColor = def.color;
+  const id = document.createElement("div"); id.className = "id"; id.textContent = t.id;
+  const title = document.createElement("div"); title.className = "title"; title.textContent = t.title;
+  const agent = document.createElement("div"); agent.className = "agent"; agent.textContent = t.agent || "—";
+  el.append(id, title, agent, document.createElement("div"));
+  el.lastChild.appendChild(chip(t.state || "UNKNOWN"));
+  return el;
+}
+
+function render(tasks) {
+  const app = document.getElementById("app");
+  app.className = "";
+  app.innerHTML = "";
+
+  const main = document.createElement("main");
+  for (const sec of SECTIONS) {
+    const items = tasks.filter(t => t.state === sec.key);
+    const s = document.createElement("section");
+    const h = document.createElement("h2");
+    h.innerHTML = `<span>${sec.title}</span>`;
+    const c = document.createElement("span"); c.className = "count"; c.textContent = items.length;
+    h.appendChild(c);
+    const body = document.createElement("div"); body.className = "body";
+    if (!items.length) {
+      const e = document.createElement("div"); e.className = "empty"; e.textContent = "No tasks.";
+      body.appendChild(e);
+    } else items.forEach(t => body.appendChild(card(t)));
+    s.append(h, body);
+    main.appendChild(s);
+  }
+  app.appendChild(main);
+
+  // Unrecognized tray — never silently drop a task.
+  const unknown = tasks.filter(t => t.state === null);
+  if (unknown.length) {
+    const main2 = document.createElement("main");
+    const s = document.createElement("section");
+    s.innerHTML = `<h2><span>Unrecognized state</span><span class="count">${unknown.length}</span></h2>`;
+    const body = document.createElement("div"); body.className = "body";
+    unknown.forEach(t => {
+      const el = card(t);
+      const r = document.createElement("div"); r.className = "agent";
+      r.textContent = `raw status: "${t.rawStatus}"`; el.appendChild(r);
+      body.appendChild(el);
+    });
+    s.appendChild(body); main2.appendChild(s); app.appendChild(main2);
+  }
+
+  // Closed archive — non-operational, collapsed.
+  const closed = tasks.filter(t => t.state === "CLOSED");
+  const arch = document.createElement("div"); arch.className = "archive";
+  arch.innerHTML = `<details><summary>Closed (${closed.length}) — archive, non-operational</summary>
+    <ul>${closed.map(t => `<li>${t.id}</li>`).join("")}</ul></details>`;
+  app.appendChild(arch);
+
+  const f = document.createElement("div"); f.className = "footer";
+  f.textContent = `${tasks.length} tasks · ${SECTIONS.map(s =>
+    `${s.title}: ${tasks.filter(t => t.state === s.key).length}`).join("  ·  ")}  ·  Closed: ${closed.length}`;
+  app.appendChild(f);
+}
+
+function showPasteFallback(reason) {
+  const app = document.getElementById("app");
+  app.className = "loader";
+  app.innerHTML = `
+    <p>Could not fetch <code>task_registry_v1.md</code> automatically (${reason}).
+       Serve this folder over HTTP, or paste the registry markdown below.</p>
+    <textarea id="paste" placeholder="Paste contents of task_registry_v1.md here…"></textarea>
+    <div><button id="renderBtn">Render dashboard</button></div>
+    <p class="note">Tip: from the repo root run <code>npx serve bari</code> then open
+       <code>/command-center/</code> to skip the paste step.</p>`;
+  document.getElementById("renderBtn").onclick = () => {
+    const md = document.getElementById("paste").value;
+    if (md.trim()) render(parseRegistry(md));
+  };
+}
+
+// Source of truth, relative to /command-center/index.html
+const REGISTRY_URL = "../Bari/01_framework/operations/task_registry_v1.md";
+document.getElementById("sessionMeta").textContent =
+  "Registry Protocol v1 · " + new Date().toISOString().slice(0, 10);
+
+fetch(REGISTRY_URL)
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+  .then(md => render(parseRegistry(md)))
+  .catch(err => showPasteFallback(err.message));
+</script>
+</body>
+</html>

@@ -361,6 +361,7 @@ Codex can escalate data integrity failures directly to Tom, bypassing all interm
 5. **Audit trail** — All score changes, framework amendments, and escalations are logged with reasoning.
 6. **Category independence** — Bread logic does not leak into dairy logic. Each category is interpreted by category-native signals.
 7. **Publication gate** — Nothing ships without Codex QA pass and Tom authorization.
+8. **Registry first** — Any task-management request (status/close/accept/reject/block/resume/reopen of a `TASK-XXX`) begins by consulting the task registry, which is authoritative over conversation memory. See `operations/registry_first_rule_v1.md`.
 
 ---
 
