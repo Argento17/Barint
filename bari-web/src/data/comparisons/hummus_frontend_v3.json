@@ -1,0 +1,2334 @@
+{
+  "_meta": {
+    "schema": "BariProductVM[]",
+    "generated": "2026-05-31T11:45:41.108001+00:00",
+    "category": "hummus",
+    "version": "v3-explanation-layer",
+    "product_count": 66,
+    "scored_count": 64,
+    "source_run_id": "run_hummus_002",
+    "invalid_run_never_used": "run_hummus_001",
+    "authoritative": true,
+    "reconciliation_task": "TASK-080",
+    "build_task": "TASK-061",
+    "name_he": "חומוס וממרחים",
+    "name_en": "Hummus & Savory Spreads",
+    "retailer": "shufersal",
+    "scrape_date": "2026-05-30",
+    "grade_distribution": {
+      "A": 6,
+      "B": 27,
+      "C": 27,
+      "D": 4,
+      "null": 2
+    },
+    "confidence_distribution": {
+      "verified": 58,
+      "partial": 6,
+      "insufficient": 2
+    },
+    "product_type_distribution": {
+      "hummus_spread": 42,
+      "masabacha": 2,
+      "matbucha": 10,
+      "pepper_spread": 5,
+      "eggplant_spread": 7
+    },
+    "score_statistics": {
+      "count": 64,
+      "min": 43,
+      "max": 86,
+      "mean": 65.63,
+      "median": 65
+    },
+    "nutrition_policy": {
+      "panel_visible": true,
+      "suppressed": [
+        "fat",
+        "saturated_fat"
+      ],
+      "suppressed_reason": "HUM-001 — Shufersal fat-row defect (TASK-039); TASK-060 Option B; Product ruling TASK-080: show panel, hide fat only.",
+      "rendered_fields": [
+        "energyKcal",
+        "protein",
+        "sodium"
+      ],
+      "null_fields": {
+        "sugar": "HUM-002 no sugar coverage",
+        "fat": "suppressed",
+        "fiber": "carried but not in NUTRIENT_LABELS grid"
+      },
+      "fat_values_dropped": 67,
+      "panels_visible": 67,
+      "remediation": "Fix Shufersal fat scraper -> run_hummus_003 -> restore fat in v2 (Q3 2026)."
+    },
+    "known_limitations": [
+      {
+        "id": "HUM-001",
+        "severity": "high",
+        "title": "fat corrupted ~58/69 — fat hidden (panel kept)",
+        "detail": "Scraper captured saturated-fat sub-row (TASK-039). fat=null per ruling; other nutrition shown."
+      },
+      {
+        "id": "HUM-002",
+        "severity": "medium",
+        "title": "sugars_g 0% coverage",
+        "detail": "sugar=null; not surfaced."
+      },
+      {
+        "id": "HUM-003",
+        "severity": "low",
+        "title": "run_hummus_001 INVALID — not used",
+        "detail": "run_002 authoritative (TASK-044 routing fix)."
+      },
+      {
+        "id": "HUM-004",
+        "severity": "high",
+        "title": "2 products score-unavailable",
+        "detail": "confidence=insufficient -> null score/grade; UI shows 'no data' state.",
+        "products": [
+          "bsip1_7296073733317",
+          "bsip1_7296073733348"
+        ]
+      }
+    ],
+    "qa_notes": {
+      "pre_launch_qa": "TASK-072 — verdict WARN; W-1 (content spec) gates final sign-off (TASK-073).",
+      "data_qa": "qa_report_hummus.md PASS (TRC-003, COV-005 non-blocking).",
+      "go_live_gate": "DEC-002 pending (Product approval), gated on TASK-073."
+    },
+    "content_source": "hummus_insights_v1.md (TASK-062 / TASK-081)",
+    "explanation_task": "TASK-086",
+    "explanation_contract": "bsip2_to_web_translation_contract_v1.md",
+    "explanation_layer": {
+      "deterministic": true,
+      "source_signals": [
+        "caps_applied",
+        "penalties_applied",
+        "extracted_additives",
+        "extracted_sweeteners",
+        "protein_g",
+        "sodium_mg",
+        "nova_confidence_band",
+        "data_sufficiency",
+        "unresolved_flags"
+      ],
+      "arrays": [
+        "positiveSignals",
+        "limitingFactors",
+        "unknowns",
+        "caveats"
+      ],
+      "fat_disclosure": "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח.",
+      "coverage": {
+        "pos": 67,
+        "lim": 61,
+        "unk": 67,
+        "cav": 6,
+        "scored": 67,
+        "generic_leak": 0
+      }
+    }
+  },
+  "products": [
+    {
+      "id": "bsip1_7296073733324",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UFL56_Z_P_7296073733324_1.png",
+      "score": 86,
+      "grade": "A",
+      "insightLine": "100% גרגרי חומוס — רכיב יחיד",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 351.0,
+          "protein": 22.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": 9.2,
+          "sodium": 23.0
+        },
+        "ingredients": "100% חומוס עלול להכיל גלוטן חיטה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 22 גרם ל-100 גרם",
+          "רשימת רכיבים נקייה — ללא תוספי מזון מזוהים"
+        ],
+        "limitingFactors": [],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073733331",
+      "name": "חומוס ענק",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UFS54_Z_P_7296073733331_1.png",
+      "score": 86,
+      "grade": "A",
+      "insightLine": "גרגרי חומוס ענק — ללא תוספות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 351.0,
+          "protein": 22.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": 9.2,
+          "sodium": 23.0
+        },
+        "ingredients": "100% חומוס עלול להכיל גלוטן חיטה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 22 גרם ל-100 גרם",
+          "רשימת רכיבים נקייה — ללא תוספי מזון מזוהים"
+        ],
+        "limitingFactors": [],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073005889",
+      "name": "חומוס לבן ענק שופרסל",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KDE64_Z_P_7296073005889_1.png",
+      "score": 85,
+      "grade": "A",
+      "insightLine": "גרגרי חומוס לבן גדולים — ללא תוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 339.0,
+          "protein": 19.3,
+          "sugar": null,
+          "fat": null,
+          "fiber": 17.4,
+          "sodium": 24.0
+        },
+        "ingredients": "גרגרי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 19.3 גרם ל-100 גרם",
+          "סיבים תזונתיים — 17.4 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "סוכר מצוין ברשימת הרכיבים"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073006015",
+      "name": "חומוס גדול שופרסל",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KIA46_Z_P_7296073006015_1.png",
+      "score": 85,
+      "grade": "A",
+      "insightLine": "גרגרי חומוס גדולים — ללא תוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 339.0,
+          "protein": 19.3,
+          "sugar": null,
+          "fat": null,
+          "fiber": 17.4,
+          "sodium": 24.0
+        },
+        "ingredients": "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 19.3 גרם ל-100 גרם",
+          "סיבים תזונתיים — 17.4 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "סוכר מצוין ברשימת הרכיבים"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_3643820",
+      "name": "חומוס ענק",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HFX26_Z_P_3643820_1.png",
+      "score": 85,
+      "grade": "A",
+      "insightLine": "גרגרי חומוס ענק — רכיב יחיד",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 17.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 17.0
+        },
+        "ingredients": "חומוס ענק עלול להכיל גלוטן חיטה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 17.2 גרם ל-100 גרם",
+          "רשימת רכיבים נקייה — ללא תוספי מזון מזוהים"
+        ],
+        "limitingFactors": [],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_6666307",
+      "name": "סלט חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GJK34_Z_P_6666307_1.png",
+      "score": 80,
+      "grade": "A",
+      "insightLine": "גרגירי חומוס, טחינה ותבלינים — רשימת רכיבים קצרה עם חומר משמר אחד",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 257.0,
+          "protein": 18.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 480.0
+        },
+        "ingredients": "גרגירי חומוס,טחינה שומשומין,מים,תבלינים,חומר משמר .E202",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 18.2 גרם ל-100 גרם",
+          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725404",
+      "name": "חומוס מסעדות",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMV56_Z_P_7296073725404_1.png",
+      "score": 76,
+      "grade": "B",
+      "insightLine": "34% חומוס, 31% טחינה גולמית — חומר משמר ותוספים נוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 264.0,
+          "protein": 10.1,
+          "sugar": null,
+          "fat": null,
+          "fiber": 3.0,
+          "sodium": 231.0
+        },
+        "ingredients": "חומוס מבושל (34%) (מים, חומוס, מווסת חומציות (סודיום ביקרבונט)), מים, טחינה גולמית (31%), מווסת חומציות (חומצה ציטרית), מלח,  שום מ יובש, חומר משמר (פוטסיום סורבט). מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 10.1 גרם ל-100 גרם",
+          "נתרן נמוך יחסית לקטגוריה — 231 מ\"ג ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_1990261",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDM28_Z_P_1990261_1.png",
+      "score": 73,
+      "grade": "B",
+      "insightLine": "חומוס — פירוט רכיבים לא זמין",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 16.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 12.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 16.6 גרם ל-100 גרם",
+          "נתרן נמוך יחסית לקטגוריה — 12 מ\"ג ל-100 גרם"
+        ],
+        "limitingFactors": [],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח.",
+          "פירוט הרכיבים המלא לא היה זמין במקור הנתונים."
+        ],
+        "caveats": [
+          "הערכת עיבוד חלקית"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_3643714",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HBV28_Z_P_3643714_1.png",
+      "score": 73,
+      "grade": "B",
+      "insightLine": "חומוס — פירוט רכיבים לא זמין",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 16.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 12.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 16.6 גרם ל-100 גרם",
+          "נתרן נמוך יחסית לקטגוריה — 12 מ\"ג ל-100 גרם"
+        ],
+        "limitingFactors": [],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח.",
+          "פירוט הרכיבים המלא לא היה זמין במקור הנתונים."
+        ],
+        "caveats": [
+          "הערכת עיבוד חלקית"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7296073725565",
+      "name": "חומוס אסלי",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ITA64_Z_P_7296073725565_1.png",
+      "score": 71,
+      "grade": "B",
+      "insightLine": "חומוס אסלי עם טחינה גולמית — חומר משמר ותוספים נוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 287.0,
+          "protein": 7.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": 4.0,
+          "sodium": 362.0
+        },
+        "ingredients": "חומוס מבושל (50%) (מים, חומוס, מווסת חומציות ( סודיום ביקרבונט)), מים, טחינה גולמית (15%), שמן סויה מזוכך, מלח, מווסת חומציות (חומצה  ציטרית), שום מיובש, חומר משמר (פוטסיום סורבט). מכיל סויה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.7 גרם ל-100 גרם",
+          "סיבים תזונתיים — 4 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725589",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ITY70_Z_P_7296073725589_1.png",
+      "score": 71,
+      "grade": "B",
+      "insightLine": "חומוס עם טחינה גולמית — חומר משמר ותוספים נוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 287.0,
+          "protein": 7.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": 4.0,
+          "sodium": 362.0
+        },
+        "ingredients": "חומוס מבושל (50%) (מים, חומוס, מווסת חומציות ( סודיום ביקרבונט)), מים, טחינה גולמית (15%), שמן סויה מזוכך, מלח, מווסת חומציות (חומצה  ציטרית), שום מיובש, חומר משמר (פוטסיום סורבט). מכיל סויה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.7 גרם ל-100 גרם",
+          "סיבים תזונתיים — 4 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725381",
+      "name": "חומוס אבו גוש",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILY60_Z_P_7296073725381_1.png",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "53% חומוס, 11% טחינה ושמן זית — מכיל עמילן ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 274.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": 4.2,
+          "sodium": 328.0
+        },
+        "ingredients": "חומוס מבושל (53% ) (מים, חומוס, מווסת חומציות (סודיום ביקרבונט)), מים, טחינה גולמית (11%), שמן סויה מזוכך, שמן זית כתית מעולה, עמילן , מווסת חומציות (חומצה ציטרית), מלח, שום מיובש, חומר משמר (פוסטיום סורבט), פטרוזיליה מיובשת. מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7 גרם ל-100 גרם",
+          "סיבים תזונתיים — 4.2 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290110579319",
+      "name": "חומוס גלילי",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OMI54_Z_P_7290110579319_1.png",
+      "score": 69,
+      "grade": "B",
+      "insightLine": "חומוס גלילי עם טחינה גולמית ותבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 204.0,
+          "protein": 8.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 380.0
+        },
+        "ingredients": "חומוס מבושל 55% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתיה)), מים, טחינה גולמית 20% (שומשום), מלח, מווסת חומציות (חומצת  לימון), תערובת תיבול, חומר משמר (פוטסיום סורבט), שום. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.6 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290110557478",
+      "name": "חומוס גלילי",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IEH56_Z_P_7290110557478_1.png",
+      "score": 69,
+      "grade": "B",
+      "insightLine": "חומוס גלילי עם טחינה גולמית — עם חומר משמר ומווסת חומציות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 204.0,
+          "protein": 8.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 380.0
+        },
+        "ingredients": "חומוס מבושל 55% [מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה)], מים, טחינה גולמית 20% (שומשום), מלח, מווסת חומציות (חומצת  לימון), תערובת תיבול, חומר משמר (פוטסיום סורבט), שום. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.6 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725374",
+      "name": "סלט חומוס עם טחינה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILR62_Z_P_7296073725374_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "סלט חומוס עם תוספת טחינה — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 285.0,
+          "protein": 7.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": 3.7,
+          "sodium": 365.0
+        },
+        "ingredients": "חומוס מבושל (46%) (מים, חומוס, מווסת חומציות (סודיום ביקרבונט)), מים, טחינה גולמית (17%), שמן סויה מזוכך, מלח, מווסת חומציות (חומצה ציטרית), שום מיובש, חומר משמר (פוטסיום סורבט), מייצב (גואר גאם), פטרוזיליה מיובשת. מכיל סויה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.8 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_3727667",
+      "name": "חומוס מסעדה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BGU38_Z_P_3727667_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "69% חומוס, 15% טחינה גולמית ושום — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 185.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 69% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתיה)), טחינה גולמית 15%(מכיל שומשום), מים, חומצת מאכל(חומצת לימון ), מלח שולחן, חומר משמר(פוטסיום סורבט), שום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_5174551",
+      "name": "חומוס יום יום",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JQE28_Z_P_5174551_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "61% חומוס, 15.5% טחינה גולמית — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 186.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 393.0
+        },
+        "ingredients": "חומוס מבושל 61% ( מים, חומוס, מווסת חומציות(סודיום ביקרבונט= סודה לשתייה), מים, טחינה גולמית 15.5% (שומשום), מלח, מווסת חומציות (חומ צת לימון), תערובת תיבול, חומר משמר (פוטסיום סורבט), שום. מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290105964564",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZXT58_Z_P_7290105964564_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "חומוס עם טחינה גולמית — עם חומר משמר ומווסת חומציות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 186.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 393.0
+        },
+        "ingredients": "חומוס מבושל 61%(מים, חומוס, מווסת חומציות (סודיום ביקרבונט = סודה לשתיה) מים , טחינה גולמית 15.5% (שומשום), מלח, מווסת חומציות (חומצ ת לימון), תערובת  תיבול, חומר משמר (פוטסיום סורבט),שום. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106576513",
+      "name": "חומוס מסעדה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VEG52_Z_P_7290106576513_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "חומוס מסעדה עם טחינה גולמית ושום — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 185.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 69% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתיה)), טחינה גולמית 15%(מכיל שומשום), מים, חומצת מאכל(חומצת לימון ), מלח שולחן, חומר משמר(פוטסיום סורבט), שום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290110564360",
+      "name": "חומוס עשיר ב40% טחינה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SIZ44_Z_P_7290110564360_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "חומוס עם 40% טחינה מוצהרת על האריזה — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 311.0,
+          "protein": 11.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "טחינה גולמית 40% (שומשום), מים, חומוס מבושל n26% [מים, חומוס, מווסת חומציות (סודיום ביקרבונט=nסודה לשתייה)], מלח, מווסת חומציות (ח ומצת לימון), nתערובת תיבול, חומר משמר (פוטסיום סורבט), שום. n*עשיר בטחינה בהשוואה לחומוס אחלה. מכיל שומשום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 11 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290119387434",
+      "name": "חומוס ישראלי",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SFZ58_Z_P_7290119387434_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "חומוס ישראלי קלאסי עם טחינה — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 178.0,
+          "protein": 7.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 390.0
+        },
+        "ingredients": "חומוס* מבושל 64% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתיה)), מים, טחינה גולמית 14% (שומשום), מלח, מווסת חומציות (חומצ ת לימון), תערובת תיבול, חומר משמר (פוטסיום סורבט). *100% חימצה (חומוס) משדות ישראליים. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.7 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_2987963",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZAQ44_Z_P_2987963_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "61% חומוס, 15.5% טחינה גולמית ושום — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 186.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 393.0
+        },
+        "ingredients": "חומוס מבושל 61% [מים,חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה)], מים, טחינה גולמית 15.5% (שומשום), מלח, מווסת חומציות (חומצ ת לימון), תערובת nתיבול, חומר משמר (פוטסיום סורבט), שום. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725367",
+      "name": "סלט חומוס+מסבחה",
+      "_product_type": "masabacha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILK64_Z_P_7296073725367_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "שילוב חומוס ומסבחה עם גרגרים שלמים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 288.0,
+          "protein": 7.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": 4.0,
+          "sodium": 373.0
+        },
+        "ingredients": "חומוס מבושל (49%) (מים, חומוס, מווסת חומציות (סודיום ביקרבונט)), מים, טחינה גולמית (15%), שמן סויה מזוכך, פלפל ירוק, מלח, מווסת חומצ יות (חומצה ציטרית), שום מיובש,  חומר משמר (פוטסיום סורבט), תבלינים, מייצב (גואר גאם), תמצית פפריקה חריפה. מכיל סויה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.5 גרם ל-100 גרם",
+          "סיבים תזונתיים — 4 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_8645935",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WUY40_Z_P_8645935_1.png",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "חומוס עם טחינה גולמית — עם חומר משמר ומווסת חומציות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 186.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 393.0
+        },
+        "ingredients": "חומוס מבושל 61% [מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה)], מים, טחינה גולמית 15.5% (שומשום), מלח, מווסת חומציות (חומ צת לימון), תערובת nתיבול, חומר משמר (פוטסיום סורבט), שום. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106573642",
+      "name": "חומוס צנובר צבר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QXV52_Z_P_7290106573642_1.png",
+      "score": 67,
+      "grade": "B",
+      "insightLine": "67% חומוס, 15% טחינה ו-1.8% צנובר — חומר משמר אחד",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 204.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 67%, טחינה גולמית 15%  (מכיל שומשום), מים, צנובר 1.8%, שמנים צמחיים (קנולה,זית) מלח שולחן, חומצת מאכל (חומצת לימון), תבל ינים, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8 גרם ל-100 גרם",
+          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290104061431",
+      "name": "חומוס עם צנובר אחלה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SQI38_Z_P_7290104061431_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "חומוס עם טחינה גולמית ותוספת צנובר — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 203.0,
+          "protein": 8.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 396.0
+        },
+        "ingredients": "חומוס מבושל 59% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתיה)), מים, טחינה גולמית 15% (שומשום), צנובר 1.8%, תערובת תיבול, מלח, מווסת חומציות (חומצת לימון), שמן קנולה, שמן זית כתית מעולה, חומר משמר (פוטסיום סורבט). מכיל שומשום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.2 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106576537",
+      "name": "חומוס מסעדה צבר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VFE58_Z_P_7290106576537_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "חומוס מסעדה מקו צבר — עם טחינה גולמית ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 185.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 69% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתיה)), טחינה גולמית 15% (מכיל שומשום), מים,שמן סויה, חומצת מאכל(ח ומצת לימון), מלח שולחן, חומר משמר(פוטסיום סורבט), שום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290119373710",
+      "name": "חומוס מועשר 40% עם חריף",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XYD50_Z_P_7290119373710_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "חומוס עם תוספת טחינה מועשרת (40% לפי האריזה) וחריף — עם מייצב ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 294.0,
+          "protein": 10.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 375.0
+        },
+        "ingredients": "טחינה גולמית 37% (שומשום), מים, חומוס מבושל 25% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתייה)), פלפל אדום יבש 1.4%, מלח,  שמן קנולה, תערובת תיבול, מווסת חומציות (חומצת לימון), חומר משמר (פוטסיום סורבט), פטרוזיליה יבשה, שום, מייצב (קסנטן גאם- בתוספת החרי ף). אחוז הטחינה הגולמית בחומוס ללא התוספת 40%. *עשיר בטחינה בהשוואה לחומוס אחלה. מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 10.6 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_467320",
+      "name": "מלך החומוס אבו מרוואן",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OGV22_Z_P_467320_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "51% חומוס, 26% טחינה גולמית — יחס טחינה גבוה",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 265.0,
+          "protein": 8.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 360.0
+        },
+        "ingredients": "חומוס מבושל 51% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), טחינה גולמית 26% (מכיל שומשום), מים, שמן קנולה, מלח שולחן , חומצת מאכל (חומצת לימון), חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290104061424",
+      "name": "חומוס עם זעתר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SQB40_Z_P_7290104061424_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "60% חומוס, 15% טחינה ושמן זית — בתוספת זעתר ועם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 191.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 392.0
+        },
+        "ingredients": "חומוס מבושל 60% (מים, חומוס, מסוות חומציות (סודיום ביקרבונט= סודה לשתיה)), מים, טחינה גולמית 15.3% (שומשום), מלח, תערובת תיבול , מוו סת חומציות  (חומצת לימון), תערובת זעתר 0.6% (שומשום, זעתר), שמן קנולה, שמן זית כתית מעולה, חומר משמר (פוטסיום סורבט). מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם",
+          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290119374892",
+      "name": "חומוס עם מלא מטבוחה חריף",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZRP62_Z_P_7290119374892_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "חומוס עם תוספת מטבוחה חריפה — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 148.0,
+          "protein": 5.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 388.0
+        },
+        "ingredients": "חומוס מבושל 42% ( מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה), מים, עגבניות מרוסקות 18%, טחינה גולמית 9.1% (שומשום), פלפ ל 3.7%, רכז עגבניות 3.2%, שמן קנולה, מלח, סוכר לבן, פלפל חלפניו חריף מיובש 0.6%, מווסת חומציות (חומצת לימון), פלפל מיובש 0.4%, תערוב ת תיבול, שום, חומר משמר (פוטסיום סורבט). מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290122780314",
+      "name": "חומוס אבו מרוואן26%טחינה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/THJ46_Z_P_7290122780314_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "חומוס עם 26% טחינה גולמית מוצהרת — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 275.0,
+          "protein": 8.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 51% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט - סודה לשתייה)), טחינה גולמית 26% (מכיל שומשום), מים, שמן קנולה, מלח שול חן, חומצת מאכל (חומצת לימון), חומר משמר (פוטסיום סורבט). מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106573598",
+      "name": "חומוס לבנוני צבר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QWD62_Z_P_7290106573598_1.png",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "69% חומוס, 15% טחינה ושמן זית — בתוספת שום, פטרוזיליה ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 265.0,
+          "protein": 8.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 69% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), טחינה גולמית 15% (מכיל שומשום), מים, שום 1% (שום גבישי, א בקת שום), שמנים צמחיים (קנולה, זית), מלח שולחן, חומצת מאכל (חומצת לימון), תבלינים, חומר משמר (פוטסיום סורבט), פטרוזיליה יבשה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290115202434",
+      "name": "חומוס עם זעתר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PKL40_Z_P_7290115202434_1.png",
+      "score": 65,
+      "grade": "C",
+      "insightLine": "חומוס עם תבלינים וזעתר — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 206.0,
+          "protein": 7.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 67% (מים, חומוס, מווסת חומציות  (סודיום ביקרבונט- סודה לשתייה)), טחינה 15% (מכיל שומשום), מים, שמנים צמחיים (קנולה, זית) , מלח שולחן, חומצת מאכל (חומצת לימון), שומשום (0.5%) חומר משמר (פוטסיום סורבט), זעתר 0.17%, שום, סומק",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.8 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_467153",
+      "name": "מלך החומוס סמיר הגדול",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OAK26_Z_P_467153_1.png",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "90% בסיס חומוס עם תוספת טחינה גולמית — חומוס 48% מהמוצר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 296.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "סלט חומוס 90% (חומוס מבושל 48% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), טחינה גולמית (מכיל שומשום), מים, שמן סויה,  מלח שולחן, חומצת מאכל (חומצת לימון), חומר משמר (פוטסיום סורבט)), טחינה גולמית",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106573819",
+      "name": "חומוס אבו גוש+צנובר+חריף",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/REQ58_Z_P_7290106573819_1.png",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "חומוס עם גרגרים שלמים, צנובר ופלפלים — מוצר מרובה רכיבים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 193.0,
+          "protein": 7.3,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 55% ( מים, חומוס, מווסת חומציות(סודיום ביקרבונט-סודה לשתיה)),טחינה גולמית 12% (מכיל שומשום),גרגרי חומוס מבושלים 10% (מים , חומוס),מים, פלפלים ירוקים 6%, שמנים צמחיים (קנולה, שמן זית), צנובר (1%), מלח שולחן,חומצת מאכל(חומצת לימון), תבלינים,  חומר משמר(פו טסיום סורבט), פלפל שאטה.מכיל 8% סלט פלפלים כתוספת",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.3 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725398",
+      "name": "חומוס מסבחה",
+      "_product_type": "masabacha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMP68_Z_P_7296073725398_1.png",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "חומוס מסבחה עם גרגרים שלמים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 256.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": 4.2,
+          "sodium": 328.0
+        },
+        "ingredients": "חומוס מבושל (44%) (מים, חומוס, מווסת חומציות (סודיום ביקרבונט)), מים, שמן סויה מזוכך, טחינה גולמית (10%) ,פלפל ירוק (8%), מלח, עמילן , שום מיובש, מווסת חומציות (חומצה ציטרית), פטרוזיליה מיובשת, חומר משמר (פוטסיום סורבט), מייצב (גואר גאם), תמצית פפריקה חריפה. מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7 גרם ל-100 גרם",
+          "סיבים תזונתיים — 4.2 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",
+          "רשימת רכיבים ארוכה ומרובת מרכיבים"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290104061417",
+      "name": "חומוס עם טחינה אחלה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SPU42_Z_P_7290104061417_1.png",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "56% חומוס, 17% טחינה — עם מייצבים ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 191.0,
+          "protein": 7.9,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 375.0
+        },
+        "ingredients": "חומוס מבושל 56% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתייה), מים, טחינה גולמית 16.9% (שומשום), תערובת תיבול, מלח, מווס ת חומציות (חומצת לימון), חומר משמר (פוטסיום סורבט), שום, מייצבים (גואר גאם, קסנטן גאם), פטרוזיליה, שמן קנולה. מכיל שומשום עלול להכיל צנוברים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290104721533",
+      "name": "סלט פלפלים קלויים",
+      "_product_type": "pepper_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HCW44_Z_P_7290104721533_1.png",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "פלפלים קלויים עם תבלינים — עם חומר משמר",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 32.0,
+          "protein": 0.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 397.0
+        },
+        "ingredients": "פלפלים קלויים 92%, חומץ טבעי ,מים, מלח, תערובת תיבול, שום, חומר משמר (פוטסיום סורבט), מייצב (קסנטן גאם). עלול להכיל ביצים",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס פלפלים קלויים"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": [
+          "סיווג חלקי — מוצג כממרח"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7290106573628",
+      "name": "חומוס עם טחינה צבר",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QXH56_Z_P_7290106573628_1.png",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "62% חומוס, 17% טחינה — עם מייצבים ותוספת 10% סלט טחינה",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 196.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 62% (מים, חומוס, מווסת חומציות(סודיום ביקרבונט-סודה לשתיה)), טחינה גולמית 17% (מכיל שומשום), מים, שמנים צמחיים, מלח שולח ן,  תבלינים, חומצת מאכל(חומצת לימון),חומר משמר (פוטסיום סורבט), שמן קנולה, מייצבים (קסנטן גאם, גואר גאם). מכיל 10% סלט טחינה כתוספת",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 8 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290104061448",
+      "name": "חומוס עם חריף אחלה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SQZ46_Z_P_7290104061448_1.png",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "57% חומוס, 14% טחינה ופלפל חריף יבש — עם מייצב ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 187.0,
+          "protein": 7.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 379.0
+        },
+        "ingredients": "חומוס מבושל 57% (מים,חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתיה )) מים, טחינה גולמית 14% (שומשום), תערובת תיבול, פלפל אדום יב ש 1.1%, מלח, שמן קנולה, מווסת חומציות (חומצת לימון), חומר משמר (פוטסיום סורבט), שום, פטרוזיליה יבשה, מייצב (קסנטן גאם- בתוספת החריף) . מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.7 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290112968685",
+      "name": "חומוס גרגרים בתטבילה",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NBA64_Z_P_7290112968685_1.png",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "גרגרי חומוס שלמים בתטבילה — עם חומר משמר ומווסת חומציות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 269.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 380.0
+        },
+        "ingredients": "חומוס מבושל 34% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), מים, טחינה גולמית 20% (מכיל שומשום), שמנים צמחיים (סויה, קנולה), פלפלים חריפים 7%, גרגירי חומוס מבושלים 5% (מים, חומוס), מיץ לימון מרוכז 1%, מלח שולחן, שבבי שום 0.6%, חומצת מאכל (חומצת לימו ן), חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290115202687",
+      "name": "חומוס עם חריף",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PUE50_Z_P_7290115202687_1.png",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "חומוס עם חריף — עם מייצב, חומר משמר ומווסת חומציות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 208.0,
+          "protein": 7.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חומוס מבושל 63% (מים, חומוס, מווסת חומציות  (סודיום ביקרבונט- סודה לשתייה)), טחינה גולמית 14% (מכיל שומשום), מים, פלפלים אדומים 4%, פלפלים חריפים 1.6%, תבלינים, מלח שולחן, חומצת מאכל (חומצת לימון), שמן קנולה, חומר משמר (פוטסיום סורבט), פלפל חריף מיובש 0.18%, מייצב  (קסנטן גאם). מכיל 8% סלט פלפלים חריף כתוספת",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תכולת חלבון משמעותית לקטגוריה — 7.7 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290107958639",
+      "name": "מטבוחה חריפה אש",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LSY66_Z_P_7290107958639_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "מטבוחה חריפה עם עגבניות ופלפל — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 106.0,
+          "protein": 2.2,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 398.0
+        },
+        "ingredients": "עגבניות מרוסקות 62%, רכז עגבניות 13%, פלפל 13%, שמן קנולה, פלפל חלפניו חריף מיובש 2%, פלפל מיובש 1.3%, מלח, תערובת תיבול, סוכר לבן, מווסת חומציות (חומצת לימון), שום, חומר משמר (פוטסיום סורבט). עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290010931330",
+      "name": "סלט מטבוחה",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AFJ38_Z_P_7290010931330_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "63% עגבניות מרוסקות ו-13% פלפל — מכיל סוכר לבן",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 101.0,
+          "protein": 2.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 398.0
+        },
+        "ingredients": "עגבניות מרוסקות 63%, רכז עגבניות 13%, פלפל 13%, שמן קנולה, פלפל מיובש 1.4%, מלח, סוכר לבן, תערובת תיבול, מווסת חומציות (חומצת לימון) , שום, חומר משמר (פוטסיום סורבט). עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_8644112",
+      "name": "סלט מטבוחה יום יום",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCV26_Z_P_8644112_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "מטבוחה יומיומית עם עגבניות ופלפל — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 101.0,
+          "protein": 2.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 398.0
+        },
+        "ingredients": "עגבניות מרוסקות 63%, רכז עגבניות 13%, פלפל 13%, שמן קנולה, פלפל מיובש 1.4%, מלח, סוכר לבן, תערובת תיבול, מווסת חומציות (חומצת לימון) , שום, חומר משמר (פוטסיום סורבט). עלול להכיל שומשום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725497",
+      "name": "סלט חצילים על האש",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IQK68_Z_P_7296073725497_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "סלט חצילים על האש עם שמן ותבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 129.0,
+          "protein": 0.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": 1.2,
+          "sodium": 390.0
+        },
+        "ingredients": "חצילים (73%) (חציל מבושל, חציל קלוי), שמן סויה מזוכך, מים, מלח, סוכר, חומץ, שום מיובש, מווסת חומציות (חומצה ציטרית), חומר משמר (פוטס יום סורבט). מכיל סויה עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290011800642",
+      "name": "סלט מטבוחה מרוקאית",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MEL40_Z_P_7290011800642_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "75% רכיבי עגבניות, פלפל אדום — מכיל סוכר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 74.0,
+          "protein": 1.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "רכיבי עגבניות 75% (קוביות עגבניות במיץ, עגבניות מרוסקות), פלפל אדום קלוי, שמן קנולה, תבלינים, סוכר, מלח שולחן, חומר משמר (פוטסיום סו רבט), חומצת מאכל (חומצת לימון).t",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_6666444",
+      "name": "סלט מטבוחה",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GOR36_Z_P_6666444_1.png",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "ירקות, שמן ותבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 100.0,
+          "protein": 2.1,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 623.0
+        },
+        "ingredients": "ירקות,שמן,תבלינים,חומר משמר .E202",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106520905",
+      "name": "סלט טורקי",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QXM46_Z_P_7290106520905_1.png",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "סלט ירקות בסגנון טורקי עם תבלינים ומשמר",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 107.0,
+          "protein": 1.3,
+          "sugar": null,
+          "fat": null,
+          "fiber": 2.2,
+          "sodium": 452.0
+        },
+        "ingredients": "פלפל 27%, בצל 19%, רכז עגבניות 16%, עגבניות מרוסקות 12%, מים, שמן קנולה, חומץ טבעי, סוכר לבן, תערובת תיבול, מלח, פטרוזיליה יבשה 0.5% , שום, מווסת חומציות (חומצת לימון), חומר משמר (פוטסיום סורבט). עלול להכיל ביצים",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": [
+          "סיווג חלקי — מוצג כממרח"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7290015858175",
+      "name": "ממרח פלפלים קלויים",
+      "_product_type": "pepper_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILK58_Z_P_7290015858175_1.png",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "70% פלפל קלוי ושום — עם מייצב ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 164.0,
+          "protein": 2.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": 1.5,
+          "sodium": 257.0
+        },
+        "ingredients": "פלפל קלוי (70%), שום, שמן קנולה, מלח, תבלינים, חומר מייצב (קסנטאן גאם), מווסת חומציות (מלח לימון), חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס פלפלים קלויים"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725640",
+      "name": "מעדן חצילים",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IVX58_Z_P_7296073725640_1.png",
+      "score": 58,
+      "grade": "C",
+      "insightLine": "מעדן חצילים עם שמן ותבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 174.0,
+          "protein": 1.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": 0.8,
+          "sodium": 394.0
+        },
+        "ingredients": "חציל מטוגן (40%) (חציל, שמן סויה מזוכך), מים, רסק עגבניות (18%), בצל מטוגן (8%) (בצל, שמן סויה מזוכך), סוכר, מלח, חומרי טעם וריח, שמ ן סויה מזוכך, חומר משמר (פוטסיום סורבט), מייצב (גואר גאם). מכיל סויה עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290115207484",
+      "name": "חציל על האש",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WWR50_Z_P_7290115207484_1.png",
+      "score": 58,
+      "grade": "C",
+      "insightLine": "חציל על האש עם שמן ותבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 113.0,
+          "protein": 0.8,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חציל קלוי 72%, מים, שמן קנולה, סוכר, מלח שולחן, שום, מייצב (קסנטן גאם), חומר משמר (פוטסיום סורבט), חומצת מאכל (חומצת לימון)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290119374885",
+      "name": "חומוס עם חציל פיקנטי",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZRI64_Z_P_7290119374885_1.png",
+      "score": 58,
+      "grade": "C",
+      "insightLine": "חומוס עם חציל חריף — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 170.0,
+          "protein": 5.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 370.0
+        },
+        "ingredients": "חומוס מבושל 42% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה)), מים, חציל מטוגן 13% (חציל, שמן קנולה), טחינה גולמית 9.1%,  (שומשום), עגבניות מרוסקות 4.7%, רכז עגבניות 4.6%, פלפלים 1.7%, סוכר לבן, מלח, בצל מיובש, מווסת חומציות (חומצת לימון), תערובת תיבול,  חומר משמר (פוטסיום סורבט), חומץ טבעי. מכיל שומשום עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290105366023",
+      "name": "סלט חציל בטעם כבד",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YMY44_Z_P_7290105366023_1.png",
+      "score": 56,
+      "grade": "C",
+      "insightLine": "סלט חציל עם טעם כבד — עם מספר תוספים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 206.0,
+          "protein": 2.5,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 385.0
+        },
+        "ingredients": "חציל מטוגן 42% (חציל, שמן קנולה), חומוס מבושל (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתייה), בצל מטוגן (בצל, שמן קנולה),  מים, סוכר לבן, מלח, מווסת חומציות (חומצת לימון), תערובת תיבול, חומר משמר (פוטסיום סורבט), מייצב (קסנטן גאם). עלול להכיל שומשום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_3989096",
+      "name": "סלט חציל פיקנטי",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XZT44_Z_P_3989096_1.png",
+      "score": 54,
+      "grade": "C",
+      "insightLine": "סלט חציל חריף עם תבלינים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 155.0,
+          "protein": 1.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 334.0
+        },
+        "ingredients": "חציל מטוגן 36%, (חציל, שמן קנולה), מים, עגבניות מרוסקת 13.5%, רכז עגבניות 13%, פלפלים 4.7%, סוכר לבן, בצל מיובש, מלח, תערובת תיבול, חומץ טבעי, חומר משמר (פוטסיום סורבט), שום, מווסת חומציות (חומצת לימון). עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725510",
+      "name": "סלט מטבוחה פיקנטי",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IQX54_Z_P_7296073725510_1.png",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "מטבוחה פיקנטית עם עגבניות ופלפלים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 94.0,
+          "protein": 1.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": 1.9,
+          "sodium": 852.0
+        },
+        "ingredients": "עגבניות (55%), פלפל ירוק (19%), רסק עגבניות (12%), שמן סויה מזוכך, פלפל חריף ירוק (3%), מלח, סוכר, מים, שום מיובש, חומרי טעם וריח (ת מצית פפריקה מתוקה, תמצית פפריקה חריפה), חומר משמר (פוטסיום סורבט). מכיל סויה",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073725633",
+      "name": "מטבוחה פיקנטית",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IVQ60_Z_P_7296073725633_1.png",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "מטבוחה פיקנטית עם עגבניות ופלפלים — עם חומר משמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 94.0,
+          "protein": 1.6,
+          "sugar": null,
+          "fat": null,
+          "fiber": 1.9,
+          "sodium": 852.0
+        },
+        "ingredients": "עגבניות (55%), פלפל ירוק (19%), רסק עגבניות (12%), שמן סויה מזוכך, פלפל חריף ירוק (3%), מלח, סוכר, מים, שום מיובש, חומרי טעם וריח (ת מצית פפריקה מתוקה, תמצית פפריקה חריפה), חומר משמר (פוטסיום סורבט). מכיל סויה עלול להכיל ביצים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290010154265",
+      "name": "פלפל צ'ומה",
+      "_product_type": "pepper_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/USG42_Z_P_7290010154265_1.png",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "ממרח חריף מבוסס שמן עם 30% פלפל ו-20% שום — מכיל סוכר לבן",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 599.0,
+          "protein": 6.3,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 864.0
+        },
+        "ingredients": "שמן קנולה מזוכך, פלפל אדום חריף יבש (30%), שום (20%), מלח שולחן, סוכר לבן, תבלינים, מווסת חומציות (מלח לימון), חומר משמר (סודיום בנז ואט) עלול להכיל עקבות של שומשום",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס פלפלים קלויים"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290106577480",
+      "name": "חציל על האש בטחינה",
+      "_product_type": "eggplant_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WPL56_Z_P_7290106577480_1.png",
+      "score": 50,
+      "grade": "C",
+      "insightLine": "44% חציל על האש, 14% טחינה — עם מייצבים, עמילן מעובד ומשמר",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 222.0,
+          "protein": 4.0,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "חציל קלוי 44%, מים, טחינה גולמית 14%(מכיל שומשום), שמן קנולה, חומוס מבושל (מים, חומוס, מווסת חומציות(סודיום ביקרבונט-סודה לשתיה)),סו כר, מלח שולחן, שבבי שום 0.6%, חומצת מאכל(חומצת לימון), חומר משמר(פוטסיום סורבט), מייצבים(גואר גאם, קסנטאן גאם),פטרוזיליה יבשה, עמילן  תירס מעובד (E-1422)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס חציל קלוי כרכיב מרכזי"
+        ],
+        "limitingFactors": [
+          "רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",
+          "רשימת רכיבים ארוכה ומרובת מרכיבים"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7290111563492",
+      "name": "מטבוחה חריפה",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OJD50_Z_P_7290111563492_1.png",
+      "score": 50,
+      "grade": "D",
+      "insightLine": "מטבוחה חריפה — ציון מבוסס על נתונים חלקיים",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 79.0,
+          "protein": 1.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "רכיבי עגבניות 67% (קוביות עגבניות במיץ, עגבניות מרוסקות, רכז עגבניות), פלפלים, מים, שמן קנולה,סוכר, מלח שולחן, שבבי שום 0.7%, פלפל ש אטה 0.7%, תבלינים, עמילן תירס מעובד (E1422), חומר משמר (פוטסיום סורבט), מייצב (קסנטן גאם), חומצת מאכל (חומצת לימון)",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": [
+          "ציון מבוסס על נתונים חלקיים"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7290106577572",
+      "name": "מטבוחה אמיתית",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WSZ58_Z_P_7290106577572_1.png",
+      "score": 49,
+      "grade": "D",
+      "insightLine": "מטבוחה עם תוספות שונות — ציון מבוסס על נתונים חלקיים",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 79.0,
+          "protein": 1.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 395.0
+        },
+        "ingredients": "רכיבי עגבניות 69% (קוביות עגבניות במיץ, עגבניות מרוסקות, רכז עגבניות), פלפלים 23%, שמן קנולה, סוכר, מים, מלח שולחן, שבבי שום 0.7%, פ פריקה מתוקה, עמילן תירס מעובד (E1422),חומר משמר (פוטסיום סורבט), מייצב (קסנטן גאם), חומצת מאכל (חומצת לימון)",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס ירקות מבושל — עגבניות ופלפל"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — חומר משמר ותוסף נוסף מעבר לבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": [
+          "ציון מבוסס על נתונים חלקיים"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7296073451969",
+      "name": "ממרח פלפלים קלויים",
+      "_product_type": "pepper_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UAC68_Z_P_7296073451969_1.png",
+      "score": 48,
+      "grade": "D",
+      "insightLine": "67% פלפל קלוי עם סירופ סילאן ותוספת סוכר — רשימת רכיבים ארוכה",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 164.0,
+          "protein": 1.7,
+          "sugar": null,
+          "fat": null,
+          "fiber": 3.6,
+          "sodium": 852.0
+        },
+        "ingredients": "פלפל אדום קלוי (67%), שמן קנולה מזוכך, סירופ סילאן 60% תמרים בתוספת סוכר, פפריקה מתוקה, מים, שום מיובש, סיבים תזונתיים, מלח שולחן, מ עכב חמצון (סודיום לקטאט), מווסתי חומציות (חומצה לקטית, חומצת לימון), מייצב (קסנטן גאם), פלפל שחור טחון, אגוז מוסקט, משמר (חומצה סורב ית), מיץ לימון. עלול להכיל אגוזי מלך",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס פלפלים קלויים"
+        ],
+        "limitingFactors": [
+          "מספר תוספי מזון ברשימה — מעבר לרכיבי הבסיס",
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_6724786",
+      "name": "ממרח פלפלים קלויים",
+      "_product_type": "pepper_spread",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWP40_Z_P_6724786_1.png",
+      "score": 43,
+      "grade": "D",
+      "insightLine": "54% פלפל אדום, עגבניות מיובשות וסילאן — 13 רכיבים כולל מייצב",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 332.0,
+          "protein": 1.1,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": 380.0
+        },
+        "ingredients": "פלפל אדום (54%), עגבניות מיובשות, שמן קנולה, סילאן טבעי, חומץ 5% טבעי, מים, שום, טימין, סיבי הדרים, מלח שולחן, פפריקה מתוקה, פלפל שח ור, מייצב: טבעי: קסנתן גאם",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס פלפלים קלויים"
+        ],
+        "limitingFactors": [
+          "סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",
+          "רשימת רכיבים ארוכה ומרובת מרכיבים"
+        ],
+        "unknowns": [
+          "ערכי השומן לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "caveats": []
+      }
+    },
+    {
+      "id": "bsip1_7296073733317",
+      "name": "חומוס",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://media.shufersal.co.il/product_images/default/Z_P_default.png",
+      "score": null,
+      "grade": null,
+      "insightLine": "מידע תזונתי לא מספיק לניתוח",
+      "confidence": "insufficient",
+      "expansion": {
+        "nutrition": null,
+        "ingredients": null,
+        "confidenceLabel": "נתונים לא זמינים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [],
+        "unknowns": [],
+        "caveats": [
+          "הערכת עיבוד חלקית",
+          "ציון לא זמין"
+        ]
+      }
+    },
+    {
+      "id": "bsip1_7296073733348",
+      "name": "חומוס ענק",
+      "_product_type": "hummus_spread",
+      "imageUrl": "https://media.shufersal.co.il/product_images/default/Z_P_default.png",
+      "score": null,
+      "grade": null,
+      "insightLine": "מידע תזונתי לא מספיק לניתוח",
+      "confidence": "insufficient",
+      "expansion": {
+        "nutrition": null,
+        "ingredients": null,
+        "confidenceLabel": "נתונים לא זמינים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [],
+        "unknowns": [],
+        "caveats": [
+          "הערכת עיבוד חלקית",
+          "ציון לא זמין"
+        ]
+      }
+    }
+  ]
+}

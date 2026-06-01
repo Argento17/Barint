@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bari · השוואת חומוס וממרחים — איטרציה v-next-2</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--canvas);color:var(--fg1);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  .shell{max-width:920px;margin:0 auto;padding:0 18px 90px}
+  /* top chrome */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(247,247,242,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--hairline)}
+  .topbar-in{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px;padding:0 18px}
+  .logo{display:inline-flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.065em;font-size:1.4rem}
+  .back{font-size:13px;font-weight:600;color:var(--fg2);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+  .back:hover{color:var(--fg1)}
+  /* compact category header */
+  .chead{padding:26px 0 6px}
+  .eyebrow{font-family:var(--font-mono);font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:rgba(31,143,106,.85)}
+  h1.title{font-weight:800;letter-spacing:-.045em;font-size:clamp(1.6rem,4.2vw,2.2rem);line-height:1.1;margin:11px 0 0;text-wrap:balance}
+  .sub{color:var(--fg2);font-size:.96rem;line-height:1.6;margin:11px 0 0;max-width:62ch;text-wrap:pretty}
+  .sub b{color:var(--fg1)}
+  .headgrid{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;margin-top:15px}
+  .statline{display:flex;flex-wrap:wrap;gap:5px 13px;font-family:var(--font-mono);font-size:.72rem;color:var(--fg3);font-variant-numeric:tabular-nums}
+  .statline b{color:var(--fg1)}
+  /* distribution sparkline */
+  .dist{display:flex;flex-direction:column;gap:5px}
+  .distbars{display:flex;align-items:flex-end;gap:3px;height:34px}
+  .distbars i{width:11px;background:#DBE5DF;border-radius:2px 2px 0 0;display:block}
+  .distbars i.hot{background:var(--bari-green)}
+  .distlab{font-family:var(--font-mono);font-size:.58rem;color:var(--fg4);letter-spacing:.04em}
+  .note{display:flex;gap:9px;align-items:flex-start;font-size:.8rem;line-height:1.45;margin-top:14px;background:#FBF8EE;border:1px solid #E7DFC4;color:#7a6a3a;border-radius:10px;padding:9px 12px}
+  .note .ni{flex:none;width:16px;height:16px;margin-top:1px}
+  /* sticky control bar */
+  .ctrl{position:sticky;top:58px;z-index:30;background:rgba(247,247,242,.93);backdrop-filter:blur(10px);padding:11px 0 9px;border-bottom:1px solid var(--hairline);margin-top:18px}
+  .segs{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+  .segs::-webkit-scrollbar{display:none}
+  .seg{flex:none;border:1px solid var(--hairline);background:var(--surface);border-radius:9999px;padding:6px 13px;font-size:.8rem;font-weight:600;color:var(--fg2);cursor:pointer;transition:all .25s;white-space:nowrap}
+  .seg:hover{border-color:var(--green-ring)}
+  .seg.on{background:var(--bari-green);border-color:var(--bari-green);color:#F7F7F2}
+  .seg .c{font-family:var(--font-mono);font-size:.68rem;opacity:.7;margin-inline-start:5px}
+  .ctrl-row2{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px}
+  .count{font-family:var(--font-mono);font-size:.74rem;color:var(--fg3);font-variant-numeric:tabular-nums}
+  .count b{color:var(--fg1)}
+  .density{display:flex;gap:5px;align-items:center}
+  .dlabel{font-size:.7rem;color:var(--fg3);font-weight:600}
+  .dbtn{border:1px solid var(--hairline);background:var(--surface);border-radius:8px;padding:5px 10px;font-size:.72rem;font-weight:600;color:var(--fg2);cursor:pointer;transition:all .2s}
+  .dbtn.on{background:#EEF4F1;border-color:var(--green-ring);color:var(--bari-green-deep)}
+  /* layout with side rail */
+  .body{display:flex;gap:16px;align-items:flex-start;margin-top:16px}
+  .rail{position:sticky;top:118px;flex:none;width:74px;display:flex;flex-direction:column;gap:4px;padding-top:2px}
+  @media(max-width:680px){ .rail{display:none} }
+  .railband{text-align:start;border:1px solid var(--hairline-soft);background:var(--surface);border-radius:9px;padding:7px 9px;cursor:pointer;transition:all .2s}
+  .railband:hover{border-color:var(--green-ring)}
+  .railband.on{background:#EEF4F1;border-color:var(--green-ring)}
+  .railband .rb{font-family:var(--font-mono);font-weight:700;font-size:.72rem;color:var(--fg1)}
+  .railband .rc{font-family:var(--font-mono);font-size:.6rem;color:var(--fg3)}
+  .railband .bar{height:4px;border-radius:2px;margin-top:5px;background:#E0E0DA;overflow:hidden}
+  .railband .bar i{display:block;height:100%}
+  .listcol{flex:1;min-width:0}
+  /* rows container */
+  .rows{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--hairline);border-radius:14px;overflow:hidden}
+  .secrow{font-family:var(--font-mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--fg3);background:#FAFAF8;padding:7px 14px;border-top:1px solid var(--hairline-faint)}
+  .secrow:first-child{border-top:none}
+  .row{border-top:1px solid var(--hairline-faint)}
+  /* COMPACT row (default) */
+  .rmain{display:grid;grid-template-columns:20px 44px 1fr 188px auto;gap:11px;align-items:center;padding:9px 14px;cursor:pointer}
+  .comfortable .rmain{grid-template-columns:22px 60px 1fr 200px auto;gap:13px;padding:14px 15px;align-items:start}
+  .rank{font-family:var(--font-mono);font-size:.7rem;font-weight:700;color:var(--fg3);text-align:center;font-variant-numeric:tabular-nums}
+  .thumb{width:44px;height:44px;border-radius:11px;border:1px solid var(--hairline-soft);background:linear-gradient(180deg,#fff,#F7F7F2);overflow:hidden}
+  .comfortable .thumb{width:60px;height:60px;border-radius:14px}
+  .thumb img{width:100%;height:100%;object-fit:contain;padding:4px}
+  .thumb.none{background:linear-gradient(180deg,#111318,#2D3138);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.46rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .rbody{min-width:0}
+  .rname{font-weight:800;letter-spacing:-.015em;font-size:.94rem;line-height:1.2;color:var(--fg1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comfortable .rname{white-space:normal;font-size:1rem}
+  .leadpill{font-family:var(--font-mono);font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--bari-green);background:#E8F5EF;border:1px solid var(--grade-a-border);border-radius:4px;padding:1px 5px;margin-inline-start:7px;vertical-align:middle}
+  .snap{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+  .tg{font-size:.7rem;font-weight:600;border-radius:5px;padding:2px 7px;border:1px solid var(--hairline-soft);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .tg.pos{color:var(--bari-green-deep);background:#E8F5EF;border-color:var(--grade-a-border)}
+  .tg.neg{color:#3a3f44;background:#F1F1EC}
+  /* aligned metric block — column-aligned across rows for differentiation */
+  .mblock{display:flex;flex-direction:column;gap:5px}
+  .mrow{display:grid;grid-template-columns:42px 1fr 40px;gap:7px;align-items:center}
+  .mk{font-size:.62rem;color:var(--fg3);font-weight:600;white-space:nowrap}
+  .mbar{height:6px;border-radius:3px;background:#ECECE6;overflow:hidden}
+  .mbar i{display:block;height:100%;border-radius:3px;background:#AEB8B0}
+  .mbar i.good{background:var(--bari-green)}
+  .mbar i.poor{background:#D8A53A}
+  .mv{font-family:var(--font-mono);font-size:.66rem;font-weight:700;color:var(--fg1);text-align:start;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mv.good{color:var(--bari-green-deep)} .mv.poor{color:#8F6600}
+  .pips{display:inline-flex;gap:3px;align-items:center}
+  .pips s{width:6px;height:6px;border-radius:9999px;background:#D8DAD3;display:block}
+  .pips s.f{background:#AEB8B0} .pips s.fp{background:#D8A53A} .pips s.fg{background:var(--bari-green)}
+  .mblock.empty{font-size:.66rem;color:var(--fg4);align-self:center}
+  /* right cluster */
+  .rright{display:flex;flex-direction:column;align-items:center;gap:5px;flex:none}
+  .chip{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:46px;padding:5px 8px;border-radius:11px;border:1px solid}
+  .chip .g{font-weight:800;font-size:1.3rem;line-height:1}
+  .chip .s{font-family:var(--font-mono);font-size:.58rem;font-weight:700;margin-top:2px;color:var(--fg3);font-variant-numeric:tabular-nums}
+  .chip.none{border-style:dashed;border-color:var(--hairline);background:var(--chip-bg)}
+  .chip.none .g{font-size:1rem;color:var(--fg3)}
+  .conf{font-family:var(--font-mono);font-size:.56rem;font-weight:700;display:inline-flex;gap:4px;align-items:center;white-space:nowrap}
+  .conf .d{width:6px;height:6px;border-radius:9999px;flex:none}
+  .conf.full{color:var(--bari-green-deep)} .conf.full .d{background:var(--bari-green)}
+  .conf.partial{color:#8F6600} .conf.partial .d{background:#C9A227}
+  .conf.insuf{color:var(--fg3)} .conf.insuf .d{background:#C9C9C2}
+  .chev{transition:transform .28s;color:var(--fg3)}
+  .chev.open{transform:rotate(180deg)}
+  /* responsive: stack metric block under body on narrow */
+  @media(max-width:680px){
+    .rmain{grid-template-columns:18px 40px 1fr auto;gap:10px}
+    .mblock{grid-column:2 / -1;margin-top:6px}
+    .mrow{grid-template-columns:42px 1fr 40px}
+  }
+  /* expansion (kept from v-next) */
+  .exp{overflow:hidden;transition:max-height .3s ease,opacity .25s ease}
+  .exp-in{padding:0 14px 15px;margin-inline-start:31px}
+  @media(max-width:680px){.exp-in{margin-inline-start:0}}
+  .panel{border:1px solid var(--hairline);background:#fff;border-radius:13px;padding:14px}
+  .ptop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--hairline-faint);margin-bottom:12px;flex-wrap:wrap}
+  .src{font-size:.72rem;color:var(--fg3)}
+  .pcols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:620px){.pcols{grid-template-columns:1fr;gap:13px}}
+  .h4{font-size:.72rem;font-weight:800;margin:0 0 6px;letter-spacing:.01em}
+  .h4.g{color:var(--bari-green-deep)}
+  .li{font-size:.82rem;color:var(--fg2);line-height:1.45;padding:3px 0;display:flex;gap:8px;align-items:flex-start}
+  .li .dot{flex:none;width:5px;height:5px;border-radius:9999px;background:var(--fg3);margin-top:7px}
+  .li.pos .dot{background:var(--bari-green)}
+  .limrow{display:flex;flex-direction:column;gap:3px;padding:4px 0}
+  .limtop{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--fg2);line-height:1.4}
+  .limtop .dot{flex:none;width:5px;height:5px;border-radius:9999px;background:#C9A227}
+  .mag{height:5px;background:#ECECE6;border-radius:3px;overflow:hidden;margin-inline-start:13px;width:58%}
+  .mag i{display:block;height:100%;background:#C9A227;border-radius:3px}
+  .ngrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .nc{border:1px solid var(--hairline-soft);border-radius:8px;padding:6px 9px;display:flex;justify-content:space-between;align-items:baseline}
+  .nc span{font-size:.72rem;color:var(--fg3)}
+  .nc b{font-size:.84rem;color:var(--fg1);font-variant-numeric:tabular-nums}
+  .unk{font-size:.78rem;color:var(--fg3);line-height:1.45;display:flex;gap:7px;align-items:flex-start;padding:3px 0}
+  .unk .dot{flex:none;width:5px;height:5px;border-radius:9999px;background:#C9C9C2;margin-top:7px}
+  .ingr{font-size:.76rem;color:var(--fg2);line-height:1.5;margin-top:9px;padding-top:10px;border-top:1px solid var(--hairline-faint)}
+  .ingr .lbl{font-weight:700;color:var(--fg1)}
+  .methodology{margin-top:26px;background:var(--surface);border:1px solid var(--hairline-soft);border-radius:14px;padding:15px 18px;font-size:.82rem;line-height:1.6;color:var(--fg2)}
+  .methodology .mh{font-family:var(--font-mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--fg3);margin-bottom:8px}
+  .methodology p{margin:0 0 7px}
+  /* annotation layer */
+  .annot-btn{position:fixed;bottom:18px;inset-inline-start:18px;z-index:60;background:var(--fg1);color:#fff;border:none;border-radius:9999px;padding:10px 16px;font-family:var(--font-mono);font-size:.7rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow-lift);letter-spacing:.04em}
+  .annot-btn .dotg{display:inline-block;width:8px;height:8px;border-radius:9999px;background:var(--bari-green-bright);margin-inline-end:7px}
+  .legend{position:fixed;bottom:62px;inset-inline-start:18px;z-index:60;width:320px;max-width:calc(100vw - 36px);background:#fff;border:1px solid var(--hairline);border-radius:14px;box-shadow:var(--shadow-lift);padding:15px 16px;display:none;max-height:70vh;overflow:auto}
+  body.annot .legend{display:block}
+  .legend h3{margin:0 0 4px;font-size:.86rem;font-weight:800}
+  .legend p{margin:0 0 11px;font-size:.72rem;color:var(--fg3);line-height:1.4}
+  .legend ul{margin:0;padding:0}
+  .legend li{font-size:.74rem;color:var(--fg2);line-height:1.4;margin-bottom:8px;list-style:none;display:flex;gap:8px}
+  .legend .lk{font-family:var(--font-mono);font-weight:700;color:var(--bari-green);flex:none}
+  .legend .kept{color:var(--fg4)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const CLD = "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/";
+const img = (c) => c ? CLD + c + ".png" : null;
+
+// Real live data, in corpus order (score-desc, as served by bari.digital). NOT re-sorted in UI.
+const PRODUCTS = [
+  { id:1, name:"הקיסר חומוס ענק", sub:"hummus", score:80, grade:"A", conf:"partial", img:"QXJ64_Z_P_7290018359686_1",
+    pos:["חלבון 7 ג'","סיבים 6 ג'"], neg:["מבנה רכיבים מעובד"], protein:7, add:null, base:null, kcal:137, sodium:150,
+    posL:["תכולת חלבון משמעותית לקטגוריה — 7 גרם ל-100 גרם","סיבים תזונתיים — 6 גרם ל-100 גרם"],
+    lim:[["מבנה רכיבים מעובד — מעבר לממרח בסיסי",0.4]],
+    unk:["פירוט הרכיבים המלא לא אומת — לא ניתן לאשר נוכחות או היעדר חומר משמר."], ingr:"גרגרי חומוס ענק בשימור" },
+  { id:2, name:"סלט חומוס", sub:"hummus", score:80, grade:"A", conf:"full", img:"GJK34_Z_P_6666307_1",
+    pos:["חלבון 18.2 ג'","תוסף יחיד"], neg:["חומר משמר אחד"], protein:18.2, add:1, base:null,
+    posL:["חלבון גבוה לקטגוריה — 18.2 גרם ל-100 גרם","רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"],
+    lim:[["חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",0.3]], unk:[], ingr:"גרגירי חומוס, טחינה ותבלינים" },
+  { id:3, name:"חומוס שלם יכין", sub:"hummus", score:80, grade:"B", conf:"partial", img:"VHL24_Z_P_208428_1",
+    pos:["חלבון 7.5 ג'","סיבים 4.1 ג'"], neg:["מבנה רכיבים מעובד"], protein:7.5, add:null, base:null,
+    posL:["תכולת חלבון משמעותית לקטגוריה — 7.5 גרם ל-100 גרם","סיבים תזונתיים — 4.1 גרם ל-100 גרם"],
+    lim:[["מבנה רכיבים מעובד — מעבר לממרח בסיסי",0.4]],
+    unk:["פירוט הרכיבים המלא לא אומת — לא ניתן לאשר נוכחות או היעדר חומר משמר."], ingr:"גרגרי חומוס שלמים בשימור" },
+  { id:4, name:"חומוס מסעדות", sub:"hummus", score:76, grade:"B", conf:"full", img:"IMV56_Z_P_7296073725404_1",
+    pos:["חלבון 10.1 ג'","נתרן נמוך"], neg:["2 תוספי מזון"], protein:10.1, add:2, base:34, sodium:231,
+    posL:["חלבון משמעותי לקטגוריה — 10.1 גרם ל-100 גרם","נתרן נמוך יחסית לקטגוריה — 231 מ\"ג ל-100 גרם"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55]], unk:[], ingr:"34% חומוס, 31% טחינה גולמית" },
+  { id:5, name:"חומוס אבו גוש", sub:"hummus", score:70, grade:"B", conf:"full", img:"ILY60_Z_P_7296073725381_1",
+    pos:["חלבון 7 ג'","סיבים 4.2 ג'"], neg:["עמילן + משמר"], protein:7, add:2, base:53, sodium:328,
+    posL:["חלבון משמעותי לקטגוריה — 7 גרם ל-100 גרם","סיבים תזונתיים — 4.2 גרם ל-100 גרם"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.6]], unk:[], ingr:"53% חומוס, 11% טחינה ושמן זית — מכיל עמילן ומשמר" },
+  { id:6, name:"חומוס יום יום", sub:"hummus", score:68, grade:"B", conf:"full", img:"JQE28_Z_P_5174551_1",
+    pos:["חלבון 7.9 ג'"], neg:["2 תוספי מזון"], protein:7.9, add:2, base:61,
+    posL:["חלבון משמעותי לקטגוריה — 7.9 גרם ל-100 גרם"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55]], unk:[], ingr:"61% חומוס, 15.5% טחינה גולמית — עם חומר משמר" },
+  { id:7, name:"חומוס ישראלי", sub:"hummus", score:68, grade:"B", conf:"full", img:"SFZ58_Z_P_7290119387434_1",
+    pos:["חלבון 7.7 ג'"], neg:["2 תוספי מזון"], protein:7.7, add:2, base:null,
+    posL:["חלבון משמעותי לקטגוריה — 7.7 גרם ל-100 גרם"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55]], unk:[], ingr:"חומוס ישראלי קלאסי עם טחינה — עם חומר משמר" },
+  { id:8, name:"חומוס צנובר צבר", sub:"hummus", score:67, grade:"B", conf:"full", img:"QXV52_Z_P_7290106573642_1",
+    pos:["חלבון 8 ג'","תוסף יחיד"], neg:["חומר משמר אחד"], protein:8, add:1, base:67,
+    posL:["חלבון משמעותי לקטגוריה — 8 גרם ל-100 גרם","רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"],
+    lim:[["חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",0.3]], unk:[], ingr:"67% חומוס, 15% טחינה ו-1.8% צנובר — חומר משמר אחד" },
+  { id:9, name:"חומוס עם זעתר", sub:"hummus", score:65, grade:"B", conf:"full", img:"SQB40_Z_P_7290104061424_1",
+    pos:["חלבון 7.9 ג'","תוסף יחיד"], neg:["חומר משמר אחד"], protein:7.9, add:1, base:60,
+    posL:["חלבון משמעותי לקטגוריה — 7.9 גרם ל-100 גרם","רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"],
+    lim:[["חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",0.3]], unk:[], ingr:"60% חומוס, 15% טחינה ושמן זית — בתוספת זעתר" },
+  { id:10, name:"מלך החומוס אבו מרוואן", sub:"hummus", score:65, grade:"B", conf:"full", img:"OGV22_Z_P_467320_1",
+    pos:["חלבון 8.5 ג'"], neg:["2 תוספי מזון"], protein:8.5, add:2, base:51,
+    posL:["חלבון משמעותי לקטגוריה — 8.5 גרם ל-100 גרם"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55]], unk:[], ingr:"51% חומוס, 26% טחינה גולמית — יחס טחינה גבוה" },
+  { id:11, name:"חומוס עם טחינה אחלה", sub:"hummus", score:64, grade:"C", conf:"full", img:"SPU42_Z_P_7290104061417_1",
+    pos:["חלבון 7.9 ג'"], neg:["תוספים ארוכה"], protein:7.9, add:3, base:56,
+    posL:["חלבון משמעותי לקטגוריה — 7.9 גרם ל-100 גרם"],
+    lim:[["רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",0.75]], unk:[], ingr:"56% חומוס, 17% טחינה — עם מייצבים ומשמר" },
+  { id:12, name:"חומוס עם חריף אחלה", sub:"hummus", score:63, grade:"C", conf:"full", img:"SQZ46_Z_P_7290104061448_1",
+    pos:["חלבון 7.7 ג'"], neg:["תוספים ארוכה"], protein:7.7, add:3, base:57,
+    posL:["חלבון משמעותי לקטגוריה — 7.7 גרם ל-100 גרם"],
+    lim:[["רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",0.75]], unk:[], ingr:"57% חומוס, 14% טחינה ופלפל חריף — עם מייצב ומשמר" },
+  { id:13, name:"מטבוחה חריפה אש", sub:"matbucha", score:62, grade:"C", conf:"full", img:"LSY66_Z_P_7290107958639_1",
+    pos:["בסיס ירקות"], neg:["סוכר מוסף"], protein:null, add:2, base:null,
+    posL:["בסיס ירקות מבושל — עגבניות ופלפל"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55],["סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",0.6]], unk:[], ingr:"מטבוחה חריפה עם עגבניות ופלפל — עם חומר משמר" },
+  { id:14, name:"סלט מטבוחה מרוקאית", sub:"matbucha", score:62, grade:"C", conf:"full", img:"MEL40_Z_P_7290011800642_1",
+    pos:["בסיס ירקות 75%"], neg:["סוכר מוסף"], protein:null, add:1, base:75,
+    posL:["בסיס ירקות מבושל — עגבניות ופלפל"],
+    lim:[["חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט",0.3],["סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",0.6]], unk:[], ingr:"75% רכיבי עגבניות, פלפל אדום — מכיל סוכר" },
+  { id:15, name:"סלט חצילים על האש", sub:"eggplant", score:62, grade:"C", conf:"full", img:"IQK68_Z_P_7296073725497_1",
+    pos:["בסיס חציל"], neg:["סוכר מוסף"], protein:null, add:2, base:null,
+    posL:["בסיס חציל קלוי כרכיב מרכזי"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55],["סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",0.6]], unk:[], ingr:"סלט חצילים על האש עם שמן ותבלינים — עם חומר משמר" },
+  { id:16, name:"ממרח פלפלים קלויים", sub:"pepper", score:60, grade:"C", conf:"full", img:"ILK58_Z_P_7290015858175_1",
+    pos:["בסיס פלפל 70%"], neg:["תוספים ארוכה"], protein:2, add:3, base:70, kcal:164, sodium:257,
+    posL:["בסיס פלפלים קלויים"],
+    lim:[["רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",0.75]], unk:[], ingr:"70% פלפל קלוי ושום — עם מייצב ומשמר" },
+  { id:17, name:"מעדן חצילים", sub:"eggplant", score:58, grade:"C", conf:"full", img:"IVX58_Z_P_7296073725640_1",
+    pos:["בסיס חציל 40%"], neg:["סוכר מוסף"], protein:1.8, add:2, base:40,
+    posL:["בסיס חציל קלוי כרכיב מרכזי"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55],["סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",0.6]], unk:[], ingr:"מעדן חצילים עם שמן ותבלינים — עם חומר משמר" },
+  { id:18, name:"חציל על האש", sub:"eggplant", score:58, grade:"C", conf:"full", img:"WWR50_Z_P_7290115207484_1",
+    pos:["בסיס חציל 72%"], neg:["סוכר מוסף"], protein:null, add:2, base:72,
+    posL:["בסיס חציל קלוי כרכיב מרכזי"],
+    lim:[["מספר תוספי מזון — חומר משמר ותוסף נוסף מעבר לבסיס",0.55],["סוכר מצוין ברשימת הרכיבים — תוספת סוכר על בסיס ירקות",0.6]], unk:[], ingr:"חציל על האש עם שמן ותבלינים — עם חומר משמר" },
+  { id:19, name:"פלפל צ'ומה", sub:"pepper", score:51, grade:"C", conf:"full", img:"USG42_Z_P_7290010154265_1",
+    pos:["בסיס פלפל ושום"], neg:["סוכר + תוספים"], protein:null, add:3, base:30,
+    posL:["בסיס פלפל ושום"],
+    lim:[["רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",0.75],["סוכר מצוין ברשימת הרכיבים — סוכר לבן",0.6]], unk:[], ingr:"ממרח חריף מבוסס שמן, 30% פלפל ו-20% שום — מכיל סוכר לבן" },
+  { id:20, name:"מטבוחה חריפה", sub:"matbucha", score:50, grade:"D", conf:"partial", img:"OJD50_Z_P_7290111563492_1",
+    pos:["בסיס ירקות"], neg:["תוספים + סוכר"], protein:null, add:3, base:null,
+    posL:["בסיס ירקות מבושל"],
+    lim:[["רשימת תוספים ארוכה — מספר תוספי מזון מעבר לבסיס",0.8],["סוכר מצוין ברשימת הרכיבים",0.6]],
+    unk:["חלק מערכי התזונה לא היו זמינים — הציון מבוסס על נתונים חלקיים."], ingr:"מטבוחה חריפה — ציון מבוסס על נתונים חלקיים" },
+  { id:21, name:"ממרח פלפלים קלויים", sub:"pepper", score:48, grade:"D", conf:"full", img:"UAC68_Z_P_7296073451969_1",
+    pos:["בסיס פלפל 67%"], neg:["רשימה ארוכה"], protein:null, add:4, base:67,
+    posL:["בסיס פלפלים קלויים"],
+    lim:[["רשימת רכיבים ארוכה — מעל 10 רכיבים",0.9],["סוכר מצוין ברשימת הרכיבים — סילאן + סוכר",0.7]], unk:[], ingr:"67% פלפל קלוי עם סירופ סילאן ותוספת סוכר — רשימת רכיבים ארוכה" },
+  { id:22, name:"ממרח פלפלים קלויים", sub:"pepper", score:43, grade:"D", conf:"full", img:"OWP40_Z_P_6724786_1",
+    pos:["בסיס פלפל 54%"], neg:["13 רכיבים"], protein:null, add:5, base:54,
+    posL:["בסיס פלפל אדום"],
+    lim:[["13 רכיבים — רשימה ארוכה מאוד",1.0],["סוכר מצוין ברשימת הרכיבים — סילאן",0.7]], unk:[], ingr:"54% פלפל אדום, עגבניות מיובשות וסילאן — 13 רכיבים כולל מייצב" },
+  { id:23, name:"חומוס", sub:"hummus", score:null, grade:null, conf:"insuf", img:null,
+    pos:[], neg:[], protein:null, add:null, base:null, posL:[], lim:[], unk:[], ingr:"מידע תזונתי לא מספיק לניתוח" },
+  { id:24, name:"חומוס ענק", sub:"hummus", score:null, grade:null, conf:"insuf", img:null,
+    pos:[], neg:[], protein:null, add:null, base:null, posL:[], lim:[], unk:[], ingr:"מידע תזונתי לא מספיק לניתוח" },
+];
+
+const SUBS = [
+  { id:"all", label:"הכל" }, { id:"hummus", label:"חומוס" }, { id:"matbucha", label:"מטבוחה" },
+  { id:"eggplant", label:"חצילים" }, { id:"pepper", label:"פלפלים" },
+];
+const BANDS = [
+  { id:"b80", label:"80+", min:80, max:200 }, { id:"b70", label:"70–79", min:70, max:79 },
+  { id:"b60", label:"60–69", min:60, max:69 }, { id:"b50", label:"50–59", min:50, max:59 },
+  { id:"b40", label:"מתחת ל-50", min:0, max:49 },
+];
+const GRADE_LABEL = { A:"מצוין", B:"טוב", C:"בינוני", D:"חלש", E:"נמוך" };
+const GRADE_C = {
+  A:{t:"var(--grade-a-text)",b:"var(--grade-a-border)",bg:"var(--grade-a-bg)"},
+  B:{t:"var(--grade-b-text)",b:"var(--grade-b-border)",bg:"var(--grade-b-bg)"},
+  C:{t:"var(--grade-c-text)",b:"var(--grade-c-border)",bg:"var(--grade-c-bg)"},
+  D:{t:"var(--grade-d-text)",b:"var(--grade-d-border)",bg:"var(--grade-d-bg)"},
+};
+const CONF_LABEL = { full:"נתונים מלאים", partial:"נתונים חלקיים", insuf:"אין מספיק נתונים" };
+const SUB_LABEL = { hummus:"חומוס", matbucha:"מטבוחה", eggplant:"חצילים", pepper:"פלפלים" };
+
+function Chevron({open}){ return (
+  <svg className={"chev"+(open?" open":"")} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+); }
+function Mark(){ return (
+  <svg viewBox="0 0 48 48" width="23" height="23" fill="none"><g stroke="#111318" strokeLinecap="round" strokeWidth="3.2"><path d="M16 16h16"/><path d="M12 24h24"/><path d="M16 32h16"/></g><g fill="#111318"><circle cx="24" cy="8" r="2.7"/><circle cx="16" cy="16" r="2.35"/><circle cx="32" cy="16" r="2.35"/><circle cx="12" cy="24" r="2.35"/><circle cx="36" cy="24" r="2.35"/><circle cx="16" cy="32" r="2.35"/><circle cx="32" cy="32" r="2.35"/><circle cx="24" cy="40" r="2.7"/></g><g fill="#2FAE82"><circle cx="24" cy="16" r="2.45"/><circle cx="24" cy="24" r="2.65"/><circle cx="24" cy="32" r="2.45"/></g><path d="M24 16v16" stroke="#2FAE82" strokeLinecap="round" strokeWidth="3.2"/></svg>
+); }
+function Conf({c}){ return <span className={"conf "+c}><span className="d"/>{CONF_LABEL[c]}</span>; }
+function ScoreChip({p}){
+  if(p.score==null) return <div className="chip none"><span className="g">—</span><span className="s">אין ציון</span></div>;
+  const c = GRADE_C[p.grade];
+  return <div className="chip" style={{borderColor:c.b,background:c.bg}}><span className="g" style={{color:c.t}}>{p.grade}</span><span className="s">{p.score} · {GRADE_LABEL[p.grade]}</span></div>;
+}
+
+// aligned metric block — common scales so outliers pop without reordering
+function MetricBlock({p}){
+  if(p.protein==null && p.add==null && p.base==null)
+    return <div className="mblock empty">אין נתוני תווית</div>;
+  const proteinClass = p.protein==null?"":p.protein>=10?"good":p.protein<5?"poor":"";
+  const addClass = p.add==null?"":p.add<=1?"good":p.add>=4?"poor":"";
+  return (
+    <div className="mblock">
+      <div className="mrow">
+        <span className="mk">חלבון</span>
+        <span className="mbar"><i className={proteinClass} style={{width:(p.protein==null?0:Math.min(100,(p.protein/20)*100))+"%"}}/></span>
+        <span className={"mv "+proteinClass}>{p.protein==null?"—":p.protein+"ג'"}</span>
+      </div>
+      <div className="mrow">
+        <span className="mk">תוספים</span>
+        <span className="pips" title={p.add==null?"לא ידוע":p.add+" תוספי מזון"}>
+          {[0,1,2,3,4].map(i=>{
+            let cl=""; if(p.add!=null && i<p.add){ cl = p.add<=1?"fg":p.add>=4?"fp":"f"; }
+            return <s key={i} className={cl}/>;
+          })}
+        </span>
+        <span className={"mv "+addClass}>{p.add==null?"—":p.add}</span>
+      </div>
+      <div className="mrow">
+        <span className="mk">בסיס</span>
+        <span className="mbar"><i style={{width:(p.base==null?0:p.base)+"%"}}/></span>
+        <span className="mv">{p.base==null?"—":p.base+"%"}</span>
+      </div>
+    </div>
+  );
+}
+
+function Panel({p}){
+  return (
+    <div className="panel">
+      <div className="ptop"><Conf c={p.conf}/><span className="src">מקור: תווית שופרסל · מאי 2026</span></div>
+      {p.score==null ? (
+        <p className="li" style={{color:"var(--fg3)"}}>אין מספיק נתוני תווית לניתוח מהימן — המוצר אינו מקבל ציון. הנתונים יושלמו בסבב הבא.</p>
+      ) : (
+      <div className="pcols">
+        <div>
+          {p.posL.length>0 && <React.Fragment>
+            <p className="h4 g">מה עובד לטובת המוצר?</p>
+            {p.posL.map((x,i)=><div key={i} className="li pos"><span className="dot"/>{x}</div>)}
+          </React.Fragment>}
+          {p.lim.length>0 && <React.Fragment>
+            <p className="h4" style={{marginTop:13}}>מה מגביל את הציון?</p>
+            {p.lim.map((x,i)=>(
+              <div key={i} className="limrow"><div className="limtop"><span className="dot"/>{x[0]}</div><div className="mag"><i style={{width:(x[1]*100)+"%"}}/></div></div>
+            ))}
+          </React.Fragment>}
+        </div>
+        <div>
+          <p className="h4">נתונים · ל-100 גרם</p>
+          <div className="ngrid">
+            {p.kcal!=null && <div className="nc"><span>אנרגיה</span><b>{p.kcal} ק"ל</b></div>}
+            {p.protein!=null && <div className="nc"><span>חלבון</span><b>{p.protein} ג'</b></div>}
+            {p.sodium!=null && <div className="nc"><span>נתרן</span><b>{p.sodium} מ"ג</b></div>}
+            {p.add!=null && <div className="nc"><span>תוספי מזון</span><b>{p.add}</b></div>}
+          </div>
+          {p.unk.length>0 && <React.Fragment>
+            <p className="h4" style={{marginTop:13}}>מה שלא ניתן לאמת</p>
+            {p.unk.map((x,i)=><div key={i} className="unk"><span className="dot"/>{x}</div>)}
+          </React.Fragment>}
+          <p className="ingr"><span className="lbl">בסיס: </span>{p.ingr}</p>
+        </div>
+      </div>
+      )}
+    </div>
+  );
+}
+
+function Row({p, rank, lead, open, onToggle, rowRef}){
+  const neg = p.neg && p.neg[0];
+  return (
+    <div className="row" ref={rowRef}>
+      <div className="rmain" onClick={onToggle}>
+        <span className="rank">{rank||"·"}</span>
+        {p.img ? <div className="thumb"><img src={img(p.img)} alt="" loading="lazy"/></div> : <div className="thumb none">Bari</div>}
+        <div className="rbody">
+          <div className="rname">{p.name}{lead && <span className="leadpill">מוביל</span>}</div>
+          <div className="snap">
+            {p.pos[0] && <span className="tg pos">+ {p.pos[0]}</span>}
+            {neg ? <span className="tg neg">− {neg}</span> : (p.score!=null && <span className="tg pos">ללא מגבלה מהותית</span>)}
+          </div>
+        </div>
+        <MetricBlock p={p}/>
+        <div className="rright">
+          <ScoreChip p={p}/>
+          {p.score!=null && <Conf c={p.conf}/>}
+          {p.score!=null && <Chevron open={open}/>}
+        </div>
+      </div>
+      <div className="exp" style={{maxHeight:open?1400:0, opacity:open?1:0}}>
+        <div className="exp-in"><Panel p={p}/></div>
+      </div>
+    </div>
+  );
+}
+
+function App(){
+  const [sub,setSub] = React.useState("all");
+  const [dense,setDense] = React.useState(true);
+  const [open,setOpen] = React.useState({});
+  const [activeBand,setActiveBand] = React.useState(null);
+  const rowRefs = React.useRef({});
+
+  const counts = React.useMemo(()=>{
+    const c = {all:0,hummus:0,matbucha:0,eggplant:0,pepper:0};
+    PRODUCTS.forEach(p=>{ c.all++; c[p.sub]++; });
+    return c;
+  },[]);
+
+  // corpus order preserved; filter narrows only
+  const list = PRODUCTS.filter(p=> sub==="all" || p.sub===sub);
+  const scored = list.filter(p=>p.score!=null);
+  const unavailable = list.filter(p=>p.score==null);
+
+  // band counts within current filter (contiguous in score-desc corpus order)
+  const bandData = BANDS.map(b=>({ ...b, count: scored.filter(p=>p.score>=b.min && p.score<=b.max).length }))
+                        .filter(b=>b.count>0);
+
+  const toggle = (id)=> setOpen(o=>({...o,[id]:!o[id]}));
+  const jump = (b)=>{
+    setActiveBand(b.id);
+    const first = scored.find(p=>p.score>=b.min && p.score<=b.max);
+    if(first && rowRefs.current[first.id]){
+      const y = rowRefs.current[first.id].getBoundingClientRect().top + window.scrollY - 124;
+      window.scrollTo({ top:y, behavior:"smooth" });
+    }
+  };
+
+  // section dividers by score band (corpus order already groups them contiguously)
+  let lastBand = null;
+  const leadId = scored.length>0 ? scored[0].id : null;
+
+  return (
+    <React.Fragment>
+      <div className="topbar"><div className="topbar-in">
+        <span className="logo"><Mark/>Bari</span>
+        <a className="back" href="#">חזרה להשוואות
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div></div>
+
+      <div className="shell">
+        <div className="chead">
+          <div className="eyebrow">מנוע השוואה · חומוס וממרחים</div>
+          <h1 className="title">חומוס וממרחים: מה באמת יש במדף?</h1>
+          <p className="sub">בדקנו 69 מוצרים בשופרסל לפי הרכב המוצר, רשימת הרכיבים ומבנה המוצר. הציון יחסי לקטגוריה — לא ציון בריאות מוחלט; <b>האות</b> היא הדירוג, <b>המספר</b> ציון 0–100.</p>
+          <div className="headgrid">
+            <div className="statline"><span><b>69</b> נבדקו</span><span><b>67</b> קיבלו ציון</span><span><b>63</b> בדף</span><span>עודכן השבוע</span></div>
+            <div className="dist">
+              <div className="distbars">
+                {[ [43,1],[48,1],[50,1],[51,1],[58,3],[60,2],[62,5],[63,2],[64,2],[65,4],[67,2],[68,4],[70,2],[76,1],[80,3] ].reduce((acc,[s,n])=>{
+                  const bucket = Math.floor((s-40)/8); acc[bucket]=(acc[bucket]||0)+n; return acc;
+                },[]).map((n,i)=>{
+                  const hot = i===2||i===3; // 56-71 cluster
+                  return <i key={i} className={hot?"hot":""} style={{height:(8+n*4)+"px"}} title={(40+i*8)+"–"+(47+i*8)+": "+n}/>;
+                })}
+              </div>
+              <div className="distlab">פיזור ציונים · רוב המוצרים מצטופפים ב-58–68</div>
+            </div>
+          </div>
+          <div className="note">
+            <svg className="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></svg>
+            בקטגוריה זו ערכי שומן אינם זמינים במקור הנתונים — לא נכללו בניתוח לאף מוצר.
+          </div>
+        </div>
+
+        <div className="ctrl">
+          <div className="segs">
+            {SUBS.map(s=>(
+              <button key={s.id} className={"seg"+(sub===s.id?" on":"")} onClick={()=>{setSub(s.id);setActiveBand(null);}}>
+                {s.label}<span className="c">{counts[s.id]}</span>
+              </button>
+            ))}
+          </div>
+          <div className="ctrl-row2">
+            <span className="count"><b>{scored.length}</b> מוצרים מדורגים{unavailable.length>0?` · ${unavailable.length} ללא ציון`:""} · ממוין לפי ציון Bari</span>
+            <div className="density">
+              <span className="dlabel">צפיפות</span>
+              <button className={"dbtn"+(dense?" on":"")} onClick={()=>setDense(true)}>קומפקטי</button>
+              <button className={"dbtn"+(!dense?" on":"")} onClick={()=>setDense(false)}>מרווח</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="body">
+          <div className="rail">
+            {bandData.map(b=>(
+              <button key={b.id} className={"railband"+(activeBand===b.id?" on":"")} onClick={()=>jump(b)}>
+                <div className="rb">{b.label}</div>
+                <div className="rc">{b.count} מוצרים</div>
+                <div className="bar"><i style={{width:Math.round(b.count/scored.length*100)+"%", background: b.min>=70?"var(--bari-green)": b.min>=60?"#9DBBA9": b.min>=50?"#D8C58A":"#D8A98A"}}/></div>
+              </button>
+            ))}
+          </div>
+
+          <div className="listcol">
+            <div className={"rows"+(dense?"":" comfortable")}>
+              {scored.map((p)=>{
+                const band = BANDS.find(b=>p.score>=b.min && p.score<=b.max);
+                const showDiv = band && band.id!==lastBand;
+                lastBand = band ? band.id : lastBand;
+                const idx = PRODUCTS.filter(x=>x.score!=null && (sub==="all"||x.sub===sub)).indexOf(p);
+                return (
+                  <React.Fragment key={p.id}>
+                    {showDiv && <div className="secrow">{band.label} · {bandData.find(b=>b.id===band.id).count} מוצרים</div>}
+                    <Row p={p} rank={idx+1} lead={p.id===leadId} open={!!open[p.id]} onToggle={()=>toggle(p.id)} rowRef={el=>rowRefs.current[p.id]=el}/>
+                  </React.Fragment>
+                );
+              })}
+              {unavailable.length>0 && <div className="secrow" style={{color:"var(--fg3)"}}>ללא ציון · נתונים חסרים</div>}
+              {unavailable.map(p=>(
+                <Row key={p.id} p={p} rank={null} lead={false} open={!!open[p.id]} onToggle={()=>toggle(p.id)} rowRef={el=>rowRefs.current[p.id]=el}/>
+              ))}
+            </div>
+
+            <div className="methodology">
+              <div className="mh">איך מחושב הציון</div>
+              <p>הציון משוקלל על סולם 0–100 לפי רמת עיבוד, נטל תוספי המזון והרכב הערכים התזונתיים. ההשוואה קטגורית בלבד — כל מוצר מוערך ביחס לממרחים בקטגוריה, בסדר הדירוג של Bari.</p>
+              <p>ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות במקור הנתונים. הדירוג נועד לעזור בהשוואה ואינו מהווה המלצה תזונתית אישית.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Annotations/>
+    </React.Fragment>
+  );
+}
+
+function Annotations(){
+  const [on,setOn] = React.useState(false);
+  React.useEffect(()=>{ document.body.classList.toggle("annot",on); },[on]);
+  return (
+    <React.Fragment>
+      <button className="annot-btn" onClick={()=>setOn(o=>!o)}><span className="dotg"/>{on?"הסתר החלטות עיצוב":"הצג החלטות עיצוב"}</button>
+      <div className="legend">
+        <h3>v-next-2 — פחות גלילה, יותר הבחנה</h3>
+        <p>כל מוצר נשאר גלוי בנפרד · סדר הדירוג של הקורפוס נשמר · ללא קיבוץ, ללא מיון חלופי, ללא הסתרה.</p>
+        <ul>
+          <li><span className="lk">1</span>שורות קומפקטיות (~חצי גובה) — חצי מהגלילה. החלף ל"מרווח" בכל רגע.</li>
+          <li><span className="lk">2</span>פס מדדים מיושר-עמודה (חלבון · תוספים · בסיס) בסולם משותף — מוצרים שקולים נראים שקולים, חריגים בולטים. כאן ההבחנה.</li>
+          <li><span className="lk">3</span>פס ניווט לפי טווח ציון (80+/70/60/50) — קופץ ללא שינוי סדר. הטווחים רציפים בסדר הקורפוס.</li>
+          <li><span className="lk">4</span>חוצצי-טווח דקים בתוך הרשימה לאוריינטציה — לא קיבוץ, לא קיפול.</li>
+          <li><span className="lk">5</span>היסטוגרמת פיזור בכותרת — מסבירה את הצפיפות מראש.</li>
+          <li><span className="lk">6</span>תג "מוביל" על מקום 1 בלבד (כבר ראשון בקורפוס — לא משנה סדר).</li>
+          <li className="kept">נשמר: כותרת קומפקטית · ביטחון מקודם · +/− בשורה · הסבר מחודש · הסתייגויות קטגוריות.</li>
+        </ul>
+      </div>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,611 @@
+{
+  "_meta": {
+    "generated": "2026-05-29T00:00:00Z",
+    "category": "snacks",
+    "product_count": 18,
+    "scored_count": 18,
+    "schema": "BariProductVM[]",
+    "version": "v2-production",
+    "expansion": "interpretive_expansion_system_v2",
+    "source_run_id": "yochananof_snack_retail_v1",
+    "scope_note": "ניתוח מדף יוחננוף בלבד — לא סקר שוק ישראלי",
+    "editorial_note": "18 מוצרים נבחרו מתוך 48 שקיבלו ציון על בסיס מגוון קטגוריות, פערי ציון משמעותיים ועניין עריכתי. snk-008 הוצא (כפילות קרובה לsnk-007). snk-014 הוצא (אי-יכולת אימות מול BSIP2).",
+    "production_pass": "CE-approved corpus v2; NOVA terminology removed from shelf-facing fields; limitingFactors added to all products; new products snk-015 through snk-020 added. Image integrity pass 2026-05-29: BSIP1 yochananof URLs synced. Explanation engine v2 pass 2026-05-29: all 18 explanations rebuilt against real BSIP2 trace data; banned phrases purged; specific ingredient counts and percentages added. RC-01 recalibration pass 2026-05-30: natural whole-fruit sugar cap relief applied; snk-015 score corrected 55→63 (SC-2 classification, NOVA2, 47.6g sugar from dates only); product reordered to 2nd place."
+  },
+  "products": [
+    {
+      "id": "snk-001",
+      "name": "חטיף תמרים במילוי חמאת שקדים",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290011498870_s1_0004-09-2026_10-52-18.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "3 מרכיבים בלבד: תמרים (76%), מחית שקדים (22%), שקדים טחונים — ה-B מגיע ממבנה פשוט, לא מתזונה מאוזנת",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 מרכיבים בלבד — קצרה מ-95% מהחטיפים בקטגוריה",
+          "עיבוד מינימלי: ללא סירופ, ללא תוספים, ללא חומרי טעם"
+        ],
+        "limitingFactors": [
+          "תמרים 76% = צפיפות סוכר גבוהה גם ללא תוספת — גם סוכר מפרי הוא סוכר",
+          "1.6גׅ חלבון ל-100גׅ בסיס — השקדים מוסיפים שומן טוב, לא בעיקר חלבון"
+        ],
+        "bottomLine": "70/B: הניקוד הגבוה ביותר בקטגוריה — הבסיס הנקי ביותר. מי שמתמקד בסוכר ידע: תמרים הם ~65% פחמימות",
+        "comparisonContext": "המוצר הדומה ביותר — תמרים עם ציפוי שוקולד 100% — קיבל 56/C: 14 נקודות פחות בגלל מרכיב הציפוי שמסמן עיבוד נוסף"
+      },
+      "_internal_cluster": "date-simple"
+    },
+    {
+      "id": "snk-015",
+      "name": "חטיף תמרים במילוי חמאת בוטנים",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290011498894_s1_0004-09-2026_11-01-01.jpg",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "4 מרכיבים, NOVA2 — 47.6גׅ סוכר מתמרים מגיע לתווית אדומה, אבל הציון (63/C) מגלם שהסוכר ממקור שלם",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "4 מרכיבים בלבד: תמרים, חמאת בוטנים, בוטנים, מלח",
+          "8.3גׅ חלבון ל-100גׅ — גבוה מגרסת השקדים (1.6גׅ); הבוטנים מוסיפים חלבון אמיתי",
+          "NOVA2, ללא תוספי סוכר — 47.6גׅ הסוכר מגיעים מהתמרים בלבד, לא מסירופ או גלוקוז"
+        ],
+        "limitingFactors": [
+          "47.6גׅ סוכר ל-100גׅ — גבוה מסף התווית האדומה (17.5גׅ); התווית חלה ללא קשר למקור הסוכר",
+          "הציון הוגבל על ידי תכולת הסוכר הגבוהה; שומן רווי 1.3גׅ/100גׅ בלבד — לא גורם מגביל"
+        ],
+        "bottomLine": "63/C: הגרסה הבוטנים-עשירה — חלבון גבוה יותר (8.3גׅ), סוכר גבוה יותר (47.6גׅ). תווית אדומה מחויבת, אבל הציון מגלם שהסוכר ממקור שלם",
+        "comparisonContext": "7 נקודות מתחת לגרסת השקדים (70/B) — ההבדל נובע מ-47.6גׅ סוכר לעומת 15.5גׅ; גרסת השקדים אינה חוצה את סף התווית"
+      },
+      "_internal_cluster": "date-simple"
+    },
+    {
+      "id": "snk-004",
+      "name": "מרבה סלים דליס שוקולד מריר",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8423207206495_h105-15-2023_13-17-20.jpg",
+      "score": 59,
+      "grade": "C",
+      "insightLine": "שוקולד מריר 74% כמרכיב ראשון + דגן (24%) — 5 מרכיבים בלבד, NOVA3, ציון 59/C",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "5 מרכיבים בלבד — אחד הבסיסים הפשוטים ביותר ב-NOVA3",
+          "שוקולד מריר 74%: ריכוז קקאו גבוה יחסית לחטיף מוצלח"
+        ],
+        "limitingFactors": [
+          "קמח חיטה (לא מלא) כבסיס הדגן — הדגן שבמוצר אינו דגן מלא",
+          "לציטין סויה במרכיבי השוקולד — מתחלב תעשייתי שמסמן עיבוד"
+        ],
+        "bottomLine": "59/C: חטיף פשוט לקטגוריה, אבל שוקולד תעשייתי לפני דגן לא עולה מעל C",
+        "comparisonContext": "8 נקודות מעל מרבה סלים טופינג אגוזי לוז (51/C) — אותו מותג; ההבדל: שוקולד מריר vs שוקולד חלב, ו-5 מרכיבים לעומת 9"
+      },
+      "_internal_cluster": "granola-oat"
+    },
+    {
+      "id": "snk-002",
+      "name": "חטיף תמרים בציפוי שוקולד 100% קקאו",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290011498948_s1_1505-10-2020_23-00-27.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "2 מרכיבים בלבד: תמרים (84%), שוקולד 100% קקאו (16%) — NOVA2 עם 57/C",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "2 מרכיבים — הרשימה הקצרה ביותר בקטגוריה",
+          "100% מוצקי קקאו: ציפוי ללא סוכר מוסף, ממתיק, או חומרי טעם"
+        ],
+        "limitingFactors": [
+          "13 נקודות מתחת לגרסת השקדים (70/B) — ציפוי הקקאו מסמן עיבוד נוסף אף שזה עדיין NOVA2",
+          "תמרים 84%: אחוז גבוה מכל חטיף תמרים אחר במדף — צפיפות סוכר גבוהה בהתאם"
+        ],
+        "bottomLine": "57/C: שניים בלבד, הפשוט מהם. הניקוד מגיב לאיזון תזונתי, לא לפשטות בלבד",
+        "comparisonContext": "13 נקודות מתחת לגרסת השקדים (70/B) — שניהם NOVA2; ציפוי הקוקאו מגביל; גרסת השקדים ללא ציפוי"
+      },
+      "_internal_cluster": "date-simple"
+    },
+    {
+      "id": "snk-003",
+      "name": "קראנצ'י שיבולת שועל עם דבש",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/0/1/016000548404_s1_1512-29-2024_06-37-26.jpg",
+      "score": 53,
+      "grade": "C",
+      "insightLine": "שיבולת שועל מלאה (60%) ראשונה — סוכר לבן, שמנים וסירופ מגיעים אחריה; 9 מרכיבים, NOVA3, ציון 53/C",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 60% — הדגן השלם ראשון ומשמעותי",
+          "9 מרכיבים — פשוט יחסית לקטגוריית NOVA3"
+        ],
+        "limitingFactors": [
+          "סוכר לבן כמרכיב 2 — לפני שמנים, דבש ומלח; הממתיק הבסיסי אינו דבש",
+          "דבש 3% בלבד — שם המוצר מרמז על דבש כמרכיב עיקרי; בפועל הוא מרכיב חמישי בכמות"
+        ],
+        "bottomLine": "53/C: שיבולת שועל אמיתית לא מביאה ל-B כאשר סוכר לבן, שמן צמחי ולציטין באים מיד אחריה",
+        "comparisonContext": "7 נקודות מעל גרסת השוקולד (46/D) — אותו בסיס שיבולת שועל; השוקולד מוסיף 4 מרכיבים נוספים ומוריד 7 נקודות"
+      },
+      "_internal_cluster": "granola-oat"
+    },
+    {
+      "id": "snk-016",
+      "name": "מרבה סלים טופינג אגוזי לוז",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8423207210928_h105-15-2023_13-25-08.jpg",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "שוקולד חלב (68%) כמרכיב ראשון — אגוזי הלוז הם הטופינג; הדגן מספק 21% בלבד",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "9 מרכיבים — מועט לקטגוריית NOVA3",
+          "שוקולד חלב 68%: מרכיב הדומיננטי ללא תוספי ציפוי נפרדים"
+        ],
+        "limitingFactors": [
+          "קמח תירס ואורז כבסיס הדגן — לא דגן מלא",
+          "1.2גׅ חלבון למנה — נמוך מאוד לסדרה המוצבת כ'פיטנס'"
+        ],
+        "bottomLine": "51/C: חטיף שוקולד-חלב עם גרגירי דגן — ה'טופינג' (אגוזי לוז) הוא אלמנט שיווקי, לא מרכיב תזונתי מרכזי",
+        "comparisonContext": "7 נקודות מתחת למרבה סלים דליס שוקולד מריר (58/C) — אותו מותג; שוקולד מריר 74% לעומת חלב 68%, ו-5 מרכיבים לעומת 9"
+      },
+      "_internal_cluster": "granola-oat"
+    },
+    {
+      "id": "snk-009",
+      "name": "נייצ'ר וואלי פרוטאין בוטנים ושוקולד",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610379_s1_15_gs102-19-2024_08-41-10.jpg",
+      "score": 47,
+      "grade": "D",
+      "insightLine": "בוטנים קלויים (37.3%) + חלבון סויה (14.5%) = ~22גׅ חלבון ל-100גׅ — אבל סירופ גלוקוזה וסיבים סינתטיים מסמנים NOVA4",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בוטנים קלויים כמרכיב ראשון (37.3%): חלבון מבסיס מלא, לא רק מבודד",
+          "~22גׅ חלבון ל-100גׅ — גבוה מהממוצע בקטגוריה ב-8גׅ"
+        ],
+        "limitingFactors": [
+          "סירופ גלוקוזה כמרכיב 5 — ממתיק תעשייתי שמסמן NOVA4",
+          "סיבים תזונתיים (אוליגופרוקטוז) 9.5%: סיבים מוספים, לא מדגן שלם",
+          "18 מרכיבים: כל מרכיב מעל 8 מוסיף לציון ה-NOVA"
+        ],
+        "bottomLine": "47/D: ~22גׅ חלבון בבסיס NOVA4 — החלבון אמיתי, המסגרת המהונדסת גם כן. הציון משקלל את שניהם",
+        "comparisonContext": "2 נקודות מעל גרסת הקרמל-מלוח (45/D) — 43% בוטנים שם לעומת 37.3%; יותר בוטן, פחות חלבון סויה"
+      },
+      "_internal_cluster": "protein"
+    },
+    {
+      "id": "snk-005",
+      "name": "חטיפי דגנים פיטנס קלאסי",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12505889_5900020039590.jpg",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "חיטה מלאה ראשונה (38.3%), אורז שני (21.6%) — אבל מרכיב 3 הוא פולידקסטרוז: סיב תעשייתי שמנפח ערך הסיבים",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חיטה מלאה 38.3%: דגן שלם כבסיס, לא קמח מזוקק",
+          "~3.7גׅ סוכר ל-100גׅ — נמוך מאוד; ציון גליקמי גבוה יחסית"
+        ],
+        "limitingFactors": [
+          "פולידקסטרוז + FOS (מרכיבים 3–4): סיבים תעשייתיים שמעלים את מדד הסיבים ללא הזנה של דגן שלם",
+          "שיבולת שועל 3% בלבד למרות שמה בסדרה — פחות מ-1/10 מהחיטה",
+          "16 מרכיבים: גליצרול ומרכיבי הלחה מסמנים NOVA4 על בסיס שנראה פשוט"
+        ],
+        "bottomLine": "46/D: חיטה מלאה ראשונה — אבל הסיבים הגבוהים מגיעים ממרכיב 3 שהוא פולידקסטרוז, לא מהדגן. NOVA4 מגיב לכלל התרכובת",
+        "comparisonContext": "1 נקודה מעל נייצ'ר וואלי פרוטאין (45/D) — בסיסים שונים לחלוטין: חיטה מלאה לעומת בוטנים; שניהם NOVA4 עם 16–18 מרכיבים"
+      },
+      "_internal_cluster": "fitness"
+    },
+    {
+      "id": "snk-018",
+      "name": "קראנצ'י שיבולת שועל עם חתיכות שוקולד",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076602251_s1_1512-29-2024_06-26-36.jpg",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "שיבולת שועל מלאה (54.8%) ראשונה, חתיכות שוקולד (8%) — 13 מרכיבים לעומת 9 בגרסת הדבש; פחות 9 נקודות",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 54.8% — בסיס עיקרי ומשמעותי, גבוה מ-50%",
+          "שוקולד אמיתי (עיסת קקאו + חמאת קקאו) — לא ציפוי מהונדס"
+        ],
+        "limitingFactors": [
+          "13 מרכיבים לעומת 9 בגרסת הדבש — כל מרכיב נוסף מוסיף לציון ה-NOVA",
+          "חומרי טעם וריח: מקור לא מצוין, נוסף לאלו שבשוקולד עצמו"
+        ],
+        "bottomLine": "44/D: אותו בסיס שיבולת שועל כמו גרסת הדבש (53/C) — השוקולד + 4 מרכיבים נוספים עולים 9 נקודות",
+        "comparisonContext": "9 נקודות מתחת לקראנצ'י דבש (53/C) — אותה חברה, אותו בסיס; ההבדל: 4 מרכיבים נוספים כולל חומרי טעם וריח"
+      },
+      "_internal_cluster": "granola-oat"
+    },
+    {
+      "id": "snk-010",
+      "name": "נייצ'ר וואלי פרוטאין בוטנים קרמל מלוח",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610386_s1_15_gs102-19-2024_08-21-37.jpg",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "בוטנים קלויים (43%) + חלבון סויה (11.3%) = ~22גׅ חלבון — 19 מרכיבים; הקרמל המלוח מוסיף 5 מרכיבים לגרסת השוקולד",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בוטנים קלויים 43%: אחוז גבוה יותר מגרסת השוקולד (37.3%)",
+          "~22גׅ חלבון ל-100גׅ — שווה לגרסת השוקולד"
+        ],
+        "limitingFactors": [
+          "19 מרכיבים: 1 יותר מגרסת השוקולד — הקרמל מוסיף מרכיבים, לא מוריד",
+          "סירופ גלוקוזה + שמנים ושומנים צמחיים — בסיס ה-NOVA4 זהה לגרסת השוקולד"
+        ],
+        "bottomLine": "46/D: זהה כמעט לגרסת השוקולד (47/D) — אותו חלבון, אותו NOVA4, 1 נקודה פחות בגלל מרכיב הקרמל",
+        "comparisonContext": "1 נקודה מתחת לגרסת השוקולד (47/D) — הפרש זניח; הקרמל המלוח מוסיף מרכיבים, לא ערך תזונתי"
+      },
+      "_internal_cluster": "protein"
+    },
+    {
+      "id": "snk-011",
+      "name": "פרי מארז תמרים ואגוזי לוז",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290111936784_s104-01-2025_21-19-00.jpg",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "תמרים מז'הול (50%) + אגוזי לוז (25%) + גרעיני חמנייה + צימוקים — 6 מרכיבים; 'חומרי טעם טבעיים' בלבד מסמנים NOVA4",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "6 מרכיבים — אחד הבסיסים הנקיים בקטגוריה",
+          "38.7גׅ סוכר ל-100גׅ — כולו מתמרים וצימוקים, ללא סוכר מוסף ברשימה"
+        ],
+        "limitingFactors": [
+          "38.7גׅ סוכר ל-100גׅ — תווית אדומה; הסוכר מתמרים וצימוקים בלבד, אבל הסף לא מבחין במקור",
+          "צימוקים מוסיפים סוכר נוסף מעל מחית התמרים — מכפיל צפיפות הסוכר",
+          "'חומרי טעם וריח טבעיים' — מרכיב אחד זה לבדו מסמן NOVA4 למרות הרשימה הנקייה אחרת"
+        ],
+        "bottomLine": "44/D: 6 מרכיבים, ללא סוכר מוסף — הסוכר הגבוה מתמרים-צימוקים ו-'טעמים טבעיים' בלבד מספיקים לתווית אדומה ול-NOVA4",
+        "comparisonContext": "26 נקודות מתחת לחטיף התמרים הפשוט (70/B) — ההבדל: תמרים+שקדים בלבד לעומת תמרים+לוז+צימוקים+טעמים; הצימוקים והטעמים מוסיפים מגבלות"
+      },
+      "_internal_cluster": "natural-gap"
+    },
+    {
+      "id": "snk-012",
+      "name": "פרי מארז תמרים ושברי קקאו",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290111937262_s104-01-2025_21-21-11.jpg",
+      "score": 42,
+      "grade": "D",
+      "insightLine": "7 מרכיבים — אגוזים מעורבים (15%: קשיו+לוז) + שברי קקאו (8%); 39.6גׅ סוכר מתמרים וצימוקים, ללא תוספת",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שברי פולי קקאו 8%: קקאו לא-ממותק — מרירות אמיתית, לא ציפוי שוקולד",
+          "אגוזים מעורבים (15%): קשיו 8% + לוז 7% — שומן בריא ממקורות שונים"
+        ],
+        "limitingFactors": [
+          "39.6גׅ סוכר ל-100גׅ — נקודה יותר מגרסת הלוז (38.7גׅ); הצימוקים + תמרים מכפילים",
+          "שומן רווי 4.6גׅ/100גׅ — גבוה מגרסת הלוז ב-2.7גׅ; מגיע מהקשיו",
+          "'חומרי טעם וריח טבעיים': כמו גרסת הלוז, מרכיב זה לבדו מסמן NOVA4"
+        ],
+        "bottomLine": "42/D: נקודה מתחת לגרסת הלוז — הקשיו מוסיף שומן רווי, ה-NOVA4 והסוכר הגבוה זהים",
+        "comparisonContext": "1 נקודה מתחת לגרסת תמרים-אגוזי לוז (43/D) — ההבדל: קשיו (שומן רווי גבוה יותר) לעומת לוז בלבד; 7 מרכיבים לעומת 6"
+      },
+      "_internal_cluster": "natural-gap"
+    },
+    {
+      "id": "snk-019",
+      "name": "חטיפי פיטנס שיבולת שועל דבש",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12615334_7290118247896.jpg",
+      "score": 40,
+      "grade": "D",
+      "insightLine": "שיבולת שועל (35%+12%) = 47% מהמוצר — אבל 19 מרכיבים כולל מרגרינה, E471 וחומרי טעם מסמנים NOVA4",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 35% + קמח שיבולת שועל 12%: 47% מהמוצר מדגן שלם",
+          "~9.5גׅ סוכר ל-100גׅ — ללא תווית אדומה"
+        ],
+        "limitingFactors": [
+          "מרגרינה (שמן קוקוס + E471): מרכיב 6 שמסמן NOVA4",
+          "דבש 5% בלבד — שם המוצר מרמז על דבש; בפועל סוכר לבן (מרכיב 4) מקדים אותו ברשימה",
+          "19 מרכיבים: דקסטרין, אינולין, E471, E415, לציטין, חומרי טעם — 7 מרכיבי עיבוד אחרי הבסיס"
+        ],
+        "bottomLine": "40/D: שיבולת שועל אמיתית (47%) לא מספיקה כשמרגרינה ו-7 מרכיבי עיבוד מגיעים איתה",
+        "comparisonContext": "23 נקודות מעל פיטנס בר גרנולה שוקולד מריר (17/E) — אותו מותג; ציפוי שוקולד + שומן רווי כפול + שתי תוויות אדומות מורידים 23 נקודות"
+      },
+      "_internal_cluster": "fitness"
+    },
+    {
+      "id": "snk-017",
+      "name": "נייצ'ר וואלי צ'ואי שוקולד מריר",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610508_s1_1503-02-2023_08-23-21.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "בוטנים (18.7%) + שיבולת שועל מלאה (14.1%) + שוקולד (9.3%) — 24 מרכיבים; הרשימה הארוכה ביותר בקטגוריה",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 14.1%: דגן שלם נוכח, לא רק קמח"
+        ],
+        "limitingFactors": [
+          "24 מרכיבים — הרשימה הארוכה ביותר מבין 18 המוצרים המוצגים",
+          "סירופ גלוקוזה כמרכיב 4 — לפני השוקולד ולפני הסיבים",
+          "אינולין (מעולש) 7.5%: סיב מוסף תעשייתי, לא מדגן שלם"
+        ],
+        "bottomLine": "39/D: 24 מרכיבים עם בסיס בוטן-שיבולת שועל — ה-Chewy הוא 'הגרסה הכיפית', לא הטובה תזונתית",
+        "comparisonContext": "8 נקודות מתחת לנייצ'ר וואלי פרוטאין (47/D) — אותו מותג; ה-Protein: בוטנים+חלבון סויה; ה-Chewy: 24 מרכיבים עם סירופ גלוקוזה קרוב יותר לראשית הרשימה"
+      },
+      "_internal_cluster": "protein"
+    },
+    {
+      "id": "snk-020",
+      "name": "מרבה סלים דליס קריספי אוכמניות",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290014525306_s105-31-2020_13-54-07.jpg",
+      "score": 33,
+      "grade": "E",
+      "insightLine": "קמח חיטה לבן כבסיס — מילוי אוכמניות (33%) מכיל פרוקטוז + סירופ גלוקוזה + דקסטרוזה; 35.5גׅ סוכר ל-100גׅ",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "35.5גׅ סוכר ל-100גׅ — גבוה ב-10.5גׅ מסף התווית האדומה (25גׅ)",
+          "מילוי ה-33% מכיל 3 מקורות סוכר: פרוקטוז, סירופ גלוקוזה, דקסטרוזה — ולא פרי אמיתי כמרכיב ראשון",
+          "גליצרין + פקטין + חומצה מאלית + חומר טעם — 4 תוספות למילוי 'אוכמניות'"
+        ],
+        "bottomLine": "33/E: 'דיאט קריספי' עם 35.5גׅ סוכר ל-100גׅ ומילוי פרוקטוז-גלוקוז. הקריספי הוא קמח חיטה; ה-Slim הוא גודל המנה",
+        "comparisonContext": "18 נקודות מתחת למרבה סלים טופינג אגוזי לוז (51/C) — אותו מותג; ציון הקריספי נקבע על ידי 35.5גׅ סוכר ומילוי שנבנה מ-3 סוכרים"
+      },
+      "_internal_cluster": "granola-oat"
+    },
+    {
+      "id": "snk-007",
+      "name": "חטיפי דגנים פיטנס שוקולד מריר",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12506828_5900020015174.jpg",
+      "score": 28,
+      "grade": "E",
+      "insightLine": "חיטה מלאה (20.6%) + שוקולד (17%) + 22 מרכיבים כולל 3 מקורות סוכר: סירופ גלוקוזה, סוכר לבן, סירופ אינברטי",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חיטה מלאה 20.6% + שיבולת שועל מלאה 8.6% + קמח חיטה מלא 4.9% = 34.1% דגן מלא"
+        ],
+        "limitingFactors": [
+          "3 מקורות סוכר: סירופ גלוקוזה (מרכיב 4), סוכר לבן (מרכיב 6), סירופ אינברטי (מרכיב 7)",
+          "24.8גׅ סוכר ל-100גׅ — תווית אדומה ממשלתית",
+          "22 מרכיבים כולל גליצרול, מולסה ומולטי-ויטמין מוסף — מספר שמסמן עיבוד עמוק"
+        ],
+        "bottomLine": "28/E: דגנים מלאים בבסיס, אבל 3 מקורות סוכר, 22 מרכיבים ותווית אדומה מגדירים את הציון — לא שם המותג",
+        "comparisonContext": "18 נקודות מתחת לפיטנס קלאסי (46/D) — אותו מותג; הקלאסי: חיטה מלאה + 1 מקור סוכר; ה-שוקולד: 22 מרכיבים + 3 מקורות סוכר"
+      },
+      "_internal_cluster": "coated-cereal"
+    },
+    {
+      "id": "snk-006",
+      "name": "פיטנס בר גרנולה שוקולד מריר",
+      "imageUrl": null,
+      "score": 17,
+      "grade": "E",
+      "insightLine": "שיבולת שועל מלאה ראשונה (32%) — אבל מרגרינה (שמן קוקוס+E471) + 2 תוויות אדומות + 21 מרכיבים שולחים ל-17/E",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "מרגרינה כמרכיב 7: שמן קוקוס + שמן צ'יה + E471 — מקור לשומן רווי 7.2גׅ ל-100גׅ",
+          "22.1גׅ סוכר + 7.2גׅ שומן רווי: שתי תוויות אדומות — תקרה 45 לפני ה-NOVA4",
+          "21 מרכיבים: דקסטרין, אינולין, E471, E415, לציטין, חומרי טעם — 7 מרכיבי עיבוד אחרי הבסיס"
+        ],
+        "bottomLine": "17/E: שיבולת שועל ראשונה ברשימה — 20 מרכיבים אחריה, מרגרינה, ושתי תוויות אדומות. הציון מגיב לסיכום, לא למרכיב הראשון",
+        "comparisonContext": "24 נקודות מתחת לפיטנס שיבולת שועל דבש (41/D) — אותו מותג; ציפוי שוקולד + מרגרינה + שתי תוויות אדומות עולים 24 נקודות"
+      },
+      "_internal_cluster": "coated-cereal"
+    },
+    {
+      "id": "snk-013",
+      "name": "שחור ולבן קורני שוקולד",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/4/0/4011800633516.jpg",
+      "score": 17,
+      "grade": "E",
+      "insightLine": "שוקולד מריר (24%) כמרכיב ראשון — 5 מקורות סוכר ברשימה: גלוקוז-פרוקטוז, גלוקוז, סוכר לבן, קרמל ודבש; 33.3גׅ ל-100גׅ",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "33.3גׅ סוכר ל-100גׅ ממקורות 5: גלוקוז-פרוקטוז + גלוקוז + סוכר לבן + קרמל + דבש",
+          "שוקולד מריר הוא מרכיב 1 (24%) — לפני כל דגן שלם; החטיף הוא שוקולד עם גרגירים, לא הפוך",
+          "11.7גׅ שומן רווי + 33.3גׅ סוכר = שתי תוויות אדומות — תקרה 45 לפני ה-NOVA4"
+        ],
+        "bottomLine": "17/E: מרכיב ראשון שוקולד, 5 מקורות סוכר. כשהדגן מופיע כמרכיב 2 ב-16% בלבד — זה ממתק, לא חטיף דגנים",
+        "comparisonContext": "53 נקודות מתחת לחטיף התמרים המוביל (70/B) — בסיסים שונים לחלוטין: שם תמרים+שקדים עם 3 מרכיבים, כאן שוקולד+5 מקורות סוכר עם 15 מרכיבים"
+      },
+      "_internal_cluster": "coated-cereal"
+    }
+  ]
+}
