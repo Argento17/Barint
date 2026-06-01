@@ -15,6 +15,13 @@ export type ComparisonHeroStat = {
   label: string;
 };
 
+export type ComparisonHeroTheme = {
+  /** muted product hue, used ONLY for the faint tint wash + (optional) future accents */
+  accent: string;
+  /** image URL — a /public path (preferred) or remote URL */
+  photo: string;
+};
+
 export type ComparisonIntelligenceHeroProps = {
   badge: string;
   categoryTags: string;
@@ -29,6 +36,7 @@ export type ComparisonIntelligenceHeroProps = {
   /** When true, CTA renders as span for use inside a parent Link. */
   asLinkChild?: boolean;
   className?: string;
+  theme?: ComparisonHeroTheme;
 };
 
 export function ComparisonIntelligenceHero({
@@ -43,6 +51,7 @@ export function ComparisonIntelligenceHero({
   ctaTargetId = "#comparison-grid",
   asLinkChild = false,
   className,
+  theme,
 }: ComparisonIntelligenceHeroProps) {
   const reduceMotion = useReducedMotion();
   const [insightIndex, setInsightIndex] = useState(0);
@@ -82,6 +91,46 @@ export function ComparisonIntelligenceHero({
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom_left,rgba(31,143,106,0.045),transparent_48%,transparent_72%,rgba(31,143,106,0.028))]"
         aria-hidden
       />
+
+      {/* ── per-product theme: photo + veil + tint (decorative) ── */}
+      {theme ? (
+        <>
+          {/* product photo — bled in from the bottom-left, faded into the card */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 z-0 h-full w-[60%]"
+            style={{
+              backgroundImage: `url(${theme.photo})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.62,
+              filter: "grayscale(0.08) contrast(1.02) saturate(1.02)",
+              WebkitMaskImage:
+                "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
+              maskImage:
+                "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
+            }}
+          />
+          {/* white veil so foreground text stays crisp over the photo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0"
+            style={{
+              background:
+                "linear-gradient(105deg, transparent 0%, rgba(253,253,248,0.10) 38%, rgba(253,253,248,0.62) 64%, rgba(253,253,248,0.86) 100%)",
+            }}
+          />
+          {/* faint product-hue tint wash in the corner */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0 mix-blend-multiply"
+            style={{
+              background: `radial-gradient(60% 80% at 14% 96%, color-mix(in oklab, ${theme.accent} 13%, transparent), transparent 70%)`,
+            }}
+          />
+        </>
+      ) : null}
+
       <ComparisonIntelligenceBackdrop />
       <ComparisonAnalysisParticles reduceMotion={reduceMotion} />
 

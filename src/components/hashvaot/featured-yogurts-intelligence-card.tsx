@@ -49,6 +49,7 @@ export function FeaturedYogurtsIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(yogurtsCorpusMeta.generated)}
         asLinkChild
+        theme={{ accent: "#BC7AA0", photo: "/hashvaot/themes/yogurt.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
     </Link>
