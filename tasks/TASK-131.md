@@ -49,3 +49,19 @@ delete stale nested snapshot → consolidate governance docs → rename website 
   Frontend-impl docs kept in website `docs/`. **Deferred for owner classification** (borderline
   rollout/release reports left in website `docs/`): `bread_rollout_report_v1`, `snacks_rollout_report_v1`,
   `mvp_rollout_summary_v1`, `rollout_readiness_report_v1`, `hummus_v1_release_summary_v1`.
+- 2026-06-01 — **Phase 4 done.** `git init` at `C:\Bari` (branch `master`, commit `18518f3`,
+  4,729 files, `.git` 118M). `.gitignore` excludes `.venv` (658M, intact on disk), `__pycache__`,
+  `.idea`, `*.audit_bak`, `/tmp_*`, `.claude/settings.local.json`. Tracked: framework, ops code,
+  products/data, command center, tasks (60), decisions, research, `.claude` agents/skills/hooks,
+  Phase-2 `docs/`. Root `tmp_audit_129a` + `tmp_*.json` scratch archived to
+  `99_archive/tmp_129_audit_2026-06-01/`. The authoritative workspace now has version history.
+- 2026-06-01 — **Phase 3 BLOCKED → handed off.** Stopped the dev server (node PID 7260, freed
+  :3000) but `Move-Item C:\Users\HP\bari → C:\bari-web` fails: the folder is held by VS Code (19
+  Code.exe — the Claude Code extension runs *inside* it) and an Explorer window; cannot kill the
+  host IDE. Also discovered the old path is hardcoded in ~12 Agent-OS docs (all
+  `.claude/agents/*.md`, `comparison-template.md`, `frontend.md`, `project.md`, root `CLAUDE.md`,
+  `settings.local.json`); the website itself only references its own path in the non-build
+  `scripts/audit-snacks-data-lineage.mjs`, so the **rename does not break the build**. Prepared
+  one-shot handoff: `05_command_center/rename_website_phase3.ps1` (move + repoint both trees +
+  commit; won't touch the website's uncommitted WIP). User must run it from a standalone
+  PowerShell with VS Code closed. NOTE: dev server left stopped.

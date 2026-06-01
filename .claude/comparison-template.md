@@ -1,4 +1,4 @@
-# Bari Comparison Template — Implementation Guide
+# Bari Comparison Template â€” Implementation Guide
 
 **Authority document:** `C:\Bari\01_framework\frontend\comparison_template_v1.md`  
 **Build sequence:** `C:\Bari\01_framework\frontend\component_build_sequence_v1.md`  
@@ -9,18 +9,18 @@ This document is the implementation reference for adding a new category comparis
 
 ---
 
-## Bari Repository Map — TWO SEPARATE LOCATIONS
+## Bari Repository Map â€” TWO SEPARATE LOCATIONS
 
 Implementation in this guide spans **both** repos. Know which is which.
 
 | Repo | Path | Role in a category build |
 |------|------|--------------------------|
-| **Website repo** | `C:\Users\HP\bari` | Where you build the page: components, routes, registry, the consumed frontend JSON, lint, build |
+| **Website repo** | `C:\bari-web` | Where you build the page: components, routes, registry, the consumed frontend JSON, lint, build |
 | **Product / data workspace** | `C:\Bari` | Where the data comes from: BSIP2 scoring, `build_frontend_dataset.py`, the source JSON before it is copied over |
 
-- Page/component/route/registry implementation, lint, build → **`C:\Users\HP\bari`**.
-- BSIP2 scoring run + JSON generation → **`C:\Bari\03_operations\`**, output then copied to `C:\Users\HP\bari\src\data\comparisons\`.
-- **Never assume `C:\Bari` is the website repo.** Before implementing the page, **confirm the working directory is `C:\Users\HP\bari`**.
+- Page/component/route/registry implementation, lint, build â†’ **`C:\bari-web`**.
+- BSIP2 scoring run + JSON generation â†’ **`C:\Bari\03_operations\`**, output then copied to `C:\bari-web\src\data\comparisons\`.
+- **Never assume `C:\Bari` is the website repo.** Before implementing the page, **confirm the working directory is `C:\bari-web`**.
 
 ---
 
@@ -43,64 +43,64 @@ All shared canonical components are in `src/components/shared/`. No new canonica
 
 ### ScoreChip (`score-chip.tsx`)
 
-- Background: `#F7F7F2` for ALL grades (A through E) — never varies
-- Border: `rgba(17,19,24,0.10)` — never varies
-- Content: `{numeric}/{grade}` e.g. `"72/B"` — no label text, no color change
+- Background: `#F7F7F2` for ALL grades (A through E) â€” never varies
+- Border: `rgba(17,19,24,0.10)` â€” never varies
+- Content: `{numeric}/{grade}` e.g. `"72/B"` â€” no label text, no color change
 - Font size: 28px (from token `layout.scoreChipSize`)
-- Null score: chip renders `"—"`, background `#EEEEEA`
+- Null score: chip renders `"â€”"`, background `#EEEEEA`
 
 ### ProductRow (`product-row.tsx`)
 
 - Collapsed height: 72px (max 80px)
-- Product image: 56×56px
+- Product image: 56Ã—56px
 - Score chip: top-right of row
-- Insight line: 13px, `#444444`, 1 line, ≤12 Hebrew words
+- Insight line: 13px, `#444444`, 1 line, â‰¤12 Hebrew words
 - Alternating backgrounds: via `bari-zebra-rows` CSS class
 - No border on the row element
 - Tap/click anywhere on row toggles expansion
 
 ### ExpansionSection (`expansion-section.tsx`)
 
-- Inline only — never sheet, modal, overlay, or portal
-- Content order (fixed): nutrition grid → ingredient list → confidence row
-- Nutrition: 5 fields only — calories / protein / sugar / fat / sodium (per 100g)
-  - Label constants: `קק"ל`, `חלבון ג'`, `סוכרים ג'`, `שומן ג'`, `סיבים ג'`, `נתרן מ"ג`
-  - `null` field → hide cell entirely; `0` is valid → display it
-- Ingredient list: verbatim, Hebrew, clip at 4 lines, `"הצג הכל"` to expand
-- Confidence row: `confidenceLabel` from VM (left) + `"סגור"` button (right)
+- Inline only â€” never sheet, modal, overlay, or portal
+- Content order (fixed): nutrition grid â†’ ingredient list â†’ confidence row
+- Nutrition: 5 fields only â€” calories / protein / sugar / fat / sodium (per 100g)
+  - Label constants: `×§×§"×œ`, `×—×œ×‘×•×Ÿ ×’'`, `×¡×•×›×¨×™× ×’'`, `×©×•×ž×Ÿ ×’'`, `×¡×™×‘×™× ×’'`, `× ×ª×¨×Ÿ ×ž"×’`
+  - `null` field â†’ hide cell entirely; `0` is valid â†’ display it
+- Ingredient list: verbatim, Hebrew, clip at 4 lines, `"×”×¦×’ ×”×›×œ"` to expand
+- Confidence row: `confidenceLabel` from VM (left) + `"×¡×’×•×¨"` button (right)
 - No heading tags inside expansion
 - No framework terms: NOVA, BSIP, cap, structural_class, matrix_integrity, pillar, dimension
-- No `"מה מעלה/מוריד את הציון"` score attribution
+- No `"×ž×” ×ž×¢×œ×”/×ž×•×¨×™×“ ××ª ×”×¦×™×•×Ÿ"` score attribution
 - Max expanded height: 280px
 
 ### ProductTable (`product-table.tsx`)
 
-- Products arrive pre-sorted (score descending, insufficient last) — UI never re-sorts
+- Products arrive pre-sorted (score descending, insufficient last) â€” UI never re-sorts
 - 3+ rows visible at 0px scroll (375px viewport)
-- One optional highlighted comparison pair: visual bracket + single driver line (≤15 Hebrew words)
+- One optional highlighted comparison pair: visual bracket + single driver line (â‰¤15 Hebrew words)
 - Maximum 1 highlighted pair per page. Omit if no clearly strongest pair.
-- Filter wired to table — reduces rows without page reload
+- Filter wired to table â€” reduces rows without page reload
 
 ### CategoryHero (`category-hero.tsx`)
 
 - Max total height: 280px on 375px mobile viewport
 - One sentence, max 12 Hebrew words, names one shelf observation
-- One product image (320px desktop, 160–180px mobile)
-- Score visible on load — no animation, no delay
+- One product image (320px desktop, 160â€“180px mobile)
+- Score visible on load â€” no animation, no delay
 - No aggregate statistics, no animated elements, no eyebrow text in English
 
 ### CategoryPrologue (`category-prologue.tsx`)
 
-- 3–5 sentences, hard limit
+- 3â€“5 sentences, hard limit
 - Calm declarative tone, no bullet points
 - Every sentence is a verifiable shelf observation
 - Does not repeat hero sentence; does not preview findings
 
 ### MethodologyFooter (`methodology-footer.tsx`)
 
-- Plain text — no `<h2>/<h3>`, no border, no card, no background
+- Plain text â€” no `<h2>/<h3>`, no border, no card, no background
 - Font: 12px, color `#AAAAAA`
-- 2–4 sentences maximum
+- 2â€“4 sentences maximum
 - Contains: product count, data source, "scores are relative to category", link to full methodology
 - Does NOT contain: score mechanics, NOVA, dimension names, cap/floor logic
 
@@ -156,69 +156,69 @@ All shared canonical components are in `src/components/shared/`. No new canonica
 
 ```
 C:\Bari\02_products\{category}\intelligence_bsip2\
-    ↓  build_frontend_dataset.py
+    â†“  build_frontend_dataset.py
 {category}_frontend_vN.json   (in 02_products/{category}/ or 03_operations/outputs)
-    ↓  copy to
+    â†“  copy to
 src/data/comparisons/{category}_frontend_vN.json
-    ↓  corpus.ts loadComparisonCorpus()
+    â†“  corpus.ts loadComparisonCorpus()
 BariProductVM[]
-    ↓  {category}-page-data.ts
+    â†“  {category}-page-data.ts
 ComparisonCategoryPageData
-    ↓  {category}-comparison-page.tsx
+    â†“  {category}-comparison-page.tsx
 UI rendered page
 ```
 
-The transformation from raw JSON to `BariProductVM` happens in `{category}-page-data.ts` via `corpus.ts`. The UI receives only `BariProductVM` — no raw BSIP fields.
+The transformation from raw JSON to `BariProductVM` happens in `{category}-page-data.ts` via `corpus.ts`. The UI receives only `BariProductVM` â€” no raw BSIP fields.
 
 ---
 
 ## Content Generation Workflow (per category)
 
-### Step 1 — Data prerequisites
+### Step 1 â€” Data prerequisites
 - BSIP2 run complete
 - Batch summary reviewed, false positives removed
 - Minimum 30 scored products in editorial scope
 
-### Step 2 — Hero sentence
+### Step 2 â€” Hero sentence
 Identify the single most surprising product (known brand, unexpected score, or "healthy" product below average).  
-Write one Hebrew sentence ≤12 words naming the product and the observation.
+Write one Hebrew sentence â‰¤12 words naming the product and the observation.
 
-### Step 3 — Prologue
-Answer in ≤5 sentences total:
+### Step 3 â€” Prologue
+Answer in â‰¤5 sentences total:
 1. What products are on this shelf?
 2. What did we look at?
 3. What is not obvious from the front of the package?
 
-### Step 4 — Highlighted pair (optional)
+### Step 4 â€” Highlighted pair (optional)
 Identify the single clearest score gap between two comparable products.  
-Write one driver line ≤15 Hebrew words, observational.  
+Write one driver line â‰¤15 Hebrew words, observational.  
 If no clearly strongest pair exists: **omit entirely**.
 
-### Step 5 — Insight lines
-One per product, ≤12 Hebrew words. Must be independently observable (not a score explanation).
+### Step 5 â€” Insight lines
+One per product, â‰¤12 Hebrew words. Must be independently observable (not a score explanation).
 
 Approved forms:
-- `"רשימת רכיבים קצרה מ-5 מרכיבים"`
-- `"10 גרם חלבון ל-100 גרם"`
-- `"מוצר הדיאט עם יותר תוספים מהגרסה הרגילה"`
+- `"×¨×©×™×ž×ª ×¨×›×™×‘×™× ×§×¦×¨×” ×ž-5 ×ž×¨×›×™×‘×™×"`
+- `"10 ×’×¨× ×—×œ×‘×•×Ÿ ×œ-100 ×’×¨×"`
+- `"×ž×•×¦×¨ ×”×“×™××˜ ×¢× ×™×•×ª×¨ ×ª×•×¡×¤×™× ×ž×”×’×¨×¡×” ×”×¨×’×™×œ×”"`
 
 Forbidden forms:
 - Any causal explanation of the score
-- "מוצר לא בריא" / "כדאי להימנע" / "הציון נמוך כי..."
+- "×ž×•×¦×¨ ×œ× ×‘×¨×™×" / "×›×“××™ ×œ×”×™×ž× ×¢" / "×”×¦×™×•×Ÿ × ×ž×•×š ×›×™..."
 
-### Step 6 — Filter configuration
-2–3 filter dimensions. Hebrew consumer labels (not internal cluster names).
+### Step 6 â€” Filter configuration
+2â€“3 filter dimensions. Hebrew consumer labels (not internal cluster names).
 
 Examples:
-- Not: `milky_style` → Use: `"מילקי ודומיהם"`
-- Not: `whole_grain_sourdough` → Use: `"לחם שאור"`
+- Not: `milky_style` â†’ Use: `"×ž×™×œ×§×™ ×•×“×•×ž×™×”×"`
+- Not: `whole_grain_sourdough` â†’ Use: `"×œ×—× ×©××•×¨"`
 
 Grade filter values: B / C / D / E only (no numeric ranges, no adjectives).
 
-### Step 7 — Methodology text
-2–4 sentences. No framework terms. No score mechanics. No NOVA.
+### Step 7 â€” Methodology text
+2â€“4 sentences. No framework terms. No score mechanics. No NOVA.
 
-### Step 8 — Leakage + drift check (before launch)
+### Step 8 â€” Leakage + drift check (before launch)
 
 **Leakage checklist:**
 - [ ] No filter label contains a framework term
@@ -242,39 +242,39 @@ Grade filter values: B / C / D / E only (no numeric ranges, no adjectives).
 
 | Category | Filter 1 | Filter 2 | Filter 3 |
 |---|---|---|---|
-| מעדנים | סוג מוצר | ציון | — |
-| לחם | סוג לחם | ציון | — |
-| חטיפים | סוג חטיף | ציון | — |
-| יוגורטים | סוג יוגורט | ציון | — |
+| ×ž×¢×“× ×™× | ×¡×•×’ ×ž×•×¦×¨ | ×¦×™×•×Ÿ | â€” |
+| ×œ×—× | ×¡×•×’ ×œ×—× | ×¦×™×•×Ÿ | â€” |
+| ×—×˜×™×¤×™× | ×¡×•×’ ×—×˜×™×£ | ×¦×™×•×Ÿ | â€” |
+| ×™×•×’×•×¨×˜×™× | ×¡×•×’ ×™×•×’×•×¨×˜ | ×¦×™×•×Ÿ | â€” |
 
 Filter behavior:
 - Single-select (radio)
-- First option is always "הכל" (all)
+- First option is always "×”×›×œ" (all)
 - Count pre-computed, not dynamic
-- "נקה" (clear) shown only when 2+ filters active
+- "× ×§×”" (clear) shown only when 2+ filters active
 
 ---
 
 ## Public Language Rules
 
 ### Score display
-- Primary: `72/B` — no suffix, no label, no color
+- Primary: `72/B` â€” no suffix, no label, no color
 - Do not map grades to adjectives
-- Do not say "ציון גבוה" / "ציון נמוך"
+- Do not say "×¦×™×•×Ÿ ×’×‘×•×”" / "×¦×™×•×Ÿ × ×ž×•×š"
 
 ### Approved terms
 | Concept | Public Hebrew |
 |---|---|
-| Score | ציון |
-| High processing | רמת עיבוד גבוהה / מוצר מעובד |
-| Additives | תוספים |
-| Short ingredient list | רשימת רכיבים קצרה |
-| Protein | חלבון (g amount) |
-| Sugar | סוכר (g amount from label) |
-| Confidence | נתונים מלאים / נתונים חלקיים |
+| Score | ×¦×™×•×Ÿ |
+| High processing | ×¨×ž×ª ×¢×™×‘×•×“ ×’×‘×•×”×” / ×ž×•×¦×¨ ×ž×¢×•×‘×“ |
+| Additives | ×ª×•×¡×¤×™× |
+| Short ingredient list | ×¨×©×™×ž×ª ×¨×›×™×‘×™× ×§×¦×¨×” |
+| Protein | ×—×œ×‘×•×Ÿ (g amount) |
+| Sugar | ×¡×•×›×¨ (g amount from label) |
+| Confidence | × ×ª×•× ×™× ×ž×œ××™× / × ×ª×•× ×™× ×—×œ×§×™×™× |
 
 ### Forbidden terms (never appear publicly)
-BSIP, NOVA, cap, floor, routing, dimension (processing_quality etc.), structural class, anchor, confidence band, framework, pipeline, ontology, "מה מעלה/מוריד את הציון"
+BSIP, NOVA, cap, floor, routing, dimension (processing_quality etc.), structural class, anchor, confidence band, framework, pipeline, ontology, "×ž×” ×ž×¢×œ×”/×ž×•×¨×™×“ ××ª ×”×¦×™×•×Ÿ"
 
 ---
 
@@ -312,7 +312,7 @@ These were considered and excluded. Require explicit re-approval to introduce.
 
 ## Existing Canonical Reference
 
-**First canonical category:** מעדנים  
+**First canonical category:** ×ž×¢×“× ×™×  
 **Component:** `src/components/comparisons/maadanim-comparison-page.tsx`  
 **Page data:** `src/lib/comparisons/maadanim-page-data.ts`  
 **Filters:** `src/lib/comparisons/maadanim-shelf-filters.ts`  
@@ -331,7 +331,7 @@ When implementing a new category, use the maadanim pattern as the template.
 - `C:\Bari\01_framework\frontend\comparison_view_model_v1.md`
 - `C:\Bari\01_framework\frontend\architecture_generations_registry_v1.md`
 - `C:\Bari\01_framework\bsip2_framework\ui_language.md`
-- `C:\Users\HP\bari\src\components\comparisons\maadanim-comparison-page.tsx`
-- `C:\Users\HP\bari\src\lib\comparisons\maadanim-page-data.ts`
-- `C:\Users\HP\bari\src\lib\comparisons\registry\`
-- `C:\Users\HP\bari\src\lib\view-models\index.ts`
+- `C:\bari-web\src\components\comparisons\maadanim-comparison-page.tsx`
+- `C:\bari-web\src\lib\comparisons\maadanim-page-data.ts`
+- `C:\bari-web\src\lib\comparisons\registry\`
+- `C:\bari-web\src\lib\view-models\index.ts`

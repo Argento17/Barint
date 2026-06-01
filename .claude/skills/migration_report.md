@@ -1,6 +1,6 @@
 # TASK-049E Migration Report
 
-**Task:** TASK-049E — Persona to Agent Architecture Migration
+**Task:** TASK-049E â€” Persona to Agent Architecture Migration
 **Date:** 2026-05-31
 **Status:** COMPLETE
 **Owner:** Frontend Architect / Product Agent
@@ -35,7 +35,7 @@ The migration is a structural change only. No decision rights, hard rules, skill
 
 | File | Purpose |
 |---|---|
-| `agent_os_v2.md` | Updated Agent OS — agent terminology, v2 roster, v2 companion references |
+| `agent_os_v2.md` | Updated Agent OS â€” agent terminology, v2 roster, v2 companion references |
 | `ownership_matrix_v2.md` | Domain, repository, process, artifact, and governance ownership |
 | `migration_report.md` | This document |
 | `deprecated_personas.md` | Retirement plan and migration content audit |
@@ -48,12 +48,12 @@ All six legacy persona files have been updated with deprecation headers. Their Y
 
 | Deprecated File | Deprecation Header Added | Description Neutralized |
 |---|---|---|
-| `skills/head-of-product.md` | ✓ | ✓ |
-| `skills/chief-nutrition-officer.md` | ✓ | ✓ |
-| `skills/research-analyst.md` | ✓ | ✓ |
-| `skills/frontend-architect.md` | ✓ | ✓ |
-| `skills/design-director.md` | ✓ | ✓ |
-| `skills/qa-audit-lead.md` | ✓ | ✓ |
+| `skills/head-of-product.md` | âœ“ | âœ“ |
+| `skills/chief-nutrition-officer.md` | âœ“ | âœ“ |
+| `skills/research-analyst.md` | âœ“ | âœ“ |
+| `skills/frontend-architect.md` | âœ“ | âœ“ |
+| `skills/design-director.md` | âœ“ | âœ“ |
+| `skills/qa-audit-lead.md` | âœ“ | âœ“ |
 
 ---
 
@@ -86,7 +86,7 @@ All six legacy persona files have been updated with deprecation headers. Their Y
 
 ### Consistency Check: decision_rights_matrix.md
 
-| Agent | D1–D5 Rights | D6–D10 Rights | D11–D16 Rights |
+| Agent | D1â€“D5 Rights | D6â€“D10 Rights | D11â€“D16 Rights |
 |---|---|---|---|
 | Product Agent | PASS | PASS | PASS |
 | Nutrition Agent | PASS | PASS | PASS |
@@ -108,8 +108,8 @@ All six legacy persona files have been updated with deprecation headers. Their Y
 |---|---|
 | No explicit skill assignments in persona files | Each agent definition includes Core/Supporting/Optional/Restricted skill tiers |
 | No escalation rules as a distinct section | Each agent definition has a dedicated Escalation Rules section |
-| 3 agents (Data, Content, Marketing) had no definition files — OS-only | All 3 now have full definition files with the same structure as the other 6 |
-| Decision rights in persona files used prose ("Requires consultation") | All decision rights normalized to the D1–D16 matrix from `decision_rights_matrix.md` |
+| 3 agents (Data, Content, Marketing) had no definition files â€” OS-only | All 3 now have full definition files with the same structure as the other 6 |
+| Decision rights in persona files used prose ("Requires consultation") | All decision rights normalized to the D1â€“D16 matrix from `decision_rights_matrix.md` |
 | Persona files loaded as active Claude Code skills (risk of activating deprecated behavior) | Description fields neutralized; deprecated headers added to front-matter |
 
 ---
@@ -153,20 +153,20 @@ All Hard Rules from persona files were migrated verbatim. The following rules we
 
 | Criterion | Status |
 |---|---|
-| Agent Architecture is the only active operating model | ✓ All persona descriptions neutralized |
-| Every agent has its own native definition file | ✓ 9 definition files in `C:\Bari\.claude\agents\` |
-| No agent depends on a legacy persona file | ✓ All content migrated; personas deprecated |
-| Decision rights, skills, responsibilities and hard rules unchanged unless a conflict was discovered | ✓ No conflicts. 8 rules added (not modified) to fill gaps. |
-| Skill Architecture v1 remains intact | ✓ Unchanged |
+| Agent Architecture is the only active operating model | âœ“ All persona descriptions neutralized |
+| Every agent has its own native definition file | âœ“ 9 definition files in `C:\Bari\.claude\agents\` |
+| No agent depends on a legacy persona file | âœ“ All content migrated; personas deprecated |
+| Decision rights, skills, responsibilities and hard rules unchanged unless a conflict was discovered | âœ“ No conflicts. 8 rules added (not modified) to fill gaps. |
+| Skill Architecture v1 remains intact | âœ“ Unchanged |
 
 ---
 
 ## Recommended Next Actions
 
-1. **Review deprecated headers in persona files** — Confirm the YAML `deprecated: true` field prevents Claude Code from loading these files as active skills in your configuration.
+1. **Review deprecated headers in persona files** â€” Confirm the YAML `deprecated: true` field prevents Claude Code from loading these files as active skills in your configuration.
 
-2. **Update CLAUDE.md references** — If `CLAUDE.md` in `C:\Bari` or `C:\Users\HP\bari` references any persona files by name, update those references to point to the new agent files.
+2. **Update CLAUDE.md references** â€” If `CLAUDE.md` in `C:\Bari` or `C:\bari-web` references any persona files by name, update those references to point to the new agent files.
 
-3. **2026-07-01 cleanup** — Delete deprecated persona files on the scheduled date if no active dependencies are found.
+3. **2026-07-01 cleanup** â€” Delete deprecated persona files on the scheduled date if no active dependencies are found.
 
-4. **Exception registry** — No exception registry was created in TASK-049D or TASK-049E. The Design Agent and Frontend Agent both reference one. Consider creating `exception_registry.md` in `C:\Bari\.claude\skills\` as a follow-on task.
+4. **Exception registry** â€” No exception registry was created in TASK-049D or TASK-049E. The Design Agent and Frontend Agent both reference one. Consider creating `exception_registry.md` in `C:\Bari\.claude\skills\` as a follow-on task.

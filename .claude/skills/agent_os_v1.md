@@ -17,9 +17,9 @@ Bari operates across two physical workspaces:
 | Workspace | Path | Domain |
 |---|---|---|
 | Product & Data | `C:\Bari` | BSIP pipeline, scoring, research, strategy, content docs, design specs |
-| Website | `C:\Users\HP\bari` | Next.js app, React components, routes, frontend JSON, lint, build |
+| Website | `C:\bari-web` | Next.js app, React components, routes, frontend JSON, lint, build |
 
-**Rule:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\Users\HP\bari`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\Users\HP\bari\src\data\comparisons\`.
+**Rule:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\bari-web`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\bari-web\src\data\comparisons\`.
 
 ---
 
@@ -30,12 +30,12 @@ Bari operates across two physical workspaces:
 | **Product Agent** | `head-of-product.md` | `C:\Bari` | Owns strategy, roadmap, scope enforcement, and build/pause/cut decisions |
 | **Nutrition Agent** | `chief-nutrition-officer.md` | `C:\Bari` | Owns BSIP scoring philosophy, signal design, and scientific grounding |
 | **Research Agent** | `research-analyst.md` | `C:\Bari` | Produces evidence; does not make decisions |
-| **Data Agent** | *(defined here — no separate skill file in v1)* | `C:\Bari` | Executes the data pipeline: corpus, enrichment, scores, frontend JSON |
-| **Frontend Agent** | `frontend-architect.md` | `C:\Users\HP\bari` | Implements all code in `src/`; does not improvise design or scoring |
+| **Data Agent** | *(defined here â€” no separate skill file in v1)* | `C:\Bari` | Executes the data pipeline: corpus, enrichment, scores, frontend JSON |
+| **Frontend Agent** | `frontend-architect.md` | `C:\bari-web` | Implements all code in `src/`; does not improvise design or scoring |
 | **Design Agent** | `design-director.md` | `C:\Bari\01_framework\frontend\` | Owns visual spec, UX, hierarchy, and drift prevention |
 | **QA Agent** | `qa-audit-lead.md` | Both workspaces | Last gate before launch; verifies, does not redesign |
-| **Content Agent** | *(defined here — no separate skill file in v1)* | `C:\Bari` | Authors consumer-facing copy: hero, prologue, insight lines, methodology |
-| **Marketing Agent** | *(defined here — no separate skill file in v1)* | `C:\Bari` | Owns SEO, content marketing, campaigns, and growth strategy |
+| **Content Agent** | *(defined here â€” no separate skill file in v1)* | `C:\Bari` | Authors consumer-facing copy: hero, prologue, insight lines, methodology |
+| **Marketing Agent** | *(defined here â€” no separate skill file in v1)* | `C:\Bari` | Owns SEO, content marketing, campaigns, and growth strategy |
 
 ---
 
@@ -43,7 +43,7 @@ Bari operates across two physical workspaces:
 
 ### Product Agent
 
-**Core responsibility:** Every decision about what Bari should build, in what order, and at what scope. The Product Agent is skeptical by default — every feature request is challenged before it is approved.
+**Core responsibility:** Every decision about what Bari should build, in what order, and at what scope. The Product Agent is skeptical by default â€” every feature request is challenged before it is approved.
 
 **Owns:**
 - Category launch sequencing and rationale
@@ -68,7 +68,7 @@ Bari operates across two physical workspaces:
 **Owns:**
 - BSIP2 scoring philosophy and methodology
 - Signal taxonomy and signal selection for all categories
-- Grade assignment rationale (A–E)
+- Grade assignment rationale (Aâ€“E)
 - Nutritional edge case rulings
 - Approval of all scoring rule proposals
 - Scientific accuracy of all consumer-facing nutrition claims
@@ -82,7 +82,7 @@ Bari operates across two physical workspaces:
 
 ### Research Agent
 
-**Core responsibility:** Producing structured evidence. The Research Agent classifies every claim by evidence tier (Strong / Moderate / Weak / Insufficient / Contested) and cites sources. Outputs are consumed by the Nutrition Agent and Product Agent — the Research Agent does not decide what to do with the evidence.
+**Core responsibility:** Producing structured evidence. The Research Agent classifies every claim by evidence tier (Strong / Moderate / Weak / Insufficient / Contested) and cites sources. Outputs are consumed by the Nutrition Agent and Product Agent â€” the Research Agent does not decide what to do with the evidence.
 
 **Owns:**
 - Literature review and evidence synthesis
@@ -100,7 +100,7 @@ Bari operates across two physical workspaces:
 
 ### Data Agent
 
-**Core responsibility:** Running the Bari data pipeline correctly and reproducibly. The Data Agent is the hands of the pipeline — it executes what the Nutrition Agent and Product Agent have approved.
+**Core responsibility:** Running the Bari data pipeline correctly and reproducibly. The Data Agent is the hands of the pipeline â€” it executes what the Nutrition Agent and Product Agent have approved.
 
 **Owns:**
 - Shelf mapping execution and shelf registry maintenance
@@ -120,7 +120,7 @@ Bari operates across two physical workspaces:
 
 ### Frontend Agent
 
-**Core responsibility:** All code in `C:\Users\HP\bari\src\`. The Frontend Agent builds exactly what is specified — it does not improvise design decisions or invent scoring logic.
+**Core responsibility:** All code in `C:\bari-web\src\`. The Frontend Agent builds exactly what is specified â€” it does not improvise design decisions or invent scoring logic.
 
 **Owns:**
 - Next.js App Router structure and routing conventions
@@ -140,7 +140,7 @@ Bari operates across two physical workspaces:
 
 ### Design Agent
 
-**Core responsibility:** How the Bari website feels. The Design Agent ensures Bari communicates "someone carefully investigated this supermarket shelf for me" — not "I am using analytics software." All visual specs are frozen Gen 1 constraints unless an explicit exception is logged.
+**Core responsibility:** How the Bari website feels. The Design Agent ensures Bari communicates "someone carefully investigated this supermarket shelf for me" â€” not "I am using analytics software." All visual specs are frozen Gen 1 constraints unless an explicit exception is logged.
 
 **Owns:**
 - Visual spec for all new canonical components
@@ -160,11 +160,11 @@ Bari operates across two physical workspaces:
 
 ### QA Agent
 
-**Core responsibility:** Verification. The QA Agent verifies that what was built actually works, that data is consistent, and that nothing regressed. QA identifies failures — it does not redesign or fix them.
+**Core responsibility:** Verification. The QA Agent verifies that what was built actually works, that data is consistent, and that nothing regressed. QA identifies failures â€” it does not redesign or fix them.
 
 **Owns:**
 - Pre-launch checklist execution: mobile geometry, leakage, drift, component constraints
-- Score propagation verification: BSIP2 trace → frontend JSON → rendered page
+- Score propagation verification: BSIP2 trace â†’ frontend JSON â†’ rendered page
 - JSON dataset validation: structure, required fields, null handling
 - Route and build validation
 - Rollout verdict: PASS / CONDITIONAL PASS / FAIL
@@ -201,7 +201,7 @@ Bari operates across two physical workspaces:
 
 ### Marketing Agent
 
-**Core responsibility:** Growing Bari's reach and user base after categories are live. The Marketing Agent activates downstream of the product pipeline — it does not gate or initiate category work.
+**Core responsibility:** Growing Bari's reach and user base after categories are live. The Marketing Agent activates downstream of the product pipeline â€” it does not gate or initiate category work.
 
 **Owns:**
 - SEO strategy: technical audit, hreflang for Hebrew locale, content keyword mapping
@@ -239,7 +239,7 @@ An agent must escalate when:
 | Score discrepancy: logic issue | Nutrition Agent |
 | Frontend build failure | Frontend Agent |
 | Visual constraint violation | Design Agent |
-| QA hard fail blocks launch | QA Agent → Product Agent (launch decision) |
+| QA hard fail blocks launch | QA Agent â†’ Product Agent (launch decision) |
 | New skill needed | Frontend Architect (infrastructure) + Product Agent (approval) |
 | Agent OS conflict or gap | Product Agent |
 
@@ -248,7 +248,7 @@ An agent must escalate when:
 1. State what you were doing and what blocked you
 2. Name which decision right you lack
 3. Name who holds that right
-4. Stop and wait — do not proceed past a blocked step
+4. Stop and wait â€” do not proceed past a blocked step
 5. Do not implement a workaround to avoid escalation
 
 ---
@@ -259,35 +259,35 @@ An agent must escalate when:
 
 ```
 Product Agent initiates
-    ↓
+    â†“
 Research Agent produces market landscape
-    ↓
+    â†“
 Nutrition Agent confirms scoring approach exists
-    ↓
+    â†“
 Product Agent approves launch brief
-    ↓
-Data Agent: Shelf Mapping → [Product Agent approval]
-    ↓
-Data Agent: Corpus Filter → [Product Agent approval]
-    ↓
-Data Agent: BSIP0 Gate → [Product Agent approval] + QA Agent verification
-    ↓
-Data Agent: BSIP1 Enrichment → [Nutrition Agent approval]
-    ↓
-QA Agent: QA Gate → hard fails block; warnings reviewed
-    ↓
-Data Agent: BSIP2 Readiness → [Nutrition Agent + Product Agent approval]
-    ↓
+    â†“
+Data Agent: Shelf Mapping â†’ [Product Agent approval]
+    â†“
+Data Agent: Corpus Filter â†’ [Product Agent approval]
+    â†“
+Data Agent: BSIP0 Gate â†’ [Product Agent approval] + QA Agent verification
+    â†“
+Data Agent: BSIP1 Enrichment â†’ [Nutrition Agent approval]
+    â†“
+QA Agent: QA Gate â†’ hard fails block; warnings reviewed
+    â†“
+Data Agent: BSIP2 Readiness â†’ [Nutrition Agent + Product Agent approval]
+    â†“
 Data Agent: Frontend JSON generation
-    ↓
-Frontend Agent: Page implementation → [Design Agent spec approval first]
-    ↓
-Content Agent: Copy authoring → [Nutrition Agent + Product Agent approval]
-    ↓
-QA Agent: Pre-launch checklist → PASS / FAIL verdict
-    ↓
+    â†“
+Frontend Agent: Page implementation â†’ [Design Agent spec approval first]
+    â†“
+Content Agent: Copy authoring â†’ [Nutrition Agent + Product Agent approval]
+    â†“
+QA Agent: Pre-launch checklist â†’ PASS / FAIL verdict
+    â†“
 Product Agent: Go-live decision
-    ↓
+    â†“
 Marketing Agent: Launch campaign
 ```
 
@@ -295,25 +295,25 @@ Marketing Agent: Launch campaign
 
 ```
 Nutrition Agent proposes rule (with evidence registry reference)
-    ↓
+    â†“
 Data Agent reviews implementability
-    ↓
+    â†“
 bari-bsip2-scoring-governance checklist:
-    - Evidence registry reference ✓
-    - Label observability ✓
-    - Category activation scope ✓
-    - Rollback plan ✓
-    - Rule accumulation check ✓
-    ↓
+    - Evidence registry reference âœ“
+    - Label observability âœ“
+    - Category activation scope âœ“
+    - Rollback plan âœ“
+    - Rule accumulation check âœ“
+    â†“
 Nutrition Agent approves (scientific validity)
-    ↓
+    â†“
 Product Agent approves (scope and business impact)
-    [Both approvals required — either can block]
-    ↓
+    [Both approvals required â€” either can block]
+    â†“
 Data Agent implements
-    ↓
+    â†“
 Nutrition Agent verifies implementation matches spec
-    ↓
+    â†“
 QA Agent verifies score propagation
 ```
 
@@ -321,17 +321,17 @@ QA Agent verifies score propagation
 
 ```
 Product Agent approves scope
-    ↓
+    â†“
 Design Agent produces visual spec
-    ↓
+    â†“
 Product Agent approves spec (if it affects page structure or scope)
-    ↓
+    â†“
 Frontend Agent implements
-    ↓
+    â†“
 QA Agent verifies: geometry, leakage, drift, build pass
-    ↓
+    â†“
 Design Agent visual review
-    ↓
+    â†“
 Product Agent launch approval
 ```
 
@@ -339,13 +339,13 @@ Product Agent launch approval
 
 ```
 Content Agent drafts copy
-    ↓
+    â†“
 Nutrition Agent approves (accuracy of all nutrition-facing claims)
-    ↓
+    â†“
 Product Agent approves (positioning, product-level claims)
-    ↓
+    â†“
 Frontend Agent integrates copy into frontend JSON
-    ↓
+    â†“
 QA Agent verifies copy fields present in rendered page
 ```
 
@@ -353,17 +353,17 @@ QA Agent verifies copy fields present in rendered page
 
 ```
 Any agent identifies capability gap
-    ↓
+    â†“
 Agent documents: gap description, proposed skill, source URL
-    ↓
+    â†“
 Frontend Architect reviews: source verification, security review, content completeness
-    ↓
+    â†“
 Product Agent approves: capability gap justified, not covered by existing skills
-    ↓
+    â†“
 Frontend Architect installs: SKILL.md, registry update, activation test
-    ↓
+    â†“
 QA Agent validates: installation confirmed, no dependency issues
-    ↓
+    â†“
 capability_stack_matrix.md updated with new skill assignment
 ```
 
@@ -373,7 +373,7 @@ capability_stack_matrix.md updated with new skill assignment
 
 ### Information Flow Rules
 
-1. **Research → Nutrition, not Research → Data.** Research outputs flow to the Nutrition Agent or Product Agent for interpretation. The Research Agent does not feed the pipeline directly.
+1. **Research â†’ Nutrition, not Research â†’ Data.** Research outputs flow to the Nutrition Agent or Product Agent for interpretation. The Research Agent does not feed the pipeline directly.
 
 2. **Design spec before implementation.** The Frontend Agent does not begin building a new component until the Design Agent has produced and the Product Agent has approved a visual spec. No "I'll figure out the design as I build it."
 
