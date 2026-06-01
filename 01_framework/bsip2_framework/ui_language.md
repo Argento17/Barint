@@ -70,6 +70,10 @@ When a product has concerns, name the signal precisely. Avoid vague language tha
 | Long ingredient list (>12) | "Complex ingredient list" |
 | Multiple added sugar sources | "Multiple added sugar sources" |
 | Protein from isolate (not whole food) | "Protein from isolate" |
+| Reconstructed protein in a bar format (TASK-133B) | "Protein from a reconstructed source" |
+| Collagen protein (TASK-133B) | "Collagen — incomplete protein profile" |
+| Concern emulsifier — carrageenan / CMC / polysorbate-80 (TASK-133C) | "Contains a high-load emulsifier" |
+| BHA preservative present (TASK-133D) | "Contains BHA (preservative under review)" |
 | Calorie density high for category | "High calorie density for [category]" |
 | High sugar + high calories (combined) | "High calorie, high sugar combination" |
 | Low satiety signals (low protein + fiber) | "Low satiety signals" |

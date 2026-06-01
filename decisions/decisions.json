@@ -59,7 +59,9 @@
     "title": "BSIP2 TASK-133 revision calibration & scope sign-off (F2/F1/F4)",
     "type": "calibration_signoff",
     "required_from": "nutrition-agent",
-    "status": "PENDING",
+    "status": "DECIDED",
+    "decided_at": "2026-06-01",
+    "decision": "Option A approved, and calibration magnitudes RATIFIED against real corpora (owner authorized proceeding through Phase E 2026-06-01). G1 magnitudes: F2 reconstructed x0.80 (conservative band-aware matrix discount; with the existing source-factor lands the effective protein-quality near the lower-middle of the empirical 47-81% DIAAS band) and collagen x0.55 (lowest matrix DIAAS, incomplete AA profile); F1 emulsifier/starch deltas = NEUTRAL/0 (calibration finding: the live EV-003 sprint1 tiering already realizes F1's directions - carrageenan/CMC penalized, lecithin-only carries NO emulsifier penalty so it is NOT over-penalized in proto_v0, native vs modified starch already differentiated by the regexes; the taxonomy adds exact identity for future tuning but no additional delta is warranted, avoiding cross-category destabilization and double-count); F4 BHA = -5 (small named penalty on additive_quality, BHT excluded). G2: F2 quality-only (implemented). G3: proto_v0 is source-of-truth; methodology.md weights re-synced at Phase E. Evidence: cross-corpora before/after (464 products, 7 corpora) -> 4 changed, 0 grade-flips; golden 11 PASS/1 pre-existing WARN/0 FAIL with no golden score changed.",
     "options": [
       "A - Approve recommended package: build the structure now and defer numeric magnitudes (F2 discount curve, F1 penalty deltas, F4 penalty size) to a calibration run against real corpora; F2 discounts the Protein Quality dimension only; treat proto_v0 as source-of-truth and re-sync the frozen spec at Phase E",
       "B - Approve build but fix calibration magnitudes up front before coding",
@@ -69,6 +71,25 @@
     "urgency": "THIS_WEEK",
     "blocking": ["TASK-133 closure", "TASK-133B calibration", "TASK-133C calibration", "TASK-133D calibration"],
     "created_at": "2026-06-01",
-    "notes": "Does NOT block starting 133A (taxonomy) or the structural build of B/C/D - only the calibrated magnitudes and final closure. Full plan: C:/Bari/research/TASK-133_implementation_roadmap.md. Origin: TASK-132 evaluation."
+    "notes": "Does NOT block starting 133A (taxonomy) or the structural build of B/C/D - only the calibrated magnitudes and final closure. Full plan: C:/Bari/research/TASK-133_implementation_roadmap.md. Origin: TASK-132 evaluation. UPDATE 2026-06-01: 133A CLOSED; structural build of B/C/D COMPLETE and validated (report: C:/Bari/research/TASK-133BCD_validation_report.md). Golden 11 PASS/1 pre-existing WARN/0 FAIL (no golden score changed); cross-corpora 464 products -> 4 changed, 0 grade-flips (yogurt/milk/bread/hummus = 0). F4 FDA gate PASSED (BHA under active reassessment since 2026-02-10, no final rule landed; BHT not yet under reassessment -> differentiated). REMAINING for this decision: (G1) set placeholder magnitudes via a dedicated calibration run - F2 placeholders reconstructed x0.80 / collagen x0.55, F1 deltas NEUTRAL/no-op (must reconcile-retire the live EV-003 sprint1 nudges in the same run to avoid double-count), F4 BHA -5; (G2) F2 scope = quality-only (implemented as recommended); (G3) proto_v0 as source-of-truth + Phase-E spec re-sync. NOTE: F2 currently touches exactly one LIVE-corpus product (a maadanim soy-protein bar, no grade flip) - magnitudes must be ratified before any frontend rescore. 133B/C/D proposed status: BLOCKED on this decision."
+  },
+  {
+    "id": "DEC-005",
+    "title": "Yogurts manual-MVP score provenance exception",
+    "type": "provenance_exception",
+    "required_from": "CommandCenter",
+    "status": "DECIDED",
+    "options": [
+      "A - Accept the 13 hand-tuned scores as a disclosed, non-authoritative MVP provenance exception + queue a real reproducible run as a deferred, non-blocking follow-up",
+      "B - Block yogurts (NO-GO) until a real frozen run reconciles the displayed scores",
+      "C - Reconcile to run_yogurt_001 (the existing machine run)"
+    ],
+    "recommendation": "Option A. run_yogurt_001 is a synthetic architectural-stress corpus (placeholder barcodes 7290200000001-045, proto_v0, generic archetype names) - it is not the real branded SKUs the frontend ships, so it cannot reconcile. Yogurts is already LIVE on the manual scores, so this is governance debt, not a launch gate. Govern the debt explicitly now; retire it with a real run later without blocking.",
+    "decided_at": "2026-06-01",
+    "decision": "Accept the 13 hand-tuned yogurt scores (yogurts_frontend_v1.json, v1-mvp-manual) as a disclosed, non-authoritative MVP provenance exception. Mark the corpus _meta authoritative:false + provenance:manual-mvp + exception:DEC-005 (disclosure, not a score change). Real reproducible scores are a COMMITTED but non-blocking follow-up via a real-product run (run_yogurt_002), opened when picked up. Yogurts remains LIVE.",
+    "urgency": "THIS_WEEK",
+    "blocking": ["TASK-129B closure"],
+    "created_at": "2026-06-01",
+    "notes": "Supersedes the 2026-06-01 'reconcile to machine run' decision - run_yogurt_001 found synthetic (TASK-129B return). Real follow-up tracked as TASK-135 (run_yogurt_002), opened deferred/non-blocking per the 128E (DEC-003 Amendment A) precedent. Provenance marker on yogurts frontend _meta is the closeout action for 129B."
   }
 ]

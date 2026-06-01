@@ -51,11 +51,19 @@ Beyond NOVA level, the system evaluates the density and composition of industria
 - Glucose syrup: −8
 - Maltodextrin: −8
 - Flavourings: −6
-- Emulsifiers: −6
+- Emulsifiers: identity-tiered (see below) — TASK-133C
 - Chocolate or compound coating: −8
 - Extruded or puffed grain: −8
 
 Ingredient count also contributes: each ingredient beyond 8 applies a further −1.2 to the processing quality dimension.
+
+**Emulsifier identity tiering (TASK-133C).** The former flat emulsifier penalty is replaced by named-additive identity (resolved by the ingredient taxonomy, TASK-133A):
+- **Concern** — carrageenan (E407), CMC (E466), polysorbate-80 (E433): penalized more (EV-003 gut-barrier evidence). Food-grade carrageenan is the modelled form; degraded poligeenan is not a food additive.
+- **Benign** — soy / sunflower lecithin (E322): driven toward neutral (a lecithin-only product carries no emulsifier additive penalty).
+- **Starch form** — native (unmodified) starch carries no additive burden; modified starch is penalized.
+- **Named antioxidant** — BHA (E320) carries a small named penalty (FDA post-market reassessment active since 2026-02-10); BHT (E321) is explicitly differentiated and not penalized (TASK-133D).
+
+The directional tiering is realized in the live engine via the EV-003 signal correction; the taxonomy supplies exact identity. Per-identity magnitudes are governed by DEC-004 (no new caps were added — Tension-5 rule budget).
 
 ---
 

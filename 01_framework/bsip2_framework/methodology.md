@@ -26,16 +26,18 @@ Dimensions and their weight in the final score:
 
 | Dimension | Weight | What it measures |
 |-----------|--------|-----------------|
-| Processing Quality | 18% | Degree of industrial processing; NOVA classification; additive burden |
-| Nutrient Density | 16% | Protein, fiber, and micronutrient contribution per 100g |
-| Calorie Density Quality | 12% | Whether calorie content is appropriate for this product's category |
-| Glycemic Quality | 11% | Sugar load and carbohydrate composition |
-| Protein Quality | 9% | Protein quantity and sourcing method |
-| Additive Quality | 7% | Presence of artificial stabilizers, emulsifiers, sweeteners |
+| Processing Quality | 15% | Degree of industrial processing; NOVA classification; additive burden |
+| Nutrient Density | 15% | Protein, fiber, and micronutrient contribution per 100g |
+| Calorie Density Quality | 15% | Whether calorie content is appropriate for this product's category |
+| Glycemic Quality | 12% | Sugar load and carbohydrate composition |
+| Protein Quality | 10% | Protein quantity, sourcing method, and **matrix form** (a reconstructed-protein/collagen discount applies to the quality contribution in bar formats; protein *mass* is unaffected — TASK-133B) |
+| Additive Quality | 10% | Presence of artificial stabilizers, emulsifiers, sweeteners; **named-additive identity** (emulsifier tiering, BHA) — TASK-133C/D |
+| Fat Quality | 8% | Saturated fat proportion; fat source quality |
 | Satiety Support | 6% | Whether the product's composition supports fullness (protein + fiber + food structure) |
-| Fat Quality | 6% | Saturated fat proportion; fat source quality |
-| Regulatory Quality | 4% | Israeli red-label warnings (sugar, sodium, saturated fat) |
-| Whole Food Integrity | 1% | Structural proximity to minimally processed whole food |
+| Regulatory Quality | 5% | Israeli red-label warnings (sugar, sodium, saturated fat) |
+| Whole Food Integrity | 4% | Structural proximity to minimally processed whole food |
+
+*(Weights re-synced to the proto_v0 engine — source-of-truth — per DEC-004 G3, 2026-06-01. The earlier 18/16/12/11/9/7/6/6/4/1 table had drifted from the running engine.)*
 
 Hyper-Palatability (see Stage 4) is an additional signal that applies penalties across relevant dimensions rather than standing alone.
 
@@ -102,4 +104,6 @@ Grades are not moral judgements. A D-grade product is not "bad food" — it is a
 
 ## Algorithm version
 
-Current: `0.3.1`
+Current: `0.4.0`
+
+**0.4.0** (2026-06-01, TASK-133) — Protein Quality is now matrix-aware (reconstructed-protein / collagen quality discount, bar-format gated, quality-contribution only); named-additive identity in Additive Quality (emulsifier tiering via the ingredient taxonomy; BHA named penalty, BHT differentiated); ingredient fragmentation-level signals (matrix-integrity Req 1 implemented). Dimension-weight table re-synced to the engine (DEC-004 G3). Magnitudes ratified under DEC-004.

@@ -214,8 +214,9 @@ Could the transformation process be partially reversed? Ground almonds could not
 
 The existing `ingredient_fragmentation_concept.md` establishes the conceptual vocabulary. This framework adds the following design requirements for any matrix integrity signal in BSIP2:
 
-**Requirement 1: Ingredient-form sensitivity**  
-The signal must distinguish ingredient form, not just ingredient presence. "Oats" and "oat protein isolate" are different; "almonds" and "almond protein concentrate" are different. This requires an ingredient taxonomy with fragmentation level metadata.
+**Requirement 1: Ingredient-form sensitivity** — ✅ IMPLEMENTED (TASK-133A, 2026-06-01)  
+The signal must distinguish ingredient form, not just ingredient presence. "Oats" and "oat protein isolate" are different; "almonds" and "almond protein concentrate" are different. This requires an ingredient taxonomy with fragmentation level metadata.  
+*Implemented as `proto_v0/src/ingredient_taxonomy.py`: resolves name/synonym → E-number, additive_class, `fragmentation_level` (intact \| mechanical \| fractional \| reconstructed), and `is_named_concern`. Consumed by Protein Quality (TASK-133B reconstructed/collagen discount), Additive Quality (TASK-133C emulsifier identity), and the BHA named penalty (TASK-133D). Primary-ingredient weighting (Req 3) and gaming resistance (Req 5) are realized by `primary_fragmentation_profile()`.*
 
 **Requirement 2: NOVA independence**  
 The matrix integrity assessment must produce results that differ from NOVA assignment for a meaningful fraction of products. If the two are perfectly correlated, matrix integrity adds no information. The target is a signal that is correlated with NOVA at moderate strength but captures variance that NOVA does not.

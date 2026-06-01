@@ -1,9 +1,9 @@
 # Bari Scoring Architecture
 
 **Engine:** BSIP2 Prototype v0  
-**Algorithm version:** 0.3.1  
+**Algorithm version:** 0.4.0  
 **Source:** `C:\Bari\03_operations\bsip2\proto_v0\src\`  
-**Last verified:** 2026-05-30
+**Last verified:** 2026-06-01
 
 ---
 

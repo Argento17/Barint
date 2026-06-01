@@ -27,6 +27,8 @@ from constants import (
     ABSOLUTE_SCORE_FLOOR, GRADE_E_FLOOR_STANDARD,
     CAT_CONF_HIGH, CAT_CONF_MEDIUM, CAT_MEDIUM_THRESHOLD_RELAX,
     PROCESSING_CAPS, FERMENTATION_DIRECT_BONUS,
+    PROTEIN_QUALITY_MATRIX_DISCOUNT, PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES,
+    ADDITIVE_IDENTITY_DELTAS, BHA_NAMED_PENALTY,
     score_to_grade,
 )
 
@@ -287,19 +289,59 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
     return score, note
 
 
+def _identity_additive_deltas(l3: dict) -> tuple[float, list[str]]:
+    """TASK-133 F1/F4 — per-identity point deltas on the additive_quality dimension.
+
+    Consumes the TASK-133A taxonomy identity (carrageenan/CMC vs lecithin, native
+    vs modified starch, BHA vs BHT). F1 emulsifier/starch deltas default to NEUTRAL
+    (DEC-004 — directions are already live via the EV-003 sprint1 count correction;
+    setting them non-zero now would double-count). F4's BHA named penalty is a
+    genuinely new, non-double-counting signal (distinct from the generic
+    antioxidant-category count BHA shares with BHT and benign tocopherol).
+    Returns (signed_delta, notes).
+    """
+    delta = 0.0
+    notes: list[str] = []
+
+    # F1 — emulsifier identity (DEC-004-gated; default 0 to avoid double-count)
+    concern = l3.get("tax_emulsifier_concern") or []
+    if concern and ADDITIVE_IDENTITY_DELTAS["emulsifier_concern_each"]:
+        d = max(-ADDITIVE_IDENTITY_DELTAS["emulsifier_concern_cap"],
+                -len(concern) * ADDITIVE_IDENTITY_DELTAS["emulsifier_concern_each"])
+        delta += d
+        notes.append(f"F1 emulsifier_concern {concern} → {d:+.0f}")
+    if (l3.get("tax_emulsifier_benign")) and ADDITIVE_IDENTITY_DELTAS["lecithin_relief"]:
+        delta += ADDITIVE_IDENTITY_DELTAS["lecithin_relief"]
+        notes.append(f"F1 lecithin relief +{ADDITIVE_IDENTITY_DELTAS['lecithin_relief']}")
+    if l3.get("tax_native_starch") and ADDITIVE_IDENTITY_DELTAS["native_starch_relief"]:
+        delta += ADDITIVE_IDENTITY_DELTAS["native_starch_relief"]
+        notes.append(f"F1 native-starch relief +{ADDITIVE_IDENTITY_DELTAS['native_starch_relief']}")
+
+    # F4 — BHA named penalty (BHT explicitly excluded)
+    if l3.get("tax_bha_present"):
+        delta -= BHA_NAMED_PENALTY
+        notes.append(f"F4 BHA (E320) named penalty −{BHA_NAMED_PENALTY} "
+                     f"(FDA reassessment active 2026-02-10; BHT differentiated)")
+    return delta, notes
+
+
 def _score_additive_quality_sprint1(l3: dict) -> tuple:
-    """EV-003/019: uses sprint1_additive_count (emulsifier/gum tier corrections)."""
+    """EV-003/019: uses sprint1_additive_count (emulsifier/gum tier corrections).
+    TASK-133 F1/F4: applies per-identity point deltas on top (taxonomy identity)."""
     ac    = l3.get("sprint1_additive_count", l3.get("additive_marker_count", 0))
     ac_v1 = l3.get("additive_marker_count", 0)
     sw_tier = l3.get("sweetener_tier")
     _tier_penalties = {"A": SWEETENER_PENALTY_A, "B": SWEETENER_PENALTY_B, "C": SWEETENER_PENALTY_C}
     sw_pen = _tier_penalties.get(sw_tier, 0)
     base  = max(0, 100 - ac * 18)
-    score = round(max(0, base - sw_pen), 1)
+    id_delta, id_notes = _identity_additive_deltas(l3)
+    score = round(max(0, min(100, base - sw_pen + id_delta)), 1)
     tier_note = f" tier-{sw_tier}" if sw_tier else ""
     corr = l3.get("sprint1_additive_correction", 0)
     corr_note = (f" [EV-003/019: v1={ac_v1}→sprint1={ac} (Δ={corr:+d})]" if corr != 0 else "")
-    return score, (f"sprint1_additives={ac} base={base} sw{tier_note}_pen={sw_pen}→{score}{corr_note}")
+    id_note = (f" [{'; '.join(id_notes)}]" if id_notes else "")
+    return score, (f"sprint1_additives={ac} base={base} sw{tier_note}_pen={sw_pen}"
+                   f"{(' id_delta=%+.0f' % id_delta) if id_delta else ''}→{score}{corr_note}{id_note}")
 
 
 def _compute_polyol_penalty(l3: dict, product_name: str = "") -> tuple:
@@ -354,7 +396,7 @@ def score_glycemic_quality(nn: dict, l3: dict) -> tuple[float, str]:
     return score, note
 
 
-def score_protein_quality(nn: dict, l3: dict) -> tuple[float, str]:
+def score_protein_quality(nn: dict, l3: dict, category: str = None) -> tuple[float, str]:
     prot = nn.get("protein_g") or 0
     source = l3.get("protein_source", "unknown")
     source_factors = {"whole_food": 1.0, "mixed": 0.85, "isolate": 0.70, "unknown": 0.80}
@@ -370,8 +412,25 @@ def score_protein_quality(nn: dict, l3: dict) -> tuple[float, str]:
         return 95
 
     base = prot_base(prot)
-    score = round(base * sf, 1)
-    return score, f"protein={prot}g base={base:.1f}, source={source}(×{sf}) → {score}"
+    quality = base * sf
+
+    # F2 / TASK-133B — matrix discount on the protein-QUALITY contribution only.
+    # Protein MASS is untouched (satiety_support + nutrient_density read protein_g
+    # directly). DEC-004 gates the magnitudes (PROTEIN_QUALITY_MATRIX_DISCOUNT).
+    matrix_form = l3.get("protein_matrix_form")
+    discount = 1.0
+    disc_note = ""
+    if matrix_form == "collagen":
+        discount = PROTEIN_QUALITY_MATRIX_DISCOUNT["collagen"]
+        disc_note = (f", F2 collagen matrix discount ×{discount} "
+                     f"(incomplete AA profile, lowest matrix DIAAS)")
+    elif matrix_form == "reconstructed" and category in PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES:
+        discount = PROTEIN_QUALITY_MATRIX_DISCOUNT["reconstructed"]
+        disc_note = (f", F2 bar-format reconstructed-protein discount ×{discount} "
+                     f"(isolate-bar gaming hole; DIAAS 47–81% of label)")
+
+    score = round(quality * discount, 1)
+    return score, f"protein={prot}g base={base:.1f}, source={source}(×{sf}){disc_note} → {score}"
 
 
 def score_additive_quality(l3: dict) -> tuple[float, str]:
@@ -919,8 +978,8 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         cd_table_key = "yogurt"
     cd_score,  cd_note  = score_calorie_density(nn, cd_table_key, cat_conf, se_result)
     gq_score,  gq_note  = _score_glycemic_quality_sprint1(nn, l3)   # EV-004
-    prq_score, prq_note = score_protein_quality(nn, l3)
-    aq_score,  aq_note  = _score_additive_quality_sprint1(l3)        # EV-003/019
+    prq_score, prq_note = score_protein_quality(nn, l3, category)    # F2: matrix discount
+    aq_score,  aq_note  = _score_additive_quality_sprint1(l3)        # EV-003/019 + F1/F4 identity
     ss_score,  ss_note  = score_satiety_support(nn)
     fq_score,  fq_note  = _score_fat_quality_sprint1(nn, l3, se_result)  # EV-012
     rq_score,  rq_note  = score_regulatory_quality(l3)

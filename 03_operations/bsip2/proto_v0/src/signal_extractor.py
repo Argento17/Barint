@@ -5,6 +5,7 @@ All inferences are labelled by taxonomy layer and carry explicit uncertainty.
 """
 import re
 from input_loader import get_nutrition, get_ingredients, get_ingredients_text, get_trust
+import ingredient_taxonomy as itax   # TASK-133A — named-additive + fragmentation identity
 
 # ---------------------------------------------------------------------------
 # Hebrew ingredient keyword lists
@@ -155,6 +156,26 @@ PROTEIN_ISOLATE_MARKERS_HE = [
     "אבקת חלב",   # milk powder — mixed signal
     "קזאין",
     "אייזולאט", "איזולאט",
+]
+
+# F2 / TASK-133B — reconstructed-protein markers: extracted protein FRACTIONS
+# (isolates / concentrates). This is a PRECISION SUBSET of PROTEIN_ISOLATE_MARKERS_HE
+# that DELIBERATELY EXCLUDES whole dried-dairy ingredients — "אבקת חלב" (milk powder)
+# and bare "קזאין" — which are reconstructed dairy but NOT protein isolates, and so
+# must not trigger the F2 quality discount (verified false-positive source on the
+# snack-bar corpus: milk-powder chocolate/cereal bars). Genuine "חלבון X" fractions
+# (whey/soy/pea/egg/casein protein) and explicit isolate terms DO trigger it.
+RECONSTRUCTED_PROTEIN_MARKERS_HE = [
+    "חלבון מי גבינה", "חלבון סויה", "חלבון חיטה",
+    "חלבון אפונה", "חלבון ביצה", "חלבון קזאין",
+    "אייזולאט", "איזולאט",
+]
+
+# F2 / TASK-133B — collagen: reconstructed protein with an incomplete amino-acid
+# profile (no tryptophan); lowest matrix DIAAS. Detected separately so the protein
+# quality dimension can apply the strongest matrix discount (collagen sub-penalty).
+COLLAGEN_MARKERS_HE = [
+    "קולגן", "פפטידי קולגן", "חלבון קולגן", "collagen", "collagen peptides",
 ]
 
 # Fortification detection — synthetic vitamins/minerals added as ingredients.
@@ -434,6 +455,55 @@ def extract_signals(product: dict) -> dict:
         correction_notes.append(f"EV-003: high-risk emulsifier (+2): {high_risk_emuls_found[:2]}")
     sprint1_additive_count = max(0, additive_marker_count + sprint1_additive_correction)
 
+    # --- TASK-133 (F1/F2/F4): ingredient identity + fragmentation via taxonomy ---
+    # Resolves named additives (emulsifier identity, BHA/BHT) and structural form
+    # (native vs modified starch, reconstructed protein, collagen) from ingredient
+    # text. Magnitudes are applied downstream in the engine; this only emits IDENTITY.
+    ingredient_order = [{"text": ing, "position": i + 1} for i, ing in enumerate(ingredients)]
+    if not ingredient_order and ing_text:
+        # fall back to the comma/and-split text when no structured list is present
+        parts = [p.strip() for p in re.split(r"[,;•\n]| ו(?=[א-ת])", ing_text) if p.strip()]
+        ingredient_order = [{"text": p, "position": i + 1} for i, p in enumerate(parts)]
+
+    tax_emulsifier_concern: list[str] = []   # carrageenan / CMC / polysorbate-80 (F1 up)
+    tax_emulsifier_benign:  list[str] = []   # soy / sunflower lecithin (F1 down)
+    tax_named_concern_additives: list[str] = []
+    tax_bha_present = False                  # F4 named penalty
+    tax_bht_present = False                  # F4 explicitly NOT penalized
+    for item in ingredient_order:
+        ident = itax.resolve_additive(item["text"], None)
+        if ident is None:
+            continue
+        if ident.additive_class == "emulsifier_concern" and ident.canonical not in tax_emulsifier_concern:
+            tax_emulsifier_concern.append(ident.canonical)
+        elif ident.additive_class == "emulsifier_benign" and ident.canonical not in tax_emulsifier_benign:
+            tax_emulsifier_benign.append(ident.canonical)
+        if ident.canonical == "bha":
+            tax_bha_present = True
+        if ident.canonical == "bht":
+            tax_bht_present = True
+        if ident.is_named_concern and ident.canonical not in tax_named_concern_additives:
+            tax_named_concern_additives.append(ident.canonical)
+
+    # Structural form of the PRIMARY ingredients (Req 3/Req 5 — gaming-resistant)
+    frag_profile = itax.primary_fragmentation_profile(ingredient_order, [])
+
+    # Native vs modified starch (F1: native starch leaves the additive burden)
+    tax_native_starch = False
+    tax_modified_starch = False
+    for item in ingredient_order:
+        s_ident = itax.resolve_structural(item["text"], None)
+        if s_ident is None:
+            continue
+        if s_ident.canonical == "native_starch":
+            tax_native_starch = True
+        elif s_ident.canonical == "modified_starch":
+            tax_modified_starch = True
+
+    # F2: collagen marker (reconstructed-protein matrix form is set below, once the
+    # isolate-marker detection has run).
+    has_collagen = bool(_search(full_text, COLLAGEN_MARKERS_HE))
+
     # --- Sprint 1: EV-004 allulose ---
     allulose_detected = _detect_allulose(full_text)
 
@@ -466,6 +536,29 @@ def extract_signals(product: dict) -> dict:
     else:
         protein_source = "unknown"
         protein_source_basis = ["insufficient protein signal"]
+
+    # F2 / TASK-133B — protein matrix form (drives the bar-format quality discount).
+    # PRIMARY-INGREDIENT GATED (Req 3 / Req 5): only a protein fraction in the primary
+    # positions counts — a trace garnish (e.g. 0.6% soy-protein crisps, 1.5% collagen
+    # on a milk base) must NOT discount the dominant whole/dairy protein. The
+    # most-primary protein marker decides the form:
+    #   collagen      — incomplete AA profile, lowest matrix DIAAS (strongest discount)
+    #   reconstructed — extracted protein FRACTION (whey/soy/pea/egg/casein, isolate);
+    #                   excludes milk powder (not a fraction)
+    #   None          — whole-food / in-context / trace-only protein (no discount)
+    PROTEIN_PRIMARY_WINDOW = 3
+    protein_matrix_form = None
+    for item in ingredient_order:
+        pos = item.get("position") or 99
+        if pos > PROTEIN_PRIMARY_WINDOW:
+            continue
+        txt = item.get("text", "")
+        if any(m in txt for m in COLLAGEN_MARKERS_HE):
+            protein_matrix_form = "collagen"
+            break
+        if any(m in txt for m in RECONSTRUCTED_PROTEIN_MARKERS_HE):
+            protein_matrix_form = "reconstructed"
+            break
 
     # Added sugar sources (for SC classification and MULTIPLE_ADDED_SUGAR_MARKERS)
     added_sugar_matches = [m for m in ADDED_SUGAR_MARKERS_HE
@@ -575,6 +668,17 @@ def extract_signals(product: dict) -> dict:
         "sprint1_humectant_polyols":             sorted(humectant_polyols_detected),
         "sprint1_penalty_polyol_count":          penalty_polyol_count,
         "sprint1_penalty_polyols":               penalty_polyols,
+        # TASK-133 (F1/F2/F4) — ingredient identity + fragmentation (magnitudes applied downstream)
+        "tax_emulsifier_concern":                tax_emulsifier_concern,      # F1: carrageenan/CMC/P80 (up)
+        "tax_emulsifier_benign":                 tax_emulsifier_benign,       # F1: lecithin (toward neutral)
+        "tax_named_concern_additives":           tax_named_concern_additives,
+        "tax_native_starch":                     tax_native_starch,           # F1: out of additive burden
+        "tax_modified_starch":                   tax_modified_starch,         # F1: stays penalized
+        "tax_bha_present":                       tax_bha_present,             # F4: small named penalty
+        "tax_bht_present":                       tax_bht_present,             # F4: explicitly NOT penalized
+        "has_collagen":                          has_collagen,                # F2: strongest matrix discount
+        "protein_matrix_form":                   protein_matrix_form,         # F2: collagen|reconstructed|None
+        "primary_fragmentation":                 frag_profile.get("dominant_fragmentation"),
         "inference_confidence_notes": [
             "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
             "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",

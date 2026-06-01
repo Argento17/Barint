@@ -153,6 +153,65 @@ SWEETENER_PENALTY_B = 10
 SWEETENER_PENALTY_C = 15
 
 # ---------------------------------------------------------------------------
+# TASK-133 — Evidence-Watch 2026-06-01 revisions (F2 / F1 / F4)
+# ALL magnitudes below are placeholders gated by DEC-004 (calibration_signoff).
+# The STRUCTURE is owner-approved; the NUMBERS are set in a dedicated calibration
+# run against real corpora. See research/TASK-133_implementation_roadmap.md.
+# ---------------------------------------------------------------------------
+
+# ── F2 / TASK-133B — Protein Quality matrix discount ────────────────────────
+# Discounts the protein-QUALITY contribution ONLY (DEC-004 G2 = quality-only).
+# Protein MASS still feeds satiety_support + nutrient_density untouched.
+# Applies to bar-format products whose protein is reconstructed (isolate-style) —
+# the documented isolate-bar gaming hole. Empirical basis: bar-matrix DIAAS
+# measured at 47–81% of label — a conservative BAND, not a per-product number;
+# collagen is lowest (incomplete AA profile, no tryptophan).
+# COORDINATION (top risk in roadmap): this is the SOLE owner of the
+# reconstructed-protein penalty in the LIVE score path. matrix_integrity.py's
+# degradation pull is NOT wired into the composite score, so there is no
+# double-count today; if it is ever composited in, it must NOT re-penalize
+# reconstructed protein (PROCESSING_LOAD-family coordination note).
+PROTEIN_QUALITY_MATRIX_DISCOUNT = {
+    "reconstructed": 0.80,   # bar-format isolate: placeholder ~midpoint of 47–81% band — DEC-004
+    "collagen":      0.55,   # incomplete AA profile, lowest matrix DIAAS — DEC-004
+}
+# Bar-format scoring categories the F2 reconstructed discount applies to.
+# Restriction to bar formats PROTECTS in-context whey isolate (protein puddings /
+# Greek yogurt are not bar-format → unchanged). Collagen discounts in any format.
+PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES = ("snack_bar_granola",)
+
+# ── F1 / TASK-133C — emulsifier identity tiering + native-starch exclusion ──
+# DIRECTIONS ARE ALREADY LIVE via the EV-003 sprint1 correction in
+# signal_extractor (carrageenan/CMC → +2 count = stronger penalty; lecithin-only
+# → −1 count = relief) and native/modified starch are already correctly
+# differentiated by ADDITIVE_MARKER_PATTERNS (native עמילן is not an additive;
+# modified עמילן מוקשה/משונה counts as thickener). TASK-133A's taxonomy now
+# supplies EXACT identity (carrageenan vs CMC vs lecithin, E-numbers).
+# These per-identity point deltas on the additive_quality dimension default to
+# NEUTRAL (no-op) so they do NOT double-count sprint1; the calibration run
+# (DEC-004) sets the precise weights AND reconciles/retires the coarse sprint1
+# nudges. No new caps (Tension-5 rule budget). Note: food-grade carrageenan
+# (E407) is the modelled form; degraded poligeenan is not a food additive.
+ADDITIVE_IDENTITY_DELTAS = {
+    "emulsifier_concern_each":  0,   # carrageenan / CMC / P80 — DEC-004 (sprint1 already +2 count)
+    "emulsifier_concern_cap":   0,   # max stacked concern delta — DEC-004
+    "lecithin_relief":          0,   # soy/sunflower lecithin toward neutral — DEC-004 (sprint1 already −1)
+    "native_starch_relief":     0,   # native starch already excluded from burden — DEC-004
+}
+
+# ── F4 / TASK-133D — BHA named penalty (BHT explicitly excluded) ────────────
+# GATE PASSED (WebSearch 2026-06-01): FDA launched a post-market reassessment of
+# BHA (E320) on 2026-02-10 (RFI closed 2026-04-13; no final GRAS rule has landed
+# as of 2026-06); NTP lists BHA as "reasonably anticipated to be a human
+# carcinogen." BHT (E321) is NOT yet under reassessment (FDA reassesses it only
+# after BHA) → explicitly differentiated, no penalty. Small NAMED penalty on the
+# additive_quality dimension, distinct from the generic antioxidant-category
+# count (which BHA, BHT and benign tocopherol currently share). No
+# regulatory-status tracking subsystem — a static named penalty is correct while
+# no rule has landed. Magnitude gated by DEC-004.
+BHA_NAMED_PENALTY = 5   # points on additive_quality — placeholder, DEC-004
+
+# ---------------------------------------------------------------------------
 # Trans fat veto threshold
 # > 1.0g/100g: veto (score = 0)
 # 0.5-1.0g: high_trans_fat_concern flag (no veto)

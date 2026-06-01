@@ -2,9 +2,10 @@
 id: TASK-133A
 title: Named-additive + ingredient-fragmentation taxonomy (matrix Req 1) - enabling infra
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: []
 blocks: []
 category_id: null

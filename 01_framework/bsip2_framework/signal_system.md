@@ -107,6 +107,19 @@ Products are assigned to one of eight functional categories:
 
 Category drives calorie density evaluation — each category has its own calorie thresholds. Category confidence propagates into analytical confidence.
 
+### Ingredient identity & fragmentation (TASK-133)
+
+Beyond functional *class* ("emulsifier", "flour"), the engine resolves ingredient **identity** and **structural form** via the ingredient taxonomy (TASK-133A; satisfies matrix-integrity Requirement 1). These signals are decoupled from NOVA (structural, not processing-bin derived):
+
+| Signal | Description |
+|--------|-------------|
+| `protein_matrix_form` | `collagen` \| `reconstructed` \| `None` — form of the **primary** protein contributor. Drives the Protein Quality matrix discount (TASK-133B). Primary-position gated (top 3) so a trace garnish cannot trigger it; milk powder is excluded (reconstructed dairy, not a protein fraction). |
+| `has_collagen` | Collagen present anywhere (incomplete amino-acid profile; lowest matrix DIAAS). |
+| `tax_emulsifier_concern` / `tax_emulsifier_benign` | Named emulsifier identity — carrageenan (E407) / CMC (E466) / polysorbate-80 (E433) vs. soy/sunflower lecithin (E322) (TASK-133C). |
+| `tax_native_starch` / `tax_modified_starch` | Native (unmodified) vs. modified starch — native carries no additive burden; modified is penalized (TASK-133C). |
+| `tax_bha_present` / `tax_bht_present` | BHA (E320) named-concern vs. BHT (E321), explicitly differentiated (TASK-133D). |
+| `primary_fragmentation` | Dominant fragmentation level of the primary ingredients: `intact` \| `mechanical` \| `fractional` \| `reconstructed` (gaming-resistant; position-weighted). |
+
 ---
 
 ## Group 5 — Data quality indicators
