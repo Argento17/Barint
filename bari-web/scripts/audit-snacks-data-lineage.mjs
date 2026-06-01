@@ -30,7 +30,7 @@ const bsip0Root = "c:/Bari/02_products/snack_bars/observations_bsip0/yohananof";
 const bsip1Root = "c:/Bari/02_products/snack_bars/canonical_bsip1/run_001";
 const bsip2Root =
   "c:/Bari/02_products/snack_bars/bsip2_outputs/run_snack_bars_synthesis_001/products";
-const corpusPath = "c:/bari-web/src/data/comparisons/snacks_frontend_v2.json";
+const corpusPath = "c:/bari/bari-web/src/data/comparisons/snacks_frontend_v2.json";
 
 const corpus = JSON.parse(readFileSync(corpusPath, "utf8"));
 const audit = JSON.parse(readFileSync(join(bsip0Root, "audit_report.json"), "utf8"));

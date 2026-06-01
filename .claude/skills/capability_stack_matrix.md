@@ -150,8 +150,8 @@ This matrix defines the authoritative skill stack for each Bari agent. Skill ass
 ## 5. Frontend Agent
 
 **Maps to:** Frontend Architect (`frontend-architect.md`)
-**Primary workspace:** `C:\bari-web` (Next.js app, React components, routes, lint, build)
-**Mandate:** Owns all code in `C:\bari-web\src\`. Implements specified components and pages. Does not improvise design or invent scoring logic.
+**Primary workspace:** `C:\bari\bari-web` (Next.js app, React components, routes, lint, build)
+**Mandate:** Owns all code in `C:\bari\bari-web\src\`. Implements specified components and pages. Does not improvise design or invent scoring logic.
 
 | Tier | Skills | Rationale |
 |---|---|---|
@@ -205,7 +205,7 @@ This matrix defines the authoritative skill stack for each Bari agent. Skill ass
 ## 7. QA Agent
 
 **Maps to:** QA & Audit Lead (`qa-audit-lead.md`)
-**Primary workspace:** Both `C:\Bari` (score traces, generated JSON) and `C:\bari-web` (rendered pages, routes, build)
+**Primary workspace:** Both `C:\Bari` (score traces, generated JSON) and `C:\bari\bari-web` (rendered pages, routes, build)
 **Mandate:** Verifies correctness across the full pipeline. Last gate before launch. Identifies failures; does not fix them.
 
 | Tier | Skills | Rationale |

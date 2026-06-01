@@ -208,7 +208,7 @@ This matrix defines who can initiate, recommend, approve, implement, and audit e
 
 ### D11 — Frontend Implementation
 
-*Writing, modifying, or deploying code in `C:\bari-web\src\`.*
+*Writing, modifying, or deploying code in `C:\bari\bari-web\src\`.*
 
 | Agent | Right | Notes |
 |---|---|---|

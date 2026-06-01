@@ -18,9 +18,9 @@ Write the words consumers read on Bari. Every hero sentence, prologue paragraph,
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | Category copy docs, editorial standards, insight line library, methodology text |
-| Website | `C:\bari-web` | No direct edits — copy is provided to Frontend Agent for integration |
+| Website | `C:\bari\bari-web` | No direct edits — copy is provided to Frontend Agent for integration |
 
-**Rule:** All content authoring → `C:\Bari`. Approved copy is handed to the Frontend Agent for integration into frontend JSON. Content Agent does not edit `C:\bari-web\src\` directly.
+**Rule:** All content authoring → `C:\Bari`. Approved copy is handed to the Frontend Agent for integration into frontend JSON. Content Agent does not edit `C:\bari\bari-web\src\` directly.
 
 ---
 

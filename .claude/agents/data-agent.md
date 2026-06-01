@@ -18,9 +18,9 @@ Run the Bari data pipeline correctly, reproducibly, and in the correct order. Im
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | Python pipelines, BSIP runners, shelf registry, corpus files, generated JSON, run records |
-| Website | `C:\bari-web` | No direct work — generated JSON is copied to `src\data\comparisons\` by this agent; no other website edits |
+| Website | `C:\bari\bari-web` | No direct work — generated JSON is copied to `src\data\comparisons\` by this agent; no other website edits |
 
-**Rule:** All pipeline execution, corpus management, and data transformation → `C:\Bari`. The Frontend JSON dataset is the boundary: generated here, deployed to `C:\bari-web\src\data\comparisons\`. No other website edits.
+**Rule:** All pipeline execution, corpus management, and data transformation → `C:\Bari`. The Frontend JSON dataset is the boundary: generated here, deployed to `C:\bari\bari-web\src\data\comparisons\`. No other website edits.
 
 ---
 

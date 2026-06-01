@@ -14,10 +14,10 @@ All scoring, BSIP, and research work in this document lives in the **product / d
 | Repo | Path | Use for |
 |------|------|---------|
 | **Product / data workspace** | `C:\Bari` | BSIP scoring assets, Python pipelines, scoring research, CE reports, nutrition docs, category rollout |
-| **Website repo** | `C:\bari-web` | Next.js app, components, routes, the frontend JSON the site consumes, lint/build |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, components, routes, the frontend JSON the site consumes, lint/build |
 
 - Scoring research, BSIP outputs, CE reports, category rollout → **`C:\Bari`**.
-- The scoring engine and pipelines live under `C:\Bari\03_operations\`. The website consumes only the **generated JSON**, copied into `C:\bari-web\src\data\comparisons\`.
+- The scoring engine and pipelines live under `C:\Bari\03_operations\`. The website consumes only the **generated JSON**, copied into `C:\bari\bari-web\src\data\comparisons\`.
 - **Never assume `C:\Bari` is the website repo**, and never edit Next.js source here — there is none.
 
 ---

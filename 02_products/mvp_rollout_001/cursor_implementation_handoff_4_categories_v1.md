@@ -9,7 +9,7 @@ Read this fully before starting. Every step is a concrete action. Do not write p
 
 ## CHECKPOINT 0 — Environment
 
-Working repo: `C:\bari-web`  
+Working repo: `C:\bari\bari-web`  
 BSIP2 engine: `C:\Bari\03_operations\bsip2\proto_v0\src\`  
 Primary language: TypeScript (Next.js App Router)  
 Data format: BariProductVM (see `src/lib/view-models/index.ts`)

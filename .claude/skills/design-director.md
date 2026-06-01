@@ -25,14 +25,14 @@ Bari spans two separate locations. Never conflate them; `C:\Bari` is **not** the
 
 | Repo | Path | Use for |
 |------|------|---------|
-| **Website repo** | `C:\bari-web` | Next.js app, components, routes, `src/`, frontend JSON, `npm run lint`, `npm run build` |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, components, routes, `src/`, frontend JSON, `npm run lint`, `npm run build` |
 | **Product / data workspace** | `C:\Bari` | Design governance docs (`01_framework\frontend\`), BSIP assets, scoring research, rollout plans |
 
 **Rules:**
 - Design specs and frontend governance docs live in **`C:\Bari\01_framework\frontend\`**.
-- Live UI review and the rendered site happen in the website repo **`C:\bari-web`** — confirm that directory before reviewing built pages.
+- Live UI review and the rendered site happen in the website repo **`C:\bari\bari-web`** — confirm that directory before reviewing built pages.
 - Never assume `C:\Bari` is the website repo. Never edit website source under `C:\Bari`.
-- Hand implementation of any approved design to the Frontend Architect working in **`C:\bari-web`**.
+- Hand implementation of any approved design to the Frontend Architect working in **`C:\bari\bari-web`**.
 
 ---
 

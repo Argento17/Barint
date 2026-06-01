@@ -26,7 +26,7 @@ A Cursor session must load the following documents before writing any code. If a
 - `frontend_integration_checklist_v1.md` Section 3 — the audit table for that component
 - `mobile_geometry_checklist_v1.md` — viewport assumptions and auto-fail conditions
 
-**Current token file:** `C:\bari-web\src\lib\design\bari-comparison-tokens.ts` — read before building any component that consumes tokens.
+**Current token file:** `C:\bari\bari-web\src\lib\design\bari-comparison-tokens.ts` — read before building any component that consumes tokens.
 
 ---
 

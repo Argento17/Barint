@@ -220,7 +220,7 @@ All assets are markdown-only. No executable scripts are authorized in `.claude/s
 - Add new page-level UI structure without Frontend Architect approval
 
 **Dependencies:**
-- Bari component library: `src/components/shared/` in `C:\bari-web`
+- Bari component library: `src/components/shared/` in `C:\bari\bari-web`
 - Label registry: all attribute labels must come from here
 - `bari-category-factory` — frontend packaging is the final stage of the factory pipeline
 - `bari-qa-audit` — QA verifies drift, leakage, and component constraint compliance post-build
@@ -272,13 +272,13 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 | **Persona name** | `frontend-architect` |
 | **Version** | v1.0 |
 | **File path** | `C:\Bari\.claude\skills\frontend-architect.md` |
-| **Primary workspace** | `C:\bari-web` |
+| **Primary workspace** | `C:\bari\bari-web` |
 | **Last updated** | 2026-05-31 |
 | **Status** | ACTIVE |
 
 **Activation triggers:** Tasks involving Next.js App Router, React components, Tailwind styling, route creation, TypeScript errors, lint/build failures, RTL implementation, or score data integration into the frontend.
 
-**Responsibilities:** All code in `C:\bari-web\src\`; canonical component implementation; View Model boundary enforcement; token consumption; RTL correctness; mobile-first layout; build passes.
+**Responsibilities:** All code in `C:\bari\bari-web\src\`; canonical component implementation; View Model boundary enforcement; token consumption; RTL correctness; mobile-first layout; build passes.
 
 **Prohibited actions:** Hardcode values that exist in `bari-comparison-tokens.ts`; import from `lib/comparisons/` inside `components/shared/`; add framework terms to rendered JSX; modify legacy files during canonical sprint; add features not in scope.
 
@@ -314,7 +314,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 | **Persona name** | `design-director` |
 | **Version** | v1.0 |
 | **File path** | `C:\Bari\.claude\skills\design-director.md` |
-| **Primary workspace** | `C:\Bari\01_framework\frontend\` (design specs) / `C:\bari-web` (rendered review) |
+| **Primary workspace** | `C:\Bari\01_framework\frontend\` (design specs) / `C:\bari\bari-web` (rendered review) |
 | **Last updated** | 2026-05-31 |
 | **Status** | ACTIVE |
 
@@ -356,7 +356,7 @@ Persona files define how Claude behaves when operating as a specific Bari team r
 | **Persona name** | `qa-audit-lead` |
 | **Version** | v1.0 |
 | **File path** | `C:\Bari\.claude\skills\qa-audit-lead.md` |
-| **Primary workspace** | Both `C:\Bari` (data integrity) and `C:\bari-web` (rendered site) |
+| **Primary workspace** | Both `C:\Bari` (data integrity) and `C:\bari\bari-web` (rendered site) |
 | **Last updated** | 2026-05-31 |
 | **Status** | ACTIVE |
 

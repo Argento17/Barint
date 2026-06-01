@@ -18,9 +18,9 @@ Grow Bari's reach and user base. Operate entirely downstream of the product pipe
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | Marketing strategy docs, SEO plans, campaign briefs, editorial calendar |
-| Website | `C:\bari-web` | No direct edits — campaign landing pages are implemented by Frontend Agent on request |
+| Website | `C:\bari\bari-web` | No direct edits — campaign landing pages are implemented by Frontend Agent on request |
 
-**Rule:** Marketing strategy, SEO plans, and campaign briefs → `C:\Bari`. If a campaign requires a new page or landing page, route that to the Product Agent (approval) and then to the Frontend Agent (implementation). Marketing Agent does not edit `C:\bari-web\src\` directly.
+**Rule:** Marketing strategy, SEO plans, and campaign briefs → `C:\Bari`. If a campaign requires a new page or landing page, route that to the Product Agent (approval) and then to the Frontend Agent (implementation). Marketing Agent does not edit `C:\bari\bari-web\src\` directly.
 
 **Activation constraint:** The Marketing Agent does not initiate campaigns for categories that have not received go-live approval from the Product Agent. No pre-launch marketing for unverified categories.
 

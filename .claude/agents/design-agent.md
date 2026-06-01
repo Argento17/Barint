@@ -18,9 +18,9 @@ Make Bari feel like "someone carefully investigated this supermarket shelf for m
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari\01_framework\frontend\` | Design specs, governance docs, Gen 1 constraints |
-| Website | `C:\bari-web` | Live UI review and rendered site — confirm directory before reviewing built pages |
+| Website | `C:\bari\bari-web` | Live UI review and rendered site — confirm directory before reviewing built pages |
 
-**Rule:** Design specs and frontend governance docs → `C:\Bari\01_framework\frontend\`. Hand implementation of any approved design to the Frontend Agent in `C:\bari-web`. Never edit website source directly.
+**Rule:** Design specs and frontend governance docs → `C:\Bari\01_framework\frontend\`. Hand implementation of any approved design to the Frontend Agent in `C:\bari\bari-web`. Never edit website source directly.
 
 ---
 

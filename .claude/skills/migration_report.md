@@ -165,7 +165,7 @@ All Hard Rules from persona files were migrated verbatim. The following rules we
 
 1. **Review deprecated headers in persona files** — Confirm the YAML `deprecated: true` field prevents Claude Code from loading these files as active skills in your configuration.
 
-2. **Update CLAUDE.md references** — If `CLAUDE.md` in `C:\Bari` or `C:\bari-web` references any persona files by name, update those references to point to the new agent files.
+2. **Update CLAUDE.md references** — If `CLAUDE.md` in `C:\Bari` or `C:\bari\bari-web` references any persona files by name, update those references to point to the new agent files.
 
 3. **2026-07-01 cleanup** — Delete deprecated persona files on the scheduled date if no active dependencies are found.
 

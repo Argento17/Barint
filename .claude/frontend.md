@@ -1,6 +1,6 @@
 # Bari Frontend — Architecture Reference
 
-**Frontend repo:** `C:\bari-web`  
+**Frontend repo:** `C:\bari\bari-web`  
 **Framework:** Next.js (App Router)  
 **Language:** TypeScript  
 **Styling:** Tailwind CSS  
@@ -10,17 +10,17 @@
 
 ## Bari Repository Map — TWO SEPARATE LOCATIONS
 
-This file describes the **website repo**: `C:\bari-web`. All implementation in this document happens there.
+This file describes the **website repo**: `C:\bari\bari-web`. All implementation in this document happens there.
 
 | Repo | Path | Use for |
 |------|------|---------|
-| **Website repo** | `C:\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
 | **Product / data workspace** | `C:\Bari` | BSIP assets, scoring research, CE reports, nutrition docs, category rollout, Python pipelines |
 
-- All frontend work (routes, components, UI, build, lint) → **`C:\bari-web`**.
+- All frontend work (routes, components, UI, build, lint) → **`C:\bari\bari-web`**.
 - **Never assume `C:\Bari` is the website repo** — no Next.js source lives there.
-- **Never modify website source files under `C:\Bari`.** The frontend JSON the site renders lives in `C:\bari-web\src\data\comparisons\` (generated from BSIP2 outputs in `C:\Bari`, then copied over).
-- Before implementing, **confirm the working directory is `C:\bari-web`**.
+- **Never modify website source files under `C:\Bari`.** The frontend JSON the site renders lives in `C:\bari\bari-web\src\data\comparisons\` (generated from BSIP2 outputs in `C:\Bari`, then copied over).
+- Before implementing, **confirm the working directory is `C:\bari\bari-web`**.
 
 ---
 
@@ -230,9 +230,9 @@ Do not import these into canonical components. Do not modify them during a canon
 
 ## Sources
 
-- `C:\bari-web\src\lib\view-models\index.ts`
-- `C:\bari-web\src\lib\comparisons\registry\`
-- `C:\bari-web\src\components\comparisons\maadanim-comparison-page.tsx`
+- `C:\bari\bari-web\src\lib\view-models\index.ts`
+- `C:\bari\bari-web\src\lib\comparisons\registry\`
+- `C:\bari\bari-web\src\components\comparisons\maadanim-comparison-page.tsx`
 - `C:\Bari\01_framework\frontend\component_build_sequence_v1.md`
 - `C:\Bari\01_framework\frontend\cursor_handoff_protocol_v1.md`
 - `C:\Bari\01_framework\frontend\comparison_view_model_v1.md`

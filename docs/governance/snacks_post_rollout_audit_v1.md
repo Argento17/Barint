@@ -1,7 +1,7 @@
 # Snacks Post-Rollout Architecture Audit v1
 
 Audit date: 2026-05-29  
-Scope: `/hashvaot/maadanim` compared with `/hashvaot/snacks` in `C:\bari-web`  
+Scope: `/hashvaot/maadanim` compared with `/hashvaot/snacks` in `C:\bari\bari-web`  
 Mode: audit only. No UI, scoring, or content changes.
 
 ## Verdict

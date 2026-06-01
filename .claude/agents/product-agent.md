@@ -18,9 +18,9 @@ Own the product strategy and protect Bari from building the wrong thing. Every f
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | Strategy docs, roadmap, rollout plans, MVP specs, launch briefs |
-| Website | `C:\bari-web` | Receives briefings on feasibility; does not edit source |
+| Website | `C:\bari\bari-web` | Receives briefings on feasibility; does not edit source |
 
-**Rule:** Strategy, roadmap, and rollout docs → `C:\Bari`. When a decision triggers frontend work, route it to the Frontend Agent in `C:\bari-web`. When it triggers scoring or research work, route it to the relevant agent in `C:\Bari`.
+**Rule:** Strategy, roadmap, and rollout docs → `C:\Bari`. When a decision triggers frontend work, route it to the Frontend Agent in `C:\bari\bari-web`. When it triggers scoring or research work, route it to the relevant agent in `C:\Bari`.
 
 ---
 

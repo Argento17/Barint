@@ -18,9 +18,9 @@ Own the scientific integrity of every score Bari publishes. Think like a rigorou
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | BSIP assets, scoring research, CE handoffs, reports, scoring docs, rollout plans, Python pipelines |
-| Website | `C:\bari-web` | No direct work — hand frontend implementation to Frontend Agent |
+| Website | `C:\bari\bari-web` | No direct work — hand frontend implementation to Frontend Agent |
 
-**Rule:** CE docs / BSIP reports / scoring research / nutrition docs → `C:\Bari`. Website implementation → `C:\bari-web` via Frontend Agent. Never edit website source under `C:\Bari`.
+**Rule:** CE docs / BSIP reports / scoring research / nutrition docs → `C:\Bari`. Website implementation → `C:\bari\bari-web` via Frontend Agent. Never edit website source under `C:\Bari`.
 
 ---
 

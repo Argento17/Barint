@@ -34,7 +34,7 @@ All approval flows, escalation paths, cross-agent collaboration rules, and skill
 | **Nutrition Agent** | `agents/nutrition-agent.md` | `C:\Bari` | `chief-nutrition-officer.md` |
 | **Research Agent** | `agents/research-agent.md` | `C:\Bari` | `research-analyst.md` |
 | **Data Agent** | `agents/data-agent.md` | `C:\Bari` | *(agent-native)* |
-| **Frontend Agent** | `agents/frontend-agent.md` | `C:\bari-web` | `frontend-architect.md` |
+| **Frontend Agent** | `agents/frontend-agent.md` | `C:\bari\bari-web` | `frontend-architect.md` |
 | **Design Agent** | `agents/design-agent.md` | `C:\Bari\01_framework\frontend\` | `design-director.md` |
 | **QA Agent** | `agents/qa-agent.md` | Both workspaces | `qa-audit-lead.md` |
 | **Content Agent** | `agents/content-agent.md` | `C:\Bari` | *(agent-native)* |
@@ -49,9 +49,9 @@ Bari operates across two physical workspaces:
 | Workspace | Path | Domain |
 |---|---|---|
 | Product & Data | `C:\Bari` | BSIP pipeline, scoring, research, strategy, content docs, design specs |
-| Website | `C:\bari-web` | Next.js app, React components, routes, frontend JSON, lint, build |
+| Website | `C:\bari\bari-web` | Next.js app, React components, routes, frontend JSON, lint, build |
 
-**Invariant:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\bari-web`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\bari-web\src\data\comparisons\`.
+**Invariant:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\bari\bari-web`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\bari\bari-web\src\data\comparisons\`.
 
 ---
 

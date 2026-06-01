@@ -17,9 +17,9 @@ Bari operates across two physical workspaces:
 | Workspace | Path | Domain |
 |---|---|---|
 | Product & Data | `C:\Bari` | BSIP pipeline, scoring, research, strategy, content docs, design specs |
-| Website | `C:\bari-web` | Next.js app, React components, routes, frontend JSON, lint, build |
+| Website | `C:\bari\bari-web` | Next.js app, React components, routes, frontend JSON, lint, build |
 
-**Rule:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\bari-web`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\bari-web\src\data\comparisons\`.
+**Rule:** No agent edits website source under `C:\Bari`. No agent edits pipeline assets under `C:\bari\bari-web`. The Frontend JSON dataset is the interface: generated at `C:\Bari`, deployed to `C:\bari\bari-web\src\data\comparisons\`.
 
 ---
 
@@ -31,7 +31,7 @@ Bari operates across two physical workspaces:
 | **Nutrition Agent** | `chief-nutrition-officer.md` | `C:\Bari` | Owns BSIP scoring philosophy, signal design, and scientific grounding |
 | **Research Agent** | `research-analyst.md` | `C:\Bari` | Produces evidence; does not make decisions |
 | **Data Agent** | *(defined here — no separate skill file in v1)* | `C:\Bari` | Executes the data pipeline: corpus, enrichment, scores, frontend JSON |
-| **Frontend Agent** | `frontend-architect.md` | `C:\bari-web` | Implements all code in `src/`; does not improvise design or scoring |
+| **Frontend Agent** | `frontend-architect.md` | `C:\bari\bari-web` | Implements all code in `src/`; does not improvise design or scoring |
 | **Design Agent** | `design-director.md` | `C:\Bari\01_framework\frontend\` | Owns visual spec, UX, hierarchy, and drift prevention |
 | **QA Agent** | `qa-audit-lead.md` | Both workspaces | Last gate before launch; verifies, does not redesign |
 | **Content Agent** | *(defined here — no separate skill file in v1)* | `C:\Bari` | Authors consumer-facing copy: hero, prologue, insight lines, methodology |
@@ -120,7 +120,7 @@ Bari operates across two physical workspaces:
 
 ### Frontend Agent
 
-**Core responsibility:** All code in `C:\bari-web\src\`. The Frontend Agent builds exactly what is specified — it does not improvise design decisions or invent scoring logic.
+**Core responsibility:** All code in `C:\bari\bari-web\src\`. The Frontend Agent builds exactly what is specified — it does not improvise design decisions or invent scoring logic.
 
 **Owns:**
 - Next.js App Router structure and routing conventions

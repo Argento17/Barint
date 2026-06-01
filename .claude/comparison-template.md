@@ -15,12 +15,12 @@ Implementation in this guide spans **both** repos. Know which is which.
 
 | Repo | Path | Role in a category build |
 |------|------|--------------------------|
-| **Website repo** | `C:\bari-web` | Where you build the page: components, routes, registry, the consumed frontend JSON, lint, build |
+| **Website repo** | `C:\bari\bari-web` | Where you build the page: components, routes, registry, the consumed frontend JSON, lint, build |
 | **Product / data workspace** | `C:\Bari` | Where the data comes from: BSIP2 scoring, `build_frontend_dataset.py`, the source JSON before it is copied over |
 
-- Page/component/route/registry implementation, lint, build → **`C:\bari-web`**.
-- BSIP2 scoring run + JSON generation → **`C:\Bari\03_operations\`**, output then copied to `C:\bari-web\src\data\comparisons\`.
-- **Never assume `C:\Bari` is the website repo.** Before implementing the page, **confirm the working directory is `C:\bari-web`**.
+- Page/component/route/registry implementation, lint, build → **`C:\bari\bari-web`**.
+- BSIP2 scoring run + JSON generation → **`C:\Bari\03_operations\`**, output then copied to `C:\bari\bari-web\src\data\comparisons\`.
+- **Never assume `C:\Bari` is the website repo.** Before implementing the page, **confirm the working directory is `C:\bari\bari-web`**.
 
 ---
 
@@ -331,7 +331,7 @@ When implementing a new category, use the maadanim pattern as the template.
 - `C:\Bari\01_framework\frontend\comparison_view_model_v1.md`
 - `C:\Bari\01_framework\frontend\architecture_generations_registry_v1.md`
 - `C:\Bari\01_framework\bsip2_framework\ui_language.md`
-- `C:\bari-web\src\components\comparisons\maadanim-comparison-page.tsx`
-- `C:\bari-web\src\lib\comparisons\maadanim-page-data.ts`
-- `C:\bari-web\src\lib\comparisons\registry\`
-- `C:\bari-web\src\lib\view-models\index.ts`
+- `C:\bari\bari-web\src\components\comparisons\maadanim-comparison-page.tsx`
+- `C:\bari\bari-web\src\lib\comparisons\maadanim-page-data.ts`
+- `C:\bari\bari-web\src\lib\comparisons\registry\`
+- `C:\bari\bari-web\src\lib\view-models\index.ts`

@@ -1,7 +1,7 @@
 # Bari — Project Context
 
 **Repository:** `C:\Bari`  
-**Frontend:** `C:\bari-web` (Next.js)  
+**Frontend:** `C:\bari\bari-web` (Next.js)  
 **Last verified:** 2026-05-30
 
 ---
@@ -20,17 +20,17 @@ Bari spans **two distinct repositories**. Never conflate them. `C:\Bari` is **no
 
 | Repo | Path | Contains | Use for |
 |------|------|----------|---------|
-| **Website repo** | `C:\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, the comparison frontend JSON the site consumes | Frontend implementation, routes, components, UI work, `npm run lint`, `npm run build` |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, the comparison frontend JSON the site consumes | Frontend implementation, routes, components, UI work, `npm run lint`, `npm run build` |
 | **Product / data workspace** | `C:\Bari` | BSIP scoring assets, product research, CE handoffs, reports, scoring documentation, category analysis, MVP/rollout plans, Python pipelines | Scoring research, BSIP outputs, CE reports, nutrition docs, category rollout |
 
 ### Working rules
 
-- Website implementation, routes, components, frontend JSON, lint, build → **`C:\bari-web`**
+- Website implementation, routes, components, frontend JSON, lint, build → **`C:\bari\bari-web`**
 - CE documents, BSIP reports, scoring research, product handoffs, rollout docs → **`C:\Bari`**
 - **Never assume `C:\Bari` is the website repo** — no Next.js source lives there.
 - **Never modify website source files under `C:\Bari`** unless explicitly verified.
-- Before any frontend implementation, **confirm the working directory is `C:\bari-web`**.
-- The frontend JSON the site renders lives in `C:\bari-web\src\data\comparisons\`. It is **generated** from BSIP2 outputs in `C:\Bari` and **copied** into the website repo.
+- Before any frontend implementation, **confirm the working directory is `C:\bari\bari-web`**.
+- The frontend JSON the site renders lives in `C:\bari\bari-web\src\data\comparisons\`. It is **generated** from BSIP2 outputs in `C:\Bari` and **copied** into the website repo.
 
 These two trees do not cross. The data workspace produces JSON outputs that the website consumes as static data files.
 
@@ -127,7 +127,7 @@ Consumer
 3. Run BSIP1 enricher → produce `canonical_bsip1/`
 4. Run BSIP2 batch runner → produce `intelligence_bsip2/`
 5. Run `build_frontend_dataset.py` → produce `{category}_frontend_vN.json`
-6. Copy JSON to `C:\bari-web\src\data\comparisons\`
+6. Copy JSON to `C:\bari\bari-web\src\data\comparisons\`
 7. Add category definition to `src/lib/comparisons/registry/categories/`
 8. Add route page at `src/app/hashvaot/{category}/page.tsx`
 9. Build canonical frontend components following `component_build_sequence_v1.md`
@@ -152,7 +152,7 @@ Consumer
 | Cursor IDE | Frontend component implementation |
 | OpenAI Codex | QA and audit layer |
 
-Claude CE does not modify `C:\bari-web` frontend component files. That is Cursor's domain. Claude CE produces the JSON data that feeds the frontend and maintains the `01_framework/` documentation.
+Claude CE does not modify `C:\bari\bari-web` frontend component files. That is Cursor's domain. Claude CE produces the JSON data that feeds the frontend and maintains the `01_framework/` documentation.
 
 ---
 
@@ -172,13 +172,13 @@ Claude CE does not modify `C:\bari-web` frontend component files. That is Cursor
 The six Bari skills live in **`C:\Bari\.claude\skills\`** — this is the **canonical source**:
 `chief-nutrition-officer`, `head-of-product`, `frontend-architect`, `design-director`, `research-analyst`, `qa-audit-lead`.
 
-A **mirror** exists at `C:\bari-web\.claude\skills\` so the skills load as slash commands when working in the website repo. The mirror is a copy, not a second source of truth.
+A **mirror** exists at `C:\bari\bari-web\.claude\skills\` so the skills load as slash commands when working in the website repo. The mirror is a copy, not a second source of truth.
 
 - Edit skills **here** (`C:\Bari\.claude\skills\`), never in the website mirror.
 - After any skill change, re-copy to the website repo:
 
 ```powershell
-Copy-Item "C:\Bari\.claude\skills\*.md" "C:\bari-web\.claude\skills\" -Force
+Copy-Item "C:\Bari\.claude\skills\*.md" "C:\bari\bari-web\.claude\skills\" -Force
 ```
 
 ---

@@ -28,7 +28,7 @@ import json, glob, datetime, collections, statistics, sys, io, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 HERE       = os.path.dirname(os.path.abspath(__file__))
-DEPLOYED   = r"C:\bari-web\src\data\comparisons\hummus_frontend_v1.json"
+DEPLOYED   = r"C:\bari\bari-web\src\data\comparisons\hummus_frontend_v1.json"
 BSIP1_GLOB = r"C:\Bari\02_products\hummus\canonical_bsip1\bsip1_*.json"
 OUT        = os.path.join(HERE, "hummus_frontend_v1.json")
 GENERATED  = datetime.datetime.now(datetime.timezone.utc).isoformat()

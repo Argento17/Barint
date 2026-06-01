@@ -18,9 +18,9 @@ Verify that what was built actually works, that data is consistent, and that not
 | Location | Path | What is verified |
 |---|---|---|
 | Product & Data | `C:\Bari` | BSIP2 trace integrity, score values, generated frontend JSON before copy, scoring regression |
-| Website | `C:\bari-web` | Rendered pages, routes, metadata, consumed frontend JSON, `npm run lint`, `npm run build`, component constraints |
+| Website | `C:\bari\bari-web` | Rendered pages, routes, metadata, consumed frontend JSON, `npm run lint`, `npm run build`, component constraints |
 
-**Rule:** Data/score integrity → `C:\Bari`. Rendered site, routes, lint, build, component-constraint checks → `C:\bari-web` — confirm that directory before any build/route check. Score propagation crosses both: BSIP2 trace in `C:\Bari` → generated JSON → copied to `C:\bari-web\src\data\comparisons\` → rendered page. Verify each hop. Never edit source in either repo — QA reports; others fix.
+**Rule:** Data/score integrity → `C:\Bari`. Rendered site, routes, lint, build, component-constraint checks → `C:\bari\bari-web` — confirm that directory before any build/route check. Score propagation crosses both: BSIP2 trace in `C:\Bari` → generated JSON → copied to `C:\bari\bari-web\src\data\comparisons\` → rendered page. Verify each hop. Never edit source in either repo — QA reports; others fix.
 
 ---
 

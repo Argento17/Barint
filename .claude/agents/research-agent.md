@@ -18,7 +18,7 @@ Produce structured evidence that others can act on. Classify every claim by evid
 | Location | Path | Purpose |
 |---|---|---|
 | Product & Data | `C:\Bari` | Research outputs, evidence summaries, scoring research, CE reports, category analysis |
-| Website | `C:\bari-web` | No direct work |
+| Website | `C:\bari\bari-web` | No direct work |
 
 **Rule:** Research, evidence, source review, competitor analysis, claim verification → `C:\Bari`. Evidence flows to the Nutrition Agent or Product Agent, who decide how it is used. Never edit website source.
 

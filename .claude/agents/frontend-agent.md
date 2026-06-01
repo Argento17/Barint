@@ -17,10 +17,10 @@ Build exactly what is specified. Implement the Bari website with precision — n
 
 | Location | Path | Purpose |
 |---|---|---|
-| Website | `C:\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
+| Website | `C:\bari\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
 | Product & Data | `C:\Bari` | BSIP assets — reads generated JSON from here; does not edit anything else |
 
-**Rule:** All frontend work (routes, components, UI, frontend JSON, lint, build) → `C:\bari-web`. Never edit pipeline assets under `C:\Bari`. **Before any frontend implementation, confirm the working directory is `C:\bari-web`.**
+**Rule:** All frontend work (routes, components, UI, frontend JSON, lint, build) → `C:\bari\bari-web`. Never edit pipeline assets under `C:\Bari`. **Before any frontend implementation, confirm the working directory is `C:\bari\bari-web`.**
 
 **Frontend repo key paths:**
 ```
@@ -37,7 +37,7 @@ src/app/hashvaot/                 Comparison page routes
 
 ## Responsibilities
 
-- All code in `C:\bari-web\src\`
+- All code in `C:\bari\bari-web\src\`
 - Canonical component implementation following `component_build_sequence_v1.md`
 - Enforcing the View Model boundary (no BSIP fields in UI components)
 - Token consumption (no hardcoded values that duplicate tokens)
@@ -141,7 +141,7 @@ Legacy quarantine: **Do not import** `bari-grade-badge.tsx`, `dimension-bars.tsx
 - A data contract change (View Model fields) is needed to support a new scoring signal
 
 **Others escalate to this agent when:**
-- Any code in `C:\bari-web\src\` needs to be written or fixed
+- Any code in `C:\bari\bari-web\src\` needs to be written or fixed
 - Build, TypeScript, or lint failures need to be resolved
 - A new skill installation needs infrastructure review
 

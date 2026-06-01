@@ -28,7 +28,7 @@ param(
 Set-StrictMode -Version Latest
 
 $APPROVED_SRC = 'C:\Bari\02_products'
-$DEST_DIR     = 'C:\bari-web\src\data\comparisons'
+$DEST_DIR     = 'C:\bari\bari-web\src\data\comparisons'
 
 function Abort([string]$reason) {
     Write-Host "FAIL: $reason"

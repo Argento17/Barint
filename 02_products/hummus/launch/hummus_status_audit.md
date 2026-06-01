@@ -3,7 +3,7 @@
 **Task:** TASK-058  
 **Owner:** Frontend Agent  
 **Date:** 2026-05-31  
-**Scope:** Both repos — `C:\Bari` (pipeline) and `C:\bari-web` (website)
+**Scope:** Both repos — `C:\Bari` (pipeline) and `C:\bari\bari-web` (website)
 
 ---
 
@@ -124,7 +124,7 @@ The BSIP2 output exists. The frontend-formatted JSON (matching the `BariCategory
 
 ---
 
-## Website Repo — `C:\bari-web`
+## Website Repo — `C:\bari\bari-web`
 
 ### Route
 
@@ -177,7 +177,7 @@ Existing routes for reference: `bread/`, `maadanim/`, `snack-bars/`, `yogurts/`,
 | Reports + documentation | 20+ MD/JSON files | COMPLETE |
 | Frontend dataset JSON | 0 files | NOT BUILT |
 
-### `C:\bari-web` — Website
+### `C:\bari\bari-web` — Website
 
 | Layer | Files | Status |
 |---|---|---|

@@ -123,7 +123,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 **File:** `frontend-architect.md`
 **Owner:** Frontend Architect
 
-Initial registration. Primary workspace: `C:\bari-web`.
+Initial registration. Primary workspace: `C:\bari\bari-web`.
 
 ---
 
@@ -143,7 +143,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 **File:** `design-director.md`
 **Owner:** Design Director
 
-Initial registration. Primary workspaces: `C:\Bari\01_framework\frontend\` (design specs) and `C:\bari-web` (rendered review).
+Initial registration. Primary workspaces: `C:\Bari\01_framework\frontend\` (design specs) and `C:\bari\bari-web` (rendered review).
 
 ---
 
@@ -163,7 +163,7 @@ Initial registration. Primary workspace: `C:\Bari`.
 **File:** `qa-audit-lead.md`
 **Owner:** QA & Audit Lead
 
-Initial registration. Primary workspaces: both `C:\Bari` (data integrity) and `C:\bari-web` (rendered site).
+Initial registration. Primary workspaces: both `C:\Bari` (data integrity) and `C:\bari\bari-web` (rendered site).
 
 ---
 

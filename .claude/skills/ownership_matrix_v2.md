@@ -21,7 +21,7 @@ Ownership means: the designated agent is the single point of accountability for 
 | Scoring philosophy & methodology | Nutrition Agent | Sole authority on BSIP scoring rules |
 | Scientific evidence & research | Research Agent | Sole authority on evidence tier classification |
 | Data pipeline & corpus | Data Agent | Sole authority on pipeline execution |
-| Website implementation | Frontend Agent | Sole authority on all code in `C:\bari-web\src\` |
+| Website implementation | Frontend Agent | Sole authority on all code in `C:\bari\bari-web\src\` |
 | Visual design & UX | Design Agent | Sole authority on visual spec and drift prevention |
 | QA & verification | QA Agent | Sole authority on rollout verdicts and QA baselines |
 | Consumer-facing copy | Content Agent | Sole authority on category page language |
@@ -35,8 +35,8 @@ Ownership means: the designated agent is the single point of accountability for 
 
 | Repository | Owner | Other agents |
 |---|---|---|
-| `C:\bari-web\src\` | Frontend Agent | QA Agent (reads/verifies), Design Agent (reviews renders) |
-| `C:\bari-web\src\data\comparisons\` | Data Agent (generates) / Frontend Agent (integrates) | QA Agent (verifies) |
+| `C:\bari\bari-web\src\` | Frontend Agent | QA Agent (reads/verifies), Design Agent (reviews renders) |
+| `C:\bari\bari-web\src\data\comparisons\` | Data Agent (generates) / Frontend Agent (integrates) | QA Agent (verifies) |
 | `C:\Bari` (pipeline) | Data Agent | Nutrition Agent (scoring configs), Product Agent (strategy docs) |
 | `C:\Bari\01_framework\frontend\` | Design Agent | Frontend Agent (implements from specs) |
 | `C:\Bari\.claude\agents\` | All agents (their own file) | Product Agent + Frontend Agent (architecture changes) |

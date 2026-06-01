@@ -26,7 +26,7 @@ Bari spans two separate locations. Never conflate them; `C:\Bari` is **not** the
 | Repo | Path | Use for |
 |------|------|---------|
 | **Product / data workspace** | `C:\Bari` | Research outputs, evidence summaries, scoring research, CE reports, category analysis |
-| **Website repo** | `C:\bari-web` | Next.js app, components, routes, frontend JSON, lint/build |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, components, routes, frontend JSON, lint/build |
 
 **Rules:**
 - Research, evidence, source review, competitor analysis, claim verification → **`C:\Bari`**.

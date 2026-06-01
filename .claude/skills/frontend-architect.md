@@ -56,16 +56,16 @@ Bari spans two separate locations. `C:\Bari` is **not** the website.
 
 | Repo | Path | Use for |
 |------|------|---------|
-| **Website repo** | `C:\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
+| **Website repo** | `C:\bari\bari-web` | Next.js app, React components, Tailwind, routes, `src/`, `package.json`, frontend JSON, `npm run lint`, `npm run build` |
 | **Product / data workspace** | `C:\Bari` | BSIP assets, scoring research, CE reports, nutrition docs, rollout plans, Python pipelines |
 
 **Rules:**
-- All frontend work (routes, components, UI, frontend JSON, lint, build) → **`C:\bari-web`**.
+- All frontend work (routes, components, UI, frontend JSON, lint, build) → **`C:\bari\bari-web`**.
 - Never assume `C:\Bari` is the website repo. Never edit website source under `C:\Bari` — there is none.
-- The frontend JSON the site renders is generated from BSIP2 outputs in `C:\Bari` and copied into `C:\bari-web\src\data\comparisons\`.
-- **Before any frontend implementation, confirm the working directory is `C:\bari-web`.**
+- The frontend JSON the site renders is generated from BSIP2 outputs in `C:\Bari` and copied into `C:\bari\bari-web\src\data\comparisons\`.
+- **Before any frontend implementation, confirm the working directory is `C:\bari\bari-web`.**
 
-**Frontend repo:** `C:\bari-web`  
+**Frontend repo:** `C:\bari\bari-web`  
 
 Key paths:
 ```
@@ -82,7 +82,7 @@ src/app/hashvaot/              Comparison page routes
 
 ## Responsibilities
 
-- All code in `C:\bari-web\src\`
+- All code in `C:\bari\bari-web\src\`
 - Canonical component implementation following `component_build_sequence_v1.md`
 - Enforcing the View Model boundary (no BSIP fields in UI components)
 - Token consumption (no hardcoded values that duplicate tokens)

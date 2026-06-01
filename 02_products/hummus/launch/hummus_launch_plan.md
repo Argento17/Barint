@@ -69,7 +69,7 @@ Phases 1 and 3 can proceed in parallel from Day 2 onward. Phase 2 depends on Pha
 **Duration:** 3–5 days  
 **Owner:** Data Agent  
 **Dependency:** Phase 0 decision  
-**Output:** `hummus_frontend_v1.json` copied to `C:\bari-web\src\data\comparisons\`
+**Output:** `hummus_frontend_v1.json` copied to `C:\bari\bari-web\src\data\comparisons\`
 
 ### Step 1.1 — Adapt build script for hummus
 
@@ -113,10 +113,10 @@ Validate output against `BariCategoryPageVM` schema before copying to website re
 
 ```powershell
 Copy-Item "C:\Bari\03_operations\bsip2\outputs\hummus_frontend_v1.json" `
-          "C:\bari-web\src\data\comparisons\hummus_frontend_v1.json"
+          "C:\bari\bari-web\src\data\comparisons\hummus_frontend_v1.json"
 ```
 
-Confirm file is present in `C:\bari-web\src\data\comparisons\` before signaling Phase 2.
+Confirm file is present in `C:\bari\bari-web\src\data\comparisons\` before signaling Phase 2.
 
 ---
 
@@ -130,7 +130,7 @@ Confirm file is present in `C:\bari-web\src\data\comparisons\` before signaling 
 ### Step 2.1 — Create feature branch
 
 ```powershell
-# From C:\bari-web
+# From C:\bari\bari-web
 git checkout -b feature/hummus-category
 ```
 
@@ -138,7 +138,7 @@ All Phase 2 work is done on this branch. Do not merge to main until Phase 4 appr
 
 ### Step 2.2 — Create category definition file
 
-**Create:** `C:\bari-web\src\lib\comparisons\registry\categories\hummus.ts`
+**Create:** `C:\bari\bari-web\src\lib\comparisons\registry\categories\hummus.ts`
 
 Template from `maadanim.ts`. Key fields:
 
@@ -164,14 +164,14 @@ export const hummusCategoryDefinition: ComparisonCategoryDefinition = {
 
 ### Step 2.3 — Update category registry
 
-**Edit `C:\bari-web\src\lib\comparisons\registry\types.ts`:**
+**Edit `C:\bari\bari-web\src\lib\comparisons\registry\types.ts`:**
 
 ```typescript
 // Add "hummus" to the union
 export type ComparisonCategoryId = "maadanim" | "bread" | "snacks" | "yogurts" | "hummus"
 ```
 
-**Edit `C:\bari-web\src\lib\comparisons\registry\index.ts`:**
+**Edit `C:\bari\bari-web\src\lib\comparisons\registry\index.ts`:**
 
 ```typescript
 import { hummusCategoryDefinition } from './categories/hummus'
@@ -182,7 +182,7 @@ Run `npm run lint` and `npm run build` after this step. TypeScript must compile 
 
 ### Step 2.4 — Create route page
 
-**Create:** `C:\bari-web\src\app\hashvaot\hummus\page.tsx`
+**Create:** `C:\bari\bari-web\src\app\hashvaot\hummus\page.tsx`
 
 Template from `maadanim/page.tsx`. Standard Next.js App Router pattern — call `getComparisonCategory('hummus')`, render the comparison page component.
 
@@ -190,7 +190,7 @@ Generate `generateMetadata` function alongside the page component for Next.js me
 
 ### Step 2.5 — Create comparison page component
 
-**Create:** `C:\bari-web\src\components\comparisons\hummus-comparison-page.tsx`
+**Create:** `C:\bari\bari-web\src\components\comparisons\hummus-comparison-page.tsx`
 
 **This is the reference Gen 1 implementation.** Must conform strictly to all Gen 1 rules:
 
@@ -236,7 +236,7 @@ Generate `generateMetadata` function alongside the page component for Next.js me
 ### Step 2.6 — Local build verification
 
 ```powershell
-# From C:\bari-web
+# From C:\bari\bari-web
 npm run lint
 npm run build
 ```
@@ -321,7 +321,7 @@ After Nutrition Agent and Product Agent approve copy:
 Re-copy updated JSON to website repo:
 ```powershell
 Copy-Item "C:\Bari\03_operations\bsip2\outputs\hummus_frontend_v1.json" `
-          "C:\bari-web\src\data\comparisons\hummus_frontend_v1.json" -Force
+          "C:\bari\bari-web\src\data\comparisons\hummus_frontend_v1.json" -Force
 ```
 
 ---
@@ -386,7 +386,7 @@ If all inputs are present, Product Agent issues go-live approval in writing.
 ### Step 4.4 — Merge and deploy
 
 ```powershell
-# From C:\bari-web, on feature branch
+# From C:\bari\bari-web, on feature branch
 git checkout main
 git merge feature/hummus-category
 ```

@@ -356,4 +356,4 @@ Every comparison page — existing and new — must meet this standard before it
 4. Newsletter sign-up is always opt-in. No gating of comparison data.
 5. Hebrew-first. All consumer content originates in Hebrew.
 6. Do not publish Pillar 2 or Pillar 4 articles without Nutrition Agent accuracy review.
-7. SEO technical fixes require Frontend Agent implementation — Marketing Agent does not edit `C:\bari-web\src\` directly.
+7. SEO technical fixes require Frontend Agent implementation — Marketing Agent does not edit `C:\bari\bari-web\src\` directly.

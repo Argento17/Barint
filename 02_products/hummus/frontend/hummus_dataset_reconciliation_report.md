@@ -109,6 +109,6 @@ Obsolete artifacts archived under `99_archive/hummus_dataset_reconciliation_TASK
 ```powershell
 cd C:\Bari\02_products\hummus\frontend
 C:\Bari\.venv\Scripts\python.exe build_hummus_frontend_v1.py
-Copy-Item .\hummus_frontend_v1.json "C:\bari-web\src\data\comparisons\hummus_frontend_v1.json" -Force
-cd C:\bari-web ; npm run build
+Copy-Item .\hummus_frontend_v1.json "C:\bari\bari-web\src\data\comparisons\hummus_frontend_v1.json" -Force
+cd C:\bari\bari-web ; npm run build
 ```
