@@ -4,7 +4,7 @@ from pathlib import Path
 
 V1 = Path(r"c:\Bari\02_products\maadanim\maadanim_frontend_v1.json")
 V2 = Path(r"c:\Bari\02_products\maadanim\maadanim_frontend_v2.json")
-OUT = Path(r"c:\Users\HP\bari\scripts\maadanim-v1-v2-audit.json")
+OUT = Path(r"c:\bari-web\scripts\maadanim-v1-v2-audit.json")
 
 FALSE_FRUIT = "בסיס פרי נראה ברשימה — לא רק טעם מלאכותי"
 
