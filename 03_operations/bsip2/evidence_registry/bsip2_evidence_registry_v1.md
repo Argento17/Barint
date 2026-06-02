@@ -636,6 +636,111 @@
 
 ---
 
+## TASK-169 Recalibration family (EV-030 – EV-033 + EV-027/EV-024/EV-026 extensions)
+
+> **ID-remap note (Data Agent, 2026-06-02).** The TASK-169A/169B design doc drafted the four
+> NEW recalibration entries as "EV-029…EV-032", but **EV-029 was already assigned** to the
+> BSIP0 nutritionList total-fat overwrite (TASK-142A, above). To preserve the append-only,
+> never-reuse-an-ID rule, the four new entries are recorded here as **EV-030 (R1 protein
+> scale), EV-031 (R3 leanness), EV-032 (R5 graded sat-fat), EV-033 (R6 veg-spread fit)**.
+> Mapping for cross-reference: design-R1→**EV-030**, design-R3→**EV-031**, design-R5→**EV-032**,
+> design-R6→**EV-033**; design-R2 extends **EV-027**, design-R4/R7 extend the **EV-024/EV-026**
+> lineage (recorded as the EV-024/026 v1.1 extension below). All gated behind the single env
+> flag `BARI_RECAL_P0` (default OFF → engine is byte-identical to 0.4.1). Source corpora:
+> `run_cheese_003` (n=59) + `run_hummus_002` (n=69), measured distributions, 2026-06-02.
+
+### EV-030 — Category-Relative Protein Scale (R1; protein_quality + nutrient_density)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-030 |
+| **task** | TASK-169 / TASK-169B (R1) |
+| **recorded** | 2026-06-02 |
+| **signal** | `PROTEIN_SCALE_TABLES` — protein mass scored 0–100 against the *achievable per-category* protein distribution, replacing a single supplement-calibrated breakpoint list `[(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95)]` used in BOTH `score_nutrient_density` and `score_protein_quality` (25% of the composite). Per-category curves anchored so the real top-of-shelf protein reaches ~95 and the shelf median lands ~55–60. Whole-food ceilings (dairy ~11.5g, hummus ~8g) can now differentiate and reach top-of-shelf within their own category. Source/matrix factors (`source_factors`, `PROTEIN_QUALITY_MATRIX_DISCOUNT`) apply unchanged on top. |
+| **data_source** | Measured protein distributions: cheese (`run_cheese_003`, n=59) min/Q1/median/Q3/max = 0/4.4/7.9/10.0/23.0 g; hummus/sauce_spread (`run_hummus_002`, n=69) = 0/2.0/7.7/8.3/22.0 g. Worked anchor: cottage 1% 11.5g protein → mass 90.0 (was 56.0). |
+| **mechanism** | Per-category breakpoint table looked up exactly like `CALORIE_DENSITY_TABLES`; linear interpolation between breakpoints (same interpolation as today). Categories: `dairy_protein`/cheese, `sauce_spread`/hummus (active this wave); `milk_dairy`, `yogurt`, `bread`, `snack_bar_granola` modelled but frozen (require P2 owner sign-off); `default` = unchanged supplement curve so untouched categories stay byte-identical. |
+| **category_scope** | CROSS-CATEGORY (owner-approved TASK-169). **This wave ships cheese + hummus only.** `snack_bar_granola` deliberately keeps the supplement curve (snk-001 = 70/B ceiling untouched). Frozen milk/yogurt/bread curves modelled but NOT shipped until their separately-approved wave. |
+| **evidence_strength / tier** | Moderate — the distribution is real and observed; the apex anchor points (e.g. dairy 11g→85, 13g→95) are a documented calibration choice (see design §(a) open question 1). |
+| **label_observability** | Fully label-observable — reads `protein_g` (already required) + routed `category`. |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF). Unset → single supplement breakpoint list restored; 0.4.1 byte-identical. No shadow rule — replaces a hard-coded list with a lookup table. |
+
+### EV-031 — Leanness Reward in fat_quality (R3)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-031 |
+| **task** | TASK-169 / TASK-169B (R3) |
+| **recorded** | 2026-06-02 |
+| **signal** | A genuinely lean whole-food matrix (low total fat AND low saturated fat) earns POSITIVE `fat_quality` credit instead of the prior flat neutral-50 short-circuit. Lean band = `fat ≤ 3g/100g`; `_leanness_score = clamp(92 − fat×6 − sat×4, 50..95)`; in the lean band the dimension takes `max(penalty_curve, leanness_score)` so a lean product is never worse than the existing penalty curve. Above 3g fat behavior is byte-identical to today (penalty curve only). |
+| **data_source** | cottage/white-cheese/veg-spread traces, `run_cheese_003` / `run_hummus_002`, 2026-06-02. Worked: fat-free white cheese (fat 0.3g, sat None) OLD neutral 50 → NEW 92; cottage 1% (1g/0.6g) 83.2 → 83.6 (≈unchanged, intended). |
+| **mechanism** | Replaces the two neutral-50 short-circuits (`fat < 0.5g` OR `sat_fat is None`) in `_score_fat_quality_sprint1` / `score_fat_quality`. Modifies the existing dimension function — no shadow rule. |
+| **category_scope** | CROSS-CATEGORY (shipped: cheese + hummus this wave). Also nudges veg spreads (helps R6) and any lean food; frozen-category nudges deferred to their wave. |
+| **evidence_strength / tier** | Moderate. |
+| **label_observability** | Reads `fat_g` + `saturated_fat_g` (already required). |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF) → neutral-50 short-circuits restored. |
+
+### EV-032 — Graded Saturated-Fat Penalty (R5; red-label cap → graded penalty)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-032 |
+| **task** | TASK-169 / TASK-169B (R5) |
+| **recorded** | 2026-06-02 |
+| **signal** | Saturated fat above the Israeli MoH red-label threshold (5.0 g/100g, existing `RED_LABEL_THRESHOLDS`) degrades `fat_quality` PROPORTIONALLY rather than via a single composite cliff. Removes `ISRAELI_RED_LABEL_1_SAT_FAT`→55 from `FAT_QUALITY_CAPS`; adds graded `_red_satfat_penalty = clamp(3.0 + (sat−5.0)×2.5, 0..25)` on the fat_quality dimension, landing before the `FAT_QUALITY_FAMILY_BUDGET=8` clamp so it degrades gracefully and never flattens protein differentiation. |
+| **data_source** | cottage-9% vs napoleon-16% inversion, `run_cheese_003`, 2026-06-02. cottage 9% (sat ~5.5g): OLD composite cliff 52/C → NEW keeps protein lead (high-C/low-B), above napoleon. napoleon 16% (sat ~10g): penalty ~15.5, correctly remains below cottage. |
+| **mechanism** | One cap removed, one penalty added (net-neutral rule count) — modifies existing penalty machinery, no shadow rule. `regulatory_quality` STILL counts the red label (1 label → 60) so the regulatory signal is NOT lost; only the fat-dimension cliff is removed. |
+| **category_scope** | CROSS-CATEGORY (shipped: cheese + hummus). Will move milk/yogurt sat-fat — frozen deltas deferred to their wave (P2). |
+| **evidence_strength / tier** | Moderate. |
+| **label_observability** | Reads `saturated_fat_g` / `red_labels` (already covered). |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF) → `ISRAELI_RED_LABEL_1_SAT_FAT` cap restored, graded penalty inert. |
+
+### EV-033 — Vegetable-Spread Category Fit (R6)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-033 |
+| **task** | TASK-169 / TASK-169B (R6) |
+| **recorded** | 2026-06-02 |
+| **signal** | A whole-vegetable spread (matbucha / roasted-pepper / eggplant; legume protein < 3g, whole-veg base, no tahini-dominant signal) is judged on ingredient cleanliness, whole-food base, low energy density, and sodium discipline — NOT protein density. Implemented as a `veg_spread` archetype within `sauce_spread` carrying `VEG_SPREAD_WEIGHTS` (protein_quality 0.10→0.03, nutrient_density 0.15→0.08, calorie_density →0.18, additive_quality →0.16, regulatory_quality →0.08, whole_food_integrity →0.06; sums to 1.0). |
+| **data_source** | matbucha / pepper-spread traces 42.8–61.8/D–C, `run_hummus_002`, 2026-06-02. Post-fix (v1.1 model): matbucha 50–60/C → 61–71/B; eggplant 60–69; **none cross 80**. |
+| **mechanism** | Re-weight of existing dimensions for the archetype (no new dimension, no new scoring rule). Detection reuses the raw-vs-prepared boundary logic (tahini + sodium + energy, never protein or the word סלט — per `feedback_raw_vs_prepared_boundary`). |
+| **category_scope** | `sauce_spread` only (hummus shelf savory/veg-spread tail) — shipped this wave. |
+| **evidence_strength / tier** | Moderate. |
+| **anti_immunity_guard** | Per `bari_usecase_guardrails_v2`: the re-weight must NOT let an engineered/sodium-heavy spread reach A. P1 model verified: 0 `veg_spread` crosses the 80 ceiling; a sodium-bomb pepper spread stays C/D via regulatory + sodium cap. Guard intact. |
+| **label_observability** | Reads `protein_g`, ingredient base, tahini signal, sodium (already covered). |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF) → uniform `sauce_spread` weights restored; `veg_spread` archetype inert. |
+
+### EV-027 extension — Fiber-N/A activation for cheese under BARI_RECAL_P0 (R2)
+
+| Field | Value |
+|-------|-------|
+| **extends** | EV-027 (TASK-144) — same signal/source/mechanism; this is an ACTIVATION-SCOPE extension only. |
+| **task** | TASK-169 / TASK-169B (R2) |
+| **recorded** | 2026-06-02 |
+| **change** | The EV-027 fiber "absent ≠ zero" re-normalization (65/35 → 100/0 protein-only for `FIBER_NOT_APPLICABLE_CATEGORIES` when fiber is genuinely absent/≤0) is now ALSO gated to `BARI_RECAL_P0` (OR'd with the existing `TASK144_FIXES_ON`, so maadanim behavior is unchanged): `fiber_not_applicable = (TASK144_FIXES_ON or RECAL_P0_ON) and category in FIBER_NOT_APPLICABLE_CATEGORIES and (fiber_raw is None or fiber_raw <= 0)`. |
+| **scope** | `dairy_protein` is ALREADY on the EV-027 allowlist → cheese/cottage/white-cheese inherit it. **`sauce_spread` is deliberately NOT added** — hummus is chickpea-based and fiber IS a genuine virtue there. No category added beyond the existing allowlist; only activation for the cheese run. |
+| **inclusion_criterion** | A category joins `FIBER_NOT_APPLICABLE_CATEGORIES` only if near-zero fiber is the structurally correct, expected value for the WHOLE category (fiber-free animal/dairy matrix). Bread/cereal/bars/crackers/sauces/spreads/beverages stay excluded (missing fiber there is a real deficiency). |
+| **evidence_strength / tier** | Strong (parallels the owner-approved whole-food-fat-floor principle). |
+| **rollback_flag** | `BARI_RECAL_P0` (and/or `BARI_TASK144_FIXES`) OFF → flat 65/35 blend with fiber-as-0 returns. |
+
+### EV-024 / EV-026 lineage extension (v1.1) — NOVA flavored-variant guard (R4) + culture-gate (R7), under BARI_RECAL_P0
+
+| Field | Value |
+|-------|-------|
+| **extends** | EV-024 (culture-credit) + EV-026 (data-hygiene) lineage — the plain-dairy / culture family. REVISED per design v1.1. |
+| **task** | TASK-169 / TASK-169B (R4 + R7) |
+| **recorded** | 2026-06-02 |
+| **R4 signal** | Benign culinary/culturing/fortification additions to a plain dairy base keep NOVA 2 (demote a tentative NOVA 3 back to 2) — **BUT a declared flavoring, even a whole-food one (garlic/dill/herbs/etc.), makes it a flavored variant and forfeits the retention → stays NOVA 3.** New `FLAVORED_VARIANT_MARKERS_HE` list feeds an added `has_flavor_variant` clause in the `nova_proxy.py` `is_plain` gate. Guard ONLY ever BLOCKS a demotion (can only lower, never raise a score). Retires the false "מבנה רכיבים מעובד" line for products that legitimately pass to NOVA 2. |
+| **R7 signal** | The +8 `FERMENTATION_DIRECT_BONUS` fires only on **(A)** a declared culture marker (`has_fermentation`, existing/unchanged) **OR (B)** an inherently-cultured product TYPE — yogurt subtype, or aged/specialty cultured-cheese NAME marker. **Fluid milk (`milk_dairy` / fluid-milk name tokens) and plant drinks are HARD-EXCLUDED.** The v1 "plain-dairy ⇒ cultured" assumption is RETRACTED as unsound (it credited uncultured fluid milk — the 85/A milk-ceiling leak — and over-credited table-stakes fresh-cheese culturing). Plain cottage/white-cheese fresh subtypes are deliberately EXCLUDED from Path B (they reach the owner's 90/A target from R1+R2+R4 alone; +8 would overshoot to ~97/S). |
+| **router-reconciliation** | Live router emits NO `milk_dairy` or top-level `yogurt` category — fluid milk, yogurt and cheese all route as `dairy_protein`. Implemented against the real router vocabulary: yogurt qualifies via real yogurt SUBTYPES; fluid milk hard-excluded by a token-aware fluid-milk NAME marker lacking a dairy-solid identity marker (חלב-vs-חלבון substring trap fixed by whole-token matching); aged/specialty cheese qualifies by NAME marker. New routing allowlists: `CULTURED_YOGURT_SUBTYPES`, `CULTURED_CHEESE_NAME_MARKERS_HE`, `FLUID_MILK_NAME_MARKERS_HE`, `DAIRY_SOLID_IDENTITY_MARKERS_HE`. |
+| **data_source** | cottage NOVA 2→3 regression (run_001 vs run_003); napoleon שום שמיר flavored-A leak; both fluid-milk +8 leaks — all `run_cheese_003`/model 2026-06-02. |
+| **category_scope** | CROSS-CATEGORY behind the flag; shipped this wave for cheese + hummus. Yogurt retains its (legitimately gated) bonus but yogurt is FROZEN this wave (not rescored/reshipped). Milk leak closed but milk is FROZEN (deferred). |
+| **evidence_strength / tier** | Moderate. Path A fully label-observable; Path B is product-type/name-derived (reconciled against live routing). R4 is name + ingredient substring. |
+| **rule_accumulation** | No new rule, no shadow rule: R7 v1.1 NARROWS an existing bonus path (fewer products qualify); R4 v1.1 ADDS ONE disqualifier clause to an existing demotion guard. Net rule count unchanged; blast radius strictly smaller than the v1 model. New constants are routing allowlists / marker lists feeding existing tests. |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF). Unset → v1 R7 path (`product_type_dairy + plain ⇒ +8`) and v1 R4 `is_plain` (additive-marker-only) restored; 0.4.1 byte-identical. |
+
+---
+
 ## Section B — Guardrails (Misconceptions That Must NOT Be Modeled)
 
 These 20 misconceptions are explicitly excluded from BSIP2 algorithmic treatment. Modeling any of these as if true would produce systematic scoring errors.

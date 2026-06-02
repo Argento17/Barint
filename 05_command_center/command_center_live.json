@@ -4,19 +4,24 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-02",
-    "generated_at": "2026-06-02T14:48:31",
-    "newest_source_at": "2026-06-02T14:48:23",
+    "generated_at": "2026-06-02T18:54:18",
+    "newest_source_at": "2026-06-02T18:54:14",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-02T14:48:31",
+    "drift_checked_at": "2026-06-02T18:54:18",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
     "system_health": "YELLOW",
-    "active_task_ids": [],
+    "active_task_ids": [
+      "TASK-168",
+      "TASK-169",
+      "TASK-169A",
+      "TASK-169B"
+    ],
     "latest_completed_task": {
       "id": "TASK-142A",
       "title": "BSIP0 nutrition-parse data-integrity bug: trans-fat row captured as total fat (fat_g=0.5) + nutrition-panel bleed — root-cause, fix, blast-radius",
@@ -26,24 +31,33 @@
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-140",
-    "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
-    "owner": "data-agent",
-    "status": "RETURNED",
+    "task_id": "TASK-168",
+    "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
+    "owner": "product-agent",
+    "status": "IN_PROGRESS",
     "priority": "HIGH",
-    "reason": "Returned — awaiting your review/acceptance.",
-    "unblocks": "Breakfast Cereals launch"
+    "reason": "Currently in progress — finish this first.",
+    "unblocks": "—"
   },
   "task_summary": {
-    "active": 0,
-    "in_progress": 0,
+    "active": 4,
+    "in_progress": 4,
     "blocked": 0,
     "returned": 1,
     "changes_requested": 0,
-    "closed": 122,
-    "wip": 0,
-    "wip_task_ids": [],
-    "wip_by_owner": {},
+    "closed": 130,
+    "wip": 4,
+    "wip_task_ids": [
+      "TASK-168",
+      "TASK-169",
+      "TASK-169A",
+      "TASK-169B"
+    ],
+    "wip_by_owner": {
+      "product-agent": 1,
+      "nutrition-agent": 2,
+      "data-agent": 1
+    },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
@@ -52,20 +66,22 @@
     "top_unblockers": []
   },
   "drift": {
-    "checked_at": "2026-06-02T14:48:34",
+    "checked_at": "2026-06-02T18:54:21",
     "clean": false,
     "counts": {
       "PHANTOM_TASK": 0,
       "CLOSURE_DRIFT": 0,
       "SNAPSHOT_DRIFT": 0,
-      "REGISTRY_UNPARSEABLE": 3
+      "REGISTRY_UNPARSEABLE": 5
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [],
     "registry_unparseable": [
       "TASK-162",
       "TASK-165",
-      "TASK-166"
+      "TASK-166",
+      "TASK-167",
+      "TASK-168"
     ],
     "acknowledged": []
   },
@@ -154,6 +170,90 @@
   ],
   "open_tasks": [
     {
+      "id": "TASK-168",
+      "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
+      "owner": "product-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Owner directive: the comparison pages need a full redesign — trigger is weak/inconsistent product descriptions (252 lines, 13% restate the grade, lengths erratic), but scope is the whole page. Phased, pilot-first, Product gates scope vs the frozen Gen-1 architecture. All 7 agents involved across phases.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169",
+      "title": "Scoring recalibration sprint — category-relative whole-food rubric (protein curve, fiber-blend, leanness, NOVA proxy, red-label cliff, category-fit)",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Owner-opened vast scoring sprint. Diagnosis (2026-06-02) traced cheese/hummus/salad score compression to 7 shared-engine root causes: supplement-calibrated protein curve, 35% fiber-blend on fiber-free dairy (EV-027 gated off for cheese), fat_quality that never rewards leanness, NOVA proxy over-classifying cultured/fortified dairy + jarred spreads as processed (+false consumer label), red-label sat-fat cap acting as a cliff, one universal rubric applied to category-inappropriate veg spreads, and a white-cheese ranking inversion. Owner directive: rework the SHARED math (re-opens frozen milk/bread/snack) + make protein category-relative so a lean high-protein product (cottage 1%) can reach top-of-shelf. Governed: evidence-registry ref + rollback + frozen-category blast-radius + owner sign-off per change.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169A",
+      "title": "P0 — recalibration design + blast-radius model (category-relative protein, R2/R3/R4/R5/R6)",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "P0 of TASK-169. Nutrition designs the shared-engine recalibration (category-relative protein scale per category, leanness reward in fat_quality, NOVA proxy refinement for cultured/fortified dairy + jarred spreads, red-label sat-fat cap->graded penalty, veg-spread category-fit rubric) with evidence-registry entries + rollback; Data then implements in a MODELING harness (not shipped) and produces before/after diffs across cheese/hummus/salad AND frozen milk/bread/snack/yogurt + golden-corpus regression delta. No live score ships from P0 — owner approves the model before P1 engine edits.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169B",
+      "title": "P1 — promote recal behind BARI_RECAL_P0, rescore + reship CHEESE + HUMMUS only (frozen dairy deferred)",
+      "owner": "data-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "P1 of TASK-169, owner green-lit (cheese+hummus first; frozen milk/yogurt/snack deferred to a later approved wave; yogurt top to be trimmed via R1 yogurt anchor in that wave). Author evidence-registry entries EV-029-032 (+EV-024/027 extensions); Product D7 co-sign; rescore cheese + hummus with BARI_RECAL_P0 ON (new run ids), rebuild ONLY their frontend JSON; do NOT regenerate milk/yogurt/snack/bread JSON (they stay on current scores until their wave). Then frontend integrate + Content fix stale insight lines + remove false 'מבנה רכיבים מעובד' labels (cottage now NOVA 2) + QA stale-data/build. Final owner confirm before live deploy. Flag OFF = byte-identical rollback.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
       "id": "TASK-140",
       "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
       "owner": "data-agent",
@@ -214,6 +314,32 @@
       "resolved_at": null,
       "status": "OPEN",
       "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-166.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-004",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-167: tasks/TASK-167.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-167",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-167.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-005",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-168: tasks/TASK-168A.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-168",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-168A.md, then re-run generate_dashboard.py."
     }
   ]
 }

@@ -17,33 +17,33 @@ export function shortenReason(line: string | undefined): string | null {
 }
 
 /**
- * Surface the already-present protein value as a first-class row metric and derive the row
- * reason from positiveSignals[0] / limitingFactors[0]. Identical to hummus's
- * enrichHummusRowSurface. Protein is read straight from expansion.nutrition; null is passed
- * through untouched (the metric column renders "—" for null) — never fabricated.
+ * Surface the already-present protein value as a first-class row metric. Protein is read
+ * straight from expansion.nutrition; null is passed through untouched (the metric column
+ * renders "—" for null) — never fabricated. The collapsed row's text comes from the
+ * authored insightLine sentence (TASK-167); the +/− positive/limiting signals remain in the
+ * expansion and are shown when the row is opened.
  */
 export function enrichRowSurface(products: BariProductVM[]): BariProductVM[] {
   return products.map((product) => ({
     ...product,
     metrics: { protein_g: product.expansion.nutrition?.protein ?? null },
-    rowReason: {
-      positive: shortenReason(product.expansion.positiveSignals?.[0]),
-      limiting: shortenReason(product.expansion.limitingFactors?.[0]),
-    },
+    // The collapsed row shows the authored 2-line interpretive verdict (written into
+    // insightLine, TASK-168). Routing it through rowVerdict renders it in the multi-line
+    // verdict slot instead of the single-line truncated insightLine.
+    rowVerdict: product.insightLine,
   }));
 }
 
 /**
- * rowReason-only enrichment for categories that must NOT show a metric bar (e.g. snacks,
- * where all nutrition is null — a bar would be fabricated). Derives the row reason exactly
- * like enrichRowSurface but leaves `metrics` untouched.
+ * Categories with no metric bar (e.g. snacks, where all nutrition is null — a bar would be
+ * fabricated) need no row-surface enrichment: the collapsed row renders insightLine natively
+ * (TASK-167). Kept as a passthrough so callers don't have to change.
  */
 export function enrichRowReasonOnly(products: BariProductVM[]): BariProductVM[] {
+  // No metric bar (e.g. snacks, all nutrition null), but route the authored verdict to the
+  // multi-line rowVerdict slot (TASK-168) so the collapsed row shows it in full.
   return products.map((product) => ({
     ...product,
-    rowReason: {
-      positive: shortenReason(product.expansion.positiveSignals?.[0]),
-      limiting: shortenReason(product.expansion.limitingFactors?.[0]),
-    },
+    rowVerdict: product.insightLine,
   }));
 }

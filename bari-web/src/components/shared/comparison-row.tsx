@@ -12,6 +12,7 @@ import {
   type MetricSpec,
 } from "@/components/shared/comparison-metric-column";
 import type { BariGrade, BariProductVM } from "@/lib/view-models";
+import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
 
 const GRADE_LABELS: Record<BariGrade, string> = {
@@ -52,13 +53,33 @@ function RowReason({ product }: { product: BariProductVM }) {
 
 function GradeCell({ product }: { product: BariProductVM }) {
   if (product.score == null || product.grade == null) {
+    // Mirror the graded chip's exact box (same container + sm size) so unscored
+    // products stay column-aligned and identically sized — just neutral grey.
+    const rowTokens = BARI_COMPARISON_TOKENS.score.rowChip;
     return (
-      <span
-        className="inline-flex items-center rounded-[10px] border border-black/[0.08] bg-[#F7F7F2] px-2 py-1 text-[0.8rem] font-bold text-[#9AA09B]"
+      <div
+        className={cn(rowTokens.container, rowTokens.size.sm)}
+        style={{
+          backgroundColor: "#F7F7F2",
+          borderColor: "rgba(17,19,24,0.10)",
+        }}
         aria-label="ללא ציון"
       >
-        —
-      </span>
+        <span
+          className={cn(rowTokens.scoreClass, rowTokens.scoreSize.sm)}
+          style={{ color: "#9AA09B" }}
+          aria-hidden
+        >
+          —
+        </span>
+        <span
+          className={cn(rowTokens.labelClass, rowTokens.labelSize.sm)}
+          style={{ color: "#9AA09B" }}
+          aria-hidden
+        >
+          ללא ציון
+        </span>
+      </div>
     );
   }
   return (
@@ -117,7 +138,7 @@ export const ComparisonRow = memo(function ComparisonRow({
             {product.name}
           </span>
           {verdict ? (
-            <p className="mt-[5px] line-clamp-2 text-[0.8rem] leading-[1.45] text-[#3C443F]">
+            <p className="mt-[5px] text-[0.8rem] leading-[1.45] text-[#3C443F]">
               {verdict}
             </p>
           ) : product.rowReason ? (

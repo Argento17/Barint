@@ -1,0 +1,58 @@
+{
+  "task": "TASK-169B",
+  "phase": "P1 — promote BARI_RECAL_P0, rescore + stage frontend JSON for CHEESE + HUMMUS only",
+  "date": "2026-06-02",
+  "engine": "BSIP2 proto_v0 / 0.4.1 + BARI_RECAL_P0=on",
+  "engine_config_hash_sha256_16": "832fdb55e03cae06",
+  "config_hash_basis": "sha256 of constants.py + score_engine.py + nova_proxy.py (the flag-gated files)",
+  "owner_scope": "CHEESE + HUMMUS (incl. savory/veg-spread tail) ONLY. milk / yogurt / snack_bars / bread NOT rescored or reshipped (frozen, deferred to a later approved wave).",
+  "flag_off_rollback": "byte-identical — cheese flag-OFF re-score == model OFF baseline (59/59, 0 score/grade/dimension mismatch); the single verify_recal_off_identical.py mismatch (…217492 calorie_density 40->65, score+grade unchanged 60/C) is pre-existing HEAD drift, NOT a P0 effect.",
+  "regressions": {
+    "golden_corpus": "OFF == ON: 0 FAIL / 1 pre-existing flag-insensitive WARN (anchor_soy_drink)",
+    "router": "OFF == ON: 12/12 PASS"
+  },
+  "runs": [
+    {
+      "run_id": "run_cheese_004",
+      "source_corpus": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output (same as the live run_cheese_003)",
+      "runner": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src\\batch_run_cheese_004.py",
+      "bsip2_traces": "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_004\\products\\",
+      "run_summary": "C:\\Bari\\02_products\\cheese_spreads\\reports\\run_cheese_004_run_summary.json",
+      "frontend_package": "C:\\Bari\\02_products\\cheese_spreads\\factory_run_004\\frontend_package.json",
+      "frontend_json_staged": "C:\\bari\\bari-web\\src\\data\\comparisons\\cheese_frontend_v2.json",
+      "products_scored": 59,
+      "grade_distribution": {"A": 13, "B": 17, "C": 19, "D": 4, "E": 1, "insufficient": 5},
+      "misroute_pct": 3.4,
+      "anchor_checks": {
+        "cottage_1pct": "89.8/A (was 74.9/B) — owner 90/A target hit, NOVA 2, no +8",
+        "cottage_9pct": "81.1/A (was 52/C cliff) — R5 collapse resolved",
+        "white_garlic": "84.3/A NOVA 3 (Path-A declared culture +8); cottage ranks above it (inversion resolved)",
+        "napoleon_16pct_garlic_dill": "74.5/B NOVA 3 — flavored-A leak CLOSED (R4 v1.1)"
+      },
+      "did_not_overwrite": "run_cheese_003 (live) untouched"
+    },
+    {
+      "run_id": "run_hummus_003",
+      "source_corpus": "C:\\Bari\\02_products\\hummus\\canonical_bsip1 (same corpus as frozen run_hummus_002)",
+      "runner": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src\\batch_run_hummus_003.py",
+      "bsip2_traces": "C:\\Bari\\02_products\\hummus\\intelligence_bsip2\\run_hummus_003\\products\\",
+      "run_summary": "C:\\Bari\\02_products\\hummus\\reports\\run_hummus_003_run_summary.json",
+      "frontend_json_staged": "C:\\bari\\bari-web\\src\\data\\comparisons\\hummus_frontend_v4.json",
+      "products_scored": 69,
+      "display_set": 64,
+      "grade_distribution_display": {"A": 7, "B": 35, "C": 16, "D": 6},
+      "veg_spread_archetype_fired": 17,
+      "note": "run_hummus_002 is FROZEN (AUTHORITATIVE.md mandates run_hummus_003+); this honored that.",
+      "did_not_overwrite": "run_hummus_002 (frozen) untouched"
+    }
+  ],
+  "evidence_registry_entries": {
+    "location": "C:\\Bari\\03_operations\\bsip2\\evidence_registry\\bsip2_evidence_registry_v1.md",
+    "new": ["EV-030 (R1 category-relative protein)", "EV-031 (R3 leanness)", "EV-032 (R5 graded sat-fat)", "EV-033 (R6 veg-spread fit)"],
+    "extensions": ["EV-027 (R2 fiber-N/A activation for cheese)", "EV-024/EV-026 lineage (R4 NOVA flavored-variant + R7 culture gate)"],
+    "id_remap_note": "Design drafted EV-029..EV-032 but EV-029 was already taken (BSIP0 fat-overwrite, TASK-142A); shifted to EV-030..EV-033. Mapping recorded in the registry."
+  },
+  "blockers_flagged": [
+    "CHEESE A-CEILING GOVERNANCE CONFLICT: the run_003 A-ceiling construct (EV-021 / RULING-DAIRY-A-01 C1-C6) sets a_eligible_pre_routing=False for ALL cheese, which would withhold all 13 recalibrated grade-A products (incl. cottage 1% at 90/A). TASK-169 v1.1 (owner ruling) retires the hard cap and intends cottage 1% to LAND at 90/A. cheese_frontend_v2.json STAGES the recal A's (A-ceiling withhold NOT applied) for the owner look; conflict recorded in its _meta.recal_governance_conflict. Nutrition + Product + owner must reconcile EV-021 vs TASK-169 v1.1 before any live repoint."
+  ]
+}

@@ -100,29 +100,17 @@ function stripHummusInternalFields(products: HummusCorpusProduct[]): BariProduct
 }
 
 /**
- * Shorten a pre-authored signal line to a row-sized reason (§3.3). Deterministic:
- * take the clause before the first em-dash / colon, trimmed. The full string stays
- * in the expansion; this is display-only and never alters corpus content.
- */
-function shortenReason(line: string | undefined): string | null {
-  if (!line) return null;
-  const head = line.split(/\s+[—–-]\s+|:\s+/)[0]?.trim();
-  return head && head.length > 0 ? head : line.trim();
-}
-
-/**
- * Row surface enrichment (comparison_ui_reference_v2 §2.2). Surfaces the already-present
- * protein value as a first-class metric and derives the row reason from
- * positiveSignals[0] / limitingFactors[0]. Display-only; not a score input.
+ * Row surface enrichment. Surfaces the already-present protein value as a first-class metric.
+ * The collapsed row's text is the authored insightLine sentence (TASK-167); the +/− positive
+ * / limiting signals remain in the expansion. Display-only; not a score input.
  */
 function enrichHummusRowSurface(products: BariProductVM[]): BariProductVM[] {
   return products.map((product) => ({
     ...product,
     metrics: { protein_g: product.expansion.nutrition?.protein ?? null },
-    rowReason: {
-      positive: shortenReason(product.expansion.positiveSignals?.[0]),
-      limiting: shortenReason(product.expansion.limitingFactors?.[0]),
-    },
+    // Route the authored 2-line interpretive verdict (insightLine, TASK-168) to the rowVerdict
+    // slot so the collapsed row renders it in full instead of single-line-truncated.
+    rowVerdict: product.insightLine,
   }));
 }
 

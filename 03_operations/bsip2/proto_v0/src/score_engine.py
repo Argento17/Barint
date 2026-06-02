@@ -31,6 +31,13 @@ from constants import (
     PROTEIN_QUALITY_MATRIX_DISCOUNT, PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES,
     ADDITIVE_IDENTITY_DELTAS, BHA_NAMED_PENALTY,
     FIBER_NOT_APPLICABLE_CATEGORIES,
+    PROTEIN_SCALE_TABLES, lookup_protein_scale,
+    RECAL_P0_FIBER_NOT_APPLICABLE, NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS,
+    VEG_SPREAD_WEIGHTS, VEG_SPREAD_IMMUNITY_CEILING,
+    CULTURED_YOGURT_SUBTYPES, CULTURED_CHEESE_NAME_MARKERS_HE,
+    FLUID_MILK_NAME_MARKERS_HE, DAIRY_SOLID_IDENTITY_MARKERS_HE,
+    FLAVORED_VARIANT_MARKERS_HE,
+    RED_LABEL_THRESHOLDS as _RED_LABEL_THRESHOLDS,
     score_to_grade,
 )
 
@@ -38,6 +45,11 @@ from constants import (
 # DEFAULT OFF (frozen behavior). Only the maadanim batch runner opts in via
 # BARI_TASK144_FIXES=on. See signal_extractor.py for the full activation-scope rationale.
 TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
+
+# TASK-169 P0 — single rollback flag for ALL recalibration changes (R1–R7).
+# DEFAULT OFF → engine byte-identical to 0.4.1 (safety contract + regression guard).
+# Source of truth: 01_framework/bsip2_framework/recalibration_p0_design_v1.md.
+RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "off").lower() == "on"
 
 
 # ---------------------------------------------------------------------------
@@ -187,15 +199,10 @@ def score_nutrient_density(nn: dict, has_fortification: bool = False,
     prot  = nn.get("protein_g") or 0
     fiber_raw = nn.get("dietary_fiber_g")
     fiber = fiber_raw or 0
-    # Breakpoint interpolation
+    # R1 — category-relative protein mass scale. Flag OFF → legacy supplement curve
+    # (byte-identical via lookup_protein_scale's recal_on=False branch).
     def prot_score(g):
-        bps = [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95)]
-        for i in range(len(bps)-1):
-            lo_g, lo_s = bps[i]; hi_g, hi_s = bps[i+1]
-            if g <= hi_g:
-                t = (g - lo_g) / (hi_g - lo_g) if hi_g > lo_g else 0
-                return lo_s + t * (hi_s - lo_s)
-        return 95
+        return lookup_protein_scale(g, category, RECAL_P0_ON)
     def fiber_score(g):
         bps = [(0,0),(1,10),(2,20),(4,40),(6,55),(8,68),(10,78),(12,95)]  # R-03 ceiling 85→95
         for i in range(len(bps)-1):
@@ -212,8 +219,10 @@ def score_nutrient_density(nn: dict, has_fortification: bool = False,
     # dimension is scored on PROTEIN ALONE (re-normalize 65/35 → 100/0) rather than
     # blending in a structural-zero fiber. Bread/cereal/bars/etc. are NOT on the allowlist
     # and keep the flat 65/35 blend (missing fiber there IS a real deficiency).
+    # R2 — OR in BARI_RECAL_P0 so cheese (dairy_protein, already allowlisted) inherits the
+    # EV-027 fiber-not-applicable path. Maadanim behaviour via BARI_TASK144_FIXES unchanged.
     fiber_not_applicable = (
-        TASK144_FIXES_ON
+        (TASK144_FIXES_ON or RECAL_P0_ON)
         and category in FIBER_NOT_APPLICABLE_CATEGORIES
         and (fiber_raw is None or fiber_raw <= 0)
     )
@@ -277,30 +286,72 @@ def _fat_ratio_to_score(ratio: float) -> float:
     return 93.0
 
 
+# R3 — leanness reward (TASK-169 / EV-030). A genuinely lean whole-food matrix earns
+# positive fat_quality credit rather than the legacy neutral-50 default. Gated by
+# BARI_RECAL_P0; with the flag OFF the neutral-50 short-circuits are unchanged.
+def _leanness_score(fat, sat_f):
+    sat = sat_f or 0.0
+    base = 92 - (fat or 0.0) * 6.0   # 0g→92, 1g→86, 2g→80, 3g→74
+    base -= sat * 4.0                # mild sat-fat haircut: 0.6g → -2.4
+    return round(max(50.0, min(95.0, base)), 1)
+
+
+# R5 — graded saturated-fat penalty (TASK-169 / EV-031). Replaces the composite
+# ISRAELI_RED_LABEL_1_SAT_FAT cliff cap with a fat-dimension penalty scaled to how far
+# over the 5.0g/100g red-label threshold the product sits. regulatory_quality STILL
+# counts the red label (signal not lost). Gated by BARI_RECAL_P0.
+def _red_satfat_penalty(sat_f):
+    thr = _RED_LABEL_THRESHOLDS["sat_fat"]
+    if sat_f is None or sat_f <= thr:
+        return 0.0
+    excess = sat_f - thr
+    return round(min(25.0, 3.0 + excess * 2.5), 1)   # 5g→0, 6g→5.5, 8g→10.5, 12g→20.5, cap 25
+
+
 def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
     """EV-012: ratio-based fat quality. Falls back to v1 when fat_g < guard."""
     fat   = nn.get("fat_g") or 0
     sat_f = nn.get("fat_saturated_g")
     has_seed_oil = l3.get("has_seed_oil", False)
     if fat < 0.5 or se_result.get("structurally_empty"):
+        if RECAL_P0_ON and not se_result.get("structurally_empty"):
+            # R3: genuinely lean (incl. stranded sat_fat=None) → treat sat as 0
+            ls = _leanness_score(fat, sat_f)
+            return ls, f"R3 leanness: fat={fat}g (<0.5) sat={sat_f} → {ls}"
         return 50.0, "SRC-04: fat < 0.5g or structurally empty → neutral 50"
     if sat_f is None:
+        if RECAL_P0_ON:
+            ls = _leanness_score(fat, 0.0)
+            return ls, f"R3 leanness: fat={fat}g sat_fat absent (treated 0) → {ls}"
         return 50.0, "sat_fat absent → neutral 50"
     trans_status = l3.get("trans_fat_status", "not_detected")
     trans_pen = 20 if trans_status in ("veto","high_concern") else (10 if trans_status=="present" else 0)
     seed_pen  = 10 if has_seed_oil else 0
+    # R5 — graded red-label sat-fat penalty on the fat dimension (replaces the composite
+    # cliff cap, which guardrails stops firing under RECAL_P0). 0 at/below 5.0g threshold.
+    red_pen = _red_satfat_penalty(sat_f) if RECAL_P0_ON else 0.0
     if fat >= _FAT_RATIO_GUARD and sat_f > 0:
         ratio = max(0.0, fat - sat_f) / sat_f
         base  = _fat_ratio_to_score(ratio)
-        score = round(max(0.0, base - seed_pen - trans_pen), 1)
+        score = round(max(0.0, base - seed_pen - trans_pen - red_pen), 1)
         note  = (f"EV-012 fat_ratio: fat={fat}g ratio={ratio:.3f}"
-                 f" base={base:.1f}-seed{seed_pen}-trans{trans_pen}={score}")
+                 f" base={base:.1f}-seed{seed_pen}-trans{trans_pen}"
+                 f"{('-red%.1f' % red_pen) if red_pen else ''}={score}")
     else:
         sat_frac = sat_f / fat if fat > 0 else 0
         base  = max(0.0, 100 - sat_f * 3.0 - sat_frac * 25)
-        score = round(max(0.0, base - seed_pen - trans_pen), 1)
+        score = round(max(0.0, base - seed_pen - trans_pen - red_pen), 1)
+        # R3 — leanness floor in the lean band (fat <= 3g): never worse than penalty curve.
+        if RECAL_P0_ON and fat <= 3.0:
+            ls = _leanness_score(fat, sat_f)
+            if ls > score:
+                note = (f"R3 leanness band: max(penalty_curve={score}, leanness={ls}) "
+                        f"(fat={fat}g sat={sat_f}g)")
+                score = ls
+                return score, note
         note  = (f"fat_v1(fat={fat}g<{_FAT_RATIO_GUARD}): sat={sat_f}g"
-                 f" base={base:.1f}-seed{seed_pen}-trans{trans_pen}={score}")
+                 f" base={base:.1f}-seed{seed_pen}-trans{trans_pen}"
+                 f"{('-red%.1f' % red_pen) if red_pen else ''}={score}")
     return score, note
 
 
@@ -442,16 +493,8 @@ def score_protein_quality(nn: dict, l3: dict, category: str = None) -> tuple[flo
     source_factors = {"whole_food": 1.0, "dairy": 1.0, "mixed": 0.85, "isolate": 0.70, "unknown": 0.80}
     sf = source_factors.get(source, 0.80)
 
-    def prot_base(g):
-        bps = [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95)]
-        for i in range(len(bps)-1):
-            lo_g, lo_s = bps[i]; hi_g, hi_s = bps[i+1]
-            if g <= hi_g:
-                t = (g - lo_g) / (hi_g - lo_g) if hi_g > lo_g else 0
-                return lo_s + t * (hi_s - lo_s)
-        return 95
-
-    base = prot_base(prot)
+    # R1 — category-relative protein mass scale (flag OFF → legacy supplement curve).
+    base = lookup_protein_scale(prot, category, RECAL_P0_ON)
     quality = base * sf
 
     # F2 / TASK-133B — matrix discount on the protein-QUALITY contribution only.
@@ -737,7 +780,15 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     fat_caps_fired = []
     fat_pens_fired = []
 
-    check_cap("ISRAELI_RED_LABEL_1_SAT_FAT", red_label_sat_fat, 55, fat_caps_fired)
+    # R5 — under RECAL_P0 the composite cliff cap is replaced by a graded fat-dimension
+    # penalty (applied in _score_fat_quality_sprint1). Suppress the cap so it never fires;
+    # flag OFF → unchanged.
+    if RECAL_P0_ON:
+        caps_considered.append({"rule": "ISRAELI_RED_LABEL_1_SAT_FAT", "cap": 55,
+                                 "fired": False,
+                                 "note": "R5: composite cap → graded fat-dimension penalty (RECAL_P0)"})
+    else:
+        check_cap("ISRAELI_RED_LABEL_1_SAT_FAT", red_label_sat_fat, 55, fat_caps_fired)
     check_penalty("SEED_OIL_PRESENT", has_seed_oil, 3, fat_pens_fired)
 
     fat_cap, fat_pen, fat_detail = _coordinate_family(fat_caps_fired, fat_pens_fired, FAT_QUALITY_FAMILY_BUDGET)
@@ -1045,16 +1096,110 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "regulatory_quality": rq_note, "whole_food_integrity": wfi_note,
     }
 
-    weighted_sum = sum(dim_scores[k] * DIMENSION_WEIGHTS[k] for k in dim_scores)
+    # R6 — veg_spread archetype re-weighting (TASK-169 / EV-032), gated by BARI_RECAL_P0.
+    # Detected at routing: a sauce_spread whose subtype is a whole-vegetable spread AND
+    # whose protein < 3g (not a legume/dairy protein food). Re-weight so the score
+    # reflects ingredient cleanliness, whole-veg base, low energy density, sodium
+    # discipline — not protein density. Anti-immunity guard below.
+    VEG_SPREAD_SUBTYPES = {"matbucha", "pepper_spread", "pepper_chuma", "eggplant_spread"}
+    prot_g = nn.get("protein_g") or 0
+    cat_subtype = cat_result.get("category_subtype")
+    is_veg_spread = (
+        RECAL_P0_ON
+        and category == "sauce_spread"
+        and cat_subtype in VEG_SPREAD_SUBTYPES
+        and prot_g < 3.0
+    )
+    veg_spread_immunity_clamped = False
+    if is_veg_spread:
+        active_weights = VEG_SPREAD_WEIGHTS
+    else:
+        active_weights = DIMENSION_WEIGHTS
+
+    weighted_sum = sum(dim_scores[k] * active_weights[k] for k in dim_scores)
     weighted_dim_score = round(weighted_sum, 2)
 
+    # R6 anti-immunity guard: a veg_spread cannot exceed the immunity ceiling unless its
+    # additives are clean (no markers) AND sodium is sub-red-label. Prevents an
+    # engineered / sodium-heavy spread from reaching A on the re-weight.
+    if is_veg_spread and weighted_dim_score > VEG_SPREAD_IMMUNITY_CEILING:
+        clean_additives = (l3.get("additive_marker_count", 0) == 0)
+        sodium_ok = "sodium" not in l3.get("red_labels", [])
+        if not (clean_additives and sodium_ok):
+            weighted_dim_score = round(VEG_SPREAD_IMMUNITY_CEILING, 2)
+            veg_spread_immunity_clamped = True
+
     # R-02: direct fermentation bonus (pre-cap, NOVA1–3)
+    # R7 v1.1 (TASK-169A): gate the live-culture +8 to GENUINELY cultured dairy.
+    # Supersedes the v1 "product_type_dairy + plain ⇒ cultured" assumption, which leaked
+    # the +8 onto plain FLUID MILK (85/A breach) and over-credited table-stakes
+    # fresh-cheese culturing. Two qualifying paths; flag OFF → Path A only (HEAD behavior).
+    #   Path A — declared culture marker (has_fermentation). Unchanged from HEAD.
+    #   Path B — inherently-cultured TYPE: yogurt subtypes OR aged/specialty cultured-cheese
+    #            name marker. Hard-excludes fluid milk / plant drinks; excludes flavored
+    #            variants; excludes cottage + white-cheese fresh subtypes (cottage ruling).
+    # Router reconciliation (v1.1 call #4): the live router emits NO `milk_dairy` and NO
+    # top-level `yogurt` category — milk, cheese AND yogurt all route to `dairy_protein`.
+    # So Path B is keyed off the router's real yogurt SUBTYPES + cheese NAME markers, and
+    # fluid milk is hard-excluded by a fluid-milk NAME marker. See constants.py R7 v1.1.
     fermentation_bonus = 0
     fermentation_bonus_note = None
-    if has_fermentation and nova_level <= 3:
+    r7_culture_credit = False
+    r7_path = None
+    eligible_ferm = has_fermentation                       # Path A (declared culture)
+    if RECAL_P0_ON and not has_fermentation and nova_level <= 3:
+        _name = (product.get("canonical_name_he")
+                 or product.get("product_name_he") or "")
+        _ing  = " ".join(l3.get("ingredient_list") or [])
+        _hay  = (_name + " " + _ing)
+        subtype = cat_result.get("category_subtype")
+        # Token-aware name set: avoids the substring trap where the fluid-milk marker
+        # חלב (milk) matches inside חלבון (protein). Markers are matched against whole
+        # whitespace-delimited tokens; multi-word markers (e.g. גבינת שמנת) still use
+        # substring containment on the full name.
+        _name_tokens = set(_name.split())
+
+        def _name_has(markers):
+            return any((" " in m and m in _name) or (m in _name_tokens) for m in markers)
+
+        # Path B.1 — yogurt subtype (cultured by definition). The ROUTER subtype is the
+        # most reliable cultured-TYPE signal, so a confirmed yogurt subtype qualifies
+        # outright and is NOT second-guessed by the fluid-milk name heuristic.
+        is_yogurt = (category == "yogurt"
+                     or subtype in CULTURED_YOGURT_SUBTYPES)
+
+        # Hard-exclude fluid milk / drinks: a fluid-milk name TOKEN without a dairy-solid
+        # identity marker (גבינה/קוטג/לבנה/יוגורט/…). Plant drinks (משקה …) caught here.
+        # Only consulted for the non-yogurt-subtype path (cheese-name path), since a
+        # confirmed yogurt subtype already establishes a cultured type.
+        has_solid_identity = _name_has(DAIRY_SOLID_IDENTITY_MARKERS_HE)
+        is_fluid_milk = _name_has(FLUID_MILK_NAME_MARKERS_HE) and not has_solid_identity
+
+        # Flavored / seasoned variant disqualifies Path B (matches R4's flavored-variant
+        # logic; kept independent — separate test, no shared state).
+        is_flavored_variant = any(m in _hay for m in FLAVORED_VARIANT_MARKERS_HE)
+
+        # Path B.2 — aged/specialty cultured cheese by name. Cottage (קוטג') and
+        # white-cheese (גבינה לבנה / לבנה) fresh subtypes are NOT in the marker set, so
+        # they do not qualify here → plain cottage lands at its R1+R2+R4 value (~90/A).
+        is_cultured_cheese = (category in ("dairy_protein", "default")
+                              and any(m in _name for m in CULTURED_CHEESE_NAME_MARKERS_HE)
+                              and not is_fluid_milk)
+
+        if is_yogurt and not is_flavored_variant:
+            eligible_ferm = True
+            r7_culture_credit = True
+            r7_path = "yogurt_subtype"
+        elif is_cultured_cheese and not is_flavored_variant:
+            eligible_ferm = True
+            r7_culture_credit = True
+            r7_path = "cultured_cheese_name"
+    if eligible_ferm and nova_level <= 3:
         fermentation_bonus = FERMENTATION_DIRECT_BONUS
         weighted_dim_score = round(min(100, weighted_dim_score + fermentation_bonus), 2)
-        fermentation_bonus_note = f"R-02 fermentation_bonus: +{fermentation_bonus} (direct, pre-cap)"
+        fermentation_bonus_note = (
+            f"R-02 fermentation_bonus: +{fermentation_bonus} (direct, pre-cap)"
+            + (f" [R7 v1.1 Path B: {r7_path}]" if r7_culture_credit else ""))
 
     # Stage 4: Guardrail evaluation
     gr = evaluate_guardrails(nn, l3, nova_level, category, cat_conf, eval_result)
@@ -1136,7 +1281,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "confidence_result": conf_result,
         "dimension_scores": dim_scores,
         "dimension_notes": dim_notes,
-        "dimension_weights": DIMENSION_WEIGHTS,
+        "dimension_weights": active_weights,
+        "recal_p0_veg_spread": is_veg_spread if RECAL_P0_ON else None,
+        "recal_p0_veg_spread_immunity_clamped": veg_spread_immunity_clamped if RECAL_P0_ON else None,
         "weighted_dimension_score": weighted_dim_score,
         "fermentation_bonus_applied": fermentation_bonus if fermentation_bonus else None,
         "fermentation_bonus_note": fermentation_bonus_note,

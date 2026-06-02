@@ -5,19 +5,24 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-02",
-    "generated_at": "2026-06-02T14:48:31",
-    "newest_source_at": "2026-06-02T14:48:23",
+    "generated_at": "2026-06-02T18:54:18",
+    "newest_source_at": "2026-06-02T18:54:14",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-02T14:48:31",
+    "drift_checked_at": "2026-06-02T18:54:18",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
     "system_health": "YELLOW",
-    "active_task_ids": [],
+    "active_task_ids": [
+      "TASK-168",
+      "TASK-169",
+      "TASK-169A",
+      "TASK-169B"
+    ],
     "latest_completed_task": {
       "id": "TASK-142A",
       "title": "BSIP0 nutrition-parse data-integrity bug: trans-fat row captured as total fat (fat_g=0.5) + nutrition-panel bleed — root-cause, fix, blast-radius",
@@ -27,24 +32,33 @@
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-140",
-    "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
-    "owner": "data-agent",
-    "status": "RETURNED",
+    "task_id": "TASK-168",
+    "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
+    "owner": "product-agent",
+    "status": "IN_PROGRESS",
     "priority": "HIGH",
-    "reason": "Returned — awaiting your review/acceptance.",
-    "unblocks": "Breakfast Cereals launch"
+    "reason": "Currently in progress — finish this first.",
+    "unblocks": "—"
   },
   "task_summary": {
-    "active": 0,
-    "in_progress": 0,
+    "active": 4,
+    "in_progress": 4,
     "blocked": 0,
     "returned": 1,
     "changes_requested": 0,
-    "closed": 122,
-    "wip": 0,
-    "wip_task_ids": [],
-    "wip_by_owner": {},
+    "closed": 130,
+    "wip": 4,
+    "wip_task_ids": [
+      "TASK-168",
+      "TASK-169",
+      "TASK-169A",
+      "TASK-169B"
+    ],
+    "wip_by_owner": {
+      "product-agent": 1,
+      "nutrition-agent": 2,
+      "data-agent": 1
+    },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
@@ -136,24 +150,114 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-02T14:48:34",
+    "checked_at": "2026-06-02T18:54:21",
     "clean": false,
     "counts": {
       "PHANTOM_TASK": 0,
       "CLOSURE_DRIFT": 0,
       "SNAPSHOT_DRIFT": 0,
-      "REGISTRY_UNPARSEABLE": 3
+      "REGISTRY_UNPARSEABLE": 5
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [],
     "registry_unparseable": [
       "TASK-162",
       "TASK-165",
-      "TASK-166"
+      "TASK-166",
+      "TASK-167",
+      "TASK-168"
     ],
     "acknowledged": []
   },
   "tasks": [
+    {
+      "id": "TASK-168",
+      "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
+      "owner": "product-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Owner directive: the comparison pages need a full redesign — trigger is weak/inconsistent product descriptions (252 lines, 13% restate the grade, lengths erratic), but scope is the whole page. Phased, pilot-first, Product gates scope vs the frozen Gen-1 architecture. All 7 agents involved across phases.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169",
+      "title": "Scoring recalibration sprint — category-relative whole-food rubric (protein curve, fiber-blend, leanness, NOVA proxy, red-label cliff, category-fit)",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Owner-opened vast scoring sprint. Diagnosis (2026-06-02) traced cheese/hummus/salad score compression to 7 shared-engine root causes: supplement-calibrated protein curve, 35% fiber-blend on fiber-free dairy (EV-027 gated off for cheese), fat_quality that never rewards leanness, NOVA proxy over-classifying cultured/fortified dairy + jarred spreads as processed (+false consumer label), red-label sat-fat cap acting as a cliff, one universal rubric applied to category-inappropriate veg spreads, and a white-cheese ranking inversion. Owner directive: rework the SHARED math (re-opens frozen milk/bread/snack) + make protein category-relative so a lean high-protein product (cottage 1%) can reach top-of-shelf. Governed: evidence-registry ref + rollback + frozen-category blast-radius + owner sign-off per change.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169A",
+      "title": "P0 — recalibration design + blast-radius model (category-relative protein, R2/R3/R4/R5/R6)",
+      "owner": "nutrition-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "P0 of TASK-169. Nutrition designs the shared-engine recalibration (category-relative protein scale per category, leanness reward in fat_quality, NOVA proxy refinement for cultured/fortified dairy + jarred spreads, red-label sat-fat cap->graded penalty, veg-spread category-fit rubric) with evidence-registry entries + rollback; Data then implements in a MODELING harness (not shipped) and produces before/after diffs across cheese/hummus/salad AND frozen milk/bread/snack/yogurt + golden-corpus regression delta. No live score ships from P0 — owner approves the model before P1 engine edits.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-169B",
+      "title": "P1 — promote recal behind BARI_RECAL_P0, rescore + reship CHEESE + HUMMUS only (frozen dairy deferred)",
+      "owner": "data-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "P1 of TASK-169, owner green-lit (cheese+hummus first; frozen milk/yogurt/snack deferred to a later approved wave; yogurt top to be trimmed via R1 yogurt anchor in that wave). Author evidence-registry entries EV-029-032 (+EV-024/027 extensions); Product D7 co-sign; rescore cheese + hummus with BARI_RECAL_P0 ON (new run ids), rebuild ONLY their frontend JSON; do NOT regenerate milk/yogurt/snack/bread JSON (they stay on current scores until their wave). Then frontend integrate + Content fix stale insight lines + remove false 'מבנה רכיבים מעובד' labels (cottage now NOVA 2) + QA stale-data/build. Final owner confirm before live deploy. Flag OFF = byte-identical rollback.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
     {
       "id": "TASK-140",
       "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
@@ -1193,6 +1297,118 @@
       "cc_reviewed": null
     },
     {
+      "id": "TASK-168B",
+      "title": "Phase 1 — description standard (decision-driver-first, no grade-restate, length gate, trace-anchored)",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "Phase 1 delivered + verified. Content authored 01_framework/editorial/row_description_standard_v1.md (17KB, 8 sections): decision-driver-first rule, grade-restatement hard ban (with the smart carve-out that relative-position claims stay legal), confirmed 35-80 char/<=12 word length gate, category-native voice table, 2 line-shapes + STOP rule + 8-point publish checklist, trace-anchor requirement, 3 gold-standard maadanim examples. Nutrition delivered the companion grounding guide (per-category decision-drivers · citable non-null fields · forbidden overstatements · signature tension), surfacing critical fabrication guards: snacks nutrition fully null (only trace ingredient figures citable), hummus fat/sugar suppressed, cheese sodium/sat-fat outside the score (high score != healthy), bread sourdough unverifiable + energy/sugar/fat null, sugar 'שזוהה' hedge must be preserved. Standard+grounding pair cleanly. No code/scores/copy changed.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168C",
+      "title": "Phase 2 pilot (maadanim) — rewrite all 84 description lines to the standard",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "Pilot rewrite delivered + QA-verified (TASK-168D). All 84 maadanim insightLine values rewritten to row_description_standard_v1 + grounding_v1: decision-driver-first, 35-80char/<=12word (QA: 0 fails, range 39-51), 0 grade-restatement/wellness tokens, trace-anchored (QA: 0 fabrication — sugar-null cups cite no sugar value, diet cups not called high-protein, implausible sodium artifacts never cited). Leads with the maadanim icon-paradox where apt (מילקי 'הגביע הכי מוכר במדף — חלבון 3 גרם, חמישה מייצבים'; קולגן 'כמות לא מצוינת'->'קולגן 1.5% בתווית — לא אותו חלבון של חלב מלא'). insightLine-only (git: 84/84, 0 non-insightLine drift). 2 protein-rounding lines (8.7->9) caught by QA + fixed by CC to 8.7. No scores changed; tsc/build(34 routes) clean.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168D",
+      "title": "Phase 2 pilot QA — verify maadanim line rewrite (gates + no score drift + build)",
+      "owner": "qa-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "QA gate: 3/4 PASS clean + 1 conditional now resolved. Gate1 scope (git diff 84/84 insertions all insightLine, 0 drift on score/grade/expansion/nutrition/signals by id) PASS. Gate2 publish (length/grade-ban/wellness) 0 fails PASS. Gate3 trace-anchor: clean on all flagged risks (6 sugar-null, diet cups, boilerplate puddings, sodium artifacts) except 2 lines rounding protein 8.7->9 -> CC fixed both to 8.7 (re-verified 41/49 chars, in-gate, diff still insightLine-only). Gate4 build tsc+next build exit 0, 34 routes. Advisory: 'סויה ביו 16 רכיבים' integer not cleanly countable from nested ingredient string — flagged for the rollout's counting convention, not a pilot blocker.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168E",
+      "title": "Pivot to interpretive VERDICT model + re-pilot maadanim (human voice, differentiated)",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "Verdict-model pivot delivered + owner-approved live. Standard updated to v2 interpretive-verdict; 84 maadanim verdicts rewritten (standing→why→catch→earned grade), differentiated, QA+Nutrition verified. Owner approved the voice on the live maadanim page. 1 protein-rounding fix (4.6) applied post-Nutrition. Superseded the terse-tag model (168C).",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168F",
+      "title": "Row layout — let the collapsed verdict display fully (raise clamp + row height)",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "Removed line-clamp-2 from the verdict <p> (comparison-row.tsx:120); the row grid has no fixed height so it grows to fit, image/name/metric/chip stay aligned. Live-verified 0 line-clamp-2 in markup, full verdicts render no truncation. Other categories' single-line insightLine/rowReason branches keep truncate (unchanged). tsc+lint clean. Owner confirmed readable.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168G",
+      "title": "Rollout verdicts — hummus + vegetable-spreads",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "64 hummus+veg-spread verdicts rewritten to v2 model, insightLine-only (QA: 64/64, no other field changed), no fat/sugar cited (HUM-001/002 respected), veg-spreads led on processing/additives not protein. Nutrition verified TRUE incl. name-vs-reality (סמיר 48% חומוס). 1 imperative line ('קנו אותו לטעם') reworded to compositional. Live + tsc clean.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168H",
+      "title": "Rollout verdicts — cheese",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "51 cheese verdicts rewritten to v2 model, insightLine-only (QA 51/51), no quoted ingredients (withheld), sodium/sat-fat framed as OUTSIDE the score (high!=healthy). Nutrition: 1 false protein (che-7290011499624 4.3->5.5) fixed by CC. OPEN governance item: sat-fat cited on 25 cheese + 2 yogurt lines is TRUE (from traces) + well-framed but not in displayed nutrition block / off current guide -> owner decision (surface satFat vs amend guide). Live + tsc clean.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-168I",
+      "title": "Rollout verdicts — yogurts + snacks + bread",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "53 verdicts rewritten to v2 model across yogurts(11)/snacks(18)/bread(24), insightLine-only (QA pass each). Grounding held: snacks cite ZERO invented panel numbers (only trace figures), yogurts cite no sugar where null + ceiling B, bread no energy/sugar/fat + מחמצת only where signal asserts. Nutrition: 1 bread contradiction (shufersal_3268429 verdict affirmed whole-grain vs its own refined-base signals) — CC reworded the verdict to lead on undisputed protein/fiber/A standing without claiming the base; the deeper expansion contradiction (bottomLine/limitingFactors) remains tied to OPEN TASK-164 (human grade/signal decision). Live + tsc clean.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -2167,7 +2383,7 @@
       },
       "frontend_dataset": {
         "status": "DEPLOYED",
-        "filename": "cheese_frontend_v1.json",
+        "filename": "cheese_frontend_v2.json",
         "built_at": "2026-06-02"
       },
       "website": {
@@ -2259,7 +2475,7 @@
       },
       "frontend_dataset": {
         "status": "DEPLOYED",
-        "filename": "hummus_frontend_v3.json",
+        "filename": "hummus_frontend_v4.json",
         "built_at": "2026-06-02"
       },
       "website": {
@@ -2551,6 +2767,32 @@
       "resolved_at": null,
       "status": "OPEN",
       "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-166.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-004",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-167: tasks/TASK-167.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-167",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-167.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-005",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-168: tasks/TASK-168A.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-168",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-168A.md, then re-run generate_dashboard.py."
     }
   ]
 }

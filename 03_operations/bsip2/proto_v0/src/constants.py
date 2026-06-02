@@ -229,6 +229,155 @@ BHA_NAMED_PENALTY = 5   # points on additive_quality — placeholder, DEC-004
 FIBER_NOT_APPLICABLE_CATEGORIES = ("dessert", "dairy_protein", "yogurt")
 
 # ---------------------------------------------------------------------------
+# TASK-169 — P0 Recalibration (R1–R7), gated by env flag BARI_RECAL_P0 (default OFF).
+# Source of truth: 01_framework/bsip2_framework/recalibration_p0_design_v1.md.
+# Flag OFF → every constant/path below is inert and the engine is byte-identical to
+# 0.4.1 (rollback + regression guard). Precedent: BARI_TASK144_FIXES.
+# Evidence registry: EV-029 (R1), EV-027 ext (R2), EV-030 (R3), EV-024/026 ext (R4),
+# EV-031 (R5), EV-032 (R6). R7 is a signal-extraction fix (see signal_extractor).
+# ---------------------------------------------------------------------------
+
+# R1 — category-relative protein mass scale. breakpoints: list of (protein_g_ceiling,
+# score); first ceiling where g <= ceiling wins, linear-interpolated between adjacent
+# breakpoints (same interpolation as the legacy single curve). Looked up like
+# CALORIE_DENSITY_TABLES. Feeds BOTH score_nutrient_density and score_protein_quality.
+# "default" + "snack_bar_granola" deliberately reproduce the legacy supplement curve so
+# untouched / frozen-bar categories stay byte-identical even with the flag ON.
+PROTEIN_SCALE_TABLES = {
+    "dairy_protein":     [(0,0),(3,20),(5,35),(7,50),(9,65),(11,85),(13,95),(99,100)],
+    "sauce_spread":      [(0,0),(2,12),(4,28),(6,45),(8,62),(11,82),(14,95),(99,100)],
+    # --- FROZEN categories (modelled; require P2 owner sign-off before shipping) ---
+    "milk_dairy":        [(0,0),(2,30),(3,55),(4,70),(6,88),(8,95),(99,100)],
+    "yogurt":            [(0,0),(2,20),(3.5,40),(5,58),(7,75),(9,90),(11,95),(99,100)],
+    "bread":             [(0,0),(4,30),(6,45),(8,60),(10,72),(13,85),(99,95)],
+    "snack_bar_granola": [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
+    "default":           [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
+}
+
+# Categories that receive R2 fiber-not-applicable treatment when RECAL_P0 is ON.
+# Identical membership to the TASK-144 allowlist — R2 only ACTIVATES the existing
+# EV-027 path for the cheese run; it adds no new category. sauce_spread is NOT here
+# (hummus fiber is a genuine virtue). Kept as a named constant for traceability.
+RECAL_P0_FIBER_NOT_APPLICABLE = FIBER_NOT_APPLICABLE_CATEGORIES
+
+# R4 — NOVA-3→2 demotion guard for plain dairy. Additive categories that mark genuine
+# ultra-processing; if ANY is present the product stays NOVA 3 (no demotion). The benign
+# set (salt/culture/rennet/calcium/vitamins) leaves no additive_category marker, so the
+# discriminator is simply "none of these present".
+NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS = (
+    "thickener", "stabilizer", "emulsifier", "humectant", "flavor_enhancer", "color",
+)
+
+# R6 — veg_spread archetype re-weighting (sums to 1.0). Applied only to a sauce_spread
+# product detected as a whole-vegetable spread (protein < 3g, veg base, no tahini
+# dominance). Anti-immunity guard enforced in engine: a veg_spread cannot exceed
+# VEG_SPREAD_IMMUNITY_CEILING unless additives are clean AND sodium is sub-red-label.
+VEG_SPREAD_WEIGHTS = {
+    "processing_quality":   0.15,
+    "nutrient_density":     0.08,
+    "calorie_density":      0.18,
+    "glycemic_quality":     0.12,
+    "protein_quality":      0.03,
+    "additive_quality":     0.16,
+    "satiety_support":      0.06,
+    "fat_quality":          0.08,
+    "regulatory_quality":   0.08,
+    "whole_food_integrity": 0.06,
+}
+VEG_SPREAD_IMMUNITY_CEILING = 80.0   # EV-032 anti-immunity guard (bari_usecase_guardrails_v2)
+
+# ---------------------------------------------------------------------------
+# R7 v1.1 (TASK-169A) — gate the live-culture +8 to GENUINELY cultured dairy only.
+# Supersedes the v1 "product_type_dairy + plain ⇒ cultured" assumption (which leaked
+# the +8 onto plain FLUID MILK and over-credited table-stakes fresh-cheese culturing).
+# Design: recalibration_p0_design_v1.md § v1.1, R7 v1.1. EV-024/026 lineage (REVISED).
+#
+# Bonus fires when EITHER:
+#   Path A — declared culture marker (has_fermentation==True). Unchanged from HEAD.
+#   Path B — inherently-cultured product TYPE (yogurt subtypes; aged/specialty cultured
+#            cheese by name marker) AND NOT a hard-excluded fluid-milk / plant drink /
+#            uncultured-cream product, AND NOT a flavored variant.
+#
+# IMPLEMENTATION NOTE (router reconciliation, per v1.1 call #4): the live router
+# (router_v2.py) does NOT emit a `milk_dairy` category nor a top-level `yogurt`
+# category — fluid milk, cheese AND yogurt all route to `dairy_protein`. So the spec's
+# `category=="milk_dairy"` / `category=="yogurt"` keys cannot be used verbatim. The
+# INTENT (yogurt qualifies via Path B; fluid milk is hard-excluded; cottage/white-cheese
+# fresh subtypes are excluded) is implemented here against the REAL router vocabulary:
+#   - yogurt qualifies via the cultured yogurt SUBTYPES the router actually emits;
+#   - fluid milk is hard-excluded by a fluid-milk NAME marker (חלב/משקה without a
+#     cheese/yogurt identity), since it shares `dairy_protein` with cheese;
+#   - cottage + white-cheese (גבינה לבנה/לבנה) fresh subtypes are DELIBERATELY excluded
+#     so plain cottage lands at its R1+R2+R4 value (~90/A), not S.
+
+# Path B — yogurt subtypes the router emits (router_v2 HARD_ANCHORS). Yogurt is cultured
+# by definition → qualifies for the bonus even with a sparse panel.
+CULTURED_YOGURT_SUBTYPES = (
+    "yogurt", "greek_yogurt", "protein_yogurt", "bio_yogurt", "froop_yogurt",
+    "yogurt_mixin", "bio",
+)
+
+# Path B — aged / specialty CULTURED-cheese NAME markers (the genuinely-cultured cheese
+# identities whose culturing is a DIFFERENTIATING virtue, unlike table-stakes fresh
+# cheese). Detected by name because the router does not emit dedicated subtypes for them
+# in the current corpus. DELIBERATELY EXCLUDES cottage (קוטג') and white-cheese
+# (גבינה לבנה / לבנה) fresh subtypes per the cottage ruling (§ v1.1 R7).
+CULTURED_CHEESE_NAME_MARKERS_HE = (
+    "קממבר", "ברי", "גאודה", "מוצרלה", "מוצארלה", "פרמזן", "פרמז'ן", "רוקפור",
+    "גורגונזולה", "צ'דר", "צ׳דר", "אמנטל", "בולגרית", "פטה",
+    "שמנת חמוצה", "קוואַרק", "קווארק", "מצרלה", "כחולה", "כבושה", "מיושנת",
+)
+
+# Hard-exclude: FLUID-MILK / drink name markers. A `dairy_protein` (or beverage) product
+# whose identity is a fluid drink is NEVER cultured → never gets the Path-B bonus.
+# Plant drinks (סויה/שקדים/שיבולת שועל/אורז/קוקוס) carry משקה and are caught here too.
+FLUID_MILK_NAME_MARKERS_HE = (
+    "חלב", "משקה", "שתייה", "לשתייה",
+)
+# Cheese/yogurt identity markers that OVERRIDE the fluid-milk exclusion when a product
+# name contains both (e.g. "גבינת חלב עזים" is a cheese, not fluid milk). A product that
+# matches a fluid-milk marker but ALSO carries one of these is NOT treated as fluid milk.
+DAIRY_SOLID_IDENTITY_MARKERS_HE = (
+    "גבינה", "גבינת", "קוטג", "לבנה", "לבנייה", "יוגורט", "קפיר", "שמנת",
+    "מעדן", "ממרח גבינה",
+)
+
+# ---------------------------------------------------------------------------
+# R4 v1.1 (TASK-169A) — flavored / seasoned-variant exclusion from the NOVA-3→2
+# demotion. Whole-food culinary flavorings (garlic/dill/onion/herbs/chili/…) are NOT
+# additive `flavor_enhancer` markers, so a seasoned cheese (e.g. napoleon שום שמיר, 16%
+# fat) wrongly passed the v1 `is_plain` test, got demoted NOVA 3→2 and rode R1/R2 to A.
+# A declared flavoring — even whole-food — makes a dairy product a FLAVORED VARIANT and
+# forfeits the plain-dairy NOVA-2 retention. This only ever BLOCKS a demotion (keeps a
+# tentative NOVA 3 at 3); it never promotes and never demotes anything new. Gated by
+# BARI_RECAL_P0. Design: recalibration_p0_design_v1.md § v1.1, R4 v1.1.
+FLAVORED_VARIANT_MARKERS_HE = (
+    "שום", "שמיר", "בצל", "בצלים", "עירית", "פטרוזיליה", "כוסברה", "בזיליקום",
+    "נענע", "תבלין", "תבלינים", "עשבי תיבול", "עשב תיבול", "זעתר", "פפריקה",
+    "צ'ילי", "צ׳ילי", "חריף", "חלפיניו", "ג'לפינו", "ג׳לפינו", "פלפל",
+    "עגבני", "עגבניות מיובשות", "זית", "זיתים", "פטריות", "ירקות", "בטעם",
+    "תות", "וניל", "אגוז", "דבש", "קינמון", "מקורמל", "בייגלס",
+)
+
+
+def lookup_protein_scale(protein_g, category, recal_on):
+    """R1 — category-relative protein mass score (0..100).
+    recal_on False → legacy single supplement curve (byte-identical).
+    """
+    legacy = [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95)]
+    if not recal_on:
+        bps = legacy
+    else:
+        bps = PROTEIN_SCALE_TABLES.get(category, PROTEIN_SCALE_TABLES["default"])
+    g = protein_g or 0
+    for i in range(len(bps) - 1):
+        lo_g, lo_s = bps[i]; hi_g, hi_s = bps[i + 1]
+        if g <= hi_g:
+            t = (g - lo_g) / (hi_g - lo_g) if hi_g > lo_g else 0
+            return lo_s + t * (hi_s - lo_s)
+    return bps[-1][1]
+
+# ---------------------------------------------------------------------------
 # Trans fat veto threshold
 # > 1.0g/100g: veto (score = 0)
 # 0.5-1.0g: high_trans_fat_concern flag (no veto)

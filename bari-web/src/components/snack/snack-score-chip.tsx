@@ -3,6 +3,7 @@
 import type { SnackGrade } from "@/lib/comparisons/snack-types";
 import {
   BARI_COMPARISON_TOKENS,
+  gradeDotOffset,
   warnComparisonImplementationDeviation,
 } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
@@ -50,18 +51,40 @@ export function SnackScoreChip({
     return (
       <div
         className={cn(
+          "relative",
           rowTokens.container,
           rowTokens.size.md,
           className
         )}
         style={{
-          backgroundColor: rowTokens.backgroundColor,
-          borderColor: rowTokens.borderColor,
-          color: "#313834",
+          backgroundColor: colors.bg,
+          borderColor: colors.border,
+          borderInlineStart: `4px solid ${colors.accent}`,
         }}
       >
-        <span className={cn(rowTokens.scoreClass, rowTokens.scoreSize.md)}>{Math.round(score)}</span>
-        <span className={cn(rowTokens.labelClass, rowTokens.labelSize.md)}>{grade}</span>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute block rounded-full bg-white"
+          style={{
+            width: "3px",
+            height: "3px",
+            insetInlineStart: "0.5px",
+            top: gradeDotOffset(colors.dot),
+            transform: "translateY(-50%)",
+          }}
+        />
+        <span
+          className={cn(rowTokens.scoreClass, rowTokens.scoreSize.md)}
+          style={{ color: colors.accent }}
+        >
+          {Math.round(score)}
+        </span>
+        <span
+          className={cn(rowTokens.labelClass, rowTokens.labelSize.md)}
+          style={{ color: colors.accent }}
+        >
+          {grade}
+        </span>
       </div>
     );
   }

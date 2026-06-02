@@ -3,6 +3,25 @@ BSIP2 Prototype v0 — NOVA Proxy Classifier
 Infers NOVA level from ingredient signals. Not a validated classifier.
 Confidence is explicit. Every inference is traceable.
 """
+import os
+
+# TASK-169 P0 (R4) — plain-dairy NOVA-3→2 demotion guard, gated by BARI_RECAL_P0.
+# DEFAULT OFF → classifier byte-identical. See recalibration_p0_design_v1.md R4.
+RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "off").lower() == "on"
+
+# R4 v1.1 (TASK-169A) — flavored/seasoned-variant markers that disqualify the plain-dairy
+# NOVA-3→2 demotion. Imported from constants so the list is single-sourced.
+try:
+    from constants import FLAVORED_VARIANT_MARKERS_HE
+except Exception:  # pragma: no cover — defensive for alternate import paths
+    FLAVORED_VARIANT_MARKERS_HE = ()
+
+# Additive categories that mark genuine ultra-processing; presence of ANY blocks the
+# R4 demotion (product stays NOVA 3). Benign culinary/culturing/fortification additions
+# (salt, cultures, rennet, calcium, vitamins) emit no additive_category marker.
+NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS = {
+    "thickener", "stabilizer", "emulsifier", "humectant", "flavor_enhancer", "color",
+}
 
 # NOVA 4 requires evidence of industrial formulation:
 # flavor enhancers, artificial colors, multiple additive systems, glucose syrups
@@ -144,6 +163,34 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
 
     nova_confidence = max(0.20, min(0.95, base_conf))
 
+    # R4 — NOVA-3→2 demotion guard for PLAIN DAIRY (TASK-169, EV-024/026 lineage).
+    # Demote a tentative 3 back to 2 ONLY when the product is a plain dairy base with no
+    # flavor/sweetener/added-sugar and no genuine ultra-processing additive marker
+    # (thickener/gum/emulsifier/humectant/flavor/color). Never promotes a 4. Gated.
+    nova_demotion_applied = False
+    product_type_dairy = l3_signals.get("product_type_dairy", False)
+    if RECAL_P0_ON and level == 3 and product_type_dairy:
+        # R4 v1.1 — a declared flavoring (even a whole-food one: garlic/dill/herbs/…) makes
+        # this a FLAVORED VARIANT and forfeits the plain-dairy retention. This only blocks a
+        # demotion (keeps tentative NOVA 3 at 3); it never promotes and never demotes new.
+        name = (product.get("canonical_name_he") or product.get("product_name_he") or "")
+        hay = name + " " + " ".join(str(i) for i in ingredients)
+        has_flavor_variant = any(m in hay for m in FLAVORED_VARIANT_MARKERS_HE)
+        is_plain = (added_sugar_ct == 0 and not has_sweetener
+                    and not has_flavor_enhancer and not has_color
+                    and not has_flavor_variant)
+        blocking = set(additive_cats) & set(NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS)
+        if is_plain and not blocking:
+            level = 2
+            nova_demotion_applied = True
+            evidence_against.append(
+                "R4 plain-dairy demotion 3→2: dairy base, no flavor/sweetener/added-sugar, "
+                "no flavored-variant marker, no ultra-processing additive marker "
+                "(salt/culture/rennet/calcium/vitamins only)")
+        elif has_flavor_variant:
+            evidence_for.append(
+                "R4 v1.1: flavored/seasoned dairy variant → NOVA-2 retention forfeited (stays 3)")
+
     if nova_confidence >= 0.75:
         band = "high"
     elif nova_confidence >= 0.50:
@@ -153,6 +200,7 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
 
     return {
         "nova_level": level,
+        "nova_r4_demotion_applied": nova_demotion_applied,
         "nova_confidence": round(nova_confidence, 2),
         "nova_confidence_band": band,
         "nova4_signal_score": nova4_score,

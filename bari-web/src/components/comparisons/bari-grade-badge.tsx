@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import type { BariGrade } from "@/lib/comparisons/milk-types";
 import {
   BARI_COMPARISON_TOKENS,
+  gradeDotOffset,
   warnComparisonImplementationDeviation,
 } from "@/lib/design/bari-comparison-tokens";
 
@@ -65,17 +66,29 @@ export function BariGradeBadge({
   return (
     <div
       className={cn(
+        "relative",
         rowTokens.container,
         size === "sm" && rowTokens.size.sm,
         size === "md" && rowTokens.size.md,
         size === "lg" && rowTokens.size.lg
       )}
       style={{
-        backgroundColor: rowTokens.backgroundColor,
-        color: "#313834",
-        borderColor: rowTokens.borderColor,
+        backgroundColor: colors.bg,
+        borderColor: colors.border,
+        borderInlineStart: `4px solid ${colors.accent}`,
       }}
     >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute block rounded-full bg-white"
+        style={{
+          width: "3px",
+          height: "3px",
+          insetInlineStart: "0.5px",
+          top: gradeDotOffset(colors.dot),
+          transform: "translateY(-50%)",
+        }}
+      />
       <span
         className={cn(
           rowTokens.scoreClass,
@@ -83,6 +96,7 @@ export function BariGradeBadge({
           size === "md" && rowTokens.scoreSize.md,
           size === "lg" && rowTokens.scoreSize.lg
         )}
+        style={{ color: colors.accent }}
       >
         {Math.round(score)}
       </span>
@@ -94,7 +108,8 @@ export function BariGradeBadge({
           size === "lg" && rowTokens.labelSize.lg
         )}
       >
-        {grade} · {gradeLabel}
+        <span style={{ color: colors.accent }}>{grade}</span>
+        <span> · {gradeLabel}</span>
       </span>
     </div>
   );

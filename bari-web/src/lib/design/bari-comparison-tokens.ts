@@ -1,10 +1,10 @@
 export const BARI_COMPARISON_TOKENS = {
   gradePalette: {
-    A: { bg: "#E8F5EF", text: "#176F53", border: "#1F8F6A33" },
-    B: { bg: "#E8F5EF", text: "#176F53", border: "#1F8F6A33" },
-    C: { bg: "#FBF4DE", text: "#8F6600", border: "#C98A0033" },
-    D: { bg: "#FDECE8", text: "#A63F2A", border: "#D1583D33" },
-    E: { bg: "#F3E8E6", text: "#8B2E2E", border: "#B4231833" },
+    A: { accent: "#1E7A4F", bg: "#E7F4EC", text: "#155C3C", border: "#1E7A4F33", dot: "top" },
+    B: { accent: "#3C8C7A", bg: "#E6F2EF", text: "#2A6357", border: "#3C8C7A33", dot: "upper" },
+    C: { accent: "#B07A12", bg: "#FAF3DF", text: "#7A5400", border: "#B07A1233", dot: "middle" },
+    D: { accent: "#C2552E", bg: "#FBEDE6", text: "#8F3A1C", border: "#C2552E33", dot: "lower" },
+    E: { accent: "#A23030", bg: "#F7E7E5", text: "#7A2020", border: "#A2303033", dot: "bottom" },
   },
   rows: {
     oddBg: "#FFFFFF",
@@ -62,10 +62,13 @@ export const BARI_COMPARISON_TOKENS = {
     rowChip: {
       container:
         "inline-flex flex-col items-center justify-center rounded-xl border text-center",
+      // Fixed widths (not min-width) so every grade chip is identical regardless
+      // of the tier word's length (טוב=3 chars vs בינוני=6). Sized to fit the
+      // longest label without wrapping; paired with whitespace-nowrap on the label.
       size: {
-        sm: "min-w-[3.25rem] px-2 py-1.5",
-        md: "min-w-[4rem] px-2.5 py-2",
-        lg: "min-w-[4.5rem] px-3 py-2.5",
+        sm: "w-[4.25rem] px-2 py-1.5",
+        md: "w-[5rem] px-2.5 py-2",
+        lg: "w-[5.5rem] px-3 py-2.5",
       },
       scoreSize: {
         sm: "text-base",
@@ -78,7 +81,7 @@ export const BARI_COMPARISON_TOKENS = {
         lg: "text-xs",
       },
       scoreClass: "font-extrabold tabular-nums leading-none text-[#111318]",
-      labelClass: "mt-0.5 font-bold text-[#5E6672]",
+      labelClass: "mt-0.5 whitespace-nowrap font-bold text-[#5E6672]",
       backgroundColor: "#F7F7F2",
       borderColor: "rgba(17,19,24,0.10)",
     },
@@ -91,6 +94,22 @@ export const BARI_COMPARISON_TOKENS = {
     },
   },
 } as const;
+
+/** Maps a grade's `dot` keyword to its vertical position (% from top) along the accent bar. */
+const GRADE_DOT_POSITION = {
+  top: "10%",
+  upper: "30%",
+  middle: "50%",
+  lower: "70%",
+  bottom: "90%",
+} as const;
+
+export type GradeDotPosition = keyof typeof GRADE_DOT_POSITION;
+
+/** Returns the vertical offset (e.g. "10%") for a grade's colorblind-safe position dot. */
+export function gradeDotOffset(dot: GradeDotPosition): string {
+  return GRADE_DOT_POSITION[dot];
+}
 
 /** Horizontal padding for hero, prologue, lenses, methodology in web layout. */
 export function comparisonWebSectionPaddingClass(): string {
