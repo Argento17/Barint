@@ -1,0 +1,289 @@
+{
+  "_generated": true,
+  "_note": "Lean live view. Full board: command_center.json · closed detail: command_center_archive.json",
+  "meta": {
+    "version": "3.0",
+    "last_updated": "2026-06-02",
+    "generated_at": "2026-06-02T09:53:43",
+    "newest_source_at": "2026-06-02T09:53:30",
+    "updated_by": "generate_dashboard.py",
+    "task_capacity": 3,
+    "owner_wip_limit": 2,
+    "schema_version": "command_center_v3",
+    "drift_checked_at": "2026-06-02T09:53:43",
+    "stale": false,
+    "stale_reason": null
+  },
+  "executive": {
+    "system_health": "GREEN",
+    "active_task_ids": [],
+    "latest_completed_task": {
+      "id": "TASK-142A",
+      "title": "BSIP0 nutrition-parse data-integrity bug: trans-fat row captured as total fat (fat_g=0.5) + nutrition-panel bleed — root-cause, fix, blast-radius",
+      "completed_at": "2026-06-02"
+    },
+    "current_blocker": null,
+    "next_recommended_decision": null
+  },
+  "next_action": {
+    "task_id": "TASK-140",
+    "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
+    "owner": "data-agent",
+    "status": "RETURNED",
+    "priority": "HIGH",
+    "reason": "Returned — awaiting your review/acceptance.",
+    "unblocks": "Breakfast Cereals launch"
+  },
+  "task_summary": {
+    "active": 0,
+    "in_progress": 0,
+    "blocked": 0,
+    "returned": 5,
+    "changes_requested": 0,
+    "closed": 100,
+    "wip": 0,
+    "wip_task_ids": [],
+    "wip_by_owner": {},
+    "owner_wip_limit": 2,
+    "wip_over_limit": []
+  },
+  "critical_path": {
+    "longest_chain": [
+      "TASK-151",
+      "TASK-150"
+    ],
+    "top_unblockers": [
+      {
+        "task_id": "TASK-151",
+        "unblocks_count": 2,
+        "unblocks": [
+          "TASK-149",
+          "TASK-150"
+        ]
+      }
+    ]
+  },
+  "drift": {
+    "checked_at": "2026-06-02T09:53:46",
+    "clean": true,
+    "counts": {
+      "PHANTOM_TASK": 0,
+      "CLOSURE_DRIFT": 0,
+      "SNAPSHOT_DRIFT": 0,
+      "REGISTRY_UNPARSEABLE": 0
+    },
+    "phantom_tasks": [],
+    "closure_drift_tasks": [],
+    "registry_unparseable": [],
+    "acknowledged": []
+  },
+  "category_state": [
+    {
+      "id": "bread",
+      "name_he": "לחם",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "milk",
+      "name_he": "חלב",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LEGACY",
+      "blocking_task": null
+    },
+    {
+      "id": "snacks",
+      "name_he": "חטיפים",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "yogurts",
+      "name_he": "יוגורטים",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "maadanim",
+      "name_he": "מעדנים",
+      "launch": "PRE_LAUNCH",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": "TASK-149"
+    },
+    {
+      "id": "hummus",
+      "name_he": "חומוס",
+      "launch": "PRE_LAUNCH",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": "TASK-150"
+    },
+    {
+      "id": "breakfast-cereals",
+      "name_he": "דגני בוקר",
+      "launch": "QUEUED",
+      "bsip2": "NOT_STARTED",
+      "dataset": "NOT_BUILT",
+      "website": "NOT_STARTED",
+      "blocking_task": "TASK-140"
+    },
+    {
+      "id": "cheese-spreads",
+      "name_he": "גבינות לבנות וממרחים",
+      "launch": "QUEUED",
+      "bsip2": "INVALID_DATA",
+      "dataset": "NOT_BUILT",
+      "website": "NOT_STARTED",
+      "blocking_task": null
+    },
+    {
+      "id": "tahini",
+      "name_he": "טחינה",
+      "launch": "NOT_STARTED",
+      "bsip2": "NOT_STARTED",
+      "dataset": "NOT_BUILT",
+      "website": "NOT_STARTED",
+      "blocking_task": null
+    }
+  ],
+  "open_tasks": [
+    {
+      "id": "TASK-140",
+      "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
+      "owner": "data-agent",
+      "status": "RETURNED",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": "breakfast-cereals",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Clean greenfield full cycle for cereals via bari-category-factory: Shufersal shelf map -> corpus filter -> BSIP0 gate -> BSIP1 enrichment -> QA gate -> BSIP2 readiness -> frontend package. Governance is already DONE (cereals_gap_resolution_v1: verdict B, Launch-Ready-with-Conditions) so this is the unblocked workstream. Apply the four cereals governance constructs during enrichment/scoring. No dairy dependency — can ship first.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 1,
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-148",
+      "title": "Unify the /hashvaot comparison tables into one responsive ComparisonPage (design handoff IMP-1…6)",
+      "owner": "frontend-agent",
+      "status": "RETURNED",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Consolidation of the divergent /hashvaot comparison-table code per the design handoff (C:\\Bari\\design\\new_design_proposal.zip). Collapses four divergent renderers into ONE responsive ComparisonPage: a single container-query ComparisonRow/Table (phone↔desktop via CSS, not a second component) carrying the v2 surface (aligned metric column, in-list band dividers, scroll-only band rail, promoted confidence). Replaces both the phone-frame ComparisonShelfPage and the bespoke BariComparisonDesktopPage; deletes the dead web-grid path. DONE so far (verified tsc+lint+build+visual QA): IMP-5, IMP-1, IMP-4 core, IMP-2; all 6 categories migrated; legacy chain deleted. REMAINING: IMP-3 (fold Milk in) + IMP-6 (category note once). Frontend-only; NO scores/scoring touched.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 1,
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-149",
+      "title": "Re-scrape + re-score LIVE maadanim — EV-029 fat-parser bug collapsed fat on 88/200 products (latent grade impact)",
+      "owner": "data-agent",
+      "status": "RETURNED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "depends_on": [
+        "TASK-142A",
+        "TASK-151"
+      ],
+      "blocks": [],
+      "category_id": "maadanim",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "The EV-029 / TASK-142A blast-radius audit confirmed LIVE maadanim is AFFECTED by the shared Shufersal BSIP0 nutrition-parse bug: the trans-fat row (\"שומן טראנס פחות מ-0.5\") was captured as TOTAL fat -> fat_g=0.5 on 88/200 products, and saturated fat was never captured (0% across the corpus). Fat feeds the score engine (fat_quality uniformly neutralized to 50; also feeds fat_pct_of_kcal / hp_fat_*), so the LIVE maadanim grades carry latent error. The parser is already fixed (TASK-142A) and wired into shufersal_maadanim/01_scrape_maadanim.py. Re-scrape on the fixed parser -> re-build BSIP1 -> re-score -> QA -> diff vs live -> Product/Nutrition sign-off before any LIVE score swap.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": false,
+      "cc_reviewed": null,
+      "cc": [
+        "fyi"
+      ]
+    },
+    {
+      "id": "TASK-150",
+      "title": "Re-scrape + re-score LIVE hummus — EV-029 fat-parser bug collapsed fat on 59/69 products (max fat 5.9g)",
+      "owner": "data-agent",
+      "status": "RETURNED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "depends_on": [
+        "TASK-142A",
+        "TASK-151"
+      ],
+      "blocks": [],
+      "category_id": "hummus",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "The EV-029 / TASK-142A blast-radius audit confirmed LIVE hummus is AFFECTED by the shared Shufersal BSIP0 nutrition-parse bug (same defect first seen in the TASK-039 hummus audit, which patched downstream but not the shared parser): the trans-fat row was captured as TOTAL fat -> fat_g=0.5 on 59/69 products, with the whole corpus capping at max fat 5.9g (implausible for tahini-based spreads) and 0% saturated captured. Fat feeds the score engine, so the LIVE hummus grades carry latent error. The parser is fixed (TASK-142A) and wired into shufersal_hummus/02_scrape_hummus_shufersal.py. Re-scrape -> re-build BSIP1 -> re-score -> QA -> diff vs live -> Product/Nutrition sign-off before any LIVE score swap.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02",
+      "cc": [
+        "verify",
+        "fyi"
+      ]
+    },
+    {
+      "id": "TASK-151",
+      "title": "Harden _shared BSIP0 scrape path: persist raw nutritionList source (rows + HTML) for offline replay of future parser fixes",
+      "owner": "data-agent",
+      "status": "RETURNED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "depends_on": [
+        "TASK-142A"
+      ],
+      "blocks": [
+        "TASK-149",
+        "TASK-150"
+      ],
+      "category_id": "infra",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "EV-029 (TASK-142A) showed the Shufersal BSIP0 scrapers persisted only the parser's reduced *_raw fields, not the source div.nutritionList — so when the trans-as-total-fat parser bug was fixed, the true fat/ saturated values were unrecoverable from disk (saturated 0% captured; fat collapsed to 0.5) and a fresh NETWORK re-scrape was the only way to recover them. This hardens the shared scrape path so every scrape persists the raw nutrition source, making any FUTURE parser fix a free OFFLINE re-parse. Landed BEFORE the TASK-149/150 live re-scrapes so those runs capture the raw source going forward.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    }
+  ],
+  "alerts": []
+}

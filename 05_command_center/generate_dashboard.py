@@ -19,11 +19,20 @@ Authoritative sources (read-only):
     C:\\Bari\\decisions\\decisions.json                    decision registry (append-only)
     C:\\Users\\HP\\bari\\src\\...                            website / dataset state
 
-Output:
-    C:\\Bari\\05_command_center\\command_center.json       (generated, do not edit)
+Output (all generated — do not edit):
+    command_center.json          full board; CLOSED tasks trimmed (summary -> archive)
+    command_center_live.json     lean ~19KB read path (open tasks only) — default agent read
+    command_center_archive.json  full CLOSED-task detail (summaries preserved)
 
-The HTML renderers (command_center_v4.html operational + audit_center.html) read
-the JSON via fetch(). command_center_legacy.html is the retired v2 renderer.
+    python generate_dashboard.py --digest   prints the morning report (no files written)
+
+The HTML renderer (command_center.html) reads command_center.json via fetch() and
+never touches a CLOSED task's summary, so the trim is invisible to it.
+
+Optional task frontmatter (all default-safe):
+    work_type: execution|coordination|decision   only `execution` counts toward WIP
+    drift_ack: "<reason>"                         suppress a KNOWN-GOOD closure-drift
+    (a `reopened_at:` value auto-suppresses closure-drift — deliverable is expected-invalid)
 """
 
 import os
@@ -67,8 +76,14 @@ HASHVAOT_DIR   = WEBSITE_SRC / "app" / "hashvaot"
 
 HERE           = Path(__file__).resolve().parent
 OUTPUT_FILE    = HERE / "command_center.json"
+LIVE_FILE      = HERE / "command_center_live.json"      # lean default read (~6-8KB)
+ARCHIVE_FILE   = HERE / "command_center_archive.json"   # full closed-task detail
 
-TASK_CAPACITY  = 3
+TASK_CAPACITY   = 3       # legacy global reference (kept in meta for context)
+OWNER_WIP_LIMIT = 2       # ★ per-OWNER execution WIP cap (kanban per-column limit).
+                          # RED fires only when a single agent exceeds this — a real
+                          # bottleneck — not when N agents each carry one task.
+STALE_TASK_DAYS = 7        # IN_PROGRESS longer than this with no deliverable -> alert
 TODAY          = date.today()
 
 SEV_ORDER  = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
@@ -87,6 +102,16 @@ TERMINAL_STATUSES = ("CLOSED",)
 # States where a deliverable is EXPECTED to exist — so its presence is not
 # closure drift (RETURNED/CHANGES_REQUESTED have been delivered at least once).
 DELIVERED_STATUSES = ("RETURNED", "CHANGES_REQUESTED", "CLOSED")
+
+# work_type classification (★④ real-WIP). Only EXECUTION work consumes a build
+# slot. COORDINATION (umbrella/CC tasks) and DECISION (awaiting an operator call)
+# are open and tracked but are NOT hands-on-keyboard capacity. Default: execution.
+WIP_WORK_TYPES = ("execution",)
+# Fields the HTML task board never reads for a CLOSED task. Dropping them from the
+# *main* JSON (kept in command_center_archive.json) cuts ~65% of the file with no
+# loss of live signal. id/title/owner/status/completed_at/close_reason are kept.
+CLOSED_DROP_FIELDS = ("summary", "depends_on", "blocks", "blocker",
+                      "category_id", "drift_ack", "reopened_at", "work_type")
 
 # ── v3 self-healing: where to look for "task returns" (authored deliverables) ──
 # A deliverable that declares itself the output of a task is the authoritative
@@ -326,6 +351,39 @@ def derive_categories(tasks):
     return cats
 
 
+def _norm_cc_comments(raw):
+    """Normalize the optional `cc_comments` frontmatter into a render-ready list.
+
+    CC Agent leaves review notes ON a task by adding `cc_comments:` to that task's
+    .md frontmatter (the authoritative source — command_center.json is derived and
+    never hand-edited). Accepts a plain string, a list of strings, or a list of
+    dicts `{date, text, flag}`. `flag` ∈ {fyi, verify, blocker} (default fyi) drives
+    the dashboard styling. Always returns a list of dicts so the HTML can render it
+    uniformly near the task row.
+    """
+    if not raw:
+        return []
+    if isinstance(raw, str):
+        raw = [raw]
+    out = []
+    for item in raw:
+        if isinstance(item, dict):
+            text = str(item.get("text", "")).strip()
+            if not text:
+                continue
+            flag = str(item.get("flag", "fyi")).strip().lower()
+            out.append({
+                "text": text,
+                "date": str(item["date"]) if item.get("date") else None,
+                "flag": flag if flag in ("fyi", "verify", "blocker") else "fyi",
+            })
+        else:
+            text = str(item).strip()
+            if text:
+                out.append({"text": text, "date": None, "flag": "fyi"})
+    return out
+
+
 # ── Task registry ─────────────────────────────────────────────────────────────
 def load_tasks():
     """Returns (tasks, unparseable).
@@ -357,13 +415,20 @@ def load_tasks():
             unparseable.append({"id": _fid(f), "file": f.name,
                                 "reason": "frontmatter missing required 'id' field"})
             continue
+        created = str(data.get("created_at")) if data.get("created_at") else None
+        age_days = None
+        if created:
+            try:
+                age_days = (TODAY - date.fromisoformat(created[:10])).days
+            except Exception:
+                age_days = None
         tasks.append({
             "id":           data.get("id"),
             "title":        data.get("title", ""),
             "owner":        data.get("owner"),
             "status":       data.get("status", "IN_PROGRESS"),
             "priority":     data.get("priority", "MEDIUM"),
-            "created_at":   str(data.get("created_at")) if data.get("created_at") else None,
+            "created_at":   created,
             "completed_at": str(data.get("completed_at")) if data.get("completed_at") else None,
             "depends_on":   data.get("depends_on") or [],
             "blocks":       data.get("blocks") or [],
@@ -371,6 +436,16 @@ def load_tasks():
             "blocker":      data.get("blocker"),
             "close_reason": data.get("close_reason"),
             "summary":      (data.get("summary") or "").strip(),
+            # ★ new fields (all optional; safe defaults preserve old behavior)
+            "work_type":    (data.get("work_type") or "execution").strip().lower(),
+            "drift_ack":    (str(data.get("drift_ack")).strip() if data.get("drift_ack") else None),
+            "reopened_at":  str(data.get("reopened_at")) if data.get("reopened_at") else None,
+            "age_days":     age_days,
+            # ★ CC Agent review notes — surface near the task on the board
+            "cc_comments":  _norm_cc_comments(data.get("cc_comments")),
+            # ★ roadmap-impacting return → must get a CC Agent review before CLOSE
+            "roadmap_impact": bool(data.get("roadmap_impact")),
+            "cc_reviewed":  (str(data.get("cc_reviewed")) if data.get("cc_reviewed") else None),
         })
     tasks.sort(key=lambda t: (TASK_ORDER.get(t["status"], 9),
                               PRI_ORDER.get(t["priority"], 9),
@@ -466,6 +541,11 @@ def build_drift_alerts(tasks, returns, registry_ids, unparseable=None, ref_mtime
     """
     alerts = []
     by_status = {t["id"]: t["status"] for t in tasks}
+    # ★② Tasks whose open-state-with-deliverable is KNOWN-GOOD and should not fire
+    # CLOSURE_DRIFT: an operator `drift_ack:` reason, or a `reopened_at:` (the
+    # deliverable exists but was deliberately invalidated — e.g. cheese run_001
+    # reopened on the trans-fat bug). These are surfaced separately as `acknowledged`.
+    ack_ids = {t["id"] for t in tasks if t.get("drift_ack") or t.get("reopened_at")}
 
     # 1. PHANTOM_TASK
     for tid in sorted(returns):
@@ -482,7 +562,7 @@ def build_drift_alerts(tasks, returns, registry_ids, unparseable=None, ref_mtime
     #    BLOCKED) but a deliverable authored by it exists. RETURNED/CHANGES_REQUESTED/
     #    CLOSED are exempt: a deliverable is expected for them (Registry Protocol v1).
     for tid, status in sorted(by_status.items()):
-        if status not in DELIVERED_STATUSES and tid in returns:
+        if status not in DELIVERED_STATUSES and tid in returns and tid not in ack_ids:
             files = ", ".join(sorted({r["file"] for r in returns[tid]})[:3])
             alerts.append(_drift_alert(
                 0, "CLOSURE_DRIFT", "HIGH",
@@ -527,7 +607,7 @@ def finalize_alerts(alerts):
 
 
 # ── Alerts (fully computed from derived state) ────────────────────────────────
-def compute_alerts(tasks, decisions, categories):
+def compute_alerts(tasks, decisions, categories, returns_ids=None):
     alerts = []
     seq = 1
 
@@ -549,12 +629,24 @@ def compute_alerts(tasks, decisions, categories):
         })
         seq += 1
 
-    # Capacity
-    active = [t for t in tasks if t["status"] in ACTIVE_STATUSES]
-    if len(active) > TASK_CAPACITY:
+    # Capacity — PER-OWNER WIP (★ kanban per-column limit). RED only when a single
+    # agent is overloaded; N agents each carrying one task is healthy flow, not a jam.
+    over = owners_over_wip(tasks)
+    if over:
+        detail = ", ".join(f"{o} ({n})" for o, n in sorted(over.items()))
         add("CAPACITY_EXCEEDED", "CRITICAL",
-            f"{len(active)} active tasks exceeds capacity of {TASK_CAPACITY}",
-            resolution="Close or unblock an active task (or move one to RETURNED).")
+            f"{len(over)} owner(s) over the per-owner WIP limit of {OWNER_WIP_LIMIT}: {detail}",
+            resolution="Have the overloaded owner finish or hand off a task before taking new work.")
+
+    # Stale task — IN_PROGRESS too long with no deliverable yet (★⑥ silent stall).
+    for t in tasks:
+        if t["status"] == "IN_PROGRESS" and (t.get("age_days") or 0) > STALE_TASK_DAYS \
+                and t["id"] not in (returns_ids or set()):
+            add("STALE_TASK", "MEDIUM",
+                f"{t['id']}: IN_PROGRESS {t['age_days']} days with no deliverable yet — "
+                f"confirm it is moving or re-scope",
+                related_task=t["id"],
+                resolution="Land a deliverable, or move to BLOCKED/RETURNED with a reason.")
 
     # Blocked tasks
     for t in tasks:
@@ -563,6 +655,17 @@ def compute_alerts(tasks, decisions, categories):
                 f"{t['id']}: {t.get('blocker') or 'reason not specified'}",
                 related_task=t["id"],
                 resolution="Resolve the blocker, then set status to IN_PROGRESS.")
+
+    # Returned with roadmap implications, not yet reviewed by CC Agent.
+    # Surfaces every roadmap-impacting return so CC review happens before CLOSE.
+    for t in tasks:
+        if t["status"] in ("RETURNED", "CHANGES_REQUESTED") \
+                and t.get("roadmap_impact") and not t.get("cc_reviewed"):
+            add("ROADMAP_REVIEW", "HIGH",
+                f"{t['id']}: returned with roadmap implications — CC Agent review needed before CLOSE",
+                related_task=t["id"],
+                resolution="Invoke CC Agent: assess roadmap impact, add cc_comments, set "
+                           "cc_reviewed: <date> in the task frontmatter, regenerate.")
 
     # Stale pending decisions
     for d in decisions:
@@ -601,10 +704,92 @@ def compute_alerts(tasks, decisions, categories):
     return alerts
 
 
+# ── Dependency graph + critical path (★③) ─────────────────────────────────────
+def _forward_edges(tasks, by_id):
+    """A -> B means 'A blocks B' (B cannot proceed until A is done). Built from
+    both `blocks` (A.blocks=[B]) and the inverse of `depends_on` (B.depends_on=[A])."""
+    fwd = {t["id"]: set() for t in tasks}
+    for t in tasks:
+        for b in (t.get("blocks") or []):
+            if b in by_id:
+                fwd[t["id"]].add(b)
+        for d in (t.get("depends_on") or []):
+            if d in by_id:
+                fwd.setdefault(d, set()).add(t["id"])
+    return fwd
+
+
+def compute_critical_path(tasks):
+    """Derives what today had to be traced by hand: which open task unblocks the
+    most downstream work, and the longest blocking chain. Feeds next-action ranking."""
+    by_id    = {t["id"]: t for t in tasks}
+    open_ids = {t["id"] for t in tasks if t["status"] in OPEN_STATUSES}
+    fwd      = _forward_edges(tasks, by_id)
+
+    def downstream(tid):
+        seen, stack = set(), [tid]
+        while stack:
+            cur = stack.pop()
+            for nxt in fwd.get(cur, ()):
+                if nxt not in seen:
+                    seen.add(nxt)
+                    stack.append(nxt)
+        return seen - {tid}
+
+    unblocks = {tid: sorted(d for d in downstream(tid) if d in open_ids) for tid in open_ids}
+
+    def longest(tid, path):
+        best = [tid]
+        for nxt in fwd.get(tid, ()):
+            if nxt in open_ids and nxt not in path:
+                cand = [tid] + longest(nxt, path | {tid})
+                if len(cand) > len(best):
+                    best = cand
+        return best
+
+    chains = [longest(tid, set()) for tid in open_ids] or [[]]
+    longest_chain = max(chains, key=len)
+    top = sorted(((tid, unblocks[tid]) for tid in open_ids if unblocks[tid]),
+                 key=lambda kv: (-len(kv[1]), kv[0]))[:5]
+    return {
+        "longest_chain": longest_chain if len(longest_chain) > 1 else [],
+        "top_unblockers": [{"task_id": tid, "unblocks_count": len(u), "unblocks": u}
+                           for tid, u in top],
+        "_unblocks_by_id": unblocks,   # consumed by next-action; stripped before output
+    }
+
+
 # ── Next Action (the single most important "what do I do now") ────────────────
 def _pick(cands):
     """Highest priority, then lowest task id, deterministic."""
     return sorted(cands, key=lambda t: (PRI_ORDER.get(t.get("priority"), 9), t["id"]))[0]
+
+
+# An ancestor in one of these states is something you can act on to clear the
+# chain: do the work / rework it / review-and-accept it. CLOSED is satisfied;
+# BLOCKED is itself stuck (we walk THROUGH it, never recommend it).
+_ACTIONABLE_ROOT = ("IN_PROGRESS", "CHANGES_REQUESTED", "RETURNED")
+
+
+def _blocking_root(t, by_id, seen=None):
+    """★① Walk depends_on to the deepest UNSATISFIED, ACTIONABLE ancestor — the
+    task you actually do to clear the chain. CLOSED deps are satisfied (skipped);
+    a BLOCKED dep is itself stuck so we keep walking through it. Returns the root
+    actionable task, or None when the blocker is a decision / external."""
+    seen = seen if seen is not None else set()
+    for dep_id in (t.get("depends_on") or []):
+        if dep_id in seen:
+            continue
+        seen.add(dep_id)
+        dep = by_id.get(dep_id)
+        if not dep or dep["status"] == "CLOSED":
+            continue
+        deeper = _blocking_root(dep, by_id, seen)
+        if deeper:
+            return deeper
+        if dep["status"] in _ACTIONABLE_ROOT:
+            return dep
+    return None
 
 
 def _build_next(t, reason, categories, default_unblocks=None):
@@ -628,24 +813,37 @@ def _build_next(t, reason, categories, default_unblocks=None):
     }
 
 
-def compute_next_action(tasks, decisions, categories):
+def compute_next_action(tasks, decisions, categories, critical=None):
     """Answer 'what should I do next?' via a fixed priority ladder (Registry
        Protocol v1 states):
-       1. BLOCKED task waiting on a decision / external unblock
+       1. BLOCKED task -> recommend its ROOT UNBLOCKER (★①), not the blocked task
+          itself; only surface the blocked task when nothing actionable unblocks it
+          (genuine decision/external wait).
        2. CHANGES_REQUESTED task (rework the Controller asked for)
        3. IN_PROGRESS task blocking a launch (category not yet LIVE)
-       4. highest-priority IN_PROGRESS task
+       4. highest-priority IN_PROGRESS task (tie-broken by how much it unblocks)
        5. RETURNED task awaiting the Controller's review/acceptance
     """
     name_by_id = {c["id"]: c["name_en"] for c in categories}
     not_live   = {c["id"] for c in categories if c["launch"]["status"] != "LIVE"}
+    by_id      = {t["id"]: t for t in tasks}
     open_tasks = [t for t in tasks if t["status"] in OPEN_STATUSES]
+    unblocks_by_id = (critical or {}).get("_unblocks_by_id", {})
 
-    # 1. Blocked tasks (waiting on a user decision / external unblock)
+    # 1. Blocked tasks — walk to the actionable root that clears the chain.
     blocked = [t for t in open_tasks if t["status"] == "BLOCKED"]
     if blocked:
         t = _pick(blocked)
-        reason = "Blocked — " + (t.get("blocker") or "waiting on a decision")
+        root = _blocking_root(t, by_id)
+        if root and root["id"] != t["id"]:
+            title = (t["title"][:48] + "…") if len(t["title"]) > 48 else t["title"]
+            verb = ("review/accept it" if root["status"] == "RETURNED"
+                    else "rework it" if root["status"] == "CHANGES_REQUESTED"
+                    else "do this")
+            return _build_next(
+                root, f"Root unblocker for {t['id']} ({title}) — {verb} to clear the chain.",
+                categories, default_unblocks=t["id"])
+        reason = "Blocked — " + (t.get("blocker") or "waiting on a decision / external unblock")
         return _build_next(t, reason, categories)
 
     # 2. Changes requested — rework before it can return again
@@ -663,10 +861,16 @@ def compute_next_action(tasks, decisions, categories):
         return _build_next(t, f"Last gate before {cat} launch.", categories,
                            default_unblocks=f"{cat} launch")
 
-    # 4. Highest-priority in-progress task
+    # 4. Highest-priority in-progress task; among equals, the one that unblocks most.
     if inprog:
-        t = _pick(inprog)
-        return _build_next(t, "Currently in progress — finish this first.", categories)
+        t = sorted(inprog, key=lambda x: (PRI_ORDER.get(x.get("priority"), 9),
+                                          -len(unblocks_by_id.get(x["id"], [])),
+                                          x["id"]))[0]
+        n = len(unblocks_by_id.get(t["id"], []))
+        why = "Currently in progress — finish this first."
+        if n:
+            why = f"Currently in progress and unblocks {n} downstream task(s) — finish this first."
+        return _build_next(t, why, categories)
 
     # 5. Returned work awaiting the Controller's review/acceptance
     returned = [t for t in open_tasks if t["status"] == "RETURNED"]
@@ -675,6 +879,29 @@ def compute_next_action(tasks, decisions, categories):
         return _build_next(t, "Returned — awaiting your review/acceptance.", categories)
 
     return None
+
+
+def real_wip(tasks):
+    """★④ Hands-on-keyboard work in flight: IN_PROGRESS minus coordination/decision
+    tasks (which are open but not execution capacity) minus BLOCKED (not IN_PROGRESS
+    anyway). This is the number worth managing against capacity — a raw 'active'
+    count that lumps in umbrellas and pending decisions reads RED for the wrong reason."""
+    return [t for t in tasks
+            if t["status"] == "IN_PROGRESS" and t.get("work_type", "execution") in WIP_WORK_TYPES]
+
+
+def wip_by_owner(tasks):
+    """★ Per-owner execution load — the kanban per-column WIP view. {owner: count}."""
+    counts = {}
+    for t in real_wip(tasks):
+        o = t.get("owner") or "—"
+        counts[o] = counts.get(o, 0) + 1
+    return counts
+
+
+def owners_over_wip(tasks):
+    """Owners exceeding OWNER_WIP_LIMIT — the only true capacity bottleneck."""
+    return {o: n for o, n in wip_by_owner(tasks).items() if n > OWNER_WIP_LIMIT}
 
 
 def compute_task_summary(tasks):
@@ -689,6 +916,12 @@ def compute_task_summary(tasks):
         elif st == "CHANGES_REQUESTED":  s["changes_requested"] += 1
         elif st == "CLOSED":             s["closed"] += 1
     s["active"] = sum(1 for t in tasks if t["status"] in ACTIVE_STATUSES)
+    wip = real_wip(tasks)
+    s["wip"] = len(wip)                       # ★④ true execution load (global)
+    s["wip_task_ids"] = [t["id"] for t in wip]
+    s["wip_by_owner"]  = wip_by_owner(tasks)  # ★ per-owner kanban WIP
+    s["owner_wip_limit"] = OWNER_WIP_LIMIT
+    s["wip_over_limit"]  = sorted(owners_over_wip(tasks))
     return s
 
 
@@ -699,7 +932,8 @@ def compute_executive(tasks, decisions, alerts):
     has_high     = any(a["severity"] == "HIGH" for a in open_alerts)
     active = [t for t in tasks if t["status"] in ACTIVE_STATUSES]
 
-    if has_critical or len(active) > TASK_CAPACITY:
+    # Health threshold uses PER-OWNER WIP (★), consistent with the capacity alert.
+    if has_critical or owners_over_wip(tasks):
         health = "RED"
     elif has_high:
         health = "YELLOW"
@@ -745,7 +979,25 @@ def compute_executive(tasks, decisions, alerts):
 DRIFT_TYPES = ("PHANTOM_TASK", "CLOSURE_DRIFT", "SNAPSHOT_DRIFT", "REGISTRY_UNPARSEABLE")
 
 
-def summarize_drift(drift_alerts):
+def closure_drift_acks(tasks, returns):
+    """★② Known-good open-with-deliverable cases, suppressed from CLOSURE_DRIFT.
+
+    Returns [{id, reason}] so the dashboard can SHOW that a drift was consciously
+    acknowledged (not silently hidden). 'clean' stays true when only acks remain."""
+    out = []
+    for t in tasks:
+        if t["status"] in DELIVERED_STATUSES or t["id"] not in returns:
+            continue
+        reason = t.get("drift_ack")
+        if not reason and t.get("reopened_at"):
+            reason = (f"reopened {t['reopened_at']} — deliverable exists but was "
+                      f"deliberately invalidated; BLOCKED is the truthful status")
+        if reason:
+            out.append({"id": t["id"], "reason": reason})
+    return out
+
+
+def summarize_drift(drift_alerts, acknowledged=None):
     by_type = {dt: [a["related_task"] for a in drift_alerts if a["type"] == dt]
                for dt in DRIFT_TYPES}
     return {
@@ -755,11 +1007,142 @@ def summarize_drift(drift_alerts):
         "phantom_tasks": [t for t in by_type["PHANTOM_TASK"] if t],
         "closure_drift_tasks": [t for t in by_type["CLOSURE_DRIFT"] if t],
         "registry_unparseable": [t for t in by_type["REGISTRY_UNPARSEABLE"] if t],
+        # ★② consciously-acknowledged drift (does NOT count against 'clean')
+        "acknowledged": acknowledged or [],
     }
+
+
+# ── Category state machine (★⑤ first-class launch view) ───────────────────────
+def compute_category_state(categories, tasks):
+    """Compact 'what's left to launch?' rollup — each non-live category linked to
+    the task that owns its next move (highest-priority open task tagged to it)."""
+    by_id = {t["id"]: t for t in tasks}
+    rows = []
+    for c in categories:
+        open_work = c.get("open_work", [])
+        blocking = None
+        cand = sorted((by_id[i] for i in open_work if i in by_id),
+                      key=lambda t: (PRI_ORDER.get(t.get("priority"), 9), t["id"]))
+        if cand:
+            blocking = cand[0]["id"]
+        rows.append({
+            "id":            c["id"],
+            "name_he":       c.get("name_he"),
+            "launch":        c["launch"]["status"],
+            "bsip2":         c["bsip2"]["status"],
+            "dataset":       c["frontend_dataset"]["status"],
+            "website":       c["website"]["status"],
+            "blocking_task": blocking,
+        })
+    return rows
+
+
+# ── Lean live view + closed-task trimming (token efficiency ①②③) ──────────────
+def _trim_closed(tasks):
+    """Main JSON keeps only what the task board renders for CLOSED rows; the full
+    closed record (with summary) lives in command_center_archive.json."""
+    out = []
+    for t in tasks:
+        if t["status"] == "CLOSED":
+            out.append({k: v for k, v in t.items() if k not in CLOSED_DROP_FIELDS})
+        else:
+            out.append(t)
+    return out
+
+
+def _live_view(dashboard):
+    """~6-8KB read path: everything an agent needs to answer 'what's the state?'
+    without parsing 92 closed-task summaries. Open tasks only, full fidelity.
+
+    CC comments are compacted to a *sticker* here (`cc`: the list of flags, e.g.
+    ["verify","fyi"]) — enough to signal "this task has a CC note, go look", at a
+    few tokens instead of the full prose. The full text lives in command_center.json
+    (what the board renders) and the source TASK-*.md. Keeps the per-session agent
+    read path lean."""
+    open_tasks = []
+    for t in dashboard["tasks"]:
+        if t["status"] == "CLOSED":
+            continue
+        lt = dict(t)                       # copy — never strip prose from the full board
+        cc = lt.pop("cc_comments", None)
+        if cc:
+            lt["cc"] = [c["flag"] for c in cc]
+        open_tasks.append(lt)
+    return {
+        "_generated": True,
+        "_note": "Lean live view. Full board: command_center.json · closed detail: command_center_archive.json",
+        "meta":          dashboard["meta"],
+        "executive":     dashboard["executive"],
+        "next_action":   dashboard["next_action"],
+        "task_summary":  dashboard["task_summary"],
+        "critical_path": dashboard["critical_path"],
+        "drift":         dashboard["drift"],
+        "category_state": dashboard["category_state"],
+        "open_tasks":    open_tasks,
+        "alerts":        [a for a in dashboard["alerts"] if a["status"] == "OPEN"],
+    }
+
+
+# ── Morning digest (★⑦) ───────────────────────────────────────────────────────
+def emit_digest(dashboard):
+    ex, ts = dashboard["executive"], dashboard["task_summary"]
+    cp, dr = dashboard["critical_path"], dashboard["drift"]
+    lines = []
+    lines.append(f"# Command Center — Morning Digest ({TODAY.isoformat()})")
+    lines.append("")
+    wbo = ts.get("wip_by_owner", {})
+    wmax = max(wbo.values(), default=0)
+    owners = ", ".join(f"{o}:{n}" for o, n in sorted(wbo.items())) or "none"
+    lines.append(f"Health: {ex['system_health']} · WIP {ts['wip']} "
+                 f"(peak {wmax}/{OWNER_WIP_LIMIT} per owner — {owners}) · "
+                 f"active {ts['active']} ({ts['in_progress']} in-progress, {ts['blocked']} blocked, "
+                 f"{ts['returned']} returned) · closed {ts['closed']}")
+    na = dashboard.get("next_action")
+    if na:
+        lines.append(f"NEXT: {na['task_id']} ({na['owner']}) — {na['reason']}  → unblocks {na['unblocks']}")
+    lines.append("")
+    if cp.get("longest_chain"):
+        lines.append("Critical chain: " + " → ".join(cp["longest_chain"]))
+    if cp.get("top_unblockers"):
+        lines.append("Top unblockers: " + ", ".join(
+            f"{u['task_id']} (frees {u['unblocks_count']})" for u in cp["top_unblockers"]))
+    lines.append("")
+    lines.append("## Open work")
+    for t in dashboard["tasks"]:
+        if t["status"] == "CLOSED":
+            continue
+        wt = "" if t.get("work_type", "execution") == "execution" else f" [{t['work_type']}]"
+        lines.append(f"  {t['status']:<8} {t['priority']:<8} {t['id']:<10} {t['owner'] or '—':<14}{wt} {t['title'][:70]}")
+        for c in t.get("cc_comments", []):
+            tag = "CC" if c["flag"] == "fyi" else f"CC/{c['flag'].upper()}"
+            lines.append(f"        ↳ {tag}: {c['text'][:96]}")
+    closed_today = [t for t in dashboard["tasks"]
+                    if t["status"] == "CLOSED" and t.get("completed_at") == TODAY.isoformat()]
+    if closed_today:
+        lines.append("")
+        lines.append(f"## Closed today ({len(closed_today)})")
+        for t in closed_today:
+            lines.append(f"  {t['id']:<10} {t['title'][:70]}")
+    lines.append("")
+    issues = dr["counts"]["PHANTOM_TASK"] + dr["counts"]["CLOSURE_DRIFT"] + dr["counts"]["REGISTRY_UNPARSEABLE"]
+    lines.append(f"## Registry: {'clean' if issues == 0 else str(issues)+' issue(s)'}"
+                 + (f" · {len(dr.get('acknowledged', []))} acknowledged" if dr.get("acknowledged") else ""))
+    for a in dr.get("acknowledged", []):
+        lines.append(f"  ack {a['id']}: {a['reason'][:90]}")
+    for tid in dr.get("phantom_tasks", []):
+        lines.append(f"  PHANTOM {tid}")
+    for tid in dr.get("closure_drift_tasks", []):
+        lines.append(f"  CLOSURE_DRIFT {tid}")
+    return "\n".join(lines)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
+    # Console-safe Unicode (digest uses → · …); Windows default is cp1252.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     tasks, unparseable = load_tasks()
     decisions   = load_decisions()
     categories  = derive_categories(tasks)
@@ -769,15 +1152,20 @@ def main():
     # task file is never mis-flagged PHANTOM — it gets REGISTRY_UNPARSEABLE instead.
     registry_ids = {t["id"] for t in tasks} | {u["id"] for u in unparseable}
     returns      = scan_task_returns()
+    returns_ids  = set(returns.keys())
 
-    operational  = compute_alerts(tasks, decisions, categories)
+    operational  = compute_alerts(tasks, decisions, categories, returns_ids)
     # ref_mtime=None: a fresh regenerate is by definition not a stale snapshot.
     drift        = build_drift_alerts(tasks, returns, registry_ids, unparseable, ref_mtime=None)
     alerts       = finalize_alerts(operational + drift)
 
+    acknowledged   = closure_drift_acks(tasks, returns)             # ★②
+    critical_path  = compute_critical_path(tasks)                   # ★③
     executive    = compute_executive(tasks, decisions, alerts)  # sees drift alerts
-    next_action  = compute_next_action(tasks, decisions, categories)
+    next_action  = compute_next_action(tasks, decisions, categories, critical_path)
     task_summary = compute_task_summary(tasks)
+    category_state = compute_category_state(categories, tasks)      # ★⑤
+    critical_path.pop("_unblocks_by_id", None)  # internal aid; not serialized
 
     now_iso = datetime.now().isoformat(timespec="seconds")
     newest  = newest_source_mtime()
@@ -799,6 +1187,7 @@ def main():
             "newest_source_at": newest_iso,
             "updated_by": "generate_dashboard.py",
             "task_capacity": TASK_CAPACITY,
+            "owner_wip_limit": OWNER_WIP_LIMIT,
             "schema_version": "command_center_v3",
             # Freshness (TASK-092 finding #1). A fresh regenerate is current by
             # definition; check_drift.py flips `stale` true when a source file is
@@ -810,17 +1199,31 @@ def main():
         "executive": executive,
         "next_action": next_action,
         "task_summary": task_summary,
-        "drift": summarize_drift(drift),
+        "critical_path": critical_path,       # ★③
+        "category_state": category_state,     # ★⑤
+        "drift": summarize_drift(drift, acknowledged),
         "tasks": tasks,
         "decisions": decisions,
         "categories": categories,
         "alerts": alerts,
     }
 
+    if "--digest" in sys.argv:
+        print(emit_digest(dashboard))
+        return
+
+    # Main board: trim CLOSED summaries (token ①); full closed detail -> archive (③);
+    # lean live view (②). The HTML reads command_center.json and never touches a
+    # closed task's summary, so trimming is invisible to the renderer.
+    main_doc = dict(dashboard, tasks=_trim_closed(dashboard["tasks"]))
     OUTPUT_FILE.write_text(
-        json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+        json.dumps(main_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    ARCHIVE_FILE.write_text(
+        json.dumps({"_generated": True, "generated_at": now_iso,
+                    "closed_tasks": [t for t in dashboard["tasks"] if t["status"] == "CLOSED"]},
+                   ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    LIVE_FILE.write_text(
+        json.dumps(_live_view(dashboard), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     open_alerts = [a for a in alerts if a["status"] == "OPEN"]
     active = [t for t in tasks if t["status"] in ACTIVE_STATUSES]
@@ -831,10 +1234,26 @@ def main():
               f"({next_action['owner']})  -> unblocks: {next_action['unblocks']}")
     else:
         print("  NEXT ACTION: none — no open work")
-    print(f"  tasks:      {len(tasks)} total | active={task_summary['active']} "
+    wbo = task_summary.get("wip_by_owner", {})
+    print(f"  tasks:      {len(tasks)} total | WIP={task_summary['wip']} "
+          f"(per-owner peak {max(wbo.values(), default=0)}/{OWNER_WIP_LIMIT}) "
+          f"active={task_summary['active']} "
           f"in_progress={task_summary['in_progress']} blocked={task_summary['blocked']} "
           f"returned={task_summary['returned']} changes={task_summary['changes_requested']} "
           f"closed={task_summary['closed']}")
+    if critical_path.get("longest_chain"):
+        print("  crit chain: " + " -> ".join(critical_path["longest_chain"]))
+    if critical_path.get("top_unblockers"):
+        print("  unblockers: " + ", ".join(
+            f"{u['task_id']}(+{u['unblocks_count']})" for u in critical_path["top_unblockers"]))
+    if acknowledged:
+        print(f"  drift-ack:  {len(acknowledged)} -> " + ", ".join(a["id"] for a in acknowledged))
+    try:
+        kb = lambda p: f"{p.stat().st_size/1024:.0f}KB"
+        print(f"  files:      command_center.json={kb(OUTPUT_FILE)}  "
+              f"live={kb(LIVE_FILE)}  archive={kb(ARCHIVE_FILE)}")
+    except OSError:
+        pass
     print(f"  categories: {len(categories)}")
     print(f"  decisions:  {len(decisions)} ({sum(1 for d in decisions if d.get('status')=='PENDING')} pending)")
     drift_alerts = [a for a in open_alerts if a["type"] in DRIFT_TYPES]

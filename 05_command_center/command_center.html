@@ -98,6 +98,28 @@
     .row-id{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
     .row-title{font-size:12px;}
     .row-meta{display:inline-flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+    /* CC Agent review notes — collapsed badge (click to expand) */
+    .cc{grid-column:1/-1;margin:5px 0 1px;}
+    .obj-cc{margin:4px 0 0 14px;}
+    .cc>summary{list-style:none;cursor:pointer;display:inline-flex;gap:5px;align-items:center;
+      width:fit-content;user-select:none;}
+    .cc>summary::-webkit-details-marker{display:none;}
+    .cc-chip{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;
+      line-height:1;padding:2px 6px;border-radius:9px;border:1px solid var(--cc-bd,#7a8aa0);
+      color:var(--cc-bd,#7a8aa0);background:var(--cc-bg,rgba(120,140,170,.08));}
+    .cc-read{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);}
+    .cc[open] .cc-read::after{content:' ▲';}
+    .cc:not([open]) .cc-read::after{content:' ▼';}
+    .cc-body{display:flex;flex-direction:column;gap:5px;margin-top:6px;}
+    .cc-note{display:flex;gap:7px;align-items:flex-start;font-size:11px;line-height:1.45;
+      padding:6px 9px;border-radius:6px;background:var(--cc-bg,rgba(120,140,170,.08));
+      border-left:2px solid var(--cc-bd,#7a8aa0);}
+    .cc-note .cc-ic{flex:none;font-size:11px;line-height:1.45;}
+    .cc-note .cc-dt{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-left:4px;}
+    .cc-note .cc-lbl{font-weight:700;letter-spacing:.04em;}
+    .cc-chip.fyi,.cc-note.fyi{--cc-bd:#5a9bd4;--cc-bg:rgba(90,155,212,.10);}
+    .cc-chip.verify,.cc-note.verify{--cc-bd:#d4a93a;--cc-bg:rgba(212,169,58,.12);}
+    .cc-chip.blocker,.cc-note.blocker{--cc-bd:#d46a5a;--cc-bg:rgba(212,106,90,.13);}
     .no-subs{font-size:11px;color:var(--text-dim);padding:2px 0 2px 16px;}
 
     .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;font-family:var(--mono);
@@ -127,6 +149,26 @@
     .stale-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;margin-top:1px;}
     .stale.red .stale-lbl{color:var(--red);} .stale.amber .stale-lbl{color:var(--amber);}
     .stale-txt{font-size:12px;color:var(--text-muted);} .stale-txt code{font-family:var(--mono);color:var(--text);}
+    /* health label beside the dot (color is not the only signal) */
+    .health-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;
+      padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
+    .health-lbl.GREEN{color:var(--green);border-color:rgba(52,245,197,.4);}
+    .health-lbl.YELLOW{color:var(--amber);border-color:rgba(255,209,102,.45);}
+    .health-lbl.RED{color:var(--red);border-color:rgba(255,93,108,.5);}
+    /* ★ NEXT-ACTION card — the one thing to do now (5-second rule) */
+    .nextcard{background:linear-gradient(180deg,var(--surface-2),var(--surface));
+      border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:var(--r);
+      padding:12px 16px;margin-bottom:16px;box-shadow:var(--glow),0 6px 22px rgba(0,0,0,.4);}
+    .nx-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .nx-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;
+      color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.4);}
+    .nx-id{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
+    .nx-title{font-size:14px;font-weight:600;margin:5px 0 3px;}
+    .nx-reason{font-size:12px;color:var(--text-muted);}
+    .nx-unblocks{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:5px;}
+    .nx-chain{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:3px;}
+    .nx-blocker{display:flex;gap:7px;align-items:flex-start;margin-top:9px;padding-top:9px;
+      border-top:1px solid var(--border-sub);font-size:11px;color:var(--amber);}
     /* collapsed "closed" log */
     .closed{margin-top:18px;}
     .closed>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
@@ -231,6 +273,25 @@ function renderStale(meta,drift){
   return '';
 }
 
+// ★ The single most important thing to do now — actionability over decoration.
+function renderNext(na, ex, cp){
+  ex=ex||{}; cp=cp||{};
+  const chain=(cp.longest_chain&&cp.longest_chain.length>1)
+    ? `<div class="nx-chain">critical chain: ${cp.longest_chain.map(esc).join(' → ')}</div>` : '';
+  const blocker = ex.current_blocker
+    ? `<div class="nx-blocker">⚠ ${esc(ex.current_blocker)}</div>` : '';
+  if(!na) return blocker ? `<div class="nextcard">${blocker}</div>` : '';
+  const unblocks = (na.unblocks && na.unblocks!=='—')
+    ? `<div class="nx-unblocks">→ unblocks ${esc(na.unblocks)}</div>` : '';
+  return `<div class="nextcard">
+    <div class="nx-top"><span class="nx-lbl">NEXT</span>
+      <span class="nx-id">${esc(na.task_id)}</span>${sPill(na.status)}${owner(na.owner)}</div>
+    <div class="nx-title">${esc(na.title||'')}</div>
+    <div class="nx-reason">${esc(na.reason||'')}</div>
+    ${unblocks}${chain}${blocker}
+  </div>`;
+}
+
 function render(d){
   const tasks=d.tasks||[];
   window.__owner={}; tasks.forEach(t=>window.__owner[t.id]=t.owner);
@@ -242,6 +303,26 @@ function render(d){
   const objIds=[...new Set(open.map(t=>isObjective(t.id)?t.id:parentOf(t.id)).filter(Boolean))];
   objIds.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
   const byPri=(a,b)=>(PRI[a.priority]??9)-(PRI[b.priority]??9)||a.id.localeCompare(b.id);
+
+  // CC Agent review notes — collapsed flag-count badge, click to expand full text.
+  // (extra:obj-cc spaces it under an objective head)
+  const CC_IC={fyi:'💬',verify:'🔍',blocker:'⛔'};
+  const CC_ORDER=['blocker','verify','fyi'];
+  const ccNotes=(t,extra='')=>{
+    const cs=(t&&t.cc_comments)||[]; if(!cs.length) return '';
+    const cnt={}; cs.forEach(c=>{const f=c.flag||'fyi'; cnt[f]=(cnt[f]||0)+1;});
+    const chips=CC_ORDER.filter(f=>cnt[f])
+      .map(f=>`<span class="cc-chip ${f}">${CC_IC[f]}${cnt[f]}</span>`).join('');
+    const body=cs.map(c=>{
+      const f=c.flag||'fyi';
+      const lbl='CC'+(f!=='fyi'?' · '+f.toUpperCase():'');
+      const dt=c.date?`<span class="cc-dt">${esc(c.date)}</span>`:'';
+      return `<div class="cc-note ${f}"><span class="cc-ic">${CC_IC[f]||'💬'}</span>`
+           +`<span><span class="cc-lbl">${lbl}:</span> ${esc(c.text)}${dt}</span></div>`;
+    }).join('');
+    return `<details class="cc ${extra}"><summary>${chips}<span class="cc-read">read</span></summary>`
+         +`<div class="cc-body">${body}</div></details>`;
+  };
 
   const groups=objIds.map(oid=>{
     const obj=byId[oid];
@@ -258,9 +339,10 @@ function render(d){
       ? `<div class="subs">${subs.map(t=>`<div class="row">
            <span class="row-id">${esc(t.id)}</span>
            <span class="row-title">${esc(t.title)}</span>
-           ${subButtons(t.id,t.status)}</div>`).join('')}</div>`
+           ${subButtons(t.id,t.status)}
+           ${ccNotes(t)}</div>`).join('')}</div>`
       : (orphan ? '' : `<div class="no-subs">No open sub-tasks — close the objective when the goal is met.</div>`);
-    return `<div class="obj-group">${head}${subsHTML}</div>`;
+    return `<div class="obj-group">${head}${obj?ccNotes(obj,'obj-cc'):''}${subsHTML}</div>`;
   });
 
   const body = groups.length
@@ -290,7 +372,8 @@ function render(d){
   return `
   <header class="hdr">
     <div class="hdr-brand"><span class="dot ${health}" title="${health}"></span>
-      <span class="hdr-title">Bari Command Center</span><span class="hdr-badge">tasks</span></div>
+      <span class="hdr-title">Bari Command Center</span><span class="hdr-badge">tasks</span>
+      <span class="health-lbl ${health}">${health}</span></div>
     <div class="hdr-right">
       ${reg}
       <span class="hdr-date">updated ${esc(d.meta?.last_updated||'—')}</span>
@@ -298,6 +381,7 @@ function render(d){
   </header>
   <div class="main">
     ${renderStale(d.meta,d.drift)}
+    ${renderNext(d.next_action,d.executive,d.critical_path)}
     <div class="sec-lbl">Actions <span class="cap">(${objCount} objective${objCount===1?'':'s'} · ${subCount} sub-task${subCount===1?'':'s'})</span></div>
     <div class="hint">Objectives (TASK-NNN) only <b>Close</b> — and closing one closes its open sub-tasks. Sub-tasks (TASK-NNN·A) carry the lifecycle. Add work with <code>python new_task.py --parent TASK-NNN --title "…" --owner …</code></div>
     ${body}

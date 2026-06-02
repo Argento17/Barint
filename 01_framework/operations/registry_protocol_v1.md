@@ -20,7 +20,7 @@ This protocol applies only to **Registry Work** (see [`work_classification_v1.md
 
 ## 1. Why this exists
 
-Agents return deliverables but do not report structured state. The result is **dashboard drift**: tasks read `IN_PROGRESS` after the work is done, and the Central Controller manually reconstructs what changed. This protocol removes the reconstruction step: **every task return ends with a structured Registry Update block**, and the Controller records it. **Only the Central Controller writes `CLOSED`.** Agents *propose*; the Controller *commits*.
+Agents return deliverables but do not report structured state. The result is **dashboard drift**: tasks read `IN_PROGRESS` after the work is done, and the Central Controller manually reconstructs what changed. This protocol removes the reconstruction step: **every task return ends with a structured Registry Update block**, and the Controller records it. **Domain agents never write `CLOSED`** — they *propose*, the controller *commits*. **Closing authority is the Central Controller's and, by delegation (2026-06-02), the CC Agent's**, which commits `CLOSED` only after its close-readiness gate passes (claims independently verified against artifacts) and escalates genuine judgement calls. Throughout this document, "Central Controller" closing authority is read to include the delegated CC Agent. See `.claude/agents/cc-agent.md`.
 
 ---
 
