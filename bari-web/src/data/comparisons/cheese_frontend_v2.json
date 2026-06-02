@@ -17,96 +17,39 @@
       "insight_lines_from": "DRAFT placeholders from package data — Content Agent MUST rewrite vs new scores (TASK-169B report (b))",
       "withheld": {
         "misrouted": 2,
-        "insufficient": 5,
-        "a_ceiling_NOT_applied": 13
+        "insufficient": 5
+      },
+      "a_eligibility_gate": {
+        "mechanism": "DISPLAY CAP (not a withhold): A/S-band score that fails the gate keeps its numeric score, stays visible, displays grade B.",
+        "predicate": "sodium_mg <= 400 AND fat_saturated_g <= 4.0 (both required; missing data fails closed -> cap to B)",
+        "fields": "L1_observed_signals.sodium_mg / L1_observed_signals.fat_saturated_g (carried as nutrition.sodium_mg / nutrition.fat_saturated_g)",
+        "scope": "dairy_protein cheese ONLY; gated by BARI_RECAL_P0",
+        "capped_count": 2,
+        "capped_products": [
+          {
+            "id": "che-4127336",
+            "name": "קוטג' 9% שומן",
+            "score": 81,
+            "displayed_grade": "B"
+          },
+          {
+            "id": "che-41452",
+            "name": "קוטג' מהדרין 9% שומן",
+            "score": 81,
+            "displayed_grade": "B"
+          }
+        ]
       },
       "governance_ref": "TASK-169 recalibration (R1-R7 v1.1); cheese_spreads_stress_test_001 (TASK-141, verdict B)",
       "task": "TASK-169B"
     },
-    "recal_governance_conflict": {
-      "issue": "The run_003 A-ceiling construct (EV-021 / RULING-DAIRY-A-01 C1-C6) sets a_eligible_pre_routing=False for ALL cheese, which would withhold every recalibrated grade-A product (including the flagship cottage 1% at 90/A). TASK-169 v1.1 (owner ruling 2026-06-02) retires the hard grade cap and intends cottage 1% to LAND at ~90/A as the shelf leader. These two owner-approved decisions conflict.",
-      "resolution_pending": "Nutrition + Product + owner must reconcile EV-021 vs TASK-169 v1.1 before any live repoint.",
-      "this_file_behavior": "STAGES the recal A's (A-ceiling withhold NOT applied) so the owner can see the intended shelf. NOT live.",
-      "a_ceiling_would_withhold": [
-        {
-          "name": "קוטג 1% שומן",
-          "score": 90,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' 3% שומן",
-          "score": 89,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' 5% שומן",
-          "score": 87,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' תנובה 5%",
-          "score": 87,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' בקטנה 5%",
-          "score": 87,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' 5% שומן",
-          "score": 84,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' 9% שומן",
-          "score": 81,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "קוטג' מהדרין 9% שומן",
-          "score": 81,
-          "grade": "A",
-          "pool": "cottage"
-        },
-        {
-          "name": "גבינה טבורוג 5%",
-          "score": 87,
-          "grade": "A",
-          "pool": "white_cheese_quark"
-        },
-        {
-          "name": "גבינה לבנה 5%+שמיר ושום",
-          "score": 84,
-          "grade": "A",
-          "pool": "white_cheese_quark"
-        },
-        {
-          "name": "גבינה לבנה 5% שומן",
-          "score": 82,
-          "grade": "A",
-          "pool": "white_cheese_quark"
-        },
-        {
-          "name": "גבינה לבנה 5% שומן",
-          "score": 82,
-          "grade": "A",
-          "pool": "white_cheese_quark"
-        },
-        {
-          "name": "גבינה לבנה 5% שומן",
-          "score": 82,
-          "grade": "A",
-          "pool": "white_cheese_quark"
-        }
-      ]
+    "recal_governance_note": {
+      "status": "RESOLVED",
+      "resolution": "Conflict between the run_003 blanket cheese A-ceiling (EV-021 / RULING-DAIRY-A-01 C1-C6, which set a_eligible_pre_routing=False for ALL cheese) and TASK-169 v1.1 (owner ruling intending cottage 1% to land at ~90/A) is RESOLVED via EV-021 AMENDMENT A1 (owner-approved 2026-06-02). The blanket no-A cap for cheese is retired and replaced by a conditional A-eligibility gate (sodium <= 400 AND sat-fat <= 4.0, fail-closed on missing data). The gate is a DISPLAY CAP, not a withhold: a failing product keeps its numeric score and stays on the shelf showing grade B.",
+      "evidence_ref": "EV-021 AMENDMENT A1 (03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md)",
+      "scope": "dairy_protein (cheese) ONLY; gated by BARI_RECAL_P0; yogurt C1-C6 unchanged.",
+      "outcome": "11 A-band products keep A (cottage 1% leads ~90/A); 2 capped to B (9% cottage tier, sat-fat 5.4 > 4.0).",
+      "still_staged": "File remains STAGED (page imports unchanged). Product Agent D7 co-sign required before live repoint."
     },
     "subpools": {
       "cottage": "גבינת קוטג'",
@@ -127,8 +70,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TZE58_Z_P_7290014758681_1.png",
       "score": 90,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "11.5 גרם חלבון ל-100 גרם ב-1 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מוביל את המדף כולו — 11.5 גרם חלבון בגרם שומן אחד בלבד, יחס החלבון-לשומן הנקי ביותר בקטגוריה. מגיע ל-A כי זו גבינה לבנה על בסיס חלבי פשוט, בלי עומס שומן שמושך מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -150,8 +94,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCS28_Z_P_4127077_1.png",
       "score": 89,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "11 גרם חלבון ל-100 גרם ב-3 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהבולטים במדף — 11 גרם חלבון ל-100 גרם בשלושה גרם שומן בלבד, יחס חלבון-לשומן מהטובים בקטגוריה. מגיע ל-A כי הבסיס חלבי ופשוט, בלי תוספת שמושכת אותו מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -173,8 +118,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UMK28_Z_P_4127329_1.png",
       "score": 87,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "11 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהחזקים בקבוצת הקוטג' — 11 גרם חלבון ל-100 גרם מול חמישה גרם שומן, יחס מאוזן על בסיס חלבי פשוט. מגיע ל-A כי אין כאן עיבוד או תוספת שמושכת אותו מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -196,8 +142,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHA18_Z_P_41445_1.png",
       "score": 87,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "11 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהחזקים בקבוצת הקוטג' — 11 גרם חלבון ל-100 גרם מול חמישה גרם שומן, יחס מאוזן על בסיס חלבי פשוט. מגיע ל-A כי אין כאן עיבוד או תוספת שמושכת אותו מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -219,8 +166,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QUM26_Z_P_6040619_1.png",
       "score": 87,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "17 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "החלבון הגבוה ביותר במדף — 17 גרם ל-100 גרם בחמישה גרם שומן בלבד, גבינה לבנה רזה במיוחד. מגיע ל-A כי זה בסיס חלבי פשוט עם יחס חלבון-לשומן יוצא דופן לקטגוריה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -242,8 +190,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WTQ42_Z_P_7290110321277_1.png",
       "score": 87,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "11 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהחזקים בקבוצת הקוטג' — 11 גרם חלבון ל-100 גרם מול חמישה גרם שומן, יחס מאוזן על בסיס חלבי פשוט. מגיע ל-A כי אין כאן עיבוד או תוספת שמושכת אותו מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -265,8 +214,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DHX52_Z_P_7290116934280_1.png",
       "score": 84,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהבולטים במדף — 9 גרם חלבון ל-100 גרם בחמישה גרם שומן, גבינה לבנה מתובלת בשום ושמיר על בסיס חלבי פשוט. מגיע ל-A כי התיבול לא בא במחיר עומס עיבוד.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -288,8 +238,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FAZ48_Z_P_2868996_1.png",
       "score": 84,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "10 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהחזקים בקבוצת הקוטג' — 10 גרם חלבון ל-100 גרם מול חמישה גרם שומן, יחס מאוזן על בסיס חלבי פשוט. מגיע ל-A כי הבסיס נקי מעיבוד שמושך מטה.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -311,8 +262,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VEN22_Z_P_4127800_1.png",
       "score": 82,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהגבוהים בקבוצת הגבינה הלבנה — 9 גרם חלבון ל-100 גרם בחמישה גרם שומן, יחס נקי ומאוזן. מגיע ל-A כי זה בסיס חלבי פשוט בלי תוספת מעבדת.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -334,8 +286,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VGX30_Z_P_4127862_1.png",
       "score": 82,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהגבוהים בקבוצת הגבינה הלבנה — 9 גרם חלבון ל-100 גרם בחמישה גרם שומן, יחס נקי ומאוזן. מגיע ל-A כי זה בסיס חלבי פשוט בלי תוספת מעבדת.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -357,8 +310,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SGG26_Z_P_48185_1.png",
       "score": 82,
       "grade": "A",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהגבוהים בקבוצת הגבינה הלבנה — 9 גרם חלבון ל-100 גרם בחמישה גרם שומן, יחס נקי ומאוזן. מגיע ל-A כי זה בסיס חלבי פשוט בלי תוספת מעבדת.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -379,9 +333,10 @@
       "name": "קוטג' 9% שומן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UMR26_Z_P_4127336_1.png",
       "score": 81,
-      "grade": "A",
+      "grade": "B",
+      "_aCappedToB": true,
       "confidence": "verified",
-      "insightLine": "10.5 גרם חלבון ל-100 גרם ב-9 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "החלבון והבסיס החלבי הפשוט מזכים אותו בציון גבוה — 10.5 גרם חלבון ל-100 גרם. מוצג כ-B ולא A רק בגלל השומן הרווי: 5.4 גרם, מעל הקו שמבדיל גבינה רזה מגבינה שומנית יותר.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -402,9 +357,10 @@
       "name": "קוטג' מהדרין 9% שומן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHH16_Z_P_41452_1.png",
       "score": 81,
-      "grade": "A",
+      "grade": "B",
+      "_aCappedToB": true,
       "confidence": "verified",
-      "insightLine": "10.5 גרם חלבון ל-100 גרם ב-9 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "החלבון והבסיס החלבי הפשוט מזכים אותו בציון גבוה — 10.5 גרם חלבון ל-100 גרם. מוצג כ-B ולא A רק בגלל השומן הרווי: 5.4 גרם, מעל הקו שמבדיל גבינה רזה מגבינה שומנית יותר.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -426,8 +382,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YXB22_Z_P_474502_1.png",
       "score": 79,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה טיפוסית למדף — 8.1 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון סולידי אך לא בולט מעל רוב הקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -449,8 +406,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VDQ50_Z_P_7290010945481_1.png",
       "score": 79,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה טיפוסית למדף — 8.1 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון סולידי אך לא בולט מעל רוב הקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -472,8 +430,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UYF52_Z_P_7290102393268_1.png",
       "score": 79,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה טיפוסית למדף — 8.1 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון סולידי אך לא בולט מעל רוב הקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -495,8 +454,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WPJ46_Z_P_7290114310918_1.png",
       "score": 77,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "10.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהקוטג'ים החזקים יותר בחלק ה-B — 10.1 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B ברף שמתחת לקוטג'ים שמובילים את המדף.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -518,8 +478,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YVA46_Z_P_7290116931241_1.png",
       "score": 76,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "10 גרם חלבון ל-100 גרם ב-12 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "קוטג' עתיר שומן — 10 גרם חלבון לצד 12 גרם שומן ל-100 גרם, הגבוה בקבוצת הקוטג'. עוצר ב-B כי השומן הגבוה מושך את היחס מטה לעומת הקוטג'ים הרזים שמובילים.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -541,6 +502,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZAX28_Z_P_3075850_1.png",
       "score": 76,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "לבנה מסורתית — 11 גרם חלבון ו-14 גרם שומן ל-100 גרם. מוצג כמוצר יחיד בקבוצתו, ללא דירוג פנימי.",
       "_cluster": "labaneh",
@@ -564,8 +526,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VFE30_Z_P_4127817_1.png",
       "score": 75,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.5 גרם חלבון ל-100 גרם ב-9 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה 9% — 8.5 גרם חלבון ל-100 גרם מול תשעה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי השומן הגבוה יותר מושך את היחס מטה לעומת גרסאות ה-5%.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -587,8 +550,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RWX26_Z_P_47942_1.png",
       "score": 75,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.5 גרם חלבון ל-100 גרם ב-9 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה 9% — 8.5 גרם חלבון ל-100 גרם מול תשעה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי השומן הגבוה יותר מושך את היחס מטה לעומת גרסאות ה-5%.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -610,8 +574,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZDN46_Z_P_7290011194246_1.png",
       "score": 75,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "10.2 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "מהקוטג'ים החזקים יותר בחלק ה-B — 10.2 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B ברף שמתחת לקוטג'ים שמובילים את המדף.",
       "_cluster": "cottage",
       "expansion": {
         "nutrition": {
@@ -633,8 +598,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XKR42_Z_P_7290114311472_1.png",
       "score": 75,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה טיפוסית למדף — 8.1 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון סולידי אך לא בולט מעל רוב הקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -656,8 +622,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DLE56_Z_P_7290116934365_1.png",
       "score": 75,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9.3 גרם שומן ו-7.7 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
+      "insightLine": "מהחזקים בקבוצת הממרחים — 7.7 גרם חלבון מול 9.3 גרם שומן ל-100 גרם, יחס מאוזן יחסית לממרח. עוצר ב-B כי זה ממרח ולא גבינה לבנה, עם פחות חלבון מהקוטג'ים שמובילים.",
       "_cluster": "cream-cheese-spread",
       "expansion": {
         "nutrition": {
@@ -679,8 +646,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QTK28_Z_P_2824183_1.png",
       "score": 73,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "7.9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה בינונית למדף — 7.9 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון מעט מתחת לחזקים בקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -702,8 +670,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RKZ26_Z_P_2824640_1.png",
       "score": 73,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "7.9 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה בינונית למדף — 7.9 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי פשוט. עוצר ב-B כי החלבון מעט מתחת לחזקים בקבוצה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -725,8 +694,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EFH22_Z_P_56272_1.png",
       "score": 72,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "7.8 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה עם זיתים — 7.8 גרם חלבון ל-100 גרם בחמישה גרם שומן, בסיס חלבי עם תוספת זיתים. עוצר ב-B כי החלבון בינוני לקבוצה, גם אם הבסיס פשוט.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -748,8 +718,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SAU46_Z_P_3523230065467_1.png",
       "score": 68,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "10 גרם חלבון ל-100 גרם ב-17 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינת עזים מתובלת בשום ועשבי תיבול — 10 גרם חלבון לצד 17 גרם שומן ל-100 גרם. עוצר ב-B כי השומן הגבוה מושך את היחס מטה, למרות חלבון סביר.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -771,8 +742,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GAC60_Z_P_7290019635369_1.png",
       "score": 67,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "16 גרם שומן ו-6.1 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
+      "insightLine": "גבינת שמנת — 16 גרם שומן מול 6.1 גרם חלבון ל-100 גרם. עוצר ב-B כי זה ממרח עתיר שומן ולא גבינה לבנה, גם אם מהמאוזנים יותר בקבוצת הממרחים.",
       "_cluster": "cream-cheese-spread",
       "expansion": {
         "nutrition": {
@@ -794,8 +766,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UOR56_Z_P_7290014759084_1.png",
       "score": 66,
       "grade": "B",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "16 גרם שומן ו-6.5 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
+      "insightLine": "גבינת שמנת בטעם טבעי — 16 גרם שומן מול 6.5 גרם חלבון ל-100 גרם. עוצר ב-B כי זה ממרח עתיר שומן ולא גבינה לבנה, גם אם מהמאוזנים יותר בקבוצת הממרחים.",
       "_cluster": "cream-cheese-spread",
       "expansion": {
         "nutrition": {
@@ -817,8 +790,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AEE56_Z_P_7290119375219_1.png",
       "score": 64,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "9.5 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה בטעם בייגלס — 9.5 גרם חלבון ל-100 גרם בחמישה גרם שומן, חלבון לא רע לקבוצה. נשאר ב-C כי התיבול מוסיף רובד עיבוד מעבר לגבינה לבנה פשוטה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -840,6 +814,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EZI56_Z_P_7290116935409_1.png",
       "score": 62,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.3 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -863,6 +838,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DYH54_Z_P_7622201798154_1.png",
       "score": 62,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "11 גרם שומן ו-6.3 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
       "_cluster": "cream-cheese-spread",
@@ -886,6 +862,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NAX54_Z_P_7290108504378_1.png",
       "score": 60,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "20 גרם שומן ל-100 גרם מול 5.8 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -909,8 +886,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JUB36_Z_P_6492852_1.png",
       "score": 58,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "5.1 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינת עזים לבנה — 5.1 גרם חלבון ל-100 גרם בחמישה גרם שומן. נשאר ב-C כי החלבון מהנמוכים בקבוצת הגבינה הלבנה, למרות בסיס חלבי פשוט.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -932,8 +910,9 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WDR34_Z_P_7290112342102_1.png",
       "score": 58,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
-      "insightLine": "8.7 גרם חלבון ל-100 גרם ב-5 גרם שומן — גבינה לבנה על בסיס חלבי פשוט.",
+      "insightLine": "גבינה לבנה עם בצל מקורמל — 8.7 גרם חלבון ל-100 גרם בחמישה גרם שומן, חלבון סביר. נשאר ב-C כי הבצל המקורמל מוסיף רובד עיבוד מעבר לגבינה לבנה פשוטה.",
       "_cluster": "white-cheese-quark",
       "expansion": {
         "nutrition": {
@@ -955,6 +934,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ACU50_Z_P_7290014762831_1.png",
       "score": 57,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "24 גרם שומן ל-100 גרם מול 4.3 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -978,6 +958,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KIG44_Z_P_7290108502541_1.png",
       "score": 57,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "22 גרם שומן ל-100 גרם מול 6.2 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1001,6 +982,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GTH54_Z_P_7290116936604_1.png",
       "score": 57,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.4 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1024,6 +1006,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XDF26_Z_P_4129118_1.png",
       "score": 56,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "23 גרם שומן ל-100 גרם מול 4 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1047,6 +1030,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GAJ58_Z_P_7290019635376_1.png",
       "score": 56,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "24 גרם שומן ל-100 גרם מול 7 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1070,6 +1054,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XCO18_Z_P_4129101_1.png",
       "score": 56,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.3 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1093,6 +1078,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XER28_Z_P_4129156_1.png",
       "score": 56,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.4 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1116,6 +1102,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZXN58_Z_P_7290116931982_1.png",
       "score": 55,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.3 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1139,6 +1126,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BNR56_Z_P_7290116933078_1.png",
       "score": 55,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.4 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1162,6 +1150,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IWV54_Z_P_7290011499624_1.png",
       "score": 55,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "30 גרם שומן ל-100 גרם מול 5.5 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1185,6 +1174,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AWZ54_Z_P_7290116932644_1.png",
       "score": 54,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 4.3 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1208,6 +1198,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KRM44_Z_P_7622201521493_1.png",
       "score": 52,
       "grade": "C",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "12 גרם שומן ו-5.9 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
       "_cluster": "cream-cheese-spread",
@@ -1231,6 +1222,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FQJ50_Z_P_7290019635116_1.png",
       "score": 49,
       "grade": "D",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "5 גרם שומן ו-2.8 גרם חלבון ל-100 גרם — ממרח, לא גבינה לבנה.",
       "_cluster": "cream-cheese-spread",
@@ -1254,6 +1246,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GIG56_Z_P_7290019635581_1.png",
       "score": 48,
       "grade": "D",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "24 גרם שומן ל-100 גרם מול 5 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1277,6 +1270,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RGX50_Z_P_7622201139278_1.png",
       "score": 47,
       "grade": "D",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "25 גרם שומן ל-100 גרם מול 3.7 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",
@@ -1300,6 +1294,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GAQ56_Z_P_7290019635383_1.png",
       "score": 27,
       "grade": "E",
+      "_aCappedToB": false,
       "confidence": "verified",
       "insightLine": "24 גרם שומן ל-100 גרם מול 5 גרם חלבון — ממרח עתיר שומן, לא מקור חלבון.",
       "_cluster": "cream-cheese-spread",

@@ -3,25 +3,42 @@
 TASK-169B — Transform run_cheese_004 (BARI_RECAL_P0=ON) frontend_package.json into
 the bari-web comparison schema → cheese_frontend_v2.json (STAGED, NOT live-pointed).
 
-Mirrors build_cheese_frontend.py (run_003 → cheese_frontend_v1.json) exactly, with
-ONE deliberate, flagged difference handled at the display-set boundary:
+GOVERNANCE CONFLICT RESOLVED (EV-021 AMENDMENT A1, owner-approved 2026-06-02):
+  The prior run_003 A-ceiling construct collapsed RULING-DAIRY-A-01 C1-C6 into a
+  blanket a_eligible_pre_routing=False for ALL cheese, which would have withheld
+  every recalibrated grade-A cheese (incl. cottage 1% ~90/A). EV-021 Amendment A1
+  RETIRES that blanket cap for cheese and replaces it with a CONDITIONAL
+  A-ELIGIBILITY GATE: a cheese may DISPLAY grade A only if genuinely clean on the
+  two axes the composite under-weights for cheese — sodium AND saturated fat.
 
-  GOVERNANCE CONFLICT (surfaced, NOT silently resolved):
-  The run_003 A-ceiling construct (EV-021 / RULING-DAIRY-A-01 C1-C6) marks
-  a_eligible_pre_routing=False for ALL cheese, so the package withholds every
-  grade-A product. But TASK-169 v1.1 (owner ruling 2026-06-02) RETIRES the hard
-  grade cap and explicitly intends cottage 1% to LAND at ~90/A as the shelf leader.
-  These two owner-approved decisions conflict.
+  Mechanism is a CAP, not a withhold. A product that earns an A/S-band score but
+  fails the gate keeps its numeric score and stays on the shelf, but its DISPLAYED
+  grade is capped to B (e.g. 81/B). The misroute + insufficient + transparency
+  withholds are UNCHANGED. The gate is active only with BARI_RECAL_P0=ON; flag-OFF
+  behavior is unchanged. Cheese-scoped only (does not touch yogurt/milk/hummus).
 
-  This builder STAGES the recalibrated A's for the owner look (the recal's stated
-  purpose), i.e. it applies the routing + data-sufficiency withholds (misroute,
-  insufficient) but DOES NOT apply the EV-021 A-ceiling withhold. The conflict is
-  recorded verbatim in _meta.recal_governance_conflict for Nutrition/Product/owner
-  to settle before any live repoint. NO live file is overwritten by this script.
+  Predicate fields = L1_observed_signals.sodium_mg / .fat_saturated_g, which the
+  package faithfully carries as nutrition.sodium_mg / nutrition.fat_saturated_g
+  (verified identical against the run_cheese_004 BSIP2 traces).
 """
 import io
 import json
 import os
+
+# --- EV-021 AMENDMENT A1 — conditional cheese A-eligibility gate (BARI_RECAL_P0) ---
+# Thresholds grounded in Israeli MoH red-label lines (sodium 600 / sat-fat 5.0 per
+# 100g) held meaningfully below the red line per the "best != excellent" doctrine.
+RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "").lower() in ("1", "on", "true", "yes")
+CHEESE_A_SODIUM_MAX = 400.0  # mg/100g  (67% of the 600 red line; = shelf Q3)
+CHEESE_A_SATFAT_MAX = 4.0    # g/100g   (80% of the 5.0 red line; excludes 9% tier @5.4)
+
+
+def cheese_a_eligible(sodium_mg, sat_fat_g):
+    """True only if genuinely clean on BOTH axes. Missing data fails closed."""
+    if sodium_mg is None or sat_fat_g is None:
+        return False  # fail-closed: gate cannot be evaluated -> cap to B
+    return sodium_mg <= CHEESE_A_SODIUM_MAX and sat_fat_g <= CHEESE_A_SATFAT_MAX
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.join(HERE, "frontend_package.json")
@@ -114,14 +131,29 @@ def draft_insight_line(p):
     return ""
 
 
+def displayed_grade(p):
+    """Apply the EV-021 Amendment A1 conditional A-eligibility gate (cheese, RECAL_P0).
+    Returns (grade_to_show, a_capped_to_b: bool). Score is NEVER changed."""
+    grade = p["grade"]
+    if not RECAL_P0_ON:
+        return grade, False
+    if grade in ("A", "S"):
+        nut = p["nutrition"]
+        if not cheese_a_eligible(nut.get("sodium_mg"), nut.get("fat_saturated_g")):
+            return "B", True  # CAP displayed grade to B; keep numeric score; stays visible
+    return grade, False
+
+
 def build_product(p):
     nut = p["nutrition"]
+    grade, a_capped = displayed_grade(p)
     return {
         "id": vm_id(p["barcode"]),
         "name": p["name"].strip(),
         "imageUrl": p.get("image_url") or None,
         "score": round_half_up(p["score"]),
-        "grade": p["grade"],
+        "grade": grade,
+        "_aCappedToB": a_capped,
         "confidence": p["confidence_level"],
         "insightLine": draft_insight_line(p),
         "_cluster": SUBPOOL_TO_CLUSTER[p["subpool"]],
@@ -143,17 +175,20 @@ def build_product(p):
 
 def main():
     pkg = json.load(io.open(PKG, encoding="utf-8"))
-    # Display set: apply routing + data withholds; STAGE the recal A's (do NOT apply
-    # the EV-021 A-ceiling withhold — see module docstring; conflict recorded in _meta).
+    # Display set: apply routing + data withholds. The EV-021 blanket A-ceiling
+    # withhold is RETIRED for cheese (Amendment A1); A-eligibility is now a per-product
+    # DISPLAY CAP applied inside build_product (visible product, score kept, grade->B).
     disp = [x for x in pkg["products"]
             if not x["_flags"]["misrouted"] and not x["_flags"]["insufficient"]]
     disp.sort(key=lambda d: (-d["score"], str(d["barcode"])))
     products = [build_product(p) for p in disp]
 
-    a_ceiling_withheld = [
-        {"name": x["name"], "score": round_half_up(x["score"]), "grade": x["grade"], "pool": x["subpool"]}
-        for x in pkg["products"]
-        if x["_flags"]["a_ceiling_withhold"]
+    # Products whose DISPLAYED grade was capped A/S -> B by the Amendment A1 gate.
+    # They remain on the shelf (visible) with their numeric score intact.
+    a_capped_to_b = [
+        {"id": q["id"], "name": q["name"], "score": q["score"], "displayed_grade": q["grade"]}
+        for q in products
+        if q.get("_aCappedToB")
     ]
 
     meta = {
@@ -178,22 +213,33 @@ def main():
             "withheld": {
                 "misrouted": pkg["counts"]["withheld_misrouted"],
                 "insufficient": pkg["counts"]["withheld_insufficient"],
-                "a_ceiling_NOT_applied": pkg["counts"]["withheld_a_ceiling"],
+            },
+            "a_eligibility_gate": {
+                "mechanism": "DISPLAY CAP (not a withhold): A/S-band score that fails the gate keeps its numeric score, stays visible, displays grade B.",
+                "predicate": "sodium_mg <= 400 AND fat_saturated_g <= 4.0 (both required; missing data fails closed -> cap to B)",
+                "fields": "L1_observed_signals.sodium_mg / L1_observed_signals.fat_saturated_g (carried as nutrition.sodium_mg / nutrition.fat_saturated_g)",
+                "scope": "dairy_protein cheese ONLY; gated by BARI_RECAL_P0",
+                "capped_count": len(a_capped_to_b),
+                "capped_products": a_capped_to_b,
             },
             "governance_ref": pkg["governance_ref"],
             "task": "TASK-169B",
         },
-        "recal_governance_conflict": {
-            "issue": (
-                "The run_003 A-ceiling construct (EV-021 / RULING-DAIRY-A-01 C1-C6) sets "
-                "a_eligible_pre_routing=False for ALL cheese, which would withhold every recalibrated "
-                "grade-A product (including the flagship cottage 1% at 90/A). TASK-169 v1.1 (owner ruling "
-                "2026-06-02) retires the hard grade cap and intends cottage 1% to LAND at ~90/A as the "
-                "shelf leader. These two owner-approved decisions conflict."
+        "recal_governance_note": {
+            "status": "RESOLVED",
+            "resolution": (
+                "Conflict between the run_003 blanket cheese A-ceiling (EV-021 / RULING-DAIRY-A-01 "
+                "C1-C6, which set a_eligible_pre_routing=False for ALL cheese) and TASK-169 v1.1 "
+                "(owner ruling intending cottage 1% to land at ~90/A) is RESOLVED via EV-021 "
+                "AMENDMENT A1 (owner-approved 2026-06-02). The blanket no-A cap for cheese is retired "
+                "and replaced by a conditional A-eligibility gate (sodium <= 400 AND sat-fat <= 4.0, "
+                "fail-closed on missing data). The gate is a DISPLAY CAP, not a withhold: a failing "
+                "product keeps its numeric score and stays on the shelf showing grade B."
             ),
-            "resolution_pending": "Nutrition + Product + owner must reconcile EV-021 vs TASK-169 v1.1 before any live repoint.",
-            "this_file_behavior": "STAGES the recal A's (A-ceiling withhold NOT applied) so the owner can see the intended shelf. NOT live.",
-            "a_ceiling_would_withhold": a_ceiling_withheld,
+            "evidence_ref": "EV-021 AMENDMENT A1 (03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md)",
+            "scope": "dairy_protein (cheese) ONLY; gated by BARI_RECAL_P0; yogurt C1-C6 unchanged.",
+            "outcome": "11 A-band products keep A (cottage 1% leads ~90/A); 2 capped to B (9% cottage tier, sat-fat 5.4 > 4.0).",
+            "still_staged": "File remains STAGED (page imports unchanged). Product Agent D7 co-sign required before live repoint.",
         },
         "subpools": {
             "cottage": pkg["subpools"]["cottage"]["name_he"],
@@ -215,8 +261,12 @@ def main():
     with io.open(OUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
         f.write("\n")
+    from collections import Counter
+    dist = Counter(q["grade"] for q in products)
     print("WROTE", OUT)
-    print("products:", len(products), "| a_ceiling would withhold:", len(a_ceiling_withheld))
+    print("RECAL_P0:", "ON" if RECAL_P0_ON else "OFF", "| products:", len(products),
+          "| A->B capped:", len(a_capped_to_b))
+    print("displayed grade distribution:", dict(sorted(dist.items())))
 
 
 if __name__ == "__main__":

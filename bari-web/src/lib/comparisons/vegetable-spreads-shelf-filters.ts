@@ -1,4 +1,4 @@
-import rawCorpus from "@/data/comparisons/hummus_frontend_v3.json";
+import rawCorpus from "@/data/comparisons/hummus_frontend_v4.json";
 
 import type { BariProductVM } from "@/lib/view-models";
 

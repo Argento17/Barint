@@ -47,12 +47,36 @@ summary: >
 - 5 live cottage products carry the false "מבנה רכיבים מעובד — תוספות מעבר לבסיס החלבי"
   limiting line and are now NOVA 2 → line must DROP.
 
-**BLOCKER — escalate to Nutrition + Product + owner (governance conflict, not data):**
-The run_003 cheese A-ceiling construct (EV-021 / RULING-DAIRY-A-01 C1–C6) sets
-`a_eligible_pre_routing=False` for ALL cheese, so the package withholds all **13**
-recalibrated grade-A products — including the flagship **cottage 1% (90/A)**. TASK-169
-v1.1 (owner ruling) retires the hard grade cap and explicitly intends cottage to LAND at
-90/A. These two owner-approved decisions conflict. `cheese_frontend_v2.json` STAGES the
-recal A's (A-ceiling withhold NOT applied) for the owner look and records the conflict in
-`_meta.recal_governance_conflict`. **Must reconcile EV-021 vs TASK-169 v1.1 before any
-live repoint.**
+**BLOCKER RESOLVED (2026-06-02) — EV-021 AMENDMENT A1 applied to staged cheese JSON:**
+The governance conflict (blanket cheese A-ceiling vs TASK-169 v1.1's intended cottage
+1% @ ~90/A) is RESOLVED via owner-approved **EV-021 AMENDMENT A1**. The blanket
+`a_eligible_pre_routing=False` cheese cap is retired and replaced by a **conditional
+A-eligibility gate** (cheese-scoped, gated by `BARI_RECAL_P0`):
+`a_eligible = sodium_mg <= 400 AND fat_saturated_g <= 4.0` (both required; missing data
+fails closed). Fields = `L1_observed_signals.sodium_mg` / `.fat_saturated_g` (carried as
+`nutrition.*`, verified identical to traces).
+
+Mechanism is a **CAP, not a withhold**: a product that earns an A/S-band score but fails
+the gate keeps its numeric score and stays visible on the shelf, displaying grade **B**.
+Misroute + insufficient + transparency withholds unchanged. Flag OFF → unchanged.
+
+`build_cheese_frontend_v2.py` updated and re-run with `BARI_RECAL_P0=on`. Verdict
+reproduces Nutrition's exactly:
+- **52 displayed products** — grade distribution **A 11 / B 19 / C 18 / D 3 / E 1**
+  (B rose 17→19 by absorbing the 2 caps).
+- **11 keep A**, led by **cottage 1% `che-7290014758681` = 90/A** (Na 350, sat-fat 0.6).
+- **Exactly 2 capped A→B:** `che-4127336` קוטג' 9% שומן and `che-41452` קוטג' מהדרין 9% שומן —
+  both **81/B**, sat-fat **5.4 > 4.0** (over the line). No A candidate fails on sodium.
+- Builder flag-gated: OFF rebuild reproduces the prior staged 13-A behavior (gate
+  inert); ON applies the cap. Full-pipeline flag-OFF re-score == model-OFF baseline
+  59/59 unchanged (score layer; this change is display-only).
+- `_meta.recal_governance_conflict` replaced with `_meta.recal_governance_note`
+  (status RESOLVED, references EV-021 Amendment A1). Capped products also enumerated in
+  `_meta.provenance.a_eligibility_gate.capped_products`.
+
+**Content handoff:** the 2 capped rows must be phrased as "B because saturated fat over
+the line" (9% milkfat cottage tier, sat-fat 5.4 g vs the 4.0 g cleanliness cut). All
+other A's are earned A's.
+
+Still **STAGED** — page imports unchanged (still `cheese_frontend_v1.json`). Product
+Agent D7 co-sign required before live repoint.
