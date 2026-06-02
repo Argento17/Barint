@@ -50,16 +50,11 @@ MAX_PAGES_MAINSTREAM = 5
 MAX_PAGES_SPECIALTY = 2
 PRODUCT_PAGE_DELAY = 0.9
 
-NUTR_LABEL_MAP = {
-    "אנרגיה": "energy", "קל": "energy", "kcal": "energy",
-    "חלבונים": "protein", "חלבון": "protein",
-    "פחמימות": "carbs",
-    "שומנים": "fat", "שומן": "fat",
-    "סיבים תזונתיים": "fiber", "סיבים": "fiber",
-    "נתרן": "sodium",
-    "סוכרים": "sugar",
-    "שומן רווי": "saturated_fat", "שומן רוויה": "saturated_fat",
-}
+# Shared BSIP0 nutrition parser (TASK-142A / EV-026 fix). Replaces the former
+# NUTR_LABEL_MAP, whose substring map let trans/saturated "of which" sub-rows
+# overwrite total fat (fat→0.5) and never captured saturated fat.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_shared"))
+from bsip0_nutrition import parse_nutrition_list, extract_nutrition_raw, nutrition_implausible  # noqa: E402
 
 # ── Query plan ────────────────────────────────────────────────────────────────
 # Tier "mainstream" = up to MAX_PAGES_MAINSTREAM pages
@@ -249,20 +244,12 @@ def _parse_product_page(code: str, meta: dict) -> dict | None:
         except Exception:
             pass
 
-    # Nutrition
-    nutr_raw: dict[str, str] = {}
-    nutr_div = soup.find("div", class_="nutritionList")
-    if nutr_div:
-        for item in nutr_div.find_all("div", class_="nutritionItem"):
-            divs = item.find_all("div")
-            parts = [d.get_text(strip=True) for d in divs if d.get_text(strip=True)]
-            if len(parts) >= 2:
-                value = parts[0]
-                label = parts[-1]
-                for he_label, field in NUTR_LABEL_MAP.items():
-                    if he_label in label:
-                        nutr_raw[field] = value
-                        break
+    # Nutrition — shared parser (TASK-142A / EV-026): reads TOTAL fat, captures
+    # saturated separately, never lets an "of which" sub-row overwrite a total macro.
+    nutr_raw = parse_nutrition_list(soup)
+    # Persist raw nutrition source (rows + outer HTML) so any FUTURE parser fix
+    # replays offline — an EV-029-class bug never again forces a network re-scrape.
+    nutr_src = extract_nutrition_raw(soup)
 
     # Ingredients
     ingredients_raw = ""
@@ -315,6 +302,7 @@ def _parse_product_page(code: str, meta: dict) -> dict | None:
             "sugar_raw": nutr_raw.get("sugar", ""),
             "saturated_fat_raw": nutr_raw.get("saturated_fat", ""),
         },
+        "nutrition_raw_source": nutr_src,
         "ingredients_raw": ingredients_raw,
         "ingredients_language": "he" if ingredients_raw and any("א" <= c <= "ת" for c in ingredients_raw) else "",
         "claims_raw": claims_raw.strip()[:400],

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.063238Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.428848Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290116930718",
@@ -55,7 +55,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": 2.7,
-    "ingredient_count": 15,
+    "ingredient_count": 12,
     "ingredient_list": [
       "חלב (67%)",
       "מים",
@@ -68,11 +68,25 @@
       "חומרי טעם וריח",
       "מווסת חומציות (E-450iii)",
       "ממתיקים (אססולפם קיי",
-      "סוכרלוז). מכיל חלב ערכים תזונתיים 100 גרם 33 קל אנרגיה 2.7 גרם חלבונים 4.9 גרם פחמימות 0 גרם שומנים 102 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סוכרלוז)"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 12,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "סוכרלוז). מכיל חלב ערכים תזונתיים 100 גרם 33 קל אנרגיה 2.7 גרם חלבונים 4.9 גרם פחמימות 0 גרם שומנים 102 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "סוכרלוז)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -90,7 +104,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -180,6 +195,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 12,
     "primary_fragmentation": "reconstructed",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -201,10 +217,7 @@
       "חומרי טעם וריח",
       "מווסת חומציות (E-450iii)",
       "ממתיקים (אססולפם קיי",
-      "סוכרלוז). מכיל חלב ערכים תזונתיים 100 גרם 33 קל אנרגיה 2.7 גרם חלבונים 4.9 גרם פחמימות 0 גרם שומנים 102 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סוכרלוז)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -256,7 +269,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 8.8,
+    "nutrient_density": 13.5,
     "calorie_density": 50.0,
     "glycemic_quality": 90.0,
     "protein_quality": 13.5,
@@ -264,11 +277,11 @@
     "satiety_support": 64.8,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 16
+    "whole_food_integrity": 22
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.7g→13.5, fiber=0g→0.0, weighted 65/35=8.8",
+    "nutrient_density": "protein=2.7g→13.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 13.5",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=33.0)",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=2.7g base=13.5, source=whole_food(×1.0) → 13.5",
@@ -276,7 +289,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 0×5) / 50 × 400 = 64.8",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 → 22"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -290,7 +303,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 39.5,
+  "weighted_dimension_score": 40.44,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -394,7 +407,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 39.5,
+  "score_after_cap": 40.44,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -417,8 +430,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -441,17 +454,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 35.5,
+  "score_after_penalty": 40.44,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -473,15 +480,11 @@
     },
     "processing_load": {
       "binding_cap": 60,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -516,16 +519,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 35.5,
+  "score_after_floors": 40.44,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 35.5,
+  "final_score_estimate": 40.4,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']"
   ],
   "unresolved_flags": [
     "STRUCTURAL_EMPTINESS: calorie density dimension capped at 50 (SRC-04)"
@@ -550,8 +552,7 @@
       "nova_4_signal",
       "high_additive_load",
       "whole_food_integrity_low",
-      "sweetener_detected",
-      "high_complexity_assembly"
+      "sweetener_detected"
     ],
     "classifier_version": "structural_classifier_v1"
   }

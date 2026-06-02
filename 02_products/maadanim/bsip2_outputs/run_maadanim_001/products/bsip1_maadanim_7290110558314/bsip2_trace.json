@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.871786Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.269600Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110558314",
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "dessert",
-  "category_confidence": 0.55,
-  "secondary_category": "dairy_protein",
-  "secondary_confidence": 0.35,
-  "category_instability_flag": true,
-  "category_confidence_band": "medium",
+  "category": "dairy_protein",
+  "category_confidence": 0.93,
+  "secondary_category": "dessert",
+  "secondary_confidence": 0.47,
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "dessert:ללא סוכר(name×2)"
+    "hard_anchor:דנונ.פרו"
   ],
   "nova_proxy": 4,
   "nova_confidence": 0.8,
@@ -38,7 +38,9 @@
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "sweetener_detected"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
@@ -53,7 +55,7 @@
     "sugars_g": 3.2,
     "dietary_fiber_g": null,
     "protein_g": 10.0,
-    "ingredient_count": 13,
+    "ingredient_count": 10,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -64,11 +66,25 @@
       "סוכרלוז)",
       "רכז לימון",
       "מלח",
-      "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.2 גרם סוכרים מתוך פחמימות 55 קל אנרגיה 10 גרם חלבונים 3.4 גרם פחמימות 0 גרם שומנים 38 מג נתרן 94 מג סידן 3.2 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 6.3 גרם סוכרים מתוך פחמימות 111 קל אנרגיה 20 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 76 מג נתרן 189 מג סידן 6.3 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר"
     ],
+    "ingredient_count_raw": 13,
+    "ingredient_sanitization": {
+      "raw_count": 13,
+      "clean_count": 10,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.2 גרם סוכרים מתוך פחמימות 55 קל אנרגיה 10 גרם חלבונים 3.4 גרם פחמימות 0 גרם שומנים 38 מג נתרן 94 מג סידן 3.2 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 6.3 גרם סוכרים מתוך פחמימות 111 קל אנרגיה 20 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 76 מג נתרן 189 מג סידן 6.3 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,7 +101,8 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -129,7 +146,7 @@
       "סוכר"
     ],
     "has_fruit_concentrate": true,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
@@ -163,6 +180,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -182,10 +200,7 @@
       "סוכרלוז)",
       "רכז לימון",
       "מלח",
-      "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.2 גרם סוכרים מתוך פחמימות 55 קל אנרגיה 10 גרם חלבונים 3.4 גרם פחמימות 0 גרם שומנים 38 מג נתרן 94 מג סידן 3.2 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 6.3 גרם סוכרים מתוך פחמימות 111 קל אנרגיה 20 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 76 מג נתרן 189 מג סידן 6.3 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר"
     ]
   },
   "L4_interpreted_concerns": {
@@ -227,41 +242,37 @@
     },
     "se_note": null
   },
-  "confidence_score": 87,
+  "confidence_score": 95,
   "confidence_band": "high",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
       "reduction": -5
-    },
-    {
-      "factor": "category_confidence=medium (0.55)",
-      "reduction": -8
     }
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 32.5,
-    "calorie_density": 85.0,
+    "nutrient_density": 50.0,
+    "calorie_density": 90.0,
     "glycemic_quality": 82.0,
     "protein_quality": 50.0,
     "additive_quality": 49.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 20
+    "whole_food_integrity": 31
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=10.0g→50.0, fiber=0g→0.0, weighted 65/35=32.5",
-    "calorie_density": "kcal=55.0, category=dessert (conf 0.55, relaxed by 1.05x) → 85",
+    "nutrient_density": "protein=10.0g→50.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 50.0",
+    "calorie_density": "kcal=55.0, category=dairy_protein → 90",
     "glycemic_quality": "90 - sugar_penalty(8.0) + fiber(0.0) + wg(0) = 82.0 (sweetener tier-C)",
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
     "additive_quality": "sprint1_additives=2 base=64 sw tier-C_pen=15→49.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 0×5) / 55.0 × 400 = 100",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 + ferm_bonus=5 → 31"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -275,7 +286,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 58.16,
+  "weighted_dimension_score": 61.98,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -375,7 +386,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 58.16,
+  "score_after_cap": 61.98,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -398,8 +409,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -422,17 +433,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=13"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 54.16,
+  "score_after_penalty": 61.98,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -454,15 +459,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -497,20 +498,17 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 54.16,
+  "score_after_floors": 61.98,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 54.2,
+  "final_score_estimate": 62.0,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=dessert secondary=dairy_protein, confidence=0.55"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",

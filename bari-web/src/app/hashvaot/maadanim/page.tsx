@@ -7,6 +7,7 @@ import {
   maadanimMethodologyLines,
   maadanimPrologueSentences,
   maadanimProducts,
+  maadanimCategoryNote,
 } from "@/lib/comparisons/maadanim-page-data";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function MaadanimComparisonRoute() {
       hero={maadanimHero}
       prologueSentences={maadanimPrologueSentences}
       methodologyLines={maadanimMethodologyLines}
+      categoryNote={maadanimCategoryNote}
     />
   );
 }

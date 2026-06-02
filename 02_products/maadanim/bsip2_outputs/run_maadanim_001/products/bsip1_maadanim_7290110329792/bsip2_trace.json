@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.822648Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.231117Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110329792",
@@ -37,7 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "multiple_added_sugar_sources: 4",
-    "very_long_ingredient_list: 28"
+    "very_long_ingredient_list: 24"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
@@ -53,10 +53,10 @@
     "fat_trans_g": null,
     "sodium_mg": 40.0,
     "carbohydrates_g": 14.0,
-    "sugars_g": null,
+    "sugars_g": 10.0,
     "dietary_fiber_g": 1.5,
     "protein_g": 3.3,
-    "ingredient_count": 28,
+    "ingredient_count": 24,
     "ingredient_list": [
       "מיצוי פולי סויה (74%) (מים",
       "פולי סויה 7%)",
@@ -81,12 +81,26 @@
       "מלח",
       "מעכבי חימצון",
       "חומר משמר (פוטסיום סורבט)",
-      "ויטמין D (1 מק\"ג ל-100 גרם).nעם חיידקי יוגורט",
-      "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.5 גרם סיבים תזונתיים 10 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 88 קל אנרגיה 3.3 גרם חלבונים 14 גרם פחמימות 1.7 גרם שומנים 40 מג נתרן 120 מג סידן 2.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
     ],
+    "ingredient_count_raw": 28,
+    "ingredient_sanitization": {
+      "raw_count": 28,
+      "clean_count": 24,
+      "dropped": [
+        "ויטמין D (1 מק\"ג ל-100 גרם).nעם חיידקי יוגורט",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.5 גרם סיבים תזונתיים 10 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 88 קל אנרגיה 3.3 גרם חלבונים 14 גרם פחמימות 1.7 גרם שומנים 40 מג נתרן 120 מג סידן 2.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -97,19 +111,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
+      "fat_saturated_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 17.39,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.714,
     "protein_per_kcal": 0.0375,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -182,6 +196,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 24,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -215,11 +230,7 @@
       "מלח",
       "מעכבי חימצון",
       "חומר משמר (פוטסיום סורבט)",
-      "ויטמין D (1 מק\"ג ל-100 גרם).nעם חיידקי יוגורט",
-      "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.5 גרם סיבים תזונתיים 10 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 88 קל אנרגיה 3.3 גרם חלבונים 14 גרם פחמימות 1.7 גרם שומנים 40 מג נתרן 120 מג סידן 2.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "בתוספת חיידקי Lb.rhamnosus.nn מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
     ]
   },
   "L4_interpreted_concerns": {
@@ -268,25 +279,25 @@
     "processing_quality": 35,
     "nutrient_density": 16.0,
     "calorie_density": 85.0,
-    "glycemic_quality": 93.0,
+    "glycemic_quality": 68.0,
     "protein_quality": 16.5,
     "additive_quality": 46.0,
     "satiety_support": 79.1,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 0
+    "whole_food_integrity": 3
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=3.3g→16.5, fiber=1.5g→15.0, weighted 65/35=16.0",
     "calorie_density": "kcal=88.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(3.0) + wg(0) = 93.0",
+    "glycemic_quality": "90 - sugar_penalty(25.0) + fiber(3.0) + wg(0) = 68.0",
     "protein_quality": "protein=3.3g base=16.5, source=whole_food(×1.0) → 16.5",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.3×3 + 1.5×5) / 88.0 × 400 = 79.1",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=28 complexity_pen=40 + ferm_bonus=5 → 0"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=24 complexity_pen=32 + ferm_bonus=5 → 3"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -300,7 +311,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 51.31,
+  "weighted_dimension_score": 48.43,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -404,7 +415,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 51.31,
+  "score_after_cap": 48.43,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -439,7 +450,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=17.4<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=17.4<30.0 or sugar=10.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -460,13 +471,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=28"
+      "note": "ingredient_count=24"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.31,
+  "score_after_penalty": 39.43,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -535,11 +546,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.31,
+  "score_after_floors": 39.43,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 42.3,
+  "final_score_estimate": 39.4,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

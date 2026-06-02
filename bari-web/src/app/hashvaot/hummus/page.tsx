@@ -7,6 +7,7 @@ import {
   hummusMethodologyLines,
   hummusPrologueSentences,
   hummusProducts,
+  hummusCategoryNote,
   hummusComparisonMetadata,
 } from "@/lib/comparisons/hummus-comparison-page-data";
 
@@ -20,6 +21,7 @@ export default function HummusComparisonRoute() {
       hero={hummusHero}
       prologueSentences={hummusPrologueSentences}
       methodologyLines={hummusMethodologyLines}
+      categoryNote={hummusCategoryNote}
     />
   );
 }

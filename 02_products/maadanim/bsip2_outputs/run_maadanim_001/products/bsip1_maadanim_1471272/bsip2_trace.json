@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.235486Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.667662Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_1471272",
@@ -31,16 +31,16 @@
   "classification_basis": [
     "hard_anchor:פרוביו"
   ],
-  "nova_proxy": 2,
-  "nova_confidence": 0.5,
-  "nova_confidence_band": "medium",
+  "nova_proxy": 1,
+  "nova_confidence": 0.9,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
-    "minimal_additives_and_processing_signals"
+    "single_ingredient",
+    "no_additives_detected"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "Single ingredient is strong NOVA 1 signal; undetected additives could change this"
   ],
   "L1_observed_signals": {
     "energy_kcal": null,
@@ -52,13 +52,27 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 4,
+    "ingredient_count": 1,
     "ingredient_list": [
-      "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC) הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC)"
     ],
+    "ingredient_count_raw": 4,
+    "ingredient_sanitization": {
+      "raw_count": 4,
+      "clean_count": 1,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC) הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "low",
     "bsip1_trust_score": 0.45,
@@ -81,7 +95,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": null
+      "kcal_plausible": null,
+      "macros_plausible": null
     }
   },
   "L2_derived_signals": {
@@ -151,6 +166,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 1,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -161,10 +177,7 @@
     ],
     "fat_pct_of_kcal": 0,
     "ingredient_list": [
-      "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC) הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "\"ל.אסידופילוס ל.רמנוזוס ל.פרקזאי ב.ביפידום ס. תרמופילוס מונע התגיישות: צלולוז (MCC)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -206,8 +219,8 @@
     },
     "se_note": null
   },
-  "confidence_score": 35,
-  "confidence_band": "insufficient",
+  "confidence_score": 40,
+  "confidence_band": "low",
   "confidence_reductions": [
     {
       "factor": "missing: energy_kcal",
@@ -236,14 +249,10 @@
     {
       "factor": "bsip1_trust_level=low",
       "reduction": -10
-    },
-    {
-      "factor": "nova_confidence=medium",
-      "reduction": -5
     }
   ],
   "dimension_scores": {
-    "processing_quality": 85,
+    "processing_quality": 95,
     "nutrient_density": 0.0,
     "calorie_density": 50.0,
     "glycemic_quality": 90.0,
@@ -252,11 +261,11 @@
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 85
+    "whole_food_integrity": 100
   },
   "dimension_notes": {
-    "processing_quality": "NOVA 2 → processing_quality=85 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
+    "processing_quality": "NOVA 1 → processing_quality=95 (NOVA_PROCESSING_SCORES table)",
+    "nutrient_density": "protein=0g→0.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 0.0",
     "calorie_density": "energy_kcal absent: neutral 50",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
@@ -264,7 +273,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 1 base=100, ing_count=1 complexity_pen=0 → 100"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -278,7 +287,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 53.2,
+  "weighted_dimension_score": 55.3,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -373,7 +382,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 53.2,
+  "score_after_cap": 55.3,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -424,7 +433,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 53.2,
+  "score_after_penalty": 55.3,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -482,41 +491,54 @@
     }
   },
   "floors_considered": [
-    "no_applicable_floor"
+    {
+      "floor_type": "nova1_single_ingredient",
+      "floor_value": 85
+    }
   ],
-  "floors_applied": [],
-  "score_after_floors": 53.2,
-  "confidence_ceiling_applied": "confidence ceiling 50 applied (confidence=35, band=insufficient)",
+  "floors_applied": [
+    {
+      "floor_type": "nova1_single_ingredient",
+      "floor_value": 85,
+      "pre_floor": 55.3,
+      "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+    }
+  ],
+  "score_after_floors": 85,
+  "confidence_ceiling_applied": "confidence ceiling 75 applied (confidence=40, band=low)",
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 0.0,
-  "final_score_estimate": 50,
+  "final_score_estimate": 75,
   "grade_estimate": "insufficient_data",
   "data_sufficiency": "insufficient",
   "explanation_drivers": [
-    "DOMINANT: Confidence ceiling active at 50 (data quality limitation)"
+    "DOMINANT: Confidence ceiling active at 75 (data quality limitation)",
+    "FLOOR APPLIED: nova1_single_ingredient → minimum 85"
   ],
   "unresolved_flags": [
     "CONTEXT_LIMITED: per-100g score may be misleading (no_nutrition_data)"
   ],
   "structural_class": {
-    "primary": "B",
-    "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.484,
-    "secondary": "C",
-    "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.255,
+    "primary": "A",
+    "primary_label": "Intact Whole Food",
+    "primary_confidence": 0.836,
+    "secondary": null,
+    "secondary_label": null,
+    "secondary_confidence": null,
     "class_weights": {
-      "A": 0.242,
-      "B": 0.484,
-      "C": 0.255,
-      "D": 0.019,
+      "A": 0.836,
+      "B": 0.164,
+      "C": 0.0,
+      "D": 0.0,
       "E": 0.0,
       "F": 0.0
     },
-    "is_between_worlds": true,
+    "is_between_worlds": false,
     "classification_notes": [
-      "nova_2_signal",
+      "nova_1_signal",
       "no_additives_detected",
+      "whole_food_integrity_intact",
+      "minimal_ingredients",
       "zero_additive_categories"
     ],
     "classifier_version": "structural_classifier_v1"

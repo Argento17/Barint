@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.785284Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.195202Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110325312",
@@ -39,7 +39,7 @@
     "artificial_color_detected (צבע מאכל)",
     "multiple_added_sugar_sources: 4",
     "high_additive_category_count: 5",
-    "very_long_ingredient_list: 17"
+    "very_long_ingredient_list: 16"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
@@ -50,15 +50,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 94.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 3.0,
+    "fat_saturated_g": 0.4,
     "fat_trans_g": null,
     "sodium_mg": 60.0,
     "carbohydrates_g": 5.9,
     "sugars_g": null,
     "dietary_fiber_g": 1.6,
     "protein_g": 10.0,
-    "ingredient_count": 17,
+    "ingredient_count": 16,
     "ingredient_list": [
       "מיצוי פולי סויה (88%) (מים",
       "פולי סויה 11%)",
@@ -75,9 +75,18 @@
       "מתחלב: לציטין סו יה",
       "וויטמינים B12",
       "D (D-0.75 מק\"ג",
-      "B12-0.4 מק\"ג ל-100 גרם). בתוספת חיידקי יוגורט וחיידקי ביפידוס. אינו מכיל פרי",
       "בפסח המוצר אינו מכיל ויטמין D מכיל סויה עלול להכיל שקדים"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 16,
+      "dropped": [
+        "B12-0.4 מק\"ג ל-100 גרם). בתוספת חיידקי יוגורט וחיידקי ביפידוס. אינו מכיל פרי"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -88,18 +97,18 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "sugars_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 4.79,
-    "saturated_fat_fraction": null,
+    "fat_pct_of_kcal": 28.72,
+    "saturated_fat_fraction": 0.133,
     "sugar_to_carb_ratio": null,
     "protein_per_kcal": 0.1064,
     "derivation_notes": [
@@ -183,6 +192,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": "reconstructed",
+    "sanitized_ingredient_count": 16,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -191,7 +201,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 4.79,
+    "fat_pct_of_kcal": 28.72,
     "ingredient_list": [
       "מיצוי פולי סויה (88%) (מים",
       "פולי סויה 11%)",
@@ -208,7 +218,6 @@
       "מתחלב: לציטין סו יה",
       "וויטמינים B12",
       "D (D-0.75 מק\"ג",
-      "B12-0.4 מק\"ג ל-100 גרם). בתוספת חיידקי יוגורט וחיידקי ביפידוס. אינו מכיל פרי",
       "בפסח המוצר אינו מכיל ויטמין D מכיל סויה עלול להכיל שקדים"
     ]
   },
@@ -246,7 +255,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": false,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -262,9 +271,9 @@
     "protein_quality": 42.5,
     "additive_quality": 28.0,
     "satiety_support": 100,
-    "fat_quality": 50.0,
+    "fat_quality": 95.5,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 17
+    "whole_food_integrity": 19
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
@@ -274,9 +283,9 @@
     "protein_quality": "protein=10.0g base=50.0, source=mixed(×0.85) → 42.5",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0 [EV-003/019: v1=5→sprint1=4 (Δ=-1)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 1.6×5) / 94.0 × 400 = 100",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=3.0g<8.0): sat=0.4g base=95.5-seed0-trans0=95.5",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=17 complexity_pen=18 + ferm_bonus=5 → 17"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 + ferm_bonus=5 → 19"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -290,7 +299,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 57.38,
+  "weighted_dimension_score": 61.1,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -394,7 +403,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 57.38,
+  "score_after_cap": 60,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -429,7 +438,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.8<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=28.7<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -450,13 +459,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=16"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 48.38,
+  "score_after_penalty": 51.0,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -525,12 +534,12 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 48.38,
+  "score_after_floors": 51.0,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 48.4,
-  "grade_estimate": "D",
+  "final_score_estimate": 51.0,
+  "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",

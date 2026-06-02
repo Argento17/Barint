@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.728031Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.143324Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290107958035",
@@ -31,13 +31,15 @@
   "classification_basis": [
     "routing_uncertain:insufficient_signal_mass"
   ],
-  "nova_proxy": 4,
-  "nova_confidence": 0.65,
+  "nova_proxy": 3,
+  "nova_confidence": 0.6,
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
@@ -47,21 +49,35 @@
     "fat_g": 2.0,
     "fat_saturated_g": null,
     "fat_trans_g": null,
-    "sodium_mg": 1250.0,
+    "sodium_mg": 49.0,
     "carbohydrates_g": 4.8,
     "sugars_g": 4.6,
     "dietary_fiber_g": 2.0,
     "protein_g": 4.4,
-    "ingredient_count": 7,
+    "ingredient_count": 4,
     "ingredient_list": [
       "חלב מפוסטר",
       "רכיבי חלב",
       "סיביים תזונתיים",
-      "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 2 גרם סיבים תזונתיים 4.6 גרם סוכרים מתוך פחמימות 63 קל אנרגיה 4.4 גרם חלבונים 4.8 גרם פחמימות 2 גרם שומנים 49 מג נתרן 147 מג סידן 4.6 סוכרים 1.25 מג נתרן מופחת 1.25 כפיות סוכר ערכים תזונתיים מנה 3 גרם סיבים תזונתיים 6.9 גרם סוכרים מתוך פחמימות 95 קל אנרגיה 6.6 גרם חלבונים 7.1 גרם פחמימות 3 גרם שומנים 74 מג נתרן 222 מג סידן 6.9 סוכרים 1.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר"
     ],
+    "ingredient_count_raw": 7,
+    "ingredient_sanitization": {
+      "raw_count": 7,
+      "clean_count": 4,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 2 גרם סיבים תזונתיים 4.6 גרם סוכרים מתוך פחמימות 63 קל אנרגיה 4.4 גרם חלבונים 4.8 גרם פחמימות 2 גרם שומנים 49 מג נתרן 147 מג סידן 4.6 סוכרים 1.25 מג נתרן מופחת 1.25 כפיות סוכר ערכים תזונתיים מנה 3 גרם סיבים תזונתיים 6.9 גרם סוכרים מתוך פחמימות 95 קל אנרגיה 6.6 גרם חלבונים 7.1 גרם פחמימות 3 גרם שומנים 74 מג נתרן 222 מג סידן 6.9 סוכרים 1.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -77,7 +93,8 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -117,18 +134,16 @@
       "סוכר"
     ],
     "has_fruit_concentrate": false,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
-    "red_labels": [
-      "sodium"
-    ],
-    "red_label_count": 1,
+    "red_labels": [],
+    "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
-    "hp_fat_sodium_pattern_raw": true,
+    "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
     "sprint1_high_risk_emulsifier_found": [],
     "sprint1_neutral_emulsifier_detected": false,
@@ -153,6 +168,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 4,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -166,10 +182,7 @@
       "חלב מפוסטר",
       "רכיבי חלב",
       "סיביים תזונתיים",
-      "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 2 גרם סיבים תזונתיים 4.6 גרם סוכרים מתוך פחמימות 63 קל אנרגיה 4.4 גרם חלבונים 4.8 גרם פחמימות 2 גרם שומנים 49 מג נתרן 147 מג סידן 4.6 סוכרים 1.25 מג נתרן מופחת 1.25 כפיות סוכר ערכים תזונתיים מנה 3 גרם סיבים תזונתיים 6.9 גרם סוכרים מתוך פחמימות 95 קל אנרגיה 6.6 גרם חלבונים 7.1 גרם פחמימות 3 גרם שומנים 74 מג נתרן 222 מג סידן 6.9 סוכרים 1.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר"
     ]
   },
   "L4_interpreted_concerns": {
@@ -224,7 +237,7 @@
     }
   ],
   "dimension_scores": {
-    "processing_quality": 35,
+    "processing_quality": 65,
     "nutrient_density": 21.3,
     "calorie_density": 90.0,
     "glycemic_quality": 82.5,
@@ -232,11 +245,11 @@
     "additive_quality": 82.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
-    "regulatory_quality": 60.0,
-    "whole_food_integrity": 30
+    "regulatory_quality": 95.0,
+    "whole_food_integrity": 65
   },
   "dimension_notes": {
-    "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
+    "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=4.4g→22.0, fiber=2.0g→20.0, weighted 65/35=21.3",
     "calorie_density": "kcal=63.0, category=default (conf 0.30, relaxed by 1.10x) → 90",
     "glycemic_quality": "90 - sugar_penalty(11.5) + fiber(4.0) + wg(0) = 82.5",
@@ -244,8 +257,8 @@
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.4×3 + 2.0×5) / 63.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
-    "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=7 complexity_pen=0 → 30"
+    "regulatory_quality": "no Israeli red labels",
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=4 complexity_pen=0 + ferm_bonus=5 → 65"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -259,7 +272,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 56.45,
+  "weighted_dimension_score": 72.09,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -318,8 +331,8 @@
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
       "cap": 68,
-      "condition": true,
-      "fired": true
+      "condition": false,
+      "fired": false
     },
     {
       "rule": "ADDITIVE_MARKERS_5_PLUS",
@@ -336,14 +349,14 @@
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
       "cap": 87,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "HIGH_SODIUM_700MG_PLUS",
       "cap": 60,
-      "fired": true,
-      "note": "sodium=1250.0mg (context weight=1.0)"
+      "fired": false,
+      "condition": "sodium=49.0<700"
     },
     {
       "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
@@ -354,16 +367,12 @@
   ],
   "caps_applied": [
     {
-      "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 68
-    },
-    {
-      "rule": "HIGH_SODIUM_700MG_PLUS",
-      "cap": 60
+      "rule": "NOVA_PROXY_3_PROCESSED",
+      "cap": 87
     }
   ],
-  "binding_cap": 60,
-  "score_after_cap": 56.45,
+  "binding_cap": 87,
+  "score_after_cap": 72.09,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -402,9 +411,7 @@
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
-      "fired": true,
-      "nova_weight": 1.0,
-      "effective": 6.0
+      "fired": false
     },
     {
       "rule": "HP_CRUNCH_SWEET_COMBO",
@@ -412,17 +419,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "HP_FAT_SODIUM_COMBO",
-      "amount": 6.0,
-      "note": "raw_pen=6 × nova_weight=1.0"
-    }
-  ],
-  "total_penalty_before_scaling": 6.0,
-  "total_penalty_after_scaling": 6.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 50.45,
+  "score_after_penalty": 72.09,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -443,7 +444,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 68,
+      "binding_cap": 87,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -452,7 +453,7 @@
       }
     },
     "sodium_load": {
-      "binding_cap": 60,
+      "binding_cap": null,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -471,15 +472,11 @@
     },
     "hp": {
       "binding_cap": null,
-      "coordinated_penalty": 6.0,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "HP_FAT_SODIUM_COMBO",
-          "amount": 6.0
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 6.0,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     }
   },
@@ -487,39 +484,37 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 50.45,
+  "score_after_floors": 72.09,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
-  "hp_nova_weight": 1.0,
-  "final_score_estimate": 50.5,
-  "grade_estimate": "C",
+  "hp_nova_weight": 0.5,
+  "final_score_estimate": 72.1,
+  "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'HIGH_SODIUM_700MG_PLUS']",
-    "PENALTIES: ['HP_FAT_SODIUM_COMBO']"
+    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']"
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3"
   ],
   "structural_class": {
-    "primary": "F",
-    "primary_label": "Structurally Void System",
-    "primary_confidence": 0.345,
-    "secondary": "B",
-    "secondary_label": "Lightly Transformed Traditional",
-    "secondary_confidence": 0.214,
+    "primary": "D",
+    "primary_label": "Industrially Reconstructed",
+    "primary_confidence": 0.339,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.317,
     "class_weights": {
-      "A": 0.055,
-      "B": 0.214,
-      "C": 0.104,
-      "D": 0.124,
-      "E": 0.157,
-      "F": 0.345
+      "A": 0.056,
+      "B": 0.219,
+      "C": 0.317,
+      "D": 0.339,
+      "E": 0.069,
+      "F": 0.0
     },
-    "is_between_worlds": false,
+    "is_between_worlds": true,
     "classification_notes": [
-      "nova_4_signal",
-      "whole_food_integrity_low"
+      "nova_3_signal"
     ],
     "classifier_version": "structural_classifier_v1"
   }

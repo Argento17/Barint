@@ -23,14 +23,14 @@
   ],
   "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%AA%D7%97%D7%9C%D7%99%D7%A4%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%98%D7%95%D7%A4%D7%95/%D7%98%D7%95%D7%A4%D7%95-%D7%95%D7%9E%D7%A2%D7%93%D7%A0%D7%99-%D7%A1%D7%95%D7%99%D7%94/%D7%9E%D7%A2%D7%93%D7%9F-%D7%A1%D7%95%D7%99%D7%94-%D7%91%D7%99%D7%95-%D7%98%D7%91%D7%A2%D7%99/p/P_7290110329846",
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 1.0,
+    "energy_kcal": 51.0,
     "fat_g": 2.0,
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "cholesterol_mg": null,
     "sodium_mg": 30.0,
     "carbohydrates_g": 3.5,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": 1.6,
     "protein_g": 4.0
   },
@@ -242,7 +242,13 @@
       "position": 3
     }
   ],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידקי יוגורט",
+      "category": "live_cultures",
+      "position": 9
+    }
+  ],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
     "ingredient_count_parsed": 13,
@@ -251,11 +257,11 @@
     "sweetener_count": 1,
     "protein_marker_count": 0,
     "matrix_marker_count": 2,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 1,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": true,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",

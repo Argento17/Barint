@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.433305Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.863029Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_67131",
@@ -50,11 +50,11 @@
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "sodium_mg": null,
-    "carbohydrates_g": 16.0,
-    "sugars_g": null,
+    "carbohydrates_g": null,
+    "sugars_g": 16.0,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 13,
+    "ingredient_count": 10,
     "ingredient_list": [
       "סוכר",
       "חומר קרישה צמחי (קרגינן)",
@@ -65,11 +65,25 @@
       "E331)",
       "חומרי טעם וריח",
       "צבע מאכל טבעי (מ יצוי גזר שחור)",
-      "מלטודקסטרין. מאפיינים נוספים צמחוני ערכים תזונתיים יחידת מדידה 16 גרם סוכרים מתוך פחמימות 68 קל אנרגיה הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלטודקסטרין. מאפיינים נוספים צמחוני"
     ],
+    "ingredient_count_raw": 13,
+    "ingredient_sanitization": {
+      "raw_count": 13,
+      "clean_count": 10,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מלטודקסטרין. מאפיינים נוספים צמחוני ערכים תזונתיים יחידת מדידה 16 גרם סוכרים מתוך פחמימות 68 קל אנרגיה הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מלטודקסטרין. מאפיינים נוספים צמחוני"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "low",
     "bsip1_trust_score": 0.45,
@@ -83,14 +97,15 @@
       "fat_g",
       "fat_saturated_g",
       "sodium_mg",
-      "sugars_g",
+      "carbohydrates_g",
       "dietary_fiber_g",
       "protein_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": null
     }
   },
   "L2_derived_signals": {
@@ -175,6 +190,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -194,10 +210,7 @@
       "E331)",
       "חומרי טעם וריח",
       "צבע מאכל טבעי (מ יצוי גזר שחור)",
-      "מלטודקסטרין. מאפיינים נוספים צמחוני ערכים תזונתיים יחידת מדידה 16 גרם סוכרים מתוך פחמימות 68 קל אנרגיה הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלטודקסטרין. מאפיינים נוספים צמחוני"
     ]
   },
   "L4_interpreted_concerns": {
@@ -239,11 +252,15 @@
     },
     "se_note": "SRC-04: calorie density dimension capped at 50; fat quality returns neutral 50"
   },
-  "confidence_score": 45,
-  "confidence_band": "low",
+  "confidence_score": 35,
+  "confidence_band": "insufficient",
   "confidence_reductions": [
     {
       "factor": "missing: protein_g",
+      "reduction": -10
+    },
+    {
+      "factor": "missing: carbohydrates_g",
       "reduction": -10
     },
     {
@@ -271,25 +288,25 @@
     "processing_quality": 35,
     "nutrient_density": 0.0,
     "calorie_density": 50.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 50.0,
     "protein_quality": 0.0,
     "additive_quality": 0,
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 20
+    "whole_food_integrity": 26
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=68.0)",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(40.0) + fiber(0.0) + wg(0) = 50.0",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
     "additive_quality": "sprint1_additives=6 base=0 sw_pen=0→0 [EV-003/019: v1=4→sprint1=6 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 68.0 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 → 26"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -303,7 +320,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 33.1,
+  "weighted_dimension_score": 28.54,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -407,7 +424,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 33.1,
+  "score_after_cap": 28.54,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -430,8 +447,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -442,7 +459,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=0.0<30.0 or sugar=16.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -454,17 +471,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=13"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 29.1,
+  "score_after_penalty": 28.54,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -486,15 +497,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -529,17 +536,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 29.1,
+  "score_after_floors": 28.54,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 29.1,
-  "grade_estimate": "E",
-  "data_sufficiency": "sufficient",
+  "final_score_estimate": 28.5,
+  "grade_estimate": "insufficient_data",
+  "data_sufficiency": "insufficient",
   "explanation_drivers": [
-    "DOMINANT: Confidence ceiling active at 75 (data quality limitation)",
-    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Confidence ceiling active at 50 (data quality limitation)",
+    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3",

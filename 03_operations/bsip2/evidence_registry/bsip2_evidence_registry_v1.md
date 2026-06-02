@@ -446,6 +446,196 @@
 
 ---
 
+### EV-021 — Live-Culture Dairy A-Ceiling Governance Ruling
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-021 |
+| **concept** | Plain, additive-free, live-culture dairy (yogurt + white cheese) MAY reach grade A, earned organically by score — in parallel to whole milk at 85/A. B is the truthful ceiling for the sweetened/stabilized mainstream, NOT for the category. |
+| **scientific_rationale_short** | A plain live-culture yogurt is a whole-milk matrix PLUS a documented positive (fermentation, EV-015: phytase mineral bioaccessibility, organic-acid glycemic dampening, restructured protein). It carries no snack-bar-style irreducible compromise: sugar is intrinsic lactose, fat is intrinsic dairy fat. It therefore inherits the MILK precedent (clean dairy matrix → A), not the snack-bar B-ceiling precedent. The only sub-milk downgrade is milk-powder standardization (NOVA 3 read), a fortification step, not an engineering compromise. |
+| **evidence_strength** | Strong (composes EV-014/015/018/019 + frozen milk precedent) |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — governs whether an A may appear on the yogurt and white-cheese shelves. The run_yogurt_003 "0 grade-A" result is mostly the EV-015 culture-detection gap (0/88 markers matched), not a punitive ceiling; restoring detection lifts the cleanest tier to ~80–86 → A organically (~2–5 earned A's). |
+| **implementation_complexity** | Low (no new rule — composes EV-015 mechanism) |
+| **recommended_action** | governance_ruling — **Product co-signed 2026-06-01 (TASK-139A CLOSED)**; activation now gated only on EV-015 culture-vocab coverage restoration + A-threshold reconciliation (both inherited by TASK-139B) |
+| **affected_categories** | dairy_protein sub-pools: yogurt, white_cheese (explicitly NOT a global rule) |
+| **candidate_signal_name** | (no new signal — uses `fermentation_marker_detected` per EV-015) |
+| **should_affect_score_now** | false — Product co-sign ✅ (2026-06-01); A-condition C1–C6 still cannot activate until (a) EV-015 Israeli culture-vocabulary coverage is restored (currently 0%, precondition for C3) and (b) the A-threshold (80 vs 85) is reconciled — both inherited by TASK-139B |
+| **required_input_fields** | `extracted_fermentation_markers`, `added_sugar_sources_count`, `extracted_additives`, `nova_level`, `archetype`, `confidence_level` |
+| **risk_of_misuse** | (1) Reading EV-014 hard-cheese saponification as a back-door A for processed/spreadable cheese — it is a fat-absorption exception, not an A-grant. (2) Crediting "sourdough/culture flavour" without microbial strain markers. (3) The `סוכרים`→`סוכר` nutrition-text false positive inflating `added_sugar_sources_count` and wrongly failing C1 on plain yogurts. (4) Restoring the manual shelf's blanket 5×A-by-format instead of earned A's. |
+| **notes** | Source: TASK-139A ruling `02_products/yogurt_system/reports/dairy_a_ceiling_ruling_139A.md`. A-eligibility condition (RULING-DAIRY-A-01): ALL of C1 no added sugar · C2 no engineered additives · C3 live culture confirmed AND credited · C4 intact dairy matrix (reconstituted base NOT eligible, EV-018) · C5 correct dairy routing · C6 verified confidence. Gates TASK-139B/139C, TASK-142, TASK-143. Published-grade consequence: yogurt A-count 5→~2–5 (earned), median 72→~61–63 — flagged for Product co-sign. |
+
+---
+
+### EV-022 — Israeli Live-Culture Label Vocabulary (Extraction Coverage Restored)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-022 |
+| **concept** | The BSIP1 enricher missed the way real Israeli labels write the live-culture positive, so EV-015's input was empty for the yogurt category (run_yogurt_003: 0/88 markers). Extending `FERMENTATION_TERMS` to the observed label vocabulary restores detection. Non-interpretive term matching only — no new scoring rule. |
+| **scientific_rationale_short** | EV-015 (fermentation bonus) reads `extracted_fermentation_markers`, but `FERMENTATION_TERMS` matched only `תרבויות`/`ביפידובקטריום`/`לקטובציל`. Shufersal labels declare cultures as `חיידק פרוביוטי` / `חיידקי ביפידוס` / `BIFIDUS` / `חיידקי Bio` / `חיידקי יוגורט` / `תרבית`, so the category-defining positive was invisible to scoring. Detection 0/88 → **49/88 has_live_cultures**, 51/88 any fermentation marker. |
+| **evidence_strength** | Strong (direct label observation; run_yogurt_003 Shufersal corpus, 88 SKUs) |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — supplies the EV-015 input and satisfies EV-021 RULING-DAIRY-A-01 **condition C3** (live culture confirmed AND credited), previously blocked at 0% coverage. |
+| **implementation_complexity** | Low (term-list extension only) |
+| **recommended_action** | implemented (TASK-139B) |
+| **affected_categories** | yogurt, dairy_protein, white_cheese |
+| **candidate_signal_name** | (no new signal — uses `fermentation_marker_detected` per EV-015) |
+| **should_affect_score_now** | false — extraction/observability fix, not a scoring rule. EV-015 bonus is already active, but no category is re-scored or published here; yogurt grade publication stays gated on TASK-139C (A-threshold) and the live DEC-005 manual shelf is untouched. |
+| **required_input_fields** | `ingredients_text_he` |
+| **label_observability** | Signal: live-culture declaration. Coverage **before 0/88 (0%) → after 49/88 (56%)** has_live_cultures. Collision audit: **0 new markers** on any frozen/non-dairy corpus (snacks run_001, bread_light_001, bread_retail_001/003, cereals_001, hummus_001, milk_001/002); the one bread match (`לחם הרים`, `מחמצת פרוביוטית`) credits only the pre-existing `מחמצת` term — unchanged. |
+| **guards_verified** | Golden corpus regression **11 PASS / 1 WARN / 0 FAIL** (WARN = pre-existing `anchor_soy_drink` acceptable-secondary, change-independent — regression reads stored traces + `structural_classifier.py`, never the enricher). Enricher unit tests **64/64 PASS**. Frozen invariants (milk 85/A, bread retail_003, snk-001 70/B) **unmoved** — 0 new markers in their corpora, no re-score. |
+| **rollback** | `git revert` of the `FERMENTATION_TERMS` block in `03_operations/bsip1/core/ingredient_enricher.py` (+ the `run_yogurt_003` entry in `enrich_runner.py`) restores prior 0/88 behavior; run_yogurt_003 BSIP1 output is non-authoritative and re-enrichment is idempotent. Notify: Data Architecture + Nutrition (EV-015/EV-021 owner). |
+| **notes** | Source: TASK-139B (`ingredient_enricher.py` FERMENTATION_TERMS extension; re-run via `enrich_runner.py --run run_yogurt_003`). Implements the EV-021 C3 / Gap-2 culture-vocabulary fix. Residual: `חיידקי L.casei DN114-001` (1 DanActive-style SKU) unmatched — Latin strain code outside task-named vocab; known minor gap. Recorded 2026-06-01. |
+
+---
+
+### EV-023 — Grade-Boundary Reconciliation (A-Threshold 80 vs 85)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-023 |
+| **concept** | The canonical `.claude/scoring.md` Grades table carried a stale 5-grade scale (A=85–100, no S-grade, every band shifted) that disagreed with the live engine `constants.py GRADE_THRESHOLDS` (6-grade: S≥90, A≥80, B≥65, C≥50, D≥35, E) and with the frozen milk run_004 artifact (A≥80; whole milk 85=A). Corrected the doc to the engine scale; **A≥80 ratified** as the dairy A cutoff. No engine/score change. |
+| **scientific_rationale_short** | The A-threshold ambiguity (80 vs 85) flagged in RULING-DAIRY-A-01 / EV-021 decided whether the cleanest plain/bio/lactose-free dairy (~80–86) reaches grade A. The live engine and the frozen milk run already compute A≥80 (six-grade S/A/B/C/D/E); only the scoring.md table was stale. Adopting A≥80 lets clean live-culture dairy reach A organically — the identical earned mechanism as whole milk at 85/A — satisfying EV-021 A-reachability with no category A-grant. |
+| **evidence_strength** | Strong (direct: `constants.py GRADE_THRESHOLDS` + `batch_run_milk_004` header both A≥80; frozen whole milk 85=A) |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — resolves the last RULING-DAIRY-A-01/EV-021 precondition (A-threshold) blocking yogurt/cheese grade publication (TASK-139 parent; TASK-142/143). |
+| **implementation_complexity** | Trivial (documentation correction only; engine unchanged) |
+| **recommended_action** | implemented (TASK-139D) — Product co-signed 2026-06-01 |
+| **affected_categories** | yogurt, dairy_protein, white_cheese, cheese_spreads, ALL (grade-doc correctness) |
+| **candidate_signal_name** | (no new signal — grade boundary already in `constants.py GRADE_THRESHOLDS`) |
+| **should_affect_score_now** | false — no engine change. `constants.py` already = S≥90/A≥80/B≥65/C≥50/D≥35/E; this only corrects the stale `scoring.md` table to match. No category is re-scored or published by this entry; yogurt/cheese grade publication proceeds under the TASK-139 parent re-score with A≥80 confirmed. |
+| **required_input_fields** | `final_score` (→ `score_to_grade()`) |
+| **label_observability** | Not a label signal — a grade-band boundary. Authoritative source = `constants.py GRADE_THRESHOLDS`. After fix, `scoring.md` matches the engine across all bands: **S 90–100 / A 80–89 / B 65–79 / C 50–64 / D 35–49 / E 0–34**. |
+| **guards_verified** | No code/scoring change → golden regression unaffected (reads `constants.py`, unchanged). Frozen invariants unmoved: whole milk 85→A (A≥80), snk-001 70→B (B≥65), bread retail_003 grades all identical before/after — the engine already used A≥80; only the doc was wrong. The hummus batch-report string "A 85–100" is a separate stale display artifact (cosmetic, non-authoritative), flagged for optional cleanup. |
+| **rollback** | `git revert` of the `scoring.md` grade-table edit restores the prior (stale) 5-grade table. No engine/score artifact touched; reversible with zero score impact. |
+| **source** | TASK-139D (A-threshold reconciliation, folded out of closed TASK-139C). Basis: `dairy_a_ceiling_ruling_139A.md` §A-threshold; `constants.py GRADE_THRESHOLDS`; `batch_run_milk_004` frozen header. |
+| **date_recorded** | 2026-06-01 |
+| **notes** | Resolves the "80 vs 85" item RULING-DAIRY-A-01/EV-021 said "must be reconciled before grades publish." Outcome: A≥80 (six-grade scale) is authoritative; `scoring.md` corrected. Product co-signed ("Confirmed", 2026-06-01). Unblocks the TASK-139 parent closing re-score → TASK-142/143. |
+
+### EV-024 — Culture-Credit Propagation Fix (BSIP1 → BSIP2 Scorer)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-024 |
+| **concept** | TASK-139B extended the **BSIP1 enricher** `FERMENTATION_TERMS` to real Shufersal live-culture label vocabulary, but the **BSIP2 scorer** derives `has_fermentation` from an INDEPENDENT list (`signal_extractor.FERMENTATION_MARKERS_HE`) and never reads the BSIP1 flag. run_yogurt_003 therefore **detected 49/86 live-culture SKUs in BSIP1 yet credited 0/86 in the score** (`fermentation_bonus_applied`=0; distribution byte-identical to pre-139B). The parent closing re-score surfaced this. **Fix:** mirrored 139B vocabulary into `FERMENTATION_MARKERS_HE` so the already-active fermentation bonus (R-02 direct + WFI `ferm_bonus` +5) sees real labels. Non-interpretive substring matching only — no new rule/weight/threshold/cap. |
+| **scientific_rationale_short** | RULING-DAIRY-A-01 **C3** requires live culture *confirmed AND credited*. Detection without crediting leaves C3 structurally unsatisfiable. The mirror makes the existing fermentation positive earn its already-defined bonus on genuine live-culture dairy. |
+| **evidence_strength** | Strong (direct: BSIP1 `has_live_cultures` 49/86 vs BSIP2 `has_fermentation` 3/86 pre-fix → 34/86 post-fix; bonus firing per WFI dimension notes). |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — the TASK-139 parent closing re-score of run_yogurt_003; gates TASK-142/143. |
+| **implementation_complexity** | Trivial (term-list extension mirroring approved sibling EV-022). |
+| **recommended_action** | implemented (TASK-139 parent). Nutrition truthfulness sign-off done; **Product co-sign required** for the published-candidate movement (12 SKUs C→B). |
+| **affected_categories** | yogurt, dairy_protein, white_cheese, cheese_spreads, maadanim (live dairy, future re-score) |
+| **candidate_signal_name** | `has_fermentation` (existing) — vocabulary coverage extended, not a new signal |
+| **should_affect_score_now** | true — cultures are a label-observable, score-bearing positive already wired to R-02 / WFI. The fix repairs vocabulary coverage only; it manufactures **no grade A** (0 A before and after) — no category grant. |
+| **required_input_fields** | `ingredients_text` (live-culture declaration) |
+| **label_observability** | Fully label-observable. Added to the BSIP2 scorer: תרבויות, חיידק פרוביוטי (+construct/plural), חיידקי ביפידוס/יוגורט/אצידופילוס, ביפידוס/bifidus, תרבית. Mirrors EV-022. |
+| **guards_verified** | (1) **Collision audit** — 0 `has_fermentation` flips on every frozen/non-dairy corpus (milk_001/002, snacks run_001, bread_light_001, bread_retail_003 [262-file scan], cereals_001/002, hummus_001). (2) **Frozen isolation** (OLD-vs-NEW marker toggle, in-memory full-pipeline recompute): milk_004 top **85.0/A** unchanged, snacks top **70.0/B (snk-001)** unchanged, **0 SKUs moved by this patch**. (3) Golden structural regression **11 PASS / 1 WARN** (pre-existing `anchor_soy_drink`, change-independent) **/ 0 FAIL**. (4) Router regression **12/12 PASS**. |
+| **rollback** | Working-tree edit (uncommitted). Rollback = restore the `FERMENTATION_MARKERS_HE` block in `signal_extractor.py` → reverts `has_fermentation` to 3/86 and distribution to B17/C44/D24/E1. run_yogurt_003 BSIP2 output is NON-AUTHORITATIVE; re-score is idempotent. Notify: Data Architecture + Nutrition + Product. |
+| **source** | TASK-139 parent closing re-score. Files: `signal_extractor.py` `FERMENTATION_MARKERS_HE`; `batch_run_yogurt_003.py`; `run_yogurt_003_run_summary.json`. |
+| **date_recorded** | 2026-06-01 |
+| **notes** | **Re-score delta (86 SKUs):** B 17→29, C 44→32, D 24 (=), E 1 (=); **A 0→0 (unchanged)**; median 55.7→56.1; ceiling 78.2→78.7/B. 12 live-culture SKUs C→B. **Truthful 0-A finding (Nutrition sign-off):** no SKU satisfies C1–C6 in this corpus — NOVA dist 0×N1 / 4×N2 / 36×N3 / 48×N4; the 4 clean NOVA-2 plain/goat yogurts have **empty ingredient panels** (C3 impossible) and are dimensionally capped 65–72/B by low `nutrient_density` (10–26)/`protein_quality`, not by any cap; all higher scorers are NOVA-3/4 engineered/sweetened (fail C1/C2). **B/78.7 is the truthful ceiling for run_yogurt_003.** Upholds 139A qualitative ruling (B truthful for mainstream; A reachable in principle, earned only) but **contradicts its quantitative ~2–5 earned-A estimate.** Open (non-blocking, Nutrition): goat-milk 85/A vs goat-yogurt 66.7/B gap — is yogurt `nutrient_density` scored too harshly vs the milk table? Residual: BSIP1 49 vs BSIP2 34 `has_fermentation` — ~15 SKUs use culture vocab still unmirrored (all NOVA-3/4 sweetened → cannot reach A). Registry: TASK-139B was CLOSED on BSIP1-only detection; its score-crediting DoD was completed here — Central Controller to decide bookkeeping (reopen 139B vs note in parent). |
+
+### EV-025 — Cream-Cheese / Spread Router Anchor (Identity, not Score)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-025 |
+| **concept** | `router_v2.py` had a cottage hard anchor (`קוטג'→dairy_protein`) and Stage-2 dairy signals carried plain white cheese / labaneh, but **no anchor for the cream-cheese/spread pool**. TASK-142 run_cheese_001 showed **all 26 cream-cheese SKUs misrouting** (גבינת שמנת/ממרח גבינה/פילדלפיה/נפוליאון → default/whole_food_fat); total misroute **47.4% >> 5% gate**, and the 3 `default` SKUs went insufficient. Fix: add four specific cream-cheese hard anchors → dairy_protein, with a `נפוליאון` cake-exclusion. **Identity/routing change only — no scoring weight/threshold/penalty/cap touched.** |
+| **scientific_rationale_short** | Cream cheese is high-fat / low-protein / often flavored, so it lacks the dairy *signal* strength that carries plain white cheese into dairy_protein; without a name anchor it falls to `default` (no signal) or `whole_food_fat` (fat-led). The anchor restores correct dairy identity so the dairy calorie table + `is_plain_dairy` (R-04) cap relief apply, and the dairy A-ceiling (EV-021) governs it. Same class as the cereal-anchor (QA-CER-001) and yogurt-anchor (TASK-139C) gaps. |
+| **evidence_strength** | Strong (direct: run_cheese_001 misroute 47.4% [27/57; 26 cream] → run_cheese_002 misroute 1.8% [1/57]; insufficient 3→0). |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — unblocks the TASK-142 cheese-spreads misroute<5% / insufficient-0% DoD (run_cheese_002). |
+| **implementation_complexity** | Trivial (4 hard anchors + 1 exclusion list; no scoring logic). |
+| **recommended_action** | implemented (TASK-145). Routing-only; Nutrition/Product sign-off pending only for the cheese grade *publication* (separate from this routing fix). |
+| **affected_categories** | cheese_spreads (dairy_protein routing). Collision-audited against maadanim / yogurt_system / milk corpora — 0 name matches; frozen categories unaffected. |
+| **candidate_signal_name** | (no new signal — hard anchor terms in `router_v2.HARD_ANCHORS`) |
+| **should_affect_score_now** | false (routing/identity) — it changes *which category table* a product is scored under, but adds no scoring rule. Cream cheese moving from default/whole_food_fat to dairy_protein corrects its identity; the dairy A-ceiling still gates any A. |
+| **required_input_fields** | `canonical_name_he` (100% Hebrew coverage on the cheese corpus). |
+| **label_observability** | Fully observable — substring match on the product name. Anchors: `גבינת שמנת` (cream_cheese), `ממרח גבינה` (cheese_spread), `פילדלפיה` (cream_cheese), `נפוליאון` (cream_cheese, with cake exclusion [עוגה/עוגת/פס/מאפה/בצק]). Bare `שמנת` deliberately NOT added (sour/sweet/whipping cream are not cheese). |
+| **guards_verified** | (1) Router regression **15/15 PASS** (12 frozen + 3 new cream-cheese entries incl. napoleon-cake exclusion). (2) Spot-check: גבינת שמנת/ממרח גבינה/פילדלפיה/נפוליאון-cheese → dairy_protein; עוגת פס נפוליאון, שמנת חמוצה, שמנת מתוקה → default (correctly NOT dairy). (3) Collision audit: 0 name matches in maadanim/yogurt/milk corpora → no frozen-category routing movement. (4) Engine otherwise unmodified; determinism confirmed (run_cheese_001 re-run on patched router == run_cheese_002). |
+| **rollback** | `git revert` of the cream-cheese HARD_ANCHORS hunk + `נפוליאון` ANCHOR_EXCLUSIONS entry in `router_v2.py` (and the 3 regression-corpus entries) restores prior behavior (cheese misroute 47.4%). No score artifact promoted (run_cheese_001/002 NON-AUTHORITATIVE). Notify: Data Architecture + Scoring Governance Lead. |
+| **source** | TASK-145 (spun off TASK-142 QA-CHS-001). Files: `router_v2.py` HARD_ANCHORS + ANCHOR_EXCLUSIONS; `router_regression_corpus.json` (+3 entries); `batch_run_cheese_002.py`; `run_cheese_002_run_summary.json`. |
+| **date_recorded** | 2026-06-01 |
+| **notes** | **run_cheese_002 (post-fix):** misroute 1.8% (only 1 residual — גבינת עזים 32% → snack_bar_granola), insufficient 0/57, grades B23/A6/C27/D1, median 65.0. Cream pool now scores under dairy_protein (median 60.7, C-heavy — high fat + stabilizers). **A-ceiling working:** 6 white-cheese macro-A's (85) all `a_eligible_pre_routing=False` (fail C3 — no confirmed live culture) → WITHHELD; consistent with the conservative dairy ceiling (EV-021). NON-AUTHORITATIVE pending Nutrition/Product grade-publication sign-off. |
+
+### EV-026 — Ingredient-List OCR/Disclaimer-Bleed Sanitization (Upstream Data Hygiene)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-026 |
+| **task** | TASK-144 (Fix 1) |
+| **recorded** | 2026-06-01 |
+| **business_signal** | Israeli retailer scrapes routinely glue nutrition-panel text (`ערכים תזונתיים`, `… גרם חלבונים`, `… קל אנרגיה`, `מג נתרן/סידן`) and site disclaimers (`אין להסתמך`, `יש לקרוא…`, `יתכנו טעויות`, `להמחשה בלבד`) onto `ingredients_list`. These phantom "ingredients" inflate `ingredient_count`; with 0 additives and 0 added sugars the **only** thing tripping `nova_proxy.py` `ing_count > 5` → NOVA 3 is this noise (יופלה GO: 8 listed, 3 real). |
+| **data_source** | BSIP1 run_maadanim_001 source records; trace `bsip1_maadanim_7290110321031` (raw_count 8 → clean 3). Verified across maadanim corpus + 7-category blast radius. |
+| **mechanism** | `signal_extractor.sanitize_ingredient_list()` drops items that are unambiguous bleed (disclaimer/nutrition phrase, ≥2 quantity fragments, digit-led, or panel-connector lead `מתוכם/מהם/הנתונים`) and truncates bleed glued onto a real head at `.n`/digit-quantity/panel-phrase boundaries (bare `.` treated as a separator, NOT a cut — protects multi-ingredient items like `חלב.מייצב`). `nova_proxy` consumes the sanitized count. |
+| **layer** | Data hygiene — NOT a scoring rule. No cap/floor/weight/threshold added (no Tension-5 rule-budget cost). |
+| **label_observability** | Observable: L1 emits `ingredient_count_raw` + `ingredient_sanitization{raw_count,clean_count,dropped,truncated}` on every trace. |
+| **activation_scope** | TASK-144 activation toggle (maadanim run opt-in via `BARI_TASK144_FIXES=on`). Architecturally cross-category-safe, but scoped to maadanim for this deployment. |
+| **effect** | GO NOVA 3→2; processing_quality 65→85, WFI 60→85. No real ingredient lost (verified: hummus `חומוס …bleed` salvages `חומוס`; goat-yogurt `.מייצב` separator preserved). |
+| **rollback** | `BARI_TASK144_FIXES` unset → sanitizer bypassed, raw counts return. Deterministic, reversible. |
+
+### EV-027 — Fiber "Absent ≠ Zero" for Naturally Fiber-Free Dairy (nutrient_density)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-027 |
+| **task** | TASK-144 (Fix 2) — HIGHEST-RISK item |
+| **recorded** | 2026-06-01 |
+| **business_signal** | `nutrient_density` blends protein (65%) and fiber (35%); a MISSING fiber value is read as 0 and drags the dimension down even though the food category is **not expected** to contain fiber. Penalizing a dairy matrix for absent fiber mis-models structural non-applicability as a deficiency (parallel to the whole-food-fat-floor principle: do not penalize a food for not being something it isn't). GO: nd 32.5 → 50.0. |
+| **data_source** | maadanim corpus; cross-category blast radius (cereals 0 / bread_light 0 changes confirms gate tightness). |
+| **mechanism** | When category ∈ `FIBER_NOT_APPLICABLE_CATEGORIES` AND fiber is genuinely absent/≤0, re-normalize 65/35 → 100/0 (protein-only). |
+| **activation_scope** | **TIGHT ALLOWLIST** `("dessert","dairy_protein","yogurt")` — bread, cereal, bars, crackers, crispbread, sauces, whole-food fats, beverages DELIBERATELY EXCLUDED (missing fiber there IS a real deficiency). Plus TASK-144 maadanim-run toggle. |
+| **label_observability** | Observable: dimension note records `fiber not-applicable for category '…' (EV-027: protein-only, 65/35→100/0)`. |
+| **rollback** | `BARI_TASK144_FIXES` unset → flat 65/35 blend with fiber-as-0 returns. Or empty the allowlist. |
+| **risk_note** | Blast radius confirmed this is the rule that can lift clean intact fermented dairy (yogurt/cheese) toward/into A under the milk 85/A precedent (RULING-DAIRY-A-01). Therefore scoped OFF for frozen categories — cross-category adoption requires Product Agent sign-off. |
+
+### EV-028 — Dairy Protein Source Typing (protein_quality)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-028 |
+| **task** | TASK-144 (Fix 3) |
+| **recorded** | 2026-06-01 |
+| **business_signal** | The enricher types any product with an isolate marker (incl. `אבקת חלב` milk powder) as `mixed` → ×0.85 protein-quality haircut. Pure-dairy protein (whey + casein + milk protein) is a complete, high-DIAAS protein; the "mixed" haircut (for genuinely blended/uncertain sources) is unjustified. GO: protein_quality 42.5 → 50.0. |
+| **data_source** | maadanim corpus; trace `bsip1_maadanim_7290110321031` (source mixed→dairy). |
+| **mechanism** | New source class `dairy` (factor 1.0) assigned only when `product_type_dairy` AND every isolate marker is a WHOLE dried-dairy ingredient (milk powder / milk protein / casein) — NOT an extracted protein FRACTION. |
+| **collision_check** | **No collision with F2 / TASK-133B** (PROTEIN_QUALITY_MATRIX_DISCOUNT). F2 gates on `protein_matrix_form == "reconstructed"` (RECONSTRUCTED_PROTEIN_MARKERS, which explicitly EXCLUDE milk powder) AND bar categories; EV-028 gates on whole dried-dairy + dairy matrix. The two are mutually exclusive by construction (verified: GO `protein_matrix_form=None`). Fix 3 sets the source FACTOR; F2 sets an independent matrix-form DISCOUNT multiplier. |
+| **activation_scope** | TASK-144 maadanim-run toggle. |
+| **label_observability** | Observable: protein dimension note records `source=dairy(×1.0)`; L3 `protein_source` / `protein_source_basis`. |
+| **rollback** | `BARI_TASK144_FIXES` unset → reverts to `mixed` ×0.85. Or remove `"dairy"` from `source_factors`. |
+
+### TASK-144 companion — Macro-Plausibility Data-Integrity Guard
+
+| Field | Value |
+|-------|-------|
+| **task** | TASK-144 (companion to EV-026) |
+| **business_signal** | OCR parse errors produce impossible macros (e.g. `protein_g=190/100g`, a `19.0`→`190` misread). These survived into the score and — once EV-027/028 lifted the dimensions — produced a spurious 88.7/A (`יוגורט גו נטול לקטוז`). |
+| **mechanism** | New consistency check `macros_plausible` (sibling of `kcal_plausible`): False if any macro > 100 g/100g or macro-implied energy > 2× declared kcal + 50. When False → −40 confidence (product flagged `insufficient_data`, no grade). |
+| **activation_scope** | Gated to TASK-144 toggle so frozen outputs stay byte-identical; flag itself always computed (observable). Flags exactly 1 product across all frozen corpora (the same 190g artifact) — a correct universal catch deferred to per-category rescore. |
+| **rollback** | `BARI_TASK144_FIXES` unset → deduction off. |
+
+### EV-029 — BSIP0 nutritionList Total-Fat Overwrite (Upstream Data Integrity; EV-026 family)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-029 |
+| **task** | TASK-142A |
+| **recorded** | 2026-06-02 |
+| **layer** | Data ingestion — NOT a scoring rule. No cap/floor/weight/threshold added (no Tension-5 rule-budget cost). Sibling to EV-026 (both are Shufersal scrape-hygiene defects). |
+| **business_signal** | The shared Shufersal `div.nutritionList` parser used `NUTR_LABEL_MAP` with substring matching + break-on-first, mapping BOTH `שומנים` (total fat) and `שומן` (a substring of every "of which" sub-row: `שומן טראנס`, `חומצות שומן רוויות`) to `fat`. The panel lists total fat first, then indented sub-rows; each sub-row label contains `שומן`, re-matched `שומן→fat`, and OVERWROTE total fat. The last fat-bearing row (trans, `פחות מ 0.5`) won → `fat_g` collapsed to 0.5. Saturated fat was NEVER captured (generic `שומן→fat` preceded the specific `שומן רווי→saturated_fat` in iteration order; loop broke first). The Hebrew final-letter trap (`שומן` final-ן is not a substring of `שומנים` regular-נ) is why the legacy map needed both forms — and why a naive stem fix fails. |
+| **data_source** | cheese run_cheese_001 raw (62/116 `fat_raw="פחות מ 0.5"`); cereals run_cereals_002 (75/113); yogurt run_yogurt_003 (47/97); maadanim live (88/200); hummus (TASK-039 audit: 59/69). Saturated fat 0% captured in EVERY nutritionList corpus — the universal signature. Live re-scrape verification (2026-06-02): גבינת עזים 32% 0.5→32 (sat 22), קוטג' 9% 0.5→9 (sat 5.4), שמנת לבישול 15% 0.5→15 (sat 9), גבינת שמנת 18% 0.5→22 (sat 14.3). |
+| **mechanism** | New shared parser `03_operations/bsip0/scrape/_shared/bsip0_nutrition.py`: `classify_nutr_label()` normalizes Hebrew final-forms, classifies most-specific-first (trans→saturated→…→generic fat LAST), and never lets an `מתוכו/מהם` "of which" sub-row map to total fat; `parse_nutrition_list()` keeps first-per-field (totals precede sub-rows). All 5 Shufersal nutritionList scrapers (cheese/cereals/yogurt/maadanim/hummus) now import it — single source of truth (the TASK-039 audit found this in hummus but never centralized the fix, so it re-propagated to 4 more categories). |
+| **propagation** | Confirmed into scored traces: yogurt_003 45/88 `fat_g==0.5`, 88/88 saturated absent, **100% `fat_quality` neutralized to 50** ("sat_fat absent → neutral 50"); cereals_002 71/92 `fat_g==0.5`, 92/92 neutralized; maadanim live 88/200 / 200/200; hummus live max fat 5.9g (tahini products should be 15-25g). Effect on final grade is bounded (`fat_quality` weight 0.08) but the dimension is uniformly dead → real fat-quality signal suppressed across these runs; fat also feeds `fat_pct_of_kcal` and `hp_fat_*` patterns. |
+| **frozen/live status** | NOT affected (different/earlier path): **milk** (frozen run_004_recalibrated) — Playwright separate-tab capture; **bread** (frozen real_bread_retail_003_v1) — proto_v0 `scrape_bread_retail.py`, no nutritionList, no saturated_fat field; **snacks** — separate path; **yohananof** milk/hummus — `ערכים תזונתיים` textblock regex. Affected & NON-AUTHORITATIVE (NO-GO already): cheese_001/002, cereals_002, yogurt_003. Affected & LIVE: **maadanim** (rescored TASK-136) and **hummus** — require re-scrape + re-score as separate tasks. |
+| **TASK-143 verdict** | **run_yogurt_003 is AFFECTED, NOT clean** — `fat_g` collapsed on 45/88 and `fat_quality` neutralized on all 88. The yogurt LIVE swap must wait for a clean re-scrape (run_yogurt_004) + re-score. TASK-143 stays BLOCKED on this. |
+| **label_observability** | Observable: QA check `COV-006` (run_qa.py) emits per-product implausibility reasons + corpus %; scraper `main()` composition gate prints a Plausibility line and FAILs ≥5% implausible. `nutrition_implausible()` / `composition_nutrition_report()` are the shared guard. |
+| **qa_guard** | `COV-006 Nutrition plausibility` — hard-fails a run when ≥5% of products show the fat-overwrite signature (`saturated_fat > fat`, or `fat≤0.5` with declared energy ≥50 kcal above macro-implied energy). Legitimately low-fat high-carb foods (cereal flakes) pass — their carbs carry the energy. Verified: old broken cheese corpus 31.9% → FAIL; corrected sample → PASS. |
+| **activation_scope** | Always-on data-ingestion fix (parser correctness is not toggled). Does NOT alter any frozen/published score by itself — scores only change on the owning category's next re-scrape + re-score. |
+| **rollback** | Revert the 5 scraper edits + delete `_shared/bsip0_nutrition.py` to restore the legacy `NUTR_LABEL_MAP`. Git-reversible; no data migration. (Reverting is strictly worse — restores the 0.5g collapse.) |
+
+---
+
 ## Section B — Guardrails (Misconceptions That Must NOT Be Modeled)
 
 These 20 misconceptions are explicitly excluded from BSIP2 algorithmic treatment. Modeling any of these as if true would produce systematic scoring errors.

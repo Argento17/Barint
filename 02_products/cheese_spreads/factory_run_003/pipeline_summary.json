@@ -1,0 +1,58 @@
+{
+  "category_slug": "cheese-spreads",
+  "run_id": "run_cheese_003",
+  "supersedes": "run_cheese_002 (INVALID — corrupt fat) and run_cheese_001 (pre-router-fix diagnostic)",
+  "pipeline_run_date": "2026-06-02",
+  "task": "TASK-142 (resumed after TASK-142A/EV-029 parser fix)",
+  "engine": "proto_v0 / 0.4.1 (UNMODIFIED — no score tuning, no router change)",
+  "data_fix": "TASK-142A / EV-029 — shared BSIP0 nutrition parser (bsip0_nutrition.py) reads TOTAL fat, captures saturated separately, never lets an 'of which' sub-row overwrite a total macro. Re-scrape replaced the corrupt 2026-06-01 raw.",
+  "source": "Shufersal re-scrape 2026-06-02 -> BSIP1 run_cheese_003 (corrected fat) -> BSIP2 run_cheese_003",
+  "governance": "cheese_spreads_stress_test_001 (TASK-141, verdict B); dairy calibration TASK-139A/B/D; router anchor EV-025; data-hygiene EV-029",
+  "stages": {
+    "shelf_mapping": "pass",
+    "corpus_filter": "pass",
+    "bsip0_gate": "pass (incl. plausibility guard 0.0% implausible)",
+    "bsip1_enrichment": "pass",
+    "qa_gate": "pass",
+    "bsip2_readiness": "conditional_nutrition_only",
+    "frontend_packaging": "pass"
+  },
+  "corpus": {"scraped": 117, "bsip1_included": 59, "displayable": 54, "withheld_insufficient": 5, "pipeline_errors": 0,
+             "coverage_displayable": {"nutrition": "100%", "ingredients": "100%", "hebrew": "100%", "images": "100%"},
+             "coverage_full_corpus": {"nutrition": "91.5%", "ingredients": "91.5%", "images": "100%"}},
+  "subpools_displayable": {"cottage": 11, "white_cheese_quark": 18, "cream_cheese_spread": 24, "labaneh": 1, "developmental": 0},
+  "scoring": {
+    "grade_distribution_displayable": {"A": 1, "B": 20, "C": 25, "D": 7, "E": 1},
+    "score_median": 55.0,
+    "score_range": [25.2, 82.0],
+    "grade_thresholds_engine": {"S": 90, "A": 80, "B": 65, "C": 50, "D": 35, "E": 0},
+    "per_pool": {
+      "cottage": {"n": 11, "grades": {"B": 8, "C": 3}, "median": 69.4, "range": [52.0, 74.9]},
+      "white_cheese_quark": {"n": 18, "grades": {"B": 11, "C": 5, "A": 1, "D": 1}, "median": 68.6, "range": [48.0, 82.0]},
+      "labaneh": {"n": 1, "grades": {"C": 1}, "median": 52.0, "range": [52.0, 52.0]},
+      "cream_cheese_spread": {"n": 24, "grades": {"C": 16, "D": 6, "B": 1, "E": 1}, "median": 52.0, "range": [25.2, 68.3]}
+    },
+    "a_ceiling_withheld": 1,
+    "a_ceiling_note": "1 macro-A (גבינה טבורוג 5%, 82.0) fails A-ceiling C1-C4 -> WITHHELD per EV-021. Ruling working as designed on REAL fat data (conservative dairy ceiling).",
+    "score_shift_vs_run_002": "Overall median 65.0->55.0; cream-cheese-spread 60.7->52.0. Expected: corrected high fat (25-32% vs falsely 0.5g) now scores truthfully. Engine unchanged."
+  },
+  "plausibility": {"cov006_implausible_pct": 0.0, "corrupt_corpus_implausible_pct": 31.9, "fat_le_0_5_in_any_pool": 0, "saturated_gt_total_in_any_pool": 0},
+  "exit_criteria_DoD": {
+    "coverage_ge90pct": "MET (displayable 100%; full corpus 91.5%)",
+    "insufficient_0pct_displayable": "MET (0/54 displayable; 5 partial-panel products withheld as transparency-tier)",
+    "misroute_lt5pct": "MET (1.7% — 1 residual goat cheese)",
+    "fat_sane_all_4_subpools": "MET (fat<=0.5: 0; saturated>fat: 0; cream-cheese reads real 25-32%)",
+    "cov006_plausibility": "MET (0.0% implausible vs 31.9% on corrupt corpus)",
+    "a_ceiling_withhold_on_real_fat": "MET (lone macro-A withheld, 0 A-eligible pre-routing)",
+    "subpool_structure_applied_documented": "MET (4 pools + per-product + rollup)",
+    "qa_green": "MET (all data/routing/plausibility gates green; engine unchanged)",
+    "frontend_package_ready": "MET (factory_run_003; 52/59 display-approved; NON-AUTHORITATIVE pending Nutrition sign-off)"
+  },
+  "remaining_to_live": [
+    "Nutrition/Product grade-publication sign-off, incl. confirming the 1 A-ceiling-withheld macro-A and the corrected per-pool grades.",
+    "Optional: goat-cheese signal for the 1 residual misroute (1.7%, under gate).",
+    "Optional: broaden labaneh query (displayable pool = 1)."
+  ],
+  "promoted_to_frontend": false,
+  "verdict": "DoD MET on all data + routing + plausibility gates with the EV-029-corrected fat and an UNMODIFIED engine. run_cheese_003 supersedes the INVALID run_cheese_002 (corrupt fat) and the run_cheese_001 diagnostic. Frontend package held NON-AUTHORITATIVE only on the Nutrition/Product human sign-off gate."
+}

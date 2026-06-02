@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.384708Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.818150Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_58030",
@@ -39,7 +39,9 @@
     "artificial_color_detected (צבע מאכל)",
     "high_additive_category_count: 5"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
@@ -51,12 +53,11 @@
     "fat_trans_g": null,
     "sodium_mg": 41.0,
     "carbohydrates_g": 8.6,
-    "sugars_g": null,
+    "sugars_g": 8.0,
     "dietary_fiber_g": null,
     "protein_g": 2.3,
-    "ingredient_count": 14,
+    "ingredient_count": 10,
     "ingredient_list": [
-      "68% יוגורט 2.2% שומן",
       "מים",
       "תות מבושל (6%)",
       "סוכר",
@@ -66,11 +67,26 @@
       "תוסף תזונה (סידן - טריקלציום צ יטרט)",
       "חומרי טעם וריח",
       "צבע מאכל (רכז גזר שחור )",
-      "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם מכיל חלב ערכים תזונתיים 100 מ\"ל 8 גרם סוכרים מתוך פחמימות 58 קל אנרגיה 2.3 גרם חלבונים 8.6 גרם פחמימות 1.5 גרם שומנים 41 מג נתרן 150 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם"
     ],
+    "ingredient_count_raw": 14,
+    "ingredient_sanitization": {
+      "raw_count": 14,
+      "clean_count": 10,
+      "dropped": [
+        "68% יוגורט 2.2% שומן",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם מכיל חלב ערכים תזונתיים 100 מ\"ל 8 גרם סוכרים מתוך פחמימות 58 קל אנרגיה 2.3 גרם חלבונים 8.6 גרם פחמימות 1.5 גרם שומנים 41 מג נתרן 150 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,19 +98,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 23.28,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.93,
     "protein_per_kcal": 0.0397,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -132,8 +148,8 @@
       "סוכר"
     ],
     "has_fruit_concentrate": true,
-    "has_fermentation": false,
-    "product_type_dairy": true,
+    "has_fermentation": true,
+    "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
@@ -166,7 +182,8 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "primary_fragmentation": null,
+    "sanitized_ingredient_count": 10,
+    "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
@@ -176,7 +193,6 @@
     ],
     "fat_pct_of_kcal": 23.28,
     "ingredient_list": [
-      "68% יוגורט 2.2% שומן",
       "מים",
       "תות מבושל (6%)",
       "סוכר",
@@ -186,10 +202,7 @@
       "תוסף תזונה (סידן - טריקלציום צ יטרט)",
       "חומרי טעם וריח",
       "צבע מאכל (רכז גזר שחור )",
-      "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם מכיל חלב ערכים תזונתיים 100 מ\"ל 8 גרם סוכרים מתוך פחמימות 58 קל אנרגיה 2.3 גרם חלבונים 8.6 גרם פחמימות 1.5 גרם שומנים 41 מג נתרן 150 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. n*במוצר כשר לפסח: לוקוסט בין גאם"
     ]
   },
   "L4_interpreted_concerns": {
@@ -241,27 +254,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 7.5,
+    "nutrient_density": 11.5,
     "calorie_density": 50.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 70.0,
     "protein_quality": 11.5,
     "additive_quality": 10.0,
     "satiety_support": 47.6,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 18
+    "whole_food_integrity": 31
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.3g→11.5, fiber=0g→0.0, weighted 65/35=7.5",
+    "nutrient_density": "protein=2.3g→11.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 11.5",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=58.0)",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(20.0) + fiber(0.0) + wg(0) = 70.0",
     "protein_quality": "protein=2.3g base=11.5, source=whole_food(×1.0) → 11.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.3×3 + 0×5) / 58.0 × 400 = 47.6",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 + ferm_bonus=5 → 31"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -275,7 +288,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 39.15,
+  "weighted_dimension_score": 37.87,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -379,7 +392,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 39.15,
+  "score_after_cap": 37.87,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -402,8 +415,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -414,7 +427,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=23.3<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=23.3<30.0 or sugar=8.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -426,17 +439,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=14"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 35.15,
+  "score_after_penalty": 37.87,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -458,15 +465,11 @@
     },
     "processing_load": {
       "binding_cap": 60,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -501,16 +504,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 35.15,
+  "score_after_floors": 37.87,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 35.1,
+  "final_score_estimate": 37.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']"
   ],
   "unresolved_flags": [
     "STRUCTURAL_EMPTINESS: calorie density dimension capped at 50 (SRC-04)"

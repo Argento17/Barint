@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "purpose": "CANDIDATE §2.8 prohibited-vocabulary exemption registry (R4/R2 mitigation). NOT wired into validate-corpus. Produced by content-agent, TASK-130 follow-up, 2026-06-01. A validator change is required to consult this file; until then it is documentation only.",
+    "rule": "validate-corpus §2.8 should suppress a finding only when (category, productId, field, token) matches an active entry below. Per-instance + reasoned; never a blanket token whitelist.",
+    "reviewed_by": "content-agent",
+    "date": "2026-06-01",
+    "senses": {
+      "compositional": "token describes ingredient composition (e.g. נקי = short, additive-free list) — a finding, not a health verdict",
+      "informational": "token guides the reader to act on information (e.g. כדאי לבדוק = check the label) — transparency, not a purchase recommendation",
+      "false_positive_negation": "token is negated (לא/בלי/אין) — prohibited sense absent",
+      "false_positive_meta": "text is about/quoting a health label — anti-claim, not a claim"
+    }
+  },
+  "exemptions": [
+    { "category": "hummus", "productId": "bsip1_7296073733324", "field": "positiveSignals", "token": "נקי", "sense": "compositional" },
+    { "category": "hummus", "productId": "bsip1_7296073733331", "field": "positiveSignals", "token": "נקי", "sense": "compositional" },
+    { "category": "hummus", "productId": "bsip1_3643820", "field": "positiveSignals", "token": "נקי", "sense": "compositional" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_5014271300429", "field": "bottomLine", "token": "נקי", "sense": "compositional" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_5014271360423", "field": "limitingFactors", "token": "נקי", "sense": "compositional" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_5014271360423", "field": "bottomLine", "token": "נקי", "sense": "compositional" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_7290110325312", "field": "comparisonContext", "token": "נקי", "sense": "compositional" },
+    { "category": "snacks", "productId": "snk-001", "field": "bottomLine", "token": "נקי", "sense": "compositional" },
+    { "category": "snacks", "productId": "snk-011", "field": "positiveSignals", "token": "נקי", "sense": "compositional" },
+    { "category": "snacks", "productId": "snk-011", "field": "limitingFactors", "token": "נקי", "sense": "compositional" },
+    { "category": "yogurts", "productId": "yog-003", "field": "bottomLine", "token": "נקי", "sense": "compositional" },
+    { "category": "bread", "productId": "shufersal_7290016245325", "field": "insightLine", "token": "כדאי", "sense": "informational" },
+    { "category": "bread", "productId": "shufersal_7290016245325", "field": "bottomLine", "token": "כדאי", "sense": "informational" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_7290107958035", "field": "bottomLine", "token": "כדאי", "sense": "informational" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_7290110561604", "field": "comparisonContext", "token": "כדאי", "sense": "informational" }
+  ],
+  "false_positives": [
+    { "category": "maadanim", "productId": "bsip1_maadanim_5014271360423", "field": "insightLine", "token": "בריא", "sense": "false_positive_meta" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_7290110558703", "field": "bottomLine", "token": "בריא", "sense": "false_positive_meta" },
+    { "category": "maadanim", "productId": "bsip1_maadanim_7290107950206", "field": "limitingFactors", "token": "בריא", "sense": "false_positive_meta" },
+    { "category": "yogurts", "productId": "yog-007", "field": "bottomLine", "token": "נקי", "sense": "false_positive_negation" }
+  ]
+}

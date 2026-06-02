@@ -366,3 +366,32 @@ Hummus BSIP2 (run_hummus_002) is ready for frontend packaging subject to the con
 
 *Baseline Freeze Report — TASK-045 — QA & Audit Lead — 2026-05-31*  
 *run_hummus_002 is frozen. Do not overwrite. Future re-runs must increment run ID.*
+
+
+---
+
+## Amendment 1 — TASK-129A confidence-gate fix (2026-06-01, Controller-approved)
+
+**Type:** label-only re-freeze. **Scores, grades, nutrition, router, BSIP2 outputs: UNCHANGED.**
+
+The §5 data-sufficiency gate was hardened (presence → real-list; see
+`launch_definition_v1.md` §5 and `03_operations/bsip2/confidence_gate_fix_129a_v1.md`).
+Re-running the corrected gate over the displayed corpus
+(`02_products/hummus/frontend/hummus_frontend_v3.json`) downgraded **5 rows** from
+`verified` → `partial` because their ingredient field is not a real ingredient list:
+
+| id | name | reason |
+|---|---|---|
+| bsip1_7296073005889 | חומוס לבן ענק שופרסל | nutrition-panel bleed in ingredient field |
+| bsip1_7296073006015 | חומוס גדול שופרסל | nutrition-panel bleed |
+| bsip1_7296073705505 | חומוס מוקפא | nutrition-panel bleed (+1 false ingredient-cleanliness signal removed) |
+| bsip1_7290018359686 | הקיסר חומוס ענק | ingredient field empty |
+| bsip1_208428 | חומוס שלם יכין | ingredient field empty |
+
+confidence_distribution: verified 61→56, partial 6→11, insufficient 2 (unchanged).
+Nutrition VMs (sourced from the same panel) retained; the protein/fiber positive signals
+are nutrition-backed and kept. Logged as known limitation **HUM-005**; root re-scrape folds
+into **run_hummus_003** (with the HUM-001 fat fix). Backup: `hummus_frontend_v3.PRE-TASK129A.json`.
+Hummus remains **GO** — this is a documented, honest down-label, not a score change.
+
+*Amendment by nutrition-agent, TASK-129A. run_hummus_002 scores remain frozen.*

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.202705Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.568129Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7296073659587",
@@ -52,7 +52,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 11,
+    "ingredient_count": 8,
     "ingredient_list": [
       "ממתיקים (איזומלט",
       "סירופ מלטיטול)",
@@ -61,11 +61,25 @@
       "מנטול",
       "ממתיקים (אסצולפם קיי",
       "סוכרלוז)",
-      "ויטמין C. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "ויטמין C. עלול להכיל חלב"
     ],
+    "ingredient_count_raw": 11,
+    "ingredient_sanitization": {
+      "raw_count": 11,
+      "clean_count": 8,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "ויטמין C. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "ויטמין C. עלול להכיל חלב"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "low",
     "bsip1_trust_score": 0.45,
@@ -86,7 +100,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -171,6 +186,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -188,10 +204,7 @@
       "מנטול",
       "ממתיקים (אסצולפם קיי",
       "סוכרלוז)",
-      "ויטמין C. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "ויטמין C. עלול להכיל חלב"
     ]
   },
   "L4_interpreted_concerns": {
@@ -275,7 +288,7 @@
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 54
+    "whole_food_integrity": 60
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
@@ -287,7 +300,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 230.0 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=11 complexity_pen=6 → 54"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=8 complexity_pen=0 → 60"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -301,7 +314,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 50.16,
+  "weighted_dimension_score": 50.4,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -401,7 +414,7 @@
     }
   ],
   "binding_cap": 70,
-  "score_after_cap": 50.16,
+  "score_after_cap": 50.4,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -452,7 +465,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 46.16,
+  "score_after_penalty": 46.4,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -513,11 +526,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 46.16,
+  "score_after_floors": 46.4,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 46.2,
+  "final_score_estimate": 46.4,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -530,19 +543,19 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.422,
+    "primary_confidence": 0.367,
     "secondary": "C",
     "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.229,
+    "secondary_confidence": 0.348,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.229,
-      "D": 0.422,
-      "E": 0.199,
-      "F": 0.151
+      "C": 0.348,
+      "D": 0.367,
+      "E": 0.127,
+      "F": 0.158
     },
-    "is_between_worlds": false,
+    "is_between_worlds": true,
     "classification_notes": [
       "nova_3_signal",
       "sweetener_detected"

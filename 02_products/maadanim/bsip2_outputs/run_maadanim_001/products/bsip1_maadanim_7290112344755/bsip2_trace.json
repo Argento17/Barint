@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.979515Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.354698Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290112344755",
@@ -36,7 +36,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "very_long_ingredient_list: 19"
+    "very_long_ingredient_list: 16"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -45,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 125.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 6.6,
+    "fat_saturated_g": 3.9,
     "fat_trans_g": null,
     "sodium_mg": 62.0,
     "carbohydrates_g": 12.8,
-    "sugars_g": 3.9,
+    "sugars_g": 9.9,
     "dietary_fiber_g": null,
     "protein_g": 3.0,
-    "ingredient_count": 19,
+    "ingredient_count": 16,
     "ingredient_list": [
       "חלב מפוסטר (71%)",
       "שמנת",
@@ -70,11 +70,25 @@
       "קסנטאן גאם)",
       "חומרי טעם וריח",
       "רכז פרי המונק",
-      "מלח. 21%קצפת. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 3 גרם חלבונים 12.8 גרם פחמימות 6.6 גרם שומנים 19.3 מג כולסטרול 62 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 95 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח. 21%קצפת"
     ],
+    "ingredient_count_raw": 19,
+    "ingredient_sanitization": {
+      "raw_count": 19,
+      "clean_count": 16,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מלח. 21%קצפת. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 3 גרם חלבונים 12.8 גרם פחמימות 6.6 גרם שומנים 19.3 מג כולסטרול 62 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 95 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מלח. 21%קצפת"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,19 +99,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 3.6,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.305,
+    "fat_pct_of_kcal": 47.52,
+    "saturated_fat_fraction": 0.591,
+    "sugar_to_carb_ratio": 0.773,
     "protein_per_kcal": 0.024,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -171,6 +185,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 16,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -179,7 +194,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 3.6,
+    "fat_pct_of_kcal": 47.52,
     "ingredient_list": [
       "חלב מפוסטר (71%)",
       "שמנת",
@@ -196,10 +211,7 @@
       "קסנטאן גאם)",
       "חומרי טעם וריח",
       "רכז פרי המונק",
-      "מלח. 21%קצפת. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 3 גרם חלבונים 12.8 גרם פחמימות 6.6 גרם שומנים 19.3 מג כולסטרול 62 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 95 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח. 21%קצפת"
     ]
   },
   "L4_interpreted_concerns": {
@@ -236,7 +248,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -251,27 +263,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 9.8,
+    "nutrient_density": 15.0,
     "calorie_density": 85.0,
-    "glycemic_quality": 80.2,
+    "glycemic_quality": 65.2,
     "protein_quality": 15.0,
     "additive_quality": 64.0,
     "satiety_support": 28.8,
-    "fat_quality": 50.0,
+    "fat_quality": 73.5,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 8
+    "whole_food_integrity": 14
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=3.0g→15.0, fiber=0g→0.0, weighted 65/35=9.8",
+    "nutrient_density": "protein=3.0g→15.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 15.0",
     "calorie_density": "kcal=125.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(9.8) + fiber(0.0) + wg(0) = 80.2",
+    "glycemic_quality": "90 - sugar_penalty(24.8) + fiber(0.0) + wg(0) = 65.2",
     "protein_quality": "protein=3.0g base=15.0, source=whole_food(×1.0) → 15.0",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.0×3 + 0×5) / 125.0 × 400 = 28.8",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=6.6g<8.0): sat=3.9g base=73.5-seed0-trans0=73.5",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=19 complexity_pen=22 → 8"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 → 14"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -285,7 +297,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 47.79,
+  "weighted_dimension_score": 48.89,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -385,7 +397,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 47.79,
+  "score_after_cap": 48.89,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -420,7 +432,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=3.6<30.0 or sugar=3.9<20.0"
+      "condition": "fat_pct=47.5<30.0 or sugar=9.9<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -441,13 +453,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=19"
+      "note": "ingredient_count=16"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 38.79,
+  "score_after_penalty": 39.89,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -516,11 +528,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 38.79,
+  "score_after_floors": 39.89,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 38.8,
+  "final_score_estimate": 39.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

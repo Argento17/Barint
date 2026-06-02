@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.428281Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.858510Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_6664693",
@@ -39,22 +39,24 @@
     "artificial_color_detected (צבע מאכל)",
     "high_additive_category_count: 5"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
     "energy_kcal": 83.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 3.0,
+    "fat_saturated_g": 2.0,
     "fat_trans_g": null,
     "sodium_mg": 36.0,
     "carbohydrates_g": 10.0,
-    "sugars_g": 3.0,
+    "sugars_g": 8.9,
     "dietary_fiber_g": null,
     "protein_g": 3.1,
-    "ingredient_count": 14,
+    "ingredient_count": 11,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -66,11 +68,25 @@
       "לוקוסט-בין גאם)",
       "חומרי טעם וריח",
       "סיבים תזונ תיים",
-      "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS. מכיל חלב ערכים תזונתיים 100 גרם 8.9 גרם סוכרים מתוך פחמימות 83 קל אנרגיה 3.1 גרם חלבונים 10 גרם פחמימות 3 גרם שומנים 10 מג כולסטרול 36 מג נתרן 2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 101 מג סידן 3 סוכרים 2.25 כפיות סוכר 5.9 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 4.7 גרם חלבונים 14.9 גרם פחמימות 4.5 גרם שומנים 14.9 מג כולסטרול 55 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 152 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS"
     ],
+    "ingredient_count_raw": 14,
+    "ingredient_sanitization": {
+      "raw_count": 14,
+      "clean_count": 11,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS. מכיל חלב ערכים תזונתיים 100 גרם 8.9 גרם סוכרים מתוך פחמימות 83 קל אנרגיה 3.1 גרם חלבונים 10 גרם פחמימות 3 גרם שומנים 10 מג כולסטרול 36 מג נתרן 2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 101 מג סידן 3 סוכרים 2.25 כפיות סוכר 5.9 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 4.7 גרם חלבונים 14.9 גרם פחמימות 4.5 גרם שומנים 14.9 מג כולסטרול 55 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 152 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -81,19 +97,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 5.42,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.3,
+    "fat_pct_of_kcal": 32.53,
+    "saturated_fat_fraction": 0.667,
+    "sugar_to_carb_ratio": 0.89,
     "protein_per_kcal": 0.0373,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -131,7 +147,7 @@
       "סוכר"
     ],
     "has_fruit_concentrate": false,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
@@ -165,6 +181,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 11,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -173,7 +190,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 5.42,
+    "fat_pct_of_kcal": 32.53,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -185,10 +202,7 @@
       "לוקוסט-בין גאם)",
       "חומרי טעם וריח",
       "סיבים תזונ תיים",
-      "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS. מכיל חלב ערכים תזונתיים 100 גרם 8.9 גרם סוכרים מתוך פחמימות 83 קל אנרגיה 3.1 גרם חלבונים 10 גרם פחמימות 3 גרם שומנים 10 מג כולסטרול 36 מג נתרן 2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 101 מג סידן 3 סוכרים 2.25 כפיות סוכר 5.9 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 4.7 גרם חלבונים 14.9 גרם פחמימות 4.5 גרם שומנים 14.9 מג כולסטרול 55 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 152 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS"
     ]
   },
   "L4_interpreted_concerns": {
@@ -225,7 +239,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -244,27 +258,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 10.1,
+    "nutrient_density": 15.5,
     "calorie_density": 85.0,
-    "glycemic_quality": 82.5,
+    "glycemic_quality": 67.8,
     "protein_quality": 15.5,
     "additive_quality": 10.0,
     "satiety_support": 44.8,
-    "fat_quality": 50.0,
+    "fat_quality": 77.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 18
+    "whole_food_integrity": 29
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=3.1g→15.5, fiber=0g→0.0, weighted 65/35=10.1",
+    "nutrient_density": "protein=3.1g→15.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 15.5",
     "calorie_density": "kcal=83.0, category=dessert (conf 0.55, relaxed by 1.05x) → 85",
-    "glycemic_quality": "90 - sugar_penalty(7.5) + fiber(0.0) + wg(0) = 82.5",
+    "glycemic_quality": "90 - sugar_penalty(22.2) + fiber(0.0) + wg(0) = 67.8",
     "protein_quality": "protein=3.1g base=15.5, source=whole_food(×1.0) → 15.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.1×3 + 0×5) / 83.0 × 400 = 44.8",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=3.0g<8.0): sat=2.0g base=77.3-seed0-trans0=77.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=11 complexity_pen=6 + ferm_bonus=5 → 29"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -278,7 +292,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 44.12,
+  "weighted_dimension_score": 45.79,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -382,7 +396,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 44.12,
+  "score_after_cap": 45.79,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -405,8 +419,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -417,7 +431,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=5.4<30.0 or sugar=3.0<20.0"
+      "condition": "fat_pct=32.5<30.0 or sugar=8.9<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -429,17 +443,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=14"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 40.12,
+  "score_after_penalty": 45.79,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -461,15 +469,11 @@
     },
     "processing_load": {
       "binding_cap": 60,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -504,16 +508,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 40.12,
+  "score_after_floors": 45.79,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 40.1,
+  "final_score_estimate": 45.8,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']"
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=dessert secondary=snack_bar_granola, confidence=0.55"

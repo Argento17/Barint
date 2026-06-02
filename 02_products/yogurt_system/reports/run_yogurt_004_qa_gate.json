@@ -1,0 +1,33 @@
+{
+  "stage": "qa_gate",
+  "run_id": "run_yogurt_004",
+  "supersedes": "run_yogurt_003 (AFFECTED by EV-029 fat-overwrite)",
+  "generated": "2026-06-02",
+  "task": "TASK-143",
+  "engine": "proto_v0 / 0.4.0 (UNMODIFIED)",
+  "data_provenance": "Re-scrape 2026-06-02 with EV-029-fixed shared parser (bsip0_nutrition.py); corrupt 2026-06-01 raw REPLACED; nutrition_raw_source persisted (TASK-151).",
+  "corpus": {"scraped": 93, "bsip1_included": 86, "scored": 86, "excluded_no_usable_nutrition": 7, "pipeline_errors": 0},
+  "checks": {
+    "cov006_nutrition_plausibility": "PASS (0/86 = 0.0% implausible)",
+    "fat_overwrite_signature_eliminated": "PASS (fat=0.5 collapsed 47/97 -> 1; the 1 is a genuine 0% product)",
+    "cov001_nutrition_coverage": "PASS (82/86 = 95.3% all-4-macros)",
+    "cov002_ingredient_coverage": "PASS (86/86 = 100%)",
+    "cov003_image_coverage": "PASS (86/86 = 100%)",
+    "cov005_sodium_sugar": "PASS (sodium 100%)",
+    "no_pipeline_errors": "PASS (0)"
+  },
+  "ev029_impact": {
+    "vs_run_003": "MILD — 5/84 grade changes; score delta median 0.0, mean -0.2, range -14.1..+12.0; 35 down / 25 up / 24 ~same",
+    "reason": "Yogurt fat is genuinely low (0-3%), so fake-0.5 vs real-fat barely moves the score (unlike cream-cheese 0.5->25-32g). run_003 grades were invalid in provenance but close in value.",
+    "grade_dist_run_003": {"C": 32, "B": 29, "D": 24, "E": 1},
+    "grade_dist_run_004": {"C": 28, "B": 30, "D": 27, "E": 1}
+  },
+  "live_dec005_reconciliation": {
+    "live_shelf": "bari-web/src/data/comparisons/yogurts_frontend_v1.json (13 manual products)",
+    "live_grade_dist": {"A": 5, "B": 5, "C": 3},
+    "machine_max_score": 78.7,
+    "machine_max_grade": "B",
+    "finding": "Expected downward correction CONFIRMED. Manual A's (80-88) NOT supported on real data; cleanest plain bio yogurts cap at ~74-75/B. A-ceiling (139A) does NOT restore A. Non-dairy soy/coconut live rows need a plant-pool decision at re-author."
+  },
+  "verdict": "PASS (DATA + ROUTING + PLAUSIBILITY GATES GREEN on clean run_yogurt_004). Clean baseline ready to freeze. Live swap HELD on two human gates: Product Owner go-live (retire DEC-005, accept A->B correction) + Content/Design re-author. Engine UNMODIFIED; no live frontend touched."
+}

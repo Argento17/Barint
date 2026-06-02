@@ -18,8 +18,9 @@
   ],
   "normalized_nutrition_per_100g": {
     "energy_kcal": 170.0,
-    "fat_g": 0.5,
+    "fat_g": 10.5,
     "carbohydrates_g": 10.7,
+    "sugars_g": 3.2,
     "protein_g": 5.6,
     "sodium_mg": 370.0
   },
@@ -68,7 +69,7 @@
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%96%D7%95%D7%9F-%D7%9E%D7%A7%D7%95%D7%A8%D7%A8-%D7%A7%D7%A4%D7%95%D7%90%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%A0%D7%99%D7%A7%D7%99%D7%9D/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%A1%D7%9C%D7%98%D7%99%D7%9D/%D7%A1%D7%9C%D7%98%D7%99%D7%9D-%D7%90%D7%97%D7%A8%D7%99%D7%9D/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%A2%D7%9D-%D7%97%D7%A6%D7%99%D7%9C-%D7%A4%D7%99%D7%A7%D7%A0%D7%98%D7%99/p/P_7290119374885",
-    "scraped_at": "2026-05-30T18:42:28.016759",
+    "scraped_at": "2026-06-02T06:09:04.924919",
     "source_category": "search",
     "product_category": "hummus_and_savory_dips",
     "extraction_method": "html_parse",
@@ -76,162 +77,6 @@
     "price_ils": "12.9",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "חומוס מבושל 42% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה)), מים, חציל מטוגן 13% (חציל, שמן קנולה), טחינה גולמית 9.1%,  (שומשום), עגבניות מרוסקות 4.7%, רכז עגבניות 4.6%, פלפלים 1.7%, סוכר לבן, מלח, בצל מיובש, מווסת חומציות (חומצת לימון), תערובת תיבול,  חומר משמר (פוטסיום סורבט), חומץ טבעי. מכיל שומשום עלול להכיל ביצים",
-  "ingredients_raw_provenance": {
-    "source": "bsip1_text_fallback",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
-  },
-  "ingredient_order": [
-    {
-      "position": 1,
-      "text": "חומוס מבושל 42% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט=סודה לשתייה))",
-      "percentage_declared": 42.0,
-      "has_subgroup": true
-    },
-    {
-      "position": 2,
-      "text": "מים",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 3,
-      "text": "חציל מטוגן 13% (חציל, שמן קנולה)",
-      "percentage_declared": 13.0,
-      "has_subgroup": true
-    },
-    {
-      "position": 4,
-      "text": "טחינה גולמית 9.1%",
-      "percentage_declared": 9.1,
-      "has_subgroup": false
-    },
-    {
-      "position": 5,
-      "text": "(שומשום)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 6,
-      "text": "עגבניות מרוסקות 4.7%",
-      "percentage_declared": 4.7,
-      "has_subgroup": false
-    },
-    {
-      "position": 7,
-      "text": "רכז עגבניות 4.6%",
-      "percentage_declared": 4.6,
-      "has_subgroup": false
-    },
-    {
-      "position": 8,
-      "text": "פלפלים 1.7%",
-      "percentage_declared": 1.7,
-      "has_subgroup": false
-    },
-    {
-      "position": 9,
-      "text": "סוכר לבן",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 10,
-      "text": "מלח",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 11,
-      "text": "בצל מיובש",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 12,
-      "text": "מווסת חומציות (חומצת לימון)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 13,
-      "text": "תערובת תיבול",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 14,
-      "text": "חומר משמר (פוטסיום סורבט)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 15,
-      "text": "חומץ טבעי. מכיל שומשום עלול להכיל ביצים",
-      "percentage_declared": null,
-      "has_subgroup": false
-    }
-  ],
-  "extracted_additives": [
-    {
-      "term": "סודיום ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    },
-    {
-      "term": "מווסת חומציות",
-      "category": "acidity_regulator",
-      "position": 1
-    },
-    {
-      "term": "ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    }
-  ],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [
-    {
-      "term": "סוכר לבן",
-      "category": "added_sugar",
-      "position": 9
-    },
-    {
-      "term": "סוכר",
-      "category": "added_sugar",
-      "position": 9
-    }
-  ],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [
-    {
-      "term": "מבושל",
-      "category": "cooked",
-      "position": 1
-    }
-  ],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 15,
-    "additive_count": 3,
-    "flavor_marker_count": 0,
-    "sweetener_count": 2,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 1,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

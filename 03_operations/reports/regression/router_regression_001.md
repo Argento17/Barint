@@ -1,16 +1,16 @@
 # BSIP2 Router v2 Regression Report
 
-**Run date:** 2026-05-20 14:32 UTC
+**Run date:** 2026-06-02 09:56 UTC
 **Router:** router_v2
 **Corpus:** v1
 **Overall:** PASS
 
 | Status | Count |
 |--------|-------|
-| PASS   | 12  |
+| PASS   | 16  |
 | WARN   | 0  |
 | FAIL   | 0  |
-| TOTAL  | 12   |
+| TOTAL  | 16   |
 
 ---
 
@@ -100,6 +100,36 @@ Raw scores: `cereal=3.400  snack_bar_granola=2.100  whole_food_fat=0.250`
 Failure mode tested: `anchor stability`  
 Category: **dairy_protein** (expected: dairy_protein) | Conf: 0.93 (high) | Anchor: True | Subtype: kefir
 Raw scores: `dairy_protein=0.950`
+
+### ✓ `anchor_cream_cheese` — PASS
+
+**Cream cheese — anchor must fire to dairy_protein (TASK-145)**  
+Failure mode tested: `cream-cheese anchor gap (run_cheese_001 QA-CHS-001)`  
+Category: **dairy_protein** (expected: dairy_protein) | Conf: 0.93 (high) | Anchor: True | Subtype: cream_cheese
+Raw scores: ``
+
+### ✓ `anchor_cheese_spread` — PASS
+
+**Cheese spread (ממרח גבינה) — anchor to dairy_protein (TASK-145)**  
+Failure mode tested: `cream-cheese anchor gap`  
+Category: **dairy_protein** (expected: dairy_protein) | Conf: 0.92 (high) | Anchor: True | Subtype: cheese_spread
+Raw scores: `sauce_spread=1.300  dairy_protein=1.150  whole_food_fat=0.800`
+
+### ✓ `exclusion_napoleon_cake` — PASS
+
+**Napoleon CAKE must NOT route to dairy via the נפוליאון anchor (TASK-145)**  
+Failure mode tested: `cream-cheese anchor over-fire`  
+Category: **default** (expected: default) | Conf: 0.3 (uncertain) | Anchor: False | Subtype: None
+⚠ Instability: total_signal_mass<0.3 — routing to default
+Raw scores: `snack_bar_granola=0.150`
+
+### ✓ `exclusion_philadelphia_seasoning` — PASS
+
+**Philadelphia SEASONING blend must NOT route to dairy via the פילדלפיה anchor (TASK-153 / EV-030)**  
+Failure mode tested: `cream-cheese anchor over-fire (seasoning blend)`  
+Category: **default** (expected: default) | Conf: 0.3 (uncertain) | Anchor: False | Subtype: None
+⚠ Instability: total_signal_mass<0.3 — routing to default
+Raw scores: ``
 
 ---
 

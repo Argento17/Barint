@@ -1,6 +1,6 @@
 # BSIP2 Regression Check Report
 
-**Run date:** 2026-05-20 10:41 UTC
+**Run date:** 2026-06-01 18:57 UTC
 **Corpus version:** v1
 **Classifier:** structural_classifier_v1
 **Overall status:** WARN

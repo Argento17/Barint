@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.115305Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.487677Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290119380558",
@@ -38,7 +38,7 @@
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
     "high_additive_category_count: 5",
-    "very_long_ingredient_list: 23"
+    "very_long_ingredient_list: 20"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -47,15 +47,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 183.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 10.6,
+    "fat_saturated_g": 6.4,
     "fat_trans_g": null,
     "sodium_mg": 140.0,
     "carbohydrates_g": 18.0,
-    "sugars_g": 5.1,
+    "sugars_g": 13.6,
     "dietary_fiber_g": null,
     "protein_g": 3.7,
-    "ingredient_count": 23,
+    "ingredient_count": 20,
     "ingredient_list": [
       "חלב מפוסטר (45%)",
       "שמנת",
@@ -76,11 +76,25 @@
       "רכז פרי המונק",
       "מלח. מעדן 40%",
       "מוס 33%",
-      "קצפת 27%. מכיל חלב ערכים תזונתיים 100 גרם 13.6 גרם סוכרים מתוך פחמימות 183 קל אנרגיה 3.7 גרם חלבונים 18 גרם פחמימות 10.6 גרם שומנים 29 מג כולסטרול 140 מג נתרן 6.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 119 מג סידן 5.1 סוכרים 3.5 כפיות סוכר 8.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 15.3 גרם סוכרים מתוך פחמימות 207 קל אנרגיה 4.1 גרם חלבונים 20 גרם פחמימות 12 גרם שומנים 33 מג כולסטרול 159 מג נתרן 7.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 135 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "קצפת 27%"
     ],
+    "ingredient_count_raw": 23,
+    "ingredient_sanitization": {
+      "raw_count": 23,
+      "clean_count": 20,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "קצפת 27%. מכיל חלב ערכים תזונתיים 100 גרם 13.6 גרם סוכרים מתוך פחמימות 183 קל אנרגיה 3.7 גרם חלבונים 18 גרם פחמימות 10.6 גרם שומנים 29 מג כולסטרול 140 מג נתרן 6.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 119 מג סידן 5.1 סוכרים 3.5 כפיות סוכר 8.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 15.3 גרם סוכרים מתוך פחמימות 207 קל אנרגיה 4.1 גרם חלבונים 20 גרם פחמימות 12 גרם שומנים 33 מג כולסטרול 159 מג נתרן 7.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 135 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "קצפת 27%"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -91,19 +105,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 2.46,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.283,
+    "fat_pct_of_kcal": 52.13,
+    "saturated_fat_fraction": 0.604,
+    "sugar_to_carb_ratio": 0.756,
     "protein_per_kcal": 0.0202,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -132,9 +146,10 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
-      "אבקת חלב"
+      "אבקת חלב",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 2,
     "added_sugar_matches": [
@@ -148,8 +163,10 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
-    "red_labels": [],
-    "red_label_count": 0,
+    "red_labels": [
+      "sat_fat"
+    ],
+    "red_label_count": 1,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
@@ -180,6 +197,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 20,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -188,7 +206,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 2.46,
+    "fat_pct_of_kcal": 52.13,
     "ingredient_list": [
       "חלב מפוסטר (45%)",
       "שמנת",
@@ -209,10 +227,7 @@
       "רכז פרי המונק",
       "מלח. מעדן 40%",
       "מוס 33%",
-      "קצפת 27%. מכיל חלב ערכים תזונתיים 100 גרם 13.6 גרם סוכרים מתוך פחמימות 183 קל אנרגיה 3.7 גרם חלבונים 18 גרם פחמימות 10.6 גרם שומנים 29 מג כולסטרול 140 מג נתרן 6.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 119 מג סידן 5.1 סוכרים 3.5 כפיות סוכר 8.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 15.3 גרם סוכרים מתוך פחמימות 207 קל אנרגיה 4.1 גרם חלבונים 20 גרם פחמימות 12 גרם שומנים 33 מג כולסטרול 159 מג נתרן 7.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 135 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "קצפת 27%"
     ]
   },
   "L4_interpreted_concerns": {
@@ -249,7 +264,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -264,27 +279,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 12.0,
+    "nutrient_density": 18.5,
     "calorie_density": 70.0,
-    "glycemic_quality": 77.2,
-    "protein_quality": 15.7,
+    "glycemic_quality": 56.0,
+    "protein_quality": 18.5,
     "additive_quality": 10.0,
     "satiety_support": 24.3,
-    "fat_quality": 50.0,
-    "regulatory_quality": 95.0,
-    "whole_food_integrity": 0
+    "fat_quality": 44.7,
+    "regulatory_quality": 60.0,
+    "whole_food_integrity": 6
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=3.7g→18.5, fiber=0g→0.0, weighted 65/35=12.0",
+    "nutrient_density": "protein=3.7g→18.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 18.5",
     "calorie_density": "kcal=183.0, category=dessert → 70",
-    "glycemic_quality": "90 - sugar_penalty(12.8) + fiber(0.0) + wg(0) = 77.2",
-    "protein_quality": "protein=3.7g base=18.5, source=mixed(×0.85) → 15.7",
+    "glycemic_quality": "90 - sugar_penalty(34.0) + fiber(0.0) + wg(0) = 56.0",
+    "protein_quality": "protein=3.7g base=18.5, source=dairy(×1.0) → 18.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.7×3 + 0×5) / 183.0 × 400 = 24.3",
-    "fat_quality": "sat_fat absent → neutral 50",
-    "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=23 complexity_pen=30 → 0"
+    "fat_quality": "EV-012 fat_ratio: fat=10.6g ratio=0.656 base=44.7-seed0-trans0=44.7",
+    "regulatory_quality": "1 red label: ['sat_fat']",
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=20 complexity_pen=24 → 6"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -298,7 +313,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 39.59,
+  "weighted_dimension_score": 36.37,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -387,8 +402,8 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     }
   ],
   "caps_applied": [
@@ -399,10 +414,14 @@
     {
       "rule": "ADDITIVE_MARKERS_5_PLUS",
       "cap": 60
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
+      "cap": 55
     }
   ],
-  "binding_cap": 60,
-  "score_after_cap": 39.59,
+  "binding_cap": 55,
+  "score_after_cap": 36.37,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -437,7 +456,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=2.5<30.0 or sugar=5.1<20.0"
+      "condition": "fat_pct=52.1<30.0 or sugar=13.6<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -458,13 +477,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=23"
+      "note": "ingredient_count=20"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 30.59,
+  "score_after_penalty": 27.37,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -511,7 +530,7 @@
       }
     },
     "fat_quality": {
-      "binding_cap": null,
+      "binding_cap": 55,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -533,15 +552,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 30.59,
+  "score_after_floors": 27.37,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 30.6,
+  "final_score_estimate": 27.4,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
+    "DOMINANT: Binding cap=55 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
     "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
   ],
   "unresolved_flags": [],

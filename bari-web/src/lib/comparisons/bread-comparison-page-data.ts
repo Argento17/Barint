@@ -8,6 +8,7 @@ import {
   type ComparisonCorpusRaw,
 } from "@/lib/comparisons/corpus";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
+import { enrichRowSurface } from "@/lib/comparisons/row-surface";
 import {
   filterBreadProducts,
   BREAD_SHELF_LENS_OPTIONS,
@@ -32,9 +33,22 @@ function stripBreadInternalFields(products: BreadCorpusProduct[]): BariProductVM
 
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const breadCorpusMeta = loaded.meta;
-const breadProducts = stripBreadInternalFields(
-  loaded.products as BreadCorpusProduct[]
-);
+
+// TASK-162: bread's headline row metric is fiber, not protein. The shared enrichRowSurface
+// (used by hummus/cheese/yogurts/spreads) only populates protein_g, so we additively layer
+// fiber_g on top here — bread-only — reading the real per-100g value straight off
+// expansion.nutrition.fiber. null passes through untouched (metric column renders "—"); never
+// fabricated. protein_g is left intact, so no shared/other-category behavior changes.
+const breadProducts = enrichRowSurface(
+  stripBreadInternalFields(loaded.products as BreadCorpusProduct[])
+).map((product) => ({
+  ...product,
+  metrics: {
+    // protein_g is always set by enrichRowSurface; keep it intact alongside the new fiber_g.
+    protein_g: product.metrics?.protein_g ?? null,
+    fiber_g: product.expansion.nutrition?.fiber ?? null,
+  },
+}));
 
 export { breadCorpusMeta, breadProducts };
 
@@ -51,6 +65,17 @@ export const breadPrologueSentences = [
   "חלק מהמוצרים שמציגים 'מחמצת' בשם משתמשים בשמרים תעשייתיים ברכיבים. חלק אחר מסתמכים על כותרת 'מלא' כדי להציג רכיבים מעורבים.",
   "ההשוואה מתבססת על מה שאפשר לבדוק: ערכי חלבון, סיבים, נתרן, ותסיסה מאומתת ברשימת הרכיבים — לא על המיתוג.",
 ] as const;
+
+// Category caveat (cheese gold-standard format: bold header + 2 short paragraphs),
+// rendered once in the header categoryNote slot. Grounded in the documented bread
+// scoring nuance (.claude/scoring.md → "Known Constraints and Gaps"): the engine reads
+// fermentation and whole-grain only as they appear in the ingredient list, and cannot
+// tell genuine sourdough from an industrial sourdough-powder shortcut.
+export const breadCategoryNote = [
+  "הערת קטגוריה — תסיסה ודגן מלא נקראים מהרשימה, לא מהמיתוג\n\nהציון מזהה מחמצת, דגן מלא וסיבים לפי מה שמופיע ברשימת הרכיבים — לא לפי הכותרת שעל החזית. לחם שכתוב עליו 'מחמצת' או 'מלא' עשוי להישען על שמרים תעשייתיים או על תערובת קמחים, וזה מה שמשתקף בציון.",
+  "הערת קטגוריה — איכות התסיסה אינה נמדדת במלואה\n\nהבדיקה מזהה שתסיסה קיימת ברכיבים, אך אינה מבדילה בין מחמצת אמיתית ואיטית לבין אבקת מחמצת תעשייתית. שני לחמים עם 'מחמצת' ברשימה עשויים לקבל זיכוי דומה גם אם תהליך האפייה שלהם שונה לחלוטין.",
+]
+  .join("\n\n");
 
 export const breadMethodologyLines = [
   "ניתוח לחמים מבוסס על נתונים מגלויות שופרסל — מדגם מדף, לא סקר שוק מלא.",

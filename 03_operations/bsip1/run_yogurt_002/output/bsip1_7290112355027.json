@@ -1,0 +1,110 @@
+{
+ "schema_version": "bsip1_v0_1",
+ "file_type": "product",
+ "canonical_product_id": "bsip1_7290112355027",
+ "barcode": "7290112355027",
+ "canonical_name_he": "Yogurt",
+ "canonical_name_en": "Yogurt",
+ "brand": "Danona",
+ "package_size_g": null,
+ "unit_count": null,
+ "unit_size_g": null,
+ "serving_size_g": null,
+ "country_of_origin": "ישראל",
+ "kosher_certification": null,
+ "image_url": "https://images.openfoodfacts.org/images/products/729/011/235/5027/front_en.3.400.jpg",
+ "source_retailers": [
+  "openfoodfacts"
+ ],
+ "source_url": "https://world.openfoodfacts.org/product/7290112355027",
+ "normalized_nutrition_per_100g": {
+  "energy_kcal": 69.0,
+  "fat_g": null,
+  "fat_saturated_g": null,
+  "fat_trans_g": null,
+  "sodium_mg": null,
+  "carbohydrates_g": 6.84999990463257,
+  "sugars_g": null,
+  "dietary_fiber_g": null,
+  "protein_g": 10.0,
+  "cholesterol_mg": null
+ },
+ "energy_source_unit": "kcal",
+ "ingredients_text_he": "",
+ "ingredients_list": [],
+ "allergens_contains": [],
+ "allergens_may_contain": [],
+ "claims": [],
+ "confidence": {
+  "identity_confidence": "medium",
+  "barcode_confidence": "confirmed",
+  "nutrition_confidence": "confirmed_per_100g",
+  "matched_by": "off_barcode_single_source",
+  "observation_count": 1
+ },
+ "barcode_validation_status": "off_confirmed",
+ "barcode_confidence_reason": "OFF record 7290112355027, scraped run_yogurt_002.",
+ "nutrition_basis_claimed": "per_100g",
+ "nutrition_basis_detected": "per_100g",
+ "nutrition_consistency_status": "unverified",
+ "nutrition_consistency_warnings": [],
+ "ingredient_text_quality": "absent",
+ "ingredient_warnings": [
+  "no_ingredient_list_in_source"
+ ],
+ "canonical_trust_score": 0.5,
+ "canonical_trust_level": "medium",
+ "canonical_risk_flags": [
+  "single_source_only",
+  "no_ingredients",
+  "noisy_name"
+ ],
+ "conflicts_summary": {
+  "count": 0,
+  "has_unresolved": false,
+  "fields_in_conflict": [],
+  "identity_conflicts": [],
+  "nutrition_conflicts": [],
+  "ingredient_conflicts": [],
+  "labeling_conflicts": [],
+  "completeness_conflicts": []
+ },
+ "missing_fields": [
+  "fat_g",
+  "fat_saturated_g",
+  "sodium_mg",
+  "sugars_g",
+  "dietary_fiber_g",
+  "ingredients_text_he",
+  "ingredients_list",
+  "extracted_additives",
+  "extracted_sweeteners",
+  "extracted_fermentation_markers"
+ ],
+ "inferred_fields": [
+  "bsip_yogurt_subtype"
+ ],
+ "audit_ref": null,
+ "bsip_yogurt_subtype": "plain_natural",
+ "ingredients_raw": "",
+ "ingredients_raw_provenance": {
+  "source": "off_no_ingredients",
+  "bsip0_status": "absent"
+ },
+ "ingredient_order": [],
+ "extracted_additives": [],
+ "extracted_flavors": [],
+ "extracted_sweeteners": [],
+ "extracted_protein_markers": [],
+ "extracted_matrix_markers": [],
+ "extracted_fermentation_markers": [],
+ "extracted_roasting_markers": [],
+ "enrichment_summary": {
+  "ingredient_blind": true,
+  "nutrition_fields_present": 3
+ },
+ "enrichment_version": "off_map_v1",
+ "enrichment_warnings": [
+  "ingredient_blind_no_extracted_signals"
+ ]
+}

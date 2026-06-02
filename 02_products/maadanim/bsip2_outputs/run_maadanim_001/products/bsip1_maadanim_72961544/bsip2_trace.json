@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.225626Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.589478Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_72961544",
@@ -45,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 87.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 3.0,
+    "fat_saturated_g": 1.8,
     "fat_trans_g": null,
     "sodium_mg": 50.0,
     "carbohydrates_g": 11.8,
-    "sugars_g": null,
+    "sugars_g": 10.5,
     "dietary_fiber_g": null,
     "protein_g": 3.2,
-    "ingredient_count": 10,
+    "ingredient_count": 7,
     "ingredient_list": [
       "חלב",
       "סוכר",
@@ -61,11 +61,25 @@
       "עמילן מעובד: (E1442)",
       "מייצב: (פקטין)",
       "צבע מאכל: (רכז מיץ סלק)",
-      "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין מכיל חלב ערכים תזונתיים 100 גרם 10.5 גרם סוכרים מתוך פחמימות 87 קל אנרגיה 3.2 גרם חלבונים 11.8 גרם פחמימות 3 גרם שומנים 9 מג כולסטרול 50 מג נתרן 1.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 100 מג סידן ערכים תזונתיים יחידה 13.1 גרם סוכרים מתוך פחמימות 119 קל אנרגיה 4 גרם חלבונים 14.8 גרם פחמימות 3.8 גרם שומנים 11 מג כולסטרול 63 מג נתרן 2.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 125 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין"
     ],
+    "ingredient_count_raw": 10,
+    "ingredient_sanitization": {
+      "raw_count": 10,
+      "clean_count": 7,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין מכיל חלב ערכים תזונתיים 100 גרם 10.5 גרם סוכרים מתוך פחמימות 87 קל אנרגיה 3.2 גרם חלבונים 11.8 גרם פחמימות 3 גרם שומנים 9 מג כולסטרול 50 מג נתרן 1.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 100 מג סידן ערכים תזונתיים יחידה 13.1 גרם סוכרים מתוך פחמימות 119 קל אנרגיה 4 גרם חלבונים 14.8 גרם פחמימות 3.8 גרם שומנים 11 מג כולסטרול 63 מג נתרן 2.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 125 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -76,20 +90,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 5.17,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 31.03,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.89,
     "protein_per_kcal": 0.0368,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -116,9 +129,10 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
-      "אבקת חלב"
+      "אבקת חלב",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 1,
     "added_sugar_matches": [
@@ -159,6 +173,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 7,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -167,7 +182,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 5.17,
+    "fat_pct_of_kcal": 31.03,
     "ingredient_list": [
       "חלב",
       "סוכר",
@@ -175,10 +190,7 @@
       "עמילן מעובד: (E1442)",
       "מייצב: (פקטין)",
       "צבע מאכל: (רכז מיץ סלק)",
-      "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין מכיל חלב ערכים תזונתיים 100 גרם 10.5 גרם סוכרים מתוך פחמימות 87 קל אנרגיה 3.2 גרם חלבונים 11.8 גרם פחמימות 3 גרם שומנים 9 מג כולסטרול 50 מג נתרן 1.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 100 מג סידן ערכים תזונתיים יחידה 13.1 גרם סוכרים מתוך פחמימות 119 קל אנרגיה 4 גרם חלבונים 14.8 גרם פחמימות 3.8 גרם שומנים 11 מג כולסטרול 63 מג נתרן 2.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 125 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח .nלא מכיל פירות. מכיל פנילאלי נין"
     ]
   },
   "L4_interpreted_concerns": {
@@ -215,7 +227,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -236,25 +248,25 @@
     "processing_quality": 35,
     "nutrient_density": 10.4,
     "calorie_density": 90.0,
-    "glycemic_quality": 90.0,
-    "protein_quality": 13.6,
+    "glycemic_quality": 63.8,
+    "protein_quality": 16.0,
     "additive_quality": 46.0,
     "satiety_support": 44.1,
-    "fat_quality": 50.0,
+    "fat_quality": 79.6,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 26
+    "whole_food_integrity": 30
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=3.2g→16.0, fiber=0g→0.0, weighted 65/35=10.4",
     "calorie_density": "kcal=87.0, category=default (conf 0.30, relaxed by 1.10x) → 90",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
-    "protein_quality": "protein=3.2g base=16.0, source=mixed(×0.85) → 13.6",
+    "glycemic_quality": "90 - sugar_penalty(26.2) + fiber(0.0) + wg(0) = 63.8",
+    "protein_quality": "protein=3.2g base=16.0, source=dairy(×1.0) → 16.0",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.2×3 + 0×5) / 87.0 × 400 = 44.1",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=3.0g<8.0): sat=1.8g base=79.6-seed0-trans0=79.6",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 → 26"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=7 complexity_pen=0 → 30"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -268,7 +280,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 49.51,
+  "weighted_dimension_score": 49.13,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -372,7 +384,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 49.51,
+  "score_after_cap": 49.13,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -407,7 +419,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=5.2<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=31.0<30.0 or sugar=10.5<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -423,7 +435,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 49.51,
+  "score_after_penalty": 49.13,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -484,11 +496,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 49.51,
+  "score_after_floors": 49.13,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 49.5,
+  "final_score_estimate": 49.1,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -500,16 +512,16 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.347,
-    "secondary": "D",
-    "secondary_label": "Industrially Reconstructed",
+    "primary_confidence": 0.329,
+    "secondary": "F",
+    "secondary_label": "Structurally Void System",
     "secondary_confidence": 0.299,
     "class_weights": {
       "A": 0.018,
-      "B": 0.018,
-      "C": 0.018,
-      "D": 0.299,
-      "E": 0.347,
+      "B": 0.036,
+      "C": 0.03,
+      "D": 0.287,
+      "E": 0.329,
       "F": 0.299
     },
     "is_between_worlds": true,

@@ -12,6 +12,7 @@ import {
   type ComparisonCorpusRaw,
 } from "@/lib/comparisons/corpus";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
+import { enrichRowReasonOnly } from "@/lib/comparisons/row-surface";
 import {
   filterSnacksProducts,
   SNACKS_SHELF_LENS_OPTIONS,
@@ -36,8 +37,10 @@ function stripSnacksInternalFields(products: SnacksCorpusProduct[]): BariProduct
 
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const snacksCorpusMeta = loaded.meta;
-const snacksProducts = stripSnacksInternalFields(
-  loaded.products as SnacksCorpusProduct[]
+// rowReason only — NO metric bar. All snack nutrition is null (the category invariant),
+// so a protein bar would be fabricated; the page keeps metricSpecs={[]} (TASK-161A).
+const snacksProducts = enrichRowReasonOnly(
+  stripSnacksInternalFields(loaded.products as SnacksCorpusProduct[])
 );
 
 export { snacksCorpusMeta, snacksProducts };
@@ -66,6 +69,16 @@ export const snacksPrologueSentences = [
   "מתוך 53 מוצרים שנסרקו, 48 קיבלו ציון, ו-18 נבחרו לתצוגה על בסיס מגוון קטגוריות ופערי ציון משמעותיים.",
   "הציון הגבוה ביותר — 70/B — לא הלך לאף אחד מהשמות שהזכרנו.",
 ] as const;
+
+// Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
+// the frozen category invariant (CLAUDE.md: "No snack bar reaches A. snk-001 = 70/B is the
+// validated category ceiling") and the engineered-snack scoring nuance (.claude/scoring.md
+// Stage 4 — fat-sugar / fat-sodium hyper-palatability patterns). "Best" here is relative.
+export const snacksCategoryNote = [
+  "הערת קטגוריה — 'הכי טוב' כאן הוא B, לא A\n\nבמדף החטיפים אף מוצר אינו מגיע ל-A. הציון הגבוה בקטגוריה הוא 70/B. זו אינה החמרה אלא תיאור הקטגוריה: חטיפים מתוכננים סביב שילוב של שומן, סוכר או מלח שמעלה את החיך — והציון משקף זאת.",
+  "הערת קטגוריה — ההשוואה היא בתוך הקטגוריה בלבד\n\nחטיף נמדד מול חטיפים אחרים, לא מול מזון אחר. ציון B כאן אומר 'הטוב יחסית במדף החטיפים' — לא שהמוצר שקול לארוחה או לחטיף בריאות.",
+]
+  .join("\n\n");
 
 export const snacksMethodologyLines = snacksShelfMethodologyLines;
 

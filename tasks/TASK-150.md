@@ -2,10 +2,12 @@
 id: TASK-150
 title: "Re-scrape + re-score LIVE hummus — EV-029 fat-parser bug collapsed fat on 59/69 products (max fat 5.9g)"
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-02
 completed_at: 2026-06-02
+closed_at: 2026-06-02
+closed_by: cc-agent
 depends_on: [TASK-142A, TASK-151]
 blocks: []
 parent: TASK-142A
@@ -102,3 +104,18 @@ Owner approved publication. Surgically updated `hummus_frontend_v3.json` from co
 wrong: claimed 1, real now 5), top-bottom gap 37→47, and "fat values not shown — source limitation" → now FALSE
 (all 66 fat panels populated 0–55g) replaced with the real fat-range fact. `npx tsc --noEmit` exit 0. **Ready
 for CLOSED.**
+
+---
+
+## CLOSED (2026-06-02, cc-agent — close-readiness gate PASS; owner sign-off received)
+`roadmap_impact:true` + `cc_reviewed:2026-06-02` already set → PreToolUse close-guard satisfied. Human
+Product/Nutrition sign-off supplied by owner on 2026-06-02 ("close 149-151"). Verified against artifacts:
+- LIVE swap present in working tree — `bari-web/src/data/comparisons/hummus_frontend_v3.json` modified (` M`).
+- Independently re-checked the two headline data claims in the swapped file: **A-grade count = 5** (matches the
+  corrected featured-card line, was wrongly 1) and **66 products / 66 fat panels populated** (matches the diff).
+- Grade-diff artifact exists — `02_products/hummus/reports/ev029_rescore/grade_diff.json` (66 matched, 24 grade
+  changes, predominantly downward as the capped-fat ≤5.9g inflation predicted). Engine unmodified.
+**Residual (non-blocking, the `cc verify` flag):** the TASK-039 fat register (`audit/fat_anomaly_TASK039.json`)
+is now stale — it is **report-only** (never overrode fat or score, so it did NOT affect this re-score), but it
+still makes `batch_run_hummus_001.py` emit a false "fat_quality from incorrect fat_g" warning. Regenerate/retire
+it as a clean-up follow-up; not score-affecting and not a close blocker. **CLOSED.**

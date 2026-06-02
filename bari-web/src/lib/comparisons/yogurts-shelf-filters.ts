@@ -1,11 +1,13 @@
-import rawCorpus from "@/data/comparisons/yogurts_frontend_v1.json";
+import rawCorpus from "@/data/comparisons/yogurts_frontend_v2.json";
 
 import type { BariProductVM } from "@/lib/view-models";
 
+// "dairy-free" retired with the v2 swap (TASK-143): run_yogurt_004 contains zero plant-base
+// yogurts (soy/coconut deferred to a dedicated plant run per the 3a ruling), so the lens has
+// no members. Restore it when a plant pool ships.
 export type YogurtsShelfFilterId =
   | "plain"
   | "greek"
-  | "dairy-free"
   | "high-protein"
   | "flavored";
 
@@ -15,7 +17,6 @@ export const YOGURTS_SHELF_LENS_OPTIONS: Array<{
 }> = [
   { id: "plain", label: "טבעי/נטורל" },
   { id: "greek", label: "יווני/מסוי" },
-  { id: "dairy-free", label: "ללא חלב" },
   { id: "high-protein", label: "עתיר חלבון" },
   { id: "flavored", label: "בטעמים" },
 ];

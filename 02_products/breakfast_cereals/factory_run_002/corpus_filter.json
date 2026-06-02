@@ -1,0 +1,30 @@
+{
+  "stage": "2_corpus_filter",
+  "category_slug": "breakfast-cereals",
+  "run_id": "run_cereals_002",
+  "generated": "2026-06-01",
+  "owner": "Data Architecture (data-agent)",
+  "filter_logic": "name-based INCLUDE gate AND NOT EXCLUDE gate at scrape time; barcode dedup + nutrition-sufficiency at BSIP1 curation. Identical two-stage pattern to run_yogurt_003.",
+  "include_signals_he": [
+    "דגני", "דגנים", "קורנפלקס", "קורן פלקס", "cornflakes", "גרנולה", "granola",
+    "מוזלי", "מוסלי", "muesli", "שיבולת שועל", "קוואקר", "quaker", "oat",
+    "צ'יריוס", "cheerios", "נסקוויק", "nesquik", "קוקו פופס", "coco pops",
+    "צ'וקפיק", "chocapic", "פצפוצי אורז", "פצפוצים", "כריות", "פתיתי",
+    "בראן", "bran", "fitness", "פיטנס", "ויטה", "קלוגס", "kellogg", "נסטלה", "cereal", "weetabix", "כוסמין"
+  ],
+  "exclude_signals_he": [
+    "חטיף", "bar", "בר ", "ביסקוויט", "עוגי", "ופל", "wafer", "קרקר", "cracker",
+    "פריכית", "פריכיות", "rice cake", "משקה", "drink", "חלב", "יוגורט", "yogurt",
+    "דייסת תינוק", "מטרנה", "סימילק", "תוסף", "קפסול", "תה", "קפה",
+    "חמאת", "ממרח", "שוקולד למריחה", "חטיפי דגנים"
+  ],
+  "overlap_guard": {
+    "vs_snack_bars": "EXCLUDE 'חטיף'/'bar'/'בר ' removes granola/cereal BARS (snack_bars scope). Boxed/bagged granola eaten with milk stays IN — verified by absence of bar tokens. This is the explicit no-overlap rule from TASK-140.",
+    "vs_dairy_yogurt": "EXCLUDE 'יוגורט'/'חלב'/'משקה' removes yogurt-with-cereal-topping crossover products that route to dairy.",
+    "granola_handling": "Granola is NOT excluded from the corpus — it is INCLUDED, then assigned to a distinct granola SUB-POOL inside the category at BSIP1 per Constitution Art. II Rule 5 (cereals_gap_resolution_v1 Sec 2.9 / Resolution 3). Pool separation, not corpus exclusion."
+  },
+  "min_corpus_size": 30,
+  "min_corpus_rationale": "cereals_gap_resolution_v1 launch condition 1: BSIP0 corpus must contain >=30 editorial-scope products traceable to a real Israeli retailer.",
+  "no_overlap_with_active_categories": "PASS — filter rules disjoint from yogurt/maadanim/snack_bars/bread active filters.",
+  "status": "pass_pending_scrape_count"
+}

@@ -5,6 +5,7 @@ All formulas are preliminary. This is a diagnostic prototype, not a calibrated s
 Every intermediate value is retained for the trace.
 """
 import math
+import os
 from constants import (
     DIMENSION_WEIGHTS, CALORIE_DENSITY_TABLES, lookup_calorie_density,
     NOVA_PROCESSING_SCORES, NOVA_WFI_SCORES, NOVA_HP_WEIGHTS,
@@ -29,8 +30,14 @@ from constants import (
     PROCESSING_CAPS, FERMENTATION_DIRECT_BONUS,
     PROTEIN_QUALITY_MATRIX_DISCOUNT, PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES,
     ADDITIVE_IDENTITY_DELTAS, BHA_NAMED_PENALTY,
+    FIBER_NOT_APPLICABLE_CATEGORIES,
     score_to_grade,
 )
+
+# TASK-144 — same activation toggle as signal_extractor; gates Fix 2 (fiber-not-applicable).
+# DEFAULT OFF (frozen behavior). Only the maadanim batch runner opts in via
+# BARI_TASK144_FIXES=on. See signal_extractor.py for the full activation-scope rationale.
+TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 
 
 # ---------------------------------------------------------------------------
@@ -73,6 +80,14 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
         deduct(20, "sat_fat > fat (data integrity failure)")
     if checks.get("kcal_plausible") is False:
         deduct(10, "energy_kcal outside plausible range 20-700")
+    # TASK-144 — implausible macros (e.g. protein_g=190/100g from an OCR parse error)
+    # are a hard data-integrity failure; deduct heavily so the product is flagged
+    # insufficient_data rather than producing a spurious score/grade. Gated to the
+    # TASK-144 activation scope so frozen-category outputs stay byte-identical; the
+    # consistency flag itself is always computed (observable) and surfaced for any
+    # cross-category data-integrity follow-up.
+    if TASK144_FIXES_ON and checks.get("macros_plausible") is False:
+        deduct(40, "macro values implausible per 100g (data integrity failure)")
 
     # BSIP1 trust level
     trust_level = product.get("canonical_trust_level") or "unknown"
@@ -167,9 +182,11 @@ def score_processing_quality(nova_level: int) -> tuple[float, str]:
     return score, f"NOVA {nova_level} → processing_quality={score} (NOVA_PROCESSING_SCORES table)"
 
 
-def score_nutrient_density(nn: dict, has_fortification: bool = False) -> tuple[float, str]:
+def score_nutrient_density(nn: dict, has_fortification: bool = False,
+                           category: str = None) -> tuple[float, str]:
     prot  = nn.get("protein_g") or 0
-    fiber = nn.get("dietary_fiber_g") or 0
+    fiber_raw = nn.get("dietary_fiber_g")
+    fiber = fiber_raw or 0
     # Breakpoint interpolation
     def prot_score(g):
         bps = [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95)]
@@ -188,6 +205,27 @@ def score_nutrient_density(nn: dict, has_fortification: bool = False) -> tuple[f
                 return lo_s + t * (hi_s - lo_s)
         return 95
     ps = prot_score(prot)
+
+    # TASK-144 Fix 2 / EV-027 — fiber "absent ≠ zero" for naturally fiber-free dairy.
+    # TIGHTLY GATED: only when (a) the category is on the explicit fiber-not-applicable
+    # allowlist AND (b) fiber is genuinely absent or ~0 in this product. In that case the
+    # dimension is scored on PROTEIN ALONE (re-normalize 65/35 → 100/0) rather than
+    # blending in a structural-zero fiber. Bread/cereal/bars/etc. are NOT on the allowlist
+    # and keep the flat 65/35 blend (missing fiber there IS a real deficiency).
+    fiber_not_applicable = (
+        TASK144_FIXES_ON
+        and category in FIBER_NOT_APPLICABLE_CATEGORIES
+        and (fiber_raw is None or fiber_raw <= 0)
+    )
+    if fiber_not_applicable:
+        raw = round(ps, 1)
+        na_note = (f"protein={prot}g→{ps:.1f}; fiber not-applicable for category "
+                   f"'{category}' (EV-027: protein-only, 65/35→100/0) → {raw}")
+        if has_fortification:
+            score = round(raw * 0.80, 1)
+            return score, na_note + f" × 0.80 fortification_discount → {score}"
+        return raw, na_note
+
     fs = fiber_score(fiber)
     raw = round(0.65 * ps + 0.35 * fs, 1)
     if has_fortification:
@@ -399,7 +437,9 @@ def score_glycemic_quality(nn: dict, l3: dict) -> tuple[float, str]:
 def score_protein_quality(nn: dict, l3: dict, category: str = None) -> tuple[float, str]:
     prot = nn.get("protein_g") or 0
     source = l3.get("protein_source", "unknown")
-    source_factors = {"whole_food": 1.0, "mixed": 0.85, "isolate": 0.70, "unknown": 0.80}
+    # TASK-144 Fix 3 / EV-028 — "dairy" = complete, high-DIAAS dairy protein (factor 1.0).
+    # Distinct from "mixed" (0.85), which remains for genuinely blended/uncertain sources.
+    source_factors = {"whole_food": 1.0, "dairy": 1.0, "mixed": 0.85, "isolate": 0.70, "unknown": 0.80}
     sf = source_factors.get(source, 0.80)
 
     def prot_base(g):
@@ -972,7 +1012,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     has_fermentation  = l3.get("has_fermentation", False)
 
     pq_score,  pq_note  = score_processing_quality(nova_level)
-    nd_score,  nd_note  = score_nutrient_density(nn, has_fortification)
+    nd_score,  nd_note  = score_nutrient_density(nn, has_fortification, category)
     cd_table_key = category
     if cat_result.get("category_subtype") == "yogurt":
         cd_table_key = "yogurt"

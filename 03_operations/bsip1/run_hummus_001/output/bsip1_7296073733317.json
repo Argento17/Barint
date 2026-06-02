@@ -12,21 +12,30 @@
   "serving_size_g": null,
   "country_of_origin": "ישראל",
   "kosher_certification": null,
-  "image_url": "https://media.shufersal.co.il/product_images/default/Z_P_default.png",
+  "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UFE58_Z_P_7296073733317_1.png",
   "source_retailers": [
     "shufersal"
   ],
-  "normalized_nutrition_per_100g": {},
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 351.0,
+    "fat_g": 4.5,
+    "carbohydrates_g": 51.0,
+    "dietary_fiber_g": 9.2,
+    "protein_g": 22.0,
+    "sodium_mg": 23.0
+  },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": null,
-  "ingredients_list": [],
+  "ingredients_text_he": "חומוס יבש. עלול להכיל עקבות של גלוטן",
+  "ingredients_list": [
+    "חומוס יבש. עלול להכיל עקבות של גלוטן"
+  ],
   "allergens_contains": [],
   "allergens_may_contain": [],
   "claims": [],
   "confidence": {
-    "identity_confidence": "medium",
+    "identity_confidence": "high",
     "barcode_confidence": "confirmed",
-    "nutrition_confidence": "partial",
+    "nutrition_confidence": "confirmed_per_100g",
     "matched_by": "shufersal_bsip0_html_scrape",
     "observation_count": 1
   },
@@ -34,64 +43,26 @@
   "barcode_confidence_reason": "Scraped from Shufersal product page; barcode from LD+JSON gtin13 field.",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
-  "nutrition_consistency_status": "incomplete",
-  "nutrition_consistency_warnings": [
-    "partial_nutrition_only"
-  ],
-  "ingredient_text_quality": "missing",
-  "ingredient_warnings": [
-    "ingredients_raw_missing"
-  ],
-  "canonical_trust_score": 0.55,
-  "canonical_trust_level": "low",
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "scraped_html",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.82,
+  "canonical_trust_level": "high",
   "canonical_risk_flags": [
     "single_source_only"
   ],
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A4%D7%A1%D7%98%D7%94-%D7%90%D7%95%D7%A8%D7%96-%D7%A7%D7%95%D7%A1%D7%A7%D7%95%D7%A1-%D7%95%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%97%D7%95%D7%9E%D7%95%D7%A1/p/P_7296073733317",
-    "scraped_at": "2026-05-30T18:41:36.906180",
+    "scraped_at": "2026-06-02T06:08:13.588772",
     "source_category": "search",
     "product_category": "hummus_and_savory_dips",
     "extraction_method": "html_parse",
-    "extraction_confidence": "medium",
+    "extraction_confidence": "high",
     "price_ils": "16.5",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": null,
-  "ingredients_raw_provenance": {
-    "source": "missing",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": true,
-    "note": "No ingredient text available (bsip0_file_not_found)"
-  },
-  "ingredient_order": [],
-  "extracted_additives": [],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 0,
-    "additive_count": 0,
-    "flavor_marker_count": 0,
-    "sweetener_count": 0,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 0,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": [
-    "ingredients_raw: no text available from any source"
-  ]
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

@@ -1,230 +1,394 @@
 {
-  "corpus_version": "v1",
-  "created": "2026-05-20",
-  "description": "Router v2 regression corpus. Each entry tests a specific routing failure mode identified in the cereals and snack_bars runs. Synthetic products only — real products are validated via the batch runners.",
-  "entries": [
-
-    {
-      "id": "wff_leakage_granola_nuts",
-      "description": "Granola with almonds, hazelnuts and olive oil — ingredient WFF signals must NOT win over granola anchor",
-      "failure_mode": "whole_food_fat leakage",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "גרנולה עם שקדים ואגוזי לוז",
-        "ingredients_text_he": "שיבולת שועל, שקדים, אגוזי לוז, דבש, שמן זית, גרעיני חמניות",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 440, "fat_g": 18, "protein_g": 9 }
-      },
-      "expected_category": "snack_bar_granola",
-      "expected_anchor_override": true,
-      "must_not_be": ["whole_food_fat"],
-      "rationale": "Granola anchor (0.90) must fire before signal scoring. Nuts and olive oil in ingredient text are context_gated and should be suppressed because WFF name context is absent."
-    },
-
-    {
-      "id": "protein_contamination_granola",
-      "description": "Granola bar with whey protein isolate in ingredient list — must NOT route to dairy_protein",
-      "failure_mode": "protein contamination",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "גרנולה עם שוקולד",
-        "ingredients_text_he": "שיבולת שועל, שוקולד, חלבון מי גבינה, גרעיני חמניות, דבש",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 410, "fat_g": 12, "protein_g": 14 }
-      },
-      "expected_category": "snack_bar_granola",
-      "expected_anchor_override": true,
-      "must_not_be": ["dairy_protein"],
-      "rationale": "Granola anchor fires. dairy_protein signals are name_only — whey protein in ingredient text contributes nothing to dairy_protein routing."
-    },
-
-    {
-      "id": "dairy_flavor_contamination_biscuit",
-      "description": "Yogurt-flavored biscuit — must NOT route to dairy_protein despite yogurt mention",
-      "failure_mode": "dairy flavor contamination",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "ביסקוויט בטעם יוגורט",
-        "ingredients_text_he": "קמח, סוכר, שמן דקל, יוגורט אבקה, מלח",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 480, "fat_g": 20, "protein_g": 6 }
-      },
-      "expected_category": "snack_bar_granola",
-      "expected_anchor_override": false,
-      "must_not_be": ["dairy_protein"],
-      "rationale": "Flavor suppressor: 'יוגורט' appears after 'בטעם' in name — dairy_protein signal suppressed. Biscuit anchor fires for snack_bar_granola."
-    },
-
-    {
-      "id": "real_yogurt_anchors",
-      "description": "Plain yogurt with flavor — anchor fires; must be dairy_protein",
-      "failure_mode": "anchor stability",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "יוגורט בטעם תות",
-        "ingredients_text_he": "חלב, פקעות חלב, שמנת, תרבויות חיות",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 90, "fat_g": 3, "protein_g": 5 }
-      },
-      "expected_category": "dairy_protein",
-      "expected_anchor_override": true,
-      "expected_subtype": "yogurt",
-      "must_not_be": ["dessert", "snack_bar_granola"],
-      "rationale": "'יוגורט' appears at start of name, before 'בטעם'. Anchor fires; flavor suppressor does not apply when the product IS a yogurt."
-    },
-
-    {
-      "id": "beverage_plant_milk_oat",
-      "description": "Oat drink (Oatly-style) — must route to beverage via liquid gate",
-      "failure_mode": "beverage leakage",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "משקה שיבולת שועל",
-        "ingredients_text_he": "מים, שיבולת שועל, שמן חמניות, מלח",
-        "brand": "oatly",
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 46, "fat_g": 1.5, "protein_g": 1 }
-      },
-      "expected_category": "beverage",
-      "expected_anchor_override": false,
-      "must_not_be": ["cereal", "whole_food_fat"],
-      "rationale": "'משקה' in name fires name_only beverage signal. Known brand 'oatly' also triggers liquid gate. Low kcal nutritional hint confirms beverage."
-    },
-
-    {
-      "id": "beverage_almond_plant_milk",
-      "description": "Almond plant milk with no 'משקה' in name — plant_milk heuristic must catch it",
-      "failure_mode": "beverage leakage",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "שקדים",
-        "ingredients_text_he": "מים, שקדים, ויטמינים",
-        "brand": "alpro",
-        "nutrition_basis_claimed": "ל1 ליטר",
-        "normalized_nutrition_per_100g": { "energy_kcal": 24, "fat_g": 1.1, "protein_g": 0.5 }
-      },
-      "expected_category": "beverage",
-      "expected_anchor_override": false,
-      "must_not_be": ["whole_food_fat"],
-      "rationale": "Brand 'alpro' is known plant-milk brand — liquid gate triggers. nutrition_basis_claimed has 'ליטר' — fallback A also fires."
-    },
-
-    {
-      "id": "anchor_almond_butter",
-      "description": "Almond butter — anchor must fire for whole_food_fat",
-      "failure_mode": "anchor stability",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "חמאת שקדים טבעית 100%",
-        "ingredients_text_he": "שקדים",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 598, "fat_g": 52, "protein_g": 21 }
-      },
-      "expected_category": "whole_food_fat",
-      "expected_anchor_override": true,
-      "expected_subtype": "nut_butter",
-      "must_not_be": ["sauce_spread", "snack_bar_granola"],
-      "rationale": "Hard anchor 'חמאת שקדים' fires at confidence 0.93."
-    },
-
-    {
-      "id": "anchor_muesli",
-      "description": "Muesli with fruit — anchor must fire for snack_bar_granola",
-      "failure_mode": "anchor stability",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "מוסלי פירות יער עם אגוזים",
-        "ingredients_text_he": "שיבולת שועל, פירות יבשים, אגוזים, גרעיני חמניות",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 380, "fat_g": 10, "protein_g": 9 }
-      },
-      "expected_category": "snack_bar_granola",
-      "expected_anchor_override": true,
-      "expected_subtype": "muesli",
-      "must_not_be": ["whole_food_fat", "cereal"],
-      "rationale": "Muesli anchor fires at 0.88. Nuts in ingredient text are context_gated WFF — suppressed because 'מוסלי' is in WFF_NAME_EXCLUSIONS."
-    },
-
-    {
-      "id": "anchor_cornflakes",
-      "description": "Cornflakes with added protein — anchor must fire for cereal",
-      "failure_mode": "anchor stability",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "קורנפלקס עם חלבון",
-        "ingredients_text_he": "תירס, סוכר, חלבון מי גבינה, ויטמינים, ברזל",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 375, "fat_g": 2, "protein_g": 18 }
-      },
-      "expected_category": "cereal",
-      "expected_anchor_override": true,
-      "expected_subtype": "cornflakes",
-      "must_not_be": ["dairy_protein"],
-      "rationale": "Cornflakes anchor fires at 0.93. dairy_protein is name_only — whey in ingredients contributes nothing."
-    },
-
-    {
-      "id": "context_gate_mixed_nuts",
-      "description": "Mixed nuts — WFF context gate should fire (name IS a fat product)",
-      "failure_mode": "wff_context_gate",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "מיקס אגוזים טבעי",
-        "ingredients_text_he": "שקדים, אגוזי מלך, קשיו, פיסטוקים",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 605, "fat_g": 52, "protein_g": 18 }
-      },
-      "expected_category": "whole_food_fat",
-      "expected_anchor_override": false,
-      "must_not_be": ["snack_bar_granola", "cereal"],
-      "rationale": "No anchor fires. 'מיקס' is in WFF_NAME_CONTEXT_REQUIRED, no WFF exclusion in name. Ingredient nuts are context_gated but FIRE because name context is present. High kcal + fat nutritional hint confirms."
-    },
-
-    {
-      "id": "anchor_granola_cereal",
-      "description": "Granola cereal (morning position) — more specific anchor wins over plain granola anchor",
-      "failure_mode": "anchor specificity",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "גרנולה לבוקר עם שיבולת שועל",
-        "ingredients_text_he": "שיבולת שועל, דבש, שמן חמניות, קינמון",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 410, "fat_g": 8, "protein_g": 8 }
-      },
-      "expected_category": "cereal",
-      "expected_anchor_override": true,
-      "expected_subtype": "granola_cereal",
-      "must_not_be": ["snack_bar_granola"],
-      "rationale": "'גרנולה לבוקר' anchor (cereal, 0.90) and 'גרנולה' anchor (snack_bar_granola, 0.90) both fire. 'גרנולה לבוקר' is longer → wins."
-    },
-
-    {
-      "id": "anchor_kefir",
-      "description": "Kefir — anchor must fire for dairy_protein with kefir subtype",
-      "failure_mode": "anchor stability",
-      "type": "synthetic",
-      "product": {
-        "canonical_name_he": "קפיר 1.5% שומן",
-        "ingredients_text_he": "חלב, תרבויות קפיר חיות",
-        "brand": null,
-        "nutrition_basis_claimed": null,
-        "normalized_nutrition_per_100g": { "energy_kcal": 52, "fat_g": 1.5, "protein_g": 3.5 }
-      },
-      "expected_category": "dairy_protein",
-      "expected_anchor_override": true,
-      "expected_subtype": "kefir",
-      "must_not_be": ["beverage"],
-      "rationale": "Kefir anchor fires at 0.93. Although kefir is a liquid, it anchors to dairy_protein not beverage — it IS a dairy fermented product."
+ "corpus_version": "v1",
+ "created": "2026-05-20",
+ "description": "Router v2 regression corpus. Each entry tests a specific routing failure mode identified in the cereals and snack_bars runs. Synthetic products only — real products are validated via the batch runners.",
+ "entries": [
+  {
+   "id": "wff_leakage_granola_nuts",
+   "description": "Granola with almonds, hazelnuts and olive oil — ingredient WFF signals must NOT win over granola anchor",
+   "failure_mode": "whole_food_fat leakage",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "גרנולה עם שקדים ואגוזי לוז",
+    "ingredients_text_he": "שיבולת שועל, שקדים, אגוזי לוז, דבש, שמן זית, גרעיני חמניות",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 440,
+     "fat_g": 18,
+     "protein_g": 9
     }
-
-  ]
+   },
+   "expected_category": "snack_bar_granola",
+   "expected_anchor_override": true,
+   "must_not_be": [
+    "whole_food_fat"
+   ],
+   "rationale": "Granola anchor (0.90) must fire before signal scoring. Nuts and olive oil in ingredient text are context_gated and should be suppressed because WFF name context is absent."
+  },
+  {
+   "id": "protein_contamination_granola",
+   "description": "Granola bar with whey protein isolate in ingredient list — must NOT route to dairy_protein",
+   "failure_mode": "protein contamination",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "גרנולה עם שוקולד",
+    "ingredients_text_he": "שיבולת שועל, שוקולד, חלבון מי גבינה, גרעיני חמניות, דבש",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 410,
+     "fat_g": 12,
+     "protein_g": 14
+    }
+   },
+   "expected_category": "snack_bar_granola",
+   "expected_anchor_override": true,
+   "must_not_be": [
+    "dairy_protein"
+   ],
+   "rationale": "Granola anchor fires. dairy_protein signals are name_only — whey protein in ingredient text contributes nothing to dairy_protein routing."
+  },
+  {
+   "id": "dairy_flavor_contamination_biscuit",
+   "description": "Yogurt-flavored biscuit — must NOT route to dairy_protein despite yogurt mention",
+   "failure_mode": "dairy flavor contamination",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "ביסקוויט בטעם יוגורט",
+    "ingredients_text_he": "קמח, סוכר, שמן דקל, יוגורט אבקה, מלח",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 480,
+     "fat_g": 20,
+     "protein_g": 6
+    }
+   },
+   "expected_category": "snack_bar_granola",
+   "expected_anchor_override": false,
+   "must_not_be": [
+    "dairy_protein"
+   ],
+   "rationale": "Flavor suppressor: 'יוגורט' appears after 'בטעם' in name — dairy_protein signal suppressed. Biscuit anchor fires for snack_bar_granola."
+  },
+  {
+   "id": "real_yogurt_anchors",
+   "description": "Plain yogurt with flavor — anchor fires; must be dairy_protein",
+   "failure_mode": "anchor stability",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "יוגורט בטעם תות",
+    "ingredients_text_he": "חלב, פקעות חלב, שמנת, תרבויות חיות",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 90,
+     "fat_g": 3,
+     "protein_g": 5
+    }
+   },
+   "expected_category": "dairy_protein",
+   "expected_anchor_override": true,
+   "expected_subtype": "yogurt",
+   "must_not_be": [
+    "dessert",
+    "snack_bar_granola"
+   ],
+   "rationale": "'יוגורט' appears at start of name, before 'בטעם'. Anchor fires; flavor suppressor does not apply when the product IS a yogurt."
+  },
+  {
+   "id": "beverage_plant_milk_oat",
+   "description": "Oat drink (Oatly-style) — must route to beverage via liquid gate",
+   "failure_mode": "beverage leakage",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "משקה שיבולת שועל",
+    "ingredients_text_he": "מים, שיבולת שועל, שמן חמניות, מלח",
+    "brand": "oatly",
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 46,
+     "fat_g": 1.5,
+     "protein_g": 1
+    }
+   },
+   "expected_category": "beverage",
+   "expected_anchor_override": false,
+   "must_not_be": [
+    "cereal",
+    "whole_food_fat"
+   ],
+   "rationale": "'משקה' in name fires name_only beverage signal. Known brand 'oatly' also triggers liquid gate. Low kcal nutritional hint confirms beverage."
+  },
+  {
+   "id": "beverage_almond_plant_milk",
+   "description": "Almond plant milk with no 'משקה' in name — plant_milk heuristic must catch it",
+   "failure_mode": "beverage leakage",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "שקדים",
+    "ingredients_text_he": "מים, שקדים, ויטמינים",
+    "brand": "alpro",
+    "nutrition_basis_claimed": "ל1 ליטר",
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 24,
+     "fat_g": 1.1,
+     "protein_g": 0.5
+    }
+   },
+   "expected_category": "beverage",
+   "expected_anchor_override": false,
+   "must_not_be": [
+    "whole_food_fat"
+   ],
+   "rationale": "Brand 'alpro' is known plant-milk brand — liquid gate triggers. nutrition_basis_claimed has 'ליטר' — fallback A also fires."
+  },
+  {
+   "id": "anchor_almond_butter",
+   "description": "Almond butter — anchor must fire for whole_food_fat",
+   "failure_mode": "anchor stability",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "חמאת שקדים טבעית 100%",
+    "ingredients_text_he": "שקדים",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 598,
+     "fat_g": 52,
+     "protein_g": 21
+    }
+   },
+   "expected_category": "whole_food_fat",
+   "expected_anchor_override": true,
+   "expected_subtype": "nut_butter",
+   "must_not_be": [
+    "sauce_spread",
+    "snack_bar_granola"
+   ],
+   "rationale": "Hard anchor 'חמאת שקדים' fires at confidence 0.93."
+  },
+  {
+   "id": "anchor_muesli",
+   "description": "Muesli with fruit — anchor must fire for snack_bar_granola",
+   "failure_mode": "anchor stability",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "מוסלי פירות יער עם אגוזים",
+    "ingredients_text_he": "שיבולת שועל, פירות יבשים, אגוזים, גרעיני חמניות",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 380,
+     "fat_g": 10,
+     "protein_g": 9
+    }
+   },
+   "expected_category": "snack_bar_granola",
+   "expected_anchor_override": true,
+   "expected_subtype": "muesli",
+   "must_not_be": [
+    "whole_food_fat",
+    "cereal"
+   ],
+   "rationale": "Muesli anchor fires at 0.88. Nuts in ingredient text are context_gated WFF — suppressed because 'מוסלי' is in WFF_NAME_EXCLUSIONS."
+  },
+  {
+   "id": "anchor_cornflakes",
+   "description": "Cornflakes with added protein — anchor must fire for cereal",
+   "failure_mode": "anchor stability",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "קורנפלקס עם חלבון",
+    "ingredients_text_he": "תירס, סוכר, חלבון מי גבינה, ויטמינים, ברזל",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 375,
+     "fat_g": 2,
+     "protein_g": 18
+    }
+   },
+   "expected_category": "cereal",
+   "expected_anchor_override": true,
+   "expected_subtype": "cornflakes",
+   "must_not_be": [
+    "dairy_protein"
+   ],
+   "rationale": "Cornflakes anchor fires at 0.93. dairy_protein is name_only — whey in ingredients contributes nothing."
+  },
+  {
+   "id": "context_gate_mixed_nuts",
+   "description": "Mixed nuts — WFF context gate should fire (name IS a fat product)",
+   "failure_mode": "wff_context_gate",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "מיקס אגוזים טבעי",
+    "ingredients_text_he": "שקדים, אגוזי מלך, קשיו, פיסטוקים",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 605,
+     "fat_g": 52,
+     "protein_g": 18
+    }
+   },
+   "expected_category": "whole_food_fat",
+   "expected_anchor_override": false,
+   "must_not_be": [
+    "snack_bar_granola",
+    "cereal"
+   ],
+   "rationale": "No anchor fires. 'מיקס' is in WFF_NAME_CONTEXT_REQUIRED, no WFF exclusion in name. Ingredient nuts are context_gated but FIRE because name context is present. High kcal + fat nutritional hint confirms."
+  },
+  {
+   "id": "anchor_granola_cereal",
+   "description": "Granola cereal (morning position) — more specific anchor wins over plain granola anchor",
+   "failure_mode": "anchor specificity",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "גרנולה לבוקר עם שיבולת שועל",
+    "ingredients_text_he": "שיבולת שועל, דבש, שמן חמניות, קינמון",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 410,
+     "fat_g": 8,
+     "protein_g": 8
+    }
+   },
+   "expected_category": "cereal",
+   "expected_anchor_override": true,
+   "expected_subtype": "granola_cereal",
+   "must_not_be": [
+    "snack_bar_granola"
+   ],
+   "rationale": "'גרנולה לבוקר' anchor (cereal, 0.90) and 'גרנולה' anchor (snack_bar_granola, 0.90) both fire. 'גרנולה לבוקר' is longer → wins."
+  },
+  {
+   "id": "anchor_kefir",
+   "description": "Kefir — anchor must fire for dairy_protein with kefir subtype",
+   "failure_mode": "anchor stability",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "קפיר 1.5% שומן",
+    "ingredients_text_he": "חלב, תרבויות קפיר חיות",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 52,
+     "fat_g": 1.5,
+     "protein_g": 3.5
+    }
+   },
+   "expected_category": "dairy_protein",
+   "expected_anchor_override": true,
+   "expected_subtype": "kefir",
+   "must_not_be": [
+    "beverage"
+   ],
+   "rationale": "Kefir anchor fires at 0.93. Although kefir is a liquid, it anchors to dairy_protein not beverage — it IS a dairy fermented product."
+  },
+  {
+   "id": "anchor_cream_cheese",
+   "description": "Cream cheese — anchor must fire to dairy_protein (TASK-145)",
+   "failure_mode": "cream-cheese anchor gap (run_cheese_001 QA-CHS-001)",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "גבינת שמנת 30% שומן",
+    "ingredients_text_he": "חלב, שמנת, מלח, מייצב",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 300,
+     "fat_g": 30,
+     "protein_g": 6
+    }
+   },
+   "expected_category": "dairy_protein",
+   "expected_anchor_override": true,
+   "expected_subtype": "cream_cheese",
+   "must_not_be": [
+    "default",
+    "whole_food_fat",
+    "dessert"
+   ],
+   "rationale": "High fat / low protein cream cheese lacks dairy signal strength; needs the explicit cream-cheese anchor."
+  },
+  {
+   "id": "anchor_cheese_spread",
+   "description": "Cheese spread (ממרח גבינה) — anchor to dairy_protein (TASK-145)",
+   "failure_mode": "cream-cheese anchor gap",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "ממרח גבינה 5% עם עירית",
+    "ingredients_text_he": "גבינה לבנה, מים, מלח",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 120,
+     "fat_g": 5,
+     "protein_g": 9
+    }
+   },
+   "expected_category": "dairy_protein",
+   "expected_anchor_override": true,
+   "expected_subtype": "cheese_spread",
+   "must_not_be": [
+    "default",
+    "whole_food_fat"
+   ],
+   "rationale": "ממרח גבינה is a fresh cheese spread, not a nut/seed spread."
+  },
+  {
+   "id": "exclusion_napoleon_cake",
+   "description": "Napoleon CAKE must NOT route to dairy via the נפוליאון anchor (TASK-145)",
+   "failure_mode": "cream-cheese anchor over-fire",
+   "type": "synthetic",
+   "product": {
+    "canonical_name_he": "עוגת פס נפוליאון",
+    "ingredients_text_he": "קמח, סוכר, שמנת, ביצים",
+    "brand": null,
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 380,
+     "fat_g": 20,
+     "protein_g": 5
+    }
+   },
+   "expected_category": "default",
+   "expected_anchor_override": false,
+   "expected_subtype": null,
+   "must_not_be": [
+    "dairy_protein"
+   ],
+   "rationale": "נפוליאון anchor carries a cake exclusion (עוגה/עוגת/פס/מאפה); a pastry is not cream cheese."
+  },
+  {
+   "id": "exclusion_philadelphia_seasoning",
+   "description": "Philadelphia SEASONING blend must NOT route to dairy via the פילדלפיה anchor (TASK-153 / EV-030)",
+   "failure_mode": "cream-cheese anchor over-fire (seasoning blend)",
+   "type": "real_negative",
+   "product": {
+    "canonical_name_he": "תערובת תיבול פילדלפיה",
+    "ingredients_text_he": "תבלינים ושמני תבלין,מלח,דקסטרוזה,ירק מיובש (אבקת בצל),חומר מונע התגיישות (E551),חומר טעם וריח",
+    "brand": "טעם וריח",
+    "nutrition_basis_claimed": null,
+    "normalized_nutrition_per_100g": {
+     "energy_kcal": 297,
+     "fat_g": 6.8,
+     "protein_g": 8.1,
+     "sodium_mg": 7905
+    }
+   },
+   "expected_category": "default",
+   "expected_anchor_override": false,
+   "expected_subtype": null,
+   "must_not_be": [
+    "dairy_protein"
+   ],
+   "rationale": "פילדלפיה anchor carries a seasoning exclusion ('תערובת תיבול'); a salt/spice seasoning blend (gtin 7290014217492, sodium 7,905 mg/100g, brand טעם וריח, Shufersal seasonings shelf) is not cream cheese. Real herbed פילדלפיה cheeses (e.g. 'פילדלפיה שום+ע.תיבול') lack 'תערובת' and still route."
+  }
+ ]
 }

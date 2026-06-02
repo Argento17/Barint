@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  BariComparisonDesktopPage,
-  productInsightLines,
-} from "@/components/comparisons/bari-comparison-desktop-page";
-import { ComparisonShelfPage } from "@/components/comparisons/comparison-shelf-page";
-import { maadanimCorpusMeta } from "@/lib/comparisons/maadanim-page-data";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
+import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   filterMaadanimProducts,
   MAADANIM_SHELF_LENS_OPTIONS,
@@ -23,6 +18,8 @@ export interface MaadanimComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
+  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
+  categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
@@ -31,50 +28,30 @@ const maadanimShelfFilters = {
   filterProducts: filterMaadanimProducts,
 } as const;
 
+// Protein is the maadanim headline metric (prologue is explicit) — same single-metric
+// front-of-row as hummus. Sugar is not consistently available here (source-data gap).
+const MAADANIM_METRIC_SPECS = [PROTEIN_METRIC] as const;
+
 export function MaadanimComparisonPage({
   products,
   metadataLine,
   hero,
   prologueSentences,
   methodologyLines,
+  categoryNote,
   initialExpandedProductId = null,
 }: MaadanimComparisonPageProps) {
-  const desktopHero = {
-    badge: "דוח חדש",
-    categoryTags: "מעדנים · קינוחי חלב",
-    title: hero.title,
-    description: prologueSentences[0] ?? "השוואת מעדנים וקינוחי חלב מהמדף הישראלי.",
-    insightLines: productInsightLines(products),
-    stats: [
-      { value: products.length, label: "מוצרים בדף" },
-      { value: maadanimCorpusMeta.scored_count ?? products.length, label: "קיבלו ציון" },
-    ],
-    updatedLabel: formatComparisonUpdatedLine(maadanimCorpusMeta.generated),
-  };
-
   return (
-    <>
-      <div className="max-lg:block lg:hidden">
-        <ComparisonShelfPage<MaadanimShelfFilterId>
-          products={products}
-          metadataLine={metadataLine}
-          hero={hero}
-          prologueSentences={prologueSentences}
-          methodologyLines={methodologyLines}
-          shelfFilters={maadanimShelfFilters}
-          initialExpandedProductId={initialExpandedProductId}
-        />
-      </div>
-      <div className="hidden lg:block">
-        <BariComparisonDesktopPage<MaadanimShelfFilterId>
-          products={products}
-          hero={desktopHero}
-          prologueSentences={prologueSentences.slice(1)}
-          methodologyLines={methodologyLines}
-          lensOptions={MAADANIM_SHELF_LENS_OPTIONS}
-          filterProducts={filterMaadanimProducts}
-        />
-      </div>
-    </>
+    <ComparisonPage<MaadanimShelfFilterId>
+      products={products}
+      metadataLine={metadataLine}
+      hero={hero}
+      prologueSentences={prologueSentences}
+      methodologyLines={methodologyLines}
+      shelfFilters={maadanimShelfFilters}
+      metricSpecs={MAADANIM_METRIC_SPECS}
+      categoryNote={categoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+    />
   );
 }

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bari — Comparison Table Consistency Audit</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+:root{
+  --canvas:#F7F7F2;--surface:#fff;--surface2:#FBFBF9;
+  --fg1:#111318;--fg2:#4E5663;--fg3:#7A817C;--fg4:#AAAAAA;
+  --green:#1F8F6A;--green-deep:#176F53;
+  --hair:rgba(17,19,24,.08);--hair2:rgba(17,19,24,.06);
+  --amber-bg:#FBF4DE;--amber-tx:#8F6600;--amber-bd:rgba(201,138,0,.22);
+  --red-bg:#FDECE8;--red-tx:#A63F2A;--red-bd:rgba(209,88,61,.22);
+  --ok-bg:#E8F5EF;--ok-tx:#176F53;--ok-bd:rgba(31,143,106,.22);
+  --mono:"Geist Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--fg1);
+  font-family:"Inter","Heebo",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+
+/* ---------- header ---------- */
+header.top{padding:72px 0 44px;border-bottom:1px solid var(--hair)}
+.eyebrow{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.24em;color:rgba(31,143,106,.85)}
+.mark{display:inline-flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.05em;font-size:1.2rem;margin-bottom:30px}
+.mark i{width:11px;height:11px;border-radius:50%;background:var(--green);display:inline-block}
+h1{font-weight:800;letter-spacing:-.045em;font-size:clamp(2rem,4.4vw,3.05rem);line-height:1.05;margin:14px 0 0;max-width:19ch;text-wrap:balance}
+.dek{font-size:1.1rem;color:var(--fg2);max-width:64ch;margin:20px 0 0;line-height:1.72;text-wrap:pretty}
+.scope{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.scope span{border:1px solid var(--hair);background:var(--surface);border-radius:9999px;padding:7px 14px;font-size:.78rem;font-weight:600;color:var(--fg2)}
+.meta{margin-top:24px;font-family:var(--mono);font-size:.72rem;color:var(--fg3);letter-spacing:.02em;line-height:1.9}
+
+/* ---------- verdict banner ---------- */
+.verdict{margin-top:34px;background:var(--surface);border:1px solid var(--hair);border-radius:18px;
+  padding:26px 28px;display:flex;gap:22px;align-items:flex-start;box-shadow:0 1px 3px rgba(17,19,24,.05)}
+.verdict .vmark{flex:none;width:46px;height:46px;border-radius:12px;background:var(--red-bg);border:1px solid var(--red-bd);
+  display:flex;align-items:center;justify-content:center;color:var(--red-tx);font-size:1.5rem;font-weight:800}
+.verdict h2{margin:0;font-size:1.18rem;font-weight:800;letter-spacing:-.02em}
+.verdict p{margin:8px 0 0;color:var(--fg2);font-size:.95rem;line-height:1.65;max-width:74ch}
+.verdict .q{font-weight:700;color:var(--fg1)}
+
+/* ---------- sections ---------- */
+section.block{padding:56px 0;border-bottom:1px solid var(--hair)}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.shead h2{font-weight:800;letter-spacing:-.035em;font-size:1.7rem;margin:0}
+.snum{font-family:var(--mono);font-weight:700;color:var(--green);font-size:.8rem}
+.sintro{color:var(--fg2);max-width:70ch;margin:0 0 30px;line-height:1.72;font-size:.97rem}
+
+/* ---------- matrix table ---------- */
+.matrix-scroll{overflow-x:auto;border:1px solid var(--hair);border-radius:14px;background:var(--surface);box-shadow:0 1px 3px rgba(17,19,24,.04)}
+table.matrix{border-collapse:collapse;width:100%;min-width:780px;font-size:.83rem}
+table.matrix th,table.matrix td{text-align:right;padding:13px 16px;border-bottom:1px solid var(--hair2);vertical-align:top}
+table.matrix thead th{position:sticky;top:0;background:var(--surface2);font-family:var(--mono);font-weight:700;font-size:.64rem;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--fg3);border-bottom:1px solid var(--hair)}
+table.matrix tbody tr:last-child td{border-bottom:none}
+table.matrix tbody tr:hover{background:#FBFBF8}
+.pname{font-weight:700;color:var(--fg1);white-space:nowrap}
+.proute{font-family:var(--mono);font-size:.64rem;color:var(--fg3);display:block;margin-top:3px}
+.cell-sub{display:block;font-size:.72rem;color:var(--fg3);margin-top:3px;line-height:1.4}
+.pill{display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:9999px;white-space:nowrap;letter-spacing:.03em}
+.pill.on{background:var(--ok-bg);color:var(--ok-tx);border:1px solid var(--ok-bd)}
+.pill.off{background:var(--amber-bg);color:var(--amber-tx);border:1px solid var(--amber-bd)}
+.pill.own{background:var(--red-bg);color:var(--red-tx);border:1px solid var(--red-bd)}
+.pill.neutral{background:#F1F1EC;color:var(--fg2);border:1px solid var(--hair)}
+tr.milk td{background:#FCF6F4}
+tr.milk:hover td{background:#FBF3F0}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-size:.8rem;color:var(--fg2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend .dot{width:11px;height:11px;border-radius:3px;flex:none}
+
+/* ---------- finding cards ---------- */
+.findings{display:flex;flex-direction:column;gap:16px}
+.finding{background:var(--surface);border:1px solid var(--hair);border-radius:15px;padding:22px 24px;
+  box-shadow:0 1px 3px rgba(17,19,24,.04);display:flex;gap:20px;align-items:flex-start}
+.fno{font-family:var(--mono);font-weight:700;font-size:1.4rem;color:#D6D9D2;line-height:1;padding-top:3px;min-width:2.4ch}
+.fbody{flex:1;min-width:0}
+.frow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.finding h3{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.3}
+.sev{font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 9px;border-radius:9999px;white-space:nowrap}
+.sev.high{background:var(--red-bg);color:var(--red-tx);border:1px solid var(--red-bd)}
+.sev.med{background:var(--amber-bg);color:var(--amber-tx);border:1px solid var(--amber-bd)}
+.sev.low{background:#F1F1EC;color:var(--fg2);border:1px solid var(--hair)}
+.finding p{margin:8px 0 0;font-size:.92rem;color:var(--fg2);line-height:1.65}
+.finding p .lab{font-weight:700;color:var(--fg1)}
+.affects{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.affects .a{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.06em;color:var(--fg3);border:1px solid var(--hair);border-radius:5px;padding:3px 7px}
+code{font-family:var(--mono);font-size:.84em;background:#F1F1EC;border:1px solid var(--hair2);border-radius:5px;padding:1px 6px;color:#3a3f44;white-space:nowrap}
+
+/* ---------- improvements ---------- */
+.imp{display:flex;flex-direction:column;gap:14px}
+.impcard{background:var(--surface);border:1px solid var(--hair);border-radius:15px;padding:22px 24px;box-shadow:0 1px 3px rgba(17,19,24,.04)}
+.imptop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.impid{font-family:var(--mono);font-weight:800;color:var(--green);font-size:.82rem;border:1px solid rgba(31,143,106,.28);border-radius:8px;padding:4px 9px;background:rgba(31,143,106,.05)}
+.impcard h3{font-size:1.04rem;font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.3;flex:1;min-width:200px}
+.eff{font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 9px;border-radius:9999px;background:#F1F1EC;color:var(--fg2)}
+.impcard p{margin:6px 0 0;font-size:.92rem;color:var(--fg2);line-height:1.66}
+.impcard p .lab{font-weight:700;color:var(--fg1)}
+.fixes{margin-top:12px;font-family:var(--mono);font-size:.66rem;color:var(--fg3);letter-spacing:.02em}
+.fixes b{color:var(--green-deep);font-weight:700}
+
+/* ---------- sequencing ---------- */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:840px){.phases{grid-template-columns:1fr}}
+.phase{background:var(--surface);border:1px solid var(--hair);border-radius:15px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.phasehd{border-bottom:1px solid var(--hair);padding-bottom:12px}
+.phaseName{font-weight:800;letter-spacing:-.02em;font-size:1.1rem}
+.phaseTag{display:block;margin-top:4px;font-size:.74rem;color:var(--fg3);font-family:var(--mono)}
+.ritem{display:flex;align-items:baseline;gap:10px;font-size:.86rem}
+.rid{font-family:var(--mono);font-weight:700;color:var(--green);font-size:.7rem;min-width:4ch}
+.rt{flex:1;color:var(--fg2);line-height:1.5}
+
+footer{padding:40px 0 70px;color:var(--fg3);font-size:.8rem;font-family:var(--mono);line-height:1.8}
+.note{font-size:.82rem;color:var(--fg3);margin-top:18px;line-height:1.6;max-width:72ch}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="mark"><i></i>Bari</div>
+    <p class="eyebrow">Comparison Engine · Consistency Audit</p>
+    <h1>Do the product tables match? Mostly not.</h1>
+    <p class="dek">A code-level scan of every <code>/hashvaot</code> comparison table — checking whether the seven product categories share one table experience, and where they have quietly drifted into three.</p>
+    <div class="scope">
+      <span>Hummus</span><span>Maadanim</span><span>Yogurts</span><span>Vegetable spreads</span><span>Snacks</span><span>Bread</span><span>Milk</span>
+    </div>
+    <p class="meta">SCOPE — 7 live category routes · 4 row components · 1 shared spec (comparison-v2-spec.md)<br>METHOD — source scan of comparison page + row + table components<br>DATE — June 2026</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="verdict">
+      <div class="vmark">!</div>
+      <div>
+        <h2>Q1 — Are there differences between products? <span style="color:var(--red-tx)">Yes, three kinds.</span></h2>
+        <p><span class="q">There shouldn't be — but there are.</span> Six categories share a "canonical" path, yet that path renders through <span class="lab">two unrelated row components</span> (one for mobile, a different one for desktop). On top of that, a <span class="lab">v2 layout flag is switched on for only two of the six</span>, so Hummus and Maadanim show a structurally different row than Yogurts, Spreads, Snacks and Bread. And <span class="lab">Milk is a completely separate, hand-built table</span> that shares none of the above. Net result: a shopper moving between categories meets up to three different table designs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATRIX ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="shead"><span class="snum">01</span><h2>The consistency matrix</h2></div>
+    <p class="sintro">What each category actually renders, column by column. Green = on the shared modern path; amber = on the shared path but a step behind; red = off the shared path entirely. The more colour variety in a column, the more drift exists in that dimension.</p>
+
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Desktop row component</th>
+            <th>Mobile row component</th>
+            <th>v2 layout</th>
+            <th>Grade UI</th>
+            <th>Expansion structure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pname">Hummus</span><span class="proute">/hashvaot/hummus</span></td>
+            <td>BariProductShelfRow<span class="cell-sub">+ inline expansion</span></td>
+            <td>ProductRow<span class="cell-sub">+ ExpansionSection</span></td>
+            <td><span class="pill on">v2 ON</span></td>
+            <td>BariGradeBadge / ScoreChip<span class="cell-sub">desktop / mobile</span></td>
+            <td>RowReason +/−<span class="cell-sub">promoted confidence, single disclosure</span></td>
+          </tr>
+          <tr>
+            <td><span class="pname">Maadanim</span><span class="proute">/hashvaot/maadanim</span></td>
+            <td>BariProductShelfRow<span class="cell-sub">+ inline expansion</span></td>
+            <td>ProductRow<span class="cell-sub">+ ExpansionSection</span></td>
+            <td><span class="pill on">v2 ON</span></td>
+            <td>BariGradeBadge / ScoreChip<span class="cell-sub">desktop / mobile</span></td>
+            <td>RowReason +/−<span class="cell-sub">promoted confidence, single disclosure</span></td>
+          </tr>
+          <tr>
+            <td><span class="pname">Yogurts</span><span class="proute">/hashvaot/yogurts</span></td>
+            <td>BariProductShelfRow</td>
+            <td>ProductRow</td>
+            <td><span class="pill off">v2 OFF</span></td>
+            <td>BariGradeBadge / ScoreChip</td>
+            <td>insightLine "בקצרה:"<span class="cell-sub">buried confidence, double "advanced" toggle</span></td>
+          </tr>
+          <tr>
+            <td><span class="pname">Vegetable spreads</span><span class="proute">/hashvaot/vegetable-spreads</span></td>
+            <td>BariProductShelfRow</td>
+            <td>ProductRow</td>
+            <td><span class="pill off">v2 OFF</span></td>
+            <td>BariGradeBadge / ScoreChip</td>
+            <td>insightLine "בקצרה:"<span class="cell-sub">buried confidence, double toggle</span></td>
+          </tr>
+          <tr>
+            <td><span class="pname">Snacks</span><span class="proute">/hashvaot/snacks</span></td>
+            <td>BariProductShelfRow</td>
+            <td>ProductRow</td>
+            <td><span class="pill off">v2 OFF</span></td>
+            <td>BariGradeBadge / ScoreChip</td>
+            <td>insightLine "בקצרה:"<span class="cell-sub">buried confidence, double toggle</span></td>
+          </tr>
+          <tr>
+            <td><span class="pname">Bread</span><span class="proute">/hashvaot/bread</span></td>
+            <td>BariProductShelfRow</td>
+            <td>ProductRow</td>
+            <td><span class="pill off">v2 OFF</span></td>
+            <td>BariGradeBadge / ScoreChip</td>
+            <td>insightLine "בקצרה:"<span class="cell-sub">buried confidence, double toggle</span></td>
+          </tr>
+          <tr class="milk">
+            <td><span class="pname">Milk</span><span class="proute">/hashvaot/milk-comparison</span></td>
+            <td>ProductShelfRow<span class="cell-sub">bespoke, framer-motion</span></td>
+            <td>ProductShelfRow<span class="cell-sub">same component, responsive</span></td>
+            <td><span class="pill own">own model</span></td>
+            <td>BariGradeBadge only</td>
+            <td>4-cell metric grid + מה חשוב/מעלה/מוריד<span class="cell-sub">+ pillars panel — unique taxonomy</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><span class="dot" style="background:var(--ok-bg);border:1px solid var(--ok-bd)"></span>Shared path, modern (v2)</span>
+      <span><span class="dot" style="background:var(--amber-bg);border:1px solid var(--amber-bd)"></span>Shared path, a step behind (v1)</span>
+      <span><span class="dot" style="background:var(--red-bg);border:1px solid var(--red-bd)"></span>Off the shared path entirely</span>
+    </div>
+    <p class="note">Note: even the "shared path" splits internally — desktop renders through <code>BariProductShelfRow</code> while mobile renders through <code>ProductRow</code>. These are two separately maintained components, not two breakpoints of one. They use different grade UI, different thumbnails, and different expansion markup.</p>
+  </div>
+</section>
+
+<!-- ============ FINDINGS ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="shead"><span class="snum">02</span><h2>What's actually different</h2></div>
+    <p class="sintro">Four concrete sources of divergence surfaced by the scan, ordered by how visible they are to a shopper comparing categories.</p>
+
+    <div class="findings">
+      <div class="finding">
+        <div class="fno">D1</div>
+        <div class="fbody">
+          <div class="frow"><h3>Milk is a parallel table</h3><span class="sev high">High · shopper-visible</span></div>
+          <p><span class="lab">Milk renders through its own <code>MilkComparisonPage</code> + <code>ProductShelfRow</code></span> and shares no row, thumbnail, grade or expansion component with the other six. It shows a 4-cell metric grid (protein · sugar · additives · main ingredient) and an expansion taxonomy — <span class="mono">מה חשוב לדעת / מה מעלה / מה מוריד / בהשוואה</span> + an advanced pillars panel — that exists nowhere else. Sugar-per-100ml and "main ingredient" are surfaced only here.</p>
+          <div class="affects"><span class="a">Milk</span></div>
+        </div>
+      </div>
+
+      <div class="finding">
+        <div class="fno">D2</div>
+        <div class="fbody">
+          <div class="frow"><h3>Mobile and desktop are different components — everywhere</h3><span class="sev high">High · structural</span></div>
+          <p>Across all six canonical categories, the desktop table is <code>BariProductShelfRow</code> and the mobile table is <code>ProductRow</code> — two hand-maintained components. They diverge in grade UI (<code>BariGradeBadge</code> vs <code>ScoreChip</code>), thumbnail (<code>BariProductThumbnail</code> vs <code>ProductImage</code>), and expansion (inline markup vs the <code>ExpansionSection</code> component). The <span class="lab">"בקצרה:" prefix appears on desktop only</span>; mobile shows the same line unlabelled. Any fix to one must be hand-ported to the other.</p>
+          <div class="affects"><span class="a">All 6 canonical</span></div>
+        </div>
+      </div>
+
+      <div class="finding">
+        <div class="fno">D3</div>
+        <div class="fbody">
+          <div class="frow"><h3>The v2 row ships to 2 of 6</h3><span class="sev med">Medium · shopper-visible</span></div>
+          <p>A <code>v2Slice</code> flag is <code>true</code> only in <code>HUMMUS_V2_SLICE</code> and <code>MAADANIM_V2_SLICE</code>. Where it's on, the row shows strongest <span class="mono">+/−</span> reasons, a promoted confidence indicator, an inline protein metric, and a single expansion disclosure. Where it's off (Yogurts, Spreads, Snacks, Bread) the row still shows the old <code>insightLine</code>, hides confidence in a 10px footnote, and uses a two-level "advanced" toggle. The spec calls this a "proof slice" — it was never rolled out.</p>
+          <div class="affects"><span class="a">Hummus ✓</span><span class="a">Maadanim ✓</span><span class="a">Yogurts ✗</span><span class="a">Spreads ✗</span><span class="a">Snacks ✗</span><span class="a">Bread ✗</span></div>
+        </div>
+      </div>
+
+      <div class="finding">
+        <div class="fno">D4</div>
+        <div class="fbody">
+          <div class="frow"><h3>A whole desktop table path ships dead</h3><span class="sev low">Low · maintenance risk</span></div>
+          <p><code>ProductRow</code> contains a complete desktop web-grid branch (rank · image · name · score columns) and <code>ProductTableHeader</code> renders the column guide — but no shipped route passes <code>layout="web"</code> to <code>ComparisonShelfPage</code>; every page wraps it in <code>lg:hidden</code> and uses <code>BariComparisonDesktopPage</code> instead. So this path renders nothing in production yet still has to be reasoned about on every change.</p>
+          <div class="affects"><span class="a">ProductRow web-grid</span><span class="a">ProductTableHeader</span><span class="a">ShelfPage web mode</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPROVEMENTS ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="shead"><span class="snum">03</span><h2>Q2 — Improvements I'd suggest</h2></div>
+    <p class="sintro">The goal is one table experience that every category inherits for free, with per-category data — not per-category layout. Ordered roughly by leverage.</p>
+
+    <div class="imp">
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-1</span><h3>Collapse to one responsive row component</h3><span class="eff">High effort · highest leverage</span></div>
+        <p>Merge <code>BariProductShelfRow</code> and <code>ProductRow</code> into a single component that handles mobile and desktop with CSS breakpoints, and delete the loser. This removes D2 at the root — one place to change grade UI, thumbnails, and the expansion. Pick one grade primitive (<code>BariGradeBadge</code>) and one thumbnail (one of the three current ones) as part of the merge.</p>
+        <p class="fixes">FIXES <b>D2</b> · also unblocks D3 (one row to flip), D4 (the dead path goes with it)</p>
+      </div>
+
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-2</span><h3>Make v2 the default, then remove the flag</h3><span class="eff">Low effort · high visibility</span></div>
+        <p>Flip <code>v2Slice</code> on for all six categories (or invert the default to <code>true</code>), QA the four that lag, then delete the flag entirely so there is no "v1 vs v2" fork to drift again. This ends the Hummus-vs-everyone-else gap that a shopper sees immediately.</p>
+        <p class="fixes">FIXES <b>D3</b> · depends on IMP-1 landing first for a clean single flip</p>
+      </div>
+
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-3</span><h3>Fold Milk into the shared system</h3><span class="eff">High effort · removes a fork</span></div>
+        <p>Milk's extras are data, not layout: <span class="lab">sugar-per-100ml and main-ingredient become optional <code>metrics</code> fields</span> on the shared VM, rendered (or hidden) by the one row component. Map its expansion taxonomy onto the shared section identities so Milk reads like every other category. This retires the largest single source of divergence.</p>
+        <p class="fixes">FIXES <b>D1</b> · should follow IMP-1 so there is one target to fold into</p>
+      </div>
+
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-4</span><h3>Finish the v2 spec — uniformly</h3><span class="eff">Medium effort · per spec</span></div>
+        <p>Even the "v2" categories only got ~3 of the 9 specced items. The aligned metric column (protein · additives · base %), the score-band jump rail, in-list band dividers, the header score histogram, and the density toggle are all still unbuilt. Build them once in the shared component so all categories gain them together — the aligned metric column is the actual differentiation mechanism the spec calls for.</p>
+        <p class="fixes">FIXES <b>spec §1–4, §7, §9</b> · build on the merged component from IMP-1</p>
+      </div>
+
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-5</span><h3>Delete the dead web-grid path</h3><span class="eff">Low effort · cleanup</span></div>
+        <p>Remove <code>ProductRow</code>'s unused web branch, <code>ProductTableHeader</code>, and <code>ComparisonShelfPage</code>'s <code>web</code> layout mode — or wire them up. Right now they are pure cognitive overhead and a trap for the next engineer who edits the row. (If IMP-1 lands, this falls out for free.)</p>
+        <p class="fixes">FIXES <b>D4</b></p>
+      </div>
+
+      <div class="impcard">
+        <div class="imptop"><span class="impid">IMP-6</span><h3>Lift category-wide notes out of the rows</h3><span class="eff">Low effort · per spec §8</span></div>
+        <p>Per the spec, category-level disclosures (e.g. the Hummus "fat values not shown" note, relativity caveats) belong once in the header or methodology block — not repeated in every row's <code>unknowns</code>. This both de-clutters the row and makes per-row <code>unknowns</code> mean "product-specific" again, consistently across categories.</p>
+        <p class="fixes">FIXES <b>spec §8</b> · independent of IMP-1, can ship anytime</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEQUENCING ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="shead"><span class="snum">04</span><h2>Suggested sequencing</h2></div>
+    <p class="sintro">Two quick wins can ship now and are visible immediately; the structural consolidation is the real fix and unlocks everything else.</p>
+    <div class="phases">
+      <div class="phase">
+        <div class="phasehd"><span class="phaseName">Now</span><span class="phaseTag">no consolidation needed</span></div>
+        <div class="ritem"><span class="rid">IMP-2</span><span class="rt">Flip v2 on for the lagging four — ends the most visible gap</span></div>
+        <div class="ritem"><span class="rid">IMP-6</span><span class="rt">Move category-wide notes to the header</span></div>
+      </div>
+      <div class="phase">
+        <div class="phasehd"><span class="phaseName">Next</span><span class="phaseTag">the structural fix</span></div>
+        <div class="ritem"><span class="rid">IMP-1</span><span class="rt">Merge to one responsive row; pick one grade + thumbnail</span></div>
+        <div class="ritem"><span class="rid">IMP-5</span><span class="rt">Delete the dead web-grid path (falls out of IMP-1)</span></div>
+      </div>
+      <div class="phase">
+        <div class="phasehd"><span class="phaseName">Then</span><span class="phaseTag">one system, fully</span></div>
+        <div class="ritem"><span class="rid">IMP-3</span><span class="rt">Fold Milk into the shared component</span></div>
+        <div class="ritem"><span class="rid">IMP-4</span><span class="rt">Build the remaining v2 spec items once, for all</span></div>
+      </div>
+    </div>
+    <p class="note">After this sequence there is one comparison table, one row component, one grade and thumbnail primitive, and one expansion taxonomy — every category differs only in its data, which is the whole point.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    BARI — COMPARISON ENGINE CONSISTENCY AUDIT<br>
+    Source scan · 7 routes · 4 row components · comparison-v2-spec.md · June 2026
+  </div>
+</footer>
+
+</body>
+</html>

@@ -18,8 +18,9 @@
   ],
   "normalized_nutrition_per_100g": {
     "energy_kcal": 296.0,
-    "fat_g": 0.5,
+    "fat_g": 24.0,
     "carbohydrates_g": 12.0,
+    "sugars_g": 0.0,
     "protein_g": 8.0,
     "sodium_mg": 395.0
   },
@@ -55,7 +56,7 @@
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%96%D7%95%D7%9F-%D7%9E%D7%A7%D7%95%D7%A8%D7%A8-%D7%A7%D7%A4%D7%95%D7%90%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%A0%D7%99%D7%A7%D7%99%D7%9D/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%A1%D7%9C%D7%98%D7%99%D7%9D/%D7%A1%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%98%D7%97%D7%99%D7%A0%D7%94/%D7%9E%D7%9C%D7%9A-%D7%94%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%A1%D7%9E%D7%99%D7%A8-%D7%94%D7%92%D7%93%D7%95%D7%9C/p/P_467153",
-    "scraped_at": "2026-05-30T18:40:47.961714",
+    "scraped_at": "2026-06-02T06:07:27.398928",
     "source_category": "A162406_hummus_tahini",
     "product_category": "hummus_spread",
     "extraction_method": "html_parse",
@@ -63,73 +64,6 @@
     "price_ils": "16.5",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "סלט חומוס 90% (חומוס מבושל 48% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), טחינה גולמית (מכיל שומשום), מים, שמן סויה,  מלח שולחן, חומצת מאכל (חומצת לימון), חומר משמר (פוטסיום סורבט)), טחינה גולמית",
-  "ingredients_raw_provenance": {
-    "source": "bsip1_text_fallback",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
-  },
-  "ingredient_order": [
-    {
-      "position": 1,
-      "text": "סלט חומוס 90% (חומוס מבושל 48% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט-סודה לשתייה)), טחינה גולמית (מכיל שומשום), מים, שמן סויה,  מלח שולחן, חומצת מאכל (חומצת לימון), חומר משמר (פוטסיום סורבט))",
-      "percentage_declared": 90.0,
-      "has_subgroup": true
-    },
-    {
-      "position": 2,
-      "text": "טחינה גולמית",
-      "percentage_declared": null,
-      "has_subgroup": false
-    }
-  ],
-  "extracted_additives": [
-    {
-      "term": "סודיום ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    },
-    {
-      "term": "מווסת חומציות",
-      "category": "acidity_regulator",
-      "position": 1
-    },
-    {
-      "term": "ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    }
-  ],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [
-    {
-      "term": "מבושל",
-      "category": "cooked",
-      "position": 1
-    }
-  ],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 2,
-    "additive_count": 3,
-    "flavor_marker_count": 0,
-    "sweetener_count": 0,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 1,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

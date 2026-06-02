@@ -1,27 +1,27 @@
 {
   "run_id": "run_hummus_001",
-  "run_date": "2026-05-31 04:23 UTC",
+  "run_date": "2026-06-02 06:10 UTC",
   "category": "hummus_and_savory_dips",
   "known_limitation": "Known limitation: fat_quality dimension may be unreliable for 58/69 products due to confirmed Shufersal fat-row scraping defect identified in TASK-039.",
   "products_processed": 69,
-  "products_scored": 67,
-  "products_insufficient": 2,
+  "products_scored": 69,
+  "products_insufficient": 0,
   "pipeline_errors": 0,
   "score_statistics": {
-    "count": 67,
-    "mean": 65.1,
-    "median": 64.5,
-    "stdev": 9.5,
-    "min": 42.8,
-    "max": 85,
-    "p25": 60.4,
-    "p75": 67.7
+    "count": 69,
+    "mean": 63.2,
+    "median": 61.9,
+    "stdev": 10.5,
+    "min": 38.9,
+    "max": 85.5,
+    "p25": 57.3,
+    "p75": 65.7
   },
   "grade_distribution": {
-    "B": 25,
-    "A": 6,
-    "C": 31,
-    "D": 5
+    "B": 17,
+    "C": 38,
+    "A": 7,
+    "D": 7
   },
   "nova_distribution": {
     "2": 4,
@@ -29,22 +29,20 @@
     "1": 6
   },
   "category_routing": {
-    "dessert": 44,
-    "sauce_spread": 3,
-    "default": 15,
-    "whole_food_fat": 7
+    "sauce_spread": 67,
+    "default": 2
   },
   "dimension_avg_scores": {
-    "processing_quality": 68.3,
-    "nutrient_density": 27.5,
-    "calorie_density": 71.0,
-    "glycemic_quality": 92.2,
-    "protein_quality": 35.3,
-    "additive_quality": 72.1,
-    "satiety_support": 48.4,
+    "processing_quality": 68.8,
+    "nutrient_density": 29.2,
+    "calorie_density": 75.9,
+    "glycemic_quality": 86.1,
+    "protein_quality": 36.8,
+    "additive_quality": 72.9,
+    "satiety_support": 49.9,
     "fat_quality": 50.0,
-    "regulatory_quality": 92.4,
-    "whole_food_integrity": 65.2
+    "regulatory_quality": 92.5,
+    "whole_food_integrity": 65.8
   },
   "caps_applied_counts": {
     "NOVA_PROXY_3_PROCESSED": 59,
@@ -53,19 +51,35 @@
     "ADDITIVE_MARKERS_5_PLUS": 1
   },
   "penalties_applied_counts": {
+    "HP_FAT_SODIUM_COMBO": 54,
     "LONG_INGREDIENT_LIST": 8,
     "SEED_OIL_PRESENT": 43,
-    "HP_FAT_SODIUM_COMBO": 1,
     "HIGH_CAL_LOW_SATIETY_SOFT": 1,
     "MULTIPLE_ADDED_SUGAR_MARKERS": 4
   },
   "top_10": [
     {
+      "product_id": "bsip1_7296073733324",
+      "name": "חומוס",
+      "score": 85.5,
+      "grade": "A",
+      "category": "sauce_spread",
+      "nova": 1
+    },
+    {
+      "product_id": "bsip1_7296073733331",
+      "name": "חומוס ענק",
+      "score": 85.5,
+      "grade": "A",
+      "category": "sauce_spread",
+      "nova": 1
+    },
+    {
       "product_id": "bsip1_3643820",
       "name": "חומוס ענק",
       "score": 85,
       "grade": "A",
-      "category": "dessert",
+      "category": "sauce_spread",
       "nova": 1
     },
     {
@@ -73,7 +87,7 @@
       "name": "חומוס לבן ענק שופרסל",
       "score": 85,
       "grade": "A",
-      "category": "dessert",
+      "category": "sauce_spread",
       "nova": 1
     },
     {
@@ -81,7 +95,7 @@
       "name": "חומוס גדול שופרסל",
       "score": 85,
       "grade": "A",
-      "category": "dessert",
+      "category": "sauce_spread",
       "nova": 1
     },
     {
@@ -89,24 +103,16 @@
       "name": "חומוס מוקפא",
       "score": 85,
       "grade": "A",
-      "category": "dessert",
+      "category": "sauce_spread",
       "nova": 1
     },
     {
-      "product_id": "bsip1_7296073733324",
-      "name": "חומוס",
-      "score": 85,
+      "product_id": "bsip1_7290018359686",
+      "name": "הקיסר חומוס ענק",
+      "score": 80.3,
       "grade": "A",
-      "category": "dessert",
-      "nova": 1
-    },
-    {
-      "product_id": "bsip1_7296073733331",
-      "name": "חומוס ענק",
-      "score": 85,
-      "grade": "A",
-      "category": "dessert",
-      "nova": 1
+      "category": "sauce_spread",
+      "nova": 3
     },
     {
       "product_id": "bsip1_208428",
@@ -117,27 +123,19 @@
       "nova": 3
     },
     {
-      "product_id": "bsip1_7290018359686",
-      "name": "הקיסר חומוס ענק",
-      "score": 79.7,
-      "grade": "B",
-      "category": "dessert",
-      "nova": 3
-    },
-    {
       "product_id": "bsip1_6666307",
       "name": "סלט חומוס",
-      "score": 79.4,
+      "score": 77.2,
       "grade": "B",
-      "category": "dessert",
+      "category": "sauce_spread",
       "nova": 3
     },
     {
-      "product_id": "bsip1_7290110564360",
-      "name": "חומוס עשיר ב40% טחינה",
-      "score": 72.8,
+      "product_id": "bsip1_7296073725404",
+      "name": "חומוס מסעדות",
+      "score": 75.1,
       "grade": "B",
-      "category": "whole_food_fat",
+      "category": "sauce_spread",
       "nova": 3
     }
   ],
@@ -145,7 +143,7 @@
     {
       "product_id": "bsip1_6724786",
       "name": "ממרח פלפלים קלויים",
-      "score": 42.8,
+      "score": 38.9,
       "grade": "D",
       "category": "sauce_spread",
       "nova": 3
@@ -153,73 +151,73 @@
     {
       "product_id": "bsip1_7296073451969",
       "name": "ממרח פלפלים קלויים",
-      "score": 48.0,
+      "score": 44.7,
       "grade": "D",
-      "category": "whole_food_fat",
-      "nova": 3
-    },
-    {
-      "product_id": "bsip1_7290106577572",
-      "name": "מטבוחה אמיתית",
-      "score": 48.7,
-      "grade": "D",
-      "category": "default",
-      "nova": 3
-    },
-    {
-      "product_id": "bsip1_7290111563492",
-      "name": "מטבוחה חריפה",
-      "score": 49.6,
-      "grade": "D",
-      "category": "default",
-      "nova": 3
-    },
-    {
-      "product_id": "bsip1_7290010154265",
-      "name": "פלפל צ'ומה",
-      "score": 49.6,
-      "grade": "D",
-      "category": "default",
-      "nova": 3
-    },
-    {
-      "product_id": "bsip1_7296073725633",
-      "name": "מטבוחה פיקנטית",
-      "score": 52.0,
-      "grade": "C",
-      "category": "default",
-      "nova": 3
-    },
-    {
-      "product_id": "bsip1_7296073725510",
-      "name": "סלט מטבוחה פיקנטי",
-      "score": 52.0,
-      "grade": "C",
-      "category": "default",
+      "category": "sauce_spread",
       "nova": 3
     },
     {
       "product_id": "bsip1_7290106577480",
       "name": "חציל על האש בטחינה",
-      "score": 52.2,
-      "grade": "C",
-      "category": "whole_food_fat",
+      "score": 46.4,
+      "grade": "D",
+      "category": "sauce_spread",
       "nova": 3
     },
     {
-      "product_id": "bsip1_7290105366023",
-      "name": "סלט חציל בטעם כבד",
-      "score": 55.3,
-      "grade": "C",
-      "category": "dessert",
+      "product_id": "bsip1_7290010154265",
+      "name": "פלפל צ'ומה",
+      "score": 47.1,
+      "grade": "D",
+      "category": "sauce_spread",
+      "nova": 3
+    },
+    {
+      "product_id": "bsip1_7296073725633",
+      "name": "מטבוחה פיקנטית",
+      "score": 49.0,
+      "grade": "D",
+      "category": "sauce_spread",
+      "nova": 3
+    },
+    {
+      "product_id": "bsip1_7296073725510",
+      "name": "סלט מטבוחה פיקנטי",
+      "score": 49.0,
+      "grade": "D",
+      "category": "sauce_spread",
       "nova": 3
     },
     {
       "product_id": "bsip1_3989096",
       "name": "סלט חציל פיקנטי",
-      "score": 56.4,
+      "score": 49.1,
+      "grade": "D",
+      "category": "sauce_spread",
+      "nova": 3
+    },
+    {
+      "product_id": "bsip1_7290106577572",
+      "name": "מטבוחה אמיתית",
+      "score": 50.0,
       "grade": "C",
-      "category": "default",
+      "category": "sauce_spread",
+      "nova": 3
+    },
+    {
+      "product_id": "bsip1_7290111563492",
+      "name": "מטבוחה חריפה",
+      "score": 50.5,
+      "grade": "C",
+      "category": "sauce_spread",
+      "nova": 3
+    },
+    {
+      "product_id": "bsip1_7290105366023",
+      "name": "סלט חציל בטעם כבד",
+      "score": 51.5,
+      "grade": "C",
+      "category": "sauce_spread",
       "nova": 3
     }
   ]

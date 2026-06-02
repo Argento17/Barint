@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.265346Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.692439Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_2304241",
@@ -52,7 +52,7 @@
     "fat_trans_g": null,
     "sodium_mg": 23.0,
     "carbohydrates_g": 38.4,
-    "sugars_g": null,
+    "sugars_g": 2.0,
     "dietary_fiber_g": 3.1,
     "protein_g": 0.65,
     "ingredient_count": 15,
@@ -73,6 +73,14 @@
       "חומר משמר (E202)",
       "מגביר חוזק ( E327). מאפיינים נוספים ללא צבעי מאכל עלול להכיל בוטנים"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 15,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -83,19 +91,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
+      "fat_saturated_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 0.0,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.052,
     "protein_per_kcal": 0.0052,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -177,6 +185,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 15,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -259,7 +268,7 @@
     "processing_quality": 65,
     "nutrient_density": 13.0,
     "calorie_density": 90.0,
-    "glycemic_quality": 96.2,
+    "glycemic_quality": 91.2,
     "protein_quality": 3.2,
     "additive_quality": 13.0,
     "satiety_support": 55.8,
@@ -271,7 +280,7 @@
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0.65g→3.2, fiber=3.1g→31.0, weighted 65/35=13.0",
     "calorie_density": "kcal=125.0, category=default (conf 0.30, relaxed by 1.10x) → 90",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(6.2) + wg(0) = 96.2 (sweetener tier-C)",
+    "glycemic_quality": "90 - sugar_penalty(5.0) + fiber(6.2) + wg(0) = 91.2 (sweetener tier-C)",
     "protein_quality": "protein=0.65g base=3.2, source=whole_food(×1.0) → 3.2",
     "additive_quality": "sprint1_additives=4 base=28 sw tier-C_pen=15→13.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0.65×3 + 3.1×5) / 125.0 × 400 = 55.8",
@@ -291,7 +300,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 60.5,
+  "weighted_dimension_score": 59.9,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -395,7 +404,7 @@
     }
   ],
   "binding_cap": 70,
-  "score_after_cap": 60.5,
+  "score_after_cap": 59.9,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -430,7 +439,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=0.0<30.0 or sugar=2.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -457,7 +466,7 @@
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 41.5,
+  "score_after_penalty": 40.9,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -526,11 +535,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 41.5,
+  "score_after_floors": 40.9,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 41.5,
+  "final_score_estimate": 40.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

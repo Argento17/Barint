@@ -2,10 +2,12 @@
 id: TASK-149
 title: "Re-scrape + re-score LIVE maadanim — EV-029 fat-parser bug collapsed fat on 88/200 products (latent grade impact)"
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-02
 completed_at: 2026-06-02
+closed_at: 2026-06-02
+closed_by: cc-agent
 depends_on: [TASK-142A, TASK-151]
 cc_comments:
   - date: 2026-06-02
@@ -89,3 +91,16 @@ bottom/comparison lines neutralized** (build_maadanim_v2 carried hardcoded prose
 nearly identical"), פודינג אינסטנט שוקולד ("18 pts higher" → powder-vs-ready-cup composition fact). The 3
 ingredient-count superlatives verified still true. Maadanim featured card is data-driven (no hardcoded scores).
 `npx tsc --noEmit` exit 0. Editorial neutralizations flagged for Content polish. **Ready for CLOSED.**
+
+---
+
+## CLOSED (2026-06-02, cc-agent — close-readiness gate PASS; owner sign-off received)
+Human Product/Nutrition sign-off (the gate this task explicitly held for) supplied by the owner on 2026-06-02
+("close 149-151"). Verified against artifacts:
+- LIVE swap present in working tree — `bari-web/src/data/comparisons/maadanim_frontend_v2.json` shows as
+  modified (` M`), i.e. the corrected-trace rebuild landed on the published file.
+- Grade-diff artifacts exist — `02_products/maadanim/reports/ev029_rescore/grade_diff.json` +
+  `baseline_live_run001.json` (191 matched, 33 grade changes, predominantly downward as EV-029 predicted).
+- Engine unmodified (re-score only); fat collapse 87→2, saturated 0→100 captured.
+**Residual (non-blocking):** 3 stale insight/comparison lines were neutralized inline, not yet rewritten —
+carried forward as the `cc fyi` flag for Content to author proper replacements. **CLOSED.**

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.399788Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.829128Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_5838002",
@@ -46,15 +46,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 114.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 5.0,
+    "fat_saturated_g": 3.0,
     "fat_trans_g": null,
     "sodium_mg": 30.0,
     "carbohydrates_g": 11.0,
-    "sugars_g": 2.5,
+    "sugars_g": 9.7,
     "dietary_fiber_g": null,
     "protein_g": 5.4,
-    "ingredient_count": 15,
+    "ingredient_count": 12,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -67,11 +67,25 @@
       "עמילן תירס",
       "חומרי טעם וריח",
       "מיי צבים (גואר גאם",
-      "לוקסט- ביו גאם). מכיל חלב ערכים תזונתיים 100 גרם 9.7 גרם סוכרים מתוך פחמימות 114 קל אנרגיה 5.4 גרם חלבונים 11 גרם פחמימות 5 גרם שומנים 18.4 מג כולסטרול 30 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 86 מג סידן 2.5 סוכרים 2.5 כפיות סוכר 7.2 מתוכם סוכר מוסף ערכים תזונתיים מנה 8.5 גרם סוכרים מתוך פחמימות 100 קל אנרגיה 4.8 גרם חלבונים 9.7 גרם פחמימות 4.4 גרם שומנים 16.2 מג כולסטרול 26 מג נתרן 2.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 76 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "לוקסט- ביו גאם)"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 12,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "לוקסט- ביו גאם). מכיל חלב ערכים תזונתיים 100 גרם 9.7 גרם סוכרים מתוך פחמימות 114 קל אנרגיה 5.4 גרם חלבונים 11 גרם פחמימות 5 גרם שומנים 18.4 מג כולסטרול 30 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 86 מג סידן 2.5 סוכרים 2.5 כפיות סוכר 7.2 מתוכם סוכר מוסף ערכים תזונתיים מנה 8.5 גרם סוכרים מתוך פחמימות 100 קל אנרגיה 4.8 גרם חלבונים 9.7 גרם פחמימות 4.4 גרם שומנים 16.2 מג כולסטרול 26 מג נתרן 2.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 76 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "לוקסט- ביו גאם)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,19 +96,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 3.95,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.227,
+    "fat_pct_of_kcal": 39.47,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.882,
     "protein_per_kcal": 0.0474,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -165,6 +179,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 12,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -173,7 +188,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 3.95,
+    "fat_pct_of_kcal": 39.47,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -186,10 +201,7 @@
       "עמילן תירס",
       "חומרי טעם וריח",
       "מיי צבים (גואר גאם",
-      "לוקסט- ביו גאם). מכיל חלב ערכים תזונתיים 100 גרם 9.7 גרם סוכרים מתוך פחמימות 114 קל אנרגיה 5.4 גרם חלבונים 11 גרם פחמימות 5 גרם שומנים 18.4 מג כולסטרול 30 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 86 מג סידן 2.5 סוכרים 2.5 כפיות סוכר 7.2 מתוכם סוכר מוסף ערכים תזונתיים מנה 8.5 גרם סוכרים מתוך פחמימות 100 קל אנרגיה 4.8 גרם חלבונים 9.7 גרם פחמימות 4.4 גרם שומנים 16.2 מג כולסטרול 26 מג נתרן 2.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 76 מג סידן 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "לוקסט- ביו גאם)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -226,7 +238,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -241,27 +253,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 17.6,
+    "nutrient_density": 27.0,
     "calorie_density": 85.0,
-    "glycemic_quality": 83.8,
+    "glycemic_quality": 65.8,
     "protein_quality": 27.0,
     "additive_quality": 28.0,
     "satiety_support": 56.8,
-    "fat_quality": 50.0,
+    "fat_quality": 76.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 16
+    "whole_food_integrity": 22
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=5.4g→27.0, fiber=0g→0.0, weighted 65/35=17.6",
+    "nutrient_density": "protein=5.4g→27.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 27.0",
     "calorie_density": "kcal=114.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(6.2) + fiber(0.0) + wg(0) = 83.8",
+    "glycemic_quality": "90 - sugar_penalty(24.2) + fiber(0.0) + wg(0) = 65.8",
     "protein_quality": "protein=5.4g base=27.0, source=whole_food(×1.0) → 27.0",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.4×3 + 0×5) / 114.0 × 400 = 56.8",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=5.0g<8.0): sat=3.0g base=76.0-seed0-trans0=76.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 → 22"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -275,7 +287,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 48.99,
+  "weighted_dimension_score": 50.56,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -379,7 +391,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 48.99,
+  "score_after_cap": 50.56,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -402,8 +414,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -414,7 +426,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.0<30.0 or sugar=2.5<20.0"
+      "condition": "fat_pct=39.5<30.0 or sugar=9.7<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -426,17 +438,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 44.99,
+  "score_after_penalty": 50.56,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -458,15 +464,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -501,16 +503,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 44.99,
+  "score_after_floors": 50.56,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 45.0,
-  "grade_estimate": "D",
+  "final_score_estimate": 50.6,
+  "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
   ],
   "unresolved_flags": [],
   "structural_class": {
@@ -532,8 +533,7 @@
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

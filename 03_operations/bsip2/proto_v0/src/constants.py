@@ -212,6 +212,23 @@ ADDITIVE_IDENTITY_DELTAS = {
 BHA_NAMED_PENALTY = 5   # points on additive_quality — placeholder, DEC-004
 
 # ---------------------------------------------------------------------------
+# TASK-144 Fix 2 — Fiber "absent ≠ zero" for naturally fiber-free dairy categories
+# ---------------------------------------------------------------------------
+# Evidence registry: EV-027 (TASK-144). nutrient_density blends protein (65%) and fiber
+# (35%); a MISSING fiber value is read as 0 and drags the dimension down even though the
+# food category is not expected to contain fiber (parallel to the whole-food-fat-floor
+# principle: do not penalize a food for not being something it isn't). For a fiber-free
+# dairy matrix this mis-models a structural non-applicability as a deficiency.
+#
+# TIGHT GATE (highest-risk item): this re-normalization to protein-only applies ONLY to
+# the categories below — categories where ~0g fiber is the correct, expected value. Any
+# category where missing fiber is a GENUINE nutritional deficiency (bread, cereal, bars,
+# crackers, crispbread, sauces/spreads, whole-food fats, beverages) is DELIBERATELY
+# EXCLUDED and keeps the flat 65/35 blend with fiber-as-0. Membership is allowlist-only:
+# a category must be explicitly listed here to receive the treatment.
+FIBER_NOT_APPLICABLE_CATEGORIES = ("dessert", "dairy_protein", "yogurt")
+
+# ---------------------------------------------------------------------------
 # Trans fat veto threshold
 # > 1.0g/100g: veto (score = 0)
 # 0.5-1.0g: high_trans_fat_concern flag (no veto)

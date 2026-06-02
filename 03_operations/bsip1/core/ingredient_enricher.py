@@ -351,6 +351,25 @@ FERMENTATION_TERMS = _mk([
     ("מחמצת",                   "sourdough_starter"),
     ("מותסס",                   "fermented"),
     ("תסיסה",                   "fermentation"),
+    # ── Israeli retail label culture vocabulary (TASK-139B) ──────────────────
+    # Real Shufersal yogurt labels declare the live-culture positive with this
+    # wording, which the original term set missed (run_yogurt_003: 0/88 credited).
+    # Non-interpretive substring matching only — adds no scoring rule. The generic
+    # "bacteria" phrasings map to live_cultures (flags has_live_cultures); the named
+    # organisms reuse the existing organism categories. Matching is case-insensitive.
+    ("חיידק פרוביוטי",          "live_cultures"),     # "probiotic bacterium"
+    ("חיידקי פרוביוטי",         "live_cultures"),     # construct form
+    ("חיידקים פרוביוטי",        "live_cultures"),     # plural; tolerates OCR "...ים/ם" split
+    ("חיידקי ביפידוס",          "live_cultures"),
+    ("חיידקי ביפדוס",           "live_cultures"),     # spelling/OCR variant (missing yod)
+    ("חיידקי יוגורט",           "live_cultures"),     # "yogurt bacteria"
+    ("חיידקי אצידופילוס",       "live_cultures"),
+    ("חיידקי אצידופולוס",       "live_cultures"),     # spelling variant
+    ("חיידקי bio",              "live_cultures"),     # "חיידקי Bio/BIO" (case-insensitive)
+    ("תרבית",                   "cultures_generic"),  # singular of תרבויות
+    ("ביפידוס",                 "bifidobacterium"),   # Hebrew bifidus = same organism as ביפידובקטריום
+    ("ביפדוס",                  "bifidobacterium"),   # spelling/OCR variant
+    ("bifidus",                 "bifidobacterium"),   # Latin (case-insensitive → BIFIDUS/Bifidus)
 ])
 
 ROASTING_TERMS = _mk([

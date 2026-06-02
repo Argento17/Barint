@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.240395Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.604725Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_80831402",
@@ -50,7 +50,7 @@
     "fat_trans_g": null,
     "sodium_mg": 0.0,
     "carbohydrates_g": 96.0,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": null,
     "protein_g": 0.0,
     "ingredient_count": 8,
@@ -64,6 +64,14 @@
       "צבעי מאכל (ריבו פלאבין",
       "בריליאנט בלו FCF). עלול להכיל גלוטן חיטה"
     ],
+    "ingredient_count_raw": 8,
+    "ingredient_sanitization": {
+      "raw_count": 8,
+      "clean_count": 8,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -75,19 +83,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 5.49,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.0,
     "protein_per_kcal": 0.0,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -164,6 +172,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",

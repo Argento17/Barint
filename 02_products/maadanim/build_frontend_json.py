@@ -15,6 +15,15 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 ROOT = Path(r"C:\Bari")
+
+# Shared confidence-gate validator (TASK-129A, Phase 3 wiring).
+# verified now requires a REAL ingredient list — not a scraped nutrition panel,
+# marketing prose, or an allergen/handling tail. On downgrade we also suppress
+# ingredient-derived positive signals. For maadanim this is a verified no-op
+# (0 downgrades over 87 verified rows — confidence_gate_relabel_delta_129a.md);
+# it lands as forward protection.
+sys.path.insert(0, str(ROOT / "03_operations/bsip2/sprint1"))
+from ingredient_quality_gate import assess_ingredients  # noqa: E402
 BSIP2_DIR  = ROOT / "02_products/maadanim/bsip2_outputs/run_maadanim_001/products"
 BSIP0_RAW  = ROOT / "02_products/maadanim/maadanim_bsip0_raw_20260528T072053.json"
 OUT_DIR    = ROOT / "02_products/maadanim"
@@ -207,14 +216,41 @@ def ingredients_vm(signals: dict) -> str | None:
     cleaned = _clean_ingredient_text(raw)
     return cleaned if cleaned else None
 
-def confidence_vm(trace: dict) -> tuple[str, str]:
-    """Returns (confidence, confidenceLabel)."""
+def confidence_vm(trace: dict, ingredients_text: str | None = None) -> tuple[str, str, bool]:
+    """Returns (confidence, confidenceLabel, ingredient_signals_suppressed).
+
+    TASK-129A §5: `verified` requires (a) the prior data-sufficiency bar AND
+    (b) a REAL ingredient list. When the ingredient field is a scraped nutrition
+    panel / marketing prose / handling tail / empty, the row is downgraded to
+    `partial` and ingredient-derived positive signals MUST be suppressed by the
+    caller (flag returned True). Nutrition-backed signals are unaffected.
+    """
     if trace.get("data_sufficiency") == "insufficient":
-        return "insufficient", "נתונים חסרים"
+        return "insufficient", "נתונים חסרים", False
     score = trace.get("confidence_score", 0)
     if score >= 75:
-        return "verified", "נתונים מלאים"
-    return "partial", "נתונים חלקיים"
+        if assess_ingredients(ingredients_text).is_real_list:
+            return "verified", "נתונים מלאים", False
+        # was verified on presence alone; ingredient field is not a real list.
+        return "partial", "נתונים חלקיים", True
+    return "partial", "נתונים חלקיים", False
+
+# Markers of positive signals that are derived from the INGREDIENT LIST (not the
+# nutrition panel). Suppressed when the §5 gate downgrades a row (TASK-129A),
+# because the list those claims rely on is actually panel-bleed/prose/empty.
+_INGREDIENT_DERIVED_MARKERS = (
+    "ללא תוספים",          # additive-free
+    "רשימת רכיבים",        # "short ingredient list"
+    "בסיס פרי נראה ברשימה", # fruit-base seen in list
+    "מגיע ממוצרי חלב",      # protein source asserted from list
+    "רכיבים עיקריים",      # "N primary ingredients"
+    "ברשימה",              # generic "...in the list" ingredient claims
+)
+
+
+def _is_ingredient_derived_signal(text: str) -> bool:
+    return any(m in text for m in _INGREDIENT_DERIVED_MARKERS)
+
 
 def best_image(image_urls: list[str]) -> str | None:
     if not image_urls:
@@ -574,7 +610,8 @@ for td in trace_dirs:
     # Build VM
     signals = trace.get("L1_observed_signals", {})
     score_raw = trace.get("final_score_estimate")
-    confidence, conf_label = confidence_vm(trace)
+    ing = ingredients_vm(signals)  # computed first — the §5 gate inspects it (TASK-129A)
+    confidence, conf_label, suppress_ingredient_signals = confidence_vm(trace, ing)
 
     score: int | None = None
     grade: str | None = None
@@ -597,7 +634,6 @@ for td in trace_dirs:
             nv["sugar"] = round(recovered_sugar, 1)
     if name == "מעדן סויה ביו טבעי" and nv is not None:
         nv["energyKcal"] = None
-    ing = ingredients_vm(signals)
     images = barcode_to_images.get(barcode, [])
     image_url = best_image(images)
 
@@ -612,6 +648,16 @@ for td in trace_dirs:
     }
     if confidence != "insufficient":
         expansion.update(ce_interpretive_for_product(name, insight, trace, score))
+
+    # TASK-129A §5: on a gate downgrade (ingredient field is not a real list),
+    # suppress positive signals derived FROM that ingredient text — they were
+    # computed on a nutrition panel / prose, not a real list. Nutrition-backed
+    # signals (protein/sugar quantities from the panel) are kept. For maadanim
+    # this branch never fires (verified no-op); it is forward protection.
+    if suppress_ingredient_signals and expansion.get("positiveSignals"):
+        kept = [s for s in expansion["positiveSignals"]
+                if not _is_ingredient_derived_signal(s)]
+        expansion["positiveSignals"] = kept
 
     product = {
         "id": td.name,

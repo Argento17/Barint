@@ -1,0 +1,49 @@
+{
+  "category_slug": "cheese-spreads",
+  "run_id": "run_cheese_002",
+  "supersedes": "run_cheese_001 (pre-fix diagnostic)",
+  "pipeline_run_date": "2026-06-01",
+  "task": "TASK-142 (cycle) + TASK-145 (router fix)",
+  "engine": "proto_v0 / 0.4.0 + TASK-145 cream-cheese router anchor (EV-025, routing-only)",
+  "source": "Shufersal real scrape -> BSIP1 run_cheese_001 (unchanged) -> BSIP2 run_cheese_002",
+  "governance": "cheese_spreads_stress_test_001 (TASK-141, verdict B); dairy calibration TASK-139A/B/D; router anchor TASK-145/EV-025",
+  "stages": {
+    "shelf_mapping": "pass",
+    "corpus_filter": "pass",
+    "bsip0_gate": "pass",
+    "bsip1_enrichment": "pass",
+    "qa_gate": "pass",
+    "bsip2_readiness": "conditional_nutrition_only",
+    "frontend_packaging": "pass"
+  },
+  "corpus": {"scraped": 116, "displayable": 57, "insufficient_displayable": 0,
+             "coverage_displayable": {"nutrition": "100%", "ingredients": "91.2%", "hebrew": "100%", "images": "100%"}},
+  "subpools": {"cottage": 11, "white_cheese_quark": 17, "cream_cheese_spread": 26, "labaneh": 3, "developmental": 0},
+  "scoring": {
+    "grade_distribution": {"A": 6, "B": 23, "C": 27, "D": 1},
+    "score_median": 65.0,
+    "grade_thresholds_engine": {"S": 90, "A": 80, "B": 65, "C": 50, "D": 35, "E": 0},
+    "per_pool": {
+      "cottage": {"n": 11, "grades": {"B": 11}, "median": 76.6},
+      "white_cheese_quark": {"n": 17, "grades": {"B": 7, "A": 6, "C": 4}, "median": 73.8},
+      "labaneh": {"n": 3, "grades": {"B": 2, "C": 1}, "median": 74.8},
+      "cream_cheese_spread": {"n": 26, "grades": {"C": 22, "B": 3, "D": 1}, "median": 60.7}
+    },
+    "a_ceiling_withheld": 6,
+    "a_ceiling_note": "6 white-cheese macro-A's (85) all fail C1-C6 (binding C3 — no confirmed live culture) -> WITHHELD per EV-021. Ruling working as designed (conservative dairy ceiling)."
+  },
+  "exit_criteria_DoD": {
+    "coverage_ge90pct": "MET (nutrition 100%, ingredients 91.2%)",
+    "insufficient_0pct_displayable": "MET (0/57)",
+    "misroute_lt5pct": "MET (1.8% — 1 residual goat cheese)",
+    "subpool_structure_applied_documented": "MET (4 pools + per-product + rollup + shelf_map)",
+    "qa_green": "MET (QA-CHS-001 resolved by TASK-145; router regression 15/15 locked)",
+    "frontend_package_ready": "MET (factory_run_002; 50/57 display-approved; NON-AUTHORITATIVE pending Nutrition sign-off)"
+  },
+  "remaining_to_live": [
+    "Nutrition/Product grade-publication sign-off, incl. confirming the 6 A-ceiling-withheld macro-A white cheeses and the cottage/white/labaneh/cream grades.",
+    "Optional: goat-cheese signal for the 1 residual misroute (1.8%, under gate)."
+  ],
+  "promoted_to_frontend": false,
+  "verdict": "DoD MET (data + routing + QA gates all green via TASK-145). Frontend package held NON-AUTHORITATIVE only on the Nutrition/Product human sign-off gate. run_cheese_002 supersedes the pre-fix run_cheese_001 diagnostic."
+}

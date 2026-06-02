@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.570880Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.995851Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290018249550",
@@ -45,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 17.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 0.7,
+    "fat_saturated_g": 0.1,
     "fat_trans_g": null,
     "sodium_mg": 1302.0,
     "carbohydrates_g": 90.0,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": null,
     "protein_g": 2.4,
-    "ingredient_count": 12,
+    "ingredient_count": 8,
     "ingredient_list": [
       "ממתיקים (אריתריטול",
       "סטיביול גליקוזיד",
@@ -62,12 +62,26 @@
       "מווסתי חומציות (E516",
       "E450ii",
       "E339ii)",
-      "אבקת קקאו. מאפיינים נוספים נטול גלוטן ערכים תזונתיים 100 גרם 0 גרם סוכרים מתוך פחמימות 17 קל אנרגיה 2.4 גרם חלבונים 90 גרם פחמימות 0.7 גרם שומנים 0 מג כולסטרול 1",
-      "302 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 90 גרם רב כהלים ערכים תזונתיים 100 גרם מוכן 3.7 גרם סוכרים מתוך פחמימות 52 קל אנרגיה 2.8 גרם חלבונים 14.6 גרם פחמימות 2.7 גרם שומנים 8 מג כולסטרול 197 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 10.6 גרם רב כהלים 1 כפיות סוכר ערכים תזונתיים מנה 0 גרם סוכרים מתוך פחמימות 9 קל אנרגיה 1.3 גרם חלבונים 49.5 גרם פחמימות 0.4 גרם שומנים 0 מג כולסטרול 716 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 49.5 גרם רב כהלים הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך"
+      "אבקת קקאו. מאפיינים נוספים נטול גלוטן"
     ],
+    "ingredient_count_raw": 12,
+    "ingredient_sanitization": {
+      "raw_count": 12,
+      "clean_count": 8,
+      "dropped": [
+        "302 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 90 גרם רב כהלים ערכים תזונתיים 100 גרם מוכן 3.7 גרם סוכרים מתוך פחמימות 52 קל אנרגיה 2.8 גרם חלבונים 14.6 גרם פחמימות 2.7 גרם שומנים 8 מג כולסטרול 197 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 10.6 גרם רב כהלים 1 כפיות סוכר ערכים תזונתיים מנה 0 גרם סוכרים מתוך פחמימות 9 קל אנרגיה 1.3 גרם חלבונים 49.5 גרם פחמימות 0.4 גרם שומנים 0 מג כולסטרול 716 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 49.5 גרם רב כהלים הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך"
+      ],
+      "truncated": [
+        {
+          "from": "אבקת קקאו. מאפיינים נוספים נטול גלוטן ערכים תזונתיים 100 גרם 0 גרם סוכרים מתוך פחמימות 17 קל אנרגיה 2.4 גרם חלבונים 90 גרם פחמימות 0.7 גרם שומנים 0 מג כולסטרול 1",
+          "to": "אבקת קקאו. מאפיינים נוספים נטול גלוטן"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -78,20 +92,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": false
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": false,
+      "macros_plausible": false
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 26.47,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 37.06,
+    "saturated_fat_fraction": 0.143,
+    "sugar_to_carb_ratio": 0.0,
     "protein_per_kcal": 0.1412,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -169,6 +182,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -177,7 +191,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 26.47,
+    "fat_pct_of_kcal": 37.06,
     "ingredient_list": [
       "ממתיקים (אריתריטול",
       "סטיביול גליקוזיד",
@@ -186,11 +200,7 @@
       "מווסתי חומציות (E516",
       "E450ii",
       "E339ii)",
-      "אבקת קקאו. מאפיינים נוספים נטול גלוטן ערכים תזונתיים 100 גרם 0 גרם סוכרים מתוך פחמימות 17 קל אנרגיה 2.4 גרם חלבונים 90 גרם פחמימות 0.7 גרם שומנים 0 מג כולסטרול 1",
-      "302 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 90 גרם רב כהלים ערכים תזונתיים 100 גרם מוכן 3.7 גרם סוכרים מתוך פחמימות 52 קל אנרגיה 2.8 גרם חלבונים 14.6 גרם פחמימות 2.7 גרם שומנים 8 מג כולסטרול 197 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 10.6 גרם רב כהלים 1 כפיות סוכר ערכים תזונתיים מנה 0 גרם סוכרים מתוך פחמימות 9 קל אנרגיה 1.3 גרם חלבונים 49.5 גרם פחמימות 0.4 גרם שומנים 0 מג כולסטרול 716 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 49.5 גרם רב כהלים הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך"
+      "אבקת קקאו. מאפיינים נוספים נטול גלוטן"
     ]
   },
   "L4_interpreted_concerns": {
@@ -234,8 +244,8 @@
     },
     "se_note": "SRC-04: calorie density dimension capped at 50; fat quality returns neutral 50"
   },
-  "confidence_score": 72,
-  "confidence_band": "medium",
+  "confidence_score": 32,
+  "confidence_band": "insufficient",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
@@ -244,6 +254,10 @@
     {
       "factor": "energy_kcal outside plausible range 20-700",
       "reduction": -10
+    },
+    {
+      "factor": "macro values implausible per 100g (data integrity failure)",
+      "reduction": -40
     },
     {
       "factor": "nova_confidence=medium",
@@ -256,7 +270,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 65,
-    "nutrient_density": 7.8,
+    "nutrient_density": 12.0,
     "calorie_density": 50.0,
     "glycemic_quality": 90.0,
     "protein_quality": 12.0,
@@ -264,11 +278,11 @@
     "satiety_support": 57.6,
     "fat_quality": 50.0,
     "regulatory_quality": 60.0,
-    "whole_food_integrity": 52
+    "whole_food_integrity": 60
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.4g→12.0, fiber=0g→0.0, weighted 65/35=7.8",
+    "nutrient_density": "protein=2.4g→12.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 12.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=17.0)",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=2.4g base=12.0, source=whole_food(×1.0) → 12.0",
@@ -276,7 +290,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.4×3 + 0×5) / 50 × 400 = 57.6",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=12 complexity_pen=8 → 52"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=8 complexity_pen=0 → 60"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -290,7 +304,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 47.86,
+  "weighted_dimension_score": 48.81,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -394,7 +408,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 47.86,
+  "score_after_cap": 48.81,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -429,7 +443,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=26.5<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=37.1<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -453,7 +467,7 @@
   "total_penalty_before_scaling": 3.0,
   "total_penalty_after_scaling": 3.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 40.86,
+  "score_after_penalty": 41.81,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -518,14 +532,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 40.86,
+  "score_after_floors": 41.81,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 40.9,
-  "grade_estimate": "D",
-  "data_sufficiency": "sufficient",
+  "final_score_estimate": 41.8,
+  "grade_estimate": "insufficient_data",
+  "data_sufficiency": "insufficient",
   "explanation_drivers": [
+    "DOMINANT: Confidence ceiling active at 50 (data quality limitation)",
     "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_3_PROCESSED', 'HIGH_SODIUM_700MG_PLUS']",
     "PENALTIES: ['HP_FAT_SODIUM_COMBO']"
   ],
@@ -536,17 +551,17 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.545,
-    "secondary": null,
-    "secondary_label": null,
-    "secondary_confidence": null,
+    "primary_confidence": 0.479,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.23,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.115,
-      "D": 0.545,
-      "E": 0.179,
-      "F": 0.16
+      "C": 0.23,
+      "D": 0.479,
+      "E": 0.128,
+      "F": 0.164
     },
     "is_between_worlds": false,
     "classification_notes": [

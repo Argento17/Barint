@@ -4,8 +4,23 @@ Extracts L1-L6 signals from a BSIP1 product without modifying it.
 All inferences are labelled by taxonomy layer and carry explicit uncertainty.
 """
 import re
+import os
 from input_loader import get_nutrition, get_ingredients, get_ingredients_text, get_trust
 import ingredient_taxonomy as itax   # TASK-133A — named-additive + fragmentation identity
+
+# TASK-144 — activation toggle for the three approved fixes (Fix1 sanitize / Fix3 dairy
+# source typing live here; Fix2 fiber-not-applicable lives in score_engine and reads the
+# same env flag).
+#
+# ACTIVATION SCOPE (governance Check 3): the approved scope is the MAADANIM run only.
+# Frozen dairy categories (yogurt, cheese, milk) share the `dairy_protein` routing
+# category with maadanim, so a category-level gate cannot separate them — and the
+# blast-radius check confirmed Fix 2/Fix 3 would otherwise move FROZEN yogurt/cheese
+# scores (incl. into A), which is out of scope and must not ship without Product sign-off.
+# Therefore the DEFAULT is OFF; only batch_run_maadanim_001.py opts in by setting
+# BARI_TASK144_FIXES=on before import. Set =on for the maadanim run; leave unset (off)
+# everywhere else. This is fully reversible: unset the env var → frozen behavior returns.
+TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
 # Hebrew ingredient keyword lists
@@ -143,10 +158,26 @@ WHOLE_GRAIN_MARKERS_HE = [
 ]
 
 # Fermentation markers
+# TASK-139 (parent closing re-score): the BSIP1 enricher (TASK-139B) was extended to
+# the real Shufersal live-culture label vocabulary, but the BSIP2 scorer derives
+# `has_fermentation` from THIS independent list — so the 139B fix never reached the
+# score (49/86 yogurt SKUs detected as live-culture in BSIP1, 0/86 credited in BSIP2,
+# fermentation_bonus_applied=0). Mirroring 139B's vocabulary here so the already-active
+# fermentation bonus (R-02 direct + WFI ferm_bonus) sees real labels. Non-interpretive
+# substring matching only — no new scoring rule/weight/threshold. Collision-audited:
+# 0 has_fermentation flips on every frozen/non-dairy corpus (milk_001/002, snacks
+# run_001, bread_light_001, bread_retail_003, cereals_001/002, hummus_001).
 FERMENTATION_MARKERS_HE = [
     "תרבויות חיות", "תרביות חיות", "חיידקים פרוביוטיים",
     "לקטובציל", "בידפידוס", "חומצה לקטית", "חמץ",
     "מחמצת", "ספיח", "שמר",
+    # ── Israeli retail live-culture vocabulary (mirror of TASK-139B FERMENTATION_TERMS) ──
+    "תרבויות",                                  # plain plural (label often omits "חיות")
+    "חיידק פרוביוטי", "חיידקי פרוביוטי", "חיידקים פרוביוטי",
+    "חיידקי ביפידוס", "חיידקי ביפדוס",          # incl. OCR/spelling variant (missing yod)
+    "חיידקי יוגורט", "חיידקי אצידופילוס", "חיידקי אצידופולוס",
+    "ביפידוס", "ביפדוס", "bifidus",             # bifidobacterium (case-insensitive → BIFIDUS)
+    "תרבית",                                    # singular "culture"
 ]
 
 # Protein isolate markers
@@ -323,6 +354,138 @@ def _extract_humectant_group_polyols(text: str) -> set:
     return result
 
 
+# ---------------------------------------------------------------------------
+# TASK-144 Fix 1 — Ingredient-list OCR/disclaimer-bleed sanitizer (UPSTREAM HYGIENE)
+# ---------------------------------------------------------------------------
+# Bari evidence registry: EV-026 (TASK-144). Israeli retailer scrapes routinely glue
+# nutrition-panel text and site disclaimers onto the ingredient list when the scraper
+# captures a whole label/page block instead of just the ingredient statement. These
+# phantom "ingredients" inflate ingredient_count and (with 0 additives, 0 added sugar)
+# are the ONLY thing tripping the NOVA proxy ">5 ingredients" → NOVA 3 path
+# (nova_proxy.py:117). This is a DATA-HYGIENE fix, not a scoring rule: it removes the
+# cause (bad count) rather than adding a compensating penalty/relief. No new cap,
+# floor, weight, or threshold. Conservative by design — it only drops items that are
+# unambiguous non-ingredient bleed, and only TRUNCATES bleed glued onto an otherwise
+# real ingredient (preserving the real head, e.g. "אבקת חלב.n20 גרם..." → "אבקת חלב").
+# Observable: emits ingredient_sanitization{raw_count,clean_count,dropped,truncated}.
+
+# Nutrition-panel tokens: appearance of these in an "ingredient" item marks it as a
+# captured nutrition table, not an ingredient.
+_BLEED_NUTRITION_TOKENS = [
+    "ערכים תזונתיים", "ערך תזונתי", "אנרגיה", "קלוריות",
+    " קל ", " קל,", "מג נתרן", "מג סידן", "מ\"ג", "מג ", "קל אנרגיה",
+    "פחמימות מתוכן", "מתוכן סוכרים", "ל-100 גרם", "ל 100 גרם",
+    "100 גרם", "100 מ\"ל", "100 מל",
+]
+# Disclaimer / boilerplate phrases captured from the retailer site.
+_BLEED_DISCLAIMER_TOKENS = [
+    "אין להסתמך", "יש לקרוא", "יתכנו טעויות", "אי התאמות",
+    "להמחשה בלבד", "על גבי אריזת המוצר", "על גבי המוצר",
+    "המופיע באתר", "התמונות והתאריכים", "לפני השימוש",
+    "הנתונים המדויקים", "הינם להמחשה", "מופיע באתר",
+]
+# Gram/quantity-fragment pattern: an item that is essentially "<number> גרם <macro>"
+# is a nutrition fragment, not an ingredient. Requires a number adjacent to a unit.
+_BLEED_QTY_RE = re.compile(r"\d+(?:[.,]\d+)?\s*(?:גרם|ג'|מ\"ג|מג|קל|מ\"ל|מל)\b")
+# Cut marker: bleed frequently glued onto a real ingredient via an OCR artifact like
+# ".n" / ".\n" or a digit-led nutrition fragment. We truncate at the first such marker.
+_BLEED_GLUE_RE = re.compile(r"\.?n?(?=\d)|\.n|\.\s")
+
+
+# Panel-connector lead words: an "ingredient" that begins with one of these is a
+# nutrition-breakdown fragment ("מתוכם 10.7 גרם..."), never a real ingredient.
+_BLEED_CONNECTOR_LEADS = ("מתוכם", "מתוכן", "מהם", "הנתונים", "ובהם", "מזה")
+
+
+def _looks_like_bleed(item: str) -> bool:
+    """True if an ingredient-list item is non-ingredient OCR/nutrition/disclaimer bleed."""
+    t = (item or "").strip()
+    if not t:
+        return True
+    low = t
+    if any(tok in low for tok in _BLEED_DISCLAIMER_TOKENS):
+        return True
+    if any(tok in low for tok in _BLEED_NUTRITION_TOKENS):
+        return True
+    # Heavy quantity-fragment content (e.g. "9.3 גרם קזאינים ... 72 קל אנרגיה ...")
+    qty_hits = len(_BLEED_QTY_RE.findall(low))
+    if qty_hits >= 2:
+        return True
+    # An item that STARTS with a quantity fragment ("10.7 גרם...") is panel bleed,
+    # not an ingredient — real ingredients lead with the substance, not a measurement.
+    if re.match(r"^\s*\d", t):
+        return True
+    # An item that STARTS with a nutrition-breakdown connector word is panel bleed even
+    # after the trailing quantity is truncated off ("מתוכם" / "מהם" / "הנתונים").
+    first_word = t.split()[0] if t.split() else ""
+    if first_word in _BLEED_CONNECTOR_LEADS:
+        return True
+    return False
+
+
+# Phrases that mark the START of nutrition-panel/disclaimer bleed glued onto a real
+# ingredient head — truncate at the earliest of these (keep everything before).
+_BLEED_CUT_PHRASES = [
+    "ערכים תזונתיים", "ערך תזונתי", "הנתונים המדויקים", "אין להסתמך",
+    "יש לקרוא", "יתכנו טעויות", "להמחשה בלבד", "מכיל חלב ערכים",
+]
+
+
+def _truncate_glued_bleed(item: str) -> str:
+    """If a real ingredient has bleed glued on (e.g. 'אבקת חלב.n20 גרם...' or
+    'חומוס ערכים תזונתיים 100 גרם...'), keep the head and drop the bleed tail."""
+    t = (item or "").strip()
+    cut = len(t)
+    # Cut ONLY at unambiguous bleed glue: the '.n' OCR artifact (newline mis-captured),
+    # or a digit-led quantity fragment ("... 20 גרם", "... 117 קל"). A BARE '.' is NOT a
+    # cut point — in Israeli ingredient lists '.' is frequently an item SEPARATOR
+    # ("חלב מפוסטר.מייצב"), so cutting there would silently delete a real downstream
+    # ingredient (and its processing signal). Such separators are left intact.
+    m = re.search(r"\.n(?=\d)|\.n\b|(?<=\D)\s\d+(?:[.,]\d+)?\s*(?:גרם|ג'|מ\"ג|מג|קל)\b", t)
+    if m:
+        cut = min(cut, m.start())
+    # Nutrition-panel / disclaimer phrase boundary.
+    for ph in _BLEED_CUT_PHRASES:
+        idx = t.find(ph)
+        if idx != -1:
+            cut = min(cut, idx)
+    if cut < len(t):
+        head = t[:cut].strip(" .,;")
+        if head:
+            return head
+    return t
+
+
+def sanitize_ingredient_list(ingredients: list[str]) -> dict:
+    """TASK-144 Fix 1 (EV-026): strip nutrition-panel / disclaimer bleed from a scraped
+    ingredient list. Returns {clean, raw_count, clean_count, dropped, truncated}.
+    Pure function, deterministic, no scoring side effects."""
+    raw = [str(i) for i in (ingredients or [])]
+    clean: list[str] = []
+    dropped: list[str] = []
+    truncated: list[dict] = []
+    for item in raw:
+        head = _truncate_glued_bleed(item)
+        if head != item.strip():
+            # head salvaged from a glued real ingredient; keep head only if it is itself
+            # not bleed
+            if head and not _looks_like_bleed(head):
+                clean.append(head)
+                truncated.append({"from": item, "to": head})
+                continue
+        if _looks_like_bleed(item):
+            dropped.append(item)
+            continue
+        clean.append(item.strip())
+    return {
+        "clean": clean,
+        "raw_count": len(raw),
+        "clean_count": len(clean),
+        "dropped": dropped,
+        "truncated": truncated,
+    }
+
+
 def extract_signals(product: dict) -> dict:
     """
     Extract all signal layers for a product.
@@ -330,7 +493,16 @@ def extract_signals(product: dict) -> dict:
     All fields are explicit: None means absent, not zero.
     """
     nn = get_nutrition(product)
-    ingredients = get_ingredients(product)
+    ingredients_raw = get_ingredients(product)
+    # TASK-144 Fix 1 (EV-026) — sanitize OCR/disclaimer bleed BEFORE any count or NOVA
+    # inference. All downstream signal extraction uses the cleaned list; the raw list and
+    # the sanitization delta are retained in L1 for full traceability.
+    if TASK144_FIXES_ON:
+        _san = sanitize_ingredient_list(ingredients_raw)
+    else:
+        _san = {"clean": list(ingredients_raw), "raw_count": len(ingredients_raw),
+                "clean_count": len(ingredients_raw), "dropped": [], "truncated": []}
+    ingredients = _san["clean"]
     ing_text = get_ingredients_text(product)
     trust_level, trust_score = get_trust(product)
 
@@ -349,6 +521,15 @@ def extract_signals(product: dict) -> dict:
         "protein_g":        nn["protein_g"],
         "ingredient_count": len(ingredients),
         "ingredient_list":  ingredients,
+        "ingredient_count_raw": _san["raw_count"],
+        "ingredient_sanitization": {
+            "raw_count":   _san["raw_count"],
+            "clean_count": _san["clean_count"],
+            "dropped":     _san["dropped"],
+            "truncated":   _san["truncated"],
+            "note": ("TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer "
+                     "bleed removed before NOVA count inference"),
+        },
         "ingredient_text_quality": product.get("ingredient_text_quality"),
         "bsip1_trust_level":  trust_level,
         "bsip1_trust_score":  trust_score,
@@ -369,10 +550,29 @@ def extract_signals(product: dict) -> dict:
     sat_f = nn["fat_saturated_g"]
     fat   = nn["fat_g"]
 
+    prot = nn["protein_g"]
+    # TASK-144 (EV-026 companion) — macro plausibility. A single macro per 100g cannot
+    # exceed ~100g, and the macro-implied energy cannot vastly exceed declared kcal. This
+    # is a DATA-INTEGRITY check (sibling of kcal_plausible), not a scoring rule — it
+    # catches OCR parse errors like protein_g=190 (a "19.0"→"190" misread) that would
+    # otherwise survive into the score. Surfaced as a confidence deduction in score_engine.
+    macro_over_100 = any((v is not None and v > 100) for v in (prot, fat, carbs))
+    macro_kcal = None
+    if any(v is not None for v in (prot, fat, carbs)):
+        macro_kcal = (prot or 0) * 4 + (carbs or 0) * 4 + (fat or 0) * 9
+    macro_energy_implausible = (
+        kcal is not None and macro_kcal is not None and kcal > 0
+        and macro_kcal > kcal * 2.0 + 50   # macros imply >2x the declared energy
+    )
+    macros_plausible = None
+    if prot is not None or fat is not None or carbs is not None:
+        macros_plausible = not (macro_over_100 or macro_energy_implausible)
+
     l1["consistency_checks"] = {
         "sugar_le_carbs":  None if (sugar is None or carbs is None) else (sugar <= carbs),
         "satfat_le_fat":   None if (sat_f is None or fat is None)   else (sat_f <= fat),
         "kcal_plausible":  None if kcal is None else (20 <= kcal <= 700),
+        "macros_plausible": macros_plausible,
     }
 
     # -----------------------------------------------------------------------
@@ -525,11 +725,38 @@ def extract_signals(product: dict) -> dict:
     whole_grain_matches = _search(full_text, WHOLE_GRAIN_MARKERS_HE)
     has_whole_grain = bool(whole_grain_matches)
 
+    # R-04: plain dairy detection (first three ingredients) — computed here (ahead of the
+    # protein-source block) because TASK-144 Fix 3 dairy-source typing depends on it.
+    DAIRY_BASE_MARKERS_HE = ["חלב", "יוגורט", "גבינת", "מי גבינה", "קזאין"]
+    first_three_text = " ".join(ingredients[:3]).lower() if ingredients else ing_text[:200].lower()
+    product_type_dairy = any(m in first_three_text for m in DAIRY_BASE_MARKERS_HE)
+
     # Protein source
     isolate_matches = _search(full_text, PROTEIN_ISOLATE_MARKERS_HE)
+    # TASK-144 Fix 3 / EV-028 — dairy protein source typing.
+    # Pure-dairy protein (whey + casein + milk-protein, reconstituted from milk powder)
+    # is a complete, high-DIAAS protein; the generic "mixed" ×0.85 haircut is for
+    # genuinely blended/uncertain sources and is not justified here. Type as "dairy"
+    # (factor 1.0) ONLY when the product is a dairy matrix AND every isolate marker found
+    # is a WHOLE dried-dairy ingredient (milk powder / milk protein), i.e. NOT an
+    # extracted protein FRACTION/isolate. This deliberately does NOT relieve reconstructed
+    # protein-isolate products (whey/soy/pea/egg fractions) — those keep "mixed", and the
+    # F2/TASK-133B bar-format reconstructed discount (which gates on RECONSTRUCTED_PROTEIN
+    # markers, never on milk powder) remains fully intact. No collision: Fix 3 sets the
+    # source FACTOR; F2 sets an independent matrix-form DISCOUNT multiplier.
+    DAIRY_WHOLE_PROTEIN_MARKERS = ["אבקת חלב", "חלבון חלב", "חלבוני חלב", "קזאין"]
+    NONDAIRY_OR_FRACTION_MARKERS = [
+        "חלבון מי גבינה", "חלבון סויה", "חלבון חיטה", "חלבון אפונה",
+        "חלבון ביצה", "חלבון קזאין", "אייזולאט", "איזולאט",
+    ]
     if isolate_matches:
-        protein_source = "mixed"   # likely mixed whole+isolate
-        protein_source_basis = isolate_matches
+        has_fraction = any(m in full_text for m in NONDAIRY_OR_FRACTION_MARKERS)
+        if TASK144_FIXES_ON and product_type_dairy and not has_fraction:
+            protein_source = "dairy"   # complete dairy protein — no mixed haircut (EV-028)
+            protein_source_basis = [m for m in isolate_matches] + ["dairy matrix, no extracted fraction"]
+        else:
+            protein_source = "mixed"   # likely mixed whole+isolate
+            protein_source_basis = isolate_matches
     elif nn["protein_g"] and nn["protein_g"] > 0:
         protein_source = "whole_food"
         protein_source_basis = ["no isolate markers detected"]
@@ -572,11 +799,6 @@ def extract_signals(product: dict) -> dict:
     # Fermentation
     ferm_matches = _search(full_text, FERMENTATION_MARKERS_HE)
     has_fermentation = bool(ferm_matches)
-
-    # R-04: plain dairy detection (first three ingredients)
-    DAIRY_BASE_MARKERS_HE = ["חלב", "יוגורט", "גבינת", "מי גבינה", "קזאין"]
-    first_three_text = " ".join(ingredients[:3]).lower() if ingredients else ing_text[:200].lower()
-    product_type_dairy = any(m in first_three_text for m in DAIRY_BASE_MARKERS_HE)
 
     # Trans fat flag
     # fat_trans_g == 0.5 exactly is the Israeli nutritional labeling convention for "< 1g"
@@ -678,6 +900,10 @@ def extract_signals(product: dict) -> dict:
         "tax_bht_present":                       tax_bht_present,             # F4: explicitly NOT penalized
         "has_collagen":                          has_collagen,                # F2: strongest matrix discount
         "protein_matrix_form":                   protein_matrix_form,         # F2: collagen|reconstructed|None
+        # TASK-144 Fix1/EV-026 — sanitized ingredient count (OCR/disclaimer bleed removed).
+        # nova_proxy consumes THIS rather than the raw product list so phantom ingredients
+        # no longer trip the ">5 ingredients" NOVA-3 path.
+        "sanitized_ingredient_count":            len(ingredients),
         "primary_fragmentation":                 frag_profile.get("dominant_fragmentation"),
         "inference_confidence_notes": [
             "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",

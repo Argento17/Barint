@@ -2,9 +2,10 @@
 id: TASK-133D
 title: F4 - BHA named-additive penalty (differentiate BHT); verify FDA GRAS status first
 owner: nutrition-agent
-status: RETURNED
+status: CLOSED
 priority: LOW
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: [TASK-133A]
 blocks: []
 category_id: null

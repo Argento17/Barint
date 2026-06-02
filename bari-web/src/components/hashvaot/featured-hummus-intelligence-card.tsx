@@ -16,14 +16,6 @@ type Props = {
   description?: string;
 };
 
-// TASK-100: updated to reflect hummus/legume-only page (vegetable spreads moved to separate page).
-const HUMMUS_CARD_INSIGHT_LINES = [
-  "ממרחי חומוס ומסבחה בלבד — ממרחי ירקות עברו לדף נפרד",
-  "מוצר אחד בציון A: הרכב חזק עם תוספים מוגבלים",
-  "פער ציון של 37 נקודות בין הממרח המוביל לתחתית",
-  "ערכי שומן אינם מוצגים — מגבלת נתוני מקור",
-] as const;
-
 export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? hummusPrologueSentences[0];
 
@@ -32,6 +24,37 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
   const displayedCount = hummusProducts.length;
   const scoredCount = hummusProducts.filter((product) => product.score != null).length;
   const aGradeCount = hummusProducts.filter((product) => product.grade === "A").length;
+
+  // TASK-100 / TASK-150 fix: insight lines are now DERIVED from the displayed shelf
+  // so they cannot go stale against the data the card renders beside them. The two
+  // previous static lines claimed "five A" and a "47-point gap" — both false for the
+  // displayed spread shelf (0 in grade A, ~17-point gap). The A-absence line is the
+  // real story: the strongest chickpea compositions are whole/raw products, not
+  // spreads, so among actual spreads even the best carries additives/oil that hold it
+  // below A.
+  const displayedScores = hummusProducts
+    .map((product) => product.score)
+    .filter((score): score is number => score != null);
+  const topScore = displayedScores.length ? Math.max(...displayedScores) : null;
+  const bottomScore = displayedScores.length ? Math.min(...displayedScores) : null;
+  const scoreGap = topScore != null && bottomScore != null ? topScore - bottomScore : null;
+
+  const aGradeInsightLine =
+    aGradeCount > 0
+      ? `${aGradeCount} מוצרים מגיעים לציון A — הרכב חזק עם תוספים מוגבלים`
+      : "אף ממרח לא מגיע לציון A — בין הממרחים המוכנים גם המוביל נושא תוספים ושמן שמדללים את ההרכב";
+
+  const gapInsightLine =
+    scoreGap != null
+      ? `פער של ${scoreGap} נקודות בלבד בין הממרח המוביל לתחתית — מדף צפוף`
+      : "כל הממרחים נמדדים על אותו סולם, חומוס מול חומוס בלבד";
+
+  const insightLines = [
+    "ממרחי חומוס ומסבחה בלבד — ממרחי ירקות עברו לדף נפרד",
+    aGradeInsightLine,
+    gapInsightLine,
+    "ערכי השומן אינם מוצגים בקטגוריה זו — החלבון הוא המספר האמין להשוואה",
+  ] as const;
 
   return (
     <Link
@@ -46,7 +69,7 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
         categoryTags="חומוס · שופרסל"
         title="חומוס: מה באמת יש במדף?"
         description={cardDescription}
-        insightLines={HUMMUS_CARD_INSIGHT_LINES}
+        insightLines={insightLines}
         stats={[
           { value: displayedCount, label: "מוצרים בהשוואה" },
           { value: scoredCount, label: "קיבלו ציון" },

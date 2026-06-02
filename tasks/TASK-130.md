@@ -2,9 +2,11 @@
 id: TASK-130
 title: Operating-Model Hardening
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "All actual data-layer launch blockers have been eliminated (\u00a72.5, \u00a72.7, \u00a72.8 NOVA), and the remaining red findings are heuristic/content-review items rather than failures of the category-validation framework"
 depends_on: []
 blocks: [TASK-132]
 category_id: null

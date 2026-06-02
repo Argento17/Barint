@@ -2,9 +2,11 @@
 id: TASK-136
 title: "Governed maadanim rescore — re-sync the live page to engine 0.4.0 (resolve pre-existing trace drift)"
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "New Maadaim page is live"
 depends_on: [TASK-133]
 blocks: []
 category_id: maadanim

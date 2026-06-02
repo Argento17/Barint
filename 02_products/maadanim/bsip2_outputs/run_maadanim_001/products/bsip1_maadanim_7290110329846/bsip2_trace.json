@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.844332Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.251138Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110329846",
@@ -25,7 +25,7 @@
   "category": "dessert",
   "category_confidence": 0.9,
   "secondary_category": "beverage",
-  "secondary_confidence": 0.36,
+  "secondary_confidence": 0.26,
   "category_instability_flag": false,
   "category_confidence_band": "high",
   "classification_basis": [
@@ -35,25 +35,26 @@
   "nova_confidence": 0.55,
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
-    "very_long_ingredient_list: 16",
     "additive_categories: 2, added_sugars: 1"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
-    "energy_kcal": 1.0,
+    "energy_kcal": 51.0,
     "fat_g": 2.0,
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "sodium_mg": 30.0,
     "carbohydrates_g": 3.5,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": 1.6,
     "protein_g": 4.0,
-    "ingredient_count": 16,
+    "ingredient_count": 12,
     "ingredient_list": [
       "מיצוי פולי סויה (96%) (מים",
       "פולי סויה 8%)",
@@ -66,12 +67,26 @@
       "מלח",
       "מעכבי חימצון",
       "מווסת חומציות (סודיום קרבונאט)",
-      "ויטמין D (1 מק\"ג ל-100 גרם).עם חיידקי יוגורט",
-      "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.6 גרם סיבים תזונתיים 0 גרם סוכרים מתוך פחמימות 51 קל אנרגיה 4 גרם חלבונים 3.5 גרם פחמימות 2 גרם שומנים 30 מג נתרן 120 מג סידן 1 מקג ויטמין D קלציפרול הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
     ],
+    "ingredient_count_raw": 16,
+    "ingredient_sanitization": {
+      "raw_count": 16,
+      "clean_count": 12,
+      "dropped": [
+        "ויטמין D (1 מק\"ג ל-100 גרם).עם חיידקי יוגורט",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.6 גרם סיבים תזונתיים 0 גרם סוכרים מתוך פחמימות 51 קל אנרגיה 4 גרם חלבונים 3.5 גרם פחמימות 2 גרם שומנים 30 מג נתרן 120 מג סידן 1 מקג ויטמין D קלציפרול הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,20 +97,20 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
+      "fat_saturated_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": false
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 1800.0,
+    "fat_pct_of_kcal": 35.29,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
-    "protein_per_kcal": 4.0,
+    "sugar_to_carb_ratio": 0.0,
+    "protein_per_kcal": 0.0784,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
       "saturated_fat_fraction = fat_saturated_g / fat_g",
@@ -129,7 +144,7 @@
       "סוכר"
     ],
     "has_fruit_concentrate": false,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
@@ -163,6 +178,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 12,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -171,7 +187,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 1800.0,
+    "fat_pct_of_kcal": 35.29,
     "ingredient_list": [
       "מיצוי פולי סויה (96%) (מים",
       "פולי סויה 8%)",
@@ -184,18 +200,12 @@
       "מלח",
       "מעכבי חימצון",
       "מווסת חומציות (סודיום קרבונאט)",
-      "ויטמין D (1 מק\"ג ל-100 גרם).עם חיידקי יוגורט",
-      "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 1.6 גרם סיבים תזונתיים 0 גרם סוכרים מתוך פחמימות 51 קל אנרגיה 4 גרם חלבונים 3.5 גרם פחמימות 2 גרם שומנים 30 מג נתרן 120 מג סידן 1 מקג ויטמין D קלציפרול הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "בתוספת ח יידקי Lb.rhamnosus מאפיינים נוספים ללא חלב מכיל סויה עלול להכיל אגוזים"
     ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
-    "pre_evaluation_flags": [
-      "KCAL_IMPLAUSIBLE: outside 20-700 range, confidence severely reduced"
-    ]
+    "pre_evaluation_flags": []
   },
   "L5_behavioral_hypotheses": {
     "hypotheses_active": [
@@ -232,13 +242,9 @@
     },
     "se_note": null
   },
-  "confidence_score": 85,
+  "confidence_score": 95,
   "confidence_band": "high",
   "confidence_reductions": [
-    {
-      "factor": "energy_kcal outside plausible range 20-700",
-      "reduction": -10
-    },
     {
       "factor": "nova_confidence=medium",
       "reduction": -5
@@ -254,19 +260,19 @@
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 44
+    "whole_food_integrity": 57
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=4.0g→20.0, fiber=1.6g→16.0, weighted 65/35=18.6",
-    "calorie_density": "kcal=1.0, category=dessert → 85",
+    "calorie_density": "kcal=51.0, category=dessert → 85",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(3.2) + wg(0) = 93.2",
     "protein_quality": "protein=4.0g base=20.0, source=whole_food(×1.0) → 20.0",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.0×3 + 1.6×5) / 50 × 400 = 100",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.0×3 + 1.6×5) / 51.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=16 complexity_pen=16 → 44"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=12 complexity_pen=8 + ferm_bonus=5 → 57"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -280,7 +286,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 61.38,
+  "weighted_dimension_score": 69.9,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -380,7 +386,7 @@
     }
   ],
   "binding_cap": 87,
-  "score_after_cap": 61.38,
+  "score_after_cap": 69.9,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -403,8 +409,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -415,7 +421,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=1800.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=35.3<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -427,17 +433,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=16"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 57.38,
+  "score_after_penalty": 69.9,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -459,15 +459,11 @@
     },
     "processing_load": {
       "binding_cap": 87,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -502,39 +498,35 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 57.38,
+  "score_after_floors": 69.9,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 57.4,
-  "grade_estimate": "C",
+  "final_score_estimate": 69.9,
+  "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']"
   ],
-  "unresolved_flags": [
-    "KCAL_IMPLAUSIBLE: outside 20-700 range, confidence severely reduced"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.474,
+    "primary_confidence": 0.426,
     "secondary": "C",
     "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.244,
+    "secondary_confidence": 0.377,
     "class_weights": {
-      "A": 0.056,
-      "B": 0.056,
-      "C": 0.244,
-      "D": 0.474,
-      "E": 0.136,
-      "F": 0.035
+      "A": 0.057,
+      "B": 0.057,
+      "C": 0.377,
+      "D": 0.426,
+      "E": 0.083,
+      "F": 0.0
     },
-    "is_between_worlds": false,
+    "is_between_worlds": true,
     "classification_notes": [
-      "nova_3_signal",
-      "high_complexity_assembly"
+      "nova_3_signal"
     ],
     "classifier_version": "structural_classifier_v1"
   }

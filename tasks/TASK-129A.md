@@ -2,9 +2,10 @@
 id: TASK-129A
 title: Fix P0 confidence gate validation
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: CRITICAL
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: []
 blocks: []
 category_id: null

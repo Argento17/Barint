@@ -18,8 +18,10 @@ export type ComparisonHeroStat = {
 export type ComparisonHeroTheme = {
   /** muted product hue, used ONLY for the faint tint wash + (optional) future accents */
   accent: string;
-  /** image URL — a /public path (preferred) or remote URL */
-  photo: string;
+  /** image URL — a /public path (preferred) or remote URL.
+   *  Optional: when omitted, the hero renders the accent tint wash + backdrop only
+   *  (no product photo). Used while a category-true photo is being commissioned. */
+  photo?: string;
 };
 
 export type ComparisonIntelligenceHeroProps = {
@@ -28,6 +30,9 @@ export type ComparisonIntelligenceHeroProps = {
   title: string;
   description: string;
   insightLines: readonly string[];
+  /** When false, the "תובנות מרכזיות" rotating-insight box is not rendered.
+   *  Default true. Hummus (TASK-137B) opts out; 137E decides cross-category. */
+  showInsights?: boolean;
   stats: readonly ComparisonHeroStat[];
   updatedLabel?: string;
   ctaLabel?: string;
@@ -45,6 +50,7 @@ export function ComparisonIntelligenceHero({
   title,
   description,
   insightLines,
+  showInsights = true,
   stats,
   updatedLabel,
   ctaLabel = "פתיחת דוח ההשוואה",
@@ -95,31 +101,36 @@ export function ComparisonIntelligenceHero({
       {/* ── per-product theme: photo + veil + tint (decorative) ── */}
       {theme ? (
         <>
-          {/* product photo — bled in from the bottom-left, faded into the card */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 z-0 h-full w-[60%]"
-            style={{
-              backgroundImage: `url(${theme.photo})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.62,
-              filter: "grayscale(0.08) contrast(1.02) saturate(1.02)",
-              WebkitMaskImage:
-                "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
-              maskImage:
-                "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
-            }}
-          />
-          {/* white veil so foreground text stays crisp over the photo */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                "linear-gradient(105deg, transparent 0%, rgba(253,253,248,0.10) 38%, rgba(253,253,248,0.62) 64%, rgba(253,253,248,0.86) 100%)",
-            }}
-          />
+          {/* product photo — bled in from the bottom-left, faded into the card.
+              Optional: omitted while a category-true photo is being commissioned. */}
+          {theme.photo ? (
+            <>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 left-0 z-0 h-full w-[60%]"
+                style={{
+                  backgroundImage: `url(${theme.photo})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: 0.62,
+                  filter: "grayscale(0.08) contrast(1.02) saturate(1.02)",
+                  WebkitMaskImage:
+                    "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
+                  maskImage:
+                    "radial-gradient(135% 145% at 0% 100%, #000 30%, rgba(0,0,0,0.5) 56%, transparent 80%)",
+                }}
+              />
+              {/* white veil so foreground text stays crisp over the photo */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-0"
+                style={{
+                  background:
+                    "linear-gradient(105deg, transparent 0%, rgba(253,253,248,0.10) 38%, rgba(253,253,248,0.62) 64%, rgba(253,253,248,0.86) 100%)",
+                }}
+              />
+            </>
+          ) : null}
           {/* faint product-hue tint wash in the corner */}
           <div
             aria-hidden
@@ -156,43 +167,45 @@ export function ComparisonIntelligenceHero({
           {description}
         </p>
 
-        <div className="mt-6 lg:mt-8">
-          <div className="mb-3 flex items-center gap-3">
-            <span
-              className="h-[2px] w-8 rounded-full bg-gradient-to-l from-[#1F8F6A]/40 to-transparent shadow-[0_0_12px_-2px_rgba(31,143,106,0.25)]"
-              aria-hidden
-            />
-            <h2 className="font-heading text-[0.8125rem] font-semibold leading-none tracking-[-0.02em] text-[#3A413D] antialiased">
-              תובנות מרכזיות
-            </h2>
-          </div>
-          <div
-            aria-live={reduceMotion ? undefined : "polite"}
-            className="relative min-h-[3.65rem] overflow-hidden rounded-xl border border-[#1F8F6A]/12 bg-[#FFFFFF]/75 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-[3px]"
-          >
-            {!reduceMotion ? (
-              <motion.div
-                className="pointer-events-none absolute inset-y-0 w-2/5 bg-gradient-to-r from-transparent via-[#1F8F6A]/[0.038] to-transparent"
-                initial={{ x: "-100%" }}
-                animate={{ x: "320%" }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        {showInsights ? (
+          <div className="mt-6 lg:mt-8">
+            <div className="mb-3 flex items-center gap-3">
+              <span
+                className="h-[2px] w-8 rounded-full bg-gradient-to-l from-[#1F8F6A]/40 to-transparent shadow-[0_0_12px_-2px_rgba(31,143,106,0.25)]"
                 aria-hidden
               />
-            ) : null}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={lines[insightIndex]}
-                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
-                transition={{ duration: 1.05, ease: [0.25, 0.1, 0.25, 1] }}
-                className="relative z-[1] text-sm font-medium leading-snug text-[#2C322E]"
-              >
-                {lines[insightIndex]}
-              </motion.p>
-            </AnimatePresence>
+              <h2 className="font-heading text-[0.8125rem] font-semibold leading-none tracking-[-0.02em] text-[#3A413D] antialiased">
+                תובנות מרכזיות
+              </h2>
+            </div>
+            <div
+              aria-live={reduceMotion ? undefined : "polite"}
+              className="relative min-h-[3.65rem] overflow-hidden rounded-xl border border-[#1F8F6A]/12 bg-[#FFFFFF]/75 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-[3px]"
+            >
+              {!reduceMotion ? (
+                <motion.div
+                  className="pointer-events-none absolute inset-y-0 w-2/5 bg-gradient-to-r from-transparent via-[#1F8F6A]/[0.038] to-transparent"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "320%" }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  aria-hidden
+                />
+              ) : null}
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={lines[insightIndex]}
+                  initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
+                  transition={{ duration: 1.05, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="relative z-[1] text-sm font-medium leading-snug text-[#2C322E]"
+                >
+                  {lines[insightIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 border-t border-black/[0.05] pt-5 text-[0.62rem] font-medium tabular-nums leading-relaxed text-[#8A918B]">
           {stats.map((stat, index) => (

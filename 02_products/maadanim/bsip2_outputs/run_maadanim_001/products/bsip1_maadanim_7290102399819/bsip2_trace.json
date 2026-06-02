@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.675118Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.096861Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290102399819",
@@ -23,13 +23,13 @@
     "no out_of_scope or context_limited signals detected"
   ],
   "category": "dairy_protein",
-  "category_confidence": 0.55,
+  "category_confidence": 0.93,
   "secondary_category": "snack_bar_granola",
   "secondary_confidence": 0.33,
-  "category_instability_flag": true,
-  "category_confidence_band": "medium",
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "dairy_protein:nutrition_hint(0.30)"
+    "hard_anchor:מולר פרוטאין"
   ],
   "nova_proxy": 4,
   "nova_confidence": 0.8,
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 4",
-    "very_long_ingredient_list: 17"
+    "high_additive_category_count: 4"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -52,10 +51,10 @@
     "fat_trans_g": null,
     "sodium_mg": 40.0,
     "carbohydrates_g": 10.6,
-    "sugars_g": null,
+    "sugars_g": 9.5,
     "dietary_fiber_g": 2.3,
     "protein_g": 10.0,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "חלב מפוסטר",
       "רכיבי חלב",
@@ -70,11 +69,25 @@
       "מווזת חומציות (מלח לימון)",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "רכז גזר שחור. *לאחר שחזור.n מכיל חלב ערכים תזונתיים 100 גרם 2.3 גרם סיבים תזונתיים 9.5 גרם סוכרים מתוך פחמימות 101 קל אנרגיה 10 גרם חלבונים 10.6 גרם פחמימות 1.6 גרם שומנים 40 מג נתרן 150 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "רכז גזר שחור. *לאחר שחזור"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "רכז גזר שחור. *לאחר שחזור.n מכיל חלב ערכים תזונתיים 100 גרם 2.3 גרם סיבים תזונתיים 9.5 גרם סוכרים מתוך פחמימות 101 קל אנרגיה 10 גרם חלבונים 10.6 גרם פחמימות 1.6 גרם שומנים 40 מג נתרן 150 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "רכז גזר שחור. *לאחר שחזור"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,19 +98,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
+      "fat_saturated_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 14.26,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.896,
     "protein_per_kcal": 0.099,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -169,6 +182,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -192,10 +206,7 @@
       "מווזת חומציות (מלח לימון)",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "רכז גזר שחור. *לאחר שחזור.n מכיל חלב ערכים תזונתיים 100 גרם 2.3 גרם סיבים תזונתיים 9.5 גרם סוכרים מתוך פחמימות 101 קל אנרגיה 10 גרם חלבונים 10.6 גרם פחמימות 1.6 גרם שומנים 40 מג נתרן 150 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "רכז גזר שחור. *לאחר שחזור"
     ]
   },
   "L4_interpreted_concerns": {
@@ -237,37 +248,32 @@
     },
     "se_note": null
   },
-  "confidence_score": 92,
+  "confidence_score": 100,
   "confidence_band": "high",
-  "confidence_reductions": [
-    {
-      "factor": "category_confidence=medium (0.55)",
-      "reduction": -8
-    }
-  ],
+  "confidence_reductions": [],
   "dimension_scores": {
     "processing_quality": 35,
     "nutrient_density": 40.5,
     "calorie_density": 80.0,
-    "glycemic_quality": 94.6,
+    "glycemic_quality": 70.8,
     "protein_quality": 50.0,
     "additive_quality": 28.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 12
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=10.0g→50.0, fiber=2.3g→23.0, weighted 65/35=40.5",
-    "calorie_density": "kcal=101.0, category=dairy_protein (conf 0.55, relaxed by 1.05x) → 80",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(4.6) + wg(0) = 94.6",
+    "calorie_density": "kcal=101.0, category=dairy_protein → 80",
+    "glycemic_quality": "90 - sugar_penalty(23.8) + fiber(4.6) + wg(0) = 70.8",
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 2.3×5) / 101.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=17 complexity_pen=18 → 12"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -281,7 +287,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 57.71,
+  "weighted_dimension_score": 55.09,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -385,7 +391,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 57.71,
+  "score_after_cap": 55.09,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -420,7 +426,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=14.3<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=14.3<30.0 or sugar=9.5<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -441,13 +447,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 48.71,
+  "score_after_penalty": 46.09,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -516,42 +522,39 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 48.71,
+  "score_after_floors": 46.09,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 48.7,
+  "final_score_estimate": 46.1,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
     "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=dairy_protein secondary=snack_bar_granola, confidence=0.55"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.46,
+    "primary_confidence": 0.456,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.335,
+    "secondary_confidence": 0.316,
     "class_weights": {
-      "A": 0.033,
-      "B": 0.033,
-      "C": 0.0,
-      "D": 0.138,
-      "E": 0.46,
-      "F": 0.335
+      "A": 0.034,
+      "B": 0.034,
+      "C": 0.013,
+      "D": 0.148,
+      "E": 0.456,
+      "F": 0.316
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
       "whole_food_integrity_low",
-      "moderate_protein_quality",
-      "high_complexity_assembly"
+      "moderate_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"
   }

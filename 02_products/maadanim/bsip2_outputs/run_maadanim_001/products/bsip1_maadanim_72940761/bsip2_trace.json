@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.150904Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.523400Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_72940761",
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 4",
-    "very_long_ingredient_list: 16"
+    "high_additive_category_count: 4"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -47,15 +46,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 140.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 7.0,
+    "fat_saturated_g": 4.2,
     "fat_trans_g": null,
     "sodium_mg": 50.0,
     "carbohydrates_g": 15.9,
-    "sugars_g": 3.8,
+    "sugars_g": 13.3,
     "dietary_fiber_g": null,
     "protein_g": 3.0,
-    "ingredient_count": 16,
+    "ingredient_count": 13,
     "ingredient_list": [
       "חלב מפוסטר (67.5%)",
       "שמנת",
@@ -69,11 +68,25 @@
       "פוליפוספאט",
       "קסנטאן גאם)",
       "חומרי טעם וריח",
-      "רכיבי חלב. קצפת 23%. מכיל חלב ערכים תזונתיים 100 גרם 13.3 גרם סוכרים מתוך פחמימות 140 קל אנרגיה 3 גרם חלבונים 15.9 גרם פחמימות 7 גרם שומנים 21 מג כולסטרול 50 מג נתרן 4.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.8 סוכרים 3.25 כפיות סוכר 9.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 18 גרם סוכרים מתוך פחמימות 189 קל אנרגיה 4 גרם חלבונים 22 גרם פחמימות 9.5 גרם שומנים 28 מג כולסטרול 67 מג נתרן 5.7 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 4.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "רכיבי חלב. קצפת 23%"
     ],
+    "ingredient_count_raw": 16,
+    "ingredient_sanitization": {
+      "raw_count": 16,
+      "clean_count": 13,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "רכיבי חלב. קצפת 23%. מכיל חלב ערכים תזונתיים 100 גרם 13.3 גרם סוכרים מתוך פחמימות 140 קל אנרגיה 3 גרם חלבונים 15.9 גרם פחמימות 7 גרם שומנים 21 מג כולסטרול 50 מג נתרן 4.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.8 סוכרים 3.25 כפיות סוכר 9.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 18 גרם סוכרים מתוך פחמימות 189 קל אנרגיה 4 גרם חלבונים 22 גרם פחמימות 9.5 גרם שומנים 28 מג כולסטרול 67 מג נתרן 5.7 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 4.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "רכיבי חלב. קצפת 23%"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -84,19 +97,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 3.21,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.239,
+    "fat_pct_of_kcal": 45.0,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.836,
     "protein_per_kcal": 0.0214,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -171,6 +184,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -179,7 +193,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 3.21,
+    "fat_pct_of_kcal": 45.0,
     "ingredient_list": [
       "חלב מפוסטר (67.5%)",
       "שמנת",
@@ -193,10 +207,7 @@
       "פוליפוספאט",
       "קסנטאן גאם)",
       "חומרי טעם וריח",
-      "רכיבי חלב. קצפת 23%. מכיל חלב ערכים תזונתיים 100 גרם 13.3 גרם סוכרים מתוך פחמימות 140 קל אנרגיה 3 גרם חלבונים 15.9 גרם פחמימות 7 גרם שומנים 21 מג כולסטרול 50 מג נתרן 4.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.8 סוכרים 3.25 כפיות סוכר 9.5 מתוכם סוכר מוסף ערכים תזונתיים מנה 18 גרם סוכרים מתוך פחמימות 189 קל אנרגיה 4 גרם חלבונים 22 גרם פחמימות 9.5 גרם שומנים 28 מג כולסטרול 67 מג נתרן 5.7 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 4.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "רכיבי חלב. קצפת 23%"
     ]
   },
   "L4_interpreted_concerns": {
@@ -233,7 +244,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -248,27 +259,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 9.8,
+    "nutrient_density": 15.0,
     "calorie_density": 85.0,
-    "glycemic_quality": 80.5,
+    "glycemic_quality": 56.8,
     "protein_quality": 15.0,
     "additive_quality": 28.0,
     "satiety_support": 25.7,
-    "fat_quality": 50.0,
+    "fat_quality": 72.4,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 14
+    "whole_food_integrity": 20
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=3.0g→15.0, fiber=0g→0.0, weighted 65/35=9.8",
+    "nutrient_density": "protein=3.0g→15.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 15.0",
     "calorie_density": "kcal=140.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(9.5) + fiber(0.0) + wg(0) = 80.5",
+    "glycemic_quality": "90 - sugar_penalty(33.2) + fiber(0.0) + wg(0) = 56.8",
     "protein_quality": "protein=3.0g base=15.0, source=whole_food(×1.0) → 15.0",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.0×3 + 0×5) / 140.0 × 400 = 25.7",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=7.0g<8.0): sat=4.2g base=72.4-seed0-trans0=72.4",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 → 14"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -282,7 +293,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 44.28,
+  "weighted_dimension_score": 44.25,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -386,7 +397,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 44.28,
+  "score_after_cap": 44.25,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -421,7 +432,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=3.2<30.0 or sugar=3.8<20.0"
+      "condition": "fat_pct=45.0<30.0 or sugar=13.3<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -437,13 +448,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=16"
+      "note": "ingredient_count=13"
     }
   ],
   "total_penalty_before_scaling": 4.0,
   "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 40.28,
+  "score_after_penalty": 40.25,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -508,11 +519,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 40.28,
+  "score_after_floors": 40.25,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 40.3,
+  "final_score_estimate": 40.2,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -523,24 +534,23 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.419,
+    "primary_confidence": 0.396,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.324,
+    "secondary_confidence": 0.319,
     "class_weights": {
       "A": 0.042,
       "B": 0.042,
-      "C": 0.0,
-      "D": 0.173,
-      "E": 0.324,
-      "F": 0.419
+      "C": 0.016,
+      "D": 0.185,
+      "E": 0.319,
+      "F": 0.396
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.576784Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.000788Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290019056027",
@@ -52,10 +52,10 @@
     "fat_trans_g": null,
     "sodium_mg": 0.0,
     "carbohydrates_g": 0.0,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": null,
     "protein_g": 0.0,
-    "ingredient_count": 11,
+    "ingredient_count": 8,
     "ingredient_list": [
       "מים",
       "פחמן דו-חמצני",
@@ -64,11 +64,25 @@
       "מייצב (E414)",
       "מווסת חומציות (E331iii)",
       "ממתיק (סוכרלוז)",
-      "צבע מאכל (קרמל) ערכים תזונתיים 100 מ\"ל 0 גרם סוכרים מתוך פחמימות 0 קל אנרגיה 0 גרם חלבונים 0 גרם פחמימות 0 גרם שומנים 0 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (קרמל)"
     ],
+    "ingredient_count_raw": 11,
+    "ingredient_sanitization": {
+      "raw_count": 11,
+      "clean_count": 8,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "צבע מאכל (קרמל) ערכים תזונתיים 100 מ\"ל 0 גרם סוכרים מתוך פחמימות 0 קל אנרגיה 0 גרם חלבונים 0 גרם פחמימות 0 גרם שומנים 0 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "צבע מאכל (קרמל)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -80,13 +94,13 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": false
+      "kcal_plausible": false,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -168,6 +182,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -185,10 +200,7 @@
       "מייצב (E414)",
       "מווסת חומציות (E331iii)",
       "ממתיק (סוכרלוז)",
-      "צבע מאכל (קרמל) ערכים תזונתיים 100 מ\"ל 0 גרם סוכרים מתוך פחמימות 0 קל אנרגיה 0 גרם חלבונים 0 גרם פחמימות 0 גרם שומנים 0 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (קרמל)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -258,11 +270,11 @@
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 24
+    "whole_food_integrity": 30
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
+    "nutrient_density": "protein=0g→0.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 0.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=0.0)",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
@@ -270,7 +282,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=11 complexity_pen=6 → 24"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=8 complexity_pen=0 → 30"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -284,7 +296,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 34.56,
+  "weighted_dimension_score": 34.8,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -388,7 +400,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 34.56,
+  "score_after_cap": 34.8,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -439,7 +451,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 34.56,
+  "score_after_penalty": 34.8,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -500,11 +512,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 34.56,
+  "score_after_floors": 34.8,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 34.6,
+  "final_score_estimate": 34.8,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -518,17 +530,17 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.463,
+    "primary_confidence": 0.469,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.361,
+    "secondary_confidence": 0.352,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.014,
-      "D": 0.162,
-      "E": 0.361,
-      "F": 0.463
+      "C": 0.023,
+      "D": 0.155,
+      "E": 0.352,
+      "F": 0.469
     },
     "is_between_worlds": true,
     "classification_notes": [

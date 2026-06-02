@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.239424Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.671716Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_209517",
@@ -55,7 +55,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": 0.0,
-    "ingredient_count": 11,
+    "ingredient_count": 10,
     "ingredient_list": [
       "מים",
       "רכז לימון (3%)",
@@ -66,9 +66,18 @@
       "E414)",
       "מווסתי חומציות (E331",
       "E332)",
-      "חומרי טעם ו ריח",
-      "חומרים משמרים (E211 סולפיט).nמכיל פנילאלנין מאפיינים נוספים דל קלוריות"
+      "חומרי טעם ו ריח"
     ],
+    "ingredient_count_raw": 11,
+    "ingredient_sanitization": {
+      "raw_count": 11,
+      "clean_count": 10,
+      "dropped": [
+        "חומרים משמרים (E211 סולפיט).nמכיל פנילאלנין מאפיינים נוספים דל קלוריות"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -86,7 +95,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": false
+      "kcal_plausible": false,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -175,6 +185,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -194,8 +205,7 @@
       "E414)",
       "מווסתי חומציות (E331",
       "E332)",
-      "חומרי טעם ו ריח",
-      "חומרים משמרים (E211 סולפיט).nמכיל פנילאלנין מאפיינים נוספים דל קלוריות"
+      "חומרי טעם ו ריח"
     ]
   },
   "L4_interpreted_concerns": {
@@ -269,7 +279,7 @@
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 60.0,
-    "whole_food_integrity": 59
+    "whole_food_integrity": 61
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
@@ -281,7 +291,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=11 complexity_pen=6 + ferm_bonus=5 → 59"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=10 complexity_pen=4 + ferm_bonus=5 → 61"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -295,7 +305,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 45.41,
+  "weighted_dimension_score": 45.49,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -403,7 +413,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 45.41,
+  "score_after_cap": 45.49,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -454,7 +464,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 45.41,
+  "score_after_penalty": 45.49,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -515,11 +525,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 45.41,
+  "score_after_floors": 45.49,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-4",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 45.4,
+  "final_score_estimate": 45.5,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

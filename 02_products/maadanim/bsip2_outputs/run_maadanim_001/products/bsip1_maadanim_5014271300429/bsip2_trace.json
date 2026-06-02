@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.308801Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.739203Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_5014271300429",
@@ -49,7 +49,7 @@
     "fat_trans_g": null,
     "sodium_mg": 20.0,
     "carbohydrates_g": 52.0,
-    "sugars_g": null,
+    "sugars_g": 52.0,
     "dietary_fiber_g": null,
     "protein_g": 0.5,
     "ingredient_count": 4,
@@ -59,6 +59,14 @@
       "תמרים ואננס)",
       "מיץ לימון. מאפיינים נוספים ללא צבעי מאכל"
     ],
+    "ingredient_count_raw": 4,
+    "ingredient_sanitization": {
+      "raw_count": 4,
+      "clean_count": 4,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -70,19 +78,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 3.36,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 1.0,
     "protein_per_kcal": 0.0023,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -118,8 +126,10 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
-    "red_labels": [],
-    "red_label_count": 0,
+    "red_labels": [
+      "sugar"
+    ],
+    "red_label_count": 1,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
@@ -146,6 +156,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 4,
     "primary_fragmentation": "intact",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -215,26 +226,26 @@
   ],
   "dimension_scores": {
     "processing_quality": 85,
-    "nutrient_density": 1.6,
+    "nutrient_density": 2.5,
     "calorie_density": 70.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 10.0,
     "protein_quality": 2.5,
     "additive_quality": 100,
     "satiety_support": 2.8,
     "fat_quality": 50.0,
-    "regulatory_quality": 95.0,
+    "regulatory_quality": 60.0,
     "whole_food_integrity": 85
   },
   "dimension_notes": {
     "processing_quality": "NOVA 2 → processing_quality=85 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=0.5g→2.5, fiber=0g→0.0, weighted 65/35=1.6",
+    "nutrient_density": "protein=0.5g→2.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 2.5",
     "calorie_density": "kcal=214.0, category=dessert → 70",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0",
     "protein_quality": "protein=0.5g base=2.5, source=whole_food(×1.0) → 2.5",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0.5×3 + 0×5) / 214.0 × 400 = 2.8",
     "fat_quality": "sat_fat absent → neutral 50",
-    "regulatory_quality": "no Israeli red labels",
+    "regulatory_quality": "1 red label: ['sugar']",
     "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
   },
   "dimension_weights": {
@@ -249,7 +260,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 56.86,
+  "weighted_dimension_score": 45.64,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -266,8 +277,8 @@
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
       "cap": 60,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "SNACK_BAR_HIGH_CAL_SUGAR",
@@ -284,8 +295,8 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ISRAELI_RED_LABELS_2_PLUS",
@@ -342,9 +353,18 @@
       "fired": false
     }
   ],
-  "caps_applied": [],
-  "binding_cap": null,
-  "score_after_cap": 56.86,
+  "caps_applied": [
+    {
+      "rule": "HIGH_SUGAR_25G_PLUS",
+      "cap": 60
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SUGAR",
+      "cap": 55
+    }
+  ],
+  "binding_cap": 55,
+  "score_after_cap": 45.64,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -379,7 +399,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=3.4<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=3.4<30.0 or sugar=52.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -395,10 +415,10 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 56.86,
+  "score_after_penalty": 45.64,
   "concern_family_coordination": {
     "sugar_load": {
-      "binding_cap": null,
+      "binding_cap": 55,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -456,15 +476,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 56.86,
+  "score_after_floors": 45.64,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-3",
   "hp_nova_weight": 0.0,
-  "final_score_estimate": 56.9,
-  "grade_estimate": "C",
+  "final_score_estimate": 45.6,
+  "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: nutrient_density=1.6 (lowest dimension)"
+    "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR']"
   ],
   "unresolved_flags": [],
   "structural_class": {

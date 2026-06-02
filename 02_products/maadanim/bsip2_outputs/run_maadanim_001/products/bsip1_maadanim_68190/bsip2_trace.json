@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.448527Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.877473Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_68190",
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 5",
-    "very_long_ingredient_list: 16"
+    "high_additive_category_count: 5"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
@@ -54,10 +53,10 @@
     "fat_trans_g": null,
     "sodium_mg": 66.0,
     "carbohydrates_g": 18.0,
-    "sugars_g": null,
+    "sugars_g": 17.0,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 16,
+    "ingredient_count": 13,
     "ingredient_list": [
       "סוכר",
       "חומר קרישה (קרגינן)",
@@ -71,37 +70,51 @@
       "מיצוי כורכום)",
       "חומרי טעם וריח",
       "חומר הלחה (E1520)",
-      "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה ערכים תזונתיים 100 מ\"ל מוכן 17 גרם סוכרים מתוך פחמימות 71 קל אנרגיה 18 גרם פחמימות 66 מג נתרן 4.25 כפיות סוכר ערכים תזונתיים 100 גרם 90 גרם סוכרים מתוך פחמימות 384 קל אנרגיה 0 גרם חלבונים 96 גרם פחמימות 0 גרם שומנים 360 מג נתרן 22.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה"
     ],
+    "ingredient_count_raw": 16,
+    "ingredient_sanitization": {
+      "raw_count": 16,
+      "clean_count": 13,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה ערכים תזונתיים 100 מ\"ל מוכן 17 גרם סוכרים מתוך פחמימות 71 קל אנרגיה 18 גרם פחמימות 66 מג נתרן 4.25 כפיות סוכר ערכים תזונתיים 100 גרם 90 גרם סוכרים מתוך פחמימות 384 קל אנרגיה 0 גרם חלבונים 96 גרם פחמימות 0 גרם שומנים 360 מג נתרן 22.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
-    "bsip1_trust_level": "low",
-    "bsip1_trust_score": 0.45,
+    "bsip1_trust_level": "high",
+    "bsip1_trust_score": 0.8,
     "bsip1_risk_flags": [
       "single_source_only",
       "retailer_internal_id_barcode"
     ],
-    "nutrition_consistency_status": "partial",
+    "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_g",
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g",
       "protein_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": null,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.944,
     "protein_per_kcal": null,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -181,6 +194,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -203,10 +217,7 @@
       "מיצוי כורכום)",
       "חומרי טעם וריח",
       "חומר הלחה (E1520)",
-      "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה ערכים תזונתיים 100 מ\"ל מוכן 17 גרם סוכרים מתוך פחמימות 71 קל אנרגיה 18 גרם פחמימות 66 מג נתרן 4.25 כפיות סוכר ערכים תזונתיים 100 גרם 90 גרם סוכרים מתוך פחמימות 384 קל אנרגיה 0 גרם חלבונים 96 גרם פחמימות 0 גרם שומנים 360 מג נתרן 22.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר משמר (סולפיט). מאפיינים נוספים צמחוני עלול להכיל סויה"
     ]
   },
   "L4_interpreted_concerns": {
@@ -248,8 +259,8 @@
     },
     "se_note": "SRC-04: calorie density dimension capped at 50; fat quality returns neutral 50"
   },
-  "confidence_score": 50,
-  "confidence_band": "low",
+  "confidence_score": 60,
+  "confidence_band": "medium",
   "confidence_reductions": [
     {
       "factor": "missing: protein_g",
@@ -264,10 +275,6 @@
       "reduction": -5
     },
     {
-      "factor": "bsip1_trust_level=low",
-      "reduction": -10
-    },
-    {
       "factor": "category_confidence=low (0.30)",
       "reduction": -15
     }
@@ -276,25 +283,25 @@
     "processing_quality": 35,
     "nutrient_density": 0.0,
     "calorie_density": 50.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 47.5,
     "protein_quality": 0.0,
     "additive_quality": 0,
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 19
+    "whole_food_integrity": 25
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=71.0)",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(42.5) + fiber(0.0) + wg(0) = 47.5",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
     "additive_quality": "sprint1_additives=7 base=0 sw_pen=0→0 [EV-003/019: v1=5→sprint1=7 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 71.0 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 + ferm_bonus=5 → 19"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 + ferm_bonus=5 → 25"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -308,7 +315,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 33.06,
+  "weighted_dimension_score": 28.2,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -412,7 +419,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 33.06,
+  "score_after_cap": 28.2,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -447,7 +454,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=0.0<30.0 or sugar=17.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -463,13 +470,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=16"
+      "note": "ingredient_count=13"
     }
   ],
   "total_penalty_before_scaling": 4.0,
   "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 29.06,
+  "score_after_penalty": 24.2,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -534,15 +541,14 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 29.06,
+  "score_after_floors": 24.2,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 29.1,
+  "final_score_estimate": 24.2,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Confidence ceiling active at 75 (data quality limitation)",
     "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
     "PENALTIES: ['LONG_INGREDIENT_LIST']"
   ],
@@ -553,24 +559,23 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.434,
+    "primary_confidence": 0.429,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.411,
+    "secondary_confidence": 0.392,
     "class_weights": {
       "A": 0.014,
       "B": 0.014,
-      "C": 0.0,
-      "D": 0.128,
-      "E": 0.434,
-      "F": 0.411
+      "C": 0.014,
+      "D": 0.138,
+      "E": 0.429,
+      "F": 0.392
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

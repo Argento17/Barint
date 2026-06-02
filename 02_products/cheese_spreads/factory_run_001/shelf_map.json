@@ -1,0 +1,34 @@
+{
+  "stage": "1_shelf_mapping",
+  "category_slug": "cheese-spreads",
+  "run_id": "run_cheese_001",
+  "generated": "2026-06-01",
+  "source_retailer": "shufersal",
+  "owner": "Category Team (data-agent acting); Product approves, QA verifies",
+  "governance_ref": "cheese_spreads_stress_test_001.md (TASK-141, verdict B)",
+  "shelf_map": [
+    {
+      "shelf_slug": "shufersal_gvinot_levanot_vememrahim",
+      "shelf_name_he": "גבינות לבנות וממרחים",
+      "category_slug": "cheese-spreads",
+      "mapping_rationale": "Shufersal's fresh/soft white-cheese aisle: cottage (גבינת קוטג'), white cheese / quark (גבינה לבנה / קוורק), labaneh (לבנה), and cream cheese / spreadable cheese (גבינת שמנת / ממרח גבינה). This is the editorial scope of the cheese-spreads category per Stress Test v1 Sec 2.1 — fresh, soft, refrigerated, spreadable or curd-format white cheeses for direct table/spread use."
+    }
+  ],
+  "sub_pools": [
+    {"pool": "CT", "slug": "cottage", "name_he": "גבינת קוטג'", "basis": "Sec 2.9 dairy divergence axis (curd set, protein-forward)"},
+    {"pool": "WC", "slug": "white_cheese_quark", "name_he": "גבינה לבנה / קוורק", "basis": "Parent baseline of the fresh-cheese category; fat tiers 3/5/9% are variants, not pools (Article II 2.5)"},
+    {"pool": "LB", "slug": "labaneh", "name_he": "לבנה", "basis": "Sec 2.9 dairy divergence axis (strained + live-culture defining)"},
+    {"pool": "CR", "slug": "cream_cheese_spread", "name_he": "גבינת שמנת / ממרח גבינה", "basis": "Sec 2.9 proxies fire cleanly (NOVA 3-4 + high fat); indulgent-spread purpose"},
+    {"pool": "DV", "slug": "developmental", "name_he": "גבינת ילדים", "basis": "Sec 2.8 (D1+D3, cheese D3 <=20g) — excluded from adult pools"}
+  ],
+  "explicitly_out_of_scope": [
+    {"item": "hard / semi-hard / yellow cheese (גבינה צהובה, קשקבל, גאודה, עמק)", "reason": "Aged/melting, different matrix and consumption role — separate category (Stress Test Sec 2.2)."},
+    {"item": "processed melting slices / triangles (משולשים, פרוסות מותכות, פרוסות צהובות)", "reason": "NOVA 4 processed-cheese; different shelf logic — out of scope for v1."},
+    {"item": "salty brined cheese (בולגרית, פטה, צפתית, פסטרמה)", "reason": "Brined/aged sub-family with a very different sodium architecture — separate stress test."},
+    {"item": "yogurt, drinkable yogurt, kefir, מעדנים / sweetened dessert cheese (מעדן גבינה ממותק, גבינה במילוי פירות/שוקולד)", "reason": "Owned by yogurt_system / maadanim; cheese-spreads must not overlap (TASK-142 corpus rule). Sweetened dessert-cheese routes to maadanim."},
+    {"item": "cooking cheeses (ריקוטה לאפייה, מסקרפונה לקינוח)", "reason": "Ingredient role, not table spread (Stress Test Sec 2.2)."},
+    {"item": "infant / toddler cheese (0-36m, גבינת תינוקות)", "reason": "Constitution Art. II Sec 2.3 absolute restriction (medical/infant nutrition) — not ranked at all."}
+  ],
+  "duplicate_shelf_check": "PASS — no other active Bari category claims the white-cheese/spread shelf. maadanim owns the sweetened dairy-dessert aisle (מעדן); yogurt_system owns יוגורט/קפיר; the dessert-cheese boundary is enforced in corpus_filter.json (sweetened/fruit/chocolate-filled cheese routes to maadanim).",
+  "status": "pass"
+}

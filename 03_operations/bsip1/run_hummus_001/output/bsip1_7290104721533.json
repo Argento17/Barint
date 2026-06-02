@@ -20,6 +20,7 @@
     "energy_kcal": 32.0,
     "fat_g": 0.0,
     "carbohydrates_g": 6.5,
+    "sugars_g": 6.2,
     "protein_g": 0.8,
     "sodium_mg": 397.0
   },
@@ -63,7 +64,7 @@
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%96%D7%95%D7%9F-%D7%9E%D7%A7%D7%95%D7%A8%D7%A8-%D7%A7%D7%A4%D7%95%D7%90%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%A0%D7%99%D7%A7%D7%99%D7%9D/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%A1%D7%9C%D7%98%D7%99%D7%9D/%D7%A1%D7%9C%D7%98%D7%99%D7%9D-%D7%90%D7%97%D7%A8%D7%99%D7%9D/%D7%A1%D7%9C%D7%98-%D7%A4%D7%9C%D7%A4%D7%9C%D7%99%D7%9D-%D7%A7%D7%9C%D7%95%D7%99%D7%99%D7%9D/p/P_7290104721533",
-    "scraped_at": "2026-05-30T18:43:04.413310",
+    "scraped_at": "2026-06-02T06:09:39.392618",
     "source_category": "search",
     "product_category": "hummus_and_savory_dips",
     "extraction_method": "html_parse",
@@ -71,109 +72,6 @@
     "price_ils": "16.5",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "פלפלים קלויים 92%, חומץ טבעי ,מים, מלח, תערובת תיבול, שום, חומר משמר (פוטסיום סורבט), מייצב (קסנטן גאם). עלול להכיל ביצים",
-  "ingredients_raw_provenance": {
-    "source": "bsip1_text_fallback",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
-  },
-  "ingredient_order": [
-    {
-      "position": 1,
-      "text": "פלפלים קלויים 92%",
-      "percentage_declared": 92.0,
-      "has_subgroup": false
-    },
-    {
-      "position": 2,
-      "text": "חומץ טבעי",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 3,
-      "text": "מים",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 4,
-      "text": "מלח",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 5,
-      "text": "תערובת תיבול",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 6,
-      "text": "שום",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 7,
-      "text": "חומר משמר (פוטסיום סורבט)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 8,
-      "text": "מייצב (קסנטן גאם). עלול להכיל ביצים",
-      "percentage_declared": null,
-      "has_subgroup": true
-    }
-  ],
-  "extracted_additives": [
-    {
-      "term": "מייצב",
-      "category": "stabilizer",
-      "position": 8
-    },
-    {
-      "term": "קסנטן",
-      "category": "stabilizer_thickener",
-      "position": 8
-    }
-  ],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [
-    {
-      "term": "קלויים",
-      "category": "roasted",
-      "position": 1
-    },
-    {
-      "term": "קלוי",
-      "category": "roasted",
-      "position": 1
-    }
-  ],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 8,
-    "additive_count": 2,
-    "flavor_marker_count": 0,
-    "sweetener_count": 0,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 2,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

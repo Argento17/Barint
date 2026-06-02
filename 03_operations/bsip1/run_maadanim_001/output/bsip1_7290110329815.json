@@ -30,7 +30,7 @@
     "cholesterol_mg": null,
     "sodium_mg": 40.0,
     "carbohydrates_g": 6.0,
-    "sugars_g": null,
+    "sugars_g": 2.8,
     "dietary_fiber_g": 1.8,
     "protein_g": 4.0
   },
@@ -294,7 +294,13 @@
       "position": 5
     }
   ],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידקי יוגורט",
+      "category": "live_cultures",
+      "position": 12
+    }
+  ],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
     "ingredient_count_parsed": 16,
@@ -303,11 +309,11 @@
     "sweetener_count": 5,
     "protein_marker_count": 0,
     "matrix_marker_count": 2,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 1,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": true,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",

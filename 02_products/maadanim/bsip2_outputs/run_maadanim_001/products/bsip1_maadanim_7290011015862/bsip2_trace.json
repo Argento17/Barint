@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.466218Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.892720Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290011015862",
@@ -49,19 +49,28 @@
     "fat_trans_g": null,
     "sodium_mg": 18.0,
     "carbohydrates_g": 62.0,
-    "sugars_g": null,
+    "sugars_g": 85.0,
     "dietary_fiber_g": null,
     "protein_g": 0.0,
-    "ingredient_count": 7,
+    "ingredient_count": 3,
     "ingredient_list": [
       "סוכר",
       "מים",
-      "מווסתי חומציות: חומצה ציטרית",
-      "תלת אשלגן ציטרט מאפיינים נוספים דל קלוריות ערכים תזונתיים 100 גרם 85 מג סוכרלוז 60 גרם סוכרים מתוך פחמימות 272 קל אנרגיה 0 גרם חלבונים 62 גרם פחמימות 0 גרם שומנים 18 מג נתרן 750 מג חומצה אסקורבית 15 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 5 מג סוכרלוז 3.5 גרם סוכרים מתוך פחמימות 16 קל אנרגיה 0 גרם חלבונים 3.6 גרם פחמימות 0 מג נתרן 44 מג חומצה אסקורבית 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסתי חומציות: חומצה ציטרית"
     ],
+    "ingredient_count_raw": 7,
+    "ingredient_sanitization": {
+      "raw_count": 7,
+      "clean_count": 3,
+      "dropped": [
+        "תלת אשלגן ציטרט מאפיינים נוספים דל קלוריות ערכים תזונתיים 100 גרם 85 מג סוכרלוז 60 גרם סוכרים מתוך פחמימות 272 קל אנרגיה 0 גרם חלבונים 62 גרם פחמימות 0 גרם שומנים 18 מג נתרן 750 מג חומצה אסקורבית 15 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 5 מג סוכרלוז 3.5 גרם סוכרים מתוך פחמימות 16 קל אנרגיה 0 גרם חלבונים 3.6 גרם פחמימות 0 מג נתרן 44 מג חומצה אסקורבית 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -73,19 +82,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": false,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 0.0,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 1.371,
     "protein_per_kcal": 0.0,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -127,8 +136,10 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
-    "red_labels": [],
-    "red_label_count": 0,
+    "red_labels": [
+      "sugar"
+    ],
+    "red_label_count": 1,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
@@ -155,6 +166,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 3,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -167,16 +179,14 @@
     "ingredient_list": [
       "סוכר",
       "מים",
-      "מווסתי חומציות: חומצה ציטרית",
-      "תלת אשלגן ציטרט מאפיינים נוספים דל קלוריות ערכים תזונתיים 100 גרם 85 מג סוכרלוז 60 גרם סוכרים מתוך פחמימות 272 קל אנרגיה 0 גרם חלבונים 62 גרם פחמימות 0 גרם שומנים 18 מג נתרן 750 מג חומצה אסקורבית 15 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 5 מג סוכרלוז 3.5 גרם סוכרים מתוך פחמימות 16 קל אנרגיה 0 גרם חלבונים 3.6 גרם פחמימות 0 מג נתרן 44 מג חומצה אסקורבית 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מווסתי חומציות: חומצה ציטרית"
     ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
-    "pre_evaluation_flags": []
+    "pre_evaluation_flags": [
+      "SUGAR_EXCEEDS_CARBS: data integrity concern, score confidence reduced"
+    ]
   },
   "L5_behavioral_hypotheses": {
     "hypotheses_active": [
@@ -213,12 +223,16 @@
     },
     "se_note": null
   },
-  "confidence_score": 75,
-  "confidence_band": "medium",
+  "confidence_score": 55,
+  "confidence_band": "low",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
       "reduction": -5
+    },
+    {
+      "factor": "sugar > carbohydrates (data integrity failure)",
+      "reduction": -20
     },
     {
       "factor": "nova_confidence=medium",
@@ -233,25 +247,25 @@
     "processing_quality": 65,
     "nutrient_density": 0.0,
     "calorie_density": 80.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 10.0,
     "protein_quality": 0.0,
     "additive_quality": 67.0,
     "satiety_support": 0,
     "fat_quality": 50.0,
-    "regulatory_quality": 95.0,
+    "regulatory_quality": 60.0,
     "whole_food_integrity": 60
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
     "calorie_density": "kcal=272.0, category=default (conf 0.30, relaxed by 1.10x) → 80",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
+    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0 (sweetener tier-C)",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
     "additive_quality": "sprint1_additives=1 base=82 sw tier-C_pen=15→67.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 272.0 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
-    "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=7 complexity_pen=0 → 60"
+    "regulatory_quality": "1 red label: ['sugar']",
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=3 complexity_pen=0 → 60"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -265,7 +279,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 50.4,
+  "weighted_dimension_score": 39.05,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -282,8 +296,8 @@
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
       "cap": 60,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "SNACK_BAR_HIGH_CAL_SUGAR",
@@ -300,8 +314,8 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ISRAELI_RED_LABELS_2_PLUS",
@@ -360,12 +374,20 @@
   ],
   "caps_applied": [
     {
+      "rule": "HIGH_SUGAR_25G_PLUS",
+      "cap": 60
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SUGAR",
+      "cap": 55
+    },
+    {
       "rule": "NOVA_PROXY_3_PROCESSED",
       "cap": 87
     }
   ],
-  "binding_cap": 70,
-  "score_after_cap": 50.4,
+  "binding_cap": 55,
+  "score_after_cap": 39.05,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -400,7 +422,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=0.0<30.0 or sugar=85.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -416,10 +438,10 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 50.4,
+  "score_after_penalty": 39.05,
   "concern_family_coordination": {
     "sugar_load": {
-      "binding_cap": null,
+      "binding_cap": 55,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -477,33 +499,35 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 50.4,
+  "score_after_floors": 39.05,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 50.4,
-  "grade_estimate": "C",
+  "final_score_estimate": 39.0,
+  "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=70 from rules: ['NOVA_PROXY_3_PROCESSED']"
+    "DOMINANT: Confidence ceiling active at 75 (data quality limitation)",
+    "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']"
   ],
   "unresolved_flags": [
+    "SUGAR_EXCEEDS_CARBS: data integrity concern, score confidence reduced",
     "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3"
   ],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.367,
+    "primary_confidence": 0.362,
     "secondary": "C",
     "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.348,
+    "secondary_confidence": 0.342,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.348,
-      "D": 0.367,
-      "E": 0.127,
-      "F": 0.158
+      "C": 0.342,
+      "D": 0.362,
+      "E": 0.132,
+      "F": 0.164
     },
     "is_between_worlds": true,
     "classification_notes": [

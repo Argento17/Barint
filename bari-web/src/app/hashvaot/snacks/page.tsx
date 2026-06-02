@@ -8,6 +8,7 @@ import {
   snacksMethodologyLines,
   snacksPrologueSentences,
   snacksProducts,
+  snacksCategoryNote,
 } from "@/lib/comparisons/snacks-comparison-page-data";
 
 export const metadata: Metadata = snacksComparisonMetadata;
@@ -20,6 +21,7 @@ export default function SnacksComparisonRoute() {
       hero={snacksHero}
       prologueSentences={snacksPrologueSentences}
       methodologyLines={snacksMethodologyLines}
+      categoryNote={snacksCategoryNote}
     />
   );
 }

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.137070Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.511672Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290122782431",
@@ -44,15 +44,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 361.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 1.0,
+    "fat_saturated_g": 0.5,
     "fat_trans_g": null,
     "sodium_mg": 1324.0,
     "carbohydrates_g": 85.0,
-    "sugars_g": null,
+    "sugars_g": 59.0,
     "dietary_fiber_g": null,
     "protein_g": 2.5,
-    "ingredient_count": 13,
+    "ingredient_count": 9,
     "ingredient_list": [
       "רכיבים: סוכר",
       "עמילן",
@@ -62,12 +62,26 @@
       "E327",
       "E450)",
       "מלטודקסטרין",
-      "חומרי טעם וריח. עלול להכיל סויה ערכים תזונתיים 100 גרם 59 גרם סוכרים מתוך פחמימות 361 קל אנרגיה 2.5 גרם חלבונים 85 גרם פחמימות 1 גרם שומנים 0 מג כולסטרול 1",
-      "324 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 14.75 כפיות סוכר ערכים תזונתיים מנה 16 גרם סוכרים מתוך פחמימות 128 קל אנרגיה 3.8 גרם חלבונים 21 גרם פחמימות 3.2 גרם שומנים 9 מג כולסטרול 298 מג נתרן 1.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 4 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 13 גרם סוכרים מתוך פחמימות 109 קל אנרגיה 3.2 גרם חלבונים 18 גרם פחמימות 2.7 גרם שומנים 7.6 מג כולסטרול 251 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. עלול להכיל סויה"
     ],
+    "ingredient_count_raw": 13,
+    "ingredient_sanitization": {
+      "raw_count": 13,
+      "clean_count": 9,
+      "dropped": [
+        "324 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 14.75 כפיות סוכר ערכים תזונתיים מנה 16 גרם סוכרים מתוך פחמימות 128 קל אנרגיה 3.8 גרם חלבונים 21 גרם פחמימות 3.2 גרם שומנים 9 מג כולסטרול 298 מג נתרן 1.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 4 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 13 גרם סוכרים מתוך פחמימות 109 קל אנרגיה 3.2 גרם חלבונים 18 גרם פחמימות 2.7 גרם שומנים 7.6 מג כולסטרול 251 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומרי טעם וריח. עלול להכיל סויה ערכים תזונתיים 100 גרם 59 גרם סוכרים מתוך פחמימות 361 קל אנרגיה 2.5 גרם חלבונים 85 גרם פחמימות 1 גרם שומנים 0 מג כולסטרול 1",
+          "to": "חומרי טעם וריח. עלול להכיל סויה"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -78,20 +92,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 1.25,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 2.49,
+    "saturated_fat_fraction": 0.5,
+    "sugar_to_carb_ratio": 0.694,
     "protein_per_kcal": 0.0069,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -133,9 +146,10 @@
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "red_labels": [
+      "sugar",
       "sodium"
     ],
-    "red_label_count": 1,
+    "red_label_count": 2,
     "hp_fat_sugar_pattern_raw": false,
     "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
@@ -162,6 +176,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 9,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -170,7 +185,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 1.25,
+    "fat_pct_of_kcal": 2.49,
     "ingredient_list": [
       "רכיבים: סוכר",
       "עמילן",
@@ -180,11 +195,7 @@
       "E327",
       "E450)",
       "מלטודקסטרין",
-      "חומרי טעם וריח. עלול להכיל סויה ערכים תזונתיים 100 גרם 59 גרם סוכרים מתוך פחמימות 361 קל אנרגיה 2.5 גרם חלבונים 85 גרם פחמימות 1 גרם שומנים 0 מג כולסטרול 1",
-      "324 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 14.75 כפיות סוכר ערכים תזונתיים מנה 16 גרם סוכרים מתוך פחמימות 128 קל אנרגיה 3.8 גרם חלבונים 21 גרם פחמימות 3.2 גרם שומנים 9 מג כולסטרול 298 מג נתרן 1.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 4 כפיות סוכר ערכים תזונתיים 100 מ\"ל מוכן 13 גרם סוכרים מתוך פחמימות 109 קל אנרגיה 3.2 גרם חלבונים 18 גרם פחמימות 2.7 גרם שומנים 7.6 מג כולסטרול 251 מג נתרן 1.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. עלול להכיל סויה"
     ]
   },
   "L4_interpreted_concerns": {
@@ -240,27 +251,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 8.1,
+    "nutrient_density": 12.5,
     "calorie_density": 40.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 10.0,
     "protein_quality": 12.5,
     "additive_quality": 64.0,
     "satiety_support": 8.3,
-    "fat_quality": 50.0,
-    "regulatory_quality": 60.0,
-    "whole_food_integrity": 20
+    "fat_quality": 86.0,
+    "regulatory_quality": 25.0,
+    "whole_food_integrity": 28
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.5g→12.5, fiber=0g→0.0, weighted 65/35=8.1",
+    "nutrient_density": "protein=2.5g→12.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 12.5",
     "calorie_density": "kcal=361.0, category=dessert → 40",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0",
     "protein_quality": "protein=2.5g base=12.5, source=whole_food(×1.0) → 12.5",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.5×3 + 0×5) / 361.0 × 400 = 8.3",
-    "fat_quality": "sat_fat absent → neutral 50",
-    "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
+    "fat_quality": "fat_v1(fat=1.0g<8.0): sat=0.5g base=86.0-seed0-trans0=86.0",
+    "regulatory_quality": "2 red labels: ['sugar', 'sodium']",
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=9 complexity_pen=2 → 28"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -274,7 +285,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 39.21,
+  "weighted_dimension_score": 31.72,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -291,8 +302,8 @@
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
       "cap": 60,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "SNACK_BAR_HIGH_CAL_SUGAR",
@@ -309,14 +320,14 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ISRAELI_RED_LABELS_2_PLUS",
       "cap": 45,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "HIGH_CAL_LOW_SATIETY_SEVERE",
@@ -369,6 +380,18 @@
   ],
   "caps_applied": [
     {
+      "rule": "HIGH_SUGAR_25G_PLUS",
+      "cap": 60
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SUGAR",
+      "cap": 55
+    },
+    {
+      "rule": "ISRAELI_RED_LABELS_2_PLUS",
+      "cap": 45
+    },
+    {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
       "cap": 68
     },
@@ -377,8 +400,8 @@
       "cap": 60
     }
   ],
-  "binding_cap": 60,
-  "score_after_cap": 39.21,
+  "binding_cap": 45,
+  "score_after_cap": 31.72,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -401,8 +424,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -413,7 +436,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=1.2<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=2.5<30.0 or sugar=59.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -425,20 +448,14 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=13"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 35.21,
+  "score_after_penalty": 31.72,
   "concern_family_coordination": {
     "sugar_load": {
-      "binding_cap": null,
+      "binding_cap": 45,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -457,15 +474,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -500,16 +513,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 35.21,
+  "score_after_floors": 31.72,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 35.2,
-  "grade_estimate": "D",
+  "final_score_estimate": 31.7,
+  "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'HIGH_SODIUM_700MG_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=45 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'HIGH_SODIUM_700MG_PLUS']"
   ],
   "unresolved_flags": [],
   "structural_class": {

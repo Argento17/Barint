@@ -14,7 +14,9 @@
     "decided_at": "2026-05-31",
     "decision": "Option B — Suppress fat_g and saturated_fat_g from hummus frontend JSON. Add disclosure sentence to MethodologyFooter. v2 fat correction scheduled Q3 2026.",
     "urgency": "NOW",
-    "blocking": ["TASK-058-P1"],
+    "blocking": [
+      "TASK-058-P1"
+    ],
     "created_at": "2026-05-31",
     "notes": "See TASK-060 for full evaluation and rationale."
   },
@@ -32,7 +34,9 @@
     "decided_at": "2026-05-31",
     "decision": "Approve go-live. W-1 resolved and final QA passed (TASK-090); Hummus v1 is LIVE.",
     "urgency": "THIS_WEEK",
-    "blocking": ["Hummus launch"],
+    "blocking": [
+      "Hummus launch"
+    ],
     "created_at": "2026-05-31",
     "notes": "Gated on TASK-073. W-1 cleared and final QA passed (TASK-090); go-live approved (TASK-096)."
   },
@@ -50,7 +54,9 @@
     "decided_at": "2026-06-01",
     "decision": "Ratify Launch Definition v1. LAUNCH = Operational Readiness (5 gen1 categories - maadanim, hummus, snacks, yogurts, bread - LIVE on v2, score-frozen, field-complete; methodology page; >=1 flagship article; v2 Phase 1+2; confidence gate passing; validate-corpus green; fresh mobile+lg QA baselines; 0 P0/P1; dashboard GREEN) AND Market-Facing Readiness (comparison pages publicly available + indexable; first flagship article published; 5/5 category coverage; user-feedback collection active; SEO baseline live; analytics active). Amendment A: milk launches LEGACY-labelled (double migration gen0->gen1->v2 is disproportionate for a 20-product non-shelf editorial corpus) with a COMMITTED post-launch migration (P1 sub-task 128E), not optional. Amendment B: Launch Success Indicators (market-facing, section 6.5) added. NOT gating launch: Wave 2, base_pct, BSIP2 next-gen, all 3 articles, milk v2.",
     "urgency": "THIS_WEEK",
-    "blocking": ["P1-P5 success criteria"],
+    "blocking": [
+      "P1-P5 success criteria"
+    ],
     "created_at": "2026-06-01",
     "notes": "Full definition: C:/Bari/launch_definition_v1.md. Roadmap: C:/Bari/bari_objective_roadmap_v1.md. P1-P5 success criteria inherit the launch dimension each objective owns (launch_definition_v1.md section 8)."
   },
@@ -69,7 +75,12 @@
     ],
     "recommendation": "Option A. Three gates not derivable from architecture: (G1) calibration magnitudes - 47-81% DIAAS is a band not a per-product number; constants.py states calibration is a separate phase, so build structure now and set numbers in a calibration run. (G2) F2 scope - discount the protein-QUALITY contribution only, leaving protein mass feeding satiety/nutrient-density (recommended). (G3) spec reconciliation - prototype has drifted from frozen spec (code: protein_quality 0.10, additive 0.10, processing 0.15; methodology.md says 9/7/18%); recommend proto_v0 as source-of-truth with a Phase-E spec re-sync. Directly affects F2's effective impact via protein weight.",
     "urgency": "THIS_WEEK",
-    "blocking": ["TASK-133 closure", "TASK-133B calibration", "TASK-133C calibration", "TASK-133D calibration"],
+    "blocking": [
+      "TASK-133 closure",
+      "TASK-133B calibration",
+      "TASK-133C calibration",
+      "TASK-133D calibration"
+    ],
     "created_at": "2026-06-01",
     "notes": "Does NOT block starting 133A (taxonomy) or the structural build of B/C/D - only the calibrated magnitudes and final closure. Full plan: C:/Bari/research/TASK-133_implementation_roadmap.md. Origin: TASK-132 evaluation. UPDATE 2026-06-01: 133A CLOSED; structural build of B/C/D COMPLETE and validated (report: C:/Bari/research/TASK-133BCD_validation_report.md). Golden 11 PASS/1 pre-existing WARN/0 FAIL (no golden score changed); cross-corpora 464 products -> 4 changed, 0 grade-flips (yogurt/milk/bread/hummus = 0). F4 FDA gate PASSED (BHA under active reassessment since 2026-02-10, no final rule landed; BHT not yet under reassessment -> differentiated). REMAINING for this decision: (G1) set placeholder magnitudes via a dedicated calibration run - F2 placeholders reconstructed x0.80 / collagen x0.55, F1 deltas NEUTRAL/no-op (must reconcile-retire the live EV-003 sprint1 nudges in the same run to avoid double-count), F4 BHA -5; (G2) F2 scope = quality-only (implemented as recommended); (G3) proto_v0 as source-of-truth + Phase-E spec re-sync. NOTE: F2 currently touches exactly one LIVE-corpus product (a maadanim soy-protein bar, no grade flip) - magnitudes must be ratified before any frontend rescore. 133B/C/D proposed status: BLOCKED on this decision."
   },
@@ -78,7 +89,7 @@
     "title": "Yogurts manual-MVP score provenance exception",
     "type": "provenance_exception",
     "required_from": "CommandCenter",
-    "status": "DECIDED",
+    "status": "RETIRED",
     "options": [
       "A - Accept the 13 hand-tuned scores as a disclosed, non-authoritative MVP provenance exception + queue a real reproducible run as a deferred, non-blocking follow-up",
       "B - Block yogurts (NO-GO) until a real frozen run reconciles the displayed scores",
@@ -88,8 +99,13 @@
     "decided_at": "2026-06-01",
     "decision": "Accept the 13 hand-tuned yogurt scores (yogurts_frontend_v1.json, v1-mvp-manual) as a disclosed, non-authoritative MVP provenance exception. Mark the corpus _meta authoritative:false + provenance:manual-mvp + exception:DEC-005 (disclosure, not a score change). Real reproducible scores are a COMMITTED but non-blocking follow-up via a real-product run (run_yogurt_002), opened when picked up. Yogurts remains LIVE.",
     "urgency": "THIS_WEEK",
-    "blocking": ["TASK-129B closure"],
+    "blocking": [
+      "TASK-129B closure"
+    ],
     "created_at": "2026-06-01",
-    "notes": "Supersedes the 2026-06-01 'reconcile to machine run' decision - run_yogurt_001 found synthetic (TASK-129B return). Real follow-up tracked as TASK-135 (run_yogurt_002), opened deferred/non-blocking per the 128E (DEC-003 Amendment A) precedent. Provenance marker on yogurts frontend _meta is the closeout action for 129B."
+    "notes": "Supersedes the 2026-06-01 'reconcile to machine run' decision - run_yogurt_001 found synthetic (TASK-129B return). Real follow-up tracked as TASK-135 (run_yogurt_002), opened deferred/non-blocking per the 128E (DEC-003 Amendment A) precedent. Provenance marker on yogurts frontend _meta is the closeout action for 129B.",
+    "retired_at": "2026-06-02",
+    "retired_by": "TASK-143 (run_yogurt_004 live swap, step 3c)",
+    "retirement_note": "Manual-MVP yogurt shelf (yogurts_frontend_v1.json, 13 hand-tuned A-heavy products) replaced LIVE 2026-06-02 by the calibrated machine shelf yogurts_frontend_v2.json (run_yogurt_004, engine proto_v0/0.4.0 UNMODIFIED): 11 dairy products, B-capped (max 79/B displayed, zero A) - downward correction confirmed and accepted by Product (3a). Soy/coconut rows dropped + deferred to a dedicated plant run per the 3a ruling. Importers repointed v1->v2 (page-data + shelf-filters); prologue re-authored to the B-capped shelf and dairy-free lens retired (3b); tsc --noEmit clean; validate-corpus 0 errors; next build green (/hashvaot/yogurts prerendered). Provenance exception CLOSED - the live shelf is now reproducible and authoritative. v1 JSON kept (orphaned) for rollback."
   }
 ]

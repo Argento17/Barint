@@ -87,8 +87,29 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("גרנולה",         "snack_bar_granola", "granola",        0.90),
     # ── Dairy ─────────────────────────────────────────────────────────────────
     ("קוטג'",          "dairy_protein",     "cottage",        0.93),
+    # Cream-cheese / spread pool (TASK-145 — fixes run_cheese_001 QA-CHS-001). These lack
+    # dairy signal strength (high fat, low protein, flavored) and fell to default/whole_food_fat.
+    # Specific multi-word/brand anchors only — bare "שמנת" deliberately excluded (sour/sweet/
+    # whipping cream are not cheese). "נפוליאון" carries a cake exclusion below.
+    ("גבינת שמנת",     "dairy_protein",     "cream_cheese",   0.93),
+    ("ממרח גבינה",     "dairy_protein",     "cheese_spread",  0.92),
+    ("פילדלפיה",       "dairy_protein",     "cream_cheese",   0.92),
+    ("נפוליאון",       "dairy_protein",     "cream_cheese",   0.90),
     ("יוגורט",         "dairy_protein",     "yogurt",         0.92),
     ("קפיר",           "dairy_protein",     "kefir",          0.93),
+    # Yogurt sub-brands / product lines (TASK-139C) — genuine yogurts whose names
+    # lead with a brand/line token, not "יוגורט" (protein, mix-in, Froop, bio, Greek).
+    # Confidence is ABOVE the competing topping/dessert anchors — "קורנפלקס" (cereal
+    # 0.93) and "יופלה" (dessert 0.91) — so dairy identity wins over an incidental
+    # topping or sub-brand descriptor.
+    ("יופלה go", "dairy_protein", "protein_yogurt", 0.94),
+    ("מולר מיקס", "dairy_protein", "yogurt_mixin", 0.94),
+    ("מולר פרוטאין", "dairy_protein", "protein_yogurt", 0.93),
+    ("מולר פרופ", "dairy_protein", "froop_yogurt", 0.93),
+    ("דנונה פרו", "dairy_protein", "protein_yogurt", 0.93),
+    ("דנונ.פרו", "dairy_protein", "protein_yogurt", 0.93),
+    ("דנונה ביו", "dairy_protein", "bio_yogurt", 0.93),
+    ("דנונה יווני", "dairy_protein", "greek_yogurt", 0.93),
     # ── Whole-food fats ───────────────────────────────────────────────────────
     ("טחינה",          "whole_food_fat",    "tahini",         0.93),
     # ── Dairy desserts (מעדנים) ─────────────────────────────────────────────────
@@ -112,6 +133,15 @@ ANCHOR_REQUIRES_POSITION_CHECK: set[str] = {
 DAIRY_ANCHOR_TERMS: set[str] = {"יוגורט", "קפיר", "קוטג'", "גבינה", "לבן"}
 DAIRY_FLAVOR_SUPPRESSORS: list[str] = ["בטעם", "טעם", "בניחוח"]
 
+# TASK-139C — Dairy-head topping suppression.
+# A yogurt that carries a cereal/nut/granola TOPPING ("יוגורט קראנצ קורנפלקס") must
+# anchor to dairy, not to the topping's category. When the name LEADS with a dairy-head
+# term (the product IS a yogurt), competing topping-category anchors are skipped so the
+# dairy anchor wins. Gated to name-start to avoid catching topping-flavoured products
+# (e.g. "גרנולה בטעם יוגורט") where the dairy word is a descriptor, not the product.
+DAIRY_HEAD_TERMS: tuple[str, ...] = ("יוגורט", "קפיר")
+TOPPING_ANCHOR_CATS: set[str] = {"cereal", "snack_bar_granola", "whole_food_fat"}
+
 # If name contains these exclusion terms, the specified anchor should not fire.
 ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     # "שיבולת שועל" must not fire for oat drinks (beverage) or snack bars using oats as ingredient
@@ -133,6 +163,13 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "פריכיות":        ["משקה", "שתייה"],
     # Savory spread anchors — tahini exclusions
     "טחינה":          ["חציל", "חצילים"],            # "חציל על האש בטחינה" = eggplant spread, not tahini product
+    # Cream-cheese anchors (TASK-145) — must not fire on the napoleon CAKE / pastry (עוגת פס נפוליאון)
+    "נפוליאון":       ["עוגה", "עוגת", "פס", "מאפה", "בצק"],
+    # פילדלפיה anchor (TASK-153 / EV-030) — must not fire on a SEASONING blend
+    # (תערובת תיבול פילדלפיה, brand טעם וריח, Shufersal seasonings shelf, sodium 7,905 mg/100g).
+    # The seasoning phrase "תערובת תיבול" is exclusive to spice blends; real herbed פילדלפיה
+    # cheeses say "פילדלפיה שום+ע.תיבול" (no "תערובת"), so they still route. Mirrors נפוליאון.
+    "פילדלפיה":       ["תערובת תיבול"],
     # Dairy dessert anchors — prevent mis-fires
     "מעדן":           ["אבקת", "מיקס", "שייק", "חציל", "חצילים"],  # "מעדן חצילים" = eggplant dish, not dairy dessert
     "עדנה":           ["גבינת", "שמנת", "חמאת"],    # "גבינת עדנה" = soft cheese brand
@@ -141,6 +178,16 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "מילקי":          [],
     "מעדן חלבון":     [],
     "מעדן ילדים":     [],
+    # Yogurt sub-brand anchors (TASK-139C) must NOT fire for drinkable variants —
+    # the yogurt category excludes drinkables ("משקה"); those stay on the beverage gate.
+    "יופלה go":       ["משקה", "שתייה", "שתיה"],
+    "מולר פרוטאין":   ["משקה", "שתייה", "שתיה"],
+    "מולר פרופ":      ["משקה", "שתייה", "שתיה"],
+    "מולר מיקס":      ["משקה", "שתייה", "שתיה"],
+    "דנונה פרו":      ["משקה", "שתייה", "שתיה"],
+    "דנונ.פרו":       ["משקה", "שתייה", "שתיה"],
+    "דנונה ביו":      ["משקה", "שתייה", "שתיה"],
+    "דנונה יווני":    ["משקה", "שתייה", "שתיה"],
 }
 
 
@@ -148,8 +195,16 @@ def _check_anchors(name: str) -> tuple[str, str | None, float, str] | None:
     """Return (category, subtype, confidence, matched_term) if any anchor fires, else None."""
     best: tuple[str, str | None, float, str] | None = None
 
+    # The product IS a yogurt when its name leads with a dairy-head term.
+    name_has_dairy_head = name.startswith(DAIRY_HEAD_TERMS)
+
     for term, cat, subtype, conf in HARD_ANCHORS:
         if term not in name:
+            continue
+
+        # Dairy-head topping suppression: skip cereal/nut/granola TOPPING anchors when
+        # the product leads with a dairy head — the topping is a component, not identity.
+        if name_has_dairy_head and cat in TOPPING_ANCHOR_CATS:
             continue
 
         # Per-term exclusion list
@@ -392,6 +447,63 @@ _PLANT_MILK_SOLID_EXCL: list[str] = [
     "עוגיות", "קרקר", "לחם", "פריכיות", "לחמי",
 ]
 
+# ---------------------------------------------------------------------------
+# Category prior (TASK-139C) — BSIP0 acquisition-shelf identity
+# ---------------------------------------------------------------------------
+# Every product in a run was scraped *as* a member of one category shelf
+# (yogurt shelf, cereal shelf, …). BSIP1 records that membership as a non-null
+# subtype field. We carry that membership forward as a soft CATEGORY PRIOR so a
+# real product survives once an incidental grain/nut/topping/flavor token
+# dominates its name+ingredients (e.g. "מוזלי בוטנים שקדים" → whole_food_fat,
+# "כוסמין מלא" → bread, honey Cheerios → whole_food_fat, flavored "GO" → dessert).
+#
+# Design contract (frozen-scoring safe — ROUTING ONLY):
+#   * The prior is applied ONLY in Stage 2 signal scoring (it adds a boost to the
+#     prior category's score). It NEVER overrides a Stage 1 hard anchor — a genuine
+#     cross-category anchor (bread/cracker/dessert/sauce/…) still exits first and
+#     wins, so a mislabeled item on the shelf is not force-held in the wrong family.
+#   * The boost is sized to beat incidental topping/grain/nut SIGNALS, not to beat a
+#     legitimate competing identity. It is additive to (not a replacement for) the
+#     category's own signals.
+#   * The beverage gate still runs after the prior, so a genuinely drinkable variant
+#     ("משקה"/"שתייה") still routes to beverage — the dairy↔beverage boundary is
+#     unchanged (frozen milk category untouched).
+#   * subtype must be NON-NULL and not an explicit "other"/"unknown" bucket; if the
+#     field is absent the router behaves exactly as before (fully backward compatible).
+#
+# Field → routed category. Mirrors the two governed corpora; extend per new category.
+CATEGORY_PRIOR_SUBTYPE_FIELDS: dict[str, str] = {
+    "bsip_cereal_subtype":  "cereal",
+    "bsip_yogurt_subtype":  "dairy_protein",
+}
+# Subtype values that do NOT assert category membership (do not carry a prior).
+_CATEGORY_PRIOR_NULL_SUBTYPES: set[str] = {
+    "", "other", "unknown", "none", "cereal_other",
+}
+# Boost added to the prior category in Stage 2. Calibrated against the run_cereals_002
+# misroute set: the strongest incidental wrong-category signal stack observed was
+# whole_food_fat≈1.88; a 2.0 prior makes the shelf identity decisive while remaining
+# beatable only by a much stronger, genuine competing signal mass.
+CATEGORY_PRIOR_BOOST: float = 2.0
+
+
+def _category_prior(product: dict) -> str | None:
+    """Return the acquisition-shelf category for this product, or None.
+
+    Reads the BSIP1 subtype field that records which shelf the product was
+    scraped from. Returns the mapped routing category when a real subtype is
+    present; returns None when no prior is recorded (backward compatible).
+    """
+    for field, category in CATEGORY_PRIOR_SUBTYPE_FIELDS.items():
+        val = product.get(field)
+        if not isinstance(val, str):
+            continue
+        if val.strip().lower() in _CATEGORY_PRIOR_NULL_SUBTYPES:
+            continue
+        return category
+    return None
+
+
 # Hybrid-eligible routing pairs — products that legitimately straddle two contexts.
 # Only these pairs trigger is_hybrid=True; all others get instability_flag only.
 HYBRID_ELIGIBLE_PAIRS: frozenset = frozenset({
@@ -490,6 +602,13 @@ def classify_category(product: dict) -> dict:
     scores, bev_basis, bev_suppressed = _apply_beverage_gate(scores, name, product)
     signal_log.extend(bev_basis)
     suppressed_log.extend(bev_suppressed)
+
+    # Stage 2c — category prior (TASK-139C). Applied only on the signal path (no hard
+    # anchor fired) and after the beverage gate (so drinkable variants stay beverage).
+    prior = _category_prior(product)
+    if prior is not None and prior in scores:
+        scores[prior] += CATEGORY_PRIOR_BOOST
+        signal_log.append(f"{prior}:category_prior(+{CATEGORY_PRIOR_BOOST:.2f})")
 
     # Stage 3 — resolution
     result = _resolve(scores, signal_log, suppressed_log)

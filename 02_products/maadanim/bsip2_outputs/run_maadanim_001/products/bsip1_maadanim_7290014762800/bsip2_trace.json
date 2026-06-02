@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.539258Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.960631Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290014762800",
@@ -36,8 +36,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "multiple_added_sugar_sources: 3",
-    "very_long_ingredient_list: 16"
+    "multiple_added_sugar_sources: 3"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -46,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 97.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 2.0,
+    "fat_saturated_g": 0.4,
     "fat_trans_g": null,
     "sodium_mg": 50.0,
     "carbohydrates_g": 16.0,
-    "sugars_g": null,
+    "sugars_g": 12.0,
     "dietary_fiber_g": 1.9,
     "protein_g": 3.0,
-    "ingredient_count": 16,
+    "ingredient_count": 13,
     "ingredient_list": [
       "מיצוי פולי סויה (82%) (מים",
       "פולי סויה 5.2%)",
@@ -68,11 +67,20 @@
       "חומרי טעם וריח",
       "מלח",
       "מווסת חומציות (סודיום קרבונאט)",
-      "ויטמיניםD",
-      "B2 (למעט במוצר כשר לפסח) ו- B12 0.24-B2) מ\"ג",
-      "1- D מק\"ג",
-      "B12- 0.2 מק\"ג ל-100 גרם). מאפיינים נוספים ללא כולסטרול מכיל סויה עלול להכיל שקדים ערכים תזונתיים 100 גרם 0.24 מג B2 ויטמין 1.9 גרם סיבים תזונתיים 12 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 97 קל אנרגיה 3 גרם חלבונים 16 גרם פחמימות 2 גרם שומנים פחות מ 2.5 מג כולסטרול 50 מג נתרן 0.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 120 מג סידן 0.24 מקג B12 ויטמין ערכים תזונתיים מנה 0.3 מג B2 ויטמין 2.4 גרם סיבים תזונתיים 15 גרם סוכרים מתוך פחמימות 1.25 מקג D ויטמין 121 קל אנרגיה 3.8 גרם חלבונים 20 גרם פחמימות 2.5 גרם שומנים פחות מ 2.5 מג כולסטרול 63 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 150 מג סידן 0.3 מקג B12 ויטמין הנתונים המדויקים מופיעים על"
+      "ויטמיניםD"
     ],
+    "ingredient_count_raw": 16,
+    "ingredient_sanitization": {
+      "raw_count": 16,
+      "clean_count": 13,
+      "dropped": [
+        "B2 (למעט במוצר כשר לפסח) ו- B12 0.24-B2) מ\"ג",
+        "1- D מק\"ג",
+        "B12- 0.2 מק\"ג ל-100 גרם). מאפיינים נוספים ללא כולסטרול מכיל סויה עלול להכיל שקדים ערכים תזונתיים 100 גרם 0.24 מג B2 ויטמין 1.9 גרם סיבים תזונתיים 12 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 97 קל אנרגיה 3 גרם חלבונים 16 גרם פחמימות 2 גרם שומנים פחות מ 2.5 מג כולסטרול 50 מג נתרן 0.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 120 מג סידן 0.24 מקג B12 ויטמין ערכים תזונתיים מנה 0.3 מג B2 ויטמין 2.4 גרם סיבים תזונתיים 15 גרם סוכרים מתוך פחמימות 1.25 מקג D ויטמין 121 קל אנרגיה 3.8 גרם חלבונים 20 גרם פחמימות 2.5 גרם שומנים פחות מ 2.5 מג כולסטרול 63 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 150 מג סידן 0.3 מקג B12 ויטמין הנתונים המדויקים מופיעים על"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,20 +90,18 @@
     ],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
-    "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
-    ],
+    "missing_nutrition_fields": [],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 4.64,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 18.56,
+    "saturated_fat_fraction": 0.2,
+    "sugar_to_carb_ratio": 0.75,
     "protein_per_kcal": 0.0309,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -171,6 +177,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -179,7 +186,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 4.64,
+    "fat_pct_of_kcal": 18.56,
     "ingredient_list": [
       "מיצוי פולי סויה (82%) (מים",
       "פולי סויה 5.2%)",
@@ -193,10 +200,7 @@
       "חומרי טעם וריח",
       "מלח",
       "מווסת חומציות (סודיום קרבונאט)",
-      "ויטמיניםD",
-      "B2 (למעט במוצר כשר לפסח) ו- B12 0.24-B2) מ\"ג",
-      "1- D מק\"ג",
-      "B12- 0.2 מק\"ג ל-100 גרם). מאפיינים נוספים ללא כולסטרול מכיל סויה עלול להכיל שקדים ערכים תזונתיים 100 גרם 0.24 מג B2 ויטמין 1.9 גרם סיבים תזונתיים 12 גרם סוכרים מתוך פחמימות 1 מקג D ויטמין 97 קל אנרגיה 3 גרם חלבונים 16 גרם פחמימות 2 גרם שומנים פחות מ 2.5 מג כולסטרול 50 מג נתרן 0.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 120 מג סידן 0.24 מקג B12 ויטמין ערכים תזונתיים מנה 0.3 מג B2 ויטמין 2.4 גרם סיבים תזונתיים 15 גרם סוכרים מתוך פחמימות 1.25 מקג D ויטמין 121 קל אנרגיה 3.8 גרם חלבונים 20 גרם פחמימות 2.5 גרם שומנים פחות מ 2.5 מג כולסטרול 63 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 150 מג סידן 0.3 מקג B12 ויטמין הנתונים המדויקים מופיעים על"
+      "ויטמיניםD"
     ]
   },
   "L4_interpreted_concerns": {
@@ -233,7 +237,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": false,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -245,25 +249,25 @@
     "processing_quality": 35,
     "nutrient_density": 16.4,
     "calorie_density": 85.0,
-    "glycemic_quality": 93.8,
+    "glycemic_quality": 63.8,
     "protein_quality": 15.0,
     "additive_quality": 46.0,
     "satiety_support": 76.3,
-    "fat_quality": 50.0,
+    "fat_quality": 93.8,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 14
+    "whole_food_integrity": 20
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=3.0g→15.0, fiber=1.9g→19.0, weighted 65/35=16.4",
     "calorie_density": "kcal=97.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(3.8) + wg(0) = 93.8",
+    "glycemic_quality": "90 - sugar_penalty(30.0) + fiber(3.8) + wg(0) = 63.8",
     "protein_quality": "protein=3.0g base=15.0, source=whole_food(×1.0) → 15.0",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.0×3 + 1.9×5) / 97.0 × 400 = 76.3",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=2.0g<8.0): sat=0.4g base=93.8-seed0-trans0=93.8",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 → 14"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -277,7 +281,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 51.7,
+  "weighted_dimension_score": 51.85,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -381,7 +385,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 51.7,
+  "score_after_cap": 51.85,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -416,7 +420,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.6<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=18.6<30.0 or sugar=12.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -437,13 +441,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=16"
+      "note": "ingredient_count=13"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.7,
+  "score_after_penalty": 42.85,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -512,11 +516,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.7,
+  "score_after_floors": 42.85,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 42.7,
+  "final_score_estimate": 42.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -525,25 +529,24 @@
   ],
   "unresolved_flags": [],
   "structural_class": {
-    "primary": "F",
-    "primary_label": "Structurally Void System",
-    "primary_confidence": 0.348,
-    "secondary": "D",
-    "secondary_label": "Industrially Reconstructed",
-    "secondary_confidence": 0.304,
+    "primary": "D",
+    "primary_label": "Industrially Reconstructed",
+    "primary_confidence": 0.319,
+    "secondary": "F",
+    "secondary_label": "Structurally Void System",
+    "secondary_confidence": 0.319,
     "class_weights": {
       "A": 0.051,
       "B": 0.051,
-      "C": 0.0,
-      "D": 0.304,
-      "E": 0.247,
-      "F": 0.348
+      "C": 0.019,
+      "D": 0.319,
+      "E": 0.241,
+      "F": 0.319
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

@@ -45,11 +45,40 @@ export interface BariExpansionVM {
   comparisonContext?: string | null;
 }
 
+// ─── Metrics (v2 — comparison_ui_reference_v2 §2.1, §4) ─────────────────────────
+// Display-only, column-aligned metric block. Derived deterministically from existing
+// label data — NEVER a score input. null = data not available → render "—", never 0.
+// The metric SET rendered is category-scoped (README §7, MILK_RECOMMENDATION): the
+// MetricColumn reads a per-category spec, so milk can show sugar where hummus shows
+// % grain without forking the component. All fields optional/nullable: a category
+// only populates the metrics it has real source data for — we never fabricate a value.
+export interface BariProductMetricsVM {
+  /** g per 100g/ml. Display scale 0–20 (hummus); good ≥10, poor <5 (§4.1). */
+  protein_g: number | null;
+  /** Fiber g per 100g — bread's headline metric (TASK-162). Real per-label value, never fabricated. */
+  fiber_g?: number | null;
+  /** Count of recognised additives, 0–5 pips. NOT yet exposed by BSIP → Data Agent dependency. */
+  additive_count?: number | null;
+  /** Main-ingredient %, bar 0–100. NOT in current label data → Data Agent dependency. */
+  base_pct?: number | null;
+  /** Sugar g per 100g/ml — a real dairy signal (MILK_RECOMMENDATION §1). */
+  sugar_g?: number | null;
+}
+
+// ─── Row reason (v2 — comparison_ui_reference_v2 §3.3) ───────────────────────────
+// Short strongest +/− shown beneath the name on the collapsed row. Derived from
+// positiveSignals[0] / limitingFactors[0]; both null → slot collapses. Optional.
+export interface BariRowReasonVM {
+  positive: string | null;
+  limiting: string | null;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
 // score: null = unscored (chip renders "—"). Present = 0–100 integer, already rounded.
 // expansion: always present; content nullability is per-field.
+// metrics / rowReason: optional v2 surface (§2.2). Absent on non-v2 categories.
 export interface BariProductVM {
   id: string;
   name: string;
@@ -59,6 +88,12 @@ export interface BariProductVM {
   insightLine: string;
   confidence: BariConfidence;
   expansion: BariExpansionVM;
+  metrics?: BariProductMetricsVM;
+  rowReason?: BariRowReasonVM;
+  /** TASK-137: 2–3 sentence editorial verdict shown on the collapsed row in place of
+   *  the +/− reason lines (which move into the "למה קיבל את הציון?" expansion). Authored
+   *  by Content; display-only, never a score input. Absent → row falls back to rowReason. */
+  rowVerdict?: string;
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────

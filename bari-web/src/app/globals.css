@@ -418,11 +418,263 @@
     background-size: 42px 42px, 42px 42px, auto;
   }
 
-  /* Comparison web template: hairline between product blocks (desktop scan aid). */
-  @media (min-width: 64rem) {
-    .bari-zebra-rows.bari-zebra-rows--web > .bari-shelf-row + .bari-shelf-row {
-      border-block-start: 1px solid rgba(17, 19, 24, 0.05);
+  /* ============================================================
+     Unified comparison table (IMP-1/IMP-4) — ONE responsive row.
+     Phone vs desktop is pure container-query CSS (comparison-v2-spec §9,
+     README §4): the DOM is identical at both widths; only the row grid,
+     column visibility, and the rail's presence change. Container name
+     `bari-cmptable` is set on the scroll wrapper.
+     ============================================================ */
+  .bari-mono {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .bari-cmp-workspace {
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+  .bari-cmp-scroll {
+    flex: 1;
+    min-width: 0;
+    container-type: inline-size;
+    container-name: bari-cmptable;
+  }
+
+  .bari-cmp-row {
+    border-bottom: 1px solid rgba(17, 19, 24, 0.05);
+  }
+  .bari-cmp-row:nth-child(even of .bari-cmp-row) {
+    background: #fbfbf9;
+  }
+  .bari-cmp-rowhead {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    color: inherit;
+    display: grid;
+    gap: 12px 14px;
+    align-items: center;
+    padding: 14px 16px;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "thumb name grade"
+      "metric metric metric";
+  }
+  .bari-cmp-rowhead:hover {
+    background: rgba(31, 143, 106, 0.03);
+  }
+
+  .bari-cmp-rank {
+    display: none;
+    grid-area: rank;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #7a817c;
+  }
+  .bari-cmp-thumbcell {
+    grid-area: thumb;
+    width: 56px;
+    height: 56px;
+  }
+  .bari-cmp-namecell {
+    grid-area: name;
+    min-width: 0;
+  }
+  .bari-cmp-metriccell {
+    grid-area: metric;
+  }
+  .bari-cmp-gradecell {
+    grid-area: grade;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  /* column header — desktop only */
+  .bari-cmp-colhead {
+    display: none;
+  }
+
+  /* expansion (grid-rows reveal) */
+  .bari-cmp-exp {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .bari-cmp-exp.is-open {
+    grid-template-rows: 1fr;
+  }
+  .bari-cmp-expclip {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* band dividers (v2 §4) */
+  .bari-cmp-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 16px;
+    background: #fafaf7;
+  }
+  .bari-cmp-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(17, 19, 24, 0.06);
+  }
+  .bari-cmp-divider-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  /* band rail (v2 §3) — hidden on narrow containers */
+  .bari-cmp-rail {
+    display: none;
+  }
+
+  /* ===================== WIDE (container ≥ 680px) ===================== */
+  @container bari-cmptable (min-width: 680px) {
+    .bari-cmp-colhead {
+      display: grid;
+      gap: 12px 16px;
+      align-items: center;
+      padding: 11px 22px;
+      background: #fafaf8;
+      border-bottom: 1px solid rgba(17, 19, 24, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      grid-template-columns: 30px 80px minmax(0, 1fr) 232px 156px;
+      font-family: var(--font-mono, monospace);
+      font-size: 0.58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #7a817c;
+    }
+    .bari-cmp-colhead-metric {
+      text-align: start;
+    }
+    .bari-cmp-colhead-grade {
+      text-align: end;
+    }
+
+    .bari-cmp-thumbcell {
+      width: 80px;
+      height: 80px;
+    }
+
+    .bari-cmp-rowhead {
+      grid-template-columns: 30px 80px minmax(0, 1fr) 232px 156px;
+      grid-template-areas: "rank thumb name metric grade";
+      padding: 13px 22px;
+    }
+    .bari-cmp-rank {
+      display: block;
+    }
+
+    /* category with no metric surface — reclaim the metric track */
+    .bari-cmp-scroll--nometric .bari-cmp-colhead,
+    .bari-cmp-scroll--nometric .bari-cmp-rowhead {
+      grid-template-columns: 30px 80px minmax(0, 1fr) 156px;
+    }
+    .bari-cmp-scroll--nometric .bari-cmp-rowhead {
+      grid-template-areas: "rank thumb name grade";
+    }
+
+    /* expansion: inset under the name column (rank 30 + 80 thumb + 2×14 gaps) and cap
+       the reading width so prose + nutrition don't stretch edge-to-edge. */
+    .bari-cmp-expbody {
+      padding-inline-start: 138px;
+      padding-inline-end: 22px;
+      max-width: 62rem;
+    }
+    .bari-cmp-gradecell {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+    .bari-cmp-gradecell .bari-cmp-conf {
+      order: -1;
     }
   }
 
+  /* rail visible only when the host marks the workspace wide AND on lg+ viewports */
+  @media (min-width: 64rem) {
+    .bari-cmp-workspace--wide .bari-cmp-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 172px;
+      flex: none;
+      align-self: stretch;
+      border-inline-start: 1px solid rgba(17, 19, 24, 0.06);
+      padding: 16px;
+      position: sticky;
+      top: 0;
+    }
+  }
+  .bari-cmp-rail-title {
+    margin: 0 0 8px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.56rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #7a817c;
+  }
+  .bari-cmp-rail-band {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+    padding: 7px 8px;
+    border-radius: 9px;
+    text-align: start;
+    transition: background 0.16s;
+  }
+  .bari-cmp-rail-band:hover {
+    background: rgba(31, 143, 106, 0.06);
+  }
+  .bari-cmp-rail-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .bari-cmp-rail-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4e5663;
+  }
+  .bari-cmp-rail-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #7a817c;
+  }
+  .bari-cmp-rail-bar {
+    display: block;
+    margin-top: 5px;
+    height: 4px;
+    background: #edede7;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  .bari-cmp-rail-bar i {
+    display: block;
+    height: 100%;
+    border-radius: 9999px;
+  }
 }

@@ -30,7 +30,7 @@
     "cholesterol_mg": null,
     "sodium_mg": 66.0,
     "carbohydrates_g": 18.0,
-    "sugars_g": null,
+    "sugars_g": 17.0,
     "dietary_fiber_g": null,
     "protein_g": null
   },
@@ -141,9 +141,9 @@
   "claims_raw": "קטגוריה מבצעים לתפריט הראשי קטגוריה מבצעים טוען מוצרים וקטגוריות קטגוריה סופרמרקט לתפריט הראשי קטגוריה סופרמרקט טוען מוצרים וקטגוריות קטגוריה green בריאות וטבע לתפריט הראשי קטגוריה green בריאות וטבע ט קטגוריה מבצעים לתפריט הראשי קטגוריה מבצעים טוען מוצרים וקטגוריות קטגוריה סופרמרקט לתפריט הראשי קטגוריה סופרמרקט טוען מוצרים וקטגוריות קטגוריה green בריאות וטבע לתפריט הראשי קטגוריה green בריאות וטבע ",
   "claims": [],
   "confidence": {
-    "identity_confidence": "low",
+    "identity_confidence": "high",
     "barcode_confidence": "inferred",
-    "nutrition_confidence": "partial",
+    "nutrition_confidence": "confirmed_per_100g",
     "matched_by": "barcode_single_source",
     "observation_count": 1
   },
@@ -151,12 +151,12 @@
   "barcode_confidence_reason": "Shufersal product code used as barcode proxy.",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
-  "nutrition_consistency_status": "partial",
+  "nutrition_consistency_status": "consistent",
   "nutrition_consistency_warnings": [],
   "ingredient_text_quality": "clean",
   "ingredient_warnings": [],
-  "canonical_trust_score": 0.45,
-  "canonical_trust_level": "low",
+  "canonical_trust_score": 0.8,
+  "canonical_trust_level": "high",
   "canonical_risk_flags": [
     "single_source_only",
     "retailer_internal_id_barcode"
@@ -171,11 +171,7 @@
     "labeling_conflicts": [],
     "completeness_conflicts": []
   },
-  "missing_fields": [
-    "protein_g",
-    "sugars_g",
-    "fat_g"
-  ],
+  "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_68190.json",
   "bsip_maadanim_subtype": "dairy_dessert_generic",

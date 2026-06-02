@@ -1,0 +1,165 @@
+{
+  "run_id": "run_cheese_002",
+  "generated": "2026-06-01 18:48 UTC",
+  "engine": "proto_v0 / 0.4.0 (unmodified)",
+  "source": "Shufersal real scrape -> BSIP1 run_cheese_001",
+  "governance": "cheese_spreads_stress_test_001 (TASK-141, verdict B); dairy calibration TASK-139A/B/D",
+  "processed": 57,
+  "scored": 57,
+  "insufficient": 0,
+  "insufficient_pct_of_displayable": 0.0,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 23,
+    "A": 6,
+    "C": 27,
+    "D": 1
+  },
+  "score_median": 65.0,
+  "score_range": [
+    36.5,
+    85.1
+  ],
+  "grade_thresholds_engine": {
+    "S": 90,
+    "A": 80,
+    "B": 65,
+    "C": 50,
+    "D": 35,
+    "E": 0
+  },
+  "subpool_stats": {
+    "white_cheese_quark": {
+      "count": 17,
+      "grades": {
+        "B": 7,
+        "A": 6,
+        "C": 4
+      },
+      "score_median": 73.8,
+      "score_range": [
+        56.4,
+        85.1
+      ]
+    },
+    "cottage": {
+      "count": 11,
+      "grades": {
+        "B": 11
+      },
+      "score_median": 76.6,
+      "score_range": [
+        69.9,
+        79.2
+      ]
+    },
+    "labaneh": {
+      "count": 3,
+      "grades": {
+        "B": 2,
+        "C": 1
+      },
+      "score_median": 74.8,
+      "score_range": [
+        57.7,
+        76.9
+      ]
+    },
+    "cream_cheese_spread": {
+      "count": 26,
+      "grades": {
+        "C": 22,
+        "B": 3,
+        "D": 1
+      },
+      "score_median": 60.7,
+      "score_range": [
+        36.5,
+        72.4
+      ]
+    }
+  },
+  "a_ceiling_grade_A_landed": [
+    {
+      "pid": "bsip1_cheese_4127800",
+      "name": "גבינה לבנה 5% שומן",
+      "pool": "white_cheese_quark",
+      "score": 85,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C3_no_culture_credit"
+      ]
+    },
+    {
+      "pid": "bsip1_cheese_4127817",
+      "name": "גבינה לבנה 9% שומן",
+      "pool": "white_cheese_quark",
+      "score": 85,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C3_no_culture_credit"
+      ]
+    },
+    {
+      "pid": "bsip1_cheese_4127862",
+      "name": "גבינה לבנה 5% שומן",
+      "pool": "white_cheese_quark",
+      "score": 85,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C3_no_culture_credit"
+      ]
+    },
+    {
+      "pid": "bsip1_cheese_47942",
+      "name": "גבינה 9% שומן כשר מהדרין",
+      "pool": "white_cheese_quark",
+      "score": 85,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C3_no_culture_credit"
+      ]
+    },
+    {
+      "pid": "bsip1_cheese_48185",
+      "name": "גבינה לבנה 5% שומן",
+      "pool": "white_cheese_quark",
+      "score": 85,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C3_no_culture_credit"
+      ]
+    },
+    {
+      "pid": "bsip1_cheese_6040619",
+      "name": "גבינה טבורוג 5%",
+      "pool": "white_cheese_quark",
+      "score": 85.1,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C1_added_sugar",
+        "C2_engineered_additives",
+        "C3_no_culture_credit",
+        "C4_non_intact_matrix"
+      ]
+    }
+  ],
+  "misroute_count": 1,
+  "misroute_pct": 1.8,
+  "misroute_exit_gate_lt5pct": true,
+  "misroutes": [
+    {
+      "pid": "bsip1_cheese_7290108506624",
+      "name": "גבינת עזים 32% שומן",
+      "subpool": "white_cheese_quark",
+      "routed_to": "snack_bar_granola"
+    }
+  ],
+  "error_detail": []
+}

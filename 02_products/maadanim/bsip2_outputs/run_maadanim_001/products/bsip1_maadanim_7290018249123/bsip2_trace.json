@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.563258Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.989761Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290018249123",
@@ -44,12 +44,12 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 0.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 0.0,
+    "fat_saturated_g": 0.1,
     "fat_trans_g": null,
     "sodium_mg": 1254.0,
     "carbohydrates_g": 94.0,
-    "sugars_g": null,
+    "sugars_g": 0.0,
     "dietary_fiber_g": null,
     "protein_g": 0.0,
     "ingredient_count": 7,
@@ -62,6 +62,14 @@
       "E516)",
       "תמצית וניל מאפיינים נוספים נטול גלוטן"
     ],
+    "ingredient_count_raw": 7,
+    "ingredient_sanitization": {
+      "raw_count": 7,
+      "clean_count": 7,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -72,20 +80,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": false
+      "sugar_le_carbs": true,
+      "satfat_le_fat": false,
+      "kcal_plausible": false,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": null,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.0,
     "protein_per_kcal": null,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -161,6 +168,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 7,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -183,6 +191,7 @@
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
     "pre_evaluation_flags": [
+      "SATFAT_EXCEEDS_FAT: data integrity concern, score confidence reduced",
       "KCAL_IMPLAUSIBLE: outside 20-700 range, confidence severely reduced"
     ]
   },
@@ -221,12 +230,16 @@
     },
     "se_note": "SRC-04: calorie density dimension capped at 50; fat quality returns neutral 50"
   },
-  "confidence_score": 80,
-  "confidence_band": "high",
+  "confidence_score": 60,
+  "confidence_band": "medium",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
       "reduction": -5
+    },
+    {
+      "factor": "sat_fat > fat (data integrity failure)",
+      "reduction": -20
     },
     {
       "factor": "energy_kcal outside plausible range 20-700",
@@ -251,7 +264,7 @@
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
+    "nutrient_density": "protein=0g→0.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 0.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=0.0)",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
@@ -500,6 +513,7 @@
     "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_3_PROCESSED', 'HIGH_SODIUM_700MG_PLUS']"
   ],
   "unresolved_flags": [
+    "SATFAT_EXCEEDS_FAT: data integrity concern, score confidence reduced",
     "KCAL_IMPLAUSIBLE: outside 20-700 range, confidence severely reduced",
     "STRUCTURAL_EMPTINESS: calorie density dimension capped at 50 (SRC-04)"
   ],

@@ -42,11 +42,12 @@ export function FeaturedMaadanimIntelligenceCard({ href, description }: Props) {
         description={description ?? maadanimPrologueSentences[0]}
         insightLines={lines}
         stats={[
-          { value: maadanimCorpusMeta.product_count, label: "מוצרים בדף" },
-          { value: maadanimCorpusMeta.scored_count ?? maadanimProducts.length, label: "קיבלו ציון" },
+          { value: maadanimProducts.length, label: "מוצרים בדף" },
+          { value: maadanimProducts.length, label: "קיבלו ציון" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(maadanimCorpusMeta.generated)}
         asLinkChild
+        theme={{ accent: "#BC7AA0", photo: "/hashvaot/themes/yogurt.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
     </Link>

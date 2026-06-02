@@ -2,9 +2,10 @@
 id: TASK-133B
 title: F2 - protein-bar matrix discount + collagen marker in Protein Quality dimension
 owner: nutrition-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: [TASK-133A]
 blocks: []
 category_id: null

@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bari — One Responsive Comparison Table (IMP-1)</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas,#F7F7F2);color:var(--fg1,#111318);
+    font-family:"Inter","Heebo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+  /* ---------- page chrome ---------- */
+  .page{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 20px 80px}
+  .topbar{width:100%;max-width:1180px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 26px;
+    justify-content:space-between;padding-bottom:18px}
+  .controlbar{width:100%;max-width:1180px;margin-top:14px;padding-top:16px;display:flex;flex-wrap:wrap;gap:18px 22px;
+    align-items:center;border-top:1px solid var(--hair,rgba(17,19,24,.08))}
+  .brand{display:flex;flex-direction:column;gap:8px;direction:ltr;text-align:left}
+  .brandmark{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.05em;font-size:1.05rem}
+  .brandmark i{width:10px;height:10px;border-radius:50%;background:var(--bari-green,#1F8F6A)}
+  .eyebrow{font-family:var(--font-mono,monospace);font-size:.6rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.22em;color:rgba(31,143,106,.85)}
+  .brand h1{margin:2px 0 0;font-size:1.18rem;font-weight:800;letter-spacing:-.025em}
+  .controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .ctrl{display:flex;flex-direction:column;gap:6px}
+  .ctrlLabel{font-family:var(--font-mono,monospace);font-size:.56rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.13em;color:var(--fg3,#7A817C);text-align:right}
+  .seg{display:inline-flex;background:#fff;border:1px solid var(--hair,rgba(17,19,24,.08));border-radius:9999px;padding:3px}
+  .seg button{border:0;background:transparent;font:inherit;font-size:.78rem;font-weight:600;color:var(--fg2,#4E5663);
+    padding:6px 13px;border-radius:9999px;cursor:pointer;transition:all .18s}
+  .seg button.on{background:var(--bari-green,#1F8F6A);color:#fff}
+  .seg button:not(.on):hover{color:var(--fg1)}
+
+  .hint{width:100%;max-width:1180px;margin:16px 0 0;font-size:.86rem;color:var(--fg2,#4E5663);line-height:1.6;text-wrap:pretty}
+  .hint b{color:var(--fg1)}
+
+  /* ---------- the device shell (frame toggle) ---------- */
+  .stage{width:100%;display:flex;justify-content:center;margin-top:26px}
+  .shell{width:100%;background:#fff;border:1px solid var(--hair,rgba(17,19,24,.08));overflow:hidden;
+    box-shadow:0 24px 70px -44px rgba(17,19,24,.4);transition:max-width .32s cubic-bezier(.22,1,.36,1)}
+  .shell.desktop{max-width:1140px;border-radius:18px}
+  .shell.phone{max-width:412px;border-radius:34px;padding:10px;background:#111318;border-color:#111318}
+  .shell.phone .shellInner{border-radius:26px;overflow:hidden;background:#fff}
+  .shell.desktop .shellInner{border-radius:0}
+
+  /* mini hero inside the shell */
+  .hero{padding:22px 22px 16px;border-bottom:1px solid var(--hair-soft,rgba(17,19,24,.06));background:#fff}
+  .hero .hEyebrow{font-family:var(--font-mono,monospace);font-size:.58rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.2em;color:rgba(31,143,106,.85)}
+  .hero h2{margin:7px 0 0;font-size:1.45rem;font-weight:800;letter-spacing:-.03em}
+  .hero .hMeta{margin:8px 0 0;font-size:.8rem;color:var(--fg3,#7A817C)}
+  .hero .catnote{margin:12px 0 0;font-size:.78rem;color:var(--fg2,#4E5663);background:#FBF8EE;border:1px solid #ECE3C8;
+    border-radius:9px;padding:8px 11px;line-height:1.5}
+
+  /* ============================================================
+     ONE RESPONSIVE TABLE — phone vs desktop is pure container-query CSS.
+     ============================================================ */
+  .workspace{display:flex;gap:0;align-items:flex-start}
+  .listScroll{flex:1;min-width:0;max-height:592px;overflow-y:auto;container-type:inline-size;container-name:cmptable;
+    scrollbar-width:thin}
+  .listScroll::-webkit-scrollbar{width:9px}
+  .listScroll::-webkit-scrollbar-thumb{background:rgba(17,19,24,.14);border-radius:9px;border:2px solid #fff}
+
+  /* desktop column header (v2 only) */
+  .colHead{display:none}
+
+  .row{border-bottom:1px solid var(--hair-faint,rgba(17,19,24,.05))}
+  .row:nth-child(even of .row){background:#FBFBF9}
+  .rowHead{width:100%;border:0;background:transparent;font:inherit;text-align:right;cursor:pointer;color:inherit;
+    display:grid;gap:12px 14px;align-items:center;padding:14px 16px;
+    grid-template-columns:auto 1fr auto;grid-template-areas:"thumb name grade" "metric metric metric"}
+  .rowHead:hover{background:rgba(31,143,106,.03)}
+
+  .rank{display:none;grid-area:rank;text-align:center;font-size:.72rem;font-weight:700;color:var(--fg3,#7A817C)}
+  .thumb{grid-area:thumb;width:52px;height:52px;border-radius:11px;background:#F3F3EE 50%/contain no-repeat;
+    box-shadow:inset 0 0 0 1px rgba(17,19,24,.05);flex:none}
+  .nameCol{grid-area:name;min-width:0}
+  .pname{display:block;font-size:.97rem;font-weight:700;letter-spacing:-.01em;color:var(--fg1,#111318);
+    line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .reason{margin-top:5px;display:flex;flex-direction:column;gap:2px}
+  .reason p{margin:0;font-size:.78rem;line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rpos{color:#3C443F}.rpos b{color:#1F8F6A;font-weight:800}
+  .rlim{color:#6E756F}.rlim b{color:#B5882F;font-weight:800}
+  .insight{display:block;margin-top:5px;font-size:.8rem;color:var(--fg2,#4E5663);line-height:1.45;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* metric column — fixed widths so it aligns row-to-row */
+  .metricCol{grid-area:metric;display:flex;gap:14px;align-items:center}
+  .metricColSpacer{grid-area:metric}
+  .metric{width:62px;flex:none}
+  .metricTop{display:flex;align-items:baseline;justify-content:space-between;gap:4px}
+  .metricK{font-size:.6rem;font-weight:500;color:#9A9FA6}
+  .metricV{font-size:.74rem;font-weight:700;font-variant-numeric:tabular-nums;color:#4A524E}
+  .metricV i{font-size:.56rem;font-weight:500;color:#9A9FA6;font-style:normal}
+  .bar{margin-top:4px;height:3px;width:100%;background:#ECECE7;border-radius:9999px;overflow:hidden}
+  .bar span{display:block;height:100%;border-radius:9999px}
+  .pips{margin-top:5px;display:flex;gap:3px}
+  .pip{width:100%;height:5px;border-radius:2px}
+
+  .gradeCol{grid-area:grade;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+  .gradeBadge{display:inline-flex;align-items:center;gap:5px;border:1px solid;border-radius:10px;padding:4px 8px}
+  .gradeBadge b{font-size:1.05rem}
+  .gletter{font-size:.64rem;font-weight:700;opacity:.7}
+  .confTag{display:inline-flex;align-items:center;gap:5px}
+  .confDot{width:6px;height:6px;border-radius:50%;flex:none}
+  .confLabel{font-size:.62rem;font-weight:500;color:#6E756F;white-space:nowrap}
+  .chev{color:#B5BBB6;transition:transform .2s}
+  .chev.open{transform:rotate(180deg);color:#9A9FA6}
+
+  /* expansion */
+  .exp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .24s cubic-bezier(.22,1,.36,1)}
+  .exp.open{grid-template-rows:1fr}
+  .expClip{overflow:hidden;min-height:0}
+  .expInner{padding:4px 16px 18px 16px}
+  .expBlock{margin-top:12px}
+  .expH{margin:0 0 6px;font-size:.72rem;font-weight:800;color:var(--fg1,#111318)}
+  .expH.pos{color:#1F8F6A}
+  .expInner ul{margin:0;padding-inline-start:18px;display:flex;flex-direction:column;gap:4px}
+  .expInner li{font-size:.83rem;color:var(--fg2,#4E5663);line-height:1.5}
+  .bottom{margin:14px 0 0;font-size:.84rem;color:var(--fg2,#4E5663);line-height:1.55;background:#F7F7F2;
+    border:1px solid var(--hair-soft,rgba(17,19,24,.06));border-radius:9px;padding:9px 12px}
+  .bottom b{color:var(--fg1,#111318)}
+  .tech{margin:14px 0 0;border-top:1px solid var(--hair-soft,rgba(17,19,24,.06));padding-top:12px}
+  .tech p{margin:0 0 6px;font-size:.78rem;color:var(--fg2,#4E5663);line-height:1.5}
+  .techK{display:inline-block;font-weight:700;color:var(--fg1,#111318);margin-inline-end:7px}
+  .techMuted{color:var(--fg3,#7A817C);font-style:italic}
+  .techNote{color:var(--fg3,#7A817C);font-size:.72rem}
+  .confFootnote{margin:12px 0 0;font-size:.62rem;color:#AAAAAA}
+
+  /* band dividers (v2 §4) */
+  .bandDivider{display:flex;align-items:center;gap:12px;padding:9px 16px;background:#FAFAF7}
+  .bdLine{flex:1;height:1px;background:var(--hair-soft,rgba(17,19,24,.06))}
+  .bdLabel{font-family:var(--font-mono,monospace);font-size:.62rem;font-weight:700;letter-spacing:.06em}
+
+  /* band rail (v2 §3) — hidden on narrow */
+  .rail{display:none}
+
+  /* ===================== WIDE (container ≥ 680px) ===================== */
+  @container cmptable (min-width:680px){
+    .colHead{display:grid;gap:12px 16px;align-items:center;padding:11px 22px;background:var(--surface-3,#FAFAF8);
+      border-bottom:1px solid var(--hair,rgba(17,19,24,.08));position:sticky;top:0;z-index:3;
+      grid-template-columns:30px 56px minmax(0,1fr) 232px 156px;
+      font-family:var(--font-mono,monospace);font-size:.58rem;font-weight:700;text-transform:uppercase;
+      letter-spacing:.09em;color:var(--fg3,#7A817C)}
+    .colHead .rank{display:block}
+    .colHead .chMetric{text-align:right}
+    .colHead .chGrade{text-align:left}
+
+    .rowHead{grid-template-columns:30px 56px minmax(0,1fr) 232px 156px;
+      grid-template-areas:"rank thumb name metric grade";padding:13px 22px;align-items:center}
+    .rank{display:block}
+    .reason p{font-size:.82rem}
+    .metricCol{justify-content:flex-start}
+    .gradeCol{flex-direction:row;align-items:center;gap:10px}
+    .gradeCol .confTag{order:-1}
+    .expInner{padding-inline-start:88px;padding-bottom:20px;display:grid;grid-template-columns:1fr 1fr;gap:6px 30px;align-items:start}
+    .expBlock,.tech,.bottom,.confFootnote{grid-column:1 / -1}
+    .expBlock{margin-top:6px}
+  }
+
+  /* v1 mode: no metric track, name takes the slack (the "before" state) */
+  .list-v1 .rowHead{grid-template-columns:auto 1fr auto;grid-template-areas:"thumb name grade" }
+  @container cmptable (min-width:680px){
+    .list-v1 .rowHead{grid-template-columns:30px 56px minmax(0,1fr) 156px;grid-template-areas:"rank thumb name grade"}
+    .list-v1 .expInner{grid-template-columns:1fr}
+  }
+
+  /* rail visible only when the workspace is wide */
+  .shell.desktop .rail{display:flex;flex-direction:column;gap:4px;width:172px;flex:none;align-self:stretch;
+    border-inline-start:1px solid var(--hair-soft,rgba(17,19,24,.06));padding:16px 16px;position:sticky;top:0}
+  .railTitle{margin:0 0 8px;font-family:var(--font-mono,monospace);font-size:.56rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--fg3,#7A817C)}
+  .railBand{border:0;background:transparent;font:inherit;cursor:pointer;padding:7px 8px;border-radius:9px;text-align:right;transition:background .16s}
+  .railBand:hover{background:rgba(31,143,106,.06)}
+  .railRow{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .railLabel{font-size:.78rem;font-weight:600;color:var(--fg2,#4E5663)}
+  .railCount{font-size:.7rem;font-weight:700;color:var(--fg3,#7A817C)}
+  .railBar{display:block;margin-top:5px;height:4px;background:#EDEDE7;border-radius:9999px;overflow:hidden}
+  .railBar i{display:block;height:100%;border-radius:9999px}
+
+  /* density */
+  .density-comfortable .rowHead{padding-top:18px;padding-bottom:18px}
+  .density-comfortable .thumb{width:60px;height:60px}
+
+  @media(max-width:560px){.topbar{flex-direction:column;align-items:stretch}.controls{justify-content:space-between}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <span class="brandmark"><i></i>Bari</span>
+      <span class="eyebrow">IMP-1 · One responsive table</span>
+      <h1>חומוס וממרחים — מנוע השוואה</h1>
+    </div>
+  </div>
+  <div class="controlbar controls" id="controls"></div>
+
+  <p class="hint">
+    <b>This is one component.</b> Drag the <b>Frame</b> control between Phone and Desktop — the rows reflow through CSS container queries, not a second hand-built table. Toggle <b>Layout</b> to v1 to see the "before" state from the audit (no aligned metric column, no rail, confidence buried in the expansion).
+  </p>
+
+  <div class="stage">
+    <div class="shell desktop density-comfortable" id="shell">
+      <div class="shellInner">
+        <div class="hero">
+          <p class="hEyebrow">דוח השוואה · שופרסל</p>
+          <h2>חומוס וממרחים</h2>
+          <p class="hMeta">11 מוצרים בדף · ממוין לפי ציון Bari · עודכן 31.5.2026</p>
+          <p class="catnote">ערכי שומן אינם מוצגים בקטגוריה זו — מגבלת נתוני מקור (תיקון מתוכנן Q3 2026). הערה ברמת הקטגוריה, פעם אחת — לא בכל שורה.</p>
+        </div>
+        <div id="root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="20" fill="#1F8F6A"/>
+    <rect x="30" y="34" width="40" height="7" rx="3.5" fill="#fff"/>
+    <rect x="30" y="47" width="40" height="7" rx="3.5" fill="#fff" opacity="0.7"/>
+    <rect x="30" y="60" width="40" height="7" rx="3.5" fill="#fff" opacity="0.45"/>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="proto/proto-data.jsx"></script>
+<script type="text/babel" src="proto/proto-components.jsx"></script>
+<script type="text/babel">
+  const { useState } = React;
+
+  function Segmented({ options, value, onChange }) {
+    return (
+      <div className="seg">
+        {options.map((o) => (
+          <button key={o.value} className={value === o.value ? "on" : ""} onClick={() => onChange(o.value)}>{o.label}</button>
+        ))}
+      </div>
+    );
+  }
+
+  function App() {
+    const [frame, setFrame] = useState("desktop");
+    const [density, setDensity] = useState("comfortable");
+    const [mode, setMode] = useState("v2");
+
+    React.useEffect(() => {
+      const shell = document.getElementById("shell");
+      shell.className = `shell ${frame} density-${density}`;
+    }, [frame, density]);
+
+    const controls = (
+      <>
+        <div className="ctrl">
+          <span className="ctrlLabel">Frame</span>
+          <Segmented value={frame} onChange={setFrame} options={[{value:"phone",label:"Phone"},{value:"desktop",label:"Desktop"}]} />
+        </div>
+        <div className="ctrl">
+          <span className="ctrlLabel">Density</span>
+          <Segmented value={density} onChange={setDensity} options={[{value:"compact",label:"Compact"},{value:"comfortable",label:"Comfortable"}]} />
+        </div>
+        <div className="ctrl">
+          <span className="ctrlLabel">Layout</span>
+          <Segmented value={mode} onChange={setMode} options={[{value:"v1",label:"v1 (before)"},{value:"v2",label:"v2 (unified)"}]} />
+        </div>
+      </>
+    );
+
+    return (
+      <>
+        {ReactDOM.createPortal(controls, document.getElementById("controls"))}
+        <window.ComparisonTable products={window.HUMMUS_PRODUCTS} mode={mode} />
+      </>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

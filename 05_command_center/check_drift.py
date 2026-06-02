@@ -50,11 +50,12 @@ def check(quiet=False):
     returns      = gd.scan_task_returns()
 
     drift = gd.build_drift_alerts(tasks, returns, registry_ids, unparseable, ref_mtime=ref_mtime)
+    acknowledged = gd.closure_drift_acks(tasks, returns)   # ★② inherit ack suppression
 
     # Preserve operational (non-drift) alerts; replace the drift ones with fresh.
     kept = [a for a in dashboard.get("alerts", []) if a.get("type") not in gd.DRIFT_TYPES]
     dashboard["alerts"] = gd.finalize_alerts(kept + drift)
-    dashboard["drift"] = gd.summarize_drift(drift)
+    dashboard["drift"] = gd.summarize_drift(drift, acknowledged)
 
     # Freshness verdict (TASK-092 finding #1): set the stale flag the HTML banner
     # reads, so a stale snapshot can never be served silently.
@@ -66,6 +67,17 @@ def check(quiet=False):
     meta["stale_reason"] = snap_alert["message"] if snap_alert else None
 
     out.write_text(json.dumps(dashboard, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # Keep the lean live view's drift/meta in step with the served board (★②).
+    if gd.LIVE_FILE.exists():
+        try:
+            live = json.loads(gd.LIVE_FILE.read_text(encoding="utf-8"))
+            live["drift"] = dashboard["drift"]
+            live["meta"]  = dashboard["meta"]
+            live["alerts"] = [a for a in dashboard["alerts"] if a.get("status") == "OPEN"]
+            gd.LIVE_FILE.write_text(json.dumps(live, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        except Exception:
+            pass
 
     counts = dashboard["drift"]["counts"]
     if quiet:

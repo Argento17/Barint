@@ -7,6 +7,7 @@ import {
   vegetableSpreadsMethodologyLines,
   vegetableSpreadsPrologueSentences,
   vegetableSpreadsProducts,
+  vegetableSpreadsCategoryNote,
   vegetableSpreadsComparisonMetadata,
 } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
 
@@ -20,6 +21,7 @@ export default function VegetableSpreadsComparisonRoute() {
       hero={vegetableSpreadsHero}
       prologueSentences={vegetableSpreadsPrologueSentences}
       methodologyLines={vegetableSpreadsMethodologyLines}
+      categoryNote={vegetableSpreadsCategoryNote}
     />
   );
 }

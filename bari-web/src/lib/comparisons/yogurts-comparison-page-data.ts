@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/yogurts_frontend_v1.json";
+import rawCorpus from "@/data/comparisons/yogurts_frontend_v2.json";
 
 import {
   loadComparisonCorpus,
@@ -8,6 +8,7 @@ import {
   type ComparisonCorpusRaw,
 } from "@/lib/comparisons/corpus";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
+import { enrichRowSurface } from "@/lib/comparisons/row-surface";
 import {
   filterYogurtsProducts,
   YOGURTS_SHELF_LENS_OPTIONS,
@@ -33,8 +34,8 @@ function stripYogurtsInternalFields(
 
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const yogurtsCorpusMeta = loaded.meta;
-const yogurtsProducts = stripYogurtsInternalFields(
-  loaded.products as YogurtsCorpusProduct[]
+const yogurtsProducts = enrichRowSurface(
+  stripYogurtsInternalFields(loaded.products as YogurtsCorpusProduct[])
 );
 
 export { yogurtsCorpusMeta, yogurtsProducts };
@@ -46,11 +47,25 @@ export const yogurtsHero = {
   title: 'יוגורט: לא כל "טבעי" נוצר שווה',
 } as const;
 
+// Re-authored for run_yogurt_004 (TASK-143 3b). B-capped shelf, zero A. Numbers cite the
+// rounded chip values (ScoreChip renders Math.round): top 79/B; simple cluster 72–76.
 export const yogurtsPrologueSentences = [
-  "יוגורט נראה כמו מזון פשוט — חלב ותרבית. אבל המדף מציג ספקטרום רחב: ממוצרים עם 2 מרכיבים בלבד ועד מוצרים עם 8+ רכיבים, סוכר וממתיקים.",
-  "ציון Bari ליוגורטים מבדיל בין יוגורט טבעי לא מתוק, יוגורט מועשר בתרביות, ועד יוגורט בטעמים ויוגורט שתיה — לפי מה שכתוב ברשימת הרכיבים.",
-  "הנתון הבודד שהכי מדבר: רשימת הרכיבים. כמה מרכיבים, מה בהם — ומה לא.",
+  "בדקנו מחדש את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן כפי שהם מופיעים על המוצר עצמו. התמונה ברורה: אף יוגורט בקטגוריה לא מגיע ל-A. הציון הגבוה הוא 79/B — יוגורט חלבון 0% עם חמישה מרכיבים.",
+  "היוגורטים הפשוטים — ביו, נטול לקטוז, חלב עיזים — נעים סביב 72 עד 76, כולם B: בסיס חלבי, תרביות, מעט מרכיבים.",
+  "מכאן זה רק יורד. ככל שמתווספים סוכר, חומרי טעם, מייצבים או פצפוצים — הציון נופל. גרסאות הטעם וה'קראנצ'' מגיעות עד C, D ו-E, גם כשכמות החלבון על האריזה זהה. ושומן גבוה לא מעלה ציון: יווני 8% עם 4.8 גרם שומן רווי יורד ל-62/C.",
+  "במדף הזה 'הכי טוב' הוא B — ולא יותר.",
 ] as const;
+
+// Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
+// the run_yogurt_004 outcome (B-capped shelf, zero A) and the live data: flavored / "crunch"
+// versions fall to C–E on added sugar + stabilizers even at identical protein, while a "0%"
+// or "protein" label is not automatically the top score. "diet"/flavor framing is the nuance.
+export const yogurtsCategoryNote = [
+  "הערת קטגוריה — '0%' או 'עשיר בחלבון' לא תמיד הציון הגבוה\n\nהציון משקלל את ההרכב כולו — חלבון, סוכר, מייצבים ורמת עיבוד — ולא תווית אחת. יוגורט בטעמים עם אותו חלבון בדיוק יכול ליפול ל-C או D ברגע שמתווספים סוכר, חומרי טעם ופצפוצים. מספר החלבון על החזית אינו מספיק כדי לקבוע את הציון.",
+  "הערת קטגוריה — 'הכי טוב' כאן הוא B\n\nבמדף הזה אף יוגורט אינו מגיע ל-A. הציון הגבוה הוא 79/B. יוגורט טבעי ופשוט מדורג גבוה מגרסת טעמים — לא בגלל השם, אלא בגלל מה שכתוב ברשימת הרכיבים.",
+  "הערת קטגוריה — סיבים תזונתיים\n\nמוצרי חלב כמעט אינם מציינים סיבים תזונתיים על התווית, ולכן ערך זה אינו נכנס לניתוח בקטגוריה זו.",
+]
+  .join("\n\n");
 
 export const yogurtsMethodologyLines = [
   "ניתוח יוגורטים מבוסס על לייבלים של מוצרים נבחרים מהמדף הישראלי.",

@@ -1,0 +1,113 @@
+{
+  "run_id": "run_cheese_003",
+  "generated": "2026-06-02 05:55 UTC",
+  "engine": "proto_v0 / 0.4.0 (unmodified)",
+  "source": "Shufersal real scrape -> BSIP1 run_cheese_003",
+  "governance": "cheese_spreads_stress_test_001 (TASK-141, verdict B); dairy calibration TASK-139A/B/D",
+  "processed": 59,
+  "scored": 54,
+  "insufficient": 5,
+  "insufficient_pct_of_displayable": 8.5,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 20,
+    "C": 25,
+    "D": 7,
+    "A": 1,
+    "E": 1
+  },
+  "score_median": 55.0,
+  "score_range": [
+    25.2,
+    82.0
+  ],
+  "grade_thresholds_engine": {
+    "S": 90,
+    "A": 80,
+    "B": 65,
+    "C": 50,
+    "D": 35,
+    "E": 0
+  },
+  "subpool_stats": {
+    "white_cheese_quark": {
+      "count": 18,
+      "grades": {
+        "B": 11,
+        "D": 1,
+        "C": 5,
+        "A": 1
+      },
+      "score_median": 68.6,
+      "score_range": [
+        48.0,
+        82.0
+      ]
+    },
+    "cottage": {
+      "count": 11,
+      "grades": {
+        "B": 8,
+        "C": 3
+      },
+      "score_median": 69.4,
+      "score_range": [
+        52.0,
+        74.9
+      ]
+    },
+    "labaneh": {
+      "count": 1,
+      "grades": {
+        "C": 1
+      },
+      "score_median": 52.0,
+      "score_range": [
+        52.0,
+        52.0
+      ]
+    },
+    "cream_cheese_spread": {
+      "count": 24,
+      "grades": {
+        "C": 16,
+        "D": 6,
+        "E": 1,
+        "B": 1
+      },
+      "score_median": 52.0,
+      "score_range": [
+        25.2,
+        68.3
+      ]
+    }
+  },
+  "a_ceiling_grade_A_landed": [
+    {
+      "pid": "bsip1_cheese_6040619",
+      "name": "גבינה טבורוג 5%",
+      "pool": "white_cheese_quark",
+      "score": 82.0,
+      "routed_to": "dairy_protein",
+      "a_eligible_pre_routing": false,
+      "a_ceiling_fails": [
+        "C1_added_sugar",
+        "C2_engineered_additives",
+        "C3_no_culture_credit",
+        "C4_non_intact_matrix"
+      ]
+    }
+  ],
+  "misroute_count": 1,
+  "misroute_pct": 1.7,
+  "misroute_exit_gate_lt5pct": true,
+  "misroutes": [
+    {
+      "pid": "bsip1_cheese_7290108506624",
+      "name": "גבינת עזים 32% שומן",
+      "subpool": "cream_cheese_spread",
+      "routed_to": "snack_bar_granola"
+    }
+  ],
+  "error_detail": []
+}

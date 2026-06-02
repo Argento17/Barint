@@ -2,9 +2,11 @@
 id: TASK-133
 title: Implement approved BSIP2 Evidence-Watch 2026-06-01 revisions (F2, F1, F4)
 owner: nutrition-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "Fully implemented"
 depends_on: []
 blocks: []
 category_id: null

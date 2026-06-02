@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.524185Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.945729Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290014760134",
@@ -47,15 +47,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 93.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 3.0,
+    "fat_saturated_g": 1.7,
     "fat_trans_g": null,
     "sodium_mg": 50.0,
     "carbohydrates_g": 13.0,
-    "sugars_g": null,
+    "sugars_g": 9.0,
     "dietary_fiber_g": 1.0,
     "protein_g": 2.7,
-    "ingredient_count": 15,
+    "ingredient_count": 13,
     "ingredient_list": [
       "מיצוי פולי סויה (85%) (מים",
       "פולי סויה מלאים 6%)",
@@ -69,10 +69,19 @@
       "צבע מאכל: ביטא קרוטן",
       "מווסת חומציות: סודיון קרבונאט",
       "ויטמינים B12",
-      "B2 ו- Dn (B2-0.24 מ\"ג",
-      "B12-0.2 מק\"ג",
-      "D-1 מק\"ג ל100 גרם) .n מכיל סויה עלול להכיל אגוזים"
+      "B12-0.2 מק\"ג"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 13,
+      "dropped": [
+        "B2 ו- Dn (B2-0.24 מ\"ג",
+        "D-1 מק\"ג ל100 גרם) .n מכיל סויה עלול להכיל אגוזים"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,20 +91,18 @@
     ],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
-    "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
-    ],
+    "missing_nutrition_fields": [],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 4.84,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 29.03,
+    "saturated_fat_fraction": 0.567,
+    "sugar_to_carb_ratio": 0.692,
     "protein_per_kcal": 0.029,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -173,6 +180,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -181,7 +189,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 4.84,
+    "fat_pct_of_kcal": 29.03,
     "ingredient_list": [
       "מיצוי פולי סויה (85%) (מים",
       "פולי סויה מלאים 6%)",
@@ -195,9 +203,7 @@
       "צבע מאכל: ביטא קרוטן",
       "מווסת חומציות: סודיון קרבונאט",
       "ויטמינים B12",
-      "B2 ו- Dn (B2-0.24 מ\"ג",
-      "B12-0.2 מק\"ג",
-      "D-1 מק\"ג ל100 גרם) .n מכיל סויה עלול להכיל אגוזים"
+      "B12-0.2 מק\"ג"
     ]
   },
   "L4_interpreted_concerns": {
@@ -234,7 +240,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": true,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -246,25 +252,25 @@
     "processing_quality": 35,
     "nutrient_density": 12.3,
     "calorie_density": 85.0,
-    "glycemic_quality": 92.0,
+    "glycemic_quality": 69.5,
     "protein_quality": 13.5,
     "additive_quality": 10.0,
     "satiety_support": 56.3,
-    "fat_quality": 50.0,
+    "fat_quality": 80.7,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 16
+    "whole_food_integrity": 20
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=2.7g→13.5, fiber=1.0g→10.0, weighted 65/35=12.3",
     "calorie_density": "kcal=93.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(2.0) + wg(0) = 92.0",
+    "glycemic_quality": "90 - sugar_penalty(22.5) + fiber(2.0) + wg(0) = 69.5",
     "protein_quality": "protein=2.7g base=13.5, source=whole_food(×1.0) → 13.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 1.0×5) / 93.0 × 400 = 56.3",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=3.0g<8.0): sat=1.7g base=80.7-seed0-trans0=80.7",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -278,7 +284,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 46.0,
+  "weighted_dimension_score": 45.92,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -382,7 +388,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 46.0,
+  "score_after_cap": 45.92,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -417,7 +423,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.8<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=29.0<30.0 or sugar=9.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -438,13 +444,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=15"
+      "note": "ingredient_count=13"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 37.0,
+  "score_after_penalty": 36.92,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -513,11 +519,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 37.0,
+  "score_after_floors": 36.92,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 37.0,
+  "final_score_estimate": 36.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -544,8 +550,7 @@
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

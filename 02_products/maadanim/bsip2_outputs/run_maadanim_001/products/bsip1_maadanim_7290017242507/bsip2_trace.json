@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.557053Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.983581Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290017242507",
@@ -36,7 +36,6 @@
   "nova_confidence": 0.55,
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
-    "very_long_ingredient_list: 17",
     "additive_categories: 1, added_sugars: 0"
   ],
   "nova_evidence_against": [],
@@ -54,7 +53,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "סיבים תזונתיים FOS",
       "כמוסה (תאית",
@@ -69,11 +68,25 @@
       "ל. פלנטרום",
       "ב. לונגום",
       "מייצב (מגנזיום סטארט)",
-      "חומר מונע התגיישות (סיליקה דיאוקסיד) הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר מונע התגיישות (סיליקה דיאוקסיד)"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומר מונע התגיישות (סיליקה דיאוקסיד) הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חומר מונע התגיישות (סיליקה דיאוקסיד)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "low",
     "bsip1_trust_score": 0.45,
@@ -96,7 +109,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": null
+      "kcal_plausible": null,
+      "macros_plausible": null
     }
   },
   "L2_derived_signals": {
@@ -168,6 +182,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -191,10 +206,7 @@
       "ל. פלנטרום",
       "ב. לונגום",
       "מייצב (מגנזיום סטארט)",
-      "חומר מונע התגיישות (סיליקה דיאוקסיד) הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר מונע התגיישות (סיליקה דיאוקסיד)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -282,11 +294,11 @@
     "satiety_support": 0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 42
+    "whole_food_integrity": 48
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=0g→0.0, fiber=0g→0.0, weighted 65/35=0.0",
+    "nutrient_density": "protein=0g→0.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 0.0",
     "calorie_density": "energy_kcal absent: neutral 50",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
@@ -294,7 +306,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 50 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=17 complexity_pen=18 → 42"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=14 complexity_pen=12 → 48"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -308,7 +320,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 46.68,
+  "weighted_dimension_score": 46.92,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -408,7 +420,7 @@
     }
   ],
   "binding_cap": 87,
-  "score_after_cap": 46.68,
+  "score_after_cap": 46.92,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -459,13 +471,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 4.0,
   "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.68,
+  "score_after_penalty": 42.92,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -530,11 +542,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.68,
+  "score_after_floors": 42.92,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 42.7,
+  "final_score_estimate": 42.9,
   "grade_estimate": "insufficient_data",
   "data_sufficiency": "insufficient",
   "explanation_drivers": [
@@ -548,22 +560,21 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.403,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.208,
+    "primary_confidence": 0.423,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.197,
     "class_weights": {
       "A": 0.021,
-      "B": 0.16,
-      "C": 0.174,
-      "D": 0.403,
-      "E": 0.208,
-      "F": 0.035
+      "B": 0.162,
+      "C": 0.197,
+      "D": 0.423,
+      "E": 0.197,
+      "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_3_signal",
-      "high_complexity_assembly"
+      "nova_3_signal"
     ],
     "classifier_version": "structural_classifier_v1"
   }

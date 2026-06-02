@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.353877Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:51.790260Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_55329",
@@ -53,27 +53,41 @@
     "fat_trans_g": null,
     "sodium_mg": 38.0,
     "carbohydrates_g": 10.1,
-    "sugars_g": null,
+    "sugars_g": 9.8,
     "dietary_fiber_g": null,
     "protein_g": 2.4,
-    "ingredient_count": 15,
+    "ingredient_count": 10,
     "ingredient_list": [
       "יוגורט 72% יוגורט 2% שומן",
       "מים",
       "סוכר",
-      "3% תות מבושל",
-      "3% מלון מבושל",
       "מייצבים (פקטין",
       "קרגינן)",
       "עמילן מעובד (E1442)",
       "חומרי טעם וריח",
       "צבע מאכל (מיץ מרוכז מגזר סגול)",
       "מווסת חומציות (חומצת לימון)",
-      "חומר משמר (E202). בתוספת חיידקי ביפידוס. מכיל חלב ערכים תזונתיים 100 גרם 9.8 גרם סוכרים מתוך פחמימות 64 קל אנרגיה 2.4 גרם חלבונים 10.1 גרם פחמימות 1.5 גרם שומנים 38 מג נתרן 140 מג סידן ערכים תזונתיים 100 מ\"ל 10.5 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 2.6 גרם חלבונים 10.8 גרם פחמימות 1.6 גרם שומנים 41 מג נתרן 150 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר משמר (E202). בתוספת חיידקי ביפידוס"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 10,
+      "dropped": [
+        "3% תות מבושל",
+        "3% מלון מבושל",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חומר משמר (E202). בתוספת חיידקי ביפידוס. מכיל חלב ערכים תזונתיים 100 גרם 9.8 גרם סוכרים מתוך פחמימות 64 קל אנרגיה 2.4 גרם חלבונים 10.1 גרם פחמימות 1.5 גרם שומנים 38 מג נתרן 140 מג סידן ערכים תזונתיים 100 מ\"ל 10.5 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 2.6 גרם חלבונים 10.8 גרם פחמימות 1.6 גרם שומנים 41 מג נתרן 150 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חומר משמר (E202). בתוספת חיידקי ביפידוס"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,19 +99,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 21.09,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.97,
     "protein_per_kcal": 0.0375,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -177,6 +191,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -190,18 +205,13 @@
       "יוגורט 72% יוגורט 2% שומן",
       "מים",
       "סוכר",
-      "3% תות מבושל",
-      "3% מלון מבושל",
       "מייצבים (פקטין",
       "קרגינן)",
       "עמילן מעובד (E1442)",
       "חומרי טעם וריח",
       "צבע מאכל (מיץ מרוכז מגזר סגול)",
       "מווסת חומציות (חומצת לימון)",
-      "חומר משמר (E202). בתוספת חיידקי ביפידוס. מכיל חלב ערכים תזונתיים 100 גרם 9.8 גרם סוכרים מתוך פחמימות 64 קל אנרגיה 2.4 גרם חלבונים 10.1 גרם פחמימות 1.5 גרם שומנים 38 מג נתרן 140 מג סידן ערכים תזונתיים 100 מ\"ל 10.5 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 2.6 גרם חלבונים 10.8 גרם פחמימות 1.6 גרם שומנים 41 מג נתרן 150 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומר משמר (E202). בתוספת חיידקי ביפידוס"
     ]
   },
   "L4_interpreted_concerns": {
@@ -253,27 +263,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 7.8,
+    "nutrient_density": 12.0,
     "calorie_density": 50.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 65.5,
     "protein_quality": 12.0,
     "additive_quality": 0,
     "satiety_support": 45.0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 21
+    "whole_food_integrity": 31
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.4g→12.0, fiber=0g→0.0, weighted 65/35=7.8",
+    "nutrient_density": "protein=2.4g→12.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 12.0",
     "calorie_density": "SRC-04 structural emptiness gate: cap at 50 (raw kcal=64.0)",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(24.5) + fiber(0.0) + wg(0) = 65.5",
     "protein_quality": "protein=2.4g base=12.0, source=whole_food(×1.0) → 12.0",
     "additive_quality": "sprint1_additives=7 base=0 sw_pen=0→0 [EV-003/019: v1=5→sprint1=7 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.4×3 + 0×5) / 64.0 × 400 = 45.0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 + ferm_bonus=5 → 21"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 + ferm_bonus=5 → 31"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -287,7 +297,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 38.21,
+  "weighted_dimension_score": 36.3,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -391,7 +401,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 38.21,
+  "score_after_cap": 36.3,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -414,8 +424,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -426,7 +436,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=21.1<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=21.1<30.0 or sugar=9.8<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -438,17 +448,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 34.21,
+  "score_after_penalty": 36.3,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -470,15 +474,11 @@
     },
     "processing_load": {
       "binding_cap": 60,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -513,16 +513,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 34.21,
+  "score_after_floors": 36.3,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 34.2,
-  "grade_estimate": "E",
+  "final_score_estimate": 36.3,
+  "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']"
   ],
   "unresolved_flags": [
     "STRUCTURAL_EMPTINESS: calorie density dimension capped at 50 (SRC-04)"
@@ -546,8 +545,7 @@
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

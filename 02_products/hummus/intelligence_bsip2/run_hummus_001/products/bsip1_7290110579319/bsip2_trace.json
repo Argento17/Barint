@@ -1,6 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "trace_generated_at": "2026-05-31T04:23:32.077480Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:10:57.834007Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290110579319",
@@ -26,14 +27,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "dessert",
-  "category_confidence": 0.56,
-  "secondary_category": "sauce_spread",
+  "category": "sauce_spread",
+  "category_confidence": 0.94,
+  "secondary_category": "dessert",
   "secondary_confidence": 0.41,
-  "category_instability_flag": true,
-  "category_confidence_band": "medium",
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "dessert:מוס(name×2)"
+    "hard_anchor:חומוס"
   ],
   "nova_proxy": 3,
   "nova_confidence": 0.55,
@@ -50,12 +51,12 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 204.0,
-    "fat_g": 0.5,
+    "fat_g": 13.4,
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "sodium_mg": 380.0,
     "carbohydrates_g": 10.0,
-    "sugars_g": null,
+    "sugars_g": 1.1,
     "dietary_fiber_g": null,
     "protein_g": 8.6,
     "ingredient_count": 8,
@@ -69,6 +70,14 @@
       "חומר משמר (פוטסיום סורבט)",
       "שום. מכיל שומשום עלול להכיל צנוברים"
     ],
+    "ingredient_count_raw": 8,
+    "ingredient_sanitization": {
+      "raw_count": 8,
+      "clean_count": 8,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "scraped_html",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.82,
@@ -79,19 +88,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 2.21,
+    "fat_pct_of_kcal": 59.12,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.11,
     "protein_per_kcal": 0.0422,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -133,13 +142,41 @@
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
-    "hp_fat_sodium_pattern_raw": false,
+    "hp_fat_sodium_pattern_raw": true,
+    "sprint1_high_risk_emulsifier_detected": false,
+    "sprint1_high_risk_emulsifier_found": [],
+    "sprint1_neutral_emulsifier_detected": false,
+    "sprint1_neutral_emulsifier_found": [],
+    "sprint1_prebiotic_gum_detected": false,
+    "sprint1_prebiotic_gum_found": [],
+    "sprint1_additive_count": 2,
+    "sprint1_additive_correction": 0,
+    "sprint1_additive_correction_notes": [],
+    "sprint1_allulose_detected": false,
+    "sprint1_polyol_count": 0,
+    "sprint1_detected_polyols": [],
+    "sprint1_humectant_polyols": [],
+    "sprint1_penalty_polyol_count": 0,
+    "sprint1_penalty_polyols": [],
+    "tax_emulsifier_concern": [],
+    "tax_emulsifier_benign": [],
+    "tax_named_concern_additives": [],
+    "tax_native_starch": false,
+    "tax_modified_starch": false,
+    "tax_bha_present": false,
+    "tax_bht_present": false,
+    "has_collagen": false,
+    "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
+    "primary_fragmentation": "intact",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
-      "Additive count reflects distinct functional categories detected, not total additive instances"
+      "Additive count reflects distinct functional categories detected, not total additive instances",
+      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 2.21,
+    "fat_pct_of_kcal": 59.12,
     "ingredient_list": [
       "חומוס מבושל 55% (מים, חומוס, מווסת חומציות (סודיום ביקרבונט= סודה לשתיה))",
       "מים",
@@ -185,12 +222,12 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
   },
-  "confidence_score": 82,
+  "confidence_score": 90,
   "confidence_band": "high",
   "confidence_reductions": [
     {
@@ -200,19 +237,15 @@
     {
       "factor": "nova_confidence=medium",
       "reduction": -5
-    },
-    {
-      "factor": "category_confidence=medium (0.56)",
-      "reduction": -8
     }
   ],
   "dimension_scores": {
     "processing_quality": 65,
     "nutrient_density": 27.9,
-    "calorie_density": 70.0,
-    "glycemic_quality": 90.0,
+    "calorie_density": 75.0,
+    "glycemic_quality": 87.2,
     "protein_quality": 43.0,
-    "additive_quality": 64,
+    "additive_quality": 64.0,
     "satiety_support": 50.6,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
@@ -221,10 +254,10 @@
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=8.6g→43.0, fiber=0g→0.0, weighted 65/35=27.9",
-    "calorie_density": "kcal=204.0, category=dessert (conf 0.56, relaxed by 1.05x) → 70",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber_bonus(0.0) + wg_bonus(0) = 90.0",
+    "calorie_density": "kcal=204.0, category=sauce_spread → 75",
+    "glycemic_quality": "90 - sugar_penalty(2.8) + fiber(0.0) + wg(0) = 87.2",
     "protein_quality": "protein=8.6g base=43.0, source=whole_food(×1.0) → 43.0",
-    "additive_quality": "additive_categories=2 → base=64, sweetener_penalty=0 → 64",
+    "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.6×3 + 0×5) / 204.0 × 400 = 50.6",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
@@ -242,7 +275,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 68.32,
+  "weighted_dimension_score": 68.73,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -342,7 +375,7 @@
     }
   ],
   "binding_cap": 87,
-  "score_after_cap": 68.32,
+  "score_after_cap": 68.73,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -377,11 +410,13 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=2.2<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=59.1<30.0 or sugar=1.1<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
-      "fired": false
+      "fired": true,
+      "nova_weight": 0.5,
+      "effective": 3.0
     },
     {
       "rule": "HP_CRUNCH_SWEET_COMBO",
@@ -389,11 +424,17 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [],
-  "total_penalty_before_scaling": 0.0,
-  "total_penalty_after_scaling": 0.0,
+  "penalties_applied": [
+    {
+      "rule": "HP_FAT_SODIUM_COMBO",
+      "amount": 3.0,
+      "note": "raw_pen=6 × nova_weight=0.5"
+    }
+  ],
+  "total_penalty_before_scaling": 3.0,
+  "total_penalty_after_scaling": 3.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 68.32,
+  "score_after_penalty": 65.73,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -442,11 +483,15 @@
     },
     "hp": {
       "binding_cap": null,
-      "coordinated_penalty": 0.0,
+      "coordinated_penalty": 3.0,
       "detail": {
-        "winner": null,
+        "winner": {
+          "rule": "HP_FAT_SODIUM_COMBO",
+          "amount": 3.0
+        },
         "supporters": [],
-        "total_before_budget": 0
+        "total_before_budget": 3.0,
+        "budget_applied": false
       }
     }
   },
@@ -454,19 +499,18 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 68.32,
+  "score_after_floors": 65.73,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 68.3,
+  "final_score_estimate": 65.7,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']"
+    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']",
+    "PENALTIES: ['HP_FAT_SODIUM_COMBO']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=dessert secondary=sauce_spread, confidence=0.56"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",

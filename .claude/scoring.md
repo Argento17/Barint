@@ -1,9 +1,11 @@
 # Bari Scoring Architecture
 
 **Engine:** BSIP2 Prototype v0  
-**Algorithm version:** 0.4.0  
+**Algorithm version:** 0.4.1  
 **Source:** `C:\Bari\03_operations\bsip2\proto_v0\src\`  
 **Last verified:** 2026-06-01
+
+> **0.4.1 (TASK-144, maadanim-scoped):** ingredient-bleed sanitize (EV-026), fiber-not-applicable for fiber-free dairy (EV-027, tight allowlist), dairy protein source typing (EV-028), + macro-plausibility data-integrity guard. All gated behind `BARI_TASK144_FIXES` (default OFF; maadanim run opts in) — **frozen categories unchanged** (golden corpus + yogurt_003 = 0 diff verified). Cross-category adoption (yogurt/cheese) requires Product Agent sign-off. Rollback: unset the env var.
 
 ---
 
@@ -171,13 +173,18 @@ When multiple rules in the same family fire, the primary signal is kept at full 
 
 ## Grades
 
+Authoritative source: `constants.py` `GRADE_THRESHOLDS` (six-grade scale). The engine and the
+frozen milk run_004 both use **A ≥ 80** (whole milk = 85 = A); this table mirrors that scale.
+Reconciled 2026-06-01 (TASK-139D / EV-023 — resolves the RULING-DAIRY-A-01 / EV-021 "80 vs 85" item).
+
 | Grade | Score range |
 |-------|-------------|
-| A | 85–100 |
-| B | 70–84 |
-| C | 55–69 |
-| D | 40–54 |
-| E | 0–39 |
+| S | 90–100 |
+| A | 80–89 |
+| B | 65–79 |
+| C | 50–64 |
+| D | 35–49 |
+| E | 0–34 |
 
 ---
 

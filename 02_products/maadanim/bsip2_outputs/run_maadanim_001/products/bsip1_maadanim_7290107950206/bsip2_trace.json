@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.717441Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.133858Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290107950206",
@@ -46,14 +46,14 @@
   "L1_observed_signals": {
     "energy_kcal": 41.0,
     "fat_g": 0.0,
-    "fat_saturated_g": null,
+    "fat_saturated_g": 0.0,
     "fat_trans_g": null,
     "sodium_mg": 140.0,
     "carbohydrates_g": 6.7,
     "sugars_g": 4.7,
     "dietary_fiber_g": null,
     "protein_g": 3.0,
-    "ingredient_count": 15,
+    "ingredient_count": 12,
     "ingredient_list": [
       "חלב מפוסטר (78%)",
       "מים",
@@ -66,11 +66,25 @@
       "חו מרי טעם וריח",
       "ממתיקים (אצסולפאם K",
       "סוכרלוז)",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 4.7 גרם סוכרים מתוך פחמימות 41 קל אנרגיה 3 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 0 מג כולסטרול 140 מג נתרן 0 גרם מתוכם שומן רווי 97 מג סידן 4.7 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 6.1 גרם סוכרים מתוך פחמימות 53 קל אנרגיה 3.8 גרם חלבונים 8.7 גרם פחמימות 0 גרם שומנים 181 מג נתרן 126 מג סידן 6.1 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 12,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מלח. מכיל חלב ערכים תזונתיים 100 גרם 4.7 גרם סוכרים מתוך פחמימות 41 קל אנרגיה 3 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 0 מג כולסטרול 140 מג נתרן 0 גרם מתוכם שומן רווי 97 מג סידן 4.7 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 6.1 גרם סוכרים מתוך פחמימות 53 קל אנרגיה 3.8 גרם חלבונים 8.7 גרם פחמימות 0 גרם שומנים 181 מג נתרן 126 מג סידן 6.1 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מלח"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -81,13 +95,13 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -171,6 +185,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 12,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -192,10 +207,7 @@
       "חו מרי טעם וריח",
       "ממתיקים (אצסולפאם K",
       "סוכרלוז)",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 4.7 גרם סוכרים מתוך פחמימות 41 קל אנרגיה 3 גרם חלבונים 6.7 גרם פחמימות 0 גרם שומנים 0 מג כולסטרול 140 מג נתרן 0 גרם מתוכם שומן רווי 97 מג סידן 4.7 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 6.1 גרם סוכרים מתוך פחמימות 53 קל אנרגיה 3.8 גרם חלבונים 8.7 גרם פחמימות 0 גרם שומנים 181 מג נתרן 126 מג סידן 6.1 סוכרים 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ]
   },
   "L4_interpreted_concerns": {
@@ -247,7 +259,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 9.8,
+    "nutrient_density": 15.0,
     "calorie_density": 85.0,
     "glycemic_quality": 78.2,
     "protein_quality": 15.0,
@@ -255,11 +267,11 @@
     "satiety_support": 72.0,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 16
+    "whole_food_integrity": 22
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=3.0g→15.0, fiber=0g→0.0, weighted 65/35=9.8",
+    "nutrient_density": "protein=3.0g→15.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 15.0",
     "calorie_density": "kcal=41.0, category=dessert → 85",
     "glycemic_quality": "90 - sugar_penalty(11.8) + fiber(0.0) + wg(0) = 78.2 (sweetener tier-C)",
     "protein_quality": "protein=3.0g base=15.0, source=whole_food(×1.0) → 15.0",
@@ -267,7 +279,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.0×3 + 0×5) / 50 × 400 = 72.0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 → 22"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -281,7 +293,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 47.16,
+  "weighted_dimension_score": 48.18,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -385,7 +397,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 47.16,
+  "score_after_cap": 48.18,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -408,8 +420,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -437,17 +449,12 @@
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
       "note": "added_sugar_sources=2"
-    },
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
     }
   ],
-  "total_penalty_before_scaling": 9.0,
-  "total_penalty_after_scaling": 9.0,
+  "total_penalty_before_scaling": 5.0,
+  "total_penalty_after_scaling": 5.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 38.16,
+  "score_after_penalty": 43.18,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -473,15 +480,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -516,16 +519,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 38.16,
+  "score_after_floors": 43.18,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 38.2,
+  "final_score_estimate": 43.2,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS']"
   ],
   "unresolved_flags": [],
   "structural_class": {
@@ -548,8 +551,7 @@
       "nova_4_signal",
       "high_additive_load",
       "whole_food_integrity_low",
-      "sweetener_detected",
-      "high_complexity_assembly"
+      "sweetener_detected"
     ],
     "classifier_version": "structural_classifier_v1"
   }

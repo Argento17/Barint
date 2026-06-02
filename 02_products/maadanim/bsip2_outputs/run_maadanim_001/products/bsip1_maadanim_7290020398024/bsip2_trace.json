@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.646013Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.070505Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290020398024",
@@ -36,7 +36,7 @@
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
     "artificial_color_detected (צבע מאכל)",
-    "very_long_ingredient_list: 26",
+    "very_long_ingredient_list: 22",
     "additive_categories: 2, added_sugars: 1"
   ],
   "nova_evidence_against": [
@@ -49,15 +49,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 343.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 1.9,
+    "fat_saturated_g": 0.1,
     "fat_trans_g": null,
     "sodium_mg": 1880.0,
     "carbohydrates_g": 69.0,
-    "sugars_g": null,
+    "sugars_g": 3.4,
     "dietary_fiber_g": null,
     "protein_g": 23.4,
-    "ingredient_count": 26,
+    "ingredient_count": 22,
     "ingredient_list": [
       "אטריות נודלס (קמח כוסמת",
       "קמח מלא",
@@ -80,12 +80,26 @@
       "ירקות מיובשים (גזר",
       "תירס",
       "פטרוזיליה קצוצה",
-      "פולי סויה צהובים מיובשים) ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 343 קל אנרגיה 23.4 גרם חלבונים 69 גרם פחמימות 1.9 גרם שומנים 0 מג כולסטרול 1",
-      "880 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "פולי סויה צהובים מיובשים)"
     ],
+    "ingredient_count_raw": 26,
+    "ingredient_sanitization": {
+      "raw_count": 26,
+      "clean_count": 22,
+      "dropped": [
+        "880 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "פולי סויה צהובים מיובשים) ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 343 קל אנרגיה 23.4 גרם חלבונים 69 גרם פחמימות 1.9 גרם שומנים 0 מג כולסטרול 1",
+          "to": "פולי סויה צהובים מיובשים)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -96,20 +110,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 1.31,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 4.99,
+    "saturated_fat_fraction": 0.053,
+    "sugar_to_carb_ratio": 0.049,
     "protein_per_kcal": 0.0682,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -185,6 +198,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": "reconstructed",
+    "sanitized_ingredient_count": 22,
     "primary_fragmentation": "reconstructed",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -193,7 +207,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 1.31,
+    "fat_pct_of_kcal": 4.99,
     "ingredient_list": [
       "אטריות נודלס (קמח כוסמת",
       "קמח מלא",
@@ -216,11 +230,7 @@
       "ירקות מיובשים (גזר",
       "תירס",
       "פטרוזיליה קצוצה",
-      "פולי סויה צהובים מיובשים) ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 343 קל אנרגיה 23.4 גרם חלבונים 69 גרם פחמימות 1.9 גרם שומנים 0 מג כולסטרול 1",
-      "880 מג נתרן 0.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "פולי סויה צהובים מיובשים)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -280,27 +290,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 65,
-    "nutrient_density": 59.7,
+    "nutrient_density": 91.8,
     "calorie_density": 40.0,
-    "glycemic_quality": 95.0,
+    "glycemic_quality": 86.5,
     "protein_quality": 78.0,
     "additive_quality": 64.0,
     "satiety_support": 81.9,
-    "fat_quality": 50.0,
+    "fat_quality": 88.4,
     "regulatory_quality": 60.0,
-    "whole_food_integrity": 29
+    "whole_food_integrity": 37
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=23.4g→91.8, fiber=0g→0.0, weighted 65/35=59.7",
+    "nutrient_density": "protein=23.4g→91.8; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 91.8",
     "calorie_density": "kcal=343.0, category=dairy_protein (conf 0.52, relaxed by 1.05x) → 40",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(5) = 95.0",
+    "glycemic_quality": "90 - sugar_penalty(8.5) + fiber(0.0) + wg(5) = 86.5",
     "protein_quality": "protein=23.4g base=91.8, source=mixed(×0.85) → 78.0",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (23.4×3 + 0×5) / 343.0 × 400 = 81.9",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=1.9g<8.0): sat=0.1g base=98.4-seed10-trans0=88.4",
     "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=26 complexity_pen=36 + ferm_bonus=5 → 29"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=22 complexity_pen=28 + ferm_bonus=5 → 37"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -314,7 +324,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 71.38,
+  "weighted_dimension_score": 78.57,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -453,7 +463,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=1.3<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=5.0<30.0 or sugar=3.4<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -469,7 +479,7 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=26"
+      "note": "ingredient_count=22"
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -564,19 +574,19 @@
     "CATEGORY_INSTABILITY: primary=dairy_protein secondary=snack_bar_granola, confidence=0.52"
   ],
   "structural_class": {
-    "primary": "E",
-    "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.345,
-    "secondary": "D",
-    "secondary_label": "Industrially Reconstructed",
-    "secondary_confidence": 0.276,
+    "primary": "D",
+    "primary_label": "Industrially Reconstructed",
+    "primary_confidence": 0.402,
+    "secondary": "E",
+    "secondary_label": "Engineered Wellness System",
+    "secondary_confidence": 0.325,
     "class_weights": {
-      "A": 0.017,
-      "B": 0.017,
-      "C": 0.201,
-      "D": 0.276,
-      "E": 0.345,
-      "F": 0.144
+      "A": 0.018,
+      "B": 0.018,
+      "C": 0.207,
+      "D": 0.402,
+      "E": 0.325,
+      "F": 0.03
     },
     "is_between_worlds": true,
     "classification_notes": [

@@ -2,10 +2,12 @@
 id: TASK-151
 title: "Harden _shared BSIP0 scrape path: persist raw nutritionList source (rows + HTML) for offline replay of future parser fixes"
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-06-02
 completed_at: 2026-06-02
+closed_at: 2026-06-02
+closed_by: cc-agent
 depends_on: [TASK-142A]
 blocks: [TASK-149, TASK-150]
 parent: TASK-142A
@@ -46,3 +48,15 @@ without re-scraping. **Proposed RETURNED** — CC records CLOSED.
 ## Guards
 Additive only; no scoring logic, no published/frozen scores, no router touched. Existing `parse_nutrition_list`
 call sites and outputs unchanged (the new field is additive to the record).
+
+---
+
+## CLOSED (2026-06-02, cc-agent — close-readiness gate PASS)
+Independently verified against artifacts (not trusted from the return block):
+- `_shared/bsip0_nutrition.py` exposes the 4-function split — `extract_nutrition_rows` (L91),
+  `parse_nutrition_rows` (L113), `parse_nutrition_list` thin wrapper (L131), `extract_nutrition_raw` (L141).
+- All 5 nutritionList scrapers (cereals, cheese, hummus, maadanim, yogurt) import `extract_nutrition_raw`
+  **and** persist `nutrition_raw_source` — confirmed by grep across `03_operations/bsip0/scrape/`.
+Additive-only, no scoring/frozen-score impact. The blocked successors (TASK-149/150) already consumed the
+hardening in their live re-scrapes (raw source persisted on 170 maadanim / 78 hummus records), so the
+`blocks:` obligation is discharged. **CLOSED.**

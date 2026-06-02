@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.700650Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.117824Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290106654099",
@@ -44,12 +44,12 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 490.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 30.0,
+    "fat_saturated_g": 20.0,
     "fat_trans_g": null,
     "sodium_mg": 160.0,
     "carbohydrates_g": 47.0,
-    "sugars_g": null,
+    "sugars_g": 38.0,
     "dietary_fiber_g": null,
     "protein_g": 6.9,
     "ingredient_count": 15,
@@ -70,6 +70,14 @@
       "E450i)",
       "מלח. מכיל ביצים"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 15,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -80,20 +88,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 0.92,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 55.1,
+    "saturated_fat_fraction": 0.667,
+    "sugar_to_carb_ratio": 0.809,
     "protein_per_kcal": 0.0141,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -136,9 +143,12 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
-    "red_labels": [],
-    "red_label_count": 0,
-    "hp_fat_sugar_pattern_raw": false,
+    "red_labels": [
+      "sugar",
+      "sat_fat"
+    ],
+    "red_label_count": 2,
+    "hp_fat_sugar_pattern_raw": true,
     "hp_fat_sodium_pattern_raw": false,
     "sprint1_high_risk_emulsifier_detected": false,
     "sprint1_high_risk_emulsifier_found": [],
@@ -170,6 +180,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 15,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -178,7 +189,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 0.92,
+    "fat_pct_of_kcal": 55.1,
     "ingredient_list": [
       "סוכר לבן",
       "שומן צמחי",
@@ -231,7 +242,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -250,26 +261,26 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 22.4,
+    "nutrient_density": 34.5,
     "calorie_density": 25.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 10.0,
     "protein_quality": 34.5,
     "additive_quality": 46.0,
     "satiety_support": 16.9,
-    "fat_quality": 50.0,
-    "regulatory_quality": 95.0,
+    "fat_quality": 40.0,
+    "regulatory_quality": 25.0,
     "whole_food_integrity": 16
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=6.9g→34.5, fiber=0g→0.0, weighted 65/35=22.4",
+    "nutrient_density": "protein=6.9g→34.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 34.5",
     "calorie_density": "kcal=490.0, category=dessert → 25",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0",
     "protein_quality": "protein=6.9g base=34.5, source=whole_food(×1.0) → 34.5",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (6.9×3 + 0×5) / 490.0 × 400 = 16.9",
-    "fat_quality": "sat_fat absent → neutral 50",
-    "regulatory_quality": "no Israeli red labels",
+    "fat_quality": "EV-012 fat_ratio: fat=30.0g ratio=0.500 base=40.0-seed0-trans0=40.0",
+    "regulatory_quality": "2 red labels: ['sugar', 'sat_fat']",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
   },
   "dimension_weights": {
@@ -284,7 +295,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 41.61,
+  "weighted_dimension_score": 29.53,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -295,14 +306,14 @@
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_MODERATE",
       "cap": 60,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
       "cap": 60,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "SNACK_BAR_HIGH_CAL_SUGAR",
@@ -319,14 +330,14 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ISRAELI_RED_LABELS_2_PLUS",
       "cap": 45,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "HIGH_CAL_LOW_SATIETY_SEVERE",
@@ -373,11 +384,27 @@
     {
       "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
       "cap": 55,
-      "condition": false,
-      "fired": false
+      "condition": true,
+      "fired": true
     }
   ],
   "caps_applied": [
+    {
+      "rule": "HIGH_CAL_HIGH_SUGAR_MODERATE",
+      "cap": 60
+    },
+    {
+      "rule": "HIGH_SUGAR_25G_PLUS",
+      "cap": 60
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SUGAR",
+      "cap": 55
+    },
+    {
+      "rule": "ISRAELI_RED_LABELS_2_PLUS",
+      "cap": 45
+    },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
       "cap": 68
@@ -385,10 +412,14 @@
     {
       "rule": "ADDITIVE_MARKERS_3_PLUS",
       "cap": 72
+    },
+    {
+      "rule": "ISRAELI_RED_LABEL_1_SAT_FAT",
+      "cap": 55
     }
   ],
-  "binding_cap": 68,
-  "score_after_cap": 41.61,
+  "binding_cap": 45,
+  "score_after_cap": 29.53,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -399,8 +430,8 @@
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
       "amount": 5,
-      "condition": "False",
-      "fired": false
+      "condition": "True",
+      "fired": true
     },
     {
       "rule": "HIGH_CAL_LOW_SATIETY_SOFT",
@@ -422,8 +453,10 @@
     },
     {
       "rule": "HP_FAT_SUGAR_COMBO",
-      "fired": false,
-      "condition": "fat_pct=0.9<30.0 or sugar=0<20.0"
+      "amount": 8,
+      "fired": true,
+      "nova_weight": 1.0,
+      "effective": 8.0
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -442,6 +475,11 @@
       "note": "added_sugar_sources=2"
     },
     {
+      "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
+      "amount": 5,
+      "note": ""
+    },
+    {
       "rule": "HIGH_CAL_LOW_SATIETY_SOFT",
       "amount": 6,
       "note": ""
@@ -450,23 +488,33 @@
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
       "note": "ingredient_count=15"
+    },
+    {
+      "rule": "HP_FAT_SUGAR_COMBO",
+      "amount": 8.0,
+      "note": "raw_pen=8 × nova_weight=1.0"
     }
   ],
-  "total_penalty_before_scaling": 15.0,
-  "total_penalty_after_scaling": 15.0,
-  "penalty_scaling_note": null,
-  "score_after_penalty": 26.61,
+  "total_penalty_before_scaling": 25.0,
+  "total_penalty_after_scaling": 13.29,
+  "penalty_scaling_note": "SRC-05: penalty 25.0 exceeds 45% of pre-penalty score 29.5 → scaled to 13.29",
+  "score_after_penalty": 16.24,
   "concern_family_coordination": {
     "sugar_load": {
-      "binding_cap": null,
-      "coordinated_penalty": 5,
+      "binding_cap": 45,
+      "coordinated_penalty": 7.0,
       "detail": {
         "winner": {
           "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
           "amount": 5
         },
-        "supporters": [],
-        "total_before_budget": 5,
+        "supporters": [
+          {
+            "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
+            "scaled_to": 2.0
+          }
+        ],
+        "total_before_budget": 7.0,
         "budget_applied": false
       }
     },
@@ -506,7 +554,7 @@
       }
     },
     "fat_quality": {
-      "binding_cap": null,
+      "binding_cap": 55,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -516,11 +564,15 @@
     },
     "hp": {
       "binding_cap": null,
-      "coordinated_penalty": 0.0,
+      "coordinated_penalty": 8.0,
       "detail": {
-        "winner": null,
+        "winner": {
+          "rule": "HP_FAT_SUGAR_COMBO",
+          "amount": 8.0
+        },
         "supporters": [],
-        "total_before_budget": 0
+        "total_before_budget": 8.0,
+        "budget_applied": false
       }
     }
   },
@@ -528,16 +580,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 26.61,
+  "score_after_floors": 16.24,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 26.6,
+  "final_score_estimate": 16.2,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'HIGH_CAL_LOW_SATIETY_SOFT', 'LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=45 from rules: ['HIGH_CAL_HIGH_SUGAR_MODERATE', 'HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
+    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'HIGH_CAL_HIGH_SUGAR_SOFT', 'HIGH_CAL_LOW_SATIETY_SOFT', 'LONG_INGREDIENT_LIST', 'HP_FAT_SUGAR_COMBO']"
   ],
   "unresolved_flags": [],
   "structural_class": {

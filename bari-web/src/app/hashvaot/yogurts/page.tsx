@@ -7,6 +7,7 @@ import {
   yogurtsMethodologyLines,
   yogurtsPrologueSentences,
   yogurtsProducts,
+  yogurtsCategoryNote,
   yogurtsComparisonMetadata,
 } from "@/lib/comparisons/yogurts-comparison-page-data";
 
@@ -20,6 +21,7 @@ export default function YogurtsComparisonRoute() {
       hero={yogurtsHero}
       prologueSentences={yogurtsPrologueSentences}
       methodologyLines={yogurtsMethodologyLines}
+      categoryNote={yogurtsCategoryNote}
     />
   );
 }

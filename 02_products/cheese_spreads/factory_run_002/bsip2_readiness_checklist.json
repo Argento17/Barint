@@ -1,0 +1,41 @@
+{
+  "stage": "6_bsip2_readiness",
+  "run_id": "run_cheese_002",
+  "supersedes": "run_cheese_001",
+  "generated": "2026-06-01",
+  "owner": "Scoring Governance Lead (Nutrition approves)",
+  "scoring_logic_registered": {
+    "status": "PASS",
+    "detail": "Engine proto_v0 / 0.4.0; the only engine delta is the TASK-145 cream-cheese router anchor (EV-025) — routing/identity, no scoring weight/threshold/penalty/cap. Cheese governance registered (cheese_spreads_stress_test_001, TASK-141 B); dairy calibration TASK-139A/B/D."
+  },
+  "evidence_registry_reference": {
+    "status": "PASS",
+    "detail": "Constructs cite Sec 2.8/2.9/6.4, Guardrails 5.2.1, EV-015/021/022, DISTORTION-006/009/010. Router fix cites EV-025 (added 2026-06-01, JSON+MD).",
+    "no_new_scoring_rule": true
+  },
+  "label_observability": {
+    "status": "PASS",
+    "detail": "Nutrition 100%, ingredients 91.2%, Hebrew 100% on the displayable set. Router anchor reads canonical_name_he (100%).",
+    "coverage_caveats": ["Live-culture markers in only 3/57 panels (A-ceiling C3 sparse, truthful); 0 developmental products."]
+  },
+  "a_ceiling_ruling_applied": {
+    "status": "PASS-WITH-WITHHOLD",
+    "detail": "EV-021/RULING-DAIRY-A-01 applied per product. 6 white-cheese macro-A's (85) WITHHELD — all fail C3 (no confirmed live culture). 0 A-eligible pre-routing. Conservative dairy ceiling working as designed.",
+    "withheld_A_products": [
+      "גבינה לבנה 5% שומן (x3)", "גבינה לבנה 9% שומן", "גבינה 9% שומן כשר מהדרין", "גבינה טבורוג 5%"
+    ]
+  },
+  "rollback_plan": {
+    "status": "PASS",
+    "detail": "Two reversible layers: (1) router anchor — git revert of the cream-cheese HARD_ANCHORS hunk + נפוליאון exclusion + 3 corpus entries in router_v2.py / router_regression_corpus.json (restores 47.4% misroute); (2) run artifacts — NON-AUTHORITATIVE, nothing promoted to live, so no live grade to roll back. Live state = no cheese-spreads page.",
+    "previous_state": "no live cheese-spreads category; router without cream-cheese anchor",
+    "restore": "git revert TASK-145 hunk; do not promote run_cheese_002",
+    "notify": "Data Architecture + Scoring Governance Lead + Product"
+  },
+  "nutrition_approval": {
+    "status": "PENDING",
+    "detail": "Sign-off required for: (1) the 6 A-ceiling-withheld macro-A white cheeses (confirm withhold is correct, or that any clean live-culture SKU may publish A); (2) cottage (all B, median 76.6), white/labaneh (B/C), cream-cheese (median 60.7 C-heavy) grades on the now-correctly-routed set; (3) acceptance that EV-015 credit is sparse (3/57) by data.",
+    "blocks_live": true
+  },
+  "verdict": "READY pending Nutrition sign-off — engine registered, router fix governed + regression-locked (EV-025, 15/15), constructs evidence-grounded, observability + rollback in place, A-ceiling correctly withholds 6 macro-A's. All DATA + ROUTING + QA gates PASS. The only gate to live promotion is the Nutrition/Product human sign-off."
+}

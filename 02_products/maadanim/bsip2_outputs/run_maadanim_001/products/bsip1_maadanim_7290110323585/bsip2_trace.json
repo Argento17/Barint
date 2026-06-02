@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.762850Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.173814Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110323585",
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "dessert",
-  "category_confidence": 0.91,
-  "secondary_category": "dairy_protein",
-  "secondary_confidence": 0.6,
+  "category": "dairy_protein",
+  "category_confidence": 0.94,
+  "secondary_category": "snack_bar_granola",
+  "secondary_confidence": 0.33,
   "category_instability_flag": false,
   "category_confidence_band": "high",
   "classification_basis": [
-    "hard_anchor:יופלה"
+    "hard_anchor:יופלה go"
   ],
   "nova_proxy": 4,
   "nova_confidence": 0.8,
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "sweetener_detected",
-    "very_long_ingredient_list: 18"
+    "sweetener_detected"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -52,10 +51,10 @@
     "fat_trans_g": null,
     "sodium_mg": 61.0,
     "carbohydrates_g": 3.8,
-    "sugars_g": null,
+    "sugars_g": 3.4,
     "dietary_fiber_g": null,
     "protein_g": 10.0,
-    "ingredient_count": 18,
+    "ingredient_count": 13,
     "ingredient_list": [
       "חלב",
       "חלבוני חלב (7.9%)",
@@ -69,13 +68,22 @@
       "קלציום ציטראט)",
       "ממתיקים (אספרטיים",
       "אססולפאם קיי)",
-      "חומרי טעם וריח. עד 0.5% לקטוז. דל לקטוזn*במוצר כשר לפסח: ל וקוסט בין גאםn20 גרם חלבון בגביע",
-      "מתוכם 11.5 גרם חלבוני מי גבינה",
-      "8.5 גרם קזאינים מכיל חלב עלול להכיל רכיבי חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 60 קל אנרגיה 10 גרם חלבונים 3.8 גרם פחמימות 0.5 גרם שומנים 61 מג נתרן 143 מג סידן 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. עד 0.5% לקטוז. דל לקטוזn*במוצר כשר לפסח: ל וקוסט בין גאםn20 גרם חלבון בגביע"
     ],
+    "ingredient_count_raw": 18,
+    "ingredient_sanitization": {
+      "raw_count": 18,
+      "clean_count": 13,
+      "dropped": [
+        "מתוכם 11.5 גרם חלבוני מי גבינה",
+        "8.5 גרם קזאינים מכיל חלב עלול להכיל רכיבי חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 60 קל אנרגיה 10 גרם חלבונים 3.8 גרם פחמימות 0.5 גרם שומנים 61 מג נתרן 143 מג סידן 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -87,19 +95,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 7.5,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.895,
     "protein_per_kcal": 0.1667,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -172,6 +180,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -194,12 +203,7 @@
       "קלציום ציטראט)",
       "ממתיקים (אספרטיים",
       "אססולפאם קיי)",
-      "חומרי טעם וריח. עד 0.5% לקטוז. דל לקטוזn*במוצר כשר לפסח: ל וקוסט בין גאםn20 גרם חלבון בגביע",
-      "מתוכם 11.5 גרם חלבוני מי גבינה",
-      "8.5 גרם קזאינים מכיל חלב עלול להכיל רכיבי חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 60 קל אנרגיה 10 גרם חלבונים 3.8 גרם פחמימות 0.5 גרם שומנים 61 מג נתרן 143 מג סידן 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חומרי טעם וריח. עד 0.5% לקטוז. דל לקטוזn*במוצר כשר לפסח: ל וקוסט בין גאםn20 גרם חלבון בגביע"
     ]
   },
   "L4_interpreted_concerns": {
@@ -251,27 +255,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 32.5,
-    "calorie_density": 85.0,
-    "glycemic_quality": 90.0,
+    "nutrient_density": 50.0,
+    "calorie_density": 90.0,
+    "glycemic_quality": 81.5,
     "protein_quality": 50.0,
     "additive_quality": 31.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 10
+    "whole_food_integrity": 20
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=10.0g→50.0, fiber=0g→0.0, weighted 65/35=32.5",
-    "calorie_density": "kcal=60.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
+    "nutrient_density": "protein=10.0g→50.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 50.0",
+    "calorie_density": "kcal=60.0, category=dairy_protein → 90",
+    "glycemic_quality": "90 - sugar_penalty(8.5) + fiber(0.0) + wg(0) = 81.5 (sweetener tier-C)",
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
     "additive_quality": "sprint1_additives=3 base=46 sw tier-C_pen=15→31.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 0×5) / 60.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=18 complexity_pen=20 → 10"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 → 20"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -285,7 +289,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 56.92,
+  "weighted_dimension_score": 59.68,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -389,7 +393,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 56.92,
+  "score_after_cap": 59.68,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -424,7 +428,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=7.5<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=7.5<30.0 or sugar=3.4<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -445,13 +449,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=18"
+      "note": "ingredient_count=13"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 47.92,
+  "score_after_penalty": 50.68,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -520,12 +524,12 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 47.92,
+  "score_after_floors": 50.68,
   "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-5",
+  "sugar_context_class": "SC-4",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 47.9,
-  "grade_estimate": "D",
+  "final_score_estimate": 50.7,
+  "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
@@ -535,17 +539,17 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.436,
+    "primary_confidence": 0.431,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.413,
+    "secondary_confidence": 0.394,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.0,
-      "D": 0.151,
-      "E": 0.436,
-      "F": 0.413
+      "C": 0.014,
+      "D": 0.162,
+      "E": 0.431,
+      "F": 0.394
     },
     "is_between_worlds": true,
     "classification_notes": [
@@ -553,8 +557,7 @@
       "high_additive_load",
       "whole_food_integrity_low",
       "moderate_protein_quality",
-      "sweetener_detected",
-      "high_complexity_assembly"
+      "sweetener_detected"
     ],
     "classifier_version": "structural_classifier_v1"
   }

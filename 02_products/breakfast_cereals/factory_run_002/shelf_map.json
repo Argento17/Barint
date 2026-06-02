@@ -1,0 +1,28 @@
+{
+  "stage": "1_shelf_mapping",
+  "category_slug": "breakfast-cereals",
+  "run_id": "run_cereals_002",
+  "generated": "2026-06-01",
+  "source_retailer": "shufersal",
+  "owner": "Category Team (data-agent acting); Product approves, QA verifies",
+  "shelf_map": [
+    {
+      "shelf_slug": "shufersal_degani_boker",
+      "shelf_name_he": "דגני בוקר",
+      "category_slug": "breakfast-cereals",
+      "mapping_rationale": "Shufersal's 'דגני בוקר' (breakfast cereals) shelf is the canonical bowl-and-milk cereal aisle: cornflakes, whole-grain flakes, muesli, granola (boxed/bagged), puffed rice/wheat, oat-based cold cereals, and children's character cereals. This is the editorial scope of the breakfast-cereals category."
+    }
+  ],
+  "in_scope_subtypes": [
+    "whole_grain_flakes", "cornflakes_refined", "muesli", "granola_boxed",
+    "puffed_extruded", "oat_cold_cereal", "childrens_character", "filled_pillows", "bran"
+  ],
+  "explicitly_out_of_scope": [
+    {"item": "granola/cereal BARS (חטיף גרנולה / חטיף דגנים / bar)", "reason": "belongs to snack_bars category — eaten as a handheld snack, not a bowl-and-milk cereal. Prevents corpus overlap (see corpus_filter.json)."},
+    {"item": "hot porridge / דייסה / קוואקר חם instant porridge sachets", "reason": "borderline; cold ready-to-eat cereals are the v2 scope. Instant hot porridge deferred to avoid serving-context mixing. Plain rolled oats (שיבולת שועל) admitted as oat_cold_cereal only when sold as cereal, not as a baking ingredient."},
+    {"item": "rice cakes / פריכיות אורז", "reason": "cracker/crispbread archetype, separate aisle and serving role."},
+    {"item": "infant/toddler cereals (דייסת תינוקות / מטרנה)", "reason": "Constitution Art. II Sec 2.3 absolute restriction (medical/infant nutrition) — not ranked at all."}
+  ],
+  "duplicate_shelf_check": "PASS — no other active Bari category claims the 'דגני בוקר' shelf. snack_bars owns חטיף aisle; the bar/cereal boundary is enforced in corpus_filter.json.",
+  "status": "pass"
+}

@@ -12,7 +12,7 @@ def assemble_trace(product: dict, signals: dict, cat_result: dict,
     """Assemble the complete trace record."""
     return {
         "bsip2_version": "proto_v0",
-        "algorithm_version": "0.4.0",   # TASK-133: protein matrix-awareness + named-additive identity
+        "algorithm_version": "0.4.1",   # TASK-144: ingredient-bleed sanitize (EV-026) + fiber-not-applicable dairy (EV-027) + dairy protein source typing (EV-028)
         "trace_generated_at": datetime.datetime.utcnow().isoformat() + "Z",
         "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
 

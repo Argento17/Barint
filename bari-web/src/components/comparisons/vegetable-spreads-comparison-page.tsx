@@ -1,9 +1,7 @@
 "use client";
 
-import { BariComparisonDesktopPage } from "@/components/comparisons/bari-comparison-desktop-page";
-import { ComparisonShelfPage } from "@/components/comparisons/comparison-shelf-page";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
-import { vegetableSpreadsCorpusMeta } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
+import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { VEG_PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   filterVegetableSpreadsProducts,
   VEGETABLE_SPREADS_SHELF_LENS_OPTIONS,
@@ -20,6 +18,8 @@ export interface VegetableSpreadsComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
+  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
+  categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
@@ -28,12 +28,12 @@ const vegetableSpreadsShelfFilters = {
   filterProducts: filterVegetableSpreadsProducts,
 } as const;
 
-const VEGETABLE_SPREADS_INSIGHT_LINES = [
-  "מטבוחה, ממרח חצילים וממרח פלפלים — ממרחי ירקות בלבד",
-  "ממרחי חומוס ומסבחה מוצגים בדף נפרד",
-  "הציון מחושב לפי מדד עיבוד, תוספים וערכים תזונתיים",
-  "ניתן לסנן לפי סוג ממרח בעזרת הכפתורים למעלה",
-] as const;
+// Protein is the vegetable-spread row metric (TASK-161A). Uses VEG_PROTEIN_METRIC (TASK-165),
+// NOT the hummus PROTEIN_METRIC nor the dairy preset: these spreads draw from the hummus corpus
+// (protein is per 100 GRAMS) but run only 0.7–6.3g, so the 0–20g hummus scale flattened every bar.
+// VEG_PROTEIN_METRIC drops scaleMax to 7 so the bars discriminate, while keeping the per-100g
+// aria unit (these are solids — DAIRY_PROTEIN_METRIC's "ל-100 מ״ל" would be factually wrong).
+const VEGETABLE_SPREADS_METRIC_SPECS = [VEG_PROTEIN_METRIC] as const;
 
 export function VegetableSpreadsComparisonPage({
   products,
@@ -41,53 +41,20 @@ export function VegetableSpreadsComparisonPage({
   hero,
   prologueSentences,
   methodologyLines,
+  categoryNote,
   initialExpandedProductId = null,
 }: VegetableSpreadsComparisonPageProps) {
-  const insightLines = VEGETABLE_SPREADS_INSIGHT_LINES;
-
-  const displayedCount = products.length;
-  const scoredCount = products.filter((product) => product.score != null).length;
-  const aGradeCount = products.filter((product) => product.grade === "A").length;
-
-  const desktopHero = {
-    badge: "השוואה חדשה",
-    categoryTags: "ממרחי ירקות · שופרסל",
-    title: hero.title,
-    description:
-      prologueSentences[0] ??
-      `דוח השוואה לממרחי ירקות: ${products.length} מוצרים בדף.`,
-    insightLines,
-    stats: [
-      { value: displayedCount, label: "מוצרים בהשוואה" },
-      { value: scoredCount, label: "קיבלו ציון" },
-      { value: aGradeCount, label: "בציון A" },
-    ],
-    updatedLabel: formatComparisonUpdatedLine(vegetableSpreadsCorpusMeta.generated),
-  };
-
   return (
-    <>
-      <div className="max-lg:block lg:hidden">
-        <ComparisonShelfPage<VegetableSpreadsShelfFilterId>
-          products={products}
-          metadataLine={metadataLine}
-          hero={hero}
-          prologueSentences={prologueSentences}
-          methodologyLines={methodologyLines}
-          shelfFilters={vegetableSpreadsShelfFilters}
-          initialExpandedProductId={initialExpandedProductId}
-        />
-      </div>
-      <div className="hidden lg:block">
-        <BariComparisonDesktopPage<VegetableSpreadsShelfFilterId>
-          products={products}
-          hero={desktopHero}
-          prologueSentences={prologueSentences.slice(1)}
-          methodologyLines={methodologyLines}
-          lensOptions={VEGETABLE_SPREADS_SHELF_LENS_OPTIONS}
-          filterProducts={filterVegetableSpreadsProducts}
-        />
-      </div>
-    </>
+    <ComparisonPage<VegetableSpreadsShelfFilterId>
+      products={products}
+      metadataLine={metadataLine}
+      hero={hero}
+      prologueSentences={prologueSentences}
+      methodologyLines={methodologyLines}
+      shelfFilters={vegetableSpreadsShelfFilters}
+      metricSpecs={VEGETABLE_SPREADS_METRIC_SPECS}
+      categoryNote={categoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+    />
   );
 }

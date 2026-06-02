@@ -1,0 +1,49 @@
+{
+  "stage": "5_qa_gate",
+  "run_id": "run_cheese_002",
+  "supersedes": "run_cheese_001 (pre-fix diagnostic; QA-CHS-001)",
+  "generated": "2026-06-01",
+  "owner": "QA Lead",
+  "engine": "proto_v0 / 0.4.0 + TASK-145 router cream-cheese anchor (EV-025, routing-only)",
+  "shelf_map_ref": "../factory_run_001/shelf_map.json",
+  "corpus_filter_ref": "../factory_run_001/corpus_filter.json",
+  "bsip0_gate_ref": "../factory_run_001/bsip0_gate_result.json (PASS, unchanged — same BSIP1 corpus)",
+  "corpus": {"displayable": 57, "scored": 57, "insufficient_at_scoring": 0, "pipeline_errors": 0},
+  "checks": {
+    "coverage_ge90pct_displayable": "PASS (nutrition 100%, ingredients 91.2%)",
+    "four_subpools_applied": "PASS (cottage 11 / white-cheese-quark 17 / labaneh 3 / cream-cheese-spread 26)",
+    "constructs_applied": "PASS (sub-pool, developmental D3<=20g, light/MDF, fermentation EV-015 guard, A-ceiling C1-C6, endemic Sec 6.4)",
+    "fermentation_guard_ev015": "PASS (3/57 credited, 0 flavor-vs-marker violations)",
+    "pipeline_errors": "PASS (0)",
+    "no_null_scores": "PASS (all 57 scored)",
+    "insufficient_0pct_displayable": "PASS (0/57 — the 3 prior cream-cheese 'default' insufficients now route to dairy_protein and score)",
+    "misroute_lt5pct": "PASS (1/57 = 1.8% < 5%)",
+    "router_regression_locked": "PASS (15/15 incl. 3 new cream-cheese entries; frozen 12 unchanged)"
+  },
+  "residual_misroute": [
+    {"name": "גבינת עזים 32% שומן", "subpool": "white_cheese_quark", "routed_to": "snack_bar_granola",
+     "note": "1 high-fat (32%) goat soft cheese misroutes to snack_bar_granola. 1.8% total — under the 5% gate. Low priority; revisit with a goat-cheese signal at a future run if the pool grows."}
+  ],
+  "warnings": [
+    {
+      "id": "QA-CHS-W1",
+      "check": "dairy_a_ceiling_governance",
+      "detail": "6 white-cheese SKUs reach grade A on raw macros (גבינה לבנה 5%/9%, גבינה טבורוג 5%, score 85) but FAIL the dairy A-ceiling C1-C6 — all a_eligible_pre_routing=false, binding on C3 (no confirmed/credited live culture in the scraped ingredient panel). Per EV-021/RULING-DAIRY-A-01 these A grades are WITHHELD pending Nutrition review. The A-ceiling functioned correctly — conservative dairy ceiling (clean live-culture confirmation required for A).",
+      "action": "Nutrition review (Stage 6). Withheld until signed; richer culture scrape/OCR would re-test C3."
+    },
+    {
+      "id": "QA-CHS-W2",
+      "check": "fermentation_credit_coverage",
+      "detail": "Only 3/57 panels surface culture vocabulary → EV-015 credit sparse, A-ceiling C3 rarely passes. Truthful data-coverage finding (parallels run_yogurt_003), not a bug.",
+      "action": "Disclosure-level for launch; no engine change."
+    },
+    {
+      "id": "QA-CHS-W3",
+      "check": "labaneh_pool_size",
+      "detail": "Labaneh pool = 3 (truthful — most 'לבנה' SKUs are white cheese). Too small for stable intra-pool ranking.",
+      "action": "Broaden the labaneh query at a future run; acceptable for v1."
+    }
+  ],
+  "verdict": "PASS (DATA + ROUTING GATES GREEN)",
+  "verdict_detail": "With the TASK-145 cream-cheese router anchor (EV-025, routing-only, regression-locked 15/15), the misroute gate now PASSES at 1.8% and INSUFFICIENT is 0%. Coverage, sub-pools, and all cheese governance constructs pass; the A-ceiling correctly withholds 6 macro-A white cheeses (no confirmed culture, C3). The only remaining gate to LIVE promotion is Nutrition/Product grade-publication sign-off (Stage 6) — a human gate, not a data/QA failure. Frontend package factory_run_002 is launch-candidate (50/57 display-approved), held NON-AUTHORITATIVE pending that sign-off."
+}

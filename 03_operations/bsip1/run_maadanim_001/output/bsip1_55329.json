@@ -30,7 +30,7 @@
     "cholesterol_mg": null,
     "sodium_mg": 38.0,
     "carbohydrates_g": 10.1,
-    "sugars_g": null,
+    "sugars_g": 9.8,
     "dietary_fiber_g": null,
     "protein_g": 2.4
   },
@@ -248,7 +248,18 @@
       "position": 7
     }
   ],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידקי ביפידוס",
+      "category": "live_cultures",
+      "position": 11
+    },
+    {
+      "term": "ביפידוס",
+      "category": "bifidobacterium",
+      "position": 11
+    }
+  ],
   "extracted_roasting_markers": [
     {
       "term": "מבושל",
@@ -263,11 +274,11 @@
     "sweetener_count": 1,
     "protein_marker_count": 0,
     "matrix_marker_count": 1,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 2,
     "roasting_marker_count": 1,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",

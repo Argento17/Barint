@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.036699Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.405816Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290114313278",
@@ -52,10 +52,10 @@
     "fat_trans_g": null,
     "sodium_mg": 70.0,
     "carbohydrates_g": 4.2,
-    "sugars_g": null,
+    "sugars_g": 2.8,
     "dietary_fiber_g": null,
     "protein_g": 7.15,
-    "ingredient_count": 12,
+    "ingredient_count": 9,
     "ingredient_list": [
       "רכז חלבוני חלב",
       "מים",
@@ -65,11 +65,25 @@
       "חומרי טעם וריח",
       "מלח",
       "מייצב (קרגינן)",
-      "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 2.8 גרם סוכרים מתוך פחמימות 45 קל אנרגיה 7.15 גרם חלבונים 4.2 גרם פחמימות 0 גרם שומנים 70 מג נתרן 175 מג סידן 1 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז"
     ],
+    "ingredient_count_raw": 12,
+    "ingredient_sanitization": {
+      "raw_count": 12,
+      "clean_count": 9,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 2.8 גרם סוכרים מתוך פחמימות 45 קל אנרגיה 7.15 גרם חלבונים 4.2 גרם פחמימות 0 גרם שומנים 70 מג נתרן 175 מג סידן 1 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -81,19 +95,19 @@
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
       "fat_saturated_g",
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 0.0,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "sugar_to_carb_ratio": 0.667,
     "protein_per_kcal": 0.1589,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -173,6 +187,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 9,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -191,10 +206,7 @@
       "חומרי טעם וריח",
       "מלח",
       "מייצב (קרגינן)",
-      "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 2.8 גרם סוכרים מתוך פחמימות 45 קל אנרגיה 7.15 גרם חלבונים 4.2 גרם פחמימות 0 גרם שומנים 70 מג נתרן 175 מג סידן 1 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סטיב יה (סטיביול גליקוזיד)n מאפיינים נוספים דל לקטוז"
     ]
   },
   "L4_interpreted_concerns": {
@@ -248,25 +260,25 @@
     "processing_quality": 35,
     "nutrient_density": 23.2,
     "calorie_density": 70.0,
-    "glycemic_quality": 90.0,
+    "glycemic_quality": 83.0,
     "protein_quality": 35.8,
     "additive_quality": 0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 22
+    "whole_food_integrity": 28
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=7.15g→35.8, fiber=0g→0.0, weighted 65/35=23.2",
     "calorie_density": "kcal=45.0, category=beverage → 70",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
+    "glycemic_quality": "90 - sugar_penalty(7.0) + fiber(0.0) + wg(0) = 83.0",
     "protein_quality": "protein=7.15g base=35.8, source=whole_food(×1.0) → 35.8",
     "additive_quality": "sprint1_additives=6 base=0 sw_pen=0→0 [EV-003/019: v1=4→sprint1=6 (Δ=+2)]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (7.15×3 + 0×5) / 50 × 400 = 100",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 → 22"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=9 complexity_pen=2 → 28"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -280,7 +292,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 49.24,
+  "weighted_dimension_score": 48.64,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -384,7 +396,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 49.24,
+  "score_after_cap": 48.64,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -419,7 +431,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=0.0<30.0 or sugar=2.8<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -441,7 +453,7 @@
   "total_penalty_before_scaling": 5.0,
   "total_penalty_after_scaling": 5.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 44.24,
+  "score_after_penalty": 43.64,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -506,11 +518,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 44.24,
+  "score_after_floors": 43.64,
   "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-5",
+  "sugar_context_class": "SC-4",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 44.2,
+  "final_score_estimate": 43.6,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

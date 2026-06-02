@@ -1,0 +1,37 @@
+{
+  "stage": "2_corpus_filter",
+  "category_slug": "cheese-spreads",
+  "run_id": "run_cheese_001",
+  "generated": "2026-06-01",
+  "owner": "Data Architecture (data-agent)",
+  "filter_logic": "name-based INCLUDE gate AND NOT EXCLUDE gate at scrape time; barcode dedup + nutrition-sufficiency at BSIP1 curation. Identical two-stage pattern to run_cereals_002 / run_yogurt_003.",
+  "include_signals_he": [
+    "קוטג'", "קוטג", "cottage", "גבינה לבנה", "גבינת לבנה", "לבנה", "labaneh", "labneh",
+    "קוורק", "quark", "גבינת שמנת", "שמנת לבישול", "ממרח גבינה", "ממרח", "גבינה רכה",
+    "cream cheese", "פילדלפיה", "philadelphia", "נפוליאון", "napoleon", "תנובה ממרח",
+    "גבינה 5%", "גבינה 9%", "גבינה 3%", "גבינת מטבח", "מעדן גבינה", "ריקוטה", "ricotta",
+    "מסקרפונה", "mascarpone", "גבינת עזים רכה"
+  ],
+  "exclude_signals_he": [
+    "צהובה", "קשקבל", "גאודה", "עמק", "מוצרלה", "mozzarella", "פרמזן", "parmesan", "cheddar", "צ'דר",
+    "משולשים", "פרוסות", "פרוס", "slice", "מותכת", "processed",
+    "בולגרית", "פטה", "feta", "צפתית", "מלוחה", "במלח", "brined", "פסטרמה",
+    "יוגורט", "yogurt", "yoghurt", "קפיר", "kefir", "משקה", "drink", "שתיה", "שתייה",
+    "מילקי", "פודינג", "מוס", "גלידה", "ice cream", "קרמברלה",
+    "תינוק", "מטרנה", "סימילק", "תוסף", "קפסול", "אבקת"
+  ],
+  "sweetened_dessert_routes_to_maadanim": {
+    "rule": "A white/cream cheese product whose name or ingredients indicate a sweetened DESSERT profile (added sugar leading, fruit layer במילוי פירות, chocolate שוקולד, vanilla dessert וניל ממותק, מעדן ... ממותק) is NOT in cheese-spreads scope — it routes to maadanim. Savory flavored cream cheese (herb עשבי תיבול, garlic שום, scallion בצל) STAYS in the cream-cheese pool (Stress Test Sec 2.3).",
+    "detection": "name dessert tokens (שוקולד / וניל / במילוי / פירות / ממותק as dessert) OR sugars_g dominance at BSIP1 curation; enforced again at BSIP1 NONCHEESE/DESSERT regex."
+  },
+  "overlap_guard": {
+    "vs_maadanim": "EXCLUDE 'מילקי'/'פודינג'/'מוס'/dessert tokens + sweetened-dessert routing rule removes dairy-dessert crossover (maadanim scope). Plain/savory fresh cheese stays IN.",
+    "vs_yogurt_system": "EXCLUDE 'יוגורט'/'קפיר'/'משקה' removes yogurt and drinkable crossover (yogurt_system scope). Labaneh (strained cheese) stays IN — it is a cheese, not a yogurt.",
+    "vs_hard_yellow_cheese": "EXCLUDE 'צהובה'/'קשקבל'/'גאודה'/'מוצרלה'/'פרוסות'/'משולשים' removes yellow/hard/processed-slice cheese (separate category).",
+    "vs_brined_cheese": "EXCLUDE 'בולגרית'/'פטה'/'צפתית'/'מלוחה' removes the brined sub-family (separate stress test)."
+  },
+  "min_corpus_size": 30,
+  "min_corpus_rationale": "Stress Test launch condition + cereals precedent: BSIP0 corpus must contain >=30 editorial-scope products traceable to a real Israeli retailer.",
+  "no_overlap_with_active_categories": "PASS — filter rules disjoint from yogurt_system / maadanim / snack_bars / bread / cereals active filters.",
+  "status": "pass_pending_scrape_count"
+}

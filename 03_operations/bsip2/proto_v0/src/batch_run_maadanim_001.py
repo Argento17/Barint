@@ -9,11 +9,19 @@ Category: dessert (dairy desserts subtype)
 Router anchors: מילקי / מעדן / עדנה / יופלה / פרוביו — added to router_v2.py
 Architecture: same pipeline as snack_bars / bread_retail runs.
 """
+import os
 import sys
 import json
 import pathlib
 import logging
 import datetime
+
+# TASK-144 — opt this run into the three approved fixes (EV-026 ingredient-bleed
+# sanitize, EV-027 fiber-not-applicable for fiber-free dairy, EV-028 dairy protein
+# source typing). Scoped to the maadanim run only; every other batch runner / the
+# regression suites leave this OFF so frozen categories are untouched. MUST be set
+# BEFORE the engine modules are imported (module-level toggles read it at import).
+os.environ.setdefault("BARI_TASK144_FIXES", "on")
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 

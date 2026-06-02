@@ -50,15 +50,12 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
 }
 
-NUTR_LABEL_MAP: dict[str, str] = {
-    "אנרגיה": "energy", "קל": "energy", "kcal": "energy",
-    "חלבונים": "protein", "חלבון": "protein",
-    "פחמימות": "carbs",
-    "שומנים": "fat", "שומן": "fat",
-    "סיבים תזונתיים": "fiber", "סיבים": "fiber",
-    "נתרן": "sodium",
-    "סוכרים": "sugar",
-}
+# Shared BSIP0 nutrition parser (TASK-142A / EV-026 fix). Replaces the former
+# NUTR_LABEL_MAP, whose substring map let trans/saturated "of which" sub-rows
+# overwrite total fat (fat→0.5). This is the exact defect TASK-039 audited in
+# hummus (59/69 products) but never fixed at the shared scraper path.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "_shared"))
+from bsip0_nutrition import parse_nutrition_list, extract_nutrition_raw, nutrition_implausible  # noqa: E402
 
 _WEIGHT_PATTERNS = [
     re.compile(r"(\d[\d,.]*)\s*ק[\"']?ג", re.IGNORECASE),
@@ -128,17 +125,12 @@ def scrape_product_page(code: str, meta: dict) -> dict | None:
             pass
 
     # Nutrition panel
-    nutr_raw: dict[str, str] = {}
-    nutr_div = soup.find("div", class_="nutritionList")
-    if nutr_div:
-        for item in nutr_div.find_all("div", class_="nutritionItem"):
-            divs = item.find_all("div")
-            parts = [d.get_text(strip=True) for d in divs if d.get_text(strip=True)]
-            if len(parts) >= 2:
-                for he_label, field in NUTR_LABEL_MAP.items():
-                    if he_label in parts[-1]:
-                        nutr_raw[field] = parts[0]
-                        break
+    # Shared parser (TASK-142A / EV-026): reads TOTAL fat, captures saturated
+    # separately, never lets an "of which" sub-row overwrite a total macro.
+    nutr_raw = parse_nutrition_list(soup)
+    # Persist raw nutrition source (rows + outer HTML) so any FUTURE parser fix
+    # replays offline — an EV-029-class bug never again forces a network re-scrape.
+    nutr_src = extract_nutrition_raw(soup)
 
     # Ingredients
     ingredients_raw = ""
@@ -183,6 +175,7 @@ def scrape_product_page(code: str, meta: dict) -> dict | None:
             "sodium_raw":      nutr_raw.get("sodium", ""),
             "sugar_raw":       nutr_raw.get("sugar", ""),
         },
+        "nutrition_raw_source":  nutr_src,
         "ingredients_raw":       ingredients_raw,
         "ingredients_language":  "he" if ingredients_raw and any("א" <= c <= "ת" for c in ingredients_raw) else "",
         "image_urls":            [u for u in ld_images[:3] if u],

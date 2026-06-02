@@ -1,0 +1,47 @@
+{
+  "stage": "6_bsip2_readiness",
+  "run_id": "run_cheese_003",
+  "supersedes": "run_cheese_002 (INVALID — scored on EV-029-corrupt fat)",
+  "generated": "2026-06-02",
+  "owner": "Scoring Governance Lead (Nutrition approves)",
+  "scoring_logic_registered": {
+    "status": "PASS",
+    "detail": "Engine proto_v0 / 0.4.1 UNMODIFIED vs run_002 — no scoring weight/threshold/penalty/cap change and no router change. The TASK-142A fix is in the BSIP0 data-ingestion layer (bsip0_nutrition.py), NOT the scoring engine. Cheese governance registered (cheese_spreads_stress_test_001, TASK-141 B); dairy calibration TASK-139A/B/D; cream-cheese router anchor EV-025 (already in 0.4.1)."
+  },
+  "evidence_registry_reference": {
+    "status": "PASS",
+    "detail": "Constructs cite Sec 2.8/2.9/6.4, Guardrails 5.2.1, EV-015/021/022, DISTORTION-006/009/010. Data fix cites EV-029 (TASK-142A, EV-026 data-hygiene family). QA plausibility guard COV-006 added.",
+    "no_new_scoring_rule": true
+  },
+  "label_observability": {
+    "status": "PASS",
+    "detail": "Displayable set (n=54): nutrition 100%, ingredients 100%, hebrew 100%, images 100%. Fat/saturated now correctly observed from the total-fat row.",
+    "coverage_caveats": [
+      "Live-culture markers in only 3/54 panels (A-ceiling C3 sparse, truthful); 0 developmental products.",
+      "5 products withheld (transparency-tier) on genuine partial source panels (no total fat/protein/carbs at source)."
+    ]
+  },
+  "a_ceiling_ruling_applied": {
+    "status": "PASS-WITH-WITHHOLD",
+    "detail": "EV-021/RULING-DAIRY-A-01 applied per product on CORRECTED fat. Exactly 1 product reaches grade A: גבינה טבורוג 5% (82.0) — WITHHELD (a_eligible_pre_routing=false; fails C1 added-sugar, C2 engineered-additives, C3 no confirmed live culture, C4 non-intact matrix). 0 products A-eligible pre-routing. Conservative dairy ceiling confirmed working on real fat data.",
+    "withheld_A_products": ["גבינה טבורוג 5% (82.0)"]
+  },
+  "rollback_plan": {
+    "status": "PASS",
+    "detail": "Reversible: (1) data layer — revert bsip0_nutrition.py to restore the prior parser (NOT recommended; reintroduces EV-029); (2) run artifacts — run_cheese_003 is NON-AUTHORITATIVE, nothing promoted to live, so no live grade to roll back. The corrupt run_cheese_001/002 BSIP1 (run_cheese_001/output) and traces are retained as the pre-fix diagnostic record; run_cheese_003 BSIP1 is a separate dir (run_cheese_003/output).",
+    "previous_state": "no live cheese-spreads category; run_002 scored on corrupt fat (INVALID)",
+    "restore": "do not promote run_cheese_003; live state = no cheese-spreads page",
+    "notify": "Data Architecture + Scoring Governance Lead + Nutrition + Product"
+  },
+  "nutrition_approval": {
+    "status": "APPROVED-FOR-PUBLICATION",
+    "approved_by": "Nutrition Agent (Stage-6 grade-publication review, 2026-06-02)",
+    "verdict_ref": "factory_run_003/NUTRITION_SIGNOFF_VERDICT.md",
+    "detail": "All 5 items APPROVED, verified against traces: (1) A-ceiling withhold of גבינה טבורוג 5%/82 CORRECT — trace 6040619 fails C1 (added sugar), C2 (modified-starch + cellulose stabilizers + potassium sorbate), C3 (not culture-credited), C4 (structural primary D); no clean live-culture SKU qualifies for A in this corpus. (2) Corrected per-pool grades APPROVED (cream-cheese 52.0/C confirmed via sat-fat red-label cap + HP fat-sodium penalty). (3) Score shift APPROVED as corrected-fat truth. (4) Sparse culture credit (3/54) APPROVED as truthful coverage. (5) 5 transparency-tier withholds APPROVED (trace 554969 confidence 20, panel genuinely omits macros).",
+    "display_conditions": ["labaneh n=1 presented standalone (no intra-pool ranking)", "ship the 2 PO-approved Sec 6.4 disclosure notes with the page"],
+    "mandatory_doc_fix_applied": "Engine label corrected 0.4.0 -> 0.4.1 (algorithm_version per trace_writer.py:15; TASK-144 EV-026/027/028) across pipeline_summary / qa_gate_result / bsip2_readiness_checklist / NUTRITION_SIGNOFF_REQUEST / factory_findings. Both run_002 and run_003 ran on 0.4.1, so 'unchanged between runs' holds.",
+    "d7_product_cosign": "NOT triggered (no scoring rule created/modified); this is the D13 publication gate.",
+    "blocks_live": true
+  },
+  "verdict": "READY — Nutrition Agent APPROVED-FOR-PUBLICATION (2026-06-02). Engine 0.4.1 unchanged between runs, fix is data-layer only (EV-029), constructs evidence-grounded, observability + rollback in place, A-ceiling correctly withholds the lone macro-A on real fat, all DATA + ROUTING + PLAUSIBILITY gates PASS. Frontend package remains NON-AUTHORITATIVE until the Central Controller/Product records promotion (flip authoritative/promoted_to_frontend); two display conditions apply."
+}

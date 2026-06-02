@@ -57,5 +57,15 @@
   "retailer_versions": {
     "carrefour_israel": "carrefour_v0_2"
   },
-  "conflicts": []
+  "conflicts": [],
+  "image_recovery": {
+    "task": "TASK-160A",
+    "recovered_at": "2026-06-02",
+    "reason": "Original carrefour_israel observation persisted no image_url/source_url; image_url was null. Recovered display-only image for frontend snk-006.",
+    "method": "Yochananof CDN deterministic path; internal product-image id 12615222 confirmed via osem-nestle.co.il official product page og:image for barcode 7290118427858 (12615222_7290118427858_Enlarge.jpg).",
+    "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12615222_7290118427858.jpg",
+    "verification": "HTTP 200, content-type image/jpeg, 862936 bytes, 2133x2156; visual match confirmed (Nestle Fitness 'שוקולד מריר' GRANOLA BAR, 190g total, 5x38g) — matches canonical package_size_g=190, unit_count=5, unit_size_g=38.",
+    "display_only": true,
+    "no_score_change": true
+  }
 }

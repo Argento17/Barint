@@ -281,6 +281,13 @@ Within the breakfast cereals category, products identified as granola-type (sati
 
 **Standing precedent application:** This rule and its proxy indicators apply to all future Bari categories. Future applications do not require individual governance decisions provided the proxy indicators are satisfied.
 
+**Dairy / intrinsic-fat divergence axis**
+*(Added: 2026-06-01. Source: Cheese-Spreads Stress Test v1, TASK-141, Resolution 1 — Product Owner approved 2026-06-01.)*
+
+The proxy indicators above detect the *excess* pattern (granola-type: added sugar + added fat + NOVA 4). In categories where the differentiating fat is **intrinsic** (dairy), divergence is qualitative — set/structure, protein concentration, live fermentation, and intrinsic-fat tier — and the added-sugar / added-fat proxies under-fire (documented in `milk_production_simulation_v1.md` Sec 8.1). For such categories, sub-pool divergence is established by the **dairy structural axis**: (a) set/structure method, (b) protein concentration tier, (c) live-fermentation presence, (d) intrinsic-fat tier — confirmed by BSIP2 statistical divergence (≥ 1.5 SD on ≥ 2 of these dimensions) once data exists.
+
+**Cheese-spreads standing precedent:** Within fresh cheese spreads, four sub-pools are defined — **Cottage**, **White-cheese / quark**, **Labaneh**, **Cream-cheese / spread**. Cream-cheese / spread also satisfies the original proxy indicators (NOVA 3–4 + high fat). Fat tiers (3 / 5 / 9%) within a pool are product *variants* (Section 2.5), not separate pools. Cross-pool comparisons require a purpose-divergence disclosure; the Anti-Immunity Rule applies in full.
+
 ---
 
 ### ARTICLE III — RANKING GOVERNANCE

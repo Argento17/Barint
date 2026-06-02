@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
+import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -17,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Bari — אינטליגנציית מזון ישראלית",
   description:
     "אינטליגנציית מזון ישראלית: אלגוריתמים, דירוגים והשוואות שקופות שמבוססות על נתונים.",

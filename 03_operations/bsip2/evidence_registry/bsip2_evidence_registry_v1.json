@@ -8,9 +8,13 @@
     "source_path": "C:\\Bari\\research\\Engineering Architecture for AI.pdf",
     "scope_note": "BSIP2 packaged food engine only. Section 2 (Supplement Engine) explicitly excluded.",
     "label_constraint": "Only signals observable or inferrable from packaged food labels are eligible for should_affect_score_now: true",
-    "sections": ["primary_findings", "guardrails", "do_not_model_yet", "roadmap"]
+    "sections": [
+      "primary_findings",
+      "guardrails",
+      "do_not_model_yet",
+      "roadmap"
+    ]
   },
-
   "primary_findings": [
     {
       "finding_id": "EV-001",
@@ -21,11 +25,23 @@
       "BSIP2_relevance": "Direct — BSIP2 NOVA proxy collapses all Group 4 products into a single penalty tier, producing scoring errors for processed-but-nutritious products",
       "implementation_complexity": "High",
       "recommended_action": "implement_now",
-      "affected_categories": ["all", "cereal_system", "snack_bars", "dairy_protein", "sauce_spread"],
-      "candidate_signal_name": ["siga_processing_intensity", "mup_density_score"],
+      "affected_categories": [
+        "all",
+        "cereal_system",
+        "snack_bars",
+        "dairy_protein",
+        "sauce_spread"
+      ],
+      "candidate_signal_name": [
+        "siga_processing_intensity",
+        "mup_density_score"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires MUP taxonomy dictionary and ingredient-to-tier mapping engine before scoring",
-      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_additives"
+      ],
       "risk_of_misuse": "Over-penalising processed-but-nutritious foods if MUP1 (nature-identical) items are weighted equally to MUP2 (synthetic) items",
       "notes": "Prerequisite for EV-002. Implement taxonomy dictionary first, scoring second."
     },
@@ -38,11 +54,22 @@
       "BSIP2_relevance": "High — replaces the all-additive-equal penalty with a risk-weighted count",
       "implementation_complexity": "High",
       "recommended_action": "implement_now",
-      "affected_categories": ["all", "snack_bars", "sauce_spread", "cereal_system", "dairy_protein"],
-      "candidate_signal_name": ["at_risk_additive_count"],
+      "affected_categories": [
+        "all",
+        "snack_bars",
+        "sauce_spread",
+        "cereal_system",
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "at_risk_additive_count"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires a maintained at-risk additive reference list mapped to Hebrew ingredient terms",
-      "required_input_fields": ["ingredients_list", "extracted_additives"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_additives"
+      ],
       "risk_of_misuse": "Regulatory lists change; a frozen v1 list risks penalising since-cleared additives or missing newly flagged ones",
       "notes": "The at-risk list is a maintenance obligation and must be versioned alongside BSIP2 releases."
     },
@@ -55,13 +82,38 @@
       "BSIP2_relevance": "Critical — current BSIP2 applies undifferentiated emulsifier penalties; this finding supports a three-tier model: high-risk (CMC, P80, carrageenan), neutral (lecithin), prebiotic (gum arabic)",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["all", "snack_bars", "dairy_protein", "sauce_spread", "beverage"],
-      "candidate_signal_name": ["mucus_thinning_emulsifier_load"],
+      "affected_categories": [
+        "all",
+        "snack_bars",
+        "dairy_protein",
+        "sauce_spread",
+        "beverage"
+      ],
+      "candidate_signal_name": [
+        "mucus_thinning_emulsifier_load"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Ingredient text matching is sufficient; no nutrition panel data required",
-      "required_input_fields": ["ingredients_list", "extracted_additives"],
-      "high_risk_ingredients_he": ["קרבוקסי מתיל צלולוז", "CMC", "E466", "פוליסורבט 80", "E433", "קרגינן", "E407"],
-      "exempt_ingredients_he": ["לציטין סויה", "לציטין חמניות", "E322", "גומי ערבי", "E414"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_additives"
+      ],
+      "high_risk_ingredients_he": [
+        "קרבוקסי מתיל צלולוז",
+        "CMC",
+        "E466",
+        "פוליסורבט 80",
+        "E433",
+        "קרגינן",
+        "E407"
+      ],
+      "exempt_ingredients_he": [
+        "לציטין סויה",
+        "לציטין חמניות",
+        "E322",
+        "גומי ערבי",
+        "E414"
+      ],
       "risk_of_misuse": "Carrageenan food-grade vs degraded distinction unresolvable from labels — apply penalty uniformly per label presence",
       "notes": "Related to EV-019 (prebiotic gum reclassification). Implement as a tiered signal, not a binary additive flag."
     },
@@ -74,11 +126,22 @@
       "BSIP2_relevance": "Direct — treating allulose as standard sugar produces false high-sugar penalties on keto/low-sugar products legitimately formulated with allulose",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["snack_bars", "beverage", "dairy_protein"],
-      "candidate_signal_name": ["allulose_adjusted_sugar_g", "allulose_detected"],
+      "affected_categories": [
+        "snack_bars",
+        "beverage",
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "allulose_adjusted_sugar_g",
+        "allulose_detected"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Ingredient list text match sufficient; apply 90% metabolic reduction to sugar score when allulose detected",
-      "required_input_fields": ["ingredients_list", "extracted_sweeteners", "normalized_nutrition_per_100g.sugars_g"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_sweeteners",
+        "normalized_nutrition_per_100g.sugars_g"
+      ],
       "risk_of_misuse": "Allulose quantity not declared on Israeli labels; flag-only approach until quantity becomes detectable",
       "notes": "Long-term safety data limited but acute metabolic evidence is strong. Apply conservative partial credit only."
     },
@@ -91,12 +154,28 @@
       "BSIP2_relevance": "High — keto and low-carb products relying on polyol sweetening may exceed the safe threshold without visible consumer warning in Israel",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["snack_bars", "beverage"],
-      "candidate_signal_name": ["polyol_laxative_potential"],
+      "affected_categories": [
+        "snack_bars",
+        "beverage"
+      ],
+      "candidate_signal_name": [
+        "polyol_laxative_potential"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Detect polyol presence and count in ingredient list; flag when multiple polyols are present or product is keto/sugar-free positioned",
-      "required_input_fields": ["ingredients_list", "extracted_sweeteners"],
-      "polyol_terms_he": ["סורביטול", "קסיליטול", "אריתריטול", "מלטיטול", "לקטיטול", "מניטול", "איזומלט"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_sweeteners"
+      ],
+      "polyol_terms_he": [
+        "סורביטול",
+        "קסיליטול",
+        "אריתריטול",
+        "מלטיטול",
+        "לקטיטול",
+        "מניטול",
+        "איזומלט"
+      ],
       "risk_of_misuse": "Cannot calculate exact grams from label alone; count polyol types and apply graduated risk, not a binary flag",
       "notes": "Erythritol should carry a lower risk weight than sorbitol/maltitol due to higher tolerance. Differentiate in risk weighting."
     },
@@ -109,13 +188,32 @@
       "BSIP2_relevance": "Critical — current BSIP2 treats all dietary fiber identically. Inulin-fortified products score high-fiber but provide no glycemic dampening.",
       "implementation_complexity": "High",
       "recommended_action": "implement_now",
-      "affected_categories": ["cereal_system", "snack_bars", "bread"],
-      "candidate_signal_name": ["viscosity_fiber_ratio", "viscous_fiber_g"],
+      "affected_categories": [
+        "cereal_system",
+        "snack_bars",
+        "bread"
+      ],
+      "candidate_signal_name": [
+        "viscosity_fiber_ratio",
+        "viscous_fiber_g"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires viscous fiber vocabulary dictionary to parse ingredient text reliably",
-      "required_input_fields": ["ingredients_list", "normalized_nutrition_per_100g.dietary_fiber_g"],
-      "viscous_fiber_terms_he": ["פסיליום", "ביתא גלוקן", "גואר"],
-      "non_viscous_terms_he": ["אינולין", "שורש עולש", "פוליי-דקסטרוז", "דקסטרין"],
+      "required_input_fields": [
+        "ingredients_list",
+        "normalized_nutrition_per_100g.dietary_fiber_g"
+      ],
+      "viscous_fiber_terms_he": [
+        "פסיליום",
+        "ביתא גלוקן",
+        "גואר"
+      ],
+      "non_viscous_terms_he": [
+        "אינולין",
+        "שורש עולש",
+        "פוליי-דקסטרוז",
+        "דקסטרין"
+      ],
       "risk_of_misuse": "Exact viscous fiber quantity not on label; presence-only detection risks under-crediting psyllium-dominant products",
       "notes": "Implement vocabulary dictionary before modifying scoring. This finding is the scientific basis for fiber source differentiation."
     },
@@ -128,13 +226,37 @@
       "BSIP2_relevance": "High — high-fiber claims on processed foods frequently rely on added isolated fibers that do not deliver equivalent metabolic protection",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["cereal_system", "snack_bars", "bread", "dairy_protein"],
-      "candidate_signal_name": ["intrinsic_fiber_ratio", "fiber_source_quality"],
+      "affected_categories": [
+        "cereal_system",
+        "snack_bars",
+        "bread",
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "intrinsic_fiber_ratio",
+        "fiber_source_quality"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires ingredient parsing to identify isolated fiber additions vs whole-grain intrinsic sources",
-      "required_input_fields": ["ingredients_list", "normalized_nutrition_per_100g.dietary_fiber_g", "extracted_matrix_markers"],
-      "isolated_fiber_signals": ["inulin", "chicory root extract", "pea fiber", "resistant dextrin", "wheat fiber", "cellulose"],
-      "intrinsic_fiber_signals": ["whole wheat flour", "rolled oats", "bran", "whole grain"],
+      "required_input_fields": [
+        "ingredients_list",
+        "normalized_nutrition_per_100g.dietary_fiber_g",
+        "extracted_matrix_markers"
+      ],
+      "isolated_fiber_signals": [
+        "inulin",
+        "chicory root extract",
+        "pea fiber",
+        "resistant dextrin",
+        "wheat fiber",
+        "cellulose"
+      ],
+      "intrinsic_fiber_signals": [
+        "whole wheat flour",
+        "rolled oats",
+        "bran",
+        "whole grain"
+      ],
       "risk_of_misuse": "Ambiguous formulations can mix intrinsic and isolated fiber sources; cannot always distinguish without quantity data",
       "notes": "Apply 30-40% efficacy discount to detected isolated fiber sources in carbohydrate quality scoring."
     },
@@ -147,11 +269,20 @@
       "BSIP2_relevance": "Direct — the beverage calorie density table partially captures this but the satiety dimension does not apply a liquid-state discount to protein drinks or meal replacement beverages",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["beverage", "dairy_liquid"],
-      "candidate_signal_name": ["matrix_state_factor"],
+      "affected_categories": [
+        "beverage",
+        "dairy_liquid"
+      ],
+      "candidate_signal_name": [
+        "matrix_state_factor"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Physical state is inferable from archetype routing and product name",
-      "required_input_fields": ["archetype", "canonical_name_he", "normalized_nutrition_per_100g.energy_kcal"],
+      "required_input_fields": [
+        "archetype",
+        "canonical_name_he",
+        "normalized_nutrition_per_100g.energy_kcal"
+      ],
       "risk_of_misuse": "Viscous liquid products (yogurt, kefir, thick smoothies) should not receive the full liquid satiety penalty",
       "notes": "Apply graduated penalty: thin liquid > viscous liquid > semi-solid > solid. Archetype routing already handles most of this."
     },
@@ -164,13 +295,32 @@
       "BSIP2_relevance": "High — two products can have identical macronutrients but dramatically different glycemic impact based on grain processing state",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["cereal_system", "bread"],
-      "candidate_signal_name": ["grain_matrix_integrity_score", "milling_disruption_penalty"],
+      "affected_categories": [
+        "cereal_system",
+        "bread"
+      ],
+      "candidate_signal_name": [
+        "grain_matrix_integrity_score",
+        "milling_disruption_penalty"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires ingredient text classification of grain processing state",
-      "required_input_fields": ["ingredients_list", "extracted_matrix_markers", "normalized_nutrition_per_100g.dietary_fiber_g"],
-      "intact_grain_signals": ["שיבולת שועל גסה", "גריסים", "חיטה סדוקה", "שעורה שלמה"],
-      "disrupted_grain_signals": ["קמח חיטה מלאה", "קמח שיבולת שועל", "אורז מלא מעובד"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_matrix_markers",
+        "normalized_nutrition_per_100g.dietary_fiber_g"
+      ],
+      "intact_grain_signals": [
+        "שיבולת שועל גסה",
+        "גריסים",
+        "חיטה סדוקה",
+        "שעורה שלמה"
+      ],
+      "disrupted_grain_signals": [
+        "קמח חיטה מלאה",
+        "קמח שיבולת שועל",
+        "אורז מלא מעובד"
+      ],
       "risk_of_misuse": "Whole grain marketing claims do not guarantee low milling disruption; whole grain flour is still fine-milled",
       "notes": "The matrix_integrity_framework already exists in BSIP2. This finding formally registers its scientific basis and extends it to grain processing state detection."
     },
@@ -183,12 +333,27 @@
       "BSIP2_relevance": "High — cereal puffs, extruded snack shapes, and textured soy proteins require a matrix destruction penalty not fully captured by standard NOVA processing scores",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["cereal_system", "snack_bars"],
-      "candidate_signal_name": ["extrusion_matrix_penalty"],
+      "affected_categories": [
+        "cereal_system",
+        "snack_bars"
+      ],
+      "candidate_signal_name": [
+        "extrusion_matrix_penalty"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Extruded product signals detectable from ingredient terms and product name",
-      "required_input_fields": ["ingredients_list", "canonical_name_he", "extracted_matrix_markers"],
-      "extrusion_signals_he": ["פריכית", "פצפוצים", "חטיף תירס", "נתחי סויה מרוקמת", "אורז פריח"],
+      "required_input_fields": [
+        "ingredients_list",
+        "canonical_name_he",
+        "extracted_matrix_markers"
+      ],
+      "extrusion_signals_he": [
+        "פריכית",
+        "פצפוצים",
+        "חטיף תירס",
+        "נתחי סויה מרוקמת",
+        "אורז פריח"
+      ],
       "risk_of_misuse": "Apply penalty to refined-grain extrusion, not whole-grain puffed forms which retain fiber despite extrusion",
       "notes": "Related to EV-009 (intact grain). Extrusion is the most severe form of milling disruption."
     },
@@ -201,11 +366,18 @@
       "BSIP2_relevance": "Medium — current scoring penalises sodium in isolation; products with high sodium but higher potassium should receive reduced cardiovascular risk penalty",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["all"],
-      "candidate_signal_name": ["na_k_ratio"],
+      "affected_categories": [
+        "all"
+      ],
+      "candidate_signal_name": [
+        "na_k_ratio"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Potassium not required on Israeli nutrition labels; population coverage <30%",
-      "required_input_fields": ["normalized_nutrition_per_100g.sodium_mg", "normalized_nutrition_per_100g.potassium_mg"],
+      "required_input_fields": [
+        "normalized_nutrition_per_100g.sodium_mg",
+        "normalized_nutrition_per_100g.potassium_mg"
+      ],
       "risk_of_misuse": "Missing potassium field must never be treated as zero; must explicitly handle null potassium",
       "notes": "Implement as a softening modifier on sodium penalty when potassium is present and Na:K < 1.0. When potassium absent, use sodium-only scoring unchanged."
     },
@@ -218,11 +390,21 @@
       "BSIP2_relevance": "High — the current fat dimension uses absolute saturated fat, which systematically mismeasures lipid quality in whole_food_fat category products",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["whole_food_fat", "dairy_liquid", "dairy_protein", "all"],
-      "candidate_signal_name": ["unsaturated_to_saturated_ratio"],
+      "affected_categories": [
+        "whole_food_fat",
+        "dairy_liquid",
+        "dairy_protein",
+        "all"
+      ],
+      "candidate_signal_name": [
+        "unsaturated_to_saturated_ratio"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Fat and saturated fat are standard label fields; unsaturated fat is computable as (total fat - saturated fat) from existing BSIP1 data",
-      "required_input_fields": ["normalized_nutrition_per_100g.fat_g", "normalized_nutrition_per_100g.fat_saturated_g"],
+      "required_input_fields": [
+        "normalized_nutrition_per_100g.fat_g",
+        "normalized_nutrition_per_100g.fat_saturated_g"
+      ],
       "formula": "unsaturated_fat_g = fat_g - fat_saturated_g; ratio = unsaturated_fat_g / fat_saturated_g",
       "thresholds": {
         "protective": "ratio >= 2.0",
@@ -240,8 +422,14 @@
       "BSIP2_relevance": "High — a product can score well on macronutrients while being specifically engineered for overconsumption",
       "implementation_complexity": "Medium",
       "recommended_action": "research_further",
-      "affected_categories": ["snack_bars", "cereal_system", "sauce_spread"],
-      "candidate_signal_name": ["bliss_point_synergy_score"],
+      "affected_categories": [
+        "snack_bars",
+        "cereal_system",
+        "sauce_spread"
+      ],
+      "candidate_signal_name": [
+        "bliss_point_synergy_score"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Mathematical threshold calibration is product-dependent; requires research sprint before scoring",
       "required_input_fields": [
@@ -263,8 +451,12 @@
       "BSIP2_relevance": "Direct — standard fat scoring overestimates absorbable lipid load of hard cheeses. This is the scientific basis for the hard cheese governance exception already in Bari.",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["dairy_protein"],
-      "candidate_signal_name": ["matrix_saponification_index"],
+      "affected_categories": [
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "matrix_saponification_index"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires confirmed hard cheese sub-pool routing AND calcium data (not always on Israeli labels)",
       "required_input_fields": [
@@ -287,11 +479,22 @@
       "BSIP2_relevance": "High — already partially implemented in BSIP2 for sourdough bread. This finding formally grounds the fermentation bonus and extends it to all fermented categories.",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["bread", "cereal_system", "dairy_protein", "whole_food_fat"],
-      "candidate_signal_name": ["fermentation_quality_bonus", "fermentation_marker_detected"],
+      "affected_categories": [
+        "bread",
+        "cereal_system",
+        "dairy_protein",
+        "whole_food_fat"
+      ],
+      "candidate_signal_name": [
+        "fermentation_quality_bonus",
+        "fermentation_marker_detected"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Fermentation markers already extracted by BSIP1 (extracted_fermentation_markers); scoring can use this signal now",
-      "required_input_fields": ["extracted_fermentation_markers", "ingredients_list"],
+      "required_input_fields": [
+        "extracted_fermentation_markers",
+        "ingredients_list"
+      ],
       "risk_of_misuse": "Sourdough flavour additives (vinegar, acidulants) are not genuine fermentation; detection must verify authentic fermentation markers not just flavour claims",
       "notes": "The sourdough D6 threshold problem (label data insufficient to confirm genuine sourdough) is documented in governance. This finding supports the bonus when authentic fermentation is confirmed."
     },
@@ -304,12 +507,22 @@
       "BSIP2_relevance": "High — maps to DISTORTION-004 (fortification inflation) already registered in Bari governance. Provides the 30% discount evidence basis.",
       "implementation_complexity": "Medium",
       "recommended_action": "implement_now",
-      "affected_categories": ["cereal_system", "dairy_protein", "beverage"],
-      "candidate_signal_name": ["fortification_discount_factor", "synthetic_fortification_detected"],
+      "affected_categories": [
+        "cereal_system",
+        "dairy_protein",
+        "beverage"
+      ],
+      "candidate_signal_name": [
+        "fortification_discount_factor",
+        "synthetic_fortification_detected"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "Requires ingredient-level detection of synthetic fortification markers distinct from naturally occurring nutrients",
-      "required_input_fields": ["ingredients_list", "extracted_additives"],
-      "fortification_discount": 0.30,
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_additives"
+      ],
+      "fortification_discount": 0.3,
       "risk_of_misuse": "Some fortification compensates for genuine dietary deficiencies (iodised salt in low-iodine populations); apply discount to scoring but not consumer-facing disclosures",
       "notes": "DISTORTION-004 implementation is a BSIP3 debt item. This finding provides the evidence magnitude (30%) for when it is implemented."
     },
@@ -322,15 +535,35 @@
       "BSIP2_relevance": "Medium — current BSIP2 treats all non-caloric sweeteners as neutral; a tiered risk classification is evidence-supported",
       "implementation_complexity": "Medium",
       "recommended_action": "research_further",
-      "affected_categories": ["beverage", "snack_bars", "dairy_protein"],
-      "candidate_signal_name": ["sweetener_microflora_disruption_risk"],
+      "affected_categories": [
+        "beverage",
+        "snack_bars",
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "sweetener_microflora_disruption_risk"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "High inter-individual variability prevents scoring application; implement as a consumer flag only",
-      "required_input_fields": ["ingredients_list", "extracted_sweeteners"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_sweeteners"
+      ],
       "sweetener_risk_tiers": {
-        "preferred": ["allulose", "mogroside V", "monk fruit"],
-        "neutral": ["stevia", "erythritol"],
-        "flag": ["sucralose", "saccharin", "aspartame"]
+        "preferred": [
+          "allulose",
+          "mogroside V",
+          "monk fruit"
+        ],
+        "neutral": [
+          "stevia",
+          "erythritol"
+        ],
+        "flag": [
+          "sucralose",
+          "saccharin",
+          "aspartame"
+        ]
       },
       "risk_of_misuse": "Applying a score penalty for saccharin would unfairly disadvantage products where the risk is statistical, not individual",
       "notes": "Related to EV-004 (allulose) and EV-005 (polyols). Three sweetener findings together form a complete sweetener tier framework."
@@ -344,12 +577,24 @@
       "BSIP2_relevance": "Medium — products listing reconstituted milk or milk powder as primary dairy source should receive a matrix quality downgrade relative to fresh dairy",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["dairy_liquid", "dairy_protein"],
-      "candidate_signal_name": ["reconstituted_matrix_flag"],
+      "affected_categories": [
+        "dairy_liquid",
+        "dairy_protein"
+      ],
+      "candidate_signal_name": [
+        "reconstituted_matrix_flag"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Reconstituted and milk powder are detectable by simple ingredient text matching",
-      "required_input_fields": ["ingredients_list"],
-      "reconstitution_signals_he": ["חלב מחולב", "חלב מרוכז", "חלב אבקה", "מוחזר"],
+      "required_input_fields": [
+        "ingredients_list"
+      ],
+      "reconstitution_signals_he": [
+        "חלב מחולב",
+        "חלב מרוכז",
+        "חלב אבקה",
+        "מוחזר"
+      ],
       "risk_of_misuse": "Apply as disclosure flag + minor score adjustment, not a hard penalty; some high-quality products use milk powder legitimately",
       "notes": "Implementation is trivial and should be bundled with the dairy category pipeline run."
     },
@@ -362,13 +607,30 @@
       "BSIP2_relevance": "Direct — EV-003 emulsifier penalty framework must explicitly exempt gum arabic and similar prebiotic gums",
       "implementation_complexity": "Low",
       "recommended_action": "implement_now",
-      "affected_categories": ["all"],
-      "candidate_signal_name": ["prebiotic_gum_exemption"],
+      "affected_categories": [
+        "all"
+      ],
+      "candidate_signal_name": [
+        "prebiotic_gum_exemption"
+      ],
       "should_affect_score_now": true,
       "should_affect_score_now_reason": "Simple ingredient text exemption from emulsifier penalty; no calculation required",
-      "required_input_fields": ["ingredients_list", "extracted_additives"],
-      "exempt_gums": ["gum arabic", "acacia gum", "arabinogalactan", "גומי ערבי", "E414"],
-      "neutral_gums": ["xanthan gum", "locust bean gum", "guar gum"],
+      "required_input_fields": [
+        "ingredients_list",
+        "extracted_additives"
+      ],
+      "exempt_gums": [
+        "gum arabic",
+        "acacia gum",
+        "arabinogalactan",
+        "גומי ערבי",
+        "E414"
+      ],
+      "neutral_gums": [
+        "xanthan gum",
+        "locust bean gum",
+        "guar gum"
+      ],
       "risk_of_misuse": "Exemption from emulsifier penalty is correct; do not grant positive prebiotic credit without quantity data (excessive doses can cause bloating)",
       "notes": "Implement as part of the EV-003 emulsifier differentiation system."
     },
@@ -381,17 +643,236 @@
       "BSIP2_relevance": "Medium — clean-label keto products using green banana flour are incorrectly penalised as high-carb",
       "implementation_complexity": "Medium",
       "recommended_action": "research_further",
-      "affected_categories": ["snack_bars", "cereal_system", "whole_food_fat"],
-      "candidate_signal_name": ["resistant_starch_flag", "net_glycemic_carb_g"],
+      "affected_categories": [
+        "snack_bars",
+        "cereal_system",
+        "whole_food_fat"
+      ],
+      "candidate_signal_name": [
+        "resistant_starch_flag",
+        "net_glycemic_carb_g"
+      ],
       "should_affect_score_now": false,
       "should_affect_score_now_reason": "RS quantity not label-readable; RS3 cannot be confirmed from packaging",
-      "required_input_fields": ["ingredients_list"],
-      "rs_ingredient_signals_he": ["קמח בננה ירוקה", "עמילן תפוח אדמה גולמי", "עמילן תירס עמילוזי גבוה"],
+      "required_input_fields": [
+        "ingredients_list"
+      ],
+      "rs_ingredient_signals_he": [
+        "קמח בננה ירוקה",
+        "עמילן תפוח אדמה גולמי",
+        "עמילן תירס עמילוזי גבוה"
+      ],
       "risk_of_misuse": "RS content changes with cooking history; static RS bonus without process confirmation would be inaccurate",
       "notes": "Implement as a flag + conservative partial credit pending better label data."
+    },
+    {
+      "finding_id": "EV-021",
+      "concept": "Live-Culture Dairy A-Ceiling Governance Ruling",
+      "scientific_rationale_short": "Plain, additive-free, live-culture dairy (yogurt + white cheese) MAY reach grade A, earned organically by score — in parallel to whole milk at 85/A. A plain live-culture yogurt is a whole-milk matrix PLUS a documented positive (fermentation, EV-015: phytase mineral bioaccessibility, organic-acid glycemic dampening, restructured protein), with no snack-bar-style irreducible compromise (sugar is intrinsic lactose, fat intrinsic dairy fat). It inherits the MILK precedent, not the snack-bar B-ceiling. B is the truthful ceiling for the sweetened/stabilized mainstream (~60% of the shelf), NOT for the category. The run_yogurt_003 0-grade-A result is mostly the EV-015 culture-detection gap (0/88 markers matched), not a punitive ceiling.",
+      "evidence_strength": "Strong (composes EV-014/015/018/019 + frozen milk precedent)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — governs whether an A may appear on the yogurt and white-cheese shelves; restoring EV-015 culture detection lifts the cleanest tier to ~80-86 -> A organically (~2-5 earned A's)",
+      "implementation_complexity": "Low (no new rule — composes the EV-015 mechanism)",
+      "recommended_action": "governance_ruling",
+      "product_co_sign": "approved 2026-06-01 (TASK-139A CLOSED)",
+      "affected_categories": [
+        "dairy_protein",
+        "yogurt",
+        "white_cheese"
+      ],
+      "candidate_signal_name": [
+        "fermentation_marker_detected (per EV-015 — no new signal)"
+      ],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Product co-sign satisfied 2026-06-01; A-condition C1-C6 still cannot activate until (a) EV-015 Israeli culture-vocabulary coverage is restored (currently 0%, precondition for C3) and (b) the A-threshold (80 vs 85) is reconciled before 139B publishes grades — both inherited by TASK-139B",
+      "required_input_fields": [
+        "extracted_fermentation_markers",
+        "added_sugar_sources_count",
+        "extracted_additives",
+        "nova_level",
+        "archetype",
+        "confidence_level"
+      ],
+      "a_eligibility_condition": {
+        "ruling_id": "RULING-DAIRY-A-01",
+        "C1_no_added_sugar": "added_sugar_sources_count == 0; fruit-prep flavoring counts as added sugar; exclude the סוכרים->סוכר nutrition-text false positive",
+        "C2_no_engineered_additives": "no modified starch (E-14xx), synthetic stabilizers/thickeners, artificial sweeteners, flavor enhancers, or colors; label-neutral natural gums not disqualifying (EV-019)",
+        "C3_live_culture_confirmed_and_credited": "fermentation_marker_detected == true AND EV-015 bonus applied; requires the Gap 2 Israeli culture-vocabulary fix",
+        "C4_intact_dairy_matrix": "milk base; milk-powder standardization permitted (NOVA <=3); reconstituted / חלב מאבקה-primary base NOT eligible (EV-018)",
+        "C5_correct_dairy_routing": "routed yogurt/white_cheese, not dessert/cereal/whole_food_fat",
+        "C6_verified_confidence": "full ingredient + nutrition coverage; no confidence ceiling"
+      },
+      "risk_of_misuse": "(1) Reading EV-014 hard-cheese saponification as a back-door A for processed/spreadable cheese — it is a fat-absorption exception, not an A-grant. (2) Crediting 'culture flavour' without microbial strain markers. (3) The סוכרים->סוכר nutrition-text false positive wrongly failing C1 on plain yogurts. (4) Restoring the manual shelf's blanket 5xA-by-format instead of earned A's.",
+      "published_grade_consequence": "Yogurt A-count 5 (format-credited) -> ~2-5 (earned); category median 72 -> ~61-63. Flagged for Product co-sign.",
+      "gates": [
+        "TASK-139B",
+        "TASK-139C",
+        "TASK-142",
+        "TASK-143"
+      ],
+      "source": "TASK-139A ruling — 02_products/yogurt_system/reports/dairy_a_ceiling_ruling_139A.md",
+      "notes": "Governance ruling, not a new evidence finding. No new scoring rule/weight/threshold created; the A is earned via the already-registered EV-015 fermentation bonus. Anchored to frozen milk precedent (whole/4%/goat = 85/A) and frozen snack-bar B-ceiling (snk-001 = 70/B)."
+    },
+    {
+      "finding_id": "EV-022",
+      "concept": "Israeli Live-Culture Label Vocabulary — Extraction Coverage Restored (EV-015 input / EV-021 C3 precondition)",
+      "scientific_rationale_short": "EV-015 (fermentation bonus) reads extracted_fermentation_markers, but the BSIP1 enricher FERMENTATION_TERMS matched only תרבויות/ביפידובקטריום/לקטובציל. Real Shufersal yogurt labels declare the live-culture positive as חיידק פרוביוטי / חיידקי ביפידוס / BIFIDUS / חיידקי Bio / חיידקי יוגורט / תרבית, so run_yogurt_003 credited 0/88 markers — the category-defining positive was invisible to scoring. Extending the term set to the observed Israeli label vocabulary (non-interpretive, case-insensitive substring matching) raises detection to 49/88 has_live_cultures and 51/88 any fermentation marker. No new scoring rule, weight, or threshold; the bonus pathway is the already-registered EV-015 mechanism.",
+      "evidence_strength": "Strong (direct label observation; run_yogurt_003 Shufersal corpus, 88 SKUs)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — supplies the EV-015 input and satisfies EV-021 RULING-DAIRY-A-01 condition C3 (live_culture_confirmed_and_credited), previously blocked at 0% coverage.",
+      "implementation_complexity": "Low (term-list extension only)",
+      "recommended_action": "implemented",
+      "affected_categories": [
+        "yogurt",
+        "dairy_protein",
+        "white_cheese"
+      ],
+      "candidate_signal_name": [
+        "fermentation_marker_detected (per EV-015 — no new signal)"
+      ],
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Extraction/label-observability fix, not a scoring rule. Downstream EV-015 bonus is already active, but no category is re-scored or published by this change; yogurt grade publication remains gated on TASK-139C (A-threshold reconciliation) and the live DEC-005 manual shelf is untouched.",
+      "required_input_fields": [
+        "ingredients_text_he"
+      ],
+      "label_observability": {
+        "label_signal": "live-culture declaration (Israeli retail Hebrew/Latin vocabulary)",
+        "observed_terms": [
+          "חיידק פרוביוטי",
+          "חיידקי פרוביוטי",
+          "חיידקים פרוביוטי",
+          "חיידקי ביפידוס",
+          "חיידקי ביפדוס",
+          "חיידקי יוגורט",
+          "חיידקי אצידופילוס",
+          "חיידקי אצידופולוס",
+          "חיידקי bio",
+          "תרבית",
+          "ביפידוס",
+          "ביפדוס",
+          "bifidus"
+        ],
+        "coverage_before": "0/88 run_yogurt_003 (0%)",
+        "coverage_after": "49/88 has_live_cultures (56%); 51/88 any fermentation marker (58%)",
+        "collision_audit": "0 new markers on any frozen/non-dairy corpus — run_001 snacks, run_bread_light_001, bread_retail_001/003, run_cereals_001, run_hummus_001, run_milk_001/002 all 0 hits. The single bread match (לחם הרים, מחמצת פרוביוטית) credits only the pre-existing מחמצת term — unchanged by this task."
+      },
+      "guards_verified": {
+        "golden_corpus_regression": "11 PASS / 1 WARN / 0 FAIL (run_regression_check.py). WARN = pre-existing anchor_soy_drink acceptable-secondary structural class; change-independent — the regression reads stored BSIP2 traces + structural_classifier.py and never invokes the BSIP1 enricher edited here.",
+        "enricher_unit_tests": "64/64 PASS (test_enricher.py), incl. NV-bar=0-markers and YOGURT_PLAIN unchanged.",
+        "frozen_invariants": "Unmoved — milk run_004 (85/A), bread retail_003, snacks snk-001 (70/B): 0 new fermentation markers in their corpora; no re-score performed."
+      },
+      "rollback": "git revert of the FERMENTATION_TERMS block in 03_operations/bsip1/core/ingredient_enricher.py (plus the run_yogurt_003 entry in enrich_runner.py) restores prior 0/88 behavior; run_yogurt_003 BSIP1 output is non-authoritative evidence and re-enrichment is idempotent. Notify: Data Architecture (registry/observability) + Nutrition (EV-015/EV-021 owner).",
+      "source": "TASK-139B — FERMENTATION_TERMS extension in 03_operations/bsip1/core/ingredient_enricher.py; re-run via enrich_runner.py --run run_yogurt_003.",
+      "date_recorded": "2026-06-01",
+      "notes": "Implements the EV-021 C3 / Gap-2 Israeli culture-vocabulary fix. Does not itself publish grades or move frozen scores. Residual: חיידקי L.casei DN114-001 (1 DanActive-style SKU) not matched — Latin strain code outside task-named vocab; known minor gap."
+    },
+    {
+      "finding_id": "EV-023",
+      "concept": "Grade-boundary reconciliation. The canonical `.claude/scoring.md` Grades table carried a stale 5-grade scale (A=85–100, no S-grade, every band shifted) that disagreed with the live engine `constants.py GRADE_THRESHOLDS` (6-grade: S≥90, A≥80, B≥65, C≥50, D≥35, E) and with the frozen milk run_004 artifact (A≥80; whole milk 85=A). Corrected the doc to the engine scale; A≥80 ratified as the dairy A cutoff. No engine/score change.",
+      "scientific_rationale_short": "The A-threshold ambiguity (80 vs 85) flagged in RULING-DAIRY-A-01 / EV-021 decided whether the cleanest plain/bio/lactose-free dairy (~80–86) reaches grade A. The live engine and the frozen milk run already compute A≥80 (six-grade S/A/B/C/D/E); only the scoring.md table was stale. Adopting A≥80 lets clean live-culture dairy reach A organically — the identical earned mechanism as whole milk at 85/A — satisfying EV-021 A-reachability with no category A-grant.",
+      "evidence_strength": "Strong (direct: constants.py GRADE_THRESHOLDS + batch_run_milk_004 header both A≥80; frozen whole milk 85=A)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — resolves the last RULING-DAIRY-A-01/EV-021 precondition (A-threshold) blocking yogurt/cheese grade publication (TASK-139 parent; TASK-142/143).",
+      "implementation_complexity": "Trivial (documentation correction only; engine unchanged)",
+      "recommended_action": "implemented (TASK-139D) — Product co-signed 2026-06-01",
+      "affected_categories": [
+        "yogurt",
+        "dairy_protein",
+        "white_cheese",
+        "cheese_spreads",
+        "ALL (grade-doc correctness)"
+      ],
+      "candidate_signal_name": "(no new signal — grade boundary already in constants.py GRADE_THRESHOLDS)",
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "No engine change. constants.py already = S≥90/A≥80/B≥65/C≥50/D≥35/E; this only corrects the stale scoring.md doc table to match. No category is re-scored or published by this entry; yogurt/cheese grade publication proceeds under the TASK-139 parent re-score with A≥80 confirmed.",
+      "required_input_fields": [
+        "final_score (→ score_to_grade)"
+      ],
+      "label_observability": "Not a label signal — a grade-band boundary. Authoritative source = constants.py GRADE_THRESHOLDS. After fix, scoring.md matches the engine across all bands: S 90–100 / A 80–89 / B 65–79 / C 50–64 / D 35–49 / E 0–34.",
+      "guards_verified": "No code/scoring change → golden regression unaffected (reads constants.py, unchanged). Frozen invariants unmoved: whole milk 85→A (A≥80), snk-001 70→B (B≥65), bread retail_003 grades all identical before/after — the engine already used A≥80; only the doc was wrong. The hummus batch-report string 'A 85–100' is a separate stale display artifact (cosmetic, non-authoritative), flagged for optional cleanup.",
+      "rollback": "`git revert` of the scoring.md grade-table edit restores the prior (stale) 5-grade table. No engine/score artifact touched; reversible with zero score impact.",
+      "source": "TASK-139D (A-threshold reconciliation, folded out of closed TASK-139C). Basis: dairy_a_ceiling_ruling_139A.md §A-threshold; constants.py GRADE_THRESHOLDS; batch_run_milk_004 frozen header.",
+      "date_recorded": "2026-06-01",
+      "notes": "Resolves the '80 vs 85' item RULING-DAIRY-A-01/EV-021 said 'must be reconciled before grades publish.' Outcome: A≥80 (six-grade scale) is authoritative; scoring.md corrected. Product co-signed ('Confirmed', 2026-06-01). Unblocks the TASK-139 parent closing re-score → TASK-142/143."
+    },
+    {
+      "finding_id": "EV-024",
+      "concept": "Culture-credit propagation fix (BSIP1→BSIP2). TASK-139B extended the BSIP1 enricher FERMENTATION_TERMS to the real Shufersal live-culture label vocabulary, but the BSIP2 scorer derives has_fermentation from an INDEPENDENT list (signal_extractor.FERMENTATION_MARKERS_HE) and never reads the BSIP1 flag. Result: run_yogurt_003 detected 49/86 live-culture SKUs in BSIP1 yet credited 0/86 in the score (fermentation_bonus_applied=0; identical to the pre-139B distribution). The parent closing re-score surfaced this. Fix: mirrored 139B vocabulary into FERMENTATION_MARKERS_HE so the already-active fermentation bonus (R-02 direct + WFI ferm_bonus +5) sees real labels. Non-interpretive substring matching only; no new rule/weight/threshold/cap.",
+      "scientific_rationale_short": "RULING-DAIRY-A-01 C3 requires live culture confirmed AND credited. Detection without crediting leaves C3 structurally unsatisfiable. Mirroring the vocabulary into the scoring layer makes the existing fermentation positive earn its (already-defined) bonus on genuine live-culture dairy, the yogurt/cheese-defining matrix positive.",
+      "evidence_strength": "Strong (direct: BSIP1 has_live_cultures=49/86 vs BSIP2 has_fermentation=3/86 pre-fix → 34/86 post-fix; fermentation_bonus_applied 0 → firing per WFI dimension notes).",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — the TASK-139 parent closing re-score of run_yogurt_003; gates TASK-142/143 dairy interpretation.",
+      "implementation_complexity": "Trivial (term-list extension mirroring an approved sibling change).",
+      "recommended_action": "implemented (TASK-139 parent re-score). REQUIRES Nutrition truthfulness sign-off (done) + Product co-sign for the published-candidate score movement (12 SKUs C→B).",
+      "affected_categories": [
+        "yogurt",
+        "dairy_protein",
+        "white_cheese",
+        "cheese_spreads",
+        "maadanim (live dairy, future re-score)"
+      ],
+      "candidate_signal_name": "has_fermentation (existing) — vocabulary coverage extended, not a new signal",
+      "should_affect_score_now": true,
+      "should_affect_score_now_reason": "Cultures are a label-observable, score-bearing positive already wired to R-02 / WFI. The fix only repairs vocabulary coverage so genuine live-culture dairy is credited; it manufactures no grade A (0 A before and after) — no category grant.",
+      "required_input_fields": [
+        "ingredients_text (live-culture declaration)"
+      ],
+      "label_observability": "Fully label-observable. Israeli retail live-culture vocabulary added to the BSIP2 scorer: תרבויות, חיידק פרוביוטי (+construct/plural forms), חיידקי ביפידוס/יוגורט/אצידופילוס, ביפידוס/bifidus, תרבית. Mirrors EV-022 (BSIP1 enricher).",
+      "guards_verified": "(1) COLLISION AUDIT — 0 has_fermentation flips on every frozen/non-dairy corpus: milk_001/002 (milk_004 source), snacks run_001 (snk-001 source), bread_light_001, bread_retail_003 (262-file scan), cereals_001/002, hummus_001. (2) FROZEN ISOLATION (OLD-vs-NEW marker toggle, in-memory full-pipeline recompute): milk_004 top=85.0/A unchanged, snacks top=70.0/B (snk-001) unchanged, 0 SKUs moved by this patch. (3) Golden structural regression 11 PASS / 1 WARN (pre-existing anchor_soy_drink, change-independent — reads stored traces) / 0 FAIL. (4) Router regression 12/12 PASS.",
+      "rollback": "Working-tree edit (uncommitted). Rollback = restore the FERMENTATION_MARKERS_HE block in signal_extractor.py (git checkout / revert the commit once made) → reverts has_fermentation to 3/86 and the distribution to B17/C44/D24/E1. run_yogurt_003 BSIP2 output is NON-AUTHORITATIVE evidence; re-score is idempotent. Notify: Data Architecture + Nutrition + Product.",
+      "source": "TASK-139 parent closing re-score (Nutrition+Data). Files: signal_extractor.py FERMENTATION_MARKERS_HE; batch_run_yogurt_003.py; report run_yogurt_003_run_summary.json.",
+      "date_recorded": "2026-06-01",
+      "notes": "RE-SCORE DELTA (run_yogurt_003, 86 SKUs): grade B 17→29, C 44→32, D 24 (=), E 1 (=); A 0→0 (UNCHANGED); median 55.7→56.1; ceiling 78.2→78.7/B. 12 live-culture SKUs C→B. TRUTHFUL 0-A FINDING (Nutrition sign-off): no SKU satisfies RULING-DAIRY-A-01 C1–C6 in this corpus — NOVA dist is 0×NOVA-1, 4×NOVA-2, 36×NOVA-3, 48×NOVA-4; the only 4 clean NOVA-2 plain/goat yogurts have EMPTY ingredient panels (C3 culture confirmation impossible) and are dimensionally capped 65–72/B by low nutrient_density (10–26) / protein_quality, not by any cap; all higher scorers are NOVA-3/4 engineered/sweetened (fail C1/C2). B/78.7 is the truthful ceiling for run_yogurt_003. This UPHOLDS 139A qualitative ruling (B truthful for mainstream; A reachable in principle, earned only) but contradicts its QUANTITATIVE ~2–5 earned-A estimate. OPEN (non-blocking, for Nutrition): milk goat=85/A vs goat-yogurt=66.7/B gap — is yogurt nutrient_density scored too harshly vs the milk table? Separate calibration question. RESIDUAL: BSIP1 49 vs BSIP2 34 has_fermentation — ~15 SKUs use culture vocab still unmirrored (all NOVA-3/4 sweetened → cannot reach A; non-blocking). REGISTRY: TASK-139B was recorded CLOSED on BSIP1-only detection; its score-crediting DoD was completed by this parent fix — Central Controller to decide bookkeeping (reopen 139B vs note in parent)."
+    },
+    {
+      "finding_id": "EV-025",
+      "concept": "Cream-cheese/spread router anchor (identity, not score) — fixes run_cheese_001 QA-CHS-001 47.4% misroute",
+      "scientific_rationale_short": "Cream cheese (high fat/low protein/flavored) lacks dairy signal strength; with no name anchor it fell to default/whole_food_fat. Four specific hard anchors (גבינת שמנת/ממרח גבינה/פילדלפיה/נפוליאון) restore dairy_protein identity so the dairy calorie table + R-04 cap relief apply and the EV-021 A-ceiling governs. Bare שמנת excluded; נפוליאון carries a cake exclusion.",
+      "evidence_strength": "Strong (run_cheese_001 misroute 47.4% -> run_cheese_002 1.8%; insufficient 3->0)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — unblocks TASK-142 misroute<5%/insufficient-0% DoD",
+      "implementation_complexity": "Trivial (4 anchors + 1 exclusion; no scoring logic)",
+      "recommended_action": "implemented (TASK-145); routing-only",
+      "affected_categories": [
+        "cheese_spreads"
+      ],
+      "candidate_signal_name": "(hard anchor terms in router_v2.HARD_ANCHORS)",
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Routing/identity change only — selects the category table; adds no scoring rule. Dairy A-ceiling still gates any A.",
+      "required_input_fields": [
+        "canonical_name_he"
+      ],
+      "risk_of_misuse": "Low — specific multi-word/brand anchors; bare שמנת excluded; נפוליאון cake-excluded; collision-audited vs maadanim/yogurt/milk (0 matches).",
+      "guards_verified": "Router regression 15/15 PASS (12 frozen + 3 cream-cheese); collision audit 0 matches; determinism confirmed (run_001 re-run == run_002).",
+      "rollback": "git revert router_v2.py cream-cheese hunk + נפוליאון exclusion + 3 corpus entries; restores 47.4% misroute. No score promoted.",
+      "notes": "TASK-145, spun off TASK-142 QA-CHS-001. run_cheese_002: misroute 1.8%, insufficient 0, grades B23/A6/C27/D1; 6 macro-A white cheeses WITHHELD by A-ceiling C3 (no confirmed culture). NON-AUTHORITATIVE pending grade-publication sign-off.",
+      "date_recorded": "2026-06-01"
+    },
+    {
+      "finding_id": "EV-030",
+      "concept": "פילדלפיה anchor seasoning exclusion (identity, not score) — removes a non-cheese salt/spice blend from the cheese category (TASK-153)",
+      "scientific_rationale_short": "The EV-025 פילדלפיה cream-cheese hard anchor (TASK-145) caught a non-cheese SEASONING blend (gtin 7290014217492, 'תערובת תיבול פילדלפיה', brand טעם וריח, Shufersal seasonings shelf 'מוצרי יסוד ותבלינים/תבלינים'; ingredients 'תבלינים ושמני תבלין,מלח,דקסטרוזה,...E551'; sodium 7,905 mg/100g ~16x the next-highest cheese) and routed it to dairy_protein/cream_cheese, displaying it LIVE at 60/C in the cheese comparison. The fix adds a label-observable name exclusion ('תערובת תיבול') to the פילדלפיה anchor — exactly mirroring the נפוליאון cake exclusion. The phrase 'תערובת תיבול' is exclusive to spice blends; real herbed Philadelphia cheeses ('פילדלפיה שום+ע.תיבול') lack 'תערובת' and still route to dairy_protein.",
+      "evidence_strength": "Strong (the SKU is the sole sodium>1500 outlier in the 52-product cheese corpus; BSIP0 source_url = seasonings shelf; ingredients are spices/salt/dextrose/E551 with no dairy)",
+      "confidence_level": "High",
+      "BSIP2_relevance": "Direct — removes a category-identity defect from the live cheese page (TASK-152 Content review surfaced the '7,905 מ\"ג' insight line)",
+      "implementation_complexity": "Trivial (1 exclusion entry in ANCHOR_EXCLUSIONS; no scoring logic)",
+      "recommended_action": "implemented (TASK-153); routing/curation-only",
+      "affected_categories": [
+        "cheese_spreads"
+      ],
+      "candidate_signal_name": "(ANCHOR_EXCLUSIONS['פילדלפיה'] = ['תערובת תיבול'] in router_v2.py)",
+      "should_affect_score_now": false,
+      "should_affect_score_now_reason": "Routing/identity + curation change only — excludes a non-cheese from the category; adds no scoring weight/threshold/penalty. No published or frozen score changed; no other product's score moves (subtractive only).",
+      "required_input_fields": [
+        "canonical_name_he"
+      ],
+      "risk_of_misuse": "Low — exclusion is on the specific phrase 'תערובת תיבול' (seasoning-blend only); the 3 real cheeses containing bare 'תיבול' (incl. 'פילדלפיה שום+ע.תיבול') do NOT contain 'תערובת' and still route to dairy_protein (verified). Collision-checked vs frozen categories — none contain 'תערובת תיבול'.",
+      "guards_verified": "Router regression 16/16 PASS (15 prior + new exclusion_philadelphia_seasoning negative case → routes to 'default', NOT dairy_protein); determinism confirmed (two consecutive runs byte-identical ignoring timestamp); frozen categories (milk/bread/snack/cereals/yogurt/maadanim) unmoved (their anchor cases unchanged & PASS); misroute remains <5% (the removed SKU was the misroute).",
+      "rollback": "git revert the router_v2.py ANCHOR_EXCLUSIONS['פילדלפיה'] hunk + the exclusion_philadelphia_seasoning corpus entry → restores the pre-TASK-153 routing (seasoning re-enters cream_cheese). Also revert the cheese_frontend_v1.json product removal + _meta count (51->52), factory_run_003/frontend_package.json display flag/counts, and category_config.json displayable (51->52). No engine/score change to roll back. Notify: Data Architecture + Product + Content.",
+      "notes": "TASK-153, spun off TASK-142/TASK-152. Curation: SKU removed from live cheese_frontend_v1.json (52->51 displayed, _meta.product_count/scored_count 51), factory_run_003/frontend_package.json (display_approved=false, withheld_seasoning_non_cheese=1, total scanned 59 unchanged), category_config.json (displayable 52->51, cream_cheese_spread pool 26->25). No other insight line referenced the removed SKU (its own '7,905 מ\"ג' line went away with it). Engine UNMODIFIED.",
+      "date_recorded": "2026-06-02"
     }
   ],
-
   "guardrails": [
     {
       "guardrail_id": "G-001",
@@ -494,56 +975,193 @@
       "bsip2_rule": "BSIP2 must apply category-specific calorie density tables, guardrails, and pool rules; universal scoring is constitutionally rejected by Bari governance"
     }
   ],
-
   "do_not_model_yet": [
-    {"id": "U-001", "domain": "Synergistic multi-additive toxicity", "reason": "Cumulative interactive effects across additive cocktails not characterized in humans"},
-    {"id": "U-002", "domain": "Individual gut microbiome emulsifier susceptibility", "reason": "CMC/P80 degradation rate varies by individual microbiome baseline; population-level penalty justified but individual prediction is not"},
-    {"id": "U-003", "domain": "Quantitative satiety prediction for mixed meals", "reason": "Complex multi-signal regulation; mathematical precision without physiological monitoring not achievable"},
-    {"id": "U-004", "domain": "Phytochemical bioavailability from commercial matrices", "reason": "Flavonoid/polyphenol absorption is highly matrix-, co-nutrient-, and microbiota-dependent"},
-    {"id": "U-005", "domain": "Long-term cardiometabolic effects of mogrosides", "reason": "Acute glycemic safety confirmed; long-term cohort data on insulin sensitivity and lipid profiles insufficient"},
-    {"id": "U-006", "domain": "Dietary AGE absorption kinetics", "reason": "Proportion absorbed vs endogenously generated under varying metabolic states is debated"},
-    {"id": "U-007", "domain": "Microbial synthesis of Vitamin K2 from dietary fiber", "reason": "Colonic menaquinone synthesis rate and systemic absorption not predictable from food label data"},
-    {"id": "U-008", "domain": "Interactive effects of pesticide residues and synthetic emulsifiers", "reason": "No clinical evaluation in humans; theoretical risk only"},
-    {"id": "U-009", "domain": "Chronic toxicological limits of 3-MCPD and glycidyl esters", "reason": "Established for infant formula; adult low-dose chronic impact under high uncertainty"},
-    {"id": "U-010", "domain": "Predictive modeling of postprandial insulin response from labels", "reason": "Incretin-modulated insulin response is too individual to model from macronutrients alone"},
-    {"id": "U-011", "domain": "Subclinical epithelial permeability from occasional additive exposure", "reason": "Chronic vs occasional exposure distinction not quantitatively established in humans"},
-    {"id": "U-012", "domain": "Comparative long-term efficacy of synthetic vs food-derived vitamin forms", "reason": "High statistical confounding between vitamin isomers and synthetic salts in long-term trials"},
-    {"id": "U-013", "domain": "Comparative satiating capacity of fermentable vs viscous fibers", "reason": "SCFA-mediated GLP-1 release from fermentable fiber is highly variable between individuals"},
-    {"id": "U-014", "domain": "Acrylamide variance within product batches", "reason": "Acrylamide levels fluctuate dramatically within batches based on minor processing shifts; not predictable from ingredient label"},
-    {"id": "U-015", "domain": "Micronutrient bioavailability under varying dietary tannin loads", "reason": "Inhibition of non-haem iron by coffee/tea tannins is meal-timing and gastric-pH dependent"},
-    {"id": "U-016", "domain": "Allulose-induced GLP-1 release thresholds in non-diabetic humans", "reason": "Minimum effective oral dose for clinically relevant GLP-1 stimulation not established"},
-    {"id": "U-017", "domain": "Systemic accumulation of 4-methylimidazole (4-MEI)", "reason": "Hepatic enzyme polymorphism variability prevents standardised toxicity calculation"},
-    {"id": "U-018", "domain": "Glycemic load modifiers in complex re-extruded multi-grain matrices", "reason": "Starch recrystallisation in re-extruded grains varies dynamically with factory cooling cycles"},
-    {"id": "U-019", "domain": "Impact of food matrix destruction on peptide hormone translocation", "reason": "PYY and GLP-1 signalling alteration under matrix destruction is highly individual"},
-    {"id": "U-020", "domain": "Calcium saponification efficiency in varying gastric pH", "reason": "Saponification rate depends on gastric acid and pancreatic lipase secretion which vary significantly with age and health status"}
+    {
+      "id": "U-001",
+      "domain": "Synergistic multi-additive toxicity",
+      "reason": "Cumulative interactive effects across additive cocktails not characterized in humans"
+    },
+    {
+      "id": "U-002",
+      "domain": "Individual gut microbiome emulsifier susceptibility",
+      "reason": "CMC/P80 degradation rate varies by individual microbiome baseline; population-level penalty justified but individual prediction is not"
+    },
+    {
+      "id": "U-003",
+      "domain": "Quantitative satiety prediction for mixed meals",
+      "reason": "Complex multi-signal regulation; mathematical precision without physiological monitoring not achievable"
+    },
+    {
+      "id": "U-004",
+      "domain": "Phytochemical bioavailability from commercial matrices",
+      "reason": "Flavonoid/polyphenol absorption is highly matrix-, co-nutrient-, and microbiota-dependent"
+    },
+    {
+      "id": "U-005",
+      "domain": "Long-term cardiometabolic effects of mogrosides",
+      "reason": "Acute glycemic safety confirmed; long-term cohort data on insulin sensitivity and lipid profiles insufficient"
+    },
+    {
+      "id": "U-006",
+      "domain": "Dietary AGE absorption kinetics",
+      "reason": "Proportion absorbed vs endogenously generated under varying metabolic states is debated"
+    },
+    {
+      "id": "U-007",
+      "domain": "Microbial synthesis of Vitamin K2 from dietary fiber",
+      "reason": "Colonic menaquinone synthesis rate and systemic absorption not predictable from food label data"
+    },
+    {
+      "id": "U-008",
+      "domain": "Interactive effects of pesticide residues and synthetic emulsifiers",
+      "reason": "No clinical evaluation in humans; theoretical risk only"
+    },
+    {
+      "id": "U-009",
+      "domain": "Chronic toxicological limits of 3-MCPD and glycidyl esters",
+      "reason": "Established for infant formula; adult low-dose chronic impact under high uncertainty"
+    },
+    {
+      "id": "U-010",
+      "domain": "Predictive modeling of postprandial insulin response from labels",
+      "reason": "Incretin-modulated insulin response is too individual to model from macronutrients alone"
+    },
+    {
+      "id": "U-011",
+      "domain": "Subclinical epithelial permeability from occasional additive exposure",
+      "reason": "Chronic vs occasional exposure distinction not quantitatively established in humans"
+    },
+    {
+      "id": "U-012",
+      "domain": "Comparative long-term efficacy of synthetic vs food-derived vitamin forms",
+      "reason": "High statistical confounding between vitamin isomers and synthetic salts in long-term trials"
+    },
+    {
+      "id": "U-013",
+      "domain": "Comparative satiating capacity of fermentable vs viscous fibers",
+      "reason": "SCFA-mediated GLP-1 release from fermentable fiber is highly variable between individuals"
+    },
+    {
+      "id": "U-014",
+      "domain": "Acrylamide variance within product batches",
+      "reason": "Acrylamide levels fluctuate dramatically within batches based on minor processing shifts; not predictable from ingredient label"
+    },
+    {
+      "id": "U-015",
+      "domain": "Micronutrient bioavailability under varying dietary tannin loads",
+      "reason": "Inhibition of non-haem iron by coffee/tea tannins is meal-timing and gastric-pH dependent"
+    },
+    {
+      "id": "U-016",
+      "domain": "Allulose-induced GLP-1 release thresholds in non-diabetic humans",
+      "reason": "Minimum effective oral dose for clinically relevant GLP-1 stimulation not established"
+    },
+    {
+      "id": "U-017",
+      "domain": "Systemic accumulation of 4-methylimidazole (4-MEI)",
+      "reason": "Hepatic enzyme polymorphism variability prevents standardised toxicity calculation"
+    },
+    {
+      "id": "U-018",
+      "domain": "Glycemic load modifiers in complex re-extruded multi-grain matrices",
+      "reason": "Starch recrystallisation in re-extruded grains varies dynamically with factory cooling cycles"
+    },
+    {
+      "id": "U-019",
+      "domain": "Impact of food matrix destruction on peptide hormone translocation",
+      "reason": "PYY and GLP-1 signalling alteration under matrix destruction is highly individual"
+    },
+    {
+      "id": "U-020",
+      "domain": "Calcium saponification efficiency in varying gastric pH",
+      "reason": "Saponification rate depends on gastric acid and pancreatic lipase secretion which vary significantly with age and health status"
+    }
   ],
-
   "roadmap": {
     "implement_now_label_ready": [
-      {"rank": 1, "finding_id": "EV-012", "signal": "unsaturated_to_saturated_ratio", "reason": "Computed from existing BSIP1 fields today; no new data required"},
-      {"rank": 2, "finding_id": "EV-003", "signal": "mucus_thinning_emulsifier_load", "reason": "Ingredient text matching only; Hebrew vocabulary dictionary needed"},
-      {"rank": 3, "finding_id": "EV-015", "signal": "fermentation_quality_bonus", "reason": "BSIP1 fermentation markers already extracted; scoring activation only"}
+      {
+        "rank": 1,
+        "finding_id": "EV-012",
+        "signal": "unsaturated_to_saturated_ratio",
+        "reason": "Computed from existing BSIP1 fields today; no new data required"
+      },
+      {
+        "rank": 2,
+        "finding_id": "EV-003",
+        "signal": "mucus_thinning_emulsifier_load",
+        "reason": "Ingredient text matching only; Hebrew vocabulary dictionary needed"
+      },
+      {
+        "rank": 3,
+        "finding_id": "EV-015",
+        "signal": "fermentation_quality_bonus",
+        "reason": "BSIP1 fermentation markers already extracted; scoring activation only"
+      }
     ],
     "implement_now_requires_prerequisite": [
-      {"finding_id": "EV-001", "signal": "siga_processing_intensity", "prerequisite": "MUP taxonomy dictionary"},
-      {"finding_id": "EV-002", "signal": "at_risk_additive_count", "prerequisite": "At-risk additive reference list (Hebrew-mapped, versioned)"},
-      {"finding_id": "EV-006", "signal": "viscosity_fiber_ratio", "prerequisite": "Viscous fiber vocabulary dictionary"},
-      {"finding_id": "EV-007", "signal": "fiber_source_quality", "prerequisite": "Isolated fiber ingredient term list"},
-      {"finding_id": "EV-009", "signal": "grain_matrix_integrity_score", "prerequisite": "Grain processing state classifier"},
-      {"finding_id": "EV-016", "signal": "fortification_discount_factor", "prerequisite": "Synthetic fortification ingredient detector"}
+      {
+        "finding_id": "EV-001",
+        "signal": "siga_processing_intensity",
+        "prerequisite": "MUP taxonomy dictionary"
+      },
+      {
+        "finding_id": "EV-002",
+        "signal": "at_risk_additive_count",
+        "prerequisite": "At-risk additive reference list (Hebrew-mapped, versioned)"
+      },
+      {
+        "finding_id": "EV-006",
+        "signal": "viscosity_fiber_ratio",
+        "prerequisite": "Viscous fiber vocabulary dictionary"
+      },
+      {
+        "finding_id": "EV-007",
+        "signal": "fiber_source_quality",
+        "prerequisite": "Isolated fiber ingredient term list"
+      },
+      {
+        "finding_id": "EV-009",
+        "signal": "grain_matrix_integrity_score",
+        "prerequisite": "Grain processing state classifier"
+      },
+      {
+        "finding_id": "EV-016",
+        "signal": "fortification_discount_factor",
+        "prerequisite": "Synthetic fortification ingredient detector"
+      }
     ],
     "research_further": [
-      {"finding_id": "EV-013", "signal": "bliss_point_synergy_score", "gap": "Threshold calibration is product-dependent"},
-      {"finding_id": "EV-017", "signal": "sweetener_microflora_disruption_risk", "gap": "High inter-individual variability; implement as flag only"},
-      {"finding_id": "EV-020", "signal": "resistant_starch_flag", "gap": "RS quantity not label-readable"}
+      {
+        "finding_id": "EV-013",
+        "signal": "bliss_point_synergy_score",
+        "gap": "Threshold calibration is product-dependent"
+      },
+      {
+        "finding_id": "EV-017",
+        "signal": "sweetener_microflora_disruption_risk",
+        "gap": "High inter-individual variability; implement as flag only"
+      },
+      {
+        "finding_id": "EV-020",
+        "signal": "resistant_starch_flag",
+        "gap": "RS quantity not label-readable"
+      }
     ],
     "reject": [
-      {"signal": "refined_oil_contaminant_exposure", "reason": "3-MCPD levels require batch laboratory analysis not available from labels"},
-      {"signal": "direct_postprandial_insulin_prediction", "reason": "Too individual; contradicts BSIP2 population-level model"},
-      {"signal": "category_free_generic_scoring", "reason": "Constitutionally rejected by Bari Governance v1"}
+      {
+        "signal": "refined_oil_contaminant_exposure",
+        "reason": "3-MCPD levels require batch laboratory analysis not available from labels"
+      },
+      {
+        "signal": "direct_postprandial_insulin_prediction",
+        "reason": "Too individual; contradicts BSIP2 population-level model"
+      },
+      {
+        "signal": "category_free_generic_scoring",
+        "reason": "Constitutionally rejected by Bari Governance v1"
+      }
     ]
   },
-
   "recommended_first_three_upgrades": [
     {
       "rank": 1,

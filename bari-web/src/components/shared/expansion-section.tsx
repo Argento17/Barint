@@ -261,22 +261,20 @@ function NutritionGrid({
           {servingNote}
         </p>
       ) : null}
-      <div className="grid grid-cols-1 gap-y-1">
+      {/* Adjacent label+value pairs that wrap — readable at any width. (Replaces the
+          old justify-between rows, which flung label and value to opposite edges in
+          the wide unified table.) */}
+      <div className="flex flex-wrap gap-x-6 gap-y-1.5">
         {cells.map(({ key, label, unit }) => {
           const value = nutrition[key];
           return (
-            <div key={key} className="flex items-baseline justify-between gap-3">
+            <div key={key} className="flex items-baseline gap-1.5">
               <span className="text-[10px] font-medium leading-none text-[#9A9FA6]">
                 {label}
               </span>
               <span className="text-[12px] font-semibold tabular-nums leading-none text-[#6E756F]">
                 {typeof value === "number" ? Math.round(value) : "—"}
-                {unit && (
-                  <span className="text-[9px] font-medium text-[#9A9FA6]">
-                    {" "}
-                    {unit}
-                  </span>
-                )}
+                {unit && <span className="text-[9px] font-medium text-[#9A9FA6]"> {unit}</span>}
               </span>
             </div>
           );
@@ -349,11 +347,17 @@ export function ExpansionSection({
   confidence,
   onCollapse,
   wide = false,
+  confidencePromoted = false,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
   onCollapse: () => void;
   wide?: boolean;
+  /**
+   * v2 §5/§6 — when confidence is shown on the collapsed row, the expansion no
+   * longer repeats it in the footnote (disclosure de-duplication). Maadanim-only.
+   */
+  confidencePromoted?: boolean;
 }) {
   const confidenceText =
     CONFIDENCE_LABELS[confidence] ?? expansion.confidenceLabel;
@@ -374,12 +378,16 @@ export function ExpansionSection({
             אין מספיק נתונים לאריזה זו כדי להציג פירוט.
           </p>
           <div className="flex items-center justify-between pt-0.5">
-            <span
-              className="text-[10px]"
-              style={{ color: BARI_COMPARISON_TOKENS.methodology.color }}
-            >
-              {confidenceText}
-            </span>
+            {confidencePromoted ? (
+              <span aria-hidden />
+            ) : (
+              <span
+                className="text-[10px]"
+                style={{ color: BARI_COMPARISON_TOKENS.methodology.color }}
+              >
+                {confidenceText}
+              </span>
+            )}
             <button
               type="button"
               onClick={(e) => {

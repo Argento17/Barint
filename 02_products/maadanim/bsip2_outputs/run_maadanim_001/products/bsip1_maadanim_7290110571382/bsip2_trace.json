@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.913903Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.298942Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110571382",
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 4",
-    "very_long_ingredient_list: 17"
+    "high_additive_category_count: 4"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -52,10 +51,10 @@
     "fat_trans_g": null,
     "sodium_mg": 213.0,
     "carbohydrates_g": 12.1,
-    "sugars_g": 4.0,
+    "sugars_g": 9.4,
     "dietary_fiber_g": null,
     "protein_g": 7.7,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "חלב מפוסטר (68%)",
       "מים",
@@ -70,11 +69,25 @@
       "חומרי טעם וריח",
       "מייצב (קרגינאן)",
       "מלח",
-      "צבע מאכל (בטא קרוטן). מכיל חלב ערכים תזונתיים 100 גרם 9.4 גרם סוכרים מתוך פחמימות 97 קל אנרגיה 7.7 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 213 מג נתרן 223 מג סידן 4 סוכרים 2.25 כפיות סוכר 5.4 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (בטא קרוטן)"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "צבע מאכל (בטא קרוטן). מכיל חלב ערכים תזונתיים 100 גרם 9.4 גרם סוכרים מתוך פחמימות 97 קל אנרגיה 7.7 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 213 מג נתרן 223 מג סידן 4 סוכרים 2.25 כפיות סוכר 5.4 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "צבע מאכל (בטא קרוטן)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -91,13 +104,14 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 18.56,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.331,
+    "sugar_to_carb_ratio": 0.777,
     "protein_per_kcal": 0.0794,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -125,9 +139,10 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
-      "אבקת חלב"
+      "אבקת חלב",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 2,
     "added_sugar_matches": [
@@ -173,6 +188,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -196,10 +212,7 @@
       "חומרי טעם וריח",
       "מייצב (קרגינאן)",
       "מלח",
-      "צבע מאכל (בטא קרוטן). מכיל חלב ערכים תזונתיים 100 גרם 9.4 גרם סוכרים מתוך פחמימות 97 קל אנרגיה 7.7 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 213 מג נתרן 223 מג סידן 4 סוכרים 2.25 כפיות סוכר 5.4 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (בטא קרוטן)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -251,27 +264,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 25.0,
+    "nutrient_density": 38.5,
     "calorie_density": 85.0,
-    "glycemic_quality": 80.0,
-    "protein_quality": 32.7,
+    "glycemic_quality": 66.5,
+    "protein_quality": 38.5,
     "additive_quality": 28.0,
     "satiety_support": 95.3,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 12
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=7.7g→38.5, fiber=0g→0.0, weighted 65/35=25.0",
+    "nutrient_density": "protein=7.7g→38.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 38.5",
     "calorie_density": "kcal=97.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(10.0) + fiber(0.0) + wg(0) = 80.0",
-    "protein_quality": "protein=7.7g base=38.5, source=mixed(×0.85) → 32.7",
+    "glycemic_quality": "90 - sugar_penalty(23.5) + fiber(0.0) + wg(0) = 66.5",
+    "protein_quality": "protein=7.7g base=38.5, source=dairy(×1.0) → 38.5",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (7.7×3 + 0×5) / 97.0 × 400 = 95.3",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=17 complexity_pen=18 → 12"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -285,7 +298,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 52.37,
+  "weighted_dimension_score": 53.59,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -389,7 +402,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 52.37,
+  "score_after_cap": 53.59,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -424,7 +437,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=18.6<30.0 or sugar=4.0<20.0"
+      "condition": "fat_pct=18.6<30.0 or sugar=9.4<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -445,13 +458,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 43.37,
+  "score_after_penalty": 44.59,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -520,11 +533,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 43.37,
+  "score_after_floors": 44.59,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 43.4,
+  "final_score_estimate": 44.6,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -535,24 +548,24 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.444,
+    "primary_confidence": 0.476,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.374,
+    "secondary_confidence": 0.33,
     "class_weights": {
-      "A": 0.014,
-      "B": 0.014,
-      "C": 0.0,
+      "A": 0.013,
+      "B": 0.013,
+      "C": 0.013,
       "D": 0.154,
-      "E": 0.444,
-      "F": 0.374
+      "E": 0.476,
+      "F": 0.33
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
       "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "moderate_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"
   }

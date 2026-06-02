@@ -35,8 +35,15 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
     Infer NOVA proxy level (1-4) from L3 ingredient signals.
     Returns dict with nova_level, nova_confidence, and full trace.
     """
+    # TASK-144 Fix1/EV-026 — prefer the sanitized ingredient count (OCR/nutrition-panel/
+    # disclaimer bleed removed in signal_extractor). Falls back to the raw product list
+    # for any legacy caller that does not supply the sanitized count, so behaviour is
+    # unchanged where the field is absent.
     ingredients = product.get("ingredients_list") or []
-    ing_count = len(ingredients)
+    if l3_signals.get("sanitized_ingredient_count") is not None:
+        ing_count = l3_signals["sanitized_ingredient_count"]
+    else:
+        ing_count = len(ingredients)
     additive_cats = set(l3_signals.get("additive_categories") or [])
     has_flavor_enhancer = l3_signals.get("has_flavor_enhancer", False)
     has_color = l3_signals.get("has_artificial_color", False)

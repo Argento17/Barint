@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  BariComparisonDesktopPage,
-  productInsightLines,
-} from "@/components/comparisons/bari-comparison-desktop-page";
-import { ComparisonShelfPage } from "@/components/comparisons/comparison-shelf-page";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
-import { yogurtsCorpusMeta } from "@/lib/comparisons/yogurts-comparison-page-data";
+import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { DAIRY_PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   filterYogurtsProducts,
   YOGURTS_SHELF_LENS_OPTIONS,
@@ -23,6 +18,8 @@ export interface YogurtsComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
+  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
+  categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
@@ -31,12 +28,10 @@ const yogurtsShelfFilters = {
   filterProducts: filterYogurtsProducts,
 } as const;
 
-const YOGURTS_INSIGHT_LINES = [
-  "2 מרכיבים מול 8+ — הפער הכי גדול בקטגוריה הוא רשימת הרכיבים, לא המותג",
-  "יווני/מסוי מוביל בחלבון — אבל לא תמיד בציון אם יש תוספים",
-  "יוגורט 0% טבעי מקבל ציון גבוה ממוצר בטעמים עם אותו 0%",
-  "יוגורט שתיה ויוגורט ממותק — קצה תחתון: תוספים ומתיקות, לא בסיס יוגורט",
-] as const;
+// Protein is the yogurt row metric (TASK-161A). Dairy-tuned scale (scaleMax 8) rather than
+// hummus's 0–20 — dairy protein tops ~12g, so the hummus scale would flatten bars
+// (Nutrition note 161A #1).
+const YOGURTS_METRIC_SPECS = [DAIRY_PROTEIN_METRIC] as const;
 
 export function YogurtsComparisonPage({
   products,
@@ -44,52 +39,20 @@ export function YogurtsComparisonPage({
   hero,
   prologueSentences,
   methodologyLines,
+  categoryNote,
   initialExpandedProductId = null,
 }: YogurtsComparisonPageProps) {
-  const insightLines =
-    productInsightLines(products).length > 0
-      ? productInsightLines(products)
-      : YOGURTS_INSIGHT_LINES;
-
-  const desktopHero = {
-    badge: "דוח חדש",
-    categoryTags: "יוגורטים · מדף ישראלי",
-    title: hero.title,
-    description:
-      prologueSentences[0] ??
-      `דוח השוואה ליוגורטים: ${products.length} מוצרים בדף.`,
-    insightLines,
-    stats: [
-      { value: yogurtsCorpusMeta.product_count, label: "מוצרים נבדקו" },
-      { value: yogurtsCorpusMeta.scored_count ?? products.length, label: "קיבלו ציון" },
-      { value: products.length, label: "בדף ההשוואה" },
-    ],
-    updatedLabel: formatComparisonUpdatedLine(yogurtsCorpusMeta.generated),
-  };
-
   return (
-    <>
-      <div className="max-lg:block lg:hidden">
-        <ComparisonShelfPage<YogurtsShelfFilterId>
-          products={products}
-          metadataLine={metadataLine}
-          hero={hero}
-          prologueSentences={prologueSentences}
-          methodologyLines={methodologyLines}
-          shelfFilters={yogurtsShelfFilters}
-          initialExpandedProductId={initialExpandedProductId}
-        />
-      </div>
-      <div className="hidden lg:block">
-        <BariComparisonDesktopPage<YogurtsShelfFilterId>
-          products={products}
-          hero={desktopHero}
-          prologueSentences={prologueSentences.slice(1)}
-          methodologyLines={methodologyLines}
-          lensOptions={YOGURTS_SHELF_LENS_OPTIONS}
-          filterProducts={filterYogurtsProducts}
-        />
-      </div>
-    </>
+    <ComparisonPage<YogurtsShelfFilterId>
+      products={products}
+      metadataLine={metadataLine}
+      hero={hero}
+      prologueSentences={prologueSentences}
+      methodologyLines={methodologyLines}
+      shelfFilters={yogurtsShelfFilters}
+      metricSpecs={YOGURTS_METRIC_SPECS}
+      categoryNote={categoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+    />
   );
 }

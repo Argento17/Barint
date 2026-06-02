@@ -1,10 +1,12 @@
 ---
 id: TASK-132
 title: Review BSIP2 Evidence Watch 2026-06-01 and evaluate potential BSIP2 revisions
-owner: research
-status: DONE
+owner: research-agent
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "TASK-133 Is treating actual revisions"
 depends_on: []
 blocks: []
 category_id: null

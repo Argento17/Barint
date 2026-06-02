@@ -5,25 +5,25 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-02",
-    "generated_at": "2026-06-02T09:53:43",
-    "newest_source_at": "2026-06-02T09:53:30",
+    "generated_at": "2026-06-02T14:48:31",
+    "newest_source_at": "2026-06-02T14:48:23",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-02T09:53:43",
+    "drift_checked_at": "2026-06-02T14:48:31",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
-    "system_health": "GREEN",
+    "system_health": "YELLOW",
     "active_task_ids": [],
     "latest_completed_task": {
       "id": "TASK-142A",
       "title": "BSIP0 nutrition-parse data-integrity bug: trans-fat row captured as total fat (fat_g=0.5) + nutrition-panel bleed — root-cause, fix, blast-radius",
       "completed_at": "2026-06-02"
     },
-    "current_blocker": null,
+    "current_blocker": "TASK-162: tasks/TASK-162.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
     "next_recommended_decision": null
   },
   "next_action": {
@@ -39,9 +39,9 @@
     "active": 0,
     "in_progress": 0,
     "blocked": 0,
-    "returned": 5,
+    "returned": 1,
     "changes_requested": 0,
-    "closed": 100,
+    "closed": 122,
     "wip": 0,
     "wip_task_ids": [],
     "wip_by_owner": {},
@@ -49,25 +49,40 @@
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [
-      "TASK-151",
-      "TASK-150"
-    ],
-    "top_unblockers": [
-      {
-        "task_id": "TASK-151",
-        "unblocks_count": 2,
-        "unblocks": [
-          "TASK-149",
-          "TASK-150"
-        ]
-      }
-    ]
+    "longest_chain": [],
+    "top_unblockers": []
   },
   "category_state": [
     {
       "id": "bread",
       "name_he": "לחם",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "cheese",
+      "name_he": "גבינות לבנות וממרחים",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "maadanim",
+      "name_he": "מעדנים",
+      "launch": "LIVE",
+      "bsip2": "AUTHORITATIVE",
+      "dataset": "DEPLOYED",
+      "website": "LIVE",
+      "blocking_task": null
+    },
+    {
+      "id": "hummus",
+      "name_he": "חומוס",
       "launch": "LIVE",
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
@@ -102,24 +117,6 @@
       "blocking_task": null
     },
     {
-      "id": "maadanim",
-      "name_he": "מעדנים",
-      "launch": "PRE_LAUNCH",
-      "bsip2": "AUTHORITATIVE",
-      "dataset": "DEPLOYED",
-      "website": "LIVE",
-      "blocking_task": "TASK-149"
-    },
-    {
-      "id": "hummus",
-      "name_he": "חומוס",
-      "launch": "PRE_LAUNCH",
-      "bsip2": "AUTHORITATIVE",
-      "dataset": "DEPLOYED",
-      "website": "LIVE",
-      "blocking_task": "TASK-150"
-    },
-    {
       "id": "breakfast-cereals",
       "name_he": "דגני בוקר",
       "launch": "QUEUED",
@@ -127,15 +124,6 @@
       "dataset": "NOT_BUILT",
       "website": "NOT_STARTED",
       "blocking_task": "TASK-140"
-    },
-    {
-      "id": "cheese-spreads",
-      "name_he": "גבינות לבנות וממרחים",
-      "launch": "QUEUED",
-      "bsip2": "INVALID_DATA",
-      "dataset": "NOT_BUILT",
-      "website": "NOT_STARTED",
-      "blocking_task": null
     },
     {
       "id": "tahini",
@@ -148,17 +136,21 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-02T09:53:46",
-    "clean": true,
+    "checked_at": "2026-06-02T14:48:34",
+    "clean": false,
     "counts": {
       "PHANTOM_TASK": 0,
       "CLOSURE_DRIFT": 0,
       "SNAPSHOT_DRIFT": 0,
-      "REGISTRY_UNPARSEABLE": 0
+      "REGISTRY_UNPARSEABLE": 3
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [],
-    "registry_unparseable": [],
+    "registry_unparseable": [
+      "TASK-162",
+      "TASK-165",
+      "TASK-166"
+    ],
     "acknowledged": []
   },
   "tasks": [
@@ -180,122 +172,6 @@
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 1,
-      "cc_comments": [],
-      "roadmap_impact": false,
-      "cc_reviewed": null
-    },
-    {
-      "id": "TASK-148",
-      "title": "Unify the /hashvaot comparison tables into one responsive ComparisonPage (design handoff IMP-1…6)",
-      "owner": "frontend-agent",
-      "status": "RETURNED",
-      "priority": "HIGH",
-      "created_at": "2026-06-01",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": null,
-      "blocker": null,
-      "close_reason": null,
-      "summary": "Consolidation of the divergent /hashvaot comparison-table code per the design handoff (C:\\Bari\\design\\new_design_proposal.zip). Collapses four divergent renderers into ONE responsive ComparisonPage: a single container-query ComparisonRow/Table (phone↔desktop via CSS, not a second component) carrying the v2 surface (aligned metric column, in-list band dividers, scroll-only band rail, promoted confidence). Replaces both the phone-frame ComparisonShelfPage and the bespoke BariComparisonDesktopPage; deletes the dead web-grid path. DONE so far (verified tsc+lint+build+visual QA): IMP-5, IMP-1, IMP-4 core, IMP-2; all 6 categories migrated; legacy chain deleted. REMAINING: IMP-3 (fold Milk in) + IMP-6 (category note once). Frontend-only; NO scores/scoring touched.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 1,
-      "cc_comments": [],
-      "roadmap_impact": false,
-      "cc_reviewed": null
-    },
-    {
-      "id": "TASK-149",
-      "title": "Re-scrape + re-score LIVE maadanim — EV-029 fat-parser bug collapsed fat on 88/200 products (latent grade impact)",
-      "owner": "data-agent",
-      "status": "RETURNED",
-      "priority": "HIGH",
-      "created_at": "2026-06-02",
-      "completed_at": "2026-06-02",
-      "depends_on": [
-        "TASK-142A",
-        "TASK-151"
-      ],
-      "blocks": [],
-      "category_id": "maadanim",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "The EV-029 / TASK-142A blast-radius audit confirmed LIVE maadanim is AFFECTED by the shared Shufersal BSIP0 nutrition-parse bug: the trans-fat row (\"שומן טראנס פחות מ-0.5\") was captured as TOTAL fat -> fat_g=0.5 on 88/200 products, and saturated fat was never captured (0% across the corpus). Fat feeds the score engine (fat_quality uniformly neutralized to 50; also feeds fat_pct_of_kcal / hp_fat_*), so the LIVE maadanim grades carry latent error. The parser is already fixed (TASK-142A) and wired into shufersal_maadanim/01_scrape_maadanim.py. Re-scrape on the fixed parser -> re-build BSIP1 -> re-score -> QA -> diff vs live -> Product/Nutrition sign-off before any LIVE score swap.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [
-        {
-          "text": "3 maadanim insight/comparison lines were neutralized inline (false point-gaps + 'lowest score' position from the old corrupted scores). Substance kept; Content should author proper replacements when convenient.",
-          "date": "2026-06-02",
-          "flag": "fyi"
-        }
-      ],
-      "roadmap_impact": false,
-      "cc_reviewed": null
-    },
-    {
-      "id": "TASK-150",
-      "title": "Re-scrape + re-score LIVE hummus — EV-029 fat-parser bug collapsed fat on 59/69 products (max fat 5.9g)",
-      "owner": "data-agent",
-      "status": "RETURNED",
-      "priority": "HIGH",
-      "created_at": "2026-06-02",
-      "completed_at": "2026-06-02",
-      "depends_on": [
-        "TASK-142A",
-        "TASK-151"
-      ],
-      "blocks": [],
-      "category_id": "hummus",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "The EV-029 / TASK-142A blast-radius audit confirmed LIVE hummus is AFFECTED by the shared Shufersal BSIP0 nutrition-parse bug (same defect first seen in the TASK-039 hummus audit, which patched downstream but not the shared parser): the trans-fat row was captured as TOTAL fat -> fat_g=0.5 on 59/69 products, with the whole corpus capping at max fat 5.9g (implausible for tahini-based spreads) and 0% saturated captured. Fat feeds the score engine, so the LIVE hummus grades carry latent error. The parser is fixed (TASK-142A) and wired into shufersal_hummus/02_scrape_hummus_shufersal.py. Re-scrape -> re-build BSIP1 -> re-score -> QA -> diff vs live -> Product/Nutrition sign-off before any LIVE score swap.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [
-        {
-          "text": "Before CLOSE: the TASK-039 fat register is now stale (report-only, did NOT affect scores) — regenerate or retire it so the batch summary stops emitting the false 'fat_quality from incorrect fat_g' warning.",
-          "date": "2026-06-02",
-          "flag": "verify"
-        },
-        {
-          "text": "Featured-hummus card had 3 hardcoded lines hand-fixed (A-count 1→5, gap 37→47, 'fat not shown'→now shown). Frontend/Content should confirm the new copy reads well.",
-          "date": "2026-06-02",
-          "flag": "fyi"
-        }
-      ],
-      "roadmap_impact": true,
-      "cc_reviewed": "2026-06-02"
-    },
-    {
-      "id": "TASK-151",
-      "title": "Harden _shared BSIP0 scrape path: persist raw nutritionList source (rows + HTML) for offline replay of future parser fixes",
-      "owner": "data-agent",
-      "status": "RETURNED",
-      "priority": "MEDIUM",
-      "created_at": "2026-06-02",
-      "completed_at": "2026-06-02",
-      "depends_on": [
-        "TASK-142A"
-      ],
-      "blocks": [
-        "TASK-149",
-        "TASK-150"
-      ],
-      "category_id": "infra",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "EV-029 (TASK-142A) showed the Shufersal BSIP0 scrapers persisted only the parser's reduced *_raw fields, not the source div.nutritionList — so when the trans-as-total-fat parser bug was fixed, the true fat/ saturated values were unrecoverable from disk (saturated 0% captured; fat collapsed to 0.5) and a fresh NETWORK re-scrape was the only way to recover them. This hardens the shared scrape path so every scrape persists the raw nutrition source, making any FUTURE parser fix a free OFFLINE re-parse. Landed BEFORE the TASK-149/150 live re-scrapes so those runs capture the raw source going forward.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
       "cc_reviewed": null
@@ -1099,6 +975,224 @@
       "cc_reviewed": null
     },
     {
+      "id": "TASK-148",
+      "title": "Unify the /hashvaot comparison tables into one responsive ComparisonPage (design handoff IMP-1…6)",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-01",
+      "completed_at": null,
+      "close_reason": null,
+      "age_days": 1,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-149",
+      "title": "Re-scrape + re-score LIVE maadanim — EV-029 fat-parser bug collapsed fat on 88/200 products (latent grade impact)",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": null,
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "3 maadanim insight/comparison lines were neutralized inline (false point-gaps + 'lowest score' position from the old corrupted scores). Substance kept; Content should author proper replacements when convenient.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        }
+      ],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-150",
+      "title": "Re-scrape + re-score LIVE hummus — EV-029 fat-parser bug collapsed fat on 59/69 products (max fat 5.9g)",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": null,
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Before CLOSE: the TASK-039 fat register is now stale (report-only, did NOT affect scores) — regenerate or retire it so the batch summary stops emitting the false 'fat_quality from incorrect fat_g' warning.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        },
+        {
+          "text": "Featured-hummus card had 3 hardcoded lines hand-fixed (A-count 1→5, gap 37→47, 'fat not shown'→now shown). Frontend/Content should confirm the new copy reads well.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        }
+      ],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-152",
+      "title": "Promote cheese-spreads (גבינות לבנות וממרחים) to LIVE — build the /hashvaot comparison page from run_cheese_003",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASSED — all return-block claims independently verified against artifacts: (1) bari-web/src/data/comparisons/cheese_frontend_v1.json present, _meta.product_count=52 / 52 actual, grades B20/C25/D6/E1, 3 Sec-6.4 disclosures carried; (2) factory_run_003/frontend_package.json:8 promoted_to_frontend=true (authoritative=true); (3) route /hashvaot/cheese (page.tsx) + registry/categories/cheese.ts + registry/index.ts:2 import + :21 entry + types.ts:7 'cheese' + cheese-comparison-page.tsx all exist; (4) SCORE INTEGRITY: 52/52 live products match the Nutrition-signed package on barcode, 0 score/grade drift — display rounding only, no scoring logic touched; (5) build green (tsc clean, /hashvaot/cheese prerendered, agent-reported). DoD (frontend integration + promotion) MET. DEFERRED follow-ups (non-blocking, correctly flagged): Content editorial review of insightLine + hero/prologue/methodology copy (consumer-final gate, AI-drafted); no /hashvaot index hub card (yogurts also absent — consistent); interactive mobile-RTL visual QA not run.",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Product (owner) flipped frontend_package.json authoritative=true on 2026-06-02 after Nutrition grade-publication sign-off (factory_run_003/NUTRITION_SIGNOFF_VERDICT.md). The data work (TASK-142/142A/145) is CLOSED + signed; this is the FRONTEND-ONLY promotion that was never tasked. NO scores/scoring may change.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        },
+        {
+          "text": "Frontend must flip promoted_to_frontend=true in factory_run_003/frontend_package.json only after the dataset physically lands in bari-web/src/data/comparisons/ and renders. CC close-gate will verify the file exists in bari-web AND the package flag is flipped.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        }
+      ],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-153",
+      "title": "Cheese corpus: remove misclassified seasoning blend (תערובת תיבול פילדלפיה, 7290014217492) + add router seasoning-exclusion to the פילדלפיה anchor",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASSED — verified against artifacts: (1) cheese_frontend_v1.json now 51 products (_meta.product_count=51), seasoning SKU che-7290014217492 absent, grades B20/C24/D6/E1 (removed 60/C dropped C 25→24); (2) router_v2.py:172 ANCHOR_EXCLUSIONS['פילדלפיה']=['תערובת תיבול'] mirrors the נפוליאון exclusion; (3) regression negative case exclusion_philadelphia_seasoning at router_regression_corpus.json:369 (→default, must_not_be dairy_protein), 16/16 PASS, deterministic, frozen categories unmoved; (4) EV-030 registered with label-observability + activation scope (cheese only) + full rollback; (5) build green (tsc EXIT 0, validate-corpus 0 cheese errors, next build EXIT 0, /hashvaot/cheese prerendered with 51). Routing/curation only — engine unmodified, no published/frozen score changed, no other product moved (subtractive). category_config + factory_run_003 counts reconciled (51 display / 8 withheld / 59 total). NOTE: historical run_cheese_003 traces + bsip1 output still contain the SKU (immutable run records) — annotation deferred, non-blocking.",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "LIVE-PAGE DEFECT: a non-cheese (salt-based spice blend, brand טעם וריח, from Shufersal's תבלינים/seasonings shelf, ingredients = spices/salt/dextrose/onion-powder/E551) is displayed at 60/C in the cheese comparison. Pulled in by the TASK-145 פילדלפיה→cream_cheese router anchor (which excluded נפוליאון cake but not תערובת תיבול). Its real 7,905 mg/100g sodium is plausible for a seasoning but distorts the cheese category. Surfaced by the TASK-152 Content review (the '7,905 מ\"ג' insight line).",
+          "date": "2026-06-02",
+          "flag": "blocker"
+        },
+        {
+          "text": "Sweep done: this is the ONLY non-cheese in the 52 (sole sodium>1500 outlier; other 4 'תיבול' hits are real herbed cheeses at 349-480 mg). Removal is subtractive: 52→51 displayed, no other product's score changes. Confirm no superlative insight line (best/worst/highest-fat) referenced the removed SKU before shipping.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        }
+      ],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-154",
+      "title": "Decide cross-category dairy consistency: same SKU (יופלה GO) shows 70/B in yogurts vs 78/B in maadanim because BARI_TASK144_FIXES is ON for maadanim, OFF for yogurt/cheese (TASK-146)",
+      "owner": "product-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "RULING (Product Agent, PO-confirmed 2026-06-02): AFFIRM Option 1 — accept the cross-page יופלה GO grade difference as GOVERNED (the deliberate TASK-146 keep-maadanim-scoped state). REJECT Option 3 (dedupe — hides an engine inconsistency behind info-architecture + a contestable taxonomy claim). Convergence (Option 2) is DEFERRED, not pursued now: the A-ceiling is the binding constraint — a flag-flip would create 3 yogurt B→A's, but 2 (דנונה פרו 20/21) are protein-enriched matrices that FAIL C4 of RULING-DAIRY-A-01 and must NOT get A, so convergence requires a governed re-run with C1–C6 A-enforcement (NOT a flag flip) + Nutrition co-sign. CC CORRECTION to the ruling's mechanics: TASK-143 is CLOSED (already ran run_yogurt_004 on 0.4.1 with fixes OFF), so there is NO open vehicle to 'ride' — if convergence is ever pursued it is a NEW governed re-run task (or a TASK-143 reopen). Interim mitigation = TASK-155 (2-SKU UI disclosure). Decision-only; no scores changed, no flag flipped. PARKED NUTRITION QUESTION (for any future convergence): under C1–C6 enforcement on post-142A-corrected fat, does the ceiling withhold A from דנונה פרו 20/21 (C4 fail) while granting only legitimate intact-dairy A (e.g. goat yogurt 3%)? If Nutrition can't guarantee it, Option 1 is permanent (acceptable terminal state).",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Surfaced by the owner while reviewing the live site (thought yogurts == maadanim). Validated: they are DISTINCT corpora (yogurts 11 SKUs / maadanim 87 / 0 shared ids), but 2 SKUs legitimately appear on both shelves — יופלה GO מועשר בחלבון (70/B yog vs 78/B maad) and יופלה GO תות (49/D vs 56/C). Same physical product, two grades on two live pages.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        },
+        {
+          "text": "Root cause CONFIRMED (not a re-run gap): both run_yogurt_004 and run_cheese_003 traces are engine 0.4.1. The delta is the BARI_TASK144_FIXES flag — ON for maadanim (engine 0.4.1 + 3 dairy fixes; lifts יופלה GO 70→78), OFF for yogurt+cheese per the TASK-146 ruling. TASK-143 (yogurt re-run) is already CLOSED/LIVE; a re-run will NOT change this. This is a governance decision, not data work.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        }
+      ],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-156",
+      "title": "Live /hashvaot comparison-page QA audit (all 8 pages) — route to loader to JSON to render precedence; CONDITIONAL PASS",
+      "owner": "qa-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — diagnostic deliverable; its findings independently confirmed by verifying the spawned fixes against artifacts. (1) HARD FAIL (homepage hummus card false 'five A / 47-pt') was real and is now fixed + verified — featured-hummus-intelligence-card.tsx:42-50 derives aGradeCount/scoreGap; live hummus_frontend_v3.json shows 0 grade-A and top77-bottom60=gap17 over the 35 displayed spreads (TASK-158). (2) 'no description' concern correctly diagnosed as 5 excluded JSON records + cache, not a live render gap. (3) Warnings all actioned: yogurt 11/11 imageUrl now populated, orphan JSONs archived, _meta corrected (TASK-160); cheese index-card photo wired (TASK-159); snk-006 image confirmed genuinely unrecoverable -> BLOCKED follow-up TASK-160A. Read-only audit; no artifact mutated by this task itself.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-158",
+      "title": "Fix homepage hummus featured-card hard-fail — false 'five A / 47-pt gap' lines now data-derived (0 grade-A, gap 17)",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — fix verified against the live artifact + data, not the return prose. featured-hummus-intelligence-card.tsx no longer contains the literal 'חמישה מוצרים בציון A' or '47'; the A-grade line (:42-45) and gap line (:47-50) derive from aGradeCount + (topScore-bottomScore) over the displayed shelf, and the fat line is the 4th insight line (:56). Real numbers confirmed by recomputing from hummus_frontend_v3.json under the exact loader exclusion sets: 35 displayed spreads, 0 grade-A, top 77 / bottom 60 / gap 17 — matches what the card renders. No score touched (display-only). tsc/lint/build reported green.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-161",
+      "title": "Unify all comparison rows to hummus rich-row format (+/- reason + headline metric)",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS (cc_reviewed set). Objective met + QA-verified across 5 sub-tasks: ALL comparison rows now render the hummus rich-row format — green + (positiveSignals[0]) / amber - (limitingFactors[0]) rowReason + a per-category headline metric bar. 161A (Nutrition) chose metrics: protein for cheese/yogurts/veg-spreads/bread, NO bar for snacks (nutrition all-null), milk as-is. 161B (Data) regenerated +/- signals from BSIP2 traces (cheese 42+/44-, yogurts 10+/4-, bread 24+/19-), scores id-matched unchanged, 0 banned phrases. 161C (Frontend) wired metricSpecs+rowReason via shared row-surface.ts; tsc/build/lint/corpus all exit 0. 161E (Content) scrubbed bread false-positives (0 remain). 161D (QA) confirmed parity + score-neutrality. Display-only; no scores changed by 161.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-161A",
+      "title": "Headline metric per comparison category (bread protein-vs-fiber; snacks has no protein)",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — metric decisions verified vs live JSON + VM contract. protein bar for cheese/yogurts/vegetable-spreads/bread (protein present on all rows; PROTEIN_METRIC wired). snacks = NO metric bar (all 6 nutrition fields null on all 18 rows — a bar would be fabricated; rowReason-only is honest). milk left as-is. Two refinements carved off as follow-ups (NOT blockers), folded into 161C as notes: (1) bread fiber is the better headline but fiber_g is not wired — ship protein now, switch later; (2) cheese/yogurts protein bars sit low on the hummus-tuned scale (max 20) — want a dairy-style preset to discriminate.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-161B",
+      "title": "Regenerate +/- reason signals (cheese, yogurts, bread) from BSIP2 explanation engine",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — verified in src/data/comparisons/: cheese 51 rows (42 +pos / 44 -lim), yogurts 11 (10/4), bread 24 (24/19); every row renders >=1 of +/-; real named values (e.g. 'חלבון גבוה לקטגוריה — 9 גרם ל-100 גרם'). Generated deterministically from BSIP2 traces (run_cheese_003 / run_yogurt_004) via build_cheese_signals.py / build_yogurts_signals.py / build-bread-frontend-v2.mjs; scores id-matched unchanged (0 mismatches); 0 of 9 engine-v2 banned phrases. Products legitimately lacking one signal omitted, not invented. Two issues escalated separately (NOT defects of this task): (a) bread grade drift shufersal_3268429 A-vs-B (pre-existing, frozen-invariant — Product/Nutrition call); (b) some pre-existing bread positiveSignals read as false strengths ('בסיס קמח מזוקק','שמרים תעשייתיים') — Content cleanup -> TASK-161E.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-161C",
+      "title": "Wire rowReason + metricSpecs into all 6 comparison page-data/page files",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — verified + QA-confirmed (TASK-161D). All 6 pages wired: cheese/yogurts metricSpecs=DAIRY_PROTEIN_METRIC (scaleMax 8, resolves the low-bar flatness), vegetable-spreads/bread=PROTEIN_METRIC, snacks=[] (no bar, all nutrition null), milk=MILK_METRIC_SPECS unchanged. rowReason wired via new shared src/lib/comparisons/row-surface.ts (enrichRowSurface / enrichRowReasonOnly — verbatim mirror of hummus's helper, prevents drift). Display-only: bread/snacks JSON byte-identical to HEAD; score/grade are pass-through VM fields. tsc/build(34 routes)/lint/corpus-validate all exit 0. One follow-up flagged (not blocking): vegetable-spreads uses per-100g PROTEIN_METRIC not the per-100ml dairy preset (aria-unit correctness).",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -1654,7 +1748,13 @@
       "completed_at": "2026-06-02",
       "close_reason": "No structural work gated.",
       "age_days": 1,
-      "cc_comments": [],
+      "cc_comments": [
+        {
+          "text": "TASK-154 (PO-confirmed) AFFIRMS this (B) keep-maadanim-scoped ruling as the STANDING state, after the same engine-baseline difference surfaced live as a cross-page grade gap on 2 dual-shelf יופלה GO SKUs (70/B yog vs 78/B maad). Cross-category convergence is NOT pursued and is NOT a flag flip — it would need a NEW governed re-run with C1–C6 A-ceiling enforcement + Nutrition co-sign (NOTE: TASK-143 is CLOSED, so it is not the vehicle). Interim mitigation = TASK-155 UI disclosure. No reopen of this task.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        }
+      ],
       "roadmap_impact": false,
       "cc_reviewed": null
     },
@@ -1668,6 +1768,165 @@
       "completed_at": "2026-06-02",
       "close_reason": "oth maadanim corpus defects corrected at source; this was data hygiene only — no scoring rule or engine version changed",
       "age_days": 1,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-151",
+      "title": "Harden _shared BSIP0 scrape path: persist raw nutritionList source (rows + HTML) for offline replay of future parser fixes",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-155",
+      "title": "Interim UI disclosure on the 2 dual-shelf יופלה GO SKUs (yogurts vs maadanim baseline difference) — TASK-154 mitigation",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "Closed by PO direction (2026-06-02) — NOT executed. Superseded by an upcoming large content overhaul that will handle consumer-facing copy holistically; shipping a standalone 2-SKU interim disclosure separately is not worth it. The underlying issue (TASK-154: same יופלה GO SKU shows different grades on the yogurts vs maadanim pages, by governed design) remains accepted-as-governed; the disclosure requirement is folded into the content overhaul scope. No code shipped; nothing to roll back.",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Interim mitigation from the PO-confirmed TASK-154 ruling (accept-as-governed). Low-urgency, not an incident: 2 same-brand SKUs, flagship agrees B/B, only יופלה GO תות crosses a letter (D yog / C maad). Disclosure copy is consumer-facing Hebrew — needs PO + Content sign-off on the exact wording before it goes live on 2 pages.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        },
+        {
+          "text": "The disclosure must NOT imply one grade is 'wrong' — both are correct under their category's baseline. Frame as a transparent baseline note, not an error. Do not touch any score.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        }
+      ],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-157",
+      "title": "Standardize category caveat (cheese-style הערת קטגוריה box) across all 8 /hashvaot categories via the shared categoryNote slot",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — held judgement call (Product positioning sign-off on the cheese-vs-maadanim sodium/sat-fat caveat divergence) now resolved: Product verdict ACCEPTABLE WITH MINOR WORDING — keep both caveats, add one shared unifying lead clause to each. Clause APPLIED + independently verified against artifacts: (1) maadanim — src/lib/comparisons/maadanim-page-data.ts:125 ends with '...בדקו את התווית להשלמת התמונה.\\n\\nהציון מודד את מה שהתווית והנתונים מאפשרים בכל קטגוריה בנפרד; בקטגוריה זו ערכים אלה כן נכנסים לחישוב.'; (2) cheese — src/data/comparisons/cheese_frontend_v1.json _meta.disclosures.category_wide_sodium_satfat ends with '...בדקו זאת בתווית.\\n\\nהציון מודד את מה שהתווית והנתונים מאפשרים בכל קטגוריה בנפרד; בקטגוריה זו הנתרן והשומן הרווי אינם נכנסים עדיין לחישוב.'. Shared lead clause ('הציון מודד את מה שהתווית והנתונים מאפשרים בכל קטגוריה בנפרד') byte-identical on both pages; category-specific tail correctly diverges (maadanim: values DO score; cheese: not yet scored). Gates independently re-run: cheese JSON parses valid; npx tsc --noEmit exit 0; node scripts/validate-corpus.mjs 0 errors (260 pre-existing warnings, all yogurt/§2.x — none from these clauses; cheese 0 err, maadanim 0 err). roadmap_impact=true + cc_reviewed=2026-06-02 set, so PreToolUse guard permits close.",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Implementation independently verified against artifacts: the caveat (Hebrew 'הערת קטגוריה') is threaded across all 8 categories — page-data + comparison-page components + routes. Nutrition's maadanim CORRECTION is real and well-grounded: maadanim-page-data.ts:115-122 documents that the cheese sodium/sat-fat 'not scored' framing does NOT carry to maadanim (run_maadanim_001, engine 0.4.1 actively scores both — fat_quality dim varies 17->100, 30 take ISRAELI_RED_LABEL_1_SAT_FAT cap, 24 take HIGH_SODIUM_700MG_PLUS, 12 take the fat-sodium HP penalty). Caveat copy at :125 now truthfully states sugar/sat-fat/sodium LOWER the score. tsc/lint/corpus-validate reported green.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        },
+        {
+          "text": "HELD at RETURNED — not closed. Open judgement call (NOT a pass/fail check, so it does not close here): Product positioning eyeball on the cheese-vs-maadanim caveat divergence (owner pre-approved 'keep both', but the final positioning sign-off on consumer-facing governed copy is Product's). roadmap_impact=true (consumer-facing governed copy); cc_reviewed set after this verification, so the PreToolUse guard will permit a close once Product signs off.",
+          "date": "2026-06-02",
+          "flag": "verify"
+        },
+        {
+          "text": "RESOLVED -> CLOSED. Product Agent signed off: verdict ACCEPTABLE WITH MINOR WORDING — keep both caveats, add one shared unifying lead clause to each so the divergence reads as intentional. Clause applied + verified on both artifacts (maadanim-page-data.ts:125 + cheese_frontend_v1.json _meta.disclosures.category_wide_sodium_satfat). Shared lead clause is byte-identical on both pages; the category-specific tail correctly diverges (maadanim: sodium/sat-fat DO enter the score; cheese: not yet). tsc exit 0, validate-corpus 0 errors. Close-gate PASS.",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        }
+      ],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-02"
+    },
+    {
+      "id": "TASK-159",
+      "title": "Cheese /hashvaot index-card photo — wire missing photo prop + add cheese.jpg theme asset (visual parity with 6 peers)",
+      "owner": "design-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — both claims verified against artifacts. (1) Asset exists: public/hashvaot/themes/cheese.jpg = 85,791 bytes (matches the reported GET 200 length exactly). (2) Prop wired: featured-cheese-intelligence-card.tsx:61 passes theme={{ accent: '#D8CBB0', photo: '/hashvaot/themes/cheese.jpg' }}, bringing the cheese index card to parity with the 6 peers that carry a /hashvaot/themes photo. Display-only; no data/score touched.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-160",
+      "title": "Live comparison data cleanup — yogurt images, dead-record scrub, _meta fixes, orphan-JSON archive",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — verified against artifacts. (a) yogurts_frontend_v2.json = 11/11 imageUrl populated (all Cloudinary/Shufersal urls, none null/empty). (b) dead-record scrub confirmed: vs the import baseline, hummus removed exactly 2 ids (bsip1_7296073733317/348, the insufficient-data records) and maadanim removed exactly 6 — both sets are excluded products only, NOT score edits. (c) _meta correct: hummus scored_count/product_count=64; maadanim product_count=77, corpus_record_count=84, count_note present. (d) orphans archived: hummus_frontend_v1/v2 + yogurts_v1 are git-deleted from src/data/comparisons/ and present in 99_archive/orphaned_comparison_datasets_2026-06-02/. SCORE INTEGRITY (this task): snacks_frontend_v2.json shows 0 surviving-product score/grade changes — display-only, as claimed. snk-006 image confirmed genuinely unrecoverable (no persisted source) -> carved off to BLOCKED TASK-160A so it is not lost.",
+      "age_days": 0,
+      "cc_comments": [
+        {
+          "text": "Score-integrity (not a defect here): WT score deltas — hummus 58, maadanim 70 — are the shipped EV-029 rescores (TASK-150/149), uncommitted only (no subtree commit since import). Prior bread '73→82 B→A' flag WITHDRAWN: line-diff misread a score re-sort; id-matched diff = 0 score / 0 grade. Bread's only real change = additive `unknowns` transparency field (TASK-130 norm pass). No new task; commit is housekeeping (user holding).",
+          "date": "2026-06-02",
+          "flag": "fyi"
+        }
+      ],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-161D",
+      "title": "Verify row-format parity across all comparison pages + build/regression",
+      "owner": "qa-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — QA Checks 1/2/3/5 PASS: row parity (+/- rowReason wins over insightLine, comparison-row.tsx:119-129), metric bars per 161A decision, 0 products fall to insightLine fallback (every row has >=1 signal), tsc/lint/build(34 routes)/corpus-validate all exit 0, zero NEW regressions. QA Check-4 'FAIL' is NOT a 161 defect — QA confirmed '161 display change is verifiably score-neutral' (bread/snacks byte-identical to HEAD); the score deltas it flags (hummus 58 / maadanim 70 / yogurts 11) are co-resident OTHER-task rescores in the uncommitted tree (TASK-149/150 shipped+approved; TASK-143 yogurts). That is a commit-bundle decision for the owner (holding on commit), tracked on TASK-160 — not a row-format regression.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-161E",
+      "title": "Content pass on +/- reason wording (clean bread false-positives; per-category readability)",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — verified in bread_frontend_v2.json: 0 false-positive strings remain in any positiveSignals (scrubbed 'בסיס קמח מזוקק'/'שמרים תעשייתיים'/'בסיס דגן — לא ברור'); 11 products edited, 3 emptied to [] (graceful fallback, no genuine positive), 10 untouched (already genuine strengths). cheese/yogurts/bread +/- lines reviewed against insight-line spec + banned-wellness list — clean, no rewrites needed (the 'בריא' hits are the spec-sanctioned contradiction pattern inside amber limitingFactors, not wellness claims). No scores/numbers changed. One item routed to Data (NOT fixed here): shufersal_3268429 grain-base inconsistency (name/insightLine say whole-grain, signal data says refined) — same product as the known A-vs-B grade divergence.",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-163",
+      "title": "Add missing-data disclosure to yogurts/maadanim/cheese comparison pages",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — verified disclosure added: yogurts 10/11, maadanim 69/84, cheese 49/51, wording byte-identical to the shipped hummus/snacks/bread template. Derived via the existing shared scripts/lib/derive-unknowns.mjs (scoped runner normalize-corpus-unknowns-task163.mjs to avoid a pre-existing bread-id collision bug). Additive only — before/after snapshot shows 0 score/grade/nutrition changes across 128 products; every unknowns line re-derived from genuinely-null fields (0 invented).",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-164",
+      "title": "Investigate bread shufersal_3268429 whole-wheat-vs-refined + grade A/B contradiction",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-02",
+      "completed_at": null,
+      "close_reason": "CC gate PASS — investigation delivered (no data changed; freeze respected). FINDING: the product IS genuinely whole-grain — BSIP0 raw scrape (real_bread_retail_003_v1...bsip0_raw.json) shows 'קמח חיטה מלא ... 100% מהקמח', extraction_confidence high. Engine authority (bsip2_shufersal_3268429.json) = 79.8/B with has_ingredients:true. ROOT CAUSE: the ingredient list failed to propagate from BSIP0 to the signal layer (limiting_factors_v1.json: 'אין רשימת רכיבים זמינה'), so signals defaulted to a false 'refined base / fiber unclear' reading -> wrong limitingFactors AND a stale live grade A. RECOMMENDATION (needs human, bread frozen): (1) reconcile grade A->B to match engine+curated; (2) re-propagate ingredients so the false refined-base/fiber signals recompute to whole-grain; (3) audit bread corpus for the same non-propagation pattern; interim: suppress the demonstrably-false limitingFactors for this id.",
+      "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
       "cc_reviewed": null
@@ -1696,6 +1955,20 @@
       "completed_at": "2026-06-01",
       "close_reason": "Not necessary for now",
       "age_days": 1,
+      "cc_comments": [],
+      "roadmap_impact": false,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-160A",
+      "title": "snk-006 thumbnail (barcode 7290118427858) — re-scrape to source an image; no image_url/source_url persisted, Carrefour source",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "LOW",
+      "created_at": "2026-06-02",
+      "completed_at": "2026-06-02",
+      "close_reason": "CC close-gate PASS — verified against artifacts, not the return prose. (1) HIGHEST-RISK constructed-URL re-fetch: I independently fetched https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12615222_7290118427858.jpg — HTTP 200, content-type image/jpeg, 842.7KB binary (no HTML/404/placeholder redirect); rendered the saved JPEG and visually confirmed the real product: Nestle Fitness, 'שוקולד מריר', GRANOLA BAR / CRUNCHY, משקל כולל 190 גרם (5 אריזות × 38 ג'), with the 2 red gov warning icons (סוכר/שומן רווי) — matches BSIP1 package_size_g=190/unit_count=5/unit_size_g=38. The constructed Yochananof path genuinely resolves to the correct image. (2) snacks_frontend_v2.json:599 — snk-006 imageUrl == that exact URL; id-matched diff vs HEAD = 0 score deltas / 0 grade deltas / 0 ids added-removed (the raw line-diff 44<->46 was a re-sort artifact, same false-flag class as TASK-160's bread note). (3) Score integrity: snk-006 still 17/E (json:600-601); display-only confirmed. In HEAD snk-006 was the ONLY null imageUrl; now 18/18 snacks have a non-null imageUrl (0 null). (4) Validation re-run by CC: node scripts/validate-corpus.mjs -> exit 0, 0 errors (snacks 0 errors, 3 pre-existing §2.8 token warnings on snk-001/snk-011, unrelated); npx tsc --noEmit -> exit 0. (5) BSIP1 provenance writes exist: bsip1_7290118427858.json:15-16 (image_url + image_url_source) and bsip1_audit_7290118427858.json:61-70 (image_recovery block). Snacks image coverage now complete (18/18). User holding on commit — NOT committed.",
+      "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
       "cc_reviewed": null
@@ -1837,7 +2110,7 @@
       "frontend_dataset": {
         "status": "DEPLOYED",
         "filename": "bread_frontend_v2.json",
-        "built_at": "2026-06-01"
+        "built_at": "2026-06-02"
       },
       "website": {
         "status": "LIVE",
@@ -1852,6 +2125,178 @@
       },
       "open_work": [],
       "known_issues": [],
+      "last_updated": "2026-06-02"
+    },
+    {
+      "id": "cheese",
+      "name_he": "גבינות לבנות וממרחים",
+      "name_en": "Cottage / White Cheese (Cheese Spreads)",
+      "product_count": 0,
+      "factory_status": "COMPLETE",
+      "bsip0": {
+        "status": "PASS",
+        "run": "run_cheese_003",
+        "displayable": 51,
+        "scraped": 116,
+        "displayable_note": "52->51: gtin 7290014217492 (תערובת תיבול פילדלפיה) removed as a non-cheese seasoning blend misrouted by the פילדלפיה anchor (TASK-153)"
+      },
+      "bsip1": {
+        "status": "PASS",
+        "run": "run_cheese_003",
+        "pools": {
+          "cottage": 11,
+          "white_cheese_quark": 17,
+          "cream_cheese_spread": 25,
+          "labaneh": 3
+        }
+      },
+      "bsip2": {
+        "status": "AUTHORITATIVE",
+        "run": "run_cheese_003",
+        "engine": "0.4.1 (unmodified) + TASK-145 router anchor (EV-025)",
+        "signoff": "Nutrition grade-publication APPROVED 2026-06-02 (factory_run_003/NUTRITION_SIGNOFF_VERDICT.md); EV-029 fat-parser fix (TASK-142A) applied; plausibility 0.0% implausible",
+        "run_id": null,
+        "invalid_runs": []
+      },
+      "qa": {
+        "status": "PASS",
+        "run": "run_cheese_003",
+        "misroute_pct": 1.7,
+        "insufficient_pct": 0.0,
+        "router_regression": "15/15"
+      },
+      "frontend_dataset": {
+        "status": "DEPLOYED",
+        "filename": "cheese_frontend_v1.json",
+        "built_at": "2026-06-02"
+      },
+      "website": {
+        "status": "LIVE",
+        "route": "/hashvaot/cheese",
+        "component_generation": "gen1",
+        "page_file": "page.tsx"
+      },
+      "launch": {
+        "status": "LIVE",
+        "live_since": null,
+        "blocking_issues": []
+      },
+      "open_work": [],
+      "known_issues": [
+        "RESOLVED — EV-029 fat-parse bug (trans-fat row captured as total fat) fixed centrally in _shared/bsip0_nutrition.py (TASK-142A); re-scraped + re-scored as run_cheese_003 on corrected fat; plausibility 0.0% implausible (was 31.9%).",
+        "RESOLVED — QA-CHS-001 cream-cheese misroute fixed by TASK-145/EV-025 (router anchor + regression-lock); run_cheese_003 misroute 1.7%.",
+        "BY DESIGN — 8 products withheld from the 59-corpus: 2 misroute (1 residual + 1 non-cheese seasoning removed by TASK-153), 1 A-ceiling withhold (גבינה טבורוג 5% / 82.0, fails C1-C4), 5 transparency-tier on genuine partial Shufersal panels (total fat/protein/carbs omitted at source). 51 display-approved.",
+        "RESOLVED — TASK-153: gtin 7290014217492 (תערובת תיבול פילדלפיה, brand טעם וריח, Shufersal seasonings shelf) was a salt-based seasoning blend (sodium 7,905 mg/100g) misrouted into cream_cheese_spread by the TASK-145 פילדלפיה anchor. Removed from live JSON + factory package + this baseline (52->51); router seasoning-exclusion added (EV-030). No engine/score change; no other product moved.",
+        "FOLLOW-UP — insightLine + hero/prologue/methodology Hebrew copy is AI-drafted pending Content Agent editorial review before public launch (TASK-152 deferred item)."
+      ],
+      "last_updated": "2026-06-02"
+    },
+    {
+      "id": "maadanim",
+      "name_he": "מעדנים",
+      "name_en": "Dairy Desserts",
+      "product_count": 90,
+      "factory_status": "COMPLETE",
+      "bsip0": {
+        "status": "PASS"
+      },
+      "bsip1": {
+        "status": "COMPLETE",
+        "record_count": 90
+      },
+      "bsip2": {
+        "status": "AUTHORITATIVE",
+        "run_id": null,
+        "invalid_runs": []
+      },
+      "qa": {
+        "status": "PASS"
+      },
+      "frontend_dataset": {
+        "status": "DEPLOYED",
+        "filename": "maadanim_frontend_v2.json",
+        "built_at": "2026-06-02"
+      },
+      "website": {
+        "status": "LIVE",
+        "route": "/hashvaot/maadanim",
+        "component_generation": "gen1",
+        "page_file": "page.tsx"
+      },
+      "launch": {
+        "status": "LIVE",
+        "live_since": null,
+        "blocking_issues": []
+      },
+      "open_work": [],
+      "known_issues": [],
+      "last_updated": "2026-06-02"
+    },
+    {
+      "id": "hummus",
+      "name_he": "חומוס",
+      "name_en": "Hummus",
+      "product_count": 69,
+      "factory_status": "COMPLETE",
+      "bsip0": {
+        "status": "PASS",
+        "gate_date": "2026-05-30",
+        "report": "bsip0_gate_result_20260530_204340.md"
+      },
+      "bsip1": {
+        "status": "COMPLETE",
+        "record_count": 69
+      },
+      "bsip2": {
+        "status": "AUTHORITATIVE",
+        "run_id": "run_hummus_002",
+        "invalid_runs": [
+          "run_hummus_001"
+        ]
+      },
+      "qa": {
+        "status": "PASS"
+      },
+      "frontend_dataset": {
+        "status": "DEPLOYED",
+        "filename": "hummus_frontend_v3.json",
+        "built_at": "2026-06-02"
+      },
+      "website": {
+        "status": "LIVE",
+        "route": "/hashvaot/hummus",
+        "component_generation": "gen1",
+        "page_file": "page.tsx"
+      },
+      "launch": {
+        "status": "LIVE",
+        "live_since": null,
+        "blocking_issues": []
+      },
+      "open_work": [],
+      "known_issues": [
+        {
+          "id": "HUM-001",
+          "title": "Fat data corruption — 59/69 BSIP1 records have wrong fat_g (scraper captured sat fat sub-row)",
+          "severity": "HIGH",
+          "blocking": false,
+          "resolution": "DEC-001 resolved: Option B (suppress fat display). v2 correction Q3 2026."
+        },
+        {
+          "id": "HUM-002",
+          "title": "Sugar data absent — sugars_g 0% coverage",
+          "severity": "MEDIUM",
+          "blocking": false,
+          "resolution": "Accepted at category level per QA PASS verdict."
+        },
+        {
+          "id": "HUM-003",
+          "title": "run_hummus_001 INVALID — dessert routing bug (44/69 misrouted)",
+          "severity": "LOW",
+          "blocking": false,
+          "resolution": "Marked INVALID. run_hummus_002 is authoritative."
+        }
+      ],
       "last_updated": "2026-06-02"
     },
     {
@@ -1926,7 +2371,7 @@
       "frontend_dataset": {
         "status": "DEPLOYED",
         "filename": "snacks_frontend_v2.json",
-        "built_at": "2026-06-01"
+        "built_at": "2026-06-02"
       },
       "website": {
         "status": "LIVE",
@@ -1985,122 +2430,6 @@
       "last_updated": "2026-06-02"
     },
     {
-      "id": "maadanim",
-      "name_he": "מעדנים",
-      "name_en": "Dairy Desserts",
-      "product_count": 90,
-      "factory_status": "COMPLETE",
-      "bsip0": {
-        "status": "PASS"
-      },
-      "bsip1": {
-        "status": "COMPLETE",
-        "record_count": 90
-      },
-      "bsip2": {
-        "status": "AUTHORITATIVE",
-        "run_id": null,
-        "invalid_runs": []
-      },
-      "qa": {
-        "status": "PASS"
-      },
-      "frontend_dataset": {
-        "status": "DEPLOYED",
-        "filename": "maadanim_frontend_v2.json",
-        "built_at": "2026-06-02"
-      },
-      "website": {
-        "status": "LIVE",
-        "route": "/hashvaot/maadanim",
-        "component_generation": "gen1",
-        "page_file": "page.tsx"
-      },
-      "launch": {
-        "status": "PRE_LAUNCH",
-        "live_since": null,
-        "blocking_issues": [
-          "TASK-149"
-        ]
-      },
-      "open_work": [
-        "TASK-149"
-      ],
-      "known_issues": [],
-      "last_updated": "2026-06-02"
-    },
-    {
-      "id": "hummus",
-      "name_he": "חומוס",
-      "name_en": "Hummus",
-      "product_count": 69,
-      "factory_status": "COMPLETE",
-      "bsip0": {
-        "status": "PASS",
-        "gate_date": "2026-05-30",
-        "report": "bsip0_gate_result_20260530_204340.md"
-      },
-      "bsip1": {
-        "status": "COMPLETE",
-        "record_count": 69
-      },
-      "bsip2": {
-        "status": "AUTHORITATIVE",
-        "run_id": "run_hummus_002",
-        "invalid_runs": [
-          "run_hummus_001"
-        ]
-      },
-      "qa": {
-        "status": "PASS"
-      },
-      "frontend_dataset": {
-        "status": "DEPLOYED",
-        "filename": "hummus_frontend_v3.json",
-        "built_at": "2026-06-02"
-      },
-      "website": {
-        "status": "LIVE",
-        "route": "/hashvaot/hummus",
-        "component_generation": "gen1",
-        "page_file": "page.tsx"
-      },
-      "launch": {
-        "status": "PRE_LAUNCH",
-        "live_since": null,
-        "blocking_issues": [
-          "TASK-150"
-        ]
-      },
-      "open_work": [
-        "TASK-150"
-      ],
-      "known_issues": [
-        {
-          "id": "HUM-001",
-          "title": "Fat data corruption — 59/69 BSIP1 records have wrong fat_g (scraper captured sat fat sub-row)",
-          "severity": "HIGH",
-          "blocking": false,
-          "resolution": "DEC-001 resolved: Option B (suppress fat display). v2 correction Q3 2026."
-        },
-        {
-          "id": "HUM-002",
-          "title": "Sugar data absent — sugars_g 0% coverage",
-          "severity": "MEDIUM",
-          "blocking": false,
-          "resolution": "Accepted at category level per QA PASS verdict."
-        },
-        {
-          "id": "HUM-003",
-          "title": "run_hummus_001 INVALID — dessert routing bug (44/69 misrouted)",
-          "severity": "LOW",
-          "blocking": false,
-          "resolution": "Marked INVALID. run_hummus_002 is authoritative."
-        }
-      ],
-      "last_updated": "2026-06-02"
-    },
-    {
       "id": "breakfast-cereals",
       "name_he": "דגני בוקר",
       "name_en": "Breakfast Cereals",
@@ -2140,69 +2469,6 @@
         "TASK-140"
       ],
       "known_issues": [],
-      "last_updated": "2026-06-02"
-    },
-    {
-      "id": "cheese-spreads",
-      "name_he": "גבינות לבנות וממרחים",
-      "name_en": "Cottage / White Cheese (Cheese Spreads)",
-      "product_count": 0,
-      "factory_status": "IN_PROGRESS",
-      "bsip0": {
-        "status": "PASS",
-        "run": "run_cheese_001",
-        "displayable": 57,
-        "scraped": 116
-      },
-      "bsip1": {
-        "status": "PASS",
-        "run": "run_cheese_001",
-        "pools": {
-          "cottage": 11,
-          "white_cheese_quark": 17,
-          "cream_cheese_spread": 26,
-          "labaneh": 3
-        }
-      },
-      "bsip2": {
-        "status": "INVALID_DATA",
-        "run": "run_cheese_002",
-        "engine": "0.4.0 + TASK-145 router anchor (EV-025)",
-        "defect": "fat_g corrupted (trans-fat parse bug) on 62/116 raw -> scores unreliable; re-run as run_cheese_003 after scraper fix",
-        "run_id": null,
-        "invalid_runs": []
-      },
-      "qa": {
-        "status": "ROUTING_PASS_DATA_FAIL",
-        "run": "run_cheese_002",
-        "misroute_pct": 1.8,
-        "insufficient_pct": 0.0,
-        "router_regression": "15/15",
-        "data_defect": "nutrition fat-parse bug (Nutrition review 2026-06-01)"
-      },
-      "frontend_dataset": {
-        "status": "NOT_BUILT",
-        "filename": null,
-        "built_at": null
-      },
-      "website": {
-        "status": "NOT_STARTED",
-        "route": "/hashvaot/cheese-spreads",
-        "component_generation": null,
-        "page_file": null
-      },
-      "launch": {
-        "status": "QUEUED",
-        "live_since": null,
-        "blocking_issues": []
-      },
-      "open_work": [],
-      "known_issues": [
-        "OPEN (HIGH) — fat-parse bug: BSIP0 scraper captured the trans-fat row as total fat (fat_g=0.5 for 62/116 raw incl. 18% cream cheese). Invalidates run_cheese_001/002 scores. Fix: parse total fat ('גרם שומנים'), stop nutrition-panel bleed into ingredients; re-scrape + re-run. TASK-142 reopened CHANGES_REQUESTED.",
-        "RESOLVED — QA-CHS-001 cream-cheese misroute fixed by TASK-145/EV-025 (router anchor + regression-lock); run_cheese_002 misroute 1.8% (routing unaffected by the fat bug).",
-        "1 residual misroute (1.8%): גבינת עזים 32% goat -> snack_bar_granola; under 5% gate.",
-        "EV-026 ingredient/nutrition text bleed also produces false sweetener/light flags (Nutrition review); resolved by the same parse fix."
-      ],
       "last_updated": "2026-06-02"
     },
     {
@@ -2246,5 +2512,45 @@
       "last_updated": "2026-06-02"
     }
   ],
-  "alerts": []
+  "alerts": [
+    {
+      "id": "ALT-001",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-162: tasks/TASK-162.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-162",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-162.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-002",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-165: tasks/TASK-165.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-165",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-165.md, then re-run generate_dashboard.py."
+    },
+    {
+      "id": "ALT-003",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-166: tasks/TASK-166.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-166",
+      "related_agent": null,
+      "created_at": "2026-06-02",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-166.md, then re-run generate_dashboard.py."
+    }
+  ]
 }

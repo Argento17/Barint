@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.814788Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.224355Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110329143",
@@ -54,7 +54,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": 10.0,
-    "ingredient_count": 11,
+    "ingredient_count": 8,
     "ingredient_list": [
       "חלב (83%)",
       "חלבוני חלב (7.2%)",
@@ -63,11 +63,25 @@
       "חומרי טעם וריח",
       "מווסת חומציות (E-450iii)",
       "מייצב (קרגינאן)",
-      "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה ערכים תזונתיים 100 גרם 106 קל אנרגיה 10 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 107 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה"
     ],
+    "ingredient_count_raw": 11,
+    "ingredient_sanitization": {
+      "raw_count": 11,
+      "clean_count": 8,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה ערכים תזונתיים 100 גרם 106 קל אנרגיה 10 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 107 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,7 +99,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -168,6 +183,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 8,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -185,10 +201,7 @@
       "חומרי טעם וריח",
       "מווסת חומציות (E-450iii)",
       "מייצב (קרגינאן)",
-      "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה ערכים תזונתיים 100 גרם 106 קל אנרגיה 10 גרם חלבונים 12.1 גרם פחמימות 2 גרם שומנים 107 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבא מאכל (בטא-ק רוטן). מכיל חלב עלול להכיל סויה"
     ]
   },
   "L4_interpreted_concerns": {
@@ -240,7 +253,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 32.5,
+    "nutrient_density": 50.0,
     "calorie_density": 85.0,
     "glycemic_quality": 90.0,
     "protein_quality": 50.0,
@@ -248,11 +261,11 @@
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 24
+    "whole_food_integrity": 30
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=10.0g→50.0, fiber=0g→0.0, weighted 65/35=32.5",
+    "nutrient_density": "protein=10.0g→50.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 50.0",
     "calorie_density": "kcal=106.0, category=dessert → 85",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
@@ -260,7 +273,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 0×5) / 106.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=11 complexity_pen=6 → 24"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=8 complexity_pen=0 → 30"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -274,7 +287,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 54.38,
+  "weighted_dimension_score": 57.25,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -378,7 +391,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 54.38,
+  "score_after_cap": 57.25,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -429,7 +442,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 54.38,
+  "score_after_penalty": 57.25,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -490,11 +503,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 54.38,
+  "score_after_floors": 57.25,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 54.4,
+  "final_score_estimate": 57.2,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -504,16 +517,16 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.446,
+    "primary_confidence": 0.434,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
     "secondary_confidence": 0.351,
     "class_weights": {
       "A": 0.033,
-      "B": 0.033,
-      "C": 0.012,
-      "D": 0.124,
-      "E": 0.446,
+      "B": 0.045,
+      "C": 0.021,
+      "D": 0.116,
+      "E": 0.434,
       "F": 0.351
     },
     "is_between_worlds": true,

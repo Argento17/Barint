@@ -24,26 +24,13 @@ export const BARI_COMPARISON_TOKENS = {
     rowHeightMobile: "72px",
     rowHeightMobileMax: "80px",
     rowImageSize: "56px",
-    rowImageSizeWeb: "64px",
     scoreChipSize: "22px",
     heroMaxHeight: "280px",
     heroImageHeight: "160px",
-    webShellMaxWidth: "1600px",
   },
-  /** Comparison Web Template v1 — desktop workspace (lg+ only). */
+  /** Horizontal section inset shared by the `wide` category chrome (hero/prologue/lenses/methodology). */
   webTable: {
-    /** Fills viewport; caps at 1600px; mx-auto centers within the grey canvas padding. */
-    shellMaxWidthClass: "lg:w-full lg:max-w-[1600px] lg:mx-auto",
-    /** Modest horizontal inset on the grey canvas only. */
-    shellViewportPaddingClass: "lg:px-8 xl:px-10 2xl:px-12",
-    shellSurfaceClass:
-      "lg:rounded-none lg:border-0 lg:bg-white lg:shadow-none",
     sectionPaddingClass: "lg:px-8 xl:px-10 2xl:px-12",
-    tableInsetClass: "lg:px-8 xl:px-10 2xl:px-12",
-    /** RTL: rank | image | product+insight | score */
-    gridColsClass: "lg:grid-cols-[2.25rem_4.5rem_minmax(0,1fr)_5.25rem]",
-    gridGapClass: "lg:gap-x-5",
-    headerBgClass: "lg:bg-[#FAFAF8]",
   },
   insightLine: {
     fontSize: "13px",
@@ -104,12 +91,6 @@ export const BARI_COMPARISON_TOKENS = {
     },
   },
 } as const;
-
-/** Shared desktop table grid classes for header, rows, and expansion alignment. */
-export function comparisonWebTableGridClass(): string {
-  const { gridColsClass, gridGapClass } = BARI_COMPARISON_TOKENS.webTable;
-  return `${gridColsClass} ${gridGapClass}`;
-}
 
 /** Horizontal padding for hero, prologue, lenses, methodology in web layout. */
 export function comparisonWebSectionPaddingClass(): string {

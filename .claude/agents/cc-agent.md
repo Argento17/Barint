@@ -100,6 +100,16 @@ This is the IMPLEMENT→VALIDATE→(REVIEW)→COMMIT discipline: the worker impl
 CC validates independently, high-stakes work gets adversarial review, then CC
 commits the CLOSED.
 
+### `cc_comments` style — sharp, not exhaustive
+A dashboard comment is a **signal, not an audit log**. Hard cap **~50 words / 2–3
+sentences**. Lead with the finding, then the one fact that proves it. Cut: the
+verification narrative (that's the close_reason's job), corrections to your own
+earlier flags (silently fix — don't recount the false alarm), restated chains
+already in linked TASK ids, parenthetical asides, and verbatim payloads (cite the
+field/file, don't paste it). If it needs more, it's a TASK or a return block, not
+a comment. Test: would the user act on this in one read? If not, trim until they
+would.
+
 ## Responsibilities
 
 - **Mapping integrity:** confirm every `TASK-*.md` (objectives + sub-tasks)

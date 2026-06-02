@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.893272Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.293461Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110561604",
@@ -36,8 +36,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "multiple_added_sugar_sources: 3",
-    "very_long_ingredient_list: 18"
+    "multiple_added_sugar_sources: 3"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -46,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 102.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 5.0,
+    "fat_saturated_g": 3.0,
     "fat_trans_g": null,
     "sodium_mg": 46.0,
     "carbohydrates_g": 7.0,
-    "sugars_g": null,
+    "sugars_g": 6.0,
     "dietary_fiber_g": 1.1,
     "protein_g": 5.2,
-    "ingredient_count": 18,
+    "ingredient_count": 15,
     "ingredient_list": [
       "גבינה לבנה (חלב) (80%)",
       "מים",
@@ -70,11 +69,25 @@
       "ברזל",
       "אבץ",
       "ויטמינים (A",
-      "D*).n*בתקופת פסח - המתכון ללא ויטמין A. מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 1.1 גרם סיבים תזונתיים 6 גרם סוכרים מתוך פחמימות 3.7 מקג D ויטמין 102 קל אנרגיה 5.2 גרם חלבונים 7 גרם פחמימות 5 גרם שומנים 19.7 מג כולסטרול 46 מג נתרן 3 גרם מתוכם שומן רווי 2 מג ברזל פחות מ 0.5 גרם חומצות שומן טרנס 1.5 מג אבץ 176 מג סידן 100 מקג A ויטמין 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "D*)"
     ],
+    "ingredient_count_raw": 18,
+    "ingredient_sanitization": {
+      "raw_count": 18,
+      "clean_count": 15,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "D*).n*בתקופת פסח - המתכון ללא ויטמין A. מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 1.1 גרם סיבים תזונתיים 6 גרם סוכרים מתוך פחמימות 3.7 מקג D ויטמין 102 קל אנרגיה 5.2 גרם חלבונים 7 גרם פחמימות 5 גרם שומנים 19.7 מג כולסטרול 46 מג נתרן 3 גרם מתוכם שומן רווי 2 מג ברזל פחות מ 0.5 גרם חומצות שומן טרנס 1.5 מג אבץ 176 מג סידן 100 מקג A ויטמין 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "D*)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -84,20 +97,18 @@
     ],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
-    "missing_nutrition_fields": [
-      "fat_saturated_g",
-      "sugars_g"
-    ],
+    "missing_nutrition_fields": [],
     "consistency_checks": {
-      "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "sugar_le_carbs": true,
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 4.41,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": null,
+    "fat_pct_of_kcal": 44.12,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.857,
     "protein_per_kcal": 0.051,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -167,6 +178,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 15,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -175,7 +187,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 4.41,
+    "fat_pct_of_kcal": 44.12,
     "ingredient_list": [
       "גבינה לבנה (חלב) (80%)",
       "מים",
@@ -191,10 +203,7 @@
       "ברזל",
       "אבץ",
       "ויטמינים (A",
-      "D*).n*בתקופת פסח - המתכון ללא ויטמין A. מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 1.1 גרם סיבים תזונתיים 6 גרם סוכרים מתוך פחמימות 3.7 מקג D ויטמין 102 קל אנרגיה 5.2 גרם חלבונים 7 גרם פחמימות 5 גרם שומנים 19.7 מג כולסטרול 46 מג נתרן 3 גרם מתוכם שומן רווי 2 מג ברזל פחות מ 0.5 גרם חומצות שומן טרנס 1.5 מג אבץ 176 מג סידן 100 מקג A ויטמין 1.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "D*)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -231,7 +240,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": false
     },
     "se_note": null
@@ -248,25 +257,25 @@
     "processing_quality": 35,
     "nutrient_density": 20.8,
     "calorie_density": 90.0,
-    "glycemic_quality": 92.2,
+    "glycemic_quality": 77.2,
     "protein_quality": 26.0,
     "additive_quality": 82.0,
     "satiety_support": 82.7,
-    "fat_quality": 50.0,
+    "fat_quality": 76.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 10
+    "whole_food_integrity": 16
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=5.2g→26.0, fiber=1.1g→11.0, weighted 65/35=20.8",
     "calorie_density": "kcal=102.0, category=default (conf 0.30, relaxed by 1.10x) → 90",
-    "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(2.2) + wg(0) = 92.2",
+    "glycemic_quality": "90 - sugar_penalty(15.0) + fiber(2.2) + wg(0) = 77.2",
     "protein_quality": "protein=5.2g base=26.0, source=whole_food(×1.0) → 26.0",
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.2×3 + 1.1×5) / 102.0 × 400 = 82.7",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=5.0g<8.0): sat=3.0g base=76.0-seed0-trans0=76.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=18 complexity_pen=20 → 10"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -280,7 +289,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 57.85,
+  "weighted_dimension_score": 58.37,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -380,7 +389,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 57.85,
+  "score_after_cap": 58.37,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -415,7 +424,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.4<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=44.1<30.0 or sugar=6.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -436,13 +445,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=18"
+      "note": "ingredient_count=15"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 48.85,
+  "score_after_penalty": 49.37,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -511,11 +520,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 48.85,
+  "score_after_floors": 49.37,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 48.9,
+  "final_score_estimate": 49.4,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -528,17 +537,17 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.379,
+    "primary_confidence": 0.348,
     "secondary": "B",
     "secondary_label": "Lightly Transformed Traditional",
-    "secondary_confidence": 0.193,
+    "secondary_confidence": 0.195,
     "class_weights": {
-      "A": 0.055,
-      "B": 0.193,
-      "C": 0.069,
-      "D": 0.124,
-      "E": 0.179,
-      "F": 0.379
+      "A": 0.056,
+      "B": 0.195,
+      "C": 0.09,
+      "D": 0.139,
+      "E": 0.172,
+      "F": 0.348
     },
     "is_between_worlds": false,
     "classification_notes": [

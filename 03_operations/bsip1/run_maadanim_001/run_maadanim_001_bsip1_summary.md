@@ -1,12 +1,12 @@
 # BSIP1 Maadanim Run Summary — run_maadanim_001
 
-**Built:** 2026-05-28T09:30:54.355360
+**Built:** 2026-06-02T08:05:21.668568
 **Source:** Shufersal BSIP0 raw scrape
 **Raw products:** 200
 **BSIP1 files written:** 200
 **Skipped (duplicate/empty):** 0
 **Errors:** 0
-**BSIP1 files in output dir:** 200
+**BSIP1 files in output dir:** 208
 
 ## Coverage
 

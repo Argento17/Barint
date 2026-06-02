@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.068239Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.433498Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290116932620",
@@ -31,11 +31,11 @@
   "classification_basis": [
     "hard_anchor:יוגורט"
   ],
-  "nova_proxy": 3,
-  "nova_confidence": 0.55,
+  "nova_proxy": 2,
+  "nova_confidence": 0.5,
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
-    "additive_categories: 0, added_sugars: 0"
+    "minimal_additives_and_processing_signals"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -52,17 +52,26 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": 190.0,
-    "ingredient_count": 8,
+    "ingredient_count": 4,
     "ingredient_list": [
       "רכיבי חלב (54%)",
       "חלב",
       "אבקת חלב. n25 גרם חלבון בגביע",
-      "מתוכם11.5 גרם חלבוני מי גבינה",
-      "13.5 גרם קזאין מכיל חלב ערכים תזונתיים 100 גרם 86 קל אנרגיה 190 גרם חלבונים 4.4 גרם פחמימות 2 גרם שומנים 72 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מתוכם11.5 גרם חלבוני מי גבינה"
     ],
+    "ingredient_count_raw": 8,
+    "ingredient_sanitization": {
+      "raw_count": 8,
+      "clean_count": 4,
+      "dropped": [
+        "13.5 גרם קזאין מכיל חלב ערכים תזונתיים 100 גרם 86 קל אנרגיה 190 גרם חלבונים 4.4 גרם פחמימות 2 גרם שומנים 72 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -80,7 +89,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": false
     }
   },
   "L2_derived_signals": {
@@ -109,10 +119,11 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
       "אבקת חלב",
-      "קזאין"
+      "קזאין",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 0,
     "added_sugar_matches": [],
@@ -151,6 +162,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 4,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -164,11 +176,7 @@
       "רכיבי חלב (54%)",
       "חלב",
       "אבקת חלב. n25 גרם חלבון בגביע",
-      "מתוכם11.5 גרם חלבוני מי גבינה",
-      "13.5 גרם קזאין מכיל חלב ערכים תזונתיים 100 גרם 86 קל אנרגיה 190 גרם חלבונים 4.4 גרם פחמימות 2 גרם שומנים 72 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מתוכם11.5 גרם חלבוני מי גבינה"
     ]
   },
   "L4_interpreted_concerns": {
@@ -210,12 +218,16 @@
     },
     "se_note": null
   },
-  "confidence_score": 90,
-  "confidence_band": "high",
+  "confidence_score": 50,
+  "confidence_band": "low",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
       "reduction": -5
+    },
+    {
+      "factor": "macro values implausible per 100g (data integrity failure)",
+      "reduction": -40
     },
     {
       "factor": "nova_confidence=medium",
@@ -223,28 +235,28 @@
     }
   ],
   "dimension_scores": {
-    "processing_quality": 65,
-    "nutrient_density": 61.8,
+    "processing_quality": 85,
+    "nutrient_density": 95,
     "calorie_density": 88.0,
     "glycemic_quality": 90.0,
-    "protein_quality": 80.8,
+    "protein_quality": 95.0,
     "additive_quality": 100,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 60
+    "whole_food_integrity": 85
   },
   "dimension_notes": {
-    "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=190.0g→95.0, fiber=0g→0.0, weighted 65/35=61.8",
+    "processing_quality": "NOVA 2 → processing_quality=85 (NOVA_PROCESSING_SCORES table)",
+    "nutrient_density": "protein=190.0g→95.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 95",
     "calorie_density": "kcal=86.0, category=yogurt → 88",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
-    "protein_quality": "protein=190.0g base=95.0, source=mixed(×0.85) → 80.8",
+    "protein_quality": "protein=190.0g base=95.0, source=dairy(×1.0) → 95.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (190.0×3 + 0×5) / 86.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=8 complexity_pen=0 → 60"
+    "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -258,7 +270,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 78.25,
+  "weighted_dimension_score": 88.65,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -274,7 +286,7 @@
     },
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
-      "cap": 60,
+      "cap": 68,
       "condition": false,
       "fired": false
     },
@@ -286,13 +298,13 @@
     },
     {
       "rule": "SNACK_BAR_RED_SUGAR_LABEL",
-      "cap": 55,
+      "cap": 63,
       "condition": false,
       "fired": false
     },
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
-      "cap": 55,
+      "cap": 63,
       "condition": false,
       "fired": false
     },
@@ -335,8 +347,8 @@
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
       "cap": 87,
-      "condition": true,
-      "fired": true
+      "condition": false,
+      "fired": false
     },
     {
       "rule": "HIGH_SODIUM_700MG_PLUS",
@@ -351,14 +363,9 @@
       "fired": false
     }
   ],
-  "caps_applied": [
-    {
-      "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 87
-    }
-  ],
-  "binding_cap": 87,
-  "score_after_cap": 78.25,
+  "caps_applied": [],
+  "binding_cap": null,
+  "score_after_cap": 88.65,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -409,7 +416,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 78.25,
+  "score_after_penalty": 88.65,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -430,7 +437,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 87,
+      "binding_cap": null,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -470,35 +477,35 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 78.25,
-  "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-5",
-  "hp_nova_weight": 0.5,
-  "final_score_estimate": 78.2,
+  "score_after_floors": 88.65,
+  "confidence_ceiling_applied": "confidence ceiling 75 applied (confidence=50, band=low)",
+  "sugar_context_class": "SC-2",
+  "hp_nova_weight": 0.0,
+  "final_score_estimate": 75,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=87 from rules: ['NOVA_PROXY_3_PROCESSED']"
+    "DOMINANT: Confidence ceiling active at 75 (data quality limitation)"
   ],
   "unresolved_flags": [],
   "structural_class": {
-    "primary": "D",
-    "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.271,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.226,
+    "primary": "B",
+    "primary_label": "Lightly Transformed Traditional",
+    "primary_confidence": 0.418,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.22,
     "class_weights": {
-      "A": 0.186,
-      "B": 0.119,
-      "C": 0.198,
-      "D": 0.271,
-      "E": 0.226,
+      "A": 0.209,
+      "B": 0.418,
+      "C": 0.22,
+      "D": 0.016,
+      "E": 0.137,
       "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_3_signal",
+      "nova_2_signal",
       "no_additives_detected",
       "high_protein_quality",
       "zero_additive_categories"

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.780509Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.190284Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110324926",
@@ -44,15 +44,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 32.0,
-    "fat_g": 0.0,
-    "fat_saturated_g": null,
+    "fat_g": 1.8,
+    "fat_saturated_g": 0.3,
     "fat_trans_g": null,
     "sodium_mg": 60.0,
     "carbohydrates_g": 0.5,
     "sugars_g": null,
     "dietary_fiber_g": 0.5,
     "protein_g": 3.3,
-    "ingredient_count": 15,
+    "ingredient_count": 10,
     "ingredient_list": [
       "מיצוי פולי סויה (99.4%) (מים",
       "פולי סויה 6.4%)",
@@ -63,13 +63,22 @@
       "מלח",
       "מייצב: ג'לאן גאם",
       "ויטמינים B12",
-      "B2 ו- D (B2-0.24 מ\"ג",
-      "B12-מק\"ג 0.4",
-      "D-0.75 מק\"ג ל-100 גרם). מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 0.5 גרם סיבים תזונתיים 32 קל אנרגיה 3.3 גרם חלבונים 0.5 גרם פחמימות 1.8 גרם שומנים 0 מג כולסטרול 60 מג נתרן 0.3 גרם מתוכם שומן רווי 0 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "B12-מק\"ג 0.4"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 10,
+      "dropped": [
+        "B2 ו- D (B2-0.24 מ\"ג",
+        "D-0.75 מק\"ג ל-100 גרם). מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 0.5 גרם סיבים תזונתיים 32 קל אנרגיה 3.3 גרם חלבונים 0.5 גרם פחמימות 1.8 גרם שומנים 0 מג כולסטרול 60 מג נתרן 0.3 גרם מתוכם שומן רווי 0 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -80,18 +89,18 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "sugars_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 0.0,
-    "saturated_fat_fraction": null,
+    "fat_pct_of_kcal": 50.62,
+    "saturated_fat_fraction": 0.167,
     "sugar_to_carb_ratio": null,
     "protein_per_kcal": 0.1031,
     "derivation_notes": [
@@ -160,6 +169,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -168,7 +178,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 0,
+    "fat_pct_of_kcal": 50.62,
     "ingredient_list": [
       "מיצוי פולי סויה (99.4%) (מים",
       "פולי סויה 6.4%)",
@@ -179,12 +189,7 @@
       "מלח",
       "מייצב: ג'לאן גאם",
       "ויטמינים B12",
-      "B2 ו- D (B2-0.24 מ\"ג",
-      "B12-מק\"ג 0.4",
-      "D-0.75 מק\"ג ל-100 גרם). מכיל סויה עלול להכיל אגוזים ערכים תזונתיים 100 גרם 0.5 גרם סיבים תזונתיים 32 קל אנרגיה 3.3 גרם חלבונים 0.5 גרם פחמימות 1.8 גרם שומנים 0 מג כולסטרול 60 מג נתרן 0.3 גרם מתוכם שומן רווי 0 גרם חומצות שומן טרנס הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "B12-מק\"ג 0.4"
     ]
   },
   "L4_interpreted_concerns": {
@@ -242,9 +247,9 @@
     "protein_quality": 16.5,
     "additive_quality": 46.0,
     "satiety_support": 99.2,
-    "fat_quality": 50.0,
+    "fat_quality": 94.9,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 46
+    "whole_food_integrity": 56
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
@@ -254,9 +259,9 @@
     "protein_quality": "protein=3.3g base=16.5, source=whole_food(×1.0) → 16.5",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.3×3 + 0.5×5) / 50 × 400 = 99.2",
-    "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
+    "fat_quality": "fat_v1(fat=1.8g<8.0): sat=0.3g base=94.9-seed0-trans0=94.9",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=15 complexity_pen=14 → 46"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=10 complexity_pen=4 → 56"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -270,7 +275,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 55.84,
+  "weighted_dimension_score": 59.83,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -374,7 +379,7 @@
     }
   ],
   "binding_cap": 72,
-  "score_after_cap": 55.84,
+  "score_after_cap": 59.83,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -397,8 +402,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -409,7 +414,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=0.0<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=50.6<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -421,17 +426,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 51.84,
+  "score_after_penalty": 59.83,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -453,15 +452,11 @@
     },
     "processing_load": {
       "binding_cap": 72,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -496,37 +491,35 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 51.84,
+  "score_after_floors": 59.83,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 51.8,
+  "final_score_estimate": 59.8,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=72 from rules: ['ADDITIVE_MARKERS_3_PLUS', 'NOVA_PROXY_3_PROCESSED']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=72 from rules: ['ADDITIVE_MARKERS_3_PLUS', 'NOVA_PROXY_3_PROCESSED']"
   ],
   "unresolved_flags": [],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.58,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.201,
+    "primary_confidence": 0.52,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.215,
     "class_weights": {
       "A": 0.052,
       "B": 0.052,
-      "C": 0.116,
-      "D": 0.58,
-      "E": 0.201,
+      "C": 0.215,
+      "D": 0.52,
+      "E": 0.161,
       "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_3_signal",
-      "high_complexity_assembly"
+      "nova_3_signal"
     ],
     "classifier_version": "structural_classifier_v1"
   }

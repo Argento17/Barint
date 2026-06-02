@@ -2,9 +2,10 @@
 id: TASK-133C
 title: F1 - identity-modulated emulsifier/stabilizer penalty weights
 owner: nutrition-agent
-status: RETURNED
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: [TASK-133A]
 blocks: []
 category_id: null

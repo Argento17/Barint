@@ -1,0 +1,35 @@
+{
+  "stage": "6_bsip2_readiness",
+  "run_id": "run_cereals_002",
+  "generated": "2026-06-01",
+  "owner": "Scoring Governance Lead (Nutrition approves)",
+  "scoring_logic_registered": {
+    "status": "PASS",
+    "detail": "Engine proto_v0 / 0.4.0 is the registered scoring engine (.claude/scoring.md). Run executed UNMODIFIED — no score tuning, no manual edits. Cereals governance is registered and adopted: cereals_gap_resolution_v1 (verdict B, Launch-Ready-with-Conditions)."
+  },
+  "evidence_registry_reference": {
+    "status": "PASS",
+    "detail": "The four constructs are label-observable CLASSIFICATION/DISCLOSURE layers, NOT new scoring rules — no weight/threshold/penalty added. They cite: cereals_gap_resolution_v1 Sec 2.8/2.9/5.2.1/6.4; Comparison Governance Constitution Art. II Rule 5 + Art. VI Sec 6.4; DISTORTION-004. Extrusion relevance: BSIP2 Evidence Registry EV-010 (extrusion_matrix_penalty).",
+    "no_new_scoring_rule": true
+  },
+  "label_observability": {
+    "status": "PASS",
+    "detail": "Construct inputs are label fields with tracked coverage on the displayable set: nutrition 100%, ingredients 100%, names (Hebrew) 100%. Fortification detection reads ingredient text (no truncation: max 985 < 1200 cap).",
+    "coverage_caveats": [
+      "Children's D1 (visual mascot) and D3 (serving size) are weakly observable from a text-only scrape; recall is conservative (mascot-brand allowlist + single-indicator candidate flagging compensate).",
+      "NOVA proxy may under-call shaped baked-flake cereals as NOVA 1 (QA-CER-W1)."
+    ]
+  },
+  "rollback_plan": {
+    "status": "PASS",
+    "detail": "Greenfield run, NON-AUTHORITATIVE. Nothing is promoted to the live site, so there is no live grade to roll back. If a later run supersedes this, it writes a new run_cereals_NNN dir; run_cereals_002 is preserved as evidence. Live state = no cereals page (unchanged). Notify: Product + QA Lead if promotion is later attempted.",
+    "previous_state": "no live cereals category",
+    "restore": "do not promote run_cereals_002; live remains without cereals"
+  },
+  "nutrition_approval": {
+    "status": "PENDING",
+    "detail": "Nutrition sign-off required for: (1) the 4 shaped baked-flake A's reading NOVA 1 (QA-CER-W1 — likely under-call); (2) confirmation that the 7 grade-A outcomes are defensible (2 plain-oat A's appear milk-precedent-consistent). Until signed, the affected A rows are not display-approved.",
+    "blocks_live": true
+  },
+  "verdict": "CONDITIONAL — engine registered, constructs evidence-grounded, observability + rollback in place; BLOCKED on (a) QA-CER-001 router misroute gate and (b) Nutrition approval of NOVA-1 baked-flake A's."
+}

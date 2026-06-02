@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
+import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-cheese-intelligence-card";
 import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-hummus-intelligence-card";
+import { FeaturedMaadanimIntelligenceCard } from "@/components/hashvaot/featured-maadanim-intelligence-card";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
 import { FeaturedVegetableSpreadsIntelligenceCard } from "@/components/hashvaot/featured-vegetable-spreads-intelligence-card";
-import { FeaturedYogurtsIntelligenceCard } from "@/components/hashvaot/featured-yogurts-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
@@ -15,8 +16,9 @@ import { breadProducts } from "@/lib/comparisons/bread-page-data";
 import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
+import { maadanimProducts } from "@/lib/comparisons/maadanim-page-data";
 import { vegetableSpreadsProducts, vegetableSpreadsPrologueSentences } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
-import { yogurtsPrologueSentences } from "@/lib/comparisons/yogurts-comparison-page-data";
+import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-comparison-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -28,9 +30,10 @@ export const metadata: Metadata = {
 };
 
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
+const MAADANIM_COMPARISON_HREF = "/hashvaot/maadanim";
 const VEGETABLE_SPREADS_COMPARISON_HREF = "/hashvaot/vegetable-spreads";
+const CHEESE_COMPARISON_HREF = "/hashvaot/cheese";
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
-const YOGURTS_COMPARISON_HREF = "/hashvaot/yogurts";
 
 export default function HashvaotIndexPage() {
   const productCount = milkProducts.length;
@@ -38,8 +41,11 @@ export default function HashvaotIndexPage() {
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
   const snacksDescription = `דוח השוואה לחטיפי המדף: ${SNACK_REPORT_STATS.scraped} נסרקו ב${SNACK_REPORT_STATS.retailer}, ${snacksProducts.length} מוצרים בדף ההשוואה.`;
   const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
+  const maadanimDescription = `מעדן נראה כמו פינוק חלבי פשוט — אבל המדף מתפצל לשניים: קינוחים שהמרקם שלהם בנוי על מייצבים ועמילן, ומוצרים מועשרי חלבון שמתפקדים כחטיף. החלבון נע מ-0 גרם (פודינג וג'לי שאינם חלב) ועד כ-10 גרם, וזה המדד שמפריד ביניהם. ${maadanimProducts.length} מוצרים בדף ההשוואה.`;
   const vegetableSpreadsDescription = `${vegetableSpreadsPrologueSentences[0]} ${vegetableSpreadsProducts.length} מוצרים בדף ההשוואה.`;
-  const yogurtsDescription = yogurtsPrologueSentences.join(" ");
+  // TASK-152: reviewed & refined by Content Agent — 4 sub-pools; cream-cheese spreads fall
+  // once real fat is counted (16–30%, EV-029).
+  const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
 
   return (
     <main
@@ -83,12 +89,12 @@ export default function HashvaotIndexPage() {
           <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
             ניתוח עדכני
           </h2>
+          <FeaturedMaadanimIntelligenceCard
+            href={MAADANIM_COMPARISON_HREF}
+            description={maadanimDescription}
+          />
           <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
           <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
-          <FeaturedYogurtsIntelligenceCard
-            href={YOGURTS_COMPARISON_HREF}
-            description={yogurtsDescription}
-          />
           <FeaturedHummusIntelligenceCard
             href={HUMMUS_COMPARISON_HREF}
             description={hummusDescription}
@@ -96,6 +102,10 @@ export default function HashvaotIndexPage() {
           <FeaturedVegetableSpreadsIntelligenceCard
             href={VEGETABLE_SPREADS_COMPARISON_HREF}
             description={vegetableSpreadsDescription}
+          />
+          <FeaturedCheeseIntelligenceCard
+            href={CHEESE_COMPARISON_HREF}
+            description={cheeseDescription}
           />
         </div>
 

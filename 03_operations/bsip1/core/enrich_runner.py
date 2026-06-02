@@ -27,6 +27,7 @@ RUNS = {
     "run_milk_001":    BSIP1_ROOT / "run_milk_001"     / "output",
     "run_milk_002":    BSIP1_ROOT / "run_milk_002"     / "output",
     "run_hummus_001":  BSIP1_ROOT / "run_hummus_001"   / "output",
+    "run_yogurt_003":  BSIP1_ROOT / "run_yogurt_003"   / "output",
 }
 
 

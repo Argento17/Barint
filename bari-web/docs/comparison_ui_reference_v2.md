@@ -340,13 +340,13 @@ fresh **mobile + `lg`** QA baselines captured. Only then promote maadanim (order
 
 ## 12. Open conditions & owners (gate ship, not authoring)
 
-| # | Condition | Gates | Owner |
-|---|---|---|---|
-| 1 | **TASK-106** input not locatable — confirm TASK-098 + DEC-002 govern, or supply it | Final Phase-1 sign-off | Central Controller / Product |
-| 2 | TASK-119/TASK-111 naming gap (TASK-111 used) | Final Phase-1 sign-off | Central Controller |
-| 3 | Hummus confidence re-audit | Phase 0 #6 (§5) | Data / QA |
-| 4 | QA re-baseline at mobile + `lg` (v1's 375px snapshots invalid) | Phase 1 ship | QA |
-| 5 | `base_pct` extraction pipeline | Phase 3 only (not launch) | Data Agent |
+| # | Condition | Gates | Owner | Status |
+|---|---|---|---|---|
+| 1 | **TASK-106** input not locatable — confirm TASK-098 + DEC-002 govern, or supply it | Final Phase-1 sign-off | Central Controller / Product | **RESOLVED** — TASK-098 + DEC-002 confirmed governing (Controller, 2026-06-01) |
+| 2 | TASK-119/TASK-111 naming gap (TASK-111 used) | Final Phase-1 sign-off | Central Controller | **RESOLVED** — TASK-111 is the source (Controller, 2026-06-01) |
+| 3 | Hummus confidence re-audit | Phase 0 #6 (§5) | Data / QA | **PASS for hummus (🟢 GO)** — TASK-129 `confidence_reaudit_launch_v1.md` §5. ⚠️ Same audit puts **maadanim at 🟡 CONDITIONAL GO**: presence-based `verified` over-labels ~63 maadanim rows; 3 instability survivors (§2.2) ship `verified`. Promoting confidence to the row amplifies this — **maadanim corpus must be finalized/frozen (re-audit §2.1–§2.2, P0 #3) before its v2 confidence labels publish.** |
+| 4 | QA re-baseline at mobile + `lg` (v1's 375px snapshots invalid) | Phase 1 ship | QA | **CAPTURED** — maadanim v2 baselines (mobile 375 + `lg` 1280), `02_products/maadanim/reports/128b_screenshots/` |
+| 5 | `base_pct` extraction pipeline | Phase 3 only (not launch) | Data Agent | Deferred (not launch) |
 
 ---
 
@@ -371,8 +371,15 @@ Before any v2 route ships, QA must assert:
 | Role | Owner | Status |
 |---|---|---|
 | Authoring (this reference) | frontend-agent (TASK-128A) | **Signed — authored 2026-06-01** |
-| Design / Product countersign | design-agent / product-agent | Pending |
-| Controller acceptance (closes TASK-128A; opens Phase 1 build) | Central Controller | Pending |
+| Design / Product countersign | design-agent / product-agent | **Cleared by Controller authorization (B1 clearance), 2026-06-01** |
+| Controller acceptance (closes TASK-128A; opens Phase 1 build) | Central Controller | **Granted (B1 clearance), 2026-06-01** |
+
+> **B1 CLEARED — 2026-06-01 (Controller authorization).** §14 sign-off granted; §12
+> conditions 1–4 resolved (below). Phase-1 v2 build is unblocked. **Note:** B1 clears
+> the *reference / platform* gate. Per-category activation still requires that
+> category's confidence corpus be launch-clean (TASK-129 re-audit §4–§5). **maadanim
+> is 🟡 CONDITIONAL GO** (see §12 row 3 note) — its v2 activation carries a separate
+> corpus gate, not covered by B1.
 
 This document **satisfies the authoring half** of TASK-128's prerequisite gate
 (roadmap Blocker #2 / sign-off condition 3). The **sign half** (design/product

@@ -7,6 +7,7 @@ import {
   breadMethodologyLines,
   breadPrologueSentences,
   breadProducts,
+  breadCategoryNote,
   breadComparisonMetadata,
 } from "@/lib/comparisons/bread-comparison-page-data";
 
@@ -20,6 +21,7 @@ export default function BreadComparisonRoute() {
       hero={breadHero}
       prologueSentences={breadPrologueSentences}
       methodologyLines={breadMethodologyLines}
+      categoryNote={breadCategoryNote}
     />
   );
 }

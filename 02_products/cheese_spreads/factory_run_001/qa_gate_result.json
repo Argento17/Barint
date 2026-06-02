@@ -1,0 +1,51 @@
+{
+  "stage": "5_qa_gate",
+  "run_id": "run_cheese_001",
+  "generated": "2026-06-01",
+  "owner": "QA Lead",
+  "engine": "proto_v0 / 0.4.0 (unmodified — no score tuning, no router changes)",
+  "corpus": {"displayable": 57, "scored": 54, "insufficient_at_scoring": 3, "pipeline_errors": 0},
+  "checks": {
+    "coverage_ge90pct_displayable": "PASS (nutrition 100%, ingredients 91.2%)",
+    "four_subpools_applied": "PASS (cottage / white-cheese-quark / labaneh / cream-cheese-spread populated + documented; fat tiers = variants)",
+    "constructs_applied": "PASS (sub-pool, developmental D3<=20g, light/MDF, fermentation EV-015 guard, A-ceiling C1-C6, endemic Sec 6.4 — all populated per product + category rollup)",
+    "fermentation_guard_ev015": "PASS (0 flavor-vs-marker violations; culture credited only on ingredient-grounded markers; 3/57 credited — sparse but truthful given scraped labels)",
+    "pipeline_errors": "PASS (0)",
+    "no_null_scores_on_routed_set": "PASS (all 54 routed-and-scored have numeric scores)",
+    "insufficient_0pct_displayable": "FAIL (3/57 = 5.3% — all 3 are 'גבינת שמנת 30%' cream-cheese SKUs that misrouted to 'default' and could not score; a downstream symptom of QA-CHS-001, not an independent data gap)",
+    "misroute_lt5pct": "HARD FAIL (27/57 = 47.4% > 5% exit gate)"
+  },
+  "hard_fails": [
+    {
+      "id": "QA-CHS-001",
+      "check": "misroute_lt5pct",
+      "value": "47.4%",
+      "detail": "27/57 route outside the dairy family. Breakdown: ALL 26 cream-cheese/spread products misroute (גבינת שמנת / ממרח גבינה / פילדלפיה / נפוליאון → 'default' 16, 'whole_food_fat' 8, 'bread' 1, 'snack_bar_granola' 1) + 1 white-pool goat cheese (גבינת עזים 32% → snack_bar_granola). Cottage (11), white-cheese/quark (16/17), and labaneh (3) route CORRECTLY to dairy_protein.",
+      "root_cause": "Router v2 has a hard anchor for cottage (קוטג'→dairy_protein 0.93) and Stage-2 dairy signals carry plain white cheese / labaneh, but there is NO anchor for the cream-cheese/spread pool. 'גבינת שמנת' (high fat, low protein, often flavored) lacks dairy signal strength and falls to 'default' or, on high fat, to 'whole_food_fat'. Same CLASS as the run_cereals_002 cereal-anchor gap (QA-CER-001) and the run_yogurt_003 yogurt-anchor gap.",
+      "remediation": "SCOPED ROUTER FOLLOW-UP (engine change — OUT OF SCOPE for this data-pipeline factory task; must not be hand-tuned here per CLAUDE.md + cereals precedent). Add cream-cheese/spread hard anchors (גבינת שמנת / ממרח גבינה / פילדלפיה / נפוליאון → dairy_protein) carrying a dairy category prior from the BSIP0 cheese-shelf acquisition query, with regression-lock (mirrors TASK-139C). Re-run as run_cheese_002 after the fix.",
+      "score_impact": "Misrouted cream cheese gets a wrong calorie table + wrong category logic ('default'/'whole_food_fat'), so its grades (B/C/D) are NOT reliable and the 3 'default' SKUs go insufficient. Do NOT ship any cream-cheese-pool row. The cottage / white / labaneh rows (31 products) route correctly and ARE reliable."
+    }
+  ],
+  "warnings": [
+    {
+      "id": "QA-CHS-W1",
+      "check": "dairy_a_ceiling_governance",
+      "detail": "1 product reaches grade A on raw macros — גבינה טבורוג 5% (white-cheese/quark, score 81.0, routed dairy_protein) — but FAILS the dairy A-ceiling C1-C6 (EV-021/RULING-DAIRY-A-01): a_eligible_pre_routing=false, fails C1 (added sugar), C2 (engineered additives), C3 (no live-culture credit). Per the ruling the A must be WITHHELD pending Nutrition review (analogous to the cereals NOVA-1 baked-flake A's). The A-ceiling construct functioned correctly — it caught a macro-only A that the governance ceiling rejects.",
+      "action": "Nutrition review at BSIP2 readiness (Stage 6). The A row is display-withheld until signed."
+    },
+    {
+      "id": "QA-CHS-W2",
+      "check": "fermentation_credit_coverage",
+      "detail": "Only 3/57 products carry an ingredient-grounded live-culture marker (EV-015 creditable). Most Shufersal fresh-cheese panels, as scraped, do not surface culture vocabulary (תרבית / חיידק), so the EV-015 fermentation bonus is sparse and the dairy A-ceiling C3 rarely passes (→ 0 A-eligible pre-routing). This is the conservative behavior the ruling intends, and a real data-coverage finding (parallels the run_yogurt_003 culture-vocab nuance), not a bug. FERMENTATION_TERMS (TASK-139B incl. 'תרבית') is wired and detects all 3 cases.",
+      "action": "Note for Nutrition/Research: a richer ingredient scrape (or label-image OCR) would raise culture detection. Disclosure-level for launch; no engine change."
+    },
+    {
+      "id": "QA-CHS-W3",
+      "check": "labaneh_pool_size",
+      "detail": "Labaneh pool = 3 displayable. This is truthful (most 'לבנה' SKUs are 'גבינה לבנה' = white cheese, correctly pooled to white_cheese_quark), but the pool is too small for stable intra-pool ranking. Cross-pool comparisons require the purpose-divergence disclosure (Sec 2.9).",
+      "action": "Acceptable for v1; revisit pool size at run_cheese_002 (broader labaneh query)."
+    }
+  ],
+  "verdict": "BLOCKED_FOR_LIVE_PROMOTION",
+  "verdict_detail": "Pipeline is data-complete and the cheese governance constructs are correctly applied (4 sub-pools, light/MDF, EV-015 guard with 0 violations, A-ceiling that correctly withholds a macro-only A), but the misroute <5% exit gate FAILS HARD at 47.4% due to an out-of-scope router cream-cheese-anchor gap that breaks the entire cream-cheese pool (and causes the 3 insufficient). Per run_cereals_002 / run_yogurt_003 discipline, the frontend package is produced as NON-AUTHORITATIVE evidence and NOT promoted to the live site. The cottage / white-cheese / labaneh pools (31 products) are clean and route correctly. One scoped follow-up (router cream-cheese anchor + regression-lock) plus Nutrition review of the withheld A gate live launch."
+}

@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  BariComparisonDesktopPage,
-  productInsightLines,
-} from "@/components/comparisons/bari-comparison-desktop-page";
-import { ComparisonShelfPage } from "@/components/comparisons/comparison-shelf-page";
-import { BREAD_REPORT_STATS } from "@/lib/comparisons/bread-page-data";
-import { breadCorpusMeta } from "@/lib/comparisons/bread-comparison-page-data";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
+import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { FIBER_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   filterBreadProducts,
   BREAD_SHELF_LENS_OPTIONS,
@@ -24,6 +18,8 @@ export interface BreadComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
+  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
+  categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
@@ -32,55 +28,35 @@ const breadShelfFilters = {
   filterProducts: filterBreadProducts,
 } as const;
 
+// Fiber is the bread row metric (TASK-162): Nutrition decided fiber is the more meaningful
+// headline number for bread. The real per-100g fiber value is now plumbed into the metrics
+// view-model (fiber_g) and populated by the bread data builder — display-only, no score change.
+const BREAD_METRIC_SPECS = [FIBER_METRIC] as const;
+
 export function BreadComparisonPage({
   products,
   metadataLine,
   hero,
   prologueSentences,
   methodologyLines,
+  categoryNote,
   initialExpandedProductId = null,
 }: BreadComparisonPageProps) {
-  const desktopHero = {
-    badge: "דוח חדש",
-    categoryTags: "מנוע השוואה · לחמים",
-    title: hero.title,
-    description: prologueSentences[0] ?? "השוואת לחם, פיתות וקרקרים ממדף שופרסל.",
-    insightLines: productInsightLines(products),
-    stats: [
-      { value: BREAD_REPORT_STATS.scanned, label: "מוצרים נסרקו" },
-      { value: BREAD_REPORT_STATS.sufficient, label: "עם נתונים מספיקים" },
-      { value: products.length, label: "בדף ההשוואה" },
-    ],
-    updatedLabel: formatComparisonUpdatedLine(breadCorpusMeta.generated),
-  };
-
   return (
-    <>
-      <div className="max-lg:block lg:hidden">
-        <ComparisonShelfPage<BreadShelfFilterId>
-          products={products}
-          metadataLine={metadataLine}
-          hero={hero}
-          prologueSentences={prologueSentences}
-          methodologyLines={methodologyLines}
-          shelfFilters={breadShelfFilters}
-          initialExpandedProductId={initialExpandedProductId}
-        />
-      </div>
-      <div className="hidden lg:block">
-        <BariComparisonDesktopPage<BreadShelfFilterId>
-          products={products}
-          hero={desktopHero}
-          prologueSentences={prologueSentences.slice(1)}
-          methodologyLines={methodologyLines}
-          lensOptions={BREAD_SHELF_LENS_OPTIONS}
-          filterProducts={filterBreadProducts}
-          blogLink={{
-            href: "/research/bread-transparency-shufersal",
-            label: "קראו את הניתוח בבלוג ←",
-          }}
-        />
-      </div>
-    </>
+    <ComparisonPage<BreadShelfFilterId>
+      products={products}
+      metadataLine={metadataLine}
+      hero={hero}
+      prologueSentences={prologueSentences}
+      methodologyLines={methodologyLines}
+      shelfFilters={breadShelfFilters}
+      metricSpecs={BREAD_METRIC_SPECS}
+      categoryNote={categoryNote}
+      blogLink={{
+        href: "/research/bread-transparency-shufersal",
+        label: "קראו את הניתוח בבלוג ←",
+      }}
+      initialExpandedProductId={initialExpandedProductId}
+    />
   );
 }

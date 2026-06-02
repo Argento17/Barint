@@ -11,12 +11,20 @@ export function BariProductThumbnail({
   className,
 }: {
   product: BariProductVM;
-  size?: "sm" | "md" | "lg";
+  /** "fill" → the thumbnail fills its parent box (parent controls the size, e.g. a
+   *  container-query-sized table cell). The presets are fixed pixel boxes. */
+  size?: "sm" | "md" | "lg" | "fill";
   className?: string;
 }) {
   const [failed, setFailed] = useState(false);
   const dim =
-    size === "sm" ? "size-12" : size === "lg" ? "size-28 sm:size-32" : "size-16";
+    size === "fill"
+      ? "h-full w-full"
+      : size === "sm"
+        ? "size-12"
+        : size === "lg"
+          ? "size-28 sm:size-32"
+          : "size-16";
 
   if (product.imageUrl && !failed) {
     return (
@@ -30,7 +38,15 @@ export function BariProductThumbnail({
           src={product.imageUrl}
           alt=""
           className="h-full w-full object-contain p-2"
-          sizes={size === "sm" ? "48px" : size === "lg" ? "128px" : "64px"}
+          sizes={
+            size === "sm"
+              ? "48px"
+              : size === "lg"
+                ? "128px"
+                : size === "fill"
+                  ? "96px"
+                  : "64px"
+          }
           loading="lazy"
           decoding="async"
           onError={() => setFailed(true)}

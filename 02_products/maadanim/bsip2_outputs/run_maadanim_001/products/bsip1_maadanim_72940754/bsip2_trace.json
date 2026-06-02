@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.143892Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.517668Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_72940754",
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 5",
-    "very_long_ingredient_list: 17"
+    "high_additive_category_count: 5"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -47,15 +46,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 120.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 6.5,
+    "fat_saturated_g": 3.9,
     "fat_trans_g": null,
     "sodium_mg": 89.0,
     "carbohydrates_g": 12.5,
-    "sugars_g": 3.9,
+    "sugars_g": 9.9,
     "dietary_fiber_g": null,
     "protein_g": 2.7,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "חלב מפוסטר (72%)",
       "שמנת",
@@ -70,11 +69,25 @@
       "סידן",
       "מלח",
       "צבע מאכל (בטא קרוטן)",
-      "ויטמין D. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 120 קל אנרגיה 2.7 גרם חלבונים 12.5 גרם פחמימות 6.5 גרם שומנים 19.5 מג כולסטרול 89 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 138 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 161 קל אנרגיה 3.6 גרם חלבונים 16.9 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 120 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 187 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "ויטמין D"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "ויטמין D. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 120 קל אנרגיה 2.7 גרם חלבונים 12.5 גרם פחמימות 6.5 גרם שומנים 19.5 מג כולסטרול 89 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 138 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 161 קל אנרגיה 3.6 גרם חלבונים 16.9 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 120 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 187 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "ויטמין D"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -85,19 +98,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 3.75,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.312,
+    "fat_pct_of_kcal": 48.75,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.792,
     "protein_per_kcal": 0.0225,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -173,6 +186,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -181,7 +195,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 3.75,
+    "fat_pct_of_kcal": 48.75,
     "ingredient_list": [
       "חלב מפוסטר (72%)",
       "שמנת",
@@ -196,10 +210,7 @@
       "סידן",
       "מלח",
       "צבע מאכל (בטא קרוטן)",
-      "ויטמין D. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 120 קל אנרגיה 2.7 גרם חלבונים 12.5 גרם פחמימות 6.5 גרם שומנים 19.5 מג כולסטרול 89 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 138 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 161 קל אנרגיה 3.6 גרם חלבונים 16.9 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 120 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 187 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "ויטמין D"
     ]
   },
   "L4_interpreted_concerns": {
@@ -236,7 +247,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": true,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -251,27 +262,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 8.8,
+    "nutrient_density": 13.5,
     "calorie_density": 85.0,
-    "glycemic_quality": 80.2,
+    "glycemic_quality": 65.2,
     "protein_quality": 13.5,
     "additive_quality": 10.0,
     "satiety_support": 27.0,
-    "fat_quality": 50.0,
+    "fat_quality": 73.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 12
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.7g→13.5, fiber=0g→0.0, weighted 65/35=8.8",
+    "nutrient_density": "protein=2.7g→13.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 13.5",
     "calorie_density": "kcal=120.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(9.8) + fiber(0.0) + wg(0) = 80.2",
+    "glycemic_quality": "90 - sugar_penalty(24.8) + fiber(0.0) + wg(0) = 65.2",
     "protein_quality": "protein=2.7g base=13.5, source=whole_food(×1.0) → 13.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 0×5) / 120.0 × 400 = 27.0",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=6.5g<8.0): sat=3.9g base=73.3-seed0-trans0=73.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=17 complexity_pen=18 → 12"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -285,7 +296,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 42.14,
+  "weighted_dimension_score": 43.15,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -389,7 +400,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 42.14,
+  "score_after_cap": 43.15,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -424,7 +435,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=3.8<30.0 or sugar=3.9<20.0"
+      "condition": "fat_pct=48.8<30.0 or sugar=9.9<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -440,13 +451,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 4.0,
   "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 38.14,
+  "score_after_penalty": 39.15,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -511,11 +522,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 38.14,
+  "score_after_floors": 39.15,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 38.1,
+  "final_score_estimate": 39.1,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -526,24 +537,23 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.46,
+    "primary_confidence": 0.437,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.315,
+    "secondary_confidence": 0.311,
     "class_weights": {
       "A": 0.041,
       "B": 0.041,
-      "C": 0.0,
-      "D": 0.143,
-      "E": 0.315,
-      "F": 0.46
+      "C": 0.015,
+      "D": 0.154,
+      "E": 0.311,
+      "F": 0.437
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "high_additive_load",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

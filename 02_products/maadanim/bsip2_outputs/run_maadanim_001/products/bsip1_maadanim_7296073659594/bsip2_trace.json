@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.209083Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.573940Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7296073659594",
@@ -37,7 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "sweetener_detected",
-    "very_long_ingredient_list: 28"
+    "very_long_ingredient_list: 25"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -54,7 +54,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": null,
-    "ingredient_count": 28,
+    "ingredient_count": 25,
     "ingredient_list": [
       "ממתיקים (איזומלט",
       "סירופ מלטיטול)",
@@ -80,11 +80,25 @@
       "ממתיקים (אסצולפם קיי",
       "סוכרלוז)",
       "ויטמין C",
-      "מיצוי ספירולינה. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מיצוי ספירולינה. עלול להכיל חלב"
     ],
+    "ingredient_count_raw": 28,
+    "ingredient_sanitization": {
+      "raw_count": 28,
+      "clean_count": 25,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מיצוי ספירולינה. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מיצוי ספירולינה. עלול להכיל חלב"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "low",
     "bsip1_trust_score": 0.45,
@@ -105,7 +119,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -191,6 +206,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 25,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -225,10 +241,7 @@
       "ממתיקים (אסצולפם קיי",
       "סוכרלוז)",
       "ויטמין C",
-      "מיצוי ספירולינה. עלול להכיל חלב ערכים תזונתיים 100 גרם 230 קל אנרגיה 96 גרם פחמימות 96 רב כהלים 80 מג חומצה אסקורבית הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מיצוי ספירולינה. עלול להכיל חלב"
     ]
   },
   "L4_interpreted_concerns": {
@@ -320,7 +333,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 230.0 × 400 = 0",
     "fat_quality": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=28 complexity_pen=40 → 0"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=25 complexity_pen=34 → 0"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -485,7 +498,7 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=28"
+      "note": "ingredient_count=25"
     }
   ],
   "total_penalty_before_scaling": 4.0,

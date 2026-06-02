@@ -1,0 +1,52 @@
+{
+  "category_slug": "breakfast-cereals",
+  "run_id": "run_cereals_002",
+  "pipeline_run_date": "2026-06-01",
+  "engine": "proto_v0 / 0.4.0 (unmodified)",
+  "source": "Shufersal real scrape (reused run_yogurt_003 pattern)",
+  "stages": {
+    "shelf_mapping": "pass",
+    "corpus_filter": "pass",
+    "bsip0_gate": "pass",
+    "bsip1_enrichment": "pass",
+    "qa_gate": "fail",
+    "bsip2_readiness": "conditional",
+    "frontend_packaging": "pass"
+  },
+  "corpus": {
+    "scraped": 113, "displayable": 92, "excluded": 21,
+    "excluded_reasons": {"no_usable_nutrition": 12, "non_cereal_contaminant": 9},
+    "insufficient_displayable": 0,
+    "coverage_displayable": {"nutrition": "100%", "ingredients": "100%", "hebrew": "100%", "images": "100%"}
+  },
+  "scoring": {
+    "grade_distribution": {"A": 7, "B": 10, "C": 48, "D": 25, "E": 2},
+    "score_median": 58.3,
+    "engine_grade_thresholds": {"S": 90, "A": 80, "B": 65, "C": 50, "D": 35},
+    "grade_A_breakdown": "2 plain whole-oat (legit, milk-precedent-consistent); 4 shaped baked-flake NOVA-1 (Nutrition review, withheld); 1 misrouted spelt (withheld)"
+  },
+  "four_constructs": {
+    "granola_subpool": "25/92 in granola pool (Rule 5 proxy 2-of-3)",
+    "childrens": "4 classified (mascot brands D1+D2); single-indicator candidates flagged for CE review",
+    "whole_grain": "43 whole-grain claims; 8 Marketing Divergence Findings (claim unsupported by ingredient ordering)",
+    "fortification": "25/92 = 27.2% fortified -> BELOW 50% endemic threshold; Endemic Distortion Protocol does NOT trigger (contradicts pre-data governance assumption — flagged for Nutrition/Product)"
+  },
+  "exit_criteria": {
+    "coverage_ge90pct": "MET (100% displayable)",
+    "insufficient_0pct_displayable": "MET (0/92)",
+    "misroute_lt5pct": "NOT MET (7.6% — router cereal-anchor gap, out-of-scope engine fix)",
+    "four_constructs_documented": "MET",
+    "qa_green": "NOT MET (QA-CER-001 hard fail)",
+    "frontend_package_ready": "MET (non-authoritative artifact)"
+  },
+  "blocking_issues": [
+    "QA-CER-001 — misroute 7.6% > 5%: 7 real cereals route to bread/whole_food_fat/beverage (router has no cereal anchor). Requires a SCOPED ROUTER FIX (engine change, out of scope here; same class as run_yogurt_003). Re-run as run_cereals_003 after fix.",
+    "Nutrition approval pending for 4 NOVA-1 shaped baked-flake A's (possible NOVA-proxy under-call)."
+  ],
+  "warnings": [
+    "scoring.md grades table (A>=85) is stale vs engine constants.py GRADE_THRESHOLDS (A>=80) — cross-ref TASK-139A; affects A-count reporting across all categories.",
+    "Fortification is NOT endemic in real corpus (27.2%), contradicting the pre-data DISTORTION-004 'majority' assumption."
+  ],
+  "promoted_to_frontend": false,
+  "verdict": "RETURNED-candidate — full cycle executed end-to-end with engine unmodified; data-complete and constructs applied, but the misroute<5% exit gate fails on a scoped router gap. Frontend package preserved as NON-AUTHORITATIVE. Two scoped follow-ups gate live launch."
+}

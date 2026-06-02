@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.810104Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.220332Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110328788",
@@ -63,6 +63,14 @@
       "אססולפאם K)",
       "חומרי טעם וריח. מכיל חלב עלול להכיל אגוזים"
     ],
+    "ingredient_count_raw": 7,
+    "ingredient_sanitization": {
+      "raw_count": 7,
+      "clean_count": 7,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -80,7 +88,8 @@
     "consistency_checks": {
       "sugar_le_carbs": null,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -157,6 +166,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 7,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -225,7 +235,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 32.5,
+    "nutrient_density": 50.0,
     "calorie_density": 95.0,
     "glycemic_quality": 90.0,
     "protein_quality": 50.0,
@@ -237,7 +247,7 @@
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=10.0g→50.0, fiber=0g→0.0, weighted 65/35=32.5",
+    "nutrient_density": "protein=10.0g→50.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 50.0",
     "calorie_density": "kcal=55.0, category=yogurt → 95",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
@@ -259,7 +269,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 62.82,
+  "weighted_dimension_score": 65.45,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -359,7 +369,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 62.82,
+  "score_after_cap": 65.45,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -410,7 +420,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 62.82,
+  "score_after_penalty": 65.45,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -471,12 +481,12 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 62.82,
+  "score_after_floors": 65.45,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 62.8,
-  "grade_estimate": "C",
+  "final_score_estimate": 65.5,
+  "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']"

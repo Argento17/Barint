@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.072184Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.437756Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290116933801",
@@ -39,15 +39,17 @@
     "artificial_color_detected (צבע מאכל)",
     "high_additive_category_count: 4"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
     "energy_kcal": 109.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 4.1,
+    "fat_saturated_g": 2.5,
     "fat_trans_g": null,
     "sodium_mg": 73.0,
     "carbohydrates_g": 13.3,
@@ -71,6 +73,14 @@
       "מייצב (אקציה גאם)",
       "סירופ ג לוקוזה. מכיל שיבולת שועל"
     ],
+    "ingredient_count_raw": 14,
+    "ingredient_sanitization": {
+      "raw_count": 14,
+      "clean_count": 14,
+      "dropped": [],
+      "truncated": [],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -81,19 +91,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": null,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 4.13,
-    "saturated_fat_fraction": null,
+    "fat_pct_of_kcal": 33.85,
+    "saturated_fat_fraction": 0.61,
     "sugar_to_carb_ratio": null,
     "protein_per_kcal": 0.0422,
     "derivation_notes": [
@@ -131,7 +141,7 @@
       "סוכר"
     ],
     "has_fruit_concentrate": true,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
@@ -165,6 +175,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -173,7 +184,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 4.13,
+    "fat_pct_of_kcal": 33.85,
     "ingredient_list": [
       "רכיבי היוגורט: חלב",
       "סוכר",
@@ -225,7 +236,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": false,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -246,9 +257,9 @@
     "protein_quality": 23.0,
     "additive_quality": 28.0,
     "satiety_support": 50.6,
-    "fat_quality": 50.0,
+    "fat_quality": 77.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 18
+    "whole_food_integrity": 23
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
@@ -258,9 +269,9 @@
     "protein_quality": "protein=4.6g base=23.0, source=whole_food(×1.0) → 23.0",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.6×3 + 0×5) / 109.0 × 400 = 50.6",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=4.1g<8.0): sat=2.5g base=77.3-seed0-trans0=77.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 + ferm_bonus=5 → 23"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -274,7 +285,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 48.66,
+  "weighted_dimension_score": 51.04,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -378,7 +389,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 48.66,
+  "score_after_cap": 51.04,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -413,7 +424,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=4.1<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=33.9<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -435,7 +446,7 @@
   "total_penalty_before_scaling": 4.0,
   "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 44.66,
+  "score_after_penalty": 47.04,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -500,11 +511,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 44.66,
+  "score_after_floors": 47.04,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 44.7,
+  "final_score_estimate": 47.0,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

@@ -2,9 +2,10 @@
 id: TASK-129B
 title: Reconcile yogurts to a frozen machine run, then score-freeze
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: CRITICAL
 created_at: 2026-06-01
+completed_at: 2026-06-01
 depends_on: []
 blocks: []
 category_id: null
@@ -29,3 +30,13 @@ The shipping yogurts shelf (`src/data/comparisons/yogurts_frontend_v1.json`, `ve
 - Every displayed yogurt score traces to a frozen, reproducible run; 0 hand-tuned values remain.
 - Freeze marker present; frontend `_meta.source_run_id` + `authoritative: true` set.
 - Yogurts moves from 🔴 NO-GO to 🟢 GO in the launch board.
+
+## Return note (2026-06-01)
+The Controller-chosen "reconcile to machine run" path is **not executable**: `run_yogurt_001`
+is a synthetic stress corpus (placeholder barcodes, proto_v0), not the real branded SKUs the
+frontend ships. Resolved by **DEC-005**: accept the 13 manual scores as a disclosed,
+non-authoritative MVP provenance exception (yogurts is already LIVE — this is governance debt,
+not a launch gate). Real reproducible scores deferred to **TASK-135** (run_yogurt_002),
+non-blocking. **Closeout action:** set `yogurts_frontend_v1.json` `_meta` →
+`authoritative:false`, `provenance:"manual-mvp"`, `exception:"DEC-005"`. Proposing RETURNED;
+Controller to record CLOSED after the provenance marker is applied.

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.878878Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.275951Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110558703",
@@ -39,7 +39,7 @@
     "artificial_color_detected (צבע מאכל)",
     "sweetener_detected",
     "high_additive_category_count: 4",
-    "very_long_ingredient_list: 19"
+    "very_long_ingredient_list: 16"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -56,7 +56,7 @@
     "sugars_g": 5.1,
     "dietary_fiber_g": null,
     "protein_g": 8.7,
-    "ingredient_count": 19,
+    "ingredient_count": 16,
     "ingredient_list": [
       "חלב מפוסטר (71%)",
       "מים",
@@ -73,11 +73,25 @@
       "מייצב(קרגינאן)",
       "ממתיקים (אצסולפאם K",
       "סוכרלוז)",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 5.1 גרם סוכרים מתוך פחמימות 82 קל אנרגיה 8.7 גרם חלבונים 7.8 גרם פחמימות 1.5 גרם שומנים 228 מג נתרן 247 מג סידן 5.1 סוכרים 1.25 כפיות סוכר ערכים תזונתיים יחידה 7.7 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 13 גרם חלבונים 11.8 גרם פחמימות 2.3 גרם שומנים 342 מג נתרן 370 מג סידן 7.7 סוכרים 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ],
+    "ingredient_count_raw": 19,
+    "ingredient_sanitization": {
+      "raw_count": 19,
+      "clean_count": 16,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מלח. מכיל חלב ערכים תזונתיים 100 גרם 5.1 גרם סוכרים מתוך פחמימות 82 קל אנרגיה 8.7 גרם חלבונים 7.8 גרם פחמימות 1.5 גרם שומנים 228 מג נתרן 247 מג סידן 5.1 סוכרים 1.25 כפיות סוכר ערכים תזונתיים יחידה 7.7 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 13 גרם חלבונים 11.8 גרם פחמימות 2.3 גרם שומנים 342 מג נתרן 370 מג סידן 7.7 סוכרים 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מלח"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -94,7 +108,8 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -131,9 +146,10 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
-      "אבקת חלב"
+      "אבקת חלב",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 2,
     "added_sugar_matches": [
@@ -179,6 +195,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 16,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -204,10 +221,7 @@
       "מייצב(קרגינאן)",
       "ממתיקים (אצסולפאם K",
       "סוכרלוז)",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 5.1 גרם סוכרים מתוך פחמימות 82 קל אנרגיה 8.7 גרם חלבונים 7.8 גרם פחמימות 1.5 גרם שומנים 228 מג נתרן 247 מג סידן 5.1 סוכרים 1.25 כפיות סוכר ערכים תזונתיים יחידה 7.7 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 13 גרם חלבונים 11.8 גרם פחמימות 2.3 גרם שומנים 342 מג נתרן 370 מג סידן 7.7 סוכרים 2 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ]
   },
   "L4_interpreted_concerns": {
@@ -259,27 +273,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 28.3,
+    "nutrient_density": 43.5,
     "calorie_density": 85.0,
     "glycemic_quality": 77.2,
-    "protein_quality": 37.0,
+    "protein_quality": 43.5,
     "additive_quality": 13.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 8
+    "whole_food_integrity": 14
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=8.7g→43.5, fiber=0g→0.0, weighted 65/35=28.3",
+    "nutrient_density": "protein=8.7g→43.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 43.5",
     "calorie_density": "kcal=82.0, category=dessert → 85",
     "glycemic_quality": "90 - sugar_penalty(12.8) + fiber(0.0) + wg(0) = 77.2 (sweetener tier-C)",
-    "protein_quality": "protein=8.7g base=43.5, source=mixed(×0.85) → 37.0",
+    "protein_quality": "protein=8.7g base=43.5, source=dairy(×1.0) → 43.5",
     "additive_quality": "sprint1_additives=4 base=28 sw tier-C_pen=15→13.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.7×3 + 0×5) / 82.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=19 complexity_pen=22 → 8"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 → 14"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -293,7 +307,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 51.58,
+  "weighted_dimension_score": 54.75,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -397,7 +411,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 51.58,
+  "score_after_cap": 54.75,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -453,13 +467,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=19"
+      "note": "ingredient_count=16"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.58,
+  "score_after_penalty": 45.75,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -528,11 +542,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.58,
+  "score_after_floors": 45.75,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 42.6,
+  "final_score_estimate": 45.8,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

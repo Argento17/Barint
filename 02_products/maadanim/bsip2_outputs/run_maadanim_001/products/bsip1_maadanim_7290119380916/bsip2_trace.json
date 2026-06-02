@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.122901Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.493779Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290119380916",
@@ -35,7 +35,6 @@
   "nova_confidence": 0.55,
   "nova_confidence_band": "medium",
   "nova_evidence_for": [
-    "very_long_ingredient_list: 17",
     "additive_categories: 1, added_sugars: 2"
   ],
   "nova_evidence_against": [],
@@ -45,15 +44,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 52.0,
-    "fat_g": 0.9,
-    "fat_saturated_g": null,
+    "fat_g": 1.5,
+    "fat_saturated_g": 0.9,
     "fat_trans_g": null,
     "sodium_mg": 30.0,
     "carbohydrates_g": 5.2,
-    "sugars_g": 2.4,
+    "sugars_g": 5.0,
     "dietary_fiber_g": 1.7,
     "protein_g": 2.7,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -68,11 +67,25 @@
       "חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם)",
       "עמילן טפיוקה מעובד",
       "ויטמין D",
-      "חיידקי L.CASEI DN114-001.(חלב). ערכים תזונתיים 100 גרם 1.7 גרם סיבים תזונתיים 5 גרם סוכרים מתוך פחמימות 4.6 מקג D ויטמין 52 קל אנרגיה 2.7 גרם חלבונים 5.2 גרם פחמימות 1.5 גרם שומנים 30 מג נתרן 0.9 גרם מתוכם שומן רווי 2.4 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 1.8 גרם סיבים תזונתיים 5.4 גרם סוכרים מתוך פחמימות 5 מקג D ויטמין 56 קל אנרגיה 2.9 גרם חלבונים 5.6 גרם פחמימות 1.7 גרם שומנים 32 מג נתרן 1 גרם מתוכם שומן רווי 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חיידקי L.CASEI DN114-001.(חלב)"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "חיידקי L.CASEI DN114-001.(חלב). מכיל חלב ערכים תזונתיים 100 גרם 1.7 גרם סיבים תזונתיים 5 גרם סוכרים מתוך פחמימות 4.6 מקג D ויטמין 52 קל אנרגיה 2.7 גרם חלבונים 5.2 גרם פחמימות 1.5 גרם שומנים 30 מג נתרן 0.9 גרם מתוכם שומן רווי 2.4 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 1.8 גרם סיבים תזונתיים 5.4 גרם סוכרים מתוך פחמימות 5 מקג D ויטמין 56 קל אנרגיה 2.9 גרם חלבונים 5.6 גרם פחמימות 1.7 גרם שומנים 32 מג נתרן 1 גרם מתוכם שומן רווי 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "חיידקי L.CASEI DN114-001.(חלב)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -82,19 +95,18 @@
     ],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
-    "missing_nutrition_fields": [
-      "fat_saturated_g"
-    ],
+    "missing_nutrition_fields": [],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 15.58,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.462,
+    "fat_pct_of_kcal": 25.96,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.962,
     "protein_per_kcal": 0.0519,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -119,9 +131,10 @@
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "dairy",
     "protein_source_basis": [
-      "אבקת חלב"
+      "אבקת חלב",
+      "dairy matrix, no extracted fraction"
     ],
     "added_sugar_sources_count": 2,
     "added_sugar_matches": [
@@ -163,6 +176,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -171,7 +185,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 15.58,
+    "fat_pct_of_kcal": 25.96,
     "ingredient_list": [
       "חלב מפוסטר",
       "מים",
@@ -186,10 +200,7 @@
       "חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם)",
       "עמילן טפיוקה מעובד",
       "ויטמין D",
-      "חיידקי L.CASEI DN114-001.(חלב). ערכים תזונתיים 100 גרם 1.7 גרם סיבים תזונתיים 5 גרם סוכרים מתוך פחמימות 4.6 מקג D ויטמין 52 קל אנרגיה 2.7 גרם חלבונים 5.2 גרם פחמימות 1.5 גרם שומנים 30 מג נתרן 0.9 גרם מתוכם שומן רווי 2.4 סוכרים 1.25 כפיות סוכר ערכים תזונתיים מנה 1.8 גרם סיבים תזונתיים 5.4 גרם סוכרים מתוך פחמימות 5 מקג D ויטמין 56 קל אנרגיה 2.9 גרם חלבונים 5.6 גרם פחמימות 1.7 גרם שומנים 32 מג נתרן 1 גרם מתוכם שומן רווי 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "חיידקי L.CASEI DN114-001.(חלב)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -243,25 +254,25 @@
     "processing_quality": 65,
     "nutrient_density": 14.7,
     "calorie_density": 95.0,
-    "glycemic_quality": 87.4,
-    "protein_quality": 11.5,
+    "glycemic_quality": 80.9,
+    "protein_quality": 13.5,
     "additive_quality": 82.0,
     "satiety_support": 100,
-    "fat_quality": 50.0,
+    "fat_quality": 82.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 42
+    "whole_food_integrity": 48
   },
   "dimension_notes": {
     "processing_quality": "NOVA 3 → processing_quality=65 (NOVA_PROCESSING_SCORES table)",
     "nutrient_density": "protein=2.7g→13.5, fiber=1.7g→17.0, weighted 65/35=14.7",
     "calorie_density": "kcal=52.0, category=yogurt → 95",
-    "glycemic_quality": "90 - sugar_penalty(6.0) + fiber(3.4) + wg(0) = 87.4",
-    "protein_quality": "protein=2.7g base=13.5, source=mixed(×0.85) → 11.5",
+    "glycemic_quality": "90 - sugar_penalty(12.5) + fiber(3.4) + wg(0) = 80.9",
+    "protein_quality": "protein=2.7g base=13.5, source=dairy(×1.0) → 13.5",
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 1.7×5) / 52.0 × 400 = 100",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=1.5g<8.0): sat=0.9g base=82.3-seed0-trans0=82.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=17 complexity_pen=18 → 42"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=14 complexity_pen=12 → 48"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -275,7 +286,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 62.47,
+  "weighted_dimension_score": 64.72,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -375,7 +386,7 @@
     }
   ],
   "binding_cap": 87,
-  "score_after_cap": 62.47,
+  "score_after_cap": 64.72,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -410,7 +421,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=15.6<30.0 or sugar=2.4<20.0"
+      "condition": "fat_pct=26.0<30.0 or sugar=5.0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -431,13 +442,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 53.47,
+  "score_after_penalty": 55.72,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -506,11 +517,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 53.47,
+  "score_after_floors": 55.72,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 0.5,
-  "final_score_estimate": 53.5,
+  "final_score_estimate": 55.7,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -521,22 +532,21 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.403,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.208,
+    "primary_confidence": 0.423,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.197,
     "class_weights": {
       "A": 0.021,
-      "B": 0.16,
-      "C": 0.174,
-      "D": 0.403,
-      "E": 0.208,
-      "F": 0.035
+      "B": 0.162,
+      "C": 0.197,
+      "D": 0.423,
+      "E": 0.197,
+      "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_3_signal",
-      "high_complexity_assembly"
+      "nova_3_signal"
     ],
     "classifier_version": "structural_classifier_v1"
   }

@@ -1,0 +1,49 @@
+{
+  "stage": "3_bsip0_gate",
+  "run_id": "run_cereals_002",
+  "generated": "2026-06-01",
+  "source": "Shufersal real scrape (cereals_bsip0_raw_20260601T152207.json)",
+  "owner": "Category Team + Data Architecture",
+  "entry_criteria": {
+    "shelf_map_confirmed": true,
+    "corpus_filter_non_empty": true,
+    "no_blocking_category_conflict": true
+  },
+  "raw_scrape": {
+    "product_codes_found": 113,
+    "product_pages_fetched": 113,
+    "fetch_failures": 0,
+    "nutrition_coverage_raw": "97/113 (85.8%)",
+    "ingredient_coverage_raw": "104/113 (92.0%)",
+    "image_coverage_raw": "113/113 (100%)"
+  },
+  "curation": {
+    "included_displayable": 97,
+    "excluded": 16,
+    "exclusion_reasons": {"no_usable_nutrition": 16},
+    "note": "16 products lacked any usable nutrition panel and were excluded from the displayable corpus (same discipline as run_yogurt_003's 9 no-nutrition exclusions). They are never displayed, so the >=90% coverage and 0%-insufficient exit criteria are evaluated on the DISPLAYABLE set."
+  },
+  "displayable_set_coverage": {
+    "count": 97,
+    "nutrition": "97/97 (100%)",
+    "ingredients": "97/97 (100%)",
+    "hebrew_names": "97/97 (100%)",
+    "images": "97/97 (100%)",
+    "gtin13_exact_13_digit": "80/97 (82.5%)",
+    "barcode_other_valid_lengths": "17/97 (retailer-confirmed SKUs, non-13-digit EAN/internal)",
+    "ingredient_text_truncated": "0/97 (max len 985 < 1200 cap)"
+  },
+  "gate_assessment": {
+    "min_corpus_30": "PASS (97 displayable >> 30)",
+    "coverage_ge_90pct_on_displayable": "PASS (nutrition 100%, ingredients 100%)",
+    "insufficient_0pct_displayable": "PASS (0/97 insufficient)",
+    "hebrew_names": "PASS (100%)",
+    "gtin13": "PASS-WITH-NOTE (82.5% strict 13-digit; remainder are valid retailer barcodes of other lengths, all retailer_confirmed)",
+    "raw_nutrition_85pct_below_target": "NOTE — the 90% target is met on the displayable set; the raw-scrape 85.8% reflects 16 no-nutrition items that curation correctly drops, not a coverage failure on shipped products."
+  },
+  "verdict": "PASS",
+  "subtype_distribution": {
+    "granola": 25, "oat_cereal": 20, "whole_grain_flakes": 16, "cereal_other": 12,
+    "cornflakes": 9, "muesli": 8, "childrens_character": 3, "bran": 2, "puffed_extruded": 2
+  }
+}

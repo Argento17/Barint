@@ -2,9 +2,11 @@
 id: TASK-134
 title: Consolidate website into Agent OS monorepo (C:\bari-web -> C:\bari\bari-web)
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "Migration is ok with controller"
 depends_on: [TASK-131]
 blocks: []
 category_id: null

@@ -1,0 +1,197 @@
+/* ============================================================
+   Bari — Food Intelligence Platform
+   colors_and_type.css — design foundations
+   RTL / Hebrew-first. Data-first, evidence-based, minimal noise.
+   Fonts loaded from Google Fonts CDN (Inter, Geist, Geist Mono);
+   the production app loads them via next/font. See README "Type".
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Heebo:wght@400;500;600;700;800;900&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---------- Brand / accent ---------- */
+  --bari-green: #1F8F6A;        /* primary brand green — CTAs, accents, links */
+  --bari-green-bright: #2FAE82; /* lighter signal green — marks, light surfaces */
+  --bari-green-deep: #176F53;   /* A/B grade text */
+
+  /* ---------- Ink / foreground ---------- */
+  --fg1: #111318;   /* near-black ink — headings, product names */
+  --fg2: #4E5663;   /* slate — body copy, descriptions */
+  --fg3: #7A817C;   /* muted sage-grey — meta, ranks, captions */
+  --fg4: #AAAAAA;   /* faint — confidence labels, methodology footnotes */
+
+  /* ---------- Surfaces / canvas ---------- */
+  --canvas: #F7F7F2;     /* warm off-white — the Bari "paper" canvas */
+  --surface: #FFFFFF;    /* cards, rows (odd) */
+  --surface-2: #F9F9F9;  /* zebra rows (even) */
+  --surface-3: #FAFAF8;  /* table header tint */
+  --chip-bg: #F7F7F2;    /* score chip background */
+
+  /* ---------- Hairlines / borders ---------- */
+  --hairline: rgba(17, 19, 24, 0.08);  /* default border — black @ 8% */
+  --hairline-soft: rgba(17, 19, 24, 0.06);
+  --hairline-faint: rgba(17, 19, 24, 0.05);
+  --green-ring: rgba(31, 143, 106, 0.25); /* hover border / focus accents */
+
+  /* ---------- Grade palette (A–E) ---------- */
+  --grade-a-bg: #E8F5EF;  --grade-a-text: #176F53;  --grade-a-border: rgba(31,143,106,0.20);
+  --grade-b-bg: #E8F5EF;  --grade-b-text: #176F53;  --grade-b-border: rgba(31,143,106,0.20);
+  --grade-c-bg: #FBF4DE;  --grade-c-text: #8F6600;  --grade-c-border: rgba(201,138,0,0.20);
+  --grade-d-bg: #FDECE8;  --grade-d-text: #A63F2A;  --grade-d-border: rgba(209,88,61,0.20);
+  --grade-e-bg: #F3E8E6;  --grade-e-text: #8B2E2E;  --grade-e-border: rgba(180,35,24,0.20);
+
+  /* ---------- Semantic signal colors ---------- */
+  --signal-positive: #1F8F6A;  /* "what works for the product" */
+  --signal-limiting: #111318;  /* "what limited the score" (neutral ink, not red) */
+  --signal-unknown:  #7A817C;  /* "what we couldn't verify" */
+  --destructive:     #B42318;  /* hard errors only */
+
+  /* ---------- Type families ---------- */
+  /* Inter carries Latin ("Bari"); Heebo carries Hebrew via per-glyph fallback. */
+  --font-sans: "Inter", "Heebo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-heading: "Inter", "Heebo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Heebo", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---------- Radii ---------- */
+  --radius: 0.625rem;            /* 10px base (shadcn --radius) */
+  --radius-sm: 0.375rem;         /* 6px — score chip inner, small buttons */
+  --radius-md: 0.5rem;           /* 8px — expander buttons */
+  --radius-lg: 0.75rem;          /* 12px — score chips, inner panels */
+  --radius-xl: 0.875rem;         /* 14px — section cards */
+  --radius-2xl: 1.125rem;        /* 18px — content cards */
+  --radius-card: 1.35rem;        /* 21.6px — hero / intelligence card */
+  --radius-pill: 9999px;         /* nav pills, filter chips, badges */
+
+  /* ---------- Elevation (soft, low-contrast, warm) ---------- */
+  --shadow-sm: 0 1px 2px rgba(17, 19, 24, 0.05);
+  --shadow-card: 0 1px 3px rgba(17, 19, 24, 0.06), 0 1px 2px rgba(17, 19, 24, 0.04);
+  --shadow-hero: 0 32px 100px -60px rgba(17, 19, 24, 0.35);
+  --shadow-cta: inset 0 1px 0 rgba(255,255,255,0.20), 0 14px 40px -16px rgba(31,143,106,0.58);
+  --shadow-lift: 0 18px 48px -24px rgba(17, 19, 24, 0.22);
+
+  /* ---------- Motion ---------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);  /* reveal-up / hover lifts */
+  --ease-inout: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --dur-fast: 280ms;   /* expand / collapse */
+  --dur: 500ms;        /* hover, color transitions */
+  --dur-reveal: 840ms; /* entrance reveal-up */
+
+  /* ---------- Layout ---------- */
+  --header-h: 4rem;
+  --shell-max: 1600px;   /* comparison desktop workspace cap */
+  --content-max: 1120px; /* HomeContainer max width */
+}
+
+/* ============================================================
+   BASE TYPE
+   ============================================================ */
+html { font-family: var(--font-sans); }
+body {
+  background-color: var(--canvas);
+  color: var(--fg1);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   SEMANTIC TYPE SCALE
+   Hebrew-first. Headings are extrabold (800) with tight
+   negative tracking. Body is comfortable, 1.6–1.7 line-height.
+   ============================================================ */
+
+.bari-display {            /* home hero H1 */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: var(--fg1);
+  text-wrap: balance;
+}
+
+.bari-h1 {                 /* comparison hero title */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  color: var(--fg1);
+  text-wrap: balance;
+}
+
+.bari-h2 {                 /* section titles */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--fg1);
+}
+
+.bari-h3 {                 /* card titles, product names */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--fg1);
+}
+
+.bari-eyebrow {            /* mono uppercase section kicker */
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: color-mix(in oklab, var(--bari-green) 80%, transparent);
+}
+
+.bari-lead {               /* intro paragraph under a heading */
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--fg2);
+  text-wrap: pretty;
+}
+
+.bari-body {               /* default body copy */
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg2);
+}
+
+.bari-meta {               /* meta / captions */
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--fg3);
+}
+
+.bari-footnote {           /* confidence labels, methodology */
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  line-height: 1.5;
+  color: var(--fg4);
+}
+
+.bari-mono {               /* tabular numbers, data labels */
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.bari-score {              /* big score numerals */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* Utility */
+.bari-tnum { font-variant-numeric: tabular-nums; }

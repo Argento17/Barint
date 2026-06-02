@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.696755Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.113360Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290105368331",
@@ -36,8 +36,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "artificial_color_detected (צבע מאכל)",
-    "very_long_ingredient_list: 17"
+    "artificial_color_detected (צבע מאכל)"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -46,15 +45,15 @@
   ],
   "L1_observed_signals": {
     "energy_kcal": 123.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 6.5,
+    "fat_saturated_g": 3.9,
     "fat_trans_g": null,
     "sodium_mg": 122.0,
     "carbohydrates_g": 13.0,
-    "sugars_g": 3.9,
+    "sugars_g": 9.9,
     "dietary_fiber_g": null,
     "protein_g": 2.7,
-    "ingredient_count": 17,
+    "ingredient_count": 14,
     "ingredient_list": [
       "חלב מפוסטר (72%)",
       "שמנת",
@@ -69,11 +68,25 @@
       "רכז פרי המונק",
       "חומרי טעם וריח",
       "מלח",
-      "צבע מאכל (סלק אדום) מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 2.7 גרם חלבונים 13 גרם פחמימות 6.5 גרם שומנים 19.6 מג כולסטרול 122 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 166 קל אנרגיה 3.6 גרם חלבונים 17.6 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 164 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (סלק אדום)"
     ],
+    "ingredient_count_raw": 17,
+    "ingredient_sanitization": {
+      "raw_count": 17,
+      "clean_count": 14,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "צבע מאכל (סלק אדום) מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 2.7 גרם חלבונים 13 גרם פחמימות 6.5 גרם שומנים 19.6 מג כולסטרול 122 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 166 קל אנרגיה 3.6 גרם חלבונים 17.6 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 164 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "צבע מאכל (סלק אדום)"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -84,19 +97,19 @@
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "fat_saturated_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
       "sugar_le_carbs": true,
-      "satfat_le_fat": null,
-      "kcal_plausible": true
+      "satfat_le_fat": true,
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 3.66,
-    "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.3,
+    "fat_pct_of_kcal": 47.56,
+    "saturated_fat_fraction": 0.6,
+    "sugar_to_carb_ratio": 0.762,
     "protein_per_kcal": 0.022,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -171,6 +184,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -179,7 +193,7 @@
       "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 3.66,
+    "fat_pct_of_kcal": 47.56,
     "ingredient_list": [
       "חלב מפוסטר (72%)",
       "שמנת",
@@ -194,10 +208,7 @@
       "רכז פרי המונק",
       "חומרי טעם וריח",
       "מלח",
-      "צבע מאכל (סלק אדום) מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 123 קל אנרגיה 2.7 גרם חלבונים 13 גרם פחמימות 6.5 גרם שומנים 19.6 מג כולסטרול 122 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 93 מג סידן 3.9 סוכרים 2.5 כפיות סוכר 6 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 166 קל אנרגיה 3.6 גרם חלבונים 17.6 גרם פחמימות 8.8 גרם שומנים 26 מג כולסטרול 164 מג נתרן 5.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 126 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "צבע מאכל (סלק אדום)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -234,7 +245,7 @@
       "kcal_below_threshold": false,
       "protein_below_threshold": true,
       "fiber_below_threshold": true,
-      "fat_below_threshold": true,
+      "fat_below_threshold": false,
       "engineered_signal_present": true
     },
     "se_note": null
@@ -249,27 +260,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 8.8,
+    "nutrient_density": 13.5,
     "calorie_density": 85.0,
-    "glycemic_quality": 80.2,
+    "glycemic_quality": 65.2,
     "protein_quality": 13.5,
     "additive_quality": 46.0,
     "satiety_support": 26.3,
-    "fat_quality": 50.0,
+    "fat_quality": 73.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 12
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=2.7g→13.5, fiber=0g→0.0, weighted 65/35=8.8",
+    "nutrient_density": "protein=2.7g→13.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 13.5",
     "calorie_density": "kcal=123.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(9.8) + fiber(0.0) + wg(0) = 80.2",
+    "glycemic_quality": "90 - sugar_penalty(24.8) + fiber(0.0) + wg(0) = 65.2",
     "protein_quality": "protein=2.7g base=13.5, source=whole_food(×1.0) → 13.5",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 0×5) / 123.0 × 400 = 26.3",
-    "fat_quality": "sat_fat absent → neutral 50",
+    "fat_quality": "fat_v1(fat=6.5g<8.0): sat=3.9g base=73.3-seed0-trans0=73.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=17 complexity_pen=18 → 12"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -283,7 +294,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 45.7,
+  "weighted_dimension_score": 46.71,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -387,7 +398,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 45.7,
+  "score_after_cap": 46.71,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -422,7 +433,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=3.7<30.0 or sugar=3.9<20.0"
+      "condition": "fat_pct=47.6<30.0 or sugar=9.9<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -443,13 +454,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=17"
+      "note": "ingredient_count=14"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 36.7,
+  "score_after_penalty": 37.71,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -518,11 +529,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 36.7,
+  "score_after_floors": 37.71,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 36.7,
+  "final_score_estimate": 37.7,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -531,25 +542,24 @@
   ],
   "unresolved_flags": [],
   "structural_class": {
-    "primary": "F",
-    "primary_label": "Structurally Void System",
-    "primary_confidence": 0.348,
-    "secondary": "D",
-    "secondary_label": "Industrially Reconstructed",
-    "secondary_confidence": 0.304,
+    "primary": "D",
+    "primary_label": "Industrially Reconstructed",
+    "primary_confidence": 0.319,
+    "secondary": "F",
+    "secondary_label": "Structurally Void System",
+    "secondary_confidence": 0.319,
     "class_weights": {
       "A": 0.051,
       "B": 0.051,
-      "C": 0.0,
-      "D": 0.304,
-      "E": 0.247,
-      "F": 0.348
+      "C": 0.019,
+      "D": 0.319,
+      "E": 0.241,
+      "F": 0.319
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
-      "whole_food_integrity_low",
-      "high_complexity_assembly"
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

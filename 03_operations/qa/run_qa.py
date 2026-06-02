@@ -364,6 +364,60 @@ def check_cov005(bsip1_files: list[tuple[pathlib.Path, dict]]) -> Check:
     return chk
 
 
+def check_cov006(bsip1_files: list[tuple[pathlib.Path, dict]]) -> Check:
+    """COV-006: Nutrition plausibility — catches the EV-026 fat-overwrite signature.
+
+    The BSIP0 nutritionList parser bug (TASK-142A) collapsed total fat to ~0.5g
+    (a trans/saturated 'of which' sub-row overwrote the total) on dozens of dairy
+    products, while passing coverage gates at 90%+. This check fails that class
+    instead of letting it through on coverage alone. Mirror of
+    03_operations/bsip0/scrape/_shared/bsip0_nutrition.py::nutrition_implausible.
+
+    Signatures (per product, per-100g):
+      1. saturated_fat_g > fat_g            → a sub-row overwrote the total (unambiguous)
+      2. fat_g ≤ 0.5 AND energy_kcal exceeds 4·protein+4·carbs+9·fat by ≥ 50 kcal
+         → fat understated (legitimately low-fat high-carb foods pass: carbs carry energy)
+
+    Hard fail when ≥ 5% of products are implausible (systemic parser defect);
+    WARN for isolated cases (possible genuine outliers / OCR noise).
+    """
+    chk = Check("COV-006", "Nutrition plausibility (no fat-overwrite / EV-026 signature)")
+    valid = [(p, r) for p, r in bsip1_files if not r.get("_load_error")]
+    chk.total = len(valid)
+    flagged = 0
+    for path, rec in valid:
+        nutr = rec.get("normalized_nutrition_per_100g") or {}
+        energy = nutr.get("energy_kcal")
+        fat = nutr.get("fat_g")
+        sat = nutr.get("saturated_fat_g")
+        protein = nutr.get("protein_g")
+        carbs = nutr.get("carbohydrates_g")
+        reason = None
+        if isinstance(fat, (int, float)) and isinstance(sat, (int, float)) and sat > fat + 0.05:
+            reason = f"saturated_fat_g={sat} > fat_g={fat}"
+        elif (isinstance(fat, (int, float)) and fat <= 0.5
+              and isinstance(energy, (int, float))):
+            macro_kcal = 4 * (protein or 0) + 4 * (carbs or 0) + 9 * fat
+            if energy - macro_kcal >= 50:
+                reason = (f"fat_g={fat} but energy {energy}kcal exceeds macro energy "
+                          f"{macro_kcal:.0f}kcal by {energy - macro_kcal:.0f}")
+        if reason:
+            flagged += 1
+            chk.affected_ids.append(path.stem)
+            chk.notes.append(f"{path.stem}: {reason}")
+    pct = (flagged / chk.total * 100) if chk.total else 0
+    chk.affected = flagged
+    chk.notes.insert(0, f"{flagged}/{chk.total} products physically implausible ({pct:.1f}%)")
+    if pct >= 5:
+        chk.result = "FAIL"
+        chk.notes.insert(0, f"FAIL: {pct:.1f}% implausible ≥ 5% — systemic parse defect (EV-026 class)")
+    elif flagged > 0:
+        if chk.result != "FAIL":
+            chk.result = "WARN"
+        chk.notes.insert(0, f"WARN: {flagged} isolated implausible product(s) — verify panel parse")
+    return chk
+
+
 def check_can001(
     canonical_dir: pathlib.Path,
     bsip0_approved_count: int,
@@ -728,6 +782,10 @@ def main() -> int:
     print(f"  {c.id:8}  {c.icon}")
 
     c = check_cov005(bsip1_run_files)
+    checks.append(c)
+    print(f"  {c.id:8}  {c.icon}")
+
+    c = check_cov006(bsip1_run_files)
     checks.append(c)
     print(f"  {c.id:8}  {c.icon}")
 

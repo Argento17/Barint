@@ -44,15 +44,31 @@ const EXCLUDED_NOVA1_IDS = new Set([
 const EXCLUDED_NON_SPREAD_IDS = new Set([
   "bsip1_7290018359686", // הקיסר חומוס ענק — חומוס שלם בשימור (לא ממרח)
   "bsip1_208428",        // חומוס שלם יכין — חומוס שלם בשימור (לא ממרח)
-  "bsip1_7296073733317", // חומוס — נתוני תזונה חסרים, ציון לא זמין
-  "bsip1_7296073733348", // חומוס ענק — נתוני תזונה חסרים, ציון לא זמין
+  // bsip1_7296073733317 / bsip1_7296073733348 (insufficient-data חומוס,
+  // "score unavailable") were scrubbed from hummus_frontend_v3.json (QA hygiene
+  // 2026-06-02): removed from the corpus entirely, so no exclusion entry is needed.
 ]);
 
-// Combined exclusion set applied to the ranked display. Both groups are removed
+// TASK-137A (Nutrition ruling, 2026-06-01): RAW/DRY CHICKPEAS mis-tagged as
+// `hummus_spread` that scored on partial data and slipped the NOVA-1 filter. The
+// boundary test is NOT "has chickpeas" (every hummus does) and NOT "called סלט"
+// (a tahini-based salad is still hummus). The test is whether it is a prepared,
+// ready-to-eat spread. These two are unmistakably dry/raw chickpeas, not hummus:
+// no ingredient list at all, no tahini, sodium ~12 mg (unsalted), energy 380 kcal
+// (dry-legume range), protein 16.6 g. A prepared spread is salted (300–480 mg) and
+// water/oil-diluted (250–290 kcal). Same class as EXCLUDED_NOVA1_IDS; removed for the
+// same reason. Tahini-based salads/spreads (e.g. סלט חומוס) are KEPT — Product ruling.
+const EXCLUDED_RAW_CHICKPEA_IDS = new Set([
+  "bsip1_1990261", // חומוס — no ingredients, sodium 12mg, 380 kcal → dry/raw chickpeas
+  "bsip1_3643714", // חומוס — duplicate of the above; same raw-chickpea signature
+]);
+
+// Combined exclusion set applied to the ranked display. All groups are removed
 // for the same reason: they are not prepared ready-to-eat hummus spreads.
 const EXCLUDED_PRODUCT_IDS = new Set([
   ...EXCLUDED_NOVA1_IDS,
   ...EXCLUDED_NON_SPREAD_IDS,
+  ...EXCLUDED_RAW_CHICKPEA_IDS,
 ]);
 
 // TASK-100: vegetable-spread product types are displayed on their own page
@@ -83,10 +99,37 @@ function stripHummusInternalFields(products: HummusCorpusProduct[]): BariProduct
     });
 }
 
+/**
+ * Shorten a pre-authored signal line to a row-sized reason (§3.3). Deterministic:
+ * take the clause before the first em-dash / colon, trimmed. The full string stays
+ * in the expansion; this is display-only and never alters corpus content.
+ */
+function shortenReason(line: string | undefined): string | null {
+  if (!line) return null;
+  const head = line.split(/\s+[—–-]\s+|:\s+/)[0]?.trim();
+  return head && head.length > 0 ? head : line.trim();
+}
+
+/**
+ * Row surface enrichment (comparison_ui_reference_v2 §2.2). Surfaces the already-present
+ * protein value as a first-class metric and derives the row reason from
+ * positiveSignals[0] / limitingFactors[0]. Display-only; not a score input.
+ */
+function enrichHummusRowSurface(products: BariProductVM[]): BariProductVM[] {
+  return products.map((product) => ({
+    ...product,
+    metrics: { protein_g: product.expansion.nutrition?.protein ?? null },
+    rowReason: {
+      positive: shortenReason(product.expansion.positiveSignals?.[0]),
+      limiting: shortenReason(product.expansion.limitingFactors?.[0]),
+    },
+  }));
+}
+
 const loaded = loadComparisonCorpus(rawCorpus as unknown as ComparisonCorpusRaw);
 const hummusCorpusMeta = loaded.meta;
-const hummusProducts = stripHummusInternalFields(
-  loaded.products as HummusCorpusProduct[]
+const hummusProducts = enrichHummusRowSurface(
+  stripHummusInternalFields(loaded.products as HummusCorpusProduct[])
 );
 
 export { hummusCorpusMeta, hummusProducts };
@@ -98,17 +141,27 @@ export const hummusHero = {
   title: "חומוס: מה באמת יש במדף?",
 } as const;
 
+// TASK-137B: prologue rewritten to teach before it ranks — what we measured, how,
+// and why protein is the headline metric (Product directive; rationale in
+// 02_products/hummus/launch/hummus_salad_boundary_ruling_137A.md Part 3).
 export const hummusPrologueSentences = [
-  "בדקנו ממרחי חומוס ומסבחה הנמכרים בשופרסל — לפי הרכב המוצר, רשימת הרכיבים, סימוני האריזה ומבנה המוצר.",
-  "הקטגוריה כוללת ממרחי חומוס ומסבחה בלבד. ממרחי ירקות (מטבוחה, חצילים, פלפלים) מוצגים בדף נפרד.",
-  `כל ${hummusProducts.length} המוצרים המוצגים מקבלים ציון.`,
-  "ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים.",
+  "בדקנו את ממרחי החומוס והמסבחה של שופרסל לפי מה שבאמת נמצא בקופסה — רשימת הרכיבים, רמת העיבוד, נטל תוספי המזון והרכב הערכים התזונתיים.",
+  "כל מוצר מקבל ציון על סולם 0–100 ביחס לקטגוריה בלבד: חומוס נמדד מול חומוס, לא מול מזון אחר.",
+  "בחזית כל מוצר בחרנו להציג את החלבון — ולא במקרה. חומוס הוא מקור החלבון הצמחי המרכזי במדף, וכמות החלבון מסגירה כמה גרגירי חומוס וטחינה יש בממרח באמת, לעומת מים ושמן שמדללים אותו.",
+  "חלבון גבוה הוא לרוב הסימן לממרח מלא יותר — אבל זו הכותרת, לא כל הסיפור: הציון משקלל גם את רמת העיבוד, את מספר התוספים ואת ההרכב הכולל.",
 ] as const;
+
+// IMP-6: the fat-data caveat is rendered ONCE, in the single header categoryNote slot —
+// no longer duplicated across the prologue (former sentence 5) and the methodology
+// footer. The protein-as-headline reasoning survives in prologue sentences 3–4.
+// Upgraded to the cheese gold-standard format (bold header + explanatory paragraph) so the
+// caveat reads consistently across all comparison categories. Factual content unchanged.
+export const hummusCategoryNote =
+  "הערת קטגוריה — ערכי שומן אינם מוצגים\n\nערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים. החלבון הוא לכן המספר האמין ביותר שאפשר להעמיד להשוואה — והוא גם מסגיר כמה גרגירי חומוס וטחינה יש בממרח באמת, לעומת מים ושמן שמדללים אותו.";
 
 export const hummusMethodologyLines = [
   "הציון מחושב לפי מדדים מרובים: רמת עיבוד המוצר, נטל תוספי המזון, הרכב הערכים התזונתיים ומדדים נוספים הנוגעים למבנה המוצר.",
   "הציון הסופי הוא ממוצע משוקלל על סולם של 0 עד 100. ההשוואה היא קטגורית בלבד — כל מוצר מוערך ביחס לממרחי חומוס ומסבחה בלבד.",
-  "ערכי השומן אינם מוצגים בקטגוריה זו בשל מגבלות באיכות מקור הנתונים.",
   "הדירוג נועד לעזור בהשוואה בין מוצרים ואינו מהווה המלצה תזונתית אישית.",
 ] as const;
 

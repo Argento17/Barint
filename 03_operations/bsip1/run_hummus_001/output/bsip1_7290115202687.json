@@ -18,8 +18,9 @@
   ],
   "normalized_nutrition_per_100g": {
     "energy_kcal": 208.0,
-    "fat_g": 0.5,
+    "fat_g": 13.3,
     "carbohydrates_g": 14.5,
+    "sugars_g": 0.6,
     "protein_g": 7.7,
     "sodium_mg": 395.0
   },
@@ -65,7 +66,7 @@
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%96%D7%95%D7%9F-%D7%9E%D7%A7%D7%95%D7%A8%D7%A8-%D7%A7%D7%A4%D7%95%D7%90%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%A0%D7%99%D7%A7%D7%99%D7%9D/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%A1%D7%9C%D7%98%D7%99%D7%9D/%D7%A1%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%95%D7%98%D7%97%D7%99%D7%A0%D7%94/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%A2%D7%9D-%D7%97%D7%A8%D7%99%D7%A3/p/P_7290115202687",
-    "scraped_at": "2026-05-30T18:40:43.055946",
+    "scraped_at": "2026-06-02T06:07:22.850292",
     "source_category": "A162406_hummus_tahini",
     "product_category": "hummus_spread",
     "extraction_method": "html_parse",
@@ -73,143 +74,6 @@
     "price_ils": "13.9",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "חומוס מבושל 63% (מים, חומוס, מווסת חומציות  (סודיום ביקרבונט- סודה לשתייה)), טחינה גולמית 14% (מכיל שומשום), מים, פלפלים אדומים 4%, פלפלים חריפים 1.6%, תבלינים, מלח שולחן, חומצת מאכל (חומצת לימון), שמן קנולה, חומר משמר (פוטסיום סורבט), פלפל חריף מיובש 0.18%, מייצב  (קסנטן גאם). מכיל 8% סלט פלפלים חריף כתוספת",
-  "ingredients_raw_provenance": {
-    "source": "bsip1_text_fallback",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
-  },
-  "ingredient_order": [
-    {
-      "position": 1,
-      "text": "חומוס מבושל 63% (מים, חומוס, מווסת חומציות  (סודיום ביקרבונט- סודה לשתייה))",
-      "percentage_declared": 63.0,
-      "has_subgroup": true
-    },
-    {
-      "position": 2,
-      "text": "טחינה גולמית 14% (מכיל שומשום)",
-      "percentage_declared": 14.0,
-      "has_subgroup": true
-    },
-    {
-      "position": 3,
-      "text": "מים",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 4,
-      "text": "פלפלים אדומים 4%",
-      "percentage_declared": 4.0,
-      "has_subgroup": false
-    },
-    {
-      "position": 5,
-      "text": "פלפלים חריפים 1.6%",
-      "percentage_declared": 1.6,
-      "has_subgroup": false
-    },
-    {
-      "position": 6,
-      "text": "תבלינים",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 7,
-      "text": "מלח שולחן",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 8,
-      "text": "חומצת מאכל (חומצת לימון)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 9,
-      "text": "שמן קנולה",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 10,
-      "text": "חומר משמר (פוטסיום סורבט)",
-      "percentage_declared": null,
-      "has_subgroup": true
-    },
-    {
-      "position": 11,
-      "text": "פלפל חריף מיובש 0.18%",
-      "percentage_declared": 0.18,
-      "has_subgroup": false
-    },
-    {
-      "position": 12,
-      "text": "מייצב  (קסנטן גאם). מכיל 8% סלט פלפלים חריף כתוספת",
-      "percentage_declared": 8.0,
-      "has_subgroup": true
-    }
-  ],
-  "extracted_additives": [
-    {
-      "term": "סודיום ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    },
-    {
-      "term": "מווסת חומציות",
-      "category": "acidity_regulator",
-      "position": 1
-    },
-    {
-      "term": "ביקרבונט",
-      "category": "raising_agent",
-      "position": 1
-    },
-    {
-      "term": "מייצב",
-      "category": "stabilizer",
-      "position": 12
-    },
-    {
-      "term": "קסנטן",
-      "category": "stabilizer_thickener",
-      "position": 12
-    }
-  ],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [
-    {
-      "term": "מבושל",
-      "category": "cooked",
-      "position": 1
-    }
-  ],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 12,
-    "additive_count": 5,
-    "flavor_marker_count": 0,
-    "sweetener_count": 0,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 1,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

@@ -1,0 +1,57 @@
+{
+  "stage": "5_qa_gate",
+  "run_id": "run_cheese_003",
+  "supersedes": "run_cheese_002 (scored on EV-029-corrupt fat; INVALID grades) and run_cheese_001 (pre-router-fix diagnostic)",
+  "generated": "2026-06-02",
+  "owner": "QA Lead",
+  "engine": "proto_v0 / 0.4.1 (UNMODIFIED — no score tuning, no threshold/weight/penalty/cap change, no router change vs run_002; TASK-145 cream-cheese anchor already in 0.4.1/EV-025)",
+  "data_provenance": "Re-scrape 2026-06-02 with the TASK-142A/EV-029 shared nutrition parser (bsip0_nutrition.py); corrupt 2026-06-01 raw REPLACED. BSIP1 rebuilt at run_cheese_003/output on corrected fat/saturated values.",
+  "shelf_map_ref": "../factory_run_001/shelf_map.json",
+  "corpus_filter_ref": "../factory_run_001/corpus_filter.json",
+  "bsip0_gate_ref": "BSIP0 composition gate re-run: 117 scraped, nutrition 89% / ingredients 85% raw, plausibility PASS (0.0% implausible).",
+  "corpus": {"scraped": 117, "bsip1_included": 59, "displayable": 54, "scored": 59, "withheld_insufficient": 5, "pipeline_errors": 0},
+  "checks": {
+    "cov006_nutrition_plausibility": "PASS (0/59 = 0.0% implausible; the corrupt run_cheese_001/002 corpus measured 31.9% FAIL). EV-029 fat-overwrite signature eliminated.",
+    "fat_sane_across_4_subpools": "PASS (fat<=0.5: 0 in every pool; saturated>fat: 0 in every pool; cream-cheese now reads REAL 25-32% fat where the corrupt corpus read 0.5g; cottage 1-12, white-cheese-quark 5-17, labaneh 14).",
+    "coverage_ge90pct_displayable": "PASS (displayable set n=54: nutrition 100%, ingredients 100%, hebrew 100%, images 100%). Full corpus n=59: nutrition 91.5%, ingredients 91.5%, images 100%.",
+    "insufficient_0pct_displayable": "PASS on the displayable set (0/54). 5 products are WITHHELD as transparency-tier — see insufficient_note.",
+    "misroute_lt5pct": "PASS (1/59 = 1.7% < 5%).",
+    "four_subpools_applied": "PASS (cottage 11 / white-cheese-quark 18 / cream-cheese-spread 24 / labaneh 1; displayable).",
+    "constructs_applied": "PASS (sub-pool, developmental D3<=20g [0 detected], light/MDF [1 claim, 0 MDF], fermentation EV-015 guard [3 credited, 0 violations], A-ceiling C1-C6, endemic Sec 6.4 with the 2 PO-approved disclosure texts).",
+    "a_ceiling_withhold_on_real_fat": "PASS-WITH-WITHHOLD (see a_ceiling_note).",
+    "no_pipeline_errors": "PASS (0)."
+  },
+  "insufficient_note": "5 products withheld as transparency-tier (NOT displayed): גבינת שמנת 30% (+30% variants x3) and גבינה לאבנה 5% א.ח.נוכרי. Root cause is a GENUINE partial Shufersal panel — the source page omits total fat, protein and total carbohydrates (lists only energy/sodium/sugar/saturated-fat). VERIFIED against the live product page (P_554969): the nutritionList itself has no total-fat / protein / carbs row. The parser captured everything present. CRITICAL: run_cheese_002's literal '0/57 insufficient' was itself an ARTIFACT of the EV-029 bug — the broken parser mislabeled the saturated-fat row as total fat, fabricating a fat value that made these partial panels appear data-complete. Exposing them is the correct, truthful behavior (parallels run_yogurt_003 ingredient-panel finding).",
+  "residual_misroute": [
+    {"name": "גבינת עזים 32% שומן", "subpool": "cream_cheese_spread", "routed_to": "snack_bar_granola",
+     "note": "1 high-fat (32%) goat soft cheese misroutes to snack_bar_granola. 1.7% total — under the 5% gate. Same single residual as run_002 (1.8%). Low priority; revisit with a goat-cheese signal at a future run. NOT hand-tuned (engine frozen)."}
+  ],
+  "warnings": [
+    {
+      "id": "QA-CHS-W1",
+      "check": "dairy_a_ceiling_governance_on_corrected_fat",
+      "detail": "On corrected fat, only ONE product reaches grade A: גבינה טבורוג 5% (82.0). It is WITHHELD — a_eligible_pre_routing=false, failing C1 (added sugar), C2 (engineered additives), C3 (no confirmed/credited live culture) and C4 (non-intact matrix). 0 products are A-eligible pre-routing. The A-ceiling functions correctly on REAL fat data: the conservative dairy ceiling withholds the lone macro-A. NOTE: run_002 had 6 macro-A's at 85 on the corrupt-fat corpus; on corrected fat far fewer products reach A and the single one is still withheld — the ceiling holds either way.",
+      "action": "Nutrition review (Stage 6). Withheld until signed; a richer culture scrape/OCR would re-test C3."
+    },
+    {
+      "id": "QA-CHS-W2",
+      "check": "fermentation_credit_coverage",
+      "detail": "Only 3/54 displayable panels surface culture vocabulary -> EV-015 credit sparse, A-ceiling C3 rarely passes. Truthful data-coverage finding (parallels run_yogurt_003), not a bug.",
+      "action": "Disclosure-level for launch; no engine change."
+    },
+    {
+      "id": "QA-CHS-W3",
+      "check": "score_shift_vs_run_002_is_expected",
+      "detail": "Scores moved materially vs run_002 because fat is now correct. Cream-cheese-spread median 60.7->52.0 (real 25-32% fat now penalized where the bug read 0.5g); overall median 65.0->55.0. This is the corrected-data truth, NOT a regression. Engine unchanged.",
+      "action": "Nutrition to confirm the corrected per-pool grades for publication."
+    },
+    {
+      "id": "QA-CHS-W4",
+      "check": "labaneh_pool_size",
+      "detail": "Labaneh displayable pool = 1 (2 scraped, 1 partial-panel withheld). Too small for stable intra-pool ranking.",
+      "action": "Broaden the labaneh query at a future run; acceptable for v1."
+    }
+  ],
+  "verdict": "PASS (DATA + ROUTING + PLAUSIBILITY GATES GREEN on EV-029-corrected fat).",
+  "verdict_detail": "The TASK-142A parser fix is validated end-to-end: COV-006 plausibility 0.0% implausible (was 31.9% on the corrupt corpus), fat sane across all 4 sub-pools, misroute 1.7%, displayable coverage 100%, INSUFFICIENT 0% on the displayable set, A-ceiling correctly withholds the lone macro-A on real fat. The 5 transparency-tier withholds are a genuine source-panel coverage truth (and prove the bug had been masking them). Engine 0.4.1 UNMODIFIED. The only remaining gate to LIVE promotion is Nutrition/Product grade-publication sign-off (Stage 6) — a human gate, not a data/QA failure. Frontend package factory_run_003 (52/59 display-approved) is held NON-AUTHORITATIVE pending that sign-off."
+}

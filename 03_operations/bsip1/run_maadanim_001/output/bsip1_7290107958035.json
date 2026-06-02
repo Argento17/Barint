@@ -28,7 +28,7 @@
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "cholesterol_mg": null,
-    "sodium_mg": 1250.0,
+    "sodium_mg": 49.0,
     "carbohydrates_g": 4.8,
     "sugars_g": 4.6,
     "dietary_fiber_g": 2.0,
@@ -161,7 +161,18 @@
   ],
   "extracted_protein_markers": [],
   "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידק פרוביוטי",
+      "category": "live_cultures",
+      "position": 4
+    },
+    {
+      "term": "bifidus",
+      "category": "bifidobacterium",
+      "position": 4
+    }
+  ],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
     "ingredient_count_parsed": 7,
@@ -170,11 +181,11 @@
     "sweetener_count": 1,
     "protein_marker_count": 0,
     "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 2,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",

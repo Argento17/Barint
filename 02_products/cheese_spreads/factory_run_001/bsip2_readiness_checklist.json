@@ -1,0 +1,41 @@
+{
+  "stage": "6_bsip2_readiness",
+  "run_id": "run_cheese_001",
+  "generated": "2026-06-01",
+  "owner": "Scoring Governance Lead (Nutrition approves)",
+  "scoring_logic_registered": {
+    "status": "PASS",
+    "detail": "Engine proto_v0 / 0.4.0 is the registered scoring engine (.claude/scoring.md). Run executed UNMODIFIED — no score tuning, no manual edits, no router changes. Cheese governance is registered and adopted: cheese_spreads_stress_test_001 (TASK-141, verdict B, Product-Owner ratified 2026-06-01). Dairy calibration applied: TASK-139A (A-ceiling ruling), TASK-139B (FERMENTATION_TERMS), TASK-139D/EV-023 (A>=80)."
+  },
+  "evidence_registry_reference": {
+    "status": "PASS",
+    "detail": "The cheese constructs are label-observable CLASSIFICATION / DISCLOSURE layers, NOT new scoring rules — no weight/threshold/penalty added. They cite: Constitution Sec 2.8 (developmental, cheese D3<=20g), Sec 2.9 (dairy divergence axis + four-pool standing precedent), Sec 6.4 (endemic distortion); Guardrails Sec 5.2.1 (reduced-fat/light, relative >=25%); EV-015 (fermentation + flavor-vs-marker guard), EV-021/RULING-DAIRY-A-01 (A-ceiling C1-C6), EV-022/TASK-139B (culture vocab); DISTORTION-006/009/010.",
+    "no_new_scoring_rule": true
+  },
+  "label_observability": {
+    "status": "PASS",
+    "detail": "Construct inputs are label fields with tracked coverage on the displayable set: nutrition 100%, ingredients 91.2%, Hebrew names 100%. Light threshold reads declared fat/100g vs same-sub-pool standard reference. Fermentation credit reads ingredient text only (claim-without-marker → no credit; 0 violations).",
+    "coverage_caveats": [
+      "Live-culture markers are present in only 3/57 scraped panels — EV-015 credit and A-ceiling C3 are sparse but truthful (QA-CHS-W2).",
+      "Developmental D1 (visual mascot) / D3 (serving size) are weakly observable from a text-only scrape; 0 developmental products detected (no mascot/kids cheese in this corpus)."
+    ]
+  },
+  "a_ceiling_ruling_applied": {
+    "status": "PASS-WITH-WITHHOLD",
+    "detail": "EV-021 / RULING-DAIRY-A-01 (C1 no added sugar, C2 no engineered additives, C3 live culture confirmed+credited, C4 intact matrix, C5 correct dairy routing, C6 verified) applied per product. 0 products are A-eligible pre-routing (C3 binds: only 3 have culture credit, and those also fail C1/C2). The single raw-macro grade-A (גבינה טבורוג 5%, 81.0) FAILS C1/C2/C3/C4 → WITHHELD. Light cream cheese with stabilizers correctly fails C2. The ruling behaves exactly as intended (conservative dairy A-ceiling).",
+    "withheld_A_products": [{"name": "גבינה טבורוג 5%", "score": 81.0, "fails": ["C1", "C2", "C3", "C4"]}]
+  },
+  "rollback_plan": {
+    "status": "PASS",
+    "detail": "Greenfield run, NON-AUTHORITATIVE. Nothing is promoted to the live site, so there is no live grade to roll back. Engine was not modified, so there is no engine state to revert. If a later run (run_cheese_002, post router fix) supersedes this, it writes a new run dir; run_cheese_001 is preserved as evidence. Live state = no cheese-spreads page (unchanged).",
+    "previous_state": "no live cheese-spreads category",
+    "restore": "do not promote run_cheese_001; live remains without cheese-spreads",
+    "notify": "Product + QA Lead if promotion is later attempted"
+  },
+  "nutrition_approval": {
+    "status": "PENDING",
+    "detail": "Nutrition sign-off required for: (1) confirmation that withholding the single macro-only A (גבינה טבורוג 5%) under the A-ceiling C1-C6 is correct; (2) the cottage (all B, median 70.4) and white-cheese/labaneh B/C grades are defensible on the correctly-routed set; (3) acceptance that EV-015 culture credit is sparse (3/57) by data, not by engine error. Cream-cheese-pool scores are NOT submitted for approval (misrouted, unreliable).",
+    "blocks_live": true
+  },
+  "verdict": "CONDITIONAL — engine registered + unmodified, constructs evidence-grounded, observability + rollback in place, A-ceiling ruling correctly applied (withholds a macro-only A); BLOCKED on (a) QA-CHS-001 router cream-cheese-anchor misroute gate (47.4%) and (b) Nutrition approval. Cottage / white-cheese / labaneh pools are launch-quality once the router fix lands; the cream-cheese pool cannot launch until anchored."
+}

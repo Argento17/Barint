@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:21.129380Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.499473Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290119384426",
@@ -37,8 +37,7 @@
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
-    "high_additive_category_count: 5",
-    "very_long_ingredient_list: 18"
+    "high_additive_category_count: 5"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -52,10 +51,10 @@
     "fat_trans_g": null,
     "sodium_mg": 222.0,
     "carbohydrates_g": 11.7,
-    "sugars_g": 4.3,
+    "sugars_g": 9.9,
     "dietary_fiber_g": null,
     "protein_g": 8.7,
-    "ingredient_count": 18,
+    "ingredient_count": 15,
     "ingredient_list": [
       "חלב מפוסטר (64%)",
       "מים",
@@ -71,11 +70,25 @@
       "רכז פרי המונק",
       "מווסת חומציות (טרי סודיום ציטראט)",
       "חומרי טעם וריח",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 102 קל אנרגיה 8.7 גרם חלבונים 11.7 גרם פחמימות 2 גרם שומנים 222 מג נתרן 243 מג סידן 4.3 סוכרים 2.5 כפיות סוכר 5.6 מתוכם סוכר מוסף ערכים תזונתיים מנה 14.9 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 13 גרם חלבונים 17.6 גרם פחמימות 3 גרם שומנים 334 מג נתרן 364 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ],
+    "ingredient_count_raw": 18,
+    "ingredient_sanitization": {
+      "raw_count": 18,
+      "clean_count": 15,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "מלח. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 102 קל אנרגיה 8.7 גרם חלבונים 11.7 גרם פחמימות 2 גרם שומנים 222 מג נתרן 243 מג סידן 4.3 סוכרים 2.5 כפיות סוכר 5.6 מתוכם סוכר מוסף ערכים תזונתיים מנה 14.9 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 13 גרם חלבונים 17.6 גרם פחמימות 3 גרם שומנים 334 מג נתרן 364 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "מלח"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -92,13 +105,14 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
     "fat_pct_of_kcal": 17.65,
     "saturated_fat_fraction": null,
-    "sugar_to_carb_ratio": 0.368,
+    "sugar_to_carb_ratio": 0.846,
     "protein_per_kcal": 0.0853,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
@@ -175,6 +189,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 15,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -199,10 +214,7 @@
       "רכז פרי המונק",
       "מווסת חומציות (טרי סודיום ציטראט)",
       "חומרי טעם וריח",
-      "מלח. מכיל חלב ערכים תזונתיים 100 גרם 9.9 גרם סוכרים מתוך פחמימות 102 קל אנרגיה 8.7 גרם חלבונים 11.7 גרם פחמימות 2 גרם שומנים 222 מג נתרן 243 מג סידן 4.3 סוכרים 2.5 כפיות סוכר 5.6 מתוכם סוכר מוסף ערכים תזונתיים מנה 14.9 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 13 גרם חלבונים 17.6 גרם פחמימות 3 גרם שומנים 334 מג נתרן 364 מג סידן 3.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "מלח"
     ]
   },
   "L4_interpreted_concerns": {
@@ -254,27 +266,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 28.3,
+    "nutrient_density": 43.5,
     "calorie_density": 85.0,
-    "glycemic_quality": 79.2,
+    "glycemic_quality": 65.2,
     "protein_quality": 43.5,
     "additive_quality": 10.0,
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 10
+    "whole_food_integrity": 16
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=8.7g→43.5, fiber=0g→0.0, weighted 65/35=28.3",
+    "nutrient_density": "protein=8.7g→43.5; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 43.5",
     "calorie_density": "kcal=102.0, category=dessert → 85",
-    "glycemic_quality": "90 - sugar_penalty(10.8) + fiber(0.0) + wg(0) = 79.2",
+    "glycemic_quality": "90 - sugar_penalty(24.8) + fiber(0.0) + wg(0) = 65.2",
     "protein_quality": "protein=8.7g base=43.5, source=whole_food(×1.0) → 43.5",
     "additive_quality": "sprint1_additives=5 base=10 sw_pen=0→10.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.7×3 + 0×5) / 102.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=18 complexity_pen=20 → 10"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -288,7 +300,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 52.25,
+  "weighted_dimension_score": 53.09,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -392,7 +404,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 52.25,
+  "score_after_cap": 53.09,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -427,7 +439,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=17.6<30.0 or sugar=4.3<20.0"
+      "condition": "fat_pct=17.6<30.0 or sugar=9.9<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -448,13 +460,13 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=18"
+      "note": "ingredient_count=15"
     }
   ],
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 43.25,
+  "score_after_penalty": 44.09,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -523,11 +535,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 43.25,
+  "score_after_floors": 44.09,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 43.2,
+  "final_score_estimate": 44.1,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -538,17 +550,17 @@
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.451,
+    "primary_confidence": 0.446,
     "secondary": "F",
     "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.369,
+    "secondary_confidence": 0.351,
     "class_weights": {
       "A": 0.033,
       "B": 0.033,
-      "C": 0.0,
-      "D": 0.115,
-      "E": 0.451,
-      "F": 0.369
+      "C": 0.012,
+      "D": 0.124,
+      "E": 0.446,
+      "F": 0.351
     },
     "is_between_worlds": true,
     "classification_notes": [

@@ -18,8 +18,9 @@
   ],
   "normalized_nutrition_per_100g": {
     "energy_kcal": 339.0,
-    "fat_g": 0.5,
+    "fat_g": 6.0,
     "carbohydrates_g": 43.2,
+    "sugars_g": 10.7,
     "dietary_fiber_g": 17.4,
     "protein_g": 19.3,
     "sodium_mg": 24.0
@@ -55,7 +56,7 @@
   "bsip0_source": {
     "retailer": "shufersal",
     "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A4%D7%A1%D7%98%D7%94-%D7%90%D7%95%D7%A8%D7%96-%D7%A7%D7%95%D7%A1%D7%A7%D7%95%D7%A1-%D7%95%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%97%D7%95%D7%9E%D7%95%D7%A1-%D7%9C%D7%91%D7%9F-%D7%A2%D7%A0%D7%A7-%D7%A9%D7%95%D7%A4%D7%A8%D7%A1%D7%9C/p/P_7296073005889",
-    "scraped_at": "2026-05-30T18:41:51.686189",
+    "scraped_at": "2026-06-02T06:08:27.390438",
     "source_category": "search",
     "product_category": "hummus_and_savory_dips",
     "extraction_method": "html_parse",
@@ -63,57 +64,6 @@
     "price_ils": "9.9",
     "price_per_100g": null
   },
-  "bsip1_converted_at": "2026-05-30T20:50:27",
-  "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "גרגרי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
-  "ingredients_raw_provenance": {
-    "source": "bsip1_text_fallback",
-    "bsip0_status": "bsip0_file_not_found",
-    "populated_at": "bsip1_enrichment_v1",
-    "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
-  },
-  "ingredient_order": [
-    {
-      "position": 1,
-      "text": "גרגרי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
-      "percentage_declared": null,
-      "has_subgroup": false
-    }
-  ],
-  "extracted_additives": [],
-  "extracted_flavors": [],
-  "extracted_sweeteners": [
-    {
-      "term": "סוכר",
-      "category": "added_sugar",
-      "position": 1
-    }
-  ],
-  "extracted_protein_markers": [],
-  "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
-  "extracted_roasting_markers": [
-    {
-      "term": "מבושל",
-      "category": "cooked",
-      "position": 1
-    }
-  ],
-  "enrichment_summary": {
-    "ingredient_count_parsed": 1,
-    "additive_count": 0,
-    "flavor_marker_count": 0,
-    "sweetener_count": 1,
-    "protein_marker_count": 0,
-    "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
-    "roasting_marker_count": 1,
-    "has_flavor_descriptor": false,
-    "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
-    "has_protein_isolate_or_concentrate": false
-  },
-  "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "bsip1_converted_at": "2026-06-02T08:10:01",
+  "bsip1_conversion_source": "TASK-034"
 }

@@ -1,0 +1,34 @@
+{
+  "category_id": "cheese",
+  "_category_id_note": "Canonical slug is 'cheese' — matches the shipped frontend (route /hashvaot/cheese, registry id 'cheese', dataset cheese_frontend_v1.json). The product folder stays '02_products/cheese_spreads/' and CLOSED cheese tasks remain tagged 'cheese_spreads'; future cheese tasks should tag category_id 'cheese' so the dashboard task-linkage resolves. Reconciled by CC 2026-06-02 (TASK-152 promotion).",
+  "name_he": "גבינות לבנות וממרחים",
+  "name_en": "Cottage / White Cheese (Cheese Spreads)",
+  "route_name": "cheese",
+  "dataset_glob": "cheese_frontend*.json",
+  "governance": {
+    "stress_test": "01_framework/governance/cheese_spreads_stress_test_001.md",
+    "verdict": "B",
+    "sub_pools": ["cottage", "white_cheese_quark", "labaneh", "cream_cheese_spread"],
+    "developmental_pool_d3_portion_g": 20,
+    "light_threshold": "relative >=25% fat reduction vs same-sub-pool standard reference (Guardrails Sec 5.2.1)",
+    "a_ceiling_ruling": "EV-021 / RULING-DAIRY-A-01 (TASK-139A); A>=80 (TASK-139D/EV-023)",
+    "fermentation_terms": "139B FERMENTATION_TERMS with EV-015 flavor-vs-marker guard",
+    "depends_on": ["TASK-139", "TASK-141"]
+  },
+  "baseline": {
+    "bsip0": { "status": "PASS", "run": "run_cheese_003", "displayable": 51, "scraped": 116, "displayable_note": "52->51: gtin 7290014217492 (תערובת תיבול פילדלפיה) removed as a non-cheese seasoning blend misrouted by the פילדלפיה anchor (TASK-153)" },
+    "bsip1": { "status": "PASS", "run": "run_cheese_003", "pools": {"cottage": 11, "white_cheese_quark": 17, "cream_cheese_spread": 25, "labaneh": 3} },
+    "bsip2": { "status": "AUTHORITATIVE", "run": "run_cheese_003", "engine": "0.4.1 (unmodified) + TASK-145 router anchor (EV-025)", "signoff": "Nutrition grade-publication APPROVED 2026-06-02 (factory_run_003/NUTRITION_SIGNOFF_VERDICT.md); EV-029 fat-parser fix (TASK-142A) applied; plausibility 0.0% implausible" },
+    "qa": { "status": "PASS", "run": "run_cheese_003", "misroute_pct": 1.7, "insufficient_pct": 0.0, "router_regression": "15/15" }
+  },
+  "promoted_to_frontend": true,
+  "live_since": "2026-06-02",
+  "live_blocker": null,
+  "known_issues": [
+    "RESOLVED — EV-029 fat-parse bug (trans-fat row captured as total fat) fixed centrally in _shared/bsip0_nutrition.py (TASK-142A); re-scraped + re-scored as run_cheese_003 on corrected fat; plausibility 0.0% implausible (was 31.9%).",
+    "RESOLVED — QA-CHS-001 cream-cheese misroute fixed by TASK-145/EV-025 (router anchor + regression-lock); run_cheese_003 misroute 1.7%.",
+    "BY DESIGN — 8 products withheld from the 59-corpus: 2 misroute (1 residual + 1 non-cheese seasoning removed by TASK-153), 1 A-ceiling withhold (גבינה טבורוג 5% / 82.0, fails C1-C4), 5 transparency-tier on genuine partial Shufersal panels (total fat/protein/carbs omitted at source). 51 display-approved.",
+    "RESOLVED — TASK-153: gtin 7290014217492 (תערובת תיבול פילדלפיה, brand טעם וריח, Shufersal seasonings shelf) was a salt-based seasoning blend (sodium 7,905 mg/100g) misrouted into cream_cheese_spread by the TASK-145 פילדלפיה anchor. Removed from live JSON + factory package + this baseline (52->51); router seasoning-exclusion added (EV-030). No engine/score change; no other product moved.",
+    "FOLLOW-UP — insightLine + hero/prologue/methodology Hebrew copy is AI-drafted pending Content Agent editorial review before public launch (TASK-152 deferred item)."
+  ]
+}

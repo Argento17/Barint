@@ -135,7 +135,7 @@
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290011899295.json",
   "bsip_maadanim_subtype": "probiotic_dessert",
-  "price": "188.93",
+  "price": "215.92",
   "price_per_100g": null,
   "acquisition_query": "פרוביו",
   "extracted_additives": [
@@ -157,6 +157,11 @@
   ],
   "extracted_fermentation_markers": [
     {
+      "term": "חיידקים פרוביוטי",
+      "category": "live_cultures",
+      "position": 1
+    },
+    {
       "term": "לקטובציל",
       "category": "lactobacillus",
       "position": 3
@@ -170,11 +175,11 @@
     "sweetener_count": 0,
     "protein_marker_count": 0,
     "matrix_marker_count": 1,
-    "fermentation_marker_count": 1,
+    "fermentation_marker_count": 2,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",

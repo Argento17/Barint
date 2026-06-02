@@ -1,0 +1,44 @@
+{
+  "stage": "5_qa_gate",
+  "run_id": "run_cereals_002",
+  "generated": "2026-06-01",
+  "owner": "QA Lead",
+  "engine": "proto_v0 / 0.4.0 (unmodified — no score tuning)",
+  "corpus": {"displayable": 92, "scored": 92, "insufficient": 0, "pipeline_errors": 0},
+  "checks": {
+    "data_sufficiency_0pct_insufficient": "PASS (0/92)",
+    "coverage_ge90pct": "PASS (nutrition 100%, ingredients 100%)",
+    "no_null_scores": "PASS (0/92)",
+    "grade_score_internal_consistency": "PASS (all 92 grades match engine score_to_grade() / GRADE_THRESHOLDS S90/A80/B65/C50/D35)",
+    "pipeline_errors": "PASS (0)",
+    "four_constructs_applied": "PASS (granola subpool, children's, whole-grain MDF, fortification — all populated per product + category rollup)",
+    "misroute_lt5pct": "HARD FAIL (7/92 = 7.6% > 5% exit gate)"
+  },
+  "hard_fails": [
+    {
+      "id": "QA-CER-001",
+      "check": "misroute_lt5pct",
+      "value": "7.6%",
+      "detail": "7 real cereals route outside the cereal family: spelt flakes (כוסמין מלא 100%, פתיתים אורגנים כוסמין) -> bread (2); nut-dense muesli/granola + honey Cheerios (מוזלי בוטנים+שקדים, מוזלי קראנצ'י, צ'יריוס דבש+שקדים) -> whole_food_fat (3); corn/rice rings (דגני טבעות תירס ואורז) -> beverage (1); kids nougat pillows (כריות נוגט) -> whole_food_fat (1).",
+      "root_cause": "Router v2 has no strong cereal anchor; 'כוסמין'/whole-grain matrix reads as bread, and nut tokens trigger whole_food_fat contamination (documented known router gap in scoring.md). Same CLASS as the run_yogurt_003 19% misroute.",
+      "remediation": "SCOPED ROUTER FOLLOW-UP (engine change — OUT OF SCOPE for this data-pipeline task; must not be hand-tuned here). Add a cereal anchor that survives grain/nut tokens (carry a category prior from the BSIP0 cereal-shelf acquisition query, mirroring the yogurt router recommendation). Re-run after fix.",
+      "score_impact": "whole_food_fat routing uses a lenient calorie table and can inflate grades: 'פתיתים אורגנים כוסמין' shows A(81.5) under bread routing — a misroute-influenced grade. Do NOT ship the affected rows."
+    }
+  ],
+  "warnings": [
+    {
+      "id": "QA-CER-W1",
+      "check": "nova_proxy_plausibility",
+      "detail": "4 shaped baked-flake cereals (פתיתים אפויים כוכבים/טבעות/אורז/קוסקוס) read NOVA 1 -> 85/A. Shaped baked/extruded flakes are plausibly NOVA 3, not NOVA 1. Possible NOVA-proxy under-call on minimal-ingredient shaped cereals. The 2 plain whole-oat A's (שיבולת שועל עבה, קוואקר שיבולת שועל, NOVA 1/85) ARE legitimate (single-ingredient whole grain, milk-precedent-consistent).",
+      "action": "Nutrition review at BSIP2 readiness (Stage 6) — does not block the gate by itself, but the 4 baked-flake A's are not Nutrition-approved for display until reviewed."
+    },
+    {
+      "id": "QA-CER-W2",
+      "check": "documentation_drift",
+      "detail": "scoring.md Grades table (A 85-100 / B 70-84 / C 55-69 / D 40-54 / E 0-39) is STALE vs engine constants.py GRADE_THRESHOLDS (S90/A80/B65/C50/D35). Cereals grades follow the engine constants (correct), but the published doc disagrees. Cross-reference TASK-139A flag (same A-threshold inconsistency, 80 vs 85).",
+      "action": "Reconcile scoring.md with constants.py (Nutrition/Product) — affects how A-count is reported across ALL categories, not just cereals."
+    }
+  ],
+  "verdict": "BLOCKED_FOR_LIVE_PROMOTION",
+  "verdict_detail": "Pipeline is data-complete and clean (0 insufficient, 0 errors, 100% coverage, 4 constructs applied), but the misroute <5% exit gate FAILS at 7.6% due to an out-of-scope router cereal-anchor gap. Per run_yogurt_003 discipline, the frontend package is produced as NON-AUTHORITATIVE evidence and NOT promoted to the live site. Two scoped follow-ups (router fix; Nutrition NOVA review of shaped baked flakes) gate live launch."
+}

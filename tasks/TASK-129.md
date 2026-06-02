@@ -2,9 +2,11 @@
 id: TASK-129
 title: BSIP Calibration & Confidence (launch slice)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-01
+completed_at: 2026-06-01
+close_reason: "Close per CC Agent"
 depends_on: []
 blocks: [TASK-131]
 category_id: null

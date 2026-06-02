@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
-  "algorithm_version": "0.4.0",
-  "trace_generated_at": "2026-06-01T12:33:20.926877Z",
+  "algorithm_version": "0.4.1",
+  "trace_generated_at": "2026-06-02T06:05:52.309526Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_7290110573737",
@@ -40,7 +40,9 @@
     "sweetener_detected",
     "high_additive_category_count: 4"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
@@ -55,7 +57,7 @@
     "sugars_g": 3.4,
     "dietary_fiber_g": null,
     "protein_g": 7.9,
-    "ingredient_count": 15,
+    "ingredient_count": 12,
     "ingredient_list": [
       "חלב מפוסטר",
       "חלבוני מי גבינה",
@@ -68,11 +70,25 @@
       "מלח",
       "רכז גזר שחור",
       "ממתיקים (אצסולפאם nk",
-      "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 59 קל אנרגיה 7.9 גרם חלבונים 3.9 גרם פחמימות 1 גרם שומנים 74 מג נתרן 120 מג סידן 3.4 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 8.8 גרם סוכרים מתוך פחמימות 151 קל אנרגיה 20 גרם חלבונים 9.9 גרם פחמימות 2.6 גרם שומנים 189 מג נתרן 305 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר"
     ],
+    "ingredient_count_raw": 15,
+    "ingredient_sanitization": {
+      "raw_count": 15,
+      "clean_count": 12,
+      "dropped": [
+        "אין להסתמך על הפירוט המופיע באתר",
+        "יתכנו טעויות או אי התאמות",
+        "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      ],
+      "truncated": [
+        {
+          "from": "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 59 קל אנרגיה 7.9 גרם חלבונים 3.9 גרם פחמימות 1 גרם שומנים 74 מג נתרן 120 מג סידן 3.4 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 8.8 גרם סוכרים מתוך פחמימות 151 קל אנרגיה 20 גרם חלבונים 9.9 גרם פחמימות 2.6 גרם שומנים 189 מג נתרן 305 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
+          "to": "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר"
+        }
+      ],
+      "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
+    },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
     "bsip1_trust_score": 0.8,
@@ -89,7 +105,8 @@
     "consistency_checks": {
       "sugar_le_carbs": true,
       "satfat_le_fat": null,
-      "kcal_plausible": true
+      "kcal_plausible": true,
+      "macros_plausible": true
     }
   },
   "L2_derived_signals": {
@@ -135,7 +152,7 @@
       "סוכר"
     ],
     "has_fruit_concentrate": true,
-    "has_fermentation": false,
+    "has_fermentation": true,
     "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
@@ -169,6 +186,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
+    "sanitized_ingredient_count": 12,
     "primary_fragmentation": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
@@ -190,10 +208,7 @@
       "מלח",
       "רכז גזר שחור",
       "ממתיקים (אצסולפאם nk",
-      "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 3.4 גרם סוכרים מתוך פחמימות 59 קל אנרגיה 7.9 גרם חלבונים 3.9 גרם פחמימות 1 גרם שומנים 74 מג נתרן 120 מג סידן 3.4 סוכרים 0.75 כפיות סוכר ערכים תזונתיים מנה 8.8 גרם סוכרים מתוך פחמימות 151 קל אנרגיה 20 גרם חלבונים 9.9 גרם פחמימות 2.6 גרם שומנים 189 מג נתרן 305 מג סידן 2.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+      "סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר"
     ]
   },
   "L4_interpreted_concerns": {
@@ -245,7 +260,7 @@
   ],
   "dimension_scores": {
     "processing_quality": 35,
-    "nutrient_density": 25.7,
+    "nutrient_density": 39.5,
     "calorie_density": 95.0,
     "glycemic_quality": 81.5,
     "protein_quality": 39.5,
@@ -253,11 +268,11 @@
     "satiety_support": 100,
     "fat_quality": 50.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 16
+    "whole_food_integrity": 27
   },
   "dimension_notes": {
     "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
-    "nutrient_density": "protein=7.9g→39.5, fiber=0g→0.0, weighted 65/35=25.7",
+    "nutrient_density": "protein=7.9g→39.5; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 39.5",
     "calorie_density": "kcal=59.0, category=yogurt → 95",
     "glycemic_quality": "90 - sugar_penalty(8.5) + fiber(0.0) + wg(0) = 81.5 (sweetener tier-C)",
     "protein_quality": "protein=7.9g base=39.5, source=whole_food(×1.0) → 39.5",
@@ -265,7 +280,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (7.9×3 + 0×5) / 59.0 × 400 = 100",
     "fat_quality": "sat_fat absent → neutral 50",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=15 complexity_pen=14 → 16"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 + ferm_bonus=5 → 27"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -279,7 +294,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 53.77,
+  "weighted_dimension_score": 56.28,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -383,7 +398,7 @@
     }
   ],
   "binding_cap": 68,
-  "score_after_cap": 53.77,
+  "score_after_cap": 56.28,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -406,8 +421,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -430,17 +445,11 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "LONG_INGREDIENT_LIST",
-      "amount": 4,
-      "note": "ingredient_count=15"
-    }
-  ],
-  "total_penalty_before_scaling": 4.0,
-  "total_penalty_after_scaling": 4.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 49.77,
+  "score_after_penalty": 56.28,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -462,15 +471,11 @@
     },
     "processing_load": {
       "binding_cap": 68,
-      "coordinated_penalty": 4,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "LONG_INGREDIENT_LIST",
-          "amount": 4
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 4,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "sodium_load": {
@@ -505,16 +510,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 49.77,
+  "score_after_floors": 56.28,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 49.8,
-  "grade_estimate": "D",
+  "final_score_estimate": 56.3,
+  "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['LONG_INGREDIENT_LIST']"
+    "DOMINANT: Binding cap=68 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
   ],
   "unresolved_flags": [],
   "structural_class": {
@@ -538,8 +542,7 @@
       "high_additive_load",
       "whole_food_integrity_low",
       "moderate_protein_quality",
-      "sweetener_detected",
-      "high_complexity_assembly"
+      "sweetener_detected"
     ],
     "classifier_version": "structural_classifier_v1"
   }
