@@ -2,12 +2,16 @@
 id: TASK-169B
 title: P1 — promote recal behind BARI_RECAL_P0, rescore + reship CHEESE + HUMMUS only (frozen dairy deferred)
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-02
+closed_at: 2026-06-03
+closed_by: cc-agent
+cc_reviewed: 2026-06-03
 depends_on: []
 blocks: []
 category_id: null
+close_reason: "P1 cheese+hummus recal SHIPPED + owner-confirmed live (2026-06-03 — the final human sign-off that was 169B's last open gate; Product D7 already co-signed). Close-readiness gate verified against artifacts, not prose: (1) live files faithfully render the recal engine runs — QA diff cheese_frontend_v2.json vs run_cheese_004 traces = 48/52 exact + 2 documented A-caps + 2 rounding; hummus_frontend_v4.json vs run_hummus_003 = 59/64 + 5 rounding; distributions cheese A11/B19/C18/D3/E1, hummus A7/B35/C16/D6. (2) cottage 1% che-7290014758681 = 90/A leads; exactly 2 A->B caps che-4127336/che-41452 @ 81/B (sat-fat 5.4>4.0, EV-021 Amendment A1 conditional gate). (3) Verdict text grade-consistent in BOTH files — 0 contradictions (cheese caps phrased 'מוצג כ-B ולא A רק בגלל השומן הרווי'; hummus C->B say 'עוצר ב-B', B->A say 'מגיע ל-A') — the _meta 'stale/draft' content notes were outdated snapshots; Content pass was actually done. (4) False 'מבנה רכיבים מעובד' NOVA-3 line removed from live cheese (0 matches). (5) Stale _meta staged_not_live/live_repoint flags reconciled to false on both files (2026-06-03; documentary only, no code reads them). Frozen milk/yogurt/snack/bread deliberately NOT regenerated — deferred to later approved waves under parent TASK-169. NOTE: production deploy still needs branch merge cc-agent-v2 -> master (owner action; deploy step, not a task gate)."
 summary: >
   P1 of TASK-169, owner green-lit (cheese+hummus first; frozen milk/yogurt/snack deferred to a later approved wave; yogurt top to be trimmed via R1 yogurt anchor in that wave). Author evidence-registry entries EV-029-032 (+EV-024/027 extensions); Product D7 co-sign; rescore cheese + hummus with BARI_RECAL_P0 ON (new run ids), rebuild ONLY their frontend JSON; do NOT regenerate milk/yogurt/snack/bread JSON (they stay on current scores until their wave). Then frontend integrate + Content fix stale insight lines + remove false 'מבנה רכיבים מעובד' labels (cottage now NOVA 2) + QA stale-data/build. Final owner confirm before live deploy. Flag OFF = byte-identical rollback.
 ---
@@ -80,3 +84,6 @@ other A's are earned A's.
 
 Still **STAGED** — page imports unchanged (still `cheese_frontend_v1.json`). Product
 Agent D7 co-sign required before live repoint.
+
+## SHIPPED (2026-06-02)
+Cheese + hummus recalibration committed `8af14a2` and pushed to `cc-agent-v2`. Pages repointed (cheese_frontend_v1->v2, hummus_frontend_v3->v4); build/tsc/lint clean (34 routes); numbers independently verified (cottage 1% 90/A leads, 9% cottages 81/B, cheese A11/B19/C18/D3/E1, hummus A7/B35/C16/D6). Product D7 co-signed. Frozen milk/yogurt/snack NOT regenerated. **Production deploy = needs merge cc-agent-v2 -> master (owner).** Unrelated veg-spreads metric-bar .tsx change left uncommitted (not part of this wave).

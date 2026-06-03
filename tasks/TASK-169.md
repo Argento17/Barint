@@ -79,3 +79,17 @@ line/curve references are `03_operations/bsip2/proto_v0/src/score_engine.py` + `
 - No live score ships until P0 design is owner-approved.
 - "best ≠ excellent" framing stays; only the numbers move (per frozen-invariant doctrine).
 - Do not invent product/nutrition data; all recalibration validated against existing traces.
+
+## Status note (CC, 2026-06-03) — P1 wave owner-approved live; parent stays open
+- **TASK-169B (P1 — cheese + hummus) CLOSED 2026-06-03.** Owner gave the final human sign-off
+  that was its last gate; recal grades are approved live on the cheese, hummus and
+  vegetable-spreads pages (47 grade promotions incl. 12 new A's; cottage 1% 90/A leads). Live
+  files verified against the recal engine runs + verdicts grade-consistent (see 169B close_reason).
+- **Why this surfaced late:** the P1 ship was committed (8af14a2) and Product-co-signed on
+  2026-06-02 but never reconciled — registry stayed IN_PROGRESS and the JSON `_meta` still said
+  `staged_not_live: true`, so a grade-drift audit (2026-06-03) flagged unapproved scores live.
+  Reconciled on owner approval; flags flipped to `live`.
+- **Parent remains IN_PROGRESS.** Open: the frozen-category waves (P2/P3) — milk run_004,
+  yogurt top-trim via R1 anchor, snack bars — each still needs its own owner per-move sign-off
+  before rescore/reship. Not started.
+- Production deploy of the shipped P1 wave still needs branch merge `cc-agent-v2 -> master` (owner).

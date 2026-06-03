@@ -11,6 +11,7 @@ const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string
   { key: "protein", label: "חלבון", unit: 'ג\'' },
   { key: "sugar", label: "סוכרים", unit: 'ג\'' },
   { key: "fat", label: "שומן", unit: 'ג\'' },
+  { key: "satFat", label: "שומן רווי", unit: 'ג\'' },
   { key: "sodium", label: "נתרן", unit: 'מ"ג' },
 ];
 

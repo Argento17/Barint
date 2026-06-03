@@ -15,6 +15,9 @@ export interface BariNutritionVM {
   protein: number | null;
   sugar: number | null;
   fat: number | null;
+  /** Saturated fat g per 100g/ml (TASK-168J). Optional/absent on categories whose source
+   *  JSON predates the field; null = data not available → row hidden. Additive, non-breaking. */
+  satFat?: number | null;
   fiber: number | null;
   sodium: number | null;
 }

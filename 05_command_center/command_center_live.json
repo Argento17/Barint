@@ -3,37 +3,37 @@
   "_note": "Lean live view. Full board: command_center.json · closed detail: command_center_archive.json",
   "meta": {
     "version": "3.0",
-    "last_updated": "2026-06-02",
-    "generated_at": "2026-06-02T20:08:34",
-    "newest_source_at": "2026-06-02T20:08:29",
+    "last_updated": "2026-06-03",
+    "generated_at": "2026-06-03T10:19:13",
+    "newest_source_at": "2026-06-03T10:19:05",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-02T20:08:34",
+    "drift_checked_at": "2026-06-03T10:19:13",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
-    "system_health": "YELLOW",
+    "system_health": "GREEN",
     "active_task_ids": [
-      "TASK-168",
       "TASK-169",
       "TASK-169A",
-      "TASK-169B"
+      "TASK-171",
+      "TASK-174"
     ],
     "latest_completed_task": {
       "id": "TASK-142A",
       "title": "BSIP0 nutrition-parse data-integrity bug: trans-fat row captured as total fat (fat_g=0.5) + nutrition-panel bleed — root-cause, fix, blast-radius",
       "completed_at": "2026-06-02"
     },
-    "current_blocker": "TASK-162: tasks/TASK-162.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
+    "current_blocker": null,
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-168",
-    "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
-    "owner": "product-agent",
+    "task_id": "TASK-169",
+    "title": "Scoring recalibration sprint — category-relative whole-food rubric (protein curve, fiber-blend, leanness, NOVA proxy, red-label cliff, category-fit)",
+    "owner": "nutrition-agent",
     "status": "IN_PROGRESS",
     "priority": "HIGH",
     "reason": "Currently in progress — finish this first.",
@@ -45,18 +45,14 @@
     "blocked": 0,
     "returned": 1,
     "changes_requested": 0,
-    "closed": 130,
-    "wip": 4,
+    "closed": 143,
+    "wip": 2,
     "wip_task_ids": [
-      "TASK-168",
       "TASK-169",
-      "TASK-169A",
-      "TASK-169B"
+      "TASK-169A"
     ],
     "wip_by_owner": {
-      "product-agent": 1,
-      "nutrition-agent": 2,
-      "data-agent": 1
+      "nutrition-agent": 2
     },
     "owner_wip_limit": 2,
     "wip_over_limit": []
@@ -66,24 +62,23 @@
     "top_unblockers": []
   },
   "drift": {
-    "checked_at": "2026-06-02T20:08:36",
-    "clean": false,
+    "checked_at": "2026-06-03T10:19:15",
+    "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
       "CLOSURE_DRIFT": 0,
       "SNAPSHOT_DRIFT": 0,
-      "REGISTRY_UNPARSEABLE": 5
+      "REGISTRY_UNPARSEABLE": 0
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [],
-    "registry_unparseable": [
-      "TASK-162",
-      "TASK-165",
-      "TASK-166",
-      "TASK-167",
-      "TASK-168"
-    ],
-    "acknowledged": []
+    "registry_unparseable": [],
+    "acknowledged": [
+      {
+        "id": "TASK-171",
+        "reason": "Umbrella objective — deliverables belong to CLOSED sub-tasks (171A methodology, 171B dossiers). Parent stays IN_PROGRESS by design for Phases 2–4; not stalled, not undelivered work."
+      }
+    ]
   },
   "category_state": [
     {
@@ -170,27 +165,6 @@
   ],
   "open_tasks": [
     {
-      "id": "TASK-168",
-      "title": "Comparison pages — full redesign (descriptions + hero + intro + table + methodology)",
-      "owner": "product-agent",
-      "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "created_at": "2026-06-02",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": null,
-      "blocker": null,
-      "close_reason": null,
-      "summary": "Owner directive: the comparison pages need a full redesign — trigger is weak/inconsistent product descriptions (252 lines, 13% restate the grade, lengths erratic), but scope is the whole page. Phased, pilot-first, Product gates scope vs the frozen Gen-1 architecture. All 7 agents involved across phases.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": true,
-      "cc_reviewed": null
-    },
-    {
       "id": "TASK-169",
       "title": "Scoring recalibration sprint — category-relative whole-food rubric (protein curve, fiber-blend, leanness, NOVA proxy, red-label cliff, category-fit)",
       "owner": "nutrition-agent",
@@ -207,7 +181,7 @@
       "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 1,
       "roadmap_impact": true,
       "cc_reviewed": null
     },
@@ -228,30 +202,54 @@
       "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 1,
       "roadmap_impact": false,
       "cc_reviewed": null
     },
     {
-      "id": "TASK-169B",
-      "title": "P1 — promote recal behind BARI_RECAL_P0, rescore + reship CHEESE + HUMMUS only (frozen dairy deferred)",
-      "owner": "data-agent",
+      "id": "TASK-171",
+      "title": "Supplement Intelligence Engine (SIE) - MVP",
+      "owner": "nutrition-agent",
       "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "created_at": "2026-06-02",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-03",
       "completed_at": null,
       "depends_on": [],
       "blocks": [],
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "P1 of TASK-169, owner green-lit (cheese+hummus first; frozen milk/yogurt/snack deferred to a later approved wave; yogurt top to be trimmed via R1 yogurt anchor in that wave). Author evidence-registry entries EV-029-032 (+EV-024/027 extensions); Product D7 co-sign; rescore cheese + hummus with BARI_RECAL_P0 ON (new run ids), rebuild ONLY their frontend JSON; do NOT regenerate milk/yogurt/snack/bread JSON (they stay on current scores until their wave). Then frontend integrate + Content fix stale insight lines + remove false 'מבנה רכיבים מעובד' labels (cottage now NOVA 2) + QA stale-data/build. Final owner confirm before live deploy. Flag OFF = byte-identical rollback.",
-      "work_type": "execution",
+      "summary": "Sibling scoring engine to BSIP2 for supplements (different object: active/dose/form/evidence tuple, not a per-100g panel). MVP proves a 5-dimension scorer (Evidence Strength, Dose Adequacy, Form/Bioavailability, Formulation Honesty, Safety Ceiling) on a minimal 5-active stress set before any category expansion.",
+      "work_type": "objective",
+      "drift_ack": "Umbrella objective — deliverables belong to CLOSED sub-tasks (171A methodology, 171B dossiers). Parent stays IN_PROGRESS by design for Phases 2–4; not stalled, not undelivered work.",
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null
+    },
+    {
+      "id": "TASK-174",
+      "title": "Nutrition Expert Partnership Presentation — boardroom-grade deck for senior-scientist evaluation",
+      "owner": "chief-nutrition-officer",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-03",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Boardroom-quality slide-by-slide deck for a senior nutrition scientist evaluating a long-term Bari partnership. 10 requested sections (Problem, Vision incl. 5-year arc, What We Built, Scientific Depth w/ real rulings, Progress, Why We Win, Monetization, Role of Expert, 90-day Opportunities, Closing) + deep-BSIP appendix. Authored as a single Python source of truth that emits BOTH an editable .pptx and a markdown spec (title/objective/key-messages/ suggested-visual/speaker-notes per slide). Investor-grade tone, rigor-forward, no fluff; every number traced to a real repo artifact. Deliverables in presentations/nutrition_partnership/.",
+      "work_type": "content",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
       "roadmap_impact": false,
-      "cc_reviewed": null
+      "cc_reviewed": null,
+      "cc": [
+        "fyi"
+      ]
     },
     {
       "id": "TASK-140",
@@ -270,76 +268,10 @@
       "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 1,
+      "age_days": 2,
       "roadmap_impact": false,
       "cc_reviewed": null
     }
   ],
-  "alerts": [
-    {
-      "id": "ALT-001",
-      "type": "REGISTRY_UNPARSEABLE",
-      "severity": "HIGH",
-      "message": "TASK-162: tasks/TASK-162.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
-      "related_category": null,
-      "related_task": "TASK-162",
-      "related_agent": null,
-      "created_at": "2026-06-02",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-162.md, then re-run generate_dashboard.py."
-    },
-    {
-      "id": "ALT-002",
-      "type": "REGISTRY_UNPARSEABLE",
-      "severity": "HIGH",
-      "message": "TASK-165: tasks/TASK-165.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
-      "related_category": null,
-      "related_task": "TASK-165",
-      "related_agent": null,
-      "created_at": "2026-06-02",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-165.md, then re-run generate_dashboard.py."
-    },
-    {
-      "id": "ALT-003",
-      "type": "REGISTRY_UNPARSEABLE",
-      "severity": "HIGH",
-      "message": "TASK-166: tasks/TASK-166.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
-      "related_category": null,
-      "related_task": "TASK-166",
-      "related_agent": null,
-      "created_at": "2026-06-02",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-166.md, then re-run generate_dashboard.py."
-    },
-    {
-      "id": "ALT-004",
-      "type": "REGISTRY_UNPARSEABLE",
-      "severity": "HIGH",
-      "message": "TASK-167: tasks/TASK-167.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
-      "related_category": null,
-      "related_task": "TASK-167",
-      "related_agent": null,
-      "created_at": "2026-06-02",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-167.md, then re-run generate_dashboard.py."
-    },
-    {
-      "id": "ALT-005",
-      "type": "REGISTRY_UNPARSEABLE",
-      "severity": "HIGH",
-      "message": "TASK-168: tasks/TASK-168A.md exists but is not shown on the Task Board (invalid YAML frontmatter (ScannerError)) — existing task file is invisible",
-      "related_category": null,
-      "related_task": "TASK-168",
-      "related_agent": null,
-      "created_at": "2026-06-02",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-168A.md, then re-run generate_dashboard.py."
-    }
-  ]
+  "alerts": []
 }
