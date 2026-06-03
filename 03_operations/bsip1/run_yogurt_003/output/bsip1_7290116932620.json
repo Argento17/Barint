@@ -32,8 +32,24 @@
     "carbohydrates_g": 4.4,
     "sugars_g": null,
     "dietary_fiber_g": null,
-    "protein_g": 190.0
+    "protein_g": 12.5
   },
+  "nutrition_corrections": [
+    {
+      "field": "protein_g",
+      "was": 190.0,
+      "now": 12.5,
+      "reason": "Shufersal nutritionList parser pulled '190' from the embedded panel text in ingredients ('190 גרם חלבונים') as protein_g/100g — physically impossible at 86 kcal.",
+      "authoritative_source": "open_food_facts",
+      "source_id": "7290116932620",
+      "source_url": "https://world.openfoodfacts.org/api/v2/product/7290116932620.json",
+      "source_value_protein_100g": 12.5,
+      "cross_checks": "OFF proteins_100g=12.5; OFF energy/fat/carb/sodium (86kcal/2.0g/4.5g/72mg) match Shufersal; on-pack label '25 גרם חלבון בגביע' over 200g cup = 12.5g/100g (OFF proteins_serving=25, serving=200g).",
+      "fixed_by": "TASK-169D ship-prep (data-agent)",
+      "fixed_at": "2026-06-03",
+      "verification_status": "candidate"
+    }
+  ],
   "energy_source_unit": "kcal",
   "ingredients_text_he": "רכיבי חלב (54%) , חלב, אבקת חלב. n25 גרם חלבון בגביע , מתוכם11.5   גרם חלבוני מי גבינה , 13.5 גרם קזאין מכיל חלב ערכים תזונתיים 100 גרם 86 קל אנרגיה 190 גרם חלבונים 4.4 גרם פחמימות 2 גרם שומנים 72 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "ingredients_list": [

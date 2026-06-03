@@ -37,6 +37,7 @@ from constants import (
     CULTURED_YOGURT_SUBTYPES, CULTURED_CHEESE_NAME_MARKERS_HE,
     FLUID_MILK_NAME_MARKERS_HE, DAIRY_SOLID_IDENTITY_MARKERS_HE,
     FLAVORED_VARIANT_MARKERS_HE,
+    SERVING_SUGGESTION_PROSE_MARKERS_HE,
     RED_LABEL_THRESHOLDS as _RED_LABEL_THRESHOLDS,
     score_to_grade,
 )
@@ -50,6 +51,16 @@ TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 # DEFAULT OFF → engine byte-identical to 0.4.1 (safety contract + regression guard).
 # Source of truth: 01_framework/bsip2_framework/recalibration_p0_design_v1.md.
 RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "off").lower() == "on"
+
+# TASK-169D — OPTIONAL yogurt top-trim (DECISION MODEL ONLY, default OFF).
+# When ON (and RECAL_P0_ON), the live-culture +8 may lift a cultured yogurt to A but is
+# capped so it cannot, by itself, manufacture an S: a yogurt that received the gated +8 is
+# held at a pre-floor/pre-ceiling A-ceiling (RECAL_P0_YOGURT_TRIM_CEILING). This is the
+# precedented A-ceiling construct (cf. cheese A-ceiling) applied to the yogurt apex — the
+# cleanest "trim the top" lever, since the S-grades arise from the +8 stacking on an
+# already-high base, not from the protein scale apex. OFF → no effect (option a).
+RECAL_P0_YOGURT_TRIM = os.environ.get("BARI_RECAL_P0_YOGURT_TRIM", "off").lower() == "on"
+RECAL_P0_YOGURT_TRIM_CEILING = 89.9
 
 
 # ---------------------------------------------------------------------------
@@ -1177,7 +1188,23 @@ def score_product(product: dict, signals: dict, cat_result: dict,
 
         # Flavored / seasoned variant disqualifies Path B (matches R4's flavored-variant
         # logic; kept independent — separate test, no shared state).
-        is_flavored_variant = any(m in _hay for m in FLAVORED_VARIANT_MARKERS_HE)
+        # TASK-169D ship-prep: when the yogurt-trim construct is ON, drop serving-suggestion
+        # marketing-prose ingredient items before the flavored scan. BSIP1 falls back to
+        # marketing copy when BSIP0 is absent and can mis-capture a serving suggestion
+        # ("...בתוספת פירות... דבש מתוק או פשוט ככה...") as an ingredient item, naming an
+        # add-on the product does NOT contain (e.g. דבש/honey) and falsely tripping this
+        # exclusion. The NAME is always scanned (real flavored SKUs carry the flavor in the
+        # name); only marketing-prose ingredient items are excluded. Real seasoned variants
+        # (e.g. tzatziki — שום/שמיר in a genuine ingredient list) carry no prose markers and
+        # are unaffected. Fully gated behind RECAL_P0_YOGURT_TRIM → no effect when OFF.
+        if RECAL_P0_YOGURT_TRIM:
+            _ing_items = l3.get("ingredient_list") or []
+            _real_items = [it for it in _ing_items
+                           if not any(pm in it for pm in SERVING_SUGGESTION_PROSE_MARKERS_HE)]
+            _flav_hay = _name + " " + " ".join(_real_items)
+        else:
+            _flav_hay = _hay
+        is_flavored_variant = any(m in _flav_hay for m in FLAVORED_VARIANT_MARKERS_HE)
 
         # Path B.2 — aged/specialty cultured cheese by name. Cottage (קוטג') and
         # white-cheese (גבינה לבנה / לבנה) fresh subtypes are NOT in the marker set, so
@@ -1200,6 +1227,13 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         fermentation_bonus_note = (
             f"R-02 fermentation_bonus: +{fermentation_bonus} (direct, pre-cap)"
             + (f" [R7 v1.1 Path B: {r7_path}]" if r7_culture_credit else ""))
+        # TASK-169D option (b): yogurt top-trim — a +8 that fired via the yogurt-subtype
+        # path may lift to A but not manufacture an S on its own.
+        if (RECAL_P0_YOGURT_TRIM and r7_culture_credit and r7_path == "yogurt_subtype"
+                and weighted_dim_score > RECAL_P0_YOGURT_TRIM_CEILING):
+            weighted_dim_score = RECAL_P0_YOGURT_TRIM_CEILING
+            fermentation_bonus_note += (
+                f" [169D trim: yogurt +8 A-ceiling {RECAL_P0_YOGURT_TRIM_CEILING}]")
 
     # Stage 4: Guardrail evaluation
     gr = evaluate_guardrails(nn, l3, nova_level, category, cat_conf, eval_result)

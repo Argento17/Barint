@@ -72,11 +72,11 @@ line/curve references are `03_operations/bsip2/proto_v0/src/score_engine.py` + `
 ## Sub-tasks
 - TASK-169A — P0 recalibration design + blast-radius model (nutrition + data) — **CLOSED 2026-06-03** (model consumed by shipped P1).
 - TASK-169B — P1 engine behind flag + rescore/reship CHEESE + HUMMUS (data) — **CLOSED 2026-06-03** (live, owner-approved).
-- TASK-169C — P2/P3 frozen wave: milk run_004 re-approval + rescore (data) — **BLOCKED** on owner per-move sign-off. Expected confirm-and-hold (v1.1 leak closed).
-- TASK-169D — P2/P3 frozen wave: yogurt R1-anchor top-trim decision + rescore (data) — **BLOCKED** on owner decision (14A/3S distribution). Highest-judgment wave.
-- TASK-169E — P2/P3 frozen wave: snack bars confirm (snk-001 70/B hold) (data) — **BLOCKED** on owner per-move sign-off. Expected 0 moves.
-- TASK-169F — P2/P3 frozen wave: bread retail_003 harness-wiring + R3/R5 re-model + sign-off (data) — **BLOCKED** on prerequisite harness-wiring, then owner gate. Sequence last.
-- Recommended execution order: **milk → snack-bars → yogurt → bread** (rising risk; bread's harness prereq last). P4 = CC close-readiness gate on each wave, then close parent.
+- TASK-169C — milk wave (data) — **CLOSED 2026-06-03**, SHIPPED LIVE. Confirm-and-hold on the invariant; only move = rice drink D→C (surgical, drift-safe).
+- TASK-169D — yogurt wave (data) — **CLOSED 2026-06-03**, SHIPPED LIVE. Owner chose cap-at-A (no S); page now 6 A / 3 B / 1 C / 1 D via EV-034 + Product D7 co-sign.
+- TASK-169E — snack-bars wave (data) — **CLOSED 2026-06-03**, confirm-and-hold, nothing shipped (snk-001 70/B held, 0 A, 0 moves).
+- TASK-169F — bread retail_003 harness-wiring + R3/R5 re-model + sign-off (data) — **BLOCKED** on prerequisite harness-wiring, then owner gate. **The only frozen wave left.**
+- Order: milk ✅ → snack-bars ✅ → yogurt ✅ → **bread (169F, remaining)**. Related: TASK-178 (legacy-page freshness/drift audit, qa-agent) — yogurt + milk both surfaced HEAD-vs-published drift.
 
 ## Out of scope / guardrails
 - No live score ships until P0 design is owner-approved.

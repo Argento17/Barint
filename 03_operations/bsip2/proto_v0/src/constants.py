@@ -359,6 +359,22 @@ FLAVORED_VARIANT_MARKERS_HE = (
     "תות", "וניל", "אגוז", "דבש", "קינמון", "מקורמל", "בייגלס",
 )
 
+# TASK-169D ship-prep — SERVING-SUGGESTION / MARKETING-PROSE markers.
+# When BSIP0 is unavailable, BSIP1 sometimes falls back to a product's marketing copy and
+# mis-captures a serving-suggestion sentence ("...with the addition of fresh fruit, granola,
+# sweet honey, or just as-is. As it is. Perfect.") as an ingredient-list ITEM. Such prose
+# can name an add-on (e.g. דבש/honey) that the product itself does NOT contain, falsely
+# tripping the flavored-variant exclusion and stripping a plain cultured yogurt's +8.
+# These markers identify an ingredient-list item that is consumption/serving prose, NOT a
+# real ingredient. Used ONLY (and only when BARI_RECAL_P0_YOGURT_TRIM is ON) to drop such
+# items before the flavored-variant scan. A genuine ingredient list never carries this
+# consumer-facing language, so real seasoned/flavored variants (e.g. tzatziki's שום/שמיר in
+# a real ingredient list) are unaffected.
+SERVING_SUGGESTION_PROSE_MARKERS_HE = (
+    "שמשתלב", "בטבעיות", "בכל רגע", "אם זה", "פשוט ככה", "כמו שהוא",
+    "מושלם", "טריים או יבשים", "או פשוט",
+)
+
 
 def lookup_protein_scale(protein_g, category, recal_on):
     """R1 — category-relative protein mass score (0..100).

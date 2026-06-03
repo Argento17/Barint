@@ -1,238 +1,37 @@
 {
   "_meta": {
-    "generated": "2026-06-02T10:27:16Z",
+    "generated": "2026-06-03T17:11:09Z",
     "category": "yogurts",
     "product_count": 11,
     "scored_count": 11,
     "schema": "BariProductVM[]",
-    "version": "v2-run_yogurt_004",
+    "version": "v2-run_yogurt_006_recal_p0_trim",
     "expansion": "interpretive_expansion_v1",
-    "scope_note": "מדף יוגורט אמיתי (Shufersal) — ציוני מנוע Bari 0.4.0 (run_yogurt_004); מחליף את DEC-005 הידני",
+    "scope_note": "מדף יוגורט אמיתי (Shufersal) — ציוני מנוע Bari עם כיול recal P0 (run_yogurt_006_recal_p0_trim); מחליף את run_yogurt_004",
     "provenance": {
-      "run_id": "run_yogurt_004",
-      "engine": "proto_v0 / 0.4.0 (UNMODIFIED)",
-      "scores_from": "bsip2_trace.json final_score_estimate (rounded half-up for display)",
+      "run_id": "run_yogurt_006_recal_p0_trim",
+      "engine": "proto_v0 / 0.4.0 + BARI_RECAL_P0 + BARI_RECAL_P0_YOGURT_TRIM (config 6a01a8d83e2c325e)",
+      "scores_from": "run_yogurt_006_recal_p0_trim/ship_capped.json (capped; rounded half-up for display)",
       "insight_lines_from": "content_reauthor_143_run_yogurt_004.md (3b)",
       "soy_coconut": "DROP+DEFER per 3a ruling (run contains zero plant-base products)",
       "expansion_note": "technical-only: clean nutrition grid; raw ingredient strings withheld (OCR/disclaimer bleed); interpretive expansion deferred by 3b",
       "retires": "DEC-005 (yogurts_frontend_v1.json, 13 manual products, A-heavy)",
-      "task": "TASK-143",
+      "task": "TASK-169D",
       "signals_task": "TASK-161B",
-      "signals_from": "deterministic from run_yogurt_004 bsip2_trace.json (caps_applied/penalties_applied/L1); ingredient text NOT used (OCR bleed); engine-v2 governance"
+      "signals_from": "deterministic from run_yogurt_004 bsip2_trace.json (caps_applied/penalties_applied/L1); ingredient text NOT used (OCR bleed); engine-v2 governance",
+      "recal_note": "Scores reship from the capped recal run (TASK-169D). BARI_RECAL_P0=on + BARI_RECAL_P0_YOGURT_TRIM=on (option b: +8 live-cultures A-ceiling at 89.9, 0 S). Owner-approved 2026-06-03; recal is a flag-gated artifact (flag-OFF == published baseline byte-identical 86/86). Deliberate stale→fresh re-baseline: prior live run_yogurt_004 reproduced only 23/86 at HEAD, so the 11 products were rebuilt from the clean HEAD run (recal + drift-correction). Governance: Nutrition EV-034; Product D7 co-sign.",
+      "macros_note": "Nutrition panels (expansion.nutrition incl. satFat) preserved from the curated run_yogurt_004 values — NOT regressed to the run_yogurt_003 corpus, which carries the EV-029 fat-overwrite (fat=0.5 / missing satFat). Only score+grade updated."
     }
   },
   "products": [
     {
-      "id": "yog-001",
-      "name": "דנונה פרו 21 חלבון 0%",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OEJ44_Z_P_7290112336712_1.png",
-      "score": 79,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "מהבולטים במדף — 10.5 גרם חלבון ב-0% שומן, סוכר נמוך של 3.3 גרם וללא סוכר מוסף שזוהה. עוצר ב-B כי גם החלבון הגבוה ביותר כאן לא חוצה את תקרת הקטגוריה.",
-      "_cluster": "high-protein",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 58.0,
-          "protein": 10.5,
-          "sugar": 3.3,
-          "fat": 0.0,
-          "satFat": null,
-          "fiber": null,
-          "sodium": 35.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון גבוה לקטגוריה — 10.5 גרם ל-100 גרם",
-          "סוכר נמוך — 3.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-002",
-      "name": "יוגורט נטול לקטוז 3% שומן",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HAS38_Z_P_7290110328221_1.png",
-      "score": 76,
-      "grade": "B",
-      "confidence": "partial",
-      "insightLine": "בסיס יוגורט פשוט נטול לקטוז — ללא תוספי מזון או סוכר מוסף שזוהו, עם חיידקי ביפידוס. עוצר ב-B כי ערכי הסוכר לא היו זמינים, ולכן הניתוח כאן חלקי.",
-      "_cluster": "plain",
-      "expansion": {
-        "unknowns": [
-          "ערכי הסוכר לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
-        ],
-        "nutrition": {
-          "energyKcal": 64.0,
-          "protein": 5.0,
-          "sugar": null,
-          "fat": 3.0,
-          "satFat": 1.95,
-          "fiber": null,
-          "sodium": 60.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "בסיס יוגורט פשוט — ללא תוספי מזון או סוכר מוסף שזוהו"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-003",
-      "name": "יוגורט ביו תנובה 3%",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TCV44_Z_P_7290014758100_1.png",
-      "score": 75,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "מהפשוטים במדף — חלב, רכיבי חלב וחיידקי ביפידוס, 5.3 גרם חלבון וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. עוצר ב-B כי זה בסיס יוגורט טוב, לא מוצר חלבון.",
-      "_cluster": "plain",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 64.0,
-          "protein": 5.3,
-          "sugar": 4.0,
-          "fat": 3.0,
-          "satFat": 1.95,
-          "fiber": null,
-          "sodium": 50.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-004",
-      "name": "מולר אקטיב לבן 0% 25 חלבון",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WVE44_Z_P_7290114311069_1.png",
-      "score": 74,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "החלבון הגבוה במדף — 12.5 גרם ל-100 גרם ב-0% שומן, עם 2.5 גרם סיבים וסוכר נמוך של 2.5 גרם. עוצר ב-B כי חלבון גבוה לבדו לא חוצה את תקרת הקטגוריה.",
-      "_cluster": "high-protein",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 65.0,
-          "protein": 12.5,
-          "sugar": 2.5,
-          "fat": 0.0,
-          "satFat": null,
-          "fiber": 2.5,
-          "sodium": 45.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון גבוה לקטגוריה — 12.5 גרם ל-100 גרם",
-          "סיבים תזונתיים — 2.5 גרם ל-100 גרם"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-005",
-      "name": "יוגורט ביו תנובה 1.5%",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TDM52_Z_P_7290014758117_1.png",
-      "score": 73,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "אותו ביו פשוט של תנובה בגרסת 1.5% שומן — אותם חיידקי ביפידוס, 5.2 גרם חלבון. עוצר ב-B כי הסוכר כאן 5.3 גרם, מעט גבוה משאר הבסיסים הפשוטים במדף.",
-      "_cluster": "plain",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 56.0,
-          "protein": 5.2,
-          "sugar": 5.3,
-          "fat": 1.5,
-          "satFat": null,
-          "fiber": null,
-          "sodium": 65.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "שומן נמוך — 1.5 גרם ל-100 גרם"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-006",
-      "name": "יוגורט עיזים ביו",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NRE54_Z_P_7290012645297_1.png",
-      "score": 72,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "מהמעטים על בסיס חלב עיזים — שישה רכיבים, תרבית יוגורט וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. עוצר ב-B כי החלבון כאן 3.6 גרם בלבד, נמוך לקטגוריה.",
-      "_cluster": "plain",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 62.0,
-          "protein": 3.6,
-          "sugar": 4.0,
-          "fat": 3.5,
-          "satFat": 2.1,
-          "fiber": null,
-          "sodium": 50.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
-        ],
-        "limitingFactors": []
-      }
-    },
-    {
-      "id": "yog-007",
-      "name": "יוגורט בסגנון יווני 6.5%",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ESC56_Z_P_7290107936309_1.png",
-      "score": 72,
-      "grade": "B",
-      "confidence": "verified",
-      "insightLine": "בסגנון יווני עם 5.5 גרם חלבון וללא סוכר מוסף שזוהה — בסיס נקי יחסית. עוצר ב-B כי 6.5% שומן, מתוכם 3.9 גרם רווי, מחזיקים אותו מתחת לראש המדף.",
-      "_cluster": "greek",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 101.0,
-          "protein": 5.5,
-          "sugar": 4.3,
-          "fat": 6.5,
-          "satFat": 3.9,
-          "fiber": null,
-          "sodium": 47.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "סוכר נמוך — 4.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
-        ],
-        "limitingFactors": [
-          "עתיר שומן לקטגוריה — 6.5 גרם שומן ל-100 גרם"
-        ]
-      }
-    },
-    {
       "id": "yog-008",
       "name": "יופלה GO מועשר בחלבון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WKE30_Z_P_7290110321031_1.png",
-      "score": 70,
-      "grade": "B",
+      "score": 89,
+      "grade": "A",
       "confidence": "partial",
-      "insightLine": "10 גרם חלבון ובלי סוכר מוסף שזוהה — אבל החלבון כאן מאבקת חלב, לא מבסיס יוגורט מותסס. עוצר ב-B, בקצה התחתון שלו, כי זה מעדן חלבון ולא יוגורט של ממש.",
+      "insightLine": "ראש המדף — 10 גרם חלבון, בלי סוכר מוסף שזוהה ועם תרביות חיות שמרימות את הציון. מגיע ל-A אך נעצר שם, לא S: זה יוגורט חלבון מהונדס שהחלבון והתרביות עושים בו את העבודה, לא יוצא דופן (וערכי הסוכר לא היו זמינים).",
       "_cluster": "high-protein",
       "expansion": {
         "unknowns": [
@@ -257,13 +56,158 @@
       }
     },
     {
+      "id": "yog-001",
+      "name": "דנונה פרו 21 חלבון 0%",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OEJ44_Z_P_7290112336712_1.png",
+      "score": 87,
+      "grade": "A",
+      "confidence": "verified",
+      "insightLine": "מהבולטים במדף — 10.5 גרם חלבון ב-0% שומן, סוכר נמוך של 3.3 גרם וללא סוכר מוסף שזוהה. מגיע ל-A על שילוב נדיר של חלבון גבוה וסוכר נמוך, ונעצר שם: חלבון צפוף לבדו לא מזכה ב-S.",
+      "_cluster": "high-protein",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 58.0,
+          "protein": 10.5,
+          "sugar": 3.3,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 35.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 10.5 גרם ל-100 גרם",
+          "סוכר נמוך — 3.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
+      "id": "yog-004",
+      "name": "מולר אקטיב לבן 0% 25 חלבון",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WVE44_Z_P_7290114311069_1.png",
+      "score": 85,
+      "grade": "A",
+      "confidence": "verified",
+      "insightLine": "החלבון הגבוה במדף — 12.5 גרם ל-100 גרם ב-0% שומן, עם 2.5 גרם סיבים וסוכר נמוך של 2.5 גרם. מגיע ל-A: צירוף חזק של חלבון גבוה, סוכר נמוך וסיבים נדירים ליוגורט. נעצר ב-A ולא S כי הוא מוצר חלבון מהונדס, לא בסיס יוצא דופן.",
+      "_cluster": "high-protein",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 65.0,
+          "protein": 12.5,
+          "sugar": 2.5,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": 2.5,
+          "sodium": 45.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 12.5 גרם ל-100 גרם",
+          "סיבים תזונתיים — 2.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
+      "id": "yog-003",
+      "name": "יוגורט ביו תנובה 3%",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TCV44_Z_P_7290014758100_1.png",
+      "score": 81,
+      "grade": "A",
+      "confidence": "verified",
+      "insightLine": "מהפשוטים במדף — חלב, רכיבי חלב וחיידקי ביפידוס, 5.3 גרם חלבון וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. מגיע ל-A בלי שום טריק חלבון: בסיס פשוט, תרביות חיות וכמעט כלום מעבר לזה.",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 64.0,
+          "protein": 5.3,
+          "sugar": 4.0,
+          "fat": 3.0,
+          "satFat": 1.95,
+          "fiber": null,
+          "sodium": 50.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
+      "id": "yog-005",
+      "name": "יוגורט ביו תנובה 1.5%",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TDM52_Z_P_7290014758117_1.png",
+      "score": 81,
+      "grade": "A",
+      "confidence": "verified",
+      "insightLine": "אותו ביו פשוט של תנובה בגרסת 1.5% שומן — אותם חיידקי ביפידוס, 5.2 גרם חלבון. מגיע ל-A על אותו בסיס פשוט; הסוכר כאן 5.3 גרם, מעט גבוה מהבסיסים האחרים, אך עדיין בראש המדף.",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 56.0,
+          "protein": 5.2,
+          "sugar": 5.3,
+          "fat": 1.5,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 65.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שומן נמוך — 1.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
+      "id": "yog-002",
+      "name": "יוגורט נטול לקטוז 3% שומן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HAS38_Z_P_7290110328221_1.png",
+      "score": 80,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "בסיס יוגורט פשוט נטול לקטוז — ללא תוספי מזון או סוכר מוסף שזוהו, עם חיידקי ביפידוס. מגיע ל-A על בסיס פשוט ותרביות חיות, בתחתית קבוצת ה-A: ערכי הסוכר לא היו זמינים, ולכן הניתוח כאן חלקי.",
+      "_cluster": "plain",
+      "expansion": {
+        "unknowns": [
+          "ערכי הסוכר לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "nutrition": {
+          "energyKcal": 64.0,
+          "protein": 5.0,
+          "sugar": null,
+          "fat": 3.0,
+          "satFat": 1.95,
+          "fiber": null,
+          "sodium": 60.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "בסיס יוגורט פשוט — ללא תוספי מזון או סוכר מוסף שזוהו"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
       "id": "yog-009",
       "name": "יוגורט יווני 8%",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HCO62_Z_P_7290014890589_1.png",
-      "score": 62,
-      "grade": "C",
+      "score": 79,
+      "grade": "B",
       "confidence": "verified",
-      "insightLine": "רק שלושה רכיבים — חלב, שמנת וחלבון חלב — וסוכר נמוך של 3 גרם ללא סוכר מוסף שזוהה. יורד ל-C כי 8% שומן ו-4.8 גרם רווי מכריעים; רשימה קצרה לא תמיד אומרת רזה.",
+      "insightLine": "רק שלושה רכיבים — חלב, שמנת וחלבון חלב — וסוכר נמוך של 3 גרם ללא סוכר מוסף שזוהה. עוצר ב-B, מתחת לבסיסים הרזים, כי 8% שומן ו-4.8 גרם רווי מכריעים; רשימה קצרה לא תמיד אומרת רזה.",
       "_cluster": "greek",
       "expansion": {
         "nutrition": {
@@ -287,13 +231,71 @@
       }
     },
     {
+      "id": "yog-007",
+      "name": "יוגורט בסגנון יווני 6.5%",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ESC56_Z_P_7290107936309_1.png",
+      "score": 78,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "בסגנון יווני עם 5.5 גרם חלבון וללא סוכר מוסף שזוהה — בסיס מצומצם ברכיבים. עוצר ב-B כי 6.5% שומן, מתוכם 3.9 גרם רווי, מחזיקים אותו מתחת לראש המדף.",
+      "_cluster": "greek",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 101.0,
+          "protein": 5.5,
+          "sugar": 4.3,
+          "fat": 6.5,
+          "satFat": 3.9,
+          "fiber": null,
+          "sodium": 47.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "סוכר נמוך — 4.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": [
+          "עתיר שומן לקטגוריה — 6.5 גרם שומן ל-100 גרם"
+        ]
+      }
+    },
+    {
+      "id": "yog-006",
+      "name": "יוגורט עיזים ביו",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NRE54_Z_P_7290012645297_1.png",
+      "score": 77,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "מהמעטים על בסיס חלב עיזים — שישה רכיבים, תרבית יוגורט וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. עוצר ב-B כי החלבון כאן 3.6 גרם בלבד, נמוך לקטגוריה.",
+      "_cluster": "plain",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 62.0,
+          "protein": 3.6,
+          "sugar": 4.0,
+          "fat": 3.5,
+          "satFat": 2.1,
+          "fiber": null,
+          "sodium": 50.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": []
+      }
+    },
+    {
       "id": "yog-010",
       "name": "יופלה GO תות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XJD40_Z_P_7290110321680_1.png",
-      "score": 49,
-      "grade": "D",
+      "score": 63,
+      "grade": "C",
       "confidence": "verified",
-      "insightLine": "אותם 10 גרם חלבון של ה-GO הלבן — אבל הוספת התות הביאה 9.6 גרם סוכר, צבע מאכל ושלושה תוספי מזון ומעלה. יורד ל-D כי הטעם הפך בסיס חלבון לקינוח מתוק.",
+      "insightLine": "אותם 10 גרם חלבון של ה-GO הלבן שמוביל את המדף — אבל הוספת התות הביאה 9.6 גרם סוכר, צבע מאכל ושלושה תוספי מזון ומעלה. צונח ל-C כי אותו בסיס חלבון הפך לקינוח מתוק.",
       "_cluster": "flavored",
       "expansion": {
         "nutrition": {
@@ -321,10 +323,10 @@
       "id": "yog-011",
       "name": "יוגורט קראנצ תות קורנפלק",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGC52_Z_P_7290010471669_1.png",
-      "score": 34,
-      "grade": "E",
+      "score": 40,
+      "grade": "D",
       "confidence": "verified",
-      "insightLine": "הציון הנמוך במדף — יוגורט שהפך לקינוח: תוספת קורנפלקס ושוקולד, חמישה תוספי מזון ומעלה, סוכר מוסף שזוהה של 9.9 גרם וחלבון של 3.6 גרם בלבד. יורד ל-E כי כמעט הכול כאן תוספת.",
+      "insightLine": "הציון הנמוך במדף — יוגורט שהפך לקינוח: תוספת קורנפלקס ושוקולד, חמישה תוספי מזון ומעלה, סוכר מוסף שזוהה של 9.9 גרם וחלבון של 3.6 גרם בלבד. צונח ל-D כי כמעט הכול כאן תוספת.",
       "_cluster": "flavored",
       "expansion": {
         "nutrition": {
