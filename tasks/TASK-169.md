@@ -69,11 +69,14 @@ line/curve references are `03_operations/bsip2/proto_v0/src/score_engine.py` + `
 - **Rollback:** env-flag gating (precedent: BARI_TASK144_FIXES). Document previous state per change.
 - **Rule-accumulation:** R2/R3 modify existing dimension fns; do NOT add shadow rules.
 
-## Planned sub-tasks (allocated as phases start)
-- TASK-169A — P0 recalibration design + blast-radius model (nutrition-agent + data-agent)
-- TASK-169B — P1 engine implementation behind flag (data-agent)
-- TASK-169C — P3 rescore + reship cheese/hummus/salads (data + frontend)
-- (frozen-category rescores spun off per P2 owner decision)
+## Sub-tasks
+- TASK-169A — P0 recalibration design + blast-radius model (nutrition + data) — **CLOSED 2026-06-03** (model consumed by shipped P1).
+- TASK-169B — P1 engine behind flag + rescore/reship CHEESE + HUMMUS (data) — **CLOSED 2026-06-03** (live, owner-approved).
+- TASK-169C — P2/P3 frozen wave: milk run_004 re-approval + rescore (data) — **BLOCKED** on owner per-move sign-off. Expected confirm-and-hold (v1.1 leak closed).
+- TASK-169D — P2/P3 frozen wave: yogurt R1-anchor top-trim decision + rescore (data) — **BLOCKED** on owner decision (14A/3S distribution). Highest-judgment wave.
+- TASK-169E — P2/P3 frozen wave: snack bars confirm (snk-001 70/B hold) (data) — **BLOCKED** on owner per-move sign-off. Expected 0 moves.
+- TASK-169F — P2/P3 frozen wave: bread retail_003 harness-wiring + R3/R5 re-model + sign-off (data) — **BLOCKED** on prerequisite harness-wiring, then owner gate. Sequence last.
+- Recommended execution order: **milk → snack-bars → yogurt → bread** (rising risk; bread's harness prereq last). P4 = CC close-readiness gate on each wave, then close parent.
 
 ## Out of scope / guardrails
 - No live score ships until P0 design is owner-approved.
@@ -93,3 +96,8 @@ line/curve references are `03_operations/bsip2/proto_v0/src/score_engine.py` + `
   yogurt top-trim via R1 anchor, snack bars — each still needs its own owner per-move sign-off
   before rescore/reship. Not started.
 - Production deploy of the shipped P1 wave still needs branch merge `cc-agent-v2 -> master` (owner).
+
+## Status note (CC, 2026-06-03) — P0 closed, frozen waves opened (all blocked on owner)
+- **TASK-169A (P0) CLOSED.** Its design + v1.1 blast-radius model were owner-validated by the shipped P1; closing it resolved registry drift (output already built on while the row read IN_PROGRESS).
+- **Frozen waves opened as discrete sub-tasks** (169C milk · 169D yogurt · 169E snack-bars · 169F bread), each **BLOCKED** so they don't read as fake active WIP — they cannot begin until the owner gives the per-move sign-off the frozen-invariant doctrine requires (bread also needs harness-wiring first). The deferred items 169A had been carrying (yogurt distribution, bread harness/re-model, aged-cheese router reconciliation) moved onto these waves, not back onto 169A.
+- **Next owner action:** decide the first frozen wave to release. Recommended start = **milk (169C)** — lowest risk, v1.1 model showed the leak already closed, likely confirm-and-hold.

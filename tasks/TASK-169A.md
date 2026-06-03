@@ -2,12 +2,16 @@
 id: TASK-169A
 title: P0 — recalibration design + blast-radius model (category-relative protein, R2/R3/R4/R5/R6)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-02
+closed_at: 2026-06-03
+closed_by: cc-agent
+cc_reviewed: 2026-06-03
 depends_on: []
 blocks: []
 category_id: null
+close_reason: "P0 deliverable complete and owner-validated-by-ship. The design spec (recalibration_p0_design_v1.md, v1.1 revision current) + blast-radius model (02_products/_recal_p0_model/TASK-169A_blast_radius_model_v1.1.md + *_v1.1.json) passed every acceptance check, and were CONSUMED by P1 (TASK-169B) which shipped live + owner-confirmed 2026-06-03 — a P0 whose output was already built on and shipped is done. All P0 owner-gate items resolved: R7 culture-gated (cottage 1% hits 90/A without the +8), R4 flavored-variant fixed (napoleon 16% stays NOVA 3 -> 74.5/B), milk 85/A ceiling leak CLOSED (lactose-free 87.3->79.3/B, 0 milk A-crossings), EV-030..033 authored under 169B. Flag-OFF byte-identical rollback verified (59/59). Three deferred items are NOT 169A blockers — reassigned to frozen-wave sub-tasks: yogurt 14A/3S distribution -> 169D; bread retail_003 harness-wiring + R3/R5 re-model -> 169F; aged-cheese router reconciliation -> carried into the relevant wave. Not roadmap_impact (only parent 169 is); no cc_reviewed gate required, set for hygiene."
 summary: >
   P0 of TASK-169. Nutrition designs the shared-engine recalibration (category-relative protein scale per category, leanness reward in fat_quality, NOVA proxy refinement for cultured/fortified dairy + jarred spreads, red-label sat-fat cap->graded penalty, veg-spread category-fit rubric) with evidence-registry entries + rollback; Data then implements in a MODELING harness (not shipped) and produces before/after diffs across cheese/hummus/salad AND frozen milk/bread/snack/yogurt + golden-corpus regression delta. No live score ships from P0 — owner approves the model before P1 engine edits.
 ---
@@ -54,3 +58,12 @@ Implemented the spec's § v1.1 REVISION (R7 culture-gate + R4 flavored-variant f
 **One observation (not a leak):** flavored white cheese `גבינה לבנה 5%+שמיר ושום` reaches 84.3/A via the **Path A declared-culture +8** (legitimate, unchanged HEAD behavior) on a lean 5% white cheese; R4 keeps it NOVA 3. Whether to exclude flavored variants from Path A too is a separate Nutrition design call.
 
 **Frozen sign-off table** (deliverable 2) is in the v1.1 report §4. No prior frozen invariant breached: milk 85/A HELD, snk-001 70/B HELD; yogurt A/S is a new owner-reviewable distribution (no prior numeric ceiling). Bread still not wired (bespoke loader) — small R3+R5-only radius, estimated, not blocking.
+
+## CLOSED (CC, 2026-06-03)
+
+P0 is complete and was owner-validated by the fact that **P1 (TASK-169B) shipped live off this model on 2026-06-03**. Closing 169A resolves registry drift (its output had already been built on and shipped while the row read IN_PROGRESS). The deferred items it had been carrying are reassigned to the frozen-wave sub-tasks opened under parent TASK-169:
+- **Yogurt 14A/3S distribution** (owner top-trim decision via R1 anchor) → **TASK-169D**.
+- **Bread retail_003** (wire bespoke loader into the recal harness + R3/R5 re-model before any frozen sign-off) → **TASK-169F**.
+- **Aged-cheese router reconciliation** (router emits no `milk_dairy`/top-level `yogurt`; subtypes caught by name marker) → carried into the relevant frozen wave.
+
+Frozen waves opened (all BLOCKED on owner per-move sign-off, parent 169 P2 gate): **169C milk · 169D yogurt · 169E snack-bars · 169F bread**. Recommended execution order: milk → snack-bars → yogurt → bread (rising risk; bread's harness prereq last).
