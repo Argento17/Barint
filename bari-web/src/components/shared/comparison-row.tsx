@@ -7,13 +7,27 @@ import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
 import { BariProductThumbnail } from "@/components/comparisons/bari-product-thumbnail";
 import { ConfidenceIndicator } from "@/components/shared/confidence-indicator";
 import { ExpansionSection } from "@/components/shared/expansion-section";
+import { GlassBoxPartialFlag } from "@/components/shared/glass-box-flag";
 import {
   MetricColumn,
   type MetricSpec,
 } from "@/components/shared/comparison-metric-column";
 import type { BariGrade, BariProductVM } from "@/lib/view-models";
+import { GLASS_BOX_WITHHOLD_LABEL } from "@/lib/view-models";
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
+import { GLASSBOX_D5D6_ON } from "@/lib/feature-flags";
 import { cn } from "@/lib/utils";
+
+// TASK-179I — Glass Box gate read, flag-gated. With the flag OFF these are always
+// false/undefined, so the row renders byte-identically to today.
+function glassBoxState(product: BariProductVM) {
+  if (!GLASSBOX_D5D6_ON) return { isWithheld: false, isDemoted: false } as const;
+  const gate = product.glassBox?.gateState;
+  return {
+    isWithheld: gate === "withhold",
+    isDemoted: gate === "demote",
+  } as const;
+}
 
 const GRADE_LABELS: Record<BariGrade, string> = {
   A: "מצוין",
@@ -52,10 +66,14 @@ function RowReason({ product }: { product: BariProductVM }) {
 }
 
 function GradeCell({ product }: { product: BariProductVM }) {
-  if (product.score == null || product.grade == null) {
-    // Mirror the graded chip's exact box (same container + sm size) so unscored
-    // products stay column-aligned and identically sized — just neutral grey.
+  const { isWithheld } = glassBoxState(product);
+
+  // TASK-179I — Glass Box WITHHOLD: show `לא נוקד` where the grade chip would be.
+  // Same neutral box as an unscored product (no error look, no number), distinct
+  // label text. Only when the flag is ON and the product is gated to withhold.
+  if (isWithheld || product.score == null || product.grade == null) {
     const rowTokens = BARI_COMPARISON_TOKENS.score.rowChip;
+    const labelText = isWithheld ? GLASS_BOX_WITHHOLD_LABEL : "ללא ציון";
     return (
       <div
         className={cn(rowTokens.container, rowTokens.size.sm)}
@@ -63,7 +81,7 @@ function GradeCell({ product }: { product: BariProductVM }) {
           backgroundColor: "#F7F7F2",
           borderColor: "rgba(17,19,24,0.10)",
         }}
-        aria-label="ללא ציון"
+        aria-label={labelText}
       >
         <span
           className={cn(rowTokens.scoreClass, rowTokens.scoreSize.sm)}
@@ -77,7 +95,7 @@ function GradeCell({ product }: { product: BariProductVM }) {
           style={{ color: "#9AA09B" }}
           aria-hidden
         >
-          ללא ציון
+          {labelText}
         </span>
       </div>
     );
@@ -116,6 +134,7 @@ export const ComparisonRow = memo(function ComparisonRow({
   };
 
   const verdict = product.rowVerdict?.trim();
+  const { isWithheld, isDemoted } = glassBoxState(product);
 
   return (
     <article className="bari-cmp-row" ref={(el) => registerRow(product.id, el)}>
@@ -155,11 +174,20 @@ export const ComparisonRow = memo(function ComparisonRow({
           </span>
         ) : null}
         <span className="bari-cmp-gradecell">
-          <ConfidenceIndicator
-            confidence={product.confidence}
-            variant="dot"
-            className="bari-cmp-conf"
-          />
+          {isDemoted ? (
+            // Glass Box DEMOTE: the `ניתוח חלקי` pill stands in for the confidence dot
+            // (it carries the same "partial" signal, calmly). Grade chip still shows.
+            <GlassBoxPartialFlag className="bari-cmp-conf" />
+          ) : isWithheld ? (
+            // Withhold: the `לא נוקד` chip carries the signal; no confidence dot needed.
+            <span aria-hidden />
+          ) : (
+            <ConfidenceIndicator
+              confidence={product.confidence}
+              variant="dot"
+              className="bari-cmp-conf"
+            />
+          )}
           <GradeCell product={product} />
           <ChevronDown
             strokeWidth={1.75}
@@ -182,6 +210,11 @@ export const ComparisonRow = memo(function ComparisonRow({
                 onCollapse={() => onToggle(product.id)}
                 wide
                 confidencePromoted
+                glassBox={
+                  GLASSBOX_D5D6_ON && (isDemoted || isWithheld)
+                    ? product.glassBox
+                    : undefined
+                }
               />
             ) : null}
           </div>

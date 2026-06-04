@@ -76,6 +76,61 @@ export interface BariRowReasonVM {
   limiting: string | null;
 }
 
+// ─── Glass Box D5/D6 (presentation-only, flag-gated) ────────────────────────────
+// TASK-179I Wave 1. Carries the engine's D5/D6 gate output to the UI as PLAIN-LANGUAGE
+// findings only — never raw numbers, never engine terms (DEC-006 Q4). This object is
+// purely additive and is read ONLY when the NEXT_PUBLIC_GLASSBOX_D5D6 frontend flag is ON;
+// absent or flag-OFF → the UI is byte-identical to today. It never participates in scoring,
+// sorting, or rounding — it annotates an already-decided VM.
+//
+//  - "demote"  → product keeps its grade chip + carries a calm `ניתוח חלקי` flag + a plain
+//                one-line note of what was not disclosed (partialNote).
+//  - "withhold"→ product shows `לא נוקד` where the grade chip would be, with a plain reason
+//                (withholdReason) — never a number, never an error look.
+//  - "unconstrained" → no glass-box surface (a normal graded row).
+export type BariGlassBoxGate = "unconstrained" | "demote" | "withhold";
+
+export interface BariGlassBoxVM {
+  gateState: BariGlassBoxGate;
+  /** TASK-179N — CODED disclosure-gap vocabulary the engine emits (the live JSON path).
+   *  Vocabulary: proportions | compound | generic_additive | protein_source | missing_field.
+   *  These codes are mapped to calm Hebrew lines at render time via the Content-owned map in
+   *  view-models/glass-box-copy.ts — the JSON carries NO prose. Empty/absent for a clean
+   *  withhold (panel simply absent) or unconstrained product. */
+  disclosureCodes?: string[];
+  /** TASK-179N — true on a withheld product (panel absent / unscored). Mirrors gateState
+   *  === "withhold"; carried explicitly because that is what Data emits. */
+  withheld?: boolean;
+  /** TASK-179N — the score/grade the engine would have assigned before the D5 demote.
+   *  PRESENTATION-IRRELEVANT: never rendered (the published grade chip still shows). Carried
+   *  for provenance/parity only; the UI never reads these as a number (DEC-006 Q4). */
+  gatedScore?: number;
+  gatedGrade?: BariGrade;
+  /** Legacy prose render targets — authored directly only by the self-contained /dev preview
+   *  dataset (glass-box-preview-data.ts). The LIVE pages carry codes, not prose; these stay
+   *  optional so the preview keeps working. Source of truth for live prose is the code→Hebrew
+   *  map (view-models/glass-box-copy.ts), NOT these fields.
+   *  Calm, factual register — never intent attribution ("היצרן מסתיר" is forbidden). */
+  partialNote?: string | null;
+  /** Plain-Hebrew reason a product is unscored (withhold). Legacy prose target — see above. */
+  withholdReason?: string | null;
+  /** Optional plain-language disclosure findings (demote). Legacy prose target — see above. */
+  disclosureNotes?: string[];
+}
+
+// Content-owned code→Hebrew copy map + resolvers, re-exported so canonical shared
+// components read every glass-box string via `@/lib/view-models` only (legacy isolation).
+export {
+  GLASS_BOX_DISCLOSURE_LINES,
+  GLASS_BOX_PARTIAL_LABEL,
+  GLASS_BOX_PARTIAL_TOOLTIP,
+  GLASS_BOX_DISCLOSURE_HEADING,
+  GLASS_BOX_WITHHOLD_LABEL,
+  GLASS_BOX_WITHHOLD_REASON,
+  resolveDisclosureLines,
+  resolveWithholdReason,
+} from "./glass-box-copy";
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
@@ -97,6 +152,9 @@ export interface BariProductVM {
    *  the +/− reason lines (which move into the "למה קיבל את הציון?" expansion). Authored
    *  by Content; display-only, never a score input. Absent → row falls back to rowReason. */
   rowVerdict?: string;
+  /** TASK-179I: Glass Box D5/D6 presentation state. Optional + flag-gated (read only when
+   *  NEXT_PUBLIC_GLASSBOX_D5D6 is ON). Absent → no glass-box surface. Presentation only. */
+  glassBox?: BariGlassBoxVM;
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────

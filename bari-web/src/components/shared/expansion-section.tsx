@@ -4,7 +4,17 @@ import { useState, type ReactNode } from "react";
 
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
-import type { BariConfidence, BariExpansionVM, BariNutritionVM } from "@/lib/view-models";
+import type {
+  BariConfidence,
+  BariExpansionVM,
+  BariGlassBoxVM,
+  BariNutritionVM,
+} from "@/lib/view-models";
+import {
+  GLASS_BOX_DISCLOSURE_HEADING,
+  resolveDisclosureLines,
+  resolveWithholdReason,
+} from "@/lib/view-models";
 
 const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string }[] = [
   { key: "energyKcal", label: 'קק"ל', unit: "" },
@@ -27,6 +37,10 @@ const LABEL_UNKNOWNS = "מה שלא ניתן לאמת";
 const LABEL_CAVEATS = "הערות";
 const LABEL_BOTTOM = "בשורה התחתונה";
 const LABEL_COMPARISON = "הקשר במדף";
+// TASK-179N — Glass Box D5 disclosure section heading comes from the Content-owned copy
+// map (GLASS_BOX_DISCLOSURE_HEADING = "מה לא צוין בתווית") so all glass-box strings live
+// in one place. Calm, factual register (Q2): "what the label did not state", not an accusation.
+const LABEL_DISCLOSURE = GLASS_BOX_DISCLOSURE_HEADING;
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -343,12 +357,30 @@ function TechnicalDetails({ expansion }: { expansion: BariExpansionVM }) {
   );
 }
 
+// TASK-179I — Glass Box D5 disclosure note inside the expansion. PLAIN-LANGUAGE ONLY
+// (DEC-006 Q4): never a number, never an engine term. Calm register (Q2). Rendered only
+// for a demoted product, flag-gated upstream (the prop is undefined when the flag is OFF).
+function GlassBoxDisclosure({ glassBox }: { glassBox: BariGlassBoxVM }) {
+  // Live JSON carries coded disclosureCodes; resolveDisclosureLines maps them to the
+  // calm Hebrew lines (falling back to the preview dataset's authored prose). One place.
+  const notes = resolveDisclosureLines(glassBox);
+  if (notes.length === 0) return null;
+
+  return (
+    <div className="pt-2.5">
+      <SectionLabel>{LABEL_DISCLOSURE}</SectionLabel>
+      <NoteList lines={notes} />
+    </div>
+  );
+}
+
 export function ExpansionSection({
   expansion,
   confidence,
   onCollapse,
   wide = false,
   confidencePromoted = false,
+  glassBox,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -359,7 +391,14 @@ export function ExpansionSection({
    * longer repeats it in the footnote (disclosure de-duplication). Maadanim-only.
    */
   confidencePromoted?: boolean;
+  /**
+   * TASK-179I — Glass Box D5/D6 presentation. Passed (flag-gated) only for a demoted
+   * or withheld product; undefined → no glass-box surface. Drives the plain-language
+   * disclosure note (demote) and the withhold reason (withhold). Presentation only.
+   */
+  glassBox?: BariGlassBoxVM;
 }) {
+  const isWithheld = glassBox?.gateState === "withhold";
   const confidenceText =
     CONFIDENCE_LABELS[confidence] ?? expansion.confidenceLabel;
   const interpretive = hasInterpretiveContent(expansion);
@@ -368,16 +407,25 @@ export function ExpansionSection({
       Object.values(expansion.nutrition).some((v) => v != null)) ||
     Boolean(expansion.ingredients?.trim());
 
-  if (confidence === "insufficient") {
+  // Render the "unscored" expansion for two cases:
+  //  (a) a genuinely insufficient product (no glass box involved), and
+  //  (b) a glass-box WITHHOLD — even when the underlying VM still carries a score/partial
+  //      confidence (the D6 gate withholds the grade because the panel is absent). In the
+  //      withhold case the graded interpretive/technical content is deliberately suppressed
+  //      so the expansion matches the `לא נוקד` chip: a calm reason, no number.
+  if (confidence === "insufficient" || isWithheld) {
+    // Glass Box WITHHOLD: lead with the plain, calm reason the product is unscored
+    // (DEC-006 Q4 — no number, no engine term). TASK-179N C1: the fallback is now the
+    // single canonical reason (resolveWithholdReason → GLASS_BOX_WITHHOLD_REASON), so an
+    // unscored row reads the SAME sentence whether the reason comes from data or fallback.
+    const withheldReason = resolveWithholdReason(isWithheld ? glassBox : undefined);
     return (
       <div
         className={cn("px-4 pb-3", wide && "lg:px-0 lg:pb-2")}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="space-y-2 pt-0.5 lg:space-y-2">
-          <p className="text-xs leading-relaxed text-[#6E756F]">
-            אין מספיק נתונים לאריזה זו כדי להציג פירוט.
-          </p>
+          <p className="text-xs leading-relaxed text-[#6E756F]">{withheldReason}</p>
           <div className="flex items-center justify-between pt-0.5">
             {confidencePromoted ? (
               <span aria-hidden />
@@ -415,7 +463,11 @@ export function ExpansionSection({
           <InterpretiveExpansion expansion={expansion} wide={wide} />
         ) : null}
 
-        {!interpretive && !hasTechnical ? (
+        {glassBox?.gateState === "demote" ? (
+          <GlassBoxDisclosure glassBox={glassBox} />
+        ) : null}
+
+        {!interpretive && !hasTechnical && glassBox?.gateState !== "demote" ? (
           <p className="text-xs leading-relaxed text-[#6E756F]">
             פרטים נוספים לא זמינים לאריזה זו.
           </p>
