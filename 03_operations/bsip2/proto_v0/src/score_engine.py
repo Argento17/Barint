@@ -1917,6 +1917,14 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     w4_materiality = None
     w4_low_confidence_nova = False
     w4_nonmaterial_gap = False
+    # TASK-181M / F3 — track the magnitude of the d3_nonmaterial_gap term that was ACTUALLY
+    # applied to the confidence accumulator (after max-combine with D5). The insufficient_data
+    # gate (Stage 9b) uses this to ensure a non-material peripheral dent can lower the displayed
+    # confidence WITHIN the graded band but is never the term that crosses a product into
+    # insufficient_data. ONLY the d3_nonmaterial_gap (−5) term is tracked/guarded here — the
+    # low-confidence-NOVA (−10) and D5 terms are genuine data-poverty signals and are NOT
+    # rescued, so a truly data-poor product still reaches insufficient_data via those terms.
+    w4_nonmaterial_applied_increment = 0
     if BARI_GLASSBOX_W4:
         w4_confidence, w4_conf_note = _d3_compute_confidence(nova_result, l3, disclosure_profile)
         # bound_value_set_4 — materiality applies to the medium band only (None otherwise).
@@ -1964,14 +1972,29 @@ def score_product(product: dict, signals: dict, cat_result: dict,
             conf_result["confidence_score"] = max(0, conf_result["confidence_score"] - _w4_increment)
             conf_result.setdefault("confidence_reductions", []).append(
                 {"factor": _w4_d6_reason, "reduction": -_w4_increment})
+            # TASK-181M / F3 — record ONLY the non-material gap increment for the gate guard.
+            # (The low-confidence-NOVA term is intentionally NOT recorded → not gate-guarded.)
+            if w4_nonmaterial_gap:
+                w4_nonmaterial_applied_increment = _w4_increment
             # Re-derive the ceiling/band from the adjusted score so the downstream ceiling
             # read (Stage 9) sees it.
             _cs = conf_result["confidence_score"]
+            # TASK-181M / F3 — band-floor for the non-material dent. If the ONLY reason the
+            # adjusted score fell below the insufficient boundary (=40) is the d3_nonmaterial_gap
+            # (−5) term — i.e. adding that increment back would leave it at/above 40 — the band
+            # must not drop to "insufficient" (which would both flip the grade label AND swap the
+            # ceiling 75→50, potentially moving the score). It floors at "low" so the dent shows
+            # as reduced confidence WITHIN the graded band, not as a label/ceiling cut. Genuine
+            # low-confidence-NOVA / D5-driven below-40 cases are NOT rescued (their increment is
+            # not added back here), so a truly data-poor product still drops to insufficient.
+            _w4_band_floor_low = (
+                w4_nonmaterial_gap and _w4_increment > 0
+                and _cs < 40 and (_cs + _w4_increment) >= 40)
             if _cs >= 80:
                 conf_result["confidence_band"], conf_result["confidence_ceiling"] = "high", None
             elif _cs >= 60:
                 conf_result["confidence_band"], conf_result["confidence_ceiling"] = "medium", None
-            elif _cs >= 40:
+            elif _cs >= 40 or _w4_band_floor_low:
                 conf_result["confidence_band"], conf_result["confidence_ceiling"] = "low", CONFIDENCE_LOW_CEILING
             else:
                 conf_result["confidence_band"], conf_result["confidence_ceiling"] = "insufficient", CONFIDENCE_INSUFFICIENT_CEILING
@@ -2230,6 +2253,26 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     # Data sufficiency gate: when confidence is insufficient or nutrition panel is absent,
     # the score is tentative — do not assign a normal letter grade.
     is_insufficient = (confidence < 40 or eval_result.get("context_flag") == "no_nutrition_data")
+
+    # TASK-181M / F3 — non-material confidence-dent boundary guard (behind BARI_GLASSBOX_W4).
+    # Both D7 signers' basis was explicit: a non-material peripheral gap surfaces as a
+    # confidence DENT, NEVER a grade cut. A flip to insufficient_data IS a grade-label cut.
+    # The d3_nonmaterial_gap (−5) may lower the DISPLAYED confidence within the graded band,
+    # but it must NOT be the term that crosses a product from a graded state into
+    # insufficient_data. Operationalized (Nutrition spec, option 2): if removing the
+    # d3_nonmaterial_gap term would leave confidence AT/ABOVE the boundary (=40), the product
+    # does NOT enter insufficient_data on account of that term.
+    #   - Guard is scoped to the d3_nonmaterial_gap increment ONLY: the no_nutrition_data
+    #     context_flag and any below-40 driven by real low-confidence/D5 terms are untouched,
+    #     so a genuinely data-poor product still reaches insufficient_data correctly.
+    #   - This is a boundary clamp, not a magnitude change: the −5 still reduces the displayed
+    #     confidence value; it is simply barred from independently tripping the gate.
+    if (BARI_GLASSBOX_W4 and is_insufficient
+            and w4_nonmaterial_applied_increment > 0
+            and eval_result.get("context_flag") != "no_nutrition_data"
+            and (confidence + w4_nonmaterial_applied_increment) >= 40):
+        is_insufficient = False
+
     if is_insufficient:
         data_sufficiency = "insufficient"
         grade = "insufficient_data"

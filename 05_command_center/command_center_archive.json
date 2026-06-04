@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T19:13:27",
+  "generated_at": "2026-06-04T19:43:11",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -3294,6 +3294,56 @@
       "blocker": null,
       "close_reason": "CC close-readiness gate PASS (2026-06-04). Revised rule re-implemented to EV-042: flat medium=0.70 replaced by the material/non-material split (medium-material 0.70 / medium-non- material 1.0 = no D3 move + D6 −5). OFF byte-identity INDEPENDENTLY verified (0-diff, 4 corpora / 342 products). Engine-only change (score_engine.py 252/88); no constants/JSON/ flag/published data touched; frozen tables + classifier intact. ON smoke confirms the fix: medium-non-material products no longer move on D3 (NOVA-4 35.0 / NOVA-1 95.0, vs 39.5 / 81.5 under 181G); hummus 3/3 + maadanim 25/25 medium-non-material now zero D3 movement; material products still move. Flag not flipped, no grade moved. 3 implementation details flagged for QA (181L) confirmation — see cc_comments. Closing unblocks TASK-181L (QA re-run).\n",
       "summary": "Re-implement the D3 rule in score_engine.py to the revised rule from 181J: replace the flat medium=0.70 score-pull with the material/non-material split - material uncertainty shrinks the score (low-band treatment), non-material uncertainty does NOT move the D3 score (routes to D6/confidence only). Keep everything behind BARI_GLASSBOX_W4 (default OFF); OFF = byte-identical to current baseline (re-run verify_glassbox_w4_off_identical.py, 0-diff). Re-emit the impact preview. Does NOT flip the flag, rescore published data, or touch frozen invariants.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181L",
+      "title": "Glass Box W4 rework QA re-verify OFF identity plus new ON score-impact after medium split",
+      "owner": "qa-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [
+        "TASK-181K"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC gate PASS (2026-06-04). QA re-run delivered the decisive before/after (17-down/3-up → 17-down/0-up) and the key finding that the downgrades come from the HP de-amplification, not the medium-band rule — independently re-verified OFF identity, frozen invariants hold. All 3 findings resolved: F2 (HP de-amp) owner-accepted KEEP after Nutrition+Product pressure-test; F3 fixed + re-validated under TASK-181M; F1 (materiality inert when D5D6 OFF) logged as a correctness item (owner scoped the follow-up to F3 only). Analysis complete and consequential — closing.\n",
+      "summary": "Re-verify BARI_GLASSBOX_W4 OFF = byte-identical (0-diff). Produce the NEW ON score-impact analysis after the material/non-material split: expect the net-downward shelf effect to collapse toward ~flat on quality (grade moves now only from material/low-certainty products; non-material peripheral-gap products no longer move grade, their doubt shows as confidence). Report new grade-move counts vs the prior 17-down/3-up, broken down by material vs non-material. Confirm frozen invariants hold (milk 85/A, snack 70/B). Analysis only - no flag flip, no published rescore.",
+      "work_type": "qa",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181M",
+      "title": "Prevent non-material confidence dents from independently triggering insufficient_data",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [
+        "TASK-181K"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). F3 boundary clamp implemented in score_engine.py (44/1, engine-only, behind BARI_GLASSBOX_W4): the −5 d3_nonmaterial_gap dent can no longer be the term that flips a graded product into insufficient_data; magnitude unchanged. OFF byte-identity INDEPENDENTLY verified 0-diff (342 products). Re-validation: the 3 maadanim that flipped under 181K are back to graded D (score identical 42.0/41.8/46.2); exactly 3 rescues, 0 other diffs; genuine data-poor products still reach insufficient_data (25 no-gap + 12 genuinely-low-conf NOT wrongly rescued — guard is precise, not over-clamping); frozen invariants hold ON (milk 85/A, snack 70/B). No flag flip, no rescore, no published data. This was the last required fix before owner-authorized W4 go-live.\n",
+      "summary": "F3 fix (owner-accepted methodology finding, both D7 signers concur). Guard the insufficient_data gate so a non-material d3_nonmaterial_gap (-5) confidence dent cannot be the term that flips a graded product into insufficient_data. KEEP the -5 magnitude (correctly anchored at half the D5 partial -10); fix the BOUNDARY only: the dent reduces displayed confidence within the graded band but, if removing the d3_nonmaterial_gap term would leave the product at/above the insufficient_data boundary (=40), the product does NOT enter insufficient_data. Makes the engine honor the co-signed promise (confidence dent, never a grade cut) that 3 maadanim currently violate. Behind BARI_GLASSBOX_W4 (OFF byte-identical). Re-validate: 3 maadanim no longer flip; no new grade moves; frozen invariants hold (milk 85/A, snack 70/B); OFF 0-diff. This is the LAST required fix before owner-authorized W4 go-live.",
       "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
