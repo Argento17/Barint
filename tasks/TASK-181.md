@@ -71,7 +71,21 @@ into this wave.
 - **TASK-181E** (Content, **CLOSED 2026-06-04**) — 14/14 Hebrew `explanation_he` authored (w2_additive_copy_v1.md W3 addendum) + CC re-wired all 14 into the pilot JSONs (+94 explanation_he filled; OFF 0-diff; 0 score-delta).
 
 ## W3 status — COMPLETE 2026-06-04
-All five sub-tasks CLOSED: 181A (Research library) · 181B (Nutrition tiers) · 181C (Product maintenance) · 181D (Data wire) · 181E (Hebrew copy + re-wire). The full 36-additive D4 library is tiered, evidence-registered (EV-043), Hebrew-copied, and wired live (annotate-only, behind `BARI_GLASSBOX_W2`, OFF byte-identical, no grade movement). **Next decision: open W4 (D3 de-moralization — spec ready + Product-co-signed, TASK-179Z) or pause the program.**
+All five sub-tasks CLOSED: 181A (Research library) · 181B (Nutrition tiers) · 181C (Product maintenance) · 181D (Data wire) · 181E (Hebrew copy + re-wire). The full 36-additive D4 library is tiered, evidence-registered (EV-043), Hebrew-copied, and wired live (annotate-only, behind `BARI_GLASSBOX_W2`, OFF byte-identical, no grade movement).
+
+## W4 — D3 de-moralization (OPENED 2026-06-04)
+Reframe D3 from a deterministic NOVA-class→penalty mapping to a probabilistic, confidence-scaled
+population-level signal. Spec = `d3_demoralization_spec_v1.md` (TASK-179Z; Section 3 consumer
+framing Product-co-signed). **Unlike W3, W4 MOVES THE GRADE when ON** — so the build ships behind
+`BARI_GLASSBOX_W4` (OFF = byte-identical), and the **flag-flip to ON is a SEPARATE frozen-invariant
+owner gate (tripwire #1)**; these tasks build it OFF-identical + produce the score-impact analysis
+for that owner decision. They do not flip it live.
+- **TASK-181F** (Nutrition, **IN_PROGRESS** — unblocking gate) — finalize + file **EV-042** binding the confidence criteria (§2.3), confidence_scale 1.0/0.70/0.40 (§2.5), population_correlation 0.05/0.15/0.40/0.75 (§2.4); Product D7 co-sign on the numeric bindings.
+- **TASK-181G** (Data, BLOCKED on 181F) — implement the reframe behind `BARI_GLASSBOX_W4`: d3_processing_signal struct, confidence-scaled score + caps, remove NOVA_HP_WEIGHTS amplification, wire the 3 co-signed `note_he` strings. OFF byte-identical.
+- **TASK-181H** (QA, BLOCKED on 181G) — OFF byte-identity (0-diff golden/frozen) + the ON score-impact analysis for the owner go-live decision; confirm frozen invariants don't breach.
+- **TASK-181I** (Frontend/Design, BLOCKED on 181G) — surface d3_processing_signal + note_he on the professional/consumer surface (view-model); behind the flag, no live exposure pre-go-live.
+
+**W4 end condition:** 181F–181I CLOSED → W4 build done + OFF-identical + score-impact analysis in hand. The **live grade move is a separate owner go-live decision** (like W1's flag flip). Then W5 (publish methodology + NDA + UI polish) is the last wave.
 
 ## W3 end condition
 W3 closes when 181A–181D are all CLOSED and the maintenance protocol (181C) is signed. Score-integration,
