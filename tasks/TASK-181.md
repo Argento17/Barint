@@ -68,10 +68,10 @@ into this wave.
 - **TASK-181B** (Nutrition, **CLOSED 2026-06-04**) — `additive_tiered_library_v1.md` + EV-043: 36 additives tiered 19/7/5/3/1/0/1. Product D7 CO-SIGNED. Annotate-only.
 - **TASK-181C** (Product, **CLOSED 2026-06-04**) — `additive_library_maintenance_protocol_v1.md`: cadence + go/no-go FREEZE gate + demand-revisit checkpoint; EFSA-import DEFERred; carried the 181B co-sign.
 - **TASK-181D** (Data, **CLOSED 2026-06-04**) — detector 20→35 keys (36 additives); pilot JSONs regenerated (hummus 56/64 · maadanim 74/84 · bread 17/24); OFF 0-diff + 0 score/grade deltas; matcher digit-boundary guard added (no-invent).
-- **TASK-181E** (Content, **IN_PROGRESS** — owner directive: all 14) — author Hebrew `explanation_he` for the 14 displayed-shelf additives 181D wired without copy (priority E960 steviol + E141); then a small Data re-wire injects them (annotate-only, OFF byte-identical).
+- **TASK-181E** (Content, **CLOSED 2026-06-04**) — 14/14 Hebrew `explanation_he` authored (w2_additive_copy_v1.md W3 addendum) + CC re-wired all 14 into the pilot JSONs (+94 explanation_he filled; OFF 0-diff; 0 score-delta).
 
-## W3 status
-Build complete: 181A (Research) · 181B (Nutrition tiers) · 181C (Product maintenance) · 181D (Data wire) all CLOSED. **One completeness task open — 181E (Hebrew copy for 14 additives + re-wire).** W3 closes when 181E lands; then assess TASK-181 program for next wave (W4 D3 de-moralization — spec ready).
+## W3 status — COMPLETE 2026-06-04
+All five sub-tasks CLOSED: 181A (Research library) · 181B (Nutrition tiers) · 181C (Product maintenance) · 181D (Data wire) · 181E (Hebrew copy + re-wire). The full 36-additive D4 library is tiered, evidence-registered (EV-043), Hebrew-copied, and wired live (annotate-only, behind `BARI_GLASSBOX_W2`, OFF byte-identical, no grade movement). **Next decision: open W4 (D3 de-moralization — spec ready + Product-co-signed, TASK-179Z) or pause the program.**
 
 ## W3 end condition
 W3 closes when 181A–181D are all CLOSED and the maintenance protocol (181C) is signed. Score-integration,

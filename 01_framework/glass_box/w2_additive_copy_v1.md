@@ -167,6 +167,131 @@ TASK-179T reads this file for component strings. This is the content record for 
 
 ---
 
+## W3 addendum (TASK-181E) — 14 additional shelf additives
+
+**Added 2026-06-04** under TASK-181E (Glass Box W3). These 14 additives surface on the displayed
+shelf and were wired by TASK-181D without copy. Authored against the **same** standards and the
+≤120-char limit as the original 20, keyed by E-number for Data lookup.
+
+**Input sources:** `additive_tiered_library_v1.md` (TASK-181B tiers) + `additive_library_expanded_v1.md`
+(TASK-181A evidence). No claim beyond what the tier + 181A evidence support; no invented data.
+
+**Tooling:** each line passed the offline `hebrew_readability` leakage gate (`is_clean = True`, no
+Tier-4 framework term / raw score / recommendation language) and the ≤120-char limit.
+
+---
+
+### E960 — סטיביול גליקוזידים (Steviol glycosides)
+**Tier:** dose-dependent
+**Explanation (final):** סטיביול גליקוזידים (סטיביה) הוא ממתיק ללא קלוריות שמקורו בצמח; מאושר ברמות הנהוגות, וצריכה גבוהה במיוחד ראויה לתשומת לב.
+**Grounding (181A N15 + 181B #35):** plant-derived NNS; EFSA/JECFA ADI 4 mg/kg + MODERATE over-exposure flag (children as high-consumer subgroup on the sweetener axis). Dose-dependent register mirrors W2 E955/E950: "approved at current levels; the consideration is high/cumulative intake" — no alarm, no health verdict. 120 chars.
+
+---
+
+### E141 — תרכובות נחושת של כלורופיל (Copper complexes of chlorophylls)
+**Tier:** unclassified
+**Explanation (final):** תרכובות נחושת של כלורופיל הוא צבע ירוק שמקורו בכלורופיל; רשם הראיות אינו מאפשר לאפיין במדויק את פרופיל הבטיחות שלו.
+**Grounding (181A N5 + 181B #25, judgment call 3):** green colourant; no clean single numerical EFSA ADI (group eval with copper-release caveat) → the one additive the evidence record does not let us cleanly classify. States the evidence record (not the label) is incomplete — neutral, not a warning; no alarm word. US/EU divergence is a D5 note, not surfaced here. 115 chars.
+
+---
+
+### E500 — נתרן פחמתי (Sodium carbonates)
+**Tier:** functional
+**Explanation (final):** נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.
+**Grounding (181A N13 + 181B #33):** common leavening/buffer salt; EFSA 2013 "not specified"; no dose-response concern. Sodium contribution is a nutrition-axis matter, not stated as an additive concern (no double-count). 95 chars.
+
+---
+
+### E163 — אנטוציאנינים (Anthocyanins)
+**Tier:** functional
+**Explanation (final):** אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.
+**Grounding (181A N2 + 181B #22):** plant pigment / colouring food; EFSA-SCF no ADI; no concern at colour-use exposure. 74 chars.
+
+---
+
+### E160a — בטא קרוטן (Beta-carotene)
+**Tier:** functional
+**Explanation (final):** בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים.
+**Grounding (181A N1 + 181B #21):** provitamin-A carotenoid; no numerical ADI for colour use; the smoker/high-dose-supplement signal is a supplement context, not food-colour use — deliberately not surfaced. 84 chars.
+
+---
+
+### E333 — ציטרט סידן (Calcium citrate)
+**Tier:** functional
+**Explanation (final):** ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן.
+**Grounding (181A N6 + 181B #26):** citrate group "not limited" / FDA §184.1195; metabolized as citrate + calcium; no dose-response concern. 97 chars.
+
+---
+
+### E331 — ציטרט נתרן (Sodium citrate)
+**Tier:** functional
+**Explanation (final):** ציטרט נתרן הוא מלח נתרן של חומצת לימון, המשמש לאיזון חומציות; הגוף מפרק אותו לציטרט.
+**Grounding (181A N7 + 181B #27):** citrate group "not limited" / FDA §184.1751; metabolized as citrate. Sodium contribution is nutrition-axis, not stated here as an additive concern (judgment call 4). 84 chars.
+
+---
+
+### E327 — לקטט סידן (Calcium lactate)
+**Tier:** functional
+**Explanation (final):** לקטט סידן הוא מלח סידן של חומצת חלב, המשמש לאיזון ולהעשרה בסידן; לקטט הוא תוצר טבעי בגוף.
+**Grounding (181A N8 + 181B #28):** lactate group "not limited" / FDA §184.1207; lactate is a normal metabolite; no dose-response concern. 89 chars.
+
+---
+
+### E270 — חומצה לקטית (Lactic acid)
+**Tier:** functional
+**Explanation (final):** חומצה לקטית (חומצת חלב) היא תוצר טבעי של תסיסה, המשמשת לאיזון טעם ולשימור; הגוף מכיר אותה כמטבוליט רגיל.
+**Grounding (181A N10 + 181B #30):** normal fermentation metabolite; JECFA "not limited" / FDA §184.1061; no concern at food-label exposure. 104 chars.
+
+---
+
+### E162 — אדום סלק (Beetroot red)
+**Tier:** functional
+**Explanation (final):** אדום סלק הוא פיגמנט המופק מסלק ומשמש כצבע אדום טבעי.
+**Grounding (181A N3 + 181B #23):** beet-derived pigment; EFSA 2015 "not specified"; no safety concern at use levels. 52 chars.
+
+---
+
+### E296 — חומצה מאלית (Malic acid)
+**Tier:** functional
+**Explanation (final):** חומצה מאלית היא חומצה טבעית הקיימת גם בתפוחים ובפירות, ומשמשת לאיזון טעם.
+**Grounding (181A N9 + 181B #29):** Krebs-cycle intermediate (L-malate); JECFA "not limited" / FDA §184.1069; no dose-response concern. 73 chars.
+
+---
+
+### E401 — אלגינט נתרן (Sodium alginate)
+**Tier:** functional
+**Explanation (final):** אלגינט נתרן הוא מסמיך שמקורו באצות חומות; הוא אינו נספג כמותו ומתנהג כמו סיב מסיס.
+**Grounding (181A N11 + 181B #31):** brown-seaweed polysaccharide; EFSA 2017 "not specified"; not absorbed intact, soluble-fibre-like; no dose-response concern. 82 chars.
+
+---
+
+### E516 — גופרת סידן (Calcium sulphate)
+**Tier:** functional
+**Explanation (final):** גופרת סידן (גבס) הוא מלח סידן המשמש לחיזוק מרקם וכמקור סידן, ומשמש גם להקרשת טופו.
+**Grounding (181A N12 + 181B #32):** gypsum; JECFA "not limited" / FDA §184.1230; common firming/coagulant (also tofu coagulant); no dose-response concern. 82 chars.
+
+---
+
+### E100 — כורכומין (Curcumin)
+**Tier:** functional
+**Explanation (final):** כורכומין הוא פיגמנט צהוב המופק מהכורכום, ומשמש כצבע מאכל טבעי.
+**Grounding (181A N4 + 181B #24, judgment call 2):** EFSA/JECFA ADI 3 mg/kg, but the documented over-exposure is via concentrated supplements, not food-colour use → functional, not dose-dependent; the supplement-channel caveat is deliberately not surfaced on the shelf line. 62 chars.
+
+---
+
+## W3 addendum sign-off (TASK-181E)
+
+- All 14 lines authored against the same standards as the original 20 (insight_line_spec + row_description_standard + DEC-006 alarm-framing prohibition).
+- DEC-006 verified: no forbidden words ("מסוכן", "מזיק", "רעיל", "מסרטן", "מסתיר", "הוסתר") and no recommendation language (מומלץ / בריא יותר / כדאי לקנות) in any line.
+- No manufacturer intent attribution; no health verdict; no medical claim.
+- Character limit ≤120: verified across all 14 (max = E960 at 120, E141 at 115).
+- Offline `hebrew_readability` gate: all 14 `is_clean = True`, zero flags, readability 95–100.
+- No-invent: every line traces to 181A evidence + the 181B tier; the two weighted-chip lines (E960 dose-dependent, E141 unclassified) carry their tier register honestly without alarm.
+- Copy only — no score, JSON, or engine touched. Data re-wire (re-run the 181D wire by E-number lookup) is the remaining step to land these in the pilot JSONs.
+- Content-agent: APPROVED 2026-06-04.
+
+---
+
 ## Content sign-off
 
 - All 20 lines reviewed against Bari editorial standards (insight_line_spec + row_description_standard).

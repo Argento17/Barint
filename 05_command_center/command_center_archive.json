@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T16:41:30",
+  "generated_at": "2026-06-04T16:59:42",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -3149,6 +3149,31 @@
       "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Annotate-only invariant INDEPENDENTLY verified: OFF byte-identity 0-diff across all 4 corpora (verify_glassbox_w2_off_identical.py) + per-product score/grade/gate/glassBox diff vs git HEAD = 0 deltas across all 3 pilot JSONs (only d4_additives changed). Detector extended 20->35 keys covering 36 additives (E1412/14 folded into E1422). Engine matcher digit-boundary guard reviewed + ACCEPTED — forced by the lookup extension to prevent a fabricated E141 (no-invent hard rule); ON-path only, OFF 0-diff confirms; remaining E141 a true positive. Bread 17/24 panels via the 179Y BSIP0-raw source — display-wire only, 0 score/grade deltas, provenance intact. Content gap (14 additives lack explanation_he) handed to TASK-181E (owner directive: author all 14). No score moved, no engine logic change beyond the necessary matcher guard, frozen invariants untouched.\n",
       "summary": "Replace the 24-entry GLASSBOX_W2_ADDITIVES table with the full tiered library from 181B; regenerate d4_additives + explanation_he across the pilot JSONs (hummus / maadanim / bread / veg-spreads). Guardrails: behind BARI_GLASSBOX_W2 flag; OFF = byte-identical (rerun verify_glassbox_w2_off_identical.py); published score / grade / gate / glassBox fields UNMODIFIED (annotate-only — D4 does not enter the grade in W3). QA confirms 0-diff on score fields + Hebrew copy coverage before close.",
       "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181E",
+      "title": "Glass Box W3 Content: author Hebrew explanation_he for 14 new shelf additives + Data re-wire",
+      "owner": "content-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [
+        "TASK-181D"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Content + Data re-wire both verified. COPY: 14/14 explanation_he in w2_additive_copy_v1.md (W3 addendum), all ≤120 chars, grounded in 181A evidence, off-axis signals omitted per 181B judgment calls. RE-WIRE (done by CC via the idempotent wire_d4_frontend.py + wire_d4_bread_vegspreads.py): all 14 injected — explanation_he filled +94 (hummus +37 · maadanim +56 · bread +1), the exact 94 missing instances. INVARIANTS: OFF byte-identity 0-diff (4 corpora) + 0 score/grade/gate/glassBox deltas vs HEAD across all 3 pilot JSONs. Annotate-only; no score moved; no engine code touched. Closing completes the W3 build (181A–181E all CLOSED).\n",
+      "summary": "Authors the missing consumer-facing Hebrew explanation_he for the 14 displayed-shelf additives that TASK-181D wired without copy (94 instances; all 16 new W3 additives lacked W2 copy, 14 surface on shelf). Priority: E960 steviol (dose-dependent) + E141 (unclassified) carry weighted tier chips. Other 12 are tier=functional. Per the editorial/insight-line standard: calm, factual, no-alarm, no-invent; matches the existing w2_additive_copy_v1.md voice. On delivery a small Data re-wire injects the strings into the pilot JSONs (re-run the 181D wire) — annotate-only, OFF byte-identical, no score move. Closes the W3 completeness gap; panel already degrades gracefully so this is not a UI blocker.",
+      "work_type": "content",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
