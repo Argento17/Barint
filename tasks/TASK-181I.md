@@ -2,10 +2,9 @@
 id: TASK-181I
 title: Glass Box W4 Frontend and Design surface d3_processing_signal plus note_he on professional and consumer surface
 owner: frontend-agent
-status: BLOCKED
+status: IN_PROGRESS
 priority: MEDIUM
 created_at: 2026-06-04
-blocker: "Waiting on TASK-181G (the d3_processing_signal struct + note_he must be emitted by the engine before the surface can render them)."
 depends_on: [TASK-181G]
 blocks: []
 category_id: null

@@ -2,10 +2,9 @@
 id: TASK-181H
 title: Glass Box W4 QA OFF byte-identity verification plus ON score-impact analysis for owner go-live review
 owner: qa-agent
-status: BLOCKED
+status: IN_PROGRESS
 priority: HIGH
 created_at: 2026-06-04
-blocker: "Waiting on TASK-181G (engine build must exist before OFF-identity + ON-impact can be verified)."
 depends_on: [TASK-181G]
 blocks: []
 category_id: null

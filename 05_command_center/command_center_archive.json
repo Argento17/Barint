@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T17:34:31",
+  "generated_at": "2026-06-04T17:57:24",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -3197,6 +3197,31 @@
       "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. EV-042 filed (bsip2_evidence_registry_v1.md L982–1003) binding the three D3 value-sets (confidence criteria, confidence_scale 1.0/0.70/0.40, population_correlation 0.05/0.15/0.40/0.75) — verified against the file, with a methodology_judgment row (Nutrition reviewed not transcribed) and a sound frozen-invariant check. BOTH D7 co-signs now complete: Nutrition (TASK-181F) + Product (verified in the file — co_sign flipped PENDING→CO-SIGNED, status updated, 2-line additive edit, EV-041/043 untouched). Governance only — no engine code, no score moved, no JSON. The rule is adopted on paper, behind BARI_GLASSBOX_W4 (default OFF). Live grade movement remains a SEPARATE owner go-live decision (tripwire #1, still owes the TASK-179X demand check). Closing unblocks TASK-181G (Data build).\n",
       "summary": "Bind the conceptual values in d3_demoralization_spec_v1.md into evidence-registry entry EV-042 and file it: confidence criteria high/medium/low (spec 2.3), confidence_scale 1.0/0.70/0.40 (2.5), population_correlation reference values 0.05/0.15/0.40/0.75 (2.4). Section 3 consumer framing is ALREADY Product-co-signed (spec lines 427-482); EV-042's numeric bindings still need Product D7 co-sign (spec line 659). Governance only - no engine code, no score move. THE UNBLOCKING GATE for 181G (Data build).",
       "work_type": "governance",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181G",
+      "title": "Glass Box W4 Data implement D3 de-moralization behind BARI_GLASSBOX_W4 OFF byte-identical",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [
+        "TASK-181F"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. D3 reframe built behind BARI_GLASSBOX_W4 (default OFF). OFF byte-identity INDEPENDENTLY verified (0-diff, 342 products, all 4 corpora) — engine behaves exactly as before with the flag off. Scope clean: only score_engine.py (+245) + a new verifier; constants.py frozen tables untouched; no published JSON touched; NOVA classifier untouched. Built to EV-042 locked values (worked examples match). Did NOT flip the flag, rescore, or move a published grade; ON smoke keeps frozen milk top at 85/A. 4 build decisions (Data-derived cap-scaling formula, NOVA-2 note=null, D6 deduction=10pts, ON preview's 1 milk E→D boundary move) routed to 181H (QA) + Nutrition for sign-off. Closing unblocks 181H + 181I.\n",
+      "summary": "Implement the D3 reframe per spec section 2 + EV-042: d3_processing_signal struct (2.2); confidence-scaled modifier_score = 50 + (base_score-50)*confidence_scale (2.5); confidence-scaled PROCESSING_LOAD caps (4.1); REMOVE NOVA_HP_WEIGHTS NOVA-class amplification (HP reverts to direct-observation magnitude); wire the 3 final note_he strings A/B/C + C-mobile (spec 463-480). All behind BARI_GLASSBOX_W4 (default OFF). OFF = byte-identical to the W2 baseline (0-diff golden/frozen runs). Does NOT flip the flag live - go-live is a separate owner gate.",
+      "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
