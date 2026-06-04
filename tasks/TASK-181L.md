@@ -2,10 +2,9 @@
 id: TASK-181L
 title: Glass Box W4 rework QA re-verify OFF identity plus new ON score-impact after medium split
 owner: qa-agent
-status: BLOCKED
+status: IN_PROGRESS
 priority: HIGH
 created_at: 2026-06-04
-blocker: "Waiting on TASK-181K (re-implemented engine must exist before re-verifying OFF identity + the new ON impact)."
 depends_on: [TASK-181K]
 blocks: []
 category_id: null

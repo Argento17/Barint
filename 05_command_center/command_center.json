@@ -5,13 +5,13 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-04",
-    "generated_at": "2026-06-04T19:01:39",
-    "newest_source_at": "2026-06-04T19:01:28",
+    "generated_at": "2026-06-04T19:13:27",
+    "newest_source_at": "2026-06-04T19:13:16",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-04T19:01:48",
+    "drift_checked_at": "2026-06-04T19:13:35",
     "stale": false,
     "stale_reason": null
   },
@@ -20,15 +20,14 @@
     "active_task_ids": [
       "TASK-180",
       "TASK-181",
-      "TASK-181K",
+      "TASK-181L",
       "TASK-180B",
       "TASK-180C",
-      "TASK-181L",
       "TASK-140"
     ],
     "latest_completed_task": {
-      "id": "TASK-181J",
-      "title": "Glass Box W4 rework Nutrition split medium into material and non-material uncertainty supersede EV-042 plus Product co-sign",
+      "id": "TASK-181K",
+      "title": "Glass Box W4 rework Data re-implement material non-material split behind BARI_GLASSBOX_W4 OFF byte-identical",
       "completed_at": "2026-06-04"
     },
     "current_blocker": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
@@ -44,38 +43,25 @@
     "unblocks": "—"
   },
   "task_summary": {
-    "active": 7,
+    "active": 6,
     "in_progress": 3,
-    "blocked": 4,
+    "blocked": 3,
     "returned": 0,
     "changes_requested": 0,
-    "closed": 203,
-    "wip": 2,
+    "closed": 204,
+    "wip": 1,
     "wip_task_ids": [
-      "TASK-180",
-      "TASK-181K"
+      "TASK-180"
     ],
     "wip_by_owner": {
-      "qa-agent": 1,
-      "data-agent": 1
+      "qa-agent": 1
     },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [
-      "TASK-181K",
-      "TASK-181L"
-    ],
-    "top_unblockers": [
-      {
-        "task_id": "TASK-181K",
-        "unblocks_count": 1,
-        "unblocks": [
-          "TASK-181L"
-        ]
-      }
-    ]
+    "longest_chain": [],
+    "top_unblockers": []
   },
   "category_state": [
     {
@@ -174,7 +160,7 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-04T19:01:48",
+    "checked_at": "2026-06-04T19:13:35",
     "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
@@ -240,22 +226,22 @@
       "banked_asset": null
     },
     {
-      "id": "TASK-181K",
-      "title": "Glass Box W4 rework Data re-implement material non-material split behind BARI_GLASSBOX_W4 OFF byte-identical",
-      "owner": "data-agent",
+      "id": "TASK-181L",
+      "title": "Glass Box W4 rework QA re-verify OFF identity plus new ON score-impact after medium split",
+      "owner": "qa-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
       "created_at": "2026-06-04",
       "completed_at": null,
       "depends_on": [
-        "TASK-181J"
+        "TASK-181K"
       ],
       "blocks": [],
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "Re-implement the D3 rule in score_engine.py to the revised rule from 181J: replace the flat medium=0.70 score-pull with the material/non-material split - material uncertainty shrinks the score (low-band treatment), non-material uncertainty does NOT move the D3 score (routes to D6/confidence only). Keep everything behind BARI_GLASSBOX_W4 (default OFF); OFF = byte-identical to current baseline (re-run verify_glassbox_w4_off_identical.py, 0-diff). Re-emit the impact preview. Does NOT flip the flag, rescore published data, or touch frozen invariants.",
-      "work_type": "execution",
+      "summary": "Re-verify BARI_GLASSBOX_W4 OFF = byte-identical (0-diff). Produce the NEW ON score-impact analysis after the material/non-material split: expect the net-downward shelf effect to collapse toward ~flat on quality (grade moves now only from material/low-certainty products; non-material peripheral-gap products no longer move grade, their doubt shows as confidence). Report new grade-move counts vs the prior 17-down/3-up, broken down by material vs non-material. Confirm frozen invariants hold (milk 85/A, snack 70/B). Analysis only - no flag flip, no published rescore.",
+      "work_type": "qa",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
@@ -309,31 +295,6 @@
       "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181L",
-      "title": "Glass Box W4 rework QA re-verify OFF identity plus new ON score-impact after medium split",
-      "owner": "qa-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-181K"
-      ],
-      "blocks": [],
-      "category_id": null,
-      "blocker": "Waiting on TASK-181K (re-implemented engine must exist before re-verifying OFF identity + the new ON impact).",
-      "close_reason": null,
-      "summary": "Re-verify BARI_GLASSBOX_W4 OFF = byte-identical (0-diff). Produce the NEW ON score-impact analysis after the material/non-material split: expect the net-downward shelf effect to collapse toward ~flat on quality (grade moves now only from material/low-certainty products; non-material peripheral-gap products no longer move grade, their doubt shows as confidence). Report new grade-move counts vs the prior 17-down/3-up, broken down by material vs non-material. Confirm frozen invariants hold (milk 85/A, snack 70/B). Analysis only - no flag flip, no published rescore.",
-      "work_type": "qa",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null
     },
@@ -2385,6 +2346,21 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181K",
+      "title": "Glass Box W4 rework Data re-implement material non-material split behind BARI_GLASSBOX_W4 OFF byte-identical",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). Revised rule re-implemented to EV-042: flat medium=0.70 replaced by the material/non-material split (medium-material 0.70 / medium-non- material 1.0 = no D3 move + D6 −5). OFF byte-identity INDEPENDENTLY verified (0-diff, 4 corpora / 342 products). Engine-only change (score_engine.py 252/88); no constants/JSON/ flag/published data touched; frozen tables + classifier intact. ON smoke confirms the fix: medium-non-material products no longer move on D3 (NOVA-4 35.0 / NOVA-1 95.0, vs 39.5 / 81.5 under 181G); hummus 3/3 + maadanim 25/25 medium-non-material now zero D3 movement; material products still move. Flag not flipped, no grade moved. 3 implementation details flagged for QA (181L) confirmation — see cc_comments. Closing unblocks TASK-181L (QA re-run).\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -4201,19 +4177,6 @@
     },
     {
       "id": "ALT-003",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
-      "message": "TASK-181L: Waiting on TASK-181K (re-implemented engine must exist before re-verifying OFF identity + the new ON impact).",
-      "related_category": null,
-      "related_task": "TASK-181L",
-      "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-004",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
       "message": "TASK-140: Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",

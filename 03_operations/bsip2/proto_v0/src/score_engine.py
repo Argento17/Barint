@@ -94,12 +94,16 @@ BARI_GLASSBOX_W15 = os.environ.get("BARI_GLASSBOX_W15", "off").lower() == "on"
 # Additives not in GLASSBOX_W2_ADDITIVES → tier "unclassified" (never invented).
 BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
 
-# TASK-181G — Glass Box W4 D3 de-moralization (confidence-scaled processing signal).
-# DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_W2 baseline.
-# Source: d3_demoralization_spec_v1.md §2 / §4. Evidence registry: EV-042
-# (Nutrition + Product D7 co-signed, TASK-181F). With OFF: score_processing_quality
-# runs the current NOVA_PROCESSING_SCORES lookup verbatim, the PROCESSING_LOAD caps
-# and NOVA_HP_WEIGHTS scaling are unchanged, and no d3_processing_signal is emitted.
+# TASK-181G / TASK-181K — Glass Box W4 D3 de-moralization (confidence-scaled
+# processing signal). DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_W2 baseline.
+# Source: d3_demoralization_spec_v1.md §2 / §4. Evidence registry: EV-042 — REVISED
+# 2026-06-04 (TASK-181J, Nutrition + Product D7 both co-signed). TASK-181K re-implements
+# the medium-band material/non-material split: the original single flat medium=0.70
+# scale is replaced by medium-MATERIAL=0.70 (score pulls toward neutral, as before) vs
+# medium-NON-MATERIAL=1.0 (D3 score does NOT move; the doubt routes to D6 confidence).
+# With OFF: score_processing_quality runs the current NOVA_PROCESSING_SCORES lookup
+# verbatim, the PROCESSING_LOAD caps and NOVA_HP_WEIGHTS scaling are unchanged, and no
+# d3_processing_signal is emitted.
 BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
@@ -110,9 +114,38 @@ BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "off").lower() == "on"
 # bound_value_set_1 (confidence criteria) is implemented in _d3_compute_confidence.
 # ---------------------------------------------------------------------------
 
-# EV-042 bound_value_set_2 — confidence_scale (high / medium / low).
-W4_CONFIDENCE_SCALE = {"high": 1.0, "medium": 0.70, "low": 0.40}
+# EV-042 bound_value_set_2 (REVISED TASK-181J) — confidence_scale is now selected by
+# confidence band AND uncertainty materiality (bound_value_set_4):
+#   high            = 1.0   (unchanged)
+#   low             = 0.40  (unchanged)
+#   medium-MATERIAL = 0.70  (the medium scale-down, applied ONLY when the gap is material)
+#   medium-NON-MATERIAL = 1.0 (NO D3 move; doubt routes to D6 — bound_value_set_5)
+# The flat-medium dict is retired; use _w4_confidence_scale(confidence, materiality).
+W4_HIGH_SCALE      = 1.0
+W4_MEDIUM_MATERIAL_SCALE = 0.70
+W4_LOW_SCALE       = 0.40
 W4_NEUTRAL = 50.0
+
+
+def _w4_confidence_scale(confidence: str, materiality: str = None) -> float:
+    """EV-042 bound_value_set_2 (revised) — confidence_scale selector.
+    high→1.0; low→0.40; medium→0.70 if materiality=='material' else 1.0 (no move)."""
+    if confidence == "high":
+        return W4_HIGH_SCALE
+    if confidence == "low":
+        return W4_LOW_SCALE
+    if confidence == "medium":
+        return W4_MEDIUM_MATERIAL_SCALE if materiality == "material" else 1.0
+    # Defensive default (never reached for the three bound bands): no move.
+    return 1.0
+
+
+# EV-042 bound_value_set_5 (NEW, TASK-181J) — D3→D6 confidence deductions.
+# Non-material medium-band gap = −5 (half the D5 partial −10). Low-confidence NOVA = −10
+# (equal to the D5 partial term). Both flag-gated, both max-combined with any D5 term for
+# the SAME token (never summed). Stored as positive magnitudes; deducted at the call site.
+W4_D6_NONMATERIAL_DEDUCTION = 5
+W4_D6_LOW_CONFIDENCE_DEDUCTION = 10
 
 # EV-042 bound_value_set_3 — fixed class-level population-correlation anchors
 # (reference field in the trace; NOT a multiplier in the score arithmetic).
@@ -183,42 +216,128 @@ def _d3_compute_confidence(nova_result: dict, l3: dict, disclosure_profile) -> t
     return "medium", "list present, classifier band medium (two-signal fallback)"
 
 
-def _d3_modifier_score(nova_level: int, confidence: str) -> float:
-    """EV-042 bound_value_set_2 — pull-toward-neutral confidence-scaled modifier.
-    modifier_score = 50 + (base_score - 50) * confidence_scale(confidence)."""
+def _d3_uncertainty_materiality(nova_level: int, confidence: str,
+                                l3: dict, disclosure_profile) -> tuple[str, str]:
+    """EV-042 bound_value_set_4 (NEW, TASK-181J/181K) — the material vs non-material test.
+
+    Applies ONLY to the `medium` confidence band (high already scales 1.0 with no doubt
+    to route; low already takes the 0.40 shrink regardless). For medium-confidence
+    products, classify the unresolved/unknown signal as MATERIAL or NON-MATERIAL using
+    observable inputs already computed by the engine.
+
+    Returns (materiality, reason). materiality ∈ {"material","non_material"} for medium;
+    None for high/low (no split applies). `disclosure_profile` is None when
+    BARI_GLASSBOX_D5D6 is OFF → the two-signal fallback evaluates M1/M3/M4 only (omit M2).
+
+    MATERIAL if ANY of:
+      M1  the NOVA-deciding additive is a BARE-GENERIC additive term (D5 G4 detector hit)
+          whose function class is itself the processed-vs-ultra-processed pivot — i.e. a
+          present-but-unnamed NOVA-4 marker additive.
+      M2  D5 band == "severe" (a severe-opaque panel cannot pin the read). [D5D6 only]
+      M3  unresolved/unmatched ingredient-token fraction > 30% of the list, OR an unnamed
+          compound ingredient ("תערובת"/"בתוספת...") that could carry NOVA-4 markers.
+      M4  decisive worst-case test — hold the resolved portion's NOVA class fixed; assume
+          the unknown is a NOVA-4 marker. If the class would FLIP given the rest of the
+          list → material; if it would still HOLD → non-material.
+    NON_MATERIAL if NONE of M1–M4 fire AND the visible signals already pin the read.
+    """
+    if confidence != "medium":
+        return None, "materiality split applies to medium band only"
+
+    reasons = []
+
+    # --- signals from the D5 disclosure profile (full rule) ---
+    has_bare_generic = False     # G4 detector — a bare-generic additive present-but-unnamed
+    d5_severe = False
+    has_unnamed_compound = False
+    tokens_n = 0
+    if disclosure_profile is not None:
+        findings = disclosure_profile.get("findings", []) or []
+        has_bare_generic = any(f.get("type") == "generic_additive" for f in findings)
+        d5_severe = (disclosure_profile.get("d5_band") == "severe")
+        has_unnamed_compound = any(f.get("type") == "compound" for f in findings)
+        cnt = disclosure_profile.get("counts", {}) or {}
+        # token count is reconstructable from the panel; recompute below from l3 too.
+
+    # --- ingredient-list / unresolved-fraction (works in both full + fallback paths) ---
+    ing_list = l3.get("ingredient_list") or []
+    tokens_n = len(ing_list)
+    # Unresolved-fraction proxy: matched/resolved tokens are those the taxonomy mapped.
+    # l3 carries resolved-ingredient signals; treat ingredients with no L3 classification
+    # match as unresolved. We approximate the unresolved set as tokens flagged unmatched
+    # by the taxonomy layer (l3 'unmatched_ingredients') when present; else 0.
+    unmatched = l3.get("unmatched_ingredients")
+    if unmatched is None:
+        # fall back to disclosure_profile findings count of bare-generic/compound as the
+        # only observed "unresolved" markers (conservative — keeps small lists non-material).
+        unresolved_n = (1 if has_bare_generic else 0) + (1 if has_unnamed_compound else 0)
+    else:
+        unresolved_n = len(unmatched)
+    unresolved_frac = (unresolved_n / tokens_n) if tokens_n else 0.0
+
+    # M1 — bare-generic NOVA-deciding additive present-but-unnamed.
+    if has_bare_generic:
+        reasons.append("M1 bare-generic NOVA-deciding additive (D5 G4 hit)")
+    # M2 — D5 severe (D5D6 path only; omitted in two-signal fallback).
+    if disclosure_profile is not None and d5_severe:
+        reasons.append("M2 d5_band=severe")
+    # M3 — large unresolved fraction OR an unnamed compound ingredient.
+    if unresolved_frac > 0.30:
+        reasons.append(f"M3 unresolved_frac={unresolved_frac:.2f}>0.30")
+    if has_unnamed_compound:
+        reasons.append("M3 unnamed compound ingredient (could carry NOVA-4 markers)")
+    # M4 — worst-case NOVA-flip: assume the unknown is a NOVA-4 marker. If the product is
+    # already classified NOVA 4, a NOVA-4 unknown cannot flip the class → does not fire on
+    # its own. If the product sits at the NOVA 3↔4 pivot (NOVA 3 with a present-but-unnamed
+    # additive marker), the worst-case unknown would flip 3→4 → material. The only direct
+    # observable that lets a hidden NOVA-4 marker flip the class is an unresolved bare term
+    # on a sub-NOVA-4 product; that is exactly M1/M3 above. So M4 fires when the class is
+    # < 4 AND there is an unresolved/unnamed token (M1 or M3 trigger) that could be the
+    # flipping marker. When the resolved list already pins NOVA 4, or the only unknowns are
+    # peripheral named/whole-food tokens (no M1/M3 trigger), the worst case does not flip.
+    m4_flip = (nova_level is not None and nova_level < 4
+               and (has_bare_generic or has_unnamed_compound or unresolved_frac > 0.30))
+    if m4_flip:
+        reasons.append("M4 worst-case NOVA-4 unknown would flip class (sub-NOVA-4 + unresolved)")
+
+    if reasons:
+        return "material", "; ".join(reasons)
+    return "non_material", ("visible signals pin the NOVA read; unresolved terms peripheral "
+                            "(no M1–M4 trigger)")
+
+
+def _d3_modifier_score(nova_level: int, confidence: str, materiality: str = None) -> float:
+    """EV-042 bound_value_set_2 (revised) — pull-toward-neutral confidence-scaled modifier.
+    modifier_score = 50 + (base_score - 50) * confidence_scale(confidence, materiality)."""
     base = NOVA_PROCESSING_SCORES.get(nova_level, W4_NEUTRAL)
-    scale = W4_CONFIDENCE_SCALE.get(confidence, 1.0)
+    scale = _w4_confidence_scale(confidence, materiality)
     return round(W4_NEUTRAL + (base - W4_NEUTRAL) * scale, 2)
 
 
-def _d3_scaled_cap(base_cap: float, confidence: str) -> float:
-    """W4 cap-scaling — the one formula the spec (§2.5 / §4.1 Item 2) left to Data,
-    derived to be consistent with the §2.5 pull-to-neutral score formula.
+def _d3_scaled_cap(base_cap: float, confidence: str, materiality: str = None) -> float:
+    """EV-042 bound_value_set_2 (revised, TASK-181J) — cap-scaling, now BOUND:
 
-    A PROCESSING_LOAD cap is a ceiling that pulls a product DOWN toward base_cap.
-    Under low confidence that ceiling should pull less — toward the neutral 50
-    anchor (a low-confidence NOVA-3/4 assignment must not impose the same hard
-    ceiling as a high-confidence one). Same governing principle and the same
-    confidence_scale values as the score formula:
+        cap_effective = 100 − (100 − base_cap) × confidence_scale(confidence, materiality)
 
-        scaled_cap = 50 + (base_cap - 50) * confidence_scale(confidence)
-
-    High → scaled_cap == base_cap (68 / 87, identical to today).
-    Medium (0.70): 68→62.6→clamped up; 87→75.9. Low (0.40): 68→57.2; 87→64.8.
-    Because base_cap (68, 87) > neutral 50, scaling pulls the cap UPWARD toward 50,
-    i.e. LOOSER under uncertainty — never below the neutral anchor, never a tighter
-    ceiling than the high-confidence one. A cap is a ceiling, so a less-confident
-    assignment yields a more permissive (higher) ceiling, mirroring the score rule's
-    pull toward neutral. Returns a float ceiling (callers round/int as today)."""
-    scaled = W4_NEUTRAL + (base_cap - W4_NEUTRAL) * W4_CONFIDENCE_SCALE.get(confidence, 1.0)
-    return round(scaled, 2)
+    Same scale as the score formula. A PROCESSING_LOAD cap is a ceiling; under uncertainty
+    it is relaxed toward 100 (no-cap). Worked for the NOVA-4 cap (base 68):
+      high            → 100−(100−68)×1.0  = 68    (today's cap, identical)
+      medium-material → 100−32×0.70       = 77.6
+      medium-non-mat. → 100−32×1.0        = 68    (cap unchanged — non-material loosens nothing)
+      low             → 100−32×0.40       = 87.2
+    Same form for the NOVA-3 cap (base 87). Material gaps loosen score AND cap toward
+    neutral; non-material gaps loosen neither. Returns a float ceiling (callers round/int)."""
+    scale = _w4_confidence_scale(confidence, materiality)
+    return round(100 - (100 - base_cap) * scale, 2)
 
 
 def _d3_processing_signal(nova_level: int, confidence: str, modifier_score: float,
-                          modifier_note: str) -> dict:
-    """EV-042 / spec §2.2 — the d3_processing_signal struct emitted on the
+                          modifier_note: str, uncertainty_materiality: str = None) -> dict:
+    """EV-042 (revised) / spec §2.2 — the d3_processing_signal struct emitted on the
     professional/internal trace surface. `modifier` is the signed delta from the
-    neutral 50 anchor (negative = pull below neutral, i.e. a processing penalty)."""
+    neutral 50 anchor (negative = pull below neutral, i.e. a processing penalty).
+    `uncertainty_materiality` (new in the TASK-181J revision) carries the medium-band
+    material/non_material verdict (None for high/low bands — no split applies)."""
     base = NOVA_PROCESSING_SCORES.get(nova_level, W4_NEUTRAL)
     if confidence == "low":
         note_he = W4_NOTE_HE_C
@@ -239,6 +358,7 @@ def _d3_processing_signal(nova_level: int, confidence: str, modifier_score: floa
     return {
         "nova_class": nova_level,
         "confidence": confidence,
+        "uncertainty_materiality": uncertainty_materiality,
         "population_correlation": W4_POPULATION_CORRELATION.get(nova_level),
         "modifier": round(modifier_score - W4_NEUTRAL, 2),
         "modifier_note": modifier_note,
@@ -861,17 +981,22 @@ def detect_structural_emptiness(nn: dict, category: str, l3: dict) -> dict:
 # Dimension scoring (prototype formulas — preliminary calibration)
 # ---------------------------------------------------------------------------
 
-def score_processing_quality(nova_level: int, w4_confidence: str = None) -> tuple[float, str]:
-    # TASK-181G / EV-042 — Glass Box W4 D3 de-moralization. When the flag is ON the
-    # caller passes a w4_confidence band and the fixed NOVA_PROCESSING_SCORES lookup
-    # is replaced by the confidence-scaled pull-to-neutral modifier (spec §2.5).
+def score_processing_quality(nova_level: int, w4_confidence: str = None,
+                             w4_materiality: str = None) -> tuple[float, str]:
+    # TASK-181G / TASK-181K / EV-042 (revised) — Glass Box W4 D3 de-moralization. When the
+    # flag is ON the caller passes a w4_confidence band (and, for the medium band, a
+    # w4_materiality verdict) and the fixed NOVA_PROCESSING_SCORES lookup is replaced by
+    # the confidence-scaled pull-to-neutral modifier (bound_value_set_2 revised).
+    # medium-NON-MATERIAL → scale 1.0 → score does NOT move (identical to the lookup).
     # Flag OFF (w4_confidence is None) → the current lookup runs verbatim (byte-identical).
     if BARI_GLASSBOX_W4 and w4_confidence is not None:
         base = NOVA_PROCESSING_SCORES.get(nova_level, W4_NEUTRAL)
-        score = _d3_modifier_score(nova_level, w4_confidence)
+        scale = _w4_confidence_scale(w4_confidence, w4_materiality)
+        score = _d3_modifier_score(nova_level, w4_confidence, w4_materiality)
         note = (f"W4 D3 de-moralization: NOVA {nova_level} base={base} × "
-                f"confidence_scale({w4_confidence})={W4_CONFIDENCE_SCALE.get(w4_confidence)} "
-                f"→ 50+(base-50)×scale = {score} (EV-042)")
+                f"confidence_scale({w4_confidence}"
+                f"{'/' + w4_materiality if w4_materiality else ''})={scale} "
+                f"→ 50+(base-50)×scale = {score} (EV-042 revised, TASK-181J)")
         return score, note
     score = NOVA_PROCESSING_SCORES.get(nova_level, 50)
     return score, f"NOVA {nova_level} → processing_quality={score} (NOVA_PROCESSING_SCORES table)"
@@ -1275,7 +1400,7 @@ def score_whole_food_integrity(nova_level: int, ing_count: int, has_fermentation
 
 def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                          cat_confidence: float, eval_status: dict,
-                         w4_confidence: str = None) -> dict:
+                         w4_confidence: str = None, w4_materiality: str = None) -> dict:
     """
     Evaluate all guardrail rules. Returns dict with all fired caps and penalties
     per concern family, plus coordination outcomes.
@@ -1431,17 +1556,18 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     proc_caps_fired = []
     proc_pens_fired = []
 
-    # TASK-181G / EV-042 — Glass Box W4 confidence-scales the two NOVA-driven
-    # PROCESSING_LOAD caps (spec §2.5 / §4.1 item 2) via _d3_scaled_cap. A
-    # low-confidence NOVA-4 assignment must not impose the same hard ceiling as a
-    # high-confidence one. The additive-marker caps are direct-observation, NOT
-    # NOVA-driven, so they are left unchanged. Flag OFF → both caps run at 68 / 87
-    # verbatim (byte-identical).
+    # TASK-181G / TASK-181K / EV-042 (revised) — Glass Box W4 confidence-scales the two
+    # NOVA-driven PROCESSING_LOAD caps via _d3_scaled_cap, using the SAME scale as the
+    # score (bound_value_set_2 revised: cap_effective = 100 − (100−base_cap) × scale).
+    # The scale now depends on materiality: medium-non-material → scale 1.0 → cap
+    # UNCHANGED (a non-material gap does not loosen the ceiling). The additive-marker caps
+    # are direct-observation, NOT NOVA-driven, so they are left unchanged. Flag OFF → both
+    # caps run at 68 / 87 verbatim (byte-identical).
     _w4_on = BARI_GLASSBOX_W4 and w4_confidence is not None
     _nova3_cap = next(c for rule, _, c in PROCESSING_CAPS if rule == "NOVA_PROXY_3_PROCESSED")
     if _w4_on:
-        _nova4_cap_val = _d3_scaled_cap(68, w4_confidence)
-        _nova3_cap_val = _d3_scaled_cap(_nova3_cap, w4_confidence)
+        _nova4_cap_val = _d3_scaled_cap(68, w4_confidence, w4_materiality)
+        _nova3_cap_val = _d3_scaled_cap(_nova3_cap, w4_confidence, w4_materiality)
     else:
         _nova4_cap_val = 68
         _nova3_cap_val = _nova3_cap
@@ -1777,46 +1903,81 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     has_fortification = l3.get("has_fortification", False)
     has_fermentation  = l3.get("has_fermentation", False)
 
-    # TASK-181G / EV-042 — Glass Box W4 D3 de-moralization. Compute the NOVA-
-    # assignment confidence ONCE (keyed to ingredient-evidence quality, not the NOVA
-    # class) and thread it into the D3 dimension score AND the NOVA-driven
-    # PROCESSING_LOAD caps + HP de-amplification. Flag OFF → w4_confidence stays None
-    # → every W4 call site falls back to the current behavior (byte-identical).
+    # TASK-181G / TASK-181K / EV-042 (revised, TASK-181J) — Glass Box W4 D3
+    # de-moralization. Compute the NOVA-assignment confidence ONCE (keyed to ingredient-
+    # evidence quality, not the NOVA class), then — for the medium band only — compute the
+    # uncertainty materiality (bound_value_set_4, M1–M4). Thread both into the D3 dimension
+    # score AND the NOVA-driven PROCESSING_LOAD caps + HP de-amplification. The doubt for
+    # the non-material / low-confidence cases routes to D6 confidence (bound_value_set_5:
+    # non-material −5, low-confidence −10; both max-combined with any D5 term, never summed).
+    # Flag OFF → w4_confidence stays None → every W4 call site falls back to the current
+    # behavior (byte-identical).
     w4_confidence = None
     w4_conf_note = None
+    w4_materiality = None
     w4_low_confidence_nova = False
+    w4_nonmaterial_gap = False
     if BARI_GLASSBOX_W4:
         w4_confidence, w4_conf_note = _d3_compute_confidence(nova_result, l3, disclosure_profile)
-        # Spec §2.6 — on insufficient ingredient data D3 does NOT invent a NOVA class:
-        # confidence=low, score pulled toward neutral (handled by the modifier formula),
-        # and a low_confidence_nova signal is routed to D6's existing confidence
-        # accumulator, which MAY lower the grade ceiling further. We apply a modest
-        # deduction here ONLY for the residual not already captured by the D6 inputs
-        # (the classifier-band-low −10 and any D5-band reduction are already deducted in
-        # compute_confidence). Re-derive the ceiling/band/gate from the adjusted score so
-        # the downstream ceiling read (Stage 9) sees it. No-op when confidence != low.
-        if w4_confidence == "low":
-            w4_low_confidence_nova = True
-            _already = any("nova_confidence=low" in r.get("factor", "")
-                           for r in conf_result.get("confidence_reductions", []))
-            if not _already:
-                _w4_ded = 10
-                conf_result["confidence_score"] = max(0, conf_result["confidence_score"] - _w4_ded)
-                conf_result.setdefault("confidence_reductions", []).append(
-                    {"factor": "w4_low_confidence_nova (D3 → D6, EV-042 §2.6)",
-                     "reduction": -_w4_ded})
-                _cs = conf_result["confidence_score"]
-                if _cs >= 80:
-                    conf_result["confidence_band"], conf_result["confidence_ceiling"] = "high", None
-                elif _cs >= 60:
-                    conf_result["confidence_band"], conf_result["confidence_ceiling"] = "medium", None
-                elif _cs >= 40:
-                    conf_result["confidence_band"], conf_result["confidence_ceiling"] = "low", CONFIDENCE_LOW_CEILING
-                else:
-                    conf_result["confidence_band"], conf_result["confidence_ceiling"] = "insufficient", CONFIDENCE_INSUFFICIENT_CEILING
-                confidence = _cs  # keep the local in sync with the adjusted accumulator
+        # bound_value_set_4 — materiality applies to the medium band only (None otherwise).
+        w4_materiality, w4_materiality_note = _d3_uncertainty_materiality(
+            nova_level, w4_confidence, l3, disclosure_profile)
 
-    pq_score,  pq_note  = score_processing_quality(nova_level, w4_confidence)
+        # bound_value_set_5 — the D3→D6 confidence ladder. Both terms act THROUGH
+        # confidence only (Q2 firewall), are gated by the flag, and are MAX-combined with
+        # any D5 disclosure reduction already applied for the same unresolved token (never
+        # summed). We implement max-combine by adding only the increment of the D3 term
+        # beyond the already-applied D5 magnitude, so the net effect == max(d3, d5).
+        _d5_applied_mag = 0
+        for _r in conf_result.get("confidence_reductions", []):
+            if "d5_disclosure" in _r.get("factor", ""):
+                _d5_applied_mag = max(_d5_applied_mag, abs(_r.get("reduction", 0)))
+
+        _w4_d6_target = 0
+        _w4_d6_reason = None
+        if w4_confidence == "low":
+            # Spec §2.6 — on insufficient ingredient data D3 does NOT invent a NOVA class:
+            # confidence=low, score pulled toward neutral (handled by the modifier formula),
+            # and a low_confidence_nova signal routes to D6 at −10 (bound_value_set_5),
+            # max-combined with any D5 term. Skip if an equivalent nova_confidence=low term
+            # was already deducted upstream.
+            w4_low_confidence_nova = True
+            _already_low = any("nova_confidence=low" in r.get("factor", "")
+                               for r in conf_result.get("confidence_reductions", []))
+            if not _already_low:
+                _w4_d6_target = W4_D6_LOW_CONFIDENCE_DEDUCTION   # 10
+                _w4_d6_reason = ("w4_low_confidence_nova (D3 → D6 −10, EV-042 "
+                                 "bound_value_set_5; max-combined with D5)")
+        elif w4_confidence == "medium" and w4_materiality == "non_material":
+            # medium-NON-MATERIAL → D3 score does NOT move; the peripheral unknown surfaces
+            # as a small confidence dent only (−5, half the D5 partial term).
+            w4_nonmaterial_gap = True
+            _w4_d6_target = W4_D6_NONMATERIAL_DEDUCTION          # 5
+            _w4_d6_reason = ("d3_nonmaterial_gap (peripheral unresolved term; processing "
+                             "read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; "
+                             "max-combined with D5)")
+
+        # Apply the max-combined increment (never sum). If D5 already deducted >= the D3
+        # target for the same token, the D3 term adds nothing (max already reached).
+        _w4_increment = max(0, _w4_d6_target - _d5_applied_mag)
+        if _w4_increment > 0:
+            conf_result["confidence_score"] = max(0, conf_result["confidence_score"] - _w4_increment)
+            conf_result.setdefault("confidence_reductions", []).append(
+                {"factor": _w4_d6_reason, "reduction": -_w4_increment})
+            # Re-derive the ceiling/band from the adjusted score so the downstream ceiling
+            # read (Stage 9) sees it.
+            _cs = conf_result["confidence_score"]
+            if _cs >= 80:
+                conf_result["confidence_band"], conf_result["confidence_ceiling"] = "high", None
+            elif _cs >= 60:
+                conf_result["confidence_band"], conf_result["confidence_ceiling"] = "medium", None
+            elif _cs >= 40:
+                conf_result["confidence_band"], conf_result["confidence_ceiling"] = "low", CONFIDENCE_LOW_CEILING
+            else:
+                conf_result["confidence_band"], conf_result["confidence_ceiling"] = "insufficient", CONFIDENCE_INSUFFICIENT_CEILING
+            confidence = _cs  # keep the local in sync with the adjusted accumulator
+
+    pq_score,  pq_note  = score_processing_quality(nova_level, w4_confidence, w4_materiality)
     nd_score,  nd_note  = score_nutrient_density(nn, has_fortification, category)
     cd_table_key = category
     if cat_result.get("category_subtype") == "yogurt":
@@ -2012,7 +2173,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     # confidence-scaled and HP penalties are de-amplified (flag OFF → w4_confidence
     # is None → byte-identical guardrail evaluation).
     gr = evaluate_guardrails(nn, l3, nova_level, category, cat_conf, eval_result,
-                             w4_confidence)
+                             w4_confidence, w4_materiality)
 
     if gr.get("trans_fat_veto"):
         return {
@@ -2151,14 +2312,17 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         result["diaas_d2_credit_applied"] = diaas_d2_credit_applied
         result["diaas_d5_protein_disclosure_gap"] = diaas_d5_disclosure_gap
 
-    # TASK-181G / EV-042 — Glass Box W4 D3 de-moralization signal added ONLY when
-    # BARI_GLASSBOX_W4 is ON, so an OFF result dict is byte-identical to the
-    # BARI_GLASSBOX_W2 baseline (no extra keys to diff). Spec §2.2 / §2.6 / §4.
+    # TASK-181G / TASK-181K / EV-042 (revised) — Glass Box W4 D3 de-moralization signal
+    # added ONLY when BARI_GLASSBOX_W4 is ON, so an OFF result dict is byte-identical to
+    # the BARI_GLASSBOX_W2 baseline (no extra keys to diff). Spec §2.2 / §2.6 / §4.
     if BARI_GLASSBOX_W4 and w4_confidence is not None:
         result["d3_processing_signal"] = _d3_processing_signal(
-            nova_level, w4_confidence, pq_score, pq_note)
+            nova_level, w4_confidence, pq_score, pq_note, w4_materiality)
         result["d3_processing_signal"]["confidence_note"] = w4_conf_note
+        result["d3_processing_signal"]["materiality_note"] = (
+            w4_materiality_note if w4_confidence == "medium" else None)
         result["d3_low_confidence_nova"] = w4_low_confidence_nova
+        result["d3_nonmaterial_gap"] = w4_nonmaterial_gap
 
     # TASK-179S — D4 additive tier findings added ONLY when BARI_GLASSBOX_W2 is ON.
     # Flag OFF → d4_additives key is absent → result dict is byte-identical to the

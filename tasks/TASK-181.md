@@ -106,10 +106,10 @@ Owner accepted LOW-band shrinkage as valid; challenged the MEDIUM band as too ag
 ### W4 REWORK — owner ADOPTED 2026-06-04
 Owner directive: split medium-certainty into **MATERIAL uncertainty** (the unknown could change the processing read → may shrink the score, low-band treatment) vs **NON-MATERIAL uncertainty** (visible signals already pin the read → affects **confidence/D6 ONLY**, the score does not move). Rework chain opened:
 - **TASK-181J** (Nutrition, **CLOSED 2026-06-04**) — revised EV-042 in place: material/non-material test (M1–M4), medium-material 0.70 / medium-non-material 1.0 (no D3 move), D6 routing (−5 / −10, max-combined), bound cap-scaling, "less punitive" retired. **Both D7 co-signs in** (Nutrition + Product). Baseline preserved.
-- **TASK-181K** (Data, **IN_PROGRESS** — unblocked) — re-implement behind `BARI_GLASSBOX_W4`, OFF byte-identical; re-emit impact preview.
-- **TASK-181L** (QA, BLOCKED on 181K) — re-verify OFF identity + new ON impact (expect net-downward to collapse toward ~flat; grade moves only from material/low); frozen invariants hold.
+- **TASK-181K** (Data, **CLOSED 2026-06-04**) — split re-implemented behind `BARI_GLASSBOX_W4`, OFF byte-identical (0-diff 342); ON smoke confirms medium-non-material no longer moves D3 (hummus 3/3 + maadanim 25/25 now zero D3 movement). 3 impl details flagged for 181L.
+- **TASK-181L** (QA, **IN_PROGRESS** — unblocked) — re-verify OFF identity + the NEW ON impact (the before/after vs the original 17-down/3-up); confirm material/low still move, non-material don't; frozen invariants hold; confirm the 3 flagged impl details.
 
-**W4 closed so far:** 181F (rule) · 181G (engine v1) · 181H (QA — found the net-downward issue) · 181I (display) · 181J (reworked rule, both-signed). In flight: 181K (build the rework) → 181L (re-run impact). Live flip still a separate owner decision.
+**W4 closed so far:** 181F (rule) · 181G (engine v1) · 181H (QA — found the net-downward issue) · 181I (display) · 181J (reworked rule, both-signed) · 181K (built the rework). In flight: 181L (re-run impact — the before/after picture). Live flip still a separate owner decision.
 Flag stays OFF throughout; live flip remains a separate owner go-live decision. 181F/181G/181H/181I outputs stand; this revises the medium-band behaviour they were built on.
 - **TASK-181H** (QA, BLOCKED on 181G) — OFF byte-identity (0-diff golden/frozen) + the ON score-impact analysis for the owner go-live decision; confirm frozen invariants don't breach.
 - **TASK-181I** (Frontend/Design, BLOCKED on 181G) — surface d3_processing_signal + note_he on the professional/consumer surface (view-model); behind the flag, no live exposure pre-go-live.
