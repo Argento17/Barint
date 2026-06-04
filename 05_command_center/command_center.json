@@ -5,13 +5,13 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-04",
-    "generated_at": "2026-06-04T15:41:40",
-    "newest_source_at": "2026-06-04T15:41:32",
+    "generated_at": "2026-06-04T16:23:25",
+    "newest_source_at": "2026-06-04T16:23:17",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-04T15:41:50",
+    "drift_checked_at": "2026-06-04T16:23:34",
     "stale": false,
     "stale_reason": null
   },
@@ -20,16 +20,14 @@
     "active_task_ids": [
       "TASK-180",
       "TASK-181",
-      "TASK-181C",
+      "TASK-181D",
       "TASK-180B",
       "TASK-180C",
-      "TASK-181B",
-      "TASK-181D",
       "TASK-140"
     ],
     "latest_completed_task": {
-      "id": "TASK-181A",
-      "title": "Glass Box W3 — Research: expand additive library to full shelf-frequent set + wire EFSA/JECFA/FDA evidence sources",
+      "id": "TASK-181C",
+      "title": "Glass Box W3 — Product: additive-library maintenance-cadence protocol + go/no-go gate",
       "completed_at": "2026-06-04"
     },
     "current_blocker": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
@@ -45,36 +43,27 @@
     "unblocks": "—"
   },
   "task_summary": {
-    "active": 8,
+    "active": 6,
     "in_progress": 3,
-    "blocked": 5,
+    "blocked": 3,
     "returned": 0,
     "changes_requested": 0,
-    "closed": 194,
-    "wip": 1,
+    "closed": 196,
+    "wip": 2,
     "wip_task_ids": [
-      "TASK-180"
+      "TASK-180",
+      "TASK-181D"
     ],
     "wip_by_owner": {
-      "qa-agent": 1
+      "qa-agent": 1,
+      "data-agent": 1
     },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [
-      "TASK-181B",
-      "TASK-181D"
-    ],
-    "top_unblockers": [
-      {
-        "task_id": "TASK-181B",
-        "unblocks_count": 1,
-        "unblocks": [
-          "TASK-181D"
-        ]
-      }
-    ]
+    "longest_chain": [],
+    "top_unblockers": []
   },
   "category_state": [
     {
@@ -173,7 +162,7 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-04T15:41:50",
+    "checked_at": "2026-06-04T16:23:34",
     "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
@@ -239,20 +228,22 @@
       "banked_asset": null
     },
     {
-      "id": "TASK-181C",
-      "title": "Glass Box W3 — Product: additive-library maintenance-cadence protocol + go/no-go gate",
-      "owner": "product-agent",
+      "id": "TASK-181D",
+      "title": "Glass Box W3 — Data: wire expanded library into D4 detector + regenerate pilot JSONs (annotate-only, OFF byte-identical)",
+      "owner": "data-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
       "created_at": "2026-06-04",
       "completed_at": null,
-      "depends_on": [],
+      "depends_on": [
+        "TASK-181B"
+      ],
       "blocks": [],
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "Stand up the maintenance protocol for the additive library — the program's NAMED DOMINANT RISK. Define: refresh cadence (how often EFSA/JECFA/FDA evaluations are re-checked), ownership, staleness alerting, and the Product go/no-go gate that decides whether the library is worth its ongoing maintenance cost. Because the W2 demand gate (TASK-179X) was bypassed without engagement data, this protocol must include a demand-revisit checkpoint: if/when live panel-open instrumentation arrives, Product re-evaluates whether to keep scaling. Runs in parallel with 181A/B (no data dependency).",
-      "work_type": "governance",
+      "summary": "Replace the 24-entry GLASSBOX_W2_ADDITIVES table with the full tiered library from 181B; regenerate d4_additives + explanation_he across the pilot JSONs (hummus / maadanim / bread / veg-spreads). Guardrails: behind BARI_GLASSBOX_W2 flag; OFF = byte-identical (rerun verify_glassbox_w2_off_identical.py); published score / grade / gate / glassBox fields UNMODIFIED (annotate-only — D4 does not enter the grade in W3). QA confirms 0-diff on score fields + Hebrew copy coverage before close.",
+      "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
@@ -306,56 +297,6 @@
       "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181B",
-      "title": "Glass Box W3 — Nutrition: tier the expanded additive library + evidence registry entries",
-      "owner": "nutrition-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-181A"
-      ],
-      "blocks": [],
-      "category_id": null,
-      "blocker": "Ready — TASK-181A CLOSED/verified 2026-06-04; the 36-additive evidence sheet (additive_library_expanded_v1.md) is delivered. Awaiting initiation to tier the expanded library on the 6-tier model + file evidence-registry entries (D7 co-sign). Note from 181A: 9 EVIDENCE-GAP additives need a tier call on JECFA/FDA-only anchors; colours + E960 steviol carry over-exposure subgroups; E141 has US/EU divergence.",
-      "close_reason": null,
-      "summary": "Assign the 6-tier evidence model (functional / likely-neutral / dose-dependent / contested / disclosure-gap / confirmed-negative + unclassified fallback) to each additive in the expanded library from 181A. File evidence-registry entries (extend EV-041 / add successors) so every tier cites its source per the bari-bsip2-scoring-governance rule. Nutrition + Product co-sign the tier assignments (D7). ANNOTATE-ONLY: tiers drive display copy only; no headline-grade weight in W3.",
-      "work_type": "governance",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181D",
-      "title": "Glass Box W3 — Data: wire expanded library into D4 detector + regenerate pilot JSONs (annotate-only, OFF byte-identical)",
-      "owner": "data-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-181B"
-      ],
-      "blocks": [],
-      "category_id": null,
-      "blocker": "Waiting on TASK-181B (Nutrition tier assignments + registry). Cannot wire the detector before the expanded library is tiered.",
-      "close_reason": null,
-      "summary": "Replace the 24-entry GLASSBOX_W2_ADDITIVES table with the full tiered library from 181B; regenerate d4_additives + explanation_he across the pilot JSONs (hummus / maadanim / bread / veg-spreads). Guardrails: behind BARI_GLASSBOX_W2 flag; OFF = byte-identical (rerun verify_glassbox_w2_off_identical.py); published score / grade / gate / glassBox fields UNMODIFIED (annotate-only — D4 does not enter the grade in W3). QA confirms 0-diff on score fields + Hebrew copy coverage before close.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null
     },
@@ -2287,6 +2228,36 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181B",
+      "title": "Glass Box W3 — Nutrition: tier the expanded additive library + evidence registry entries",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Deliverable additive_tiered_library_v1.md (36 additives) + EV-043 verified against artifact: tier distribution 19/7/5/3/1/0/1=36 INDEPENDENTLY re-tallied across §1 summary / §2 per-row / EV-043 field — all three agree (the agent's self-flagged mid-task error is genuinely fixed). Product D7 CO-SIGNED (via TASK-181C) verified in both files; 3 stale \"PENDING\" leftovers cleaned by CC. Annotate-only / OFF byte-identical / frozen invariants (milk run_005_headpin · snack 70/B · bread provenance) untouched / no score moved / no engine code. roadmap_impact close-gate satisfied (cc_reviewed set). Closing unblocks TASK-181D (Data wiring).\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181C",
+      "title": "Glass Box W3 — Product: additive-library maintenance-cadence protocol + go/no-go gate",
+      "owner": "product-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Deliverable additive_library_maintenance_protocol_v1.md verified on disk: annual re-verify + quarterly scan + 6 off-cycle trigger events + Command-Center staleness alerting (15-month threshold) + go/no-go gate with explicit FREEZE outcome + demand-revisit checkpoint that pays the bypassed-TASK-179X-gate debt. EFSA OpenFoodTox bulk-import decision = DEFER (conditionally wire on demand-confirm OR owner score-integration — sound lean call; library complete + co-signable today). Also delivered the Product D7 co-sign on TASK-181B (CO-SIGNED, recorded in additive_tiered_library_v1.md §6 + EV-043). Annotate-only / no grade movement authorized / no score/JSON/engine touched. Frozen invariants untouched. roadmap_impact close-gate satisfied (cc_reviewed set).\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -4088,32 +4059,6 @@
     },
     {
       "id": "ALT-003",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
-      "message": "TASK-181B: Ready — TASK-181A CLOSED/verified 2026-06-04; the 36-additive evidence sheet (additive_library_expanded_v1.md) is delivered. Awaiting initiation to tier the expanded library on the 6-tier model + file evidence-registry entries (D7 co-sign). Note from 181A: 9 EVIDENCE-GAP additives need a tier call on JECFA/FDA-only anchors; colours + E960 steviol carry over-exposure subgroups; E141 has US/EU divergence.",
-      "related_category": null,
-      "related_task": "TASK-181B",
-      "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-004",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
-      "message": "TASK-181D: Waiting on TASK-181B (Nutrition tier assignments + registry). Cannot wire the detector before the expanded library is tiered.",
-      "related_category": null,
-      "related_task": "TASK-181D",
-      "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-005",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
       "message": "TASK-140: Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",

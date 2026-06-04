@@ -65,9 +65,9 @@ into this wave.
 
 ## Sub-tasks
 - **TASK-181A** (Research, **CLOSED 2026-06-04**) — `additive_library_expanded_v1.md`: 36 additives (20 carried + 16 new), EFSA/JECFA/FDA evidence, 9 EVIDENCE-GAPs, no tiers. Flagged: displayed bread shelf has 0 additives; EFSA/JECFA numeric-ADI wiring gap → 181C.
-- **TASK-181B** (Nutrition, **READY** — 181A delivered) — tier the expanded library + evidence-registry entries; D7 co-sign.
-- **TASK-181C** (Product, IN_PROGRESS) — maintenance-cadence protocol + go/no-go gate + demand-revisit checkpoint.
-- **TASK-181D** (Data, BLOCKED on 181B) — wire expanded library into detector + regenerate pilot JSONs, annotate-only / OFF byte-identical.
+- **TASK-181B** (Nutrition, **CLOSED 2026-06-04**) — `additive_tiered_library_v1.md` + EV-043: 36 additives tiered 19/7/5/3/1/0/1. Product D7 CO-SIGNED. Annotate-only.
+- **TASK-181C** (Product, **CLOSED 2026-06-04**) — `additive_library_maintenance_protocol_v1.md`: cadence + go/no-go FREEZE gate + demand-revisit checkpoint; EFSA-import DEFERred; carried the 181B co-sign.
+- **TASK-181D** (Data, **IN_PROGRESS** — 181B closed, unblocked) — wire expanded library into detector + regenerate pilot JSONs, annotate-only / OFF byte-identical.
 
 ## W3 end condition
 W3 closes when 181A–181D are all CLOSED and the maintenance protocol (181C) is signed. Score-integration,

@@ -784,6 +784,201 @@
 
 ---
 
+### EV-031 / EV-032 — TASK-169F bread blast-radius CONFIRMATION (estimate → modeled)
+
+| Field | Value |
+|-------|-------|
+| **extends** | EV-031 (R3 leanness) + EV-032 (R5 graded sat-fat). No new rule, no new signal, no parameter change — this entry RECORDS the modeled bread blast radius that TASK-169A could only ESTIMATE (bread used a bespoke loader not wired into the recal harness). |
+| **task** | TASK-169F (frozen bread wave) |
+| **recorded** | 2026-06-04 |
+| **wiring** | `real_bread_retail_003_v1` wired into the recal harness by reusing the real runner `batch_run_bread_retail_003.py` as a module (`normalize_to_bsip1` + full `run_pipeline`, incl. synthesis + confidence ceiling), toggling ONLY `BARI_RECAL_P0` OFF→ON on the SAME HEAD engine. Artifact: `02_products/bread_retail_003/_model_task169f/run_169f_bread_recal.py`. Corpus = the 31 curated products (24 displayed + 7 transparency-only). |
+| **R3 modeled effect (bread)** | The bespoke bread loader sets `fat_saturated_g = None` for ALL bread, so R3 fires via the **`sat_fat is None`** branch → `_leanness_score(fat, 0.0)`. fat_quality dimension rises from the legacy neutral **50.0 → 80–92** for every bread (lean matrix). Net final-score effect is SMALL and BOUNDED: 14/31 move, 4 grade-affecting B→A, 10 cosmetic (<2pt, no grade change), 17 unmoved. The large dim jump is absorbed by the **moderate-confidence band score ceiling (82)** that all CAUTIOUS bread sits under — no bread exceeds 82, none reaches S. "best ≠ excellent" framing intact. |
+| **R5 modeled effect (bread)** | **INERT for bread.** `_red_satfat_penalty` requires `sat_f > 5.0g`; bread's `fat_saturated_g` is `None` for 31/31 → 0 sat-fat red labels → penalty = 0 across the whole corpus. The recal cliff→slope change has NO bread effect. |
+| **R1/R2/R4/R6 (confirmed not materially applicable)** | R1 bread protein curve: deliberately conservative (bread not rewarded as a protein food); no grade move attributable to it in the corpus. R2 fiber-N/A: bread is DELIBERATELY EXCLUDED from `FIBER_NOT_APPLICABLE_CATEGORIES` (missing fiber in bread IS a real deficiency). R4 NOVA flavored-variant: dairy-scoped; **0/31 NOVA changes OFF→ON** (verified). R6 veg_spread: `sauce_spread`-only archetype; bread does not route there. CONFIRMED, not assumed. |
+| **drift separation (TASK-178)** | OFF reproduces only **6/24** of the published build-time bread scores — an 18/24 pre-existing HEAD-vs-build-time engine DRIFT (TASK-178 domain), NOT a recal effect. Because the recal delta is OFF→ON on the SAME HEAD engine, that drift appears identically in both columns and CANCELS; `delta_recal = on − off` is pure recal. The harness reports `head_drift_vs_live` separately and never folds it into the recal delta. |
+| **safety contract** | Flag-OFF determinism verified (`verify_169f_off_identical.py` CHECK 1 PASS — every R3/R5 branch is `if RECAL_P0_ON`, so OFF cannot enter a recal path). Golden regression 11 PASS / 1 WARN / 0 FAIL flag-insensitive (no bread in golden set; WARN = pre-existing `anchor_soy_drink`). Router 13/13 PASS OFF and ON. |
+| **status** | MODEL ONLY — NOT shipped. The 4 frozen bread B→A moves require **explicit owner per-move P2 sign-off** before any rescore/reship (P3). Bread provenance `real_bread_retail_003_v1` is a frozen invariant; this entry recommends, it does not move a live score. |
+| **rollback_flag** | `BARI_RECAL_P0` (default OFF) — unchanged from EV-031/EV-032. |
+
+---
+
+### EV-035 — D5 Disclosure-Gap Taxonomy (five types) over the raw BSIP0 panel
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-035 (Glass Box Wave 1, D5; relocated from governance draft EV-079 — TASK-179F) |
+| **task** | TASK-179D / TASK-179F (Glass Box D5/D6 Wave 1) |
+| **recorded** | 2026-06-04 |
+| **signal** | Five deterministic disclosure-gap detectors over the raw BSIP0 panel: G1 undisclosed proportions (with single-ingredient protection), G2 compound-without-breakdown, G3 protein blend / unspecified source (collagen/gelatin routed to D2, not a gap), G4 generic additive class without E-code/name, G5 declared-quantity-missing (names the field; no re-deduction of the legacy six). The structural-vs-closable severity split drives the D5-band. Per Q2/DEC-006 the taxonomy produces a **disclosure profile only** and **never deducts grade points** — it feeds D6 (confidence) and annotation only. |
+| **data_source** | Detectors run on `ingredients_raw` + `nutrition` from `02_products/*/...bsip0_raw*.json` after P1 nutrition-bleed truncation and P2 Hebrew normalization. **P3 panel-present is TOKEN-AWARE** (TASK-179L, 2026-06-04): a panel counts as present when it carries ≥1 coherent ≥2-letter Hebrew ingredient token after P1 (NOT a character-length cutoff), so a short clean single-ingredient panel (`אגוזי מלך`, `שקדים`) is present → `single_ingredient` → full band, never wrongly withheld; only blank/garbage panels read absent. Faithful to single-ingredient protection; pilot-verified (hummus withholds 7→4, all 3 recovered keep grade). Nutrition D6/D7 co-signed. |
+| **mechanism** | Deterministic ingredient/panel detectors emitting a disclosure profile + D5-band; no quality-point deduction. Builds on EV-029 (Hebrew final-letter parser trap). |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
+| **evidence_strength / tier** | Moderate — deterministic taxonomy; severity calibration is a documented choice revisitable after the pilot flag-ON diff. |
+| **label_observability** | Fully label-observable — reads `ingredients_raw` + `nutrition` (raw BSIP0 panel only; EDPG firewall — no external value read directly). |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E). |
+| **fidelity** | Q2: disclosure profile only, never a grade-point deduction; feeds D6 + annotation. |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
+| **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §1`; six-dimension contract §D5; TASK-179A §1–§3 disclosure observations; EV-029 (Hebrew final-letter parser trap). |
+| **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → no D5 profile produced; engine byte-identical. |
+
+---
+
+### EV-036 — Endemic-Flavoring Exclusion from the D5 band
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-036 (Glass Box Wave 1, D5; relocated from governance draft EV-080 — TASK-179F) |
+| **task** | TASK-179D / TASK-179F (Glass Box D5/D6 Wave 1) |
+| **recorded** | 2026-06-04 |
+| **signal** | Bare `חומרי טעם וריח` is present in ~70% of maadanim panels (129/184). To avoid a category-blind distortion (cf. DISTORTION-001 dairy-fiber), bare flavorings are recorded in the disclosure profile as `endemic_flavoring` and annotated with a calm, non-intent note ("הרכב הטעמים לא פורט"), but are EXCLUDED from D5 band-raising and therefore from the D6 confidence reduction. |
+| **data_source** | maadanim BSIP0 frequency analysis 2026-06-04 (129/184 panels). |
+| **mechanism** | Endemic-flavoring marker excluded from band-raising; annotation-only. Re-evaluate per `cereals_gap_resolution_v1 §6.4` (endemic-distortion protocol) if a future category shows flavorings are not endemic. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
+| **evidence_strength / tier** | Moderate — endemicity is the documented basis; revisitable per §6.4. |
+| **label_observability** | Fully label-observable — reads `ingredients_raw`. |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed and explicitly backed (TASK-179E). |
+| **fidelity** | Q2: annotation-only; never raises the band, never reduces confidence. |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
+| **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §1.4`; maadanim BSIP0 frequency analysis 2026-06-04; `cereals_gap_resolution_v1 §6.4`. |
+| **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF). |
+
+---
+
+### EV-037 — D5-band → D6 Confidence Reduction (partial −10 / severe −20 / structural-only 0)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-037 (Glass Box Wave 1, D6; relocated from governance draft EV-081 — TASK-179F) |
+| **task** | TASK-179D / TASK-179F (Glass Box D5/D6 Wave 1) |
+| **recorded** | 2026-06-04 |
+| **signal** | The D5-band feeds D6 as a single named reduction inside the existing `compute_confidence` accumulator, gated by the flag: full 0, **minor 0** (structural-only gaps are the market floor — "buy coverage over silence" — and do not erode confidence), **partial −10**, **severe −20**. Structural gaps never reduce confidence; only closable opacity (a name/E-code the manufacturer could have disclosed and did not) does, and even then modestly — so D5 acts *through* confidence, never as a back-door quality penalty (Q2). No double-count with the legacy missing-field map (G5 names the legacy six but does not re-deduct). |
+| **data_source** | six-dimension contract §D6, D-CONF-1; `confidence_framework.md` (BEV-018/BEV-019). |
+| **mechanism** | Single named reduction term inside the existing `compute_confidence` accumulator. **This reduction is the source of essentially all ON-vs-OFF score movement** (alongside the panel-absent null flip in EV-038); both are demote-or-null only, never promotion. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
+| **evidence_strength / tier** | Moderate — the −10/−20 are starting values, revisitable after the pilot flag-ON diff. |
+| **label_observability** | Fully label-observable — consumes the EV-035 D5-band (raw-panel-derived). |
+| **co_sign** | Nutrition D6/D7 — co-signed the −10 / −20 / structural-only-0 values (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §3&4). |
+| **fidelity** | Q2: acts through confidence only, never a back-door quality penalty; demote-or-null only, never promotion. |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; the −10/−20 are starting values, revisitable after the pilot flag-ON diff). |
+| **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.1`; six-dimension contract §D6, D-CONF-1; `confidence_framework.md` (BEV-018/BEV-019). |
+| **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → no D5-derived confidence reduction. |
+
+---
+
+### EV-038 — D6 Gate State Machine + Null-vs-Cap Floor (`NULL_FLOOR=30` AND-severe; `DEMOTE_CEILING_BOUND=60` no-op)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-038 (Glass Box Wave 1, D6; relocated from governance draft EV-082 — TASK-179F) |
+| **task** | TASK-179D / TASK-179F (Glass Box D5/D6 Wave 1) |
+| **recorded** | 2026-06-04 |
+| **signal** | Extends the existing confidence ceiling from ceiling-only to a three-state gate `unconstrained · demote · withhold(→null)`. **`DEMOTE_CEILING_BOUND=60` is a NO-OP restatement of the live confidence band edge — it changes no behavior on its own.** The live constants `CONFIDENCE_LOW_CEILING=75` (applied 40–59) and `CONFIDENCE_INSUFFICIENT_CEILING=50` (applied <40) are **unchanged**; `demote` simply reuses them plus a visible `ניתוח חלקי` flag and carries the normal partial-disclosure case (Q1 conservative-to-demote). `withhold(→null)` (`score:null`, label `לא נוקד`) fires ONLY on a floor-of-observability failure: panel absent, OR `d6_confidence < 30` AND a `severe` D5-band (Q1 reluctant-to-withhold — buy coverage over silence). |
+| **data_source** | six-dimension contract §D6, §2.6, §2.7, §5.0 Q1; DEC-006; `confidence_framework.md` (BEV-018); `constants.py` (`CONFIDENCE_LOW_CEILING=75`, `CONFIDENCE_INSUFFICIENT_CEILING=50`). |
+| **mechanism** | Three-state gate over the existing ceiling. **ALL ON-vs-OFF behavioral movement originates in EV-037's −10/−20 confidence reduction plus the panel-absent→null flip — both demote-or-null only, never promotion; the bound `60` itself moves nothing.** D6 can never raise a score, preserving the frozen invariants. The numbers 30 and 60 are starting values. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
+| **evidence_strength / tier** | Moderate — `30` and `60` are starting values, revisitable after the pilot flag-ON diff. |
+| **label_observability** | Fully label-observable — consumes D6 confidence + EV-035 D5-band + panel-present flag. |
+| **co_sign** | Nutrition D6/D7 — co-signed `DEMOTE_CEILING_BOUND=60` (no-op restatement) and `NULL_FLOOR=30` gated on severe-AND-confidence<30, or panel-absent (TASK-179F, 2026-06-04). Product D7 — co-signed with the required wording fix applied above (TASK-179E §1). |
+| **fidelity** | Q1: conservative-to-demote on partial disclosure; reluctant-to-withhold (buy coverage over silence). Demote-or-null only, never promotion. |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; `30` and `60` are starting values, revisitable after the pilot flag-ON diff). |
+| **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.2–§2.3`; six-dimension contract §D6, §2.6, §2.7, §5.0 Q1; DEC-006; `confidence_framework.md` (BEV-018); `constants.py` (`CONFIDENCE_LOW_CEILING=75`, `CONFIDENCE_INSUFFICIENT_CEILING=50`); Product co-sign wording requirement (TASK-179E §EV-append condition 2). |
+| **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → ceiling-only behavior restored; no null-floor flip. |
+
+---
+
+### EV-039 — `BARI_GLASSBOX_D5D6` Flag + OFF = byte-identical guarantee
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-039 (Glass Box Wave 1; relocated from governance draft EV-083 — TASK-179F) |
+| **task** | TASK-179D / TASK-179F (Glass Box D5/D6 Wave 1) |
+| **recorded** | 2026-06-04 |
+| **signal** | All D5/D6 logic is gated by env flag `BARI_GLASSBOX_D5D6` (default OFF). With OFF the engine output and the golden/frozen runs are 0-diff vs the pre-D5/D6 baseline (same discipline as `BARI_RECAL_P0` / `BARI_TASK144_FIXES`). With ON, the only possible score-moving deltas are demotions (band-edge ceiling shifts driven by the EV-037 reduction) and `insufficient_data`→`לא נוקד` flips — never promotions. |
+| **data_source** | `score_engine.py` flag pattern (`BARI_RECAL_P0`, `BARI_TASK144_FIXES`); six-dimension contract §4 invariant-preservation. |
+| **mechanism** | Single env-flag gate; OFF = byte-identical, ON = demote/null only. Rollback = unset the flag. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
+| **evidence_strength / tier** | Strong (flag discipline parallels the validated `BARI_RECAL_P0` / `BARI_TASK144_FIXES` pattern). |
+| **label_observability** | N/A — engineering invariant. The frozen runs (milk `run_004_recalibrated`, snack-bars `snk-001=70/B`, bread `real_bread_retail_003_v1`) must re-verify 0-diff OFF and demote/null-only ON at the separate pilot gate (QA, TASK-179 wave). |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §EV-append condition 3). |
+| **fidelity** | OFF = byte-identical; ON = demote-or-null only, never promotion; frozen invariants preserved. |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; revisitable after the pilot flag-ON diff). |
+| **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.4, §4`; six-dimension contract §4 invariant-preservation; `score_engine.py` flag pattern (`BARI_RECAL_P0`, `BARI_TASK144_FIXES`). |
+| **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset = rollback. |
+
+---
+
+### EV-040 — DIAAS Protein Source Quality Signal (D2 credit / D5 disclosure flag, W1.5)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-040 (Glass Box W1.5, D2 credit + D5 disclosure flag; TASK-179P) |
+| **task** | TASK-179P (Glass Box W1.5) |
+| **recorded** | 2026-06-04 |
+| **signal** | Two rules govern protein-source quality assessment in the Glass Box engine. **Rule A (D2 complete-protein credit):** when a product's ingredient panel explicitly names a single protein source that is complete (DIAAS ≥ 75 per the diaas_source_table_v1.md Research table — whey/WPI, casein, egg, egg white, soy protein isolate/SPI only), award a mild D2 ingredient-evidence credit of **+3 raw score points** (bounded to ≤ 0.5 grade band, approximately ≤ 3–4 raw score points). This credit is a signal that the protein source is scientifically validated as complete, not a reward for marketing. SPI-specific constraint: Rule A applies only to the declared term "חלבון סויה מבודד" or equivalent isolate language; generic "סויה" or "קמח סויה" (soy flour, DIAAS ~55–65) does not qualify. **Rule B (D5 disclosure gap flag):** when a product declares only a generic protein term without a single named source — specifically "תערובת חלבונים," "חלבון צמחי," "מי גבינה" (generic without "מבודד"), or a multi-source blend without proportions (canonical pea+rice case) — emit a D5 disclosure-gap annotation ("פרטי החלבון לא הופיעו בתווית") plus a D6 confidence reduction using the existing EV-037 partial-disclosure mechanism (−10 if this gap creates or worsens a partial D5-band). Rule B does NOT penalize a product for having incomplete protein. It flags that Bari cannot evaluate protein quality because the label does not disclose the source. |
+| **data_source** | `01_framework/glass_box/diaas_source_table_v1.md` (Research Phase 1, TASK-179P); FAO/WHO (2013) Food and Nutrition Paper 92; PMID 28382889 (Brouns/BJN 2017); PMID 33133540 (2020); PMID 39703894 (2024); PMID 40075933 (2025). |
+| **mechanism** | Rule A fires in the D2 ingredient-evidence sub-score when the ingredient panel, after P2 normalization, contains exactly one named protein source from the whitelist {חלבון מי גבינה מבודד, חלבוני מי גבינה, קזאין, חלבוני חלב, חלבוני גבינה, ביצה שלמה, ביצים, חלבון ביצה, חלבון סויה מבודד}. Magnitude: **+3 raw score points** to the D2 sub-score, applied behind flag `BARI_GLASSBOX_W15`. Rule B fires in the D5 gap detector as a G3 structural gap when the panel contains any generic protein term from the trigger set {תערובת חלבונים, חלבון צמחי, מי גבינה (without מבודד qualifier), multi-source blends without proportions}; routes to D5 profile annotation and, if the D5-band reaches partial or worse, feeds the EV-037 −10 D6 reduction. Both rules gated by `BARI_GLASSBOX_W15` (default OFF); OFF = byte-identical to engine-baseline-2026-06-04. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_W15`, default OFF). Applicable wherever protein sources are declared: hummus, maadanim, yogurt, snack bars, dairy. |
+| **evidence_strength / tier** | Rule A (D2 credit): **Strong** — the completeness classification for whey, casein, egg, and egg white is based on multiple independent pig-model DIAAS studies and FAO/WHO 2013 benchmark endorsement. SPI classification is **Strong** for the isolate form (DIAAS 78–98 in pig models; the ≥75 threshold is met robustly). Rule B (D5 flag): **Strong** — the non-disclosability of pea+rice blend ratios on Israeli labels is a structural market fact; the G3 gap type is already defined in EV-035 and confirmed empirically across the corpus. |
+| **label_observability** | Partially label-observable. The protein source name is observable when declared (Rule A applies). Protein quality (DIAAS) is never directly observable from the label — Rule A credits the disclosed source against a curated reference table, not a per-product measurement. Multi-source blends (Rule B) are observable as a pattern; the blend ratio is structurally unobservable from Israeli labels. The pea+rice blend case is the canonical D5 structural gap. |
+| **co_sign** | Nutrition D7 — co-signed 2026-06-04 (Rule A magnitude +3 and whitelist; Rule B trigger set; soy-form and pea+rice edge cases). Rule A magnitude (+3) requires Product D7 co-sign before engine activation (it moves a D2 sub-score and could affect the headline grade in borderline cases). Rule B is a D5 annotation + existing D6 path — no standalone grade movement; this portion does not require a separate Product co-sign beyond the existing EV-037 sign-off. |
+| **fidelity** | Flag OFF = byte-identical; engine baseline-2026-06-04 unaffected. Flag ON = Rule A awards +3 D2 sub-score credit for declared complete protein source; Rule B adds D5 annotation for generic protein terms. No grade movement is live until Product co-signs Rule A magnitude. Frozen invariants preserved: milk scores (run_005_headpin) not affected (dairy proteins already declared explicitly and would gain +3 D2, which does not threaten the S/A ceiling; the snack-bar ceiling 70/B is structurally safe because +3 D2 cannot alone lift a bar to A). |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_W15`, default OFF; not live-active). Rule A magnitude requires Product D7 co-sign before engine activation. Rule B (D5 annotation + D6 path) has no standalone grade effect and inherits existing EV-037 approval. |
+| **source** | `01_framework/glass_box/diaas_source_table_v1.md`; `01_framework/glass_box/six_dimension_contract_v1.md` §D2/D5; `01_framework/glass_box/d5_d6_rule_spec_v1.md` §1.2 G3; EV-035 (G3 protein-blend gap type); EV-037 (D5-band → D6 reduction). |
+| **rollback_flag** | `BARI_GLASSBOX_W15` (default OFF) — unset → no D2 credit, no Rule B annotation beyond existing G3 path. |
+
+---
+
+### EV-041 — D4 Additive-Tier Detector (6-tier model; W2 presentation-only; W3 demand-gated)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-041 (Glass Box Wave 2, D4; TASK-179S implementation + TASK-179Q prototype set) |
+| **task** | TASK-179S (engine implementation); TASK-179Q (20-additive prototype set + D7 co-sign) |
+| **recorded** | 2026-06-04 |
+| **dimension** | D4 — additive evidence |
+| **signal** | A per-product `d4_additives` array listing every named additive detected in the ingredient text that is present in the 20-additive prototype set, with its tier, Hebrew name, and technological function. Each entry carries `e_number`, `name_he`, `tier`, `function_he`, and `match_source` (`e_number` / `name_he` / `both`). Additives in the ingredient text that are not in the prototype set are emitted with `tier: "unclassified"` — no tier verdict. Additives absent from the text are not emitted. |
+| **tier_model** | 6 operational tiers + 1 no-match fallback: **(1) `functional`** — well-characterised function, broad regulatory acceptance, no safety concern at typical food doses; **(2) `likely-neutral`** — extensive history of use, no significant safety signal in current evidence at typical doses; **(3) `dose-dependent`** — safe at typical food doses; concern arises at high or cumulative exposure levels; **(4) `contested`** — mixed or emerging evidence; mechanistic signals present without consensus; benefit of the doubt per DEC-006; **(5) `disclosure-gap`** — insufficient published evidence to assign a tier; present on shelves but understudied; **(6) `confirmed-negative`** — credible signal of harm at relevant exposure levels, supported by regulatory scrutiny or controlled evidence; **(7) `unclassified`** — no-match fallback only; additive detected but not in the prototype set; not a tier verdict. The tier model is frozen from the D7 co-signed `additive_prototype_set_v1.md` (TASK-179Q). |
+| **source_of_truth** | `01_framework/glass_box/additive_prototype_set_v1.md` — the 20-additive prototype set, D7 co-signed via TASK-179Q (Nutrition + Product, 2026-06-04). This sheet is the only tier input for W2. Tier assignments are not derived from this registry entry; this entry records them. |
+| **w2_scope** | **Presentation-only.** The `d4_additives` array is purely additive to the per-product result dict. It does NOT affect `score`, `grade`, any gate field, or any existing result field. The engine is byte-identical to the `BARI_GLASSBOX_D5D6` baseline when `BARI_GLASSBOX_W2=off` (verified by `verify_glassbox_w2_off_identical.py`, TASK-179S deliverable). No score movement, no grade change. |
+| **w3_demand_gate** | **D4 score movement is explicitly gated on TASK-179X (W2 engagement gate) passing.** The W2 engagement gate measures whether consumers actually engage with the additive panel before any D4 weight enters the headline score formula. D4 does NOT enter the score formula until TASK-179X passes. This is a hard sequencing constraint: TASK-179X go/no-go must complete before any D7 proposal for D4 score weighting is opened. If TASK-179X fails the engagement threshold, D4 remains presentation-only indefinitely. |
+| **mechanism** | `detect_additives_d4(ingredient_text)` in `score_engine.py` scans for E-number patterns (E330, E-330, ה-330) and Hebrew name variants per the prototype set, with Hebrew final-letter normalization. Deduplication: same additive matched by both E-number and name → emitted once with `match_source = "both"`. Order: first occurrence in ingredient string. Wired at the result-assembly point, inside `if BARI_GLASSBOX_W2:` guard. |
+| **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_W2`, default OFF). W2 pilot corpora: hummus + maadanim. D4 signal is architecture-ready for all categories but only hummus + maadanim carry wired frontend JSONs in W2 (`hummus_frontend_v4.json`, `maadanim_frontend_v2.json`). |
+| **label_observability** | Fully label-observable — reads `ingredients_raw` / `ingredient_text` (raw BSIP0 panel). EDPG firewall preserved: no external database value enters the score engine directly; the tier lookup is the in-house prototype set (BSIP0 labels only). |
+| **evidence_strength / tier** | Per-additive — tiers range from **Strong** (`functional`: E330 citric acid, E500 baking soda) through **Moderate** (`contested`: E407 carrageenan, E955 sucralose) to **Weak / Insufficient** (`disclosure-gap`, `confirmed-negative` anchors: E320 BHA). Tier assignments are in `additive_prototype_set_v1.md` and are not summarised here — the prototype sheet is the authoritative source. Overall framework evidence strength: **Moderate** (the 6-tier taxonomy is a structured expert synthesis; individual tier assignments carry their own evidence grades). |
+| **co_sign** | Nutrition D7 — co-signed (TASK-179Q, 2026-06-04). Product D7 — co-signed (TASK-179Q, 2026-06-04). Both required per scoring-rule governance. |
+| **fidelity** | Flag OFF = byte-identical; `d4_additives` key absent from result dict. Flag ON = `d4_additives` array emitted, no other field changed. D4 cannot raise or lower a headline score in W2 (presentation-only invariant). |
+| **status** | Adopted-behind-flag (`BARI_GLASSBOX_W2`, default OFF; not live-active; OFF = byte-identical). Score-movement path is demand-gated on TASK-179X. This entry closes the governance compliance gap (EV required before or with engine code; TASK-179S shipped without it; this entry is the retroactive filing). |
+| **source** | `01_framework/glass_box/additive_prototype_set_v1.md`; `03_operations/bsip2/proto_v0/src/score_engine.py` (D4 detector + `BARI_GLASSBOX_W2` flag); `03_operations/bsip2/proto_v0/src/constants.py` (`GLASSBOX_W2_ADDITIVES`); `03_operations/bsip2/proto_v0/verify_glassbox_w2_off_identical.py`; six-dimension contract §D4; TASK-179S (implementation); TASK-179Q (prototype set + D7 co-sign); TASK-179X (engagement gate — W3 demand gate for score movement). |
+| **rollback_flag** | `BARI_GLASSBOX_W2` (default OFF) — unset → `d4_additives` not emitted; engine byte-identical to pre-W2 baseline. |
+
+---
+
+### EV-043 — D4 Expanded Additive Library Tier Assignments (36 additives; W3 annotate-only)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-043 (Glass Box Wave 3, D4 tiering; TASK-181B). Extends EV-041 (the 6-tier model + detector) to the full shelf-present set. EV-042 reserved (unfiled) for D3 de-moralization (TASK-179Z) — not reused here. |
+| **task** | TASK-181B (Nutrition tiering); inputs from TASK-181A (`additive_library_expanded_v1.md`, Research evidence sheet) and TASK-179Q (W2 prototype tiers, re-confirmed here). |
+| **recorded** | 2026-06-04 |
+| **dimension** | D4 — additive evidence (annotate-only). |
+| **signal** | Tier assignment for each of the **36 additives** in the expanded D4 library (20 carried forward from the W2 prototype + 16 newly added on the displayed shelf). Each additive maps to exactly one of the EV-041 tiers (`functional` / `likely-neutral` / `dose-dependent` / `contested` / `disclosure-gap` / `confirmed-negative`) with a one-line justification citing the 181A curated evidence. The authoritative 36-row table lives in `01_framework/glass_box/additive_tiered_library_v1.md` — this entry records that the assignments exist, are co-sign-gated, and are annotate-only; the tier table itself is not duplicated here. |
+| **tier_model** | The 6-tier + `unclassified` fallback model is **unchanged from EV-041** (frozen). No tier definitions are added, removed, or redefined in W3. EV-043 only assigns the existing tiers to additional additives. |
+| **source_of_truth** | `01_framework/glass_box/additive_tiered_library_v1.md` (TASK-181B, this entry's deliverable) — the only tier input for W3 Data wiring (TASK-181D). Evidence basis = `01_framework/glass_box/additive_library_expanded_v1.md` (TASK-181A). Prototype tiers in `additive_prototype_set_v1.md` (TASK-179Q) were re-confirmed against the expanded evidence; deltas are documented in the library file §Carried-forward reconciliation. |
+| **tier_distribution** | Of 36 additives: **functional 19 · likely-neutral 7 · dose-dependent 5 · contested 3 · disclosure-gap 1 · confirmed-negative 0 · unclassified 1** (E141 copper chlorophylls — see judgment-call resolution). |
+| **w3_scope** | **Annotate-only.** Tiers drive **display copy only**. They carry **no headline-grade weight**: no score formula change, no weight, no penalty, no credit. D4 does NOT enter the headline grade in W3. Letting additives move the grade remains a separate, future, owner-gated decision (frozen-invariant tripwire #1). OFF = byte-identical; no published `score`/`grade`/`gate`/`glassBox` field is touched by this entry. No engine code, no JSON edited under TASK-181B. |
+| **judgment_calls** | (1) **9 EVIDENCE-GAP additives** (E331/E333/E327/E296/E270/E516/E575, E141, E1412/E1414): tiered on the JECFA "not limited" / FDA CFR anchor where a discrete EFSA numeric opinion is absent — the metabolic-acid salts and modified-starch variants land `functional`; confidence stated as Strong on the JECFA+FDA concordance. (2) **E100 curcumin & E960 steviol** numeric ADIs with documented over-exposure subgroups: the over-exposure is supplement-context (curcumin) / children-as-high-consumers at the sweetener axis (steviol), **not** food-colour/typical-use exposure → curcumin = `functional` with a context note; steviol = `dose-dependent` (EFSA over-exposure flag MODERATE is a genuine use-level signal, consistent with the other NNS in the set). (3) **E141 copper chlorophylls**: US/EU divergence (not FDA-approved for general US food use) is treated as a **D5 disclosure note, not a D4 tier move** (jurisdictional approval status is not an evidence-of-harm signal); the EFSA copper-release caveat + absence of a clean single numerical EFSA ADI means the additive cannot be cleanly tiered on the available anchor → `unclassified` with reason, the one true fallback in the set. |
+| **mechanism** | None new. The existing `detect_additives_d4` detector (EV-041) reads the in-house ingredient panel and emits `tier` per matched additive. EV-043 supplies the lookup values for the 16 newly-added additives so Data (TASK-181D) can extend `GLASSBOX_W2_ADDITIVES` (or its W3 successor). No detector logic change is specified or required by this entry. |
+| **category_scope** | CROSS-CATEGORY, annotate-only (behind the existing `BARI_GLASSBOX_W2` flag / its W3 successor, default OFF). Displayed-shelf pilot corpora: hummus + maadanim. Bread carried-forward additives (E282/E481/E472e/E300-dough/E466/E211/E320/E575) are tiered but currently have **0 displayed-shelf frequency** (181A §1.3) — tiered once so the detector is complete when a fuller bread JSON is displayed. |
+| **label_observability** | Fully label-observable — reads `ingredients_raw` / `ingredient_text` (raw BSIP0 panel). EDPG firewall preserved: the tier lookup is the in-house tiered library (BSIP0 labels only); no external database value (OFF taxonomy, EFSA, JECFA, FDA) enters the score engine directly — external sources only *justified* the tier on this governance artifact, with citations. |
+| **evidence_strength / tier** | Per-additive evidence strength is stated in the library file. Summary: `functional`/`likely-neutral` assignments rest on **Strong** regulatory concordance (EFSA + JECFA + FDA agree, no positive harm signal at food-label exposure); `dose-dependent` rests on **Strong-to-Moderate** (a numeric ADI with a documented exposure-approaching-limit or over-exposure-subgroup pathway); `contested` rests on **Moderate** (a credible peer-reviewed mechanistic/clinical signal in genuine disagreement with the regulatory verdict); `disclosure-gap`/`unclassified` are **Insufficient** by construction (the label or the evidence record does not permit a verdict). Overall framework strength **Moderate** (structured expert synthesis; per-additive grades carry their own confidence). |
+| **co_sign** | Nutrition D7 — authored + co-signed (TASK-181B, 2026-06-04). **Product D7 — CO-SIGNED (TASK-181C, 2026-06-04).** Scope/maintenance co-sign (annotate-only; DISPLAY only; does NOT authorize D4 grade movement — separate future owner-gated decision, tripwire #1). Product accepts the 36-row tiered set (distribution 19/7/5/3/1/0/1; shelf-present surface guardrail held; 0-on-shelf additives correctly retained) and accepts both load-bearing judgment calls as authored: **E141 → `unclassified`** (label discloses fine ≠ `disclosure-gap`; evidence record lacks a clean EFSA numeric ADI ≠ forced `functional`; US/EU divergence routed to a D5 note, not a D4 tier move) and the **E960 steviol `dose-dependent` vs E100 curcumin `functional`** split (over-exposure on the sweetener shelf-use axis vs the off-axis supplement channel). Sustainability secured by the maintenance protocol `01_framework/glass_box/additive_library_maintenance_protocol_v1.md` (annual re-verify + quarterly scan + 6 trigger events + Command-Center staleness alerting + a Product go/no-go gate with a FREEZE outcome and a demand-revisit checkpoint carrying the bypassed TASK-179X gate debt). Both co-signs required per scoring-rule governance; both now recorded. TASK-181B closeable; TASK-181D (Data wiring) unblocked. |
+| **fidelity** | Flag OFF = byte-identical; no `tier` values emitted. Flag ON = the existing `d4_additives` array is populated for 16 additional additives; no other field changes. D4 cannot raise or lower a headline score in W3 (annotate-only invariant inherited from EV-041 w2_scope and TASK-181 hard boundary). Frozen invariants untouched: milk run_005_headpin, snack 70/B, bread provenance. |
+| **status** | Proposed-behind-flag (`BARI_GLASSBOX_W2` / W3 successor, default OFF; OFF = byte-identical). **Both D7 co-signs complete (Nutrition TASK-181B + Product TASK-181C, 2026-06-04).** Not live-active (annotate-only). |
+| **source** | `01_framework/glass_box/additive_tiered_library_v1.md` (TASK-181B tier table + justifications + reconciliation); `01_framework/glass_box/additive_library_expanded_v1.md` (TASK-181A evidence); `01_framework/glass_box/additive_prototype_set_v1.md` (TASK-179Q prototype tiers, re-confirmed); EV-041 (tier model + detector); six-dimension contract §D4; TASK-181 (W3 hard boundary — annotate-only). |
+| **rollback_flag** | `BARI_GLASSBOX_W2` (default OFF) — unset → no `tier` values emitted; engine byte-identical. EV-043 adds no new flag. |
+
+---
+
 ## Section B — Guardrails (Misconceptions That Must NOT Be Modeled)
 
 These 20 misconceptions are explicitly excluded from BSIP2 algorithmic treatment. Modeling any of these as if true would produce systematic scoring errors.

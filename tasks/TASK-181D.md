@@ -2,10 +2,9 @@
 id: TASK-181D
 title: "Glass Box W3 — Data: wire expanded library into D4 detector + regenerate pilot JSONs (annotate-only, OFF byte-identical)"
 owner: data-agent
-status: BLOCKED
+status: IN_PROGRESS
 priority: HIGH
 created_at: 2026-06-04
-blocker: "Waiting on TASK-181B (Nutrition tier assignments + registry). Cannot wire the detector before the expanded library is tiered."
 depends_on: [TASK-181B]
 blocks: []
 category_id: null
