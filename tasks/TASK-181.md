@@ -80,7 +80,7 @@ framing Product-co-signed). **Unlike W3, W4 MOVES THE GRADE when ON** — so the
 `BARI_GLASSBOX_W4` (OFF = byte-identical), and the **flag-flip to ON is a SEPARATE frozen-invariant
 owner gate (tripwire #1)**; these tasks build it OFF-identical + produce the score-impact analysis
 for that owner decision. They do not flip it live.
-- **TASK-181F** (Nutrition, **IN_PROGRESS** — unblocking gate) — finalize + file **EV-042** binding the confidence criteria (§2.3), confidence_scale 1.0/0.70/0.40 (§2.5), population_correlation 0.05/0.15/0.40/0.75 (§2.4); Product D7 co-sign on the numeric bindings.
+- **TASK-181F** (Nutrition, **RETURNED — CC gate PASS — close gated on Product D7 co-sign**) — **EV-042 filed** (registry L982–1003) binding confidence criteria (§2.3), confidence_scale 1.0/0.70/0.40 (§2.5), population_correlation 0.05/0.15/0.40/0.75 (§2.4); Nutrition D7 signed, Product D7 PENDING. Unblocks 181G once Product co-signs.
 - **TASK-181G** (Data, BLOCKED on 181F) — implement the reframe behind `BARI_GLASSBOX_W4`: d3_processing_signal struct, confidence-scaled score + caps, remove NOVA_HP_WEIGHTS amplification, wire the 3 co-signed `note_he` strings. OFF byte-identical.
 - **TASK-181H** (QA, BLOCKED on 181G) — OFF byte-identity (0-diff golden/frozen) + the ON score-impact analysis for the owner go-live decision; confirm frozen invariants don't breach.
 - **TASK-181I** (Frontend/Design, BLOCKED on 181G) — surface d3_processing_signal + note_he on the professional/consumer surface (view-model); behind the flag, no live exposure pre-go-live.
