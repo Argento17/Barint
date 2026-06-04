@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T16:23:25",
+  "generated_at": "2026-06-04T16:41:30",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -3124,6 +3124,31 @@
       "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Deliverable additive_library_maintenance_protocol_v1.md verified on disk: annual re-verify + quarterly scan + 6 off-cycle trigger events + Command-Center staleness alerting (15-month threshold) + go/no-go gate with explicit FREEZE outcome + demand-revisit checkpoint that pays the bypassed-TASK-179X-gate debt. EFSA OpenFoodTox bulk-import decision = DEFER (conditionally wire on demand-confirm OR owner score-integration — sound lean call; library complete + co-signable today). Also delivered the Product D7 co-sign on TASK-181B (CO-SIGNED, recorded in additive_tiered_library_v1.md §6 + EV-043). Annotate-only / no grade movement authorized / no score/JSON/engine touched. Frozen invariants untouched. roadmap_impact close-gate satisfied (cc_reviewed set).\n",
       "summary": "Stand up the maintenance protocol for the additive library — the program's NAMED DOMINANT RISK. Define: refresh cadence (how often EFSA/JECFA/FDA evaluations are re-checked), ownership, staleness alerting, and the Product go/no-go gate that decides whether the library is worth its ongoing maintenance cost. Because the W2 demand gate (TASK-179X) was bypassed without engagement data, this protocol must include a demand-revisit checkpoint: if/when live panel-open instrumentation arrives, Product re-evaluates whether to keep scaling. Runs in parallel with 181A/B (no data dependency).",
       "work_type": "governance",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181D",
+      "title": "Glass Box W3 — Data: wire expanded library into D4 detector + regenerate pilot JSONs (annotate-only, OFF byte-identical)",
+      "owner": "data-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [
+        "TASK-181B"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Annotate-only invariant INDEPENDENTLY verified: OFF byte-identity 0-diff across all 4 corpora (verify_glassbox_w2_off_identical.py) + per-product score/grade/gate/glassBox diff vs git HEAD = 0 deltas across all 3 pilot JSONs (only d4_additives changed). Detector extended 20->35 keys covering 36 additives (E1412/14 folded into E1422). Engine matcher digit-boundary guard reviewed + ACCEPTED — forced by the lookup extension to prevent a fabricated E141 (no-invent hard rule); ON-path only, OFF 0-diff confirms; remaining E141 a true positive. Bread 17/24 panels via the 179Y BSIP0-raw source — display-wire only, 0 score/grade deltas, provenance intact. Content gap (14 additives lack explanation_he) handed to TASK-181E (owner directive: author all 14). No score moved, no engine logic change beyond the necessary matcher guard, frozen invariants untouched.\n",
+      "summary": "Replace the 24-entry GLASSBOX_W2_ADDITIVES table with the full tiered library from 181B; regenerate d4_additives + explanation_he across the pilot JSONs (hummus / maadanim / bread / veg-spreads). Guardrails: behind BARI_GLASSBOX_W2 flag; OFF = byte-identical (rerun verify_glassbox_w2_off_identical.py); published score / grade / gate / glassBox fields UNMODIFIED (annotate-only — D4 does not enter the grade in W3). QA confirms 0-diff on score fields + Hebrew copy coverage before close.",
+      "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,

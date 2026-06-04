@@ -193,11 +193,13 @@ def detect_diaas_signal(ingredient_text: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# TASK-179S — D4 additive tier detector (Glass Box W2).
-# Scans the ingredient text for each of the 20 additives in GLASSBOX_W2_ADDITIVES.
-# Returns a list of matched findings (one per distinct detected additive, in
-# first-occurrence order). No score movement — presentation-only for W2.
-# Source: additive_prototype_set_v1.md. EV-041.
+# TASK-179S — D4 additive tier detector (Glass Box W2; library extended in W3/TASK-181D).
+# Scans the ingredient text for each additive in GLASSBOX_W2_ADDITIVES (20 in W2,
+# extended to the full 36-additive tiered library in W3). Returns a list of matched
+# findings (one per distinct detected additive, in first-occurrence order). No score
+# movement — presentation-only (annotate-only).
+# Source: additive_tiered_library_v1.md (EV-043); identity additive_library_expanded_v1.md.
+# No detector LOGIC change in W3 — the loop iterates whatever the lookup table holds.
 # ONLY called when BARI_GLASSBOX_W2 is ON (call site is flag-guarded).
 # ---------------------------------------------------------------------------
 
@@ -218,7 +220,7 @@ def _d4_normalize(s: str) -> str:
 def detect_additives_d4(ingredient_text: str) -> list:
     """TASK-179S — detect D4 additive tier findings from ingredient text.
 
-    Scans for each of the 20 additives in GLASSBOX_W2_ADDITIVES using:
+    Scans for each additive in GLASSBOX_W2_ADDITIVES (36 in the W3 tiered library) using:
       (a) E-number pattern: E{digits}, E-{digits}, or ה-{digits} (with optional space)
       (b) Hebrew name variants from match_patterns_he
 
@@ -263,12 +265,25 @@ def detect_additives_d4(ingredient_text: str) -> list:
             f"ה-{e_num_str}",             # ה-330 (Hebrew E-number citation)
         ]
 
+        # TASK-181D digit-boundary guard: an E-number match must NOT be immediately
+        # followed by another digit, otherwise "e141" falsely matches inside "e1412"
+        # (E141 copper chlorophylls vs E1412 modified starch — both now in the table).
+        # Find ALL occurrences of each pattern and accept the first one that is not
+        # mid-number. Letter suffixes (E472e) and "i" roman tails (E450iii) are fine.
         e_match_pos = None
         for pat in e_patterns:
-            idx = norm.find(pat)
-            if idx != -1:
-                if e_match_pos is None or idx < e_match_pos:
-                    e_match_pos = idx
+            start = 0
+            while True:
+                idx = norm.find(pat, start)
+                if idx == -1:
+                    break
+                tail_pos = idx + len(pat)
+                tail_char = norm[tail_pos] if tail_pos < len(norm) else ""
+                if not tail_char.isdigit():   # reject only when the next char is a digit
+                    if e_match_pos is None or idx < e_match_pos:
+                        e_match_pos = idx
+                    break
+                start = idx + 1
 
         # Hebrew name matching (match_patterns_he from the entry)
         name_match_pos = None

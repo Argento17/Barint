@@ -1,0 +1,112 @@
+{
+  "run_id": "run_glassbox_w3_d4_181d_20260604",
+  "task": "TASK-181D",
+  "program": "TASK-181 (Glass Box program-of-record) — Wave 3, D4 additive library scale-up",
+  "date": "2026-06-04",
+  "owner": "data-agent",
+  "objective": "Wire the full 36-additive tiered library into the D4 detector and regenerate d4_additives in the pilot JSONs. Annotate-only, OFF byte-identical, no score/grade/gate/glassBox movement.",
+  "mode": "annotate-only (BARI_GLASSBOX_W2 flag, default OFF)",
+  "tier_source_of_truth": "01_framework/glass_box/additive_tiered_library_v1.md (EV-043, TASK-181B)",
+  "identity_source": "01_framework/glass_box/additive_library_expanded_v1.md (TASK-181A)",
+  "copy_source": "01_framework/glass_box/w2_additive_copy_v1.md (covers original 20 only)",
+
+  "detector_lookup": {
+    "table": "GLASSBOX_W2_ADDITIVES (constants.py)",
+    "keys_before": 20,
+    "keys_after": 35,
+    "additives_covered": 36,
+    "note": "35 distinct table keys cover 36 library additives — E1412/E1414 (library #36) are FOLDED into the E1422 modified-starch key (same Hebrew term, same group ADI) per the tiered library instruction, not a separate key. All 36 additives are detectable.",
+    "tier_distribution_in_table": {"functional": 19, "likely-neutral": 6, "dose-dependent": 5, "contested": 3, "disclosure-gap": 1, "unclassified": 1},
+    "ev043_distribution": "19/7/5/3/1/0/1 (likely-neutral 7 counts E1422+E1412/E1414 as 2 library rows sharing 1 detector key)"
+  },
+
+  "engine_logic_change": {
+    "lookup_values_added": true,
+    "digit_boundary_fix": "E-number matcher now rejects a match immediately followed by another digit, so 'e141' no longer falsely matches inside 'e1412'/'e1414'/'e1442'. This precision fix was FORCED by the lookup extension (adding E141 alongside the E1412/E1414 fold created a substring collision that would emit a fabricated additive — a no-invent governance violation). Roman-numeral tails (E450iii) and letter suffixes (E472e) still match. No tier/scoring logic touched.",
+    "false_positives_removed": "2 maadanim products (pudding) declaring E1412/E1414 were wrongly emitting E141 copper-chlorophylls; now corrected. The 1 remaining E141 (מילקי טופ עדשים) is a TRUE positive — the label literally declares 'E-141' in its colour blend."
+  },
+
+  "off_byte_identity": {
+    "verifier": "03_operations/bsip2/proto_v0/src/verify_glassbox_w2_off_identical.py",
+    "baseline": "reports/glass_box/w2/_off_baseline.json (re-snapshotted pre-edit)",
+    "result": "PASS (0-diff)",
+    "per_corpus": {"hummus": 0, "maadanim": 0, "snack_bars": 0, "golden_milk": 0},
+    "note": "snack_bars + golden_milk are frozen no-change safeguards — 0 diffs confirms frozen invariants untouched."
+  },
+
+  "engine_on_pilot_invariants": {
+    "score_changes": 0,
+    "grade_changes": 0,
+    "note": "verify_glassbox_w2_off_identical.py on_pilot — score_changes=0, grade_changes=0 across all 4 corpora. Annotate-only confirmed at the engine level."
+  },
+
+  "json_regeneration": {
+    "wire_scripts": [
+      "03_operations/bsip2/proto_v0/reports/glass_box/w2/wire_d4_frontend.py (hummus + maadanim)",
+      "03_operations/bsip2/proto_v0/reports/glass_box/w2/wire_d4_bread_vegspreads.py (bread + veg-spreads)"
+    ],
+    "hummus_frontend_v4.json": {"products": 64, "with_d4": 56, "with_zero_d4": 8, "entries_with_copy": 114, "entries_missing_copy": 37},
+    "maadanim_frontend_v2.json": {"products": 84, "with_d4": 74, "with_zero_d4": 10, "entries_with_copy": 181, "entries_missing_copy": 56},
+    "bread_frontend_v2.json": {"products": 24, "with_d4": 17, "with_zero_d4": 7, "coverage_pct": 70.8, "source": "BSIP0 raw panel (17/24 have ingredient text), NOT the displayed-JSON ingredient field (181A scanned that and found 9/24). Display-wire only — no rescore, gate/score/grade/glassBox untouched."},
+    "vegspreads": {"note": "subset of hummus corpus (matbucha/eggplant/pepper spread); 22 products, 21 with_d4 — verified, no separate JSON."}
+  },
+
+  "protected_field_assertion": {
+    "method": "field-by-field diff of each pilot JSON vs git HEAD",
+    "protected_fields": ["score", "grade", "gate", "glassBox"],
+    "violations": 0,
+    "only_field_changed": "d4_additives",
+    "per_file": {
+      "hummus_frontend_v4.json": {"d4_changed": 37, "d4_added": 0, "violations": 0},
+      "maadanim_frontend_v2.json": {"d4_changed": 41, "d4_added": 3, "violations": 0},
+      "bread_frontend_v2.json": {"d4_changed": 0, "d4_added": 17, "violations": 0}
+    }
+  },
+
+  "missing_explanation_he": {
+    "spec_for_content_task_181E": true,
+    "distinct_additives": 14,
+    "total_instances": 94,
+    "graceful_render": "AdditivePanel.tsx line 146 crash-guards explanation_he with `?? ''` — empty Line 2 renders blank, no broken UI. function_he (always engine-populated) still shows on the 'עוד' expand. Tier chip always renders.",
+    "list": [
+      {"e_number": "E500", "name_he": "סודיום קרבונט", "tier": "functional", "instances": 41, "corpora": ["hummus", "maadanim"]},
+      {"e_number": "E163", "name_he": "אנטוציאנינים", "tier": "functional", "instances": 20, "corpora": ["maadanim"]},
+      {"e_number": "E160a", "name_he": "בטא-קרוטן", "tier": "functional", "instances": 11, "corpora": ["maadanim"]},
+      {"e_number": "E333", "name_he": "סידן ציטרט", "tier": "functional", "instances": 5, "corpora": ["maadanim"]},
+      {"e_number": "E331", "name_he": "סודיום ציטרט", "tier": "functional", "instances": 3, "corpora": ["maadanim"]},
+      {"e_number": "E327", "name_he": "סידן לקטט", "tier": "functional", "instances": 3, "corpora": ["maadanim"]},
+      {"e_number": "E270", "name_he": "חומצה לקטית", "tier": "functional", "instances": 2, "corpora": ["bread", "hummus"]},
+      {"e_number": "E960", "name_he": "סטיביול גליקוזידים", "tier": "dose-dependent", "instances": 2, "corpora": ["maadanim"]},
+      {"e_number": "E162", "name_he": "אדום סלק", "tier": "functional", "instances": 2, "corpora": ["maadanim"]},
+      {"e_number": "E296", "name_he": "חומצה מאלית", "tier": "functional", "instances": 1, "corpora": ["maadanim"]},
+      {"e_number": "E401", "name_he": "אלגינט נתרן", "tier": "functional", "instances": 1, "corpora": ["maadanim"]},
+      {"e_number": "E516", "name_he": "גופרת סידן", "tier": "functional", "instances": 1, "corpora": ["maadanim"]},
+      {"e_number": "E100", "name_he": "כורכומין", "tier": "functional", "instances": 1, "corpora": ["maadanim"]},
+      {"e_number": "E141", "name_he": "תרכובות נחושת של כלורופיל", "tier": "unclassified", "instances": 1, "corpora": ["maadanim"]}
+    ],
+    "content_priority_note": "12 of 14 are tier=functional (the calmest tier). The 2 higher-priority copy targets carry more weight on the panel chip: E960 steviol (dose-dependent) and E141 copper chlorophylls (unclassified)."
+  },
+
+  "guardrails": {
+    "annotate_only": true,
+    "off_byte_identical": true,
+    "no_score_grade_gate_glassbox_change": true,
+    "behind_existing_flag": "BARI_GLASSBOX_W2 (default OFF); no new flag",
+    "no_additive_outside_tiered_library": true,
+    "frozen_invariants_untouched": "milk run_005_headpin / snack 70/B / bread provenance — confirmed (snack_bars + golden_milk 0-diff; bread display-wire only, no rescore)"
+  },
+
+  "artifacts": [
+    "03_operations/bsip2/proto_v0/src/constants.py (GLASSBOX_W2_ADDITIVES extended to 35 keys / 36 additives)",
+    "03_operations/bsip2/proto_v0/src/score_engine.py (detector docstrings + digit-boundary precision fix)",
+    "03_operations/bsip2/proto_v0/reports/glass_box/w2/_off_baseline.json",
+    "03_operations/bsip2/proto_v0/reports/glass_box/w2/_on_pilot_summary.json",
+    "03_operations/bsip2/proto_v0/reports/glass_box/w2/_179y_run_report.json",
+    "bari-web/src/data/comparisons/hummus_frontend_v4.json",
+    "bari-web/src/data/comparisons/maadanim_frontend_v2.json",
+    "bari-web/src/data/comparisons/bread_frontend_v2.json"
+  ],
+
+  "recommendation": "Open Content task 181E to author explanation_he for the 14 displayed-shelf additives above (prioritize E960 + E141). No-invent governance: Data did NOT fabricate copy.",
+  "proposed_status": "RETURNED (for CC close-readiness gate; Data does not write CLOSED)"
+}

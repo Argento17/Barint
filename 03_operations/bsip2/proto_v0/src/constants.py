@@ -545,16 +545,25 @@ DIAAS_D2_CREDIT = 3
 DIAAS_D2_SCORE_CAP = 100
 
 # ---------------------------------------------------------------------------
-# TASK-179S — Glass Box W2 D4 additive tier lookup table.
+# Glass Box D4 additive tier lookup table.
 # Gated by env flag BARI_GLASSBOX_W2 (default OFF). Flag OFF → every constant
 # below is inert and the engine is byte-identical to the BARI_GLASSBOX_W15
-# baseline. Source of truth: 01_framework/glass_box/additive_prototype_set_v1.md.
+# baseline. No score movement — D4 is presentation-only (annotate-only).
 # Tier values: "functional" | "likely-neutral" | "dose-dependent" | "contested"
 #              | "disclosure-gap" | "confirmed-negative" | "unclassified".
-# No score movement — D4 is presentation-only for the W2 prototype.
-# Evidence registry: EV-041 (filed by Nutrition before Phase 3 ships, TASK-179U).
-# ALL 20 entries sourced from additive_prototype_set_v1.md §Nutrition Phase 3 Co-sign.
-# DO NOT add additives not in the sheet; unlisted = tier "unclassified".
+#
+# W2 (TASK-179S): the original 20 entries sourced from
+#   additive_prototype_set_v1.md §Nutrition Phase 3 Co-sign. Evidence registry EV-041.
+# W3 (TASK-181D): EXTENDED to the full 36-additive tiered library. The 16 newly
+#   added entries (E160a/E163/E162/E100/E141/E333/E331/E327/E296/E270/E401/E516/
+#   E500/E575/E960 + E1412/E1414 folded into E1422) carry their EV-043 tier.
+#   Tier source of truth: 01_framework/glass_box/additive_tiered_library_v1.md
+#   (TASK-181B, Nutrition + Product D7 co-signed). Identity / Hebrew shelf labels:
+#   01_framework/glass_box/additive_library_expanded_v1.md (TASK-181A). No detector
+#   LOGIC change — EV-043 mechanism field confirms the existing detect_additives_d4()
+#   reads these lookup values unchanged; W3 supplies values only.
+#
+# DO NOT add additives not in additive_tiered_library_v1.md; unlisted = "unclassified".
 # ---------------------------------------------------------------------------
 GLASSBOX_W2_ADDITIVES: dict = {
     "E330": {
@@ -579,11 +588,19 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "match_patterns_he": ["חומצה אסקורבית", "ויטמין C", "ויטמין c"],
     },
     "E1422": {
+        # TASK-181D: E1412 / E1414 (distarch phosphate / acetylated distarch
+        # phosphate) fold into this modified-starch tier per tiered library #36 —
+        # same Hebrew term ("עמילן מעובד") + group ADI "not specified". The explicit
+        # E-number variants are added to the match set so an "E1412"/"E1414"
+        # declaration is detected as this same entry (no duplicate panel row).
         "name_he": "עמילן מעובד",
-        "name_en": "Modified starch",
+        "name_en": "Modified starch (incl. E1412/E1414/E1442)",
         "tier": "likely-neutral",
         "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
-        "match_patterns_he": ["עמילן מעובד", "עמילן שונה", "עמילן מוקשה", "עמילן משונה"],
+        "match_patterns_he": [
+            "עמילן מעובד", "עמילן שונה", "עמילן מוקשה", "עמילן משונה",
+            "E1412", "e1412", "E1414", "e1414", "E1442", "e1442",
+        ],
     },
     "E282": {
         "name_he": "פרופיונט סידן",
@@ -701,6 +718,117 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "נוגד חמצון לשומנים — מסווג IARC 2B (בעלי חיים)",
         "match_patterns_he": ["BHA", "bha", "בוטילציאניזול", "בוטיל הידרוקסיאניזול"],
+    },
+    # -----------------------------------------------------------------------
+    # TASK-181D — 16 newly added additives (observed on the displayed shelf,
+    # absent from the W2 prototype 20). Tiers per additive_tiered_library_v1.md
+    # (EV-043, §2.B). Hebrew shelf labels per additive_library_expanded_v1.md §3.B.
+    # E1412/E1414 are NOT here — they fold into E1422 above (tiered library #36).
+    # -----------------------------------------------------------------------
+    "E160a": {
+        "name_he": "בטא-קרוטן",
+        "name_en": "Beta-carotene",
+        "tier": "functional",
+        "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
+        "match_patterns_he": ["בטא קרוטן", "בטא-קרוטן", "ביתא קרוטן", "ביתא-קרוטן"],
+    },
+    "E163": {
+        "name_he": "אנטוציאנינים",
+        "name_en": "Anthocyanins",
+        "tier": "functional",
+        "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+        "match_patterns_he": ["אנטוציאנין", "אנטוציאנינים", "רכז גזר שחור"],
+    },
+    "E162": {
+        "name_he": "אדום סלק",
+        "name_en": "Beetroot red / betanin",
+        "tier": "functional",
+        "function_he": "צבע מאכל אדום ממקור סלק",
+        "match_patterns_he": ["אדום סלק", "רכז סלק", "בטנין"],
+    },
+    "E100": {
+        "name_he": "כורכומין",
+        "name_en": "Curcumin",
+        "tier": "functional",
+        "function_he": "צבע מאכל צהוב ממקור כורכום",
+        "match_patterns_he": ["כורכומין", "כורכום"],
+    },
+    "E141": {
+        "name_he": "תרכובות נחושת של כלורופיל",
+        "name_en": "Copper complexes of chlorophylls",
+        "tier": "unclassified",
+        "function_he": "צבע מאכל ירוק נושא נחושת",
+        "match_patterns_he": ["תרכובות נחושת של כלורופיל", "כלורופיל נחושת", "נחושת כלורופיל"],
+    },
+    "E333": {
+        "name_he": "סידן ציטרט",
+        "name_en": "Calcium citrate",
+        "tier": "functional",
+        "function_he": "מלח ציטרט — מקור סידן / מייצב",
+        "match_patterns_he": ["טריקלציום ציטרט", "קלציום ציטרט", "סידן ציטרט", "סידן (טריקלציום ציטרט)"],
+    },
+    "E331": {
+        "name_he": "סודיום ציטרט",
+        "name_en": "Sodium citrate",
+        "tier": "functional",
+        "function_he": "מלח ציטרט — מווסת חומציות / מלח מתחלב",
+        "match_patterns_he": ["סודיום ציטרט", "טרי סודיום ציטרט", "נתרן ציטרט", "ציטרט נתרן"],
+    },
+    "E327": {
+        "name_he": "סידן לקטט",
+        "name_en": "Calcium lactate",
+        "tier": "functional",
+        "function_he": "מלח לקטט — מקור סידן / מווסת חומציות",
+        "match_patterns_he": ["סידן לקטט", "קלציום לקטט", "לקטט סידן"],
+    },
+    "E296": {
+        "name_he": "חומצה מאלית",
+        "name_en": "Malic acid",
+        "tier": "functional",
+        "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
+        "match_patterns_he": ["חומצה מאלית", "חומצת תפוח"],
+    },
+    "E270": {
+        "name_he": "חומצה לקטית",
+        "name_en": "Lactic acid",
+        "tier": "functional",
+        "function_he": "חומצת מאכל / משמר — תוצר תסיסה טבעי",
+        "match_patterns_he": ["חומצה לקטית", "חומצת חלב", "חומצה לקטטית"],
+    },
+    "E401": {
+        "name_he": "אלגינט נתרן",
+        "name_en": "Sodium alginate",
+        "tier": "functional",
+        "function_he": "מסמיך / מייצב ממקור אצות חומות",
+        "match_patterns_he": ["אלגינט נתרן", "נתרן אלגינט", "אלגינאט נתרן", "אלגינט"],
+    },
+    "E516": {
+        "name_he": "גופרת סידן",
+        "name_en": "Calcium sulphate",
+        "tier": "functional",
+        "function_he": "חומר מקשה / מקור סידן (גבס)",
+        "match_patterns_he": ["גופרת סידן", "סולפט סידן", "קלציום סולפט", "גופרית סידן"],
+    },
+    "E500": {
+        "name_he": "סודיום קרבונט",
+        "name_en": "Sodium carbonates / bicarbonate",
+        "tier": "functional",
+        "function_he": "מווסת חומציות / חומר תפיחה",
+        "match_patterns_he": ["סודיום קרבונט", "נתרן קרבונט", "סודה לשתייה", "ביקרבונט", "סודיום ביקרבונט", "סודה לאפייה"],
+    },
+    "E575": {
+        "name_he": "גלוקונו דלתא לקטון",
+        "name_en": "Glucono-delta-lactone (GDL)",
+        "tier": "functional",
+        "function_he": "חומצת מאכל / מקריש — מתפרק לחומצה גלוקונית",
+        "match_patterns_he": ["גלוקונו דלתא לקטון", "גלוקונו-דלתא-לקטון", "GDL", "gdl"],
+    },
+    "E960": {
+        "name_he": "סטיביול גליקוזידים",
+        "name_en": "Steviol glycosides",
+        "tier": "dose-dependent",
+        "function_he": "ממתיק ללא קלוריות ממקור צמח הסטיביה",
+        "match_patterns_he": ["סטיביול גליקוזידים", "סטיביול גליקוזיד", "סטיביה", "stevia"],
     },
 }
 
