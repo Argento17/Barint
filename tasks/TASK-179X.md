@@ -2,14 +2,26 @@
 id: TASK-179X
 title: "Glass Box W2 — engagement gate: run moderated sessions"
 owner: product-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-04
 depends_on: [TASK-179R, TASK-179V]
 blocks: []
 category_id: null
 roadmap_impact: true
 work_type: research
+cc_reviewed: 2026-06-04
+close_reason: >
+  Owner-override close (2026-06-04). No gate verdict recorded — moderated sessions were
+  not run before close. Owner explicitly authorized W2 closure without engagement data
+  (conversation 2026-06-04). The three thresholds (≥5/8 unprompted opens · ≥8/12
+  comprehension · ≥20% live panel-open rate) remain unmeasured. W3 opens on product
+  judgment, not measured demand. The engagement gate spec
+  (01_framework/glass_box/w2_engagement_gate_spec_v1.md) is preserved; demand measurement
+  can be run as a standalone research activity during W3 if the team wishes to validate
+  assumptions. CC records the bypass explicitly so future decisions on D4 library scope
+  (W3) have a complete paper trail.
 summary: >
   Critical path to W3. Recruit 5–8 Israeli users and run moderated sessions per
   w2_engagement_gate_spec_v1.md §1–3. Deliverable: session recordings + scored results
