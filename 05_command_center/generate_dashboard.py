@@ -93,6 +93,16 @@ TASK_ORDER = {"IN_PROGRESS": 0, "CHANGES_REQUESTED": 1, "BLOCKED": 2,
               "RETURNED": 3, "CLOSED": 4}
 PRI_ORDER  = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
 
+
+def id_sortkey(tid):
+    """Natural sort for TASK ids: TASK-99 < TASK-180 < TASK-180A < TASK-180B.
+    Used to break ties between tasks that share a date-only completed_at (the
+    registry has no sub-day close timestamp). A higher id is a weak proxy for
+    'more recently closed' within a single day — strictly better than the
+    lexical default, which made the lowest id win."""
+    mm = re.match(r"TASK-(\d+)([A-Z]*)", tid or "")
+    return (int(mm.group(1)), mm.group(2)) if mm else (0, tid or "")
+
 # Single source of truth for what "active" means (used everywhere — v3 unify).
 # ACTIVE  = work consuming a slot (Active Work + rework). RETURNED is awaiting
 # review, so it is OPEN but not ACTIVE (it does not consume agent capacity).
@@ -429,7 +439,9 @@ def load_tasks():
             "status":       data.get("status", "IN_PROGRESS"),
             "priority":     data.get("priority", "MEDIUM"),
             "created_at":   created,
-            "completed_at": str(data.get("completed_at")) if data.get("completed_at") else None,
+            # `closed_at` is a synonym used by ~35 legacy tasks; normalize both to
+            # completed_at so close-date logic (latest-completed, closed-today) sees them.
+            "completed_at": (lambda v: str(v) if v else None)(data.get("completed_at") or data.get("closed_at")),
             "depends_on":   data.get("depends_on") or [],
             "blocks":       data.get("blocks") or [],
             "category_id":  data.get("category_id"),
@@ -446,6 +458,10 @@ def load_tasks():
             # ★ roadmap-impacting return → must get a CC Agent review before CLOSE
             "roadmap_impact": bool(data.get("roadmap_impact")),
             "cc_reviewed":  (str(data.get("cc_reviewed")) if data.get("cc_reviewed") else None),
+            # ★ Banked Asset — a proven program parked (not launched). Stays visible
+            # on the roadmap forever, even after the task CLOSES (≠ in-flight work).
+            "banked_asset": (data.get("banked_asset")
+                             if isinstance(data.get("banked_asset"), dict) else None),
         })
     tasks.sort(key=lambda t: (TASK_ORDER.get(t["status"], 9),
                               PRI_ORDER.get(t["priority"], 9),
@@ -941,7 +957,8 @@ def compute_executive(tasks, decisions, alerts):
         health = "GREEN"
 
     completed = [t for t in tasks if t["status"] == "CLOSED" and t.get("completed_at")]
-    latest = max(completed, key=lambda t: t["completed_at"], default=None)
+    # Tie-break by natural id so the latest same-date batch wins (not the lowest id).
+    latest = max(completed, key=lambda t: (t["completed_at"], id_sortkey(t["id"])), default=None)
 
     # primary blocker: first critical/high alert, else first blocked task
     blocker = None
@@ -1037,6 +1054,33 @@ def compute_category_state(categories, tasks):
     return rows
 
 
+# ── Banked Assets (proven-but-not-launched programs) ──────────────────────────
+def compute_banked_assets(tasks):
+    """Persistent roadmap view of proven programs that were BANKED, not launched
+    (e.g. SIE/TASK-171). Derived from the authoritative registry: any task whose
+    frontmatter carries a `banked_asset:` block. Unlike in-flight work these never
+    expire from the roadmap — a closed task would otherwise vanish from every
+    bucket, hiding a strategic asset. Ordered newest-banked first."""
+    out = []
+    for t in tasks:
+        ba = t.get("banked_asset")
+        if not ba:
+            continue
+        out.append({
+            "task_id":      t["id"],
+            "title":        t["title"],
+            "owner":        t.get("owner"),
+            "status":       t["status"],            # typically CLOSED
+            "banked_at":    str(ba.get("banked_at")) if ba.get("banked_at") else t.get("completed_at"),
+            "one_liner":    (ba.get("one_liner") or "").strip(),
+            "why_parked":   (ba.get("why_parked") or "").strip(),
+            "revival_gate": (ba.get("revival_gate") or "").strip(),
+            "reference":    (ba.get("reference") or "").strip(),
+        })
+    out.sort(key=lambda a: (a["banked_at"] or ""), reverse=True)
+    return out
+
+
 # ── Lean live view + closed-task trimming (token efficiency ①②③) ──────────────
 def _trim_closed(tasks):
     """Main JSON keeps only what the task board renders for CLOSED rows; the full
@@ -1078,6 +1122,7 @@ def _live_view(dashboard):
         "critical_path": dashboard["critical_path"],
         "drift":         dashboard["drift"],
         "category_state": dashboard["category_state"],
+        "banked_assets": dashboard["banked_assets"],
         "open_tasks":    open_tasks,
         "alerts":        [a for a in dashboard["alerts"] if a["status"] == "OPEN"],
     }
@@ -1116,6 +1161,14 @@ def emit_digest(dashboard):
         for c in t.get("cc_comments", []):
             tag = "CC" if c["flag"] == "fyi" else f"CC/{c['flag'].upper()}"
             lines.append(f"        ↳ {tag}: {c['text'][:96]}")
+    banked = dashboard.get("banked_assets", [])
+    if banked:
+        lines.append("")
+        lines.append(f"## Banked assets ({len(banked)} — proven, not launched)")
+        for b in banked:
+            lines.append(f"  {b['task_id']:<10} {b['one_liner'][:84]}")
+            if b.get("revival_gate"):
+                lines.append(f"        ↳ revive when: {b['revival_gate'][:88]}")
     closed_today = [t for t in dashboard["tasks"]
                     if t["status"] == "CLOSED" and t.get("completed_at") == TODAY.isoformat()]
     if closed_today:
@@ -1165,6 +1218,7 @@ def main():
     next_action  = compute_next_action(tasks, decisions, categories, critical_path)
     task_summary = compute_task_summary(tasks)
     category_state = compute_category_state(categories, tasks)      # ★⑤
+    banked_assets  = compute_banked_assets(tasks)                   # ★ persistent
     critical_path.pop("_unblocks_by_id", None)  # internal aid; not serialized
 
     now_iso = datetime.now().isoformat(timespec="seconds")
@@ -1201,6 +1255,7 @@ def main():
         "task_summary": task_summary,
         "critical_path": critical_path,       # ★③
         "category_state": category_state,     # ★⑤
+        "banked_assets": banked_assets,       # ★ proven-but-not-launched, persistent
         "drift": summarize_drift(drift, acknowledged),
         "tasks": tasks,
         "decisions": decisions,
@@ -1255,6 +1310,9 @@ def main():
     except OSError:
         pass
     print(f"  categories: {len(categories)}")
+    if banked_assets:
+        print(f"  banked:     {len(banked_assets)} proven asset(s) -> "
+              + ", ".join(f"{b['task_id']}" for b in banked_assets))
     print(f"  decisions:  {len(decisions)} ({sum(1 for d in decisions if d.get('status')=='PENDING')} pending)")
     drift_alerts = [a for a in open_alerts if a["type"] in DRIFT_TYPES]
     print(f"  returns:    {len(returns)} task IDs found in deliverables | "
