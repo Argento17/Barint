@@ -11,6 +11,7 @@ import type {
   BariExpansionVM,
   BariGlassBoxVM,
   BariNutritionVM,
+  BariProcessingSignalVM,
 } from "@/lib/view-models";
 import {
   GLASS_BOX_DISCLOSURE_HEADING,
@@ -18,6 +19,7 @@ import {
   resolveWithholdReason,
 } from "@/lib/view-models";
 import { AdditivePanel } from "@/components/shared/AdditivePanel";
+import { ProcessingSignalNote } from "@/components/shared/processing-signal-note";
 
 const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string }[] = [
   { key: "energyKcal", label: 'קק"ל', unit: "" },
@@ -409,6 +411,7 @@ export function ExpansionSection({
   confidencePromoted = false,
   glassBox,
   d4Additives,
+  d3Processing,
   productId,
   category,
 }: {
@@ -434,6 +437,13 @@ export function ExpansionSection({
    * Presentation only — no score movement.
    */
   d4Additives?: AdditiveEntry[];
+  /**
+   * TASK-181I — Glass Box W4 D3 processing signal. Passed (flag-gated) only when
+   * GLASSBOX_W4_ON is true AND the product carries a d3_processing signal. Undefined →
+   * no D3 surface (byte-identical to today). Drives the calm processing drilldown line
+   * (note_he / note_he_mobile, rendered verbatim). Presentation only — no score movement.
+   */
+  d3Processing?: BariProcessingSignalVM;
   /** Anonymous product shelf position ID for analytics context. */
   productId?: string;
   /** Category slug for analytics context. */
@@ -511,7 +521,14 @@ export function ExpansionSection({
           <GlassBoxDisclosure glassBox={glassBox} />
         ) : null}
 
-        {!interpretive && !hasTechnical && glassBox?.gateState !== "demote" ? (
+        {/* TASK-181I — Glass Box W4 D3 processing signal (calm drilldown line). Flag-gated
+            upstream: d3Processing is undefined when GLASSBOX_W4_ON is false → no surface. */}
+        {d3Processing ? <ProcessingSignalNote signal={d3Processing} /> : null}
+
+        {!interpretive &&
+        !hasTechnical &&
+        glassBox?.gateState !== "demote" &&
+        !d3Processing ? (
           <p className="text-xs leading-relaxed text-[#6E756F]">
             פרטים נוספים לא זמינים לאריזה זו.
           </p>

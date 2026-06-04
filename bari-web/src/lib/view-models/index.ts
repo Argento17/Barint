@@ -127,6 +127,7 @@ export {
   GLASS_BOX_DISCLOSURE_HEADING,
   GLASS_BOX_WITHHOLD_LABEL,
   GLASS_BOX_WITHHOLD_REASON,
+  GLASS_BOX_PROCESSING_HEADING,
   resolveDisclosureLines,
   resolveWithholdReason,
 } from "./glass-box-copy";
@@ -160,6 +161,44 @@ export interface AdditiveEntry {
   explanation_he: string;
 }
 
+// ─── D3 Processing Signal (Glass Box W4, TASK-181I) ─────────────────────────────
+// Presentation-only. The "how processed is this food" drilldown line. The engine
+// (TASK-181G, behind BARI_GLASSBOX_W4) emits the final, Product-co-signed Hebrew
+// strings verbatim — the UI renders them as-is and NEVER rewrites or invents copy.
+//
+// This object is purely additive and is read ONLY when the NEXT_PUBLIC_GLASSBOX_W4
+// frontend flag is ON; absent or flag-OFF → the UI is byte-identical to today. It never
+// participates in scoring, sorting, or rounding — it annotates an already-decided VM.
+//
+// Confidence is surfaced HONESTLY: a "low" confidence signal reads as provisional /
+// uncertain (Candidate C wording), never as a hard verdict (spec §3.3, EV-042).
+//
+// nova_class / population_correlation / modifier / modifier_note are the engine's
+// internal trace fields. They are PRESENTATION-IRRELEVANT — carried for provenance/parity
+// only and NEVER rendered as a number or an engine term (no NOVA/cap/modifier text in JSX).
+export type BariProcessingConfidence = "low" | "medium" | "high";
+
+export interface BariProcessingSignalVM {
+  /** NOVA proxy class 1–4. Trace/provenance only — never rendered. */
+  nova_class?: number;
+  /** Confidence in the NOVA assignment. Drives the honest, provisional treatment when "low". */
+  confidence: BariProcessingConfidence;
+  /** Class-level population-correlation anchor 0.0–1.0. Trace only — never rendered. */
+  population_correlation?: number;
+  /** Signed score modifier the engine applied. Trace only — never rendered as a number. */
+  modifier?: number;
+  /** Trace string explaining the modifier computation. Internal — never rendered. */
+  modifier_note?: string;
+  /** The final, Product-co-signed Hebrew framing line (spec §3.3). Rendered VERBATIM. */
+  note_he: string | null;
+  /** Mobile-compressed variant of note_he (Candidate C only — spec §3.3 Q2). Rendered
+   *  verbatim on small screens; the full note_he is used on desktop/professional. When the
+   *  engine sends no separate mobile form, note_he renders on all widths. */
+  note_he_mobile?: string | null;
+  /** Optional one-line confidence framing the engine may attach. Rendered verbatim if present. */
+  confidence_note?: string | null;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
@@ -189,6 +228,11 @@ export interface BariProductVM {
    *  state (לא זוהו תוספי מזון — still rendered, not hidden). Presentation only — no score
    *  movement. Populated by TASK-179S (Data pipeline D4 detector). */
   d4_additives?: AdditiveEntry[];
+  /** TASK-181I: Glass Box W4 D3 processing signal. Optional + flag-gated (read only when
+   *  NEXT_PUBLIC_GLASSBOX_W4 is ON). Absent / null note → no D3 surface (byte-identical to
+   *  today). The calm "how processed is this food" drilldown line. Presentation only — the
+   *  engine (TASK-181G) owns the score; the UI never reads the modifier as a number. */
+  d3_processing?: BariProcessingSignalVM;
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────

@@ -15,7 +15,7 @@ import {
 import type { BariGrade, BariProductVM } from "@/lib/view-models";
 import { GLASS_BOX_WITHHOLD_LABEL } from "@/lib/view-models";
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
-import { GLASSBOX_D5D6_ON } from "@/lib/feature-flags";
+import { GLASSBOX_D5D6_ON, GLASSBOX_W4_ON } from "@/lib/feature-flags";
 import { cn } from "@/lib/utils";
 
 // TASK-179I — Glass Box gate read, flag-gated. With the flag OFF these are always
@@ -221,6 +221,11 @@ export const ComparisonRow = memo(function ComparisonRow({
                 d4Additives={
                   GLASSBOX_D5D6_ON && product.d4_additives !== undefined
                     ? product.d4_additives
+                    : undefined
+                }
+                d3Processing={
+                  GLASSBOX_W4_ON && product.d3_processing !== undefined
+                    ? product.d3_processing
                     : undefined
                 }
                 productId={product.id}

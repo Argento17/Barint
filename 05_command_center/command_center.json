@@ -5,13 +5,13 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-04",
-    "generated_at": "2026-06-04T17:57:24",
-    "newest_source_at": "2026-06-04T17:57:15",
+    "generated_at": "2026-06-04T19:01:39",
+    "newest_source_at": "2026-06-04T19:01:28",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-04T17:57:32",
+    "drift_checked_at": "2026-06-04T19:01:48",
     "stale": false,
     "stale_reason": null
   },
@@ -20,15 +20,15 @@
     "active_task_ids": [
       "TASK-180",
       "TASK-181",
-      "TASK-181H",
-      "TASK-181I",
+      "TASK-181K",
       "TASK-180B",
       "TASK-180C",
+      "TASK-181L",
       "TASK-140"
     ],
     "latest_completed_task": {
-      "id": "TASK-181G",
-      "title": "Glass Box W4 Data implement D3 de-moralization behind BARI_GLASSBOX_W4 OFF byte-identical",
+      "id": "TASK-181J",
+      "title": "Glass Box W4 rework Nutrition split medium into material and non-material uncertainty supersede EV-042 plus Product co-sign",
       "completed_at": "2026-06-04"
     },
     "current_blocker": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
@@ -45,24 +45,37 @@
   },
   "task_summary": {
     "active": 7,
-    "in_progress": 4,
-    "blocked": 3,
+    "in_progress": 3,
+    "blocked": 4,
     "returned": 0,
     "changes_requested": 0,
-    "closed": 200,
-    "wip": 1,
+    "closed": 203,
+    "wip": 2,
     "wip_task_ids": [
-      "TASK-180"
+      "TASK-180",
+      "TASK-181K"
     ],
     "wip_by_owner": {
-      "qa-agent": 1
+      "qa-agent": 1,
+      "data-agent": 1
     },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [],
-    "top_unblockers": []
+    "longest_chain": [
+      "TASK-181K",
+      "TASK-181L"
+    ],
+    "top_unblockers": [
+      {
+        "task_id": "TASK-181K",
+        "unblocks_count": 1,
+        "unblocks": [
+          "TASK-181L"
+        ]
+      }
+    ]
   },
   "category_state": [
     {
@@ -161,7 +174,7 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-04T17:57:32",
+    "checked_at": "2026-06-04T19:01:48",
     "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
@@ -227,47 +240,22 @@
       "banked_asset": null
     },
     {
-      "id": "TASK-181H",
-      "title": "Glass Box W4 QA OFF byte-identity verification plus ON score-impact analysis for owner go-live review",
-      "owner": "qa-agent",
+      "id": "TASK-181K",
+      "title": "Glass Box W4 rework Data re-implement material non-material split behind BARI_GLASSBOX_W4 OFF byte-identical",
+      "owner": "data-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
       "created_at": "2026-06-04",
       "completed_at": null,
       "depends_on": [
-        "TASK-181G"
+        "TASK-181J"
       ],
       "blocks": [],
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "Verify BARI_GLASSBOX_W4 OFF = byte-identical (0-diff on all golden/frozen corpora incl. milk run_005_headpin, snack 70/B, bread). Then produce the ON score-impact analysis: which products' D3 sub-score / caps / grades move when ON (esp. low/medium-confidence NOVA assignments moving toward neutral 50), and confirm frozen invariants do not breach (spec 4.3). This analysis is the input to the SEPARATE owner go-live decision (flag flip = frozen-invariant tripwire). Does not flip live.",
-      "work_type": "qa",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181I",
-      "title": "Glass Box W4 Frontend and Design surface d3_processing_signal plus note_he on professional and consumer surface",
-      "owner": "frontend-agent",
-      "status": "IN_PROGRESS",
-      "priority": "MEDIUM",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-181G"
-      ],
-      "blocks": [],
-      "category_id": null,
-      "blocker": null,
-      "close_reason": null,
-      "summary": "Surface the reframed D3 signal per the wave plan (W4 = consumer/professional surfaces / view-model). Render note_he (Candidate A positive / B negative-hedged / C low-confidence; C has a mobile-compressed variant per spec 3.3) as a calm drilldown footnote / professional-surface field; present confidence honestly. Behind the W4 flag; no live consumer exposure until owner go-live. Design owns the visual + confidence hierarchy.",
-      "work_type": "frontend",
+      "summary": "Re-implement the D3 rule in score_engine.py to the revised rule from 181J: replace the flat medium=0.70 score-pull with the material/non-material split - material uncertainty shrinks the score (low-band treatment), non-material uncertainty does NOT move the D3 score (routes to D6/confidence only). Keep everything behind BARI_GLASSBOX_W4 (default OFF); OFF = byte-identical to current baseline (re-run verify_glassbox_w4_off_identical.py, 0-diff). Re-emit the impact preview. Does NOT flip the flag, rescore published data, or touch frozen invariants.",
+      "work_type": "execution",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
@@ -321,6 +309,31 @@
       "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
+      "cc_reviewed": null,
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181L",
+      "title": "Glass Box W4 rework QA re-verify OFF identity plus new ON score-impact after medium split",
+      "owner": "qa-agent",
+      "status": "BLOCKED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-181K"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": "Waiting on TASK-181K (re-implemented engine must exist before re-verifying OFF identity + the new ON impact).",
+      "close_reason": null,
+      "summary": "Re-verify BARI_GLASSBOX_W4 OFF = byte-identical (0-diff). Produce the NEW ON score-impact analysis after the material/non-material split: expect the net-downward shelf effect to collapse toward ~flat on quality (grade moves now only from material/low-certainty products; non-material peripheral-gap products no longer move grade, their doubt shows as confidence). Report new grade-move counts vs the prior 17-down/3-up, broken down by material vs non-material. Confirm frozen invariants hold (milk 85/A, snack 70/B). Analysis only - no flag flip, no published rescore.",
+      "work_type": "qa",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null
     },
@@ -2342,6 +2355,36 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181H",
+      "title": "Glass Box W4 QA OFF byte-identity verification plus ON score-impact analysis for owner go-live review",
+      "owner": "qa-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). QA delivered its job: OFF byte-identity re-verified (0-diff, 342 products), frozen invariants confirmed to hold ON (milk 85/A, snack 70/B), and the ON score-impact analysis surfaced the MATERIAL FINDING that drove the whole rework — W4-ON was net-downward (17 grade moves down / 3 up; all medium-band, low band crossed zero). That finding led the owner to split the medium band (material/non-material), now bound in the revised EV-042 (TASK-181J, both D7 co-signs in). This task's analysis was of the PRE-rework build; the post-rework impact numbers are produced fresh by TASK-181L. No flag flipped, no published data rescored. Analysis complete and consequential — closing.\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181J",
+      "title": "Glass Box W4 rework Nutrition split medium into material and non-material uncertainty supersede EV-042 plus Product co-sign",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). EV-042 revised in place per owner directive (material/non-material medium-band split): bound_value_set_4 (M1–M4 materiality test, codeable, incl. the worst-case-NOVA-flip test), bound_value_set_5 (D6 routing: non-material −5, low-conf-NOVA −10, both max-combined with D5, no double-count), revised scaling (medium-material 0.70 / medium-non-material 1.0 = no D3 move), bound cap-scaling, \"less punitive\" retired for confidence-first framing; PRE-REWORK BASELINE preserved (not overwritten). BOTH D7 co-signs now recorded and verified in the file: Nutrition (TASK-181J) + Product (TASK-181J, co_sign flipped PENDING→CO-SIGNED, 0 PENDING left). Frozen-invariant case strengthened (strictly fewer D3 moves). Governance only — no engine/score/flag/published data touched by 181J. Rule adopted on paper, behind BARI_GLASSBOX_W4 (default OFF); live flip remains a separate owner decision. Closing unblocks TASK-181K (Data re-implement).\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -3494,6 +3537,21 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181I",
+      "title": "Glass Box W4 Frontend and Design surface d3_processing_signal plus note_he on professional and consumer surface",
+      "owner": "frontend-agent",
+      "status": "CLOSED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). D3 processing-signal surfaced as a calm drilldown line behind NEXT_PUBLIC_GLASSBOX_W4 (default OFF), reusing the existing Glass Box presentation pattern; three states render (NOVA-1 positive / NOVA 3–4 hedged verbatim / low-conf muted-gold provisional) + Candidate C mobile-compressed variant; OFF visually unchanged (10/10 Playwright smoke); build/lint/tsc clean; owner preview at /dev/glass-box-preview. No score/grade/published-JSON touched, approved Hebrew rendered verbatim, flag not flipped. Independent of the medium-band rework — it renders whatever note_he the engine emits, so the reworked engine (181K) needs no display change unless it introduces a new note string (none planned). Closing.\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-133D",
       "title": "F4 - BHA named-additive penalty (differentiate BHT); verify FDA GRAS status first",
       "owner": "nutrition-agent",
@@ -4143,6 +4201,19 @@
     },
     {
       "id": "ALT-003",
+      "type": "BLOCKED_TASK",
+      "severity": "HIGH",
+      "message": "TASK-181L: Waiting on TASK-181K (re-implemented engine must exist before re-verifying OFF identity + the new ON impact).",
+      "related_category": null,
+      "related_task": "TASK-181L",
+      "related_agent": null,
+      "created_at": "2026-06-04",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
+    },
+    {
+      "id": "ALT-004",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
       "message": "TASK-140: Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",

@@ -48,6 +48,13 @@ export const GLASS_BOX_WITHHOLD_LABEL = "לא נוקד";
 export const GLASS_BOX_WITHHOLD_REASON =
   "אין מספיק מידע בתווית כדי לדרג את המוצר.";
 
+// ─── D3 PROCESSING SIGNAL section heading (Glass Box W4, TASK-181I) ──────────────
+// The calm drilldown label above the engine-emitted note_he line. The NOTE prose itself
+// is NOT authored here — it is emitted verbatim by the engine (TASK-181G, spec §3.3,
+// Product-co-signed). This is only the quiet section label, matching the "מה לא צוין
+// בתווית" register: a neutral fact heading, never a verdict.
+export const GLASS_BOX_PROCESSING_HEADING = "דפוס העיבוד";
+
 /**
  * Resolve the ordered, de-duplicated plain-Hebrew disclosure lines for a demoted product.
  *

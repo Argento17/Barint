@@ -187,3 +187,86 @@ export const glassBoxMaadanimPreview: BariProductVM[] = [
     },
   },
 ];
+
+// ─── W4 D3 PROCESSING preview (3 rows: NOVA-1 positive · NOVA 3–4 hedged · low-conf) ──
+// TASK-181I. The three note_he strings below are the FINAL, Product-co-signed approved
+// wording from d3_demoralization_spec_v1.md §3.3 (lines 466–475) — the same strings the
+// engine (TASK-181G) emits verbatim. They are NOT authored or paraphrased here; this is a
+// flag-gated PREVIEW so the owner can SEE the D3 surface before any go-live. No live score
+// or published JSON is touched. The d3_processing object is read only when GLASSBOX_W4_ON.
+//
+// Candidate A (NOVA 1, high confidence, positive):
+const D3_NOTE_A =
+  "מוצר בעיבוד מינימלי — דפוס ההרכב שלו מתאם, במחקרים גדולים על אוכלוסיות רבות, עם תוצאות תזונתיות חיוביות.";
+// Candidate B (NOVA 3–4, medium/high confidence, negative, hedged):
+const D3_NOTE_B =
+  "דפוס הרכב זה מתאם, במחקרים גדולים על אוכלוסיות רבות, עם צריכה תזונתית גבוהה יותר של סוכר, שומן ונתרן — לא אמירה על מוצר זה בפני עצמו.";
+// Candidate C full form (low confidence, any class):
+const D3_NOTE_C_FULL =
+  "הרכב המוצר לא פורט במלואו — לא ניתן להעריך את דפוס העיבוד בביטחון. האומדן הנוכחי הוא זמני.";
+// Candidate C mobile-compressed variant:
+const D3_NOTE_C_MOBILE =
+  "הרכב המוצר לא פורט במלואו — האומדן לדפוס העיבוד הוא זמני.";
+
+export const glassBoxProcessingPreview: BariProductVM[] = [
+  {
+    // NOVA-1, high confidence → Candidate A (positive). A clean single-ingredient product.
+    id: "preview_d3_nova1",
+    name: "שיבולת שועל מלאה",
+    imageUrl: null,
+    score: 88,
+    grade: "A",
+    insightLine: "רכיב יחיד, בעיבוד מינימלי — מהבולטים במדף.",
+    confidence: "verified",
+    expansion: previewExpansion({
+      ingredients: "100% שיבולת שועל מלאה",
+      positiveSignals: ["רכיב יחיד, בעיבוד מינימלי"],
+    }),
+    rowVerdict: "רכיב יחיד, בעיבוד מינימלי — מהבולטים במדף.",
+    d3_processing: {
+      nova_class: 1,
+      confidence: "high",
+      note_he: D3_NOTE_A,
+    },
+  },
+  {
+    // NOVA 3–4, high confidence → Candidate B (negative, hedged "לא אמירה על מוצר זה").
+    id: "preview_d3_nova4",
+    name: "חטיף תירס בטעם גבינה",
+    imageUrl: null,
+    score: 44,
+    grade: "D",
+    insightLine: "דפוס הרכב מהונדס — עוצר נמוך בשל סוכר, שומן ונתרן.",
+    confidence: "verified",
+    expansion: previewExpansion({
+      positiveSignals: [],
+      limitingFactors: ["סוכר, שומן ונתרן גבוהים"],
+    }),
+    rowVerdict: "דפוס הרכב מהונדס — עוצר נמוך בשל סוכר, שומן ונתרן.",
+    d3_processing: {
+      nova_class: 4,
+      confidence: "high",
+      note_he: D3_NOTE_B,
+    },
+  },
+  {
+    // Low confidence → Candidate C (provisional). Full form on desktop, compressed on mobile.
+    id: "preview_d3_lowconf",
+    name: "מוצר מעובד — תווית חלקית",
+    imageUrl: null,
+    score: 58,
+    grade: "C",
+    insightLine: "ההרכב לא פורט במלואו — האומדן זמני.",
+    confidence: "partial",
+    expansion: previewExpansion({
+      confidenceLabel: "נתונים חלקיים",
+    }),
+    rowVerdict: "ההרכב לא פורט במלואו — האומדן לדפוס העיבוד זמני.",
+    d3_processing: {
+      nova_class: 3,
+      confidence: "low",
+      note_he: D3_NOTE_C_FULL,
+      note_he_mobile: D3_NOTE_C_MOBILE,
+    },
+  },
+];
