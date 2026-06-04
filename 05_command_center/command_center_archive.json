@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T15:16:23",
+  "generated_at": "2026-06-04T15:41:40",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -2288,6 +2288,29 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-179",
+      "title": "Glass Box — Evidence-Aware Engine Evolution (program)",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-03",
+      "completed_at": "2026-06-04",
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). Owner-directed close: the Glass Box program-of-record role transfers to TASK-181 (TASK-179's A–Z sub-letters were exhausted; TASK-181 succeeds it and carries W3/W4/W5). No open deliverable remains on TASK-179 itself — all 26 sub-tasks (179A–179Z) are CLOSED, independently verified against the registry status scan this session. Delivered & verified under TASK-179: W0 six-dimension contract (DEC-006), W1 D5/D6 transparency+confidence LIVE (BARI_GLASSBOX_D5D6), W1.5 DIAAS signal (BARI_GLASSBOX_W15), W2 additive prototype (20 dossiers, EV-041) + AdditivePanel LIVE on hummus+maadanim, W2 expansion to bread+veg-spreads, and the W4 D3 de-moralization spec (179Z, Product D7 co-signed). Remaining waves continue under TASK-181: W3 OPEN (181A–181D), W4 READY (spec done), W5 BACKLOG. roadmap_impact close-gate satisfied (cc_reviewed set). Frozen invariants re-verified untouched. No score moved by this close.\n",
+      "summary": "Program-of-record to evolve BSIP2 from a single collapsed grade into six explicit, separable dimensions (D1 nutrition · D2 ingredient evidence · D3 processing signal · D4 additive evidence · D5 transparency/disclosure · D6 confidence) while PRESERVING one decisive consumer grade. Born from the clinician stress-test (2026-06-03): label visibility is partial, engineering is not inherently bad, additives need evidence not vibes, and the engine must not pretend certainty. Lean sequencing: ship the cheap honesty axes (D5/D6) first; treat the additive library as a DEMAND-GATED bet. All work is flagged, OFF = byte-identical, owner-gated before any published score moves; frozen invariants (milk/snack-ceiling/bread) re-verified, never assumed. Sub-tasks created per wave as each is initiated (SIE/TASK-171 pattern). First in flight: TASK-179A (Research scoping of enrichment frameworks).",
+      "work_type": "objective",
+      "drift_ack": "Closure-drift on TASK-179 is the return-header regex (TASK-\\d+) collapsing the sub-task header **Task:** TASK-179A → TASK-179. The dossier is authored by 179A (CLOSED, deliverable expected); the umbrella is legitimately IN_PROGRESS (objective program-of-record). Not real drift — same pattern affects any lettered sub-task whose parent is still open.",
+      "reopened_at": null,
+      "age_days": 1,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-179A",
       "title": "Engine-enrichment reference frameworks — scoping dossier",
       "owner": "research-agent",
@@ -3035,6 +3058,29 @@
       "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181A",
+      "title": "Glass Box W3 — Research: expand additive library to full shelf-frequent set + wire EFSA/JECFA/FDA evidence sources",
+      "owner": "research-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04). Artifact verified at 01_framework/glass_box/additive_library_expanded_v1.md (35 KB). Claims independently confirmed against the file, not the return prose: (1) NO evidence tiers assigned — header \"What this is NOT\" + §6 \"Handoff to Nutrition — explicit non-decisions\" frame every tiering judgment as an open question for 181B (incl. line 473 \"confirm these are functional\", which is a question to Nutrition, not an assignment); (2) integrity — score_engine.py / constants.py absent from git changes, only the .md was created, no comparison JSON newly modified by the agent; (3) 36 additives (20 prototype carried + 16 new), per-corpus frequency table present; (4) 9 EVIDENCE-GAP additives recorded, each with a JECFA/FDA fallback anchor, none fabricated (CLAUDE.md hard rule honored). Two findings propagated downstream (not blockers): (a) SCOPE — agent scanned the *displayed* JSONs per spec; displayed bread JSON carries ingredient text for only 9/24 products → 0 additives on the displayed bread shelf; prototype bread additives carry forward at displayed-frequency 0 (consistent with TASK-179Y bread glassBox=false). (b) WIRING GAP — EFSA numeric ADI + JECFA ADI have no free REST API (web-scraped); openfda.py covers recalls/AEs not GRAS/CFR; agent recommends a one-time EFSA OpenFoodTox bulk import — routed to 181C (Product maintenance/wiring decision).\n",
+      "summary": "Expand the D4 additive library from the 24-row prototype (additive_prototype_set_v1.md) to the full set of additives observed on Israeli shelves across the displayed corpora (hummus/maadanim/bread/veg-spreads + any next category). Guardrail: classify SHELF-PRESENT additives, not the full E-number space. Bulk-import + curate evidence from EFSA OpenFoodTox, JECFA, and FDA additive evaluations (import-and-curate, NOT live-per-product). Deliver: an expanded additive evidence sheet (per-additive: identity, function, EFSA/JECFA/FDA evaluation refs, ADI where set) ready for Nutrition tiering in 181B. No scoring, no tiering decisions (Nutrition owns tiers).",
+      "work_type": "research",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
       "cc_reviewed": "2026-06-04",
       "banked_asset": null
     },

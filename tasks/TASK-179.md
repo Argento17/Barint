@@ -2,12 +2,25 @@
 id: TASK-179
 title: Glass Box — Evidence-Aware Engine Evolution (program)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-03
-depends_on: []
-blocks: []
-category_id: null
+completed_at: 2026-06-04
+cc_reviewed: 2026-06-04
+superseded_by: TASK-181
+close_reason: >
+  CC close-readiness gate PASS (2026-06-04). Owner-directed close: the Glass Box
+  program-of-record role transfers to TASK-181 (TASK-179's A–Z sub-letters were
+  exhausted; TASK-181 succeeds it and carries W3/W4/W5). No open deliverable remains
+  on TASK-179 itself — all 26 sub-tasks (179A–179Z) are CLOSED, independently verified
+  against the registry status scan this session. Delivered & verified under TASK-179:
+  W0 six-dimension contract (DEC-006), W1 D5/D6 transparency+confidence LIVE
+  (BARI_GLASSBOX_D5D6), W1.5 DIAAS signal (BARI_GLASSBOX_W15), W2 additive prototype
+  (20 dossiers, EV-041) + AdditivePanel LIVE on hummus+maadanim, W2 expansion to
+  bread+veg-spreads, and the W4 D3 de-moralization spec (179Z, Product D7 co-signed).
+  Remaining waves continue under TASK-181: W3 OPEN (181A–181D), W4 READY (spec done),
+  W5 BACKLOG. roadmap_impact close-gate satisfied (cc_reviewed set). Frozen invariants
+  re-verified untouched. No score moved by this close.
 roadmap_impact: true
 work_type: objective
 drift_ack: "Closure-drift on TASK-179 is the return-header regex (TASK-\\d+) collapsing the sub-task header **Task:** TASK-179A → TASK-179. The dossier is authored by 179A (CLOSED, deliverable expected); the umbrella is legitimately IN_PROGRESS (objective program-of-record). Not real drift — same pattern affects any lettered sub-task whose parent is still open."
@@ -27,7 +40,11 @@ summary: >
 
 # TASK-179 — Glass Box: Evidence-Aware Engine Evolution
 
-**Status:** **W0 (foundation) COMPLETE 2026-06-04** — TASK-179A (enrichment scoping) · TASK-179B
+**Status:** **CLOSED 2026-06-04 — superseded by [[TASK-181]] as Glass Box program-of-record.**
+W0–W2 delivered & verified here; W3 (open) / W4 (ready) / W5 (backlog) continue under TASK-181.
+History below is retained as the W0–W2 record.
+
+**Original status line:** **W0 (foundation) COMPLETE 2026-06-04** — TASK-179A (enrichment scoping) · TASK-179B
 (six-dimension contract) · TASK-179C (Product co-sign + owner ratification) all CLOSED; the four
 governance postures + D-SCO-1 rollup resolved (**DEC-006**). **W1 (D5 transparency + D6 confidence —
 the cheap honesty axes) is cleared to build.** Later wave sub-tasks created as the owner initiates
@@ -91,6 +108,7 @@ Cheap, unfalsifiable honesty ships first; the expensive maintenance-heavy librar
 - **W2 BUILD COMPLETE 2026-06-04** — TASK-179S (CLOSED: GLASSBOX_W2_ADDITIVES 20 entries in constants.py, detect_additives_d4() + BARI_GLASSBOX_W2 flag in score_engine.py, verify PASS 0-diff 342 products, Phase 5 pilot JSON enrichment with explanation_he from w2_additive_copy_v1.md — 127 products, 283 strings, 0 empty) · TASK-179T (CLOSED: AdditivePanel.tsx + analytics.ts, severity chip on entry point, non-expanding empty state, 6 instrumentation events, Design-approved tier labels, mobile 375px clear, build/lint/tsc 0 errors) · TASK-179U (CLOSED: w2_additive_copy_v1.md content-signed — 12 unchanged / 8 trimmed ≤120 chars, DEC-006 clean) · TASK-179V (CLOSED: QA 2-pass gate — RT-2/RT-3/RT-1/fallback all PASS). **W2 LIVE on pilot pages (hummus + maadanim) gated by GLASSBOX_D5D6_ON.**
 - **W2 GOVERNANCE + EXPANSION COMPLETE 2026-06-04** — TASK-179W (CLOSED: EV-041 filed in bsip2_evidence_registry_v1.md lines 931–954 — 6-tier model, W2 presentation-only scope, W3 demand-gate constraint all documented; compliance gap closed) · TASK-179Y (CLOSED: D4 wired to bread_frontend_v2.json [17/24 products, 70.8%] + veg-spreads consistency gap closed; KNOWN LIMITATION: bread glassBox=false, additive panel pre-positioned but not rendered until Glass Box W1 infrastructure migrated to bread — future task; veg-spreads fully active) · TASK-179Z (CLOSED: d3_demoralization_spec_v1.md — D3 reframe from deterministic NOVA penalty → probabilistic population-level signal; d3_processing_signal struct + confidence-scaling + D3→D6 deferral; Product D7 co-sign 2026-06-04; draft EV-042 authored, filing deferred to W4 open after TASK-179X verdict). **W4 pre-work complete; D3 reframe ready to build the moment TASK-179X passes.**
 - **W2 CLOSED 2026-06-04 (owner override)** — TASK-179X (engagement gate) closed by owner authorization without gate verdict. Moderated sessions were not run; the three demand thresholds remain unmeasured. Owner declared W2 complete on product judgment (conversation 2026-06-04). W3 is unblocked. The engagement gate spec (`w2_engagement_gate_spec_v1.md`) is preserved — demand measurement can be run as a standalone W3-parallel activity if desired, but is no longer a gate. All W2 sub-tasks CLOSED: 179Q · 179R · 179S · 179T · 179U · 179V · 179W · 179X · 179Y · 179Z.
+- **W3 OPENED 2026-06-04** — owner initiated. TASK-179's A–Z sub-letters are exhausted, so W3 is a fresh umbrella **TASK-181** (depends_on TASK-179) + children: **181A** (Research, IN_PROGRESS — expand library to full shelf-frequent set + EFSA/JECFA/FDA evidence wiring) · **181B** (Nutrition, BLOCKED on 181A — tier expanded library + registry, D7 co-sign) · **181C** (Product, IN_PROGRESS — maintenance-cadence protocol + go/no-go gate + demand-revisit checkpoint, the named dominant risk) · **181D** (Data, BLOCKED on 181B — wire detector + regen pilot JSONs, annotate-only / OFF byte-identical). **Annotate-only**: D4 does NOT enter the headline grade in W3; **score-integration is carved out as a separate future owner-gated decision** (frozen-invariant tripwire). W3 entered on product judgment — the W2 demand gate was bypassed (recorded in TASK-181 Provenance).
 
 Pilot categories (proposed): **hummus + maadanim** (cleanest — re-scored, EV-029-fixed). Owner to confirm.
 
