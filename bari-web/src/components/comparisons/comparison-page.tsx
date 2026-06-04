@@ -33,6 +33,8 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
   /** Optional editorial CTA (e.g. a blog deep-dive) shown under the prologue. */
   blogLink?: { href: string; label: string };
   initialExpandedProductId?: string | null;
+  /** Category slug for analytics context (TASK-179T — additive panel engagement events). */
+  category?: string;
 }
 
 export function ComparisonPage<TFilterId extends string = string>({
@@ -46,6 +48,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   categoryNote,
   blogLink,
   initialExpandedProductId = null,
+  category,
 }: ComparisonPageProps<TFilterId>) {
   const [activeFilters, setActiveFilters] = useState<TFilterId[]>([]);
 
@@ -115,6 +118,7 @@ export function ComparisonPage<TFilterId extends string = string>({
           metricSpecs={metricSpecs}
           showRail
           initialExpandedProductId={expandedProductId}
+          category={category}
         />
 
         <MethodologyFooter lines={[...methodologyLines]} wide />

@@ -55,6 +55,7 @@ export function HummusComparisonPage({
       metricSpecs={HUMMUS_METRIC_SPECS}
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
+      category="hummus"
     />
   );
 }

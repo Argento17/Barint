@@ -20,11 +20,14 @@ export function ComparisonTable({
   /** Desktop page hosts the side band rail; phone-frame pages omit it. */
   showRail = false,
   initialExpandedProductId = null,
+  category,
 }: {
   products: BariProductVM[];
   metricSpecs: readonly MetricSpec[];
   showRail?: boolean;
   initialExpandedProductId?: string | null;
+  /** Category slug passed through to analytics context in AdditivePanel. */
+  category?: string;
 }) {
   const [open, setOpen] = useState<Set<string>>(
     () => new Set(initialExpandedProductId ? [initialExpandedProductId] : [])
@@ -57,8 +60,20 @@ export function ComparisonTable({
     scroll.scrollTo({ top: el.offsetTop - 8, behavior: reduce ? "auto" : "smooth" });
   }, []);
 
-  const metricHeader = metricSpecs.map((s) => s.label).join(" · ");
+  const metricHeader = metricSpecs
+    .map((s) => (s.perLabel ? `${s.label} ${s.perLabel}` : s.label))
+    .join(" · ");
   const railBands = showRail ? railBandsFor(products) : [];
+
+  // Average Bari score of the products currently in view (recomputes under shelf filters).
+  // The header's score column used to show the product COUNT after "ציון ·", which read like
+  // a score sitting directly above the score chips. The count already lives in the page's
+  // metadata line; the column now shows a clearly-labelled average instead.
+  const scored = products.filter((p) => typeof p.score === "number");
+  const averageScore =
+    scored.length > 0
+      ? Math.round(scored.reduce((sum, p) => sum + (p.score as number), 0) / scored.length)
+      : null;
 
   // Precompute the in-list band dividers in corpus order (Invariant 1). A divider is
   // shown on the first row whose score band differs from the row above it.
@@ -86,10 +101,18 @@ export function ComparisonTable({
         {metricSpecs.length > 0 ? (
           <div className="bari-cmp-colhead" aria-hidden>
             <span className="bari-cmp-rank">#</span>
-            <span />
-            <span>מוצר ותובנה</span>
+            <span className="bari-cmp-colhead-thumb" />
+            <span className="bari-cmp-colhead-name">מוצר ותובנה</span>
             <span className="bari-cmp-colhead-metric">{metricHeader}</span>
-            <span className="bari-cmp-colhead-grade">ציון · {products.length}</span>
+            <span className="bari-cmp-colhead-grade">
+              ציון
+              {averageScore != null ? (
+                <>
+                  {" · ממוצע "}
+                  <b className="bari-cmp-colhead-avg">{averageScore}</b>
+                </>
+              ) : null}
+            </span>
           </div>
         ) : null}
 
@@ -111,6 +134,7 @@ export function ComparisonTable({
               onToggle={onToggle}
               metricSpecs={metricSpecs}
               registerRow={registerRow}
+              category={category}
             />
           </Fragment>
         ))}

@@ -118,6 +118,7 @@ export const ComparisonRow = memo(function ComparisonRow({
   onToggle,
   metricSpecs,
   registerRow,
+  category,
 }: {
   product: BariProductVM;
   rank: number;
@@ -125,6 +126,8 @@ export const ComparisonRow = memo(function ComparisonRow({
   onToggle: (id: string) => void;
   metricSpecs: readonly MetricSpec[];
   registerRow: (id: string, el: HTMLElement | null) => void;
+  /** Category slug for analytics context (anonymous — no user ID). */
+  category?: string;
 }) {
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -215,6 +218,13 @@ export const ComparisonRow = memo(function ComparisonRow({
                     ? product.glassBox
                     : undefined
                 }
+                d4Additives={
+                  GLASSBOX_D5D6_ON && product.d4_additives !== undefined
+                    ? product.d4_additives
+                    : undefined
+                }
+                productId={product.id}
+                category={category}
               />
             ) : null}
           </div>

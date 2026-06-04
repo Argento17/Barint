@@ -435,6 +435,276 @@ CONFIDENCE_INSUFFICIENT_CEILING = 50   # confidence < 40
 CONFIDENCE_LOW_CEILING          = 75   # confidence 40-59
 
 # ---------------------------------------------------------------------------
+# TASK-179G — Glass Box D5 (transparency) + D6 (confidence) gate.
+# Gated by env flag BARI_GLASSBOX_D5D6 (default OFF). Flag OFF → every constant
+# below is inert and the engine is byte-identical to today. Source of truth:
+# 01_framework/glass_box/d5_d6_rule_spec_v1.md §1–§2. Evidence registry:
+# EV-035 (taxonomy), EV-036 (endemic-flavoring exclusion), EV-037 (band→confidence
+# reduction), EV-038 (gate state machine + null floor), EV-039 (flag).
+# All numeric thresholds are PROPOSALS pending Product D7 co-sign.
+# ---------------------------------------------------------------------------
+
+# EV-037 — D5-band → D6 confidence reduction (the ONLY new D6 input term).
+# full/minor (structural-only) = 0; partial (closable gaps) = -10; severe = -20.
+GLASSBOX_D5_CONF_REDUCTION = {"full": 0, "minor": 0, "partial": 10, "severe": 20}
+
+# EV-038 — gate state machine thresholds.
+# DEMOTE_CEILING_BOUND = 60 is a no-op restatement of the live High/Medium band edge
+# (compute_confidence sets a ceiling only for bands below 60); it changes no behavior
+# on its own. NULL_FLOOR = 30 is the NEW null-vs-cap boundary (withhold fires only when
+# d6_confidence < 30 AND the D5-band is 'severe', OR the panel is absent).
+GLASSBOX_DEMOTE_CEILING_BOUND = 60
+GLASSBOX_NULL_FLOOR           = 30
+GLASSBOX_WITHHELD_LABEL       = "לא נוקד"
+GLASSBOX_PARTIAL_FLAG         = "ניתוח חלקי"
+
+# EV-035 / EV-036 — D5 detector lexicons (P2-normalized Hebrew).
+# Nutrition-table bleed anchors (P1 truncation): everything at/after these is not
+# ingredients. Observed in every maadanim/hummus ingredients_raw string.
+GLASSBOX_NUTRITION_BLEED_ANCHORS = (
+    "ערכים תזונתיים", "הנתונים המדויקים", "מאפיינים נוספים", "ערך תזונתי",
+)
+
+# G4 generic-additive-class lexicon: a bare class term (NOT followed by '(' or ':'
+# introducing an E-code/name) is a closable disclosure gap.
+GLASSBOX_GENERIC_ADDITIVE_TERMS = (
+    "מייצבים", "מייצב", "מתחלב", "חומרי שימור", "חומר משמר", "חומרים משמרים",
+    "צבעי מאכל", "צבע מאכל", "חומרי תפיחה", "מגביר חוזק", "מווסתי חומציות",
+    "מווסת חומציות", "מסמיך", "נוגד חמצון", "ממתיקים",
+)
+# Endemic flavoring (EV-036): detected + annotated, but EXCLUDED from band-raising
+# and from the D6 reduction (bare in ~70% of maadanim panels).
+GLASSBOX_ENDEMIC_FLAVORING_TERMS = (
+    "חומרי טעם וריח", "חומר טעם וריח", "חומרי טעם ו ריח", "חומר טעם ו ריח",
+)
+
+# G2 compound-food lexicon: named compound expecting an internal '(...)' breakdown.
+GLASSBOX_COMPOUND_TERMS = (
+    "שוקולד", "עוגיות", "קרם", "ציפוי", "סירופ גלוקוזה", "נבט אורז", "ביסקוויט",
+    "ופל", "קרמל", "מילוי", "ריבה",
+)
+
+# G3 protein-blend markers (structural blend) and named-source markers (no gap).
+GLASSBOX_PROTEIN_BLEND_TERMS = (
+    "תערובת חלבונים", "תערובת חלבון", "חלבון צמחי", "חלבונים צמחיים",
+)
+GLASSBOX_PROTEIN_NAMED_SOURCES = (
+    "חלבוני מי גבינה", "חלבון מי גבינה", "רכיבי חלב", "גבינה לבנה", "חלבון חלב",
+    "חלבון אפונה", "חלבון אורז", "חלבון סויה",
+)
+GLASSBOX_PROTEIN_INCOMPLETE_NAMED = ("קולגן", "ג'לטין", "ג׳לטין", "ג'לטינה", "ג׳לטינה")
+
+# ---------------------------------------------------------------------------
+# TASK-179P — Glass Box W1.5 DIAAS protein-quality signal.
+# Gated by env flag BARI_GLASSBOX_W15 (default OFF). Flag OFF → engine is
+# byte-identical to the BARI_GLASSBOX_D5D6 baseline. Source of truth:
+# 01_framework/glass_box/diaas_source_table_v1.md §Nutrition Rule Definition.
+# Evidence registry: EV-040 (BSIP2 evidence registry).
+# Rule A magnitude (+3 raw D2 score points) requires Product D7 co-sign before
+# engine activation. Flag remains OFF by default until that co-sign is received.
+# ---------------------------------------------------------------------------
+# Rule A — complete-protein whitelist (EV-040 / diaas_source_table_v1 Phase 2).
+# Each tuple is (pattern_text, source_label). Pattern is matched against the
+# P2-normalized ingredient text (Hebrew final-letter normalization applied).
+# Only "מבודד" (isolate)-qualified soy qualifies (soy flour DIAAS ~55–65, below ≥75).
+DIAAS_COMPLETE_SOURCES = (
+    # Whey protein (WPI / whey proteins general)
+    ("חלבון מי גבינה מבודד",  "whey_protein_isolate"),
+    ("חלבוני מי גבינה",       "whey_proteins_general"),
+    # Casein / milk protein
+    ("קזאין",                  "casein"),
+    ("חלבוני חלב",             "milk_protein"),
+    ("חלבוני גבינה",           "cheese_protein"),
+    ("casein",                 "casein_en"),
+    ("milk protein",           "milk_protein_en"),
+    # Egg / egg white
+    ("חלבון ביצה",             "egg_white"),
+    ("ביצה",                   "whole_egg"),
+    ("egg white",              "egg_white_en"),
+    ("whole egg",              "whole_egg_en"),
+    # Soy protein ISOLATE only — NOT generic "סויה" or "קמח סויה"
+    ("חלבון סויה מבודד",       "soy_protein_isolate"),
+    ("soy protein isolate",    "soy_protein_isolate_en"),
+    ("whey protein isolate",   "wpi_en"),
+    ("whey protein concentrate", "wpc_en"),
+)
+
+# Rule B — disclosure-gap trigger patterns (EV-040).
+# Generic protein declarations without a named complete source.
+DIAAS_DISCLOSURE_GAP_TRIGGERS = (
+    ("תערובת חלבונים",       "protein_blend_generic"),
+    ("חלבון צמחי מבודד",     "plant_protein_isolated_generic"),
+    ("חלבון צמחי",           "plant_protein_generic"),
+)
+
+# Rule A credit magnitude — bounded to ≤ 0.5 grade band on its own.
+# Product D7 co-sign required before activation (TASK-179P Phase 3 note).
+DIAAS_D2_CREDIT = 3
+
+# D2 sub-score cap — protein_quality dimension is 0–100; credit cannot overflow.
+DIAAS_D2_SCORE_CAP = 100
+
+# ---------------------------------------------------------------------------
+# TASK-179S — Glass Box W2 D4 additive tier lookup table.
+# Gated by env flag BARI_GLASSBOX_W2 (default OFF). Flag OFF → every constant
+# below is inert and the engine is byte-identical to the BARI_GLASSBOX_W15
+# baseline. Source of truth: 01_framework/glass_box/additive_prototype_set_v1.md.
+# Tier values: "functional" | "likely-neutral" | "dose-dependent" | "contested"
+#              | "disclosure-gap" | "confirmed-negative" | "unclassified".
+# No score movement — D4 is presentation-only for the W2 prototype.
+# Evidence registry: EV-041 (filed by Nutrition before Phase 3 ships, TASK-179U).
+# ALL 20 entries sourced from additive_prototype_set_v1.md §Nutrition Phase 3 Co-sign.
+# DO NOT add additives not in the sheet; unlisted = tier "unclassified".
+# ---------------------------------------------------------------------------
+GLASSBOX_W2_ADDITIVES: dict = {
+    "E330": {
+        "name_he": "חומצת לימון",
+        "name_en": "Citric acid",
+        "tier": "functional",
+        "function_he": "מווסת חומציות / מונע חמצון",
+        "match_patterns_he": ["חומצת לימון", "חומצה ציטרית"],
+    },
+    "E202": {
+        "name_he": "פוטסיום סורבט",
+        "name_en": "Potassium sorbate",
+        "tier": "likely-neutral",
+        "function_he": "חומר משמר אנטי-מיקרוביאלי",
+        "match_patterns_he": ["פוטסיום סורבט", "סורבט אשלגן", "סורבט פוטסיום"],
+    },
+    "E300": {
+        "name_he": "חומצה אסקורבית",
+        "name_en": "Ascorbic acid",
+        "tier": "functional",
+        "function_he": "נוגד חמצון / משפר בצק",
+        "match_patterns_he": ["חומצה אסקורבית", "ויטמין C", "ויטמין c"],
+    },
+    "E1422": {
+        "name_he": "עמילן מעובד",
+        "name_en": "Modified starch",
+        "tier": "likely-neutral",
+        "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+        "match_patterns_he": ["עמילן מעובד", "עמילן שונה", "עמילן מוקשה", "עמילן משונה"],
+    },
+    "E282": {
+        "name_he": "פרופיונט סידן",
+        "name_en": "Calcium propionate",
+        "tier": "likely-neutral",
+        "function_he": "חומר משמר נגד עובש בלחם",
+        "match_patterns_he": ["פרופיונט סידן", "סידן פרופיונט", "קלציום פרופיונט"],
+    },
+    "E481": {
+        "name_he": "נתרן סטארויל לקטילט",
+        "name_en": "Sodium stearoyl lactylate",
+        "tier": "likely-neutral",
+        "function_he": "מרכך בצק / משפר נפח לחם",
+        "match_patterns_he": ["נתרן סטארויל לקטילט", "SSL", "נתרן סטיארויל לקטילאט"],
+    },
+    "E407": {
+        "name_he": "קרגינן",
+        "name_en": "Carrageenan",
+        "tier": "contested",
+        "function_he": "מייצב / חומר מסמיך ממקור אצות",
+        "match_patterns_he": ["קרגינן", "קרגינאן", "קאראגינן"],
+    },
+    "E471": {
+        "name_he": "מונו ודיגליצרידים",
+        "name_en": "Mono- and diglycerides of fatty acids",
+        "tier": "likely-neutral",
+        "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+        "match_patterns_he": [
+            "מונו ודיגליצרידים של חומצות שומן",
+            "מונו ודיגליצרידים",
+            "מונוגליצרידים",
+            "דיגליצרידים",
+        ],
+    },
+    "E472e": {
+        "name_he": "DATEM",
+        "name_en": "Diacetyl tartaric acid esters of mono- and diglycerides",
+        "tier": "likely-neutral",
+        "function_he": "מרכך בצק / חומר תחליב לחם",
+        "match_patterns_he": ["DATEM", "datem", "חומצה טרטרית מונו ודיגליצרידים"],
+    },
+    "E415": {
+        "name_he": "קסנטן",
+        "name_en": "Xanthan gum",
+        "tier": "functional",
+        "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
+        "match_patterns_he": ["קסנטן", "קסנטאן", "קסנתן"],
+    },
+    "E450": {
+        "name_he": "פוספטים",
+        "name_en": "Phosphates (E450/E451/E452)",
+        "tier": "dose-dependent",
+        "function_he": "מייצב חלבוני חלב / חומר תחליב",
+        "match_patterns_he": ["פוספט", "פוספטים", "דיפוספט", "טריפוספט", "פוליפוספט"],
+    },
+    "E440": {
+        "name_he": "פקטין",
+        "name_en": "Pectin",
+        "tier": "functional",
+        "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+        "match_patterns_he": ["פקטין"],
+    },
+    "E410": {
+        "name_he": "לוקוסט-בין גאם",
+        "name_en": "Locust bean gum",
+        "tier": "functional",
+        "function_he": "מייצב טבעי ממקור חרוב",
+        "match_patterns_he": ["לוקוסט-בין גאם", "לוקוסט בין גאם", "קרוב בין גאם", "קרוב-בין גאם"],
+    },
+    "E412": {
+        "name_he": "גואר",
+        "name_en": "Guar gum",
+        "tier": "functional",
+        "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+        "match_patterns_he": ["גואר", "גואר גאם", "גואר גם"],
+    },
+    "E955": {
+        "name_he": "סוכרלוז",
+        "name_en": "Sucralose",
+        "tier": "dose-dependent",
+        "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+        "match_patterns_he": ["סוכרלוז", "sucralose"],
+    },
+    "E950": {
+        "name_he": "אצסולפאם K",
+        "name_en": "Acesulfame potassium",
+        "tier": "dose-dependent",
+        "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+        "match_patterns_he": ["אצסולפאם", "אצסולפם", "acesulfame", "אצסולפאם k", "אצסולפאם K"],
+    },
+    "E466": {
+        "name_he": "קרבוקסי מתיל צלולוז",
+        "name_en": "Carboxymethylcellulose",
+        "tier": "contested",
+        "function_he": "מייצב / מסמיך על בסיס צלולוז",
+        "match_patterns_he": ["קרבוקסי מתיל צלולוז", "קרבוקסימתיל צלולוז", "CMC", "cmc"],
+    },
+    "E150": {
+        "name_he": "צבע קרמל",
+        "name_en": "Caramel color",
+        "tier": "disclosure-gap",
+        "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+        "match_patterns_he": ["צבע קרמל", "קרמל"],
+    },
+    "E211": {
+        "name_he": "נתרן בנזואט",
+        "name_en": "Sodium benzoate",
+        "tier": "dose-dependent",
+        "function_he": "חומר משמר אנטי-מיקרוביאלי בסביבה חומצית",
+        "match_patterns_he": ["נתרן בנזואט", "בנזואט נתרן"],
+    },
+    "E320": {
+        "name_he": "BHA",
+        "name_en": "Butylated hydroxyanisole",
+        "tier": "contested",
+        "function_he": "נוגד חמצון לשומנים — מסווג IARC 2B (בעלי חיים)",
+        "match_patterns_he": ["BHA", "bha", "בוטילציאניזול", "בוטיל הידרוקסיאניזול"],
+    },
+}
+
+# ---------------------------------------------------------------------------
 # Structural emptiness gate thresholds (SRC-04)
 # ---------------------------------------------------------------------------
 SE_KCAL_THRESHOLD    = 80.0   # kcal/100g

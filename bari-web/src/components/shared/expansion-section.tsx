@@ -3,8 +3,10 @@
 import { useState, type ReactNode } from "react";
 
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
+import { GLASSBOX_D5D6_ON } from "@/lib/feature-flags";
 import { cn } from "@/lib/utils";
 import type {
+  AdditiveEntry,
   BariConfidence,
   BariExpansionVM,
   BariGlassBoxVM,
@@ -15,6 +17,7 @@ import {
   resolveDisclosureLines,
   resolveWithholdReason,
 } from "@/lib/view-models";
+import { AdditivePanel } from "@/components/shared/AdditivePanel";
 
 const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string }[] = [
   { key: "energyKcal", label: 'קק"ל', unit: "" },
@@ -337,16 +340,40 @@ function IngredientList({ ingredients }: { ingredients: string }) {
   );
 }
 
-function TechnicalDetails({ expansion }: { expansion: BariExpansionVM }) {
+function TechnicalDetails({
+  expansion,
+  d4Additives,
+  productId,
+  category,
+}: {
+  expansion: BariExpansionVM;
+  /** TASK-179T: D4 additive entries (flag-gated; undefined when flag OFF or not a pilot category). */
+  d4Additives?: AdditiveEntry[];
+  /** Anonymous shelf position for analytics context. */
+  productId?: string;
+  /** Category slug for analytics context. */
+  category?: string;
+}) {
   const nutrition = expansion.nutrition;
   const hasNutrition =
     nutrition != null && Object.values(nutrition).some((v) => v != null);
   const hasIngredients = Boolean(expansion.ingredients?.trim());
+  // The additive panel is always rendered for pilot categories when the flag is ON
+  // (even for empty — the empty state is part of the engagement gate signal).
+  const showAdditivePanel = GLASSBOX_D5D6_ON && d4Additives !== undefined;
 
-  if (!hasNutrition && !hasIngredients) return null;
+  if (!hasNutrition && !hasIngredients && !showAdditivePanel) return null;
 
   return (
     <div className="mt-3 space-y-2 border-t border-[rgba(17,19,24,0.06)] pt-2.5">
+      {/* TASK-179T: AdditivePanel renders BEFORE the nutrition table (spec §5.2). */}
+      {showAdditivePanel ? (
+        <AdditivePanel
+          additives={d4Additives ?? []}
+          productId={productId}
+          category={category}
+        />
+      ) : null}
       {hasNutrition && nutrition ? (
         <NutritionGrid nutrition={nutrition} servingNote={expansion.servingNote} />
       ) : null}
@@ -381,6 +408,9 @@ export function ExpansionSection({
   wide = false,
   confidencePromoted = false,
   glassBox,
+  d4Additives,
+  productId,
+  category,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -397,6 +427,17 @@ export function ExpansionSection({
    * disclosure note (demote) and the withhold reason (withhold). Presentation only.
    */
   glassBox?: BariGlassBoxVM;
+  /**
+   * TASK-179T — Glass Box W2 D4 additive entries. Passed (flag-gated) only when
+   * GLASSBOX_D5D6_ON is true AND the category is a W2 pilot (hummus / maadanim).
+   * Undefined → AdditivePanel not rendered. Empty array → panel renders empty state.
+   * Presentation only — no score movement.
+   */
+  d4Additives?: AdditiveEntry[];
+  /** Anonymous product shelf position ID for analytics context. */
+  productId?: string;
+  /** Category slug for analytics context. */
+  category?: string;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
   const confidenceText =
@@ -405,7 +446,10 @@ export function ExpansionSection({
   const hasTechnical =
     (expansion.nutrition != null &&
       Object.values(expansion.nutrition).some((v) => v != null)) ||
-    Boolean(expansion.ingredients?.trim());
+    Boolean(expansion.ingredients?.trim()) ||
+    // TASK-179T: additive panel counts as "technical" content (so the row never
+    // shows the "no details available" fallback when the panel is the only content).
+    (GLASSBOX_D5D6_ON && d4Additives !== undefined);
 
   // Render the "unscored" expansion for two cases:
   //  (a) a genuinely insufficient product (no glass box involved), and
@@ -473,7 +517,14 @@ export function ExpansionSection({
           </p>
         ) : null}
 
-        {hasTechnical ? <TechnicalDetails expansion={expansion} /> : null}
+        {hasTechnical ? (
+          <TechnicalDetails
+            expansion={expansion}
+            d4Additives={GLASSBOX_D5D6_ON ? d4Additives : undefined}
+            productId={productId}
+            category={category}
+          />
+        ) : null}
 
         <div className="flex items-center justify-between pt-2 lg:pt-1.5">
           <span

@@ -52,6 +52,7 @@ export function MaadanimComparisonPage({
       metricSpecs={MAADANIM_METRIC_SPECS}
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
+      category="maadanim"
     />
   );
 }

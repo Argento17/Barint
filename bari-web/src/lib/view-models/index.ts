@@ -131,6 +131,35 @@ export {
   resolveWithholdReason,
 } from "./glass-box-copy";
 
+// ─── D4 Additive Tier (Glass Box W2, TASK-179T) ─────────────────────────────────
+// Presentation-only. No score field. Disclosure/transparency surface only.
+// Tier taxonomy: 6 active tiers. "confirmed-negative" additives are scoring-level
+// vetoes and never appear in the D4 panel (they do not reach product.d4_additives).
+// Hebrew explanations come from the Content-owned TASK-179U sign-off.
+// DEC-006 Q3 posture: no alarm framing for any tier including contested/dose-dependent.
+export type AdditiveTier =
+  | "functional"
+  | "likely-neutral"
+  | "dose-dependent"
+  | "contested"
+  | "disclosure-gap"
+  | "unclassified";
+
+export interface AdditiveEntry {
+  /** E-number string, e.g. "E407". Displayed as a secondary parenthetical only —
+   *  never as the primary visible label (DEC-006). */
+  e_number: string;
+  /** Hebrew common name. Always the primary label. Example: "קרגינן". */
+  name_he: string;
+  tier: AdditiveTier;
+  /** Technological function in Hebrew. Shown in the "עוד" expanded sub-row. */
+  function_he: string;
+  /** Plain-language Hebrew one-liner. Max ~12 words (spec §5.1). Content sign-off required
+   *  (TASK-179U) before final ship. Draft copy from additive_prototype_set_v1.md acceptable
+   *  during build. */
+  explanation_he: string;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
@@ -155,6 +184,11 @@ export interface BariProductVM {
   /** TASK-179I: Glass Box D5/D6 presentation state. Optional + flag-gated (read only when
    *  NEXT_PUBLIC_GLASSBOX_D5D6 is ON). Absent → no glass-box surface. Presentation only. */
   glassBox?: BariGlassBoxVM;
+  /** TASK-179T: Glass Box W2 D4 additive tier data. Optional + flag-gated (same gate as
+   *  glassBox: NEXT_PUBLIC_GLASSBOX_D5D6). Absent / empty → AdditivePanel renders empty
+   *  state (לא זוהו תוספי מזון — still rendered, not hidden). Presentation only — no score
+   *  movement. Populated by TASK-179S (Data pipeline D4 detector). */
+  d4_additives?: AdditiveEntry[];
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────

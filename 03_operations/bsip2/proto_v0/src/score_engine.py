@@ -40,7 +40,17 @@ from constants import (
     SERVING_SUGGESTION_PROSE_MARKERS_HE,
     RED_LABEL_THRESHOLDS as _RED_LABEL_THRESHOLDS,
     score_to_grade,
+    GLASSBOX_D5_CONF_REDUCTION, GLASSBOX_DEMOTE_CEILING_BOUND, GLASSBOX_NULL_FLOOR,
+    GLASSBOX_WITHHELD_LABEL, GLASSBOX_PARTIAL_FLAG,
+    GLASSBOX_NUTRITION_BLEED_ANCHORS, GLASSBOX_GENERIC_ADDITIVE_TERMS,
+    GLASSBOX_ENDEMIC_FLAVORING_TERMS, GLASSBOX_COMPOUND_TERMS,
+    GLASSBOX_PROTEIN_BLEND_TERMS, GLASSBOX_PROTEIN_NAMED_SOURCES,
+    GLASSBOX_PROTEIN_INCOMPLETE_NAMED,
+    DIAAS_COMPLETE_SOURCES, DIAAS_DISCLOSURE_GAP_TRIGGERS,
+    DIAAS_D2_CREDIT, DIAAS_D2_SCORE_CAP,
+    GLASSBOX_W2_ADDITIVES,
 )
+import re as _re
 
 # TASK-144 — same activation toggle as signal_extractor; gates Fix 2 (fiber-not-applicable).
 # DEFAULT OFF (frozen behavior). Only the maadanim batch runner opts in via
@@ -62,13 +72,463 @@ RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "off").lower() == "on"
 RECAL_P0_YOGURT_TRIM = os.environ.get("BARI_RECAL_P0_YOGURT_TRIM", "off").lower() == "on"
 RECAL_P0_YOGURT_TRIM_CEILING = 89.9
 
+# TASK-179G — Glass Box D5 (transparency) + D6 (confidence) gate.
+# DEFAULT OFF → engine byte-identical to today (verified by verify_glassbox_off_identical.py).
+# Mirrors the RECAL_P0 / TASK144 flag pattern. Source: d5_d6_rule_spec_v1.md.
+# EV-035…EV-039 (bsip2_evidence_registry_v1.md). With OFF: the D5 detector is not invoked,
+# no D5 confidence reduction is applied, and the §2.2 gate state machine is not entered —
+# the current ceiling / insufficient_data path runs verbatim.
+GLASSBOX_D5D6_ON = os.environ.get("BARI_GLASSBOX_D5D6", "off").lower() == "on"
+
+# TASK-179P — Glass Box W1.5 DIAAS protein-quality signal.
+# DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_D5D6 baseline.
+# Source: diaas_source_table_v1.md §Nutrition Rule Definition (Phase 2). EV-040.
+# Rule A (+3 D2 credit) requires Product D7 co-sign before activation.
+# Rule B (D5 disclosure-gap flag) inherits Product approval via EV-037.
+BARI_GLASSBOX_W15 = os.environ.get("BARI_GLASSBOX_W15", "off").lower() == "on"
+
+# TASK-179S — Glass Box W2 D4 additive tier wire.
+# DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_W15 baseline.
+# Source: additive_prototype_set_v1.md §Nutrition Phase 3 Co-sign. EV-041.
+# No score movement; D4 signal is presentation-only for the W2 prototype.
+# Additives not in GLASSBOX_W2_ADDITIVES → tier "unclassified" (never invented).
+BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
+
+
+# ---------------------------------------------------------------------------
+# TASK-179P — DIAAS protein-quality detector (Glass Box W1.5).
+# Deterministic detector over the ingredient text. Returns Rule A (D2 credit)
+# and Rule B (D5 disclosure-gap flag) signals.
+# EV-040 (bsip2_evidence_registry). Source: diaas_source_table_v1 Phase 2.
+# ONLY invoked when BARI_GLASSBOX_W15 is ON (call site is flag-guarded).
+# ---------------------------------------------------------------------------
+
+# Hebrew final→medial normalization shared with the D5 detector (_GLASSBOX_FINAL_MAP
+# is defined below in the D5 section). We define a standalone helper here so the DIAAS
+# detector can be called independently of the D5 path.
+_DIAAS_FINAL_MAP = str.maketrans({"ם": "מ", "ן": "נ", "ץ": "צ", "ף": "פ", "ך": "כ"})
+
+
+def _diaas_normalize(s: str) -> str:
+    """Normalize Hebrew final-letter forms + collapse whitespace for DIAAS matching."""
+    if not s:
+        return ""
+    s = s.replace("\n", " ").replace("\r", " ").replace(".n", " ")
+    s = s.translate(_DIAAS_FINAL_MAP)
+    s = _re.sub(r"\s+", " ", s)
+    return s.strip().lower()
+
+
+def detect_diaas_signal(ingredient_text: str) -> dict:
+    """TASK-179P — detect DIAAS protein-quality signals from ingredient text.
+
+    Returns:
+        {
+            "rule_a_fired": bool,        # True if a complete-protein whitelist source found
+            "rule_a_source": str|None,   # The matched source label
+            "rule_b_fired": bool,        # True if a disclosure-gap trigger found
+            "rule_b_reason": str|None,   # Why Rule B fired
+        }
+
+    Rule A fires at most ONCE per product (guard against double-application).
+    Rule B fires when the panel declares a generic protein term without naming a
+    specific complete source.
+
+    ONLY called when BARI_GLASSBOX_W15 is ON. Caller is responsible for the flag guard.
+    """
+    if not ingredient_text:
+        return {
+            "rule_a_fired": False, "rule_a_source": None,
+            "rule_b_fired": False, "rule_b_reason": None,
+        }
+
+    norm = _diaas_normalize(ingredient_text)
+
+    # Rule A — scan complete-protein whitelist (fire once only).
+    rule_a_fired = False
+    rule_a_source = None
+    for pattern, label in DIAAS_COMPLETE_SOURCES:
+        if _diaas_normalize(pattern) in norm:
+            rule_a_fired = True
+            rule_a_source = label
+            break   # fire-once guard: stop at first match
+
+    # Rule B — scan disclosure-gap triggers.
+    # Rule B fires when a generic protein trigger is present AND Rule A did NOT fire
+    # (Rule A means the label did name a complete source; no disclosure gap for the
+    # credit-eligible component). If only generic terms appear (Rule A not fired) the
+    # protein quality cannot be evaluated — that is the D5 gap.
+    # Additional Rule B cases per EV-040 Phase 2 spec:
+    #   - Pea + rice both appear but no proportions declared → blend ambiguity
+    #   - Generic "מי גבינה" (not "חלבון מי גבינה") in a protein-featured context
+    rule_b_fired = False
+    rule_b_reason = None
+
+    if not rule_a_fired:
+        # Check explicit generic-protein trigger terms
+        for pattern, reason in DIAAS_DISCLOSURE_GAP_TRIGGERS:
+            if _diaas_normalize(pattern) in norm:
+                rule_b_fired = True
+                rule_b_reason = reason
+                break
+
+        # Pea + rice blend without proportions declared (canonical D5 gap, EV-040 §3.2)
+        if not rule_b_fired:
+            _pea_norm = _diaas_normalize("חלבון אפונה")
+            _rice_norm = _diaas_normalize("חלבון אורז")
+            _pea_en = "pea protein"
+            _rice_en = "rice protein"
+            pea_present  = _pea_norm in norm or _pea_en in norm
+            rice_present = _rice_norm in norm or _rice_en in norm
+            if pea_present and rice_present:
+                rule_b_fired = True
+                rule_b_reason = "pea_rice_blend_no_proportions"
+
+    return {
+        "rule_a_fired": rule_a_fired,
+        "rule_a_source": rule_a_source,
+        "rule_b_fired": rule_b_fired,
+        "rule_b_reason": rule_b_reason,
+    }
+
+
+# ---------------------------------------------------------------------------
+# TASK-179S — D4 additive tier detector (Glass Box W2).
+# Scans the ingredient text for each of the 20 additives in GLASSBOX_W2_ADDITIVES.
+# Returns a list of matched findings (one per distinct detected additive, in
+# first-occurrence order). No score movement — presentation-only for W2.
+# Source: additive_prototype_set_v1.md. EV-041.
+# ONLY called when BARI_GLASSBOX_W2 is ON (call site is flag-guarded).
+# ---------------------------------------------------------------------------
+
+# Hebrew final→medial normalization for D4 (same map as _DIAAS_FINAL_MAP).
+_D4_FINAL_MAP = str.maketrans({"ם": "מ", "ן": "נ", "ץ": "צ", "ף": "פ", "ך": "כ"})
+
+
+def _d4_normalize(s: str) -> str:
+    """Normalize Hebrew final-letter forms + collapse whitespace for D4 matching."""
+    if not s:
+        return ""
+    s = s.replace("\n", " ").replace("\r", " ").replace(".n", " ")
+    s = s.translate(_D4_FINAL_MAP)
+    s = _re.sub(r"\s+", " ", s)
+    return s.strip().lower()
+
+
+def detect_additives_d4(ingredient_text: str) -> list:
+    """TASK-179S — detect D4 additive tier findings from ingredient text.
+
+    Scans for each of the 20 additives in GLASSBOX_W2_ADDITIVES using:
+      (a) E-number pattern: E{digits}, E-{digits}, or ה-{digits} (with optional space)
+      (b) Hebrew name variants from match_patterns_he
+
+    Returns a list of findings (one per distinct matched additive, first-occurrence order):
+        [
+            {
+                "e_number": "E330",
+                "name_he": "חומצת לימון",
+                "tier": "functional",
+                "function_he": "...",
+                "match_source": "e_number" | "name_he" | "both",
+            },
+            ...
+        ]
+
+    Deduplicates: same additive matched by both E-number and name → one entry,
+    match_source="both". Returns [] for empty or None ingredient_text.
+
+    ONLY called when BARI_GLASSBOX_W2 is ON. Caller is responsible for the flag guard.
+    """
+    if not ingredient_text:
+        return []
+
+    norm = _d4_normalize(ingredient_text)
+    # Track (e_number, first_occurrence_pos, match_source) per additive
+    findings_map: dict = {}   # e_number → {entry, pos, match_source}
+
+    for e_num, entry in GLASSBOX_W2_ADDITIVES.items():
+        # Extract the numeric portion (E450, E472e → digits are 450, 472)
+        # Match the full e_num string in various formats.
+        e_bare = e_num.lstrip("E")   # e.g. "330", "472e", "450"
+
+        # Build E-number patterns: E330, E-330, ה-330, with optional space before digits.
+        # For composite E-numbers like E472e we match just the numeric part (E472 / E-472).
+        e_digits = _re.match(r"(\d+)", e_bare)
+        e_num_str = e_digits.group(1) if e_digits else e_bare
+
+        e_patterns = [
+            f"e{e_bare.lower()}",          # e330 / e472e
+            f"e-{e_num_str}",              # e-330
+            f"e {e_num_str}",              # e 330 (stray space)
+            f"ה-{e_num_str}",             # ה-330 (Hebrew E-number citation)
+        ]
+
+        e_match_pos = None
+        for pat in e_patterns:
+            idx = norm.find(pat)
+            if idx != -1:
+                if e_match_pos is None or idx < e_match_pos:
+                    e_match_pos = idx
+
+        # Hebrew name matching (match_patterns_he from the entry)
+        name_match_pos = None
+        for pattern in entry.get("match_patterns_he", []):
+            norm_pat = _d4_normalize(pattern)
+            if not norm_pat:
+                continue
+            idx = norm.find(norm_pat)
+            if idx != -1:
+                if name_match_pos is None or idx < name_match_pos:
+                    name_match_pos = idx
+
+        if e_match_pos is None and name_match_pos is None:
+            continue   # additive not found
+
+        # Determine first occurrence position and match_source
+        if e_match_pos is not None and name_match_pos is not None:
+            first_pos = min(e_match_pos, name_match_pos)
+            match_source = "both"
+        elif e_match_pos is not None:
+            first_pos = e_match_pos
+            match_source = "e_number"
+        else:
+            first_pos = name_match_pos
+            match_source = "name_he"
+
+        findings_map[e_num] = {
+            "e_number": e_num,
+            "name_he": entry["name_he"],
+            "tier": entry["tier"],
+            "function_he": entry["function_he"],
+            "match_source": match_source,
+            "_pos": first_pos,
+        }
+
+    # Sort by first-occurrence position in the ingredient string, then build result list.
+    sorted_findings = sorted(findings_map.values(), key=lambda f: f["_pos"])
+    return [
+        {k: v for k, v in f.items() if k != "_pos"}
+        for f in sorted_findings
+    ]
+
+
+# ---------------------------------------------------------------------------
+# TASK-179G — D5 disclosure-gap detector (Glass Box).
+# Deterministic detector over the RAW BSIP0 panel (ingredients_raw). Emits a
+# disclosure profile (which gap types fired) + a 4-level D5-band that feeds D6.
+# Per Q2/DEC-006 it NEVER deducts grade points and never attributes intent.
+# Spec: d5_d6_rule_spec_v1.md §1. EV-035 / EV-036.
+# ONLY invoked when GLASSBOX_D5D6_ON (call site is flag-guarded).
+# ---------------------------------------------------------------------------
+
+# Hebrew final→medial letter normalization (P2; same trap as EV-029).
+_GLASSBOX_FINAL_MAP = str.maketrans({"ם": "מ", "ן": "נ", "ץ": "צ", "ף": "פ", "ך": "כ"})
+
+
+def _glassbox_normalize(s: str) -> str:
+    """P2 — normalize Hebrew final-letter forms + collapse stray whitespace/newlines."""
+    if not s:
+        return ""
+    s = s.replace("\n", " ").replace("\r", " ")
+    s = s.replace(".n", " ")          # observed scrape artifact (".nמכיל")
+    s = s.translate(_GLASSBOX_FINAL_MAP)
+    s = _re.sub(r"\s+", " ", s)
+    return s.strip()
+
+
+def _glassbox_truncate_bleed(raw: str) -> str:
+    """P1 — strip the nutrition-table bleed; everything at/after an anchor is not ingredients."""
+    cut = len(raw)
+    for anchor in GLASSBOX_NUTRITION_BLEED_ANCHORS:
+        a = _glassbox_normalize(anchor)
+        idx = raw.find(a)
+        if idx != -1:
+            cut = min(cut, idx)
+    return raw[:cut].strip(" ,")
+
+
+def _glassbox_split_tokens(s: str) -> list:
+    """Split an ingredient string on commas that are OUTSIDE parentheses."""
+    tokens, depth, cur = [], 0, []
+    for ch in s:
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if ch == "," and depth == 0:
+            tokens.append("".join(cur).strip())
+            cur = []
+        else:
+            cur.append(ch)
+    if cur:
+        tokens.append("".join(cur).strip())
+    return [t for t in tokens if t]
+
+
+def _glassbox_term_is_bare(norm_panel: str, term_norm: str) -> bool:
+    """A class term is 'bare' (gap) when it is NOT immediately followed by '(' or ':'
+    introducing a specific name/E-code (after optional whitespace)."""
+    bare = False
+    start = 0
+    while True:
+        idx = norm_panel.find(term_norm, start)
+        if idx == -1:
+            break
+        after = norm_panel[idx + len(term_norm):].lstrip()
+        if not after[:1] in ("(", ":"):
+            bare = True
+        start = idx + len(term_norm)
+    return bare
+
+
+def compute_disclosure_profile(product: dict, signals: dict, nova_result: dict) -> dict:
+    """D5 — disclosure profile + D5-band over the raw BSIP0 panel. Spec §1."""
+    nn = product.get("normalized_nutrition_per_100g") or {}
+    raw = (product.get("ingredients_raw")
+           or product.get("ingredients_text_he")
+           or "")
+    if not raw and product.get("ingredients_list"):
+        raw = ", ".join(product["ingredients_list"])
+
+    # P1 truncate bleed, P2 normalize.
+    norm_raw = _glassbox_normalize(raw)
+    panel = _glassbox_truncate_bleed(norm_raw)
+
+    # P3 — empty/absent panel: do not run gap detection (already-counted missing-ingredient).
+    # The spec's "< 15 non-space chars" rule targets blank/garbage panels. A coherent
+    # single-ingredient whole food (e.g. אגוזי מלך = 8 chars) must NOT be read as absent —
+    # single-ingredient protection (§1.2 G1) requires it to resolve to the FULL band, not
+    # withhold. So the panel is ABSENT only when it is both sub-threshold AND lacks a
+    # coherent ingredient token (≥2 Hebrew/Latin letters). This keeps the genuinely empty
+    # case in P3 while protecting short clean whole foods.
+    _toks = _glassbox_split_tokens(panel)
+    _has_coherent_token = any(len(_re.sub(r"[^\w]", "", t)) >= 2 for t in _toks)
+    panel_present = (len(panel.replace(" ", "")) >= 15) or _has_coherent_token
+    findings = []
+    endemic_flavoring = False
+    protein_to_d2 = []
+
+    if not panel_present:
+        return {
+            "panel_present": False, "single_ingredient": False, "findings": [],
+            "counts": {"structural_n": 0, "closable_n": 0, "endemic_flavoring": False,
+                       "protein_source_to_d2": []},
+            "d5_band": "severe", "d5_completeness": 0,
+        }
+
+    tokens = _glassbox_split_tokens(panel)
+    single_ingredient = len(tokens) == 1
+
+    # --- G1 undisclosed proportions (structural). Single-ingredient protection. ---
+    if not single_ingredient:
+        pct_n = len(_re.findall(r"\d+(?:[.,]\d+)?\s*%", panel))
+        lead = tokens[0] if tokens else ""
+        lead_has_pct = bool(_re.search(r"\d+(?:[.,]\d+)?\s*%", lead))
+        if len(tokens) >= 2 and (pct_n == 0 or not lead_has_pct):
+            findings.append({"type": "proportions", "severity": "structural",
+                             "tokens_n": len(tokens), "pct_n": pct_n})
+
+    # --- G4 generic additive class without E-code/name (closable) + endemic flavoring ---
+    for term in GLASSBOX_GENERIC_ADDITIVE_TERMS:
+        tn = _glassbox_normalize(term)
+        if tn in panel and _glassbox_term_is_bare(panel, tn):
+            findings.append({"type": "generic_additive", "term": term, "severity": "closable"})
+    for term in GLASSBOX_ENDEMIC_FLAVORING_TERMS:
+        tn = _glassbox_normalize(term)
+        if tn in panel:
+            endemic_flavoring = True
+            break
+
+    # --- G2 compound without internal breakdown (closable) ---
+    for term in GLASSBOX_COMPOUND_TERMS:
+        tn = _glassbox_normalize(term)
+        start = 0
+        while True:
+            idx = panel.find(tn, start)
+            if idx == -1:
+                break
+            after = panel[idx + len(tn):].lstrip()
+            if not after[:1] == "(":
+                findings.append({"type": "compound", "severity": "closable", "token": term})
+                break
+            start = idx + len(tn)
+
+    # --- G3 protein blend (structural) / collagen-gelatin → D2 signal (not a gap) ---
+    blend_fired = False
+    for term in GLASSBOX_PROTEIN_BLEND_TERMS:
+        if _glassbox_normalize(term) in panel:
+            named = any(_glassbox_normalize(s) in panel for s in GLASSBOX_PROTEIN_NAMED_SOURCES)
+            if not named:
+                findings.append({"type": "protein_source", "subtype": "blend_unspecified",
+                                 "severity": "structural"})
+                blend_fired = True
+                break
+    for term in GLASSBOX_PROTEIN_INCOMPLETE_NAMED:
+        if _glassbox_normalize(term) in panel:
+            protein_to_d2.append(term)
+            findings.append({"type": "protein_source", "subtype": "incomplete_named",
+                             "note": "feeds D2, not a gap"})
+            break
+
+    # --- G5 declared-quantity-missing (names legacy six; sat-fat/sugar = NEW closable) ---
+    legacy_six = {"energy_kcal", "protein_g", "carbohydrates_g", "fat_g",
+                  "dietary_fiber_g", "sodium_mg"}
+    for field in legacy_six:
+        if nn.get(field) is None:
+            findings.append({"type": "missing_field", "field": field, "severity": "structural"})
+    # sat-fat / sugar absence — NOT in the legacy −10/−5 map → new closable gap.
+    if nn.get("fat_saturated_g") is None:
+        findings.append({"type": "missing_field", "field": "fat_saturated_g",
+                         "severity": "closable"})
+    if nn.get("sugars_g") is None:
+        findings.append({"type": "missing_field", "field": "sugars_g", "severity": "closable"})
+
+    # --- Band assignment (after single-ingredient + endemic-flavoring exclusions) ---
+    band_findings = [f for f in findings
+                     if f.get("subtype") != "incomplete_named"]   # D2 signal, not band-raising
+    structural_n = sum(1 for f in band_findings if f.get("severity") == "structural")
+    closable = [f for f in band_findings if f.get("severity") == "closable"]
+    closable_n = len(closable)
+    distinct_closable_classes = len(set(
+        (f.get("type"), f.get("term") or f.get("field") or f.get("token")) for f in closable))
+
+    if single_ingredient or not band_findings:
+        d5_band, d5_completeness = "full", 95
+    elif closable_n == 0:
+        d5_band, d5_completeness = "minor", 80
+    else:
+        severe = (distinct_closable_classes >= 3) or (blend_fired and closable_n >= 2)
+        if severe:
+            d5_band, d5_completeness = "severe", 40
+        else:
+            d5_band, d5_completeness = "partial", 57
+
+    return {
+        "panel_present": True,
+        "single_ingredient": single_ingredient,
+        "findings": findings,
+        "counts": {"structural_n": structural_n, "closable_n": closable_n,
+                   "distinct_closable_classes": distinct_closable_classes,
+                   "endemic_flavoring": endemic_flavoring,
+                   "protein_source_to_d2": protein_to_d2},
+        "d5_band": d5_band,
+        "d5_completeness": d5_completeness,
+    }
+
 
 # ---------------------------------------------------------------------------
 # Confidence calculation
 # ---------------------------------------------------------------------------
 
-def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_result: dict) -> dict:
-    """Compute BSIP2 confidence score (0-100) from multiple factors."""
+def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_result: dict,
+                       disclosure_profile: dict = None) -> dict:
+    """Compute BSIP2 confidence score (0-100) from multiple factors.
+
+    TASK-179G (Glass Box D6): when GLASSBOX_D5D6_ON and a disclosure_profile is supplied,
+    adds the SINGLE new D5-band reduction term (EV-037) and derives the three-state gate
+    (unconstrained / demote / withhold→null, EV-038). disclosure_profile=None or flag OFF
+    → behavior is byte-identical to today (no new term, no gate fields).
+    """
     score = 100
     reductions = []
 
@@ -138,6 +598,18 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
     elif cat_conf < CAT_CONF_HIGH:
         deduct(8, f"category_confidence=medium ({cat_conf:.2f})")
 
+    # TASK-179G / EV-037 — Glass Box D5-band → D6 confidence reduction (the ONLY new
+    # term). Structural-only gaps (full/minor) do not erode confidence; closable opacity
+    # (partial −10 / severe −20) does. NO double-count: the legacy missing-field
+    # deductions above already covered G5's legacy six — D5 only NAMES them, it does NOT
+    # re-deduct (spec §1.2 G5 / §2.1). Guarded by the flag → OFF is byte-identical.
+    d5_band = None
+    if GLASSBOX_D5D6_ON and disclosure_profile is not None:
+        d5_band = disclosure_profile.get("d5_band")
+        d5_red = GLASSBOX_D5_CONF_REDUCTION.get(d5_band, 0)
+        if d5_red:
+            deduct(d5_red, f"d5_disclosure={d5_band} (closable gaps)")
+
     score = max(0, score)
 
     if score >= 80:
@@ -153,12 +625,34 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
         band = "insufficient"
         ceiling = CONFIDENCE_INSUFFICIENT_CEILING
 
-    return {
+    result = {
         "confidence_score": score,
         "confidence_band": band,
         "confidence_ceiling": ceiling,
         "confidence_reductions": reductions,
     }
+
+    # TASK-179G / EV-038 — D6 gate state machine (extends the ceiling-only outcome into
+    # unconstrained · demote · withhold→null). Only computed under the flag; OFF leaves
+    # the result dict exactly as today.
+    if GLASSBOX_D5D6_ON and disclosure_profile is not None:
+        panel_present = disclosure_profile.get("panel_present", True)
+        context_flag = (signals.get("_context_flag")
+                        if isinstance(signals, dict) else None)
+        panel_absent = (not panel_present) or context_flag == "no_nutrition_data"
+        b_severe = (d5_band == "severe")
+        floor_failure = panel_absent or (score < GLASSBOX_NULL_FLOOR and b_severe)
+        if floor_failure:
+            gate_state = "withhold"
+        elif score < GLASSBOX_DEMOTE_CEILING_BOUND:
+            gate_state = "demote"
+        else:
+            gate_state = "unconstrained"
+        result["d5_band"] = d5_band
+        result["d6_gate_state"] = gate_state
+        result["d6_panel_absent"] = panel_absent
+
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -1063,7 +1557,17 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         }
 
     # Stage 1: Confidence
-    conf_result = compute_confidence(product, signals, cat_result, nova_result)
+    # TASK-179G — Glass Box D5 detector runs (flag-guarded) over the raw BSIP0 panel and
+    # feeds D6. With the flag OFF the detector is NOT invoked and compute_confidence runs
+    # exactly as today (disclosure_profile stays None → byte-identical).
+    disclosure_profile = None
+    if GLASSBOX_D5D6_ON:
+        disclosure_profile = compute_disclosure_profile(product, signals, nova_result)
+        # surface the evaluation-scope context flag to the gate (panel_absent input)
+        if isinstance(signals, dict):
+            signals["_context_flag"] = eval_result.get("context_flag")
+    conf_result = compute_confidence(product, signals, cat_result, nova_result,
+                                     disclosure_profile)
     confidence  = conf_result["confidence_score"]
 
     # Stage 2: Structural emptiness gate
@@ -1106,6 +1610,35 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "satiety_support": ss_note, "fat_quality": fq_note,
         "regulatory_quality": rq_note, "whole_food_integrity": wfi_note,
     }
+
+    # TASK-179P — DIAAS W1.5 Rule A + Rule B (flag-guarded: BARI_GLASSBOX_W15).
+    # Flag OFF → dim_scores is unchanged and no diaas_ keys are added to result (byte-identical).
+    # Flag ON  → Rule A: +3 to protein_quality (D2), capped at DIAAS_D2_SCORE_CAP (100).
+    #             Rule B: d5_protein_disclosure_gap flag added to trace (D5 annotation only).
+    diaas_result = None
+    diaas_d2_credit_applied = 0
+    diaas_d5_disclosure_gap = False
+    if BARI_GLASSBOX_W15:
+        _ing_text = (
+            product.get("ingredients_raw")
+            or product.get("ingredients_text_he")
+            or ""
+        )
+        if not _ing_text and product.get("ingredients_list"):
+            _ing_text = ", ".join(product["ingredients_list"])
+        diaas_result = detect_diaas_signal(_ing_text)
+        if diaas_result["rule_a_fired"]:
+            _old_prq = dim_scores["protein_quality"]
+            _new_prq = round(min(DIAAS_D2_SCORE_CAP, _old_prq + DIAAS_D2_CREDIT), 1)
+            dim_scores["protein_quality"] = _new_prq
+            dim_notes["protein_quality"] = (
+                dim_notes["protein_quality"]
+                + f" [W15 Rule A: +{DIAAS_D2_CREDIT} D2 credit"
+                f" ({diaas_result['rule_a_source']}), {_old_prq}→{_new_prq}]"
+            )
+            diaas_d2_credit_applied = DIAAS_D2_CREDIT
+        if diaas_result["rule_b_fired"]:
+            diaas_d5_disclosure_gap = True
 
     # R6 — veg_spread archetype re-weighting (TASK-169 / EV-032), gated by BARI_RECAL_P0.
     # Detected at routing: a sauce_spread whose subtype is a whole-vegetable spread AND
@@ -1299,6 +1832,21 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     else:
         data_sufficiency = "sufficient"
 
+    # TASK-179G / EV-038 — Glass Box D6 gate effect (flag-guarded; OFF leaves all of the
+    # above verbatim). The gate can only DEMOTE or WITHHOLD, never promote (spec §2.4):
+    #   - withhold → score:null, grade label "לא נוקד" (floor-of-observability failure)
+    #   - demote   → existing ceiling already applied above; surface a visible "ניתוח חלקי"
+    glassbox_flag = None
+    if GLASSBOX_D5D6_ON and disclosure_profile is not None:
+        gate_state = conf_result.get("d6_gate_state")
+        if gate_state == "withhold":
+            final_score = None
+            grade = GLASSBOX_WITHHELD_LABEL
+            data_sufficiency = "withheld"
+            glassbox_flag = GLASSBOX_WITHHELD_LABEL
+        elif gate_state == "demote":
+            glassbox_flag = GLASSBOX_PARTIAL_FLAG
+
     # Explanation drivers
     drivers = _identify_drivers(gr, floor_result, conf_result, dim_scores, binding_cap, ceiling)
 
@@ -1306,7 +1854,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     flags = _collect_flags(product, signals, cat_result, nova_result, gr, floor_result,
                             se_result, eval_result)
 
-    return {
+    result = {
         "product_id": pid,
         "evaluation_status": eval_result["evaluation_status"],
         "context_flag": eval_result.get("context_flag"),
@@ -1346,6 +1894,35 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "explanation_drivers": drivers,
         "unresolved_flags": flags,
     }
+    # TASK-179G — Glass Box keys are added ONLY when the flag is ON, so an OFF result dict
+    # is byte-identical to today (no extra keys to diff). Spec §4.
+    if GLASSBOX_D5D6_ON and disclosure_profile is not None:
+        result["glassbox_disclosure_profile"] = disclosure_profile
+        result["glassbox_d6_gate_state"] = conf_result.get("d6_gate_state")
+        result["glassbox_flag"] = glassbox_flag
+
+    # TASK-179P — DIAAS W1.5 keys are added ONLY when BARI_GLASSBOX_W15 is ON, so an OFF
+    # result dict is byte-identical to the D5D6 baseline. EV-040.
+    if BARI_GLASSBOX_W15 and diaas_result is not None:
+        result["diaas_w15_signal"] = diaas_result
+        result["diaas_d2_credit_applied"] = diaas_d2_credit_applied
+        result["diaas_d5_protein_disclosure_gap"] = diaas_d5_disclosure_gap
+
+    # TASK-179S — D4 additive tier findings added ONLY when BARI_GLASSBOX_W2 is ON.
+    # Flag OFF → d4_additives key is absent → result dict is byte-identical to the
+    # BARI_GLASSBOX_W15 baseline. No score/grade/gate fields modified. EV-041.
+    # Ingredient text sourced the same way as the DIAAS W1.5 detector (same fallback chain).
+    if BARI_GLASSBOX_W2:
+        _d4_ing_text = (
+            product.get("ingredients_raw")
+            or product.get("ingredients_text_he")
+            or ""
+        )
+        if not _d4_ing_text and product.get("ingredients_list"):
+            _d4_ing_text = ", ".join(product["ingredients_list"])
+        result["d4_additives"] = detect_additives_d4(_d4_ing_text or "")
+
+    return result
 
 
 def _identify_drivers(gr, floor_result, conf_result, dim_scores, binding_cap, ceiling):
