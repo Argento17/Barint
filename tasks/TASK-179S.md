@@ -2,9 +2,11 @@
 id: TASK-179S
 title: "Glass Box W2 — D4 engine wire: additive tier detector behind BARI_GLASSBOX_W2 flag"
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-04
+cc_reviewed: 2026-06-04
 depends_on: [TASK-179Q, TASK-179R]
 blocks: [TASK-179V]
 category_id: null

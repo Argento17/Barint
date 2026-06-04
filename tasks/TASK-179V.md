@@ -2,9 +2,11 @@
 id: TASK-179V
 title: "Glass Box W2 — QA: OFF byte-identity + additive panel integration + mobile QA"
 owner: qa-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-04
+cc_reviewed: 2026-06-04
 depends_on: [TASK-179S, TASK-179T, TASK-179U]
 blocks: []
 category_id: null

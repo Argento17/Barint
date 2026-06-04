@@ -2,9 +2,11 @@
 id: TASK-179U
 title: "Glass Box W2 — Hebrew additive copy: Content sign-off on 20 consumer explanations"
 owner: content-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-04
+cc_reviewed: 2026-06-04
 depends_on: [TASK-179Q]
 blocks: [TASK-179T, TASK-179V]
 category_id: null
