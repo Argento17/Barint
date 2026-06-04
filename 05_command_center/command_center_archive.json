@@ -1,6 +1,6 @@
 {
   "_generated": true,
-  "generated_at": "2026-06-04T17:24:37",
+  "generated_at": "2026-06-04T17:34:31",
   "closed_tasks": [
     {
       "id": "TASK-128",
@@ -3174,6 +3174,29 @@
       "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. Content + Data re-wire both verified. COPY: 14/14 explanation_he in w2_additive_copy_v1.md (W3 addendum), all ≤120 chars, grounded in 181A evidence, off-axis signals omitted per 181B judgment calls. RE-WIRE (done by CC via the idempotent wire_d4_frontend.py + wire_d4_bread_vegspreads.py): all 14 injected — explanation_he filled +94 (hummus +37 · maadanim +56 · bread +1), the exact 94 missing instances. INVARIANTS: OFF byte-identity 0-diff (4 corpora) + 0 score/grade/gate/glassBox deltas vs HEAD across all 3 pilot JSONs. Annotate-only; no score moved; no engine code touched. Closing completes the W3 build (181A–181E all CLOSED).\n",
       "summary": "Authors the missing consumer-facing Hebrew explanation_he for the 14 displayed-shelf additives that TASK-181D wired without copy (94 instances; all 16 new W3 additives lacked W2 copy, 14 surface on shelf). Priority: E960 steviol (dose-dependent) + E141 (unclassified) carry weighted tier chips. Other 12 are tier=functional. Per the editorial/insight-line standard: calm, factual, no-alarm, no-invent; matches the existing w2_additive_copy_v1.md voice. On delivery a small Data re-wire injects the strings into the pilot JSONs (re-run the 181D wire) — annotate-only, OFF byte-identical, no score move. Closes the W3 completeness gap; panel already degrades gracefully so this is not a UI blocker.",
       "work_type": "content",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
+      "id": "TASK-181F",
+      "title": "Glass Box W4 Nutrition EV-042 finalize and file plus Product D7 co-sign",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. EV-042 filed (bsip2_evidence_registry_v1.md L982–1003) binding the three D3 value-sets (confidence criteria, confidence_scale 1.0/0.70/0.40, population_correlation 0.05/0.15/0.40/0.75) — verified against the file, with a methodology_judgment row (Nutrition reviewed not transcribed) and a sound frozen-invariant check. BOTH D7 co-signs now complete: Nutrition (TASK-181F) + Product (verified in the file — co_sign flipped PENDING→CO-SIGNED, status updated, 2-line additive edit, EV-041/043 untouched). Governance only — no engine code, no score moved, no JSON. The rule is adopted on paper, behind BARI_GLASSBOX_W4 (default OFF). Live grade movement remains a SEPARATE owner go-live decision (tripwire #1, still owes the TASK-179X demand check). Closing unblocks TASK-181G (Data build).\n",
+      "summary": "Bind the conceptual values in d3_demoralization_spec_v1.md into evidence-registry entry EV-042 and file it: confidence criteria high/medium/low (spec 2.3), confidence_scale 1.0/0.70/0.40 (2.5), population_correlation reference values 0.05/0.15/0.40/0.75 (2.4). Section 3 consumer framing is ALREADY Product-co-signed (spec lines 427-482); EV-042's numeric bindings still need Product D7 co-sign (spec line 659). Governance only - no engine code, no score move. THE UNBLOCKING GATE for 181G (Data build).",
+      "work_type": "governance",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,

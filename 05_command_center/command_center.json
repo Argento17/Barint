@@ -5,13 +5,13 @@
   "meta": {
     "version": "3.0",
     "last_updated": "2026-06-04",
-    "generated_at": "2026-06-04T17:24:37",
-    "newest_source_at": "2026-06-04T17:24:30",
+    "generated_at": "2026-06-04T17:34:31",
+    "newest_source_at": "2026-06-04T17:34:22",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-04T17:24:46",
+    "drift_checked_at": "2026-06-04T17:34:39",
     "stale": false,
     "stale_reason": null
   },
@@ -20,16 +20,16 @@
     "active_task_ids": [
       "TASK-180",
       "TASK-181",
+      "TASK-181G",
       "TASK-180B",
       "TASK-180C",
-      "TASK-181G",
       "TASK-181H",
       "TASK-181I",
       "TASK-140"
     ],
     "latest_completed_task": {
-      "id": "TASK-181E",
-      "title": "Glass Box W3 Content: author Hebrew explanation_he for 14 new shelf additives + Data re-wire",
+      "id": "TASK-181F",
+      "title": "Glass Box W4 Nutrition EV-042 finalize and file plus Product D7 co-sign",
       "completed_at": "2026-06-04"
     },
     "current_blocker": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
@@ -46,37 +46,29 @@
   },
   "task_summary": {
     "active": 8,
-    "in_progress": 2,
-    "blocked": 6,
-    "returned": 1,
+    "in_progress": 3,
+    "blocked": 5,
+    "returned": 0,
     "changes_requested": 0,
-    "closed": 198,
-    "wip": 1,
+    "closed": 199,
+    "wip": 2,
     "wip_task_ids": [
-      "TASK-180"
+      "TASK-180",
+      "TASK-181G"
     ],
     "wip_by_owner": {
-      "qa-agent": 1
+      "qa-agent": 1,
+      "data-agent": 1
     },
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
   "critical_path": {
     "longest_chain": [
-      "TASK-181F",
       "TASK-181G",
       "TASK-181H"
     ],
     "top_unblockers": [
-      {
-        "task_id": "TASK-181F",
-        "unblocks_count": 3,
-        "unblocks": [
-          "TASK-181G",
-          "TASK-181H",
-          "TASK-181I"
-        ]
-      },
       {
         "task_id": "TASK-181G",
         "unblocks_count": 2,
@@ -184,7 +176,7 @@
     }
   ],
   "drift": {
-    "checked_at": "2026-06-04T17:24:46",
+    "checked_at": "2026-06-04T17:34:39",
     "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
@@ -250,6 +242,31 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181G",
+      "title": "Glass Box W4 Data implement D3 de-moralization behind BARI_GLASSBOX_W4 OFF byte-identical",
+      "owner": "data-agent",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-181F"
+      ],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "Implement the D3 reframe per spec section 2 + EV-042: d3_processing_signal struct (2.2); confidence-scaled modifier_score = 50 + (base_score-50)*confidence_scale (2.5); confidence-scaled PROCESSING_LOAD caps (4.1); REMOVE NOVA_HP_WEIGHTS NOVA-class amplification (HP reverts to direct-observation magnitude); wire the 3 final note_he strings A/B/C + C-mobile (spec 463-480). All behind BARI_GLASSBOX_W4 (default OFF). OFF = byte-identical to the W2 baseline (0-diff golden/frozen runs). Does NOT flip the flag live - go-live is a separate owner gate.",
+      "work_type": "execution",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null
+    },
+    {
       "id": "TASK-180B",
       "title": "Snack-bars re-baseline — rescore on pinned baseline + no-A invariant sign-off + QA freeze",
       "owner": "data-agent",
@@ -294,31 +311,6 @@
       "age_days": 0,
       "cc_comments": [],
       "roadmap_impact": false,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181G",
-      "title": "Glass Box W4 Data implement D3 de-moralization behind BARI_GLASSBOX_W4 OFF byte-identical",
-      "owner": "data-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-181F"
-      ],
-      "blocks": [],
-      "category_id": null,
-      "blocker": "Waiting on TASK-181F (EV-042 must bind the confidence criteria + confidence_scale + population_correlation values, Product D7 co-signed, before Data builds the scoring rules).",
-      "close_reason": null,
-      "summary": "Implement the D3 reframe per spec section 2 + EV-042: d3_processing_signal struct (2.2); confidence-scaled modifier_score = 50 + (base_score-50)*confidence_scale (2.5); confidence-scaled PROCESSING_LOAD caps (4.1); REMOVE NOVA_HP_WEIGHTS NOVA-class amplification (HP reverts to direct-observation magnitude); wire the 3 final note_he strings A/B/C + C-mobile (spec 463-480). All behind BARI_GLASSBOX_W4 (default OFF). OFF = byte-identical to the W2 baseline (0-diff golden/frozen runs). Does NOT flip the flag live - go-live is a separate owner gate.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null
     },
@@ -393,29 +385,6 @@
       "cc_comments": [],
       "roadmap_impact": false,
       "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-181F",
-      "title": "Glass Box W4 Nutrition EV-042 finalize and file plus Product D7 co-sign",
-      "owner": "nutrition-agent",
-      "status": "RETURNED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": null,
-      "blocker": null,
-      "close_reason": null,
-      "summary": "Bind the conceptual values in d3_demoralization_spec_v1.md into evidence-registry entry EV-042 and file it: confidence criteria high/medium/low (spec 2.3), confidence_scale 1.0/0.70/0.40 (2.5), population_correlation reference values 0.05/0.15/0.40/0.75 (2.4). Section 3 consumer framing is ALREADY Product-co-signed (spec lines 427-482); EV-042's numeric bindings still need Product D7 co-sign (spec line 659). Governance only - no engine code, no score move. THE UNBLOCKING GATE for 181G (Data build).",
-      "work_type": "governance",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "cc_comments": [],
-      "roadmap_impact": true,
-      "cc_reviewed": "2026-06-04",
       "banked_asset": null
     },
     {
@@ -2383,6 +2352,21 @@
       "banked_asset": null
     },
     {
+      "id": "TASK-181F",
+      "title": "Glass Box W4 Nutrition EV-042 finalize and file plus Product D7 co-sign",
+      "owner": "nutrition-agent",
+      "status": "CLOSED",
+      "priority": "HIGH",
+      "created_at": "2026-06-04",
+      "completed_at": "2026-06-04",
+      "close_reason": "CC close-readiness gate PASS (2026-06-04), owner-authorized close. EV-042 filed (bsip2_evidence_registry_v1.md L982–1003) binding the three D3 value-sets (confidence criteria, confidence_scale 1.0/0.70/0.40, population_correlation 0.05/0.15/0.40/0.75) — verified against the file, with a methodology_judgment row (Nutrition reviewed not transcribed) and a sound frozen-invariant check. BOTH D7 co-signs now complete: Nutrition (TASK-181F) + Product (verified in the file — co_sign flipped PENDING→CO-SIGNED, status updated, 2-line additive edit, EV-041/043 untouched). Governance only — no engine code, no score moved, no JSON. The rule is adopted on paper, behind BARI_GLASSBOX_W4 (default OFF). Live grade movement remains a SEPARATE owner go-live decision (tripwire #1, still owes the TASK-179X demand check). Closing unblocks TASK-181G (Data build).\n",
+      "age_days": 0,
+      "cc_comments": [],
+      "roadmap_impact": true,
+      "cc_reviewed": "2026-06-04",
+      "banked_asset": null
+    },
+    {
       "id": "TASK-004",
       "title": "CNO Distortion Classification v1",
       "owner": "nutrition-agent",
@@ -4186,19 +4170,6 @@
       "id": "ALT-003",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
-      "message": "TASK-181G: Waiting on TASK-181F (EV-042 must bind the confidence criteria + confidence_scale + population_correlation values, Product D7 co-signed, before Data builds the scoring rules).",
-      "related_category": null,
-      "related_task": "TASK-181G",
-      "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-004",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
       "message": "TASK-181H: Waiting on TASK-181G (engine build must exist before OFF-identity + ON-impact can be verified).",
       "related_category": null,
       "related_task": "TASK-181H",
@@ -4209,7 +4180,7 @@
       "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
     },
     {
-      "id": "ALT-005",
+      "id": "ALT-004",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
       "message": "TASK-181I: Waiting on TASK-181G (the d3_processing_signal struct + note_he must be emitted by the engine before the surface can render them).",
@@ -4222,7 +4193,7 @@
       "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
     },
     {
-      "id": "ALT-006",
+      "id": "ALT-005",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
       "message": "TASK-140: Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",

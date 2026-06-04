@@ -2,15 +2,27 @@
 id: TASK-181F
 title: Glass Box W4 Nutrition EV-042 finalize and file plus Product D7 co-sign
 owner: nutrition-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-04
 depends_on: []
 blocks: []
 category_id: null
 roadmap_impact: true
 work_type: governance
 cc_reviewed: 2026-06-04
+close_reason: >
+  CC close-readiness gate PASS (2026-06-04), owner-authorized close. EV-042 filed
+  (bsip2_evidence_registry_v1.md L982–1003) binding the three D3 value-sets (confidence
+  criteria, confidence_scale 1.0/0.70/0.40, population_correlation 0.05/0.15/0.40/0.75) —
+  verified against the file, with a methodology_judgment row (Nutrition reviewed not
+  transcribed) and a sound frozen-invariant check. BOTH D7 co-signs now complete: Nutrition
+  (TASK-181F) + Product (verified in the file — co_sign flipped PENDING→CO-SIGNED, status
+  updated, 2-line additive edit, EV-041/043 untouched). Governance only — no engine code,
+  no score moved, no JSON. The rule is adopted on paper, behind BARI_GLASSBOX_W4 (default
+  OFF). Live grade movement remains a SEPARATE owner go-live decision (tripwire #1, still
+  owes the TASK-179X demand check). Closing unblocks TASK-181G (Data build).
 cc_comments:
   - flag: fyi
     note: >

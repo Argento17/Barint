@@ -2,10 +2,9 @@
 id: TASK-181G
 title: Glass Box W4 Data implement D3 de-moralization behind BARI_GLASSBOX_W4 OFF byte-identical
 owner: data-agent
-status: BLOCKED
+status: IN_PROGRESS
 priority: HIGH
 created_at: 2026-06-04
-blocker: "Waiting on TASK-181F (EV-042 must bind the confidence criteria + confidence_scale + population_correlation values, Product D7 co-signed, before Data builds the scoring rules)."
 depends_on: [TASK-181F]
 blocks: []
 category_id: null
