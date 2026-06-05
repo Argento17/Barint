@@ -23,3 +23,9 @@ __pycache__/
 # OS
 Thumbs.db
 .DS_Store
+
+# Local archive of agent transcripts + repo backup (350 MB, secret-bearing).
+# Physically lives in C:\Bari but is NEVER pushed to the public remote.
+# Only archive/README.md is tracked, as a committed pointer to what's here.
+/archive/*
+!/archive/README.md
