@@ -33,10 +33,10 @@ Get-ChildItem $proj -Directory | Where-Object { $_.Name -ne 'memory' } | ForEach
   Copy-Item $_.FullName "$arc\transcripts\agents\" -Recurse -Force
 }
 
-# 3. Latest repo backup bundle, if present
-$bundle = Get-ChildItem "C:\bari_backups" -Recurse -Filter *.bundle -ErrorAction SilentlyContinue |
-          Sort-Object LastWriteTime | Select-Object -Last 1
-if ($bundle) { Copy-Item $bundle.FullName "$arc\repo-backup\" -Force }
+# 3. Repo backup bundle — already consolidated under archive/repo-backup/.
+#    DO NOT read from C:\bari_backups: that folder is DEPRECATED (2026-06-05) and
+#    must not be used as a source or target anymore. The in-repo copy is canonical;
+#    a fresh bundle, if ever needed, should be written straight into archive/repo-backup/.
 
 # 4. Regenerate the human-readable session index (committed)
 $rows = foreach ($f in Get-ChildItem "$proj\*.jsonl") {
