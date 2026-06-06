@@ -1,12 +1,13 @@
 # Bari Comparison Template Standard v1
 
 **Type:** Design standard — frozen approved state  
+**Status:** **Single authoritative comparison template.** Supersedes and absorbs `comparison_template_v1.md` (consolidated 2026-06-03, owner-approved).  
 **Authority:** Design Director  
 **Source of truth:** Live component source in `C:\bari\bari-web\src\components\shared\` and `bari-comparison-tokens.ts`  
 **Canonical reference implementation:** `maadanim-comparison-page.tsx`  
 **Last verified against live source:** 2026-05-30  
 
-This document records the current approved visual and structural state of Bari comparison pages. It is a reference for future category rollouts. It does not propose changes.
+This document records the current approved visual and structural state of Bari comparison pages, and the editorial/UX principles that govern them. It is the reference for future category rollouts. Sections 1–19 are the live design standard (verified against component source). Sections 20–26 are the conceptual layer (Core Principle, public-language and copy rules, leakage/drift checklists, the rollout workflow, and the governing UX principles) folded in from the former `comparison_template_v1.md` so nothing useful was lost in the consolidation.
 
 ---
 
@@ -391,7 +392,7 @@ These are non-negotiable across all categories. Any deviation requires explicit 
 |---|---|
 | Section count | Always exactly 4. No additions. |
 | Section order | Hero → Prologue → Table → Footer. Fixed. |
-| Score chip colour rule | Tint background only. Left border accent. Never saturated by grade. |
+| Score chip colour rule | Color-coded by grade via `gradePalette` (owner directive 2026-06-03): one distinct hue family per grade A→E (green → olive → gold → orange → red). Tinted background + accent left-border + accent number/letter only — never a fully saturated fill. Each grade's accent ≥3:1 and label ≥4.5:1 on its own bg. Same chip geometry for all grades. |
 | Score chip null state | `—` on `#EEEEEA`, grey border, no score text. |
 | Row height minimum | 72px collapsed. |
 | Row image size | 56px mobile / 64px desktop (token-defined). |
@@ -443,7 +444,7 @@ These were evaluated and excluded from the template. They require explicit re-ap
 | Element | Why excluded |
 |---|---|
 | Score distribution chart | Analytics register, no consumer utility |
-| Colour-coded score chips (saturated) | Creates good/bad framing, contradicts structural neutrality |
+| Fully saturated / solid-fill score chips | Reads as a warning badge. Grade color is allowed (owner directive 2026-06-03) but only as a tinted bg + accent border/number — never a saturated block fill. |
 | Dimension bars per product | Exposes internal framework architecture |
 | "Understanding the score" modal | Framework exposure risk |
 | Radar or spider charts | Exposes dimension architecture |
@@ -491,6 +492,156 @@ Five checkpoints must be passed in order before a new category launches. Each is
 `src/lib/design/bari-comparison-tokens.ts` is the single source of all visual constants. Any implementation that hardcodes a colour or dimension that exists in the token file is in violation. The file exposes a dev-mode warning via `warnComparisonImplementationDeviation()` — this should never fire in production.
 
 Where the token file and an implemented component appear to differ, the component implementation is the operative value and the token file should be updated to match.
+
+---
+
+---
+
+## 20. Core Principle
+
+The user should feel:  
+**"Someone carefully investigated this supermarket shelf for me."**
+
+Not:  
+"I am using food analytics software."
+
+Every rule in this document — geometry, typography, copy, leakage prevention — serves that distinction. When a design choice is ambiguous, resolve it toward "investigated shelf," away from "analytics dashboard."
+
+The product table is the main experience. Hero, prologue, and methodology are support. No maps, dashboards, cluster visualizations, insight systems, decomposition panels, or glossary sections.
+
+---
+
+## 21. Section Copy Rules
+
+The geometry of each section is specified in Sections 10 (Hero), the Prologue typography in Section 4, and Section 9 (Methodology Footer). This section governs the *copy* that goes inside them.
+
+### Hero copy
+
+- One sentence. Maximum 12 words in Hebrew.
+- Names a real product and a real observation. It does not explain anything.
+- Not a thesis, summary of findings, invitation to a journey, or a hook. A moment of orientation: "you are about to see products from this shelf."
+- Example: `ב-95 מוצרים ממדף המעדנים של שופרסל, הגביע הכי מוכר מקבל את הציון הכי נמוך.`
+
+### Prologue copy
+
+- 3–5 sentences. Hard limit. Calm declarative tone. Continuous prose, no bullets/subheadings.
+- Every sentence is a shelf observation verifiable from the data. No nutrition lecture, no framework language, no "here is how we score."
+- Does not repeat the hero sentence. Does not preview the findings — it names what is on the shelf, not what to think about it.
+- Example: `מדף המעדנים של שופרסל כולל מוצרי חלב קלאסיים, אלטרנטיבות חלבון, ומוצרים שמציגים תוויות 'דיאט' ו'ללא סוכר'. בדקנו 95 מוצרים. לא כל מוצר שמרגיש בריא יותר מקבל ציון גבוה יותר.`
+
+### Methodology copy
+
+- 2–4 sentences. What to include: products reviewed from Israeli retail shelves; that ingredients, nutrition, and processing context were considered (not only calories/macros); that scores are relative to the category; one linked line to full methodology.
+- What not to include: score mechanics, NOVA explanation, cap/floor logic, dimension names or weights, framework architecture, confidence computation.
+- Example: `בדקנו 95 מוצרים ממדף המעדנים בשופרסל. הציון מבוסס על רכיבים, ערכי תזונה ורמת עיבוד — לא רק על קלוריות. הציונים יחסיים לקטגוריה. [המתודולוגיה המלאה →]`
+
+### Highlighted pair driver line (optional)
+
+- If a clearly strongest pair exists: one driver line, ≤15 Hebrew words, observational, no framework language. It is a table annotation, not a story beat — no side-by-side layout, no separate narrative scene.
+- Maximum one highlighted pair per page. If no pair is clearly strongest, omit it. Absence is better than a forced comparison.
+
+---
+
+## 22. Public Language Rules
+
+Apply to all public-facing text: hero, prologue, row insights, methodology, filter labels, any UI microcopy.
+
+### Approved terms
+
+| Concept | Public language |
+|---|---|
+| Score | ציון (number + grade letter; tier word permitted only in the chip tier slot) |
+| High processing | "רמת עיבוד גבוהה" / "מוצר מעובד" |
+| Additives | "תוספים" / "תוספים מזוניים" |
+| Short ingredient list | "רשימת רכיבים קצרה" |
+| Protein | "חלבון" (g amount, not a quality classification) |
+| Sugar | "סוכר" (g amount from label) |
+| Confidence | "נתונים מלאים" / "נתונים חלקיים" |
+
+### Forbidden terms (never appear publicly)
+
+BSIP / BSIP0 / BSIP1 / BSIP2 · NOVA (name or number) · cap / binding cap / floor · routing / category routing · dimension (processing_quality, glycemic_quality, etc.) · structural class · anchor / hard anchor · confidence band or numeric confidence score · framework / pipeline / ontology · any explanation of how scores are computed.
+
+### Score display rules (reconciled with Gen 1.1, owner directive 2026-06-03)
+
+- Chip format: `72 · B · טוב` — numeric + grade letter + tier word. Grade is conveyed by **both** the letter and the color (per `gradePalette`, see Section 5).
+- The chip tier slot (`טוב` / `בינוני` / etc.) is the **only** place a grade adjective may appear. Do **not** write free-floating verbal verdicts elsewhere ("ציון גבוה" / "ציון בינוני" / "ציון נמוך" in prose) — the chip carries the interpretation.
+- Grade color stays within the approved A–E ramp as a subtle tint + accent border/number — never a saturated fill, never a second per-product color axis.
+
+> Note: the former v1 constraint "no color, no grade adjectives" is **superseded**. The chip is color-coded by grade and the tier word is permitted in the tier slot. Section 5 is the operative chip spec.
+
+### Insight line rules
+
+The insight line is an observation, not a verdict. (Full grammar in `insight_line_spec_v1.md`; interpretive verdict-row model in `row_description_standard_v1.md`.)
+
+- Approved: `רשימת רכיבים קצרה מ-5 מרכיבים` · `10 גרם חלבון ל-100 גרם` · `מוצר הדיאט עם יותר תוספים מהגרסה הרגילה` · `המוצר הנמכר ביותר בקטגוריה`
+- Forbidden: `מוצר לא בריא` · `כדאי להימנע` · `עדיף על` · `הציון נמוך כי...` · any causal explanation of the score.
+
+---
+
+## 23. Ontology Leakage Prevention
+
+A leakage event occurs when the internal framework becomes visible through any surface: a filter label, tooltip, row annotation, or data note.
+
+**Detection checklist — run before every category launch:**
+
+- [ ] Does any filter label contain a framework term?
+- [ ] Does any row insight explain the score mechanism?
+- [ ] Does the methodology section name any framework dimension?
+- [ ] Does the hero or prologue contain NOVA, cap, or routing language?
+- [ ] Does the expanded row show anything other than interpretive content, nutrition, ingredients, data note, confidence?
+- [ ] Does the highlighted-pair driver line reference framework logic?
+
+If any checkbox is YES: fix before launch.
+
+---
+
+## 24. Dashboard Drift Prevention
+
+A drift event occurs when the page starts to feel like analytics software rather than shelf exploration.
+
+**Drift warning signs:**
+
+- A chart or visualization appears above the first product row.
+- The user must make a choice (filter, select, configure) before seeing any product.
+- A summary statistic ("67% of products are NOVA4") appears before product rows.
+- An aggregate view (brand ranking, category average) is surfaced as primary content.
+- Multiple filter dimensions are visible and open by default.
+- Comparison moments multiply beyond one.
+- A score appears with a free-floating verbal interpretation beside it (outside the chip tier slot).
+- A heading appears inside the expansion section.
+
+Note: per Gen 1.1, grade-based color on the score chip is **not** drift — it is the approved chip treatment (Section 5). Drift is a saturated red/green warning-badge fill, or a *second* color axis beyond the A–E ramp.
+
+**Response to drift pressure:** Do not add the element. If a stakeholder requests one of the above, the answer is the methodology page or framework documentation — not the product table.
+
+---
+
+## 25. Category Rollout Workflow
+
+For each new category, in order:
+
+1. **Data prerequisites** — BSIP2 run complete; batch summary reviewed; editorial scope filtered (false positives removed); minimum 30 scored products.
+2. **Hero identification** — from scored data, find the single most surprising product (known brand with unexpected low score, OR "healthy"-positioned product below category average). Write one Hebrew sentence naming product + observation.
+3. **Prologue writing** — answer in 3–5 sentences total: what products are on this shelf; what we looked at; what is not obvious from the front of the package. One sentence each, max.
+4. **Highlighted pair (optional)** — identify the single clearest score gap between two comparable products. Write one driver line (≤15 Hebrew words, observational). If no pair is clearly strongest, omit.
+5. **Row insight writing** — one insight line per in-scope product (≤12 Hebrew words). Sources: ingredient count, dominant ingredient, notable claim vs. score, protein amount, additive presence. The insight must be independently observable without knowing the score.
+6. **Filter configuration** — name the 1–3 filter dimensions; write Hebrew consumer labels for each value; confirm no label exposes a framework term.
+7. **Methodology line** — 2–4 sentences using the methodology copy rules (Section 21). Confirm no framework terms.
+8. **Leakage + drift checklist** — run both (Sections 23 and 24). Fix any failure before launch. Then proceed through the Build Gate Sequence (Section 18).
+
+---
+
+## 26. Governing UX Principles
+
+Every design decision is evaluated against these, in order.
+
+1. **Products first.** The user's first visual interaction is with a product, not a system. No filter wall, chart, or summary box before the first product row.
+2. **Calm by default.** Nothing pulses or competes for attention. Interactions are quiet: expand/collapse, filter toggle. No hover state changes layout.
+3. **One discovery at a time.** The table is sorted by score. Contradictions emerge through scrolling, not annotation.
+4. **Invisible scaffolding.** The system that produced the scores does not appear. The user sees products, scores, and observations — not the pipeline.
+5. **Mobile is not a reduction.** The mobile experience is complete. Collapsed rows hold everything a browsing user needs; expanded rows hold everything an investigating user needs.
+6. **Restraint is the feature.** When in doubt, remove. Fewer elements at higher quality beats more elements at lower quality. The absence of a comparison moment is a decision to let the table speak.
 
 ---
 

@@ -1,0 +1,991 @@
+{
+  "_meta": {
+    "run_id": "run_cereals_multiretailer_001",
+    "task": "TASK-184",
+    "generated_by": "data-agent",
+    "schema": "BariProductVM[] (promote staging — insightLine/rowVerdict EMPTY, Content authors)",
+    "engine": "proto_v0 algorithm_version 0.4.1, BARI_RECAL_P0=on — byte-identical to run_cereals_005",
+    "provenance": "il_prices (Carrefour 7290055700007 / Yochananof 7290455000004) identity + Open Food Facts candidate panels (EDPG candidate). Dedup vs run_cereals_005 (66).",
+    "promote_count": 34,
+    "promote_split_by_category": {
+      "granola": 18,
+      "breakfast-cereals": 16
+    },
+    "subpool_split": {
+      "granola": 18,
+      "standard_cereal": 16
+    },
+    "excluded_for_live": {
+      "ev_045c_savory_fitness_cracker": 6,
+      "held_A_artifact": 1,
+      "insufficient_data": 1
+    },
+    "exclusion_detail": {
+      "ev_045c_savory_fitness_cracker": [
+        {
+          "barcode": "7290112965660",
+          "name": "פיטנס מלח פלפל"
+        },
+        {
+          "barcode": "7290112968807",
+          "name": "Fitness Thin"
+        },
+        {
+          "barcode": "7290115205176",
+          "name": "Fitness"
+        },
+        {
+          "barcode": "7290115205312",
+          "name": "Fitness"
+        },
+        {
+          "barcode": "7290118420323",
+          "name": "Fitness Veggie Mix"
+        },
+        {
+          "barcode": "7290109352916",
+          "name": "Fitness"
+        }
+      ],
+      "held_A_artifact": [
+        {
+          "barcode": "7290116532769",
+          "name": "גרנולה בתוספת חלבון"
+        }
+      ],
+      "insufficient_data": [
+        {
+          "barcode": "5900020034021",
+          "name": "Fitness"
+        }
+      ]
+    },
+    "notes": [
+      "EV-045c is enforced flag-AND-DROP here (live promote path): savory Fitness crackers EXCLUDED.",
+      "Genuine Fitness corn flakes / protein granola (14.8g fat) are NOT flagged and are RETAINED.",
+      "81.2/A 7290116532769 HELD OUT per Nutrition (data-completeness artifact).",
+      "ADD-ONLY: the existing 66 live products and their scores are untouched; this stages new products only.",
+      "insightLine + rowVerdict are intentionally empty; Content Agent authors before frontend merge."
+    ]
+  },
+  "products": [
+    {
+      "id": "bsip1_cereal_7290114603041",
+      "name": "Protein granola",
+      "imageUrl": "",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "16.4 גרם חלבון ו-9.8 גרם סיבים ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460.0,
+          "protein": 16.4,
+          "sugar": 9.3,
+          "fat": 23.7,
+          "fiber": 9.8,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולת חלבון מהגבוהות בקבוצה — 16.4 גרם חלבון ו-9.8 גרם סיבים, וסוכר מתון של 9.3 גרם. עוצר ב-B כי רשימת הרכיבים אינה זמינה ו-23.7 גרם שומן ל-100 גרם מעלים את הצפיפות הקלורית.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290120871069",
+      "name": "Granola Protein",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/012/087/1069/front_en.3.400.jpg",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "22 גרם חלבון — מהגבוהים בין הגרנולות.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 395.0,
+          "protein": 22.0,
+          "sugar": 9.4,
+          "fat": 12.7,
+          "fiber": 7.3,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מובילת החלבון בקבוצה — 22 גרם ל-100 גרם, עם סוכר מתון של 9.4 גרם ושומן נמוך יחסית לגרנולה. עוצר ב-B כי רשימת הרכיבים אינה זמינה, ורמת העיבוד של גרנולת חלבון נשארת פתוחה.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7297488099821",
+      "name": "Sugarless Gluten Free Granola",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/748/809/9821/front_en.3.400.jpg",
+      "score": 71,
+      "grade": "B",
+      "insightLine": "תווית 'ללא סוכר' — 9.8 גרם סוכר ל-100 גרם בפועל.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 491.0,
+          "protein": 13.9,
+          "sugar": 9.8,
+          "fat": 29.2,
+          "fiber": 10.5,
+          "sodium": 27.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "תווית 'Sugarless' אבל הפאנל מציג 9.8 גרם סוכר ל-100 גרם — לצד 10.5 גרם סיבים ו-13.9 גרם חלבון. עוצר ב-B כי הסיבים גבוהים, אבל 29.2 גרם שומן ל-100 גרם הם מהגבוהים בקבוצה.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_5010026515919",
+      "name": "Mornflake Crispy Muesli Nutty",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/501/002/651/5919/front_en.25.400.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "אגוזים 18%, סוכר נמוך — 5 גרם ל-100 גרם.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 449.0,
+          "protein": 14.5,
+          "sugar": 5.0,
+          "fat": 22.5,
+          "fiber": 7.6,
+          "sodium": null
+        },
+        "ingredients": "Mixed Nuts (18%) (PECAN NUTS (6%), ALMONDS (6%), HAZELNUTS (5%), PISTACHIO NUTS (1%)), Toasted WHEATFLAKES, OATFLAKES, Mixed Seeds (Pumpkin Seeds (4.5%), Sunflower Seeds), WHEATFLAKES, BARLEY Flakes, Dried Apple (5%) (contains Preservative SULPHUR DIOXIDE), Coconut (4%)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מוזלי אגוזי עם 18% תערובת אגוזים, סוכר נמוך של 5 גרם ו-7.6 גרם סיבים. עוצר ב-B כי 22.5 גרם שומן מהאגוזים מעלים את הצפיפות, ולתפוח המיובש נוסף חומר משמר (דו תחמוצת הגופרית).",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290114603034",
+      "name": "גרנולה אגוזים צימוקים וחמוציות",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/011/460/3034/front_en.3.400.jpg",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "10.7 גרם חלבון, 7.3 גרם סיבים ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 373.0,
+          "protein": 10.7,
+          "sugar": null,
+          "fat": 12.0,
+          "fiber": 7.3,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולת אגוזים ופירות יבשים — 10.7 גרם חלבון, 7.3 גרם סיבים ושומן מתון של 12 גרם. עוצר ב-B כי הצימוקים והחמוציות מוסיפים פירות יבשים, ורשימת הרכיבים אינה זמינה לאישור מלא.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290019603627",
+      "name": "Granola With Bittersweet Chocolate",
+      "imageUrl": "",
+      "score": 63,
+      "grade": "C",
+      "insightLine": "18 גרם סוכר ל-100 גרם, עם שוקולד מריר.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 414.0,
+          "protein": 10.0,
+          "sugar": 18.0,
+          "fat": 14.3,
+          "fiber": 7.0,
+          "sodium": 7.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולה עם שוקולד מריר — 10 גרם חלבון ו-7 גרם סיבים, אבל 18 גרם סוכר ל-100 גרם. מטפס ל-C ולא יותר כי השוקולד והסוכר מושכים מטה פרופיל גרנולה שאחרת סביר.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290001343845",
+      "name": "גרנולה",
+      "imageUrl": "",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "21 גרם סוכר ל-100 גרם — חמישית מהמשקל.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 376.0,
+          "protein": 8.9,
+          "sugar": 21.0,
+          "fat": 11.5,
+          "fiber": 6.0,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולה קלאסית עם 21 גרם סוכר ל-100 גרם — כחמישית מהמשקל — לצד 8.9 גרם חלבון ו-6 גרם סיבים. נשאר ב-C כי הסוכר הוא הגורם המגביל, והפרופיל בינוני בין הגרנולות.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290019603634",
+      "name": "גרנולה קוקוס ופירות",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/001/960/3634/front_he.3.400.jpg",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "20 גרם סוכר ל-100 גרם, עם קוקוס ופירות.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 382.0,
+          "protein": 9.0,
+          "sugar": 20.0,
+          "fat": 11.0,
+          "fiber": 7.0,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולת קוקוס ופירות — 9 גרם חלבון ו-7 גרם סיבים, אבל 20 גרם סוכר ל-100 גרם. נשאר ב-C כי הקוקוס והפירות מביאים את הסוכר לחמישית מהמשקל, ופרופיל החלבון בינוני.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_5010026521149",
+      "name": "Crispy Muesli",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/501/002/652/1149/front_he.3.400.jpg",
+      "score": 54,
+      "grade": "C",
+      "insightLine": "24.4 גרם סוכר ל-100 גרם — רבע מהמשקל.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 377.0,
+          "protein": 10.0,
+          "sugar": 24.4,
+          "fat": 10.0,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מוזלי פריך עם 24.4 גרם סוכר ל-100 גרם — כרבע מהמשקל — ו-10 גרם חלבון. נשאר ב-C כי הסוכר גבוה, ונתוני הסיבים חסרים כך שלא ניתן לזקוף לזכותו דגן מלא.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290011668570",
+      "name": "גרנולה",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/001/166/8570/front_he.4.400.jpg",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "26 גרם סוכר ל-100 גרם — רבע מהמשקל.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 410.0,
+          "protein": 9.8,
+          "sugar": 26.0,
+          "fat": 14.9,
+          "fiber": 6.3,
+          "sodium": 70.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולה עם 26 גרם סוכר ל-100 גרם — מהגבוהים בקבוצה — לצד 9.8 גרם חלבון ו-6.3 גרם סיבים. נשאר ב-C כי הסוכר הוא הגורם המגביל, ורמת השומן (14.9 גרם) מעלה את הצפיפות הקלורית.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_3560070826186",
+      "name": "MUESLI & Co 2 CHOCOLATS & NOISETTES",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/356/007/082/6186/front_fr.53.400.jpg",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "שיבולת שועל 43%, אבל סוכר ושני סוגי שוקולד ברשימה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 428.0,
+          "protein": 9.7,
+          "sugar": 24.0,
+          "fat": 14.0,
+          "fiber": 7.2,
+          "sodium": 104.0
+        },
+        "ingredients": "Flocons d'_avoine_ complète 43 %, morceaux de chocolat noir 12 % (pâte de cacao, sucre, beurre de cacao, émulsifiant: lécithines), morceaux de chocolat au lait 11 % (sucre, pâte de cacao, _lait_ entier en poudre, beurre de cacao, émulsifiant: lécithines), sucre, farine de _blé_ 6,9 %, _noisettes_ grillées en moitié 5%, _orge_ complète 4,7 %, maïs 2,9 %, cacao maigre en poudre, amidon de _blé_, huile de palme, flocons de _blé_ complet 0,5 %, noix de coco râpée, farine de riz 0,4 %, extrait de malt d'_orge_, sirop de glucose-fructose, sel, dextrose, _gluten_ de _blé_, arômes naturels, farine de malt d'_orge_ et de malt de _blé_. Peut contenir d'arachides, d'autres fruits à coque, de graines de sésame, de moutarde et de lupin.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מוזלי עם 43% שיבולת שועל מלאה — אבל מעליה שני סוגי שוקולד (23% יחד), סוכר וסירופ גלוקוז-פרוקטוז, ו-24 גרם סוכר ל-100 גרם. נשאר ב-C כי הדגן המלא נוכח אבל מוקף שוקולד וממתיקים.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_8445291301948",
+      "name": "Multigrain Cheerios",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/844/529/130/1948/front_en.12.400.jpg",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "דגנים מלאים 80%, אבל סוכר הרכיב הרביעי.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 376.7,
+          "protein": 10.0,
+          "sugar": 17.7,
+          "fat": 4.7,
+          "fiber": 9.7,
+          "sodium": 313.3
+        },
+        "ingredients": "whole grain oat flour (31,9%), whole grain wheat flour (29,6%), whole grain barley flour (18,2%), sugar, wheat flour (contains calcium carbonate, vitamin b3, iron, vitamin b1), invert sugar syrup, calcium carbonate, sunflower oil, molasses, salt, caramelised sugar syrup, colours: carotene, annatto norbixin, antioxidant: tocopherols, iron, vitamins c, b3, b5, b9, d, b6, b2",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "צ'יריוס מולטיגריין עם שלושה דגנים מלאים (כ-80%) ו-9.7 גרם סיבים — אבל גם 17.7 גרם סוכר ל-100 גרם. נשאר ב-C כי הדגן המלא חזק, אבל הסוכר המוסף חוזר ברשימה שלוש פעמים.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_884912102102",
+      "name": "Great Grains Cereal Blueberry Morning imp",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/088/491/210/2102/front_en.50.400.jpg",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "27.2 גרם סוכר ל-100 גרם, BHT כנוגד חמצון.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 372.4,
+          "protein": 7.2,
+          "sugar": 27.2,
+          "fat": 4.8,
+          "fiber": 5.7,
+          "sodium": 339.0
+        },
+        "ingredients": "Whole grain wheat, rice, cane sugar, dried blueberries (blueberries, invert sugar, glycerin, sunflower oil, natural flavor), whole grain rolled oats, almonds, expeller pressed canola oil, salt, barley malt extract, rice syrup, molasses, caramel color, natural flavor. bht added to preserve freshness. vitamins and minerals: niacinamide (vitamin b3), reduced iron, zinc oxide, vitamin a palmitate, pyridoxine hydrochloride (vitamin b6), thiamin mononitrate (vitamin b1), riboflavin (vitamin b2), folic acid, vitamin d3, vitamin b12.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "תערובת חיטה מלאה ואורז עם אוכמניות מיובשות — אבל סוכר קנים הרכיב השלישי ו-27.2 גרם סוכר ל-100 גרם. נשאר ב-C כי הדגן המלא מלווה סוכר גבוה ו-BHT כנוגד חמצון שנוי במחלוקת.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290104506819",
+      "name": "דגני בוקר במילוי קרם בטעם נוגט",
+      "imageUrl": "",
+      "score": 50,
+      "grade": "C",
+      "insightLine": "מילוי קרם נוגט — 24 גרם סוכר, 6.8 גרם חלבון.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 445.0,
+          "protein": 6.8,
+          "sugar": 24.0,
+          "fat": 14.6,
+          "fiber": 4.5,
+          "sodium": 200.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דגני בוקר במילוי קרם נוגט — 24 גרם סוכר ל-100 גרם, 14.6 גרם שומן ורק 6.8 גרם חלבון. נשאר ב-C כי המילוי המתוק מגדיר את המוצר, והסיבים נמוכים (4.5 גרם).",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7613035758834",
+      "name": "פיטנס גרנולה חמוציות",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/575/8834/front_en.36.400.jpg",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "תווית 'פיטנס' — סוכר הרכיב השני.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 437.0,
+          "protein": 9.5,
+          "sugar": 18.7,
+          "fat": 14.8,
+          "fiber": 7.1,
+          "sodium": 80.0
+        },
+        "ingredients": "whole oatmeal 58,4%, sugar, malted grilled wheat petals 9,3% (wheat flour, malt extract, emulsifier,' sunflower lecithin), dried cranberry pieces (cranberries 3,5%, sugar), squash seeds 4,3%, molasses, puffed rice chips 3,5% (rice semolina, wheat flour, sugar, barley malt extract, salt), sunflower oil, whole oat flour , invert sugar syrup, minerals: calcium carbonate, acidity corrector, citric acid, salt, cinnamon,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "גרנולת פיטנס עם 58.4% שיבולת שועל מלאה — אבל סוכר הרכיב השני, וסירופ אינברטי ומולסה גם ברשימה. נשאר ב-D כי ה'פיטנס' שבשם לא מתיישב עם 18.7 גרם סוכר ל-100 גרם.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_16000423534",
+      "name": "קראנצ'י שיבולת שועל עם שוקולד מריר",
+      "imageUrl": "",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "26.9 גרם סוכר ו-19.8 גרם שומן ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 473.8,
+          "protein": 8.8,
+          "sugar": 26.9,
+          "fat": 19.8,
+          "fiber": 6.9,
+          "sodium": 259.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קראנצ' שיבולת שועל עם שוקולד מריר — 26.9 גרם סוכר ו-19.8 גרם שומן ל-100 גרם, מהגבוהים בקבוצה. נשאר ב-D כי השוקולד והסוכר דוחפים את הצפיפות הקלורית מעלה למרות 8.8 גרם חלבון.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_884912359155",
+      "name": "Honey Roasted Cereal with Granola",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/088/491/235/9155/front_en.56.400.jpg",
+      "score": 36,
+      "grade": "D",
+      "insightLine": "סוכר הרכיב השלישי, 463 מ\"ג נתרן ל-100 גרם.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 533.3,
+          "protein": 7.3,
+          "sugar": 22.0,
+          "fat": 4.9,
+          "fiber": 4.9,
+          "sodium": 463.4
+        },
+        "ingredients": "opost consumer brands, llc 6% 6% 10% ingredients: corn, whole grain wheat, sugar, whole grain rolled oats, rice, canola and/or soybean cil, wheat flour, malted barley flour, corn syrup, salt, molasses, honey, caramel color, barley malt extract, natural and artificial flavor, annatto extract (color), bht added to preserve freshness, vitamins and minerals: reduced iron, niacinamide (vitamin b3),  vitamin a palmitate, pyridoxine hydrochloride (vitamin b6), zinc oxide, thiamin mononitrate (vitamin b1), riboflavin (vitamin b2), folic acid, vitamin d3, vitamin b12, contains wheat,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דגנים קלויים בדבש עם גרנולה — תירס וחיטה מלאה, אבל סוכר הרכיב השלישי, סירופ תירס ו-22 גרם סוכר ל-100 גרם. יורד ל-D כי הסוכר המוסף, 463 מ\"ג הנתרן והעיבוד הגבוה מצטברים.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290116537962",
+      "name": "כריות וניל חדש",
+      "imageUrl": "",
+      "score": 29,
+      "grade": "E",
+      "insightLine": "38.5 גרם סוכר ל-100 גרם, אפס סיבים.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 451.0,
+          "protein": 4.3,
+          "sugar": 38.5,
+          "fat": 13.5,
+          "fiber": 0.0,
+          "sodium": 258.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "כריות וניל — 38.5 גרם סוכר ל-100 גרם, כמעט שני חמישיות מהמשקל, ואפס סיבים. יורד ל-E כי הסוכר שולט במוצר וחלבון של 4.3 גרם בלבד אינו מאזן.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "granola"
+    },
+    {
+      "id": "bsip1_cereal_7290000480442",
+      "name": "שיבולת שועל הכנה מהירה",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/000/048/0442/front_en.3.400.jpg",
+      "score": 77,
+      "grade": "B",
+      "insightLine": "שיבולת שועל — 1.1 גרם סוכר, 9 גרם סיבים.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 374.0,
+          "protein": 11.0,
+          "sugar": 1.1,
+          "fat": 8.0,
+          "fiber": 9.0,
+          "sodium": 0.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מהנקיים במדף — שיבולת שועל להכנה מהירה עם 1.1 גרם סוכר בלבד, 9 גרם סיבים ו-11 גרם חלבון ל-100 גרם. עוצר ב-B כי רשימת הרכיבים אינה זמינה לאישור מלא של דגן יחיד.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290000480107",
+      "name": "שיבולת שועל להכנה מהירה",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/000/048/0107/front_en.6.400.jpg",
+      "score": 76,
+      "grade": "B",
+      "insightLine": "13 גרם חלבון, 10 גרם סיבים, גרם סוכר אחד.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 392.5,
+          "protein": 13.0,
+          "sugar": 1.0,
+          "fat": 8.0,
+          "fiber": 10.0,
+          "sodium": 7.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "מהחזקים במדף — שיבולת שועל עם 13 גרם חלבון, 10 גרם סיבים וגרם סוכר אחד ל-100 גרם. עוצר ב-B כי רשימת הרכיבים אינה זמינה, אך הפרופיל הוא של דגן פשוט ונקי.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290008263597",
+      "name": "קוואקר אורגני",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/000/826/3597/front_en.3.400.jpg",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "שיבולת שועל אורגנית — 11 גרם סיבים, 1.3 גרם סוכר.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 364.0,
+          "protein": 14.0,
+          "sugar": 1.3,
+          "fat": 6.9,
+          "fiber": 11.0,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קוואקר אורגני מהנקיים במדף — 11 גרם סיבים, 14 גרם חלבון ו-1.3 גרם סוכר בלבד ל-100 גרם. עוצר ב-B כי רשימת הרכיבים אינה זמינה לאישור מבנה דגן שלם לחלוטין.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290008263641",
+      "name": "קוואקר עדין אורגני",
+      "imageUrl": "",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "שיבולת שועל עדינה אורגנית — 14 גרם חלבון, 11 גרם סיבים.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 364.0,
+          "protein": 14.0,
+          "sugar": 1.3,
+          "fat": 6.9,
+          "fiber": 11.0,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קוואקר עדין אורגני — שיבולת שועל בטחינה דקה, 14 גרם חלבון, 11 גרם סיבים ו-1.3 גרם סוכר בלבד. עוצר ב-B כי הפרופיל זהה לגרסה הרגילה, ורשימת הרכיבים אינה זמינה לאישור מלא.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290017068985",
+      "name": "שיבולת שועל מלאה עבה",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/001/706/8985/front_en.3.400.jpg",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "שיבולת שועל מלאה — גרם סוכר אחד, 9 גרם סיבים.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 366.0,
+          "protein": 12.0,
+          "sugar": 1.0,
+          "fat": 8.0,
+          "fiber": 9.0,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "שיבולת שועל מלאה בחיתוך עבה — 12 גרם חלבון, 9 גרם סיבים וגרם סוכר אחד בלבד ל-100 גרם. עוצר ב-B כי הפרופיל נקי, אך רשימת הרכיבים אינה זמינה לאישור דגן יחיד.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7613037686906",
+      "name": "Fitness almond honey",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/768/6906/front_en.5.400.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תווית 'פיטנס' — 10 גרם סוכר ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 386.0,
+          "protein": 10.0,
+          "sugar": 10.0,
+          "fat": 5.6,
+          "fiber": 7.7,
+          "sodium": 134.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס פיטנס בטעם שקדים ודבש — 10 גרם חלבון, 7.7 גרם סיבים ושומן נמוך, אבל גם 10 גרם סוכר ל-100 גרם. עוצר ב-B כי הפרופיל סביר, אך הסוכר המוסף בולט לצד שם ה'פיטנס'.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7613033548192",
+      "name": "Nestle Fitness Dark Chocolate",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/354/8192/front_en.10.400.jpg",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "תווית 'פיטנס' עם שוקולד — 14 גרם סוכר, 10.3 גרם סיבים.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 393.3,
+          "protein": 9.0,
+          "sugar": 14.0,
+          "fat": 7.7,
+          "fiber": 10.3,
+          "sodium": 186.7
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס פיטנס בטעם שוקולד מריר — 10.3 גרם סיבים מרשימים, אבל 14 גרם סוכר ל-100 גרם. עוצר ב-B כי הסיבים גבוהים, אבל השוקולד והסוכר המוסף מושכים מטה לצד שם ה'פיטנס'.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_5900020041142",
+      "name": "קורנפלקס פיטנס",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/590/002/004/1142/front_en.3.400.jpg",
+      "score": 65,
+      "grade": "B",
+      "insightLine": "קורנפלקס — 3 גרם סוכר, אבל 1.3 גרם סיבים בלבד.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 8.0,
+          "sugar": 3.0,
+          "fat": 2.3,
+          "fiber": 1.3,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס פיטנס עם סוכר נמוך של 3 גרם ושומן נמוך מאוד — אבל גם 1.3 גרם סיבים בלבד ל-100 גרם. עוצר ב-B כי הסוכר מתון, אך מבנה התירס המעובד כמעט נטול סיבים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_3560071016074",
+      "name": "Corn flakes",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/356/007/101/6074/front_fr.48.400.jpg",
+      "score": 61,
+      "grade": "C",
+      "insightLine": "תירס 92%, סוכר ומלח — 320 מ\"ג נתרן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383.0,
+          "protein": 6.9,
+          "sugar": 7.2,
+          "fat": 1.2,
+          "fiber": 2.5,
+          "sodium": 320.0
+        },
+        "ingredients": "Maïs 92 %, sucre, sel, extrait de malt d'_orge_.\nPeut contenir des traces d'arachides, de fruits à coque, de lait, de soja, de graines de sésame, de moutarde et de lupin",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס פשוט — 92% תירס, ואחריו סוכר, מלח ותמצית לתת. נשאר ב-C כי הרשימה קצרה אבל מבנה התירס המעובד מותיר רק 2.5 גרם סיבים, ו-320 מ\"ג הנתרן בולטים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290006992208",
+      "name": "דייסת דגנים מעורבים",
+      "imageUrl": "",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "תערובת דגנים 92%, אפס סוכר, נתרן נמוך מאוד.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": null,
+          "protein": 8.7,
+          "sugar": 0.0,
+          "fat": 2.5,
+          "fiber": null,
+          "sodium": 10.0
+        },
+        "ingredients": "דייסת דגנים מעורבים רכיבים: תערובת דגנים (92%): (עמילן תירס, שיבולת שועל (מכיל גלוטן), סולת (מכיל גלוטן), אורז, דוחן, שיפון (מכיל גלוטן), שעורה (מכיל גלוטן)), כוסמת (4.9%), מינרלים: (סידן-L-לקטט, ברזל סולפט, אבץ סולפט), ויטמינים: (L - חומצה אסקורבית (a-DL (C-טוקופריל אצטט (E), ניקוטינאמיד (B3), סידן D-פנטוטנת (B5), ריבופלאבין (B2), תיאמין מונוניטראט (B1), פירידוקסין הידרוכלוריד (B6), רטיניל אצטט (N ,(A-פטרואיל-L-חומצה גלוטמית (חומצה פולית), פילוקווינון (D ,(K1-ביוטין כולקלציפרול (D3), ציאנוקובלמין (B12)), חומר טעם וריח - בטעם וניל, ביפידובקטריה (B.Lactis). נארז באווירה מבוקרת לשמירה על איכות המוצר (חנקן).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דייסת דגנים מעורבים — תערובת של שבעה דגנים (92%) וכוסמת, ללא סוכר ועם 10 מ\"ג נתרן בלבד. עוצר ב-C כי הבסיס נקי ומגוון, אבל המוצר מועשר במינרלים וויטמינים ונתוני הסיבים חסרים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290116533599",
+      "name": "קורנפלקס",
+      "imageUrl": "",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "קורנפלקס — 350 מ\"ג נתרן, 5.1 גרם חלבון.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 363.0,
+          "protein": 5.1,
+          "sugar": 6.7,
+          "fat": 1.4,
+          "fiber": null,
+          "sodium": 350.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס סטנדרטי — 6.7 גרם סוכר ושומן נמוך, אבל 350 מ\"ג נתרן ל-100 גרם ורק 5.1 גרם חלבון. נשאר ב-C כי מבנה התירס המעובד דל, ונתוני הסיבים חסרים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7290116537351",
+      "name": "כריות נוגט",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/011/653/7351/front_he.3.400.jpg",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "מוצר ילדים — 16.3 גרם שומן, 5.7 גרם חלבון.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 5.7,
+          "sugar": null,
+          "fat": 16.3,
+          "fiber": null,
+          "sodium": 217.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "כריות נוגט מקטגוריית הילדים — 16.3 גרם שומן ל-100 גרם, 217 מ\"ג נתרן ורק 5.7 גרם חלבון. נשאר ב-C כי המילוי המתוק מגדיר את המוצר, ונתוני הסוכר והסיבים אינם זמינים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_4005528115218",
+      "name": "דגני חיטה ואורז בטעם",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/400/552/811/5218/front_ro.3.400.jpg",
+      "score": 48,
+      "grade": "D",
+      "insightLine": "30 גרם סוכר ל-100 גרם — כמעט שליש מהמשקל.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 382.0,
+          "protein": 7.1,
+          "sugar": 30.0,
+          "fat": 0.7,
+          "fiber": 2.3,
+          "sodium": 200.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דגני חיטה ואורז בטעם — 30 גרם סוכר ל-100 גרם, כמעט שליש מהמשקל, ו-2.3 גרם סיבים בלבד. נשאר ב-D כי הסוכר הוא הגורם המגביל ומבנה הדגן המעובד דל בסיבים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_7613032045753",
+      "name": "Neslte Fitness Chocolate & Rice",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/204/5753/front_fr.11.400.jpg",
+      "score": 45,
+      "grade": "D",
+      "insightLine": "תווית 'פיטנס' — 20 גרם סוכר ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 385.0,
+          "protein": 8.5,
+          "sugar": 20.0,
+          "fat": 7.5,
+          "fiber": null,
+          "sodium": 1272.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס פיטנס בטעם שוקולד ואורז — 8.5 גרם חלבון, אבל 20 גרם סוכר ל-100 גרם. נשאר ב-D כי השוקולד והסוכר המוסף לא מתיישבים עם שם ה'פיטנס', ונתוני הסיבים חסרים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_42400108153",
+      "name": "Cereal",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/004/240/010/8153/front_en.5.400.jpg",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "סוכר הרכיב הראשון — 42.9 גרם ל-100 גרם.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 392.9,
+          "protein": 3.6,
+          "sugar": 42.9,
+          "fat": 3.6,
+          "fiber": 3.6,
+          "sodium": 453.6
+        },
+        "ingredients": "Sugar, corn flour, wheat flour, whole grain oat flour, corn syrup, salt, contains 1% or less of: calcium carbonate, natural flavor, red 40, yellow 6, yellow 5, blue 1. bht added to preserve freshness. vitamins and minerals: ferric orthophosphate (source of iron), niacinamide (vitamin b3), zinc oxide (source of zinc), thiamin mononitrate (vitamin b1), calcium pantothenate (vitamin b5), pyridoxine hydrochloride (vitamin b6), folic acid.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דגני בוקר שהסוכר הוא הרכיב הראשון בהם — 42.9 גרם ל-100 גרם, כמעט מחצית המשקל, עם צבעי מאכל ברשימה. יורד ל-D כי הסוכר שולט וחלבון של 3.6 גרם בלבד; הדגן המלא שולי.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "breakfast-cereals"
+    },
+    {
+      "id": "bsip1_cereal_5900020046833",
+      "name": "Cheerios",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/590/002/004/6833/front_he.3.400.jpg",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "שיבולת שועל מלאה 92%, אבל סוכר הרכיב השני.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383.3,
+          "protein": 10.7,
+          "sugar": 9.0,
+          "fat": 6.0,
+          "fiber": null,
+          "sodium": 286.7
+        },
+        "ingredients": "Nestle A ср Cereal Partners Worldwide Nestlé and General Mills Nestle Good food, Good life רכיבים: קמח שיבולת שועל מלא (מכיל גלוטן) (92%), סוכר, עמילן חיטה (מכיל גלוטן), מינרלים סידן (קלציום קרבונט), ברזל], סירופ סוכר אינברטי, מלח, מווסת חומציות (טריפוטסיום פוספט), מולסה, שמן צמחי, מעכב חמצון (טוקופרולים), ויטמינים [ויטמין C, ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין D]. סן הדגנים במוצר: 92% 100% מסך הדגנים במוצר הינם דגנים מלאים. מידע על רכיבים אלרגניים מכיל גלוטן שיבולת שועל וחיטה. עלול להכיל אגוזים, שקדים וחלב. סימון ב-100 ג' מזן נמנה 30 1* ... | 1&quot; תזונתי 43041005 ! אנרגיה (קלוריות) סך השומנים (ג') מתוכם: חומצות שומן רוויות (ג') 115 383 1.8 0.3 1 طاقة (سعرات حرارية) إجمالي الدهنيات (غم) ومنها: أحماض دهنية مشبعة (غم) חומצות שומן טראנס (ג')| פחות מ-0.5 פחות מ-10.5 di dalla أحماض دهنية غير مشبعة - ترانس اغم) כולסטרול (מ&quot;ג) נתרן (מ&quot;ג) 10 המסתומות ו' 0.5(1) 0 0 86 286 66.5 220 كولسترول (ملغم) ( إجمالي الكربوهيدرات (غم)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "צ'יריוס עם 92% קמח שיבולת שועל מלא ו-10.7 גרם חלבון — אבל סוכר הרכיב השני וסירופ סוכר אינברטי אחריו. נשאר ב-D כי הדגן המלא חזק אך הסוכר המוסף מוקדם, ונתוני הסיבים חסרים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "category": "breakfast-cereals"
+    }
+  ]
+}

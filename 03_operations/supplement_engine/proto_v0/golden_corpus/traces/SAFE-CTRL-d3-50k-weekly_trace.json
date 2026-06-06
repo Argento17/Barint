@@ -1,0 +1,72 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:14.883812Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "SAFE-CTRL-d3-50k-weekly",
+  "active": "vitamin D3 (cholecalciferol)",
+  "on_label_claim": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+  "claim_matched": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+  "claim_resolution": {
+    "via_umbrella": false,
+    "resolved_endpoint": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+    "resolved_phrase": null,
+    "resolved_tier": "Strong",
+    "resolution_supp_ev": null,
+    "resolution_citations": [
+      "PMID:24414552",
+      "PMID:39385006"
+    ],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [],
+    "over_promise": false,
+    "over_promise_markers": []
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 92.5,
+      "tier": "Strong"
+    },
+    "dose": {
+      "value": 72,
+      "reason": "over_studied_no_bonus"
+    },
+    "form": {
+      "value": 92
+    },
+    "honesty": {
+      "value": 100
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "non_daily_regimen_weekly"
+    }
+  },
+  "signature": {
+    "evidence": "HIGH",
+    "dose": "HIGH",
+    "form": "HIGH",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [],
+  "binding_constraint": {
+    "mechanism": "blend_dominant_limit",
+    "machine_reason": "limited_by_weakest_applicable_dimension"
+  },
+  "also_fired": [],
+  "blend": 86.2,
+  "dossier_facts_used": [
+    {
+      "field": "claims['correcting/maintaining vitamin D status (raising serum 25(OH)D)'].evidence_tier",
+      "value": "Strong",
+      "supp_ev": "SUPP-EV-003"
+    }
+  ],
+  "final": {
+    "score": 86.2,
+    "grade": "A"
+  }
+}

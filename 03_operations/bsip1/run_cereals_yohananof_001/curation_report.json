@@ -1,0 +1,538 @@
+{
+ "run_id": "run_cereals_yohananof_001",
+ "retailer": "yohananof",
+ "generated": "2026-06-05T11:16:18.957751+00:00",
+ "source_file": "C:\\Bari\\02_products\\breakfast_cereals\\bsip0_outputs\\multiretailer\\yohananof_bsip0_raw_20260605T104358.json",
+ "raw_count": 94,
+ "included_count": 6,
+ "excluded_count": 88,
+ "exclusion_tally": {
+  "no_usable_nutrition": 44,
+  "bar_excluded_snack_overlap": 15,
+  "not_cereal": 11,
+  "non_cereal_excluded": 17,
+  "chocolate_confection_excluded": 1
+ },
+ "ev_045c_fitness_flag_count": 1,
+ "ev_045c_flagged": [
+  {
+   "barcode": "7290109352916",
+   "name": "Fitness",
+   "triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  }
+ ],
+ "included": [
+  {
+   "barcode": "7290011668570",
+   "name": "גרנולה",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290011668587",
+   "name": "גרנולה טעם עשיר",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290109352916",
+   "name": "Fitness",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 5,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290116534619",
+   "name": "גרנולה שוקולד מריר",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "16000423534",
+   "name": "קראנצ'י שיבולת שועל עם שוקולד מריר",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5900020041142",
+   "name": "קורנפלקס פיטנס",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  }
+ ],
+ "excluded": [
+  {
+   "barcode": "7290000139241",
+   "name": "דגני מולטי שוקו  וניל`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290000204147",
+   "name": "כריות ניקול 4",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290000311845",
+   "name": "עוגיות חיטה מלאה",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290014288072",
+   "name": "כריות יפניות  רביעיה\"שווה\" איכותיות*",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290106571907",
+   "name": "עוגיות Fitness עם נטיפי שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290106571921",
+   "name": "עוגיות עם חמוציות",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290106572027",
+   "name": "לחמית",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290107646147",
+   "name": "School Snack שוגי",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290107646154",
+   "name": "חטיף פצפוצים בטעם שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290108350203",
+   "name": "כריות קירצוף 6 יח`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108352689",
+   "name": "כריות קירצוף 9  יח`ליכלוך קשה",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290109351971",
+   "name": "פריכיות עם שוקולד חלב",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290111564291",
+   "name": "Craquottes fined",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290116530482",
+   "name": "מאגדת קורנפלקס אלופים5*30ג`*",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118422181",
+   "name": "פרכיות עם שוקולד לבן",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "16000548404",
+   "name": "Crunchy",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "16000548503",
+   "name": "קרנצ יחטיפי גרנולה",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "3387390525960",
+   "name": "קראנצ'",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "5900020012814",
+   "name": "Nesquik Corn Flex Nestle",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020015174",
+   "name": "פיטנס בטעם שוקולד",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020018908",
+   "name": "פיטנס בטעם עוגיות",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5900020025647",
+   "name": "فيتنيس",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "5900020029669",
+   "name": "פיטנס חטיף דגנים פירות יער",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5900020039590",
+   "name": "Fitness",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020039620",
+   "name": "פיטנס חטיף דגנים שקדים ודבש",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290017068978",
+   "name": "שיבולת שועל  מלאה  להכנה מהירה 500 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290017068985",
+   "name": "שיבולת שועל  מלאה עבה 500 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290017457574",
+   "name": "כריות סוד שלשות פרחים",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290018333969",
+   "name": "חטיף  גרנולה רפאלס שקדים וטחינה",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290018724408",
+   "name": "דגני בוקר נוגט ללא גלוטן 375 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603085",
+   "name": "תן  צ`אפ כריות ט. טבעי  50 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603177",
+   "name": "תן  צ`אפ כריות ט. פלאפל  50 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603207",
+   "name": "תן  צ`אפ כריות ט. קטשופ  50 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603610",
+   "name": "גרנולה  פקאן טבעי וצימוקים 700 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603634",
+   "name": "גרנולה קוקוס ופירות  700 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603641",
+   "name": "גרנולה שקדים ואגוזים 700 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019644521",
+   "name": "גרנולה  פינוקים בננה פקאן  300 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019644576",
+   "name": "גרנולה  פינוקים שוקולד ואגוזי ל  300 ג",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108353068",
+   "name": "סנו 2 כריות סיבי  נירוסטה(חדש)",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108354010",
+   "name": "מרכך נקה 7 שיבולת שועל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108354027",
+   "name": "[תחליב  נקה 7 שיבולת שועל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108355994",
+   "name": "מרכך מקסימה  מרוכז בייבי שיבולת שועל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290110325619",
+   "name": "משקה שיבולת שועל",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290110327514",
+   "name": "משקה שיבולת שועל בטעם אגוזי לוז",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290111344916",
+   "name": "כריות יפניות אנטיבקטריאליות ניקול",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112340122",
+   "name": "פרכיות  הטעימות 3 דגנים",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112351104",
+   "name": "שוקלד פרה פצפוצי אורז רבנות",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112355812",
+   "name": "מילקי טופ  קורנפלקס",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112491701",
+   "name": "TELMA BRANFLAKES BADAZ 12X500G",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112495228",
+   "name": "TELMA BRANFLAKES 8X750G BADAZ",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112961372",
+   "name": "פיטנס חטיפי פרכיות  דקות קינמון",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112961440",
+   "name": "פיטנס בר  פרכיות שוקולד מריר",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290112961464",
+   "name": "פיטנס חטיפי פרכיות  דקות  מתובלות",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112963918",
+   "name": "פיטנס קרקר דק  רוזמרין",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290112965684",
+   "name": "פיטנס חטיף מולטיגריין  ע. תיבול",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290112965707",
+   "name": "פיטנס חטיף מולטיגריין צ`ילי  מעודן",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290112967381",
+   "name": "פיטנס חטיפי פרכיות",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112968807",
+   "name": "פיטנס קרקר דק  סלק",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290112968821",
+   "name": "פיטנס קרקר דק  בטטה",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290114603034",
+   "name": "פרי גרנולה אגוזים וצימוקים",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290115205176",
+   "name": "פיטנס קרקר כפרי",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290115205312",
+   "name": "פיטנס קרקר  זיתים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290116535845",
+   "name": "TELMA BRANFLAKES NO SUGAR BADAZ 12X500G",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290116537955",
+   "name": "כריות   במילוי קרם בטעם שוקולד פאדג",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290116537962",
+   "name": "כריות בטעם וניל פטיסייר, 348 גרם",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290116932842",
+   "name": "משקה שיבולת שועל  ט. וניל 1 ליטר",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290116933894",
+   "name": "משקה  שיבולת שועל  וויט",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290116934150",
+   "name": "משקה שיבולת שועל ללא תוספת סוכר",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118420323",
+   "name": "פיטנס קרקר דק מיקס 140 גר`",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118420811",
+   "name": "פיטנס  פרכיות דקות מיקס",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118420835",
+   "name": "פיטנס  פרכיות דקות קינואה",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118422129",
+   "name": "פיטנס מיני פרכיות חומוס וקינואה",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118422228",
+   "name": "פיטנס מיני פרכיות בטטה סגולה",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118424024",
+   "name": "פיטנס חטיף קינואה טעם מלח ים",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290118424956",
+   "name": "חטיפי קרקר פיטנס טין מיני רוזמרין",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118426615",
+   "name": "פיטנס עוגיות מיני שוקולד צ`יפס",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290118426653",
+   "name": "פיטנס עוגיות מיני שוקולד  מריר",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290122781359",
+   "name": "פיטנס עוגיות  קלאסי",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7394376621451",
+   "name": "אוטלי משקה  שיבולת שועל להקצפה",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7613030979647",
+   "name": "טריקס  480גר`",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7613032045753",
+   "name": "פיטנס שוקולד 375",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7613035635845",
+   "name": "פיטנס גרנולה שוקולד",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7613037012095",
+   "name": "פיטנס  סופר גרנולה שוקולד",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7702024074625",
+   "name": "פיטנס  חטיפי קרקר חיטה מלאה",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "8000380004072",
+   "name": "לואקר חלב ודגנים. 100 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8000380202010",
+   "name": "לואקר שוקולד  ודגנים. 100 גר`",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8000500167656",
+   "name": "שוקולד עם דגנים 4 יח`",
+   "reason": "chocolate_confection_excluded"
+  },
+  {
+   "barcode": "8006040380258",
+   "name": "משקה שיבולת שועל  בריסטה",
+   "reason": "non_cereal_excluded"
+  }
+ ]
+}

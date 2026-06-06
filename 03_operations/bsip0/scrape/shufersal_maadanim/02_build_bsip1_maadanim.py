@@ -29,6 +29,15 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent.parent.parent.parent /
 
 from ingredient_enricher import enrich as enrich_product
 
+# Canonical BSIP0 numeric extraction (TASK-192 / EV-046) — single shared path so the
+# "פחות מ N" handling + total_fat >= saturated_fat invariant never drift per-category.
+sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\_shared")))
+from bsip0_nutrition import (  # noqa: E402
+    parse_num as _shared_parse_num,
+    parse_sodium_mg as _shared_parse_sodium,
+    parse_nutrition_numeric as _shared_parse_nutrition,
+)
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
@@ -42,43 +51,31 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Nutrition parsing ─────────────────────────────────────────────────────────
 
-_NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
+# TASK-192 / EV-046: delegate to the canonical shared path. maadanim BSIP0 records
+# carry alternate field names (energy/fat/sodium without the _raw suffix), so we first
+# resolve those fallbacks into the canonical *_raw keys, then call the one shared
+# extractor — preserving the historical fallback behaviour byte-for-byte while gaining
+# the "פחות מ N" bound flag + total_fat >= saturated_fat invariant.
+def _parse_num(raw):
+    return _shared_parse_num(raw)
 
-def _parse_num(raw: str) -> float | None:
-    if not raw:
-        return None
-    m = _NUM_RE.search(str(raw).replace(",", "."))
-    if m:
-        try:
-            return float(m.group(1))
-        except ValueError:
-            pass
-    return None
 
-def _parse_sodium(raw: str) -> float | None:
-    """Parse sodium — may be in mg or g. Return mg/100g."""
-    val = _parse_num(raw)
-    if val is None:
-        return None
-    raw_lower = str(raw).lower()
-    if "mg" in raw_lower or val > 10:
-        return val  # already mg
-    return val * 1000  # convert g → mg
+def _parse_sodium(raw):
+    return _shared_parse_sodium(raw)
 
 
 def _parse_nutrition(n: dict) -> dict:
-    return {
-        "energy_kcal":      _parse_num(n.get("energy_kcal_raw") or n.get("energy")),
-        "fat_g":            _parse_num(n.get("fat_raw") or n.get("fat")),
-        "fat_saturated_g":  _parse_num(n.get("saturated_fat_raw")),
-        "fat_trans_g":      None,
-        "cholesterol_mg":   None,
-        "sodium_mg":        _parse_sodium(n.get("sodium_raw") or n.get("sodium") or ""),
-        "carbohydrates_g":  _parse_num(n.get("carbs_raw") or n.get("carbs")),
-        "sugars_g":         _parse_num(n.get("sugar_raw") or n.get("sugar")),
-        "dietary_fiber_g":  _parse_num(n.get("fiber_raw") or n.get("fiber")),
-        "protein_g":        _parse_num(n.get("protein_raw") or n.get("protein")),
+    normalized = {
+        "energy_kcal_raw":   n.get("energy_kcal_raw") or n.get("energy"),
+        "fat_raw":           n.get("fat_raw") or n.get("fat"),
+        "saturated_fat_raw": n.get("saturated_fat_raw"),
+        "sodium_raw":        n.get("sodium_raw") or n.get("sodium") or "",
+        "carbs_raw":         n.get("carbs_raw") or n.get("carbs"),
+        "sugar_raw":         n.get("sugar_raw") or n.get("sugar"),
+        "fiber_raw":         n.get("fiber_raw") or n.get("fiber"),
+        "protein_raw":       n.get("protein_raw") or n.get("protein"),
     }
+    return _shared_parse_nutrition(normalized)
 
 
 # ── Ingredient parsing ─────────────────────────────────────────────────────────

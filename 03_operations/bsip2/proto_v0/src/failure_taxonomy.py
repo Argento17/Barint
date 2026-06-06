@@ -20,6 +20,7 @@ Severity levels: CRITICAL / HIGH / MEDIUM / LOW
 """
 
 from __future__ import annotations
+from constants import KCAL_PLAUSIBLE_LOWER, KCAL_PLAUSIBLE_UPPER  # EV-047
 
 FAILURE_CATEGORIES = {
     "OCR_DEGRADATION":          "Corrupted or garbled text prevents reliable signal extraction",
@@ -168,8 +169,8 @@ def classify_failures(
             "Data entry error — fat values must be re-sourced")
     if checks.get("kcal_plausible") is False:
         add("RETAILER_INCONSISTENCY", "HIGH",
-            f"energy_kcal={nn.get('energy_kcal')} outside plausible range (20-700 kcal/100g)",
-            "Verify per-100g basis; possible per-serving confusion")
+            f"energy_kcal={nn.get('energy_kcal')} outside plausible range ({KCAL_PLAUSIBLE_LOWER}-{KCAL_PLAUSIBLE_UPPER} kcal/100g)",
+            "Verify per-100g basis; possible per-serving confusion")  # EV-047: upper raised 700→800
 
     # ── 6. ONTOLOGY_GAP ───────────────────────────────────────────────────────
     primary_cat = cat_result.get("category", "default")

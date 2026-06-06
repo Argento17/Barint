@@ -1,0 +1,130 @@
+{
+  "sku_id": "POC-IL-CAFFEINE-ALLMAX-67652",
+  "dossier_active": "caffeine",
+  "provenance": {
+    "source": "iherb.com",
+    "source_id": "iherb:67652",
+    "source_url": "https://www.iherb.com/pr/allmax-essentials-caffeine-200-mg-100-tablets/67652",
+    "fetched_at": "2026-06-03T09:27:00Z",
+    "client_version": "firecrawl_scrape(json)/v2 + iHerb PDP",
+    "verification_status": "candidate",
+    "admission_note": "candidate only; demonstrates acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score.",
+    "extraction_notes": "Clean single-active panel: 200 mg caffeine anhydrous, disclosed (no blend). On-label claim = mental alertness -> mapped to the dossier acute-alertness claim. Caffeine dose basis is per-kg in the dossier; engine normalizes against a ~70 kg adult (dossier note)."
+  },
+  "raw_extracted_panel": {
+    "brand": "ALLMAX",
+    "product_name": "Essentials Caffeine 200 mg",
+    "primary_claim_on_label": "Restore mental alertness",
+    "barcode": "665553126227",
+    "serving_size": "1 tablet",
+    "servings_per_day_label": "up to 5",
+    "proprietary_blend": false,
+    "active": {
+      "ingredient": "Caffeine",
+      "amount": 200,
+      "unit": "mg",
+      "form": "anhydrous"
+    }
+  },
+  "missing_or_lossy_fields": [],
+  "bsip0s_label": {
+    "product_name": "ALLMAX Essentials Caffeine 200 mg",
+    "primary_claim_fed": "alertness / vigilance / cognitive performance (acute)",
+    "actives": [
+      {
+        "active_slug": "caffeine",
+        "display_name": "Caffeine anhydrous",
+        "quantity": 200,
+        "unit": "mg",
+        "form": "caffeine anhydrous",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 1.0,
+    "labeled_regimen": "daily"
+  },
+  "engine_output": {
+    "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+    "score": 80.0,
+    "grade": "A",
+    "blend": 80.0,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 72.0,
+      "dose": 72,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.1.0",
+    "methodology_version": "methodology_v1.md v1.2",
+    "trace_generated_at": "2026-06-03T09:32:38.219222Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "POC-IL-CAFFEINE-ALLMAX-67652",
+    "active": "caffeine",
+    "on_label_claim": "alertness / vigilance / cognitive performance (acute)",
+    "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+    "sub_scores": {
+      "evidence": {
+        "value": 72.0,
+        "tier": "Moderate"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 80.0,
+    "dossier_facts_used": [
+      {
+        "field": "claims['alertness / vigilance / cognitive performance (acute)'].evidence_tier",
+        "value": "Moderate",
+        "supp_ev": "SUPP-EV-004"
+      }
+    ],
+    "final": {
+      "score": 80.0,
+      "grade": "A"
+    }
+  }
+}

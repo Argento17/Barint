@@ -1,0 +1,81 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:14.903477Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "ARCH-wasted-creatine-1g",
+  "active": "creatine monohydrate",
+  "on_label_claim": "strength / lean mass with resistance training",
+  "claim_matched": "strength / lean mass with resistance training",
+  "claim_resolution": {
+    "via_umbrella": false,
+    "resolved_endpoint": "strength / lean mass with resistance training",
+    "resolved_phrase": null,
+    "resolved_tier": "Strong",
+    "resolution_supp_ev": null,
+    "resolution_citations": [
+      "PMID:39519498",
+      "PMID:37432300",
+      "PMID:39074168",
+      "PMID:34836013",
+      "PMID:24576864"
+    ],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [],
+    "over_promise": false,
+    "over_promise_markers": []
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 92.5,
+      "tier": "Strong"
+    },
+    "dose": {
+      "value": 20,
+      "reason": "fairy_dust"
+    },
+    "form": {
+      "value": 92
+    },
+    "honesty": {
+      "value": 100
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "no_ul_or_no_dose"
+    }
+  },
+  "signature": {
+    "evidence": "HIGH",
+    "dose": "LOW",
+    "form": "HIGH",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [
+    {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "kind": "ceiling",
+      "ceiling_or_floor": 49
+    }
+  ],
+  "binding_constraint": {
+    "mechanism": "cap_2_fairy_dust_hidden_dose",
+    "machine_reason": "underdosed_or_unverifiable_dose"
+  },
+  "also_fired": [],
+  "blend": 73.2,
+  "dossier_facts_used": [
+    {
+      "field": "claims['strength / lean mass with resistance training'].evidence_tier",
+      "value": "Strong",
+      "supp_ev": "SUPP-EV-001"
+    }
+  ],
+  "final": {
+    "score": 49.0,
+    "grade": "D"
+  }
+}

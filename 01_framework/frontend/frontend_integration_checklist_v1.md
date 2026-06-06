@@ -75,7 +75,7 @@ The Bari comparison page has a fixed 4-section structure: Hero → Prologue → 
 
 **Goal:** Audit whether the 7 required Bari canonical components exist, and if they do, whether they conform to spec.
 
-For each component, check: Does it exist? Does it match the spec in `ui_stabilization_sprint_1.md` and `comparison_template_v1.md`?
+For each component, check: Does it exist? Does it match the spec in `ui_stabilization_sprint_1.md` and `comparison-template-standard-v1.md`?
 
 ### Row Component
 
@@ -107,8 +107,8 @@ For each component, check: Does it exist? Does it match the spec in `ui_stabiliz
 | Check | Expected | Found | Status |
 |---|---|---|---|
 | Component exists | Yes | | |
-| Displays numeric + grade only | "72/B" format | | |
-| No color encoding | Background not score-dependent | | |
+| Displays numeric + grade + tier word | "72 · B · טוב" format | | |
+| Grade-coded color via `gradePalette` (Gen 1.1) | Tint bg + accent border/number per grade; same geometry all grades; no saturated fill; no off-ramp/second color axis | | |
 | Size on collapsed row | 28px | | |
 | Score chip visible in first 3 rows on load | Yes | | |
 
@@ -329,13 +329,13 @@ These are the only components required for Bari v1. Do not build anything not on
 |---|---|---|---|---|
 | 1 | ProductRow | `ProductRow.tsx` | `ui_stabilization_sprint_1.md` §Row Rhythm | 1 — everything else depends on this |
 | 2 | ScoreChip | `ScoreChip.tsx` | `bari_score_presentation_v1.md` | 1 — part of ProductRow |
-| 3 | ExpansionSection | `ExpansionSection.tsx` | `comparison_template_v1.md` §Expansion | 2 — extends ProductRow |
+| 3 | ExpansionSection | `ExpansionSection.tsx` | `comparison-template-standard-v1.md` §6 (Expanded row) | 2 — extends ProductRow |
 | 4 | CategoryHero | `CategoryHero.tsx` | `ui_stabilization_sprint_1.md` §Hero | 3 — above-fold section |
-| 5 | CategoryPrologue | `CategoryPrologue.tsx` | `comparison_template_v1.md` §Prologue | 4 — below hero |
+| 5 | CategoryPrologue | `CategoryPrologue.tsx` | `comparison-template-standard-v1.md` §4 (typography) + §21 (copy) | 4 — below hero |
 | 6 | StickyFilterButton | `StickyFilterButton.tsx` | `mobile_geometry_checklist_v1.md` §Stage 1 | 5 — after row list renders |
-| 7 | MethodologyFooter | `MethodologyFooter.tsx` | `comparison_template_v1.md` §Methodology | 6 — page tail |
+| 7 | MethodologyFooter | `MethodologyFooter.tsx` | `comparison-template-standard-v1.md` §9 (footer) + §21 (copy) | 6 — page tail |
 
-**Nothing else ships in v1.** If a component not on this list is proposed during implementation, stop and check against `comparison_template_v1.md`. If it does not appear there, it does not ship.
+**Nothing else ships in v1.** If a component not on this list is proposed during implementation, stop and check against `comparison-template-standard-v1.md`. If it does not appear there, it does not ship.
 
 ---
 
@@ -347,7 +347,7 @@ Complete this section after Sections 1–7. Carry every FAIL and GAP forward. As
 |---|---|---|---|---|
 | Token drift | Existing design system overrides Bari token values | H | Any token mismatch in Section 4 | Bari tokens override via CSS custom properties; document override explicitly |
 | Mobile density failure | Pre-table height exceeds 480px | H | Hero or prologue taller than spec | Run geometry checklist before any launch; enforce pixel budgets in component props |
-| Score hierarchy collapse | Score chip color-coded or labeled with "חזק/בינוני/חלש" | H | Section 3 score chip audit | Accept only numeric/grade display; reject color prop on ScoreChip |
+| Score hierarchy collapse | Score chip uses a free-text interpretive label ("חזק/בינוני/חלש") in place of the approved tier word, a saturated solid fill, or a hue/color axis outside the A–E `gradePalette` ramp | H | Section 3 score chip audit | Accept the Gen 1.1 grade-coded tinted chip ("72 · B · טוב") only; reject saturated fill, off-ramp color, or free-text interpretive labels |
 | Border creep | Row component receives card styling from shared style | M | Global `.card` styles applied to product list | Component-level isolation; ProductRow must not inherit `.card` |
 | Filter creep | Fourth filter dimension added per category | M | Category team adds dimension beyond 3 | Filter component max-dimensions prop; hard-code max=3 |
 | Tooltip proliferation | Second tooltip added to any page | M | Any ⓘ icon outside EXCEPTION-001 | Exception registry check before merge; lint rule if feasible |
@@ -414,7 +414,7 @@ Run Section 7 checks against the newly built category page specifically.
 - [ ] No framework terms in rendered HTML (NOVA, BSIP, cap, structural_class)
 - [ ] Tooltip count = 0 (מעדנים has no approved exception)
 - [ ] No section headings between prologue and first product row
-- [ ] Score chip has no color encoding
+- [ ] Score chip color stays within the approved A–E `gradePalette` ramp (tinted, not saturated; no second color axis)
 - [ ] Filter panel collapsed on load
 
 ### Step 5 — QA checkpoints (sign-off gates)
@@ -462,4 +462,4 @@ Complete this table after running all sections.
 
 ---
 
-*This checklist governs all frontend integrations for Bari. It is not a substitute for reading `comparison_template_v1.md`, `ui_stabilization_sprint_1.md`, and `mobile_geometry_checklist_v1.md` in full — this document tells you what to check; those tell you what the correct answers are.*
+*This checklist governs all frontend integrations for Bari. It is not a substitute for reading `comparison-template-standard-v1.md`, `ui_stabilization_sprint_1.md`, and `mobile_geometry_checklist_v1.md` in full — this document tells you what to check; those tell you what the correct answers are.*

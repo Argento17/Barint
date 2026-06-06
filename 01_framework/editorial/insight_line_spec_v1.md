@@ -270,4 +270,4 @@ For each new category:
 
 ---
 
-*This spec governs all insight lines across Bari. It does not govern hero sentences, prologue text, driver lines, or methodology text — those have separate rules in `comparison_template_v1.md`.*
+*This spec governs all insight lines across Bari. It does not govern hero sentences, prologue text, driver lines, or methodology text — those have separate rules in `comparison-template-standard-v1.md`.*

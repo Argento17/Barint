@@ -1,6 +1,6 @@
 ---
 id: TASK-166
-title: Simplify dairy fiber disclosure: drop per-product fiber notes, explain once in category intro
+title: "Simplify dairy fiber disclosure: drop per-product fiber notes, explain once in category intro"
 owner: content-agent
 status: CLOSED
 priority: MEDIUM

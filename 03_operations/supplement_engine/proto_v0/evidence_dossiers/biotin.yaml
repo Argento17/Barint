@@ -1,0 +1,202 @@
+# evidence_dossiers/biotin.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Biotin is the DEFICIENCY-STATE-ONLY refusal probe: the entire 'hair/skin/nails' marketing halo rests on
+# deficiency-state findings generalized to replete adults — exactly the case §2.1's moderate posture REFUSES to map.
+# Most of biotin's umbrella resolves to NULL. A genuine test that resolution is NOT a loophole.
+active:
+  canonical_name: "biotin (vitamin B7)"
+  pubchem_cid: 171548
+  molecular_formula: "C10H16N2O3S"
+  molecular_weight: 244.31
+  synonyms: ["biotin", "vitamin B7", "vitamin H", "D-biotin", "58-85-5"]
+  category: "vitamin"
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing biotin deficiency (rare; raising biotin status)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:28701385", "PMID:24228724"]
+    rationale: "Biotin corrects true biotin deficiency (rare — genetic biotinidase deficiency, prolonged TPN, raw-egg-white over-consumption) — settled (dose->status). This is the deficiency-correction endpoint; it does NOT inherit upward to the hair/skin/nails halo in REPLETE adults (which is the whole over-claim, see below)."
+    tier_rationale: "RATIFIED (D6) Strong — for the (rare) deficiency-correction endpoint ONLY. The critical authoring move: this Strong tier must NOT bleed into a cosmetic hair/nails benefit in non-deficient buyers."
+  - claim: "hair / skin / nails improvement in NON-deficient (replete) adults"
+    proposed_evidence_tier: "Insufficient"
+    evidence_tier: "Insufficient"    # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:28879195", "PMID:22116691"]
+    rationale: "Systematic review (28879195, Patel) found biotin improved hair/nails ONLY in individuals with an underlying biotin deficiency or a specific pathology; there is NO credible evidence of benefit in healthy, biotin-replete adults — yet hair/skin/nails is biotin's dominant marketing claim. Untethered-to-a-studied-benefit-in-the-target-user -> Insufficient."
+    tier_rationale: >
+      RATIFIED (D6) Insufficient. This is the deliberate, load-bearing call: the hair/skin/nails benefit claim aimed at
+      the GENERAL (replete) buyer has NO credible human evidence — the only positive findings are in DEFICIENT
+      individuals (28879195). Per §2.1, a deficiency-state finding generalized to a benefit claim in replete users is
+      NOT a studied endpoint -> Insufficient. This is exactly the snake-oil-adjacent pattern the moderate posture is
+      built to catch: it must NOT inherit the Strong deficiency-correction tier. (Plus a real-world harm: high biotin
+      INTERFERES WITH LAB ASSAYS — troponin, thyroid — a genuine safety/context flag, §2.5.)
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 0.03                # mg/day = 30 mcg — adult Adequate Intake (status maintenance). There is NO established 'effective dose' for the cosmetic claim because there is no established cosmetic benefit.
+  typical: 0.03                      # mg/day (30 mcg AI). Market sells 5,000-10,000 mcg (5-10 mg) = ~150-330x the AI.
+  upper_studied: 0.1                 # mg/day = 100 mcg (no benefit shown above status repletion for cosmetic endpoints)
+  unit: "mg"
+  market_range_dsld: [5, 10]         # DSLD: 5,000-10,000 mcg (5-10 mg) labels DOMINANT — i.e. ~150-330x the AI, for a claim with no replete-adult evidence. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:28879195"]
+  elemental_fraction: null
+  dose_note: >
+    THE TRAP: biotin's mega-doses (5-10 mg) are NOT 'well-dosed' — because the Evidence for the cosmetic claim is
+    Insufficient (§2.2 DOSE SHORT-CIRCUIT: when Evidence tier = Insufficient, Dose Adequacy is N/A, contributes NO
+    positive credit). A 10,000 mcg biotin must NEVER read 'well-dosed' off market prevalence (DSLD shows what's SOLD,
+    not what WORKS). This is the canonical §2.2-short-circuit / §3-cap-1 case in the new actives.
+
+forms:
+  preferred: ["D-biotin (the natural, studied form)"]
+  acceptable: []
+  poor: []
+  rationale: "Biotin is dosed as D-biotin; form is not a discriminating axis. The discriminating axes are EVIDENCE (Insufficient for the cosmetic claim) and DOSE (mega-dose with no efficacy + lab-interference). Form ladder intentionally flat."
+  citations: []
+  form_ladder_confidence: "n/a — form not discriminating for biotin"
+
+safety:
+  upper_limit_UL: null               # No established toxicity UL (water-soluble, low toxicity). BUT a genuine non-toxicity hazard: LAB-ASSAY INTERFERENCE.
+  ul_basis: "n/a — no toxicity UL. The real safety signal is NOT toxicity but ASSAY INTERFERENCE: high-dose biotin causes clinically significant false lab results (troponin -> missed heart attacks; TSH/thyroid -> misdiagnosis). FDA has issued a safety communication."
+  ul_source: "NIH ODS Biotin (no UL); FDA safety communication on biotin lab-test interference"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5): biotin has no toxicity UL -> no dose-magnitude toxicity veto. HOWEVER high-dose biotin
+    (the 5-10 mg market norm) causes clinically significant LAB-ASSAY INTERFERENCE (false troponin/thyroid results) —
+    an FDA-flagged real-world harm. Classified as a Safety NOTE/context flag (not a classic toxicity veto, but a genuine
+    harm vector surfaced to the reader): a mega-dose biotin earns a Safety NOTE for assay-interference. This is a
+    distinct safety category (iatrogenic/diagnostic harm) -> NOTE + prominent context, not a toxicity floor.
+    NEEDS-ENV-VERIFY the FDA safety communication.
+  ul_note_threshold: 1               # >1 mg/day -> Safety NOTE (assay-interference threshold, approximate). NEEDS-ENV-VERIFY.
+  ul_externally_maintained: true
+  risky_flags: ["LAB-ASSAY INTERFERENCE at high doses (false troponin -> missed MI; false thyroid panels) — FDA safety communication. A genuine harm vector, surfaced as a Safety NOTE + context."]
+  notes: "No toxicity UL, but high-dose biotin is NOT harmless: it corrupts common lab tests. The safety story is diagnostic interference, not toxicity."
+  safety_citations: ["NEEDS-ENV-VERIFY: FDA biotin lab-interference safety communication", "PMID:28879195"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred. MOSTLY NON-MAPPING (the point).
+  mappings:
+  - phrase: "hair"
+    resolves_to: null                  # DELIBERATE NON-MAPPING — the load-bearing refusal
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: >
+      DOES NOT MAP. This is the CENTRAL refusal of the biotin umbrella. Biotin's hair benefit exists ONLY in
+      biotin-DEFICIENT individuals (SR 28879195); there is no recognized studied endpoint for hair improvement in
+      replete adults — the dominant market claim. Per §2.1, a deficiency-state finding generalized to a benefit claim
+      in replete users is NOT a recognized physiological correlate. No recognized cited correlate for the REPLETE-user
+      benefit -> no mapping. (Cited to 28879195 to JUSTIFY THE REFUSAL — the evidence shows the benefit is
+      deficiency-confined.) This is the moderate posture refusing to let a snake-oil-adjacent cosmetic claim inherit
+      biotin's Strong deficiency tier. Resolution is NOT a loophole.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "skin"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: >
+      DOES NOT MAP (same basis as hair). Skin benefit is deficiency-confined (28879195); no recognized studied endpoint
+      in replete adults. No recognized cited correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "nails"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: >
+      DOES NOT MAP (same basis). The brittle-nail evidence is old, small, and not replete-population — deficiency/
+      pathology-confined. No recognized studied replete-adult endpoint -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "energy"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: >
+      DOES NOT MAP. Biotin is a carboxylase cofactor (mechanistic energy-metabolism role) but there is no studied
+      consumer-energy benefit in replete adults — mechanism-only hand-wave. No recognized cited correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew claim vocab — ALL NULL, BY DESIGN (candidate, should_affect_score_now:false) ===
+  # CRITICAL: biotin's Hebrew aliases MUST mirror the English NULLs. The Israeli shelf sells biotin as "שיער/עור/ציפורניים"
+  # (hair/skin/nails) — exactly the deficiency-confined cosmetic halo §2.1 refuses in replete adults. Adding mapping
+  # Hebrew keys would BREAK the loophole-proof FLOOR (cap-1 Insufficient → E) that the whole biotin dossier exists to
+  # prove. EFSA-DIVERGENCE NOTE: EFSA Art.13 DOES authorize biotin "normal skin/hair/mucous membranes" — but the dossier's
+  # ratified D6 decision holds the replete-adult cosmetic BENEFIT Insufficient (the EFSA structure/function relationship is
+  # recognized, the consumer benefit is not). TASK-171K is a Hebrew-vocab fix, NOT a re-adjudication of that load-bearing
+  # call; the Hebrew keys are kept NULL to avoid silently flipping biotin off its correct E. (This biotin EFSA-vs-dossier
+  # divergence is the most consequential of the flagged divergences — re-adjudication, if ever, needs full D6/D7, not a
+  # vocab task.) Citations omitted because resolves_to is null (loader requires citations only for MAPPING keys); the
+  # refusal basis is the same SR 28879195 cited on the English keys.
+  - phrase: "שיער"                     # "hair" (Hebrew) — mirrors English hair=null
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: "DOES NOT MAP (mirrors English 'hair'). Benefit deficiency-confined (SR 28879195); no replete-adult endpoint. Keeping it null preserves the cap-1 floor — the loophole-proof FLOOR is the point of this dossier."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עור"                      # "skin" (Hebrew) — mirrors English skin=null
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: "DOES NOT MAP (mirrors English 'skin'). Deficiency-confined; no replete-adult endpoint. Null preserved by design."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "ציפורניים"                # "nails" (Hebrew) — mirrors English nails=null
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-014"
+    rationale: "DOES NOT MAP (mirrors English 'nails'). Brittle-nail evidence deficiency/pathology-confined; no replete-adult endpoint. Null preserved by design."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Biotin label "for hair, skin, nails & energy" resolves: hair->null, skin->null, nails->null, energy->null —
+    NOTHING MAPS. Per §2.1 step 3 + §3 cap-1: with NO endpoint plausibly mapping, the Insufficient-Evidence ceiling
+    FIRES -> a cosmetic-claim biotin is correctly capped at E (and §2.2 short-circuits Dose to N/A so the mega-dose
+    earns no 'well-dosed' credit). This is the moderate posture working as a FLOOR, not a loophole: a deficiency-only
+    active marketed at the replete general buyer for an unstudied cosmetic benefit scores E. (Contrast: the ONLY way
+    biotin scores well is a label that honestly claims biotin-deficiency correction — which DOES map Strong.)
+
+label_claims_common: ["hair", "skin", "nails", "hair growth", "beauty", "energy", "high potency"]
+necessity_context: "True biotin deficiency is RARE; the cosmetic claim targets non-deficient buyers. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "High-dose biotin INTERFERES WITH LAB TESTS (troponin, thyroid) — tell your clinician if supplementing before bloodwork. Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-014"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: >
+    Tiers: deficiency-correction Strong (rare); hair/skin/nails-in-REPLETE-adults INSUFFICIENT (deficiency-confined
+    evidence, the dominant market claim has NO replete-adult support). NO toxicity UL but a genuine LAB-INTERFERENCE
+    safety NOTE (FDA). Umbrella: hair/skin/nails/energy ALL -> null -> cap-1 Insufficient FIRES -> cosmetic biotin = E.
+    This is the explicit proof that claim-resolution is a FLOOR for unstudied claims, not a loophole. Candidate /
+    should_affect_score_now:false.
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.ul_note_threshold"]
+  externally_maintained:
+    - field: "safety.ul_note_threshold"
+      authority: "FDA biotin lab-interference safety communication; NIH ODS (no UL)"
+      last_resync: "2026-06-03"
+      resync_note: "no toxicity UL; assay-interference NOTE. NEEDS-ENV-VERIFY FDA communication."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — added Hebrew aliases שיער/עור/ציפורניים (hair/skin/nails) ALL as cited NON-MAPPING (null), BY DESIGN — mirrors the English nulls to preserve the loophole-proof cap-1 floor (cosmetic biotin → E). EFSA Art.13 biotin skin/hair claim exists but the dossier's ratified D6 holds the replete-adult cosmetic benefit Insufficient; NOT re-adjudicated here (flagged as the most consequential EFSA-divergence)."
+      evidence: "refusal basis = SR 28879195 (benefit deficiency-confined); EFSA-divergence flagged for any future full D6/D7 re-adjudication."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-014"
+      score_moving: "no — deliberately null (no score path created); guards the floor. Candidate / should_affect_score_now:false."

@@ -1,6 +1,6 @@
 ---
 id: TASK-168A
-title: Redesign brief: vision, what-survives, category sequencing, risk + overbuild guard
+title: "Redesign brief: vision, what-survives, category sequencing, risk + overbuild guard"
 owner: product-agent
 status: CLOSED
 priority: HIGH

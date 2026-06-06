@@ -2,15 +2,28 @@
 id: TASK-181
 title: "Glass Box — Evidence-Aware Engine Evolution (program-of-record; continues TASK-179)"
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-04
+completed_at: 2026-06-05
 depends_on: []
 supersedes: TASK-179
 blocks: []
 category_id: null
 roadmap_impact: true
 work_type: objective
+cc_reviewed: 2026-06-05
+close_reason: >
+  CC close-readiness gate PASS (2026-06-05). All waves complete and verified:
+  W0–W2 (TASK-179, CLOSED): six-dimension contract, D5/D6 + DIAAS + D4 prototype LIVE.
+  W3 (181A–181D, CLOSED/BANKED): full D4 additive library (36 additives), tiered + maintained.
+  W4 (181E–181N, CLOSED): D3 de-moralization engine (material/non-material split, HP
+  de-amplification, F3 gate-guard, per-page methodology notes).
+  W5 (181O–181S, CLOSED): consumer methodology page (/research/glass-box), UX polish,
+  technical NDA packet, W4+W5 flags flipped — Glass Box is live as of 2026-06-05.
+  Ongoing obligations (not blocking close): D4 maintenance cadence, EVIDENCE-GAP 4 watch,
+  EV-035–039 D7 co-signs, D4 score-integration future owner gate, Research verification
+  of 181R cited papers before NDA distribution.
 summary: >
   Glass Box program-of-record, promoted 2026-06-04 to succeed TASK-179 (CLOSED — W0–W2 delivered:
   six-dimension contract, D5/D6 transparency+confidence LIVE, W1.5 DIAAS signal, W2 additive prototype
@@ -144,6 +157,16 @@ Flag stays OFF throughout; live flip remains a separate owner go-live decision. 
 ## W3 end condition
 W3 closes when 181A–181D are all CLOSED and the maintenance protocol (181C) is signed. Score-integration,
 if pursued, opens as a separate owner-gated task — not part of W3.
+
+## W5 — Consumer launch wave (OPENED 2026-06-05)
+
+Ship the full batched GlassBox consumer launch: flip W4 + deliver the complete public narrative + notes together as one owner-gated release. Capability is banked (W4 built, OFF-byte-identical, safe). The owner's no-silent-flip condition is the spine — one coherent story, not drip-by-drip grade churn.
+
+- **TASK-181O** (Content + Nutrition, **CLOSED 2026-06-05**) — `methodology_glass_box_page_v1.md`: 249 words, hebrew_readability 100, non-silent-flip spine held.
+- **TASK-181P** (Design, **CLOSED 2026-06-05**) — `methodology_page_ux_spec_v1.md`: 5-section page spec + 3 AdditivePanel polish items. No new tokens.
+- **TASK-181Q** (Frontend, **CLOSED 2026-06-05**) — `/research/glass-box` page built + MethodologyFooter link wires (hummus+maadanim) + 3 panel polish items; build/lint/tsc PASS; OFF parity 9/9; all behind `NEXT_PUBLIC_GLASSBOX_W5`.
+- **TASK-181R** (Nutrition + Research, **CLOSED 2026-06-05**) — `glass_box_technical_methodology_v1.md`: ~3,700w, 7 sections + 2 appendices; EVIDENCE-GAP 4 logged (HP×WFI watch-item); Research paper verification recommended before NDA distribution.
+- **TASK-181S** (Owner go-live gate, **CLOSED 2026-06-05**) — all three flags flipped: `BARI_GLASSBOX_W4` + `NEXT_PUBLIC_GLASSBOX_W4` + `NEXT_PUBLIC_GLASSBOX_W5` now default ON. Hummus: 13 grade changes (1 A→B, 12 B→C); maadanim: 1 grade change (D→E). `/research/glass-box` live. EV-042 reworded; EVIDENCE-GAP 4 filed. **Glass Box is live.**
 
 ## Guardrails
 Every tier cites an evidence-registry entry (`bari-bsip2-scoring-governance`). Nutrition + Product

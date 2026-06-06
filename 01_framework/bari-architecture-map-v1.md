@@ -353,8 +353,8 @@ C:\Bari\01_framework\
     consumer_usecase_guardrails_v2.md  Consumer communication rules
     category_audit_*.md                Per-category audit records
   frontend\
-    comparison_template_v1.md          Canonical page structure (authority)
-    comparison-template-standard-v1.md Design standard (current approved state)
+    comparison-template-standard-v1.md Canonical comparison template (authority — design standard + folded conceptual layer)
+    comparison_template_v1.md          SUPERSEDED stub → points to the standard
     architecture_generations_registry_v1.md  Gen 0 vs Gen 1 definitions
     legacy_isolation_policy_v1.md      Quarantine rules for Gen 0
     component_build_sequence_v1.md     Build gate order
@@ -566,7 +566,7 @@ The 15 files most important to understand before doing any work in Bari:
 | `product-row.tsx` | `C:\bari\bari-web\src\components\shared\` | The core rendering unit |
 | `score-chip.tsx` | `C:\bari\bari-web\src\components\shared\` | Score/grade display rules |
 | `maadanim-comparison-page.tsx` | `C:\bari\bari-web\src\components\comparisons\` | Canonical Gen 1 page reference |
-| `comparison_template_v1.md` | `C:\Bari\01_framework\frontend\` | Page structure authority document |
+| `comparison-template-standard-v1.md` | `C:\Bari\01_framework\frontend\` | Page structure authority document (canonical comparison template) |
 | `architecture_generations_registry_v1.md` | `C:\Bari\01_framework\frontend\` | Gen 0 vs Gen 1 catalogue |
 | `legacy_isolation_policy_v1.md` | `C:\Bari\01_framework\frontend\` | Quarantine rules |
 

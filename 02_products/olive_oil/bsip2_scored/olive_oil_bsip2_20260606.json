@@ -1,0 +1,1311 @@
+{
+  "run_record": {
+    "run_id": "run_olive_oil_001",
+    "run_date": "2026-06-06",
+    "category": "olive_oil",
+    "engine_tag": "engine-baseline-2026-06-04",
+    "corpus_path": "C:\\Bari\\02_products\\olive_oil\\bsip0_raw\\olive_oil_bsip0_merged_20260606T152444.json",
+    "corpus_md5": "c0889c22d2a5b68dbf66d6de08b5307b",
+    "output_path": "C:\\Bari\\02_products\\olive_oil\\bsip2_scored\\olive_oil_bsip2_20260606.json",
+    "count_gate_waiver": {
+      "waived": true,
+      "waiver_authority": "Product Agent",
+      "waiver_date": "2026-06-06",
+      "waiver_task": "TASK-197 Phase 4 Return Block",
+      "count_actual": 13,
+      "count_required": 30
+    },
+    "scope_limitation_note": "Count gate waived by Product Agent (2026-06-06, TASK-197 Phase 4). The Bari olive oil comparison covers the 13 EVOO products available on Shufersal (June 2026 snapshot). This is the full Shufersal olive oil shelf — the scraper exhausted all pages. D1 scores will cluster tightly due to the narrow macro profile of olive oil; the primary differentiation layer is the D5/D6 authenticity annotation, not nutrition.",
+    "gov_tier_excluded": true,
+    "gov_tier_exclusion_reason": "Gov-tier records (il_gov_data:imported_foods, open_food_facts) have no nutrition panels (97% missing). USDA FDC generic EVOO panel enrichment is owner-deferred. Scoring without panels would yield uniform null-based scores with no D2/D3/D4 differentiation.",
+    "corpus_stats": {
+      "total_corpus": 275,
+      "shufersal_records": 17,
+      "clean_shufersal": 13,
+      "scored_successfully": 13,
+      "sufficient_data": 11,
+      "errors": 0
+    },
+    "grade_distribution": {
+      "C": 11
+    },
+    "score_range": {
+      "min": 60,
+      "max": 60,
+      "mean": 60.0
+    },
+    "distribution_ok": true,
+    "errors": [],
+    "governance": {
+      "cov_007_compliant": true,
+      "fraud_signals_in_d1_d4": false,
+      "no_per_adi_logic": true,
+      "grade_extractor_bug_b5_fixed": true,
+      "count_gate_waiver_recorded": true
+    }
+  },
+  "products": [
+    {
+      "product_id": "bsip1_7296073693284",
+      "barcode": "7296073693284",
+      "name_he": "שמן זית כתית מעולה",
+      "brand": "MATTEO",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_7296073693284",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 89.3,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=5.067 base=89.3-seed0-trans0=89.3",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=819.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.44,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 819.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 15.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Italy",
+      "origin_countries_all": [
+        "Italy"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MZL66_Z_P_7296073693284_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/MZL66_L_P_7296073693284_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MZL66_Z_P_7296073693284_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7296073703785",
+      "barcode": "7296073703785",
+      "name_he": "שמן זית כתית מעולה",
+      "brand": "נריה",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_7296073703785",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 90.1,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.6g ratio=5.274 base=90.1-seed0-trans0=90.1",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=824.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.51,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 824.0,
+        "fat_g": 91.6,
+        "saturated_fat_g": 14.6,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Italy",
+      "origin_countries_all": [
+        "Italy"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CNI64_Z_P_7296073703785_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/CNI64_L_P_7296073703785_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CNI64_Z_P_7296073703785_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_8410179100340",
+      "barcode": "8410179100340",
+      "name_he": "שמן זית ארבקינה",
+      "brand": "BORGES",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%90%D7%A8%D7%91%D7%A7%D7%99%D7%A0%D7%94/p/P_8410179100340",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 87.8,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=4.688 base=87.8-seed0-trans0=87.8",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=819.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.32,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 819.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 16.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Spain",
+      "origin_countries_all": [
+        "Spain"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CRD38_Z_P_8410179100340_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/CRD38_L_P_8410179100340_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CRD38_Z_P_8410179100340_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7290017334486",
+      "barcode": "7290017334486",
+      "name_he": "שמן זית ארומה עשבונית",
+      "brand": "אליעד",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%90%D7%A8%D7%95%D7%9E%D7%94-%D7%A2%D7%A9%D7%91%D7%95%D7%A0%D7%99%D7%AA/p/P_7290017334486",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 91.0,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=5.500 base=91.0-seed0-trans0=91.0",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=823.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.58,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 823.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 14.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Israel",
+      "origin_countries_all": [
+        "Israel"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "49.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIP54_Z_P_7290017334486_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/IIP54_L_P_7290017334486_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIP54_Z_P_7290017334486_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7296073703792",
+      "barcode": "7296073703792",
+      "name_he": "שמן זית אורגני",
+      "brand": "גרין",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/green-%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%95%D7%98%D7%91%D7%A2/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%9E%D7%9E%D7%A8%D7%97%D7%99%D7%9D-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%95%D7%97%D7%95%D7%9E%D7%A5/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99/p/P_7296073703792",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 90.1,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.6g ratio=5.274 base=90.1-seed0-trans0=90.1",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=824.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.51,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 824.0,
+        "fat_g": 91.6,
+        "saturated_fat_g": 14.6,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Italy",
+      "origin_countries_all": [
+        "Italy"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher",
+        "organic"
+      ],
+      "dilution_flags": [],
+      "price": "49.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CNP62_Z_P_7296073703792_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/CNP62_L_P_7296073703792_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CNP62_Z_P_7296073703792_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7290017334493",
+      "barcode": "7290017334493",
+      "name_he": "שמן זית ארומה זית ירוק",
+      "brand": "אליעד",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%90%D7%A8%D7%95%D7%9E%D7%94-%D7%96%D7%99%D7%AA-%D7%99%D7%A8%D7%95%D7%A7/p/P_7290017334493",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 91.0,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=5.500 base=91.0-seed0-trans0=91.0",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=823.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.58,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 823.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 14.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Israel",
+      "origin_countries_all": [
+        "Israel"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "49.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIW52_Z_P_7290017334493_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/IIW52_L_P_7290017334493_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIW52_Z_P_7290017334493_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_8410179100845",
+      "barcode": "8410179100845",
+      "name_he": "שמן זית מזיתי פיקואל",
+      "brand": "BORGES",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9E%D7%96%D7%99%D7%AA%D7%99-%D7%A4%D7%99%D7%A7%D7%95%D7%90%D7%9C/p/P_8410179100845",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 89.3,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=5.067 base=89.3-seed0-trans0=89.3",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=819.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.44,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 819.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 15.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Spain",
+      "origin_countries_all": [
+        "Spain"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKO48_Z_P_8410179100845_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/DKO48_L_P_8410179100845_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKO48_Z_P_8410179100845_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_8410179100043",
+      "barcode": "8410179100043",
+      "name_he": "שמן זית כתית מעולה",
+      "brand": "BORGES",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_8410179100043",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 93.0,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=7.273 base=93.0-seed0-trans0=93.0",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=822.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.74,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 822.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 11.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Spain",
+      "origin_countries_all": [
+        "Spain"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CFS38_Z_P_8410179100043_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/CFS38_L_P_8410179100043_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CFS38_Z_P_8410179100043_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7290120871090",
+      "barcode": "7290120871090",
+      "name_he": "שמן זית כתית מעולה",
+      "brand": "FERNANDO",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_7290120871090",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 93.0,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.4g ratio=6.141 base=93.0-seed0-trans0=93.0",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=823.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.74,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 823.0,
+        "fat_g": 91.4,
+        "saturated_fat_g": 12.8,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Spain",
+      "origin_countries_all": [
+        "Spain"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "29.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CZR46_Z_P_7290120871090_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/CZR46_L_P_7290120871090_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CZR46_Z_P_7290120871090_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7290017334479",
+      "barcode": "7290017334479",
+      "name_he": "שמן זית ארומה פירותית",
+      "brand": "אליעד",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%90%D7%A8%D7%95%D7%9E%D7%94-%D7%A4%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%AA/p/P_7290017334479",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 91.0,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.0g ratio=5.500 base=91.0-seed0-trans0=91.0",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=823.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.58,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 823.0,
+        "fat_g": 91.0,
+        "saturated_fat_g": 14.0,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Israel",
+      "origin_countries_all": [
+        "Israel"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "49.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/III56_Z_P_7290017334479_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/III56_L_P_7290017334479_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/III56_Z_P_7290017334479_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7296073730965",
+      "barcode": "7296073730965",
+      "name_he": "שמן זית כתית פרימיום",
+      "brand": "MATTEO",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/p/P_7296073730965",
+      "score": 60,
+      "grade": "C",
+      "data_sufficiency": "sufficient",
+      "evaluation_status": "context_limited",
+      "context_flag": "cooking_oil",
+      "dimension_breakdown": {
+        "fat_quality": 90.1,
+        "fat_quality_note": "EV-012 fat_ratio: fat=91.6g ratio=5.274 base=90.1-seed0-trans0=90.1",
+        "calorie_density": 55.0,
+        "calorie_density_note": "kcal=824.0, category=whole_food_fat → 55",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 95.0,
+        "whole_food_integrity": 100,
+        "additive_quality": 100,
+        "regulatory_quality": 60.0,
+        "weighted_dimension_score": 57.51,
+        "binding_cap": 55,
+        "score_after_cap": 55,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": 824.0,
+        "fat_g": 91.6,
+        "saturated_fat_g": 14.6,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "extra_virgin",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Italy",
+      "origin_countries_all": [
+        "Italy"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QSS64_Z_P_7296073730965_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/QSS64_L_P_7296073730965_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QSS64_Z_P_7296073730965_1.png"
+      ],
+      "nova_proxy": 1,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 85,
+        "confidence_band": "high",
+        "confidence_ceiling": null,
+        "confidence_reductions": [
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "energy_kcal outside plausible range 20-800",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SAT_FAT']",
+        "FLOOR APPLIED: nova1_single_ingredient → minimum 60"
+      ],
+      "unresolved_flags": [
+        "KCAL_IMPLAUSIBLE: outside 20-800 range, confidence severely reduced",
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=60, caps=['ISRAELI_RED_LABEL_1_SAT_FAT'])",
+        "CONTEXT_LIMITED: per-100g score may be misleading (cooking_oil)"
+      ]
+    },
+    {
+      "product_id": "bsip1_7296073746485",
+      "barcode": "7296073746485",
+      "name_he": "שמן זית כתית מעולה",
+      "brand": "נריה",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/c/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9B%D7%AA%D7%99%D7%AA-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_7296073746485",
+      "score": 50,
+      "grade": "insufficient_data",
+      "data_sufficiency": "insufficient",
+      "evaluation_status": "standard",
+      "context_flag": null,
+      "dimension_breakdown": {
+        "fat_quality": 50.0,
+        "fat_quality_note": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
+        "calorie_density": 50.0,
+        "calorie_density_note": "energy_kcal absent: neutral 50",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 64.0,
+        "whole_food_integrity": 85,
+        "additive_quality": 100,
+        "regulatory_quality": 95.0,
+        "weighted_dimension_score": 50.05,
+        "binding_cap": null,
+        "score_after_cap": 50.05,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": null,
+        "fat_g": null,
+        "saturated_fat_g": null,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "extra_virgin",
+      "olive_grade_back": "",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Italy",
+      "origin_countries_all": [
+        "Italy"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [],
+      "dilution_flags": [],
+      "price": "99.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NRQ68_Z_P_7296073746485_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/NRQ68_L_P_7296073746485_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NRQ68_Z_P_7296073746485_1.png"
+      ],
+      "nova_proxy": 2,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 35,
+        "confidence_band": "insufficient",
+        "confidence_ceiling": 50,
+        "confidence_reductions": [
+          {
+            "factor": "missing: energy_kcal",
+            "reduction": -10
+          },
+          {
+            "factor": "missing: fat_g",
+            "reduction": -10
+          },
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "missing: ingredient_list",
+            "reduction": -25
+          },
+          {
+            "factor": "bsip1_trust_level=medium",
+            "reduction": -5
+          },
+          {
+            "factor": "nova_confidence=low",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Confidence ceiling active at 50 (data quality limitation)",
+        "FLOOR APPLIED: whole_food_fat_nova1_2 → minimum 70"
+      ],
+      "unresolved_flags": [
+        "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+      ]
+    },
+    {
+      "product_id": "bsip1_8410179100944",
+      "barcode": "8410179100944",
+      "name_he": "שמן זית מזיתי אוחיבלנקה",
+      "brand": "BORGES",
+      "source": "shufersal:html_scrape",
+      "barcode_src": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A9%D7%9E%D7%9F-%D7%97%D7%95%D7%9E%D7%A5-%D7%95%D7%9E%D7%99%D7%A5-%D7%9C%D7%99%D7%9E%D7%95%D7%9F/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA/%D7%A9%D7%9E%D7%9F-%D7%96%D7%99%D7%AA-%D7%9E%D7%96%D7%99%D7%AA%D7%99-%D7%90%D7%95%D7%97%D7%99%D7%91%D7%9C%D7%A0%D7%A7%D7%94/p/P_8410179100944",
+      "score": 50,
+      "grade": "insufficient_data",
+      "data_sufficiency": "insufficient",
+      "evaluation_status": "standard",
+      "context_flag": null,
+      "dimension_breakdown": {
+        "fat_quality": 50.0,
+        "fat_quality_note": "SRC-04: fat < 0.5g or structurally empty → neutral 50",
+        "calorie_density": 50.0,
+        "calorie_density_note": "energy_kcal absent: neutral 50",
+        "protein_quality": 0.0,
+        "nutrient_density": 0.0,
+        "glycemic_quality": 90.0,
+        "satiety_support": 0,
+        "processing_quality": 64.0,
+        "whole_food_integrity": 85,
+        "additive_quality": 100,
+        "regulatory_quality": 95.0,
+        "weighted_dimension_score": 50.05,
+        "binding_cap": null,
+        "score_after_cap": 50.05,
+        "confidence_ceiling": null,
+        "total_coordinated_penalty": null
+      },
+      "nutrition_per_100ml": {
+        "energy_kcal": null,
+        "fat_g": null,
+        "saturated_fat_g": null,
+        "protein_g": 0.0,
+        "carbs_g": 0.0,
+        "sodium_mg": 0.0
+      },
+      "olive_grade_front": "",
+      "olive_grade_back": "",
+      "grade_mismatch_signal6": false,
+      "has_harvest_date": false,
+      "harvest_date_text": "",
+      "origin_text": "",
+      "origin_country_primary": "Spain",
+      "origin_countries_all": [
+        "Spain"
+      ],
+      "origin_multi_country": false,
+      "blend_text": "",
+      "has_pdo_pgi_claim": false,
+      "pdo_pgi_claim_text": "",
+      "acidity_claim_raw": "",
+      "certification_raw": [
+        "kosher"
+      ],
+      "dilution_flags": [],
+      "price": "39.9",
+      "volume_ml": null,
+      "price_per_100ml": null,
+      "price_per_liter": null,
+      "image_urls": [
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DOJ48_Z_P_8410179100944_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/DOJ48_L_P_8410179100944_1.png",
+        "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DOJ48_Z_P_8410179100944_1.png"
+      ],
+      "nova_proxy": 2,
+      "category_routed": "whole_food_fat",
+      "routing_confidence": 0.92,
+      "confidence_result": {
+        "confidence_score": 35,
+        "confidence_band": "insufficient",
+        "confidence_ceiling": 50,
+        "confidence_reductions": [
+          {
+            "factor": "missing: energy_kcal",
+            "reduction": -10
+          },
+          {
+            "factor": "missing: fat_g",
+            "reduction": -10
+          },
+          {
+            "factor": "missing: dietary_fiber_g",
+            "reduction": -5
+          },
+          {
+            "factor": "missing: ingredient_list",
+            "reduction": -25
+          },
+          {
+            "factor": "bsip1_trust_level=medium",
+            "reduction": -5
+          },
+          {
+            "factor": "nova_confidence=low",
+            "reduction": -10
+          }
+        ]
+      },
+      "explanation_drivers": [
+        "DOMINANT: Confidence ceiling active at 50 (data quality limitation)",
+        "FLOOR APPLIED: whole_food_fat_nova1_2 → minimum 70"
+      ],
+      "unresolved_flags": [
+        "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+      ]
+    }
+  ]
+}

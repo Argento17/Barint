@@ -1,0 +1,349 @@
+{
+  "run_id": "butter_run_002",
+  "task": "TASK-191",
+  "phase": "B",
+  "generated_utc": "2026-06-05T16:32:13Z",
+  "engine_version": "proto_v0 / algorithm_version 0.4.1",
+  "engine_flags": {
+    "BARI_RECAL_P0": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_GLASSBOX_D5D6": "off"
+  },
+  "engine_fixes_active": {
+    "EV_047_kcal_ceiling_800": true,
+    "EV_048_sat_fat_cap_endemic_wff_fraction_0_50": true
+  },
+  "bsip1_source": "C:\\Bari\\02_products\\butter\\bsip1_outputs\\butter_bsip1_merged.json",
+  "total_products": 39,
+  "pipeline_errors": 0,
+  "corpus_breakdown": {
+    "confirmed_products": 16,
+    "candidate_products": 23,
+    "confirmed_note": "canonical_trust_level=high (original BSIP0 scraped, nutrition from label)",
+    "candidate_note": "canonical_trust_level=low (enriched via OFF or USDA FDC; confidence ceiling applies; QA promotion required)"
+  },
+  "grade_distribution": {
+    "B": 25,
+    "C": 7,
+    "D": 1,
+    "E": 6
+  },
+  "score_range": {
+    "min": 0,
+    "max": 70,
+    "mean": 55.1,
+    "count": 39
+  },
+  "confirmed_products": {
+    "grade_distribution": {
+      "B": 9,
+      "C": 6,
+      "D": 1
+    },
+    "score_range": {
+      "min": 45.2,
+      "max": 70,
+      "mean": 61.2,
+      "count": 16
+    }
+  },
+  "candidate_products": {
+    "grade_distribution": {
+      "B": 16,
+      "C": 1,
+      "E": 6
+    },
+    "score_range": {
+      "min": 0,
+      "max": 70,
+      "mean": 50.9,
+      "count": 23
+    },
+    "confidence_ceiling_note": "trust_level=low deducts 10 confidence points. Combined with other deductions (nova_confidence=low), most candidates land at confidence<40 → ceiling=50 (insufficient_data grade). A product with OFF-sourced ingredient data AND full nutrition may avoid this if nova_confidence lifts."
+  },
+  "sat_fat_caps_fired": 0,
+  "sat_fat_caps_gated_ev048": 33,
+  "sat_fat_note": "EV-048: ISRAELI_RED_LABEL_1_SAT_FAT cap suppressed for whole_food_fat products where sat_fat/fat >= 0.50. Plain dairy butter is exempt; emulsified spreads that fail this fraction threshold still fire the cap. Regulatory annotation in regulatory_quality dimension is NOT gated.",
+  "floor_activations": 31,
+  "FLOOR_CAP_INTERACTION_count": 6,
+  "FLOOR_CAP_INTERACTION_detail": [
+    {
+      "pid": "bsip1_butter_3274932103857",
+      "name": "חמאה לה גל זהב עם מלח",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3451790562990",
+      "name": "חמאה מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_7290117263563",
+      "name": "חמאה מלוחה מבלגיה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_7290019635130",
+      "name": "חמאה איטלקית מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3161911366429",
+      "name": "חמאה מלוחה רכה למריחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3228021530012",
+      "name": "חמאה פרזידן מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    }
+  ],
+  "FLOOR_CAP_INTERACTION_note": "Expect 0 for plain dairy butter after EV-048 fix. A non-zero count here means the sat-fat cap still fired AND the floor overrode it.",
+  "additive_spread_differentiation": [
+    {
+      "barcode": "7290108507997",
+      "name": "חמאה למריחה ללת\"מ",
+      "score": 53.8,
+      "grade": "C",
+      "caps_applied": [
+        "ADDITIVE_MARKERS_3_PLUS",
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "differentiated_below_plain_butter": false
+    }
+  ],
+  "routing_check": {
+    "all_whole_food_fat": true,
+    "misrouted": []
+  },
+  "fdc_source_clusters": [
+    {
+      "fdc_id": "173430",
+      "product_count": 11,
+      "description": "Butter, without salt",
+      "products": [
+        {
+          "barcode": "5099460004149",
+          "name": "חמאה קרי גולד ללא מלח",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "5099460004156",
+          "name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "9414544900015",
+          "name": "חמאה אנקור ללא מלח",
+          "brand": "Anchor",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290000066028",
+          "name": "חמאה טרה",
+          "brand": "טרה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290113401022",
+          "name": "חמאה אדום אדום",
+          "brand": "אדום אדום",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290006325046",
+          "name": "חמאה יוטבתה",
+          "brand": "יוטבתה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290105953020",
+          "name": "חמאה בית האמק",
+          "brand": "בית האמק",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290002492086",
+          "name": "חמאה נוגה",
+          "brand": "נוגה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "5099460010935",
+          "name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "3760088100025",
+          "name": "חמאה אשירה AOP",
+          "brand": "Echire",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "3412130012558",
+          "name": "חמאה פיזן ברטון ללא מלח",
+          "brand": "Paysan Breton",
+          "fdc_description": "Butter, without salt"
+        }
+      ],
+      "note": "11 products share this USDA FDC entry — same nutrition profile → same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "173410",
+      "product_count": 5,
+      "description": "Butter, salted",
+      "products": [
+        {
+          "barcode": "5099460004132",
+          "name": "חמאה קרי גולד מלוחה",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "9414544900022",
+          "name": "חמאה אנקור מלוחה",
+          "brand": "Anchor",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "5740900400238",
+          "name": "חמאה לורפק מלוחה",
+          "brand": "לורפק",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "7290000066035",
+          "name": "חמאה טרה מלוחה",
+          "brand": "טרה",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "3412130012534",
+          "name": "חמאה פיזן ברטון מלוחה",
+          "brand": "Paysan Breton",
+          "fdc_description": "Butter, salted"
+        }
+      ],
+      "note": "5 products share this USDA FDC entry — same nutrition profile → same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "171314",
+      "product_count": 2,
+      "description": "Butter, Clarified butter (ghee)",
+      "products": [
+        {
+          "barcode": "8906060890143",
+          "name": "חמאה מזוקקת גהי",
+          "brand": "Pure",
+          "fdc_description": "Butter, Clarified butter (ghee)"
+        },
+        {
+          "barcode": "4260268321030",
+          "name": "שמן גהי",
+          "brand": "Ghee",
+          "fdc_description": "Butter, Clarified butter (ghee)"
+        }
+      ],
+      "note": "2 products share this USDA FDC entry — same nutrition profile → same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "1868389",
+      "product_count": 1,
+      "description": "PRESIDENT, BUTTER, UNSALTED, UNSALTED",
+      "products": [
+        {
+          "barcode": "3228021530005",
+          "name": "חמאה פרזידן ללא מלח",
+          "brand": "President",
+          "fdc_description": "PRESIDENT, BUTTER, UNSALTED, UNSALTED"
+        }
+      ],
+      "note": "single product"
+    },
+    {
+      "fdc_id": "1868388",
+      "product_count": 1,
+      "description": "PRESIDENT, BUTTER, SALTED, SALTED",
+      "products": [
+        {
+          "barcode": "3228021530012",
+          "name": "חמאה פרזידן מלוחה",
+          "brand": "President",
+          "fdc_description": "PRESIDENT, BUTTER, SALTED, SALTED"
+        }
+      ],
+      "note": "single product"
+    },
+    {
+      "fdc_id": "1856663",
+      "product_count": 1,
+      "description": "LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED",
+      "products": [
+        {
+          "barcode": "5740900400221",
+          "name": "חמאה לורפק ללא מלח",
+          "brand": "לורפק",
+          "fdc_description": "LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED"
+        }
+      ],
+      "note": "single product"
+    }
+  ],
+  "error_detail": [],
+  "unexpected_findings": [
+    {
+      "finding_id": "UF-001",
+      "severity": "blocker",
+      "title": "Trans fat veto misfires on OFF-sourced salted dairy butter",
+      "detail": "6 candidate products (all OFF-sourced salted butters) scored 0/E because OFF reports fat_trans_g=3.28–3.7g/100g for these products. The engine's TRANS_FAT_VETO_THRESHOLD=1.0 fires, returning score=0, grade=E. These trans fat values represent naturally-occurring conjugated linoleic acid (CLA) and vaccenic acid — endogenous dairy trans fats that are metabolically distinct from industrial hydrogenated trans fats. The veto was designed for industrial trans fat (margarine, partially hydrogenated oils) and is categorically inapplicable here. This is the same class of problem as EV-048 (sat-fat cap misfire on whole dairy fat). Affected: חמאה קרי גולד מלוחה, חמאה אנקור מלוחה, חמאה לורפק מלוחה, חמאה טרה מלוחה, חמאה פיזן ברטון מלוחה, חמאה צרפתית רכה למריחה. Requires a new EV entry and D7 co-sign (same path as EV-048). Data source: all but the French butter are from OFF with identical fat_trans_g=3.28; French butter from BSIP1 fallback has 3.7.",
+      "requires_escalation": "Nutrition Agent",
+      "escalation_reason": "New scoring rule fix required: TRANS_FAT_VETO endemic gate for whole_food_fat + dairy_butter classification. Same pattern as EV-048. Requires EV entry + D7 co-sign before butter_run_003.",
+      "affected_products": [
+        "bsip1_butter_3161911229199",
+        "bsip1_butter_5099460004132",
+        "bsip1_butter_9414544900022",
+        "bsip1_butter_5740900400238",
+        "bsip1_butter_7290000066035",
+        "bsip1_butter_3412130012534"
+      ]
+    },
+    {
+      "finding_id": "UF-002",
+      "severity": "flag",
+      "title": "FLOOR_CAP_INTERACTION fires on 6 salted butters — LEGITIMATE",
+      "detail": "6 confirmed salted butters show FLOOR_CAP_INTERACTION with caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS']. EV-048 correctly suppresses the sat-fat cap; the remaining caps are legitimate signals (salt = 700–1200mg sodium earns sodium red label + sat-fat red label annotation = 2+ red labels → ISRAELI_RED_LABELS_2_PLUS fires). Floor overrides to 50/C. This differentiation (70/B unsalted vs 50/C salted) is defensible and represents real consumer-relevant information. Not a bug — escalation NOT required.",
+      "requires_escalation": null
+    },
+    {
+      "finding_id": "UF-003",
+      "severity": "flag",
+      "title": "Additive spread differentiation flag reports false negative",
+      "detail": "The batch runner reports differentiated_below_plain_butter=False for חמאה למריחה ללת\"מ (53.8/C). This is a false negative: the metric compares against the minimum of ALL confirmed products including salted butters (50/C). The correct comparison is unsalted plain butter (70/B), where the 53.8/C additive spread IS clearly differentiated downward by 16 points. Consumer-visible differentiation between plain unsalted butter (70/B) and the additive-heavy spread (53.8/C) is working correctly.",
+      "requires_escalation": null
+    },
+    {
+      "finding_id": "UF-004",
+      "severity": "flag",
+      "title": "President unsalted + Lurpak unsalted: sodium_mg=0.0 (OFF placeholder)",
+      "detail": "Pre-flagged in Phase A: חמאה פרזידן ללא מלח and חמאה לורפק ללא מלח both report sodium_mg=0.0 from their OFF ingestion_provenance entries. Likely a placeholder/missing value in OFF rather than a genuine zero-sodium measurement. Both score 70/B (unsalted plain butter at the WFF floor); the zero sodium does not trigger any cap so the score is not affected by the placeholder. Requires label photo sanity check before QA promotion from candidate→verified.",
+      "requires_escalation": null
+    }
+  ],
+  "run_verdict": "PHASE_B_COMPLETE_WITH_NEW_BLOCKER",
+  "run_verdict_detail": "butter_run_002 successfully demonstrates EV-047 + EV-048 are working correctly (sat-fat cap fired 0 times; plain unsalted butters cluster at 70/B as expected). However UF-001 surfaces a new blocker: trans fat veto misfires on OFF-reported CLA/vaccenic acid in salted dairy butter, collapsing 6 products to 0/E. This is a blocking data-quality issue identical in character to EV-048. A butter_run_003 is required after Nutrition Agent adds an endemic gate for whole_food_fat dairy trans fat (UF-001). The confirmed-product (label-scanned) distribution is the reliable signal: 9B + 6C + 1D — plain unsalted butters at 70/B, salted at 50/C, additive spread at 53.8/C, מתובלת at 45.2/D. This distribution supports owner Phase C framing decision."
+}

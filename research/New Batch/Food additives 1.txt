@@ -1,0 +1,676 @@
+Executive Summary
+Food additives serve diverse technological functions but differ in safety profiles, evidence quality, and
+regulatory status. We reviewed nine additive classes (emulsifiers, preservatives, sweeteners, polyols, colors,
+flavor enhancers, stabilizers, gums, acidity regulators) and key examples within each. All are approved by
+agencies like EFSA, FDA and JECFA at specified Acceptable Daily Intakes (ADIs) or “ADI not
+specified” (generally safe) levels, but some remain controversial due to emerging research or vulnerable
+subpopulations. For each class we summarize typical uses, toxicological data (absorption/metabolism,
+sensitive groups), evidence strength (animal vs human studies), human outcomes (RCTs/cohorts), dose-
+response (ADI, NOAEL, threshold), and regulation. We then assign tiers (Tier 1: strong concern; Tier 2:
+moderate; Tier 3: neutral; Tier 4: context-dependent/beneficial) to representative additives with evidence-
+based rationale. Finally, we present Bari logic for automated screening, including algorithmic rules, decision
+thresholds, required inputs, and example scenarios. A comparative table distills key attributes (function,
+ADI/NOAEL, tier , main outcomes, regulatory notes) for prominent additives. Our recommendations
+prioritize primary regulatory sources (EFSA, JECFA, FDA, Codex) and recent meta-analyses; gaps and
+controversies are highlighted for further research.
+Emulsifiers
+Function: Emulsifiers (e.g. mono-/diglycerides E471, lecithin E322, polysorbates E432/E436,
+carboxymethylcellulose E466, carrageenan E407) enable oil–water mixtures (margarine, sauces, ice cream,
+baked goods) to stay homogeneous【3†L216-L224】【3†L239-L247】. They also improve texture, volume
+and shelf-life in breads, doughs and confections【3†L216-L224】【3†L237-L245】. Common natural
+emulsifiers include lecithin (soy/egg) and gums; synthetic ones include polysorbates and polyricinoleates.
+Safety (toxicology/ADME): Most emulsifiers are large molecules poorly absorbed. Lecithin hydrolyzes to
+choline and fatty acids; soy-derived lecithin may carry allergenic protein residues. Polysorbate-80 (P80)
+yields sorbitol and laurate; carboxymethylcellulose (CMC) is not digested, acting as fiber . ADME: e.g. ~99% of
+ingested benzoates (relevant for polysorbates’ butyrate link) are metabolized to hippuric acid and excreted
+【33†L218-L224】; cellulose ethers like CMC pass through gut unabsorbed【23†L75-L82】. No major
+systemic toxicity has emerged: EFSA and JECFA assign “ADI not specified” or very high ADIs for most (e.g.
+EFSA group-ADI “not specified” for cellulose emulsifiers【25†】). Vulnerable populations: inflammatory
+bowel disease (IBD) patients or infants (especially any added to formulas) are sometimes mentioned as
+more sensitive, but current data are limited.
+Evidence strength: Mostly animal/mechanistic studies. Mouse studies (Chassaing et al.) show CMC/P80
+induce low-grade gut inflammation, altered microbiota, and metabolic syndrome traits【11†L380-L388】
+【11†L429-L437】. In vitro/ex vivo, CMC and P80 altered human gut microbiota composition and gene
+expression toward a pro-inflammatory profile【19†L63-L71】. Human evidence is sparse. A recent
+placebo-controlled RCT (60 adults) found that supplementing a low-emulsifier diet with single emulsifiers
+(CMC, P80, carrageenan, lecithin) lowered fecal short-chain fatty acids (SCFAs) but did not raise markers of gut
+inflammation, lipopolysaccharide or metabolic risk【19†L63-L71】. Only carrageenan modestly increased
+1
+intestinal permeability. Overall, no direct human pathology from typical emulsifier intake has been
+demonstrated; evidence is rated C (limited) due to few trials.
+Human outcomes: In the 2026 RCT, mean SCFAs (butyrate, propionate) fell in emulsifier arms, potentially
+reflecting microbiome shifts【19†L63-L71】. No significant change in fecal calprotectin, CRP or serum
+markers vs placebo. A low-emulsifier diet lowered cholesterol (EFD period)【19†L63-L71】. Observationally,
+high-processed diets (with many emulsifiers) correlate weakly with IBD or metabolic risk, but confounding
+factors abound. No adverse effects like allergy or carcinogenesis have been reported at dietary exposure. 
+Dose considerations: Typical intake is grams/day. EFSA “ADI not specified” implies no foreseeable risk at
+realistic doses. For P80, regulatory evaluations noted likely limits because 1% in water (as used in mouse
+studies) is much higher than human food levels. NOspecific human NOAEL; in mice, 1% in water (∼7 g/kg)
+caused inflammation. In human RCT, emulsifier dose via brownies was not explicitly quantified, but likely
+well below EFSA-approved levels. If we treat ADIs: e.g. none for lecithin (phospholipid), “not specified” for
+many. 
+Regulation: EFSA and FDA permit all common emulsifiers under specified uses. EFSA’s Panel has re-
+evaluated many (e.g. E322 lecithin, E440 pectins) and kept ADIs at “not specified” or set high mg/kg limits
+【3†L293-L301】. No bans exist, but any re-evaluation is ongoing (EU systematic re-eval by 2020). Labelling:
+must list by E-number/name. 
+Controversies & gaps: Debates center on the gut microbiome. Critics point to animal-model findings and
+call for caution (e.g. food bloggers note “clean eating” to avoid emulsifiers). EFSA and FDA say available data
+show no harm in humans; more research is needed on chronic low-dose effects, especially in IBD-prone
+individuals. The main gap is lack of long-term human trials. Also, some acid esters (DATEM, SSL) could
+release tartaric acid; high free tartarates have laxative potential. 
+Summary: Emulsifiers improve texture and shelf-life, and are generally considered safe (Tier 3: neutral)
+under current use. Lecithin (E322) is Tier 4 (benign, adds choline/fatty acids), synthetic surfactants like P80
+and CMC are Tier 2 (moderate concern pending more evidence), and carrageenan is borderline Tier 2 due to
+its disputed GI effects. We assign Tier 3 to most common emulsifiers, Tier 2 to those with suggestive
+inflammatory signals, Tier 4 to nutritionally beneficial ones (e.g. lecithin), and Tier 1 to none in this class (no
+acute toxins).
+Preservatives
+Function: Preservatives (nitrites/nitrates E249–252, benzoates E210–213, sulfites E220–228, sorbates E200/
+E202, propionates, etc.) inhibit microbial growth and oxidative spoilage. Nitrates/nitrites preserve meats
+and give color; benzoates prevent yeast/mold in acidic foods (soft drinks, pickles); sulfites prevent browning
+and microbial growth (dried fruits, wines, beers). EDTA (E385) sequesters metals to slow oxidation (e.g. in
+canned seafood).
+Safety profile:
+Nitrites/nitrates: Nitrate (NO₃⁻) is largely excreted but partly converted to nitrite (NO₂⁻) via oral
+bacteria. NO₂⁻ can oxidize hemoglobin to methemoglobin and form nitrosamines (potential
+• 
+2
+carcinogens) in the stomach【29†L25-L34】. EFSA’s ADI: nitrate 3.7 mg/kg, nitrite 0.07 mg/kg (as
+nitrite ion)【29†L42-L49】. JECFA same. Typical dietary nitrate is mostly from vegetables; cured
+meats contribute added nitrate/nitrite. At high exposures, risk is methemoglobinemia in infants
+(“blue baby”), a known hazard. In adults, conversion to carcinogenic nitrosamines is the main
+theoretical risk. EFSA concluded that nitrosamine formation at permitted levels is of low concern
+【30†L13-L22】; however , it noted uncertainties about long-term effects【30†L13-L22】. 
+Benzoates: (Benzoic acid/salts) are rapidly absorbed and conjugated with glycine to hippuric acid;
+>99% excreted【33†L218-L224】. No mutagenicity or teratogenicity at normal doses. EFSA set a
+group ADI 5 mg/kg (benzoic acid equivalent)【33†L146-L154】 (JECFA 0–5 mg/kg). Sensitive
+individuals may get skin or asthma reactions from benzoates. There is a controversial link to
+hyperactivity: a UK study showed a small effect of certain dye/benzoate mixtures on child behavior
+【44†L272-L281】, but EFSA deemed the evidence inconclusive and retained ADIs. 
+Sulfites (sulfur dioxide E220 etc.): Sulfur dioxide and sulfite salts release SO₂, which can cause
+bronchospasm in asthmatics and destroy thiamine (vitamin B1) in foods. EFSA (2022) found that
+estimated intakes for high consumers (especially children and adults) might exceed safe levels,
+using margin-of-exposure (MOE) analysis【35†L310-L318】. No ADI was established; instead, EFSA
+set MOE benchmarks. EFSA noted animal studies showing nervous system effects at high doses
+【35†L319-L324】. Allergic/intolerance reactions (e.g. in asthmatics) are recognized. 
+Sorbic acid (E200) & salts: Metabolized to CO₂ and water; no absorption issues. Former ADI 0–25 mg/
+kg (FDA GRAS), updated EFSA ADI 11 mg/kg (as sorbic acid) in 2019【37†L72-L77】. No major health
+concerns at normal use. 
+Others: Propionates (anti-mold in baked goods) have ADI ~10 mg/kg; EDTA is “ADI not specified” by
+FDA/GRA.
+Strength of evidence: Preservatives have been well-tested in rodents (subchronic/chronic) establishing
+ADIs. Human evidence mainly comes from observational or case reports. Key RCT/cohort data:
+Nitrites/nitrates: Cohort studies link high processed meat intake to cancer risk (colorectal), but
+confounded by fat, cooking, heme iron. The consensus is that nitrate from veggies is beneficial
+(blood pressure lowering via NO), whereas processed-meat nitrosamines remain debated. EFSA
+found current ADIs protective【30†L25-L30】. 
+Benzoates: Lacking RCTs. Ex vivo work: very high benzoate (10×ADI) had minimal effects on human
+gut microbiota composition【33†L253-L262】. Hyperactivity trials (with dyes) showed only slight,
+inconsistent effects【44†L272-L281】. 
+Sulfites: Case reports of asthma attacks or anaphylaxis in sensitive individuals. No RCTs. 
+Propionates/Sorbates: Generally no human concerns reported. 
+Human outcomes: Aside from niche sensitivities, preservatives at regulated use cause no reported adverse
+health effects in general populations. High sulfite intake is acknowledged to possibly impair the nervous
+system【35†L319-L324】, but daily diets rarely approach those levels. 
+Dose considerations: ADIs govern risk thresholds. For nitrates/nitrites, exceeding ADI (e.g. >20 mg/kg
+nitrate) over time could allow harmful nitrosamine formation【29†L25-L34】. Benzoates’ ADI of 5 mg/kg is
+not hard to exceed: a 70 kg adult could reach it with ~3.5 g/d, which could occur with multiple soft drinks
+and pickled snacks. A 2025 study showed that even 35 g/L (10×ADI) benzoate markedly shifts some gut
+bacteria but not overall diversity【33†L253-L262】. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+3
+Regulation: Nitrites and benzoates have specified maximum levels in foods (e.g. ≤150 mg/kg for nitrites in
+meats). Sulfites must be declared if >10 mg/kg and are banned in fresh meat (because of high background
+nitrate) in some regions. EU labelling requires “contains sulfites” for >10 ppm. US labels sulfite-preserved
+foods under Food Allergen law for asthmatics. Some countries restrict colors and preservatives in baby
+foods. 
+Controversies/Gaps: The nitrite–nitrosamine–cancer link is controversial; recent IARC re-evaluations (2021)
+classify processed meat (with nitrite) as carcinogenic, but largely attribute that to cooking-derived
+compounds. The beneficial NO from nitrate complicates risk–benefit (at least 800 mg nitrate from
+vegetables can lower BP). EFSA noted “benefits outweigh risks” of dietary nitrate for cardiovascular health
+【30†L30-L34】. Sulfites lack data on chronic CNS effects; EFSA called for more study of sulfite neurotoxicity.
+Benzoate as an antimicrobial may alter gut flora at high dose, but evidence to date suggests minimal
+impact at realistic intakes【33†L253-L262】. 
+Summary:
+Nitrate/Nitrite (Tier 2): Moderate concern due to nitrosamine potential (Tier 2) – EFSA ADIs
+protective【29†L42-L49】【30†L25-L32】. 
+Benzoate (Tier 2): ADI 5 mg/kg, slight sensitivity/allergy risk, controversial hyperactivity link (Tier 2)
+【44†L272-L281】【33†L146-L154】. 
+Sulfites (Tier 1): Asthma/thiamine loss and EFSA’s MOE signal for high consumers (Tier 1)【35†L310-
+L318】【35†L319-L324】. 
+Sorbate (Tier 3): ADI 11 mg/kg, little evidence of harm – neutral (Tier 3). 
+Propionate, EDTA (Tier 3): No red flags, Tier 3.
+Artificial Sweeteners
+Function: Artificial (non-nutritive) sweeteners (e.g. aspartame E951, saccharin E954, sucralose E955,
+acesulfame K E950, neotame E961, advantame) provide high sweetness intensity with minimal calories.
+Steviol glycosides (E960, from Stevia rebaudiana) are plant-based sweeteners. These enable “diet” foods/
+beverages for calorie reduction or blood sugar control.
+Safety profile:
+Aspartame: Metabolized to phenylalanine, aspartic acid, and methanol. Persons with phenylketonuria
+(PKU) cannot metabolize phenylalanine; thus products must warn. JECFA/EFSA ADI: 0–40 mg/kg
+【39†L238-L241】 (e.g. a 70 kg adult could consume ~9–14 diet sodas/day without exceeding ADI
+【39†L271-L277】). IARC (2023) classified aspartame as Group 2B (possibly carcinogenic) based on
+“limited” evidence for liver cancer【39†L238-L241】【39†L265-L274】. JECFA reaffirmed ADI; WHO
+noted “safety not a major concern at common doses” but called for more studies【39†L238-L241】
+【39†L271-L278】. 
+Sucralose: Mostly excreted unchanged; tiny percent metabolized to chlorinated compounds. ADI 0–
+15 mg/kg (JECFA). Early concerns about microbiome/gut and glucose tolerance have been raised in
+rodents, but human RCTs show sucralose does not significantly alter glycemic response in healthy
+adults. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+4
+Saccharin: Excreted unchanged. ADI 0–5 mg/kg. Past rodent bladder-tumor findings at high doses
+are not relevant to humans (via species-specific mechanisms); deemed safe by IARC and others. 
+Acesulfame K: ADI 0–15 mg/kg. No specific human issues reported. 
+Stevia (Steviol glycosides): ADI 0–4 mg/kg (expressed as steviol); largely non-toxic, some bitter
+aftertaste at high dose.
+Others (neotame, advantame): Very high sweetness power , very low ADIs, used in limited foods.
+No toxicities such as organ damage are known at approved levels. Some claims of migraines or metabolic
+effects remain unsubstantiated. 
+Evidence strength: Many RCTs and meta-analyses exist:
+A 2025 meta-analysis of RCTs (n≈1457) found no significant differences in weight, glucose, or lipid
+outcomes between adults consuming artificially sweetened beverages (ASBs) versus unsweetened
+controls【42†L349-L358】. This suggests metabolic neutrality in the short term. 
+Other meta-analyses show modest weight reduction when replacing sugar with nonnutritive
+sweeteners, but effects are small. Observational studies sometimes associate ASBs with obesity or
+diabetes, but are likely confounded by reverse causality (overweight people switch to diet drinks)
+【42†L349-L358】. 
+Aspartame’s link to cancer: IARC’s classification is based on limited human data (two cohort signals
+for hepatocellular carcinoma)【39†L265-L274】. No RCT addresses long-term cancer risk. JECFA sees
+no need to lower ADI【39†L271-L277】.
+Human outcomes:Glucose/insulin: In RCTs, artificial sweeteners yield lower postprandial glycemia than
+sugar and have negligible insulin secretion, potentially beneficial for diabetics. Gut microbiota: Some rodent
+studies show dysbiosis with certain sweeteners, but human data are mixed. A small study found sucralose
+altered gut microbiome at very high doses; others found no effect. Body weight: Replacing sugar with
+sweeteners may aid weight maintenance in the short term; long-term efficacy is unclear . Neurological/
+other: Aspartame (which yields methanol) has been tested in many RCTs without finding evidence for
+headache or cognition issues. A few individuals report headaches or allergic-like reactions, but trials often
+show placebo-level effects. Safety signal: Phenylketonurics (0.5% of population) must avoid aspartame.
+There are no proven adverse effects on pregnancy, children, or other vulnerable groups from acceptable
+intakes, aside from the PKU issue.
+Dose: Typical exposures are well below ADIs. For example, two cans of diet soda (~180 mg aspartame) are
+<5% of a 40 mg/kg ADI for a 70 kg person【39†L271-L277】. Gestational exposure is not a concern at
+dietary levels except PKU risk. 
+Regulation: All major agencies have approved these sweeteners. Aspartame and saccharin are one of the
+oldest approvals; newer ones (acesulfame, sucralose) went through modern risk assessments. Sweeteners
+are generally permitted in foods and beverages with concentration limits. Stevia is also authorized (E960) in
+EU and US. Labels must indicate presence of artificial sweeteners, and in EU products with steviol glycosides
+must state “with sweetener”. 
+Controversies/Gaps: The biggest controversy is cancer risk of aspartame. The IARC 2023 listing (Group 2B)
+has raised public concern, though JECFA and regulators maintain the approved ADI is safe【39†L238-L241】
+【39†L271-L277】. More epidemiological studies and mechanistic research on aspartame’s metabolite
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+5
+methanol (and formaldehyde) are underway. Another gap is long-term metabolic effects: whether lifelong
+use influences appetite regulation or glucose tolerance. The 2025 meta-analysis suggests no overt harm
+【42†L349-L358】, but specific sweeteners differ and were pooled. Rare case reports of allergic reactions
+(aspartame, saccharin, stevia) lack strong evidence. 
+Summary: Most artificial sweeteners are Tier 3 (neutral) with no proven human harm at regulated doses,
+except:
+Aspartame (Tier 2): PKU contraindication and IARC 2B flag.
+Sucralose (Tier 2): Emerging scrutiny over microbiome (flagged moderate).
+Stevia glycosides (Tier 4): natural origin, may improve glycemic control – borderline beneficial
+context.
+Saccharin/acesulfame (Tier 3): no major concerns.
+Regulatory bodies (EFSA, FDA) uniformly consider them safe within ADIs.
+Sugar Alcohols (Polyols)
+Function: Polyols (e.g. sorbitol, xylitol, mannitol, erythritol, maltitol) are carbohydrate alcohols used as bulk
+sweeteners and humectants. They provide sweetness with lower calories (except maltitol) and do not spike
+blood sugar . Sorbitol and mannitol occur naturally in fruits; others are industrially produced. Common in
+“sugar-free” candies, gum, diabetic foods.
+Safety: Polyols are partially absorbed and metabolized (e.g. sorbitol → fructose in liver); the unabsorbed
+portion is fermented in the colon. Excess intake leads to osmotic diarrhea, flatulence, and bloating. EU
+mandates “excess may cause laxative effect” labels. No systemic toxicity. ADIs are generally “not
+specified” (safe) because toxic effects only appear at high doses. Vulnerable groups: Irritable bowel
+syndrome (IBS) patients may be sensitive (FODMAP content). Xylitol is extremely toxic to dogs, but harmless
+to humans. 
+Evidence: RCTs on polyols focus on GI tolerance: threshold is typically 20–40 g/dose (e.g. one might get
+diarrhea if >30 g sorbitol). They can cause GI upset in those unaccustomed or with IBS. However , they don’t
+raise blood glucose; some meta-analyses find polyol diets improve dental health (non-cariogenic). No
+studies show serious long-term harm at moderate use. 
+Dose: A single package of sugar-free gum (10 pieces) may contain ~1–2 g xylitol; so one would need dozens
+for GI effects. Maltitol candies often warn about laxative risk if >30 g/day. There is no formal ADI, but JECFA
+established that daily consumption up to ~10 g is without effect; 20 g causes mild effects, 40 g significant GI
+upset. 
+Regulation: All are approved as food additives (e.g. sorbitol E420). Labeling rules require “excessive
+consumption may cause laxative effects”. No restrictions beyond these warnings.
+Controversies: Polyols themselves are benign. The main issue is consumer awareness of the laxative
+threshold and the potential of hidden polyols in “healthy” foods. Also, polyols can disrupt low-carb
+(ketogenic) diets if not tracked. 
+• 
+• 
+• 
+• 
+• 
+6
+Summary: Polyols are Tier 3 (neutral): safe and useful, though Tier 2 (caution) for high intakes or IBS-
+prone individuals. Some (xylitol) have dental benefits (Tier 4 effect). No additive in this class merits Tier 1
+concern.
+Food Colors
+Function: Additives like Tartrazine (E102, Yellow 5), Sunset Yellow (E110, Yellow 6), Allura Red (E129, Red 40),
+Brilliant Blue (E133), and natural pigments (beta-carotene E160a, annatto E160b, paprika E160c, chlorophyll
+E140) provide or restore color . They enhance appeal and compensate for loss of color due to processing.
+Safety: Synthetic azo dyes have been scrutinized for hypersensitivity (especially urticaria/asthma in
+salicylate-sensitive people) and neurobehavioral effects. ADIs (EFSA): Tartrazine 7.5, Sunset 5, Allura 7 mg/
+kg. EFSA found no carcinogenic or genotoxic risk at permitted uses. Ponceau 4R (not in US) had equivocal
+bladder tumor data in rodents but ADI set at 0.7 mg/kg. Natural colors (carotenes, anthocyanins, paprika)
+have ADIs “not specified” or high (beta-carotene 5 mg/kg). 
+Evidence: The Southampton study (McCann 2007) found that mixtures of six artificial colors plus benzoate
+modestly increased hyperactivity in a general-child cohort【44†L272-L281】. EFSA re-evaluations (2008)
+acknowledged “limited evidence of a small effect in some children”【44†L272-L281】 but overall ADIs were
+upheld. No clear link to ADHD or cognitive deficits in population studies. Other RCTs (e.g. in preschoolers)
+showed no consistent effect of single dyes. Except for hypersensitivity, no human morbidity has been linked
+to dyes.
+Dose: People rarely exceed ADI from diet alone, unless very heavy consumers of colored candies/
+beverages. For example, Tartrazine ADI (7.5 mg/kg) is ~525 mg/d for 70 kg adult. A typical soda contains
+~20 mg per can, so 25 cans would be needed to reach ADI. 
+Regulation: EU requires health warning label (in black print) on products containing E102, E104, E110, E122,
+E124, E129: “may have an adverse effect on activity and attention in children.” US has no such warning.
+Some countries ban specific dyes (e.g. Norway banned Yellow 5, Yellow 6; certain red dyes banned in
+Singapore). Codex Alimentarius permits them with limits (often following EFSA). 
+Controversies: The hyperactivity link remains debated. Critics push for removing artificial dyes from
+children’s diets as a precaution. EFSA and FDA say current uses are safe for the general population
+【44†L272-L281】. An unresolved gap is the effect of exposure in sensitive subpopulations, and combined
+effects of multiple dyes and additives.
+Summary: Synthetic colors are Tier 2 (moderate concern) due to possible hyperactivity in sensitive
+children. Benzoate and color mixtures got a small warning in EFSA’s evaluation【44†L272-L281】. Allura Red
+and Tartrazine are Tier 2. Natural colors (e.g. carotenes, anthocyanins) are Tier 4 (beneficial antioxidant
+context). Overall, color additives are regulated to ensure ADIs are not exceeded; hyperactive-susceptible
+children are a noted at-risk group (Tier 2 concern).
+7
+Flavor Enhancers
+Function: Substances like Monosodium Glutamate (MSG, E621) and disodium 5′-guanylate (E626) and 5′-
+inosinate (E631) enhance umami/savory taste. Yeast extracts (rich in glutamate) serve similarly. They allow
+reduced use of salt or fat while maintaining flavor .
+Safety: MSG is extensively studied. Early anecdotal “Chinese Restaurant Syndrome” (headache, flushing)
+was not confirmed in controlled trials (only extremely high IV doses caused transient symptoms). JECFA ADI:
+“not specified” (safe) at normal dietary use. MSG is metabolized as natural glutamate; it is a
+neurotransmitter precursor but does not cross the blood–brain barrier in normal amounts. Disodium 5′-
+nucleotides similarly have no known toxicity. 
+Evidence: No high-quality RCT has linked MSG in foods to chronic disease. Meta-analyses of headaches find
+no effect at normal exposures. Animal studies using massive doses showed no organ toxicity. Some
+nutritionists argue MSG may trigger appetite; others find that it can reduce salt use and sodium intake
+(potential benefit). 
+Human outcomes: MSG in food causes no clear symptoms in most people. Rare idiosyncratic reactions
+(flushing, nausea, sweating) can occur , but double-blind studies showed these only at high intakes (~3–5 g,
+much above culinary levels) and even then inconsistently. It does slightly raise plasma glutamate, but
+homeostasis clears it quickly. There is no evidence linking MSG to obesity or diabetes in humans; some
+cohort studies show neutral or even protective associations (due to lowered salt). 
+Dose: Typical consumption is 0.5–1 g/day in cuisines using it (much lower than eg. dietary protein-bound
+glutamate). No toxicity threshold found in animal studies up to 10% diet (unrealistic). One concern is the 
+non-enzymatic reaction of MSG in prepared foods might produce trace amounts of carcinogenic
+compounds (e.g. trace 3-deoxyglucosone), but evidence is speculative.
+Regulation: MSG is generally recognized as safe (GRAS by FDA) and authorized worldwide. It must be
+labeled as “monosodium glutamate” (US) or “flavour enhancer E621” (EU). In Sweden, MSG once had
+warning labeling; now removed. Disodium nucleotides and yeast extracts are uncontroversial authorized
+additives.
+Controversies: A few individuals claim MSG sensitivity; this remains unproven at normal dietary levels.
+Some believe free glutamate triggers gut growth or endocrine effects, but studies do not support this at
+food doses. The World Health Organization did not list MSG in any “hazard” category. Research gaps: long-
+term effects on metabolism or neurodegeneration have not been meaningfully studied in humans.
+Summary: MSG and related enhancers are Tier 3 (neutral). No regulatory body views them as toxic. We
+classify MSG as Tier 3 (neutral) given lack of credible harm, with a note that very high intake anecdotes
+place it near Tier 2 if someone self-identifies as sensitive (but this is rare). 
+Stabilizers and Gums
+Function: These are thickening or gelling agents that stabilize textures. Stabilizers (often overlap with
+emulsifiers) include pectin (E440, fruit jams), alginate (E401 sodium alginate, dairy gels), agar (E406,
+8
+vegetarian gelling), and carrageenan (E407, dairy analogs). Gums (E412–E425) like guar (E412), xanthan
+(E415), gum arabic (E414), locust bean gum (E410) add viscosity and bind water . They prevent syneresis in
+yogurts, thicken soups, or suspend particulates in sauces. 
+Safety: Most are indigestible polysaccharides similar to dietary fiber . They undergo fermentation in the
+colon. At high intakes they may cause GI symptoms (e.g. guar gum can cause diarrhea). Pectin and alginate
+are widely considered fiber supplements (e.g. pectin 20 g/day reduces cholesterol). No toxic metabolites.
+Regulatory bodies often do not specify ADIs (“ADI not specified” for many).
+Carrageenan is controversial: high-molecular-weight carrageenan (food-grade, λ- or κ-carrageenan) is
+considered safe, but degraded carrageenan (poligeenan, not used in food) caused tumors in rodents. Some
+animal studies give high doses of food-grade carrageenan and reported gut inflammation and possible
+promotion of tumors in the presence of other carcinogens. EFSA reviewed carrageenan several times and
+kept it authorized, though a formal re-evaluation for infants was underway.
+Evidence: Human studies: pectin lowers lipids (Cochrane review); no adverse reports. Alginate used for
+reflux, safe. Xanthan and guar gum slightly lower postprandial glucose and have prebiotic fiber effects in
+RCTs. Carrageenan: a few small trials of carrageenan-containing yogurts showed no GI harm in healthy
+people (even some anti-HP infection trials). Meta-analyses: none have linked stabilizers/gums to chronic
+disease. A 2025 ex vivo trial (see emulsifiers) showed carrageenan raised permeability.
+Dose: Food uses are low (0.1–1% of product). For example, 5 g daily of guar is common in weight-loss
+regimens; at 30 g can cause diarrhea. No formal NOAEL established (they generally have wide safety
+margins). 
+Regulation: All common gums/stabilizers are approved (e.g. guar E412, xanthan E415, pectin E440).
+Maximum use levels are specified (e.g. up to ~15 g/kg in some confectionery). EU mandates labeling
+(“stabilizer: E440”). In the US they may appear under generic names (e.g. “pectin”, “guar gum”). There is no
+ADI; safety is assumed at GRAS levels.
+Controversies: Carrageenan’s safety is debated in natural-health communities (some advise avoiding it,
+calling it an “inflammatory” agent). Scientific bodies (EFSA, FDA, JECFA) find no current evidence to restrict it.
+The need to re-evaluate carrageenan with modern methods is recognized. Some also question gum arabic’s
+occupational allergy in manufacturing (not food risk). 
+Summary: Most stabilizers/gums are Tier 4 (beneficial/context-dependent) due to their fiber-like
+properties. Pectin, xanthan, guar , alginate improve texture and may offer health benefits (fiber).
+Carrageenan is Tier 2 (moderate) pending human data on chronic inflammation; other gums are Tier 3/4.
+No Tier 1 agents here.
+Acidity Regulators
+Function: Acidity regulators (acids and their salts, e.g. citric acid E330, malic E296, lactic E270, fumaric E297,
+phosphoric acid E338) control pH and add tartness. They preserve foods by lowering pH (inhibiting
+microbes) and adjust flavor (e.g. citric acid in beverages, phosphoric acid in colas, lactic acid in fermented
+foods). Carbonates and bicarbonates (E500) are also acidity regulators (raising pH).
+9
+Safety: Most are naturally occurring organic acids with low toxicity. Citric, malic, lactic, acetic acids have no
+ADIs (ADI “not specified”) and are normal metabolites. Phosphoric acid has been scrutinized: excessive
+dietary phosphate (from cola drinks or processed foods) may affect bone mineral density and kidney health.
+EFSA set a safe upper intake for total phosphorus (OOP) in 2019, but specifically for additives, uses are
+generally within expected diets. Excess ingestion of any strong acid can erode dental enamel (e.g. frequent
+sour candy ingestion), but regulated use is considered safe.
+Evidence: There is minimal evidence of harm. Some studies link high cola (phosphoric acid) intake to lower
+bone density in older women, but these diets also replace milk. Rare case of lactic acidosis from massive
+ingestion of baking soda (sodium bicarbonate) exists, but irrelevant to normal use. A small proportion of
+people may experience GI upset (heartburn) if consuming large acidic drinks.
+Dose: These acids are generally consumed in grams: e.g. a lemonade might have 1–2% citric acid (~1–2 g
+per 250 ml). ADI “not specified” suggests no risk at any realistic consumption. Phosphoric acid in soda is
+~50 mg/100 ml, so 500 ml cola provides ~250 mg phosphorus, well below the daily RDI (~700 mg P in diet).
+Regulation: All are universally permitted, often without numerical limits (using “quantum satis” or broad
+categories). Labeling may indicate “acidity regulator (citric acid)”. No restrictions beyond normal labeling;
+these are seen as GRAS/ESAs. 
+Controversies: The main discussion is around soft drinks: phosphoric acid consumption vs bone health and
+CKD (chronic kidney disease). Evidence is mixed, and confounders exist (caffeine, lifestyle). EFSA and FDA do
+not view these acid levels as risky. Non-acidic alternatives (citric acid) have replaced some phosphoric use
+due to health perceptions. People with GERD might avoid citrus acids. 
+Summary: Acidity regulators are Tier 3/4: essentially safe and even beneficial for flavor and preservation.
+Citric, malic, lactic, acetic, bicarbonates are Tier 4 (natural/benign). Phosphoric acid is Tier 3 (neutral) unless
+consumed extremely (like daily liters of cola). There are no Tier 1 concerns in this class.
+Proposed Tier Classification
+Based on the above evidence, we propose:
+Tier 1 (Strong Concern):Sulfites (E220–228) – due to EFSA’s finding that high consumers (esp.
+children) may approach unsafe exposure, and risk of asthmatic reactions【35†L310-L318】. No other
+group merits Tier 1 in current data. 
+Tier 2 (Moderate):
+Nitrates/Nitrites (E249–252) – theoretical nitrosamine cancer risk, balanced by cardio benefits; ADIs
+but controversial scientific debate【29†L42-L49】【30†L13-L22】. 
+Benzoates (E210–213) – ADI 5 mg/kg; mild allergen/hypersensitivity, and a loose link to hyperactivity
+(EFSA noted small effect with dyes【44†L272-L281】). 
+Aspartame (E951) – PKU risk plus IARC 2B cancer signal【39†L238-L241】. 
+Polysorbate-80, CMC (E432, E466) – emulsifiers with animal-inflammation data, pending human
+clarity (Tier 2). 
+• 
+• 
+• 
+• 
+• 
+• 
+10
+Carrageenan (E407) – potential GI inflammation from animal data; flagged moderate pending new
+data. 
+Artificial Colors (E102, E110, E122, E124, E129) – possible ADHD effect in sensitive kids (as warned
+by EFSA)【44†L272-L281】. 
+Tartrazine, Sunset Yellow, Allura Red specifically would be Tier 2, as example dyes. 
+Tier 3 (Neutral):
+MSG (E621) and other glutamates – widely deemed safe (Tier 3). 
+Sorbates (E200–202), Propionates – ADIs exist, no significant concerns; Tier 3. 
+Xylitol, Erythritol, Sorbitol (Polyols) – harmless at moderate intake; Tier 3 (caution only for GI). 
+Saccharin, Sucralose, Acesulfame (E950, E955, E954) – ADIs, minor concerns; Tier 3 (or 2 for
+sucralose? but given meta-analysis, likely Tier 3). 
+Pectin, Xanthan (E440, E415) – fiber-like, safe; Tier 3. 
+Phosphoric acid (E338) – possibly Tier 3; moderate evidence of risk only at very high cola
+consumption. 
+Gums (guar E412, arabic E414) – generally benign (Tier 3 or 4). 
+Natural colors (beta-carotene E160a, etc.) – Tier 4 (contextual benefit as nutrients). 
+Tier 4 (Beneficial/Contextual):
+Citric acid (E330) and other natural acids – beneficial for flavor/antioxidant (Tier 4). 
+Lecithin (E322) – provides choline; Tier 4. 
+Bicarbonates (E500) – neutral/beneficial (leavening); Tier 4. 
+Xanthan/Guar/Tara (E412, E412) as fiber – Tier 4 in moderate uses. 
+Steviol glycosides (E960) – natural, possibly positive (Tier 4).
+This classification is nuanced: within a class, specific additives vary. The summary table below compares key
+examples across function, ADI, tier and evidence.
+| Additive (E#)         | Class             | Main Function            | ADI/
+NOAEL           | Tier (Risk Level) | Key Human Evidence / Regulatory 
+Notes                     |
+|-----------------------|-------------------|--------------------------|---------------------|-------------------|-------------------------------------------------------------|
+| **Emulsifiers:**      |                   |                          
+|                     |                   
+|                                                             |
+| Polysorbate 80 (E432) | Emulsifier        | Stabilize emulsions      | *ns*
+(EU); 25 mg/kg†| Tier 2            | Animal gut-inflammation (C grade); RCT saw ↓ 
+SCFA【19†L63-L71】. EFSA: safe. |
+| CMC (E466)            | Emulsifier        | Thickener/emulsifier     | 
+*ns*                | Tier 2            | Animal studies of intestinal 
+inflammation; no human harm known. ADME: not absorbed【23†L75-L82】. |
+| Lecithin (E322)       | Emulsifier        | Emulsion stabilizer      | 
+*ns*                | Tier 4            | Provides choline/fat; EFSA: no safety 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+11
+concern【3†L299-L303】. Generally benign. |
+| **Preservatives:**    |                   |                          
+|                     |                   
+|                                                             |
+| Sodium Nitrite (E250) | Preservative      | Meat curing (anti-C. bot) | 
+0.07 mg/kg (as NO₂⁻)| Tier 2            | EFSA: current ADI protective【29†L42-
+L49】; nitrosamine risk low concern【30†L13-L22】. |
+| Sodium Nitrate (E251) | Preservative      | Meat curing/cheese bloating| 
+3.7 mg/kg (NO₃⁻)   | Tier 2            | EFSA: ADI protective; beneficial 
+vasodilator at normal levels【30†L30-L34】. |
+| Sodium Benzoate (E211)| Preservative      | Yeast/mold inhibitor    | 0–5 mg/kg 
+(benzoic) | Tier 2            | ADI 5 mg/kg【33†L146-L154】; sensitive allergic 
+individuals exist; minimal gut changes even at high dose【33†L253-L262】. |
+| Sulfur Dioxide (E220) | Preservative      | Browning inhibitor, antioxidant | 
+*MOE* (no ADI) | Tier 1            | EFSA: MOE <80 for high consumers – possible 
+neurotoxic risk【35†L310-L318】; asthma trigger. |
+| Potassium Sorbate (E202) | Preservative    | Mold inhibitor (baked goods) | 
+11 mg/kg (sorbic) | Tier 3            | EFSA raised ADI to 11 mg/kg (sorbic acid 
+eq)【37†L72-L77】; no specific human hazard. |
+| **Artificial Sweeteners:** |            |                          
+|                     |                   
+|                                                             |
+| Aspartame (E951)     | Sweetener         | High-intensity sweetener | 0–40 mg/
+kg          | Tier 2            | JECFA/EFSA: ADI 40; IARC 2B carcinogen 
+(limited evidence)【39†L238-L241】; PKU risk. |
+| Sucralose (E955)     | Sweetener         | High-intensity sweetener | 0–15 mg/
+kg          | Tier 3            | Safe at ADI; RCTs show no effect on metabolism
+【42†L349-L358】; minimal absorption. |
+| Steviol Glycosides (E960) | Sweetener    | Natural sweetener        | 0–4 mg/kg 
+(steviol) | Tier 4            | EFSA: ADI 4 mg/kg; no toxicity; possible benefits 
+(nil glycemic). |
+| Saccharin (E954)     | Sweetener         | High-intensity sweetener | 0–5 mg/
+kg           | Tier 3            | Long history; rodent tumors irrelevant to 
+humans; safe at usual doses. |
+| **Polyols:**         |                   |                          
+|                     |                   
+|                                                             |
+| Sorbitol (E420)      | Polyol sweetener  | Bulk sweetener           | 
+*ns*                | Tier 3            | “Laxative above X g”; no systemic harm
+【33†L218-L224】; diabetic-friendly. |
+| Xylitol (E967)       | Polyol sweetener  | Bulk sweetener           | 
+*ns*                | Tier 3            | Dental benefits; safe for humans (dog 
+toxin irrelevant); high dose → GI upset. |
+| Erythritol (E968)    | Polyol sweetener  | Bulk sweetener           | 
+*ns*                | Tier 4            | Well-tolerated; excreted unchanged, 
+minimal GI issues【41†】; some studies show vascular benefits. |
+| **Food Colors:**     |                   |                          
+12
+|                     |                   
+|                                                             |
+| Tartrazine (E102)    | Color (yellow)    | Colorant                 | 0–7.5 mg/
+kg         | Tier 2            | EFSA: ADI 7.5; possible hyperactivity trigger 
+in susceptible kids【44†L272-L281】. Hypersensitivity (rare). |
+| Sunset Yellow (E110) | Color (yellow)    | Colorant                 | 0–5 mg/
+kg           | Tier 2            | EFSA: ADI 5; included in ADHD warning label 
+(EU). Possible allergy (less than tartrazine). |
+| Allura Red (E129)    | Color (red)       | Colorant                 | 0–7 mg/
+kg           | Tier 2            | EFSA re-evaluation in progress; possible ADHD 
+concerns; banned in some countries (e.g. US banned Red 2). |
+| Beta-Carotene (E160a)| Color (orange)    | Colorant (antioxidant)   | *ns*
+(provitamin A) | Tier 4            | Nutrient value; safe as food color. |
+| **Flavor Enhancers:**|                   |                          
+|                     |                   
+|                                                             |
+| MSG (E621)          | Umami enhancer    | Flavor enhancer (umami)  | 
+*ns*                | Tier 3            | GRAS; RCTs show no consistent 
+"sensitivity"; safe for general use. |
+| Disodium Inosinate (E631) | Umami enhancer| Flavor enhancer        | 
+*ns*                | Tier 3            | Used with MSG; no specific toxicity 
+data, considered safe. |
+| **Stabilizers/Gums:** |                  |                          
+|                     |                   
+|                                                             |
+| Carrageenan (E407)   | Stabilizer/Gum    | Thickener (dairy, plant) | 
+*ns*                | Tier 2            | Animal-inflammation evidence; EFSA 
+keeps it authorized but reviewing. |
+| Pectin (E440)        | Stabilizer/Gum    | Gelling agent (jams)     | 
+*ns*                | Tier 4            | Soluble fiber; beneficial (lowers 
+cholesterol); no safety issues【3†L293-L301】. |
+| Xanthan Gum (E415)   | Stabilizer/Gum    | Thickener (dressings)    | 
+*ns*                | Tier 3            | Fermentable fiber; RCTs show minor GI 
+effects at high dose; safe. |
+| Guar Gum (E412)      | Stabilizer/Gum    | Thickener (dairy, sauces)| 
+*ns*                | Tier 3            | Hypoallergenic; used as fiber 
+supplement; GI effects at high dose. |
+| **Acidity Regulators:** |                |                          
+|                     |                   
+|                                                             |
+| Citric Acid (E330)   | Acidulant         | pH adjustment, flavor    | 
+*ns*                | Tier 4            | Natural in citrus; safe; can enhance 
+iron absorption. |
+| Phosphoric Acid (E338)| Acidulant        | pH adjustment (cola)     | 
+*ns*                | Tier 3            | Safe at food levels; some studies link 
+high intake to bone changes. |
+| Sodium Bicarbonate (E500)| Buffer       | Acidity regulator / leavening| 
+13
+*ns*            | Tier 4            | Common kitchen chemical; well tolerated in 
+food uses. |
+Notes: “ADI/NOAEL” column shows current regulatory values (if ns, EFSA lists as “ADI not specified”). Tier
+reflects our evidence-based concern level. Human outcomes summarize broad findings from RCTs/cohorts
+and regulatory statements.
+Bari Logic and Decision Framework
+To implement additive risk assessment in Bari, we propose the following algorithmic structure:
+Inputs:
+Additive identity (e.g. “E250 sodium nitrite” or common name) 
+Dose per serving (mg) and consumption frequency 
+User parameters (body weight, special populations like children, pregnancy) 
+Retrieve Data: Look up the additive’s class, ADI (mg/kg), tier assignment, key effects, and regulatory
+status from our database. 
+Decision Rules (pseudocode):
+FOR each additive in product:
+    Tier = lookupTier(additive)
+    ADI = lookupADI(additive)
+    dailyExposure = dosePerServing * servingsPerDay / bodyWeight
+    IF Tier == 1 THEN
+        mark HighConcern
+    ELSE IF Tier == 2 THEN
+        IF ADI exists AND dailyExposure > 0.5*ADI THEN
+            mark ModerateConcern
+        ELSE IF user has vulnerability (e.g. asthma for sulfites) THEN
+            mark ModerateConcern
+        ELSE
+            mark LowConcern
+    ELSE IF Tier == 3 THEN
+        mark LowConcern
+    ELSE IF Tier == 4 THEN
+        mark LowConcern (potentially beneficial)
+- Threshold example: For preservatives like nitrite, use 0.5×ADI as a conservative trigger . For sulfites, any
+detectable amount for an asthmatic is a red flag.
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+14
+Flowchart (Mermaid):
+flowchart LR
+    A[Input: additive, dose, frequency, user profile] --> B{Look up Tier}
+    B -->|Tier 1| C[Flag: Strong Concern (High)]
+    B -->|Tier 2| D{Check Dose \n and Population}
+    D -->|Exposure > 0.5*ADI OR vulnerable pop| E[Flag: Moderate Concern]
+    D -->|Else| F[Flag: Low/Acceptable]
+    B -->|Tier 3| F
+    B -->|Tier 4| G[Flag: Beneficial/Contextual (Low)]
+    C --> H[Action: Recommend Avoid/Limit]
+    E --> I[Action: Caution, possibly limit]
+    F --> J[Action: OK within limits]
+    G --> K[Action: Positive Note]
+Example Use Cases:
+User consumes a soda with 10 mg sodium benzoate per serving, drinks 3 servings/day, weight 70 kg.
+Lookup: Benzoate (Tier 2, ADI 5 mg/kg). Daily dose = 30 mg. 30/(705) = 8.6% of ADI. <50%. No
+vulnerability flagged. Result: Tier 2 but exposure low → Low/Moderate concern*.
+User with asthma has snack with sulfites (5 mg/serving) 2/day.
+Lookup: Sulfite (Tier 1, no safe ADI). Result: Tier 1 → High concern, advise caution or elimination.
+Pregnant woman eats yogurt with 200 mg carrageenan (E407).
+Tier: Carrageenan Tier 2 (potential inflammation). 200 mg is low (ADI NS). Result: Moderate concern;
+if GI symptoms, reduce; else ok.
+Child weight 20 kg eats candy with Tartrazine 3 mg and benzoate 50 mg.
+Tartrazine: Tier 2, ADI 7.5 mg/kg = 150 mg for child; consumed 3 mg (2% ADI). Benzoate: Tier 2, ADI
+100 mg; consumed 50 mg (50% ADI). Exposure flagged for benzoate (exactly 50%). Mixed exposures
+might be cumulative but handled additively in future versions. Result: Tartrazine low concern;
+Benzoate at threshold → Moderate caution.
+User subs for sugar: drinks 2 diet sodas (aspartame 180 mg total), weight 70 kg.
+Aspartame ADI 2800 mg (70×40). Intake 180 mg < 10% ADI. Tier 2 (due to IARC), but exposure trivial. 
+Result: Low concern with note on PKU (irrelevant to non-PKU).
+Conclusions and Next Steps
+Our analysis integrates regulatory benchmarks and current science into a tiered framework. Tier 1 additives
+(sulfites) should trigger the strictest scrutiny; Tier 2 additives (e.g. nitrates, artificial colors, some
+emulsifiers) warrant moderate caution, especially at high doses or in susceptible people. Most others are
+Tier 3 or 4 (no action needed beyond normal labels). 
+1. 
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+15
+For Bari’s implementation, we recommend incorporating:
+A database of additives with class, ADIs, vulnerability flags and tier designation. 
+Parsing of labels to identify E-numbers/names and quantifying per-serving dose. 
+The decision logic as outlined, with user-specific flags (age, weight, sensitivities). 
+Regular updates as new evidence (e.g. EFSA re-evaluations, cohort studies) emerges. 
+Summary Table: The above table compares representative additives on key parameters. It can be expanded
+or refined, but highlights that official sources (EFSA, JECFA, WHO) generally consider current uses safe
+(ADI protective)【29†L42-L49】【39†L271-L278】. Where evidence is limited or suggestive (e.g.
+emulsifiers, aspartame, sulfites, dyes), we assign a higher tier and note research gaps. 
+Implementation Note: All criteria (functions, ADI, tier) should be stored in Bari’s database. The
+pseudocode and flowchart above guide how to use additive identity and dose to produce a risk flag. In
+practice, Bari could output warnings like “Contains Tier 2 additive(s) at moderate exposure: limit intake” or
+“Tier 3 additive: safe use” along with rationale. Example: “Beetroot color (Tier 4, beneficial) – no concern” or
+“Tartrazine (Tier 2) – caution for children (ADI margin ok but potential hyperactivity)”.
+This framework combines authoritative standards with the latest research findings【19†L63-L71】
+【39†L238-L241】【42†L349-L358】. It is designed to be updated; for any additive not found or newly
+evaluated, default to Tier 3 and standard ADI checks.
+• 
+• 
+• 
+• 
+16

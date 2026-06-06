@@ -47,6 +47,24 @@ re-fetches command_center.json. The registry / lifecycle states / task-creation
 protocol / Bari product code are never touched. No DB, no cloud, no WebSocket.
 
 The endpoint binds to 127.0.0.1 only — it is a single-operator local tool.
+
+──────────────────────────────────────────────────────────────────────────────
+TOM'S PRIVATE LOCAL STORE (TASK-186, owner decisions 2026-06-05)
+──────────────────────────────────────────────────────────────────────────────
+Two more local-only endpoints back Tom's personal Chief-of-Staff surface:
+
+    GET  /api/personal_store           → the whole private doc ({} → defaults)
+    POST /api/personal_store {op:...}   → upsert/delete one item
+
+ops: todo_add / todo_toggle / todo_remove (Tom's OWN to-dos, NOT TASK-NNN) ·
+     note_set (Tom's private per-task note, distinct from CC's cc_comments) ·
+     fault_dismiss / fault_restore (soft "it's fine" — quiets a warning on Tom's
+     board only, NO registry change, reversible).
+
+These persist to ~/.bari/cc_personal.json — the same git-IGNORED dir as the
+Google token, OUTSIDE the C:\\Bari repo. Personal data is NEVER written to a
+tracked file and NEVER to Gmail. Real task state changes still go through
+/api/action (which rewrites the registry); the personal store is purely Tom's.
 """
 
 import http.server
@@ -56,7 +74,7 @@ import re
 import socketserver
 import subprocess
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import check_drift  # importing does not run it (guarded by __main__)
@@ -66,9 +84,22 @@ PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
 
 # ── Task-action config ────────────────────────────────────────────────────────
 BARI_ROOT = Path(r"C:\Bari")
+# Make `integrations.clients.google_workspace` importable (repo root on sys.path).
+if str(BARI_ROOT) not in sys.path:
+    sys.path.insert(0, str(BARI_ROOT))
 TASKS_DIR = BARI_ROOT / "tasks"
 GENERATOR = HERE / "generate_dashboard.py"
 AUDIT_LOG = HERE / "task_action_audit.log"
+
+# ── Tom's PRIVATE local store (TASK-186, owner decisions 2026-06-05) ────────────
+# Tom's own to-dos, his private per-task notes, and the ids of faults he has
+# soft-dismissed ("it's fine"). HARD PRIVACY CONTRACT: this is personal and lives
+# in ~/.bari/ (the same git-IGNORED dir as the Google token) — NEVER in a
+# git-tracked file, NEVER in Gmail. command_center.json is tracked, so personal
+# data must never touch it. The dir is outside the C:\Bari repo entirely, so it
+# can never be staged.
+PERSONAL_STORE = Path.home() / ".bari" / "cc_personal.json"
+PERSONAL_DEFAULT = {"todos": [], "task_notes": {}, "dismissed_faults": []}
 
 TASK_ID_RE = re.compile(r"^TASK-\d+[A-Z]*$")   # objective (TASK-125) or sub-task (TASK-125A)
 OBJECTIVE_RE = re.compile(r"^TASK-\d+$")        # no letter suffix = a top-level objective
@@ -280,6 +311,155 @@ def perform_action(task_id, action, reason):
     return 200, body
 
 
+# ── Personal layer (Gmail + Calendar) — LIVE, IN-MEMORY ONLY ──────────────────
+# HARD PRIVACY CONTRACT: Tom's inbox/calendar content is personal and must NEVER
+# be written to a git-tracked file. `command_center.json` IS tracked. So this
+# endpoint reads the read-only google_workspace connector live, on each request,
+# and returns it as a JSON HTTP response only — it never persists anything to
+# disk. The page fetches /api/personal client-side and renders it in the browser.
+# If the connector is not linked, it returns {connected:false, hint:...} so the
+# page shows a calm "link your inbox" placeholder instead of an error.
+#
+# TIMEZONE: gw.calendar_day() buckets "today" in UTC, which can read 0 events
+# wrongly. serve.py runs on Tom's machine, so we compute the day window in LOCAL
+# time and pass local-tz day boundaries into gw.list_events() — "today" = Tom's
+# today.
+def _local_day_bounds(days: int = 1):
+    """RFC3339 [start, end] for the local calendar day(s), with the local UTC
+    offset, so the Google Calendar API buckets 'today' the way Tom sees it."""
+    now = datetime.now().astimezone()          # local time, tz-aware
+    start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    end = start + timedelta(days=days)
+    return start.isoformat(), end.isoformat()
+
+
+def _calendar_day_local(gw, days: int = 1) -> dict:
+    """gw.calendar_day(), but with the day window computed in LOCAL time."""
+    time_min, time_max = _local_day_bounds(days)
+    evts = gw.list_events(time_min, time_max)
+    no_prep = [e.summary for e in evts
+               if e.attendees >= 2 and not e.all_day and not e.description.strip()]
+    return {
+        "connected": True,
+        "events": [e.as_dict() for e in evts],
+        "count": len(evts),
+        "conflicts": gw._conflicts(evts),
+        "no_prep": no_prep,
+        "day_window": {"start": time_min, "end": time_max},
+    }
+
+
+def personal_payload() -> dict:
+    """Live, never-persisted Gmail+Calendar view for the board. Degrades calmly."""
+    try:
+        from integrations.clients import google_workspace as gw
+    except Exception as e:
+        return {"connected": False, "hint": f"connector unavailable: {e}"}
+    if not gw.is_connected():
+        s = gw.status()  # already returns {connected:false, hint:...}
+        return s if isinstance(s, dict) else {"connected": False, "hint": "not linked"}
+    try:
+        # NOTE: do NOT call gw.status() here — it internally re-runs inbox_triage()
+        # AND calendar_day(), which we already fetch below. Calling it would triple
+        # the Gmail round-trips and make the board take ~a minute to paint.
+        return {
+            "connected": True,
+            "inbox": gw.inbox_triage(),
+            "calendar": _calendar_day_local(gw, days=1),
+            "week": _calendar_day_local(gw, days=7),
+            "fetched_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        }
+    except Exception as e:
+        # An auth/network hiccup is an honest "can't see your inbox right now",
+        # never a silent empty and never a 500.
+        return {"connected": True, "error": str(e),
+                "hint": "Gmail/Calendar reachable but a read failed — try again."}
+
+
+# ── Personal store I/O (Tom's private to-dos / notes / dismissed faults) ───────
+# Read returns {} ({...defaults}) when the file is absent — a fresh board with no
+# personal data is the normal first state, never an error. Writes are whole-file
+# rewrites of a small JSON doc under ~/.bari/ (created on first write). We never
+# touch the registry, the dashboard json, or Gmail from here.
+def _read_personal_store() -> dict:
+    try:
+        if not PERSONAL_STORE.exists():
+            return dict(PERSONAL_DEFAULT)
+        data = json.loads(PERSONAL_STORE.read_text(encoding="utf-8") or "{}")
+    except Exception:
+        # A corrupt/unreadable store degrades to empty rather than 500-ing the board.
+        return dict(PERSONAL_DEFAULT)
+    if not isinstance(data, dict):
+        return dict(PERSONAL_DEFAULT)
+    # normalize shape so the client can rely on the three keys always existing
+    data.setdefault("todos", [])
+    data.setdefault("task_notes", {})
+    data.setdefault("dismissed_faults", [])
+    return data
+
+
+def _write_personal_store(store: dict) -> None:
+    PERSONAL_STORE.parent.mkdir(parents=True, exist_ok=True)
+    PERSONAL_STORE.write_text(json.dumps(store, ensure_ascii=False, indent=2),
+                              encoding="utf-8")
+
+
+def mutate_personal_store(payload: dict):
+    """Upsert/delete one item in the private store. Returns (code, store).
+
+    Operations (payload.op):
+      todo_add      {text}                 → append a todo {id,text,done:false}
+      todo_toggle   {id, done?}            → flip/set its done flag
+      todo_remove   {id}                   → drop it
+      note_set      {task_id, text}        → set/replace Tom's private note (''=clear)
+      fault_dismiss {fault_id}             → add id to dismissed_faults (soft "it's fine")
+      fault_restore {fault_id}             → remove it (un-quiet)
+    Always returns the full, current store so the client re-renders from truth.
+    """
+    op = (payload or {}).get("op")
+    store = _read_personal_store()
+    if op == "todo_add":
+        text = str(payload.get("text") or "").strip()
+        if not text:
+            return 400, {"ok": False, "error": "todo text is empty"}
+        tid = f"td-{int(datetime.now().timestamp()*1000)}"
+        store["todos"].append({"id": tid, "text": text, "done": False,
+                               "created_at": datetime.now().isoformat(timespec="seconds")})
+    elif op == "todo_toggle":
+        tid = payload.get("id")
+        hit = next((t for t in store["todos"] if t.get("id") == tid), None)
+        if not hit:
+            return 404, {"ok": False, "error": f"no todo {tid!r}"}
+        hit["done"] = bool(payload["done"]) if "done" in payload else not hit.get("done")
+    elif op == "todo_remove":
+        tid = payload.get("id")
+        store["todos"] = [t for t in store["todos"] if t.get("id") != tid]
+    elif op == "note_set":
+        task_id = str(payload.get("task_id") or "").strip()
+        if not task_id:
+            return 400, {"ok": False, "error": "note_set requires task_id"}
+        text = str(payload.get("text") or "").strip()
+        if text:
+            store["task_notes"][task_id] = {
+                "text": text,
+                "updated_at": datetime.now().isoformat(timespec="seconds")}
+        else:
+            store["task_notes"].pop(task_id, None)   # empty text clears the note
+    elif op == "fault_dismiss":
+        fid = str(payload.get("fault_id") or "").strip()
+        if not fid:
+            return 400, {"ok": False, "error": "fault_dismiss requires fault_id"}
+        if fid not in store["dismissed_faults"]:
+            store["dismissed_faults"].append(fid)
+    elif op == "fault_restore":
+        fid = str(payload.get("fault_id") or "").strip()
+        store["dismissed_faults"] = [f for f in store["dismissed_faults"] if f != fid]
+    else:
+        return 400, {"ok": False, "error": f"unknown op: {op!r}"}
+    _write_personal_store(store)
+    return 200, {"ok": True, "store": store}
+
+
 # ── HTTP server: allow_reuse_address so a fresh `python serve.py` rebinds the
 # port immediately after the previous one is stopped (no TIME_WAIT wait). This is
 # what http.server.HTTPServer does; socketserver.TCPServer defaults it to False.
@@ -297,8 +477,43 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    def do_GET(self):
+        # /api/personal_store — Tom's PRIVATE local store (~/.bari/cc_personal.json).
+        # Returns the whole small doc; {} → defaults. no-store: never cached.
+        if self.path.split("?", 1)[0] == "/api/personal_store":
+            try:
+                store = _read_personal_store()
+            except Exception as e:
+                store = {"error": f"personal store read failed: {e}"}
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            data = json.dumps(store, ensure_ascii=False).encode("utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        # /api/personal — live, in-memory Gmail+Calendar. NEVER written to disk.
+        if self.path.split("?", 1)[0] == "/api/personal":
+            try:
+                payload = personal_payload()
+            except Exception as e:  # last-resort guard — never 500 the board
+                payload = {"connected": False, "hint": f"personal layer error: {e}"}
+            # no-store: personal data must never be cached to disk by a proxy/browser
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        # everything else = static files (the dashboard, json, etc.)
+        super().do_GET()
+
     def do_POST(self):
-        if self.path.split("?", 1)[0] != "/api/action":
+        route = self.path.split("?", 1)[0]
+        if route not in ("/api/action", "/api/personal_store"):
             self._send_json(404, {"ok": False, "error": "not found"})
             return
         try:
@@ -306,6 +521,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(length).decode("utf-8") or "{}")
         except Exception as e:
             self._send_json(400, {"ok": False, "error": f"bad request body: {e}"})
+            return
+        # /api/personal_store — mutate Tom's PRIVATE local store. Never the registry.
+        if route == "/api/personal_store":
+            try:
+                code, body = mutate_personal_store(payload)
+            except Exception as e:
+                code, body = 500, {"ok": False, "error": f"personal store write failed: {e}"}
+            if code != 200:
+                print(f"[personal] REJECTED ({code}): {body.get('error')}")
+            self._send_json(code, body)
             return
         code, body = perform_action(payload.get("task_id"),
                                     payload.get("action"),

@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-28  
 **Categories audited:** חלב (milk), מעדנים, לחם (bread)  
-**Template reference:** comparison_template_v1.md  
+**Template reference:** comparison-template-standard-v1.md (section numbers below refer to the former `comparison_template_v1.md`, now superseded; row rhythm → standard §4–§6, hero → standard §10)  
 
 ---
 
@@ -85,14 +85,14 @@ The editorial document includes a "Category Architecture Notes" section (Part 2)
 Expanded row spec is clearly bounded (nutrition 5-field, ingredients, data note, confidence state). No structural class, no dimension scores, no cap information in the spec.
 
 **Row density: GAP**
-The insight lines are written (maadanim_insight_lines_v1.md). The visual row spec (image size, padding, chip dimensions) is in comparison_template_v1.md section 4c. This has not been applied to a Figma or component spec for מעדנים. Implementation risk: developers use default dense table styling.
+The insight lines are written (maadanim_insight_lines_v1.md). The visual row spec (image size, padding, chip dimensions) is in comparison-template-standard-v1.md §4–§6. This has not been applied to a Figma or component spec for מעדנים. Implementation risk: developers use default dense table styling.
 
-*Action:* When building the מעדנים component, reference comparison_template_v1.md section 4c directly for row rhythm. Do not derive row density from the editorial doc.
+*Action:* When building the מעדנים component, reference comparison-template-standard-v1.md §4–§6 directly for row rhythm. Do not derive row density from the editorial doc.
 
 **Hero: GAP**
-The hero product for מעדנים is identified (מילקי בטעם שוקולד, 40.3/D). The hero sentence is drafted in maadanim_editorial_v1.md Part 8. Implementation spec is in comparison_template_v1.md section 2. Not yet connected in a single Cursor-ready component spec.
+The hero product for מעדנים is identified (מילקי בטעם שוקולד, 40.3/D). The hero sentence is drafted in maadanim_editorial_v1.md Part 8. Implementation spec is in comparison-template-standard-v1.md §10. Not yet connected in a single Cursor-ready component spec.
 
-*Action:* When briefing Cursor on the מעדנים hero, combine: comparison_template_v1.md §2 (structural rules) + maadanim_editorial_v1.md §Part 8 §section 1 (copy).
+*Action:* When briefing Cursor on the מעדנים hero, combine: comparison-template-standard-v1.md §10 (structural rules) + §21 (hero copy) + maadanim_editorial_v1.md §Part 8 §section 1 (copy).
 
 **Highlighted pair: PASS**
 One pair designated: מילקי 40/D vs. יופלה GO 70/B. Driver line written. Maximum one pair rule satisfied.
@@ -182,7 +182,7 @@ These risks span all three categories and apply to future categories as well.
 
 ### Risk 1: Score chip color
 
-No category currently uses color-coded score chips. Monitor during implementation. If any developer proposes a red/yellow/green score chip: decline. Reference comparison_template_v1.md §4c.
+No category currently uses color-coded score chips. Monitor during implementation. If any developer proposes a red/yellow/green score chip: decline. Reference comparison-template-standard-v1.md §5. (Historical note, 2026-06-03: the chip is now color-coded by grade via `gradePalette` per the Gen 1.1 owner directive — a *subtle* per-grade tint + accent, never a saturated red/yellow/green warning fill. The "decline saturated fill" intent stands; the "no color at all" framing is superseded.)
 
 ### Risk 2: The "what this means" instinct
 
@@ -194,7 +194,7 @@ Each category has multiple historical documents. Developers or editors reaching 
 
 | Document | Status |
 |---|---|
-| comparison_template_v1.md | ACTIVE — canonical |
+| comparison-template-standard-v1.md | ACTIVE — canonical comparison template |
 | insight_line_spec_v1.md | ACTIVE — canonical |
 | maadanim_editorial_v1.md | ACTIVE — category analysis |
 | maadanim_insight_lines_v1.md | ACTIVE — production ready |
@@ -219,7 +219,7 @@ Each category currently has zero or one highlighted comparison pair. Pressure wi
 | Write bread insight lines for 81 products using spec | MEDIUM | לחם |
 | Confirm bread hero product from data (score D, recognized brand, sourdough label) | MEDIUM | לחם |
 | Enforce expanded row boundary — no GSS/fermentation flags by internal name | MEDIUM | לחם |
-| Apply row rhythm spec (comparison_template_v1.md §4c) to all three categories | MEDIUM | All |
+| Apply row rhythm spec (comparison-template-standard-v1.md §4–§6) to all three categories | MEDIUM | All |
 | Do not color-code score chips during implementation | LOW | All |
 | Monthly drift check: run leakage + drift checklists on published pages | ONGOING | All |
 

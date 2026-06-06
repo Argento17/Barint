@@ -1,0 +1,274 @@
+{
+  "_note": "2-month Bari strategy. Edit this file directly; regenerate dashboard to publish. current_phase advances manually as phases complete.",
+  "current_phase": "P1",
+  "phases": [
+    {
+      "id": "P1",
+      "title": "Build Consumer-Ready Bari",
+      "success_criteria": "A consumer can arrive on Bari, compare products, read content, and subscribe.",
+      "kpi_checkpoint": {
+        "label": "End of P1",
+        "metrics": [
+          "1,000 products",
+          "10–15 shelves live",
+          "5 articles published",
+          "50 comparison assets"
+        ]
+      },
+      "sub_phases": [
+        {
+          "id": "P1-A",
+          "title": "Product Coverage",
+          "target": "1,000 validated products · 10–15 fully operational shelves",
+          "examples": ["Milk", "Bread", "Hummus", "Butter", "Yogurt", "Cottage cheese", "Cereal", "Olive oil", "Chocolate", "Tuna"],
+          "done_when": [
+            "Product list",
+            "Product page",
+            "BSIP2 score",
+            "Explanation layer",
+            "Ranking capability",
+            "Filtering capability",
+            "No obvious category contamination"
+          ]
+        },
+        {
+          "id": "P1-B",
+          "title": "Website Foundation",
+          "target": "Consumer-ready website. No placeholder pages.",
+          "done_when": [
+            "Home works",
+            "Shelves work",
+            "Product pages work",
+            "Comparisons work",
+            "Blog works",
+            "About Bari works",
+            "Newsletter signup works"
+          ]
+        },
+        {
+          "id": "P1-C",
+          "title": "Authority Content",
+          "target": "5 major articles — 1,500–3,000 words, charts, product references, internal links",
+          "examples": [
+            "Best Bread in Israel",
+            "Milk Shelf Intelligence",
+            "What Makes a Good Hummus",
+            "Understanding Bari Scores",
+            "How To Compare Products Correctly"
+          ],
+          "done_when": [
+            "1,500–3,000 words each",
+            "Charts included",
+            "Product references included",
+            "Internal links included"
+          ]
+        },
+        {
+          "id": "P1-D",
+          "title": "Comparison Asset Library",
+          "target": "50–100 reusable comparison assets",
+          "done_when": [
+            "Score difference",
+            "Explanation",
+            "Visual card",
+            "Social-media-ready format"
+          ]
+        },
+        {
+          "id": "P1-E",
+          "title": "SEO Readiness",
+          "target": "Every page has meta title, description, structured URL, internal linking, OG image, indexability verified",
+          "done_when": [
+            "Meta title on every page",
+            "Meta description on every page",
+            "Structured URL on every page",
+            "Internal linking on every page",
+            "Open Graph image on every page",
+            "Indexability verified"
+          ]
+        },
+        {
+          "id": "P1-F",
+          "title": "SEO Operating System",
+          "target": "100 target keywords identified",
+          "done_when": [
+            "Keyword universe built",
+            "Content clusters defined",
+            "Publishing schedule written"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Distribution Launch",
+      "success_criteria": "Bari begins acquiring audience.",
+      "kpi_checkpoint": {
+        "label": "End of P2",
+        "metrics": [
+          "All social channels live",
+          "100 content assets published",
+          "Newsletter live"
+        ]
+      },
+      "sub_phases": [
+        {
+          "id": "P2-A",
+          "title": "Social Presence",
+          "target": "Instagram, Facebook, TikTok — profiles complete with logo, bio, website, visual identity",
+          "done_when": [
+            "Instagram live",
+            "Facebook live",
+            "TikTok live",
+            "Branding reserved everywhere"
+          ]
+        },
+        {
+          "id": "P2-B",
+          "title": "Content Engine",
+          "target": "3–5 posts/week: shelf rankings, product battles, ingredient explainers, consumer myths",
+          "done_when": ["Publishing cadence sustained at 3–5/week"]
+        },
+        {
+          "id": "P2-C",
+          "title": "Visual Comparison Factory",
+          "target": "100 comparison visuals — reusable template system, no manual redesign each time",
+          "done_when": [
+            "100 visuals created",
+            "Reusable template system built"
+          ]
+        },
+        {
+          "id": "P2-D",
+          "title": "Video Factory",
+          "target": "20–30 short-form videos (best hummus, best milk, what the score means)",
+          "done_when": ["20–30 videos produced and published"]
+        },
+        {
+          "id": "P2-E",
+          "title": "Email Capture",
+          "target": "Newsletter signup live — tracking visitors, subscribers, conversion %",
+          "done_when": [
+            "Signup form live",
+            "Visitor tracking active",
+            "Subscriber tracking active",
+            "Conversion % tracked"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "title": "Validation",
+      "success_criteria": "Evidence of audience demand.",
+      "kpi_checkpoint": {
+        "label": "End of P3",
+        "metrics": [
+          "2,000 products scored",
+          "20–30 shelves live",
+          "First evidence of recurring traffic"
+        ]
+      },
+      "sub_phases": [
+        {
+          "id": "P3-A",
+          "title": "Traffic Review",
+          "target": "Measure visitors, CTR, time on page, newsletter conversion — identify winners",
+          "done_when": [
+            "Visitors tracked",
+            "CTR measured",
+            "Time on page measured",
+            "Newsletter conversion tracked",
+            "Winners identified"
+          ]
+        },
+        {
+          "id": "P3-B",
+          "title": "Newsletter Launch",
+          "target": "First issue sent regardless of list size — monthly cadence initially",
+          "done_when": ["First issue sent"]
+        },
+        {
+          "id": "P3-C",
+          "title": "Product Expansion",
+          "target": "2,000 products · 20–30 shelves",
+          "done_when": [
+            "2,000 products scored",
+            "20–30 shelves live"
+          ]
+        },
+        {
+          "id": "P3-D",
+          "title": "Content System",
+          "target": "Every shelf produces: comparison page, blog, social posts, newsletter content",
+          "done_when": [
+            "Comparison page per shelf",
+            "Blog post per shelf",
+            "Social posts per shelf",
+            "Newsletter content per shelf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "title": "Challenge Bari",
+      "success_criteria": "Pressure-test the model.",
+      "sub_phases": [
+        {
+          "id": "P4-A",
+          "title": "Nutrition Expert Review",
+          "target": "5–10 experts interviewed (dietitians, researchers, physicians) — find flaws, not validation",
+          "done_when": [
+            "5–10 expert interviews completed",
+            "Findings documented"
+          ]
+        },
+        {
+          "id": "P4-B",
+          "title": "BSIP3 Exploration",
+          "target": "First BSIP3 prototype — test future directions, do not replace BSIP2",
+          "done_when": [
+            "Prototype built",
+            "Direction assessed vs BSIP2"
+          ]
+        },
+        {
+          "id": "P4-C",
+          "title": "Distribution Optimization",
+          "target": "Review best channels, content, keywords — double down on winners",
+          "done_when": [
+            "Best channels identified",
+            "Best content identified",
+            "Best keywords identified",
+            "Doubling-down plan written"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P5",
+      "title": "Commercial Readiness Checkpoint",
+      "success_criteria": "Determine whether Bari has earned the right to monetize.",
+      "sub_phases": [
+        {
+          "id": "P5-A",
+          "title": "Monetization Assessment",
+          "target": "Evaluate affiliate models, retail partnerships, premium subscriptions, B2B intelligence — decision only, no implementation yet",
+          "done_when": [
+            "All four models assessed",
+            "Decision made"
+          ]
+        },
+        {
+          "id": "P5-B",
+          "title": "BSIP3 Readiness Review",
+          "target": "Is BSIP3 materially better? Does it improve differentiation and consumer trust?",
+          "done_when": [
+            "Decision: Continue / Delay / Replace BSIP2"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+# evidence_dossiers/vitamin_b12.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# B12 is a CLEAN settled vitamin coverage dossier (L1 shelf 1.1% / 4 SKUs). NO established UL (very low toxicity).
+# Form-ladder rung (cyanocobalamin vs methylcobalamin) + the 'energy' marketing halo are the live test surfaces.
+active:
+  canonical_name: "vitamin B12 (cobalamin)"
+  pubchem_cid: 166596686             # cyanocobalamin
+  molecular_formula: "C63H88CoN14O14P"
+  molecular_weight: 1355.4
+  synonyms: ["vitamin B12", "cobalamin", "cyanocobalamin", "68-19-9"]
+  category: "vitamin"
+  form_identity:                     # cyano vs methyl/adenosyl — STABLE
+    - form: "cyanocobalamin"
+      cid: 166596686
+      mw: 1355.4
+      identity_note: "Synthetic, most stable + studied form; converted in vivo to active coenzyme forms."
+    - form: "methylcobalamin"
+      cid: 10898559
+      formula: "C63H91CoN13O14P"
+      mw: 1344.4
+      identity_note: "A bioactive coenzyme form; marketed-premium. Superiority over cyanocobalamin for status correction is not robustly established."
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:28925645", "PMID:38231320"]
+    rationale: "Oral/sublingual B12 corrects deficiency and raises status — settled (dose->status), incl. effective oral repletion at adequate doses. This is the repletion endpoint; does NOT inherit to the broad 'energy' halo."
+    tier_rationale: "RATIFIED (D6) Strong. Repletion is settled. Claim-specific; the vegan/dietary-inadequacy condition is reader context (Invariant 1), the studied endpoint is what's tiered."
+  - claim: "broad 'energy / reduces tiredness' benefit (in non-deficient adults)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:28925645", "PMID:38231320"]
+    rationale: "B12 contributes to normal energy-yielding metabolism and reduced tiredness IN DEFICIENCY (EFSA structure/function recognition is deficiency-anchored); there is no reliable energy/anti-fatigue benefit in B12-REPLETE adults. Recognized role -> maps (umbrella) but the broad benefit in replete users is Weak."
+    tier_rationale: "RATIFIED (D6) Weak. EFSA recognizes B12's contribution to normal energy metabolism + reduced tiredness — enough to MAP an 'energy' label (unlike most actives where 'energy' is a hand-wave). But the consumer benefit in REPLETE adults is thin -> Weak, not Moderate."
+  - claim: "broad cognitive / mood / cardiovascular benefit (homocysteine halo)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:23765945", "PMID:34432056"]
+    rationale: "B12 (often with folate/B6) lowers homocysteine, but RCTs show no reliable cognitive/CV-outcome benefit in general populations -> surrogate-without-outcome -> Weak."
+    tier_rationale: "RATIFIED (D6) Weak. Same homocysteine-surrogate pattern as folate: surrogate moves, outcomes don't."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 2.4                 # mcg/day — RDA (status maintenance). Oral repletion of deficiency uses far higher (250-1000 mcg) due to passive absorption fraction.
+  typical: 500                       # mcg/day — common supplement label dose (high because oral fractional absorption is low; passive absorption ~1%)
+  upper_studied: 1000                # mcg/day — common high-dose oral; no UL, excess excreted
+  unit: "mcg"
+  market_range_dsld: [100, 1000]     # DSLD: 500-1000 mcg dominant (high doses are normal here BECAUSE absorption is low, not over-dosing). NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:38231320"]
+  elemental_fraction: null
+  dose_note: "High mcg doses are NORMAL/appropriate for B12 (low passive oral absorption ~1%), NOT fairy-dust-inverse over-dosing -> do not flag 500-1000 mcg as a safety/over-dose concern. Pernicious-anaemia (no intrinsic factor) needs injection/very-high oral — clinical context."
+
+forms:
+  preferred: ["cyanocobalamin (most studied + stable; effective for repletion)", "methylcobalamin (bioactive; acceptable-to-preferred, superiority not robustly proven)"]
+  acceptable: ["adenosylcobalamin", "hydroxocobalamin (injectable clinical form)"]
+  poor: []
+  rationale: "Cyanocobalamin is the most studied and stable form and effective for repletion; methylcobalamin is a bioactive form often sold premium, but robust evidence of clinical SUPERIORITY over cyanocobalamin for status correction is lacking -> both preferred/acceptable, not a poor rung. A 'methylcobalamin is superior' premium claim without superiority evidence is an Honesty watch (§2.4)."
+  citations: ["PMID:28925645"]
+  form_ladder_confidence: "medium — both forms work; methylcobalamin-superiority is a marketing claim lacking robust support"
+
+safety:
+  upper_limit_UL: null               # NO established UL — B12 has very low toxicity; excess is excreted. NIH ODS / IOM set no UL.
+  ul_basis: "n/a — no established UL (very low toxicity, water-soluble, excess excreted)."
+  ul_source: "NIH ODS Vitamin B12 fact sheet / US IOM-FNB (no UL set)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 no-UL handling): B12 has NO established UL. Per the §2.5 'no established UL' edge case, absence
+    of a UL is NOT a license for arbitrary mega-dosing, but B12's high doses are appropriate (low absorption) and
+    toxicity is negligible -> Safety is neutral/clean across the normal market range (100-1000 mcg). No veto, no note
+    for ordinary doses. (Like creatine: a clean no-UL active that proves Safety doesn't punish a good product.)
+  ul_externally_maintained: true
+  risky_flags: []
+  notes: "No UL; very low toxicity. High mcg labels are normal (absorption-driven), not over-dosing. Safety is the non-discriminating dimension for B12."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Vitamin B12 — no UL established"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "energy"
+    resolves_to: "broad 'energy / reduces tiredness' benefit (in non-deficient adults)"
+    resolved_tier: "Weak"
+    citations: ["PMID:28925645"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at WEAK. UNLIKE most actives, B12 'energy' DOES map: EFSA recognizes B12's contribution to normal
+      energy-yielding metabolism and reduced tiredness/fatigue (a recognized physiological correlate, deficiency-
+      anchored). So 'energy' is a recognized cited correlate -> maps. But the consumer benefit in REPLETE adults is
+      thin -> held at Weak, not Moderate. (Contrast: creatine/vitamin-C 'energy' = null. B12 'energy' = Weak-maps. The
+      moderate posture distinguishes a recognized-but-deficiency-anchored correlate from a pure hand-wave.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "blood"
+    resolves_to: "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:38231320"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at STRONG. 'Blood'/'blood health' maps to B12's role in red-cell formation (megaloblastic-anaemia
+      correction) — a recognized studied endpoint. Best mapped tier = Strong.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "nerve"
+    resolves_to: "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:38231320", "PMID:28925645"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at STRONG (CONTRAST WITH MAGNESIUM 'nerve' = null). B12 'nerve health' maps where magnesium's did NOT,
+      because B12 has a recognized, studied neurological role: B12-deficiency causes peripheral neuropathy / subacute
+      combined degeneration, and repletion is the established treatment -> 'nerve' is a recognized physiological
+      correlate of a STUDIED B12 endpoint (the deficiency-correction prevents/treats the neuropathy). This is NOT a
+      deficiency-state generalization to a replete-user benefit — the studied endpoint IS the neurological one. Maps
+      at Strong via the deficiency-correction claim. (Documents WHY the same phrase maps for B12 but not Mg: B12 has a
+      recognized studied neuro endpoint; Mg's 'nerve' evidence was deficiency/disease-only without a recognized generic
+      correlate. The boundary is per-active, as designed.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "mood"
+    resolves_to: "broad cognitive / mood / cardiovascular benefit (homocysteine halo)"
+    resolved_tier: "Weak"
+    citations: ["PMID:23765945"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at WEAK. 'Mood'/'cognitive' maps to B12's homocysteine/methylation role — a recognized correlate — but the
+      RCT outcome evidence in general populations is null/weak. Maps (recognized + cited), held Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # B12 EFSA Art.13: red blood cell formation, normal functioning of the nervous system, energy-yielding metabolism,
+  # reduction of tiredness and fatigue, normal psychological function. Routed to existing tiers (cited pointers).
+  - phrase: "עייפות"                   # "fatigue" (Hebrew) — EFSA "reduction of tiredness and fatigue"
+    resolves_to: "broad 'energy / reduces tiredness' benefit (in non-deficient adults)"
+    resolved_tier: "Weak"
+    citations: ["PMID:28925645"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "vitamin B12 contributes to the reduction of tiredness and fatigue"
+      (EFSA Q-2008-1304) and to "normal energy-yielding metabolism" — so 'עייפות/fatigue' is a recognized + permitted
+      correlate and MAPS (a real EFSA relationship, unlike hand-wave actives). Hebrew alias of the English "energy"
+      key; consumer benefit in REPLETE adults thin → held Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "אנרגיה"                   # "energy" (Hebrew) — EFSA "normal energy-yielding metabolism"
+    resolves_to: "broad 'energy / reduces tiredness' benefit (in non-deficient adults)"
+    resolved_tier: "Weak"
+    citations: ["PMID:28925645"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at WEAK. Hebrew 'אנרגיה/energy'. EFSA Art.13 authorizes B12 "normal energy-yielding metabolism"
+      (EFSA Q-2008-1304). UNLIKE creatine/vitamin-C 'energy' (null hand-wave), B12 'energy' MAPS because EFSA
+      recognizes the relationship; held Weak (replete-adult benefit thin). Same routing as the English "energy" key.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מערכת העצבים"             # "nervous system" (Hebrew) — EFSA "normal functioning of the nervous system"
+    resolves_to: "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:38231320", "PMID:28925645"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at STRONG. EFSA Art.13 authorizes "vitamin B12 contributes to the normal functioning of the nervous system"
+      (EFSA Q-2008-1304). Hebrew alias of the English "nerve" key — B12 HAS a recognized studied neuro endpoint
+      (neuropathy/SCD correction), so 'מערכת העצבים/nerve' maps Strong (CONTRAST magnesium 'מערכת העצבים'=null:
+      the boundary is per-active, as designed).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "דם"                       # "blood" (Hebrew) — EFSA "normal red blood cell formation"
+    resolves_to: "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:38231320"]
+    supp_ev: "SUPP-EV-012"
+    rationale: >
+      MAPS at STRONG (BEST). EFSA Art.13 authorizes "vitamin B12 contributes to normal red blood cell formation"
+      (EFSA Q-2008-1304). Hebrew alias of the English "blood" key — repletion/red-cell endpoint, Strong.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    B12 label "supports energy, blood, nerve & mood" resolves: blood->repletion=Strong (maps, BEST),
+    nerve->repletion=Strong (maps — contrast Mg nerve=null; B12 HAS a studied neuro endpoint), energy->Weak (maps,
+    deficiency-anchored), mood->Weak (maps, homocysteine halo). Best mapped tier = STRONG. A vague B12 is NOT Insufficient.
+
+label_claims_common: ["energy", "blood health", "nerve health", "mood", "vegan", "methylcobalamin"]
+necessity_context: "B12 inadequacy is common in vegans/older adults/low-stomach-acid; general necessity varies. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Very low toxicity. Persistent unexplained deficiency warrants medical evaluation (intrinsic-factor/pernicious anaemia). Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-012"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: "Tiers: repletion Strong, broad energy Weak (deficiency-anchored), broad cognitive/CV Weak (homocysteine halo). NO UL (Safety neutral — clean no-UL active like creatine). Umbrella: blood/nerve->Strong (best; nerve MAPS for B12 where it did NOT for Mg — per-active boundary), energy/mood->Weak. Candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03) — settled active"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms", "form_identity"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (no UL set)"
+      last_resync: "2026-06-03"
+      resync_note: "no UL; stable. NEEDS-ENV-VERIFY the no-UL statement."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: עייפות/אנרגיה→energy(Weak, EFSA Q-2008-1304 tiredness/fatigue + energy metabolism); מערכת העצבים→repletion(Strong, EFSA nervous-system — CONTRAST Mg nerve=null, per-active boundary); דם→repletion(Strong, EFSA red-cell formation)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-012"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

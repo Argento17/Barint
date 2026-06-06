@@ -1,0 +1,106 @@
+{
+  "_LABEL": "TASK-169F OFF-safety verifier — NOT LIVE",
+  "check1_flag_off_deterministic": {
+    "n": 31,
+    "nondeterministic_pids": [],
+    "result": "PASS (OFF reproduces itself; recal branches are all `if RECAL_P0_ON`)"
+  },
+  "check2_off_vs_stored_bsip2": {
+    "n_displayed": 24,
+    "reproduced": 6,
+    "drifted": 18,
+    "drift_detail": [
+      {
+        "pid": "shufersal_2079996",
+        "off": 79.6,
+        "stored": 73.4
+      },
+      {
+        "pid": "shufersal_497044",
+        "off": 80.7,
+        "stored": 72.2
+      },
+      {
+        "pid": "shufersal_7290018500460",
+        "off": 72.0,
+        "stored": 66.9
+      },
+      {
+        "pid": "shufersal_3268429",
+        "off": 82.0,
+        "stored": 79.8
+      },
+      {
+        "pid": "shufersal_481203",
+        "off": 82.0,
+        "stored": 76.9
+      },
+      {
+        "pid": "shufersal_3054183",
+        "off": 82.0,
+        "stored": 75.7
+      },
+      {
+        "pid": "shufersal_2079927",
+        "off": 81.5,
+        "stored": 75.3
+      },
+      {
+        "pid": "shufersal_3268252",
+        "off": 82.0,
+        "stored": 75.2
+      },
+      {
+        "pid": "shufersal_574370",
+        "off": 82.0,
+        "stored": 74.8
+      },
+      {
+        "pid": "shufersal_481197",
+        "off": 82.0,
+        "stored": 75.9
+      },
+      {
+        "pid": "shufersal_4685027",
+        "off": 72.0,
+        "stored": 70.3
+      },
+      {
+        "pid": "shufersal_2079217",
+        "off": 67.4,
+        "stored": 60.7
+      },
+      {
+        "pid": "shufersal_2079477",
+        "off": 74.1,
+        "stored": 67.1
+      },
+      {
+        "pid": "shufersal_7290018500316",
+        "off": 76.1,
+        "stored": 67.9
+      },
+      {
+        "pid": "shufersal_6451507",
+        "off": 69.0,
+        "stored": 66.1
+      },
+      {
+        "pid": "shufersal_6451484",
+        "off": 68.8,
+        "stored": 60.5
+      },
+      {
+        "pid": "shufersal_2079033",
+        "off": 80.2,
+        "stored": 73.6
+      },
+      {
+        "pid": "shufersal_8434165658523",
+        "off": 67.4,
+        "stored": 59.2
+      }
+    ],
+    "interpretation": "OFF vs stored = pre-existing HEAD-vs-build-time engine DRIFT (TASK-178). NOT a recal effect. The recal diff is OFF->ON on the SAME HEAD engine, so this drift cancels and never enters delta_recal."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "stage": "5_qa_gate",
+  "run_id": "run_cereals_004",
+  "generated": "2026-06-05",
+  "owner": "QA Lead",
+  "engine": "proto_v0 / BARI_RECAL_P0=on (nova_proxy EV-044 + EV-010 name-detection applied)",
+  "corpus": {"displayable": 92, "scored": 92, "insufficient": 0, "pipeline_errors": 0},
+  "checks": {
+    "data_sufficiency_0pct_insufficient": "PASS (0/92)",
+    "coverage_ge90pct": "PASS (nutrition 100%, ingredients 100%)",
+    "no_null_scores": "PASS (0/92)",
+    "grade_score_internal_consistency": "PASS (all 92 grades match engine score_to_grade() / GRADE_THRESHOLDS S90/A80/B65/C50/D35)",
+    "pipeline_errors": "PASS (0)",
+    "four_constructs_applied": "PASS (granola subpool, children's, whole-grain MDF, fortification — all populated per product + category rollup; unchanged from run_cereals_002)",
+    "misroute_lt5pct": "PASS (0/92 = 0.0%, down from 7.6% in run_cereals_002)"
+  },
+  "hard_fails": [],
+  "warnings": [
+    {
+      "id": "QA-CER-W2",
+      "check": "documentation_drift",
+      "detail": "scoring.md Grades table (A 85-100 / B 70-84 / C 55-69 / D 40-54 / E 0-39) is STALE vs engine constants.py GRADE_THRESHOLDS (S90/A80/B65/C50/D35). Cross-reference TASK-139A. Affects how A-count is reported across ALL categories, not just cereals.",
+      "action": "Reconcile scoring.md with constants.py (Nutrition/Product) — documentation fix, does not block cereals launch.",
+      "status": "OPEN — watch-item, non-blocking"
+    }
+  ],
+  "resolved_warnings": [
+    {
+      "id": "QA-CER-W1",
+      "check": "nova_proxy_plausibility",
+      "resolution": "RESOLVED via EV-044 (quality-gate) + EV-010 (extruded-shape name-detection). The 4 Osem 'פתיתים אפויים' products previously scoring NOVA 1 / 85/A are now NOVA 3 / 78.5/B — consistent with Nutrition Agent ruling 2026-06-05. Plain whole-oat A-products confirmed unchanged. Organic whole spelt flakes ('פתיתים אורגנים כוסמין') at 80.8/A approved on nutritional equivalence (15g protein, 10.5g fiber, NOVA 2, whole grain).",
+      "ruling_ref": "Nutrition Agent ruling TASK-140 2026-06-05; EV-044; EV-009/EV-010"
+    }
+  ],
+  "grade_distribution": {"A": 1, "B": 23, "C": 45, "D": 22, "E": 1},
+  "score_median": 59.3,
+  "score_range": [30.5, 80.8],
+  "verdict": "PASS",
+  "verdict_detail": "All hard-fail checks pass. QA-CER-001 (misroute) resolved by category prior fix (router_v2.py CATEGORY_PRIOR_BOOST=2.0). QA-CER-W1 (NOVA proxy) resolved by EV-044 + EV-010. One documentation warning (QA-CER-W2 scoring.md drift) is non-blocking. All 92 products display-approved at their correct grades. Frontend package is authoritative and promotion-ready pending editorial review."
+}

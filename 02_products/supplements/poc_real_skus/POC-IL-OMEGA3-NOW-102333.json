@@ -1,0 +1,157 @@
+{
+  "sku_id": "POC-IL-OMEGA3-NOW-102333",
+  "dossier_active": "omega-3 (EPA/DHA)",
+  "provenance": {
+    "source": "iherb.com",
+    "source_id": "iherb:102333",
+    "source_url": "https://www.iherb.com/pr/now-foods-omega-3-fish-oil-1-000-mg-180-epa-120-dha-100-softgels/102333",
+    "fetched_at": "2026-06-03T09:27:00Z",
+    "client_version": "firecrawl_scrape(json)/v2 + iHerb PDP",
+    "verification_status": "candidate",
+    "admission_note": "candidate only; demonstrates acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score.",
+    "extraction_notes": "EPA 360 + DHA 240 = 600 mg combined EPA+DHA per 2-softgel serving (the scored active). Chemical form (TG vs ethyl-ester) is NOT on the panel -> form=None (UNKNOWN, not fabricated). On-label claim = heart/cardiovascular -> nearest dossier claim is CV (deferred/insufficient) NOT the TG-lowering Strong claim; mapped to the broad CV claim truthfully."
+  },
+  "raw_extracted_panel": {
+    "brand": "NOW Foods",
+    "product_name": "Omega-3 Fish Oil 1000 mg (180 EPA/120 DHA)",
+    "primary_claim_on_label": "Cardiovascular / heart health",
+    "barcode": "733739016508",
+    "serving_size": "2 softgels",
+    "servings_per_day_label": 2,
+    "proprietary_blend": false,
+    "actives_raw": [
+      {
+        "EPA": 360,
+        "DHA": 240,
+        "unit": "mg"
+      }
+    ],
+    "scored_active": {
+      "ingredient": "EPA+DHA (combined)",
+      "amount": 600,
+      "unit": "mg",
+      "form": null
+    }
+  },
+  "missing_or_lossy_fields": [
+    "active.form (TG/EE not disclosed on panel -> form=None)"
+  ],
+  "bsip0s_label": {
+    "product_name": "NOW Foods Omega-3 Fish Oil (EPA360/DHA240)",
+    "primary_claim_fed": "cardiovascular disease / CV events prevention",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA+DHA combined",
+        "quantity": 600,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 1.0,
+    "labeled_regimen": "daily"
+  },
+  "engine_output": {
+    "claim_matched": "cardiovascular disease / CV events prevention",
+    "score": 42.1,
+    "grade": "D",
+    "blend": 42.1,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": 20,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.1.0",
+    "methodology_version": "methodology_v1.md v1.2",
+    "trace_generated_at": "2026-06-03T09:32:38.239323Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "POC-IL-OMEGA3-NOW-102333",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "cardiovascular disease / CV events prevention",
+    "claim_matched": "cardiovascular disease / CV events prevention",
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "CONTESTED — NOT TIERED (deferred)"
+      },
+      "dose": {
+        "value": 20,
+        "reason": "fairy_dust"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "value": 49
+      }
+    ],
+    "blend": 42.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['cardiovascular disease / CV events prevention'].evidence_tier",
+        "value": "CONTESTED — NOT TIERED (deferred)",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 42.1,
+      "grade": "D"
+    }
+  }
+}

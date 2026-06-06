@@ -107,5 +107,27 @@
     "retired_at": "2026-06-02",
     "retired_by": "TASK-143 (run_yogurt_004 live swap, step 3c)",
     "retirement_note": "Manual-MVP yogurt shelf (yogurts_frontend_v1.json, 13 hand-tuned A-heavy products) replaced LIVE 2026-06-02 by the calibrated machine shelf yogurts_frontend_v2.json (run_yogurt_004, engine proto_v0/0.4.0 UNMODIFIED): 11 dairy products, B-capped (max 79/B displayed, zero A) - downward correction confirmed and accepted by Product (3a). Soy/coconut rows dropped + deferred to a dedicated plant run per the 3a ruling. Importers repointed v1->v2 (page-data + shelf-filters); prologue re-authored to the B-capped shelf and dairy-free lens retired (3b); tsc --noEmit clean; validate-corpus 0 errors; next build green (/hashvaot/yogurts prerendered). Provenance exception CLOSED - the live shelf is now reproducible and authoritative. v1 JSON kept (orphaned) for rollback."
+  },
+  {
+    "id": "DEC-006",
+    "title": "Glass Box D5 disclosure posture + Wave 0 co-sign bundle",
+    "type": "governance_posture",
+    "required_from": "owner",
+    "status": "DECIDED",
+    "options": [
+      "A — D5 non-disclosure may MOVE the headline grade on its own axis",
+      "B — D5 non-disclosure only annotates + acts via D6 confidence (no standalone grade move)"
+    ],
+    "recommendation": "Option B — Product Agent (TASK-179C): grade ranks disclosed data; opacity is a data condition, not a quality signal; a direct opacity penalty risks forbidden intent-attribution.",
+    "decided_at": "2026-06-04",
+    "decision": "Option B (owner-ratified via AskUserQuestion). When a product hides composition, Bari ranks only disclosed data, lowers D6 confidence (which can demote the grade + show a visible partial-info flag), and names the gap — but never docks the headline grade for opacity itself and never attributes intent. Opacity costs standing through confidence+flag, not a quality deduction. Wave 0 co-sign bundle also recorded: Q1 conservative-to-demote / reluctant-to-withhold (buy coverage over silence); Q3 contested-additive ceiling small/bounded/demote-only (aggregate of all contested additives <= ~1 grade band; trans-fat veto is a separate confirmed-negative tier, unaffected); Q4 drilldown exposes plain-language findings, never the raw six numbers or internal terms; D-SCO-1 co-signed (10 internal dimensions roll up into the 6 public ones as a relabel layer, not a rewrite — 0-diff-verify under flag when D5/D6 ship). Numeric thresholds for Q1/Q3 deferred to the normal Nutrition D7 + EV-### path.",
+    "urgency": "NOW",
+    "blocking": [
+      "TASK-179B",
+      "TASK-179C",
+      "Glass Box W1 (D5/D6)"
+    ],
+    "created_at": "2026-06-04",
+    "notes": "Contract: 01_framework/glass_box/six_dimension_contract_v1.md §5. Co-sign memo: 01_framework/glass_box/w0_product_cosign_v1.md (TASK-179C). CC close-readiness gate passed on both artifacts."
   }
 ]

@@ -23,7 +23,9 @@ ROOT = Path(r"C:\Bari")
 # (0 downgrades over 87 verified rows — confidence_gate_relabel_delta_129a.md);
 # it lands as forward protection.
 sys.path.insert(0, str(ROOT / "03_operations/bsip2/sprint1"))
+sys.path.insert(0, str(ROOT / "03_operations/bsip2/proto_v0/src"))
 from ingredient_quality_gate import assess_ingredients  # noqa: E402
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
 BSIP2_DIR  = ROOT / "02_products/maadanim/bsip2_outputs/run_maadanim_001/products"
 BSIP0_RAW  = ROOT / "02_products/maadanim/maadanim_bsip0_raw_20260528T072053.json"
 OUT_DIR    = ROOT / "02_products/maadanim"
@@ -294,7 +296,11 @@ CE_INTERPRETIVE_OVERRIDES: dict[str, dict] = {
             "ללא תוספים פונקציונליים מזוהים ברשימה",
         ],
         "limitingFactors": [
-            "עדיין מעדן מתוק בקטגוריה — לא מוצר 'נקי' לחלוטין במובן של קינוח",
+            # TASK-175: was "עדיין מעדן מתוק…" — an unsupported sweet claim (sugar=null,
+            # no sweetener in the 3-ingredient list, trace sweetener_detected=false). The
+            # real, trace-grounded catch is the reconstituted/enriched base (NOVA 2, added
+            # חלבוני חלב + אבקת חלב), not a sweet/dessert reading.
+            "הבסיס מועשר בחלבוני חלב ואבקת חלב — מוצר חלב מעובד, לא מבנה חלב שלם",
         ],
         "bottomLine": "מוצר חלבון יחסית נקי במדף — החלבון באמת מהחלב.",
         "comparisonContext": "מול שאר סדרת GO — הגרסה הכי קרובה למבנה פשוט.",
@@ -625,6 +631,18 @@ for td in trace_dirs:
 
     if name in CONFIDENCE_OVERRIDES:
         confidence, conf_label = CONFIDENCE_OVERRIDES[name]
+
+    # TASK-188: A-grade ingredient observability floor
+    # Apply after all score/grade overrides; before writing to the product VM.
+    # nutrition dict is not yet built here — pass L1 signals directly.
+    l1_signals = signals  # L1_observed_signals (already extracted above)
+    score, grade = apply_a_grade_floor(
+        score=score,
+        grade=grade,
+        ingredients=ing,           # already computed above; may be None/empty
+        nutrition=l1_signals,      # has energy_kcal, protein_g, fat_g, carbohydrates_g
+        trace=trace,               # full trace for Condition 2
+    )
 
     nv = nutrition_vm(signals)
     # Sugar recovery: BSIP1 missed sugar_raw for many products; fill from BSIP0

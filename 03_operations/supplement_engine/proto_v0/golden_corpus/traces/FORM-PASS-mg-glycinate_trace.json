@@ -1,0 +1,75 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:14.747035Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "FORM-PASS-mg-glycinate",
+  "active": "magnesium",
+  "on_label_claim": "blood pressure reduction",
+  "claim_matched": "blood pressure reduction",
+  "claim_resolution": {
+    "via_umbrella": false,
+    "resolved_endpoint": "blood pressure reduction",
+    "resolved_phrase": null,
+    "resolved_tier": "Moderate",
+    "resolution_supp_ev": null,
+    "resolution_citations": [
+      "PMID:27402922",
+      "PMID:41000008",
+      "PMID:39519450",
+      "PMID:22318649",
+      "PMID:12160191"
+    ],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [],
+    "over_promise": false,
+    "over_promise_markers": []
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 72.0,
+      "tier": "Moderate"
+    },
+    "dose": {
+      "value": 71.5,
+      "reason": "sub_therapeutic"
+    },
+    "form": {
+      "value": 92
+    },
+    "honesty": {
+      "value": 100
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "within_ul"
+    }
+  },
+  "signature": {
+    "evidence": "HIGH",
+    "dose": "HIGH",
+    "form": "HIGH",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [],
+  "binding_constraint": {
+    "mechanism": "blend_dominant_limit",
+    "machine_reason": "limited_by_weakest_applicable_dimension"
+  },
+  "also_fired": [],
+  "blend": 79.9,
+  "dossier_facts_used": [
+    {
+      "field": "claims['blood pressure reduction'].evidence_tier",
+      "value": "Moderate",
+      "supp_ev": "SUPP-EV-002"
+    }
+  ],
+  "final": {
+    "score": 79.9,
+    "grade": "B"
+  }
+}

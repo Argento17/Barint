@@ -126,16 +126,14 @@ POSITIVE_TYPES: list[str] = [
     "תבסיל", "סלט טורקי",
 ]
 
-# ── Nutrition label map ────────────────────────────────────────────────────────
-NUTR_LABEL_MAP: dict[str, str] = {
-    "אנרגיה": "energy", "קל": "energy", "kcal": "energy",
-    "חלבונים": "protein", "חלבון": "protein",
-    "פחמימות": "carbs",
-    "שומנים": "fat", "שומן": "fat",
-    "סיבים תזונתיים": "fiber", "סיבים": "fiber",
-    "נתרן": "sodium",
-    "סוכרים": "sugar",
-}
+# ── Nutrition label map — RETIRED (TASK-192 / EV-046) ───────────────────────────
+# The legacy NUTR_LABEL_MAP that lived here mapped BOTH "שומנים" (total fat) and the
+# bare substring "שומן" (present in every "of which" fat sub-row) to `fat`, which is the
+# exact EV-029 overwrite defect. It was already DEAD CODE in this discovery script (no
+# nutrition is parsed here — the actual hummus nutrition parse lives in
+# 02_scrape_hummus_shufersal.py, which uses the shared parser). Removed so the broken
+# pattern can never be copied out of this file. The single source of truth for every
+# Shufersal nutrition parse is _shared/bsip0_nutrition.py.
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Utilities

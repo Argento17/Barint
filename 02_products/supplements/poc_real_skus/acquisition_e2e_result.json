@@ -1,0 +1,386 @@
+{
+  "task": "TASK-171G",
+  "verification_status": "candidate",
+  "edpg_note": "All records candidate; nothing admitted to a published score.",
+  "live_super_pharm_supplement_skus": 176,
+  "poc_panels": 5,
+  "panel_extract_success": "5/5",
+  "barcode_bridge_matched": 0,
+  "barcode_bridge_match_rate": 0.0,
+  "assembled_labels": [
+    {
+      "sku_id": "iherb:149273",
+      "verification_status": "candidate",
+      "israeli_shelf": {
+        "barcode": "898220100187",
+        "name_he": "Sport, Pure Creatine Monohydrate, 5 g",
+        "brand": "California Gold Nutrition",
+        "price_ils": null,
+        "chain": "super_pharm",
+        "provenance": null
+      },
+      "panel": {
+        "url": "https://www.iherb.com/pr/california-gold-nutrition-sport-pure-creatine-monohydrate-unflavored-0-18-oz-5-g/149273",
+        "brand": "California Gold Nutrition",
+        "product_name": "Sport, Pure Creatine Monohydrate, 5 g",
+        "barcode": "898220100187",
+        "serving_size": "1 packet (5 g)",
+        "servings_per_container": null,
+        "proprietary_blend": false,
+        "primary_claim": "Exercise performance, Strength and power output, Lean muscle support",
+        "actives": [
+          {
+            "ingredient": "Creatine Monohydrate",
+            "amount": 5.0,
+            "unit": "g",
+            "form": "monohydrate (from name)",
+            "form_from_name": false
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "iherb.com",
+          "source_id": "iherb:149273",
+          "source_url": "https://www.iherb.com/pr/california-gold-nutrition-sport-pure-creatine-monohydrate-unflavored-0-18-oz-5-g/149273",
+          "fetched_at": "2026-06-03T12:01:11Z",
+          "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "Sport, Pure Creatine Monohydrate, 5 g",
+        "primary_claim_raw": "Exercise performance, Strength and power output, Lean muscle support",
+        "primary_claim_mapped": null,
+        "actives": [
+          {
+            "active_slug": null,
+            "display_name": "Creatine Monohydrate",
+            "quantity": 5.0,
+            "unit": "g",
+            "form": "monohydrate (from name)",
+            "is_core": true,
+            "in_proprietary_blend": false
+          }
+        ],
+        "proprietary_blend": false
+      },
+      "match": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0.0,
+        "ambiguous": false,
+        "notes": "no Super-Pharm shelf SKU carries this panel"
+      },
+      "missing_or_lossy_fields": [],
+      "provenance_panel": {
+        "source": "iherb.com",
+        "source_id": "iherb:149273",
+        "source_url": "https://www.iherb.com/pr/california-gold-nutrition-sport-pure-creatine-monohydrate-unflavored-0-18-oz-5-g/149273",
+        "fetched_at": "2026-06-03T12:01:11Z",
+        "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+        "verification_status": "candidate"
+      },
+      "admission_note": "candidate only; Super-Pharm presence = Israeli-shelf integrity control; panel = iHerb candidate; NOT admitted; must clear BSIP0/QA; claim->tier is a Nutrition curation step."
+    },
+    {
+      "sku_id": "iherb:103273",
+      "verification_status": "candidate",
+      "israeli_shelf": {
+        "barcode": "898220019014",
+        "name_he": "Magnesium Bisglycinate Chelate (Albion TRAACS)",
+        "brand": "California Gold Nutrition",
+        "price_ils": null,
+        "chain": "super_pharm",
+        "provenance": null
+      },
+      "panel": {
+        "url": "https://www.iherb.com/pr/california-gold-nutrition-magnesium-bisglycinate-chelate-albion-traacs-60-veggie-capsules-100-mg-per-capsule/103273",
+        "brand": "California Gold Nutrition",
+        "product_name": "Magnesium Bisglycinate Chelate (Albion TRAACS)",
+        "barcode": "898220019014",
+        "serving_size": "2 capsules",
+        "servings_per_container": 30,
+        "proprietary_blend": false,
+        "primary_claim": "Supports bone, heart, nerve, and muscle health",
+        "actives": [
+          {
+            "ingredient": "Magnesium",
+            "amount": 200.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "form_from_name": false
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "iherb.com",
+          "source_id": "iherb:103273",
+          "source_url": "https://www.iherb.com/pr/california-gold-nutrition-magnesium-bisglycinate-chelate-albion-traacs-60-veggie-capsules-100-mg-per-capsule/103273",
+          "fetched_at": "2026-06-03T12:01:11Z",
+          "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "Magnesium Bisglycinate Chelate (Albion TRAACS)",
+        "primary_claim_raw": "Supports bone, heart, nerve, and muscle health",
+        "primary_claim_mapped": null,
+        "actives": [
+          {
+            "active_slug": null,
+            "display_name": "Magnesium",
+            "quantity": 200.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "is_core": true,
+            "in_proprietary_blend": false
+          }
+        ],
+        "proprietary_blend": false
+      },
+      "match": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0.0,
+        "ambiguous": false,
+        "notes": "no Super-Pharm shelf SKU carries this panel"
+      },
+      "missing_or_lossy_fields": [],
+      "provenance_panel": {
+        "source": "iherb.com",
+        "source_id": "iherb:103273",
+        "source_url": "https://www.iherb.com/pr/california-gold-nutrition-magnesium-bisglycinate-chelate-albion-traacs-60-veggie-capsules-100-mg-per-capsule/103273",
+        "fetched_at": "2026-06-03T12:01:11Z",
+        "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+        "verification_status": "candidate"
+      },
+      "admission_note": "candidate only; Super-Pharm presence = Israeli-shelf integrity control; panel = iHerb candidate; NOT admitted; must clear BSIP0/QA; claim->tier is a Nutrition curation step."
+    },
+    {
+      "sku_id": "iherb:141067",
+      "verification_status": "candidate",
+      "israeli_shelf": {
+        "barcode": "015794058120",
+        "name_he": "Vitamin D3 125 mcg (5,000 IU)",
+        "brand": "Country Life",
+        "price_ils": null,
+        "chain": "super_pharm",
+        "provenance": null
+      },
+      "panel": {
+        "url": "https://www.iherb.com/pr/country-life-vitamin-d3-125-mcg-5-000-lu-365-softgels/141067",
+        "brand": "Country Life",
+        "product_name": "Vitamin D3 125 mcg (5,000 IU)",
+        "barcode": "015794058120",
+        "serving_size": "1 softgel",
+        "servings_per_container": 1,
+        "proprietary_blend": false,
+        "primary_claim": "bone, dental, immune health; aids calcium absorption",
+        "actives": [
+          {
+            "ingredient": "Vitamin D3 (cholecalciferol)",
+            "amount": 5000.0,
+            "unit": "IU",
+            "form": "cholecalciferol",
+            "form_from_name": false
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "iherb.com",
+          "source_id": "iherb:141067",
+          "source_url": "https://www.iherb.com/pr/country-life-vitamin-d3-125-mcg-5-000-lu-365-softgels/141067",
+          "fetched_at": "2026-06-03T12:01:11Z",
+          "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "Vitamin D3 125 mcg (5,000 IU)",
+        "primary_claim_raw": "bone, dental, immune health; aids calcium absorption",
+        "primary_claim_mapped": null,
+        "actives": [
+          {
+            "active_slug": null,
+            "display_name": "Vitamin D3 (cholecalciferol)",
+            "quantity": 5000.0,
+            "unit": "IU",
+            "form": "cholecalciferol",
+            "is_core": true,
+            "in_proprietary_blend": false
+          }
+        ],
+        "proprietary_blend": false
+      },
+      "match": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0.0,
+        "ambiguous": false,
+        "notes": "no Super-Pharm shelf SKU carries this panel"
+      },
+      "missing_or_lossy_fields": [],
+      "provenance_panel": {
+        "source": "iherb.com",
+        "source_id": "iherb:141067",
+        "source_url": "https://www.iherb.com/pr/country-life-vitamin-d3-125-mcg-5-000-lu-365-softgels/141067",
+        "fetched_at": "2026-06-03T12:01:11Z",
+        "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+        "verification_status": "candidate"
+      },
+      "admission_note": "candidate only; Super-Pharm presence = Israeli-shelf integrity control; panel = iHerb candidate; NOT admitted; must clear BSIP0/QA; claim->tier is a Nutrition curation step."
+    },
+    {
+      "sku_id": "iherb:67652",
+      "verification_status": "candidate",
+      "israeli_shelf": {
+        "barcode": "665553126227",
+        "name_he": "Essentials Caffeine 200 mg",
+        "brand": "ALLMAX",
+        "price_ils": null,
+        "chain": "super_pharm",
+        "provenance": null
+      },
+      "panel": {
+        "url": "https://www.iherb.com/pr/allmax-essentials-caffeine-200-mg-100-tablets/67652",
+        "brand": "ALLMAX",
+        "product_name": "Essentials Caffeine 200 mg",
+        "barcode": "665553126227",
+        "serving_size": "1 tablet",
+        "servings_per_container": "up to 5",
+        "proprietary_blend": false,
+        "primary_claim": "Restore mental alertness",
+        "actives": [
+          {
+            "ingredient": "Caffeine",
+            "amount": 200.0,
+            "unit": "mg",
+            "form": "anhydrous",
+            "form_from_name": false
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "iherb.com",
+          "source_id": "iherb:67652",
+          "source_url": "https://www.iherb.com/pr/allmax-essentials-caffeine-200-mg-100-tablets/67652",
+          "fetched_at": "2026-06-03T12:01:11Z",
+          "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "Essentials Caffeine 200 mg",
+        "primary_claim_raw": "Restore mental alertness",
+        "primary_claim_mapped": null,
+        "actives": [
+          {
+            "active_slug": null,
+            "display_name": "Caffeine",
+            "quantity": 200.0,
+            "unit": "mg",
+            "form": "anhydrous",
+            "is_core": true,
+            "in_proprietary_blend": false
+          }
+        ],
+        "proprietary_blend": false
+      },
+      "match": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0.0,
+        "ambiguous": false,
+        "notes": "no Super-Pharm shelf SKU carries this panel"
+      },
+      "missing_or_lossy_fields": [],
+      "provenance_panel": {
+        "source": "iherb.com",
+        "source_id": "iherb:67652",
+        "source_url": "https://www.iherb.com/pr/allmax-essentials-caffeine-200-mg-100-tablets/67652",
+        "fetched_at": "2026-06-03T12:01:11Z",
+        "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+        "verification_status": "candidate"
+      },
+      "admission_note": "candidate only; Super-Pharm presence = Israeli-shelf integrity control; panel = iHerb candidate; NOT admitted; must clear BSIP0/QA; claim->tier is a Nutrition curation step."
+    },
+    {
+      "sku_id": "iherb:102333",
+      "verification_status": "candidate",
+      "israeli_shelf": {
+        "barcode": "733739016508",
+        "name_he": "Omega-3 Fish Oil 1000 mg (180 EPA/120 DHA)",
+        "brand": "NOW Foods",
+        "price_ils": null,
+        "chain": "super_pharm",
+        "provenance": null
+      },
+      "panel": {
+        "url": "https://www.iherb.com/pr/now-foods-omega-3-fish-oil-1-000-mg-180-epa-120-dha-100-softgels/102333",
+        "brand": "NOW Foods",
+        "product_name": "Omega-3 Fish Oil 1000 mg (180 EPA/120 DHA)",
+        "barcode": "733739016508",
+        "serving_size": "2 softgels",
+        "servings_per_container": 2,
+        "proprietary_blend": false,
+        "primary_claim": "Cardiovascular / heart health",
+        "actives": [
+          {
+            "ingredient": "EPA+DHA (combined)",
+            "amount": 600.0,
+            "unit": "mg",
+            "form": null,
+            "form_from_name": false
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "iherb.com",
+          "source_id": "iherb:102333",
+          "source_url": "https://www.iherb.com/pr/now-foods-omega-3-fish-oil-1-000-mg-180-epa-120-dha-100-softgels/102333",
+          "fetched_at": "2026-06-03T12:01:11Z",
+          "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "Omega-3 Fish Oil 1000 mg (180 EPA/120 DHA)",
+        "primary_claim_raw": "Cardiovascular / heart health",
+        "primary_claim_mapped": null,
+        "actives": [
+          {
+            "active_slug": null,
+            "display_name": "EPA+DHA (combined)",
+            "quantity": 600.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false
+          }
+        ],
+        "proprietary_blend": false
+      },
+      "match": {
+        "matched": false,
+        "method": "none",
+        "confidence": 0.0,
+        "ambiguous": false,
+        "notes": "no Super-Pharm shelf SKU carries this panel"
+      },
+      "missing_or_lossy_fields": [
+        "actives[0].form (not on panel)"
+      ],
+      "provenance_panel": {
+        "source": "iherb.com",
+        "source_id": "iherb:102333",
+        "source_url": "https://www.iherb.com/pr/now-foods-omega-3-fish-oil-1-000-mg-180-epa-120-dha-100-softgels/102333",
+        "fetched_at": "2026-06-03T12:01:11Z",
+        "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+        "verification_status": "candidate"
+      },
+      "admission_note": "candidate only; Super-Pharm presence = Israeli-shelf integrity control; panel = iHerb candidate; NOT admitted; must clear BSIP0/QA; claim->tier is a Nutrition curation step."
+    }
+  ]
+}

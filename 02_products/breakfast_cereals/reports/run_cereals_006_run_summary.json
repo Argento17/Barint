@@ -1,0 +1,33 @@
+{
+  "run_id": "run_cereals_006",
+  "generated": "2026-06-05 16:16 UTC",
+  "engine": "proto_v0 / BARI_RECAL_P0=off (byte-identical to run_005)",
+  "data_fix": "TASK-190 — fat-capture collapse fixed (EV-029 family) + sodium unit-corruption fixed (7 products); scraper migrated to canonical parser",
+  "source": "Shufersal real scrape 2026-06-05 -> BSIP1 run_cereals_006 (clean, COV-007 PASS)",
+  "processed": 63,
+  "scored": 63,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 10,
+    "E": 5,
+    "D": 29,
+    "C": 19
+  },
+  "score_median": 48.6,
+  "score_range": [
+    31.9,
+    76.0
+  ],
+  "misroute_count": 0,
+  "misroute_pct": 0.0,
+  "misroutes": [],
+  "split_for_new_categories": {
+    "breakfast_cereals_standard_count": 63,
+    "granola_count": 0
+  },
+  "vs_run_005": {
+    "processed": 66,
+    "note": "run_005 had fat_g=0.5 on 57/66 products (fat-capture collapse); this run fixes that"
+  },
+  "error_detail": []
+}

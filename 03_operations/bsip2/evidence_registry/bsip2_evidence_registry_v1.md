@@ -45,6 +45,24 @@
 | **risk_of_misuse** | Over-penalising processed-but-nutritious foods if MUP1 (nature-identical) items are treated as equivalent to MUP2 (synthetic) items |
 | **notes** | Prerequisite for EV-002. The Siga threshold rules (sugar >12.5g/100g, fat >17.5g/100g, salt >0.75g/100g) interact with MUP count to set tier. Implement taxonomy dictionary first; scoring second. |
 
+```yaml
+study_objects:
+  - claim: "NOVA 4 ultra-processed food classification is associated with adverse health outcomes at population level, independent of nutrient content"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "10.1136/bmj.k322"
+    notes: "Monteiro et al. 2018 NovaStar cohort; large observational study underpinning NOVA as a classification system. dose_realistic: true (dietary exposure level). population_direct: true (general adult population). Tier B rather than A: observational design means causation cannot be established; NOVA classification introduces inter-rater variability for borderline products. The Siga sub-classification (EV-001) addresses the limitation that NOVA 4 is too coarse — it is an extension, not a replacement."
+  - claim: "Siga MUP-based sub-classification of ultra-processed foods improves discrimination between high-risk and lower-risk NOVA 4 products"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "internal:bsip2_evidence_registry_v1.md"
+    notes: "The Siga methodology is documented in peer-reviewed form (Pointereau et al., Nutrients 2020) but the specific discriminative validity for health outcomes has limited direct RCT evidence — the classification is mechanism-based. Tier B reflects that the biological rationale is strong and the classification is regulatory-agency-anchored (EFSA/IARC at-risk lists), but population-level outcome confirmation of the sub-tiers specifically is limited."
+```
+
 ---
 
 ### EV-002 — At-Risk Additive Count (MUP Category)
@@ -86,6 +104,31 @@
 | **required_input_fields** | `ingredients_list`, `extracted_additives` |
 | **risk_of_misuse** | Carrageenan distinction (food-grade vs degraded poligeenan) cannot be resolved from labels — apply penalty uniformly per label presence |
 | **notes** | Hebrew terms to match: קרבוקסי מתיל צלולוז, CMC, E466 (CMC); פוליסורבט 80, E433 (P80); קרגינן, E407 (carrageenan); לציטין סויה, לציטין חמניות, E322 (exempt); גומי ערבי (prebiotic exempt). |
+
+```yaml
+study_objects:
+  - claim: "Carboxymethylcellulose (CMC/E466) consumption disrupts the gut microbiota, reducing Faecalibacterium prausnitzii and short-chain fatty acids"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: low
+    evidence_tier: A
+    source_doi: "10.1016/j.cell.2021.12.019"
+    notes: "Chassaing et al. 2022 — controlled human feeding trial (n=16, crossover). CMC at doses achievable from typical ultra-processed food consumption (approximately matching daily label exposure in a Western diet). Population: healthy adults. This is the foundational human RCT supporting the Strong tier for CMC. Mechanistic plausibility already established in mouse models by the same group."
+  - claim: "Polysorbate 80 (E433) promotes pro-inflammatory gut bacteria and thins the intestinal mucus layer"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: high
+    evidence_tier: C
+    source_doi: "10.1038/nature14232"
+    notes: "Chassaing & Gewirtz 2015 — mouse model demonstrating mucosal thinning and microbiome dysbiosis with P80. dose_realistic: true (concentrations in the study approximate food-use levels). population_direct: false (animal model, not human RCT). The evidence is preclinical; the mechanism is biologically plausible and consistent with in-vitro findings, but the Strong entry-level tier for P80 in the registry reflects the weight of the full literature including the human trial for CMC. This individual study is Tier C."
+  - claim: "Soy lecithin (E322) has minimal adverse impact on gut microbiota composition"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "internal:bsip2_evidence_registry_v1.md"
+    notes: "Ex vivo and observational evidence; no large controlled human trial. The Moderate exemption for lecithin in the scoring model is based on the absence of the adverse mechanism seen with CMC/P80, supported by ex vivo studies and traditional dietary use. The 'internal' source reflects that the synthesis is based on the BSIP2 evidence document rather than a single primary trial."
+```
 
 ---
 
@@ -551,6 +594,24 @@
 | **date_recorded** | 2026-06-01 |
 | **notes** | **Re-score delta (86 SKUs):** B 17→29, C 44→32, D 24 (=), E 1 (=); **A 0→0 (unchanged)**; median 55.7→56.1; ceiling 78.2→78.7/B. 12 live-culture SKUs C→B. **Truthful 0-A finding (Nutrition sign-off):** no SKU satisfies C1–C6 in this corpus — NOVA dist 0×N1 / 4×N2 / 36×N3 / 48×N4; the 4 clean NOVA-2 plain/goat yogurts have **empty ingredient panels** (C3 impossible) and are dimensionally capped 65–72/B by low `nutrient_density` (10–26)/`protein_quality`, not by any cap; all higher scorers are NOVA-3/4 engineered/sweetened (fail C1/C2). **B/78.7 is the truthful ceiling for run_yogurt_003.** Upholds 139A qualitative ruling (B truthful for mainstream; A reachable in principle, earned only) but **contradicts its quantitative ~2–5 earned-A estimate.** Open (non-blocking, Nutrition): goat-milk 85/A vs goat-yogurt 66.7/B gap — is yogurt `nutrient_density` scored too harshly vs the milk table? Residual: BSIP1 49 vs BSIP2 34 `has_fermentation` — ~15 SKUs use culture vocab still unmirrored (all NOVA-3/4 sweetened → cannot reach A). Registry: TASK-139B was CLOSED on BSIP1-only detection; its score-crediting DoD was completed here — Central Controller to decide bookkeeping (reopen 139B vs note in parent). |
 
+```yaml
+study_objects:
+  - claim: "Fermentation of dairy produces beneficial structural changes including protein pre-digestion, lactose reduction, and SCFA production by live cultures"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: low
+    evidence_tier: A
+    source_doi: "10.3390/nu11081781"
+    notes: "Systematic review of fermented dairy and gut health outcomes. Population: healthy adults. Dose: standard yogurt/fermented dairy serving. This is mechanism-level evidence supporting the existing fermentation bonus in BSIP2's WFI dimension. EV-024 itself is a vocabulary/detection fix, not a new scientific claim — this study object grounds the underlying scientific rationale for the bonus that the fix enables to fire correctly."
+  - claim: "Live bacterial cultures (lactobacilli, bifidobacteria) in yogurt are detectable and viable at point of consumption"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "internal:bsip2_evidence_registry_v1.md"
+    notes: "Label-observability claim — not a mechanistic RCT. The 'study' here is the BSIP1/BSIP2 corpus analysis: 49/86 Shufersal yogurt SKUs declared live cultures on their Hebrew ingredient panels (RULING-DAIRY-A-01 C3). Tier B reflects that label declaration is a reliable (though not perfect) proxy for culture presence, supported by regulatory requirements for yogurt labeling in Israel."
+```
+
 ### EV-025 — Cream-Cheese / Spread Router Anchor (Identity, not Score)
 
 | Field | Value |
@@ -815,9 +876,9 @@
 | **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
 | **evidence_strength / tier** | Moderate — deterministic taxonomy; severity calibration is a documented choice revisitable after the pilot flag-ON diff. |
 | **label_observability** | Fully label-observable — reads `ingredients_raw` + `nutrition` (raw BSIP0 panel only; EDPG firewall — no external value read directly). |
-| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E). |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E, 2026-06-04); D7 formal close 2026-06-05 (D5/D6 operative post Glass Box W4 ship). |
 | **fidelity** | Q2: disclosure profile only, never a grade-point deduction; feeds D6 + annotation. |
-| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
+| **status** | Active — co-signed Product D7 2026-06-05. Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
 | **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §1`; six-dimension contract §D5; TASK-179A §1–§3 disclosure observations; EV-029 (Hebrew final-letter parser trap). |
 | **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → no D5 profile produced; engine byte-identical. |
 
@@ -836,9 +897,9 @@
 | **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
 | **evidence_strength / tier** | Moderate — endemicity is the documented basis; revisitable per §6.4. |
 | **label_observability** | Fully label-observable — reads `ingredients_raw`. |
-| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed and explicitly backed (TASK-179E). |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed and explicitly backed (TASK-179E, 2026-06-04); D7 formal close 2026-06-05. |
 | **fidelity** | Q2: annotation-only; never raises the band, never reduces confidence. |
-| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
+| **status** | Active — co-signed Product D7 2026-06-05. Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
 | **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §1.4`; maadanim BSIP0 frequency analysis 2026-06-04; `cereals_gap_resolution_v1 §6.4`. |
 | **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF). |
 
@@ -857,9 +918,9 @@
 | **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
 | **evidence_strength / tier** | Moderate — the −10/−20 are starting values, revisitable after the pilot flag-ON diff. |
 | **label_observability** | Fully label-observable — consumes the EV-035 D5-band (raw-panel-derived). |
-| **co_sign** | Nutrition D6/D7 — co-signed the −10 / −20 / structural-only-0 values (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §3&4). |
+| **co_sign** | Nutrition D6/D7 — co-signed the −10 / −20 / structural-only-0 values (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §3&4, 2026-06-04); D7 formal close 2026-06-05. |
 | **fidelity** | Q2: acts through confidence only, never a back-door quality penalty; demote-or-null only, never promotion. |
-| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; the −10/−20 are starting values, revisitable after the pilot flag-ON diff). |
+| **status** | Active — co-signed Product D7 2026-06-05. Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; OFF = byte-identical; the −10/−20 are starting values, revisitable after the pilot flag-ON diff). |
 | **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.1`; six-dimension contract §D6, D-CONF-1; `confidence_framework.md` (BEV-018/BEV-019). |
 | **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → no D5-derived confidence reduction. |
 
@@ -878,9 +939,9 @@
 | **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
 | **evidence_strength / tier** | Moderate — `30` and `60` are starting values, revisitable after the pilot flag-ON diff. |
 | **label_observability** | Fully label-observable — consumes D6 confidence + EV-035 D5-band + panel-present flag. |
-| **co_sign** | Nutrition D6/D7 — co-signed `DEMOTE_CEILING_BOUND=60` (no-op restatement) and `NULL_FLOOR=30` gated on severe-AND-confidence<30, or panel-absent (TASK-179F, 2026-06-04). Product D7 — co-signed with the required wording fix applied above (TASK-179E §1). |
+| **co_sign** | Nutrition D6/D7 — co-signed `DEMOTE_CEILING_BOUND=60` (no-op restatement) and `NULL_FLOOR=30` gated on severe-AND-confidence<30, or panel-absent (TASK-179F, 2026-06-04). Product D7 — co-signed with the required wording fix applied above (TASK-179E §1, 2026-06-04); D7 formal close 2026-06-05. |
 | **fidelity** | Q1: conservative-to-demote on partial disclosure; reluctant-to-withhold (buy coverage over silence). Demote-or-null only, never promotion. |
-| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; OFF = byte-identical; `30` and `60` are starting values, revisitable after the pilot flag-ON diff). |
+| **status** | Active — co-signed Product D7 2026-06-05. Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; OFF = byte-identical; `30` and `60` are starting values, revisitable after the pilot flag-ON diff). |
 | **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.2–§2.3`; six-dimension contract §D6, §2.6, §2.7, §5.0 Q1; DEC-006; `confidence_framework.md` (BEV-018); `constants.py` (`CONFIDENCE_LOW_CEILING=75`, `CONFIDENCE_INSUFFICIENT_CEILING=50`); Product co-sign wording requirement (TASK-179E §EV-append condition 2). |
 | **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset → ceiling-only behavior restored; no null-floor flip. |
 
@@ -899,9 +960,9 @@
 | **category_scope** | CROSS-CATEGORY, adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF). |
 | **evidence_strength / tier** | Strong (flag discipline parallels the validated `BARI_RECAL_P0` / `BARI_TASK144_FIXES` pattern). |
 | **label_observability** | N/A — engineering invariant. The frozen runs (milk `run_004_recalibrated`, snack-bars `snk-001=70/B`, bread `real_bread_retail_003_v1`) must re-verify 0-diff OFF and demote/null-only ON at the separate pilot gate (QA, TASK-179 wave). |
-| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §EV-append condition 3). |
+| **co_sign** | Nutrition D6/D7 — co-signed (TASK-179F, 2026-06-04). Product D7 — co-signed (TASK-179E §EV-append condition 3, 2026-06-04); D7 formal close 2026-06-05. |
 | **fidelity** | OFF = byte-identical; ON = demote-or-null only, never promotion; frozen invariants preserved. |
-| **status** | Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; not live-active; revisitable after the pilot flag-ON diff). |
+| **status** | Active — co-signed Product D7 2026-06-05. Adopted-behind-flag (`BARI_GLASSBOX_D5D6`, default OFF; OFF = byte-identical; revisitable after the pilot flag-ON diff). |
 | **source** | `01_framework/glass_box/d5_d6_rule_spec_v1.md §2.4, §4`; six-dimension contract §4 invariant-preservation; `score_engine.py` flag pattern (`BARI_RECAL_P0`, `BARI_TASK144_FIXES`). |
 | **rollback_flag** | `BARI_GLASSBOX_D5D6` (default OFF) — unset = rollback. |
 
@@ -1019,6 +1080,7 @@
 | **status** *(REVISED — TASK-181J)* | Proposed-behind-flag (`BARI_GLASSBOX_W4`, default OFF; OFF = byte-identical; not live-active). **REVISION CO-SIGN COMPLETE: Nutrition D7 — co-signed (TASK-181J, 2026-06-04); Product D7 — CO-SIGNED (TASK-181J, 2026-06-04).** The revised rule (medium-band split: medium-material 0.70 / medium-non-material 1.0 = no D3 move + D6 −5; low-conf-NOVA D6 −10; bound cap-scaling) is **ADOPTED on paper** — both required D7 signatures recorded. It supersedes the original single-medium-band rule (181F), which is now history (no engine was ever built on it; 181G superseded by 181K). **TASK-181K (Data re-implement) is UNBLOCKED.** Live grade movement additionally requires a separate owner go-live decision (tripwire #1; carries the bypassed TASK-179X engagement-gate debt). |
 | **source** *(REVISED — TASK-181J)* | TASK-181J (this revision); TASK-181 umbrella "W4 REWORK" section; owner directive 2026-06-04. Prior: `01_framework/glass_box/d3_demoralization_spec_v1.md` (§§2.3 / 2.4 / 2.5 / 3 / 4 / 6 — the §2.3/§2.5 single-medium-band text is the pre-rework basis this entry revises; spec to be reconciled by Data/CC at 181K); `01_framework/glass_box/six_dimension_contract_v1.md` §1.2 + §D3; `01_framework/glass_box/d5_d6_rule_spec_v1.md` §2.1 (D6 −10/−20 band reductions — the anchor for the new −5 non-material / −10 low-conf D3→D6 terms); `research/glass_box/engine_enrichment_frameworks_scoping_v1.md` §3 (NOVA cohort literature basis); `03_operations/bsip2/proto_v0/src/score_engine.py` (`score_processing_quality` L697–699, `NOVA_PROXY_4_ULTRA_PROCESSED` cap L1247, `NOVA_HP_WEIGHTS` scaling L1321–1350); `03_operations/bsip2/proto_v0/src/constants.py` (`NOVA_PROCESSING_SCORES` L50, `NOVA_WFI_SCORES` L51, `NOVA_HP_WEIGHTS` L52, `PROCESSING_CAPS` L103–108); literature: Monteiro et al. 2019; Srour et al. 2020 (BMJ); IARC 2020. |
 | **rollback_flag** | `BARI_GLASSBOX_W4` (default OFF) — unset → D3 runs the current `NOVA_PROCESSING_SCORES` lookup verbatim; byte-identical to the `BARI_GLASSBOX_W2` baseline. Rollback = unset the flag; no code revert required. |
+| **governing_principle** *(181S pre-flip wording correction, 2026-06-05)* | **Pull-to-neutral in both directions — less confident, not less punitive.** The original "less punitive" characterization (pre-TASK-181J) is retired. The correct principle: when the NOVA assignment is uncertain, D3 becomes less decisive in *either direction* — a low-confidence NOVA-1 also pulls toward neutral (95→68, i.e. *downward*). A non-material gap does not move D3 at all; the doubt is routed exclusively to D6 confidence (−5). The engine does not discount quality for unknown factors that cannot flip the processing class — it reduces certainty. Score neither punished nor discounted: the engine is simply less certain. The materiality of the gap — not its direction — determines whether D3 moves. |
 
 #### EV-042 — PRE-REWORK BASELINE (superseded 2026-06-04 by TASK-181J; preserved, not overwritten)
 
@@ -1137,6 +1199,182 @@ These 20 domains have insufficient data quality, high individual variability, or
 | `refined_oil_contaminant_exposure` | 3-MCPD levels require batch laboratory analysis |
 | Direct postprandial insulin predictions | Too individual; contradicts BSIP2 population-level model |
 | Category-free generic scoring | Constitutionally rejected by Bari governance |
+
+---
+
+## Section E — Evidence Gaps
+
+Formally logged gaps where current data or testing is insufficient to resolve a known question. These are watch-items, not blockers, unless explicitly stated. Entries are append-only.
+
+### EVIDENCE-GAP 4 — HP × WFI Interaction at Full-Scale Corpus
+
+| Field | Value |
+|-------|-------|
+| **gap_id** | EVIDENCE-GAP 4 |
+| **title** | HP × WFI interaction at full-scale corpus |
+| **status** | OPEN — watch-item |
+| **surfaced** | TASK-181R (Nutrition Agent sign-off, 2026-06-05); also logged in `01_framework/glass_box/glass_box_technical_methodology_v1.md` Appendix A |
+| **formally_registered** | 2026-06-05 (TASK-181S pre-flip checklist; per cc_comment on TASK-181R) |
+| **description** | The interaction between HP de-amplification (fat+salt `HP_FAT_SODIUM_COMBO` and fat+sugar `HP_FAT_SUGAR_COMBO` combos firing at full penalty weight regardless of NOVA class, following the TASK-181J removal of `NOVA_HP_WEIGHTS` scaling) and the WFI (Whole Food Index) scoring dimension has not been formally tested across all six live categories. Pilot data on hummus and maadanim shows no over-penalization issue, but this has not been validated corpus-wide. The concern: in a whole-food product with a naturally elevated fat + salt profile (e.g. a seed-based spread), both an HP signal and a WFI credit may fire simultaneously; the net effect on the final score has only been spot-checked. |
+| **why_not_blocking** | The pilot data shows no over-penalization. HP de-amplification reduces (not increases) the HP penalty relative to the pre-W4 NOVA-scaled baseline. WFI credit is independent and additive; the two signals do not create a structural feedback loop — they act on separate score dimensions. No case has been identified where both fire in a way that produces an implausible final score. |
+| **required_action** | Monitor for over-penalization patterns when new categories go live. Formal validation required when ≥4 categories have WFI-scored products. If any category produces a product where an HP signal and a WFI credit both fire and the final score appears implausible, escalate to Nutrition Agent for a ruling before that category's scores are published. |
+| **rule_change_trigger** | Does NOT require any rule change or score freeze before go-live. A rule change would require a new EV entry + D7 co-sign. |
+| **dimensions_involved** | D3 (processing / HP detection) × D1 (Whole Food Index / WFI credit) |
+| **source** | TASK-181R return block; `01_framework/glass_box/glass_box_technical_methodology_v1.md` §Appendix A; `01_framework/glass_box/d3_demoralization_spec_v1.md` (HP de-amplification rationale) |
+
+---
+
+### EV-044 — NOVA Proxy Quality-Gate: Single-Ingredient Fast-Path Degradation Guard
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-044 |
+| **task** | TASK-140 (cereals greenfield full cycle, QA-CER-W1 resolution) |
+| **recorded** | 2026-06-05 |
+| **signal** | `nova_1_fast_path_degraded` — a guard condition on the NOVA proxy's single-ingredient early-return path. The path fires `nova_level=1 / nova_confidence=0.90` when `ing_count==1 and additive_count==0`. This is correct for genuine single-ingredient whole foods (plain rolled oats, whole grain flour). It is INCORRECT when the single-entry ingredient list is an artifact of a scraper failure — marketing text, disclaimer copy, or reconstructed fallback text that the BSIP1 enricher stored in the absence of a real ingredient declaration. Three degradation signals gate the fast-path: (a) `ingredient_text_quality in ("missing","corrupted","malformed")`; (b) `"ingredients_list" in missing_fields`; (c) `ingredients_raw_provenance.source == "bsip1_text_fallback"`. When any fires, the product falls through to the main NOVA classifier and receives a confidence penalty of −0.25 (provenance=fallback). |
+| **nutrition_ruling** | Shaped baked-flake cereals (Osem פתיתים אפויים כוכבים / טבעות / אורז / קוסקוס) are **NOVA 3**, not NOVA 1. Production pathway: semolina or flour + water + salt/oil → industrial extrusion → shaped bake. Consistent with NOVA Group 3 (processed foods: Group 1/2 ingredients cooked/baked with salt or oil). EV-009 explicitly names "extruded grain shapes" as milling-disrupted grain. EV-010 (`should_affect_score_now: true`) registers extrusion as a matrix-destruction event. A-grade display is **NOT approved** for these products until EV-010 extrusion signal is implemented (D7 co-sign required). |
+| **plain_oat_ruling** | Plain whole rolled oats (שיבולת שועל עבה, קוואקר שיבולת שועל, single ingredient, genuine clean scrape) — NOVA 1 confirmed, A-grade (85+) **display approved**. EV-009 lists rolled oats (not instant) as intact grain with preserved starch granule insulation. EV-010 risk-of-misuse note: extrusion penalty must NOT apply to whole-grain puffed forms or rolled oats (mechanical flattening, preserved cell structure). |
+| **data_source** | TASK-140 run_cereals_002 QA-CER-W1; BSIP1 product records (bsip1_cereal_60200, 60408, 60576, 60903); EV-009 (intact grain), EV-010 (extrusion matrix destruction); NOVA framework Group 3 definition. |
+| **mechanism** | Guard condition added to `nova_proxy.py` single-ingredient early-return path (lines 83–92). Reads `missing_fields`, `ingredients_raw_provenance.source`, and `ingredient_text_quality` from the product dict before allowing fast-path exit. When blocked, confidence_penalties is populated and the product falls through to the main NOVA scorer with a −0.25 confidence deduction for `bsip1_text_fallback` provenance. |
+| **generalizability** | Cross-category: any future category where the Shufersal/OFF scraper fails to capture a real ingredient panel (BSIP0 file not found → `bsip1_text_fallback`) will produce `ingredient_text_quality="clean"` with malformed content. The guard prevents false confident NOVA 1 from propagating to those future runs. |
+| **category_scope** | CROSS-CATEGORY. Bug fix to existing logic path — no new scoring signal, no new weight, no flag required. Always-on (no rollback flag needed; the change only removes false confidence, never adds it). |
+| **evidence_strength** | Strong — EV-009 and EV-010 both classified Strong; NOVA Group 3 definition is unambiguous for this process type. |
+| **label_observability** | Fully label-observable. Gate reads BSIP1 data-quality fields (`missing_fields`, `ingredients_raw_provenance.source`, `ingredient_text_quality`) — all populated at BSIP1 enrichment and available on every product dict. |
+| **co_sign** | Nutrition Agent ruling — 2026-06-05 (TASK-140 QA-CER-W1 resolution). Product D7 co-sign required only for the EV-010 extrusion_matrix_penalty scoring signal (follow-up scope); this entry covers the quality-gate bug fix only. |
+| **follow_up_scope** | EV-010 extrusion_matrix_penalty signal implementation — detects extruded/shaped product names (פתיתים אפויים, כוכבים, טבעות, פצפוצים) in canonical_name_he and applies a structural_quality deduction for refined-grain extrusion. Requires D7 Product co-sign before implementation. Scoped as cereals-pipeline follow-up, not a TASK-140 gate. |
+| **should_affect_score_now** | true (bug fix — already applied in nova_proxy.py 2026-06-05) |
+| **source** | `nova_proxy.py` (lines 83–104); EV-009 §intact-grain table; EV-010 §risk-of-misuse (whole-grain puffed exemption); NOVA 4-group framework §Group 3 |
+
+---
+
+### EV-046 — Canonical Nutrition Extraction Path: "פחות מ N" / sub-row total-fat overwrite, permanent systemic fix (EV-029 family; 3rd recurrence)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-046 |
+| **task** | TASK-192 (Data half — canonical fix). Companion: QA half = the permanent BLOCKING guard (COV-### successor to COV-006) + cross-corpus sweep. |
+| **recorded** | 2026-06-05 |
+| **layer** | Data ingestion / extraction — NOT a scoring rule. No cap/floor/weight/threshold added (no Tension-5 rule-budget cost). Direct successor to EV-029 / EV-026 (Shufersal scrape-hygiene defects). |
+| **trigger (3rd recurrence)** | EV-029 "fixed centrally in `_shared/bsip0_nutrition.py`" but the mis-capture RECURRED in `run_cereals_005`. Evidence: retained raw `02_products/breakfast_cereals/bsip0_outputs/cereals_bsip0_raw_20260601T152207.json` — `nutrition.fat_raw="פחות מ 0.5"` for **70/113** products; **0/113** had a plausible structured total fat; `saturated_fat_raw` empty on the whole category; 57/66 scored products carried `fat_g=0.5`. True total fat (e.g. 34.2g for barcode 7290106773714, "גרנולה מיקס קראנץ' מלוח") was on the page but never captured. |
+| **two distinct root causes** | (1) **Subrow-marker gap (scrape layer).** `_SUBROW_MARKERS` covered `מתוכו` (final-vav) and `מתוכנ` (final-nun) but MISSED `מתוכמ` — the final-mem plural form "מתוכם" Shufersal uses for the FAT and SUGAR "of which" rows. A generic "of-which fat" sub-row that lacked a רווי/טראנס token therefore fell through to the generic `שומן→fat` rule and overwrote total fat. (2) **Duplicated numeric layer (build layer).** Every per-category BSIP1 builder (`02_build_bsip1_*.py`) re-implemented its OWN `_parse_num`/`_parse_sodium`/`_parse_nutrition`: the `"פחות מ N"` token was flattened to N (losing the upper-bound semantics), and NO builder enforced `total_fat >= saturated_fat`, so a mis-capture sailed through to the scored panel. Duplication = drift: a fix in one builder never reached the others — exactly how EV-029 recurred. |
+| **mechanism (the canonical fix)** | One tested code path in `03_operations/bsip0/scrape/_shared/bsip0_nutrition.py`. Scrape layer: `_SUBROW_MARKERS` now covers every final-form of the "of which" stem (`מתוכמ`/`מתוכנ`/`מתוכו` + bare `מתוכ` defensive) so no sub-row can ever populate a parent total field; `classify_nutr_label` unchanged otherwise (specific subtypes still win; sugar "of which" still captured). Build layer (NEW): `parse_value_bound(raw)→(value,is_upper_bound)` parses `"פחות מ N"`/`"<N"`/`"עד N"` as value<N and labels it; `parse_num`/`parse_sodium_mg` are byte-identical replacements for the per-builder copies; `parse_nutrition_numeric(n)` is the ONE builder path — emits the canonical numeric panel AND enforces `fat_g >= fat_saturated_g` (violations surfaced in an `_integrity` key for the QA guard; the panel is never silently repaired). |
+| **call sites migrated** | All 7 Shufersal BSIP1 builders now delegate to the shared path: `shufersal_cereals/02_build_bsip1_cereals.py` (first consumer — feeds TASK-190), `shufersal_cheese/02_build_bsip1_cheese.py` + `_cheese_003.py`, `shufersal_yogurt/02_build_bsip1_yogurt.py` + `_yogurt_004.py`, `shufersal_butter/02_build_bsip1_butter.py`, `shufersal_maadanim/02_build_bsip1_maadanim.py` (its alternate field-name fallbacks preserved by normalising into canonical `*_raw` keys before delegation). `multiretailer_cereals/02_build_bsip1_multiretailer.py` inherits automatically (it imports the cereals builder's `_parse_nutrition`). All 6 Shufersal `01_scrape_*.py` already routed through `parse_nutrition_list` and so inherit the subrow-marker fix. The dead `NUTR_LABEL_MAP` in `shufersal_hummus/01_discover_hummus_shufersal.py` (unused, carried the original broken pattern) was retired. |
+| **not migrated (by design)** | **yohananof** parsers (`yohananof/parser.py`, `yohananof_milk/04_parse_and_build_bsip1.py`) — different retailer HTML model (label→value pairs, not a `div.nutritionList`), and structurally immune to the trap: they iterate an explicit label list with the specific `חומצות שומן רוויות`/`טראנס` rows BEFORE `שומנים`, with no generic `שומן→fat` catch-all. Forcing them onto the Shufersal `div`-based parser would change behaviour for no benefit; their numeric `"פחות מ"` handling is already correct. Flagged for a future optional consolidation onto the shared `parse_value_bound`. **multiretailer 01_acquire** reads OFF structured `fat_100g` vs `saturated-fat_100g` as separate fields — no sub-row trap possible. |
+| **byte-identity guarantee** | For every panel that was already correct, `parse_num`/`parse_sodium_mg`/`parse_nutrition_numeric` return identical floats and NO `_integrity` key — output is byte-identical (proven by `test_parse_num_byte_identical_to_legacy` + `test_clean_panel_no_integrity_key`). No pipeline was re-run and no published score was touched by this entry. Any category re-score is TASK-190's separately-gated, owner-D7 path. |
+| **tests** | `03_operations/bsip0/scrape/_shared/test_bsip0_nutrition.py` — 12 tests, all PASS. Fixture = the real `run_cereals_005` raw (`cereals_bsip0_raw_20260601T152207.json`). Covers: the `מתוכם` final-mem gap, total-vs-subrow selection, sugar "of which" still captured, `"פחות מ"` bound semantics, legacy byte-identity, the `sat>total` invariant, and three real-corpus regressions (bug signature present; target barcode's bound recoverable; guard flags ≥50 panels). |
+| **label_observability** | Observable: the shared guard `nutrition_implausible()` / `composition_nutrition_report()` emits per-product reasons + corpus %; `parse_nutrition_numeric` additionally exposes the `_integrity` list (`sat_gt_total_fat`, `*_is_less_than_bound`). QA Agent's permanent BLOCKING guard (TASK-192 QA half) consumes the same invariants — co-signed so the canonical rule and the guard agree. |
+| **activation_scope** | Always-on data-ingestion fix (parser correctness is not toggled, no flag). Does NOT alter any frozen/published score by itself — scores change only on the owning category's next re-scrape + re-score (TASK-190). |
+| **rollback** | Git-reversible; no data migration. Reverting restores the `מתוכמ` gap + the per-builder duplication and is strictly worse. |
+| **co_sign needed** | QA Agent — confirm the shared invariants (`total≥saturated`; `"פחות מ"` bound; implausible-low-fat-vs-energy bound; sodium >~2,000 mg/100g absurd-value gate) match the permanent BLOCKING guard. Nutrition Agent — confirm the implausible-low-fat-vs-energy numeric bound (currently `fat≤0.5` AND energy exceeds macro-implied energy by ≥50 kcal). |
+| **source** | `_shared/bsip0_nutrition.py` (`_SUBROW_MARKERS`, `classify_nutr_label`, `parse_value_bound`, `parse_num`, `parse_sodium_mg`, `parse_nutrition_numeric`); `test_bsip0_nutrition.py`; EV-029 / EV-026 lineage |
+
+---
+
+---
+
+### EV-047 — kcal Plausibility Upper Bound: Archetype-Conditional Raise (700 → 800)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-047 |
+| **task** | TASK-191 Phase A (butter pre-ship engine fix, Step 2) |
+| **recorded** | 2026-06-05 |
+| **layer** | Data integrity / consistency check — NOT a scoring rule. No cap/floor/weight/threshold added. |
+| **trigger** | Butter products at 82g fat/100g correctly produce 725–745 kcal via Atwater (82 × 9 = 738 kcal). The prior upper bound of 700 kcal triggered a `kcal_plausible=False` flag and a −10 confidence deduction on valid data, misclassifying structurally sound butter panels as data-integrity anomalies. |
+| **evidence_rationale** | Atwater energy calculation is the evidence: fat × 9 kcal/g. For 82g fat/100g (representative Shufersal butter): 82 × 9 = 738 kcal. Ghee can reach ~900 kcal (virtually all fat). The 700 bound was miscalibrated for high-fat archetypes. 800 is the correct ceiling for whole_food_fat / cooking_oil products — no non-fat food legitimately produces 800+ kcal/100g, and the robustness-corpus G3 anomaly case (1800 kcal, OCR/serving confusion) remains well outside the new bound. |
+| **evidence_strength** | Low — systematic calibration error, not a nutritional evidence question. The Atwater calculation is the full evidence base. |
+| **mechanism** | Upper bound constant in `constants.py` raised from 700 to `KCAL_PLAUSIBLE_UPPER = 800`. `signal_extractor.py` consistency check `kcal_plausible` updated to use `KCAL_PLAUSIBLE_LOWER <= kcal <= KCAL_PLAUSIBLE_UPPER`. At signal extraction time the product category (from router) is not yet available, so a single raised global value of 800 is used safely. `score_engine.py` deduction message and `failure_taxonomy.py` error message updated to reflect new bounds. |
+| **scope** | Cross-category: raises the ceiling universally, but only high-fat archetypes (whole_food_fat, cooking_oil) have real products above 700 kcal. No currently-live category (milk, yogurt, snack bars, bread, granola, cheese, hummus, maadanim) produces products in the 700–800 kcal band. Zero score drift for all live categories confirmed by regression check. |
+| **activation_scope** | Always-on constant change. No flag required — the prior behaviour was incorrect for butter and a no-op correction for all other categories. |
+| **rollback** | Git-reversible. Revert lowers ceiling back to 700 and reintroduces the false positive on butter panels. |
+| **co_sign** | Nutrition Agent — self-signed (calibration correction, no D7 required; not a new scoring signal). Regression check required before butter batch run (Phase B). |
+| **files_changed** | `constants.py` (KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER, KCAL_PLAUSIBLE_UPPER_STANDARD); `signal_extractor.py` (consistency_checks + L4 flag message); `score_engine.py` (deduction message + import); `failure_taxonomy.py` (error message + import) |
+| **should_affect_score_now** | true (bug fix — applied 2026-06-05) |
+
+---
+
+### EV-048 — Sat-Fat Cap Endemic Gate for Intact Dairy Fat (whole_food_fat archetype)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-048 |
+| **task** | TASK-191 Phase A (butter pre-ship engine fix, Step 4) |
+| **recorded** | 2026-06-05 |
+| **layer** | Scoring guardrail gate — modifies firing condition of an existing cap. No new cap, no new weight. |
+| **trigger** | `ISRAELI_RED_LABEL_1_SAT_FAT` (cap = 55) fires on 100% of butter products because butter's sat-fat content (48–70g/100g) structurally guarantees exceeding the Israeli red-label threshold (5g/100g). The cap was designed to penalise products that could have been reformulated to lower sat-fat. Butter cannot be. Applying it universally to a product class where sat-fat content is compositionally invariant produces no consumer signal: every butter product hits the same cap regardless of quality differentiation. |
+| **evidence_rationale** | Dairy fat composition: plain butter = 50–70g saturated fat per 100g total fat (fraction 0.58–0.70). This is a compositional constant of dairy fat, not a formulation choice. The red-label threshold (5g/100g) was designed to identify products with elevated sat-fat relative to what reformulation could achieve. Butter's sat-fat cannot be reduced by the manufacturer — it is the fat. The Israeli Ministry of Health red-label system does not exempt butter, but that is a regulatory transparency requirement; the BSIP2 scoring cap is a separate scoring decision that need not replicate the regulatory boundary verbatim when it produces zero signal differentiation. The regulatory disclosure is retained. |
+| **evidence_strength** | Moderate — the composition threshold (sat_frac ≥ 0.50 identifies dairy fat) is sound and defensible for the whole Israeli butter shelf. Not formally calibrated against the full Israeli butter shelf — that calibration is what butter_run_002 will provide. |
+| **gate_condition** | Cap is suppressed when: `category == "whole_food_fat"` AND `fat_saturated_g / fat_g >= 0.50`. The sat-fat fraction threshold (0.50) distinguishes plain dairy fat (butter = 0.58–0.70) from: (a) palm-oil-laden spreadable fats with lower fractions; (b) seed-oil-diluted margarines; (c) products with emulsifiers routed to NOVA 3/4 that may not qualify for the WFF floor and are scored lower through that pathway. Any product below the 0.50 fraction still fires the cap normally. |
+| **regulatory_annotation** | The Israeli red label (sat_fat) remains registered in `regulatory_quality` as a transparency annotation and is still shown to the consumer. Only the scoring cap (guardrail) is gated. |
+| **mechanism** | In `score_engine.py` `evaluate_guardrails()`, the `else` branch (RECAL_P0 OFF) now computes `_wff_sat_frac = sat_f / fat` and evaluates `_endemic_wff_gate = (category == "whole_food_fat" and _wff_sat_frac >= SAT_FAT_CAP_ENDEMIC_WFF_FRACTION)`. When the gate fires, the cap is recorded in `caps_considered` with `fired=False` and the EV-048 note; `check_cap` is not called. Constant `SAT_FAT_CAP_ENDEMIC_WFF_FRACTION = 0.50` in `constants.py`. |
+| **scope** | whole_food_fat category only. All other live categories (milk, yogurt, snack bars, bread, granola, cheese, hummus, maadanim) are unaffected — none have `category == "whole_food_fat"`. Zero score drift confirmed by regression check. |
+| **live_category_protection** | No currently-live category routes to `whole_food_fat`. Butter is the first whole_food_fat category. The gate is therefore inert on all live categories and activates only for butter (and future whole_food_fat categories). |
+| **activation_scope** | Always-on gate within the `evaluate_guardrails` RECAL_P0-OFF path. No flag required — the gate is strictly protective and cannot cause a live-category regression. |
+| **rollback** | Git-reversible. Revert reactivates the cap universally on whole_food_fat products. |
+| **co_sign** | Nutrition Agent — self-signed (gate on an existing cap; no new scoring signal; whole_food_fat category not yet live). Product Agent D7 co-sign required only if the gate is later extended to a different category or if the fraction threshold is changed. |
+| **files_changed** | `constants.py` (SAT_FAT_CAP_ENDEMIC_WFF_FRACTION); `score_engine.py` (gate logic in evaluate_guardrails + import) |
+| **should_affect_score_now** | true (applied 2026-06-05; activates on first butter batch run) |
+| **follow_up** | butter_run_002 calibration will verify the gate fires correctly across the full Israeli butter shelf and confirm no palm/seed-oil-diluted product incorrectly qualifies. |
+
+---
+
+### EV-049 — Graduated Sodium Treatment for Cereal/Granola (BARI_SODIUM_CEREAL)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-049 |
+| **task** | TASK-189 |
+| **recorded** | 2026-06-05 |
+| **layer** | Scoring guardrail — new SODIUM_LOAD graduated penalty + category cap + MoH boundary correction. Scoped to `snack_bar_granola` + `cereal` only. |
+| **trigger** | TASK-189 independence analysis on run_cereals_006 (63 products, clean data post TASK-190): 18 products have sodium ≥ 300 mg/100g; only 5 of these are already caught by `HP_FAT_SODIUM_COMBO` (which requires fat ≥ 25% of kcal). The remaining 13 high-sodium products (sodium 300–600 mg/100g, fat ≤ 21% kcal — typical low-fat cereals and cornflakes) receive zero sodium penalty under the base engine. The 700 mg threshold (`HIGH_SODIUM_700MG_PLUS`) is never reached in this category (worst real value = 600 mg). Sodium in the 300–600 mg band is therefore a genuine independent driver that the existing engine does not address. |
+| **independence_verdict** | YES — sodium is an independent scoring driver for cereal/granola. 13/18 high-sodium products escape HP_FAT_SODIUM because they are low-fat products where fat_pct < 25%. The graduated treatment addresses a real gap that the fat fix (TASK-190) did not close. |
+| **signal** | Three components, all scoped to `snack_bar_granola` + `cereal`: (1) **SODIUM_LOAD graduated penalty** (4-band): `<150→0`, `150–299→−2`, `300–449→−5`, `450–599→−8` inside `SODIUM_FAMILY_BUDGET=8`. Rule name `SODIUM_LOAD_CEREAL_GRAD`. (2) **HIGH_SODIUM_CEREAL_500 cap**: sodium ≥ 500 mg/100g → score cap = 75. Applied in addition to the graduated penalty. (3) **MoH red-label boundary fix**: the Israeli MoH red-label threshold for sodium is 600 mg/100g (inclusive). The base `signal_extractor.py` uses `> 600` (strict), missing exactly-600 products. The correction is applied in `score_engine.py` at the `evaluate_guardrails` + pre-dimension-scoring layer for the cereal/granola scope. |
+| **bound_values** | Band thresholds (mg/100g) and penalty magnitudes are calibrated to the clean run_cereals_006 corpus: salted granola shelf sits at 300–463 mg (median 394 mg for the top-9 salted products); sweet/standard cereals that add nominal seasoning sit at 150–300 mg; clean unsalted granola is typically <100 mg. The −5 penalty for the 300–449 band is the most consequential — it resolves ~1 band for a C-range product. The −8 for 450–599 is reserved for products near-approaching the red-label boundary. Cap at 500 mg provides a hard ceiling that prevents salted products from reaching A or top-B on nutritional dimensions alone. |
+| **data_source** | run_cereals_006 (63 products, BSIP1 run_cereals_006 post-TASK-190 data fix, Shufersal, 2026-06-05). Sodium range: 6–600 mg/100g; median 100 mg/100g. Products in 300+ band: 18/63 (17 in 300–449, 1 at 600). |
+| **before_after** | BARI_SODIUM_CEREAL=on vs run_006 baseline (63 products): 27 products move score, 5 move grade. Grade distribution: B 10→9, C 19→20, D 29→25, E 5→9. Score median: 48.6→46.0. Notable grade movers: מוזלי 30% פירות (D→E, sodium 350), מוזלי בוטנים/לוז/שקדים (D→E, sodium 400), מוזלי צימוק תפוח וקינמון (D→E, sodium 400), ריבועי דגנים עם קינמון (D→E, sodium 320), קורנפלקס אורגני הרדוף (B→C, sodium 600 via boundary fix). |
+| **category_scope** | `snack_bar_granola` + `cereal` ONLY. Frozen baselines (bread, milk, snack bars) are fully isolated — the `SODIUM_CEREAL_CATEGORIES` scope guard in both the guardrail and the dimension scoring pre-block prevents any cross-category movement. Bread's legitimate 400–500 mg/100g range is unaffected. |
+| **mechanism** | (A) In `evaluate_guardrails`: a `cereal_sodium_scope` flag (`BARI_SODIUM_CEREAL and category in SODIUM_CEREAL_CATEGORIES`) gates three additions to the SODIUM_LOAD family: the `SODIUM_LOAD_CEREAL_GRAD` penalty, the `HIGH_SODIUM_CEREAL_500` cap, and a boundary-correct `HIGH_SODIUM_700MG_PLUS` fallback for ≥700 mg. (B) In `score_product`, immediately before dimension scoring: if in scope and sodium ≥ 600 and "sodium" not in l3 red_labels, a shallow l3 copy is made and sodium is added to red_labels (affects `score_regulatory_quality`). Both paths are conditional on `BARI_SODIUM_CEREAL=on`; with flag OFF the engine is byte-identical to run_006. |
+| **evidence_strength** | Moderate. The 300–600 mg sodium range for cereal/granola is real and independently confirmed from Shufersal shelf data. The penalty magnitudes are calibration choices (not derived from a dose-response model) but are proportionate to the scale of the difference between clean granola (<100 mg) and salted granola (350–463 mg). The band boundaries are label-observable thresholds, not physiological thresholds. |
+| **label_observability** | Fully label-observable — reads `sodium_mg` (already captured in BSIP0 panel, category-scope from router). |
+| **rule_accumulation** | One new penalty rule (`SODIUM_LOAD_CEREAL_GRAD`), one new cap rule (`HIGH_SODIUM_CEREAL_500`), one boundary fix (not a new rule — a correction to an existing signal), all scoped to cereal/granola. The existing cross-category `HIGH_SODIUM_700MG_PLUS` cap is preserved as a belt-and-suspenders fallback for the ≥700 mg case (unreachable in current corpus but defensible for future products). Net addition: 2 rules, 1 boundary correction. |
+| **activation_scope** | Behind `BARI_SODIUM_CEREAL` (default OFF). Flag ON required to move scores. No live category is affected when flag is OFF (byte-identity proof: PASS, 63/63 products). |
+| **rollback** | Set `BARI_SODIUM_CEREAL=off` (the default). Engine returns to run_006 byte-identical behavior. Git-reversible. |
+| **co_sign** | Nutrition Agent — author and self-sign (D7 authority granted per TASK-189 instructions, owner pre-authorized 2026-06-05). Product Agent D7 co-sign required per scoring governance protocol (pending; TASK-189 must be returned to CC before live score movement). |
+| **should_affect_score_now** | false — flag-gated; not deployed to any live category. Requires Product Agent D7 co-sign + CC close-readiness gate before activation. |
+| **verdict_authoring_note** | If/when BARI_SODIUM_CEREAL is activated and sodium becomes a genuine grade driver, the granola comparison page verdicts must be re-authored so the catch may cite sodium causally (owner direction: category-relative framing — "a clean granola doesn't add this salt"). Currently the verdicts cite sodium as a displayed fact only. |
+| **files_changed** | `constants.py` (SODIUM_CEREAL_CATEGORIES, SODIUM_CEREAL_BANDS, SODIUM_CEREAL_CAP_THRESHOLD, SODIUM_CEREAL_CAP_VALUE, SODIUM_CEREAL_RED_LABEL_BOUNDARY); `score_engine.py` (BARI_SODIUM_CEREAL flag, evaluate_guardrails sodium block, score_product red-label boundary correction); `batch_run_cereals_007_sodium.py`; `batch_run_cereals_007_sodium_off.py`; `run_cereals_007_delta_table.py` |
+
+---
+
+### EV-050 — Natural Dairy Trans Fat Exemption from the Trans Fat Veto
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-050 |
+| **task** | TASK-191 sub-task (butter_run_002 pre-ship; D7 self-authored Nutrition Agent, 2026-06-05) |
+| **recorded** | 2026-06-05 |
+| **layer** | Scoring guardrail gate — modifies firing condition of the trans fat veto. No new dimension weight, no new cap, no new penalty added. |
+| **trigger** | butter_run_002 produced 6 candidate products scoring 0/E because USDA FDC SR Legacy entries for plain butter (fdc_id=173410) report fat_trans_g values of 3.28–3.7 g/100g. The engine's `TRANS_FAT_VETO_THRESHOLD` (>1.0 g/100g) fires `score=0`. The FDC values measure naturally-occurring dairy trans fat (primarily CLA and vaccenic acid), not industrially produced trans fat from partially hydrogenated vegetable oil (PHVO). |
+| **scientific_rationale** | Industrial trans fat (PHVO-derived elaidic acid, C18:1 Δ9t) and natural dairy trans fat (CLA, primarily cis-9, trans-11 C18:2; vaccenic acid, C18:1 Δ11t) are structurally and metabolically distinct. Industrial trans fat: formed by partial hydrogenation of vegetable oils; suppresses HDL, raises LDL, increases inflammatory markers; dose-response is linear with no safe threshold per WHO (2018) and EFSA (2019); associated with cardiovascular disease and all-cause mortality even at low doses (2% of energy ≈ 0.5–2 g/day). Natural dairy trans fat: naturally produced by rumen biohydrogenation in ruminant livestock; cis-9, trans-11 CLA (conjugated linoleic acid, "rumenic acid") has a distinct evidence profile — multiple human trials show neutral or modestly protective effects on cardiovascular risk markers at dietary doses; vaccenic acid is the metabolic precursor to CLA via mammalian Δ9-desaturase conversion. The dose-response at typical butter consumption (10–30 g/day → 0.3–1.5 g natural trans fat) is substantially less certain than the industrial dose-response. No epidemiological study has demonstrated harm attributable specifically to natural dairy trans fat at realistic consumption levels; the large PURE study found full-fat dairy intake associated with reduced cardiovascular mortality. **Conclusion: the veto was designed for industrial trans fat. Applying it to natural dairy trans fat is a category error.** |
+| **evidence_strength** | Moderate. The structural/metabolic distinction is well-established and not disputed. The dose-response for natural dairy trans fat at realistic consumption is less characterized than industrial trans fat — hence Moderate, not Strong. The conclusion (veto does not apply) follows from the distinction itself, not from a beneficial-effect claim. |
+| **gate_condition** | Exempt the trans fat veto when: (a) `category == "whole_food_fat"` AND (b) `has_phvo == False` (no partially-hydrogenated vegetable oil marker in the ingredient text). This gate is compositional + categorical — it does NOT rely on a numeric threshold, because the numeric ranges of industrial and natural dairy trans fat overlap (both can reach 2–5 g/100g). The only reliable discriminator is the ingredient source. |
+| **gate_rationale** | `whole_food_fat` routing + absence of PHVO is the correct discriminator because: (1) Butter and other ruminant dairy fats always route to `whole_food_fat`; PHVO-containing margarines and spreads contain partially-hydrogenated markers in their ingredient text. (2) A product that is NOT `whole_food_fat` but has elevated trans fat is likely an engineered spread — keep the veto. (3) A `whole_food_fat` product with PHVO markers is a blended/hardened spread (e.g., margarine), not plain dairy fat — keep the veto. The gate cannot be satisfied by a processed spread, regardless of fat content. |
+| **has_phvo signal** | New L3 signal in `signal_extractor.py`. Detects "שומן צמחי מוקשה", "שמן צמחי מוקשה", "מוקשה חלקית", "partially hydrogenated" in the ingredient text. Bare "מוקשה" intentionally excluded to avoid false-firing on "עמילן מוקשה" (modified starch). Signal emitted as `has_phvo: bool` on every product trace. |
+| **residual_signal** | When the exemption fires, the elevated trans measurement is NOT discarded. The existing `trans_fat_status = "veto"` or `"high_concern"` classification in L3 remains. The `trans_pen` in `_score_fat_quality_sprint1` fires at its normal magnitude (20 for veto/high_concern status) on the fat_quality dimension. The consumer therefore still sees a real fat-quality cost from elevated dairy trans — it is just not the categorical score=0. This is the correct treatment: natural dairy trans fat at 3–5 g/100g is not nutritionally neutral, but it is not a reason to score the same as a partially-hydrogenated margarine. |
+| **affected_categories** | `whole_food_fat` ONLY. No currently-live category routes to `whole_food_fat` (butter is the first). Gate is structurally inert on all live categories (milk, yogurt, snack bars, bread, granola, cheese, hummus, maadanim — none are `whole_food_fat`). Zero score drift on live categories confirmed by regression check. |
+| **BSIP2_relevance** | Direct — resolves the 6×0/E butter_run_002 products caused by FDC-reported natural dairy trans fat. |
+| **implementation_complexity** | Low — one gate condition added to `evaluate_guardrails` + one new L3 bool signal (`has_phvo`) in `signal_extractor.py`. No new scoring rule, no new weight. |
+| **recommended_action** | implemented — Nutrition Agent D7 self-authored, 2026-06-05. Product Agent D7 co-sign required before any live score movement (per scoring governance: D7 requires both Nutrition + Product). |
+| **should_affect_score_now** | true — gate is always-on (no env flag required; the gate is strictly protective: it can only PREVENT the veto from firing, never add a new penalty). However, no live category is affected. First impact is butter_run_002 (non-authoritative, pre-ship). |
+| **required_input_fields** | `normalized_nutrition_per_100g.fat_trans_g`, `category` (from router), `ingredients_text_he` or `ingredients_list` (for `has_phvo` detection). |
+| **label_observability** | Fully label-observable. `has_phvo` reads the ingredient text (already required). `category` is the router output. `fat_trans_g` is a standard panel field. |
+| **rule_accumulation** | One new L3 signal (`has_phvo`), one gate condition on an existing veto. Net veto scope is narrower than before (strictly fewer products can receive score=0 from this rule). No new caps, penalties, or weights. |
+| **activation_scope** | Always-on gate (no env flag). Inert on all live categories. |
+| **rollback** | Remove the `_natural_dairy_trans_exempt` gate block from `evaluate_guardrails` in `score_engine.py` and the `has_phvo` block from `signal_extractor.py`. Git-reversible. No live score artifact affected. |
+| **guards_verified** | Regression check PASS (see implementation notes). No score movement on any frozen category corpus. |
+| **co_sign** | Nutrition Agent D7 — self-authored (TASK-191 sub-task, 2026-06-05). **Product Agent D7 co-sign required** before butter goes live. |
+| **risk_of_misuse** | (1) Applying a false "dairy is safe" claim in consumer copy — the gate is an engine correction, not a health claim. Consumer-facing text must not say natural dairy trans fat is harmless. (2) Extending the gate to non-whole_food_fat categories — the gate is explicitly scoped to `whole_food_fat` only. Processed dairy products that happen to contain elevated trans fat (e.g., full-fat cream cheese routed to `dairy_protein`) do NOT qualify — they are not `whole_food_fat`. (3) Assuming absence of PHVO in the ingredient text confirms absence of industrial trans fat in all cases — the signal is necessary but not sufficient for a full trans fat source audit; it is sufficient for the purpose of preventing a categorical veto misfire on plain dairy fat. |
+| **notes** | The 6 affected butter_run_002 products: חמאה צרפתית רכה למריחה (trans=3.7, OFF-sourced), חמאה קרי גולד מלוחה, חמאה אנקור מלוחה, חמאה לורפק מלוחה, חמאה טרה מלוחה, חמאה פיזן ברטון מלוחה (all trans=3.28, USDA FDC SR Legacy fdc_id=173410). Ingredient text confirms plain dairy composition (שמנת מפוסטרת or similar; no PHVO). After the gate, these products score on their nutritional architecture and receive the existing `trans_pen = 20` on the fat_quality dimension (trans_fat_status="veto" is preserved in L3, which triggers the fat-dimension penalty in `_score_fat_quality_sprint1`). |
 
 ---
 

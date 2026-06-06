@@ -20,7 +20,11 @@ expansion (positiveSignals/limitingFactors/bottomLine) was explicitly deferred b
 """
 import json
 import os
+import sys
 from datetime import datetime, timezone
+
+sys.path.insert(0, r"C:\Bari\03_operations\bsip2\proto_v0\src")
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
 
 BASE = r"C:\Bari\02_products\yogurt_system"
 TRACES = os.path.join(BASE, "bsip2_outputs", "run_yogurt_004", "products")
@@ -112,11 +116,25 @@ for barcode, vid, name, cluster, insight in ROWS:
             f"MISSING IMAGE: {vid} ({barcode}) has no persisted Shufersal image_url "
             f"in {BSIP1}. Refusing to fabricate a URL."
         )
+
+    # TASK-188: A-grade ingredient observability floor
+    # Yogurt builder ships no ingredient text (OCR-polluted; withheld by design).
+    # Ingredients are always None here, so Condition 1 will fire for any A-grade
+    # yogurt — this is the intended behaviour: no ingredient observability → no A.
+    disp_score = round_score(raw_score)
+    disp_score, grade = apply_a_grade_floor(
+        score=disp_score,
+        grade=grade,
+        ingredients=None,   # withheld for all yogurt products (OCR-polluted)
+        nutrition=L,        # L1_observed_signals has energy_kcal, protein_g, fat_g, carbohydrates_g
+        trace=t,
+    )
+
     products.append({
         "id": vid,
         "name": name,
         "imageUrl": image_url,
-        "score": round_score(raw_score),
+        "score": disp_score,
         "grade": grade,
         "confidence": confidence,
         "insightLine": insight,

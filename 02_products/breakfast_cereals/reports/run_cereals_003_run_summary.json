@@ -1,0 +1,204 @@
+{
+  "run_id": "run_cereals_003",
+  "generated": "2026-06-05 06:50 UTC",
+  "engine": "proto_v0 / BARI_RECAL_P0=on",
+  "source": "Shufersal real scrape -> BSIP1 run_cereals_002 (unchanged)",
+  "processed": 92,
+  "scored": 92,
+  "insufficient": 0,
+  "insufficient_pct_of_displayable": 0.0,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 21,
+    "D": 18,
+    "A": 7,
+    "C": 45,
+    "E": 1
+  },
+  "score_median": 60.0,
+  "score_range": [
+    30.5,
+    85.7
+  ],
+  "misroute_count": 0,
+  "misroute_pct": 0.0,
+  "misroute_exit_gate_lt5pct": true,
+  "qa_cer_001_gate": "PASS",
+  "misroutes": [],
+  "prev_misroute_resolution": [
+    {
+      "pid": "bsip1_cereal_574615",
+      "name": "כוסמין מלא 100%",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_58449779032",
+      "name": "דגני טבעות תירס ואורז",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290011131371",
+      "name": "מוזלי קראנצ'י בוטנ+שקדים",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290011131388",
+      "name": "מוזלי קראנצי תפוח קינמון",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290011131395",
+      "name": "מוזלי 30% פירות",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290011830144",
+      "name": "פתיתים אורגנים כוסמין",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290014471412",
+      "name": "מוזלי בוטנים, לוז, שקדים",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290014471429",
+      "name": "מוזלי פירות יבשים",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290014471436",
+      "name": "מוזלי צימוק תפוח וקינמון",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290016883176",
+      "name": "מוזלי 47% דגנים מלאים",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290016883183",
+      "name": "מוזלי 47% דגנים מלאים",
+      "routed_to": "cereal",
+      "now_correct": true
+    },
+    {
+      "pid": "bsip1_cereal_7290116537351",
+      "name": "כריות נוגט",
+      "routed_to": "cereal",
+      "now_correct": true
+    }
+  ],
+  "shaped_baked_flake_scores": [
+    {
+      "pid": "bsip1_cereal_60200",
+      "name": "פתיתים אפויים קוסקוס",
+      "routed_to": "cereal",
+      "score": 85.7,
+      "grade": "A",
+      "nova": 1
+    },
+    {
+      "pid": "bsip1_cereal_60408",
+      "name": "פתיתים אפויים טבעות",
+      "routed_to": "cereal",
+      "score": 85.7,
+      "grade": "A",
+      "nova": 1
+    },
+    {
+      "pid": "bsip1_cereal_60576",
+      "name": "פתיתים אפויים כוכבים",
+      "routed_to": "cereal",
+      "score": 85.7,
+      "grade": "A",
+      "nova": 1
+    },
+    {
+      "pid": "bsip1_cereal_60903",
+      "name": "פתיתים אפויים אורז",
+      "routed_to": "cereal",
+      "score": 85.7,
+      "grade": "A",
+      "nova": 1
+    },
+    {
+      "pid": "bsip1_cereal_7290100702611",
+      "name": "פתיתים אפויים אורז",
+      "routed_to": "cereal",
+      "score": 60.0,
+      "grade": "C",
+      "nova": 3
+    },
+    {
+      "pid": "bsip1_cereal_7290100702628",
+      "name": "פתיתים אפויים קוסקוס",
+      "routed_to": "cereal",
+      "score": 57.6,
+      "grade": "C",
+      "nova": 3
+    },
+    {
+      "pid": "bsip1_cereal_7296073725947",
+      "name": "פתיתים אפויים קוסקוס",
+      "routed_to": "cereal",
+      "score": 60.0,
+      "grade": "C",
+      "nova": 2
+    },
+    {
+      "pid": "bsip1_cereal_7296073725954",
+      "name": "פתיתים אפויים אורז",
+      "routed_to": "cereal",
+      "score": 60.0,
+      "grade": "C",
+      "nova": 2
+    }
+  ],
+  "grade_diff_vs_run_cereals_002": {
+    "B": {
+      "run_002": 10,
+      "run_003": 21,
+      "delta": 11
+    },
+    "C": {
+      "run_002": 48,
+      "run_003": 45,
+      "delta": -3
+    },
+    "D": {
+      "run_002": 25,
+      "run_003": 18,
+      "delta": -7
+    },
+    "E": {
+      "run_002": 2,
+      "run_003": 1,
+      "delta": -1
+    }
+  },
+  "ref_run_cereals_002": {
+    "grade_distribution": {
+      "A": 7,
+      "B": 10,
+      "C": 48,
+      "D": 25,
+      "E": 2
+    },
+    "score_median": 58.3,
+    "misroute_count": 7,
+    "misroute_pct": 7.6
+  },
+  "granola_subpool_nova_reconciliation": [],
+  "error_detail": []
+}

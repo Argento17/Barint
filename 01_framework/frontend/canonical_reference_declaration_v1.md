@@ -36,8 +36,8 @@ The following patterns exist in bread, snack, or milk. They are Gen 0. Future pa
 
 | Pattern | Found in | Status |
 |---|---|---|
-| Color-coded score chip (`gradePalette`) | `bari-grade-badge.tsx`, `snack-score-chip.tsx` | Prohibited |
-| Grade label text beside grade letter | `bari-grade-badge.tsx` | Prohibited |
+| Saturated / solid-fill grade chip (legacy `gradePalette` treatment) | `bari-grade-badge.tsx`, `snack-score-chip.tsx` | Prohibited — *treatment only.* Grade color via `gradePalette` is canonical (Gen 1.1, 2026-06-03); what is prohibited is the legacy saturated/solid-fill rendering, not grade color itself. The canonical chip uses a subtle tint + accent border/number within the A–E ramp. |
+| Free-text grade label beside grade letter | `bari-grade-badge.tsx` | Prohibited — the canonical chip carries only the approved tier word ("72 · B · טוב"), not a free-text interpretive label |
 | Dimension bars (`DimensionBars`) | `dimension-bars.tsx` | Prohibited |
 | Score attribution ("מה מעלה/מוריד את הציון") | `milk-comparison-page.tsx` | Prohibited |
 | `BariInterpretationPanel` with pillar strength labels | `bari-interpretation-panel.tsx` | Prohibited |
@@ -86,7 +86,7 @@ A deviation is any future category page behavior that differs from the מעדנ�
 1. What is the specific behavior in מעדנים that this category cannot replicate?
 2. Why can't the shared component accommodate the difference through a prop?
 3. What is the proposed alternative behavior?
-4. Does the alternative violate any condition in `comparison_template_v1.md` or `mobile_geometry_checklist_v1.md`?
+4. Does the alternative violate any condition in `comparison-template-standard-v1.md` or `mobile_geometry_checklist_v1.md`?
 5. Is this deviation category-specific (acceptable if justified) or a template change (requires broader review)?
 
 Deviations that do not violate template rules can be approved at the implementation level with a documented rationale in the category's data file or page component.
@@ -105,7 +105,7 @@ When any implementation question arises about how to build a Bari comparison pag
 |---|---|---|
 | 1 | This declaration | Which reference to use |
 | 2 | מעדנים implementation | How the canonical behavior looks in code |
-| 3 | `comparison_template_v1.md` | What the architecture requires |
+| 3 | `comparison-template-standard-v1.md` | What the architecture requires |
 | 4 | `component_build_sequence_v1.md` | Build order and component completion criteria |
 | 5 | `mobile_geometry_checklist_v1.md` | Pixel targets and viewport behavior |
 | 6 | `insight_line_spec_v1.md` | Editorial content rules |
@@ -127,7 +127,7 @@ This declaration does not replace any prior document. It establishes precedence.
 | `architecture_generations_registry_v1.md` | Unchanged — Gen 0 patterns remain prohibited |
 | `component_build_sequence_v1.md` | Unchanged — build order and gate remain in force |
 | `exception_registry_v1.md` | Unchanged — EXCEPTION-001 remains the only approved exception |
-| `comparison_template_v1.md` | Unchanged — מעדנים implements this template; the template does not change because מעדנים implements it |
+| `comparison-template-standard-v1.md` | Unchanged — מעדנים implements this template; the template does not change because מעדנים implements it |
 
 ---
 

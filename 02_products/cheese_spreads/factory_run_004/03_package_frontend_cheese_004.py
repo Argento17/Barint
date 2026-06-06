@@ -16,6 +16,9 @@ from datetime import datetime, timezone
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip2\proto_v0\src")))
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
+
 TRACES = glob.glob(r"C:\Bari\02_products\cheese_spreads\bsip2_outputs\run_cheese_004\products\**\bsip2_trace.json", recursive=True)
 BSIP1  = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_cheese_003\output")
 CONSTRUCTS = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_cheese_003\cheese_constructs_report.json")

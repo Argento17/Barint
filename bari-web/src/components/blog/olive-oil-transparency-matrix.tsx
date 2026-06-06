@@ -12,6 +12,8 @@ const ORIGIN_COLORS: Record<string, string> = {
 const RETAILER_COLORS: Record<string, string> = {
   שופרסל: "bg-[#E8F4F0] text-[#1F8F6A]",
   יוחננוף: "bg-[#EBF3F8] text-[#2E6E9E]",
+  קרפור: "bg-[#F3EBF8] text-[#7B3FB0]",
+  ויקטורי: "bg-[#FEF3E8] text-[#C05A10]",
 };
 
 function Cell({ value }: { value: boolean }) {
@@ -68,7 +70,7 @@ export function OliveOilTransparencyMatrix() {
               <tr
                 key={product.name}
                 className={cn(
-                  "border-b border-black/[0.04] last:border-0",
+                  "border-b border-black/4 last:border-0",
                   i % 2 === 0 ? "bg-[#FFFFFF]" : "bg-[#F7F7F2]/50"
                 )}
               >

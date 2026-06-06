@@ -27,12 +27,12 @@ The token file is organized into named categories. Only the following categories
 | Category | Key in token file | Purpose | Status |
 |---|---|---|---|
 | `rows` | `BARI_COMPARISON_TOKENS.rows` | Row alternating background colors and CSS class names | Active |
-| `score` | `BARI_COMPARISON_TOKENS.score` | Score chip visual values — neutral row chip only | Active (see §7 for restrictions) |
+| `score` | `BARI_COMPARISON_TOKENS.score` | Score chip geometry/structure values (grade color comes from `gradePalette`) | Active (see §7 for restrictions) |
 | `typography` | `BARI_COMPARISON_TOKENS.typography` | Shared text style class strings | Active |
 | `layout` | `BARI_COMPARISON_TOKENS.layout` | Pixel dimensions: row height, image size, chip size | **Must be added** — currently absent |
 | `methodology` | `BARI_COMPARISON_TOKENS.methodology` | Methodology footer font size and color | **Must be added** — currently absent |
 | `insightLine` | `BARI_COMPARISON_TOKENS.insightLine` | Insight line font size and color | **Must be added** — currently absent |
-| `gradePalette` | `BARI_COMPARISON_TOKENS.gradePalette` | Grade-to-color mapping | **Legacy only** — see §7 |
+| `gradePalette` | `BARI_COMPARISON_TOKENS.gradePalette` | Grade-to-color mapping (A→E ramp) | **Active — canonical** (Gen 1.1, owner directive 2026-06-03). Source the canonical chip's grade tint/accent. Shared with legacy. See §7. |
 
 No other top-level categories may be added without review.
 
@@ -178,12 +178,13 @@ Once a token is marked deprecated, it must not appear in any new component, rega
 
 | Token path | Deprecated reason | Safe to remove when |
 |---|---|---|
-| `BARI_COMPARISON_TOKENS.gradePalette` | Encodes grade as color — violates canonical spec. Present for legacy page compatibility only. | All consumers (`bari-grade-badge.tsx`, `snack-score-chip.tsx`) are removed or migrated |
-| `BARI_COMPARISON_TOKENS.score.hero.labelSize` | Used for grade label text — grade labels are prohibited in canonical ScoreChip | Same as above |
-| `BARI_COMPARISON_TOKENS.score.hero.labelClass` | Used for grade label text — prohibited in canonical | Same as above |
-| `BARI_COMPARISON_TOKENS.score.comparisonChip` | Comparison chip uses color-coded rendering — prohibited in canonical | All consumers migrated |
+| `BARI_COMPARISON_TOKENS.score.hero.labelSize` | Used for the legacy free-text grade label — the canonical chip carries an approved tier word in its tier slot, not this legacy label token | All legacy consumers (`bari-grade-badge.tsx`, `snack-score-chip.tsx`) are removed or migrated |
+| `BARI_COMPARISON_TOKENS.score.hero.labelClass` | Same — legacy grade-label styling, not used by the canonical chip | Same as above |
+| `BARI_COMPARISON_TOKENS.score.comparisonChip` | Comparison chip uses a *saturated, solid-fill* rendering — that treatment is Gen 0; the canonical chip uses the tinted `gradePalette` accent instead | All consumers migrated |
 
 These tokens remain in the file. They are quarantined from canonical component use.
+
+> **Note:** `BARI_COMPARISON_TOKENS.gradePalette` is **no longer deprecated.** As of the Gen 1.1 directive (owner, 2026-06-03) it is the canonical source of the score chip's grade tint and accent color and is consumed by canonical components. It was previously listed here as deprecated under the original neutral-chip spec; that listing is superseded. The *legacy visual treatment* of grade color (saturated fill, free-text label) remains Gen 0 — only the grade-to-color mapping is shared and canonical.
 
 ---
 
@@ -281,7 +282,7 @@ For reference, the current token file contains:
 
 | Key path | Value type | Status |
 |---|---|---|
-| `gradePalette.{A-E}.{bg,text,border}` | Hex colors | **Deprecated** — legacy use only |
+| `gradePalette.{A-E}.{bg,text,border}` | Hex colors | **Active — canonical** (Gen 1.1); grade tint/accent source for the chip, shared with legacy |
 | `rows.oddBg` | `#FFFFFF` | Active |
 | `rows.evenBg` | `#F9F9F9` | Active |
 | `rows.zebraRowClass` | Tailwind class string | Active |
@@ -290,8 +291,8 @@ For reference, the current token file contains:
 | `typography.sectionTitle` | Tailwind class string | Active — legacy page typography |
 | `typography.sectionMeta` | Tailwind class string | Active — legacy page typography |
 | `score.hero.*` | Tailwind class strings + sizes | **Partially deprecated** — `labelSize`, `labelClass` deprecated |
-| `score.rowChip.*` | Tailwind + hex values | Active — neutral chip values |
-| `score.comparisonChip.*` | Tailwind class strings | **Deprecated** — comparison chip uses color encoding |
+| `score.rowChip.*` | Tailwind + hex values | Active — chip geometry/structure (grade color now from `gradePalette`) |
+| `score.comparisonChip.*` | Tailwind class strings | **Deprecated** — saturated solid-fill comparison chip (Gen 0 treatment); canonical uses tinted `gradePalette` accent |
 | `layout.*` | Pixel strings | **Missing — must add** |
 | `insightLine.*` | Pixel/hex values | **Missing — must add** |
 | `methodology.*` | Pixel/hex values | **Missing — must add** |

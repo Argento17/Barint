@@ -1,6 +1,6 @@
 ---
 id: TASK-167
-title: Comparison rows: show description sentence (insightLine) instead of +/- on collapsed row
+title: "Comparison rows: show description sentence (insightLine) instead of +/- on collapsed row"
 owner: frontend-agent
 status: CLOSED
 priority: HIGH

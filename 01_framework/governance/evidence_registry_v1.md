@@ -20,6 +20,34 @@ Each entry records a piece of knowledge that has been accepted, rejected, or pla
 
 ---
 
+## Optional `study_objects:` block (added TASK-196, 2026-06-06)
+
+Any entry in this registry MAY include an optional `study_objects:` YAML block containing one or more structured per-study records. This is **backward-compatible**: entries without a `study_objects:` block are valid and complete. No migration of existing entries is required.
+
+**Schema:** `01_framework/governance/evidence_study_schema.py` — Python dataclass with 7 fields.  
+**How to fill it in:** `01_framework/governance/evidence_grading_sop_v1.md` — plain-language grading guide.
+
+Format (placed as a fenced YAML block directly below the entry table):
+
+```yaml
+study_objects:
+  - claim: "One sentence describing what the study claims"
+    dose_realistic: true          # true if study dose ≤ 2× real label dose
+    population_direct: true       # true if population matches Israeli general-consumer
+    rob_grade: "low"              # low | moderate | high | very_high
+    evidence_tier: "A"            # A=Strong | B=Moderate | C=Weak | D=Insufficient
+    source_doi: "10.XXXX/..."     # DOI, "PMID:XXXXXXX", or "internal:[doc-name]"
+    notes: "Caveats, conflicts of interest, effect sizes, population limits"
+```
+
+**Governance rules:**
+- Study objects are authored by the Research Agent.
+- Nutrition Agent co-signs the tier assignment for any entry already marked `should_affect_score_now: true`.
+- A `study_objects:` block does NOT, by itself, create a scoring rule or move any published score.
+- Applies equally to the BSIP2 EV-### registry and the SUPP-EV-### supplement registry.
+
+---
+
 ## Section 1 — Core Framework & Philosophy
 
 ### BEV-001
@@ -759,4 +787,114 @@ Each entry records a piece of knowledge that has been accepted, rejected, or pla
 
 ---
 
-*End of Evidence Registry v1. Next entry: BEV-078.*
+---
+
+## Section 11 — Glass Box D4: Additive Evidence Framework
+
+*Entries BEV-078 through BEV-081 seed the D4 ("additive MOAT") dimension of the Glass Box program (TASK-179). Source: "Food additives 1" research document (New Batch, 2026-06-06), which synthesizes EFSA/JECFA/FDA regulatory evaluations across nine additive classes. All entries are pre-activation: annotate_only entries inform the annotation layer only; score_moving_pending_d7 entries are candidates for a scored rule but require a separate owner D7 sign-off before any rule is written or deployed. The EDPG firewall applies: these entries calibrate the D4 library; no external value feeds a live score path directly. Per-person ADI × bodyweight intake logic is explicitly excluded (BEV-001; BEV-003e — Bari describes the food, not the eater).*
+
+### BEV-078
+**Topic:** D4 Tier 1 — Sulfites (E220–228): dose-independent sensitivity population  
+**Summary:** Sulfites (sulfur dioxide and sulfite salts, E220–228) are the sole Tier 1 additive class in the reference framework. EFSA (2022) found that estimated intakes for high consumers — especially children — may approach unsafe levels based on a margin-of-exposure analysis; no ADI was established, with EFSA instead setting MOE benchmarks. The primary concern is dose-independent sensitivity: sulfites trigger bronchospasm in asthmatics and destroy thiamine (vitamin B1) in foods. The sensitivity population is defined by the physiological characteristic (asthma), not by intake volume, which distinguishes this from standard ADI exceedance logic. EU labelling requires disclosure ("contains sulfites") at concentrations above 10 mg/kg.  
+**Primary source:** Research doc "Food additives 1" (2026-06-06), citing EFSA (2022) sulfite re-evaluation [ref: 35†L310–L318; 35†L319–L324]; EFSA Panel opinion primary  
+**Hebrew annotation (consumer-facing):** "מכיל סולפיטים — חומר משמר שמופיע בפירות יבשים, יינות ומוצרים מותססים. מוכר כגורם תגובות אצל אנשים עם אסתמה."  
+**Status:** `score_moving_pending_d7` — candidate for a scored rule in D4; activation requires owner D7 sign-off. A separate rule proposal with D7 co-sign must precede any engine implementation. This entry does not authorize any scoring change.  
+**Impact:** Future Work (D4), Interpretation  
+**Task:** TASK-193
+
+---
+
+### BEV-079
+**Topic:** D4 Tier 2 — Azo synthetic colorants (E102, E110, E122, E124, E129): hyperactivity signal in sensitive children  
+**Summary:** Synthetic azo dyes — tartrazine (E102), Sunset Yellow (E110), Allura Red (E129), and related — carry a Tier 2 classification due to established hypersensitivity and neurobehavioral signals. The Southampton study (McCann 2007) found that mixtures of six artificial colors plus benzoate modestly increased hyperactivity in a general-child cohort. EFSA's re-evaluation (2008) acknowledged "limited evidence of a small effect in some children" and retained ADIs (tartrazine 7.5 mg/kg, Sunset Yellow 5 mg/kg, Allura Red 7 mg/kg) while requiring EU labelling of six specific dyes with the phrase "may have an adverse effect on activity and attention in children." This is a dose-independent sensitivity population signal (sensitive children), not a general-population toxicity signal. No genotoxic or carcinogenic risk was found at permitted uses. Note: these colorants are label-observable by E-number or common name and are candidates for D4 annotation or scoring.  
+**Primary source:** Research doc "Food additives 1" (2026-06-06), citing McCann et al. 2007 Southampton study [ref: 44†L272–L281]; EFSA colorant re-evaluations (2008) primary  
+**Hebrew annotation (consumer-facing):** "מכיל צבעי מאכל סינתטיים (כגון טרטרזין E102, צהוב שקיעה E110, אדום אלורה E129). באירופה נדרשת אזהרה: 'עשוי להשפיע על הפעילות והקשב בילדים.'"  
+**Status:** `score_moving_pending_d7` — candidate for a scored rule in D4 targeting label-observable azo dyes; activation requires owner D7 sign-off. This entry does not authorize any scoring change.  
+**Impact:** Future Work (D4), Interpretation  
+**Task:** TASK-193
+
+---
+
+### BEV-080
+**Topic:** D4 Tier 3 — Neutral additive classes (flavor enhancers, sorbates, propionates, most polyols, acidity regulators)  
+**Summary:** Tier 3 covers additives with no significant human health concerns at regulated doses and no established sensitive-population signal of the kind seen in Tiers 1–2. Representative members: MSG (E621) and disodium nucleotides — JECFA "ADI not specified," no credible harm in RCTs; potassium sorbate (E202) — EFSA ADI 11 mg/kg (as sorbic acid), no specific human hazard; propionates — ADI ~10 mg/kg, no red flags; sorbitol/xylitol/mannitol (polyols) — "ADI not specified," GI effects only at excess intake with EU laxative-effect label required; citric acid (E330), malic acid, phosphoric acid (E338) — "ADI not specified" for most; phosphoric acid Tier 3 at food levels (some bone-density association at very high cola consumption, mixed evidence). Consumer-facing annotation for Tier 3 additives is informational: identity and function, no concern language.  
+**Primary source:** Research doc "Food additives 1" (2026-06-06), synthesizing EFSA, JECFA, FDA evaluations across flavor enhancers, sorbates, polyols, and acidity regulators  
+**Hebrew annotation (consumer-facing):** "מכיל תוספי מזון מדרגה ניטרלית (כגון E621 גלוטמט, E202 סורבט, חומצה ציטרית E330). מאושרים על ידי גורמי הרגולציה ואין להם חשש מוכח בכמויות המצויות במזון."  
+**Status:** `annotate_only` — Tier 3 additives are candidates for identity + function annotation in D4; they are not candidates for a score-moving rule under current evidence. Emulsifier evidence (Tier 2 sub-entries P80/CMC/carrageenan — see BEV-081) is handled separately as the weaker side of Tier 2.  
+**Impact:** Future Work (D4), Interpretation  
+**Task:** TASK-193
+
+---
+
+### BEV-081
+**Topic:** D4 Tier 4 / Emulsifier boundary — beneficial or weak-signal additives (lecithin, natural colors, some stabilizers; P80/CMC/carrageenan annotate-only)  
+**Summary:** Two distinct sub-groups are combined here. First, Tier 4 (beneficial or context-dependent): lecithin (E322) — "ADI not specified," provides choline and fatty acids, EFSA no safety concern; natural colorants (beta-carotene E160a, anthocyanins) — "ADI not specified," nutrient-value context; bicarbonates (E500) — leavening, well tolerated; pectin (E440), xanthan (E415) — fiber-like, safe. Second, the emulsifiers P80 (polysorbate-80, E432), CMC (carboxymethylcellulose, E466), and carrageenan (E407): the research doc assigns these Tier 2 in its internal classification, but the 2026 RCT (60 adults, placebo-controlled) found that supplementing a low-emulsifier diet with single emulsifiers lowered fecal short-chain fatty acids but did NOT raise markers of gut inflammation, LPS, or metabolic risk markers. Evidence is rated C (limited) — mostly animal and mechanistic. No direct human pathology from typical emulsifier intake has been demonstrated. Carrageenan modestly increased intestinal permeability in one RCT. On this basis: P80, CMC, and carrageenan are annotate-only — the evidence is suggestive but not directional enough for a scored rule. EFSA permits all three under specified uses.  
+**Primary source:** Research doc "Food additives 1" (2026-06-06), citing 2026 RCT [ref: 19†L63–L71]; Chassaing et al. mouse studies [ref: 11†L380–L388]; EFSA evaluations for E322, E407, E432, E466  
+**Hebrew annotation (consumer-facing, P80/CMC/carrageenan):** "מכיל מתחלבים (פוליסורבט 80, CMC, קרגינן). מחקרים בבעלי חיים הצביעו על השפעות על המיקרוביום; בניסוי אנושי מבוקר לא נמצאה עלייה בדלקת. נמצאים בבחינה מדעית מתמשכת."  
+**Hebrew annotation (consumer-facing, Tier 4 beneficial):** "מכיל לציטין (E322) — חומר טבעי המספק כולין; או צבעים טבעיים (בטא-קרוטן, אנתוציאנינים) — עם ערך תזונתי הקשרי."  
+**Status:** `annotate_only` for all sub-groups in this entry. P80/CMC/carrageenan are explicitly NOT score-moving: the 2026 RCT showed ↓SCFA but no rise in inflammation markers; evidence is weak and non-directional. Tier 4 additives (lecithin, natural colors, pectin) are informational annotation only. No evidence conditions are met for a D4 scored rule in this group.  
+**Impact:** Future Work (D4), Interpretation  
+**Task:** TASK-193
+
+---
+
+## Section 12 — Glass Box D1: Energy Density Signal
+
+*Entry BEV-082 formalizes Dietary Energy Density (DED) as a candidate D1 signal. Source: "Beyond Nutrients: A Systematic Review of Dietary Patterns, Microbial Ecology, and Chronic Disease Outcomes" (New Batch, 2026-06-06). Status: score_moving_pending_d7 — requires owner D7 sign-off before activation. No existing published score is changed.*
+
+### BEV-082
+**Topic:** Dietary Energy Density (DED) <1.5 kcal/g as a positive D1 signal  
+**Summary:** DED is defined as kilocalories per gram of food as consumed. The research base establishes three distinct findings: (1) A 1-year randomized clinical trial in obese women (ad libitum, no calorie limits) showed that the reduced-fat + fruit/vegetable group (RF+FV) reduced DED more, consumed a greater food weight, and lost significantly more weight than the reduced-fat group alone — with significantly less hunger throughout. (2) A prospective cohort study of postmenopausal women in the WHI found that higher baseline DED was associated with a statistically significant increased risk of developing any obesity-related cancer (breast, colorectal, ovarian, endometrial), and notably this risk was present even in normal-weight women — suggesting DED drives metabolic dysfunction independently of adiposity. (3) The WHI WHEL randomized trial found that the intervention group reduced DED and achieved modest significant weight loss at year 1, though the effect was not sustained at year 5 without broader behavioral strategies. DED is directly computable from the nutrition panel (kcal ÷ serving mass in grams) without any per-person parameters — it describes food architecture, not the eater. This is fully consistent with Bari's de-moralized stance (BEV-008). Proposed thresholds: ≤1.5 kcal/g = positive D1 signal; >2.5 kcal/g = penalized. Category applicability differs substantially: bread and snacks operate in a range where DED is meaningful; dairy (milk, yogurt) is already calibrated to calorie density thresholds and the interaction with DED must be examined to avoid double-counting with existing BEV-043/BEV-044 rules. Single-ingredient whole foods (BEV-050/BEV-051 floor rules) must not be negated by DED signals. Fermentation/live cultures and intact-grain protein kinetics are separately documented in EV-024 and BEV-023 respectively; those signals do not require new rules here — fermented-food claims that appear on dry products (e.g., "fermented" on a cracker) remain annotation-only, not a positive scoring signal, because the structural benefit of live fermentation is absent post-drying.  
+**Primary sources (from research doc):** (a) 1-Year DED Trial — randomized parallel weight-loss trial, obese women, RF vs RF+FV ad libitum (RF+FV reduced DED more, greater food weight, less hunger, more weight loss); (b) WHI DED Cohort Study — prospective cohort, postmenopausal US women, highest DED quintile associated with increased risk of obesity-related cancers, limited to normal-weight women; (c) WHI WHEL Trial — randomized dietary intervention, breast cancer survivors, intervention reduced DED at year 1 and year 4, small significant weight loss at year 1 (not sustained at year 4)  
+**Status:** `score_moving_pending_d7` — D7 brief drafted at `C:\Bari\01_framework\glass_box_d1_ded_d7_brief_v1.md`. Requires owner D7 sign-off before any scoring rule is activated. No existing published score is changed by this entry.  
+**Impact:** Future Work (D1/Glass Box), Scoring (pending D7), Interpretation  
+**Task:** TASK-194
+
+---
+
+## Section 13 — Olive Oil D5/D6 Authenticity Signals
+
+*Entry BEV-083 formalizes Turkish-origin as a D6 confidence qualifier annotation signal for the olive oil category. Source: Global Food Fraud and Authenticity research doc (peer-reviewed synthesis, New Batch, 2026-06-06). Status: annotate_only — does not move any D1–D4 score. Owner-approved 2026-06-06. Reclassified D5→D6 on owner review 2026-06-06.*
+
+### BEV-083
+**Topic:** Turkish-origin olive oil as a D6 confidence qualifier annotation signal
+**Summary:** Peer-reviewed food fraud surveillance research documents Turkey as a high-prevalence origin for adulterated or non-conforming olive oil in international trade. Multiple published surveillance datasets identify Turkish-origin oil as carrying a statistically elevated rate of non-conforming findings (including seed-oil dilution, grade misrepresentation, and geographic mislabeling) relative to other major origin countries. This is a population-level statistical finding across surveillance studies — it is not a per-product laboratory determination and does not assert that any individual product bearing Turkish origin is adulterated. Bari uses this signal as a D6 confidence qualifier: products where `olive_harvest_country = "TR"` receive the `origin_turkey` annotation (derived field: `d6_origin_traceability_qualifier`), surfaced in the D6 expansion drawer with approved factual Hebrew consumer copy. The annotation qualifies Bari's confidence in the origin claim rather than asserting a transparency gap (the origin IS stated on the label — no disclosure failure exists). The annotation does not constitute a product-quality judgment, an accusation, or a safety recommendation. Signal does not interact with D1–D4 scoring paths. Evidence tier: B (Moderate) — consistent directional finding across published surveillance literature; methodology is observational and relies on market-sample testing programs, which have known sampling limitations. Owner-approved 2026-06-06 as a reliable source for annotation purposes.
+**Source:** Global Food Fraud and Authenticity research doc (New Batch, 2026-06-06; peer-reviewed synthesis); owner directive 2026-06-06 confirming source reliability and approving Turkish-origin as an annotation signal; reclassified D5→D6 on owner review 2026-06-06.
+**Status:** Accepted — `annotate_only`
+**Impact:** Interpretation (D6 confidence qualifier, olive oil category)
+**Task:** TASK-197
+
+---
+
+## Registry Summary (updated)
+
+| Section | ID Range | Count | Notes |
+|---|---|---|---|
+| Core Framework & Philosophy | BEV-001 – BEV-010 | 10 | All Accepted |
+| Scoring Architecture | BEV-011 – BEV-020 | 10 | BEV-020 Under Review |
+| Processing Science Positions | BEV-021 – BEV-031 | 11 | BEV-026 Under Review |
+| Nutritional Science Positions | BEV-032 – BEV-040 | 9 | BEV-036 Under Review |
+| Category Calibrations | BEV-041 – BEV-048 | 8 | All Accepted |
+| Hard Cap & Floor Rules | BEV-049 – BEV-053 | 5 | BEV-053 Under Review |
+| Product-Level Rulings | BEV-054 – BEV-061 | 8 | Mixed |
+| Known Distortions | BEV-062 – BEV-066 | 5 | All Under Review |
+| Future Architecture | BEV-067 – BEV-070 | 4 | All Future Work |
+| Language & Editorial | BEV-071 – BEV-077 | 7 | All Accepted |
+| Glass Box D4: Additive Evidence | BEV-078 – BEV-081 | 4 | score_moving_pending_d7 (BEV-078, BEV-079); annotate_only (BEV-080, BEV-081) |
+| Glass Box D1: Energy Density | BEV-082 | 1 | score_moving_pending_d7 |
+| Olive Oil D5/D6 Authenticity | BEV-083 | 1 | annotate_only; reclassified D5→D6 2026-06-06 |
+| **Total** | **BEV-001 – BEV-083** | **84** | |
+
+### Status Totals
+| Status | Count |
+|---|---|
+| Accepted | 54 |
+| Under Review | 18 |
+| Rejected | 0 |
+| Future Work (distinct from Accepted) | 6 |
+| score_moving_pending_d7 | 4 |
+| annotate_only | 2 |
+
+---
+
+*End of Evidence Registry v1. Next BEV entry: BEV-083.*

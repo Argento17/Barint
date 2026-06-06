@@ -1,12 +1,12 @@
 # BSIP2 Router v2 Validation Report
 
-**Generated:** 2026-05-20 10:38 UTC
+**Generated:** 2026-06-03 13:53 UTC
 **Router:** router_v2
 **Products analyzed:** 163
-**Anchor activations:** 82 (50%)
-**V1→V2 routing changes:** 23
+**Anchor activations:** 84 (52%)
+**V1→V2 routing changes:** 19
 **Suppression events:** 20 products with ≥1 suppressed signal
-**Instability flags:** 6
+**Instability flags:** 9
 **Hybrid products:** 3
 
 ---
@@ -15,12 +15,12 @@
 
 | Category          | Count | Anchor-driven | Hybrid | Mean Conf |
 |-------------------|-------|---------------|--------|-----------|
-| beverage          | 19    | 0             | 0      | 0.83      |
-| cereal            | 39    | 33            | 0      | 0.90      |
-| dairy_protein     | 46    | 37            | 0      | 0.90      |
-| snack_bar_granola | 53    | 12            | 1      | 0.81      |
-| whole_food_fat    | 6     | 0             | 2      | 0.72      |
-| dessert           | 0     | 0             | 0      | —         |
+| beverage          | 15    | 0             | 0      | 0.81      |
+| cereal            | 39    | 33            | 0      | 0.89      |
+| dairy_protein     | 47    | 37            | 0      | 0.91      |
+| snack_bar_granola | 52    | 12            | 1      | 0.77      |
+| whole_food_fat    | 6     | 0             | 2      | 0.71      |
+| dessert           | 2     | 2             | 0      | 0.92      |
 | sauce_spread      | 0     | 0             | 0      | —         |
 | default           | 0     | 0             | 0      | —         |
 
@@ -28,7 +28,7 @@
 
 ## 2. Anchor Activation Rate
 
-82/163 products (50%) routed via hard anchor. Anchors reflect stable, high-confidence routing decisions.
+84/163 products (52%) routed via hard anchor. Anchors reflect stable, high-confidence routing decisions.
 
 | Product                                           | Category          | Subtype    | Conf |
 |---------------------------------------------------|-------------------|------------|------|
@@ -52,7 +52,7 @@
 | דייסת שיבולת שועל מיידית בטעם דבש קוואקר 340 גרם  | cereal            | oatmeal    | 0.88 |
 | דייסת שיבולת שועל מיידית בטעם וניל קוואקר 340 גרם | cereal            | oatmeal    | 0.88 |
 | שיבולת שועל גלגולה קוואקר 500 גרם                 | cereal            | oatmeal    | 0.88 |
-*... and 62 more anchor-routed products.*
+*... and 64 more anchor-routed products.*
 
 ---
 
@@ -85,13 +85,16 @@ Products where context gating prevented ingredient-text signals from contaminati
 
 ## 4. Routing Instability and Hybrid Products
 
-**Unstable routes (6 products):** top-2 category delta < 0.3
+**Unstable routes (9 products):** top-2 category delta < 0.3
   - פרי מארז חטיפי תמרים ושברי קקאו 5+1 → **whole_food_fat** (0.40) vs snack_bar_granola;  top-2 delta=0.10: whole_food_fat(0.25) vs snack_bar_granola(0.15)
-  - חטיפי דגנים פיטנס קרם ועוגיות שישייה → **snack_bar_granola** (0.56) vs dessert;  top-2 delta=0.25: snack_bar_granola(1.27) vs dessert(1.02)
-  - נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה → **snack_bar_granola** (0.56) vs whole_food_fat;  top-2 delta=0.22: snack_bar_granola(0.82) vs whole_food_fat(0.60)
-  - חטיפי דגנים פיטנס שקדים ודבש שישייה → **whole_food_fat** (0.60) vs snack_bar_granola;  top-2 delta=0.13: whole_food_fat(0.98) vs snack_bar_granola(0.85)
-  - אלפרו שיבולת שועל ללא סוכר → **beverage** (0.64) vs cereal;  top-2 delta=0.20: beverage(1.60) vs cereal(1.40)
+  - חטיפי דגנים פיטנס קרם ועוגיות שישייה → **snack_bar_granola** (0.47) vs dessert;  top-2 delta=0.25: snack_bar_granola(1.27) vs dessert(1.02)
+  - נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה → **snack_bar_granola** (0.53) vs whole_food_fat;  top-2 delta=0.22: snack_bar_granola(0.82) vs whole_food_fat(0.60)
+  - מרבה סלים דליס קריספי תות 125 גר → **snack_bar_granola** (0.54) vs crispbread;  top-2 delta=0.07: snack_bar_granola(1.47) vs crispbread(1.40)
+  - חטיפי דגנים פיטנס שקדים ודבש שישייה → **whole_food_fat** (0.56) vs snack_bar_granola;  top-2 delta=0.13: whole_food_fat(0.98) vs snack_bar_granola(0.85)
+  - אלפרו שיבולת שועל ללא סוכר → **beverage** (0.59) vs cereal;  top-2 delta=0.20: beverage(1.60) vs cereal(1.40)
   - משקה שיבולת שועל → **beverage** (0.65) vs cereal;  top-2 delta=0.25: beverage(1.65) vs cereal(1.40)
+  - חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן → **bread** (0.68) vs dairy_protein;  top-2 delta=0.10: bread(0.80) vs dairy_protein(0.70)
+  - מרבה סלים דליס קריספי אוכמניות 125 גר → **crispbread** (0.68) vs snack_bar_granola;  top-2 delta=0.18: crispbread(1.40) vs snack_bar_granola(1.22)
 
 **Hybrid products (3):** genuinely straddle two routing contexts
   - חטיפי דגנים פיטנס שקדים ודבש שישייה → **whole_food_fat** + snack_bar_granola
@@ -102,42 +105,38 @@ Products where context gating prevented ingredient-text signals from contaminati
 
 ## 5. V1 → V2 Routing Changes
 
-23 products changed category between v1 and v2. Changes are expected where v1 misrouted due to the failure modes this router fixes.
+19 products changed category between v1 and v2. Changes are expected where v1 misrouted due to the failure modes this router fixes.
 
-| Product                                            | V1 Category       | V2 Category       | Routing Basis | Dataset           |
-|----------------------------------------------------|-------------------|-------------------|---------------|-------------------|
-| דגני בוקר צ'יריוס דבש ואגוזים 375 גרם              | whole_food_fat    | cereal            | anchor        | breakfast_cereals |
-| קורנפלקס דגנים מלאים קלוגס 375 גרם                 | snack_bar_granola | cereal            | anchor        | breakfast_cereals |
-| גרנולה עם אגוזים ודבש טבעי 400 גרם                 | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| גרנולה חלבון עם חלבון מי גבינה 350 גרם             | dairy_protein     | snack_bar_granola | anchor        | breakfast_cereals |
-| גרנולה דייטס ללא תוספת סוכר 400 גרם                | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| גרנולה עם חמוציות 400 גרם                          | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| גרנולה פצפוצים פריכים עם דבש ואגוזים 400 גרם       | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| גרנולה זרעים עם שמן זית ודבש 350 גרם               | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| מוסלי פירות ואגוזים 500 גרם                        | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals |
-| דגני בוקר פיטנס נסטלה 375 גרם                      | snack_bar_granola | cereal            | anchor        | breakfast_cereals |
-| דגני בוקר פיטנס שוקולד נסטלה 375 גרם               | snack_bar_granola | cereal            | anchor        | breakfast_cereals |
-| קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישיה       | cereal            | snack_bar_granola | signal        | snack_bars        |
-| חטיפי דגנים פיטנס שקדים ודבש שישייה                | snack_bar_granola | whole_food_fat    | signal        | snack_bars        |
-| חטיפי פיטנס שיבולת שועל דבש 5*38 גרם               | whole_food_fat    | cereal            | signal        | snack_bars        |
-| קראנצ'י חטיף שיבולת שועל עם חתיכות בטעם שוקולד חמי | cereal            | snack_bar_granola | signal        | snack_bars        |
-| נייצר וואלי פרוטאין בוטנים בציפוי קרמל מלוח רביעיי | whole_food_fat    | snack_bar_granola | signal        | snack_bars        |
-| נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה           | whole_food_fat    | snack_bar_granola | signal        | snack_bars        |
-| נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישי | whole_food_fat    | snack_bar_granola | signal        | snack_bars        |
-| מרבה סלים דליס שוקולד חלב ללא גלוטן חדש            | whole_food_fat    | snack_bar_granola | signal        | snack_bars        |
-| מרבה סלים דליס שוקולד לבן בטעם יוגורט              | whole_food_fat    | snack_bar_granola | signal        | snack_bars        |
-| יוגורט ילדים שוקולד                                | sauce_spread      | dairy_protein     | anchor        | yogurt_system     |
-| יוגורט מולר קורנר דבש אגוזים                       | whole_food_fat    | dairy_protein     | anchor        | yogurt_system     |
-| מוס שוקולד יוגורט                                  | sauce_spread      | dairy_protein     | anchor        | yogurt_system     |
+| Product                                      | V1 Category       | V2 Category       | Routing Basis | Dataset               |
+|----------------------------------------------|-------------------|-------------------|---------------|-----------------------|
+| חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן     | dairy_protein     | bread             | signal        | milk_and_alternatives |
+| דגני בוקר צ'יריוס דבש ואגוזים 375 גרם        | whole_food_fat    | cereal            | anchor        | breakfast_cereals     |
+| קורנפלקס דגנים מלאים קלוגס 375 גרם           | snack_bar_granola | cereal            | anchor        | breakfast_cereals     |
+| גרנולה עם אגוזים ודבש טבעי 400 גרם           | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| גרנולה חלבון עם חלבון מי גבינה 350 גרם       | dairy_protein     | snack_bar_granola | anchor        | breakfast_cereals     |
+| גרנולה דייטס ללא תוספת סוכר 400 גרם          | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| גרנולה עם חמוציות 400 גרם                    | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| גרנולה פצפוצים פריכים עם דבש ואגוזים 400 גרם | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| גרנולה זרעים עם שמן זית ודבש 350 גרם         | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| מוסלי פירות ואגוזים 500 גרם                  | whole_food_fat    | snack_bar_granola | anchor        | breakfast_cereals     |
+| דגני בוקר פיטנס נסטלה 375 גרם                | snack_bar_granola | cereal            | anchor        | breakfast_cereals     |
+| דגני בוקר פיטנס שוקולד נסטלה 375 גרם         | snack_bar_granola | cereal            | anchor        | breakfast_cereals     |
+| אקטימל משקה חלב פרוביוטי                     | beverage          | dessert           | anchor        | yogurt_system         |
+| לבן שתייה 3% שומן                            | beverage          | dairy_protein     | signal        | yogurt_system         |
+| יוגורט ילדים שוקולד                          | sauce_spread      | dairy_protein     | anchor        | yogurt_system         |
+| שתייה חלב לילדים פרוביוטיקה                  | beverage          | dessert           | anchor        | yogurt_system         |
+| יוגורט מולר קורנר דבש אגוזים                 | whole_food_fat    | dairy_protein     | anchor        | yogurt_system         |
+| מוס שוקולד יוגורט                            | sauce_spread      | dairy_protein     | anchor        | yogurt_system         |
+| לבן שתייה 3% טנובה                           | beverage          | dairy_protein     | signal        | yogurt_system         |
 
 ---
 
 ## 6. V2 Routing Distribution by Source Category
 
 **breakfast_cereals** (45 products): cereal=34  snack_bar_granola=11
-**milk_and_alternatives** (20 products): beverage=15  dairy_protein=5
-**snack_bars** (53 products): snack_bar_granola=42  whole_food_fat=6  cereal=5
-**yogurt_system** (45 products): dairy_protein=41  beverage=4
+**milk_and_alternatives** (20 products): beverage=15  dairy_protein=4  bread=1
+**snack_bars** (53 products): snack_bar_granola=41  whole_food_fat=6  cereal=5  crispbread=1
+**yogurt_system** (45 products): dairy_protein=43  dessert=2
 
 ---
 
@@ -148,7 +147,10 @@ Products with low confidence or instability that may need further attention.
 | Product                                            | Category          | Conf | Band   | Dataset    |
 |----------------------------------------------------|-------------------|------|--------|------------|
 | פרי מארז חטיפי תמרים ושברי קקאו 5+1                | whole_food_fat    | 0.40 | low    | snack_bars |
-| נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישי | snack_bar_granola | 0.52 | medium | snack_bars |
+| חטיפי דגנים פיטנס קרם ועוגיות שישייה               | snack_bar_granola | 0.47 | low    | snack_bars |
+| נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישי | snack_bar_granola | 0.51 | medium | snack_bars |
+| נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה           | snack_bar_granola | 0.53 | medium | snack_bars |
+| מרבה סלים דליס קריספי תות 125 גר                   | snack_bar_granola | 0.54 | medium | snack_bars |
 
 ---
 

@@ -106,6 +106,22 @@ Five hard rules for public-facing output. No exceptions.
 
 ## 3. Language Standard
 
+### Punctuation — Em-Dash Rule
+
+**The em-dash "—" is overused. Hard limit: one em-dash per paragraph.**
+
+The em-dash "—" is not a connector, not a sentence opener, and not a list separator. It is a parenthetical device for a sharp interruption or an appositive that earns a pause. Used more than once per paragraph, it becomes structural noise.
+
+| Wrong — dash as connector | Right — full sentence |
+|---|---|
+| "פוליפנולים — לא מופיע על התווית" | "נתון הפוליפנולים אינו מופיע על התווית." |
+| "יש הבדלים — אבל אין בסיס לנקד אותם" | "יש הבדלים. אין בסיס לנקד אותם." |
+| "אף קמעונאי — לא עשה מאמץ" | "אף קמעונאי לא עשה מאמץ לגלות זאת." |
+
+**Rule:** When the instinct is to write "—", write a period and start a new sentence. If two dashes appear in the same paragraph, one must go.
+
+---
+
 ### Approved Phrases
 
 **Ingredient observations:**

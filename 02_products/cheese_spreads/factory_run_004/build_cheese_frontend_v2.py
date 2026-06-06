@@ -24,6 +24,11 @@ GOVERNANCE CONFLICT RESOLVED (EV-021 AMENDMENT A1, owner-approved 2026-06-02):
 import io
 import json
 import os
+import sys
+
+# TASK-188: A-grade ingredient observability floor
+sys.path.insert(0, r"C:\Bari\03_operations\bsip2\proto_v0\src")
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
 
 # --- EV-021 AMENDMENT A1 — conditional cheese A-eligibility gate (BARI_RECAL_P0) ---
 # Thresholds grounded in Israeli MoH red-label lines (sodium 600 / sat-fat 5.0 per
@@ -147,11 +152,26 @@ def displayed_grade(p):
 def build_product(p):
     nut = p["nutrition"]
     grade, a_capped = displayed_grade(p)
+    disp_score = round_half_up(p["score"])
+
+    # TASK-188: A-grade ingredient observability floor — applied after EV-021 cheese gate.
+    # Cheese builder withholds ingredients (ingredients=None in expansion), so Condition 1
+    # fires for any A-grade product without a resolved ingredient list here. Pass the
+    # normalized nutrition dict from the package for Condition 3; no BSIP2 trace dict
+    # available at this layer (trace=None; Condition 2 defaults to pass).
+    disp_score, grade = apply_a_grade_floor(
+        score=disp_score,
+        grade=grade,
+        ingredients=None,   # cheese builder ships no ingredient text (not yet wired)
+        nutrition=nut,      # package nutrition dict: keys energy_kcal, protein_g, fat_g, carbohydrates_g
+        trace=None,
+    )
+
     return {
         "id": vm_id(p["barcode"]),
         "name": p["name"].strip(),
         "imageUrl": p.get("image_url") or None,
-        "score": round_half_up(p["score"]),
+        "score": disp_score,
         "grade": grade,
         "_aCappedToB": a_capped,
         "confidence": p["confidence_level"],

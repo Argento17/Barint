@@ -1,0 +1,88 @@
+# evidence_dossiers/_fixture_snakeoil.yaml
+# CONSTRUCTED THROWAWAY TEST DOSSIER (§13.4 R2) — NOT a real active, NOT shipped.
+# verification_status: candidate. Its sole purpose: a "snake-oil" active whose
+# structure_function_umbrella has EVERY label phrase -> resolves_to: null, so
+# NOTHING maps -> Evidence Insufficient -> §3 cap-1 fires -> E. This is the control
+# that proves claim resolution (v1.3) is NOT a loophole: a vague magic phrase alone,
+# with no recognized cited correlate, must still floor at E exactly as before.
+active:
+  canonical_name: "fixture-snakeoil-active"
+  pubchem_cid: null
+  molecular_formula: null
+  molecular_weight: null
+  synonyms: ["snakeoil", "wellness-blend-x"]
+  category: "botanical"
+
+claims:                              # NO studied endpoint at any real tier.
+  - claim: "no studied endpoint (constructed snake-oil control)"
+    proposed_evidence_tier: "Insufficient"
+    evidence_tier: "Insufficient"
+    citations: []
+    rationale: "Constructed fixture: there is no credible human evidence for any claim. Every endpoint is untethered (§2.1 Insufficient)."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: null                # no effective dose: there is no studied effect
+  typical: null
+  upper_studied: null
+  unit: "mg"
+  market_range_dsld: null
+
+forms:
+  preferred: []
+  acceptable: []
+  poor: []
+  rationale: "No form ladder — there is no evidence to rank forms against."
+  citations: []
+
+safety:
+  upper_limit_UL: null               # no UL -> no safety veto path (the floor here is the EVIDENCE ceiling, not safety)
+  ul_basis: "n/a"
+  ul_source: "n/a"
+  risky_flags: []
+  notes: "No established UL; the binding constraint must be cap_1 (no evidence), never safety."
+
+label_claims_common: ["wellness", "vitality"]
+
+structure_function_umbrella:    # v1.3 — EVERY phrase resolves_to: null -> NOTHING maps -> cap-1 (E).
+  mappings:
+  - phrase: "wellness"
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-006"
+    rationale: "DOES NOT MAP. 'wellness' has no recognized cited physiological correlate for this constructed active — a true snake-oil umbrella term. Deliberate non-mapping (§2.1)."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "vitality"
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-006"
+    rationale: "DOES NOT MAP. 'vitality' has no recognized cited correlate. Deliberate non-mapping (§2.1)."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Constructed snake-oil control (§13.4 R2): label "supports wellness & vitality" -> both umbrella
+    phrases resolves_to: null -> NOTHING maps -> Evidence Insufficient -> §3 cap-1 fires -> E.
+    Dose = N/A (dose short-circuit, §2.2). This is the control that R1 (a real mapped endpoint)
+    cannot reach by saying something vague. candidate / should_affect_score_now: false.
+
+necessity_context: "constructed fixture — not a real active"
+contraindication_notes: ""
+
+provenance:
+  built_by: ["data-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-006"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  cosign_note: "Constructed §13.4 R2 test fixture for the v1.3 claim-resolution rule. Not a real active; not shipped; proves resolution is not a loophole."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "n/a (constructed fixture)"
+  field_stability:
+    stable: []
+    drift: []
+  change_log: []

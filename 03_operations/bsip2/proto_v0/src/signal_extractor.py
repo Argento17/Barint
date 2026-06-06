@@ -7,6 +7,7 @@ import re
 import os
 from input_loader import get_nutrition, get_ingredients, get_ingredients_text, get_trust
 import ingredient_taxonomy as itax   # TASK-133A — named-additive + fragmentation identity
+from constants import KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER  # EV-047
 
 # TASK-144 — activation toggle for the three approved fixes (Fix1 sanitize / Fix3 dairy
 # source typing live here; Fix2 fiber-not-applicable lives in score_engine and reads the
@@ -571,7 +572,7 @@ def extract_signals(product: dict) -> dict:
     l1["consistency_checks"] = {
         "sugar_le_carbs":  None if (sugar is None or carbs is None) else (sugar <= carbs),
         "satfat_le_fat":   None if (sat_f is None or fat is None)   else (sat_f <= fat),
-        "kcal_plausible":  None if kcal is None else (20 <= kcal <= 700),
+        "kcal_plausible":  None if kcal is None else (KCAL_PLAUSIBLE_LOWER <= kcal <= KCAL_PLAUSIBLE_UPPER),  # EV-047: upper raised 700→800
         "macros_plausible": macros_plausible,
     }
 
@@ -816,6 +817,24 @@ def extract_signals(product: dict) -> dict:
         trans_fat_status = "not_detected"
     trans_fat_threshold_artifact = (trans_fat_g == 0.5)
 
+    # EV-050 — Partially-hydrogenated vegetable oil (PHVO) detection.
+    # PHVO is the sole source of industrial trans fat in packaged foods. Natural dairy trans
+    # fat (CLA, vaccenic acid) does NOT originate from PHVO and cannot be identified by PHVO
+    # markers. Absence of PHVO markers is therefore the necessary condition for the natural-
+    # dairy-trans-fat exemption gate in evaluate_guardrails (score_engine.py).
+    # Hebrew terms: "שומן צמחי מוקשה" (hydrogenated vegetable fat),
+    # "שמן צמחי מוקשה" (hydrogenated vegetable oil), "מוקשה חלקית" (partially hydrogenated),
+    # "partially hydrogenated" (English label imports). The bare "מוקשה" (hardened/modified)
+    # is NOT included — it appears in thickener context ("עמילן מוקשה") and is already
+    # caught by ADDITIVE_MARKER_PATTERNS; adding it here would false-fire on starch.
+    _PHVO_MARKERS = [
+        "שומן צמחי מוקשה",    # hydrogenated vegetable fat
+        "שמן צמחי מוקשה",     # hydrogenated vegetable oil
+        "מוקשה חלקית",        # partially hydrogenated
+        "partially hydrogenated",
+    ]
+    has_phvo = any(m in full_text for m in _PHVO_MARKERS)
+
     # Fortification detection
     has_fortification_explicit = any(m in full_text for m in FORTIFICATION_EXPLICIT_HE)
     vitamin_hits = [v for v in SYNTHETIC_VITAMIN_HE if v in full_text]
@@ -870,6 +889,7 @@ def extract_signals(product: dict) -> dict:
         "fortification_evidence":   fortification_evidence,
         "trans_fat_status":         trans_fat_status,
         "trans_fat_threshold_declaration_possible": trans_fat_threshold_artifact,
+        "has_phvo":                 has_phvo,   # EV-050: partially-hydrogenated vegetable oil marker
         "red_labels":               red_labels,
         "red_label_count":          len(red_labels),
         "hp_fat_sugar_pattern_raw": hp_fat_sugar_raw,
@@ -927,7 +947,7 @@ def extract_signals(product: dict) -> dict:
     if l1["consistency_checks"]["satfat_le_fat"] is False:
         l4["pre_evaluation_flags"].append("SATFAT_EXCEEDS_FAT: data integrity concern, score confidence reduced")
     if l1["consistency_checks"]["kcal_plausible"] is False:
-        l4["pre_evaluation_flags"].append("KCAL_IMPLAUSIBLE: outside 20-700 range, confidence severely reduced")
+        l4["pre_evaluation_flags"].append(f"KCAL_IMPLAUSIBLE: outside {KCAL_PLAUSIBLE_LOWER}-{KCAL_PLAUSIBLE_UPPER} range, confidence severely reduced")
     if product.get("nutrition_consistency_status") == "suspicious":
         l4["pre_evaluation_flags"].append("BSIP1_SUSPICIOUS_NUTRITION: product may have per-serving/per-100g confusion")
     if product.get("nutrition_consistency_status") == "warnings":

@@ -1,0 +1,1237 @@
+{
+  "run_id": "run_snackbars_007_headpin",
+  "task": "TASK-180B",
+  "created_utc": "2026-06-05T06:04:48Z",
+  "engine_baseline_tag": "engine-baseline-2026-06-04",
+  "engine_baseline_commit": "f075d9e077cba3db6e50f3b85eff23a9af352992",
+  "engine_config_hash": "d6f0b99fc5c49e0e",
+  "engine_flags": {
+    "BARI_RECAL_P0": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_GLASSBOX_W5": "on (set; not in engine — no effect)"
+  },
+  "corpus": "C:\\Bari\\03_operations\\bsip1\\run_001\\output",
+  "corpus_n": 53,
+  "head_scored_count": 53,
+  "rollback_off_identical": "53/53",
+  "head_vs_production_baseline": {
+    "production_file": "C:\\Bari\\03_operations\\bsip2\\sprint1\\outputs\\production_snack_bars.json",
+    "total": 53,
+    "exact_match": 46,
+    "reproduction_rate": 0.868,
+    "grade_flip": 0,
+    "drift_ge_2pt_same_grade": 2,
+    "cosmetic_lt_2pt": 5,
+    "missing_head": 0,
+    "grade_affecting_rows": [],
+    "all_delta_rows": [
+      {
+        "pid": "bsip1_16000423534",
+        "name_he": "קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישיה",
+        "production_score": 53.1,
+        "production_grade": "C",
+        "head_score": 53.1,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_16000548404",
+        "name_he": "קראנצ'י חטיף שיבולת שועל עם דבש חמישייה",
+        "production_score": 55.1,
+        "production_grade": "C",
+        "head_score": 55.1,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_16000548503",
+        "name_he": "קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה",
+        "production_score": 54.9,
+        "production_grade": "C",
+        "head_score": 54.9,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_16000548909",
+        "name_he": "קראנצ'י חטיף שיבולת שועל מיקס חמישייה",
+        "production_score": 36.0,
+        "production_grade": "insufficient_data",
+        "head_score": 36.0,
+        "head_grade": "insufficient_data",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800000349",
+        "name_he": "חטיף דגנים שוקולד חלב קרמל מלוח קורני שישייה",
+        "production_score": 35.5,
+        "production_grade": "D",
+        "head_score": 35.5,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800528416",
+        "name_he": "קורני חטיפי דגנים בוטנים מתוק מלוח",
+        "production_score": 28.8,
+        "production_grade": "E",
+        "head_score": 23.6,
+        "head_grade": "E",
+        "delta": -5.2,
+        "class": "DRIFT>=2"
+      },
+      {
+        "pid": "bsip1_4011800567613",
+        "name_he": "שחור ולבן חטיף דגנים בטעם שוקולד עם 30% מילוי קרם חלב",
+        "production_score": 13.3,
+        "production_grade": "E",
+        "head_score": 13.3,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800628512",
+        "name_he": "קורני חטיפי דגנים+שוקולד חלב",
+        "production_score": 16.0,
+        "production_grade": "E",
+        "head_score": 16.0,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800629519",
+        "name_he": "חטיף דגנים עם אגוזים",
+        "production_score": 18.7,
+        "production_grade": "E",
+        "head_score": 18.7,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800630515",
+        "name_he": "קורני חטיפי דגנים שוקולד בננה",
+        "production_score": 15.3,
+        "production_grade": "E",
+        "head_score": 15.3,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800632519",
+        "name_he": "קורני חטיפי דגנים קוקוס שוקולד",
+        "production_score": 15.2,
+        "production_grade": "E",
+        "head_score": 15.2,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_4011800633516",
+        "name_he": "קורני חטיפי דגנים שוקולד מריר 58% קקאו",
+        "production_score": 16.3,
+        "production_grade": "E",
+        "head_score": 16.3,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020015174",
+        "name_he": "חטיפי דגנים פיטנס שוקולד מריר שישייה",
+        "production_score": 26.7,
+        "production_grade": "E",
+        "head_score": 26.7,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020018908",
+        "name_he": "חטיפי דגנים פיטנס קרם ועוגיות שישייה",
+        "production_score": 24.9,
+        "production_grade": "E",
+        "head_score": 24.9,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020020710",
+        "name_he": "חטיף דגנים שוקו וניל נסטלה שישייה",
+        "production_score": 28.6,
+        "production_grade": "E",
+        "head_score": 28.6,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020022325",
+        "name_he": "סיני מיניס חטיף בטעם קינמון על שכבת קרם חלב 6 יח'",
+        "production_score": 26.3,
+        "production_grade": "E",
+        "head_score": 26.3,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020029669",
+        "name_he": "חטיף דגנים עם פירות יער",
+        "production_score": 23.6,
+        "production_grade": "E",
+        "head_score": 23.6,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020034021",
+        "name_he": "חטיפי דגנים פיטנס שוקולד בננה שישייה",
+        "production_score": 25.6,
+        "production_grade": "E",
+        "head_score": 25.6,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020039590",
+        "name_he": "חטיפי דגנים פיטנס קלאסי שישייה",
+        "production_score": 47.6,
+        "production_grade": "D",
+        "head_score": 47.6,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_5900020039620",
+        "name_he": "חטיפי דגנים פיטנס שקדים ודבש שישייה",
+        "production_score": 46.1,
+        "production_grade": "D",
+        "head_score": 46.1,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290011498870",
+        "name_he": "חטיף תמרים במילוי חמאת שקדים",
+        "production_score": 70,
+        "production_grade": "B",
+        "head_score": 70,
+        "head_grade": "B",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290011498894",
+        "name_he": "חטיף תמרים במילוי חמאת בוטנים",
+        "production_score": 63.0,
+        "production_grade": "C",
+        "head_score": 63.0,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290011498948",
+        "name_he": "חטיף תמרים בציפוי שוקולד 100% קקאו",
+        "production_score": 56.7,
+        "production_grade": "C",
+        "head_score": 56.7,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290014525290",
+        "name_he": "מרבה סלים דליס קריספי תות 125 גר",
+        "production_score": 30.7,
+        "production_grade": "E",
+        "head_score": 30.7,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290014525306",
+        "name_he": "מרבה סלים דליס קריספי אוכמניות 125 גר",
+        "production_score": 33.1,
+        "production_grade": "E",
+        "head_score": 31.8,
+        "head_grade": "E",
+        "delta": -1.3,
+        "class": "cosmetic"
+      },
+      {
+        "pid": "bsip1_7290018333952",
+        "name_he": "חטיף אגוזים וחמוציות רפאלס 5*30 גרם",
+        "production_score": 50,
+        "production_grade": "insufficient_data",
+        "head_score": 50,
+        "head_grade": "insufficient_data",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290019545545",
+        "name_he": "חטיף פאי פקאן רפאלס 5*30 גרם",
+        "production_score": 50,
+        "production_grade": "insufficient_data",
+        "head_score": 50,
+        "head_grade": "insufficient_data",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290107646147",
+        "name_he": "חטיף דגנים שוגי שישייה 156 גרם",
+        "production_score": 15.5,
+        "production_grade": "E",
+        "head_score": 15.5,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290107646154",
+        "name_he": "קוקומן חטיף פצפוצי דגנים בטעם שוקולד 6 יח'",
+        "production_score": 40.1,
+        "production_grade": "D",
+        "head_score": 40.1,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290107646826",
+        "name_he": "חטיף דגנים שוגי שוקו שישייה 156 גרם",
+        "production_score": 15.4,
+        "production_grade": "E",
+        "head_score": 15.4,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290107947466",
+        "name_he": "חטיף דגנים מצופה שוקולד עם עוגיות בטעם קרמל וקרם נוגט טעמי",
+        "production_score": 16.6,
+        "production_grade": "E",
+        "head_score": 16.6,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290107947480",
+        "name_he": "חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה",
+        "production_score": 17.8,
+        "production_grade": "E",
+        "head_score": 17.8,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290110563851",
+        "name_he": "חטיף דגנים עם שברי אגוזים ושוקולד חלב בטר שישייה",
+        "production_score": 31.0,
+        "production_grade": "E",
+        "head_score": 31.0,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290111936784",
+        "name_he": "פרי מארז 5 חטיפים תמרים ואגוזי לוז כשלפ",
+        "production_score": 43.8,
+        "production_grade": "D",
+        "head_score": 43.8,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290111937262",
+        "name_he": "פרי מארז חטיפי תמרים ושברי קקאו 5+1",
+        "production_score": 42.0,
+        "production_grade": "D",
+        "head_score": 42.0,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290118427858",
+        "name_he": "פיטנס בר גרנולה שוקולד מריר",
+        "production_score": 17.7,
+        "production_grade": "E",
+        "head_score": 17.7,
+        "head_grade": "E",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290118427872",
+        "name_he": "חטיפי פיטנס שיבולת שועל חמוציות 5*38 גרם",
+        "production_score": 50,
+        "production_grade": "insufficient_data",
+        "head_score": 50,
+        "head_grade": "insufficient_data",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_7290118427896",
+        "name_he": "חטיפי פיטנס שיבולת שועל דבש 5*38 גרם",
+        "production_score": 39.8,
+        "production_grade": "D",
+        "head_score": 39.8,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8410076602251",
+        "name_he": "קראנצ'י חטיף שיבולת שועל עם חתיכות בטעם שוקולד חמישייה.",
+        "production_score": 45.9,
+        "production_grade": "D",
+        "head_score": 45.9,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8410076610379",
+        "name_he": "נייצר וואלי פרוטאין בוטנים ושבבי שוקולד רביעייה",
+        "production_score": 48.5,
+        "production_grade": "D",
+        "head_score": 47.7,
+        "head_grade": "D",
+        "delta": -0.8,
+        "class": "cosmetic"
+      },
+      {
+        "pid": "bsip1_8410076610386",
+        "name_he": "נייצר וואלי פרוטאין בוטנים בציפוי קרמל מלוח רביעייה",
+        "production_score": 47.1,
+        "production_grade": "D",
+        "head_score": 46.2,
+        "head_grade": "D",
+        "delta": -0.9,
+        "class": "cosmetic"
+      },
+      {
+        "pid": "bsip1_8410076610492",
+        "name_he": "נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה",
+        "production_score": 40.0,
+        "production_grade": "D",
+        "head_score": 40.0,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8410076610508",
+        "name_he": "נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישייה",
+        "production_score": 40.5,
+        "production_grade": "D",
+        "head_score": 40.5,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207206488",
+        "name_he": "חטיף דגנים מלאים מצופה שוקולד חלב",
+        "production_score": 39.2,
+        "production_grade": "D",
+        "head_score": 39.2,
+        "head_grade": "D",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207206495",
+        "name_he": "מרבה סלים דליס שוקולד מריר חדש",
+        "production_score": 60.4,
+        "production_grade": "C",
+        "head_score": 60.4,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207206501",
+        "name_he": "סלים דליס חטיף רב דגנים מצופה שוקולד לבן בטעם יוגורט",
+        "production_score": 30.0,
+        "production_grade": "E",
+        "head_score": 26.0,
+        "head_grade": "E",
+        "delta": -4.0,
+        "class": "DRIFT>=2"
+      },
+      {
+        "pid": "bsip1_8423207207362",
+        "name_he": "מרבה סלים דליס שוקולד לבן חדש",
+        "production_score": 53.5,
+        "production_grade": "C",
+        "head_score": 53.5,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207208260",
+        "name_he": "מרבה סלים דליס שוקולד חלב ללא גלוטן חדש",
+        "production_score": 61.0,
+        "production_grade": "C",
+        "head_score": 59.6,
+        "head_grade": "C",
+        "delta": -1.4,
+        "class": "cosmetic"
+      },
+      {
+        "pid": "bsip1_8423207208680",
+        "name_he": "מרבה סלים דליס לילדים עם שוקולד חלב חדש",
+        "production_score": 53.8,
+        "production_grade": "C",
+        "head_score": 52.4,
+        "head_grade": "C",
+        "delta": -1.4,
+        "class": "cosmetic"
+      },
+      {
+        "pid": "bsip1_8423207208703",
+        "name_he": "חטיף דגנים מצופה שוקולד מריר סלים דליס",
+        "production_score": 50,
+        "production_grade": "insufficient_data",
+        "head_score": 50,
+        "head_grade": "insufficient_data",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207209885",
+        "name_he": "מרבה סלים דליס מהדורה מיוחדת שוקולד חלב",
+        "production_score": 53.4,
+        "production_grade": "C",
+        "head_score": 53.4,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207210287",
+        "name_he": "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+        "production_score": 69.5,
+        "production_grade": "B",
+        "head_score": 69.5,
+        "head_grade": "B",
+        "delta": 0.0,
+        "class": "MATCH"
+      },
+      {
+        "pid": "bsip1_8423207210928",
+        "name_he": "מרבה סלים טופינג אגוזי לוז",
+        "production_score": 52.5,
+        "production_grade": "C",
+        "head_score": 52.5,
+        "head_grade": "C",
+        "delta": 0.0,
+        "class": "MATCH"
+      }
+    ]
+  },
+  "head_vs_published_proto_v0_2026_05_17": {
+    "match": "4/53",
+    "drift_rows": [
+      {
+        "pid": "bsip1_16000423534",
+        "name": "קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישיה",
+        "published": [
+          51.1,
+          "D"
+        ],
+        "head_off": [
+          53.1,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_16000548404",
+        "name": "קראנצ'י חטיף שיבולת שועל עם דבש חמישייה",
+        "published": [
+          51.4,
+          "D"
+        ],
+        "head_off": [
+          55.1,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_16000548503",
+        "name": "קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה",
+        "published": [
+          51.2,
+          "D"
+        ],
+        "head_off": [
+          54.9,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_16000548909",
+        "name": "קראנצ'י חטיף שיבולת שועל מיקס חמישייה",
+        "published": [
+          32.3,
+          "insufficient_data"
+        ],
+        "head_off": [
+          36.0,
+          "insufficient_data"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800000349",
+        "name": "חטיף דגנים שוקולד חלב קרמל מלוח קורני שישייה",
+        "published": [
+          31.8,
+          "E"
+        ],
+        "head_off": [
+          35.5,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800528416",
+        "name": "קורני חטיפי דגנים בוטנים מתוק מלוח",
+        "published": [
+          28.8,
+          "E"
+        ],
+        "head_off": [
+          23.6,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800567613",
+        "name": "שחור ולבן חטיף דגנים בטעם שוקולד עם 30% מילוי קרם חלב",
+        "published": [
+          12.4,
+          "E"
+        ],
+        "head_off": [
+          13.3,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800628512",
+        "name": "קורני חטיפי דגנים+שוקולד חלב",
+        "published": [
+          15.4,
+          "E"
+        ],
+        "head_off": [
+          16.0,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800629519",
+        "name": "חטיף דגנים עם אגוזים",
+        "published": [
+          18.1,
+          "E"
+        ],
+        "head_off": [
+          18.7,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800630515",
+        "name": "קורני חטיפי דגנים שוקולד בננה",
+        "published": [
+          16.8,
+          "E"
+        ],
+        "head_off": [
+          15.3,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800632519",
+        "name": "קורני חטיפי דגנים קוקוס שוקולד",
+        "published": [
+          14.2,
+          "E"
+        ],
+        "head_off": [
+          15.2,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_4011800633516",
+        "name": "קורני חטיפי דגנים שוקולד מריר 58% קקאו",
+        "published": [
+          16.8,
+          "E"
+        ],
+        "head_off": [
+          16.3,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020015174",
+        "name": "חטיפי דגנים פיטנס שוקולד מריר שישייה",
+        "published": [
+          27.8,
+          "E"
+        ],
+        "head_off": [
+          26.7,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020018908",
+        "name": "חטיפי דגנים פיטנס קרם ועוגיות שישייה",
+        "published": [
+          24.2,
+          "E"
+        ],
+        "head_off": [
+          24.9,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020020710",
+        "name": "חטיף דגנים שוקו וניל נסטלה שישייה",
+        "published": [
+          26.6,
+          "E"
+        ],
+        "head_off": [
+          28.6,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020022325",
+        "name": "סיני מיניס חטיף בטעם קינמון על שכבת קרם חלב 6 יח'",
+        "published": [
+          25.2,
+          "E"
+        ],
+        "head_off": [
+          26.3,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020029669",
+        "name": "חטיף דגנים עם פירות יער",
+        "published": [
+          23.5,
+          "E"
+        ],
+        "head_off": [
+          23.6,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020034021",
+        "name": "חטיפי דגנים פיטנס שוקולד בננה שישייה",
+        "published": [
+          23.5,
+          "E"
+        ],
+        "head_off": [
+          25.6,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020039590",
+        "name": "חטיפי דגנים פיטנס קלאסי שישייה",
+        "published": [
+          44.6,
+          "D"
+        ],
+        "head_off": [
+          47.6,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_5900020039620",
+        "name": "חטיפי דגנים פיטנס שקדים ודבש שישייה",
+        "published": [
+          43.4,
+          "D"
+        ],
+        "head_off": [
+          46.1,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_7290011498870",
+        "name": "חטיף תמרים במילוי חמאת שקדים",
+        "published": [
+          65,
+          "C"
+        ],
+        "head_off": [
+          70,
+          "B"
+        ]
+      },
+      {
+        "pid": "bsip1_7290011498894",
+        "name": "חטיף תמרים במילוי חמאת בוטנים",
+        "published": [
+          55.0,
+          "C"
+        ],
+        "head_off": [
+          63.0,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_7290011498948",
+        "name": "חטיף תמרים בציפוי שוקולד 100% קקאו",
+        "published": [
+          55.8,
+          "C"
+        ],
+        "head_off": [
+          56.7,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_7290014525290",
+        "name": "מרבה סלים דליס קריספי תות 125 גר",
+        "published": [
+          27.4,
+          "E"
+        ],
+        "head_off": [
+          30.7,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290014525306",
+        "name": "מרבה סלים דליס קריספי אוכמניות 125 גר",
+        "published": [
+          29.8,
+          "E"
+        ],
+        "head_off": [
+          31.8,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290107646147",
+        "name": "חטיף דגנים שוגי שישייה 156 גרם",
+        "published": [
+          16.1,
+          "E"
+        ],
+        "head_off": [
+          15.5,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290107646154",
+        "name": "קוקומן חטיף פצפוצי דגנים בטעם שוקולד 6 יח'",
+        "published": [
+          38.2,
+          "E"
+        ],
+        "head_off": [
+          40.1,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_7290107646826",
+        "name": "חטיף דגנים שוגי שוקו שישייה 156 גרם",
+        "published": [
+          16.3,
+          "E"
+        ],
+        "head_off": [
+          15.4,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290107947466",
+        "name": "חטיף דגנים מצופה שוקולד עם עוגיות בטעם קרמל וקרם נוגט טעמי",
+        "published": [
+          17.1,
+          "E"
+        ],
+        "head_off": [
+          16.6,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290107947480",
+        "name": "חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה",
+        "published": [
+          17.2,
+          "E"
+        ],
+        "head_off": [
+          17.8,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290110563851",
+        "name": "חטיף דגנים עם שברי אגוזים ושוקולד חלב בטר שישייה",
+        "published": [
+          29.2,
+          "E"
+        ],
+        "head_off": [
+          31.0,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290111936784",
+        "name": "פרי מארז 5 חטיפים תמרים ואגוזי לוז כשלפ",
+        "published": [
+          41.8,
+          "D"
+        ],
+        "head_off": [
+          43.8,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_7290111937262",
+        "name": "פרי מארז חטיפי תמרים ושברי קקאו 5+1",
+        "published": [
+          40.4,
+          "D"
+        ],
+        "head_off": [
+          42.0,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_7290118427858",
+        "name": "פיטנס בר גרנולה שוקולד מריר",
+        "published": [
+          17.1,
+          "E"
+        ],
+        "head_off": [
+          17.7,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_7290118427896",
+        "name": "חטיפי פיטנס שיבולת שועל דבש 5*38 גרם",
+        "published": [
+          38.7,
+          "E"
+        ],
+        "head_off": [
+          39.8,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8410076602251",
+        "name": "קראנצ'י חטיף שיבולת שועל עם חתיכות בטעם שוקולד חמישייה.",
+        "published": [
+          43.9,
+          "D"
+        ],
+        "head_off": [
+          45.9,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8410076610379",
+        "name": "נייצר וואלי פרוטאין בוטנים ושבבי שוקולד רביעייה",
+        "published": [
+          45.5,
+          "D"
+        ],
+        "head_off": [
+          47.7,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8410076610386",
+        "name": "נייצר וואלי פרוטאין בוטנים בציפוי קרמל מלוח רביעייה",
+        "published": [
+          46.1,
+          "D"
+        ],
+        "head_off": [
+          46.2,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8410076610492",
+        "name": "נייצ'ר וואלי צ'ואי בוטנים קלויים חמישייה",
+        "published": [
+          36.8,
+          "E"
+        ],
+        "head_off": [
+          40.0,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8410076610508",
+        "name": "נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישייה",
+        "published": [
+          37.2,
+          "E"
+        ],
+        "head_off": [
+          40.5,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207206488",
+        "name": "חטיף דגנים מלאים מצופה שוקולד חלב",
+        "published": [
+          35.7,
+          "E"
+        ],
+        "head_off": [
+          39.2,
+          "D"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207206495",
+        "name": "מרבה סלים דליס שוקולד מריר חדש",
+        "published": [
+          56.7,
+          "C"
+        ],
+        "head_off": [
+          60.4,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207206501",
+        "name": "סלים דליס חטיף רב דגנים מצופה שוקולד לבן בטעם יוגורט",
+        "published": [
+          23.0,
+          "E"
+        ],
+        "head_off": [
+          26.0,
+          "E"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207207362",
+        "name": "מרבה סלים דליס שוקולד לבן חדש",
+        "published": [
+          50.0,
+          "D"
+        ],
+        "head_off": [
+          53.5,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207208260",
+        "name": "מרבה סלים דליס שוקולד חלב ללא גלוטן חדש",
+        "published": [
+          56.7,
+          "C"
+        ],
+        "head_off": [
+          59.6,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207208680",
+        "name": "מרבה סלים דליס לילדים עם שוקולד חלב חדש",
+        "published": [
+          50.0,
+          "D"
+        ],
+        "head_off": [
+          52.4,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207209885",
+        "name": "מרבה סלים דליס מהדורה מיוחדת שוקולד חלב",
+        "published": [
+          49.9,
+          "D"
+        ],
+        "head_off": [
+          53.4,
+          "C"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207210287",
+        "name": "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+        "published": [
+          55.5,
+          "C"
+        ],
+        "head_off": [
+          69.5,
+          "B"
+        ]
+      },
+      {
+        "pid": "bsip1_8423207210928",
+        "name": "מרבה סלים טופינג אגוזי לוז",
+        "published": [
+          48.8,
+          "D"
+        ],
+        "head_off": [
+          52.5,
+          "C"
+        ]
+      }
+    ]
+  },
+  "frozen_invariants": {
+    "snk001": {
+      "pid": "bsip1_7290011498870",
+      "expected": "70/B",
+      "head": "70/B",
+      "status": "HELD"
+    },
+    "no_snackbar_A": {
+      "products_ge_80": [],
+      "status": "HELD"
+    }
+  },
+  "ceiling_crowding_editorial": {
+    "pid": "bsip1_8423207210287",
+    "name": "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+    "score": 69.5,
+    "grade": "B",
+    "flagged": true
+  },
+  "top10_head_off": [
+    {
+      "pid": "bsip1_7290011498870",
+      "name": "חטיף תמרים במילוי חמאת שקדים",
+      "score": 70,
+      "grade": "B"
+    },
+    {
+      "pid": "bsip1_8423207210287",
+      "name": "מרבה סלים דליס שוקולד לבן בטעם יוגורט",
+      "score": 69.5,
+      "grade": "B"
+    },
+    {
+      "pid": "bsip1_7290011498894",
+      "name": "חטיף תמרים במילוי חמאת בוטנים",
+      "score": 63.0,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_8423207206495",
+      "name": "מרבה סלים דליס שוקולד מריר חדש",
+      "score": 60.4,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_8423207208260",
+      "name": "מרבה סלים דליס שוקולד חלב ללא גלוטן חדש",
+      "score": 59.6,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_7290011498948",
+      "name": "חטיף תמרים בציפוי שוקולד 100% קקאו",
+      "score": 56.7,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_16000548404",
+      "name": "קראנצ'י חטיף שיבולת שועל עם דבש חמישייה",
+      "score": 55.1,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_16000548503",
+      "name": "קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה",
+      "score": 54.9,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_8423207207362",
+      "name": "מרבה סלים דליס שוקולד לבן חדש",
+      "score": 53.5,
+      "grade": "C"
+    },
+    {
+      "pid": "bsip1_8423207209885",
+      "name": "מרבה סלים דליס מהדורה מיוחדת שוקולד חלב",
+      "score": 53.4,
+      "grade": "C"
+    }
+  ],
+  "ships_nothing": true,
+  "notes": "Rescore-only artifact for owner + Nutrition sign-off. No frontend JSON, no engine edit. BARI_GLASSBOX_W5 set but not in engine — confirmed no effect."
+}

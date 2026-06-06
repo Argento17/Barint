@@ -50,7 +50,7 @@ These two trees do not cross. The data workspace produces JSON outputs that the 
     validation/         Golden product suite, edge case catalog, failure modes
     v3_architecture/    V3 universal core + archetype system (design phase)
   frontend/           Frontend spec documents (canonical reference for Cursor builds)
-    comparison_template_v1.md       Frozen page architecture (4 sections)
+    comparison-template-standard-v1.md  Canonical comparison template (frozen page architecture, 4 sections)
     component_build_sequence_v1.md  Build order with hard gates
     cursor_handoff_protocol_v1.md   Session startup protocol for Cursor
     comparison_view_model_v1.md     Backend→UI data contract

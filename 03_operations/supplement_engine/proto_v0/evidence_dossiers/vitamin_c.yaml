@@ -1,0 +1,237 @@
+# evidence_dossiers/vitamin_c.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6 self-sign (D7 rides the methodology co-sign for this reference build).
+# Vitamin C is a CLEAN single-active coverage dossier (L1 shelf 3.0% / 11 SKUs). Classic structure/function-claim test:
+# the shelf sells "immune support" vague language; the studied endpoints are narrow (cold duration, deficiency/scurvy).
+active:
+  canonical_name: "vitamin C (ascorbic acid)"
+  pubchem_cid: 54670067              # L-ascorbic acid
+  molecular_formula: "C6H8O6"
+  molecular_weight: 176.12
+  synonyms: ["vitamin C", "ascorbic acid", "L-ascorbic acid", "ascorbate", "50-81-7"]
+  category: "vitamin"
+  unit_conversion: "n/a — dosed as mg ascorbic acid directly. Mineral-ascorbate salts (sodium/calcium ascorbate) deliver slightly less ascorbic acid per mg compound; out of MVP precision scope (note)."
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing vitamin C deficiency (scurvy)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:37795755", "PMID:29099763"]
+    rationale: "Ascorbic acid corrects/prevents scurvy — settled, mechanistic + clinical. This is the deficiency-correction (dose->status) claim; it is Strong but is NOT a general 'wellness' benefit and must not inherit upward to immune/cold claims."
+    tier_rationale: "RATIFIED (D6). Deficiency correction is the settled endpoint. Claim-specific: Strong attaches ONLY to repletion/scurvy, never to the 'immune support' marketing halo (tiered separately below per §2.1)."
+  - claim: "common cold — reduced duration/severity with regular supplementation"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:23440782", "PMID:36415746"]
+    rationale: "Cochrane (23440782, Hemila & Chalker) — regular prophylactic vitamin C does NOT prevent colds in the general population but consistently produces a small reduction in cold DURATION (~8% adults / ~14% children); therapeutic (post-onset) dosing is not reliably effective. Consistent-but-modest, endpoint-specific -> Moderate."
+    tier_rationale: >
+      RATIFIED (D6) at Moderate. The duration-reduction effect is replicated across a large Cochrane base (consistent
+      RCT evidence with a small effect size and an important population limitation — no prevention benefit in the general
+      population) = textbook Moderate (§2.1). NOT Strong (no cold *prevention* in the general population; effect is small)
+      and NOT Weak (the duration effect is real and meta-analytically replicated). Important: this Moderate is the
+      'regular-supplementation duration' claim only; a 'prevents colds' label is a claim-substance gap (Honesty, §2.4).
+  - claim: "broad 'immune system support' (general wellness immune claim)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:29099763", "PMID:23440782"]
+    rationale: "Vitamin C contributes to normal immune function (EFSA-recognized structure/function relationship) but a broad 'boosts immunity / fewer infections in replete adults' benefit is not supported beyond the narrow cold-duration endpoint. Recognized physiological role -> maps (see umbrella) but the broad benefit claim itself is Weak."
+    tier_rationale: "RATIFIED (D6) Weak. EFSA recognizes vitamin C's contribution to normal immune function (a structure/function relationship, not a disease-prevention claim) — enough to MAP an 'immune support' label, but the broad consumer benefit is thin beyond cold-duration. The cold-duration Moderate is the best mapped tier; this broad Weak is the fallback."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 200                 # mg/day — the dose at/above which the Cochrane cold-duration effect is observed; also ~saturates tissue
+  typical: 500                       # mg/day — common supplement dose
+  upper_studied: 1000                # mg/day — common high-dose label; above this little added benefit, rising GI tolerance
+  unit: "mg"
+  market_range_dsld: [250, 1000]     # DSLD: 500 and 1000 mg labels dominant; 250 mg in multis. NEEDS-ENV-VERIFY exact prevalence.
+  dose_citations: ["PMID:23440782"]
+  elemental_fraction: null
+  dose_note: "Absorption fraction falls at high single doses (saturable transport); doses >>1000 mg are largely excreted — 'more is not better' (hands to Safety §2.5 GI-tolerance note, not a toxicity veto)."
+
+forms:
+  preferred: ["ascorbic acid", "mineral ascorbates (sodium/calcium ascorbate — buffered, equivalent bioavailability)"]
+  acceptable: ["ascorbic acid with bioflavonoids (no proven bioavailability superiority; not penalized)", "liposomal vitamin C (marketed-premium; superiority evidence thin — acceptable, not preferred)"]
+  poor: []
+  rationale: "Vitamin C bioavailability is high and largely form-independent at supplement doses; plain ascorbic acid is the studied form. Buffered mineral ascorbates are equivalent. Liposomal/'enhanced' forms carry a premium-marketing claim without robust comparative superiority data -> acceptable, not preferred (and a superiority claim at premium price is an Honesty watch, §2.4). Form is NOT the discriminating axis for vitamin C."
+  citations: ["PMID:29099763"]
+  form_ladder_confidence: "medium — form largely non-discriminating; liposomal-superiority is the only contested rung"
+
+safety:
+  upper_limit_UL: 2000               # mg/day, adults — NIH ODS / IOM. Basis = GI tolerance (osmotic diarrhea), a REVERSIBLE threshold.
+  ul_note_threshold: 2000            # same number; classified as a NOTE line, not a toxicity veto (see classification)
+  ul_basis: "mg/day, adults. The 2000 mg UL is set on REVERSIBLE GI tolerance (osmotic diarrhea) + a theoretical oxalate/kidney-stone concern in predisposed individuals — NOT systemic toxicity. Per §2.5 veto-vs-note rule this is a graded Safety NOTE, not a hard veto."
+  ul_source: "NIH ODS Vitamin C fact sheet / US IOM-FNB (2000 mg/day adults)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 veto-vs-note classification): the 2000 mg/day UL is a REVERSIBLE GI-TOLERANCE ceiling (osmotic
+    diarrhea), structurally like magnesium's EFSA 250 — self-limiting, not toxicity. It is therefore classified as a
+    Safety NOTE line (graded soft penalty above 2000 mg/day labeled), NOT a hard veto. There is no systemic-toxicity
+    UL for vitamin C in healthy adults. Caveat: oxalate-stone-predisposed / hemochromatosis / G6PD individuals are a
+    contraindication-context note (reader context, SIE Invariant 1), never a score input. NEEDS-ENV-VERIFY the 2000 mg
+    primary value.
+  ul_externally_maintained: true
+  risky_flags: ["very high chronic doses + iron co-supplementation enhance iron absorption (context note for hemochromatosis); not a general-population veto"]
+  notes: "No toxicity veto in healthy adults. Above ~2000 mg/day = reversible GI tolerance -> Safety NOTE band. Megadose IV vitamin C (oncology adjunct) is a clinical/Rx context, out of consumer-SKU scope."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Vitamin C UL=2000 mg adults", "PMID:37795755"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — claim-resolution membrane. Pre-authored + cited, NEVER inferred.
+  # Real shelf says "immune support" / "antioxidant" / "skin/collagen health". Exact key-lookup; best mapped tier drives Evidence.
+  mappings:
+  - phrase: "immune support"
+    resolves_to: "common cold — reduced duration/severity with regular supplementation"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23440782", "PMID:36415746"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at MODERATE (BEST mapped tier). 'Immune support' is a recognized physiological correlate of vitamin C's
+      studied immune endpoint. The strongest cited studied endpoint under that umbrella is the Cochrane cold-DURATION
+      reduction (Moderate) — not the broad 'fewer infections' benefit (Weak), and crucially NOT cold *prevention*
+      (which is null in the general population). So 'immune support' resolves to Moderate via the duration endpoint;
+      a label that escalates to 'prevents colds / boosts immunity' triggers the §2.4 over-promise catch.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "antioxidant"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK. Vitamin C is a recognized dietary antioxidant (mechanistic + EFSA structure/function recognition),
+      so 'antioxidant' maps to a recognized physiological role — but a consumer *benefit* from antioxidant action
+      (disease/aging outcomes) is not a Strong/Moderate studied endpoint. Maps (recognized + cited) but held Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "skin"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK (collagen-synthesis cofactor route). Vitamin C is a required cofactor for collagen hydroxylation —
+      a recognized physiological role — so a 'skin / collagen' structure/function phrase maps to a recognized correlate.
+      But oral-supplement skin-OUTCOME evidence in replete adults is thin/observational; resolved to the broad Weak
+      endpoint, not a higher tier. (Cofactor role is recognized -> maps; benefit is Weak.) Cited to the deficiency/role base.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "energy"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      DOES NOT MAP. 'Energy' on a vitamin C label has no recognized studied consumer-energy endpoint for ascorbic acid
+      in replete adults — vitamin C's fatigue evidence is deficiency-state only. No recognized cited correlate for a
+      generic 'energy' benefit -> no mapping (moderate-posture refusal, recorded not silently dropped).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # Vitamin C has a rich EFSA Art.13 register (immune, collagen, tiredness, iron absorption, antioxidant/oxidative-stress).
+  # Hebrew aliases routed to the SAME tiers as the English keys above (cited pointers, no new tiers).
+  - phrase: "חיזוק חיסוני"             # "immune boost/support" (Hebrew) — EFSA "normal function of the immune system"
+    resolves_to: "common cold — reduced duration/severity with regular supplementation"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23440782", "PMID:36415746"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at MODERATE (BEST). EFSA Art.13 authorizes "vitamin C contributes to the normal function of the immune
+      system" (EFSA Q-2009-00226 / Reg (EU) 432/2012). Hebrew alias of the English "immune support" key, routed to the
+      same best cited endpoint (Cochrane cold-duration = Moderate). A 'מונע הצטננות / prevents colds' escalation fires
+      the §2.4 over-promise catch.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מערכת החיסון"             # "the immune system" (Hebrew) — common label phrasing
+    resolves_to: "common cold — reduced duration/severity with regular supplementation"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23440782", "PMID:36415746"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at MODERATE. The plain Hebrew 'מערכת החיסון/immune system' phrasing. Same EFSA Art.13 immune basis and
+      routing as 'חיזוק חיסוני'.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "נוגד חמצון"               # "antioxidant" (Hebrew) — EFSA "protection of cells from oxidative stress"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "vitamin C contributes to the protection of cells from oxidative stress"
+      (EFSA Q-2009-00230). Hebrew alias of the English "antioxidant" key — recognized role, consumer benefit Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עור"                      # "skin" (Hebrew) — EFSA "normal collagen formation for normal function of skin"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK (collagen-cofactor route). EFSA Art.13 authorizes "vitamin C contributes to normal collagen
+      formation for the normal function of skin" (EFSA Q-2009-00230). Hebrew alias of the English "skin" key — recognized
+      cofactor role maps, oral skin-OUTCOME benefit thin → Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "ספיגת ברזל"              # "iron absorption" (Hebrew) — EFSA "increases iron absorption"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "vitamin C increases iron absorption" (EFSA Q-2008-1325) — a recognized,
+      permitted physiological correlate, so 'ספיגת ברזל/iron absorption' MAPS (it is a genuine health-relationship
+      claim, NOT a manufacturing 'better absorption of the product' marketing phrase — contrast the generic 'ספיגה
+      משופרת' refusal pattern). Held at Weak: it is a recognized cofactor relationship but a consumer benefit endpoint
+      is not Strong/Moderate-tiered in this dossier; routed to the broad Weak endpoint as the nearest tiered correlate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עייפות"                   # "fatigue" (Hebrew) — EFSA "reduction of tiredness and fatigue"
+    resolves_to: "broad 'immune system support' (general wellness immune claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29099763"]
+    supp_ev: "SUPP-EV-007"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "vitamin C contributes to the reduction of tiredness and fatigue"
+      (EFSA Q-2009-00231) — so UNLIKE the generic English "energy" key (kept null above as a non-EFSA hand-wave),
+      the SPECIFIC EFSA fatigue claim is a recognized + permitted correlate and MAPS. Held at Weak (recognized
+      relationship; consumer benefit in replete adults thin), routed to the nearest tiered endpoint. NOTE the
+      deliberate asymmetry: 'energy' (vague, no EFSA claim) = null; 'עייפות/fatigue' (exact EFSA Art.13 claim) = Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Vitamin C label "supports immune health / antioxidant" resolves: immune->cold-duration=Moderate (maps, BEST),
+    antioxidant->Weak (maps), skin->Weak (maps, cofactor route), energy->null (does NOT map). Best plausibly-mapped
+    tier = MODERATE. A vague immune-support vitamin C is NOT Insufficient. A 'prevents colds / boosts immunity' escalation
+    fires the §2.4 over-promise catch (resolves to the same real tier + Honesty debit).
+
+label_claims_common: ["immune support", "antioxidant", "skin health", "collagen", "energy", "high potency"]
+necessity_context: "Dietary vitamin; deficiency (scurvy) is rare in developed populations. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "High chronic doses: caution in oxalate kidney-stone history, hemochromatosis, G6PD deficiency. Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-007"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 self-sign (reference build); Product D7 rides methodology co-sign
+  cosign_note: "Tiers: scurvy/repletion Strong, cold-duration Moderate, broad immune Weak. UL 2000 mg = reversible GI-tolerance NOTE (not a veto). Umbrella: immune->Moderate (best), antioxidant/skin->Weak, energy->null. All candidate / should_affect_score_now:false. Per-number Product gate applies only if/when a value moves a published score."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03) — settled active; UL re-sync annual"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (2000 mg/day adults)"
+      last_resync: "2026-06-03"
+      resync_note: "stable; reversible GI-tolerance basis. NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — added Hebrew + EFSA Art.13 claim vocab (candidate). MAPPING: חיזוק חיסוני/מערכת החיסון→cold-duration(Moderate, EFSA Q-2009-00226 immune); נוגד חמצון→Weak(EFSA Q-2009-00230 oxidative-stress); עור→Weak(EFSA Q-2009-00230 collagen/skin); ספיגת ברזל→Weak(EFSA Q-2008-1325 iron absorption — a HEALTH relationship, maps); עייפות→Weak(EFSA Q-2009-00231 tiredness/fatigue — note: vague 'energy' stays null, specific EFSA 'fatigue' maps)."
+      evidence: "EFSA Article 13 register (Reg (EU) 432/2012) + reused dossier PMIDs (cited pointers, no new tiers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-007"
+      score_moving: "no — all candidate / should_affect_score_now:false; aliases to existing tiers. Hebrew keys inert until engine tokenizer is Hebrew-aware (TASK-171K return)."

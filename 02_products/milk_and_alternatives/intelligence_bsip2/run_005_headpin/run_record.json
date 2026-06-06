@@ -1,0 +1,254 @@
+{
+  "run_id": "run_005_headpin",
+  "task": "TASK-180A",
+  "created_utc": "2026-06-04T04:55:17Z",
+  "engine_baseline_tag": "engine-baseline-2026-06-04",
+  "engine_baseline_commit": "f075d9e077cba3db6e50f3b85eff23a9af352992",
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+  "published_compared_against": "run_004_recalibrated",
+  "published_count": 20,
+  "head_scored_count": 20,
+  "reproduction": {
+    "exact_match": 13,
+    "total": 20,
+    "rate": 0.65
+  },
+  "delta_classification": {
+    "grade_affecting": 3,
+    "grade_flips": 1,
+    "drift_ge_2pt_same_grade": 2,
+    "cosmetic_lt_2pt": 4,
+    "exact_match": 13,
+    "missing_head": 0
+  },
+  "frozen_invariant_milk_top_85A": {
+    "all_held": true,
+    "trio": [
+      {
+        "product_id": "bsip1_7290000051352",
+        "label": "whole 3.4% (taste of old days)",
+        "expected": "85/A",
+        "head": "85/A",
+        "status": "HELD"
+      },
+      {
+        "product_id": "bsip1_7290019790259",
+        "label": "natural 4%",
+        "expected": "85/A",
+        "head": "85/A",
+        "status": "HELD"
+      },
+      {
+        "product_id": "bsip1_7290102392094",
+        "label": "goat milk",
+        "expected": "85/A",
+        "head": "85/A",
+        "status": "HELD"
+      }
+    ]
+  },
+  "delta_table": [
+    {
+      "product_id": "bsip1_5411188112709",
+      "name_he": "אלפרו שקדים ללא סוכר",
+      "pub_score": 45.3,
+      "pub_grade": "D",
+      "head_score": 47.1,
+      "head_grade": "D",
+      "delta": 1.8,
+      "class": "cosmetic"
+    },
+    {
+      "product_id": "bsip1_5411188124689",
+      "name_he": "אלפרו שיבולת שועל ללא סוכר",
+      "pub_score": 51.0,
+      "pub_grade": "C",
+      "head_score": 51.0,
+      "head_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_5411188300328",
+      "name_he": "אלפרו שוקו משקה סויה",
+      "pub_score": 38.1,
+      "pub_grade": "D",
+      "head_score": 34.5,
+      "head_grade": "E",
+      "delta": -3.6,
+      "class": "GRADE_FLIP"
+    },
+    {
+      "product_id": "bsip1_7290000051352",
+      "name_he": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+      "pub_score": 85,
+      "pub_grade": "A",
+      "head_score": 85,
+      "head_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290014760141",
+      "name_he": "משקה שקדים",
+      "pub_score": 52.7,
+      "pub_grade": "C",
+      "head_score": 54.5,
+      "head_grade": "C",
+      "delta": 1.8,
+      "class": "cosmetic"
+    },
+    {
+      "product_id": "bsip1_7290019790259",
+      "name_he": "חלב טבעי 4% 1 ליטר",
+      "pub_score": 85,
+      "pub_grade": "A",
+      "head_score": 85,
+      "head_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290102392094",
+      "name_he": "חלב עיזים בקרטון 1 ליטר",
+      "pub_score": 85,
+      "pub_grade": "A",
+      "head_score": 85,
+      "head_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290107932134",
+      "name_he": "חלב בבקבוק 1% מועשר- מהדרין",
+      "pub_score": 60.2,
+      "pub_grade": "C",
+      "head_score": 56.6,
+      "head_grade": "C",
+      "delta": -3.6,
+      "class": "DRIFT>=2"
+    },
+    {
+      "product_id": "bsip1_7290110324773",
+      "name_he": "משקה חלב גו 27 גרם חלבון 2% בטעם וניל 340 מ\"ל",
+      "pub_score": 41.4,
+      "pub_grade": "D",
+      "head_score": 40.4,
+      "head_grade": "D",
+      "delta": -1.0,
+      "class": "cosmetic"
+    },
+    {
+      "product_id": "bsip1_7290110324926",
+      "name_he": "משקה סויה ללא תוספת סוכר",
+      "pub_score": 58.1,
+      "pub_grade": "C",
+      "head_score": 58.1,
+      "head_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290110325619",
+      "name_he": "משקה שיבולת שועל",
+      "pub_score": 48.5,
+      "pub_grade": "D",
+      "head_score": 48.5,
+      "head_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290114313285",
+      "name_he": "מולר פרוטאין משקה חלבון בטעם בננה 25גרם חלבון 0%שומן",
+      "pub_score": 49.6,
+      "pub_grade": "D",
+      "head_score": 46.5,
+      "head_grade": "D",
+      "delta": -3.1,
+      "class": "DRIFT>=2"
+    },
+    {
+      "product_id": "bsip1_7290114313865",
+      "name_he": "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+      "pub_score": 74.1,
+      "pub_grade": "B",
+      "head_score": 74.1,
+      "head_grade": "B",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290116936116",
+      "name_he": "משקה סויה ללא סוכרים 1 ליטר",
+      "pub_score": 67.0,
+      "pub_grade": "B",
+      "head_score": 67.0,
+      "head_grade": "B",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290119385560",
+      "name_he": "משקה סויה בריסטה אלפרו 500 מ\"ל",
+      "pub_score": 48.7,
+      "pub_grade": "D",
+      "head_score": 48.4,
+      "head_grade": "D",
+      "delta": -0.3,
+      "class": "cosmetic"
+    },
+    {
+      "product_id": "bsip1_7394376619939",
+      "name_he": "משקה בריסטה שיבולת שועל",
+      "pub_score": 50.7,
+      "pub_grade": "C",
+      "head_score": 50.7,
+      "head_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7394376620904",
+      "name_he": "משקה שיבולת שועל ללא סוכר",
+      "pub_score": 51.9,
+      "pub_grade": "C",
+      "head_score": 51.9,
+      "head_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7394376621451",
+      "name_he": "משקה בריסטה שיבולת שועל להקצפה",
+      "pub_score": 50.7,
+      "pub_grade": "C",
+      "head_score": 50.7,
+      "head_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_8000215204219",
+      "name_he": "משקה אורז אורגני",
+      "pub_score": 49.4,
+      "pub_grade": "D",
+      "head_score": 49.4,
+      "head_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_8000215204554",
+      "name_he": "משקה אורז קוקוס אורגני",
+      "pub_score": 49.1,
+      "pub_grade": "D",
+      "head_score": 49.1,
+      "head_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    }
+  ],
+  "ships_nothing": true,
+  "notes": "Rescore-only artifact for owner sign-off. No frontend JSON, no engine edit."
+}

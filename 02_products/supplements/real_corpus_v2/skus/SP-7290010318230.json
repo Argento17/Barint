@@ -1,0 +1,189 @@
+{
+  "sku_id": "SP-7290010318230",
+  "barcode": "7290010318230",
+  "name_he": "סופר אלספה אומגה 3 כשר 120 כמוסות",
+  "brand_bucket": "altman",
+  "engine_active": "omega3",
+  "price_ils": 196.9,
+  "resolution": {
+    "matched": true,
+    "method": "brand_active_dose",
+    "source": "altman",
+    "confidence": 0.75,
+    "ambiguous": false,
+    "reason": "brand_active_dose match via altman"
+  },
+  "verification_status": "candidate",
+  "outcome": "scored",
+  "panel": {
+    "url": "https://www.altman.co.il/shop/omega3/adults-omega3-3/alsepa-210/",
+    "source": "altman",
+    "brand": "אלטמן",
+    "product_name": "אלספה אומגה 3",
+    "barcode": "7290010318636",
+    "serving_size": "1 כמוסה",
+    "servings_per_container": "210",
+    "ingredient_list_raw": "שמן דגי מי מעמקים המכיל, ג'לטין, חומר הלחה: גליצרול, מים, נוגד חמצון: די-אלפא טוקופרול (סויה)",
+    "primary_claim": "תומך בבריאות כללית ובמערכת הלב",
+    "proprietary_blend": null,
+    "actives": [
+      {
+        "ingredient": "EPA+DHA combined",
+        "amount": 600.0,
+        "unit": "mg",
+        "form": "alpha-tocopherol",
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "EPA",
+        "amount": 300.0,
+        "unit": "mg",
+        "form": "alpha-tocopherol",
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "DHA",
+        "amount": 300.0,
+        "unit": "mg",
+        "form": "alpha-tocopherol",
+        "form_raw": null,
+        "active_slug": "omega3"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "7290010318636",
+      "source_url": "https://www.altman.co.il/shop/omega3/adults-omega3-3/alsepa-210/",
+      "fetched_at": "2026-06-03T13:56:33Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "claim_note": "claim curated from on-label HE: 'תומך בבריאות כללית ובמערכת הלב'",
+  "lossy": [],
+  "bsip0s_label": {
+    "product_name": "אלספה אומגה 3",
+    "primary_claim_fed": "heart health",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA+DHA combined",
+        "quantity": 600.0,
+        "unit": "mg",
+        "form": "alpha-tocopherol",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "blend": 49.5,
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:56:33.958257Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290010318230",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "heart health",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 49.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

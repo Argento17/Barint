@@ -1,0 +1,184 @@
+{
+  "sku_id": "REAL-IL-ZINC-SOLGAR-0033984037250",
+  "verification_status": "candidate",
+  "should_affect_score_now": false,
+  "israeli_shelf": {
+    "barcode": "0033984037250",
+    "name_he": "סולגר אבץ פיקולינט100 טבליות",
+    "brand": "Solgar (global)",
+    "importer": "אמברוזיה/סולגר",
+    "price_ils": null,
+    "chain": "super_pharm",
+    "active_slug": "zinc"
+  },
+  "iherb_resolution": {
+    "url": "https://www.iherb.com/pr/solgar-zinc-picolinate-22-mg-100-tablets/10035",
+    "resolve_status": "barcode_match",
+    "note": "iHerb panel barcode 033984037250 == SP 0033984037250 (exact GTIN12/13).",
+    "url_resolved": true,
+    "panel_extracted": true
+  },
+  "panel": {
+    "url": "https://www.iherb.com/pr/solgar-zinc-picolinate-22-mg-100-tablets/10035",
+    "brand": "Solgar",
+    "product_name": "Zinc Picolinate",
+    "barcode": "033984037250",
+    "serving_size": "1 Tablet",
+    "servings_per_container": "100",
+    "proprietary_blend": false,
+    "primary_claim": "Immune support; antioxidant support",
+    "actives": [
+      {
+        "ingredient": "Zinc (as zinc picolinate)",
+        "amount": 22.0,
+        "unit": "mg",
+        "form": "Zinc Picolinate",
+        "form_from_name": false
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "iherb.com",
+      "source_id": "https://www.iherb.com/pr/solgar-zinc-picolinate-22-mg-100-tablets/10035",
+      "source_url": "https://www.iherb.com/pr/solgar-zinc-picolinate-22-mg-100-tablets/10035",
+      "fetched_at": "2026-06-03T13:16:06Z",
+      "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+      "verification_status": "candidate"
+    }
+  },
+  "bridge": {
+    "matched": true,
+    "method": "barcode",
+    "confidence": 1.0,
+    "ambiguous": false,
+    "notes": "exact barcode/GTIN match"
+  },
+  "bsip0s_label": {
+    "product_name": "Zinc Picolinate",
+    "primary_claim_raw_on_label": "Immune support; antioxidant support",
+    "primary_claim_fed_to_engine": "immune support",
+    "actives": [
+      {
+        "active_slug": "zinc",
+        "display_name": "Zinc (as zinc picolinate)",
+        "quantity": 22,
+        "unit": "mg",
+        "form": "zinc picolinate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 1.0
+  },
+  "engine_output": {
+    "claim_matched": "broad 'immune system support' (daily oral zinc, general wellness)",
+    "primary_on_label_claim_raw": "Immune support; antioxidant support",
+    "score": 68.4,
+    "grade": "B",
+    "blend": 68.4,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 55.5,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "missing_or_lossy_fields": [],
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:16:06.428929Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "REAL-IL-ZINC-SOLGAR-0033984037250",
+    "active": "zinc",
+    "on_label_claim": "immune support",
+    "claim_matched": "broad 'immune system support' (daily oral zinc, general wellness)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "broad 'immune system support' (daily oral zinc, general wellness)",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29186856",
+        "PMID:23775705"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 55.5,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 68.4,
+    "dossier_facts_used": [
+      {
+        "field": "claims['broad 'immune system support' (daily oral zinc, general wellness)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-008"
+      }
+    ],
+    "final": {
+      "score": 68.4,
+      "grade": "B"
+    }
+  },
+  "provenance": {
+    "source": "iherb.com",
+    "source_url": "https://www.iherb.com/pr/solgar-zinc-picolinate-22-mg-100-tablets/10035",
+    "fetched_at": "2026-06-03T00:00:00Z",
+    "client_version": "firecrawl_scrape(json)/live-2026-06-03 + iHerb PDP",
+    "verification_status": "candidate",
+    "should_affect_score_now": false,
+    "resolve_status": "barcode_match",
+    "resolve_note": "iHerb panel barcode 033984037250 == SP 0033984037250 (exact GTIN12/13).",
+    "admission_note": "candidate only; live thin-proof of acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score."
+  }
+}

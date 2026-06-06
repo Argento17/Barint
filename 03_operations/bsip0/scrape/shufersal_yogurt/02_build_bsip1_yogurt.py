@@ -28,6 +28,15 @@ from datetime import datetime, timezone
 sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip1\core")))
 from ingredient_enricher import enrich as enrich_product
 
+# Canonical BSIP0 numeric extraction (TASK-192 / EV-046) — single shared path so the
+# "פחות מ N" handling + total_fat >= saturated_fat invariant never drift per-category.
+sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\_shared")))
+from bsip0_nutrition import (  # noqa: E402
+    parse_num as _shared_parse_num,
+    parse_sodium_mg as _shared_parse_sodium,
+    parse_nutrition_numeric as _shared_parse_nutrition,
+)
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
@@ -51,43 +60,18 @@ YOGURT_RE = re.compile(
     r"יוגורט|yog[hu]?urt|יווני|greek|סקיר|skyr|אקטיביה|activia|"
     r"\bביו\b|\bbio\b|\bפרו\b|\bpro\b|\bgo\b|froop|פרופ|מולר|m[uü]ller", re.I)
 
-_NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
-
-
+# TASK-192 / EV-046: delegate to the canonical shared path (byte-identical for clean
+# panels; adds the "פחות מ N" bound flag + total_fat >= saturated_fat invariant).
 def _parse_num(raw):
-    if not raw:
-        return None
-    m = _NUM_RE.search(str(raw).replace(",", "."))
-    if m:
-        try:
-            return float(m.group(1))
-        except ValueError:
-            pass
-    return None
+    return _shared_parse_num(raw)
 
 
 def _parse_sodium(raw):
-    val = _parse_num(raw)
-    if val is None:
-        return None
-    if "mg" in str(raw).lower() or val > 10:
-        return val
-    return val * 1000
+    return _shared_parse_sodium(raw)
 
 
 def _parse_nutrition(n: dict) -> dict:
-    return {
-        "energy_kcal":     _parse_num(n.get("energy_kcal_raw")),
-        "fat_g":           _parse_num(n.get("fat_raw")),
-        "fat_saturated_g": _parse_num(n.get("saturated_fat_raw")),
-        "fat_trans_g":     None,
-        "cholesterol_mg":  None,
-        "sodium_mg":       _parse_sodium(n.get("sodium_raw") or ""),
-        "carbohydrates_g": _parse_num(n.get("carbs_raw")),
-        "sugars_g":        _parse_num(n.get("sugar_raw")),
-        "dietary_fiber_g": _parse_num(n.get("fiber_raw")),
-        "protein_g":       _parse_num(n.get("protein_raw")),
-    }
+    return _shared_parse_nutrition(n)
 
 
 _SPLIT_RE = re.compile(r"[,;،]\s*")

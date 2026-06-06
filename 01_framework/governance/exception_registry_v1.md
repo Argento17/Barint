@@ -19,7 +19,7 @@ A registered exception is not an invitation to repeat. It is a named deviation w
 
 **Before adding a UI element that violates a template rule:**
 
-1. Identify which rule is being violated (cite section and item from `comparison_template_v1.md` or `mobile_geometry_checklist_v1.md`)
+1. Identify which rule is being violated (cite section and item from `comparison-template-standard-v1.md` or `mobile_geometry_checklist_v1.md`)
 2. State the consumer need that cannot be met without the exception
 3. State why no in-template solution exists
 4. Define the exact constraints that prevent the exception from multiplying
@@ -113,4 +113,4 @@ Before adding an exception, ask: if ten other teams in ten other categories saw 
 
 ---
 
-*This registry is governed by the same editorial authority as `comparison_template_v1.md`. Architecture rules in the template take precedence over any exception not documented here.*
+*This registry is governed by the same editorial authority as `comparison-template-standard-v1.md` (the canonical comparison template). Architecture rules in the template take precedence over any exception not documented here.*

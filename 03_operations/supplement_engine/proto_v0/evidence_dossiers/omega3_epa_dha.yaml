@@ -1,0 +1,243 @@
+# evidence_dossiers/omega3_epa_dha.yaml   (schema v1 — Phase 1, TASK-171B)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6/D7 co-sign.
+# Omega-3 LEADS the Evidence Strength dimension: SAME molecule/form, claim is the variable.
+# Strong (TG lowering) vs Weak/Insufficient (brain & mood); CV-events = CONTESTED -> deferred, NOT tiered.
+active:
+  canonical_name: "omega-3 (EPA/DHA)"
+  category: "fatty_acid"
+  components:
+    - name: "eicosapentaenoic acid (EPA)"
+      pubchem_cid: 5282847
+      formula: "C20H30O2"
+      mw: 302.5
+      synonyms: ["EPA", "eicosapentaenoic acid", "(5Z,8Z,11Z,14Z,17Z)-icosapentaenoic acid", "10417-94-4"]
+    - name: "docosahexaenoic acid (DHA)"
+      pubchem_cid: 445580
+      formula: "C22H32O2"
+      mw: 328.5
+      synonyms: ["DHA", "docosahexaenoic acid", "6217-54-5"]
+  active_basis_note: >
+    The ACTIVE is the EPA+DHA mass, NOT total fish-oil mass. A '1,000 mg fish oil' softgel commonly delivers only
+    ~120-300 mg actual EPA+DHA (rest = other fatty acids + glyceride/ester backbone). Dose (§2.2) compares the
+    ACTIVE EPA+DHA mg; comparing total fish-oil mass is forbidden (structurally symmetric to the minerals'
+    elemental-vs-compound trap). DSLD-observed example: a 'triple strength' label = EPA 647 + DHA 253 = 900 mg
+    active out of a larger oil mass; budget labels deliver EPA 540 + DHA 360 = 900, or far less.
+
+claims:                              # CLAIM-SPECIFIC tiers — the whole point of the omega-3 probe. PROPOSED.
+  - claim: "triglyceride lowering"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "high"
+    citations: ["PMID:38922552", "PMID:30102092", "PMID:35717726", "PMID:41156531"]
+    rationale: "Well-established dose-dependent TG-lowering effect of EPA/DHA in RCT/meta-analytic literature (apoC-III, lipid-metabolism, T2D and metabolic-syndrome SR/MAs). The biochemical endpoint (serum TG) responds reliably at ~2-4 g/day EPA+DHA. PASS anchor for the Evidence dimension."
+    tier_rationale: "RATIFIED (Nutrition D6). Dose-dependent biochemical endpoint (serum TG) responds reliably; pharmaceutical-grade products are licensed on it. Strong — but tier is conditional on the SKU delivering the ~2-4 g/day TG dose (Dose §2.2); a wellness-dose product claiming TG lowering is an Evidence-Dose seam, not a tier downgrade."
+  - claim: "brain & mood / general cognition (BROAD consumer claim)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED at Weak — broad claim ONLY (scrutiny item 1)
+    tier_confidence: "medium"
+    claim_scope: "broad-consumer"     # explicit scope tag — this tier is for the BROAD claim only
+    does_not_inherit_from: "adjunct in diagnosed major depression (separate, untiered in MVP — see conflation_firewall)"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    rationale: >
+      For the BROAD consumer 'brain & mood / brain health' claim the base is thin and heterogeneous: cognition SR/MAs
+      in older adults/general populations show little-to-no consistent benefit. (Note: a NARROWER 'adjunct in
+      diagnosed major depression' claim has stronger but separate evidence — PMID:31383846, 26978738 — and must NOT
+      be conflated with the broad consumer claim; that narrower clinical claim would tier higher and is flagged for
+      Nutrition.) As marketed broadly -> Weak. FAIL anchor for the Evidence dimension (same molecule, different claim).
+    tier_rationale: >
+      NUTRITION D6 RULING (scrutiny item 1): the BROAD 'brain & mood / brain health / cognition' claim is CONFIRMED at
+      Weak and is FENCED from the clinical-depression evidence (see conflation_firewall below). The broad consumer
+      claim's own base is thin/heterogeneous in general/older-adult populations -> Weak (signal exists, low quality).
+      It does NOT, and must not, borrow the stronger 'adjunct in diagnosed MDD' evidence: that is a different claim
+      (different population, different endpoint, different indication) and is OUT OF MVP SCOPE (a clinical/diagnostic
+      claim engages necessity/diagnosis machinery the SIE deliberately excludes — SIE Invariant 1). A consumer brain
+      SKU does not earn the depression evidence. Not Insufficient (a thin signal exists), not Moderate.
+    conflation_firewall: >
+      MECHANISM that keeps the two claims separate in the dossier: (1) this entry's `claim` text is explicitly scoped
+      '(BROAD consumer claim)' and carries claim_scope=broad-consumer; (2) the narrower 'adjunct in diagnosed major
+      depression' claim is NOT a tiered entry in this dossier (it is recorded only as a does_not_inherit_from pointer
+      and in clinical_depression_note below) — so the engine's claim-matcher (§2.1, the SKU's on-label claim selects
+      the tier) can only ever match the broad consumer claim to this Weak tier; there is no clinical-depression tier
+      for a consumer SKU to resolve to. (3) The clinical claim is fenced as out-of-scope, not tiered higher, so it
+      cannot leak a higher number into the broad claim's score. A SKU making an actual diagnosed-MDD adjunct claim is
+      out of MVP scope entirely (clinical/diagnostic territory), not scored at a higher tier here.
+    clinical_depression_note: >
+      DEFERRED, NOT TIERED IN MVP: a narrower 'EPA-predominant adjunct in diagnosed major depressive disorder' claim
+      has separate, stronger (though still heterogeneous) evidence (PMID:31383846, 26978738). It is recorded for
+      provenance only and is intentionally NOT given a scoring tier in MVP because it is a clinical/diagnostic
+      indication outside SIE scope. If ever brought in-scope it needs its own claim entry, its own tier, its own
+      SUPP-EV bump, and D7 co-sign — it can never be reached by inheritance from the broad consumer claim.
+  - claim: "cardiovascular disease / CV events prevention"
+    proposed_evidence_tier: "CONTESTED — NOT TIERED (deferred)"
+    evidence_tier: "CONTESTED — NOT TIERED (deferred)"   # NUTRITION D6: RATIFIED — deferral upheld
+    tier_confidence: "n/a — deliberately not assigned"
+    citations: ["PMID:32114706", "PMID:30019766", "PMID:39758310", "PMID:35739003"]
+    rationale: >
+      Genuine high-quality evidentiary conflict: REDUCE-IT (positive, high-dose EPA ethyl ester) vs STRENGTH (null,
+      EPA/DHA) — see discrepancy review PMID:39758310. Cochrane omega-3 CVD reviews (32114706, 30019766) find little/no
+      effect on overall CV outcomes for general supplementation. Per §2.1 + §7 out-of-scope item 3 + Hard Rule 7:
+      flagged `contested`, NOT force-tiered in MVP. The engine must not score a SKU's CV claim against this.
+    tier_rationale: >
+      RATIFIED (Nutrition D6): deferral UPHELD under Hard Rule 7. REDUCE-IT (positive, high-dose EPA-EE) vs STRENGTH
+      (null, EPA/DHA) is a genuine high-quality conflict, not a quality gradient — forcing a tier would manufacture a
+      ruling Bari does not have. Stays `contested`, not scored. This is the correct boundary between Weak (thin but
+      tier-able) and contested (conflicted -> deferred).
+    contested_flag: true
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 2000                # mg/day ACTIVE EPA+DHA for the TG-lowering claim (working value)
+  typical: 3000
+  upper_studied: 4000                # mg/day EPA+DHA (TG indication; pharmaceutical TG products use ~4 g)
+  unit: "mg EPA+DHA (active, combined)"
+  dose_axis: "ACTIVE EPA+DHA mg — NOT total fish-oil mass (§2.2). A general-wellness intake (~250-500 mg/day) is far below the TG-lowering effective dose; a product dosed for wellness cannot earn TG-claim dose credit."
+  market_range_dsld: [900, 1000]     # DSLD per-serving active EPA+DHA observed ~700-900 mg (e.g. 647+253=900; 540+360=900). Most consumer fish-oil is BELOW the 2-4 g/day TG dose -> dose-claim mismatch is common.
+  dose_citations: ["NEEDS-ENV-VERIFY: confirm 2-4 g/day EPA+DHA TG-lowering effective dose against a primary SR/MA (working value)"]
+  elemental_fraction: null
+  dose_flag: "FLAG for Nutrition: min_effective is claim-specific. TG-lowering needs ~2-4 g/day; the broad-wellness dose is much lower. The scored min_effective must follow the SKU's actual claim."
+
+forms:
+  preferred: ["triglyceride (TG)", "re-esterified triglyceride (rTG)"]
+  acceptable: ["ethyl ester (EE) — absorbed, but lower/slower bioavailability than TG/rTG"]
+  poor: []
+  rationale: >
+    Human bioavailability evidence indicates TG/rTG forms are absorbed better/faster than ethyl ester (EE).
+    EE is genuinely absorbed (hence 'acceptable', not 'poor'), but the magnitude of the EE gap and exact ranking
+    is a working value. Phase-1 Research note: the bioavailability review (PMID:25218856) supports TG/rTG > EE
+    directionally; exact magnitude NEEDS-ENV-VERIFY against a dedicated bioavailability RCT.
+  citations: ["PMID:25218856"]
+  form_ladder_confidence: "medium"   # direction (TG/rTG > EE) supported; magnitude under-specified -> FLAG
+  form_flag: "NOTE: REDUCE-IT (the positive CV trial) used EE — so 'EE is inferior' is form-bioavailability, separate from the contested CV-claim. Keep the two axes apart."
+
+safety:
+  upper_limit_UL: 5000               # mg/day EPA+DHA combined — NUTRITION D7 GOVERNING VETO = EFSA 5 g/day no-concern (see ul_governing_decision). FDA 3 g = a NOTE threshold, not the veto.
+  ul_note_threshold: 3000            # mg/day — FDA supplemental GRAS guidance; a Safety NOTE attaches above this, NOT a veto
+  ul_basis: "mg/day combined EPA+DHA, adults. EFSA concluded supplemental EPA+DHA up to 5 g/day does not raise safety concerns. US FDA GRAS guidance ~3 g/day EPA+DHA from supplements — different framing, see ul_governing_decision."
+  ul_source: "GOVERNING VETO: EFSA (5 g/day no-concern). NOTE threshold: US FDA (~3 g/day supplemental guidance). Resolved by Nutrition D7."
+  ul_externally_maintained: true
+  ul_governing_decision: >
+    NUTRITION D7 RULING (scrutiny item 3 / governing-authority pick): EFSA 5 g/day no-concern GOVERNS the Safety VETO
+    line; FDA 3 g/day attaches a Safety NOTE, not a veto. This DIFFERS from the magnesium pick (where the conservative
+    250 governs) and the difference is principled, not inconsistent: the two omega-3 numbers are NOT two ULs for the
+    same hazard. EFSA 5 g is an affirmative 'no safety concern up to' threshold (a genuine tolerance ceiling); FDA 3 g
+    is a GRAS/labeling guidance figure, not a toxicity UL. Vetoing at 3 g would FLOOR a SKU that the relevant tolerance
+    authority (EFSA) has explicitly cleared as safe — that is over-protection on a non-hazard, and §2.5 is explicit
+    that mega-dose above upper_studied but below the no-concern threshold takes 'no Dose bonus, no Safety penalty.'
+    So: veto at 5 g (the real tolerance ceiling), NOTE between 3-5 g (FDA-guidance band + the high-dose-EPA atrial-
+    fibrillation context signal already in risky_flags). The consistent meta-rule across all three discrepant sets is
+    'the veto sits at the most-credible TOLERANCE/HAZARD threshold': for magnesium both numbers ARE GI-tolerance ULs
+    so the lower governs; for omega-3 only EFSA's is a tolerance threshold so it governs and FDA's becomes a note.
+    NEEDS-ENV-VERIFY both primary numbers remains in force — co-sign is on the AUTHORITY/threshold-ROLE choice.
+  ul_discrepancy_note: "RESOLVED (Nutrition D7): EFSA 5 g governs the veto, FDA 3 g is a note threshold. NEEDS-ENV-VERIFY both primary sources."
+  risky_flags: ["high-dose EPA may modestly raise atrial fibrillation risk (signal from high-dose CV trials) — context flag, not an MVP veto", "bleeding-risk framing with anticoagulants is overstated at supplement doses — context only"]
+  notes: "Omega-3 is a Safety PASS at consumer doses; the dimension is not the discriminating axis here. Mega-dose above upper_studied but below the no-concern threshold = no Dose bonus, no Safety penalty (§2.5)."
+  safety_citations: ["NEEDS-ENV-VERIFY: EFSA EPA+DHA 5 g/day no-concern opinion", "NEEDS-ENV-VERIFY: US FDA 3 g/day supplemental guidance"]
+
+honesty_lead_note: >
+  Secondary Honesty probe (the '1,000 mg fish oil' mass trap, §2.4): a front label headlining total fish-oil mass
+  while the active EPA+DHA fraction is small is technically-true-but-misleading -> claim-substance gap debit. The
+  Dose comparison itself is corrected in §2.2 against active EPA+DHA, not total mass.
+
+structure_function_umbrella:    # v1.3 (§2.1) — AUTHORED this task (TASK-171K). Pre-authored + cited, NEVER inferred.
+  # omega3 was a Phase-1 dossier WITHOUT an umbrella. Real Israeli fish-oil labels use Hebrew "בריאות הלב / מוח / זיכרון"
+  # (heart / brain / memory). CRITICAL anti-loophole: a vague 'heart' claim must NOT inherit the TG-lowering STRONG tier
+  # (Strong is conditional on a ~2-4 g EPA+DHA dose, §2.2 — most consumer fish-oil is far below it). EFSA Art.13 authorizes
+  # DHA/EPA "maintenance of normal heart function" (at 250 mg/day) and DHA "maintenance of normal brain function" — but
+  # these EFSA general-function claims are RECOGNIZED relationships, not the high-dose TG pharmacological endpoint. So a
+  # vague Hebrew 'heart'/'brain' resolves to a recognized correlate at the broad-consumer (Weak) level, NOT to TG=Strong.
+  # An explicit "מוריד טריגליצרידים / lowers triglycerides" claim still selects the Strong TG claim via the §2.1
+  # claim-matcher (studied-claim path), gated by Dose — that path is unchanged.
+  mappings:
+  - phrase: "בריאות הלב"               # "heart health" (Hebrew) — EFSA "normal heart function" (general, 250 mg)
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    supp_ev: "SUPP-EV-005"
+    rationale: >
+      MAPS at WEAK — DELIBERATELY not to TG=Strong. EFSA Art.13 authorizes "EPA/DHA contribute to the normal function
+      of the heart" at 250 mg/day (EFSA Q-2008-1252) — a recognized GENERAL-function correlate, so a vague 'בריאות הלב/
+      heart' MAPS. But it must NOT inherit the TG-lowering Strong tier (Strong is a high-dose ~2-4 g pharmacological
+      endpoint, §2.2-gated; most consumer fish-oil is far below it). Routed to the broad-consumer Weak tier as the
+      nearest non-TG tiered endpoint. An EXPLICIT 'מוריד טריגליצרידים' claim still reaches TG=Strong via the studied-
+      claim matcher (Dose-gated). This is the anti-loophole authoring: the vague heart claim cannot steal the high-dose
+      TG tier. (CV-EVENTS stays contested/deferred and is NOT a mappable target — Hard Rule 7.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "לב"                       # "heart" (Hebrew, plain)
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    supp_ev: "SUPP-EV-005"
+    rationale: "MAPS at WEAK. Plain Hebrew 'לב/heart'; same EFSA normal-heart-function (250 mg) basis, same anti-loophole routing to broad-consumer Weak (NOT TG Strong)."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מוח"                      # "brain" (Hebrew) — EFSA DHA "normal brain function"
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    supp_ev: "SUPP-EV-005"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "DHA contributes to maintenance of normal brain function" at 250 mg/day
+      (EFSA Q-2008-1207). Hebrew alias of the broad brain/cognition claim — recognized correlate maps, broad consumer
+      benefit thin/heterogeneous → Weak. FENCED from the clinical-MDD evidence (conflation firewall, SUPP-EV-005).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "זיכרון"                   # "memory" (Hebrew)
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    supp_ev: "SUPP-EV-005"
+    rationale: "MAPS at WEAK. Hebrew 'זיכרון/memory' resolves to the broad cognition endpoint (DHA brain-function correlate); broad consumer benefit thin → Weak."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מצב רוח"                  # "mood" (Hebrew)
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309", "PMID:29540267", "PMID:38281596"]
+    supp_ev: "SUPP-EV-005"
+    rationale: "MAPS at WEAK. Hebrew 'מצב רוח/mood' → the broad brain/mood consumer endpoint (Weak). FENCED from clinical-MDD (conflation firewall). A 'מרפא דיכאון/treats depression' escalation is a §2.4 over-promise + out-of-scope clinical claim."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Omega-3 (umbrella AUTHORED TASK-171K): בריאות הלב/לב→broad-consumer Weak (maps via EFSA normal-heart-function 250 mg;
+    DELIBERATELY NOT TG=Strong — anti-loophole, high-dose TG endpoint unreachable from a vague heart claim); מוח/זיכרון/
+    מצב רוח→broad brain/cognition Weak (EFSA DHA brain-function; FENCED from clinical-MDD). CV-events stays contested/
+    deferred (not a mappable target). An EXPLICIT TG claim still reaches Strong via the studied-claim matcher, Dose-gated.
+    Best mapped tier from vague Hebrew = WEAK (correctly — a wellness-dose fish-oil is not a TG drug). Candidate / no ship.
+
+label_claims_common: ["heart health", "brain health", "mood", "joint", "triglycerides", "1000 mg fish oil", "triple strength"]
+necessity_context: "Conditionally beneficial fatty acids; necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Anticoagulant use, high-dose AF signal. Context only, not health advice."
+
+provenance:
+  built_by: ["research-agent", "nutrition-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-005"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 (3 claim states) + D7 (UL authority) co-signed 2026-06-03
+  cosign_note: "TG Strong; broad brain/mood Weak (fenced from clinical-MDD evidence via conflation_firewall); CV contested/deferred (Hard Rule 7). UL veto governed by EFSA 5 g (FDA 3 g = note threshold). Replaced ashwagandha at SUPP-EV-005 per v1.1."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "semi-annual (2026-12-03) — HIGHEST drift risk in the MVP set (active CV-events debate, evolving TG/cognition trials); re-sweep more often than the others"
+  field_stability:
+    stable: ["components.*.pubchem_cid", "components.*.mw", "components.*.formula", "synonyms", "active_basis_note"]
+    drift: ["claims.*.proposed_evidence_tier", "claims.*.contested_flag", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "GOVERNING VETO: EFSA (5 g/day no-concern). NOTE threshold: US FDA (3 g/day guidance)"
+      governing_authority: "EFSA"
+      last_resync: "2026-06-03"
+      resync_note: "Nutrition D7: EFSA 5 g governs the veto (only it is a tolerance threshold); FDA 3 g is a Safety-note band. Re-sync both."
+  drift_watch:
+    - "CV-events contested status: re-check whether REDUCE-IT/STRENGTH reconciliation has shifted consensus (could change deferral)"
+    - "brain/mood broad claim: watch for a large pooled cognition MA that would move Weak -> Moderate"
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella"
+      change: "TASK-171K — AUTHORED a first structure_function_umbrella (none existed). Hebrew keys: בריאות הלב/לב→broad-consumer Weak (EFSA Q-2008-1252 normal heart function 250 mg — DELIBERATELY NOT TG=Strong, anti-loophole); מוח/זיכרון/מצב רוח→broad cognition Weak (EFSA Q-2008-1207 DHA brain function; FENCED from clinical-MDD). CV-events stays contested/deferred (not mappable). Explicit TG claim still reaches Strong via studied-claim matcher."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012, heart/brain general-function 250 mg) + reused broad-brain PMIDs (cited pointers, no new tier)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-005"
+      score_moving: "potentially — a new umbrella lets vague Hebrew heart/brain fish-oil resolve to Weak instead of §2.1-default Insufficient. Anti-loophole: it CANNOT reach TG=Strong (high-dose endpoint) or the contested CV tier. Candidate / should_affect_score_now:false; needs Product D7 + golden re-validation before ship. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

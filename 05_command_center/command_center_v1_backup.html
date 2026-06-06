@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  BARI COMMAND CENTER — TASK BOARD  (v3 — lively edition)
+  ════════════════════════════════════════════════════════════════
+  Features: agent chips · CC figure · status rings · hover lift ·
+            row flash on refresh · Ctrl+K palette · j/k nav
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bari Command Center · Tasks</title>
+  <style>
+    :root{
+      --bg:#05070e; --surface:rgba(12,22,40,.66); --surface-2:rgba(20,34,58,.82);
+      --border:rgba(56,189,248,.24); --border-sub:rgba(56,189,248,.10);
+      --text:#dcefff; --text-muted:#84aecb; --text-dim:#52708c;
+      --green:#34f5c5; --green-bg:rgba(52,245,197,.12);
+      --red:#ff5d6c;  --red-bg:rgba(255,93,108,.13);
+      --amber:#ffd166;--amber-bg:rgba(255,209,102,.13);
+      --blue:#38bdf8; --blue-bg:rgba(56,189,248,.14);
+      --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,.15);
+      --orange:#fb923c;--orange-bg:rgba(251,146,60,.15);
+      --gray:#84aecb; --gray-bg:rgba(132,174,203,.10);
+      --glow:0 0 18px rgba(34,211,238,.22);
+      --mono:ui-monospace,'Cascadia Code','SF Mono',Consolas,monospace;
+      --sans:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --r:10px; --r-sm:5px;
+    }
+
+    /* ── Animations ────────────────────────────────────────────── */
+    @keyframes hudpulse {0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+    @keyframes ip-ping  {0%{box-shadow:0 0 0 0 rgba(34,211,238,.6)}70%{box-shadow:0 0 0 5px rgba(34,211,238,.0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,.0)}}
+    @keyframes bl-blink {0%,100%{opacity:1}50%{opacity:.28}}
+    @keyframes row-flash{0%{background:rgba(34,211,238,.14)}100%{background:transparent}}
+    @keyframes cc-breathe{0%,100%{box-shadow:0 0 5px rgba(34,211,238,.3)}50%{box-shadow:0 0 14px rgba(34,211,238,.7),0 0 0 2px rgba(34,211,238,.15)}}
+    @keyframes chip-pop {0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+    @keyframes aurora   {0%{opacity:.5;transform:translate3d(0,0,0) scale(1)}100%{opacity:1;transform:translate3d(0,-18px,0) scale(1.06)}}
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:
+        radial-gradient(1300px 680px at 84% -16%, rgba(34,211,238,.20), transparent 56%),
+        radial-gradient(1100px 640px at 2% 114%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(1000px 1000px at 50% 42%, rgba(56,189,248,.07), transparent 68%),
+        linear-gradient(0deg,  rgba(56,189,248,.03) 1px, transparent 1px) 0 0/100% 40px,
+        linear-gradient(90deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/40px 100%,
+        linear-gradient(160deg,#0a1426 0%, #070d1b 46%, #03050b 100%);
+      background-attachment:fixed;
+      color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.55;
+      min-height:100vh;-webkit-font-smoothing:antialiased;}
+    /* Drifting aurora across the whole page — fixed, behind everything, non-interactive */
+    body::before{content:'';position:fixed;inset:-15%;z-index:-2;pointer-events:none;
+      background:
+        radial-gradient(720px 520px at 14% 10%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(680px 580px at 88% 86%, rgba(124,92,255,.15), transparent 62%),
+        radial-gradient(560px 460px at 62% 28%, rgba(16,185,129,.10), transparent 64%);
+      filter:blur(10px);animation:aurora 22s ease-in-out infinite alternate;}
+    /* Edge vignette for depth — keeps the center readable, darkens the frame */
+    body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:radial-gradient(150% 120% at 50% 38%, transparent 56%, rgba(2,4,9,.55) 100%);}
+
+    /* ── Header ────────────────────────────────────────────────── */
+    .hdr{position:sticky;top:0;z-index:100;
+      background:linear-gradient(180deg,rgba(8,15,28,.94),rgba(8,15,28,.66));
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 1px 0 rgba(34,211,238,.18),0 10px 34px rgba(0,0,0,.55);
+      padding:11px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    .hdr-brand{display:flex;align-items:center;gap:10px;}
+    .hdr-title{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+      color:#eafaff;text-shadow:0 0 12px rgba(34,211,238,.55);}
+    .hdr-badge{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:var(--surface-2);
+      padding:2px 7px;border-radius:var(--r-sm);border:1px solid var(--border);}
+    .hdr-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+    .agents-bar{display:flex;align-items:center;gap:3px;padding:2px 4px;
+      border-radius:20px;border:1px solid var(--border-sub);background:rgba(12,22,40,.4);}
+    .hdr-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);}
+    .hdr-link{font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--border);
+      padding:4px 10px;border-radius:var(--r-sm);background:var(--surface);white-space:nowrap;}
+    .hdr-link:hover{border-color:var(--blue);}
+    .reg{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);}
+    .reg.clean{color:var(--green);border-color:rgba(52,245,197,.4);}
+    .reg.warn {color:var(--amber);border-color:rgba(255,209,102,.45);}
+    .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;
+      animation:hudpulse 2.4s ease-in-out infinite;}
+    .dot.GREEN {background:var(--green);box-shadow:0 0 10px var(--green);}
+    .dot.YELLOW{background:var(--amber);box-shadow:0 0 10px var(--amber);}
+    .dot.RED   {background:var(--red);  box-shadow:0 0 10px var(--red);}
+    .health-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;
+      padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
+    .health-lbl.GREEN {color:var(--green); border-color:rgba(52,245,197,.4);}
+    .health-lbl.YELLOW{color:var(--amber); border-color:rgba(255,209,102,.45);}
+    .health-lbl.RED   {color:var(--red);   border-color:rgba(255,93,108,.5);}
+
+    /* ── Agent chips ───────────────────────────────────────────── */
+    .achip{display:inline-flex;align-items:center;justify-content:center;
+      width:22px;height:22px;border-radius:50%;font-size:8.5px;font-weight:800;
+      font-family:var(--mono);letter-spacing:0;flex-shrink:0;border:1.5px solid;
+      text-transform:uppercase;cursor:default;
+      animation:chip-pop .2s ease-out;
+      transition:transform .12s,box-shadow .15s;}
+    .achip:hover{transform:scale(1.2);box-shadow:0 0 9px currentColor;}
+
+    /* ── CC Agent figure ───────────────────────────────────────── */
+    .cc-fig{display:inline-flex;align-items:center;justify-content:center;
+      width:20px;height:20px;border-radius:4px;font-size:9px;font-weight:900;
+      font-family:var(--mono);color:var(--cyan);
+      background:rgba(34,211,238,.10);border:1.5px solid rgba(34,211,238,.55);
+      animation:cc-breathe 3s ease-in-out infinite;cursor:default;flex-shrink:0;}
+    .cc-presence{display:inline-flex;align-items:center;gap:5px;font-size:10px;
+      font-family:var(--mono);color:var(--cyan);padding:2px 8px;border-radius:10px;
+      background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.25);
+      cursor:pointer;transition:background .12s,border-color .12s;}
+    .cc-presence:hover{background:rgba(34,211,238,.14);border-color:rgba(34,211,238,.5);}
+
+    /* ── Status rings ──────────────────────────────────────────── */
+    .sring{width:10px;height:10px;border-radius:50%;flex-shrink:0;
+      display:inline-block;vertical-align:middle;border:2px solid transparent;}
+    .sring.IN_PROGRESS      {border-color:var(--cyan); box-shadow:0 0 5px rgba(34,211,238,.5);
+                              animation:ip-ping 2s ease-in-out infinite;}
+    .sring.BLOCKED          {border-color:var(--amber);animation:bl-blink 1.4s ease-in-out infinite;}
+    .sring.RETURNED         {border-color:var(--cyan); border-right-color:transparent;transform:rotate(45deg);}
+    .sring.CHANGES_REQUESTED{border-color:var(--orange);background:rgba(251,146,60,.12);}
+    .sring.CLOSED           {background:var(--text-dim);border:none;opacity:.35;}
+
+    /* ── Row flash ─────────────────────────────────────────────── */
+    .flash{animation:row-flash .8s ease-out;}
+
+    /* ── Layout ────────────────────────────────────────────────── */
+    .main{padding:18px 24px;max-width:1020px;margin:0 auto;}
+    .sec-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);
+      margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.35);}
+    .sec-lbl .cap{font-family:var(--mono);color:var(--text-dim);letter-spacing:0;}
+    .hint{font-size:11px;color:var(--text-dim);margin:0 2px 14px;}
+    .hint code{font-family:var(--mono);color:var(--text-muted);}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+      padding:6px 16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 6px 22px rgba(0,0,0,.45);}
+    .calm{display:flex;align-items:center;gap:9px;color:var(--green);font-size:13px;padding:14px 2px;}
+
+    /* ── Objective groups ──────────────────────────────────────── */
+    .obj-group{padding:10px 0;border-bottom:1px solid var(--border-sub);
+      border-radius:var(--r-sm);transition:background .15s;}
+    .obj-group:last-child{border-bottom:none;}
+    .obj-group:hover{background:rgba(56,189,248,.035);}
+    .obj-group.kb-focus{outline:2px solid rgba(34,211,238,.55);outline-offset:3px;}
+    .obj{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+      border-left:3px solid var(--blue);padding:4px 0 4px 12px;
+      transition:border-left-color .2s;}
+    .obj.st-IN_PROGRESS      {border-left-color:var(--cyan);}
+    .obj.st-BLOCKED          {border-left-color:var(--amber);}
+    .obj.st-RETURNED         {border-left-color:var(--cyan);}
+    .obj.st-CHANGES_REQUESTED{border-left-color:var(--orange);}
+    .obj-id{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
+    .obj-title{font-size:14px;font-weight:600;}
+    .obj-orphan{border-left-color:var(--text-dim);}
+    .obj-orphan .obj-id{color:var(--text-dim);}
+    .obj-meta{display:inline-flex;gap:6px;align-items:center;}
+
+    /* ── Sub-task rows ─────────────────────────────────────────── */
+    .subs{margin:6px 0 2px 14px;border-left:1px dashed var(--border-sub);}
+    .row{display:grid;grid-template-columns:90px 1fr auto;gap:10px;align-items:center;
+      padding:7px 0 7px 14px;border-bottom:1px solid var(--border-sub);
+      transition:background .12s,transform .1s;}
+    .row:last-child{border-bottom:none;}
+    .row:hover{background:rgba(56,189,248,.05);transform:translateX(2px);}
+    .row-id   {font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
+    .row-title{font-size:12px;}
+    .row-meta {display:inline-flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+
+    /* ── CC notes (with CC figure) ─────────────────────────────── */
+    .cc{grid-column:1/-1;margin:5px 0 1px;}
+    .obj-cc{margin:4px 0 0 14px;}
+    .cc>summary{list-style:none;cursor:pointer;display:inline-flex;gap:5px;align-items:center;
+      width:fit-content;user-select:none;}
+    .cc>summary::-webkit-details-marker{display:none;}
+    .cc-chip{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;
+      line-height:1;padding:2px 6px;border-radius:9px;border:1px solid var(--cc-bd,#7a8aa0);
+      color:var(--cc-bd,#7a8aa0);background:var(--cc-bg,rgba(120,140,170,.08));}
+    .cc-read{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);}
+    .cc[open] .cc-read::after{content:' ▲';}
+    .cc:not([open]) .cc-read::after{content:' ▼';}
+    .cc-body{display:flex;flex-direction:column;gap:5px;margin-top:6px;}
+    .cc-note{display:flex;gap:8px;align-items:flex-start;font-size:11px;line-height:1.45;
+      padding:7px 10px;border-radius:6px;
+      background:var(--cc-bg,rgba(120,140,170,.08));border-left:2px solid var(--cc-bd,#7a8aa0);}
+    .cc-note .cc-dt {font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-left:4px;}
+    .cc-note .cc-lbl{font-weight:700;letter-spacing:.04em;}
+    .cc-chip.fyi,   .cc-note.fyi   {--cc-bd:#5a9bd4;--cc-bg:rgba(90,155,212,.10);}
+    .cc-chip.verify,.cc-note.verify{--cc-bd:#d4a93a;--cc-bg:rgba(212,169,58,.12);}
+    .cc-chip.blocker,.cc-note.blocker{--cc-bd:#d46a5a;--cc-bg:rgba(212,106,90,.13);}
+    .no-subs{font-size:11px;color:var(--text-dim);padding:2px 0 2px 16px;}
+
+    /* ── Pills ─────────────────────────────────────────────────── */
+    .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;
+      font-family:var(--mono);text-transform:uppercase;letter-spacing:.03em;
+      padding:1px 7px;border-radius:10px;white-space:nowrap;}
+    .p-green {background:var(--green-bg); color:var(--green);}
+    .p-red   {background:var(--red-bg);   color:var(--red);}
+    .p-amber {background:var(--amber-bg); color:var(--amber);}
+    .p-blue  {background:var(--blue-bg);  color:var(--blue);}
+    .p-cyan  {background:var(--cyan-bg);  color:var(--cyan);}
+    .p-orange{background:var(--orange-bg);color:var(--orange);}
+    .p-gray  {background:var(--gray-bg);  color:var(--gray);}
+
+    /* ── Buttons ───────────────────────────────────────────────── */
+    .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.03em;
+      text-transform:uppercase;cursor:pointer;border-radius:var(--r-sm);padding:3px 9px;
+      border:1px solid var(--border);background:var(--surface-2);color:var(--text-muted);
+      transition:border-color .12s,color .12s,background .12s,box-shadow .12s;}
+    .btn:hover{color:var(--text);border-color:var(--blue);box-shadow:var(--glow);}
+    .btn:disabled{opacity:.45;cursor:default;box-shadow:none;}
+    .btn-accept,.btn-close  {color:var(--green); border-color:rgba(52,245,197,.4);}
+    .btn-accept:hover,.btn-close:hover{background:var(--green-bg);border-color:var(--green);}
+    .btn-changes{color:var(--orange);border-color:rgba(251,146,60,.4);}
+    .btn-changes:hover{background:var(--orange-bg);border-color:var(--orange);}
+    .btn-block  {color:var(--red);  border-color:rgba(255,93,108,.4);}
+    .btn-block:hover{background:var(--red-bg);border-color:var(--red);}
+    .btn-resume {color:var(--blue); border-color:rgba(56,189,248,.4);}
+    .btn-resume:hover{background:var(--blue-bg);border-color:var(--blue);}
+    .btn-return {color:var(--cyan); border-color:rgba(34,211,238,.4);}
+    .btn-return:hover{background:var(--cyan-bg);border-color:var(--cyan);}
+
+    /* ── Stale banner ──────────────────────────────────────────── */
+    .stale{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);
+      padding:10px 14px;margin-bottom:14px;}
+    .stale.red  {background:rgba(248,81,73,.14); border:1px solid rgba(248,81,73,.55);}
+    .stale.amber{background:rgba(227,179,65,.10);border:1px solid rgba(227,179,65,.40);}
+    .stale-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      white-space:nowrap;margin-top:1px;}
+    .stale.red   .stale-lbl{color:var(--red);}
+    .stale.amber .stale-lbl{color:var(--amber);}
+    .stale-txt{font-size:12px;color:var(--text-muted);}
+    .stale-txt code{font-family:var(--mono);color:var(--text);}
+
+    /* ── Glass Box / Pending sections ──────────────────────────── */
+    .gb-section{margin-bottom:16px;}
+    .gb-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);
+      margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.55);}
+    .gb-lbl .cap{font-family:var(--mono);color:var(--text-dim);letter-spacing:0;}
+    .pending-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin:18px 2px 10px;}
+    .pending-lbl .cap{font-family:var(--mono);letter-spacing:0;}
+
+    /* ── Next-action card ──────────────────────────────────────── */
+    .nextcard{background:linear-gradient(180deg,var(--surface-2),var(--surface));
+      border:1px solid var(--border);border-left:3px solid var(--cyan);
+      border-radius:var(--r);padding:12px 16px;margin-bottom:16px;
+      box-shadow:var(--glow),0 6px 22px rgba(0,0,0,.4);}
+    .nx-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+    .nx-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;
+      color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.4);}
+    .nx-id   {font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
+    .nx-title{font-size:14px;font-weight:600;margin:5px 0 3px;}
+    .nx-reason  {font-size:12px;color:var(--text-muted);}
+    .nx-unblocks{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:5px;}
+    .nx-chain   {font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:3px;}
+    .nx-blocker {display:flex;gap:7px;align-items:flex-start;margin-top:9px;padding-top:9px;
+      border-top:1px solid var(--border-sub);font-size:11px;color:var(--amber);}
+
+    /* ── Closed log ────────────────────────────────────────────── */
+    .closed{margin-top:18px;}
+    .closed>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--text-dim);padding:6px 2px;list-style:none;
+      display:flex;align-items:center;gap:8px;}
+    .closed>summary::-webkit-details-marker{display:none;}
+    .closed>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
+    .closed[open]>summary::before{transform:rotate(90deg);}
+    .closed>summary:hover{color:var(--text-muted);}
+    .closed .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;}
+    .closed .card{padding:4px 16px;margin-top:4px;}
+    .crow{display:grid;grid-template-columns:82px 84px 1fr auto;gap:10px;align-items:center;
+      padding:5px 0;border-bottom:1px solid var(--border-sub);font-size:11px;}
+    .crow:last-child{border-bottom:none;}
+    .cdate {font-family:var(--mono);color:var(--text-dim);font-size:10px;}
+    .cid   {font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
+    .ctitle{color:var(--text-muted);}
+    .creason{color:var(--text-dim);font-style:italic;}
+    .creason::before{content:'— ';font-style:normal;}
+
+    /* ── Banked assets ─────────────────────────────────────────── */
+    .banked{margin-top:18px;}
+    .banked>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--text-muted);padding:6px 2px;list-style:none;
+      display:flex;align-items:center;gap:8px;}
+    .banked>summary::-webkit-details-marker{display:none;}
+    .banked>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
+    .banked[open]>summary::before{transform:rotate(90deg);}
+    .banked .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;}
+    .banked .card{padding:6px 16px;margin-top:4px;}
+    .brow{padding:10px 0;border-bottom:1px solid var(--border-sub);font-size:11px;}
+    .brow:last-child{border-bottom:none;}
+    .bhead{display:grid;grid-template-columns:82px 1fr auto;gap:10px;align-items:baseline;}
+    .bid  {font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
+    .btitle{color:var(--text);font-weight:600;}
+    .bstat {font-family:var(--mono);color:var(--text-dim);font-size:10px;}
+    .bwhy,.bgate{color:var(--text-muted);margin-top:5px;padding-left:92px;line-height:1.5;}
+    .bwhy b,.bgate b{color:var(--text-dim);font-weight:700;}
+    .bref{font-family:var(--mono);color:var(--text-dim);font-size:10px;margin-top:5px;padding-left:92px;}
+
+    /* ── Command palette ───────────────────────────────────────── */
+    dialog.palette{position:fixed;top:17%;left:50%;transform:translateX(-50%);
+      width:min(640px,92vw);max-height:64vh;display:flex;flex-direction:column;
+      background:rgba(5,10,22,.97);border:1px solid rgba(34,211,238,.42);
+      border-radius:var(--r);padding:0;
+      box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 0 1px rgba(34,211,238,.06),var(--glow);
+      backdrop-filter:blur(24px);overflow:hidden;}
+    dialog.palette::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(3px);}
+    .pal-head{display:flex;align-items:center;gap:10px;padding:12px 16px;
+      border-bottom:1px solid rgba(34,211,238,.15);}
+    .pal-ic  {color:var(--cyan);font-size:14px;flex-shrink:0;}
+    .pal-input{flex:1;background:transparent;border:none;outline:none;
+      font-family:var(--mono);font-size:13px;color:var(--text);caret-color:var(--cyan);}
+    .pal-input::placeholder{color:var(--text-dim);}
+    .pal-esc {font-family:var(--mono);font-size:10px;color:var(--text-dim);
+      padding:1px 6px;border-radius:3px;background:var(--surface-2);
+      border:1px solid rgba(255,255,255,.1);white-space:nowrap;flex-shrink:0;}
+    .pal-results{overflow-y:auto;flex:1;}
+    .pal-item{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;
+      border-bottom:1px solid rgba(56,189,248,.05);transition:background .07s;}
+    .pal-item:last-child{border-bottom:none;}
+    .pal-item.sel,.pal-item:hover{background:rgba(34,211,238,.09);}
+    .pal-id   {font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);
+      min-width:82px;flex-shrink:0;}
+    .pal-title{font-size:12px;color:var(--text);flex:1;overflow:hidden;
+      white-space:nowrap;text-overflow:ellipsis;}
+    .pal-empty{padding:24px;text-align:center;font-size:12px;color:var(--text-dim);}
+    .pal-foot {padding:7px 16px;border-top:1px solid rgba(34,211,238,.12);
+      display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--text-dim);}
+
+    /* ── kbd ───────────────────────────────────────────────────── */
+    kbd{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:3px;
+      background:var(--surface-2);border:1px solid rgba(255,255,255,.12);
+      color:var(--text-dim);line-height:1.6;}
+    .kbd-pair{display:flex;align-items:center;gap:2px;}
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    .footer{margin-top:22px;padding:12px 24px;border-top:1px solid var(--border);
+      font-size:11px;color:var(--text-dim);font-family:var(--mono);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+    .footer-keys{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+    .footer-keys span{display:flex;align-items:center;gap:4px;font-size:10px;}
+    .error{margin:24px;padding:16px 20px;background:var(--red-bg);
+      border:1px solid rgba(248,81,73,.3);border-radius:var(--r);
+      color:var(--red);font-family:var(--mono);font-size:12px;line-height:1.8;}
+
+    /* ── CC Agent ambient "monitoring spine" (left rail) ───────────
+       Self-portrayal (CC Agent, 2026-06-05): a vertical instrument bezel
+       running alongside the board — present, watchful, permanently
+       subordinate to the task column. Color tracks board health. */
+    @keyframes spine-scan{0%{top:34px;opacity:0}9%{opacity:1}91%{opacity:1}
+      100%{top:calc(100% - 34px);opacity:0}}
+    .cc-spine{position:fixed;top:18vh;height:64vh;width:150px;z-index:5;opacity:.8;
+      left:max(20px,calc((100vw - 1020px)/4 - 75px));
+      display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+      font-family:var(--mono);pointer-events:none;--spine:var(--cyan);}
+    .cc-spine.YELLOW{--spine:var(--amber);}
+    .cc-spine.RED   {--spine:var(--red);}
+    @media(max-width:1360px){.cc-spine{display:none;}}
+    .cc-spine-line{position:absolute;top:34px;bottom:34px;left:50%;width:1px;
+      background:linear-gradient(180deg,transparent,var(--spine) 12%,var(--spine) 88%,transparent);
+      box-shadow:0 0 6px var(--spine);opacity:.55;
+      animation:aurora 22s ease-in-out infinite alternate;}
+    .cc-spine-scan{position:absolute;left:50%;width:5px;height:5px;border-radius:50%;
+      margin-left:-2px;background:var(--spine);
+      box-shadow:0 0 8px var(--spine),0 0 15px var(--spine);
+      animation:spine-scan 14s ease-in-out infinite;}
+    .cc-spine-node{position:relative;z-index:2;display:flex;flex-direction:column;
+      align-items:center;gap:5px;pointer-events:auto;cursor:default;}
+    .cc-spine-badge{display:inline-flex;align-items:center;justify-content:center;
+      width:30px;height:30px;border-radius:6px;font-size:12px;font-weight:900;
+      color:var(--cyan);background:rgba(34,211,238,.10);
+      border:1.5px solid rgba(34,211,238,.55);animation:cc-breathe 3s ease-in-out infinite;}
+    .cc-spine-cnt{font-size:9px;color:var(--text-dim);letter-spacing:.05em;}
+    .cc-spine-ladder{position:relative;z-index:2;display:flex;flex-direction:column;
+      gap:15px;width:100%;padding-left:50%;}
+    .cc-rung{position:relative;display:flex;flex-direction:column;gap:1px;padding-left:14px;}
+    .cc-rung::before{content:'';position:absolute;left:0;top:8px;width:9px;height:1px;
+      background:var(--spine);box-shadow:0 0 4px var(--spine);}
+    .cc-rung.blink::before{animation:bl-blink 1.4s ease-in-out infinite;}
+    .cc-rung-lbl{font-size:8px;letter-spacing:.14em;color:var(--text-dim);text-transform:uppercase;}
+    .cc-rung-val{font-size:11px;font-weight:700;color:var(--text-muted);
+      display:flex;align-items:center;gap:5px;}
+    .cc-rung-val .dot{width:7px;height:7px;}
+    .cc-rung-val.amber{color:var(--amber);}
+    .cc-rung-val.red  {color:var(--red);}
+    .cc-rung-val.green{color:var(--green);}
+    .cc-spine-voice{position:relative;z-index:2;width:138px;text-align:center;
+      font-size:9.5px;line-height:1.5;color:var(--text-dim);min-height:30px;
+      transition:opacity .6s;}
+
+    /* ── CC morning brief (v2 W1+W2 prose lead — TASK-187) ─────────────────── */
+    .cc-brief{margin:0 0 18px;padding:16px 20px 15px;border:1px solid var(--border);
+      border-left:3px solid var(--cyan);border-radius:var(--r);
+      background:linear-gradient(180deg,rgba(34,211,238,.06),var(--surface));
+      box-shadow:var(--glow);}
+    .cc-brief-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+    .cc-brief-head .cc-fig{flex:0 0 auto;}
+    .cc-brief-by{font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--text-dim);font-family:var(--mono);}
+    .cc-brief-by b{color:var(--cyan);font-weight:700;}
+    .cc-brief-date{margin-left:auto;font-size:9.5px;color:var(--text-dim);font-family:var(--mono);}
+    .cc-brief p{margin:0 0 7px;font-size:13.5px;line-height:1.62;color:var(--text);
+      font-family:var(--sans);}
+    .cc-brief p:last-child{margin-bottom:0;}
+    .cc-brief .lead{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;
+      font-weight:700;font-family:var(--mono);padding:1px 6px;border-radius:var(--r-sm);
+      margin-right:7px;vertical-align:1px;}
+    .cc-brief .lead.next{color:var(--cyan);background:var(--cyan-bg);border:1px solid var(--border);}
+    .cc-brief .lead.since{color:var(--green);background:var(--green-bg);border:1px solid rgba(52,245,197,.3);}
+    .cc-brief .lead.wrong{color:var(--amber);background:var(--amber-bg);border:1px solid rgba(255,209,102,.32);}
+    .cc-brief .lead.yours{color:var(--orange);background:var(--orange-bg);border:1px solid rgba(251,146,60,.34);}
+    .cc-brief b.tid{color:var(--cyan);font-family:var(--mono);font-weight:700;
+      font-size:12.5px;letter-spacing:.01em;}
+    .cc-brief .wrong-line b.tid{color:var(--amber);}
+    .cc-brief .calm{color:var(--text-muted);font-style:italic;}
+    .cc-brief .achip{transform:scale(.92);}
+  </style>
+</head>
+<body>
+<dialog id="palette" class="palette"></dialog>
+<div id="app"><div style="padding:80px;text-align:center;color:var(--text-dim)">Loading…</div></div>
+<script>
+// ── Utilities ──────────────────────────────────────────────────────────────────
+const esc=s=>s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const PRI={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};
+const statusColor={CLOSED:'green',IN_PROGRESS:'blue',RETURNED:'cyan',BLOCKED:'red',CHANGES_REQUESTED:'orange'};
+const pill=(t,c)=>`<span class="p p-${c}">${esc(t)}</span>`;
+const sPill=s=>s?pill(s.replace(/_/g,' '),statusColor[s]||'gray'):'';
+const isObjective=id=>/^TASK-\d+$/.test(id);
+const parentOf=id=>{const m=/^(TASK-\d+)[A-Z]+$/.exec(id);return m?m[1]:null;};
+
+// ── Agent metadata ─────────────────────────────────────────────────────────────
+const AGENT_META={
+  'product-agent':   {i:'PR',c:'#a855f7',b:'rgba(168,85,247,.15)'},
+  'nutrition-agent': {i:'NU',c:'#10b981',b:'rgba(16,185,129,.15)'},
+  'research-agent':  {i:'RE',c:'#3b82f6',b:'rgba(59,130,246,.15)'},
+  'data-agent':      {i:'DA',c:'#f97316',b:'rgba(249,115,22,.15)'},
+  'frontend-agent':  {i:'FE',c:'#0ea5e9',b:'rgba(14,165,233,.15)'},
+  'design-agent':    {i:'DE',c:'#ec4899',b:'rgba(236,72,153,.15)'},
+  'qa-agent':        {i:'QA',c:'#eab308',b:'rgba(234,179,8,.15)'},
+  'content-agent':   {i:'CO',c:'#14b8a6',b:'rgba(20,184,166,.15)'},
+  'marketing-agent': {i:'MK',c:'#f43f5e',b:'rgba(244,63,94,.15)'},
+};
+
+function achip(id){
+  if(!id) return '';
+  const m=AGENT_META[id];
+  if(m) return `<span class="achip" style="color:${m.c};background:${m.b};border-color:${m.c}" title="${esc(id)}">${m.i}</span>`;
+  let h=0; for(let i=0;i<id.length;i++) h=(h*31+id.charCodeAt(i))>>>0;
+  const hue=h%360;
+  const init=id.split('-').map(w=>w[0]||'').join('').toUpperCase().slice(0,2)||'?';
+  return `<span class="achip" style="color:hsl(${hue},62%,62%);background:hsla(${hue},62%,40%,.15);border-color:hsl(${hue},62%,62%)" title="${esc(id)}">${esc(init)}</span>`;
+}
+
+function ccFig(){
+  return `<span class="cc-fig" title="CC Agent — Command Center">CC</span>`;
+}
+
+function sring(s){
+  return `<span class="sring ${s||''}" title="${esc(s||'')}"></span>`;
+}
+
+// ── Task action buttons ────────────────────────────────────────────────────────
+const TASK_ACTIONS={
+  IN_PROGRESS:       [{a:'mark_returned',cls:'btn-return',label:'Mark Returned'},
+                      {a:'close',cls:'btn-close',label:'Close'},{a:'block',cls:'btn-block',label:'Block'}],
+  RETURNED:          [{a:'accept',cls:'btn-accept',label:'Accept'},{a:'request_changes',cls:'btn-changes',label:'Request Changes'}],
+  CHANGES_REQUESTED: [{a:'resume',cls:'btn-resume',label:'Resume'},{a:'close',cls:'btn-close',label:'Close'}],
+  BLOCKED:           [{a:'resume',cls:'btn-resume',label:'Resume'},{a:'close',cls:'btn-close',label:'Close'}],
+};
+const ACTION_PROMPT={block:'Reason for blocking',request_changes:'What changes are requested for',close:'Reason for closing'};
+
+function subButtons(id,status){
+  const defs=TASK_ACTIONS[status]; if(!defs) return '';
+  return `<span class="row-meta">${sring(status)} ${sPill(status)} ${achip(window.__owner[id]||'')}`+
+    defs.map(d=>`<button class="btn ${d.cls}" onclick="doAction('${esc(id)}','${d.a}')">${d.label}</button>`).join('')+`</span>`;
+}
+function objClose(id,status){
+  if(status==='CLOSED') return `${sring(status)} ${sPill(status)}`;
+  return `${sring(status)} ${sPill(status)} <button class="btn btn-close" onclick="doAction('${esc(id)}','close')">Close</button>`;
+}
+
+// ── Action execution ───────────────────────────────────────────────────────────
+let actionBusy=false;
+async function doAction(taskId,action){
+  if(actionBusy) return;
+  let reason=null;
+  const objClosing=action==='close'&&isObjective(taskId);
+  if(ACTION_PROMPT[action]){
+    const label=objClosing?`Reason for closing objective ${taskId} (also closes its open sub-tasks)`
+                          :`${ACTION_PROMPT[action]} ${taskId}`;
+    reason=window.prompt(`${label}:`);
+    if(reason===null) return;
+    reason=reason.trim();
+    if(!reason){window.alert('A reason is required for this action.');return;}
+  }
+  actionBusy=true;
+  document.querySelectorAll('.btn').forEach(b=>b.disabled=true);
+  try{
+    const res=await fetch('./api/action',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({task_id:taskId,action,reason})});
+    let data={}; try{data=await res.json();}catch(_){}
+    if(!res.ok||!data.ok){
+      const msg=(res.status===501||res.status===405)
+        ?`This page is served by a process that can't apply actions (HTTP ${res.status}).\n\nRestart with:\n    python serve.py\n\nthen hard-refresh (Ctrl+F5).`
+        :`Action failed: ${data.error||('HTTP '+res.status)}`;
+      window.alert(msg);
+      document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
+      return;
+    }
+    await init();
+  }catch(err){
+    window.alert(`Action failed: ${err.message}\n\nIs serve.py running?`);
+    document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
+  }finally{actionBusy=false;}
+}
+
+// ── Jump to task (palette + keyboard) ─────────────────────────────────────────
+function jumpToTask(id){
+  const dlg=document.getElementById('palette');
+  if(dlg&&dlg.open) dlg.close();
+  const sel=`[data-tid="${id.replace(/"/g,'\\"')}"]`;
+  const el=document.querySelector(sel);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),900);}
+}
+
+// ── Command palette ────────────────────────────────────────────────────────────
+function setupPalette(tasks){
+  const open=tasks.filter(t=>t.status!=='CLOSED');
+  window.__openPalette=function(){
+    const dlg=document.getElementById('palette');
+    if(dlg.open) return;
+    let sel=0;
+    const items=q=>{
+      q=q.toLowerCase().trim();
+      return q?open.filter(t=>t.id.toLowerCase().includes(q)||t.title.toLowerCase().includes(q)):open;
+    };
+    function renderList(q){
+      const list=items(q);
+      sel=Math.max(0,Math.min(sel,list.length-1));
+      const res=document.getElementById('pal-res');
+      if(!res) return;
+      res.innerHTML=list.length
+        ?list.map((t,i)=>`<div class="pal-item${i===sel?' sel':''}" data-id="${esc(t.id)}" onclick="jumpToTask('${esc(t.id)}')">
+            <span class="pal-id">${esc(t.id)}</span>
+            <span class="pal-title">${esc(t.title)}</span>
+            ${sring(t.status)}${achip(t.owner)}
+          </div>`).join('')
+        :`<div class="pal-empty">No matches</div>`;
+    }
+    dlg.innerHTML=`
+      <div class="pal-head">
+        <span class="pal-ic">⌘</span>
+        <input class="pal-input" id="pal-q" placeholder="Search tasks by ID or title…" autocomplete="off" spellcheck="false">
+        <span class="pal-esc">Esc close</span>
+      </div>
+      <div class="pal-results" id="pal-res"></div>
+      <div class="pal-foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>Enter</kbd> jump to task</span>
+        <span><kbd>Esc</kbd> close</span>
+      </div>`;
+    dlg.showModal();
+    const inp=document.getElementById('pal-q');
+    inp.focus();
+    renderList('');
+    inp.addEventListener('input',()=>{sel=0;renderList(inp.value);});
+    function onKey(e){
+      const list=items(inp?inp.value:'');
+      if(e.key==='ArrowDown'){sel=Math.min(sel+1,list.length-1);renderList(inp.value);e.preventDefault();}
+      else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);renderList(inp.value);e.preventDefault();}
+      else if(e.key==='Enter'){const it=document.querySelectorAll('.pal-item')[sel];if(it)jumpToTask(it.dataset.id);}
+    }
+    dlg.addEventListener('keydown',onKey);
+    dlg.addEventListener('close',()=>dlg.removeEventListener('keydown',onKey),{once:true});
+  };
+}
+
+// ── Keyboard nav (j/k + Ctrl+K) ───────────────────────────────────────────────
+function setupKeyNav(){
+  if(window.__keyNavReady) return;
+  window.__keyNavReady=true;
+  let kbIdx=-1;
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea,select,[contenteditable]')) return;
+    if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();window.__openPalette?.();return;}
+    const gs=[...document.querySelectorAll('.obj-group')];
+    if(!gs.length) return;
+    if(e.key==='j'){kbIdx=Math.min(kbIdx+1,gs.length-1);e.preventDefault();}
+    else if(e.key==='k'){kbIdx=Math.max(kbIdx-1,0);e.preventDefault();}
+    else return;
+    gs.forEach(g=>g.classList.remove('kb-focus'));
+    if(kbIdx>=0){gs[kbIdx].classList.add('kb-focus');gs[kbIdx].scrollIntoView({behavior:'smooth',block:'nearest'});}
+  });
+}
+
+// ── Stale banner ───────────────────────────────────────────────────────────────
+function renderStale(meta,drift){
+  meta=meta||{};
+  if(meta.stale===true||(drift?.counts?.SNAPSHOT_DRIFT||0)>0){
+    return `<div class="stale red"><span class="stale-lbl">⚠ Stale</span><span class="stale-txt">
+      <b>Dashboard is out of date.</b> ${esc(meta.stale_reason||'Source files changed since this snapshot.')}<br>
+      Run <code>python generate_dashboard.py</code> and refresh.</span></div>`;
+  }
+  return '';
+}
+
+// ── Next-action card ───────────────────────────────────────────────────────────
+function renderNext(na,ex,cp){
+  ex=ex||{}; cp=cp||{};
+  const chain=(cp.longest_chain&&cp.longest_chain.length>1)
+    ?`<div class="nx-chain">critical chain: ${cp.longest_chain.map(esc).join(' → ')}</div>`:'';
+  const blocker=ex.current_blocker
+    ?`<div class="nx-blocker">⚠ ${esc(ex.current_blocker)}</div>`:'';
+  if(!na) return blocker?`<div class="nextcard">${blocker}</div>`:'';
+  const unblocks=(na.unblocks&&na.unblocks!=='—')
+    ?`<div class="nx-unblocks">→ unblocks ${esc(na.unblocks)}</div>`:'';
+  return `<div class="nextcard">
+    <div class="nx-top"><span class="nx-lbl">NEXT</span>
+      <span class="nx-id">${esc(na.task_id)}</span>${sPill(na.status)}${achip(na.owner)}</div>
+    <div class="nx-title">${esc(na.title||'')}</div>
+    <div class="nx-reason">${esc(na.reason||'')}</div>
+    ${unblocks}${chain}${blocker}
+  </div>`;
+}
+
+// ── CC ambient spine (left rail) ─────────────────────────────────────────────
+function spineStats(d){
+  const tasks=d.tasks||[];
+  const open=tasks.filter(t=>t.status!=='CLOSED');
+  return {
+    health:d.executive?.system_health||'GREEN',
+    open:open.length,
+    inProg:open.filter(t=>t.status==='IN_PROGRESS').length,
+    blocked:open.filter(t=>t.status==='BLOCKED').length,
+    cap:d.meta?.task_capacity||3,
+    drift:((d.drift?.counts?.PHANTOM_TASK||0)+(d.drift?.counts?.CLOSURE_DRIFT||0)+(d.drift?.counts?.REGISTRY_UNPARSEABLE||0)),
+    notes:tasks.reduce((n,t)=>n+((t.cc_comments||[]).length),0),
+    upd:d.meta?.last_updated||'—',
+    hhmm:(d.meta?.generated_at||'').slice(11,16)||'—',
+    na:d.next_action||null,
+  };
+}
+// Status lines in CC's voice — only the ones true right now, terse, lowercase
+function spineVoiceLines(d){
+  const s=spineStats(d);
+  if(s.health==='RED') return [s.drift?'red — drift on the board, holding the line':'red — board needs a look'];
+  const out=[`board ${s.health.toLowerCase()} · ${s.open} active · wip ${s.inProg}/${s.cap}`];
+  if(s.blocked>0 && s.na && s.na.status==='BLOCKED') out.push(`${s.blocked} blocked · watching ${esc(s.na.task_id)}`);
+  else if(s.blocked>0) out.push(`${s.blocked} blocked · waiting on sign-off`);
+  if(s.na){
+    const head=(s.na.title||'').split('—')[0].trim().toLowerCase();
+    out.push(`next move — ${esc(s.na.task_id)}${head?' · '+esc(head):''}`.slice(0,54));
+  }
+  out.push(s.drift?`${s.drift} drift flag${s.drift===1?'':'s'} · registry is truth`
+                  :`0 drift · last read ${esc(s.hhmm)} · registry is truth`);
+  if(s.blocked===0 && s.health==='GREEN') out.push(`nothing to close · i flag what returns`);
+  return out;
+}
+function renderSpine(d){
+  const s=spineStats(d);
+  const wipCls=s.inProg>s.cap?'red':(s.inProg===s.cap?'amber':'');
+  return `
+  <aside class="cc-spine ${s.health}" aria-hidden="true">
+    <span class="cc-spine-line"></span>
+    <span class="cc-spine-scan"></span>
+    <div class="cc-spine-node" title="CC Agent — board read ${esc(s.upd)}">
+      <span class="cc-spine-badge">CC</span>
+      <span class="cc-spine-cnt">${s.notes} notes</span>
+    </div>
+    <div class="cc-spine-ladder">
+      <div class="cc-rung"><span class="cc-rung-lbl">Health</span>
+        <span class="cc-rung-val"><span class="dot ${s.health}"></span>${esc(s.health)}</span></div>
+      <div class="cc-rung"><span class="cc-rung-lbl">WIP</span>
+        <span class="cc-rung-val ${wipCls}">${s.inProg}/${s.cap}</span></div>
+      <div class="cc-rung ${s.blocked>0?'blink':''}"><span class="cc-rung-lbl">Blocked</span>
+        <span class="cc-rung-val ${s.blocked>0?'amber':''}">${s.blocked}</span></div>
+      <div class="cc-rung"><span class="cc-rung-lbl">Drift</span>
+        <span class="cc-rung-val ${s.drift?'red':'green'}">${s.drift?'DRIFT':'CLEAN'}</span></div>
+    </div>
+    <div class="cc-spine-voice" id="cc-voice"></div>
+  </aside>`;
+}
+function startSpineVoice(d){
+  if(window.__spineTimer){clearInterval(window.__spineTimer);window.__spineTimer=null;}
+  const lines=spineVoiceLines(d);
+  const el=document.getElementById('cc-voice');
+  if(!el||!lines.length) return;
+  let i=0; el.textContent=lines[0];
+  if(lines.length<2) return;
+  window.__spineTimer=setInterval(()=>{
+    el.style.opacity='0';
+    setTimeout(()=>{i=(i+1)%lines.length;el.textContent=lines[i];el.style.opacity='';},600);
+  },9000);
+}
+
+// ── CC morning brief (v2 W1+W2 prose lead — TASK-187) ───────────────────────────
+// A short Chief-of-Staff paragraph composed ENTIRELY from command_center.json fields
+// already produced by generate_dashboard.py. Voice mirrors emit_digest: terse, factual,
+// CC's voice. Exception-gated — clean clauses stay silent. Missing field → clause omitted,
+// never faked. This is additive: it renders ABOVE the existing spine + board.
+function renderBrief(d){
+  const tasks=d.tasks||[];
+  const ex=d.executive||{}, na=d.next_action, cp=d.critical_path||{};
+  const today=(d.meta?.last_updated)||'';   // generator stamps registry "today"
+  const tid=id=>`<b class="tid">${esc(id)}</b>`;
+
+  // ── YOUR DECISION (escalation gate) — only a tripwire-class call waiting on Tom.
+  // Sources that already exist: a PENDING decision required_from "owner", or
+  // executive.next_recommended_decision. We do NOT manufacture a decision from a
+  // blocked task — a blocker is a fault (WHAT'S WRONG), not a decision. Silent today.
+  const pendingOwnerDec=(d.decisions||[]).find(x=>
+    (x.status==='PENDING'||x.status==='OPEN') &&
+    String(x.required_from||'').toLowerCase()==='owner');
+  let yoursP='';
+  if(pendingOwnerDec){
+    const rec=pendingOwnerDec.recommendation?` CC recommends ${esc(pendingOwnerDec.recommendation)}.`:'';
+    yoursP=`<p class="yours-line"><span class="lead yours">Your call</span>`+
+      `${esc(pendingOwnerDec.title)} — your decision.${rec}</p>`;
+  } else if(ex.next_recommended_decision){
+    yoursP=`<p class="yours-line"><span class="lead yours">Your call</span>`+
+      `${esc(ex.next_recommended_decision)}</p>`;
+  }
+
+  // ── NEXT MOVE — the org's next action, named. Always present while work is open.
+  const trim1=s=>String(s||'').trim().replace(/[.\s]+$/,'');  // drop trailing period
+  let nextP='';
+  if(na){
+    // emit_digest takes the title head before the em-dash; keep that brevity.
+    const head=esc(trim1(String(na.title||'').split('—')[0]));
+    const owner=na.owner?achip(na.owner):'';
+    const unblocks=(na.unblocks&&na.unblocks!=='—')?` → unblocks ${esc(trim1(na.unblocks))}`:'';
+    const reason=na.reason?` ${esc(trim1(na.reason))}.`:'';
+    // Show the critical chain ONLY when it actually explains this next move (the
+    // next-action task is in the chain) — otherwise it's an unrelated dependency edge.
+    const chainArr=cp.longest_chain||[];
+    const chain=(chainArr.length>1&&chainArr.includes(na.task_id))
+      ? ` Critical chain: ${chainArr.map(esc).join(' → ')}.` : '';
+    nextP=`<p><span class="lead next">Next move</span>`+
+      `${tid(na.task_id)} ${owner}${head?' — '+head:''}.${reason}${unblocks}${chain}</p>`;
+  } else if(ex.current_blocker){
+    nextP=`<p><span class="lead next">Next move</span>`+
+      `Nothing the org can advance unaided — see below.</p>`;
+  }
+
+  // ── SINCE YOU LEFT — autonomous-action ledger (closed/opened "today" per the
+  // registry stamp). Autonomous closes are CC close-readiness-gate passes.
+  let sinceP='';
+  if(today){
+    const closedToday=tasks.filter(t=>t.status==='CLOSED'&&t.completed_at===today);
+    const openedToday=tasks.filter(t=>t.created_at===today&&t.status!=='CLOSED');
+    if(closedToday.length||openedToday.length){
+      const autoClosed=closedToday.filter(t=>/close-readiness gate/i.test(t.close_reason||''));
+      const sample=closedToday.slice(0,4).map(t=>t.id).join(', ')
+        +(closedToday.length>4?`, +${closedToday.length-4} more`:'');
+      const sentences=[];
+      if(closedToday.length){
+        sentences.push(`closed ${closedToday.length} (${esc(sample)})`
+          +(autoClosed.length?`, ${autoClosed.length} on the CC close-readiness gate with no sign-off needed`:'')
+          +`.`);
+      }
+      if(openedToday.length){
+        sentences.push(`Opened ${openedToday.length}.`);
+      }
+      // Capitalize the first sentence ("Closed …").
+      let body=sentences.join(' ');
+      body=body.charAt(0).toUpperCase()+body.slice(1);
+      sinceP=`<p><span class="lead since">Since you left</span>`+
+        `${body} All reversible — flag any you want rolled back.</p>`;
+    }
+  }
+
+  // ── WHAT'S WRONG — named faults only. Silent when clean (earned silence).
+  const faults=[];
+  // OPEN CRITICAL/HIGH alerts, named.
+  (d.alerts||[]).filter(a=>a.status==='OPEN'&&(a.severity==='CRITICAL'||a.severity==='HIGH'))
+    .forEach(a=>{
+      const obj=a.related_task?tid(a.related_task)+' ':'';
+      // The alert message often begins with "TASK-NNN:" — strip it so we don't
+      // print the id twice once we've already named the task.
+      let msg=String(a.message||'');
+      if(a.related_task) msg=msg.replace(new RegExp('^\\s*'+a.related_task+'\\s*[:\\-—]\\s*'),'');
+      const fix=a.resolution_path?` <span class="calm">${esc(a.resolution_path)}</span>`:'';
+      faults.push(`${obj}${esc(msg)}${fix}`);
+    });
+  // Drift — named tasks, not a lamp.
+  const dr=d.drift||{}, dc=dr.counts||{};
+  const driftIssues=(dc.PHANTOM_TASK||0)+(dc.CLOSURE_DRIFT||0)+(dc.REGISTRY_UNPARSEABLE||0);
+  if(driftIssues>0){
+    const named=[...(dr.phantom_tasks||[]),...(dr.closure_drift_tasks||[]),...(dr.registry_unparseable||[])];
+    faults.push(`registry drift on ${named.length?named.map(esc).join(', '):driftIssues+' task(s)'} — regenerate from the registry`);
+  }
+  // Owners over the per-owner WIP limit (bottleneck), if the generator flagged it.
+  const overWip=(d.task_summary?.wip_over_limit)||[];
+  if(overWip.length) faults.push(`${overWip.map(esc).join(', ')} over the per-owner WIP limit`);
+  let wrongP='';
+  if(faults.length){
+    const body=faults.length===1
+      ? faults[0]
+      : `<br>· `+faults.join('<br>· ');
+    wrongP=`<p class="wrong-line"><span class="lead wrong">What's wrong</span>${body}</p>`;
+  }
+
+  // ── Compose. NEXT and SINCE always lead the body when present; faults follow;
+  // YOUR DECISION sits at the very top when a real escalation exists.
+  const paras=[yoursP,nextP,sinceP,wrongP].filter(Boolean);
+  if(!paras.length){
+    paras.push(`<p class="calm">No open work needs you. The board is quiet.</p>`);
+  } else if(!wrongP){
+    // Clean board: end on the honest "nothing else needs you" line.
+    paras.push(`<p class="calm">Nothing else needs you — everything else is handled.</p>`);
+  }
+  const liveN=(d.category_state||[]).filter(c=>c.launch==='LIVE').length;
+  const liveBit=liveN?` · ${liveN} categor${liveN===1?'y':'ies'} live`:'';
+  return `<div class="cc-brief">
+    <div class="cc-brief-head">${ccFig()}
+      <span class="cc-brief-by"><b>CC</b> — morning brief</span>
+      <span class="cc-brief-date">${esc(today||'—')}${liveBit}</span>
+    </div>
+    ${paras.join('')}
+  </div>`;
+}
+
+// ── Main render ────────────────────────────────────────────────────────────────
+function render(d){
+  const tasks=d.tasks||[];
+  window.__owner={}; tasks.forEach(t=>window.__owner[t.id]=t.owner);
+  const open=tasks.filter(t=>t.status!=='CLOSED');
+  const byId={}; tasks.forEach(t=>byId[t.id]=t);
+  const health=d.executive?.system_health||'GREEN';
+
+  // Row flash: detect status changes since last render
+  const prev=window.__prevStates||{};
+  const cur={}; tasks.forEach(t=>cur[t.id]=t.status);
+  const changed=new Set(Object.keys(cur).filter(id=>prev[id]&&prev[id]!==cur[id]));
+  window.__prevStates=cur;
+
+  // Group open tasks by objective
+  const objIds=[...new Set(open.map(t=>isObjective(t.id)?t.id:parentOf(t.id)).filter(Boolean))];
+  objIds.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+  const byPri=(a,b)=>(PRI[a.priority]??9)-(PRI[b.priority]??9)||a.id.localeCompare(b.id);
+
+  // CC notes renderer — now with CC figure as author identity
+  const CC_IC={fyi:'💬',verify:'🔍',blocker:'⛔'};
+  const CC_ORDER=['blocker','verify','fyi'];
+  const ccNotes=(t,extra='')=>{
+    const cs=(t&&t.cc_comments)||[]; if(!cs.length) return '';
+    const cnt={}; cs.forEach(c=>{const f=c.flag||'fyi';cnt[f]=(cnt[f]||0)+1;});
+    const chips=CC_ORDER.filter(f=>cnt[f]).map(f=>`<span class="cc-chip ${f}">${CC_IC[f]}${cnt[f]}</span>`).join('');
+    const body=cs.map(c=>{
+      const f=c.flag||'fyi';
+      const lbl=f!=='fyi'?' · '+f.toUpperCase():'';
+      const dt=c.date?`<span class="cc-dt">${esc(c.date)}</span>`:'';
+      return `<div class="cc-note ${f}">${ccFig()}<span><span class="cc-lbl">CC${lbl}:</span> ${esc(c.text)}${dt}</span></div>`;
+    }).join('');
+    return `<details class="cc ${extra}"><summary>${ccFig()} ${chips}<span class="cc-read">read</span></summary>`
+          +`<div class="cc-body">${body}</div></details>`;
+  };
+
+  // CC presence count for header
+  const ccTotal=tasks.reduce((n,t)=>n+(t.cc_comments||[]).length,0);
+  // Active agents (any open work)
+  const activeAgents=[...new Set(open.map(t=>t.owner).filter(Boolean))];
+
+  // Glass Box program umbrellas — current program-of-record is TASK-181 (continues the closed TASK-179)
+  const GLASSBOX_ROOTS=['TASK-181','TASK-179'];
+  const isGB=oid=>GLASSBOX_ROOTS.includes(oid);
+
+  const buildGroup=oid=>{
+    const obj=byId[oid];
+    const subs=open.filter(t=>parentOf(t.id)===oid).sort(byPri);
+    const orphan=!obj||obj.status==='CLOSED';
+    const fc=changed.has(oid)?' flash':'';
+    const stCls=obj&&!orphan?` st-${obj.status}`:'';
+    const head=orphan
+      ?`<div class="obj obj-orphan"><span class="obj-id">${esc(oid)}</span>
+           <span class="obj-title">${esc(obj?obj.title:'(objective not open)')}</span>
+           <span class="obj-meta">${obj?sPill(obj.status):''}</span></div>`
+      :`<div class="obj${stCls}"><span class="obj-id">${esc(obj.id)}</span>
+           <span class="obj-title">${esc(obj.title)}</span>
+           <span class="obj-meta">${objClose(obj.id,obj.status)} ${achip(obj.owner)}</span></div>`;
+    const subsHTML=subs.length
+      ?`<div class="subs">${subs.map(t=>{
+          const rf=changed.has(t.id)?' flash':'';
+          return `<div class="row${rf}" data-tid="${esc(t.id)}">
+            <span class="row-id">${esc(t.id)}</span>
+            <span class="row-title">${esc(t.title)}</span>
+            ${subButtons(t.id,t.status)}${ccNotes(t)}</div>`;
+        }).join('')}</div>`
+      :(orphan?'':`<div class="no-subs">No open sub-tasks — close the objective when the goal is met.</div>`);
+    return `<div class="obj-group${fc}" data-tid="${esc(oid)}">${head}${obj?ccNotes(obj,'obj-cc'):''}${subsHTML}</div>`;
+  };
+
+  const gbIds=objIds.filter(isGB);
+  const pendingIds=objIds.filter(oid=>!isGB(oid));
+  const gbGroups=gbIds.map(buildGroup);
+  const pendingGroups=pendingIds.map(buildGroup);
+  const gbSubCount=open.filter(t=>gbIds.includes(parentOf(t.id))).length;
+  const pendingSubCount=open.filter(t=>pendingIds.includes(parentOf(t.id))).length;
+
+  const gbSection=gbGroups.length
+    ?`<div class="gb-section">
+        <div class="gb-lbl">Glass Box <span class="cap">(${gbGroups.length} objective${gbGroups.length===1?'':'s'}${gbSubCount?` · ${gbSubCount} sub-task${gbSubCount===1?'':'s'}`:''})</span></div>
+        <div class="card">${gbGroups.join('')}</div>
+      </div>`:'' ;
+
+  const pendingSection=pendingGroups.length
+    ?`<div class="pending-lbl">Pending <span class="cap">(${pendingGroups.length} objective${pendingGroups.length===1?'':'s'}${pendingSubCount?` · ${pendingSubCount} sub-task${pendingSubCount===1?'':'s'}`:''})</span></div>
+      <div class="card">${pendingGroups.join('')}</div>`:'' ;
+
+  const nextHtml=pendingGroups.length?renderNext(d.next_action,d.executive,d.critical_path):'';
+
+  const body=(gbSection||pendingSection)
+    ?`${gbSection}${nextHtml}${pendingSection}`
+    :`<div class="card"><div class="calm"><span>✓</span>Nothing to action — no open work.</div></div>`;
+
+  // Closed log
+  const allClosed=tasks.filter(t=>t.status==='CLOSED')
+    .sort((a,b)=>String(b.completed_at||'').localeCompare(String(a.completed_at||''))
+                 ||b.id.localeCompare(a.id,undefined,{numeric:true}));
+  const closedSlice=allClosed.slice(0,20);
+  const closedHTML=allClosed.length===0?'':`
+    <details class="closed">
+      <summary>Closed <span class="cap">(last ${closedSlice.length} of ${allClosed.length})</span></summary>
+      <div class="card">${closedSlice.map(t=>`<div class="crow">
+        <span class="cdate">${esc(t.completed_at||'—')}</span>
+        <span class="cid">${esc(t.id)}</span>
+        <span class="ctitle">${esc(t.title)}${t.close_reason?`<span class="creason">${esc(t.close_reason)}</span>`:''}</span>
+        <span>${achip(t.owner)}</span></div>`).join('')}</div>
+    </details>`;
+
+  // Banked assets
+  const banked=d.banked_assets||[];
+  const bankedHTML=banked.length===0?'':`
+    <details class="banked" open>
+      <summary>🏦 Banked assets <span class="cap">(${banked.length} — proven, not launched)</span></summary>
+      <div class="card">${banked.map(b=>`<div class="brow">
+        <div class="bhead"><span class="bid">${esc(b.task_id)}</span>
+          <span class="btitle">${esc(b.one_liner||b.title)}</span>
+          <span class="bstat">${esc(b.status)} · ${esc(b.banked_at||'—')}</span></div>
+        ${b.why_parked?`<div class="bwhy"><b>Parked:</b> ${esc(b.why_parked)}</div>`:''}
+        ${b.revival_gate?`<div class="bgate"><b>Revive when:</b> ${esc(b.revival_gate)}</div>`:''}
+        ${b.reference?`<div class="bref">${esc(b.reference)}</div>`:''}
+      </div>`).join('')}</div>
+    </details>`;
+
+  const dc=d.drift?.counts||{};
+  const issues=(dc.PHANTOM_TASK||0)+(dc.CLOSURE_DRIFT||0)+(dc.REGISTRY_UNPARSEABLE||0);
+  const reg=issues
+    ?`<span class="reg warn">registry: ${issues} issue${issues===1?'':'s'}</span>`
+    :`<span class="reg clean">registry: clean</span>`;
+
+  const objCount=objIds.length, subCount=open.filter(t=>parentOf(t.id)).length;
+
+  // CC header badge — clicking scrolls to first CC note
+  const ccBadge=ccTotal>0
+    ?`<span class="cc-presence" onclick="document.querySelector('.cc')?.scrollIntoView({behavior:'smooth',block:'center'})" title="CC Agent: ${ccTotal} review note${ccTotal===1?'':'s'}">${ccFig()} ${ccTotal}</span>`
+    :'';
+
+  return `
+  ${renderSpine(d)}
+  <header class="hdr">
+    <div class="hdr-brand">
+      <span class="dot ${health}" title="${health}"></span>
+      <span class="hdr-title">Bari Command Center</span>
+      <span class="hdr-badge">tasks</span>
+      <span class="health-lbl ${health}">${health}</span>
+    </div>
+    <div class="hdr-right">
+      <div class="agents-bar" title="Active agents">${activeAgents.map(achip).join('')}</div>
+      ${ccBadge}
+      ${reg}
+      <span class="hdr-date">updated ${esc(d.meta?.last_updated||'—')}</span>
+      <span class="kbd-pair"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      <a class="hdr-link" href="./seo.html">SEO →</a>
+    </div>
+  </header>
+  <div class="main">
+    ${renderStale(d.meta,d.drift)}
+    ${renderBrief(d)}
+    <div class="sec-lbl">Actions <span class="cap">(${objCount} objective${objCount===1?'':'s'} · ${subCount} sub-task${subCount===1?'':'s'})</span></div>
+    <div class="hint">Objectives (TASK-NNN) only <b>Close</b> — closing cascades to open sub-tasks. Add work: <code>python new_task.py --parent TASK-NNN --title "…" --owner …</code></div>
+    ${body}
+    ${bankedHTML}
+    ${closedHTML}
+  </div>
+  <div class="footer">
+    <span>Bari Command Center · task board · ${esc(d.meta?.generated_at||'—')}</span>
+    <div class="footer-keys">
+      <span><kbd>Ctrl</kbd><kbd>K</kbd> palette</span>
+      <span><kbd>j</kbd><kbd>k</kbd> navigate</span>
+    </div>
+  </div>`;
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+async function init(){
+  const app=document.getElementById('app');
+  try{
+    const res=await fetch('./command_center.json',{cache:'no-store'});
+    if(!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+    const d=await res.json();
+    app.innerHTML=render(d);
+    setupPalette(d.tasks||[]);
+    setupKeyNav();
+    startSpineVoice(d);
+  }catch(err){
+    app.innerHTML=`<div class="error">✗ Failed to load command_center.json<br><br>${esc(err.message)}<br><br>
+      Run:&nbsp; cd C:\\Bari\\05_command_center &nbsp;then&nbsp; python serve.py</div>`;
+  }
+}
+init();
+setInterval(init,60000);
+</script>
+</body>
+</html>

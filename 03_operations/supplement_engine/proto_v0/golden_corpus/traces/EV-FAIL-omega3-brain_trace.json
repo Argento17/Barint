@@ -1,0 +1,73 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:14.676825Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "EV-FAIL-omega3-brain",
+  "active": "omega-3 (EPA/DHA)",
+  "on_label_claim": "brain & mood / general cognition (BROAD consumer claim)",
+  "claim_matched": "brain & mood / general cognition (BROAD consumer claim)",
+  "claim_resolution": {
+    "via_umbrella": false,
+    "resolved_endpoint": "brain & mood / general cognition (BROAD consumer claim)",
+    "resolved_phrase": null,
+    "resolved_tier": "Weak",
+    "resolution_supp_ev": null,
+    "resolution_citations": [
+      "PMID:38468309",
+      "PMID:29540267",
+      "PMID:38281596"
+    ],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [],
+    "over_promise": false,
+    "over_promise_markers": []
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 47.0,
+      "tier": "Weak"
+    },
+    "dose": {
+      "value": 92,
+      "reason": "in_range"
+    },
+    "form": {
+      "value": 92
+    },
+    "honesty": {
+      "value": 100
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "within_ul"
+    }
+  },
+  "signature": {
+    "evidence": "MID",
+    "dose": "HIGH",
+    "form": "HIGH",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [],
+  "binding_constraint": {
+    "mechanism": "blend_dominant_limit",
+    "machine_reason": "limited_by_weakest_applicable_dimension"
+  },
+  "also_fired": [],
+  "blend": 77.5,
+  "dossier_facts_used": [
+    {
+      "field": "claims['brain & mood / general cognition (BROAD consumer claim)'].evidence_tier",
+      "value": "Weak",
+      "supp_ev": "SUPP-EV-005"
+    }
+  ],
+  "final": {
+    "score": 77.5,
+    "grade": "B"
+  }
+}

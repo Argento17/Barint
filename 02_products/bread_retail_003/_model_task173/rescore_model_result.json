@@ -1,0 +1,464 @@
+{
+  "_LABEL": "TASK-173 RE-SCORE MODEL — NOT LIVE — DO NOT SHIP",
+  "_meta": {
+    "purpose": "empirical re-score: corrected(with ingredients) vs non-propagated(stripped) vs live",
+    "engine_src": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src",
+    "run_id": "real_bread_retail_003_v1",
+    "live_file": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v2.json",
+    "note": "corrected_score = real BSIP2 pipeline with genuine BSIP0 ingredients; nonprop_score = same pipeline with ingredients stripped (bug sim)"
+  },
+  "rows": [
+    {
+      "id": "shufersal_2079996",
+      "name": "לחם אחיד פרוס קל",
+      "live_score": 73,
+      "live_grade": "B",
+      "corrected_score": 79.6,
+      "corrected_grade": "B",
+      "nonprop_score": 81.1,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": -1.5,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה כהה (מכיל גלוטן), מים, סיבים תזונתיים, חלבון צמחי(מכיל גלוטן), מלח שולחן, שמרים, ",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_497044",
+      "name": "לחם ברמן אקטיב",
+      "live_score": 72,
+      "live_grade": "B",
+      "corrected_score": 80.7,
+      "corrected_grade": "A",
+      "nonprop_score": 80.1,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": 0.6,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (מכיל גלוטן, 100% מסך הקמחים, 53% ממשקל המוצר) מים, שמרים, גלוטן חיטה, סיבים ",
+      "live_tracks": "both_equal"
+    },
+    {
+      "id": "shufersal_7290016967074",
+      "name": "לחם אנג'ל חיטה מלאה",
+      "live_score": 72,
+      "live_grade": "B",
+      "corrected_score": 72.0,
+      "corrected_grade": "B",
+      "nonprop_score": 81.4,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": -9.4,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן), ( 100% ממשקל הקמחים, 50% ממשקל הלחם), מי",
+      "live_tracks": "corrected_with_ingredients"
+    },
+    {
+      "id": "shufersal_7290018500460",
+      "name": "לחם אנג'ל חצי מלא",
+      "live_score": 67,
+      "live_grade": "B",
+      "corrected_score": 72.0,
+      "corrected_grade": "B",
+      "nonprop_score": 76.1,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -4.1,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן) (50% ממשקל הקמחים, 34% ממשקל הלחם), קמח ח",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_3268429",
+      "name": "לחם ירוק מקמח מלא",
+      "live_score": 80,
+      "live_grade": "A",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 79.8,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 2.2,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח 60% מהלחם), מים, גלוטן ח",
+      "live_tracks": "nonprop_no_ingredients"
+    },
+    {
+      "id": "shufersal_481203",
+      "name": "לחם מחמצת קמח מלא",
+      "live_score": 77,
+      "live_grade": "B",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 76.9,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 5.1,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח חיטה מלא (נטחן מגרעין החיטה בשלמות (מכיל גלוטן)),90% מסך הקמחים , 50% מהלחם), מחמ",
+      "live_tracks": "nonprop_no_ingredients"
+    },
+    {
+      "id": "shufersal_3054183",
+      "name": "לחם שיפון מלא מסטמכר",
+      "live_score": 76,
+      "live_grade": "B",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 75.9,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 6.1,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "דגנים (גרעיני שיפון מלא שבורים 50% (מכיל גלוטן), קמח שיפון מלא 5% (מכיל גלוטן)), מים, מלח,",
+      "live_tracks": "nonprop_no_ingredients"
+    },
+    {
+      "id": "shufersal_2079927",
+      "name": "לחם דגנים מלא",
+      "live_score": 75,
+      "live_grade": "B",
+      "corrected_score": 81.5,
+      "corrected_grade": "A",
+      "nonprop_score": 81.1,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": 0.4,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח חיטה מלא (83% ממשקל הקמחים, 45% ממשקל הלחם) (מכיל גלוטן), קמח חיטה לבן (מכיל גלוט",
+      "live_tracks": "both_equal"
+    },
+    {
+      "id": "shufersal_3268252",
+      "name": "לחם חיטה מלא לילדים",
+      "live_score": 75,
+      "live_grade": "B",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 79.2,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 2.8,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן) (100% מהקמח, 66% ממשקל הלחם),מים, גלו",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_574370",
+      "name": "לחם שיפון קל",
+      "live_score": 75,
+      "live_grade": "B",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 82.0,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": 0.0,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח חיטה מלא n(נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (66% מהקמח, 30% ממשקל הלחם), ק",
+      "live_tracks": "both_equal"
+    },
+    {
+      "id": "shufersal_481197",
+      "name": "לחם מחמצת גרעינים",
+      "live_score": 76,
+      "live_grade": "B",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 75.9,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 6.1,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא",
+        "כוסמין"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח חיטה לבן  (מכיל גלוטן), (40%  מסך הקמחים , 24% מהלחם ), קמח כוסמין מלא (נטחן מגרע",
+      "live_tracks": "nonprop_no_ingredients"
+    },
+    {
+      "id": "shufersal_4685027",
+      "name": "לחם מחמצת וחיטה מלאה קל",
+      "live_score": 70,
+      "live_grade": "B",
+      "corrected_score": 72.0,
+      "corrected_grade": "B",
+      "nonprop_score": 79.7,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -7.7,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (מכיל גלוטן, 76% מסך הקמחים, 28% ממשקל המוצר), מים, קמח שיפון מלא (מכיל גלוטן",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_2079217",
+      "name": "לחם מחמצת שיפון+אגוזים",
+      "live_score": 61,
+      "live_grade": "C",
+      "corrected_score": 67.4,
+      "corrected_grade": "B",
+      "nonprop_score": 76.3,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -8.9,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח שיפון מלא (36% ממשקל הלחם,80% ממשקל הקמחים)(מכיל גלוטן),קמח חיטה,מים,מחמצת שיפון טבעית",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_2079477",
+      "name": "לחם אחיד פרוס",
+      "live_score": 67,
+      "live_grade": "B",
+      "corrected_score": 74.1,
+      "corrected_grade": "B",
+      "nonprop_score": 72.9,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 1.2,
+      "corrected_has_wg": false,
+      "corrected_wg_matches": [],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה כהה (מכיל גלוטן), מים, שמרים, מלח שולחן, חומרים משמרים: קלציום פרופיונט ופוטסיום ",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_7290016245325",
+      "name": "לחם טחינה פרוס",
+      "live_score": 82,
+      "live_grade": "A",
+      "corrected_score": 82.0,
+      "corrected_grade": "A",
+      "nonprop_score": 82.0,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": 0.0,
+      "corrected_has_wg": false,
+      "corrected_wg_matches": [],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמחים 36% (פשתן, שומשום, אפונה, סויה, שקדים), טחינה, גלוטן, אינולין, מחמצת שיפון, מלח",
+      "live_tracks": "both_equal"
+    },
+    {
+      "id": "shufersal_7290018500316",
+      "name": "לחם כוסמין לבן",
+      "live_score": 68,
+      "live_grade": "B",
+      "corrected_score": 76.1,
+      "corrected_grade": "B",
+      "nonprop_score": 73.3,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 2.8,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "חיטה מלאה",
+        "קמח חיטה מלא",
+        "כוסמין"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח כוסמין לבן (גלוטן)  (88% מהקמחים, 61% מהמוצר), מים, מחמצת חיטה מלאה 14% [קמח חיטה מלא ",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_6451507",
+      "name": "לחם מחמצת מכוסמין",
+      "live_score": 66,
+      "live_grade": "B",
+      "corrected_score": 69.0,
+      "corrected_grade": "B",
+      "nonprop_score": 78.5,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -9.5,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "כוסמין"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח כוסמין מלא (מכיל גלוטן)(70% מסך הקמחים), קמח חיטה לבן (מכיל גלוטן), סולת חיטה (מכ",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_6451484",
+      "name": "לחם מחמצת אגוזים צימוקים",
+      "live_score": 60,
+      "live_grade": "C",
+      "corrected_score": 68.8,
+      "corrected_grade": "B",
+      "nonprop_score": 72.6,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -3.8,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה לבן (מכיל גלוטן), מים, קמח שיפון מלא (מכיל גלוטן), אגוזי מלך (7%), מחמצת שאור (מי",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_2079033",
+      "name": "לחם דגנים לייט",
+      "live_score": 74,
+      "live_grade": "B",
+      "corrected_score": 80.2,
+      "corrected_grade": "A",
+      "nonprop_score": 81.7,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": -1.5,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא",
+        "שיפון מלא",
+        "קמח שיפון מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "מים, קמח חיטה מלא ( 60% ממשקל הקמחים, 32% ממשקל הלחם) (מכיל גלוטן), קמח שיפון מלא (20% ממש",
+      "live_tracks": "neither"
+    },
+    {
+      "id": "shufersal_96086000966",
+      "name": "קרקר כוסמין מלא ושומשום",
+      "live_score": 82,
+      "live_grade": "A",
+      "corrected_score": 81.5,
+      "corrected_grade": "A",
+      "nonprop_score": 81.5,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": 0.0,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "כוסמין"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח כוסמין מלא (82%), שומשום (15%), מלח, תמצית אורגנו טבעית. מאפיינים נוספים מכיל דגנים מל",
+      "live_tracks": "both_equal"
+    },
+    {
+      "id": "shufersal_96086000577",
+      "name": "קרקר כוסמין אורגני",
+      "live_score": 78,
+      "live_grade": "B",
+      "corrected_score": 77.7,
+      "corrected_grade": "B",
+      "nonprop_score": 81.7,
+      "nonprop_grade": "A",
+      "delta_corrected_vs_nonprop": -4.0,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "דגנים מלאים",
+        "כוסמין"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח כוסמין מלא אורגני (98%) (מכיל גלוטן), מים, מלח, סוכרים הנמצאים באופן טבעי בחומרי הגלם.",
+      "live_tracks": "corrected_with_ingredients"
+    },
+    {
+      "id": "shufersal_7296073134459",
+      "name": "קרקר פריך בסגנון שוודי",
+      "live_score": 72,
+      "live_grade": "B",
+      "corrected_score": 72.2,
+      "corrected_grade": "B",
+      "nonprop_score": 76.2,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -4.0,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (33.5%)(מכיל גלוטן), גריסים מחיטה, גריסי תירס, עמילן תפוח אדמה, לתתי שעורה (מ",
+      "live_tracks": "corrected_with_ingredients"
+    },
+    {
+      "id": "shufersal_7296073134442",
+      "name": "קרקר פריך עם קמח שיפון",
+      "live_score": 71,
+      "live_grade": "B",
+      "corrected_score": 71.4,
+      "corrected_grade": "B",
+      "nonprop_score": 75.4,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": -4.0,
+      "corrected_has_wg": true,
+      "corrected_wg_matches": [
+        "קמח חיטה מלא"
+      ],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה מלא (70%)(מכיל גלוטן), גריסי תירס, קמח שיפון (4.9%)(מכיל גלוטן), עמילן תפוח אדמה,",
+      "live_tracks": "corrected_with_ingredients"
+    },
+    {
+      "id": "shufersal_8434165658523",
+      "name": "קרקר קרם קרקר",
+      "live_score": 59,
+      "live_grade": "C",
+      "corrected_score": 67.4,
+      "corrected_grade": "B",
+      "nonprop_score": 66.2,
+      "nonprop_grade": "B",
+      "delta_corrected_vs_nonprop": 1.2,
+      "corrected_has_wg": false,
+      "corrected_wg_matches": [],
+      "nonprop_has_wg": false,
+      "ingredients_raw_snippet": "קמח חיטה (מכיל גלוטן), שמנים צמחיים ( חמניות, דקל), סוכר לבן, מלח, תמצית לתת שעורה(מכיל גל",
+      "live_tracks": "neither"
+    }
+  ]
+}

@@ -75,10 +75,10 @@ A destructive change alters the rendering, structure, or behavior of a legacy fi
 | Adding new tokens | Permitted — additive |
 | Modifying existing token values | **Prohibited** without audit of all legacy consumers |
 | Removing existing tokens | **Prohibited** — legacy pages depend on them |
-| Adding `gradePalette` usage in new components | **Prohibited** — canonical components must not consume `gradePalette` |
-| Quarantining `gradePalette` from canonical components | Enforced by convention — canonical ScoreChip does not import it |
+| Adding `gradePalette` usage in new components | **Permitted (Gen 1.1)** — the canonical ScoreChip now consumes `gradePalette` for its grade-coded tinted chip (owner directive 2026-06-03). Use the approved A–E ramp only; do not add an off-ramp or second color axis. *(Superseded the original Gen 1 prohibition.)* |
+| Editing the `gradePalette` ramp itself | **Prohibited** without an exception request — both legacy and canonical now read it. |
 
-`gradePalette` remains in the token file for legacy page compatibility. Its presence does not constitute approval for use in canonical components.
+`gradePalette` is shared by legacy pages and the canonical Gen 1.1 ScoreChip. Legacy pages render it as a saturated/labeled chip; canonical components render it as a subtle tint + accent. Note: the legacy *visual treatment* (saturated fill, grade-label text) is still Gen 0 and must not be reproduced in canonical components — only the grade-to-color *source* (`gradePalette`) is shared.
 
 ---
 
@@ -103,7 +103,7 @@ The following conditions require the legacy page to be left as-is, regardless of
 | Condition | Rule |
 |---|---|
 | Pattern violates Bari spec but page is live | Leave as-is. Document the violation in the audit. Do not fix during canonical build. |
-| Score chip shows color by grade in milk or snack | Leave as-is. Do not import canonical ScoreChip into legacy pages. |
+| Milk/snack chip uses the legacy saturated/labeled grade chip | Leave as-is. Do not import the canonical Gen 1.1 ScoreChip into legacy pages. (Color-by-grade is now correct in canonical via tinted `gradePalette`; the legacy *saturated/labeled* treatment is Gen 0 and stays quarantined, not migrated piecemeal.) |
 | Expansion section contains framework terms | Leave as-is. Do not edit milk expansion during מעדנים build. |
 | Bread hero exceeds 280px | Leave as-is. |
 | Bread methodology is a collapsible card | Leave as-is. |

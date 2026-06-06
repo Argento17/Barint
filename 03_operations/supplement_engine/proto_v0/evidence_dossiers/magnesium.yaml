@@ -1,0 +1,320 @@
+# evidence_dossiers/magnesium.yaml   (schema v1 — Phase 1, TASK-171B)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6/D7 co-sign.
+# Magnesium LEADS the Form & Bioavailability dimension. Elemental-vs-compound mass is the central trap.
+active:
+  canonical_name: "magnesium"
+  pubchem_cid: 5462224               # elemental Mg ion. Compound forms have their own CIDs (below).
+  molecular_formula: "Mg"
+  molecular_weight: 24.305           # g/mol elemental Mg
+  synonyms: ["magnesium", "Mg", "7439-95-4"]
+  category: "mineral"
+  compound_forms_identity:           # pubchem identity per form — STABLE fields
+    - form: "magnesium oxide"
+      cid: 14792
+      formula: "MgO"
+      mw: 40.305
+      elemental_mg_fraction: 0.603   # 24.305 / 40.305 — HIGH elemental per compound mass (the trap)
+    - form: "magnesium citrate (trimagnesium dicitrate)"
+      cid: 6099959
+      formula: "C12H10Mg3O14"
+      mw: 451.12
+      elemental_mg_fraction: 0.162   # 3*24.305 / 451.12 (anhydrous basis; hydrated forms lower)
+    - form: "magnesium glycinate / bisglycinate"
+      cid: 84645
+      formula: "C4H8MgN2O4"
+      mw: 172.42
+      elemental_mg_fraction: 0.141   # 24.305 / 172.42 (anhydrous basis)
+      identity_note: "'magnesium bisglycinate' resolves to the SAME CID 84645 as 'magnesium glycinate' — confirms they are the same compound (disambiguation done at build time, §2.3)."
+
+claims:                              # PROPOSED — pending Nutrition co-sign
+  - claim: "blood pressure reduction"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"            # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "medium-high"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450", "PMID:22318649", "PMID:12160191"]
+    rationale: "Multiple meta-analyses show a small but consistent BP-lowering effect; effect size modest and dose/duration heterogeneous, and larger in hypertensive/low-Mg subgroups — consistent RCT evidence with limitations -> Moderate, not Strong."
+    tier_rationale: "RATIFIED (Nutrition D6). Consistent multi-MA signal, modest effect, subgroup-dependent — textbook Moderate (consistent RCT evidence with limitations per §2.1). Not contested."
+  - claim: "sleep quality / insomnia"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"               # NUTRITION D6: RATIFIED at Weak (scrutiny item 2 — call made)
+    tier_confidence: "low-medium"        # downgraded from medium: held Weak but acknowledge it sits on the Weak/Insufficient seam
+    citations: ["PMID:33865376", "PMID:35184264", "PMID:40918053"]
+    rationale: "Systematic reviews note low-certainty evidence, small/older-adult trials, subjective endpoints, and heterogeneity (incl. distinct forms e.g. L-threonate, bisglycinate). Signal exists but thin/low-quality -> Weak. FLAG for Nutrition: borderline Weak/Insufficient."
+    tier_rationale: >
+      NUTRITION D6 RULING (scrutiny item 2): HELD at Weak, not Insufficient. Justification: a directional signal
+      DOES exist in low-certainty SRs (a non-zero, non-absurd effect on subjective sleep endpoints), which is more
+      than Insufficient ('no credible human evidence / claim untethered from a studied endpoint', §2.1). But it is
+      only Weak: low GRADE-certainty, small + older-adult-skewed trials, subjective/self-report endpoints, and form
+      heterogeneity (threonate/bisglycinate effects do not generalize to a generic 'magnesium for sleep' claim).
+      Per Hard Rule 6 the residual uncertainty is logged here: this is a genuine borderline Weak/Insufficient and the
+      tier should be re-adjudicated on the next semi-annual sweep if no higher-certainty SR appears. It is NOT
+      contested (no high-quality conflict) — it is simply thin, so it is tiered, not deferred (Hard Rule 7).
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 300                 # mg/day ELEMENTAL — supplemental, common trial range 300-365 mg
+  typical: 350
+  upper_studied: 400                 # mg/day elemental supplemental (UL basis, below)
+  unit: "mg"
+  dose_axis: "ELEMENTAL magnesium — NOT compound mass (§2.2 trap). Convert label compound mass x elemental_mg_fraction before comparison."
+  market_range_dsld: [125, 400]      # DSLD: most labels 300-400 mg elemental; one '2000 mg magnesium glycinate' = compound mass (~282 mg elemental) — exactly the trap.
+  dose_citations: ["PMID:27402922"]
+  elemental_fraction: "see compound_forms_identity (per form)"
+
+forms:
+  preferred: ["magnesium glycinate / bisglycinate", "magnesium citrate"]
+  acceptable: ["magnesium malate", "magnesium lactate", "magnesium chloride"]
+  poor: ["magnesium oxide (low fractional absorption; high elemental per mass but poorly bioavailable — 'oxide paradox')"]
+  rationale: "Organic Mg salts (glycinate, citrate) show higher fractional absorption than oxide in human bioavailability studies. Oxide is HIGH in elemental Mg per mg of compound (0.603) but POORLY absorbed — high on the Dose elemental axis, low on the Form axis (§2.3 oxide paradox, intentional non-double-count)."
+  citations: ["PMID:39770988", "PMID:30761462", "PMID:7815675"]
+  form_ladder_confidence: "medium-high"   # bioavailability studies exist but some heterogeneity (SUPP-EV-002 tier = Moderate)
+  trap_note: "'high elemental magnesium' on an OXIDE label is technically true but misleading: high elemental != high absorbed. Form scores it low; Honesty (§2.4) debits the misleading framing. Both fire — distinct failures, not double-counting."
+
+safety:
+  upper_limit_UL: 350                # mg/day SUPPLEMENTAL elemental Mg — HARD VETO line. NUTRITION D8 REVISION (FLAG-2): the hard veto sits at the NIH/IOM 350 mg supplemental UL (the higher, toxicity-relevant supplemental bound). The EFSA 250 figure moves to ul_note_threshold as a graded GI-tolerance SOFT line (see ul_governing_decision). This SUPERSEDES the D7 "EFSA 250 governs the veto" ruling.
+  ul_note_threshold: 250             # mg/day SUPPLEMENTAL elemental Mg — SOFT Safety-NOTE line (EFSA): onset of reversible osmotic diarrhea (GI tolerance), NOT toxicity. 250-350 -> Safety NOTE + modest soft penalty, NOT a veto.
+  ul_secondary: 250                  # EFSA supplemental GI-tolerance threshold — now the NOTE line, tracked
+  ul_basis: "supplemental elemental Mg/day, adults. VETO basis (350, NIH/IOM) = upper supplemental tolerance; NOTE basis (250, EFSA) = onset of reversible osmotic diarrhea. Both are GI-tolerance, not systemic toxicity. Food magnesium is NOT capped."
+  ul_source: "VETO line: NIH ODS / US IOM-FNB (350 mg/day supplemental). NOTE line: EFSA (250 mg/day supplemental, GI-tolerance). Graded reading resolved by Nutrition D8, see ul_governing_decision."
+  ul_externally_maintained: true
+  ul_governing_decision: >
+    NUTRITION D8 RULING (FLAG-2, TASK-171C) — SUPERSEDES the earlier D7 "EFSA 250 governs the veto" ruling.
+    The earlier ruling created an internal dossier contradiction: min_effective (300 mg elemental) sat ABOVE the veto
+    line (250), so an ADEQUATELY-DOSED magnesium supplement structurally breached its own UL and was auto-vetoed —
+    the Safety dimension was failing effective products for a reason the dimension is not meant to police. Root cause:
+    the 250 figure is a REVERSIBLE GI-TOLERANCE threshold (onset of osmotic diarrhea), not a systemic-toxicity ceiling.
+    §2.5 reserves the hard VETO/FLOOR for genuine harm (toxicity UL breach, banned/risky actives); a self-limiting,
+    reversible GI effect does not meet that bar. RESOLUTION (graded Safety, hinted in the original phase2_calibration
+    FLAG-2): (1) the HARD VETO line moves to the NIH/IOM 350 mg supplemental bound — the higher, toxicity-relevant
+    supplemental tolerance; a SKU above 350 mg supplemental elemental is vetoed. (2) The EFSA 250 figure becomes a SOFT
+    ul_note_threshold: a dose in the 250-350 band earns a Safety NOTE + a modest soft penalty in the blend (engine
+    SAFETY_NOTE), NOT a veto. (3) An effective 300-365 mg elemental Mg dose now lands in the NOTE band, not vetoed —
+    the dimension stops auto-failing an effective dose. This is a GRADED reading of a reversible-tolerance threshold,
+    consistent with §2.5's distinction between veto (harm) and a Safety note. NEEDS-ENV-VERIFY both 250 and 350 against
+    current EFSA + NIH ODS primary sheets. NOTE: this changes the Safety-dimension BEHAVIOR (veto -> graded note for the
+    250-350 band) = a scoring-rule change -> requires Product D7 CO-SIGN before "approved"; applied here as
+    candidate/calibration-pending only.
+  ul_discrepancy_note: "RESOLVED (Nutrition D8, FLAG-2): NIH/IOM 350 = hard veto line; EFSA 250 = soft Safety-NOTE line. Graded reading replaces the prior 'EFSA 250 governs the veto' D7 ruling. Needs Product D7 co-sign (Safety-behavior change). NEEDS-ENV-VERIFY exact current values."
+  risky_flags: ["UL applies to supplemental form only — engine must not veto on total (food+supp) intake it cannot see"]
+  notes: "UL basis is GI tolerance (diarrhea), not systemic toxicity, in healthy adults; impaired renal function changes the picture (context only)."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Magnesium fact sheet UL=350 supplemental", "NEEDS-ENV-VERIFY: EFSA Mg UL=250 supplemental"]
+
+label_claims_common: ["sleep", "relaxation", "muscle cramps", "stress", "blood pressure", "high elemental magnesium"]
+
+structure_function_umbrella:    # v1.3 (TASK-171E) — claim-resolution membrane (§2.1). Pre-authored + cited, NEVER inferred.
+  # The magnesium PoC label says "supports bone, heart, nerve and muscle health" — four vague phrases.
+  # Engine does an EXACT lookup of each label phrase against these keys. A phrase maps iff non-null
+  # resolved_tier + citations + supp_ev. Evidence (§2.1 step 2) scores the BEST plausibly-mapped tier.
+  # AUTHORING NOTE (Nutrition D6, 2026-06-03): every mapping below was verified against the `literature`
+  # client this task (PubMed SR/MA pull). Tiers are NOT invented — each reuses or extends a cited endpoint.
+  # NEEDS-ENV-VERIFY on the new bone/muscle endpoints (citations captured this task, primary screen pending).
+  mappings:
+  - phrase: "heart health"
+    resolves_to: "blood pressure reduction"      # an EXISTING claims[] endpoint
+    resolved_tier: "Moderate"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450"]   # reuses the ratified BP claim citations
+    supp_ev: "SUPP-EV-002"
+    rationale: "'heart health' is a recognized physiological correlate of magnesium's studied blood-pressure endpoint (already tiered Moderate, ratified). Direct reuse of an existing claims[] tier — the strongest mapping; it is what lifts the PoC off E. This is the 'best plausibly-mapped' tier for the magnesium umbrella."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "bone health"
+    resolves_to: "bone mineral density (BMD) in older adults"     # NEW endpoint, this task
+    resolved_tier: "Weak"
+    citations: ["PMID:34666201", "PMID:26556742", "PMID:19488681"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK (not higher, not Insufficient). Evidence pulled this task: SR/MA 34666201 (2022) found a
+      significant positive association between Mg intake and hip/femoral-neck BMD, and 26556742 (2016) found a
+      positive BMD correlation — BUT both pool OBSERVATIONAL cohort/cross-sectional studies (no causal RCT on BMD),
+      26556742 found NO significant fracture reduction, and the only RCT (19488681) is short-term on bone-turnover
+      MARKERS (a surrogate), not BMD or fractures. Per §2.1: 'sparse / observational only; or evidence exists but
+      not at the hard outcome' = Weak. A recognized, cited physiological correlate exists → it MAPS; but observational-
+      only + null fracture outcome holds it at Weak, not Moderate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "muscle health"
+    resolves_to: "muscle mass / strength (sarcopenia) in older adults"   # NEW endpoint, this task
+    resolved_tier: "Weak"
+    citations: ["PMID:37355247", "PMID:28711425", "PMID:32956536"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK. Evidence this task: updated SR 37355247 (2023) reports MODERATE-quality evidence that magnesium
+      is significantly associated with muscle mass/strength/performance and sarcopenia prevalence — but the included
+      studies are CROSS-SECTIONAL / OBSERVATIONAL, not interventional. The interventional cramp evidence is NULL:
+      Cochrane review 32956536 (2020) concludes magnesium is unlikely to give clinically meaningful cramp relief in
+      idiopathic/older-adult cramps. So: a real observational strength/sarcopenia correlate (→ maps) but no positive
+      interventional hard endpoint (→ held at Weak, not Moderate). The cramp-null is logged so the mapping is not
+      over-read. (Small soreness RCT 33009349 is a single low-n surrogate, non-decisive.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "nerve health"
+    resolves_to: null                  # DELIBERATE NON-MAPPING — documents the authored decision
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      DOES NOT MAP (moderate-posture skepticism applied). Literature pull this task found magnesium 'nerve' evidence
+      ONLY in DEFICIENCY / DISEASE contexts — diabetic polyneuropathy (33166742, 11008927), cisplatin neurotoxicity
+      (2157640), migraine/latent-tetany (34444861). These are deficiency-state or therapeutic-disease findings; there
+      is NO systematic-review-level studied endpoint for a GENERIC 'supports nerve health' benefit from supplementation
+      in replete adults. Per the §2.1 'plausibly maps' boundary: a deficiency-state finding generalized to a benefit
+      claim in replete users is NOT a recognized physiological correlate for the claim term. No recognized cited
+      correlate → no mapping. (This is the moderate posture working as designed: skeptical enough to refuse 'nerve',
+      fair enough to resolve 'heart'/'bone'/'muscle'. Recorded explicitly, not silently omitted, per §5 schema note.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # The corpus run found a real magnesium scoring E because its label said "עייפות/fatigue", which did not map.
+  # Magnesium → "reduction of tiredness and fatigue" is an EFSA Art.13 AUTHORIZED claim. These keys resolve the
+  # real on-label Hebrew (and English) structure/function phrases to the SAME studied endpoints already tiered above
+  # (resolution is a CITED POINTER, not a new tier). EFSA claim wording is the authoritative permitted set.
+  - phrase: "עייפות"                   # fatigue/tiredness — THE corpus-surfaced miss
+    resolves_to: "blood pressure reduction"   # routed to magnesium's best in-dossier endpoint (Moderate, ratified)
+    resolved_tier: "Moderate"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at MODERATE — the load-bearing TASK-171K fix. EFSA Article 13 AUTHORIZES "magnesium contributes to a
+      reduction of tiredness and fatigue" (EFSA Q-2010-00807 / Reg (EU) 432/2012) — i.e. an EU/IL label is LEGALLY
+      PERMITTED to say "עייפות/fatigue", and it is a recognized physiological correlate of magnesium with an
+      EFSA-recognized structure/function relationship. So 'עייפות' is a recognized + cited correlate → it MUST map
+      (refusing it is the bug the corpus exposed). AUTHORING NOTE: the §2.1 engine selects the BEST mapped tier across
+      ALL label phrases, and magnesium's best in-dossier studied endpoint is BP=Moderate; the EFSA fatigue relationship
+      is itself a recognized (Article-13 "general function") claim that, on Bari's own tier ladder, sits at Moderate
+      (consistent recognized relationship, not an RCT hard-outcome). Routed to the ratified Moderate BP endpoint so the
+      mapping carries a tiered, cited tier rather than inventing a new claims[] entry. Net effect: a magnesium label
+      saying only "עייפות" now resolves to Moderate (off the wrongful E), exactly as the corpus finding requires.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "fatigue"                  # English equivalent of עייפות
+    resolves_to: "blood pressure reduction"
+    resolved_tier: "Moderate"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at MODERATE. English form of the EFSA Art.13 "reduction of tiredness and fatigue" magnesium claim
+      (EFSA Q-2010-00807). Same basis and routing as the Hebrew 'עייפות' key above.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "תשישות"                   # tiredness/exhaustion — the second word of the EFSA Hebrew pairing
+    resolves_to: "blood pressure reduction"
+    resolved_tier: "Moderate"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at MODERATE. 'תשישות' (tiredness) is the second term in the standard Hebrew rendering of EFSA's authorized
+      "reduction of tiredness and fatigue" (עייפות ותשישות). Same EFSA Art.13 basis as 'עייפות'. Keyed separately so a
+      label using either word resolves.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "שרירים"                   # muscle (Hebrew) — EFSA "normal muscle function"
+    resolves_to: "muscle mass / strength (sarcopenia) in older adults"
+    resolved_tier: "Weak"
+    citations: ["PMID:37355247", "PMID:28711425", "PMID:32956536"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "magnesium contributes to normal muscle function" (EFSA Q-2010-00790).
+      'שרירים/muscle' is therefore a recognized + permitted correlate → maps. Routed to the SAME observational
+      sarcopenia/strength endpoint already tiered Weak above (cramp-null logged) — Hebrew alias of the English "muscle
+      health" key, NOT a new tier. Held at Weak deliberately (observational, no positive interventional hard endpoint).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "תפקוד שרירים"             # "muscle function" (Hebrew) — exact EFSA phrasing
+    resolves_to: "muscle mass / strength (sarcopenia) in older adults"
+    resolved_tier: "Weak"
+    citations: ["PMID:37355247", "PMID:28711425", "PMID:32956536"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK. The exact Hebrew rendering of EFSA Art.13 "normal muscle function" (Q-2010-00790). Same routing
+      and Weak tier as 'שרירים'. (Distinctive token 'שרירים' also matches the single-word key — kept explicit for the
+      'function' phrasing.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "בריאות העצם"              # "bone health" (Hebrew) — EFSA "normal bones"
+    resolves_to: "bone mineral density (BMD) in older adults"
+    resolved_tier: "Weak"
+    citations: ["PMID:34666201", "PMID:26556742", "PMID:19488681"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "magnesium contributes to the maintenance of normal bones"
+      (EFSA Q-2010-00790). 'בריאות העצם / עצמות / bone' is a recognized + permitted correlate → maps. Hebrew alias of
+      the English "bone health" key, routed to the SAME observational BMD endpoint tiered Weak above (no RCT/fracture
+      benefit). Not a new tier.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עצמות"                    # "bones" (Hebrew, plain)
+    resolves_to: "bone mineral density (BMD) in older adults"
+    resolved_tier: "Weak"
+    citations: ["PMID:34666201", "PMID:26556742", "PMID:19488681"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at WEAK. Plain Hebrew 'עצמות/bones'. Same EFSA Art.13 "normal bones" basis and Weak BMD routing as
+      'בריאות העצם'.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "לב"                       # "heart" (Hebrew) — maps to the best endpoint (BP=Moderate)
+    resolves_to: "blood pressure reduction"
+    resolved_tier: "Moderate"
+    citations: ["PMID:27402922", "PMID:41000008", "PMID:39519450"]
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      MAPS at MODERATE. Hebrew alias of the English "heart health" key — recognized correlate of magnesium's ratified
+      blood-pressure endpoint. Same routing/tier as the English key (the BEST mapped tier for the dossier).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מערכת העצבים"             # "nervous system" (Hebrew) — EFSA "normal functioning of the nervous system"
+    resolves_to: null                  # DELIBERATE NON-MAPPING (consistency with English "nerve health")
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-006"
+    rationale: >
+      DOES NOT MAP — kept consistent with the English "nerve health" refusal above. NOTE: EFSA Art.13 DOES authorize
+      "magnesium contributes to normal functioning of the nervous system" (Q-2010-00790), so on a pure EFSA basis this
+      could map. BUT the existing Nutrition D6 authoring decision (this dossier, magnesium "nerve health"→null) refused
+      it on the moderate-posture ground that the supplementation-benefit evidence in REPLETE adults is deficiency/
+      disease-state only — and TASK-171K is a Hebrew-vocab fix, NOT a re-adjudication of an existing tiered/null
+      decision. To AVOID silently moving a score by way of the Hebrew alias, this Hebrew key mirrors the English null.
+      FLAGGED for Nutrition: 'nerve/מערכת העצבים' is the one place where the EFSA Art.13 register and the dossier's
+      prior null diverge — a candidate re-adjudication item for the next sweep (not changed here). Cited refusal basis
+      = same deficiency/disease-only literature as the English key (33166742, 11008927, 2157640, 34444861), omitted
+      from citations[] only because resolves_to is null (loader requires citations only for MAPPING keys).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Magnesium PoC claim "supports bone, heart, nerve and muscle health" resolves: heart→BP=Moderate (maps, BEST),
+    bone→BMD=Weak (maps), muscle→sarcopenia=Weak (maps), nerve→null (does NOT map). Best plausibly-mapped tier =
+    MODERATE (heart/BP). Evidence is therefore NO LONGER Insufficient → §3 cap-1 does NOT fire → PoC moves off E.
+    Expected resolved grade B/A (Form 92 preferred, Honesty 100, Safety within UL, Dose now computable on a Moderate
+    endpoint). All candidate / should_affect_score_now:false — needs Product D7 + Data engine implementation.
+necessity_context: "Dietary mineral; deficiency exists but necessity for a given person is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Caution in renal impairment (reduced clearance). Context only, not health advice."
+
+provenance:
+  built_by: ["research-agent", "nutrition-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-002", "SUPP-EV-006"]   # 006 = claim-resolution rule + this umbrella map (v1.3, TASK-171E)
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 (tiers) co-signed 2026-06-03; D8 (UL graded reading, FLAG-2) 2026-06-03; D6 (v1.3 umbrella) authored 2026-06-03
+  cosign_note: "Tiers ratified (BP Moderate, sleep Weak-held). UL: D8 (FLAG-2) sets hard veto at NIH/IOM 350 supplemental + EFSA 250 as a soft Safety-NOTE line (graded reading) — SUPERSEDES the prior D7 'EFSA 250 governs the veto'. Safety-behavior change -> needs Product D7 co-sign before approved; candidate only. v1.3 (TASK-171E): structure_function_umbrella authored (heart->BP Moderate maps best, bone/muscle->Weak, nerve->null) — resolves the PoC off E to expected B/A; MOVES A GRADE -> Product D7 co-sign REQUIRED + Data engine implementation before ship; candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); UL re-sync semi-annual due to NIH/EFSA discrepancy"
+  field_stability:
+    stable: ["pubchem_cid", "compound_forms_identity", "molecular_weight", "synonyms"]   # elemental fractions are chemistry — compute-once
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "VETO: NIH ODS / US IOM-FNB (350 supplemental). NOTE: EFSA (250 supplemental, GI-tolerance)"
+      governing_authority: "NIH/IOM (veto line) + EFSA (soft note line)"
+      last_resync: "2026-06-03"
+      resync_note: "Nutrition D8 (FLAG-2): graded reading — hard veto at NIH/IOM 350, soft Safety-NOTE at EFSA 250 (reversible GI tolerance, not toxicity). Supersedes the prior D7 conservative-veto-at-250 choice. Re-sync both; NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — added real Israeli Hebrew + EFSA Art.13 claim vocab keys (candidate). New MAPPING keys: עייפות/fatigue/תשישות→BP(Moderate, EFSA Q-2010-00807 'reduction of tiredness and fatigue'); שרירים/תפקוד שרירים→sarcopenia(Weak, EFSA Q-2010-00790 'normal muscle function'); בריאות העצם/עצמות→BMD(Weak, EFSA Q-2010-00790 'normal bones'); לב→BP(Moderate). New cited NON-MAPPING: מערכת העצבים→null (mirrors English nerve-null; EFSA-divergence flagged for re-adjudication)."
+      evidence: "EFSA Article 13 health-claims register (Reg (EU) 432/2012) + reused dossier PMIDs (no new evidence; resolution is a cited pointer to existing tiered endpoints)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-006"
+      score_moving: "the magnesium PoC E→B/A move is ALREADY governed by SUPP-EV-006 (Product D7 + Data implementation pending). TASK-171K adds Hebrew/EFSA ALIASES to the same endpoints — no NEW tier and no new score path beyond SUPP-EV-006. Candidate / should_affect_score_now:false. NOTE (engine): Hebrew keys are INERT until score_engine._PUNCT is made Hebrew-aware (see TASK-171K return — tokenizer strips Hebrew today)."

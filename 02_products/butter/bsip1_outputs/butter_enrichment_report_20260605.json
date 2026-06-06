@@ -1,0 +1,632 @@
+{
+  "run_id": "butter_enrichment_20260605",
+  "task": "TASK-191",
+  "phase": "A",
+  "stage": "BSIP1_external_enrichment",
+  "generated_utc": "2026-06-05T16:24:30Z",
+  "bsip1_source": "C:\\Bari\\02_products\\butter\\bsip1_outputs\\butter_bsip1_merged.json",
+  "total_insufficient_targeted": 23,
+  "resolved_to_sufficient": 23,
+  "still_insufficient": 0,
+  "enrichment_sources_used": [
+    "open_food_facts",
+    "usda_fdc"
+  ],
+  "edpg_status": "all_external_data_candidate_status",
+  "notes": [
+    "All external nutrition values are born verification_status=candidate.",
+    "USDA FDC entries are generic composition references, not SKU matches.",
+    "OFF entries are barcode-matched but crowd-sourced; pending QA promotion.",
+    "No scored traces were modified. Phase B (BSIP2) is blocked until QA gate."
+  ],
+  "products": [
+    {
+      "barcode": "4820217240114",
+      "name": "חמאה FERMA 82.5%",
+      "brand": "פרמה",
+      "retailer": "shufersal",
+      "off_result": "found",
+      "fdc_result": "not_tried",
+      "source_used": "open_food_facts",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g",
+        "cholesterol_mg"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": []
+    },
+    {
+      "barcode": "3161911229199",
+      "name": "חמאה צרפתית רכה למריחה",
+      "brand": "אלוויר",
+      "retailer": "shufersal",
+      "off_result": "found",
+      "fdc_result": "not_tried",
+      "source_used": "open_food_facts",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "sugars_g",
+        "dietary_fiber_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": []
+    },
+    {
+      "barcode": "5099460004149",
+      "name": "חמאה קרי גולד ללא מלח",
+      "brand": "Kerrygold",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "5099460004132",
+      "name": "חמאה קרי גולד מלוחה",
+      "brand": "Kerrygold",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, salted' fdc_id=173410",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173410, type=SR Legacy, description='Butter, salted'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "5099460004156",
+      "name": "חמאה קרי גולד ללא מלח 250 גרם",
+      "brand": "Kerrygold",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "9414544900015",
+      "name": "חמאה אנקור ללא מלח",
+      "brand": "Anchor",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "9414544900022",
+      "name": "חמאה אנקור מלוחה",
+      "brand": "Anchor",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, salted' fdc_id=173410",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173410, type=SR Legacy, description='Butter, salted'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "3228021530005",
+      "name": "חמאה פרזידן ללא מלח",
+      "brand": "President",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'PRESIDENT, BUTTER, UNSALTED, UNSALTED' fdc_id=1868389",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Branded composition reference from USDA FDC (fdc_id=1868389, type=Branded, description='PRESIDENT, BUTTER, UNSALTED, UNSALTED'). Brand-matched entry."
+      ]
+    },
+    {
+      "barcode": "3228021530012",
+      "name": "חמאה פרזידן מלוחה",
+      "brand": "President",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'PRESIDENT, BUTTER, SALTED, SALTED' fdc_id=1868388",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Branded composition reference from USDA FDC (fdc_id=1868388, type=Branded, description='PRESIDENT, BUTTER, SALTED, SALTED'). Brand-matched entry."
+      ]
+    },
+    {
+      "barcode": "5740900400221",
+      "name": "חמאה לורפק ללא מלח",
+      "brand": "לורפק",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED' fdc_id=1856663",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "sugars_g",
+        "dietary_fiber_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Branded composition reference from USDA FDC (fdc_id=1856663, type=Branded, description='LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED'). Brand-matched entry."
+      ]
+    },
+    {
+      "barcode": "5740900400238",
+      "name": "חמאה לורפק מלוחה",
+      "brand": "לורפק",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, salted' fdc_id=173410",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173410, type=SR Legacy, description='Butter, salted'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290000066028",
+      "name": "חמאה טרה",
+      "brand": "טרה",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290000066035",
+      "name": "חמאה טרה מלוחה",
+      "brand": "טרה",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, salted' fdc_id=173410",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173410, type=SR Legacy, description='Butter, salted'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290113401022",
+      "name": "חמאה אדום אדום",
+      "brand": "אדום אדום",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290006325046",
+      "name": "חמאה יוטבתה",
+      "brand": "יוטבתה",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290105953020",
+      "name": "חמאה בית האמק",
+      "brand": "בית האמק",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "8906060890143",
+      "name": "חמאה מזוקקת גהי",
+      "brand": "Pure",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, Clarified butter (ghee)' fdc_id=171314",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=171314, type=SR Legacy, description='Butter, Clarified butter (ghee)'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "4260268321030",
+      "name": "שמן גהי",
+      "brand": "Ghee",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, Clarified butter (ghee)' fdc_id=171314",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=171314, type=SR Legacy, description='Butter, Clarified butter (ghee)'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "7290002492086",
+      "name": "חמאה נוגה",
+      "brand": "נוגה",
+      "retailer": "yohananof",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "5099460010935",
+      "name": "חמאה קרי גולד ללא מלח 250 גרם",
+      "brand": "Kerrygold",
+      "retailer": "carrefour",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "3760088100025",
+      "name": "חמאה אשירה AOP",
+      "brand": "Echire",
+      "retailer": "carrefour",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "3412130012558",
+      "name": "חמאה פיזן ברטון ללא מלח",
+      "brand": "Paysan Breton",
+      "retailer": "carrefour",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, without salt' fdc_id=173430",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [
+        "fat_trans_g"
+      ],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173430, type=SR Legacy, description='Butter, without salt'). Not a SKU match — directional generic enrichment."
+      ]
+    },
+    {
+      "barcode": "3412130012534",
+      "name": "חמאה פיזן ברטון מלוחה",
+      "brand": "Paysan Breton",
+      "retailer": "carrefour",
+      "off_result": "not_found",
+      "fdc_result": "found: 'Butter, salted' fdc_id=173410",
+      "source_used": "usda_fdc",
+      "fields_recovered": [
+        "energy_kcal",
+        "fat_g",
+        "fat_saturated_g",
+        "fat_trans_g",
+        "cholesterol_mg",
+        "sodium_mg",
+        "carbohydrates_g",
+        "sugars_g",
+        "dietary_fiber_g",
+        "protein_g"
+      ],
+      "fields_remaining_null": [],
+      "new_data_sufficiency": "sufficient",
+      "notes": [
+        "Generic composition reference from USDA FDC (fdc_id=173410, type=SR Legacy, description='Butter, salted'). Not a SKU match — directional generic enrichment."
+      ]
+    }
+  ]
+}

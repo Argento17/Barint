@@ -1,0 +1,84 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:15.023531Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "R3-overspecific-false-mg",
+  "active": "magnesium",
+  "on_label_claim": "clinically proven to cure insomnia",
+  "claim_matched": "sleep quality / insomnia",
+  "claim_resolution": {
+    "via_umbrella": false,
+    "resolved_endpoint": "sleep quality / insomnia",
+    "resolved_phrase": null,
+    "resolved_tier": "Weak",
+    "resolution_supp_ev": null,
+    "resolution_citations": [
+      "PMID:33865376",
+      "PMID:35184264",
+      "PMID:40918053"
+    ],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [],
+    "over_promise": true,
+    "over_promise_markers": [
+      "clinically proven",
+      "cure",
+      "insomnia",
+      "proven to"
+    ]
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 47.0,
+      "tier": "Weak"
+    },
+    "dose": {
+      "value": 61.3,
+      "reason": "sub_therapeutic"
+    },
+    "form": {
+      "value": 92
+    },
+    "honesty": {
+      "value": 65
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "within_ul"
+    }
+  },
+  "signature": {
+    "evidence": "MID",
+    "dose": "MID",
+    "form": "HIGH",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [
+    {
+      "mechanism": "cap_3_honesty_core",
+      "kind": "ceiling",
+      "ceiling_or_floor": 49
+    }
+  ],
+  "binding_constraint": {
+    "mechanism": "cap_3_honesty_core",
+    "machine_reason": "core_active_dose_hidden_in_blend"
+  },
+  "also_fired": [],
+  "blend": 64.6,
+  "dossier_facts_used": [
+    {
+      "field": "claims['sleep quality / insomnia'].evidence_tier",
+      "value": "Weak",
+      "supp_ev": "SUPP-EV-002"
+    }
+  ],
+  "final": {
+    "score": 49.0,
+    "grade": "D"
+  }
+}

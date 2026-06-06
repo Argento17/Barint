@@ -1,0 +1,197 @@
+# evidence_dossiers/coq10.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# CoQ10 is the 'one genuinely supported niche claim + a broad energy/anti-aging halo' probe. Heart-failure adjunct
+# has a real RCT (Q-SYMBIO) but is a CLINICAL endpoint (out of consumer-benefit scope); statin-myopathy is contested;
+# the broad 'energy/anti-aging' consumer claim is Weak. Ubiquinone vs ubiquinol is a real Form rung. No UL.
+active:
+  canonical_name: "coenzyme Q10 (ubiquinone)"
+  pubchem_cid: 5281915               # ubiquinone (ubidecarenone / CoQ10)
+  molecular_formula: "C59H90O4"
+  molecular_weight: 863.3
+  synonyms: ["coenzyme Q10", "CoQ10", "ubiquinone", "ubidecarenone", "303-98-0"]
+  category: "other"
+  form_identity:                     # ubiquinone (oxidized) vs ubiquinol (reduced) — STABLE
+    - form: "ubiquinone (oxidized CoQ10)"
+      cid: 5281915
+      identity_note: "The conventional, most-studied + most stable form; converted in vivo to ubiquinol."
+    - form: "ubiquinol (reduced CoQ10)"
+      cid: 9962735
+      formula: "C59H92O4"
+      mw: 865.4
+      identity_note: "Reduced bioactive form; marketed-premium with higher-bioavailability claims — magnitude is contested/heterogeneous, not robustly superior for outcomes."
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "adjunct in chronic heart failure (symptoms/outcomes) — CLINICAL"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED (as a tier) — BUT scoped clinical / out of consumer benefit
+    tier_confidence: "medium"
+    claim_scope: "clinical_out_of_consumer_scope"
+    citations: ["PMID:25282031", "PMID:35608922"]
+    rationale: "Q-SYMBIO RCT (25282031) + Cochrane meta-analysis (35608922) support CoQ10 as an ADJUNCT in chronic heart failure (reduced major adverse cardiovascular events / symptoms). Real RCT-level evidence -> Moderate AS A TIER. BUT this is a DIAGNOSED-DISEASE clinical endpoint, NOT a consumer structure/function benefit -> scoped out of the consumer claim path (like omega-3's clinical-MDD fence, SUPP-EV-005)."
+    tier_rationale: >
+      RATIFIED (D6) Moderate as a tier, but FENCED: this is a clinical heart-failure-adjunct endpoint (diagnosed
+      disease, clinician-directed), out of MVP consumer-benefit scope (SIE Invariant 1 / clinical-scope fence). It is
+      recorded so a consumer SKU CANNOT inherit it: a general 'heart health' CoQ10 resolves to the broad consumer
+      tier (Weak), NOT to this clinical Moderate. Mirrors the omega-3 clinical-MDD conflation firewall exactly.
+  - claim: "statin-associated muscle symptoms (myalgia) relief"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED (borderline; genuinely heterogeneous)
+    tier_confidence: "low-medium"
+    citations: ["PMID:30371340", "PMID:25440725"]
+    rationale: "Meta-analyses CONFLICT: some report symptom improvement, others (incl. better-controlled trials) find no benefit over placebo. Genuinely heterogeneous -> Weak (a thin/conflicting signal). NOTE: borderline toward 'contested' — if a high-quality conflict is confirmed on the next sweep, RE-CLASSIFY as contested/deferred (§7, Hard Rule 7)."
+    tier_rationale: "RATIFIED (D6) Weak, flagged borderline-contested. Held Weak (a directional signal exists in some MAs) but watch for re-classification to contested-deferred if the conflict hardens."
+  - claim: "broad 'energy / anti-aging / general wellness' (consumer)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:35608922"]
+    rationale: "CoQ10 is an endogenous mitochondrial electron carrier (mechanistic 'energy' role) but there is no reliable consumer energy/anti-aging OUTCOME benefit in healthy adults -> Weak (recognized role, thin benefit). This is the tier a general CoQ10 'energy/heart' SKU resolves to (NOT the clinical heart-failure Moderate)."
+    tier_rationale: "RATIFIED (D6) Weak. Recognized mitochondrial role (maps an 'energy/heart' label) but the consumer benefit is thin -> Weak. The fence keeps the clinical HF Moderate from leaking here."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 100                 # mg/day — the dose range used in the supportive HF/symptom trials (100-300 mg)
+  typical: 200                       # mg/day
+  upper_studied: 300                 # mg/day — studied ceiling; above this little added benefit
+  unit: "mg"
+  market_range_dsld: [30, 300]       # DSLD: 100-200 mg common; many low-dose (30-50 mg) multis = sub-therapeutic for any endpoint. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:25282031"]
+  elemental_fraction: null
+  dose_note: "Low-dose CoQ10 (30-50 mg, common in multis) is below the studied range -> Dose sub-therapeutic. Fat-soluble: absorption improves taken with food/fat (usage note). For the broad-Weak consumer claim, dose credit is muted by the Weak Evidence (not short-circuited unless Insufficient)."
+
+forms:
+  preferred: ["ubiquinone (oxidized — the most-studied form; the HF/symptom trials used it)", "ubiquinol (reduced — bioavailability advantage claimed; acceptable-to-preferred, magnitude contested)"]
+  acceptable: ["solubilized/oil-based CoQ10 (improves the notoriously poor absorption)"]
+  poor: ["dry-powder CoQ10 with no solubilization (poor absorption)"]
+  rationale: "CoQ10 absorption is poor and formulation-sensitive; ubiquinone is the most-studied form (the supportive trials used it) and solubilized/oil-based delivery improves uptake. Ubiquinol is marketed-premium on a bioavailability-superiority claim whose MAGNITUDE is contested/heterogeneous -> acceptable-to-preferred, not a clear win; a 'ubiquinol is far superior' premium claim is an Honesty watch (§2.4). Dry unsolubilized powder is the poor rung (absorption)."
+  citations: ["PMID:35608922"]
+  form_ladder_confidence: "low-medium — absorption/formulation matters; ubiquinol-superiority magnitude is contested"
+
+safety:
+  upper_limit_UL: null               # No established UL — CoQ10 is well-tolerated; no toxicity ceiling.
+  ul_basis: "n/a — no established UL (well-tolerated; mild GI at high doses). Endogenous compound; low toxicity."
+  ul_source: "NIH / EFSA — no UL established for CoQ10"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 no-UL): no toxicity UL -> Safety is neutral/clean across the market range (a clean no-UL active,
+    like creatine/B12). No dose-magnitude veto. Minor interaction context: may reduce warfarin efficacy (anticoagulant
+    interaction) -> a context flag, surfaced not scored. NEEDS-ENV-VERIFY the no-UL statement.
+  ul_externally_maintained: true
+  risky_flags: ["may reduce warfarin (anticoagulant) efficacy — interaction context, not scored", "mild GI upset at high doses (not toxicity)"]
+  notes: "No UL; well-tolerated. Safety is the non-discriminating dimension. The discriminating axes are Evidence (clinical-vs-consumer fence) and Dose (sub-therapeutic low-dose multis)."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH/EFSA — no UL established for CoQ10"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "heart health"
+    resolves_to: "broad 'energy / anti-aging / general wellness' (consumer)"
+    resolved_tier: "Weak"
+    citations: ["PMID:35608922"]
+    supp_ev: "SUPP-EV-016"
+    rationale: >
+      MAPS at WEAK — DELIBERATELY to the broad consumer endpoint, NOT to the clinical heart-failure Moderate. This is
+      the CONFLATION FIREWALL (mirrors omega-3 SUPP-EV-005): 'heart health' on a CONSUMER CoQ10 SKU is a recognized
+      correlate of CoQ10's cardiac/mitochondrial role -> it MAPS — but it resolves to the broad consumer Weak tier, NOT
+      to the diagnosed-heart-failure-adjunct Moderate (which is a clinical endpoint fenced out of consumer scope). The
+      §2.1 matcher can only reach the Weak consumer tier; the clinical Moderate has claim_scope=clinical and is not a
+      reachable umbrella target. A consumer 'heart' CoQ10 therefore correctly resolves Weak, not Moderate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "energy"
+    resolves_to: "broad 'energy / anti-aging / general wellness' (consumer)"
+    resolved_tier: "Weak"
+    citations: ["PMID:35608922"]
+    supp_ev: "SUPP-EV-016"
+    rationale: >
+      MAPS at WEAK. CoQ10 is a recognized mitochondrial electron carrier (a recognized physiological 'energy' role,
+      unlike pure hand-wave actives) -> 'energy' maps to a recognized correlate. But the consumer energy OUTCOME benefit
+      is thin -> held Weak. Maps (recognized + cited), Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "anti-aging"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-016"
+    rationale: >
+      DOES NOT MAP. 'Anti-aging' has no recognized studied endpoint for CoQ10 supplementation — it is a marketing
+      adjacency on the antioxidant/mitochondrial mechanism, which §2.1 excludes. No recognized cited correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew claim vocab (candidate, should_affect_score_now:false) ===
+  # NOTE: CoQ10 has NO EFSA Art.13 authorized health claims (EFSA rejected CoQ10 claims) — so these Hebrew keys are NOT
+  # EFSA-anchored; they are aliases of the existing English keys, routed to the SAME broad-consumer Weak endpoint on the
+  # dossier's own cited literature (PMID:35608922). The clinical heart-failure Moderate stays UNREACHABLE (conflation
+  # firewall). 'מצב רוח/anti-aging'-type marketing phrases stay null.
+  - phrase: "בריאות הלב"               # "heart health" (Hebrew) — alias of English "heart health"
+    resolves_to: "broad 'energy / anti-aging / general wellness' (consumer)"
+    resolved_tier: "Weak"
+    citations: ["PMID:35608922"]
+    supp_ev: "SUPP-EV-016"
+    rationale: >
+      MAPS at WEAK — DELIBERATELY to the broad consumer endpoint, NOT the clinical heart-failure Moderate (conflation
+      firewall, mirrors omega-3). Hebrew alias of the English "heart health" key; recognized cardiac/mitochondrial
+      correlate, consumer benefit thin → Weak. NOT EFSA-anchored (CoQ10 has no authorized EFSA claim); cited to the
+      dossier's own Cochrane base (35608922).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "לב"                       # "heart" (Hebrew, plain)
+    resolves_to: "broad 'energy / anti-aging / general wellness' (consumer)"
+    resolved_tier: "Weak"
+    citations: ["PMID:35608922"]
+    supp_ev: "SUPP-EV-016"
+    rationale: "MAPS at WEAK. Plain Hebrew 'לב/heart'; same broad-consumer Weak routing + conflation firewall as 'בריאות הלב'."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "אנרגיה"                   # "energy" (Hebrew) — alias of English "energy"
+    resolves_to: "broad 'energy / anti-aging / general wellness' (consumer)"
+    resolved_tier: "Weak"
+    citations: ["PMID:35608922"]
+    supp_ev: "SUPP-EV-016"
+    rationale: >
+      MAPS at WEAK. Hebrew alias of the English "energy" key — CoQ10's recognized mitochondrial electron-carrier role;
+      consumer energy OUTCOME benefit thin → Weak. Not EFSA-anchored (no authorized CoQ10 EFSA claim).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    CoQ10 CONSUMER label "for heart, energy & anti-aging" resolves: heart->broad-consumer=Weak (maps, FENCED from the
+    clinical HF Moderate), energy->Weak (maps), anti-aging->null. Best mapped tier = WEAK. A consumer CoQ10 is NOT
+    Insufficient, but it correctly does NOT inherit the clinical heart-failure Moderate (conflation firewall, like
+    omega-3). The clinical HF-adjunct Moderate is recorded but unreachable from a consumer claim.
+
+label_claims_common: ["heart health", "energy", "anti-aging", "antioxidant", "statin support", "ubiquinol"]
+necessity_context: "Endogenous; endogenous synthesis declines with age/statins (debated relevance). Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "May reduce warfarin efficacy (interaction). Heart-failure use is clinician-directed (clinical scope). Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-016"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: >
+    Tiers: heart-failure-adjunct Moderate (CLINICAL, FENCED out of consumer scope — like omega-3 clinical-MDD);
+    statin-myopathy Weak (borderline-contested, watch for re-classify); broad consumer energy/heart Weak. NO UL
+    (Safety clean — no-UL active). Form: ubiquinone studied / ubiquinol contested-superiority / solubilization matters.
+    Umbrella: heart/energy->Weak consumer (FENCED from clinical Moderate, conflation firewall), anti-aging->null.
+    Candidate / should_affect_score_now:false.
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "semi-annual (2026-12-03) — the statin-myopathy claim is borderline-contested (live debate)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms", "form_identity"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH / EFSA (no UL)"
+      last_resync: "2026-06-03"
+      resync_note: "no UL; statin-myopathy claim is the drift watch (borderline-contested). NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew vocab (candidate). MAPPING: בריאות הלב/לב→broad-consumer(Weak, FENCED from clinical HF Moderate — conflation firewall); אנרגיה→Weak. NOT EFSA-anchored (CoQ10 has no authorized EFSA Art.13 claim); aliases of existing English keys on the dossier's own cited base (35608922)."
+      evidence: "reused dossier PMID:35608922 (cited pointers; no EFSA claim for CoQ10)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-016"
+      score_moving: "no — candidate aliases; clinical HF Moderate stays unreachable. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

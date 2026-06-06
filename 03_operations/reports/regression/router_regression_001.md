@@ -1,6 +1,6 @@
 # BSIP2 Router v2 Regression Report
 
-**Run date:** 2026-06-02 16:44 UTC
+**Run date:** 2026-06-05 16:39 UTC
 **Router:** router_v2
 **Corpus:** v1
 **Overall:** PASS

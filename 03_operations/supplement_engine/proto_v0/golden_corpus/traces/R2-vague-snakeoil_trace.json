@@ -1,0 +1,78 @@
+{
+  "sie_engine_version": "proto_v0",
+  "sie_algorithm_version": "0.2.0",
+  "methodology_version": "methodology_v1.md v1.3",
+  "trace_generated_at": "2026-06-03T17:14:14.990018Z",
+  "verification_status": "candidate",
+  "calibration_pending": true,
+  "sku_id": "R2-vague-snakeoil",
+  "active": "fixture-snakeoil-active",
+  "on_label_claim": "supports wellness & vitality",
+  "claim_matched": null,
+  "claim_resolution": {
+    "via_umbrella": true,
+    "resolved_endpoint": null,
+    "resolved_phrase": null,
+    "resolved_tier": "Insufficient",
+    "resolution_supp_ev": null,
+    "resolution_citations": [],
+    "umbrella_mapped": [],
+    "umbrella_present_nonmapping": [
+      "wellness",
+      "vitality"
+    ],
+    "over_promise": false,
+    "over_promise_markers": []
+  },
+  "sub_scores": {
+    "evidence": {
+      "value": 17.0,
+      "tier": "Insufficient"
+    },
+    "dose": {
+      "value": "N/A",
+      "reason": "evidence_insufficient_dose_short_circuit"
+    },
+    "form": {
+      "value": 50
+    },
+    "honesty": {
+      "value": 100
+    },
+    "safety": {
+      "value": "neutral",
+      "reason": "no_ul_or_no_dose"
+    }
+  },
+  "signature": {
+    "evidence": "LOW",
+    "dose": "N/A",
+    "form": "MID",
+    "honesty": "HIGH",
+    "safety": "NEUTRAL"
+  },
+  "caps_vetoes_fired": [
+    {
+      "mechanism": "cap_1_insufficient_evidence",
+      "kind": "ceiling",
+      "ceiling_or_floor": 34
+    }
+  ],
+  "binding_constraint": {
+    "mechanism": "cap_1_insufficient_evidence",
+    "machine_reason": "no_reliable_evidence_for_claim"
+  },
+  "also_fired": [],
+  "blend": 49.5,
+  "dossier_facts_used": [
+    {
+      "field": "claims['None'].evidence_tier",
+      "value": "Insufficient",
+      "supp_ev": "SUPP-EV-006"
+    }
+  ],
+  "final": {
+    "score": 34.0,
+    "grade": "E"
+  }
+}

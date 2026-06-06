@@ -1,0 +1,217 @@
+# evidence_dossiers/vitamin_d3.yaml   (schema v1 — Phase 1, TASK-171B)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6/D7 co-sign.
+# Vitamin D3 LEADS the Safety Ceiling dimension (UL veto). Also a Form anchor (D3 > D2).
+active:
+  canonical_name: "vitamin D3 (cholecalciferol)"
+  pubchem_cid: 5280795               # cholecalciferol (D3)
+  molecular_formula: "C27H44O"
+  molecular_weight: 384.6
+  synonyms: ["vitamin D3", "cholecalciferol", "colecalciferol", "67-97-0"]
+  category: "vitamin"
+  d2_identity:                       # for the D3 > D2 form distinction
+    name: "ergocalciferol (vitamin D2)"
+    cid: 5280793
+    formula: "C28H44O"
+    mw: 396.6
+  unit_conversion: "1 mcg cholecalciferol = 40 IU. UL 4000 IU = 100 mcg/day (adults)."
+
+claims:                              # PROPOSED — pending Nutrition co-sign
+  - claim: "correcting/maintaining vitamin D status (raising serum 25(OH)D)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "high"
+    citations: ["PMID:24414552", "PMID:39385006"]
+    rationale: "It is well established that oral D3 raises serum 25(OH)D; the surrogate-endpoint relationship (supplement -> serum level) is settled. Cochrane and SR/MA support. This is the dose->biomarker claim, distinct from downstream clinical outcomes below."
+    tier_rationale: "RATIFIED (Nutrition D6). This is the dose->biomarker (surrogate) claim and it IS settled. Important: this Strong tier attaches ONLY to 'raises 25(OH)D' — it must NOT be inherited by the downstream clinical claims (bone, mortality), which are tiered separately below. Same active, claim-specific tiers (the §2.1 principle)."
+  - claim: "bone health / fracture prevention"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED at Moderate — conditional framing confirmed (scrutiny item 3)
+    tier_confidence: "medium"
+    citations: ["PMID:29279934", "PMID:24119980", "PMID:26510847"]
+    rationale: "Meta-analytic evidence is mixed: vitamin D alone shows limited fracture benefit in community-dwelling adults; benefit clearer WITH calcium and in deficient/institutionalized populations. Consistent-but-conditional -> Moderate, not Strong. FLAG for Nutrition: population-dependent."
+    tier_rationale: >
+      NUTRITION D6 RULING (scrutiny item 3): the CONDITIONAL framing tiers correctly at Moderate. The evidence is
+      genuinely population-split: D3 alone gives little fracture benefit in replete community-dwelling adults, but the
+      effect is clearer WITH calcium and in deficient/institutionalized/older groups. That is exactly 'consistent RCT
+      evidence with limitations / surrogate-or-subgroup-dependent' = Moderate (§2.1), not Strong (which would require
+      a population-general fracture benefit that does not exist) and not Weak (the conditional benefit is real and
+      replicated, not sparse/mechanistic). The conditionality is a property of the claim, not a reason to defer it.
+      Phase-2 calibration note: if a SKU's claim is specifically 'with calcium, for at-risk groups' it sits at the
+      stronger end of the Moderate band; a broad 'for bone health' consumer claim sits at the weaker end — but both
+      remain Moderate. Not contested (no high-quality conflict — the trials agree, they just stratify).
+  - claim: "all-cause mortality / broad disease prevention"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "medium"
+    citations: ["PMID:24414552", "PMID:34815552"]
+    rationale: "Cochrane (24414552) found a possible small mortality signal for D3 but with caveats; the broader 'vitamin D fixes everything' framing (34815552, Nature Rev Endocrinol) is not supported in replete populations. Broad-prevention claims -> Weak."
+    tier_rationale: "RATIFIED (Nutrition D6). A faint, caveat-laden mortality signal plus an unsupported broad-prevention halo = Weak. Must not inherit the Strong status-correction tier above. Not Insufficient (a signal exists), not Moderate (inconsistent, replete-population-null)."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 1000                # IU/day — common maintenance dose to raise/maintain status
+  typical: 2000                      # IU/day
+  upper_studied: 4000                # IU/day — coincides with the adult UL (intentional: studied ceiling = UL here)
+  unit: "IU"
+  unit_alt: "25-50 mcg/day typical (1 mcg = 40 IU)"
+  market_range_dsld: [1000, 10000]   # DSLD: 1000-5000 IU common; 5000 & 10000 IU labels prevalent (10000 IU/day approaches/exceeds chronic-UL territory -> Safety relevance)
+  dose_citations: ["PMID:39385006"]
+  elemental_fraction: null           # n/a
+  dose_note: "Status-correction is dose-dependent; deficient individuals may need higher short-term repletion (clinician-directed) — distinct from the consumer daily-maintenance dose the SIE scores."
+
+forms:
+  preferred: ["D3 (cholecalciferol)"]
+  acceptable: ["D2 (ergocalciferol) — raises 25(OH)D but less effectively / less sustained than D3"]
+  poor: []
+  rationale: "D3 raises and maintains serum 25(OH)D more effectively than D2 (shorter half-life, faster decline for D2). D2 is absorbed and active (hence 'acceptable', not 'poor') but is the weaker form on a 'vitamin D' product. Calcifediol (25-OH-D3) is a distinct, more-potent form — out of MVP scope."
+  citations: ["PMID:39385006", "PMID:24414552"]
+  form_ladder_confidence: "high"     # D3 > D2 is well established (SUPP-EV-003)
+
+safety:
+  upper_limit_UL: 4000               # IU/day = 100 mcg/day, adults — NUTRITION D7: CONFIRMED (NIH/EFSA concordant)
+  ul_basis: "IU/day, adults 19+; basis = risk of hypercalcemia at chronic high intake. CHILDREN have lower ULs (1000-3000 IU by age) — do NOT apply adult UL to a children's product."
+  ul_source: "NIH ODS (US IOM/FNB); EFSA UL also 100 mcg/4000 IU adults — CONCORDANT, no discrepancy to resolve"
+  ul_governing_decision: "NUTRITION D7: CONFIRMED 4,000 IU/100 mcg adult UL. NIH ODS and EFSA concordant — no conservative-veto choice needed; the concordant value governs. Age-banded child ULs (1000-3000 IU) tracked separately per ul_basis; never apply the adult UL to a children's SKU. NEEDS-ENV-VERIFY exact published numbers still in force."
+  ul_externally_maintained: true
+  risky_flags: ["50,000 IU/day labeled for DAILY use = ~12.5x UL -> Safety veto (FAIL anchor)", "50,000 IU WEEKLY clinician-repletion SKU -> flag clinical_use, regimen-dependent exemption (§2.5)"]
+  notes: "Discriminator is the LABELED REGIMEN (daily vs weekly), read from the in-house label (D7 ratified, §11). UL is well-corroborated and stable -> low-drift; ideal externally-maintained re-sync field."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Vitamin D fact sheet UL=4000 IU adults", "PMID:17209171 (risk assessment)", "PMID:24456284 (pediatric toxicity)"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — AUTHORED this task (TASK-171K). Pre-authored + cited, NEVER inferred.
+  # vitamin_d3 was a Phase-1 dossier WITHOUT an umbrella (claim-specific path only). The real Israeli shelf ("ויטמין D")
+  # sells vague Hebrew structure/function language (חיסון / עצמות / שיניים / שרירים) that did not resolve. Authored here
+  # against EFSA Art.13 (vitamin D: immune function, normal bones/teeth, normal muscle function, calcium absorption) and
+  # routed to the dossier's EXISTING claims[] tiers (status-correction Strong / bone-fracture Moderate-conditional /
+  # broad Weak). Cited pointers, no new tiers. EFSA wording is the authoritative permitted set.
+  mappings:
+  # --- immune (the dominant D3 marketing claim) ---
+  - phrase: "immune support"          # EN — EFSA "normal function of the immune system"
+    resolves_to: "all-cause mortality / broad disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:24414552", "PMID:34815552"]
+    supp_ev: "SUPP-EV-003"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "vitamin D contributes to the normal function of the immune system"
+      (EFSA Q-2008-1192 / Reg (EU) 432/2012) — a recognized + permitted correlate, so 'immune support' MAPS. But the
+      broad consumer immune/disease-prevention BENEFIT in replete adults is thin (24414552, 34815552) → routed to the
+      dossier's broad-prevention Weak tier (NOT the status-correction Strong, which must not inherit upward, §2.1).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "חיזוק חיסוני"             # HE "immune boost/support"
+    resolves_to: "all-cause mortality / broad disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:24414552", "PMID:34815552"]
+    supp_ev: "SUPP-EV-003"
+    rationale: "MAPS at WEAK. Hebrew alias of 'immune support' (EFSA Q-2008-1192 immune function). Same Weak routing."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מערכת החיסון"             # HE "the immune system"
+    resolves_to: "all-cause mortality / broad disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:24414552", "PMID:34815552"]
+    supp_ev: "SUPP-EV-003"
+    rationale: "MAPS at WEAK. Plain Hebrew immune-system phrasing; same EFSA immune basis/routing."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # --- bone / teeth (the second D3 claim cluster) ---
+  - phrase: "bone health"             # EN — EFSA "maintenance of normal bones"
+    resolves_to: "bone health / fracture prevention"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:24119980", "PMID:26510847"]
+    supp_ev: "SUPP-EV-003"
+    rationale: >
+      MAPS at MODERATE (BEST). EFSA Art.13 authorizes "vitamin D contributes to the maintenance of normal bones"
+      (EFSA Q-2008-1192). Routed to the dossier's bone/fracture endpoint (Moderate, conditional — clearer with calcium /
+      in deficient/older groups). A 'מונע אוסטאופורוזיס/prevents osteoporosis' escalation fires the §2.4 over-promise catch.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "בריאות העצם"             # HE "bone health"
+    resolves_to: "bone health / fracture prevention"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:24119980", "PMID:26510847"]
+    supp_ev: "SUPP-EV-003"
+    rationale: "MAPS at MODERATE (BEST). Hebrew alias of 'bone health' (EFSA Q-2008-1192 normal bones). Same routing/tier."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עצמות"                    # HE "bones"
+    resolves_to: "bone health / fracture prevention"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:24119980", "PMID:26510847"]
+    supp_ev: "SUPP-EV-003"
+    rationale: "MAPS at MODERATE. Plain Hebrew 'עצמות/bones'; same EFSA normal-bones basis/routing."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "שיניים"                   # HE "teeth" — EFSA "maintenance of normal teeth"
+    resolves_to: "bone health / fracture prevention"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:26510847"]
+    supp_ev: "SUPP-EV-003"
+    rationale: >
+      MAPS at MODERATE. EFSA Art.13 authorizes "vitamin D contributes to the maintenance of normal teeth"
+      (EFSA Q-2008-1192). Routed to the nearest tiered bone/mineralization endpoint (Moderate). Recognized correlate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # --- muscle (EFSA muscle-function claim) ---
+  - phrase: "שרירים"                   # HE "muscle" — EFSA "normal muscle function"
+    resolves_to: "bone health / fracture prevention"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:26510847"]
+    supp_ev: "SUPP-EV-003"
+    rationale: >
+      MAPS at MODERATE. EFSA Art.13 authorizes "vitamin D contributes to the maintenance of normal muscle function"
+      (EFSA Q-2008-1192) — a recognized + permitted correlate (falls/strength in older adults, the same population the
+      bone benefit is conditional in). Routed to the nearest tiered (bone/fracture Moderate) endpoint as the closest
+      recognized correlate. Held at the dossier's existing Moderate (NOT elevated).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # --- deliberate non-mapping ---
+  - phrase: "mood"                     # EN/HE 'מצב רוח' — NO recognized cited D3 consumer endpoint
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-003"
+    rationale: >
+      DOES NOT MAP. 'Mood' is a common vitamin-D label phrase but there is NO EFSA Art.13 mood/psychological claim for
+      vitamin D and no recognized studied consumer mood-OUTCOME endpoint in replete adults (the broad-prevention base is
+      already Weak/null for mood specifically). No recognized cited correlate → no mapping (moderate-posture refusal,
+      recorded). (Contrast B12, which HAS an EFSA psychological-function claim → maps.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Vitamin D3 (umbrella AUTHORED TASK-171K): immune/חיסון→broad-prevention Weak (maps, EFSA immune); bone/עצמות/teeth/
+    שיניים/muscle/שרירים→fracture Moderate (maps, EFSA bones/teeth/muscle — BEST mapped tier); mood→null. Best mapped
+    tier = MODERATE. A vague Hebrew "ויטמין D לחיסון ולעצמות" resolves to Moderate, NOT Insufficient. The status-correction
+    Strong tier does NOT inherit upward (only reachable by an explicit status/25(OH)D claim, §2.1). Candidate / no ship.
+
+label_claims_common: ["immune support", "bone health", "mood", "vitamin D deficiency", "high potency"]
+necessity_context: "Deficiency is common (esp. low sun exposure) but necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Hypercalcemia, sarcoidosis, certain renal conditions raise risk. Context only, not health advice."
+
+provenance:
+  built_by: ["research-agent", "nutrition-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-003"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 (3 tiers) + D7 (UL confirm) co-signed 2026-06-03
+  cosign_note: "Tiers ratified: status-correction Strong, bone/fracture Moderate (conditional framing confirmed), mortality/broad Weak. UL 4,000 IU CONFIRMED (NIH/EFSA concordant). Claim-specific tiers do NOT inherit upward to clinical outcomes."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); UL re-sync annual (stable regulatory value)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms", "unit_conversion", "d2_identity"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL"]   # forms (D3>D2) is stable-ish but keep review-bound
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / EFSA (both 4000 IU/100 mcg adults)"
+      last_resync: "2026-06-03"
+      resync_note: "concordant + stable; cheapest UL to maintain. NOTE age-banded children ULs separately."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella"
+      change: "TASK-171K — AUTHORED a first structure_function_umbrella (this Phase-1 dossier previously had none). Hebrew + EFSA Art.13 keys routed to EXISTING claims[] tiers: immune/חיזוק חיסוני/מערכת החיסון→broad-prevention(Weak, EFSA Q-2008-1192 immune); bone/בריאות העצם/עצמות/שיניים/שרירים→fracture(Moderate, EFSA bones/teeth/muscle); mood→null (no EFSA correlate)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused dossier PMIDs (cited pointers, no new tiers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-003"
+      score_moving: "potentially — authoring a NEW umbrella where none existed lets vague Hebrew D3 labels resolve to Moderate instead of the §2.1-default Insufficient (same KIND of off-E move as magnesium SUPP-EV-006). Treated as candidate / should_affect_score_now:false; needs Product D7 co-sign + golden re-validation before ship (mirrors SUPP-EV-006 governance). Hebrew keys additionally inert until engine tokenizer Hebrew-aware (TASK-171K return)."

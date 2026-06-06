@@ -7,6 +7,8 @@
 
 > **0.4.1 (TASK-144, maadanim-scoped):** ingredient-bleed sanitize (EV-026), fiber-not-applicable for fiber-free dairy (EV-027, tight allowlist), dairy protein source typing (EV-028), + macro-plausibility data-integrity guard. All gated behind `BARI_TASK144_FIXES` (default OFF; maadanim run opts in) — **frozen categories unchanged** (golden corpus + yogurt_003 = 0 diff verified). Cross-category adoption (yogurt/cheese) requires Product Agent sign-off. Rollback: unset the env var.
 
+> **External data admission (EDPG, TASK-170):** the `integrations/` layer can fetch external data (OFF, Tzameret, DSLD, price feeds, gov data) but **the engine never reads it directly.** External data is born `verification_status: candidate`, must clear BSIP0+QA exactly like a scrape, and may only *calibrate/justify* a rule (with an evidence-registry citation) — never be a label the engine reads. Admission stays at D3/D4 + QA freeze. Full contract: `integrations/README.md` → "External Data Admission rule (EDPG)".
+
 ---
 
 ## Bari Repository Map — TWO SEPARATE LOCATIONS

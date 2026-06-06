@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-28  
 **Applies to:** All Bari category pages before launch approval  
-**Companion docs:** comparison_template_v1.md, ui_stabilization_sprint_1.md
+**Companion docs:** comparison-template-standard-v1.md, ui_stabilization_sprint_1.md
 
 ---
 
@@ -176,7 +176,7 @@ Any of these conditions causes automatic checklist failure. The category page ca
 | 3 | Zero product rows visible on initial load (primary viewport) |
 | 4 | Score chip not visible on initial load without scrolling |
 | 5 | Any section heading between prologue and first product row |
-| 6 | Score chip uses color encoding (any background color tied to score value) |
+| 6 | Score chip uses a fully saturated / solid-fill grade color, a hue outside the approved A–E `gradePalette` ramp, or a second per-product color axis. *(Grade-coded tinted chips via `gradePalette` — bg + accent border/number — are correct as of the Gen 1.1 directive 2026-06-03; this condition fails only off-ramp color, saturation, or a color axis beyond the A–E grade ramp.)* |
 | 7 | Filter panel visible (open) by default on page load |
 | 8 | Any framework term in consumer-facing content (NOVA, cap, BSIP, routing) |
 | 9 | Expanded row opens as a modal or new screen rather than inline |

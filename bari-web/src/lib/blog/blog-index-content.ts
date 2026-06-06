@@ -80,7 +80,7 @@ export const secondaryArticles: BlogArticleCard[] = [
     category: "israeli-shelf",
     categoryLabel: "מדף ישראלי",
     readTime: "7 דקות",
-    metaLine: "יוני 2026 · 7 דקות קריאה · 10 מותגים",
+    metaLine: "יוני 2026 · 7 דקות קריאה · 12 מותגים · 4 רשתות",
     published: "יוני 2026",
   },
   {

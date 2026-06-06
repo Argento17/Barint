@@ -1,0 +1,131 @@
+{
+  "sku_id": "POC-IL-CREATINE-CGN-149273",
+  "dossier_active": "creatine monohydrate",
+  "provenance": {
+    "source": "iherb.com",
+    "source_id": "iherb:149273",
+    "source_url": "https://www.iherb.com/pr/california-gold-nutrition-sport-pure-creatine-monohydrate-unflavored-0-18-oz-5-g/149273",
+    "fetched_at": "2026-06-03T09:27:00Z",
+    "client_version": "firecrawl_scrape(json)/v2 + iHerb PDP",
+    "verification_status": "candidate",
+    "admission_note": "candidate only; demonstrates acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score.",
+    "extraction_notes": "form not in Supplement-Facts table; 'monohydrate' taken from product NAME (lossy but unambiguous: single-ingredient pure monohydrate)."
+  },
+  "raw_extracted_panel": {
+    "brand": "California Gold Nutrition",
+    "product_name": "Sport, Pure Creatine Monohydrate, 5 g",
+    "primary_claim_on_label": "Exercise performance, Strength and power output, Lean muscle support",
+    "barcode": "898220100187",
+    "serving_size": "1 packet (5 g)",
+    "proprietary_blend": false,
+    "active": {
+      "ingredient": "Creatine Monohydrate",
+      "amount": 5,
+      "unit": "g",
+      "form": "monohydrate (from name)"
+    }
+  },
+  "missing_or_lossy_fields": [
+    "active.form (inferred from product name, not panel)"
+  ],
+  "bsip0s_label": {
+    "product_name": "California Gold Sport Pure Creatine Monohydrate 5 g",
+    "primary_claim_fed": "strength / lean mass with resistance training",
+    "actives": [
+      {
+        "active_slug": "creatine",
+        "display_name": "Creatine Monohydrate",
+        "quantity": 5,
+        "unit": "g",
+        "form": "monohydrate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 1.0,
+    "labeled_regimen": "daily"
+  },
+  "engine_output": {
+    "claim_matched": "strength / lean mass with resistance training",
+    "score": 91.2,
+    "grade": "S",
+    "blend": 91.2,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.1.0",
+    "methodology_version": "methodology_v1.md v1.2",
+    "trace_generated_at": "2026-06-03T09:32:38.174455Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "POC-IL-CREATINE-CGN-149273",
+    "active": "creatine monohydrate",
+    "on_label_claim": "strength / lean mass with resistance training",
+    "claim_matched": "strength / lean mass with resistance training",
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "no_ul_or_no_dose"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 91.2,
+    "dossier_facts_used": [
+      {
+        "field": "claims['strength / lean mass with resistance training'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-001"
+      }
+    ],
+    "final": {
+      "score": 91.2,
+      "grade": "S"
+    }
+  }
+}

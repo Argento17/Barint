@@ -24,15 +24,18 @@
   "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%94-%D7%95%D7%A7%D7%95%D7%95%D7%90%D7%A7%D7%A8/%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%94-%D7%90%D7%92%D7%95%D7%96%D7%99%D7%9D-%D7%97%D7%9E%D7%95%D7%A6%D7%99%D7%95%D7%AA/p/P_7290106771314",
   "normalized_nutrition_per_100g": {
     "energy_kcal": 440.0,
-    "fat_g": 0.5,
-    "fat_saturated_g": null,
+    "fat_g": 19.3,
+    "fat_saturated_g": 3.8,
     "fat_trans_g": null,
     "cholesterol_mg": null,
     "sodium_mg": 9000.0,
     "carbohydrates_g": 47.5,
-    "sugars_g": null,
+    "sugars_g": 9.9,
     "dietary_fiber_g": 14.4,
-    "protein_g": 11.8
+    "protein_g": 11.8,
+    "_integrity": [
+      "sodium_implausible: 9000 mg/100g exceeds the 2000 mg safety ceiling (unit corruption — value is suppressed from scoring)"
+    ]
   },
   "energy_source_unit": "kcal",
   "ingredients_text_he": "שיבולת שועל מלאה (54%) (גלוטן), אגוזים (11.5%) (קשיו, לוז, שקדים), סיבים תזונתיים (עולש) (10%), גרעיני חמנייה, גרעיני דלעת, סילאן טב עי, חמוציות (4.5%) (חמוציות, רכז תפוחים, שמן חמניות), שמן קוקוס, קינמון. מכיל אגוזי לוז,",
@@ -64,9 +67,9 @@
   "claims_raw": "",
   "claims": [],
   "confidence": {
-    "identity_confidence": "high",
+    "identity_confidence": "low",
     "barcode_confidence": "confirmed",
-    "nutrition_confidence": "confirmed_per_100g",
+    "nutrition_confidence": "partial",
     "matched_by": "shufersal_barcode_single_source",
     "observation_count": 1
   },
@@ -74,13 +77,13 @@
   "barcode_confidence_reason": "Shufersal JSON-LD gtin13/sku.",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
-  "nutrition_consistency_status": "consistent",
-  "data_sufficiency": "sufficient",
+  "nutrition_consistency_status": "partial",
+  "data_sufficiency": "insufficient",
   "nutrition_consistency_warnings": [],
   "ingredient_text_quality": "clean",
   "ingredient_warnings": [],
-  "canonical_trust_score": 0.8,
-  "canonical_trust_level": "high",
+  "canonical_trust_score": 0.45,
+  "canonical_trust_level": "low",
   "canonical_risk_flags": [
     "single_source_only"
   ],
@@ -94,7 +97,9 @@
     "labeling_conflicts": [],
     "completeness_conflicts": []
   },
-  "missing_fields": [],
+  "missing_fields": [
+    "sodium_mg_corrupt__unit_error"
+  ],
   "inferred_fields": [
     "bsip_cereal_subtype"
   ],
@@ -187,11 +192,11 @@
       "subpool": "granola",
       "indicators": {
         "added_sugar_proxy_ge15g": false,
-        "fat_ge10g": false,
+        "fat_ge10g": true,
         "processing_proxy_nova3plus": true
       },
-      "indicator_count": 1,
-      "boundary_defaulted_to_granola": true,
+      "indicator_count": 2,
+      "boundary_defaulted_to_granola": false,
       "nova_confirmation_pending_bsip2": true,
       "evidence_ref": "cereals_gap_resolution_v1 Sec 2.9 (Resolution 3, Constitution Art. II Rule 5)"
     },

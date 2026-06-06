@@ -1,0 +1,164 @@
+{
+  "sku_id": "SP-7290019444374",
+  "barcode": "7290019444374",
+  "name_he": "אלטמן גאמיס ויטמין D 1000 כמוסות 60 יח",
+  "brand_bucket": "altman",
+  "engine_active": "vitamin_d3",
+  "price_ils": 59.9,
+  "resolution": {
+    "matched": true,
+    "method": "brand_active_dose",
+    "source": "altman",
+    "confidence": 0.85,
+    "ambiguous": false,
+    "reason": "brand_active_dose match via altman"
+  },
+  "verification_status": "candidate",
+  "outcome": "scored",
+  "panel": {
+    "url": "https://www.altman.co.il/shop/vms/vitamin-d/vitamin-d-1000-gel-cups/",
+    "source": "altman",
+    "brand": "אלטמן",
+    "product_name": "ויטמין D- 1000 כמוסות רכות",
+    "barcode": "7290017218366",
+    "serving_size": "1 כמוסה",
+    "servings_per_container": "100",
+    "ingredient_list_raw": "ויטמין D3 (Cholecalciferol), שמן חמניות, ג'לטין, חומר הלחה: גליצרין",
+    "primary_claim": "ויטמין D3 בצורתו הפעילה להשלמת חוסר בויטמין D",
+    "proprietary_blend": null,
+    "actives": [
+      {
+        "ingredient": "ויטמין D3 (Cholecalciferol)",
+        "amount": 1000.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": "cholecalciferol",
+        "active_slug": "vitamin_d3"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "7290017218366",
+      "source_url": "https://www.altman.co.il/shop/vms/vitamin-d/vitamin-d-1000-gel-cups/",
+      "fetched_at": "2026-06-03T13:59:14Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "claim_note": "claim mapped to studied endpoint from HE: 'ויטמין D3 בצורתו הפעילה להשלמת חוסר בויטמין D'",
+  "lossy": [],
+  "bsip0s_label": {
+    "product_name": "ויטמין D- 1000 כמוסות רכות",
+    "primary_claim_fed": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+    "actives": [
+      {
+        "active_slug": "vitamin_d3",
+        "display_name": "ויטמין D3 (Cholecalciferol)",
+        "quantity": 1000.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+    "score": 91.2,
+    "grade": "S",
+    "blend": 91.2,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:59:14.528584Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290019444374",
+    "active": "vitamin D3 (cholecalciferol)",
+    "on_label_claim": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+    "claim_matched": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:24414552",
+        "PMID:39385006"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 91.2,
+    "dossier_facts_used": [
+      {
+        "field": "claims['correcting/maintaining vitamin D status (raising serum 25(OH)D)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-003"
+      }
+    ],
+    "final": {
+      "score": 91.2,
+      "grade": "S"
+    }
+  }
+}

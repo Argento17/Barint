@@ -1,0 +1,318 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_cereal_16000423534",
+  "barcode": "16000423534",
+  "canonical_name_he": "קראנצ'י שיבולת שועל עם שוקולד מריר",
+  "canonical_name_en": null,
+  "brand": "נייצ'ר ואלי",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": "ישראל",
+  "kosher_certification": null,
+  "image_url": null,
+  "image_urls": [],
+  "source_retailers": [
+    "yohananof"
+  ],
+  "source_url": "https://world.openfoodfacts.org/api/v2/product/16000423534.json",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 473.809523809524,
+    "fat_g": 19.7619047619048,
+    "fat_saturated_g": 3.33333333333333,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 259.04761904761904,
+    "carbohydrates_g": 61.4285714285714,
+    "sugars_g": 26.9047619047619,
+    "dietary_fiber_g": 6.90476190476191,
+    "protein_g": 8.80952380952381
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "",
+  "ingredients_list": [],
+  "ingredients_raw": "פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דבש, מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט), חומר טעם וריח .",
+  "ingredients_raw_provenance": {
+    "source": "bsip0_scrape",
+    "bsip0_status": "bsip0_scrape",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "Original retailer ingredient string from BSIP0 raw observation"
+  },
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims_raw": "",
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "shufersal_barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "il_prices transparency feed barcode (law-mandated catalog).",
+  "nutrition_basis_claimed": "ל-100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "missing",
+  "ingredient_warnings": [
+    "no_ingredient_list_in_source"
+  ],
+  "canonical_trust_score": 0.65,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "single_source_only",
+    "off_candidate_panel"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [
+    "ingredients_list"
+  ],
+  "inferred_fields": [
+    "bsip_cereal_subtype"
+  ],
+  "audit_ref": null,
+  "bsip_cereal_subtype": "oat_cereal",
+  "price": "20.9",
+  "price_per_100g": null,
+  "acquisition_query": "price_feed:yohananof",
+  "provenance": {
+    "identity_source": "il_prices:7290455000004",
+    "identity_source_url": "https://laibcatalog.co.il/CompetitionRegulationsFiles/latest/7290455000004/PriceFull7290455000004-035-202606050315-001.xml.gz",
+    "panel_source": "open_food_facts",
+    "panel_found": true,
+    "panel_has_macros": true,
+    "off_completeness": 0.4625,
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-05T10:46:35.324812"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)",
+      "percentage_declared": 54.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "סוכר לבן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "שמנים צמחיים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "שבבי שוקולד מריר מעולה (7%) (סויה)",
+      "percentage_declared": 7.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "מים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "אבקת קקאו מופחת שומן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "דבש",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "מולסה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "מתחלבים (לציטין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 11,
+      "text": "חומר תפיחה (סודיום ביקרבונט)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 12,
+      "text": "חומר טעם וריח .",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [
+    {
+      "term": "סודיום ביקרבונט",
+      "category": "raising_agent",
+      "position": 11
+    },
+    {
+      "term": "חומר תפיחה",
+      "category": "raising_agent",
+      "position": 11
+    },
+    {
+      "term": "ביקרבונט",
+      "category": "raising_agent",
+      "position": 11
+    },
+    {
+      "term": "מתחלבים",
+      "category": "emulsifier",
+      "position": 10
+    },
+    {
+      "term": "לציטין",
+      "category": "emulsifier",
+      "position": 10
+    },
+    {
+      "term": "מתחלב",
+      "category": "emulsifier",
+      "position": 10
+    }
+  ],
+  "extracted_flavors": [
+    {
+      "term": "חומר טעם וריח",
+      "category": "flavor_generic",
+      "position": 12
+    },
+    {
+      "term": "חומר טעם",
+      "category": "flavor_generic",
+      "position": 12
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "סוכר לבן",
+      "category": "added_sugar",
+      "position": 2
+    },
+    {
+      "term": "מולסה",
+      "category": "molasses",
+      "position": 9
+    },
+    {
+      "term": "סוכר",
+      "category": "added_sugar",
+      "position": 2
+    },
+    {
+      "term": "דבש",
+      "category": "honey",
+      "position": 7
+    }
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [
+    {
+      "term": "פתיתי שיבולת שועל",
+      "category": "oat_flakes",
+      "position": 1
+    },
+    {
+      "term": "פתיתי",
+      "category": "flakes_generic",
+      "position": 1
+    }
+  ],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 12,
+    "additive_count": 6,
+    "flavor_marker_count": 2,
+    "sweetener_count": 4,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 2,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "cereals_governance": {
+    "construct_1_granola_subpool": {
+      "subpool": "granola",
+      "indicators": {
+        "added_sugar_proxy_ge15g": true,
+        "fat_ge10g": true,
+        "processing_proxy_nova3plus": false
+      },
+      "indicator_count": 2,
+      "boundary_defaulted_to_granola": false,
+      "nova_confirmation_pending_bsip2": true,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 2.9 (Resolution 3, Constitution Art. II Rule 5)"
+    },
+    "construct_2_childrens": {
+      "is_childrens_product": false,
+      "indicators": {
+        "D1_visual_mascot": null,
+        "D2_name_language": false,
+        "D3_pediatric_serving_le25g": false,
+        "D4_developmental_claim": false
+      },
+      "indicators_present_count": 0,
+      "mascot_brand_detected": false,
+      "single_indicator_candidate": false,
+      "pool": "general",
+      "recall_caveat": "Pure visual mascots on non-listed brands are not detectable from a text-only scrape; D3 serving size was rarely on the page. Recall is conservative — single-indicator candidates are flagged for CE Controller visual confirmation.",
+      "anti_immunity": "Classification cannot improve score (Anti-Immunity Rule).",
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 2.8 (Resolution 1)"
+    },
+    "construct_3_whole_grain": {
+      "whole_grain_claim_present": false,
+      "first_grain_ingredient_position": 1,
+      "first_grain_is_whole": true,
+      "composition_threshold_supported_30pct": false,
+      "dominant_threshold_supported_51pct": true,
+      "marketing_divergence_finding": false,
+      "mdf_note": null,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 5.2.1 (Resolution 4); Guardrails v2"
+    },
+    "construct_4_fortification_flag": {
+      "fortified": false,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 6.4 (Resolution 2, DISTORTION-004)"
+    }
+  }
+}

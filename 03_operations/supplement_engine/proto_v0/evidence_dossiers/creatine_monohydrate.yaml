@@ -1,0 +1,145 @@
+# evidence_dossiers/creatine_monohydrate.yaml   (schema v1 — Phase 1, TASK-171B)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6/D7 co-sign.
+active:
+  canonical_name: "creatine monohydrate"
+  pubchem_cid: 80116                 # creatine monohydrate (anhydrous creatine = CID 586)
+  molecular_formula: "C4H11N3O3"     # monohydrate; anhydrous creatine = C4H9N3O2
+  molecular_weight: 149.15           # g/mol monohydrate (anhydrous = 131.13)
+  synonyms: ["creatine", "creatine monohydrate", "N-carbamimidoyl-N-methylglycine", "57-00-1 (anhydrous)", "6020-87-7 (monohydrate)"]
+  category: "performance"
+
+claims:                              # tier is CLAIM-specific (§2.1). PROPOSED — pending Nutrition co-sign.
+  - claim: "strength / lean mass with resistance training"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "high"          # multiple consistent meta-analyses
+    citations: ["PMID:39519498", "PMID:37432300", "PMID:39074168", "PMID:34836013", "PMID:24576864"]
+    rationale: "Multiple independent meta-analyses/systematic reviews (incl. older-adult and resistance-training pooled analyses) consistently show creatine + resistance training increases lean mass and strength vs training alone."
+    tier_rationale: "RATIFIED (Nutrition D6). One of the best-replicated ergogenic effects in the literature; multiple independent MAs converge. Unambiguous Strong."
+  - claim: "fat loss / fat burning"
+    proposed_evidence_tier: "Insufficient"
+    evidence_tier: "Insufficient"    # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "high"
+    citations: []
+    rationale: "No credible RCT/meta-analytic base shows creatine directly causes fat loss; body-composition change is lean-mass gain, not adiposity reduction. Claim untethered from a studied fat-loss endpoint -> Insufficient (default per §2.1)."
+    tier_rationale: "RATIFIED (Nutrition D6). Correct application of the §2.1 'untethered claim -> Insufficient' default. Lean-mass gain is not adiposity loss; the marketed fat-burn claim has no matching studied endpoint."
+    note: "FAIL anchor for the Evidence dimension when the SAME creatine is marketed for fat burning."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 3.0                 # g/day maintenance (literature-supported)
+  typical: 5.0
+  upper_studied: 5.0                 # maintenance; short loading 20 g/day x5-7d is a separate protocol
+  unit: "g"
+  loading_protocol_note: "optional loading ~20 g/day (4x5 g) for 5-7 days then 3-5 g/day maintenance; maintenance is the scored basis"
+  market_range_dsld: [1.5, 5.0]      # DSLD prevalence: NOW Sports labels 5 g/serving; BPI 'alkaline' 1.5 g (sub-dose). SANITY CHECK ONLY, candidate.
+  dose_citations: ["PMID:34836013"]
+  dose_basis_note: "5 g/serving is the dominant DSLD market dose AND the literature maintenance dose — market and evidence agree here (cheap active to verify)."
+  elemental_fraction: null           # n/a (not a mineral). Anhydrous-creatine fraction of monohydrate = 0.879 if a label states 'monohydrate' mass and a buyer needs free-creatine.
+
+forms:
+  preferred: ["monohydrate"]         # the form essentially all the evidence was generated on
+  acceptable: []
+  poor: ["creatine HCl (sold premium, no human superiority evidence vs monohydrate)", "buffered/'alkaline' creatine (no superiority evidence)"]
+  rationale: "Monohydrate is the studied, cheapest, best-evidenced form. Alternative salts (HCl, buffered/Kre-Alkalyn, citrate, malate) are marketed as superior absorption but lack human evidence of superiority over monohydrate; they are not 'poor' chemically but are evidence-orphaned for a premium claim."
+  citations: ["PMID:42141930"]       # ISSN-aligned SR; ISSN position stand (not in PubMed query set) is the canonical form authority — verify exact PMID Phase-2
+  form_ladder_confidence: "high"
+
+safety:
+  upper_limit_UL: null               # no established UL (NIH ODS / EFSA: no UL set)
+  ul_basis: "n/a — no UL established"
+  ul_source: "NIH ODS; EFSA"
+  ul_externally_maintained: true
+  risky_flags: []
+  notes: "Well-tolerated at 3-5 g/day. No UL means fall back to upper_studied (5 g/day maintenance) — absence of a UL is NOT license for arbitrary mega-dose (§2.5). Safety PASS-control active."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS creatine fact sheet — confirm no-UL statement"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — AUTHORED this task (TASK-171K). Pre-authored + cited, NEVER inferred.
+  # creatine was a Phase-1 dossier WITHOUT an umbrella. Real Israeli creatine labels use Hebrew strength/muscle-building
+  # language (כוח / מסת שריר / בניית שריר) — the STUDIED claim, so resolving it to the Strong resistance-training endpoint
+  # is the correct claim-resolution (NOT a loophole: it is creatine's genuine, best-evidenced endpoint). The vague
+  # 'energy'/'fat-burn' marketing phrases stay NULL (fat-loss is the dossier's Insufficient FAIL anchor — must not map).
+  mappings:
+  - phrase: "מסת שריר"                 # "muscle mass" (Hebrew) — the studied creatine endpoint
+    resolves_to: "strength / lean mass with resistance training"
+    resolved_tier: "Strong"
+    citations: ["PMID:39519498", "PMID:37432300", "PMID:39074168", "PMID:34836013", "PMID:24576864"]
+    supp_ev: "SUPP-EV-001"
+    rationale: >
+      MAPS at STRONG (BEST). 'מסת שריר/muscle mass' is the recognized physiological correlate of creatine's best-
+      evidenced studied endpoint (lean mass + strength with resistance training, ratified Strong). This is a legitimate
+      resolution to creatine's genuine endpoint, NOT a loophole — the moderate posture maps a real studied benefit.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "כוח"                      # "strength/power" (Hebrew)
+    resolves_to: "strength / lean mass with resistance training"
+    resolved_tier: "Strong"
+    citations: ["PMID:39519498", "PMID:37432300", "PMID:39074168", "PMID:34836013", "PMID:24576864"]
+    supp_ev: "SUPP-EV-001"
+    rationale: "MAPS at STRONG. Hebrew 'כוח/strength'; same studied resistance-training endpoint. NOTE: the Strong tier is conditional on a dose ≥3 g (Dose §2.2); a sub-dosed creatine still resolves Strong but loses on Dose."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "בניית שריר"               # "muscle building" (Hebrew)
+    resolves_to: "strength / lean mass with resistance training"
+    resolved_tier: "Strong"
+    citations: ["PMID:39519498", "PMID:37432300", "PMID:39074168", "PMID:34836013", "PMID:24576864"]
+    supp_ev: "SUPP-EV-001"
+    rationale: "MAPS at STRONG. Hebrew 'בניית שריר/muscle building'; same studied endpoint (distinctive token שריר also matches מסת שריר)."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "שריפת שומן"               # "fat burning" (Hebrew) — mirrors the Insufficient fat-loss FAIL anchor
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-001"
+    rationale: >
+      DOES NOT MAP — BY DESIGN. 'שריפת שומן/fat burning' is creatine's Insufficient FAIL anchor (no studied fat-loss
+      endpoint; lean-mass gain ≠ adiposity loss). Keeping it null preserves the §2.1 'untethered claim → Insufficient'
+      default — a creatine sold ONLY for fat-burn correctly does NOT inherit the strength Strong tier. Null by design.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "אנרגיה"                   # "energy" (Hebrew) — mechanistic ATP hand-wave, no studied consumer endpoint
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-001"
+    rationale: "DOES NOT MAP. Creatine 'אנרגיה/energy' is a mechanistic ATP/phosphocreatine hand-wave, not a studied consumer-energy endpoint — §2.1 excludes mechanism-only. Null."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Creatine (umbrella AUTHORED TASK-171K): מסת שריר/כוח/בניית שריר→resistance-training Strong (maps, BEST — the genuine
+    studied endpoint); שריפת שומן→null (the Insufficient FAIL anchor, must not inherit); אנרגיה→null (mechanism-only).
+    A Hebrew creatine label for muscle/strength resolves Strong; a fat-burn-only label stays Insufficient. Candidate / no ship.
+
+label_claims_common: ["builds muscle", "strength", "power", "recovery", "lean mass"]
+necessity_context: "Not a dietary necessity; an ergogenic aid. Context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Generally well-tolerated. Context only, not health advice."
+
+provenance:
+  built_by: ["research-agent", "nutrition-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-001"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 co-signed 2026-06-03 (no UL — no discrepant-authority pick needed)
+  cosign_note: "Both tiers ratified (strength Strong, fat-loss Insufficient). No UL established (NIH ODS/EFSA) — fall back to upper_studied 5 g/day per §2.5; authority choice n/a."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03) — mature/stable evidence base, low drift risk"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / EFSA"
+      last_resync: "2026-06-03"
+      resync_note: "no-UL status is stable; annual re-sync sufficient"
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella"
+      change: "TASK-171K — AUTHORED a first structure_function_umbrella (none existed). MAPPING: מסת שריר/כוח/בניית שריר→resistance-training(Strong, the genuine studied endpoint). NON-MAPPING (by design): שריפת שומן→null (the Insufficient fat-loss FAIL anchor — must not inherit Strong), אנרגיה→null (mechanism-only)."
+      evidence: "reused the ratified strength PMIDs (cited pointers, no new tier). No EFSA Art.13 creatine claim (creatine claims were rejected by EFSA); mapping is on the dossier's own Strong literature."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-001"
+      score_moving: "potentially — a new umbrella lets a vague Hebrew muscle/strength creatine resolve Strong instead of §2.1-default Insufficient (legitimate, it IS the studied endpoint). Candidate / should_affect_score_now:false; needs Product D7 + golden re-validation before ship (mirrors SUPP-EV-006 governance). Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

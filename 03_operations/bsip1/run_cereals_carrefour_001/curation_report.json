@@ -1,0 +1,1494 @@
+{
+ "run_id": "run_cereals_carrefour_001",
+ "retailer": "carrefour",
+ "generated": "2026-06-05T11:16:18.940758+00:00",
+ "source_file": "C:\\Bari\\02_products\\breakfast_cereals\\bsip0_outputs\\multiretailer\\carrefour_bsip0_raw_20260605T104358.json",
+ "raw_count": 217,
+ "included_count": 54,
+ "excluded_count": 163,
+ "exclusion_tally": {
+  "non_cereal_excluded": 22,
+  "no_usable_nutrition": 48,
+  "bar_excluded_snack_overlap": 35,
+  "chocolate_confection_excluded": 4,
+  "not_cereal": 48,
+  "energy_implausible_for_dry_cereal": 5,
+  "drink_excluded": 1
+ },
+ "ev_045c_fitness_flag_count": 6,
+ "ev_045c_flagged": [
+  {
+   "barcode": "7290118420323",
+   "name": "Fitness Veggie Mix",
+   "triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290112965660",
+   "name": "פיטנס מלח פלפל",
+   "triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290112968807",
+   "name": "Fitness Thin",
+   "triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290115205176",
+   "name": "Fitness",
+   "triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290115205312",
+   "name": "Fitness",
+   "triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290118420811",
+   "name": "Fitness Thins",
+   "triggers": [
+    "savory_descriptor_in_name"
+   ]
+  }
+ ],
+ "included": [
+  {
+   "barcode": "7290116537351",
+   "name": "כריות נוגט",
+   "subtype": "childrens_character",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7297488099821",
+   "name": "Sugarless Gluten Free Granola",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290118420323",
+   "name": "Fitness Veggie Mix",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 4,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290008263641",
+   "name": "קוואקר עדין אורגני",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "4005528115218",
+   "name": "דגני חיטה ואורז בטעם",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290120871069",
+   "name": "Granola Protein",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5900020046833",
+   "name": "Cheerios",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "8445291301948",
+   "name": "Multigrain Cheerios",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290116537962",
+   "name": "כריות וניל חדש",
+   "subtype": "childrens_character",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5010026521149",
+   "name": "Crispy Muesli",
+   "subtype": "muesli",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290116535371",
+   "name": "קורנפלקס ללא גלוטן",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290006992208",
+   "name": "דייסת דגנים מעורבים",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290104506819",
+   "name": "דגני בוקר במילוי קרם בטעם נוגט",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7613032045753",
+   "name": "Neslte Fitness Chocolate & Rice",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7613033548192",
+   "name": "Nestle Fitness Dark Chocolate",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290019603627",
+   "name": "Granola With Bittersweet Chocolate",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290019603634",
+   "name": "גרנולה קוקוס ופירות",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "3560070826186",
+   "name": "MUESLI & Co 2 CHOCOLATS & NOISETTES",
+   "subtype": "muesli",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "3560071016074",
+   "name": "Corn flakes",
+   "subtype": "cornflakes",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "8445290964595",
+   "name": "Kit Kat דגני בוקר",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290008263597",
+   "name": "קוואקר אורגני",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290000480107",
+   "name": "שיבולת שועל להכנה מהירה",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290000480442",
+   "name": "שיבולת שועל הכנה מהירה",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290011131968",
+   "name": "גרנולה פלוס אגוזים ושקדים",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290011668570",
+   "name": "גרנולה",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290001343845",
+   "name": "גרנולה",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290014471412",
+   "name": "מוזלי אגוזים",
+   "subtype": "muesli",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290014471429",
+   "name": "Dried Fruit Muesli",
+   "subtype": "muesli",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290014471443",
+   "name": "גרנולה אגוזין",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 4,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7613035635845",
+   "name": "גרנולה שוקולד",
+   "subtype": "granola",
+   "has_ingredients": true,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7613035758834",
+   "name": "פיטנס גרנולה חמוציות",
+   "subtype": "granola",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "884912102102",
+   "name": "Great Grains Cereal Blueberry Morning imp",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "884912126115",
+   "name": "great grains raisins, dates & pecans cereal",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290114603034",
+   "name": "גרנולה אגוזים צימוקים וחמוציות",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 5,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290114603041",
+   "name": "Protein granola",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290017325910",
+   "name": "קורנפלקס אורגני",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 4,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5900020034021",
+   "name": "Fitness",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 5,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290112495228",
+   "name": "קורנפלקס דבש",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 5,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7613037686906",
+   "name": "Fitness almond honey",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290112494351",
+   "name": "קורנפלקס צהוב",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290112498007",
+   "name": "Granola protein",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290112965660",
+   "name": "פיטנס מלח פלפל",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "884912359155",
+   "name": "Honey Roasted Cereal with Granola",
+   "subtype": "granola",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "42400108153",
+   "name": "Cereal",
+   "subtype": "oat_cereal",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290112968807",
+   "name": "Fitness Thin",
+   "subtype": "whole_grain_flakes",
+   "has_ingredients": true,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "savory_descriptor_in_name",
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290112497994",
+   "name": "גרנולה Protein",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5010026515919",
+   "name": "Mornflake Crispy Muesli Nutty",
+   "subtype": "muesli",
+   "has_ingredients": true,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290115205176",
+   "name": "Fitness",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290116532769",
+   "name": "גרנולה בתוספת חלבון",
+   "subtype": "granola",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "granola",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290115205312",
+   "name": "Fitness",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 8,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "fat_ge_13_and_no_sweet_signal"
+   ]
+  },
+  {
+   "barcode": "7290017068985",
+   "name": "שיבולת שועל מלאה עבה",
+   "subtype": "oat_cereal",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "5900020041142",
+   "name": "קורנפלקס פיטנס",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  },
+  {
+   "barcode": "7290118420811",
+   "name": "Fitness Thins",
+   "subtype": "cereal_other",
+   "has_ingredients": false,
+   "nutrition_fields": 7,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": true,
+   "ev_045c_triggers": [
+    "savory_descriptor_in_name"
+   ]
+  },
+  {
+   "barcode": "7290116533599",
+   "name": "קורנפלקס",
+   "subtype": "cornflakes",
+   "has_ingredients": false,
+   "nutrition_fields": 6,
+   "data_sufficiency": "sufficient",
+   "subpool": "standard_cereal",
+   "ev_045c_flag": false,
+   "ev_045c_triggers": null
+  }
+ ],
+ "excluded": [
+  {
+   "barcode": "7290001598085",
+   "name": "לחם מלא בתוספת דגנים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "8012666068029",
+   "name": "פרוסות טוסט עם דגנים",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "3560071551254",
+   "name": "קרפור אקספרט כריות ק",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118424024",
+   "name": "חטיף קראנצי בטעם מלח ים ושמן זית",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290116931432",
+   "name": "משקה שיבולת שועל בטעם סחלב",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290116537375",
+   "name": "קליק כריות",
+   "reason": "chocolate_confection_excluded"
+  },
+  {
+   "barcode": "7290001598269",
+   "name": "לחם מחמצת",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290014095861",
+   "name": "White oats",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290014095960",
+   "name": "שיבולת שועל עבה להכנה מהירה",
+   "reason": "energy_implausible_for_dry_cereal"
+  },
+  {
+   "barcode": "7622300356767",
+   "name": "Choco Cookie",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "4011800567613",
+   "name": "Corny Milk חטיף דגנים שוקולד חלב - שחור ולבן",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "4011800628512",
+   "name": "חטיף דגנים עם שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "4011800630515",
+   "name": "חטיף דגנים בננה",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "4011800633516",
+   "name": "חטיף דגנים שוקולד מר",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290119375653",
+   "name": "קפסולות שיבולת שועל",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118426615",
+   "name": "מיני עוגיות Fitness",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290112199942",
+   "name": "טרו גרנולה תותים ללא",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112199959",
+   "name": "טרו גרנולה פירות ללא",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112199966",
+   "name": "טרו גרנולה קוקוס ושו",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290122782615",
+   "name": "פיטנס קרקר דק כוסמין",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "5900020020741",
+   "name": "חטיפי נסקוויק בר דגנ",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "4011800000325",
+   "name": "Free שוקולד חלב ובוטנים",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290117266182",
+   "name": "כדורי דגנים בטעם שוק",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290020452801",
+   "name": "האופה - גרנולה עם פי",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8445291426320",
+   "name": "דגני פיטנס נסטלה 375",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290117266199",
+   "name": "פתיתי תירס קלויים בט",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290020452856",
+   "name": "האופה - גרנולה עם שו",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290120870925",
+   "name": "G FREE גרנולה עם שוק",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290120870932",
+   "name": "G FREE גרנולה עם אגו",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290117266205",
+   "name": "טבעות דגנים עם דבש ל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8410076602251",
+   "name": "Crunchy Oatmeal And Chocolate Bar",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5010029229417",
+   "name": "Multigrain crunch",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290000204086",
+   "name": "כריות סקוטש לקרצוף מ",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290000204147",
+   "name": "כריות יפניות 2 ב 1 ר",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290000204215",
+   "name": "ניקול כריות יפניות 6",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8431876289107",
+   "name": "Cereales rellenos cacao avellana sin gluten",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290118426653",
+   "name": "Chocolate Crackers",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "4005528134578",
+   "name": "דגני בוקר פריכים עם",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "5010029229394",
+   "name": "Choco Crunch",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290122781359",
+   "name": "פיטנס מיני עוגיות קל",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290116537955",
+   "name": "Kariot - Chocolate Fudge Flavor",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290100246023",
+   "name": "Kariot Nougat - 500g",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3270190111108",
+   "name": "MUESLI & Co 6 FRUITS SECS",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118428817",
+   "name": "חטיף שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290113194960",
+   "name": "Oat Meal With Raisins",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290118428954",
+   "name": "פיטנס בר גרנולה שוקו",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "16000548503",
+   "name": "חטיף קראנצי גרנולה מ",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "16000548602",
+   "name": "חטיף שיבולת שועל מלא",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290118427858",
+   "name": "שוקולד מריר Fitness",
+   "reason": "chocolate_confection_excluded"
+  },
+  {
+   "barcode": "7290118427872",
+   "name": "פיטנס בר גרנולה חמוצ",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290116932842",
+   "name": "משקה שיבולת שועל בטעם וניל",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118427896",
+   "name": "פיטנס בר גרנולה דבש",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290014455467",
+   "name": "גד מעדן שיבולת שועל",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290118426516",
+   "name": "פיטנס פריכיות דקות ת",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290010153541",
+   "name": "קוואקר מהיר להכנה מי",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290118426530",
+   "name": "Rice Cakes 'Thin'",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290113194946",
+   "name": "קוואקר פלוס בתוספת צ",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7394376621451",
+   "name": "Foamable oat drink Barista",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "3560070614202",
+   "name": "Copos de Avena Integral",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3387390320244",
+   "name": "Nesfit 375gm فواكه استوائيه",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3387390525960",
+   "name": "קראנצ'",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "5900020012814",
+   "name": "Nesquik Corn Flex Nestle",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020015174",
+   "name": "פיטנס בטעם שוקולד",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020018908",
+   "name": "פיטנס בטעם עוגיות",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5900020022325",
+   "name": "חטיף דגנים סיני מיני",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5900020025647",
+   "name": "فيتنيس",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290000072968",
+   "name": "סינימיניז",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "884912462916",
+   "name": "Honey Bunches of Oats Chocolate",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290116535388",
+   "name": "Corn flex - passover",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290106572027",
+   "name": "לחמית",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290019603610",
+   "name": "גרנולה פקאן טבעי וצי",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019603641",
+   "name": "גרנולה שקדים ואגוזים",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290017325972",
+   "name": "Organic Oat Drink 0% Sugar",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290100659090",
+   "name": "חטיף דגנים תמרים וקינמון",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "3560071357474",
+   "name": "Cornflakes",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8423207206488",
+   "name": "Tortitas de maiz",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "8423207206495",
+   "name": "Slimdelis",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "8423207206501",
+   "name": "סלים דליס חטיף דגנים",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "8423207207362",
+   "name": "Slimdelice",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290103700386",
+   "name": "טאצ' כריות יפניות 6י",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290103700393",
+   "name": "טאצ' כריות יפניות עב",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "72964132",
+   "name": "פרילי טבע",
+   "reason": "energy_implausible_for_dry_cereal"
+  },
+  {
+   "barcode": "7290000295299",
+   "name": "כריות יפניות סנו סוש",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "42400218678",
+   "name": "Steel Cut Quick Cooking Oatmeal with flax seeds, Maple & Brown Sugar",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290108350203",
+   "name": "כריות קרצוף עם ספוג",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290108352689",
+   "name": "כריות קרצוף ללכלוך ק",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "4011800629519",
+   "name": "חטיף דגנים עם אגוזים",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "4011800636517",
+   "name": "חטיף דגנים פרי עם שו",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "16000548404",
+   "name": "Crunchy",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "16000548909",
+   "name": "חטיף קראנצי גרנולה מ",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290011131975",
+   "name": "Green Granola",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020020710",
+   "name": "Crunch בטעם שוקו וניל",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290106571907",
+   "name": "עוגיות Fitness עם נטיפי שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290106571945",
+   "name": "עוגיות קקאו עם שוקולד מריר",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290109358765",
+   "name": "קראנצ' רולס נוגט",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "884912129710",
+   "name": "Fruity Pebbles",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290012367700",
+   "name": "קרם גוף שיבולת שועל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7394376123337",
+   "name": "Organic oat drink",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290014471436",
+   "name": "מוזלי על בסיס פתיתי",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "4011800632519",
+   "name": "חטיף דגנים עם שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290100240632",
+   "name": "קרקר פריך משישה דגנים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290107646147",
+   "name": "School Snack שוגי",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290107646154",
+   "name": "חטיף פצפוצים בטעם שוקולד",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290011131050",
+   "name": "גרנולה פקאן גרין 1 ק",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020029669",
+   "name": "פיטנס חטיף דגנים פיר",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290111564277",
+   "name": "פריכיות דקות פיטנס",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "884912002372",
+   "name": "Cranberry Almond Crunch",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "4005528126092",
+   "name": "Crispy",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290116933894",
+   "name": "Alternative White",
+   "reason": "energy_implausible_for_dry_cereal"
+  },
+  {
+   "barcode": "7613030979647",
+   "name": "Trix",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290107649605",
+   "name": "שוקולד חלב עם קורנפלקס ופצפוצים",
+   "reason": "chocolate_confection_excluded"
+  },
+  {
+   "barcode": "6501",
+   "name": "St Hubert Oméga 3",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "5900020031877",
+   "name": "חטיף דגנים צ'יריוס ה",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "5900020033314",
+   "name": "חטיף דגנים ליון נסטל",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "8423207210287",
+   "name": "סלים דליס חטיף דגנים",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "8431876289565",
+   "name": "Bebida de avena calcio 0% azúcares añadidos",
+   "reason": "energy_implausible_for_dry_cereal"
+  },
+  {
+   "barcode": "7613037012095",
+   "name": "פיטנס גרנולה שוקולד",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290017873688",
+   "name": "חטיפי דגנים אפויים ל",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290112963918",
+   "name": "קרקרים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290112494313",
+   "name": "Click cornflakes",
+   "reason": "chocolate_confection_excluded"
+  },
+  {
+   "barcode": "4011800617615",
+   "name": "Corny Big Schoko",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "5201",
+   "name": "לחמניית דגנים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290111342042",
+   "name": "כריות יפניות אנטיבקט",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290001461112",
+   "name": "לחם מחמצת דגנים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "5900020036407",
+   "name": "Nestle Corn Flex Lion",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112961440",
+   "name": "פיטנס שוקולד פריכיות",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "884912342737",
+   "name": "וואפל קריספ",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "884912359162",
+   "name": "Honey Bunches of Oats with Almonds",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112965684",
+   "name": "חטיף דגנים עם עשבי תיבול",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290112965707",
+   "name": "חטיף קראנצ׳י עם צ׳ילי מעודן",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "884912359414",
+   "name": "Cinnamon Bunches",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "884912359483",
+   "name": "Honey Bunches of Oats with Real Strawberries",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "884912359421",
+   "name": "Honey Bunches of Oats Maple  Pecans",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112968821",
+   "name": "Fifness",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290110327514",
+   "name": "אלטרנטיב שיבולת שועל עם אגוזי לוז",
+   "reason": "drink_excluded"
+  },
+  {
+   "barcode": "7290116530482",
+   "name": "מארז קורנפלקס של אלו",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019393795",
+   "name": "טרולים דגני בוקר טבע",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019393801",
+   "name": "טרולים דגני בוקר טבע",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020039590",
+   "name": "Fitness",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "5900020039620",
+   "name": "חטיף דגנים שקדים ודב",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "16000185517",
+   "name": "Finre1",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290116532042",
+   "name": "Klik",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290112355812",
+   "name": "מילוי קורנפלס",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3560071018566",
+   "name": "Cacahuètes",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3560070820221",
+   "name": "Noisette",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3560071095659",
+   "name": "Chocolat saveur coco",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290000311432",
+   "name": "עוגיות גרנולה עם קינמון",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290115403367",
+   "name": "עוגיות קוואקר פריכות",
+   "reason": "bar_excluded_snack_overlap"
+  },
+  {
+   "barcode": "7290017068978",
+   "name": "שיבולת שועל מלאה להכ",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "8431876289558",
+   "name": "Bebido de avena calcio 0% azúcares añadidos",
+   "reason": "energy_implausible_for_dry_cereal"
+  },
+  {
+   "barcode": "7290118420835",
+   "name": "קרקרים",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "58449860037",
+   "name": "Koala Crisp Organic",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290111346453",
+   "name": "ניקול כריות קרצוף עם",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "3560071177294",
+   "name": "Pomme",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3560071267032",
+   "name": "Pétales au chocolat blé complet",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "3560071269494",
+   "name": "Barre Céréales CHOCOLAT",
+   "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290015155243",
+   "name": "פרמיו כריות אנטי היי",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290015155250",
+   "name": "פרמיו כריות סלמון לח",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290015155410",
+   "name": "פרמיו כריות דנטל לחת",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "3560071364243",
+   "name": "לחם מחמצת דגנים 350",
+   "reason": "non_cereal_excluded"
+  },
+  {
+   "barcode": "7290103705534",
+   "name": "כריות קרצוף נירוסטה",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290103705664",
+   "name": "כריות קרצוף לשבת 2 י",
+   "reason": "no_usable_nutrition"
+  },
+  {
+   "barcode": "7290019393818",
+   "name": "טרולים דגני בוקר טבע",
+   "reason": "no_usable_nutrition"
+  }
+ ]
+}

@@ -49,6 +49,11 @@ from constants import (
     DIAAS_COMPLETE_SOURCES, DIAAS_DISCLOSURE_GAP_TRIGGERS,
     DIAAS_D2_CREDIT, DIAAS_D2_SCORE_CAP,
     GLASSBOX_W2_ADDITIVES,
+    SODIUM_CEREAL_CATEGORIES, SODIUM_CEREAL_BANDS,
+    SODIUM_CEREAL_CAP_THRESHOLD, SODIUM_CEREAL_CAP_VALUE,
+    SODIUM_CEREAL_RED_LABEL_BOUNDARY,
+    KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER,  # EV-047
+    SAT_FAT_CAP_ENDEMIC_WFF_FRACTION,             # EV-048
 )
 import re as _re
 
@@ -104,7 +109,17 @@ BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
 # With OFF: score_processing_quality runs the current NOVA_PROCESSING_SCORES lookup
 # verbatim, the PROCESSING_LOAD caps and NOVA_HP_WEIGHTS scaling are unchanged, and no
 # d3_processing_signal is emitted.
-BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "off").lower() == "on"
+BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "on").lower() != "off"  # SHIPPED 2026-06-05 (TASK-181S)
+
+# TASK-189 / EV-049 — Graduated sodium treatment for granola/cereal.
+# DEFAULT OFF → engine byte-identical to run_cereals_006 baseline.
+# When ON: graduated SODIUM_LOAD penalty (4-band: <150→0, 150–299→−2, 300–449→−5,
+# 450–599→−8) inside SODIUM_FAMILY_BUDGET=8; category cap HIGH_SODIUM_CEREAL_500 at
+# 500mg→cap 75; MoH red-label boundary corrected from >600 to >=600 for this scope.
+# Scoped to snack_bar_granola + cereal archetypes ONLY (frozen bread/milk/snack
+# baselines are fully isolated — no cross-category movement).
+# D7 co-signed: Nutrition Agent + Product Agent, 2026-06-05.
+BARI_SODIUM_CEREAL = os.environ.get("BARI_SODIUM_CEREAL", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
 # TASK-181G — Glass Box W4: D3 de-moralization helpers (EV-042 bound values).
@@ -849,7 +864,7 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
     if checks.get("satfat_le_fat") is False:
         deduct(20, "sat_fat > fat (data integrity failure)")
     if checks.get("kcal_plausible") is False:
-        deduct(10, "energy_kcal outside plausible range 20-700")
+        deduct(10, f"energy_kcal outside plausible range {KCAL_PLAUSIBLE_LOWER}-{KCAL_PLAUSIBLE_UPPER}")  # EV-047
     # TASK-144 — implausible macros (e.g. protein_g=190/100g from an OCR parse error)
     # are a hard data-integrity failure; deduct heavily so the product is flagged
     # insufficient_data rather than producing a spurious score/grade. Gated to the
@@ -1418,6 +1433,21 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     red_label_sugar   = "sugar" in l3.get("red_labels", [])
     red_label_sat_fat = "sat_fat" in l3.get("red_labels", [])
     red_label_count   = l3.get("red_label_count", 0)
+
+    # EV-049 boundary fix (BARI_SODIUM_CEREAL scope only):
+    # signal_extractor uses >600 (strict); the MoH threshold is >=600 (inclusive).
+    # Correct here for cereal/granola: if sodium == 600 and the upstream extractor missed
+    # the red label (because it used >600), add it to the effective count.
+    # This only affects products sitting exactly at 600mg — an edge case in this corpus
+    # (קורנפלקס אורגני הרדוף). The correction is guardrail-local; it does NOT mutate l3.
+    _boundary_sodium_fix_applied = False
+    if (BARI_SODIUM_CEREAL
+            and category in SODIUM_CEREAL_CATEGORIES
+            and sodium >= SODIUM_CEREAL_RED_LABEL_BOUNDARY
+            and "sodium" not in l3.get("red_labels", [])):
+        red_label_count += 1
+        _boundary_sodium_fix_applied = True
+
     additive_ct       = l3.get("additive_marker_count", 0)
     added_sugar_ct    = l3.get("added_sugar_sources_count", 0)
     ing_list_count    = len(l3.get("ingredient_list", [])) if "ingredient_list" in l3 else 0
@@ -1451,8 +1481,27 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
 
     # -----------------------------------------------------------------------
     # Trans fat veto
+    # EV-050 — Natural dairy trans fat exemption.
+    # USDA FDC (and some product panels) report "total trans fat" for ruminant products
+    # without separating natural (CLA + vaccenic acid) from industrial (PHVO-derived) trans
+    # fat. Natural dairy trans fat in butter runs 2–5 g/100g; industrial ranges overlap.
+    # The veto was designed for industrial trans fat (PHVO); it must not fire on plain
+    # dairy fat. Gate: exempt when (a) category is whole_food_fat AND (b) no
+    # partially-hydrogenated vegetable oil marker is found in the ingredient text.
+    # The gate is compositional + categorical — it does NOT rely on a numeric threshold,
+    # because numeric ranges overlap and the reliable discriminator is the ingredient source.
+    # When the gate fires: record trans fat as a "high_concern" penalty (not zero/veto) so
+    # the elevated trans measurement is still reflected in fat_quality scoring, without the
+    # inappropriate score=0.
+    # Evidence tier: Moderate (CLA/vaccenic acid metabolic profile is well-established;
+    # dose-response at typical butter consumption is less certain — see EV-050 registry entry).
     # -----------------------------------------------------------------------
-    trans_veto = trans > TRANS_FAT_VETO_THRESHOLD
+    has_phvo = l3.get("has_phvo", False)
+    _natural_dairy_trans_exempt = (
+        category == "whole_food_fat"
+        and not has_phvo
+    )
+    trans_veto = trans > TRANS_FAT_VETO_THRESHOLD and not _natural_dairy_trans_exempt
     if trans_veto:
         return {
             "trans_fat_veto": True,
@@ -1589,21 +1638,113 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     # SODIUM_LOAD family (SRC-03 for brined foods)
     # -----------------------------------------------------------------------
     sodium_caps_fired = []
+    sodium_pens_fired = []
     sodium_weight = 0.7 if context_flag == "brined_food" else 1.0
-    raw_sodium_fires = sodium >= 700
-    if raw_sodium_fires:
-        effective_sodium_cap = int(60 / sodium_weight) if sodium_weight < 1.0 else 60
-        # For brined foods, apply at 70% weight → effective cap slightly higher
-        actual_cap = max(60, int(60 + (100-60) * (1-sodium_weight))) if sodium_weight < 1 else 60
-        sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
-        caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
-                                 "note": f"sodium={sodium}mg (context weight={sodium_weight})"})
-        caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
-    else:
-        caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
-                                 "fired": False, "condition": f"sodium={sodium}<700"})
 
-    sodium_cap, sodium_pen, sodium_detail = _coordinate_family(sodium_caps_fired, [], SODIUM_FAMILY_BUDGET)
+    # TASK-189 / EV-049 — BARI_SODIUM_CEREAL: graduated sodium treatment.
+    # Scoped to snack_bar_granola + cereal. Default OFF (byte-identical to baseline).
+    # When ON:
+    #   1. Graduated SODIUM_LOAD penalty (4-band) inside SODIUM_FAMILY_BUDGET=8.
+    #   2. HIGH_SODIUM_CEREAL_500 cap: >=500mg → score cap 75.
+    #   3. MoH red-label boundary corrected: >=600 (not >600) for this scope.
+    # The existing HIGH_SODIUM_700MG_PLUS cap (>=700mg → 60) is NOT active for the
+    # cereal/granola scope when BARI_SODIUM_CEREAL is ON — the graduated system replaces it
+    # and the cap hierarchy (HIGH_SODIUM_CEREAL_500 at 75, HIGH_SODIUM_700MG_PLUS at 60)
+    # naturally handles any product that exceeds 700mg (extremely rare in this category).
+    cereal_sodium_scope = BARI_SODIUM_CEREAL and (category in SODIUM_CEREAL_CATEGORIES)
+
+    if cereal_sodium_scope:
+        # --- MoH boundary fix: >=600 replaces >600 for this scope ---
+        # (The >600 boundary means exactly 600mg gets no red label under the base rule.
+        #  EV-049 corrects this to >=600 for granola/cereal, where the distinction matters.)
+        # Note: the red-label field is computed upstream in signal_extractor. For the
+        # guardrail section we need to check whether sodium sits at exactly the boundary.
+        # The upstream L3 red_labels list already drives regulatory_quality; this correction
+        # is applied here in the scoring guardrail only (HIGH_SODIUM_700MG_PLUS replaced).
+
+        # --- Graduated penalty ---
+        sodium_grad_pen = 0
+        sodium_band_label = "<150"
+        for lo, hi, pen in SODIUM_CEREAL_BANDS:
+            if hi is None:  # >=600 band — cap handles it below, no graduated penalty
+                if sodium >= lo:
+                    sodium_band_label = f">={lo}"
+                    sodium_grad_pen = 0  # cap, not penalty
+                    break
+            elif lo <= sodium <= hi:
+                sodium_band_label = f"{lo}-{hi}"
+                sodium_grad_pen = pen
+                break
+
+        if sodium_grad_pen > 0:
+            sodium_pens_fired.append(("SODIUM_LOAD_CEREAL_GRAD", sodium_grad_pen))
+            penalties_considered.append({
+                "rule": "SODIUM_LOAD_CEREAL_GRAD",
+                "amount": sodium_grad_pen,
+                "condition": f"sodium={sodium}mg band={sodium_band_label} (EV-049)",
+                "fired": True,
+            })
+            penalties_applied.append({
+                "rule": "SODIUM_LOAD_CEREAL_GRAD",
+                "amount": sodium_grad_pen,
+                "note": f"sodium={sodium}mg band={sodium_band_label} (EV-049 / BARI_SODIUM_CEREAL)",
+            })
+        else:
+            penalties_considered.append({
+                "rule": "SODIUM_LOAD_CEREAL_GRAD",
+                "amount": 0,
+                "condition": f"sodium={sodium}mg band={sodium_band_label} — no penalty",
+                "fired": False,
+            })
+
+        # --- HIGH_SODIUM_CEREAL_500 cap (>=500mg → cap 75) ---
+        if sodium >= SODIUM_CEREAL_CAP_THRESHOLD:
+            sodium_caps_fired.append(("HIGH_SODIUM_CEREAL_500", SODIUM_CEREAL_CAP_VALUE))
+            caps_considered.append({
+                "rule": "HIGH_SODIUM_CEREAL_500",
+                "cap": SODIUM_CEREAL_CAP_VALUE,
+                "fired": True,
+                "note": f"sodium={sodium}mg >= {SODIUM_CEREAL_CAP_THRESHOLD}mg (EV-049 / BARI_SODIUM_CEREAL)",
+            })
+            caps_applied.append({"rule": "HIGH_SODIUM_CEREAL_500", "cap": SODIUM_CEREAL_CAP_VALUE})
+        else:
+            caps_considered.append({
+                "rule": "HIGH_SODIUM_CEREAL_500",
+                "cap": SODIUM_CEREAL_CAP_VALUE,
+                "fired": False,
+                "condition": f"sodium={sodium}mg < {SODIUM_CEREAL_CAP_THRESHOLD}mg",
+            })
+
+        # --- Also keep HIGH_SODIUM_700MG_PLUS for >=700mg products (belt-and-suspenders) ---
+        raw_sodium_fires = sodium >= 700
+        if raw_sodium_fires:
+            actual_cap = 60
+            sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
+            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
+                                     "note": f"sodium={sodium}mg (EV-049 scope, belt-and-suspenders)"})
+            caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
+        else:
+            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
+                                     "fired": False,
+                                     "condition": f"sodium={sodium}<700 (BARI_SODIUM_CEREAL scope)"})
+    else:
+        # --- Baseline (all non-cereal/granola categories or flag OFF) ---
+        raw_sodium_fires = sodium >= 700
+        if raw_sodium_fires:
+            effective_sodium_cap = int(60 / sodium_weight) if sodium_weight < 1.0 else 60
+            # For brined foods, apply at 70% weight → effective cap slightly higher
+            actual_cap = max(60, int(60 + (100-60) * (1-sodium_weight))) if sodium_weight < 1 else 60
+            sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
+            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
+                                     "note": f"sodium={sodium}mg (context weight={sodium_weight})"})
+            caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
+        else:
+            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
+                                     "fired": False, "condition": f"sodium={sodium}<700"})
+
+    sodium_cap, sodium_pen, sodium_detail = _coordinate_family(
+        sodium_caps_fired, sodium_pens_fired, SODIUM_FAMILY_BUDGET
+    )
 
     # -----------------------------------------------------------------------
     # FAT_QUALITY family
@@ -1619,7 +1760,25 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                                  "fired": False,
                                  "note": "R5: composite cap → graded fat-dimension penalty (RECAL_P0)"})
     else:
-        check_cap("ISRAELI_RED_LABEL_1_SAT_FAT", red_label_sat_fat, 55, fat_caps_fired)
+        # EV-048 — endemic sat-fat gate for intact dairy fat (whole_food_fat archetype).
+        # Butter's sat-fat (48–70g/100g) structurally guarantees a red-label hit; the cap
+        # was designed for reformulable excess sat-fat, not compositionally fixed dairy fat.
+        # Gate: suppress cap when category=="whole_food_fat" AND sat_fat/fat >= 0.50.
+        # The fraction threshold (0.50) distinguishes plain dairy fat from palm-oil or
+        # seed-oil diluted spreadable fats which still fire the cap correctly.
+        # Regulatory red-label annotation in regulatory_quality is NOT gated — consumer
+        # still sees the disclosure. — EV-048
+        _wff_sat_frac = (sat_f / fat) if (fat > 0 and sat_f is not None) else 0.0
+        _endemic_wff_gate = (
+            category == "whole_food_fat"
+            and _wff_sat_frac >= SAT_FAT_CAP_ENDEMIC_WFF_FRACTION
+        )
+        if _endemic_wff_gate:
+            caps_considered.append({"rule": "ISRAELI_RED_LABEL_1_SAT_FAT", "cap": 55,
+                                     "fired": False,
+                                     "note": f"EV-048 endemic gate: whole_food_fat + sat_frac={_wff_sat_frac:.2f}≥{SAT_FAT_CAP_ENDEMIC_WFF_FRACTION}"})
+        else:
+            check_cap("ISRAELI_RED_LABEL_1_SAT_FAT", red_label_sat_fat, 55, fat_caps_fired)
     check_penalty("SEED_OIL_PRESENT", has_seed_oil, 3, fat_pens_fired)
 
     fat_cap, fat_pen, fat_detail = _coordinate_family(fat_caps_fired, fat_pens_fired, FAT_QUALITY_FAMILY_BUDGET)
@@ -1999,6 +2158,19 @@ def score_product(product: dict, signals: dict, cat_result: dict,
             else:
                 conf_result["confidence_band"], conf_result["confidence_ceiling"] = "insufficient", CONFIDENCE_INSUFFICIENT_CEILING
             confidence = _cs  # keep the local in sync with the adjusted accumulator
+
+    # EV-049 red-label boundary fix — applies BEFORE dimension scoring so regulatory_quality
+    # reflects the corrected >=600 boundary. Scoped to cereal/granola when BARI_SODIUM_CEREAL
+    # is ON. signal_extractor uses >600 (strict); the MoH threshold is >=600 (inclusive).
+    # The l3 mutation is local to this score_product call — it does not persist upstream.
+    _sodium_val = (nn.get("sodium_mg") or 0)
+    if (BARI_SODIUM_CEREAL
+            and category in SODIUM_CEREAL_CATEGORIES
+            and _sodium_val >= SODIUM_CEREAL_RED_LABEL_BOUNDARY
+            and "sodium" not in l3.get("red_labels", [])):
+        l3 = dict(l3)  # shallow copy — do not mutate the caller's dict
+        l3["red_labels"] = list(l3.get("red_labels", [])) + ["sodium"]
+        l3["red_label_count"] = l3.get("red_label_count", 0) + 1
 
     pq_score,  pq_note  = score_processing_quality(nova_level, w4_confidence, w4_materiality)
     nd_score,  nd_note  = score_nutrient_density(nn, has_fortification, category)

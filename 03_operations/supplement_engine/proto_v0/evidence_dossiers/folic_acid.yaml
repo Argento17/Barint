@@ -1,0 +1,196 @@
+# evidence_dossiers/folic_acid.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Folic acid is the CLEANEST high-value coverage dossier (L1 shelf 1.4% / 5 SKUs; HIGH demand, Trends 72.7).
+# One Strong narrow studied endpoint (neural-tube-defect prevention, periconceptional). A vitamer-form question
+# (folic acid vs 5-MTHF/L-methylfolate) gives a real Form rung. Necessity (preconception) is reader context only.
+active:
+  canonical_name: "folic acid (vitamin B9)"
+  pubchem_cid: 135398658             # folic acid (pteroylglutamic acid)
+  molecular_formula: "C19H19N7O6"
+  molecular_weight: 441.40
+  synonyms: ["folic acid", "folate", "vitamin B9", "pteroylglutamic acid", "59-30-3"]
+  category: "vitamin"
+  vitamer_forms_identity:            # for the folic-acid vs L-methylfolate Form distinction — STABLE
+    - form: "L-5-methyltetrahydrofolate (5-MTHF / L-methylfolate / levomefolic acid)"
+      cid: 135398561
+      formula: "C20H25N7O6"
+      mw: 459.50
+      identity_note: "The bioactive circulating folate form; bypasses MTHFR reduction. Equivalence is dose-adjusted (DFE)."
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "periconceptional prevention of neural tube defects (NTDs)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    rationale: "Periconceptional folic acid prevents neural tube defects — one of the most robustly established supplement-outcome relationships (RCT [MRC 1991] + Cochrane + population fortification data). Unambiguous Strong. NOTE: the endpoint is periconceptional (women planning/early pregnancy); that population condition is reader CONTEXT (Invariant 1), not a score input."
+    tier_rationale: "RATIFIED (D6) Strong. The NTD-prevention evidence is among the strongest in all of supplementation. Claim-specific Strong; the periconceptional population condition is context, never scored (Invariant 1)."
+  - claim: "correcting/preventing folate-deficiency (incl. megaloblastic anaemia, raising folate status)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:26662928"]
+    rationale: "Folic acid corrects folate-deficiency / raises folate status — settled (dose->status). Distinct from the NTD-outcome claim; both Strong but for different, non-inheriting endpoints."
+    tier_rationale: "RATIFIED (D6). Status-correction is settled Strong. WARNING (context): high folic acid can mask B12-deficiency anaemia — a contraindication note, never a score input."
+  - claim: "broad 'cardiovascular / cognitive / mood' benefit (homocysteine-lowering halo)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:22695899", "PMID:28404799"]
+    rationale: "Folic acid lowers homocysteine, but large RCTs show homocysteine-lowering does NOT reliably translate to fewer cardiovascular events or cognitive benefit in general populations (modest stroke-subgroup signal only). Broad CV/cognitive/mood benefit -> Weak."
+    tier_rationale: "RATIFIED (D6) Weak. The homocysteine surrogate moves but the hard outcomes mostly don't -> classic surrogate-without-outcome = Weak. A faint stroke-subgroup signal exists (not Insufficient), but the broad halo is unsupported (not Moderate)."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 400                 # mcg/day — the NTD-prevention and general supplement dose
+  typical: 400                       # mcg/day (400-800 mcg common; some labels 800-1000)
+  upper_studied: 1000                # mcg/day = the adult UL for SYNTHETIC folic acid (folate from food uncapped)
+  unit: "mcg"
+  market_range_dsld: [400, 1000]     # DSLD: 400, 800, 1000 mcg dominant. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:26662928"]
+  elemental_fraction: null
+  dose_note: "High-risk pregnancies use 4-5 mg (clinician-directed) — a distinct clinical regimen, time-limited, not the consumer 400 mcg. DFE conversion applies if comparing 5-MTHF to folic acid."
+
+forms:
+  preferred: ["folic acid (pteroylglutamic acid — the studied form for NTD prevention)", "L-5-methylfolate / 5-MTHF (bioactive; preferred for MTHFR-variant individuals)"]
+  acceptable: ["folinic acid (calcium folinate)"]
+  poor: []
+  rationale: "Folic acid (synthetic) is the form the NTD-prevention EVIDENCE was generated on -> preferred for that endpoint. L-methylfolate (5-MTHF) is the bioactive form, equivalent/advantageous for status and preferred in MTHFR-polymorphism carriers, but the hard NTD-outcome trials used folic acid -> both preferred, endpoint-dependent. A 'methylfolate is superior for everyone' premium claim is an Honesty watch (the NTD evidence is on folic acid). DFE dose-adjustment required when comparing."
+  citations: ["PMID:26662928", "PMID:28404799"]
+  form_ladder_confidence: "medium — folic-acid-for-NTD-evidence is robust; 5-MTHF superiority is population-specific (MTHFR), not universal"
+
+safety:
+  upper_limit_UL: 1000               # mcg/day SYNTHETIC folic acid, adults — NIH ODS / IOM. Basis = masking B12-deficiency anaemia (allowing neurologic damage to progress undetected). Folate from FOOD is NOT capped.
+  ul_basis: "mcg/day SYNTHETIC folic acid (supplements + fortification), adults. The UL exists because high folic acid can MASK B12-deficiency anaemia, letting B12 neuropathy progress -> a genuine harm mechanism (not reversible GI). Food folate is uncapped."
+  ul_source: "NIH ODS Folate fact sheet / US IOM-FNB (1000 mcg/day synthetic folic acid, adults)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 veto-vs-note): the 1000 mcg synthetic-folic-acid UL is set on B12-masking (a real harm —
+    undetected B12-neuropathy progression), so a labeled daily dose >1000 mcg synthetic folic acid is a Safety concern.
+    BUT high-risk-pregnancy clinical regimens (4-5 mg) are a legitimate clinician-directed exception (like vitamin D3
+    weekly repletion) -> flag clinical_use, do not auto-veto a clearly clinical SKU. For a consumer SKU, >1000 mcg
+    daily synthetic folic acid -> Safety NOTE/soft penalty (the harm is indirect masking, self-limiting on B12
+    co-supplementation), escalating toward veto only at large multiples. NEEDS-ENV-VERIFY 1000 mcg primary value.
+  ul_note_threshold: 1000            # >1000 mcg synthetic/day -> Safety NOTE (B12-masking concern)
+  ul_externally_maintained: true
+  risky_flags: ["MASKS B12-deficiency anaemia -> the UL basis (context: pair with B12)", "4-5 mg high-risk-pregnancy regimen = clinical_use exemption, not a daily-consumer veto"]
+  notes: "UL basis is B12-masking, not direct toxicity -> graded (NOTE escalating to veto at large multiples), with a clinical_use carve-out for high-risk-pregnancy regimens."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Folate UL=1000 mcg synthetic adults", "PMID:26662928"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "pregnancy"
+    resolves_to: "periconceptional prevention of neural tube defects (NTDs)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at STRONG (BEST). 'Pregnancy / prenatal' is the canonical recognized correlate of folic acid's NTD-prevention
+      endpoint — the strongest mapped tier. The periconceptional population condition is reader context (Invariant 1),
+      never a reason to refuse or down-tier the mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "blood"
+    resolves_to: "correcting/preventing folate-deficiency (incl. megaloblastic anaemia, raising folate status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at STRONG. 'Blood'/'blood health' is a recognized correlate of folate's role in red-cell formation
+      (megaloblastic-anaemia correction) — a recognized studied endpoint. Maps to Strong.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "heart"
+    resolves_to: "broad 'cardiovascular / cognitive / mood' benefit (homocysteine-lowering halo)"
+    resolved_tier: "Weak"
+    citations: ["PMID:22695899"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at WEAK. 'Heart' maps to folate's homocysteine-lowering role — a recognized physiological correlate — but the
+      hard CV-outcome evidence is null/weak (surrogate moves, outcomes mostly don't). Maps (recognized + cited), held Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "energy"
+    resolves_to: null                  # DELIBERATE NON-MAPPING (vague 'energy', no EFSA claim)
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      DOES NOT MAP. Vague 'energy' is a deficiency-state/anaemia-fatigue generalization with no specific EFSA claim
+      wording, not a recognized studied consumer-energy endpoint in replete adults. No recognized cited correlate ->
+      no mapping. (Contrast 'עייפות/fatigue' below, which DOES map via the SPECIFIC EFSA Art.13 'reduction of tiredness
+      and fatigue' folate claim — the deliberate vague-vs-EFSA-specific asymmetry, as in vitamin C.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # Folate EFSA Art.13: maternal tissue growth in pregnancy, blood formation, reduction of tiredness and fatigue,
+  # normal homocysteine metabolism, psychological function. Routed to existing tiers (cited pointers).
+  - phrase: "הריון"                    # "pregnancy" (Hebrew) — EFSA "maternal tissue growth during pregnancy"
+    resolves_to: "periconceptional prevention of neural tube defects (NTDs)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at STRONG (BEST). EFSA Art.13 authorizes "folate contributes to maternal tissue growth during pregnancy"
+      (EFSA Q-2008-1213), and the NTD-prevention evidence is among the strongest in supplementation. Hebrew alias of
+      the English "pregnancy" key. Periconceptional population condition = reader context (Invariant 1).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "דם"                       # "blood" (Hebrew) — EFSA "normal blood formation"
+    resolves_to: "correcting/preventing folate-deficiency (incl. megaloblastic anaemia, raising folate status)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at STRONG. EFSA Art.13 authorizes "folate contributes to normal blood formation" (EFSA Q-2008-1213).
+      Hebrew alias of the English "blood" key — megaloblastic-anaemia/red-cell endpoint, Strong.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עייפות"                   # "fatigue" (Hebrew) — EFSA "reduction of tiredness and fatigue"
+    resolves_to: "broad 'cardiovascular / cognitive / mood' benefit (homocysteine-lowering halo)"
+    resolved_tier: "Weak"
+    citations: ["PMID:22695899"]
+    supp_ev: "SUPP-EV-011"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "folate contributes to the reduction of tiredness and fatigue"
+      (EFSA Q-2008-1213) — a recognized + permitted correlate, so 'עייפות/fatigue' MAPS (unlike the vague 'energy'
+      key, held null). Routed to the nearest tiered (broad-benefit Weak) endpoint; recognized relationship, consumer
+      benefit in replete adults thin → Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Folic acid label "for pregnancy, blood & heart health, energy" resolves: pregnancy->NTD=Strong (maps, BEST),
+    blood->megaloblastic=Strong (maps), heart->homocysteine=Weak (maps), energy->null (does NOT map). Best mapped tier
+    = STRONG. A vague prenatal/blood folic acid is NOT Insufficient.
+
+label_claims_common: ["pregnancy", "prenatal", "blood health", "heart health", "homocysteine", "energy"]
+necessity_context: "Periconceptional need is well-established (women planning/early pregnancy); general necessity varies with diet/fortification. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "High folic acid can MASK B12-deficiency anaemia — pair with B12; relevant in B12-deficient/elderly. Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-011"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: "Tiers: NTD-prevention Strong, folate-status Strong, broad CV/cognitive Weak (homocysteine surrogate, null outcomes). UL 1000 mcg synthetic = B12-masking graded NOTE (clinical_use carve-out for high-risk-pregnancy 4-5 mg). Umbrella: pregnancy/blood->Strong (best), heart->Weak, energy->null. Candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03) — settled active; UL re-sync annual"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms", "vitamer_forms_identity"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (1000 mcg synthetic adults)"
+      last_resync: "2026-06-03"
+      resync_note: "B12-masking basis; food folate uncapped. NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: הריון→NTD(Strong, EFSA Q-2008-1213 maternal tissue growth); דם→megaloblastic(Strong, EFSA blood formation); עייפות→Weak(EFSA tiredness/fatigue — maps; vague 'energy' stays null). Vague-vs-EFSA-specific asymmetry preserved."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-011"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

@@ -1,0 +1,313 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_cereal_7613035758834",
+  "barcode": "7613035758834",
+  "canonical_name_he": "פיטנס גרנולה חמוציות",
+  "canonical_name_en": null,
+  "brand": "Nestlé, Fitness",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": "ישראל",
+  "kosher_certification": null,
+  "image_url": "https://images.openfoodfacts.org/images/products/761/303/575/8834/front_en.36.400.jpg",
+  "image_urls": [
+    "https://images.openfoodfacts.org/images/products/761/303/575/8834/front_en.36.400.jpg"
+  ],
+  "source_retailers": [
+    "carrefour"
+  ],
+  "source_url": "https://world.openfoodfacts.org/api/v2/product/7613035758834.json",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 437.0,
+    "fat_g": 14.8,
+    "fat_saturated_g": 1.9,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 80.0,
+    "carbohydrates_g": 62.7,
+    "sugars_g": 18.7,
+    "dietary_fiber_g": 7.1,
+    "protein_g": 9.5
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "whole oatmeal 58,4%, sugar, malted grilled wheat petals 9,3% (wheat flour, malt extract, emulsifier,' sunflower lecithin), dried cranberry pieces (cranberries 3,5%, sugar), squash seeds 4,3%, molasses, puffed rice chips 3,5% (rice semolina, wheat flour, sugar, barley malt extract, salt), sunflower oil, whole oat flour , invert sugar syrup, minerals: calcium carbonate, acidity corrector, citric acid, salt, cinnamon,",
+  "ingredients_list": [
+    "whole oatmeal 58",
+    "4%",
+    "sugar",
+    "malted grilled wheat petals 9",
+    "3% (wheat flour",
+    "malt extract",
+    "emulsifier",
+    "' sunflower lecithin)",
+    "dried cranberry pieces (cranberries 3",
+    "5%",
+    "sugar)",
+    "squash seeds 4",
+    "3%",
+    "molasses",
+    "puffed rice chips 3",
+    "5% (rice semolina",
+    "wheat flour",
+    "sugar",
+    "barley malt extract",
+    "salt)",
+    "sunflower oil",
+    "whole oat flour",
+    "invert sugar syrup",
+    "minerals: calcium carbonate",
+    "acidity corrector",
+    "citric acid",
+    "salt",
+    "cinnamon"
+  ],
+  "ingredients_raw": "whole oatmeal 58,4%, sugar, malted grilled wheat petals 9,3% (wheat flour, malt extract, emulsifier,' sunflower lecithin), dried cranberry pieces (cranberries 3,5%, sugar), squash seeds 4,3%, molasses, puffed rice chips 3,5% (rice semolina, wheat flour, sugar, barley malt extract, salt), sunflower oil, whole oat flour , invert sugar syrup, minerals: calcium carbonate, acidity corrector, citric acid, salt, cinnamon,",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims_raw": "",
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "high",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "shufersal_barcode_single_source",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "il_prices transparency feed barcode (law-mandated catalog).",
+  "nutrition_basis_claimed": "ל-100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_consistency_status": "consistent",
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "clean",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.8,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [
+    "single_source_only",
+    "off_candidate_panel"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [
+    "bsip_cereal_subtype"
+  ],
+  "audit_ref": null,
+  "bsip_cereal_subtype": "granola",
+  "price": "15.2",
+  "price_per_100g": null,
+  "acquisition_query": "price_feed:carrefour",
+  "provenance": {
+    "identity_source": "il_prices:7290055700007",
+    "identity_source_url": "https://prices.carrefour.co.il/20260605/PriceFull7290055700007-001-416-20260605-070012.gz",
+    "panel_source": "open_food_facts",
+    "panel_found": true,
+    "panel_has_macros": true,
+    "off_completeness": 0.4625,
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-05T10:45:24.333828"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "whole oatmeal 58",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "4%",
+      "percentage_declared": 4.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "sugar",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "malted grilled wheat petals 9",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "3% (wheat flour, malt extract, emulsifier,' sunflower lecithin)",
+      "percentage_declared": 3.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "dried cranberry pieces (cranberries 3,5%, sugar)",
+      "percentage_declared": 3.5,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "squash seeds 4",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "3%",
+      "percentage_declared": 3.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "molasses",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "puffed rice chips 3",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "5% (rice semolina, wheat flour, sugar, barley malt extract, salt)",
+      "percentage_declared": 5.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 12,
+      "text": "sunflower oil",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "whole oat flour",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "invert sugar syrup",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "minerals: calcium carbonate",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "acidity corrector",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 17,
+      "text": "citric acid",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 18,
+      "text": "salt",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 19,
+      "text": "cinnamon",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 19,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "cereals_governance": {
+    "construct_1_granola_subpool": {
+      "subpool": "granola",
+      "indicators": {
+        "added_sugar_proxy_ge15g": true,
+        "fat_ge10g": true,
+        "processing_proxy_nova3plus": true
+      },
+      "indicator_count": 3,
+      "boundary_defaulted_to_granola": false,
+      "nova_confirmation_pending_bsip2": true,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 2.9 (Resolution 3, Constitution Art. II Rule 5)"
+    },
+    "construct_2_childrens": {
+      "is_childrens_product": false,
+      "indicators": {
+        "D1_visual_mascot": null,
+        "D2_name_language": false,
+        "D3_pediatric_serving_le25g": false,
+        "D4_developmental_claim": false
+      },
+      "indicators_present_count": 0,
+      "mascot_brand_detected": false,
+      "single_indicator_candidate": false,
+      "pool": "general",
+      "recall_caveat": "Pure visual mascots on non-listed brands are not detectable from a text-only scrape; D3 serving size was rarely on the page. Recall is conservative — single-indicator candidates are flagged for CE Controller visual confirmation.",
+      "anti_immunity": "Classification cannot improve score (Anti-Immunity Rule).",
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 2.8 (Resolution 1)"
+    },
+    "construct_3_whole_grain": {
+      "whole_grain_claim_present": false,
+      "first_grain_ingredient_position": 1,
+      "first_grain_is_whole": false,
+      "composition_threshold_supported_30pct": false,
+      "dominant_threshold_supported_51pct": false,
+      "marketing_divergence_finding": false,
+      "mdf_note": null,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 5.2.1 (Resolution 4); Guardrails v2"
+    },
+    "construct_4_fortification_flag": {
+      "fortified": false,
+      "evidence_ref": "cereals_gap_resolution_v1 Sec 6.4 (Resolution 2, DISTORTION-004)"
+    }
+  }
+}

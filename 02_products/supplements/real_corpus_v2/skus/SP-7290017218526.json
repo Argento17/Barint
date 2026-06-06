@@ -1,0 +1,180 @@
+{
+  "sku_id": "SP-7290017218526",
+  "barcode": "7290017218526",
+  "name_he": "אלטמן ביוטין 1000 מקג 50 טבליות",
+  "brand_bucket": "altman",
+  "engine_active": "biotin",
+  "price_ils": 93.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "biogaya",
+    "confidence": 1.0,
+    "ambiguous": false,
+    "reason": "barcode match via biogaya"
+  },
+  "verification_status": "candidate",
+  "outcome": "scored",
+  "panel": {
+    "url": "https://www.biogaya.co.il/biotin-altman",
+    "source": "biogaya",
+    "brand": "אלטמן",
+    "product_name": "ביוטין 1000 מק\"ג",
+    "barcode": "7290017218526",
+    "serving_size": "1 טבליה",
+    "servings_per_container": "50",
+    "ingredient_list_raw": "ביוטין, צלולוז (MCC), מגנזיום סטארט, סיליקון דיאוקסיד",
+    "primary_claim": "ביוטין במינון גבוה; שיער וציפורניים",
+    "proprietary_blend": null,
+    "actives": [
+      {
+        "ingredient": "ביוטין",
+        "amount": 1000.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "biotin"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:biogaya",
+      "source_id": "7290017218526",
+      "source_url": "https://www.biogaya.co.il/biotin-altman",
+      "fetched_at": "2026-06-03T13:59:14Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "claim_note": "claim mapped to S/F umbrella from HE: 'ביוטין במינון גבוה; שיער וציפורניים'",
+  "lossy": [
+    "actives[0].form (not on panel)"
+  ],
+  "bsip0s_label": {
+    "product_name": "ביוטין 1000 מק\"ג",
+    "primary_claim_fed": "hair health nail health",
+    "actives": [
+      {
+        "active_slug": "biotin",
+        "display_name": "ביוטין",
+        "quantity": 1000.0,
+        "unit": "mcg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+    "score": 34.0,
+    "grade": "E",
+    "blend": 49.5,
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:59:14.449876Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290017218526",
+    "active": "biotin (vitamin B7)",
+    "on_label_claim": "hair health nail health",
+    "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "hair / skin / nails improvement in NON-deficient (replete) adults",
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:28879195",
+        "PMID:22116691"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "no_ul_or_no_dose"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 49.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['hair / skin / nails improvement in NON-deficient (replete) adults'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-014"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

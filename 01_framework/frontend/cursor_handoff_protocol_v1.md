@@ -15,7 +15,7 @@ A Cursor session must load the following documents before writing any code. If a
 |---|---|---|---|
 | 1 | This protocol | `C:\Bari\01_framework\cursor_handoff_protocol_v1.md` | Session rules |
 | 2 | Component build sequence | `C:\Bari\01_framework\component_build_sequence_v1.md` | Build order, forbidden patterns, completion criteria |
-| 3 | Comparison template | `C:\Bari\01_framework\comparison_template_v1.md` | Frozen page architecture |
+| 3 | Comparison template | `C:\Bari\01_framework\frontend\comparison-template-standard-v1.md` | Frozen page architecture (canonical) |
 | 4 | UI stabilization sprint | `C:\Bari\01_framework\ui_stabilization_sprint_1.md` | Exact pixel values, row rhythm, design tokens |
 | 5 | Design token governance | `C:\Bari\01_framework\design_token_governance_v1.md` | Token file rules, what to add before building |
 | 6 | Legacy isolation policy | `C:\Bari\01_framework\legacy_isolation_policy_v1.md` | What not to touch |
@@ -57,8 +57,8 @@ These values, structures, and behaviors are frozen. A Cursor session must implem
 
 | Behavior | Required implementation |
 |---|---|
-| Score chip color | Neutral — `#F7F7F2` background, `rgba(17,19,24,0.10)` border for all grades |
-| Score chip content | `{numeric}/{grade}` only — e.g. "72/B" — no label text, no grade description |
+| Score chip color (canonical / Gen 1.1) | Color-coded by grade via `gradePalette` (owner directive 2026-06-03): one hue family per grade A→E (green → olive → gold → orange → red), tinted bg + accent left-border + accent number/letter. Same geometry for all grades; only colors vary. Each grade's accent ≥3:1 (large/bold), label ≥4.5:1 on its own bg. Never a fully saturated fill. *(Unmigrated legacy pages keep the neutral `#F7F7F2` chip — do not change them; see `legacy_isolation_policy_v1.md`.)* |
+| Score chip content | `{numeric} · {grade} · {tier word}` — e.g. "72 · B · טוב". Grade is conveyed by both letter and color; the tier word occupies the chip's tier slot. |
 | Row expansion | Inline only — `useState` toggle, no portal, no sheet, no dialog, no drawer |
 | Filter default state | Collapsed — invisible at 0px scroll |
 | Sticky filter appearance | After 300px scroll, fixed bottom-right, 16px from edges |
@@ -89,16 +89,16 @@ These are areas where Cursor must not make independent design or implementation 
 
 ### Prohibited: score chip appearance changes
 
-Do not change:
-- Background color of the score chip
-- Border color of the score chip
-- Font weight, size, or color of the score numeral
-- Font weight, size, or color of the grade letter
-- Chip container shape, border-radius, or padding beyond what the token specifies
+The chip is color-coded by grade via `gradePalette` (Gen 1.1). Do not change:
+- The `gradePalette` ramp itself (A→E hues) — any change to the ramp is an exception request
+- Chip geometry: container shape, border-radius, padding, or size beyond what the token specifies
+- Font weight, size of the score numeral or grade letter
+- The structural rule that geometry is identical for all grades — only the grade colors vary
 
 Do not add:
-- Any color variation tied to grade value
-- Any label text beside the grade (no "נמוך", "גבוה", "בינוני", "חזק", "מצוין")
+- Any second color axis or per-product color outside the A–E grade ramp
+- A fully saturated / solid-fill grade chip (tinted bg + accent border/number only)
+- A free-text interpretive label beside the grade beyond the approved tier word (no "נמוך", "גבוה", "בינוני", "חזק", "מצוין")
 - Any animation on the score chip in row context
 - Any tooltip or hover state on the score chip
 
@@ -164,10 +164,11 @@ Implementation stops at each checkpoint. Do not proceed to the next component un
 Stop after building `score-chip.tsx`. Required before proceeding:
 
 - [ ] Rendered at 375px viewport width with Hebrew RTL content
-- [ ] Score displays as "{number}/{grade}" — no label text
-- [ ] Background is `#F7F7F2` for all grades A through E
-- [ ] Border is `rgba(17,19,24,0.10)` for all grades
-- [ ] No color changes when grade changes
+- [ ] Score displays as "{number} · {grade} · {tier word}" — e.g. "72 · B · טוב"
+- [ ] Background, accent border, and number/letter are grade-colored via `gradePalette` (A green → E brick red)
+- [ ] Chip geometry is identical across all grades — only the grade colors differ
+- [ ] No fully saturated fill; tint bg + accent border/number only
+- [ ] Each grade's accent ≥3:1 (large/bold) and label ≥4.5:1 on its own bg
 - [ ] Chip size visually approximates 28px numeral
 - [ ] **Explicit visual approval received**
 
@@ -231,10 +232,11 @@ Run before each checkpoint approval. Check at 375px viewport width (Chrome devto
 
 ### Score chip
 
-- [ ] Same background for product with grade A and product with grade E
-- [ ] No text label beside the grade letter
+- [ ] Grade A and grade E chips show distinct grade hues (green vs brick red), same geometry
+- [ ] Only the approved tier word appears beside the grade letter — no free-text interpretive label
 - [ ] Score numeral is the visually dominant element in the chip
 - [ ] Chip is visually distinct from the product name (different weight/size)
+- [ ] Tint is subtle (no saturated block fill); accent lives on left border + number/letter
 
 ### Product row
 
@@ -322,7 +324,7 @@ These conditions require the session to stop and escalate before continuing.
 | A legacy component is imported into a canonical component | Stop. Remove the import. Re-read `legacy_isolation_policy_v1.md`. |
 | A second tooltip is placed anywhere on the page | Stop. Remove it. The only permitted tooltip is EXCEPTION-001 (bread fermentation filter label only). |
 | A framework term appears in a component's JSX | Stop. Identify how the term entered the render path. Fix at the data adapter layer. |
-| The score chip background or border color differs by grade | Stop. Remove the color variation. Re-read ScoreChip spec. |
+| The score chip uses a hue outside the approved A–E `gradePalette` ramp, a saturated solid fill, a second per-product color axis, or inconsistent geometry between grades | Stop. Bring it back inside the Gen 1.1 ramp/tinted-chip spec. Grade-colored chips are correct; off-ramp color or saturation is not. Re-read ScoreChip spec. |
 | The page section count exceeds 4 | Stop. Identify the extra section. Remove or fold it into an existing section. |
 | A component is added to `src/components/snack/` or `src/components/comparisons/[legacy file]` | Stop. New components go to `src/components/shared/` only. |
 | An inline hardcoded value duplicates a token | Stop. Replace with token reference. |

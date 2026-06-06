@@ -1,0 +1,193 @@
+{
+  "sku_id": "REAL-IL-OMEGA3-SOLGAR-0033984020580",
+  "verification_status": "candidate",
+  "should_affect_score_now": false,
+  "israeli_shelf": {
+    "barcode": "0033984020580",
+    "name_he": "סולגאר אומגה 950 100 כמוסות",
+    "brand": "Solgar (global)",
+    "importer": "אמברוזיה/סולגר",
+    "price_ils": null,
+    "chain": "super_pharm",
+    "active_slug": "omega3"
+  },
+  "iherb_resolution": {
+    "url": "https://www.iherb.com/pr/solgar-omega-3-epa-dha-triple-strength-950-mg-100-softgels/26738",
+    "resolve_status": "barcode_match",
+    "note": "iHerb panel barcode 033984020580 == SP 0033984020580 (exact GTIN12/13).",
+    "url_resolved": true,
+    "panel_extracted": true
+  },
+  "panel": {
+    "url": "https://www.iherb.com/pr/solgar-omega-3-epa-dha-triple-strength-950-mg-100-softgels/26738",
+    "brand": "Solgar",
+    "product_name": "Omega 3, EPA & DHA, Triple Strength",
+    "barcode": "033984020580",
+    "serving_size": "1 softgel",
+    "servings_per_container": "100",
+    "proprietary_blend": false,
+    "primary_claim": "Heart Healthy",
+    "actives": [
+      {
+        "ingredient": "EPA (eicosapentaenoic acid)",
+        "amount": 504.0,
+        "unit": "mg",
+        "form": "ethyl ester",
+        "form_from_name": false
+      },
+      {
+        "ingredient": "DHA (docosahexaenoic acid)",
+        "amount": 378.0,
+        "unit": "mg",
+        "form": "ethyl ester",
+        "form_from_name": false
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "iherb.com",
+      "source_id": "https://www.iherb.com/pr/solgar-omega-3-epa-dha-triple-strength-950-mg-100-softgels/26738",
+      "source_url": "https://www.iherb.com/pr/solgar-omega-3-epa-dha-triple-strength-950-mg-100-softgels/26738",
+      "fetched_at": "2026-06-03T13:16:06Z",
+      "client_version": "iherb_panel/0.1 (firecrawl_scrape json + iHerb PDP)",
+      "verification_status": "candidate"
+    }
+  },
+  "bridge": {
+    "matched": true,
+    "method": "barcode",
+    "confidence": 1.0,
+    "ambiguous": false,
+    "notes": "exact barcode/GTIN match"
+  },
+  "bsip0s_label": {
+    "product_name": "Omega 3, EPA & DHA, Triple Strength",
+    "primary_claim_raw_on_label": "Heart Healthy",
+    "primary_claim_fed_to_engine": "cardiovascular disease / CV events prevention",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA+DHA (combined)",
+        "quantity": 882,
+        "unit": "mg",
+        "form": "ethyl ester",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 2.0
+  },
+  "engine_output": {
+    "claim_matched": "cardiovascular disease / CV events prevention",
+    "primary_on_label_claim_raw": "Heart Healthy",
+    "score": 60.5,
+    "grade": "C",
+    "blend": 60.5,
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": 76.0,
+      "form": 72,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "missing_or_lossy_fields": [],
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:16:06.408839Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "REAL-IL-OMEGA3-SOLGAR-0033984020580",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "cardiovascular disease / CV events prevention",
+    "claim_matched": "cardiovascular disease / CV events prevention",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "cardiovascular disease / CV events prevention",
+      "resolved_phrase": null,
+      "resolved_tier": "CONTESTED — NOT TIERED (deferred)",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:32114706",
+        "PMID:30019766",
+        "PMID:39758310",
+        "PMID:35739003"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "CONTESTED — NOT TIERED (deferred)"
+      },
+      "dose": {
+        "value": 76.0,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 72
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 60.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['cardiovascular disease / CV events prevention'].evidence_tier",
+        "value": "CONTESTED — NOT TIERED (deferred)",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 60.5,
+      "grade": "C"
+    }
+  },
+  "provenance": {
+    "source": "iherb.com",
+    "source_url": "https://www.iherb.com/pr/solgar-omega-3-epa-dha-triple-strength-950-mg-100-softgels/26738",
+    "fetched_at": "2026-06-03T00:00:00Z",
+    "client_version": "firecrawl_scrape(json)/live-2026-06-03 + iHerb PDP",
+    "verification_status": "candidate",
+    "should_affect_score_now": false,
+    "resolve_status": "barcode_match",
+    "resolve_note": "iHerb panel barcode 033984020580 == SP 0033984020580 (exact GTIN12/13).",
+    "admission_note": "candidate only; live thin-proof of acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score."
+  }
+}

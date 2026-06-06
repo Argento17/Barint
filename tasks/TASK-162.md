@@ -1,6 +1,6 @@
 ---
 id: TASK-162
-title: Bread comparison: switch front-of-row bar from protein to fiber
+title: "Bread comparison: switch front-of-row bar from protein to fiber"
 owner: frontend-agent
 status: CLOSED
 priority: MEDIUM

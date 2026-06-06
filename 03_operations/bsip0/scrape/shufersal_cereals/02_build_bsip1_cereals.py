@@ -28,12 +28,27 @@ from datetime import datetime, timezone
 sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip1\core")))
 from ingredient_enricher import enrich as enrich_product
 
+# Canonical BSIP0 numeric extraction (TASK-192 / EV-046). The per-builder _parse_num /
+# _parse_sodium / _parse_nutrition below now DELEGATE to the single shared path so the
+# "פחות מ N" less-than handling, the total_fat >= saturated_fat invariant, and the
+# field set can never drift between categories (the drift that let the EV-029 fat
+# mis-capture recur a 3rd time in run_cereals_005).
+sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\_shared")))
+from bsip0_nutrition import (  # noqa: E402
+    parse_num as _shared_parse_num,
+    parse_sodium_mg as _shared_parse_sodium,
+    parse_nutrition_numeric as _shared_parse_nutrition,
+)
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
+import os
 RAW_DIR = pathlib.Path(r"C:\Bari\02_products\breakfast_cereals\bsip0_outputs")
-OUT_DIR = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_cereals_002\output")
-RUN_ID = "run_cereals_002"
+# RUN_ID overridable so a re-curated clean run (EV-045) writes to a new dir and the
+# frozen run_cereals_002 corpus stays intact. Default preserves original behavior.
+RUN_ID = os.environ.get("CEREALS_RUN_ID", "run_cereals_002")
+OUT_DIR = pathlib.Path(rf"C:\Bari\03_operations\bsip1\{RUN_ID}\output")
 SOURCE = "shufersal"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -45,49 +60,217 @@ BAR_RE       = re.compile(r"חטיף|\bbar\b|\bבר\b|מקופלת|ביסקוו�
 NONCEREAL_RE = re.compile(r"קרקר|cracker|פריכי|rice cake|משקה|\bdrink\b|יוגורט|yog[hu]?urt|"
                           r"דייסת תינוק|מטרנה|סימילק|תוסף|קפסול|חמאת|ממרח|שוקולד למריחה|"
                           r"לחם|לחמני|פיתה|פיתות|מחמצת|בגט|baguette|מעדן|פודינג|מוס", re.I)
+
+# ── EV-045 — PTITIM / pasta exclusion (TASK-140 corpus contamination, owner 2026-06-05) ──
+# Israeli "פתיתים" (standalone plural noun) = toasted wheat/spelt-flour PASTA (Osem /
+# Intaria / השדה), sold in shapes (קוסקוס / טבעות / כוכבים / אורז / בן גוריון). It is a
+# STARCH SIDE-DISH, not a bowl-and-milk breakfast cereal. The homonym trap that
+# contaminated run_cereals_002/004: the CEREAL_RE token "פתיתי" matched these.
+# Disambiguation rule:
+#   • "פתיתי X" (construct form, e.g. פתיתי תירס = corn FLAKES) IS cereal — uses yod ending.
+#   • "פתיתים" (plural noun, mem-sofit ending) + אפויים / אורגנים / a pasta-shape token,
+#     OR whose ingredients are essentially "[grain] flour (+ semolina) + water", is PASTA.
+# This is a CORPUS-PURITY exclusion (remove), NOT a scoring penalty — see
+# contamination_not_calibration_v1 governance rule.
+PTITIM_PASTA_NAME_RE = re.compile(
+    r"פתיתים\s+אפויים|פתיתים\s+אורגנים|"
+    r"פתיתים.*(קוסקוס|טבעות|כוכבים|כוכבונים|בן\s*גוריון|אותיות)", re.I)
+PTITIM_WORD_RE = re.compile(r"\bפתיתים\b|^פתיתים", re.I)
+# Ingredient signature of ptitim pasta: flour/semolina (+water), nothing else cereal-like.
+PASTA_INGREDIENT_RE = re.compile(r"קמח\s+(חיטה|כוסמין|דורום)|סולת|semolina|durum", re.I)
+NON_PASTA_INGREDIENT_RE = re.compile(
+    r"סוכר|דבש|סילאן|שיבולת שועל|שיפון|פצפוצי|תירס|אגוז|שקד|צימוק|פירות|"
+    r"שוקולד|קקאו|ויטמין|פתית|flake|sugar|honey|oat|corn|nut|raisin", re.I)
+
+
+# A breakfast cereal is never the plural NOUN "פתיתים" as its head word — cereal
+# flakes use the construct "פתיתי X" (פתיתי תירס = corn flakes). A name HEADED by
+# "פתיתים" is the ptitim pasta product (incl. gluten-free corn/rice ptitim).
+PTITIM_HEAD_RE = re.compile(r"^\s*פתיתים\b")
+
+# Bread/baked-good leakage: a yeast/sourdough-leavened loaf masquerading as "whole
+# spelt/wheat cereal" (e.g. כוסמין מלא 100% = spelt bread). RTE breakfast cereals are
+# not yeast-leavened, so yeast / sourdough / "מהלחם" in the ingredient panel = bread.
+# CRITICAL substring trap (EV-029 family): the yeast word "שמרים" is a substring of the
+# PRESERVATIVES word "משמרים" ("ללא חומרים משמרים" = "no preservatives"). A naive match
+# falsely excludes Nesquik / Cini Minis / Lion. Hebrew word-boundary lookbehind required:
+# require שמרים to NOT be preceded by a Hebrew letter (so מ-שמרים = preservatives is skipped).
+BREAD_INGREDIENT_RE = re.compile(r"(?<![א-ת])שמרים|מחמצת|מהלחם|sourdough|\byeast\b", re.I)
+
+
+def _is_ptitim_pasta(name: str, ingr_text: str) -> bool:
+    """True iff the product is Israeli ptitim PASTA masquerading as a cereal."""
+    if PTITIM_HEAD_RE.search(name) or PTITIM_PASTA_NAME_RE.search(name):
+        return True
+    # Standalone "פתיתים" (plural noun) whose ingredient panel is just flour(+water).
+    if PTITIM_WORD_RE.search(name):
+        if PASTA_INGREDIENT_RE.search(ingr_text) and not NON_PASTA_INGREDIENT_RE.search(ingr_text):
+            return True
+    return False
+
+
+def _is_bread_leakage(ingr_text: str) -> bool:
+    """True iff the ingredient panel reveals a yeast/sourdough-leavened bread."""
+    return bool(BREAD_INGREDIENT_RE.search(ingr_text or ""))
+
+
+# ── EV-045b — full food-class contaminant sweep (TASK-140 full-QA pass, owner 2026-06-05) ──
+# The first EV-045 pass removed ptitim + bread. A complete shelf audit found four more
+# contaminant classes that leaked in: pasta, flour-as-product, chocolate confections, and a
+# drink. All are removed at curation (GATE 1, contamination ≠ calibration), not re-graded.
+PASTA_RE   = re.compile(r"פסטה|נודלס|פטוצ|אטריות|ספגטי|קנג'?אק|konjac|\bnoodle", re.I)
+DRINK_RE   = re.compile(r"\bמשקה\b|מיצוי שיבולת שועל|משקה שיבולת", re.I)
+# A dry RTE breakfast cereal/granola is ~250–540 kcal/100g. Below this floor the product is
+# either a wet product (drink/fresh) or carries an implausible per-serving parse — not a
+# trustworthy dry-cereal value. Lowest legitimate dry items observed: oat bran 246, Weetabix 342.
+DRY_CEREAL_ENERGY_FLOOR = 150.0
+
+
+def _first_ingredient(ingr_text: str) -> str:
+    return re.split(r"[,\(]", (ingr_text or "").strip())[0]
+
+
+def _is_confection(name: str, ingr_text: str) -> bool:
+    """Chocolate bar / candy-coated cluster masquerading as cereal. Distinguished from a
+    legitimate chocolate-FLAVOURED grain cereal (which lists a grain flour first) by:
+    chocolate as the product head, the first ingredient, ≥50% by mass, a chocolate coating,
+    or a sugar-first panel built on cocoa butter."""
+    head = (name or "").strip().split(" ")[0] if name else ""
+    if head == "שוקולד":
+        return True
+    fi = _first_ingredient(ingr_text)
+    if "שוקולד" in fi:
+        return True
+    m = re.search(r"שוקולד[^,]{0,14}\((\d{2})", ingr_text or "")
+    if m and int(m.group(1)) >= 50:
+        return True
+    if (ingr_text or "").strip().startswith("ציפוי שוקולד"):
+        return True
+    if fi.startswith("סוכר") and "חמאת קקאו" in (ingr_text or ""):
+        return True
+    return False
+
+
+# ── EV-045d — plain oats OUT OF SCOPE for breakfast-cereals (owner directive 2026-06-05) ──
+# Plain rolled / quick / instant oats, Quaker, and oat bran (porridge staples eaten cooked) are
+# NOT boxed RTE breakfast cereals and NOT granola — the owner ruled them off the cereals page and
+# off the site (not a separate category). This is a SCOPE exclusion (owner choice), mechanically a
+# curation drop. Scoped to the product BEING plain oats (name headed by שיבולת שועל / סובין / קוואקר
+# / Quaker / rolled-oats), and GUARDED so it never catches oat-FLOUR RTE cereals (Cheerios/צ'יריוס),
+# granola/muesli, or flavoured grain cereals that merely contain oats.
+PLAIN_OATS_NAME_RE = re.compile(
+    r"^\s*שיבולת\s+שועל|^\s*סובין\s+שיבולת\s+שועל|^\s*קוואקר|\bquaker\b|"
+    r"rolled\s+oats|steel.?cut\s+oats|porridge\s+oats", re.I)
+PLAIN_OATS_GUARD_RE = re.compile(
+    r"דגני|פצפוצ|טבעות|כדורי|מוזלי|גרנולה|granola|muesli|צ['׳]?יריוס|cheerios|"
+    r"ריבוע|צדפי|שוקולד|קקאו|תירס|cocoa|choco", re.I)
+
+
+def _is_plain_oats(name: str) -> bool:
+    """True iff the product is plain porridge oats / oat bran (out of cereals scope)."""
+    return bool(PLAIN_OATS_NAME_RE.search(name or "")) and not PLAIN_OATS_GUARD_RE.search(name or "")
+
+
+def _contaminant_reason(name: str, ingr_text: str, energy_kcal) -> str | None:
+    """Return an exclusion reason if the product is not a dry breakfast cereal, else None."""
+    if PASTA_RE.search(name) or PASTA_RE.search(ingr_text):
+        return "pasta_excluded"
+    if (name or "").strip().split(" ")[0] == "קמח":          # flour AS the product (not as an ingredient)
+        return "flour_product_excluded"
+    if _is_confection(name, ingr_text):
+        return "chocolate_confection_excluded"
+    if DRINK_RE.search(name) or DRINK_RE.search(ingr_text) or "וויט" in (name or ""):
+        return "drink_excluded"
+    if energy_kcal is not None and energy_kcal < DRY_CEREAL_ENERGY_FLOOR:
+        return "energy_implausible_for_dry_cereal"  # wet product or per-serving parse error
+    return None
+
+
+# ── EV-045c — Nestlé "Fitness" savory-cracker guard (TASK-184 multi-retailer recall, owner 2026-06-05) ──
+# Recall finding on UNSEEN data: the Nestlé "Fitness / פיטנס" brand line spans TWO food classes —
+# (a) genuine RTE breakfast CEREALS (קורנפלקס פיטנס, Fitness almond/honey, Chocolate&Rice cereal,
+# Fitness granola) and (b) savory CRACKERS / crispbreads / פרכיות (פיטנס מלח פלפל, רוזמרין, סלק, בטטה,
+# זיתים, Veggie Mix, Thin/Thins, קרקר כפרי). The crackers evade EV-045b: they carry no קרקר token in
+# the *price-feed* name on some SKUs, are not chocolate, and ride in on the broad fitness/פיטנס token
+# in CEREAL_RE. Their macro signature separates them: fat ≥ ~13 g/100g (476 kcal/22.4g salt-pepper;
+# 461/17g; 460/16.7g Veggie) vs genuine Fitness *cereals* at 2–8 g fat.
+#
+# POLICY = FLAG-NOT-DROP (per TASK-183 §2 #5 brand-line policy + contamination_not_calibration_v1).
+# We do NOT silently exclude (a bare fat-floor would false-positive a real Fitness GRANOLA — granola
+# legitimately runs 13–16 g fat). Instead we MARK the SKU with a quarantine flag carried into the
+# BSIP1 record; the downstream router already misroutes most of these to default/beverage, and the
+# flag makes the curation-layer evidence explicit + auditable rather than relying on router luck.
+#
+# SCOPE: only SKUs whose cereal eligibility rests on the fitness/פיטנס brand token (FITNESS_BRAND_RE).
+# A non-Fitness granola is never touched by this guard.
+# TRIGGER (within scope):
+#   • a SAVORY descriptor in the name (מלח/פלפל/רוזמרין/שום/סלק/בטטה/זית/צ'ילי/כפרי/מתובל/תיבול/
+#     veggie/vegetable/cracker/קרקר/thin/thins/פרכי/פריכי), OR
+#   • fat ≥ 13 g/100g AND the SKU shows NO sweet/granola/muesli signal (no granola/muesli token and
+#     sugars < 12 g) — i.e. a high-fat NON-sweet Fitness item, which is the cracker, not the granola.
+# Hebrew word-boundary discipline (EV-029 family): the savory token "מלח" (salt) is a substring of
+# "מלא" only by sharing מל — guarded by requiring the descriptor as a whole token where ambiguous;
+# "זית" (olive) is the construct head of "זיתים". Tokens chosen to avoid the משמרים/שמרים-class trap.
+FITNESS_BRAND_RE      = re.compile(r"\bfitness\b|פיטנס", re.I)
+FITNESS_SAVORY_RE     = re.compile(
+    r"(?<![א-ת])מלח(?![א-ת])|פלפל|רוזמרין|(?<![א-ת])שום(?![א-ת])|(?<![א-ת])סלק|בטטה|"
+    r"(?<![א-ת])זית|צ'?ילי|chili|כפרי|מתובל|תיבול|veggie|vegetable|"
+    r"קרקר|cracker|(?<![א-ת])thins?\b|פרכי|פריכי", re.I)
+FITNESS_SWEET_RE      = re.compile(r"גרנולה|granola|מוזלי|מוסלי|muesli|דבש|honey|שוקולד|chocolate|"
+                                   r"חמוצי|cranberr|פירות|צימוק|almond|שקד", re.I)
+FITNESS_FAT_FLOOR     = 13.0
+
+
+def fitness_noncereal_flag(name: str, ingr_text: str, nn: dict) -> dict | None:
+    """EV-045c — flag (do NOT drop) a Fitness-brand SKU that is a savory cracker, not a cereal.
+    Returns a quarantine-flag dict to attach to the BSIP1 record, or None if not flagged."""
+    name = name or ""
+    if not FITNESS_BRAND_RE.search(name):
+        return None  # out of scope — guard only fires on the Fitness brand line
+    savory = bool(FITNESS_SAVORY_RE.search(name))
+    fat = nn.get("fat_g") if isinstance(nn, dict) else None
+    sugars = nn.get("sugars_g") if isinstance(nn, dict) else None
+    sweet_signal = bool(FITNESS_SWEET_RE.search(name + " " + (ingr_text or ""))) or \
+        (sugars is not None and sugars >= 12.0)
+    high_fat_nonsweet = (fat is not None and fat >= FITNESS_FAT_FLOOR) and not sweet_signal
+    if not (savory or high_fat_nonsweet):
+        return None
+    triggers = []
+    if savory:
+        triggers.append("savory_descriptor_in_name")
+    if high_fat_nonsweet:
+        triggers.append(f"fat_ge_{FITNESS_FAT_FLOOR:g}_and_no_sweet_signal")
+    return {
+        "flag": "fitness_savory_cracker_suspect",
+        "policy": "flag_not_drop",
+        "triggers": triggers,
+        "fat_g": fat,
+        "sugars_g": sugars,
+        "evidence_ref": "EV-045c (TASK-184) — Nestlé Fitness savory-cracker brand-line guard; "
+                        "curation flag, contamination != calibration; no score change.",
+        "note": "Fitness brand-line SKU whose macro/name signature matches a savory cracker/crispbread "
+                "rather than an RTE breakfast cereal. Quarantined for review; not silently excluded.",
+    }
 CEREAL_RE    = re.compile(r"דגני|דגנים|קורנפלקס|corn ?flakes|גרנולה|granola|מוזלי|מוסלי|muesli|"
                           r"שיבולת שועל|קוואקר|quaker|צ'יריוס|cheerios|נסקוויק|nesquik|"
                           r"קוקו ?פופס|coco ?pops|צ'וקפיק|chocapic|פצפוצי|פצפוצים|כריות|"
                           r"פתיתי|בראן|\bbran\b|fitness|פיטנס|kellogg|weetabix|ויטבי|כוסמין|"
                           r"\bcereal\b|דייסה", re.I)
 
-_NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
-
-
+# TASK-192 / EV-046: these three thin wrappers DELEGATE to the canonical shared path.
+# Byte-identical to the former local copies for every value already handled; the shared
+# version additionally preserves the "פחות מ N" less-than flag and enforces
+# total_fat >= saturated_fat (surfaced via the _integrity key for the QA guard).
 def _parse_num(raw):
-    if not raw:
-        return None
-    m = _NUM_RE.search(str(raw).replace(",", "."))
-    if m:
-        try:
-            return float(m.group(1))
-        except ValueError:
-            pass
-    return None
+    return _shared_parse_num(raw)
 
 
 def _parse_sodium(raw):
-    val = _parse_num(raw)
-    if val is None:
-        return None
-    if "mg" in str(raw).lower() or val > 10:
-        return val
-    return val * 1000
+    return _shared_parse_sodium(raw)
 
 
 def _parse_nutrition(n: dict) -> dict:
-    return {
-        "energy_kcal":     _parse_num(n.get("energy_kcal_raw")),
-        "fat_g":           _parse_num(n.get("fat_raw")),
-        "fat_saturated_g": _parse_num(n.get("saturated_fat_raw")),
-        "fat_trans_g":     None,
-        "cholesterol_mg":  None,
-        "sodium_mg":       _parse_sodium(n.get("sodium_raw") or ""),
-        "carbohydrates_g": _parse_num(n.get("carbs_raw")),
-        "sugars_g":        _parse_num(n.get("sugar_raw")),
-        "dietary_fiber_g": _parse_num(n.get("fiber_raw")),
-        "protein_g":       _parse_num(n.get("protein_raw")),
-    }
+    return _shared_parse_nutrition(n)
 
 
 _SPLIT_RE = re.compile(r"[,;،]\s*")
@@ -134,6 +317,18 @@ def _curate(raw: dict) -> str | None:
         return "bar_excluded_snack_overlap"
     if NONCEREAL_RE.search(name):
         return "non_cereal_excluded"
+    ingr_raw = raw.get("ingredients_raw") or ""
+    if _is_ptitim_pasta(name, ingr_raw):
+        return "ptitim_pasta_excluded"   # EV-045 — starch side-dish, not a cereal
+    if _is_bread_leakage(ingr_raw):
+        return "bread_ingredient_leakage"  # EV-045 — yeast/sourdough loaf, not a cereal
+    # EV-045b — full contaminant sweep (pasta / flour / chocolate confection / drink / wet)
+    energy_kcal = _parse_num((raw.get("nutrition", {}) or {}).get("energy_kcal_raw"))
+    contam = _contaminant_reason(name, ingr_raw, energy_kcal)
+    if contam:
+        return contam
+    if _is_plain_oats(name):
+        return "plain_oats_out_of_scope"   # EV-045d — porridge oats, owner ruled off the page
     if not CEREAL_RE.search(name):
         return "not_cereal"
     nn = _parse_nutrition(raw.get("nutrition", {}))
@@ -147,9 +342,16 @@ def _confidence(nn: dict, ingr_list: list[str]) -> dict:
     n_present = sum(1 for f in nutr_fields if nn.get(f) is not None)
     nutr_ok = n_present >= 3
     ingr_ok = len(ingr_list) >= 2
-    if nutr_ok and ingr_ok:
+
+    # TASK-190 sodium sanity gate: a product with a physically impossible sodium value
+    # (>2000 mg/100g, unit-corruption artefact) must NOT be scored as if the value is real.
+    # Force data_sufficiency=insufficient so the BSIP2 scorer suppresses it.
+    integrity_flags = nn.get("_integrity") or []
+    sodium_corrupt = any("sodium_implausible" in flag for flag in integrity_flags)
+
+    if nutr_ok and ingr_ok and not sodium_corrupt:
         nutr_conf, id_conf, trust, lvl = "confirmed_per_100g", "high", 0.80, "high"
-    elif nutr_ok:
+    elif nutr_ok and not sodium_corrupt:
         nutr_conf, id_conf, trust, lvl = "confirmed_per_100g", "medium", 0.65, "medium"
     else:
         nutr_conf, id_conf, trust, lvl = "partial", "low", 0.45, "low"
@@ -158,6 +360,8 @@ def _confidence(nn: dict, ingr_list: list[str]) -> dict:
         missing += [f for f in nutr_fields if nn.get(f) is None]
     if not ingr_ok:
         missing.append("ingredients_list")
+    if sodium_corrupt:
+        missing.append("sodium_mg_corrupt__unit_error")
     return {
         "confidence": {
             "identity_confidence": id_conf,
@@ -169,8 +373,8 @@ def _confidence(nn: dict, ingr_list: list[str]) -> dict:
         "canonical_trust_score": trust,
         "canonical_trust_level": lvl,
         "missing_fields": missing,
-        "nutrition_consistency_status": "consistent" if nutr_ok else "partial",
-        "data_sufficiency": "sufficient" if nutr_ok else "insufficient",
+        "nutrition_consistency_status": "consistent" if (nutr_ok and not sodium_corrupt) else "partial",
+        "data_sufficiency": "insufficient" if sodium_corrupt else ("sufficient" if nutr_ok else "insufficient"),
     }
 
 
@@ -251,8 +455,11 @@ def _granola_construct(name, ingr_text, subtype, nn) -> dict:
         or (bool(OIL_RE.search(ingr_text)) and bool(SYRUP_RE.search(ingr_text)))
     score = sum([ind_sugar, ind_fat, ind_processing])
     name_granola = bool(re.search(r"גרנולה|granola", name, re.I))
+    # EV-045b — muesli and toasted grain/fruit/nut MIXES are the same architectural family as
+    # granola (oats + oil/sweetener + fruit/nut) and belong in the granola+muesli category.
+    name_muesli = bool(re.search(r"מוזלי|muesli|^תע\.?\s*דגנים|תערובת דגנים", name, re.I))
     # 2-of-3 → granola sub-pool; boundary (name granola + any 1) defaults to granola (conservative)
-    in_granola_pool = score >= 2 or (name_granola and score >= 1)
+    in_granola_pool = score >= 2 or (name_granola and score >= 1) or name_muesli
     return {
         "subpool": "granola" if in_granola_pool else "standard_cereal",
         "indicators": {
@@ -436,6 +643,11 @@ def main():
                 "evidence_ref": "cereals_gap_resolution_v1 Sec 6.4 (Resolution 2, DISTORTION-004)",
             },
         }
+        # EV-045c — Nestlé Fitness savory-cracker guard (flag-not-drop, curation only)
+        ev045c = fitness_noncereal_flag(name, ingr_text, nn)
+        if ev045c:
+            record["cereals_governance"]["ev_045c_fitness_noncereal_flag"] = ev045c
+            record.setdefault("canonical_risk_flags", []).append("fitness_savory_cracker_suspect")
 
         (OUT_DIR / f"bsip1_{barcode}.json").write_text(
             json.dumps(record, ensure_ascii=False, indent=2), encoding="utf-8")

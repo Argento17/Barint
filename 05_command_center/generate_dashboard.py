@@ -78,6 +78,7 @@ HERE           = Path(__file__).resolve().parent
 OUTPUT_FILE    = HERE / "command_center.json"
 LIVE_FILE      = HERE / "command_center_live.json"      # lean default read (~6-8KB)
 ARCHIVE_FILE   = HERE / "command_center_archive.json"   # full closed-task detail
+STRATEGY_FILE  = HERE / "strategy.json"                 # P1–P5 strategy checkpoints
 
 TASK_CAPACITY   = 3       # legacy global reference (kept in meta for context)
 OWNER_WIP_LIMIT = 2       # ★ per-OWNER execution WIP cap (kanban per-column limit).
@@ -313,11 +314,17 @@ def compute_launch(config, bsip2, qa, website, dataset, open_cat_tasks):
 
 def derive_categories(tasks):
     # map category_id -> list of open (non-complete) task ids tagged to it
+    # editorial-product tasks (blog posts, copy) are visible in open_work but
+    # do not block the launch state of a category that is already LIVE.
+    NON_BLOCKING_WORK_TYPES = frozenset(["editorial-product"])
     open_by_cat = {}
+    blocking_by_cat = {}
     for t in tasks:
         cid = t.get("category_id")
         if cid and t["status"] not in TERMINAL_STATUSES:
             open_by_cat.setdefault(cid, []).append(t["id"])
+            if t.get("work_type") not in NON_BLOCKING_WORK_TYPES:
+                blocking_by_cat.setdefault(cid, []).append(t["id"])
 
     cats = []
     for cat_dir in sorted(PRODUCTS_DIR.iterdir()):
@@ -334,8 +341,9 @@ def derive_categories(tasks):
         qa      = derive_qa(cat_dir, config["category_id"], baseline)
         dataset = derive_dataset(config)
         website = derive_website(config)
-        open_tasks = open_by_cat.get(config["category_id"], [])
-        launch  = compute_launch(config, bsip2, qa, website, dataset, open_tasks)
+        open_tasks    = open_by_cat.get(config["category_id"], [])
+        blocking_tasks = blocking_by_cat.get(config["category_id"], [])
+        launch  = compute_launch(config, bsip2, qa, website, dataset, blocking_tasks)
 
         cats.append({
             "id":               config["category_id"],
@@ -462,6 +470,10 @@ def load_tasks():
             # on the roadmap forever, even after the task CLOSES (≠ in-flight work).
             "banked_asset": (data.get("banked_asset")
                              if isinstance(data.get("banked_asset"), dict) else None),
+            # ★ deferred — explicitly parked work. Stays open/visible in Pending,
+            # but is excluded from the next_action BLOCKED rung so a deliberately
+            # shelved task can't masquerade as "what to do next".
+            "deferred":     bool(data.get("deferred")),
         })
     tasks.sort(key=lambda t: (TASK_ORDER.get(t["status"], 9),
                               PRI_ORDER.get(t["priority"], 9),
@@ -473,6 +485,14 @@ def load_tasks():
 def load_decisions():
     data = read_json(DECISIONS_FILE, default=[])
     return data if isinstance(data, list) else []
+
+
+# ── Strategy (P1–P5 checkpoints) ──────────────────────────────────────────────
+def load_strategy():
+    """Load strategy.json. Returns {} on any read/parse failure so the dashboard
+    degrades gracefully when the file is absent (fresh installs, CI environments)."""
+    data = read_json(STRATEGY_FILE, default={})
+    return data if isinstance(data, dict) else {}
 
 
 # ── v3 self-healing: task returns + drift detection ───────────────────────────
@@ -847,7 +867,9 @@ def compute_next_action(tasks, decisions, categories, critical=None):
     unblocks_by_id = (critical or {}).get("_unblocks_by_id", {})
 
     # 1. Blocked tasks — walk to the actionable root that clears the chain.
-    blocked = [t for t in open_tasks if t["status"] == "BLOCKED"]
+    #    `deferred` tasks are deliberately parked: still visible in Pending, but they
+    #    do not compete to be the recommended NEXT action.
+    blocked = [t for t in open_tasks if t["status"] == "BLOCKED" and not t.get("deferred")]
     if blocked:
         t = _pick(blocked)
         root = _blocking_root(t, by_id)
@@ -1123,6 +1145,7 @@ def _live_view(dashboard):
         "drift":         dashboard["drift"],
         "category_state": dashboard["category_state"],
         "banked_assets": dashboard["banked_assets"],
+        "strategy":      dashboard["strategy"],
         "open_tasks":    open_tasks,
         "alerts":        [a for a in dashboard["alerts"] if a["status"] == "OPEN"],
     }
@@ -1198,6 +1221,7 @@ def main():
         pass
     tasks, unparseable = load_tasks()
     decisions   = load_decisions()
+    strategy    = load_strategy()
     categories  = derive_categories(tasks)
 
     # v3 self-healing: artifact-derived task returns + drift detection.
@@ -1256,6 +1280,7 @@ def main():
         "critical_path": critical_path,       # ★③
         "category_state": category_state,     # ★⑤
         "banked_assets": banked_assets,       # ★ proven-but-not-launched, persistent
+        "strategy": strategy,                 # P1–P5 two-month checkpoint plan
         "drift": summarize_drift(drift, acknowledged),
         "tasks": tasks,
         "decisions": decisions,

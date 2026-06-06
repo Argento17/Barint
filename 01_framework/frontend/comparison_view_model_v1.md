@@ -117,13 +117,13 @@ export interface BariCategoryPageVM {
 
 | State | Chip bg | Score visible | Grade visible | Expansion |
 |-------|---------|--------------|--------------|-----------|
-| `verified` | `#F7F7F2` | yes | yes | full content |
-| `partial` | `#F7F7F2` | yes | yes | available data only |
-| `insufficient` | `#EEEEEA` | no | no | confidence label + close only |
+| `verified` | grade tint via `gradePalette[grade]` (Gen 1.1) | yes | yes | full content |
+| `partial` | grade tint via `gradePalette[grade]` (Gen 1.1) | yes | yes | available data only |
+| `insufficient` | `#EEEEEA` (no grade → neutral null state) | no | no | confidence label + close only |
 
-Score chip border: `rgba(17,19,24,0.10)` for verified/partial; `rgba(17,19,24,0.07)` for insufficient.
+Score chip border: grade accent via `gradePalette[grade]` for verified/partial; `rgba(17,19,24,0.07)` for insufficient.
 
-No color encoding per confidence state. All rendering differences are structural only.
+**Color encodes grade, never confidence.** As of the Gen 1.1 directive (2026-06-03) the chip is color-coded by grade (one hue family per grade A→E, tinted bg + accent border/number). Confidence still introduces no second color axis: the `verified` and `partial` chips for the same grade are visually identical; confidence differences are structural only (which content the expansion shows). The `insufficient` state has no grade and so renders the neutral null chip.
 
 ---
 

@@ -27,6 +27,10 @@ import json, glob, datetime, collections, statistics, sys, io, os
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
+# TASK-188: A-grade ingredient observability floor
+sys.path.insert(0, r"C:\Bari\03_operations\bsip2\proto_v0\src")
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
+
 HERE       = os.path.dirname(os.path.abspath(__file__))
 DEPLOYED   = r"C:\bari\bari-web\src\data\comparisons\hummus_frontend_v1.json"
 BSIP1_GLOB = r"C:\Bari\02_products\hummus\canonical_bsip1\bsip1_*.json"
@@ -79,13 +83,27 @@ for rec in scored_records:
     if nutrition and any(nutrition[k] is not None for k in ("energyKcal", "protein", "sodium")):
         panels_visible += 1
 
+    # TASK-188: A-grade ingredient observability floor.
+    # Pass raw BSIP1 nutrition for Condition 3 (has energy_kcal, protein_g, fat_g,
+    # carbohydrates_g). Ingredients from BSIP1 for Condition 1. No trace dict here.
+    ing_text = b1.get("ingredients_text_he") or None
+    prod_score = rec.get("score")
+    prod_grade = rec.get("grade")
+    prod_score, prod_grade = apply_a_grade_floor(
+        score=prod_score,
+        grade=prod_grade,
+        ingredients=ing_text,
+        nutrition=raw,   # BSIP1 normalized_nutrition_per_100g
+        trace=None,
+    )
+
     products.append({
         "id": pid,
         "name": rec.get("name") or b1.get("canonical_name_he"),
         "_product_type": rec.get("_product_type"),
         "imageUrl": rec.get("imageUrl") or b1.get("image_url"),
-        "score": rec.get("score"),
-        "grade": rec.get("grade"),
+        "score": prod_score,
+        "grade": prod_grade,
         "insightLine": "",                                  # Content Agent fills (TASK-067/073)
         "confidence": rec.get("confidence"),
         "expansion": {

@@ -3,66 +3,84 @@
   "_note": "Lean live view. Full board: command_center.json · closed detail: command_center_archive.json",
   "meta": {
     "version": "3.0",
-    "last_updated": "2026-06-04",
-    "generated_at": "2026-06-04T20:17:24",
-    "newest_source_at": "2026-06-04T20:17:06",
+    "last_updated": "2026-06-06",
+    "generated_at": "2026-06-06T19:16:13",
+    "newest_source_at": "2026-06-06T19:16:05",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-04T20:17:33",
+    "drift_checked_at": "2026-06-06T19:16:13",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
     "system_health": "YELLOW",
     "active_task_ids": [
-      "TASK-180",
-      "TASK-181",
-      "TASK-180B",
-      "TASK-180C",
-      "TASK-140"
+      "TASK-198",
+      "TASK-199",
+      "TASK-200",
+      "TASK-201",
+      "TASK-202",
+      "TASK-203",
+      "TASK-204",
+      "TASK-205",
+      "TASK-206",
+      "TASK-182"
     ],
     "latest_completed_task": {
-      "id": "TASK-181N",
-      "title": "Glass Box W4 go-live methodology note Content authors the dated consumer note shipping with the flip",
-      "completed_at": "2026-06-04"
+      "id": "TASK-197",
+      "title": "Olive Oil + Authenticity Pilot — new category + label-detectable authenticity annotation layer",
+      "completed_at": "2026-06-06"
     },
-    "current_blocker": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
+    "current_blocker": "TASK-182: Waiting for clinician to sign the NDA (sent 2026-06-05). Pending steps cannot proceed until signature is returned.",
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-180B",
-    "title": "Snack-bars re-baseline — rescore on pinned baseline + no-A invariant sign-off + QA freeze",
-    "owner": "data-agent",
-    "status": "BLOCKED",
+    "task_id": "TASK-198",
+    "title": "Cereals: Lion/Wittebix inversion — data pipeline bugs inflated Lion 78/B above Wittebix 75/B",
+    "owner": "nutrition-agent",
+    "status": "IN_PROGRESS",
     "priority": "HIGH",
-    "reason": "Blocked — Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
-    "unblocks": "—"
+    "reason": "Last gate before Breakfast Cereals launch.",
+    "unblocks": "Breakfast Cereals launch"
   },
   "task_summary": {
-    "active": 5,
-    "in_progress": 2,
-    "blocked": 3,
+    "active": 10,
+    "in_progress": 9,
+    "blocked": 1,
     "returned": 0,
     "changes_requested": 0,
-    "closed": 207,
-    "wip": 1,
-    "wip_task_ids": [
-      "TASK-180"
-    ],
-    "wip_by_owner": {
-      "qa-agent": 1
-    },
+    "closed": 233,
+    "wip": 0,
+    "wip_task_ids": [],
+    "wip_by_owner": {},
     "owner_wip_limit": 2,
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [],
-    "top_unblockers": []
+    "longest_chain": [
+      "TASK-199",
+      "TASK-200"
+    ],
+    "top_unblockers": [
+      {
+        "task_id": "TASK-199",
+        "unblocks_count": 7,
+        "unblocks": [
+          "TASK-200",
+          "TASK-201",
+          "TASK-202",
+          "TASK-203",
+          "TASK-204",
+          "TASK-205",
+          "TASK-206"
+        ]
+      }
+    ]
   },
   "drift": {
-    "checked_at": "2026-06-04T20:17:33",
+    "checked_at": "2026-06-06T19:16:16",
     "clean": true,
     "counts": {
       "PHANTOM_TASK": 0,
@@ -73,12 +91,7 @@
     "phantom_tasks": [],
     "closure_drift_tasks": [],
     "registry_unparseable": [],
-    "acknowledged": [
-      {
-        "id": "TASK-180",
-        "reason": "Closure-drift false-positive: the return-header regex (TASK-\\d+) collapses sub-task headers **Task:** TASK-180A → TASK-180. The milk re-baseline deliverables are authored by 180A (CLOSED); the umbrella is legitimately IN_PROGRESS (snack 180B + bread 180C waves not yet run). Same pattern as TASK-169/179."
-      }
-    ]
+    "acknowledged": []
   },
   "category_state": [
     {
@@ -88,7 +101,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-200"
     },
     {
       "id": "cheese",
@@ -97,7 +110,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-203"
     },
     {
       "id": "maadanim",
@@ -106,7 +119,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-204"
     },
     {
       "id": "hummus",
@@ -115,7 +128,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-202"
     },
     {
       "id": "milk",
@@ -124,7 +137,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LEGACY",
-      "blocking_task": null
+      "blocking_task": "TASK-205"
     },
     {
       "id": "snacks",
@@ -133,7 +146,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-206"
     },
     {
       "id": "yogurts",
@@ -142,7 +155,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": null
+      "blocking_task": "TASK-201"
     },
     {
       "id": "breakfast-cereals",
@@ -150,8 +163,8 @@
       "launch": "QUEUED",
       "bsip2": "NOT_STARTED",
       "dataset": "NOT_BUILT",
-      "website": "NOT_STARTED",
-      "blocking_task": "TASK-140"
+      "website": "LIVE",
+      "blocking_task": "TASK-198"
     },
     {
       "id": "tahini",
@@ -176,118 +189,541 @@
       "reference": "03_operations/supplement_engine/SIE_ASSET_AND_CLOSURE.md"
     }
   ],
+  "strategy": {
+    "_note": "2-month Bari strategy. Edit this file directly; regenerate dashboard to publish. current_phase advances manually as phases complete.",
+    "current_phase": "P1",
+    "phases": [
+      {
+        "id": "P1",
+        "title": "Build Consumer-Ready Bari",
+        "success_criteria": "A consumer can arrive on Bari, compare products, read content, and subscribe.",
+        "kpi_checkpoint": {
+          "label": "End of P1",
+          "metrics": [
+            "1,000 products",
+            "10–15 shelves live",
+            "5 articles published",
+            "50 comparison assets"
+          ]
+        },
+        "sub_phases": [
+          {
+            "id": "P1-A",
+            "title": "Product Coverage",
+            "target": "1,000 validated products · 10–15 fully operational shelves",
+            "examples": [
+              "Milk",
+              "Bread",
+              "Hummus",
+              "Butter",
+              "Yogurt",
+              "Cottage cheese",
+              "Cereal",
+              "Olive oil",
+              "Chocolate",
+              "Tuna"
+            ],
+            "done_when": [
+              "Product list",
+              "Product page",
+              "BSIP2 score",
+              "Explanation layer",
+              "Ranking capability",
+              "Filtering capability",
+              "No obvious category contamination"
+            ]
+          },
+          {
+            "id": "P1-B",
+            "title": "Website Foundation",
+            "target": "Consumer-ready website. No placeholder pages.",
+            "done_when": [
+              "Home works",
+              "Shelves work",
+              "Product pages work",
+              "Comparisons work",
+              "Blog works",
+              "About Bari works",
+              "Newsletter signup works"
+            ]
+          },
+          {
+            "id": "P1-C",
+            "title": "Authority Content",
+            "target": "5 major articles — 1,500–3,000 words, charts, product references, internal links",
+            "examples": [
+              "Best Bread in Israel",
+              "Milk Shelf Intelligence",
+              "What Makes a Good Hummus",
+              "Understanding Bari Scores",
+              "How To Compare Products Correctly"
+            ],
+            "done_when": [
+              "1,500–3,000 words each",
+              "Charts included",
+              "Product references included",
+              "Internal links included"
+            ]
+          },
+          {
+            "id": "P1-D",
+            "title": "Comparison Asset Library",
+            "target": "50–100 reusable comparison assets",
+            "done_when": [
+              "Score difference",
+              "Explanation",
+              "Visual card",
+              "Social-media-ready format"
+            ]
+          },
+          {
+            "id": "P1-E",
+            "title": "SEO Readiness",
+            "target": "Every page has meta title, description, structured URL, internal linking, OG image, indexability verified",
+            "done_when": [
+              "Meta title on every page",
+              "Meta description on every page",
+              "Structured URL on every page",
+              "Internal linking on every page",
+              "Open Graph image on every page",
+              "Indexability verified"
+            ]
+          },
+          {
+            "id": "P1-F",
+            "title": "SEO Operating System",
+            "target": "100 target keywords identified",
+            "done_when": [
+              "Keyword universe built",
+              "Content clusters defined",
+              "Publishing schedule written"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "title": "Distribution Launch",
+        "success_criteria": "Bari begins acquiring audience.",
+        "kpi_checkpoint": {
+          "label": "End of P2",
+          "metrics": [
+            "All social channels live",
+            "100 content assets published",
+            "Newsletter live"
+          ]
+        },
+        "sub_phases": [
+          {
+            "id": "P2-A",
+            "title": "Social Presence",
+            "target": "Instagram, Facebook, TikTok — profiles complete with logo, bio, website, visual identity",
+            "done_when": [
+              "Instagram live",
+              "Facebook live",
+              "TikTok live",
+              "Branding reserved everywhere"
+            ]
+          },
+          {
+            "id": "P2-B",
+            "title": "Content Engine",
+            "target": "3–5 posts/week: shelf rankings, product battles, ingredient explainers, consumer myths",
+            "done_when": [
+              "Publishing cadence sustained at 3–5/week"
+            ]
+          },
+          {
+            "id": "P2-C",
+            "title": "Visual Comparison Factory",
+            "target": "100 comparison visuals — reusable template system, no manual redesign each time",
+            "done_when": [
+              "100 visuals created",
+              "Reusable template system built"
+            ]
+          },
+          {
+            "id": "P2-D",
+            "title": "Video Factory",
+            "target": "20–30 short-form videos (best hummus, best milk, what the score means)",
+            "done_when": [
+              "20–30 videos produced and published"
+            ]
+          },
+          {
+            "id": "P2-E",
+            "title": "Email Capture",
+            "target": "Newsletter signup live — tracking visitors, subscribers, conversion %",
+            "done_when": [
+              "Signup form live",
+              "Visitor tracking active",
+              "Subscriber tracking active",
+              "Conversion % tracked"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "title": "Validation",
+        "success_criteria": "Evidence of audience demand.",
+        "kpi_checkpoint": {
+          "label": "End of P3",
+          "metrics": [
+            "2,000 products scored",
+            "20–30 shelves live",
+            "First evidence of recurring traffic"
+          ]
+        },
+        "sub_phases": [
+          {
+            "id": "P3-A",
+            "title": "Traffic Review",
+            "target": "Measure visitors, CTR, time on page, newsletter conversion — identify winners",
+            "done_when": [
+              "Visitors tracked",
+              "CTR measured",
+              "Time on page measured",
+              "Newsletter conversion tracked",
+              "Winners identified"
+            ]
+          },
+          {
+            "id": "P3-B",
+            "title": "Newsletter Launch",
+            "target": "First issue sent regardless of list size — monthly cadence initially",
+            "done_when": [
+              "First issue sent"
+            ]
+          },
+          {
+            "id": "P3-C",
+            "title": "Product Expansion",
+            "target": "2,000 products · 20–30 shelves",
+            "done_when": [
+              "2,000 products scored",
+              "20–30 shelves live"
+            ]
+          },
+          {
+            "id": "P3-D",
+            "title": "Content System",
+            "target": "Every shelf produces: comparison page, blog, social posts, newsletter content",
+            "done_when": [
+              "Comparison page per shelf",
+              "Blog post per shelf",
+              "Social posts per shelf",
+              "Newsletter content per shelf"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "title": "Challenge Bari",
+        "success_criteria": "Pressure-test the model.",
+        "sub_phases": [
+          {
+            "id": "P4-A",
+            "title": "Nutrition Expert Review",
+            "target": "5–10 experts interviewed (dietitians, researchers, physicians) — find flaws, not validation",
+            "done_when": [
+              "5–10 expert interviews completed",
+              "Findings documented"
+            ]
+          },
+          {
+            "id": "P4-B",
+            "title": "BSIP3 Exploration",
+            "target": "First BSIP3 prototype — test future directions, do not replace BSIP2",
+            "done_when": [
+              "Prototype built",
+              "Direction assessed vs BSIP2"
+            ]
+          },
+          {
+            "id": "P4-C",
+            "title": "Distribution Optimization",
+            "target": "Review best channels, content, keywords — double down on winners",
+            "done_when": [
+              "Best channels identified",
+              "Best content identified",
+              "Best keywords identified",
+              "Doubling-down plan written"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "P5",
+        "title": "Commercial Readiness Checkpoint",
+        "success_criteria": "Determine whether Bari has earned the right to monetize.",
+        "sub_phases": [
+          {
+            "id": "P5-A",
+            "title": "Monetization Assessment",
+            "target": "Evaluate affiliate models, retail partnerships, premium subscriptions, B2B intelligence — decision only, no implementation yet",
+            "done_when": [
+              "All four models assessed",
+              "Decision made"
+            ]
+          },
+          {
+            "id": "P5-B",
+            "title": "BSIP3 Readiness Review",
+            "target": "Is BSIP3 materially better? Does it improve differentiation and consumer trust?",
+            "done_when": [
+              "Decision: Continue / Delay / Replace BSIP2"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "open_tasks": [
     {
-      "id": "TASK-180",
-      "title": "Legacy engine re-baseline — execute TASK-178 plan (pin HEAD baseline; milk→snack→bread rescore w/ per-invariant owner sign-off + QA freeze)",
-      "owner": "qa-agent",
+      "id": "TASK-198",
+      "title": "Cereals: Lion/Wittebix inversion — data pipeline bugs inflated Lion 78/B above Wittebix 75/B",
+      "owner": "nutrition-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
-      "created_at": "2026-06-04",
+      "created_at": "2026-06-06",
       "completed_at": null,
       "depends_on": [],
       "blocks": [],
-      "category_id": null,
+      "category_id": "breakfast-cereals",
       "blocker": null,
       "close_reason": null,
-      "summary": "Owner approved 2026-06-04 (executes the TASK-178 audit re-baseline plan). The engine drifted unflagged since the May freezes; legacy pages render scores HEAD can't reproduce, so a naive rebuild would silently move grades (bread alone 3 A->~11 A from drift). Sequence: Step0 pin HEAD as engine-baseline-2026-06-04 -> milk (180A) -> snack (180B) -> bread (180C, folds in the 4 TASK-169F recal B->A moves), each rescored on the pinned baseline with per-invariant owner sign-off + QA freeze. No score ships without owner sign-off per wave.",
-      "work_type": "execution",
-      "drift_ack": "Closure-drift false-positive: the return-header regex (TASK-\\d+) collapses sub-task headers **Task:** TASK-180A → TASK-180. The milk re-baseline deliverables are authored by 180A (CLOSED); the umbrella is legitimately IN_PROGRESS (snack 180B + bread 180C waves not yet run). Same pattern as TASK-169/179.",
+      "summary": "",
+      "work_type": "scoring-calibration",
+      "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
       "roadmap_impact": false,
       "cc_reviewed": null,
-      "banked_asset": null
+      "banked_asset": null,
+      "deferred": false
     },
     {
-      "id": "TASK-181",
-      "title": "Glass Box — Evidence-Aware Engine Evolution (program-of-record; continues TASK-179)",
-      "owner": "nutrition-agent",
+      "id": "TASK-199",
+      "title": "Olive Oil Blog Post — first full-depth article + blog template for all future posts",
+      "owner": "content-agent",
       "status": "IN_PROGRESS",
       "priority": "HIGH",
-      "created_at": "2026-06-04",
+      "created_at": "2026-06-06",
       "completed_at": null,
       "depends_on": [],
       "blocks": [],
       "category_id": null,
       "blocker": null,
       "close_reason": null,
-      "summary": "Glass Box program-of-record, promoted 2026-06-04 to succeed TASK-179 (CLOSED — W0–W2 delivered: six-dimension contract, D5/D6 transparency+confidence LIVE, W1.5 DIAAS signal, W2 additive prototype + panel LIVE on hummus/maadanim). This umbrella carries the program forward: W3 (current — scale the D4 additive library) · W4 (D3 de-moralization, spec ready) · W5 (publish methodology + NDA packet). Current wave W3 expands the D4 library from the 24-row prototype to the full shelf-frequent set, bulk-imports + curates EFSA/JECFA/FDA evaluations, tiers each additive, and stands up a maintenance-cadence protocol (the named dominant risk). ANNOTATE-ONLY: D4 does NOT enter the headline grade; OFF = byte-identical; score-integration is a separate future owner-gated decision (frozen-invariant tripwire). W3 children: 181A Research · 181B Nutrition tiers · 181C Product maintenance gate · 181D Data wire. W2 demand gate was bypassed by owner override (see Provenance).",
-      "work_type": "objective",
+      "summary": "",
+      "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
       "roadmap_impact": true,
       "cc_reviewed": null,
-      "banked_asset": null
+      "banked_asset": null,
+      "deferred": false
     },
     {
-      "id": "TASK-180B",
-      "title": "Snack-bars re-baseline — rescore on pinned baseline + no-A invariant sign-off + QA freeze",
-      "owner": "data-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": null,
-      "blocker": "Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
-      "close_reason": null,
-      "summary": "Step2 of TASK-180. Rescore snack bars on engine-baseline-2026-06-04 (sealed proto_v0 5/53 reproduction). Owner+Nutrition confirm snk-001 70/B ceiling + no snack reaches A; resolve the second-B (69.5) ceiling-crowding presentation; re-pin the snk crosswalk; QA freeze. No reship until signed.",
-      "work_type": "execution",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": false,
-      "cc_reviewed": null,
-      "banked_asset": null
-    },
-    {
-      "id": "TASK-180C",
-      "title": "Bread re-baseline — rescore on pinned baseline, fold in TASK-169F 4 recal moves, owner sign-off + QA freeze + reship",
-      "owner": "data-agent",
-      "status": "BLOCKED",
-      "priority": "HIGH",
-      "created_at": "2026-06-04",
+      "id": "TASK-200",
+      "title": "Bread Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
       "completed_at": null,
       "depends_on": [
-        "TASK-169F"
+        "TASK-199"
       ],
       "blocks": [],
-      "category_id": null,
-      "blocker": "Sequential: LAST — after 180A+180B signed + frozen. Rescore bread on the pinned baseline; separate pre-existing +6/+8 drift (83 grade-affecting) from the 4 recal-intended B->A (TASK-169F); owner signs off A-ceiling + shelf-compression; decide fate of the lechem-calibration layer; QA freeze + reship bread frontend JSON only if approved.",
+      "category_id": "bread",
+      "blocker": null,
       "close_reason": null,
-      "summary": "Step3 (final) of TASK-180. Rescore bread (real_bread_retail_003_v1) on engine-baseline-2026-06-04. Bread is the worst-affected legacy page (165/256, 83 upward grade drifts). Separate pre-existing drift from the 4 TASK-169F recal B->A moves; owner per-move sign-off on A-ceiling + shelf-compression; QA freeze; reship bread frontend JSON only if owner approves. Frozen provenance untouched.",
-      "work_type": "execution",
+      "summary": "",
+      "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
       "age_days": 0,
-      "roadmap_impact": false,
+      "roadmap_impact": true,
       "cc_reviewed": null,
-      "banked_asset": null
+      "banked_asset": null,
+      "deferred": false
     },
     {
-      "id": "TASK-140",
-      "title": "Cereals full-cycle BSIP0->BSIP2 (greenfield, ship-first candidate)",
-      "owner": "data-agent",
+      "id": "TASK-201",
+      "title": "Yogurt Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "yogurts",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-202",
+      "title": "Hummus Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "hummus",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-203",
+      "title": "Cheese Spreads Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "cheese",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-204",
+      "title": "Maadanim Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "maadanim",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-205",
+      "title": "Milk Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "milk",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-206",
+      "title": "Snack Bars Blog Post — full-depth article using blog template from TASK-199",
+      "owner": "content-agent",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-06",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-199"
+      ],
+      "blocks": [],
+      "category_id": "snacks",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "editorial-product",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 0,
+      "roadmap_impact": true,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-182",
+      "title": "Clinician Partnership — NDA + cooperation evaluation + materials share",
+      "owner": "owner",
       "status": "BLOCKED",
-      "priority": "LOW",
-      "created_at": "2026-06-01",
+      "priority": "HIGH",
+      "created_at": "2026-06-05",
       "completed_at": null,
       "depends_on": [],
       "blocks": [],
-      "category_id": "breakfast-cereals",
-      "blocker": "Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",
+      "category_id": null,
+      "blocker": "Waiting for clinician to sign the NDA (sent 2026-06-05). Pending steps cannot proceed until signature is returned.",
       "close_reason": null,
-      "summary": "Clean greenfield full cycle for cereals via bari-category-factory: Shufersal shelf map -> corpus filter -> BSIP0 gate -> BSIP1 enrichment -> QA gate -> BSIP2 readiness -> frontend package. Governance is already DONE (cereals_gap_resolution_v1: verdict B, Launch-Ready-with-Conditions) so this is the unblocked workstream. Apply the four cereals governance constructs during enrichment/scoring. No dairy dependency — can ship first.",
-      "work_type": "execution",
+      "summary": "Business-development track to evaluate a clinician partnership for Bari. NDA sent to the clinician on 2026-06-05; awaiting signature. After signing, two sequential steps: (1) meet with his partners to evaluate the cooperation model; (2) share Bari materials and approach to get his immediate product feedback.",
+      "work_type": "objective",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 3,
+      "age_days": 1,
       "roadmap_impact": false,
       "cc_reviewed": null,
-      "banked_asset": null
+      "banked_asset": null,
+      "deferred": true
     }
   ],
   "alerts": [
@@ -295,37 +731,11 @@
       "id": "ALT-001",
       "type": "BLOCKED_TASK",
       "severity": "HIGH",
-      "message": "TASK-180B: Ready — 180A (milk) CLOSED/frozen/live 2026-06-04, so the prerequisite is met. Awaiting owner go to start the snack wave. Then: rescore snack bars on engine-baseline-2026-06-04; 5/53 reproduction = heavy drift to reconcile; owner+Nutrition sign off the no-A invariant + the second-69.5/B ceiling-crowding editorial call; QA re-pins the snk-XXX->trace crosswalk + freezes.",
+      "message": "TASK-182: Waiting for clinician to sign the NDA (sent 2026-06-05). Pending steps cannot proceed until signature is returned.",
       "related_category": null,
-      "related_task": "TASK-180B",
+      "related_task": "TASK-182",
       "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-002",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
-      "message": "TASK-180C: Sequential: LAST — after 180A+180B signed + frozen. Rescore bread on the pinned baseline; separate pre-existing +6/+8 drift (83 grade-affecting) from the 4 recal-intended B->A (TASK-169F); owner signs off A-ceiling + shelf-compression; decide fate of the lechem-calibration layer; QA freeze + reship bread frontend JSON only if approved.",
-      "related_category": null,
-      "related_task": "TASK-180C",
-      "related_agent": null,
-      "created_at": "2026-06-04",
-      "resolved_at": null,
-      "status": "OPEN",
-      "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
-    },
-    {
-      "id": "ALT-003",
-      "type": "BLOCKED_TASK",
-      "severity": "HIGH",
-      "message": "TASK-140: Owner directive 2026-06-04 — deprioritized. Cereals launch parked; not a priority while TASK-169 (recal) and TASK-178 (legacy freshness audit) are the active focus. Router cereal-anchor misroute (7.6%, from run_cereals_002 NO-GO) remains the technical blocker to resolve when resumed.",
-      "related_category": null,
-      "related_task": "TASK-140",
-      "related_agent": null,
-      "created_at": "2026-06-04",
+      "created_at": "2026-06-06",
       "resolved_at": null,
       "status": "OPEN",
       "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."

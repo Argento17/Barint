@@ -1,0 +1,198 @@
+# evidence_dossiers/vitamin_e.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Vitamin E is the 'antioxidant halo that failed in RCTs' probe: broad antioxidant/heart/cancer-prevention claims are
+# Weak/Insufficient (large RCTs null or harmful), and high-dose carries a genuine all-cause-mortality Safety NOTE.
+# Natural-vs-synthetic (d- vs dl-) is a real Form rung. UL classified as toxicity-relevant (bleeding/mortality).
+active:
+  canonical_name: "vitamin E (alpha-tocopherol)"
+  pubchem_cid: 14985                 # alpha-tocopherol (natural RRR / d-)
+  molecular_formula: "C29H50O2"
+  molecular_weight: 430.71
+  synonyms: ["vitamin E", "alpha-tocopherol", "d-alpha-tocopherol", "RRR-alpha-tocopherol", "59-02-9"]
+  category: "vitamin"
+  form_identity:                     # natural vs synthetic — STABLE (a real bioequivalence distinction)
+    - form: "natural d-alpha-tocopherol (RRR)"
+      cid: 14985
+      identity_note: "Natural form; ~2x bioavailability of synthetic dl- per IU-equivalent. The label '1 IU natural' != '1 IU synthetic' in absorbed alpha-tocopherol."
+    - form: "synthetic dl-alpha-tocopherol (all-rac)"
+      cid: 86472
+      identity_note: "Synthetic racemic mixture; lower bioavailability (RRR-fraction only ~12.5% of the 8 stereoisomers is most active). dl- on a label is the weaker form."
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing vitamin E deficiency (rare; raising status)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:35929460"]
+    rationale: "Vitamin E corrects true deficiency (rare — fat-malabsorption, abetalipoproteinemia) — settled (dose->status). Distinct from the broad antioxidant/disease-prevention halo below; does NOT inherit upward."
+    tier_rationale: "RATIFIED (D6) Strong, deficiency-correction endpoint ONLY. Must NOT bleed into the failed antioxidant/CV/cancer claims."
+  - claim: "broad antioxidant / cardiovascular-disease prevention"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:15769967", "PMID:15537682"]
+    rationale: "Large RCTs/meta-analyses (HOPE, and the Miller 2005 dose-response MA) show vitamin E supplementation does NOT prevent cardiovascular events and high-dose (>=400 IU) was associated with INCREASED all-cause mortality. Broad antioxidant/CV-prevention -> Weak (no benefit; a harm signal at high dose)."
+    tier_rationale: "RATIFIED (D6) Weak (bordering Insufficient + a harm signal). The antioxidant-prevents-disease hypothesis FAILED in RCTs; high-dose showed increased mortality (Miller 2005). Not Insufficient only because the deficiency/biomarker role is real; the broad disease-prevention BENEFIT is unsupported and the high-dose harm is logged to Safety."
+  - claim: "cancer prevention"
+    proposed_evidence_tier: "Insufficient"
+    evidence_tier: "Insufficient"    # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:21990298", "PMID:36615673"]
+    rationale: "SELECT trial (21990298) found vitamin E supplementation SIGNIFICANTLY INCREASED prostate cancer risk. No credible benefit + a harm signal -> Insufficient (the benefit claim is untethered and contradicted)."
+    tier_rationale: "RATIFIED (D6) Insufficient. A cancer-prevention claim is not just unsupported — it is contradicted (SELECT showed harm). Insufficient for benefit; the harm feeds Safety/context."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 15                  # mg/day = ~22 IU natural — the RDA (status). No established 'effective dose' for the failed antioxidant claims.
+  typical: 15                        # mg/day (RDA). Market sells 100-1000 IU (67-670 mg) — far above need, into the harm-signal range.
+  upper_studied: 268                 # mg/day = ~400 IU natural — the dose at/above which the Miller MA mortality signal appears
+  unit: "mg"
+  unit_alt: "1 mg d-alpha-tocopherol = ~1.49 IU (natural); synthetic dl- = ~2.22 mg/IU. IU-vs-mg + natural-vs-synthetic both shift the conversion (a label trap)."
+  market_range_dsld: [67, 670]       # DSLD: 100-1000 IU (67-670 mg) common — well above RDA, much into the >=400 IU harm-signal zone. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:15537682"]
+  elemental_fraction: null
+  dose_note: >
+    'More is worse' (like melatonin, sharper): high-dose vitamin E (>=400 IU/268 mg) is associated with INCREASED
+    all-cause mortality (Miller 2005). A dose above upper_studied earns NO Dose bonus AND a Safety NOTE (mortality
+    signal). Because the broad antioxidant Evidence is Weak (and cancer-prevention Insufficient), §2.2 short-circuit
+    applies for an Insufficient-claim SKU (Dose N/A).
+
+forms:
+  preferred: ["natural d-alpha-tocopherol (RRR) — higher bioavailability"]
+  acceptable: ["mixed tocopherols (natural, includes gamma — arguably more physiologic; acceptable)"]
+  poor: ["synthetic dl-alpha-tocopherol (all-rac) — ~half the bioavailability per IU-equivalent; sold without disclosing the natural/synthetic gap = an Honesty watch"]
+  rationale: "Natural d- (RRR) alpha-tocopherol has ~2x the bioavailability of synthetic dl- (all-rac) per IU-equivalent. A 'vitamin E' label using synthetic dl- delivers less active alpha-tocopherol than the IU suggests -> dl- is the poor rung, and selling dl- at a 'high IU' premium without disclosure is a §2.4 Honesty (misleading-equivalence) debit."
+  citations: ["PMID:35929460"]
+  form_ladder_confidence: "medium-high — natural>synthetic bioavailability is established"
+
+safety:
+  upper_limit_UL: 1000               # mg/day alpha-tocopherol (any form), adults — NIH ODS / IOM. Basis = HAEMORRHAGIC risk (impaired coagulation). TOXICITY-relevant -> hard veto basis.
+  ul_basis: "mg/day alpha-tocopherol, adults. The 1000 mg UL is set on HAEMORRHAGE risk (vitamin E impairs platelet aggregation/coagulation) — a genuine toxicity ceiling, NOT reversible GI. PLUS an independent all-cause-mortality signal at >=400 IU (Miller 2005) and a prostate-cancer signal (SELECT) -> the harm story is real well below the 1000 mg UL."
+  ul_source: "NIH ODS Vitamin E fact sheet / US IOM-FNB (1000 mg/day adults)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 veto-vs-note): the 1000 mg UL is a TOXICITY ceiling (haemorrhage) -> a labeled daily dose
+    >1000 mg alpha-tocopherol is a HARD VETO (not reversible GI). SEPARATELY, the >=400 IU (268 mg) all-cause-mortality
+    signal (Miller 2005) and the SELECT prostate-cancer signal are real harms BELOW the UL -> a high-dose vitamin E
+    (>=400 IU) earns a Safety NOTE even though it is under the 1000 mg toxicity veto. So vitamin E has BOTH a hard
+    toxicity veto (>1000 mg, bleeding) AND a soft Safety NOTE (>=400 IU, mortality/cancer signal). NEEDS-ENV-VERIFY
+    1000 mg primary value + the 400 IU mortality-signal threshold.
+  ul_note_threshold: 268             # mg/day = ~400 IU -> Safety NOTE (all-cause-mortality + cancer signal), below the toxicity veto
+  ul_externally_maintained: true
+  risky_flags: ["HAEMORRHAGE risk at high doses (impaired coagulation) — toxicity veto basis", ">=400 IU all-cause-mortality signal (Miller 2005) — Safety NOTE below the UL", "prostate-cancer signal (SELECT) — context", "interacts with anticoagulants — context"]
+  notes: "Vitamin E is the clearest 'antioxidant supplement can HARM at high dose' case: bleeding (toxicity veto >1000 mg) + mortality/cancer signals (NOTE >=400 IU). Safety is a DISCRIMINATING dimension here, not a formality."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Vitamin E UL=1000 mg adults", "PMID:15537682", "PMID:21990298"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "antioxidant"
+    resolves_to: "broad antioxidant / cardiovascular-disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:15769967", "PMID:15537682"]
+    supp_ev: "SUPP-EV-015"
+    rationale: >
+      MAPS at WEAK (BEST available, and deliberately not higher). Vitamin E is THE recognized lipid-phase antioxidant
+      (a recognized physiological role) -> 'antioxidant' maps to a recognized correlate. But its studied disease-
+      prevention BENEFIT failed in RCTs -> held at Weak (the antioxidant ROLE is recognized; the antioxidant BENEFIT is
+      not). Maps (recognized + cited), best tier Weak. (The mortality/cancer harm is handled by Safety, not by refusing
+      the map — the map honestly resolves to a Weak benefit, and Honesty/Safety police any disease-prevention over-claim.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "heart"
+    resolves_to: "broad antioxidant / cardiovascular-disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:15537682"]
+    supp_ev: "SUPP-EV-015"
+    rationale: >
+      MAPS at WEAK. 'Heart' maps to the CV-prevention endpoint — a recognized correlate of the antioxidant hypothesis —
+      but the RCT evidence is null/harmful -> Weak. A 'prevents heart disease' escalation fires the §2.4 over-promise
+      catch (resolves to Weak + Honesty debit + Safety note for the high-dose harm).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "skin"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-015"
+    rationale: >
+      DOES NOT MAP. Topical vitamin E has cosmetic literature, but ORAL vitamin E for skin in replete adults has no
+      recognized studied endpoint — and topical-to-oral is a route generalization §2.1 excludes. No recognized cited
+      oral correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "immune support"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-015"
+    rationale: >
+      DOES NOT MAP. Some deficiency/elderly immune-function findings exist, but no recognized studied 'immune benefit'
+      endpoint for vitamin E supplementation in replete adults -> deficiency-state generalization, excluded. No mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew claim vocab (candidate, should_affect_score_now:false) ===
+  # Vitamin E EFSA Art.13: "protection of cells from oxidative stress" (antioxidant). Hebrew aliases routed to the SAME
+  # Weak antioxidant endpoint (cited pointers). The disease-prevention BENEFIT failed in RCTs → held Weak; high-dose harm
+  # is policed by Safety, not by the umbrella.
+  - phrase: "נוגד חמצון"               # "antioxidant" (Hebrew) — EFSA "protection of cells from oxidative stress"
+    resolves_to: "broad antioxidant / cardiovascular-disease prevention"
+    resolved_tier: "Weak"
+    citations: ["PMID:15769967", "PMID:15537682"]
+    supp_ev: "SUPP-EV-015"
+    rationale: >
+      MAPS at WEAK (BEST available, deliberately not higher). EFSA Art.13 authorizes "vitamin E contributes to the
+      protection of cells from oxidative stress" (EFSA Q-2008-1136). Hebrew alias of the English "antioxidant" key —
+      the antioxidant ROLE is recognized (maps) but the disease-prevention BENEFIT failed in RCTs → Weak. The
+      mortality/cancer harm at high dose is handled by Safety (§2.5), not by refusing the map.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עור"                      # "skin" (Hebrew) — mirrors English skin=null
+    resolves_to: null
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-015"
+    rationale: "DOES NOT MAP (mirrors English 'skin'). ORAL vitamin E for skin has no recognized studied replete-adult endpoint; topical→oral is a route generalization §2.1 excludes. Null preserved."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Vitamin E label "antioxidant for heart & skin, immune" resolves: antioxidant->Weak (maps, BEST), heart->Weak (maps),
+    skin->null, immune->null. Best mapped tier = WEAK (so NOT Insufficient-via-cap-1, but a low Evidence sub-score), AND
+    a high-dose SKU additionally eats a Safety NOTE (mortality signal) or veto (>1000 mg bleeding). A cancer-prevention
+    label resolves to Insufficient (contradicted) + Honesty over-promise. Vitamin E shows Evidence + Safety BOTH biting.
+
+label_claims_common: ["antioxidant", "heart health", "skin", "immune support", "anti-aging", "high potency"]
+necessity_context: "Deficiency is rare (fat-malabsorption states). Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "High doses raise bleeding risk; caution with anticoagulants and before surgery; prostate-cancer signal (SELECT). Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-015"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: >
+    Tiers: deficiency-correction Strong; broad antioxidant/CV Weak (RCTs null + high-dose mortality signal); cancer-
+    prevention Insufficient (SELECT showed HARM). Form: natural d->synthetic dl- (bioavailability + Honesty). UL 1000 mg
+    = HAEMORRHAGE toxicity veto; >=400 IU (268 mg) = all-cause-mortality Safety NOTE BELOW the UL. Umbrella:
+    antioxidant/heart->Weak (best), skin/immune->null. A clear case where Evidence AND Safety both discriminate.
+    Candidate / should_affect_score_now:false.
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms", "form_identity"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "safety.ul_note_threshold", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (1000 mg/day adults)"
+      last_resync: "2026-06-03"
+      resync_note: "haemorrhage toxicity veto + >=400 IU mortality NOTE. NEEDS-ENV-VERIFY both."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew vocab (candidate). MAPPING: נוגד חמצון→Weak(EFSA Q-2008-1136 oxidative-stress — role recognized, benefit failed). NON-MAPPING: עור→null (mirrors English skin; oral≠topical)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-015"
+      score_moving: "no — candidate alias to existing Weak tier; high-dose harm still policed by Safety. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

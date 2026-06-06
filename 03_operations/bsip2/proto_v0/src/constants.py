@@ -126,6 +126,32 @@ SODIUM_CAPS = [
 SODIUM_FAMILY_BUDGET = 8
 
 # ---------------------------------------------------------------------------
+# TASK-189 / EV-049 — BARI_SODIUM_CEREAL graduated sodium treatment.
+# DEFAULT OFF. Scoped to snack_bar_granola + cereal only.
+# Penalty bands (mg/100g): <150→0, 150–299→−2, 300–449→−5, 450–599→−8.
+# Category cap: >=500mg → cap 75 (HIGH_SODIUM_CEREAL_500).
+# Boundary fix: MoH red-label test changed from >600 to >=600 for this scope.
+# All values are EV-049 bound values. D7 co-signed (Nutrition + Product, 2026-06-05).
+# ---------------------------------------------------------------------------
+SODIUM_CEREAL_CATEGORIES = {"snack_bar_granola", "cereal"}
+
+# Graduated SODIUM_LOAD penalties (mg/100g bands → penalty points)
+SODIUM_CEREAL_BANDS = [
+    (600, None, 0),    # >=600: HIGH_SODIUM_700MG_PLUS cap takes over; penalty not stacked
+    (450, 599, 8),     # 450–599 mg
+    (300, 449, 5),     # 300–449 mg
+    (150, 299, 2),     # 150–299 mg
+    (0,   149, 0),     # <150 mg — clean band; no penalty
+]
+
+# Category cap for high-sodium cereals: fired at >=500mg
+SODIUM_CEREAL_CAP_THRESHOLD = 500   # mg/100g
+SODIUM_CEREAL_CAP_VALUE     = 75    # score cap
+
+# MoH red-label boundary correction: >=600 (not >600) for cereal/granola scope
+SODIUM_CEREAL_RED_LABEL_BOUNDARY = 600  # mg/100g (inclusive)
+
+# ---------------------------------------------------------------------------
 # Guardrail caps — FAT_QUALITY family
 # ---------------------------------------------------------------------------
 FAT_QUALITY_CAPS = [
@@ -137,6 +163,30 @@ FAT_QUALITY_PENALTIES = [
 ]
 
 FAT_QUALITY_FAMILY_BUDGET = 8
+
+# EV-047 — kcal plausibility upper bound (archetype-conditional).
+# Standard solid food range: 20–700 kcal/100g. whole_food_fat / cooking_oil archetypes
+# contain structurally valid products at 725–745 kcal (butter, Atwater: 82g fat × 9 = 738)
+# and up to ~900 kcal (ghee, edge case). 800 is the right ceiling for high-fat archetypes
+# without passing genuine errors (1800 kcal robustness-corpus G3 still fires).
+# At signal extraction time the router has not yet run, so a single raised global value
+# of 800 is used — safe because no non-fat food reaches 800+ kcal/100g legitimately.
+# Raised for whole_food_fat/cooking_oil archetypes (butter=725-745, ghee≈900 — EV-047)
+KCAL_PLAUSIBLE_UPPER          = 800   # raised ceiling — see note above (EV-047)
+KCAL_PLAUSIBLE_LOWER          = 20    # unchanged minimum
+KCAL_PLAUSIBLE_UPPER_STANDARD = 700   # original standard-archetype bound (retained as reference)
+
+# EV-048 — sat-fat cap endemic gate for intact dairy fat.
+# ISRAELI_RED_LABEL_1_SAT_FAT (cap=55) fires on 100% of butter products because
+# butter's sat-fat content (48–70g/100g) structurally guarantees exceeding the 5g/100g
+# red-label threshold. The cap was designed to penalise reformulable excess sat-fat;
+# butter cannot be reformulated. Gate suppresses the cap when:
+#   category == "whole_food_fat" AND fat_saturated_g / fat_g >= 0.50
+# A sat-fat fraction ≥ 0.50 identifies dairy fat composition (plain butter = 0.58–0.70).
+# Palm-oil-laden spreadable fats or seed-oil-diluted products have a lower fraction
+# and still hit the cap. The red label annotation in regulatory_quality is NOT gated.
+# Gated for endemic whole-food sat-fat (dairy butter, pure cream products) — EV-048
+SAT_FAT_CAP_ENDEMIC_WFF_FRACTION = 0.50   # sat-fat fraction threshold; ≥ this → cap gated (EV-048)
 
 # ---------------------------------------------------------------------------
 # SWEETENER caps and penalties by tier (independent — outside CONCERNS graph, SRC-03 note)

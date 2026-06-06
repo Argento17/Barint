@@ -1,0 +1,189 @@
+{
+  "sku_id": "SP-7290001065662",
+  "barcode": "7290001065662",
+  "name_he": "נוטריקר מגנזיום 520  100 כמוסות",
+  "brand_bucket": "marshall",
+  "engine_active": "magnesium",
+  "price_ils": 99.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "vitamins4all",
+    "confidence": 1.0,
+    "ambiguous": false,
+    "reason": "barcode match via vitamins4all"
+  },
+  "verification_status": "candidate",
+  "outcome": "scored",
+  "panel": {
+    "url": "https://vitamins4all.co.il/product/magnesium-520-oxide-nutricare/",
+    "source": "vitamins4all",
+    "brand": "נוטריקר",
+    "product_name": "מגנזיום 520 אוקסיד",
+    "barcode": "7290001065662",
+    "serving_size": "1 כמוסה",
+    "servings_per_container": "100",
+    "ingredient_list_raw": "מגנזיום אוקסיד, כמוסה צמחית (HPMC), מונעי התגיישות",
+    "primary_claim": "מגנזיום 520 מ\"ג (מופק מ-866מ\"ג מגנזיום אוקסיד) - elemental stated",
+    "proprietary_blend": null,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (elemental, from oxide)",
+        "amount": 520.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "elemental_stated",
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:vitamins4all",
+      "source_id": "7290001065662",
+      "source_url": "https://vitamins4all.co.il/product/magnesium-520-oxide-nutricare/",
+      "fetched_at": "2026-06-03T13:59:14Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "claim_note": "HE claim did not map to dossier vocab -> Insufficient: 'מגנזיום 520 מ\"ג (מופק מ-866מ\"ג מגנזיום אוקסיד) - elemen'",
+  "lossy": [],
+  "bsip0s_label": {
+    "product_name": "מגנזיום 520 אוקסיד",
+    "primary_claim_fed": "__unmapped__",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (elemental, from oxide)",
+        "quantity": 520.0,
+        "unit": "mg",
+        "form": "oxide",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 20.0,
+    "grade": "E",
+    "blend": 48.1,
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 45,
+      "honesty": 100,
+      "safety": "veto"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      },
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:59:14.558721Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290001065662",
+    "active": "magnesium",
+    "on_label_claim": "__unmapped__",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 45
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "veto",
+        "reason": "exceeds_UL"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      },
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "also_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "value": 34
+      }
+    ],
+    "blend": 48.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 20.0,
+      "grade": "E"
+    }
+  }
+}

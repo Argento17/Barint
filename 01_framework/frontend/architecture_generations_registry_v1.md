@@ -119,17 +119,17 @@ When a pattern is proposed — in code, in design, or in conversation — ask: w
 **Era:** 2026-05-28 onward  
 **Canonical status:** Active — this is the authoritative architecture  
 **First implementation:** מעדנים comparison page  
-**Governed by:** `comparison_template_v1.md`, `component_build_sequence_v1.md`, `legacy_isolation_policy_v1.md`
+**Governed by:** `comparison-template-standard-v1.md`, `component_build_sequence_v1.md`, `legacy_isolation_policy_v1.md`
 
 ---
 
 ### Defining Characteristics
 
-**Score display**
-- Neutral chip: `#F7F7F2` background, `rgba(17,19,24,0.10)` border — same for all grades
-- Displays: `{numeric} / {grade}` — e.g. "72/B" — no label text, no color variation
-- Single size in row context: 28px
-- Hero score: 28px, no chip container, no color
+**Score display** *(amended 2026-06-03 — Gen 1.1 color-coded chip)*
+- Grade-colored chip via `gradePalette`: one distinct hue family per grade A→E (green → olive → gold → orange → red), tinted bg + accent left-border + accent number/letter. Same chip geometry for all grades; only colors vary.
+- Displays: `{numeric} · {grade} · {tier word}` — e.g. "72 · B · טוב"
+- Each grade's accent ≥3:1 (large/bold) and label ≥4.5:1 on its own bg
+- *(Superseded:* the original Gen 1 neutral `#F7F7F2` all-grades chip with no color/label, per owner directive. The neutral chip is retained only on quarantined legacy pages that have not migrated.)*
 
 **Product layout**
 - Linear list — one product per row, full viewport width
@@ -199,7 +199,7 @@ Gen 1 is newly designed and has no production history. Anticipated weaknesses to
 
 Gen 1 is authoritative. When any implementation question arises:
 
-1. Check `comparison_template_v1.md` first
+1. Check `comparison-template-standard-v1.md` first
 2. Check `component_build_sequence_v1.md` for build order
 3. Check `exception_registry_v1.md` for approved deviations
 4. If not covered: the answer is "do not add it" until a registry entry approves it
@@ -210,8 +210,8 @@ Gen 1 is authoritative. When any implementation question arises:
 
 | Dimension | Gen 0 | Gen 1 |
 |---|---|---|
-| Score chip | Color-coded by grade | Neutral — same for all grades |
-| Grade label text | Visible ("D · נמוך") | None — numeric/grade only |
+| Score chip | Color-coded, fully saturated fill | **Gen 1.1: color-coded by grade** (tinted bg + accent border/number, one hue family per grade; not saturated). *(Original Gen 1 was neutral all-grades — superseded 2026-06-03.)* |
+| Grade label text | Visible ("D · נמוך") | Tier word in chip slot ("72 · B · טוב") |
 | Product layout | Card grid or row with nutrition panels | Plain row — insight line only |
 | Filter | Inline, always-visible, NOVA-included | Sticky FAB, collapsed, max 3 dims |
 | Expansion | Score attribution + framework bars | Nutrition + ingredients only |

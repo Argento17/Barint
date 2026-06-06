@@ -36,6 +36,8 @@ Stage 9 — BSIP2 Readiness
     ↓ intelligence_bsip2/run_{category}_001/
 Stage 10 — Website Readiness
     ↓ {category}_frontend_v1.json → /hashvaot/{category}
+Stage 11 — Hashvaot Card
+    ↓ Featured{Category}IntelligenceCard → /hashvaot index (SHIPPED)
 ```
 
 ---
@@ -400,7 +402,7 @@ Would reduce this stage to a 5-minute human confirmation step.
 **Inputs:**
 - `intelligence_bsip2/run_{category}_001/` (BSIP2 completed)
 - `build_frontend_dataset.py` (or equivalent builder)
-- Frontend comparison template spec (`01_framework/frontend/comparison_template_v1.md`)
+- Frontend comparison template spec (`01_framework/frontend/comparison-template-standard-v1.md`)
 - Category definition in `src/lib/comparisons/registry/categories/`
 
 **Outputs:**
@@ -594,6 +596,68 @@ C:\Bari\
 │   ├── factory\category_factory_v1.md            ← this document
 │   └── qa\category_factory_qa_v1.md              ← Stage 8 checklist
 ```
+
+---
+
+## Stage 11 — Hashvaot Card
+
+**Objective:** Make the new comparison discoverable on the `/hashvaot` index page by creating a category card with a real background photo, accent color, card copy, and 4–6 rotating insight lines.
+
+**Owner:** Design Agent (visual) · Content Agent (copy) · Frontend Agent (implementation)
+
+**Trigger:** Stage 10 complete — the comparison page route is live at `/hashvaot/{category}`.
+
+**Inputs:**
+- `factory_run_NNN/frontend_package.json` (authoritative, `promoted_to_frontend: true`)
+- `{category}_editorial_v1.json` (from Stage 10 content pass)
+- Existing card components in `src/components/hashvaot/` (canonical reference)
+- `comparison-intelligence-hero.tsx` (card component — `theme.accent` + `theme.photo` props)
+
+**Outputs:**
+- Background photo at `public/hashvaot/themes/{category}.jpg`
+- `src/components/hashvaot/featured-{category}-intelligence-card.tsx`
+- `/hashvaot/page.tsx` updated to import + render the new card in the "ניתוח עדכני" section
+
+**Process (parallel then sequential):**
+1. **Design Agent** (parallel with Content): pick `accent` hex color; source or specify a real background photo (warm food photography, landscape crop, readable as text backdrop). Provide direct image URL or download to `public/hashvaot/themes/`.
+2. **Content Agent** (parallel with Design): write `description` (2–3 sentences, specific finding + product count), `insightLines` (4–6 lines, ≤60 chars, mix T1/T2/T3), `badge`, `categoryTags`, card `title`.
+3. **Frontend Agent** (after Design + Content): create the card component (derived from `featured-milk-intelligence-card.tsx`), place the photo, add the card to `/hashvaot/page.tsx` under "ניתוח עדכני".
+
+**Pass criteria:**
+- Card renders on `/hashvaot` with a real photo (not a color wash placeholder)
+- All insight lines ≤ 60 Hebrew chars
+- Description is specific — names a real data finding, not a generic description
+- `next build` passes with no type errors
+- Card links correctly to the comparison route
+
+**Common failure modes:**
+- Photo has too-bright center — text unreadable. Use `opacity-50` + dark gradient overlay (see backdrop component).
+- Accent color clashes with existing palette. Cross-check: milk=`#5C7FB0`, hummus=warm terracotta, maadanim=purple-grey.
+- Insight lines leak framework language (NOVA, BSIP, cap) — run §22 forbidden-term sweep.
+
+---
+
+---
+
+## Corpus Purity Gates (MANDATORY — every run)
+
+Three hard gates added after the cereals contamination (TASK-140), specified in full at
+`01_framework/operations/corpus_purity_gates_v1.md`:
+
+1. **Contamination ≠ calibration** (Stage 6 / Stage 8): a wrong-*food* product is **excluded at
+   curation**, never "fixed" by lowering its score/NOVA/grade. A grade-too-high or NOVA-under-call
+   finding on a product whose name/ingredients don't describe the category food is a contamination
+   finding — route it to curation, not the engine.
+2. **Leaderboard integrity** (Stage 10): a product flagged `nutrition_approved/display_approved = false`
+   **may not** render at or above any approved product, and never at rank #1. The promotion script
+   **aborts** (does not warn).
+3. **First-batch owner consult** (Stage 10): the first batch after any BSIP0 / corpus-filter / scoring
+   calibration change is **owner-gated** before live promotion (a consumer-facing-irreversible
+   tripwire). Routine re-runs on the unchanged pipeline are not gated.
+
+Stage 6 reminder: run name-*and*-ingredient disambiguation, not name-substring alone. Watch Hebrew
+homonyms (`פתיתים` pasta vs. `פתיתי X` flakes) and substring traps (yeast `שמרים` ⊂ preservatives
+`משמרים`) — use Hebrew word boundaries.
 
 ---
 

@@ -1,0 +1,184 @@
+# evidence_dossiers/calcium.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Calcium is a SETTLED mineral coverage dossier (L1 shelf 1.4% / 5 SKUs). Bone-health endpoint is conditional
+# (with vitamin D, in deficient/older groups) — mirrors the vitamin D3 bone-Moderate conditional pattern.
+active:
+  canonical_name: "calcium"
+  pubchem_cid: 5460341               # elemental Ca
+  molecular_formula: "Ca"
+  molecular_weight: 40.08
+  synonyms: ["calcium", "Ca", "7440-70-2"]
+  category: "mineral"
+  compound_forms_identity:           # pubchem identity per form — STABLE
+    - form: "calcium carbonate"
+      cid: 10112
+      formula: "CCaO3"
+      mw: 100.09
+      elemental_mg_fraction: 0.400   # HIGH elemental per mass; absorption is food-dependent (needs stomach acid / with meals)
+    - form: "calcium citrate"
+      cid: 13136
+      formula: "C12H10Ca3O14"
+      mw: 498.40
+      elemental_mg_fraction: 0.241   # lower elemental per mass but absorbed with or without food, better in low-acid states
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:29279934", "PMID:26510847", "PMID:26420598"]
+    rationale: "Meta-analytic evidence: calcium + vitamin D reduces fracture risk in institutionalized/older/deficient populations, but calcium alone in community-dwelling adults shows limited fracture benefit (and a debated CV-safety signal). Consistent-but-conditional (population- and co-nutrient-dependent) -> Moderate, not Strong."
+    tier_rationale: >
+      RATIFIED (D6) Moderate. Structurally identical to the vitamin D3 bone claim: real, replicated benefit WITH
+      vitamin D in deficient/institutionalized/older groups; limited in replete community-dwelling adults. Consistent
+      RCT evidence with a population/co-nutrient limitation = Moderate (§2.1). NOT Strong (no population-general fracture
+      benefit) and NOT Weak (the conditional benefit is real). The conditionality is a property of the claim, not a
+      reason to defer.
+  - claim: "correcting/preventing calcium-deficiency / supporting bone mineralization (dietary inadequacy)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:26420598", "PMID:11329115"]
+    rationale: "Calcium is required for bone mineralization; correcting dietary inadequacy supports bone accrual/maintenance — settled at the status/structure level. This is the structure/function repletion endpoint, distinct from the fracture-outcome claim above; it does NOT inherit upward to a fracture-prevention promise."
+    tier_rationale: "RATIFIED (D6). Repletion/mineralization-support is settled (Strong). Claim-specific: must not bleed into a population-general fracture-prevention claim (which is Moderate above)."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 500                 # mg/day ELEMENTAL supplemental — typical supplemental top-up; total (diet+supp) target ~1000-1200 mg
+  typical: 600                       # mg/day elemental supplemental
+  upper_studied: 1200                # mg/day elemental — at/above this no added bone benefit; absorption per-dose is capped (~500 mg/dose) so split dosing matters
+  unit: "mg"
+  dose_axis: "ELEMENTAL calcium — NOT compound mass (§2.2 trap). '1250 mg calcium carbonate' = ~500 mg elemental (x0.400). Per-DOSE absorption saturates ~500 mg -> doses should be split; a single 1000 mg dose is not 2x absorbed (note)."
+  market_range_dsld: [500, 1200]     # DSLD: 500-600 mg elemental common (often + vitamin D). NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:26420598"]
+  elemental_fraction: "see compound_forms_identity (per form)"
+
+forms:
+  preferred: ["calcium citrate (absorbed with or without food / in low-acid states; well tolerated)"]
+  acceptable: ["calcium carbonate (high elemental, cheap, well absorbed WHEN taken with food / adequate stomach acid)"]
+  poor: ["unrefined coral/oyster-shell calcium with contaminant concerns (legitimacy/safety flag, not a bioavailability claim)"]
+  rationale: "Citrate is absorbed independent of stomach acid/food and is preferred in older adults / PPI users / low-acid states; carbonate is high-elemental and cheap but requires food/acid for good absorption -> acceptable, not poor (it works when taken correctly). The carbonate 'must take with food' caveat is a usage note, not a form penalty. Coral/oyster-shell raises a contaminant-legitimacy flag (§2.4)."
+  citations: ["PMID:11329115"]
+  form_ladder_confidence: "medium — citrate>carbonate-in-low-acid is established; both are acceptable forms"
+
+safety:
+  upper_limit_UL: 2500               # mg/day TOTAL elemental, adults 19-50 (2000 for 51+) — NIH ODS / IOM. Basis = hypercalcemia/milk-alkali + kidney stones + debated CV risk.
+  ul_basis: "mg/day TOTAL (diet+supplement) elemental, adults. The engine sees only the SUPPLEMENT dose (cannot see dietary intake) -> a single high-dose supplement rarely breaches the total UL alone, but a >1500 mg supplemental dose is a Safety NOTE. Toxicity-relevant (hypercalcemia, stones, debated CV) but breach-from-supplement-alone is uncommon."
+  ul_source: "NIH ODS Calcium fact sheet / US IOM-FNB (2500 mg/day adults 19-50)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5): calcium's UL is on TOTAL intake (diet+supp) and is toxicity-relevant (hypercalcemia/stones).
+    The engine cannot see dietary calcium, so it scores the SUPPLEMENT dose: a supplemental dose alone rarely exceeds
+    2500 mg, so the hard veto seldom fires; a high supplemental dose (>1500 mg) earns a Safety NOTE (debated CV signal
+    + stone risk). The 'cannot see total intake' limitation is logged (like magnesium's supplement-only caveat).
+    NEEDS-ENV-VERIFY 2500/2000 age-banded primary values.
+  ul_note_threshold: 1500            # supplemental elemental mg/day -> Safety NOTE (debated CV/stone signal)
+  ul_externally_maintained: true
+  risky_flags: ["UL is on TOTAL intake — engine sees supplement only; do not veto on a value it cannot see (mirrors magnesium supplemental-only caveat)", "debated CV-event signal with high-dose supplemental calcium without vitamin D (context)"]
+  notes: "Age-banded UL (2500 for 19-50, 2000 for 51+). Total-intake basis -> supplement-alone breach uncommon -> veto rare, note for high supplemental doses."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Calcium UL=2500 mg adults 19-50", "PMID:11329115"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "bone health"
+    resolves_to: "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:26510847"]
+    supp_ev: "SUPP-EV-010"
+    rationale: >
+      MAPS at MODERATE (BEST). 'Bone health' is the canonical recognized physiological correlate of calcium's studied
+      fracture/BMD endpoint. Best mapped tier = Moderate (conditional — with vitamin D, in older/deficient adults). A
+      'prevents osteoporosis / reverses bone loss' escalation fires the §2.4 over-promise catch (resolves to the same
+      Moderate tier + Honesty debit).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "teeth"
+    resolves_to: "correcting/preventing calcium-deficiency / supporting bone mineralization (dietary inadequacy)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26420598"]
+    supp_ev: "SUPP-EV-010"
+    rationale: >
+      MAPS at STRONG (mineralization route). 'Teeth' is a recognized physiological correlate of calcium's mineralization
+      role (a structure/function relationship, EFSA-recognized). Maps to the Strong repletion/mineralization endpoint.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "muscle"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-010"
+    rationale: >
+      DOES NOT MAP. Calcium has a mechanistic role in muscle contraction, but there is no recognized studied 'muscle
+      benefit' endpoint for calcium supplementation in replete adults — mechanism-only hand-wave, excluded by §2.1.
+      No recognized cited correlate -> no mapping. (NOTE: EFSA Art.13 authorizes a calcium "normal muscle function"
+      claim; the dossier's prior D6 held the consumer muscle benefit null. Not re-adjudicated here — flagged for sweep
+      as an EFSA-divergence, like magnesium 'nerve'.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # Calcium EFSA Art.13: maintenance of normal bones and teeth — routed to existing tiers.
+  - phrase: "בריאות העצם"              # "bone health" (Hebrew) — EFSA "maintenance of normal bones"
+    resolves_to: "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:26510847"]
+    supp_ev: "SUPP-EV-010"
+    rationale: >
+      MAPS at MODERATE. EFSA Art.13 authorizes "calcium is needed for the maintenance of normal bones"
+      (EFSA Q-2008-1180). Hebrew alias of the English "bone health" key — same conditional fracture/BMD endpoint
+      (Moderate). A 'מונע אוסטאופורוזיס/prevents osteoporosis' escalation fires the §2.4 over-promise catch.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עצמות"                    # "bones" (Hebrew, plain)
+    resolves_to: "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:29279934", "PMID:26510847"]
+    supp_ev: "SUPP-EV-010"
+    rationale: "MAPS at MODERATE. Plain Hebrew 'עצמות/bones'; same EFSA Art.13 'normal bones' basis/routing as 'בריאות העצם'."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "שיניים"                   # "teeth" (Hebrew) — EFSA "maintenance of normal teeth"
+    resolves_to: "correcting/preventing calcium-deficiency / supporting bone mineralization (dietary inadequacy)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26420598"]
+    supp_ev: "SUPP-EV-010"
+    rationale: >
+      MAPS at STRONG (mineralization route). EFSA Art.13 authorizes "calcium is needed for the maintenance of normal
+      teeth" (EFSA Q-2008-1180). Hebrew alias of the English "teeth" key — recognized mineralization correlate, Strong.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Calcium label "supports bone, teeth & muscle health" resolves: bone->fracture/BMD=Moderate (maps, BEST),
+    teeth->mineralization=Strong (maps), muscle->null (mechanism-only, does NOT map). Best mapped tier = STRONG (teeth/
+    mineralization). A vague bone/teeth calcium is NOT Insufficient.
+
+label_claims_common: ["bone health", "teeth", "osteoporosis", "muscle", "with vitamin D"]
+necessity_context: "Dietary mineral; supplemental need depends on dietary intake/age. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Hypercalcemia, kidney-stone history, certain CV contexts (debated). Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-010"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: "Tiers: mineralization/repletion Strong, fracture/bone Moderate (conditional — with vit D, older/deficient). UL 2500 mg = total-intake toxicity ceiling (engine sees supplement only -> veto rare, NOTE >1500). Umbrella: teeth->Strong (best), bone->Moderate, muscle->null. Candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); UL re-sync annual"
+  field_stability:
+    stable: ["pubchem_cid", "compound_forms_identity", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (2500 mg/day adults 19-50, 2000 for 51+)"
+      last_resync: "2026-06-03"
+      resync_note: "age-banded; total-intake basis. NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: בריאות העצם/עצמות→fracture/BMD(Moderate, EFSA Q-2008-1180 normal bones); שיניים→mineralization(Strong, EFSA Q-2008-1180 normal teeth). 'muscle'-null unchanged (EFSA-divergence flagged for sweep)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-010"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

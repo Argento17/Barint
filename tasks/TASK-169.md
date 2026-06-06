@@ -2,13 +2,24 @@
 id: TASK-169
 title: Scoring recalibration sprint — category-relative whole-food rubric (protein curve, fiber-blend, leanness, NOVA proxy, red-label cliff, category-fit)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-02
-depends_on: []
-blocks: []
-category_id: null
+completed_at: 2026-06-04
+cc_reviewed: 2026-06-04
+close_reason: >
+  CC close-readiness gate PASS (2026-06-04). Objective met: the shared whole-food rubric
+  was reworked and protein made category-relative — cottage 1% reaches 90/A top-of-shelf;
+  cheese/hummus/vegetable-spreads live (47 promotions, 12 new A's, 169B); milk (169C),
+  yogurt (169D), snack-bars (169E) waves all shipped/held with owner sign-off. All six
+  sub-waves 169A–169F CLOSED. The final wave 169F delivered + verified the real bread
+  R3/R5 model (4 B->A); per owner decision 2026-06-04 the bread SHIP is sequenced into the
+  legacy re-baseline umbrella TASK-180 (180C) so it ships together with the pre-existing
+  engine-drift resolution rather than absorbing ~8 phantom drift-A's. Carried-forward owner
+  action (NOT a recal blocker): production deploy of the shipped P1 wave still needs the
+  branch merge cc-agent-v2 -> master.
 roadmap_impact: true
+drift_ack: "Closure-drift false-positive: the return-header regex (TASK-\\d+) collapses the sub-task header **Task:** TASK-169F → TASK-169. The bread re-model is authored by 169F (RETURNED, awaiting owner P2 sign-off); the umbrella is legitimately IN_PROGRESS (frozen bread wave not yet owner-signed). Same pattern as TASK-179/179A."
 summary: >
   Owner-opened vast scoring sprint. Diagnosis (2026-06-02) traced cheese/hummus/salad score compression to 7 shared-engine root causes: supplement-calibrated protein curve, 35% fiber-blend on fiber-free dairy (EV-027 gated off for cheese), fat_quality that never rewards leanness, NOVA proxy over-classifying cultured/fortified dairy + jarred spreads as processed (+false consumer label), red-label sat-fat cap acting as a cliff, one universal rubric applied to category-inappropriate veg spreads, and a white-cheese ranking inversion. Owner directive: rework the SHARED math (re-opens frozen milk/bread/snack) + make protein category-relative so a lean high-protein product (cottage 1%) can reach top-of-shelf. Governed: evidence-registry ref + rollback + frozen-category blast-radius + owner sign-off per change.
 ---

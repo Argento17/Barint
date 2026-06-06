@@ -48,6 +48,16 @@ NOVA3_SIGNALS = [
 # Fermentation presence reduces NOVA level estimate
 # Single ingredient is almost always NOVA 1
 
+# EV-009 / EV-010: Extruded/shaped grain products are NOVA 3 (milling-disrupted matrix).
+# "פתיתים אפויים" = Osem-style baked shaped pasta-cereal (extrusion + shaping + bake).
+# This is the minimal name-detection component of EV-010 (extrusion_matrix_penalty).
+# Gated to the specific product name prefix — does NOT apply to "פתיתים אורגנים" (rolled grain flakes).
+# Backed by: Nutrition Agent ruling 2026-06-05 (TASK-140 QA-CER-W1); EV-009 (extruded shapes = disrupted);
+# EV-010 (should_affect_score_now: true; risk-of-misuse: refined-grain extrusion penalized, whole-grain puffed exempt).
+EXTRUDED_SHAPE_NAME_SIGNALS: list[str] = [
+    "פתיתים אפויים",   # baked pasta-shaped flakes (Osem type: קוסקוס/כוכבים/טבעות/אורז)
+]
+
 
 def infer_nova(product: dict, l3_signals: dict) -> dict:
     """
@@ -80,7 +90,22 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
     # ---------------------------------------------------------------------------
     # NOVA 1 check: single ingredient, no additives
     # ---------------------------------------------------------------------------
-    if ing_count == 1 and additive_count == 0 and not has_sweetener:
+    # EV-030 guard: the single-ingredient fast-path must not fire when ingredient data is
+    # degraded. Three degradation signals are checked:
+    #   (a) explicit quality flag (corrupted/missing/malformed)
+    #   (b) "ingredients_list" in missing_fields — BSIP1 failed to parse a real list
+    #   (c) ingredients_raw_provenance.source == "bsip1_text_fallback" — list reconstructed
+    #       from page marketing text, not a real ingredient declaration
+    # When any signal fires, fall through to the main classifier with a confidence penalty
+    # so the NOVA estimate reflects the actual uncertainty rather than a false 0.90.
+    _mf = product.get("missing_fields") or []
+    _prov_source = (product.get("ingredients_raw_provenance") or {}).get("source", "")
+    _ingredient_data_degraded = (
+        ing_quality in ("missing", "corrupted", "malformed")
+        or "ingredients_list" in _mf
+        or _prov_source == "bsip1_text_fallback"
+    )
+    if ing_count == 1 and additive_count == 0 and not has_sweetener and not _ingredient_data_degraded:
         return {
             "nova_level": 1,
             "nova_confidence": 0.90,
@@ -89,6 +114,12 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
             "nova_evidence_against": [],
             "nova_uncertainty_notes": ["Single ingredient is strong NOVA 1 signal; undetected additives could change this"],
         }
+    if _ingredient_data_degraded:
+        confidence_penalties.append(
+            f"EV-030: ingredient_data_degraded (quality={ing_quality}, "
+            f"ingredients_list_missing={'ingredients_list' in _mf}, "
+            f"provenance={_prov_source or 'unknown'}): NOVA 1 fast-path suppressed"
+        )
 
     # ---------------------------------------------------------------------------
     # NOVA 4 assessment: ultra-processed
@@ -125,6 +156,32 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
         nova4_score -= 1
         evidence_against.append("fermentation_markers (consistent with NOVA 1-2)")
 
+    # EV-009 / EV-010: extruded-shape early detection.
+    # If the product name matches an extruded/shaped cereal pattern, assert NOVA 3 immediately.
+    # Runs before the full score-based classifier so a product with a missing ingredient list
+    # (empty ingredient signals → nova4_score≈0 → would land at NOVA 2 by default) is still
+    # correctly placed at NOVA 3 based on its production method.
+    _product_name_he = (product.get("canonical_name_he") or product.get("product_name_he") or "").strip()
+    _is_extruded_shape = any(sig in _product_name_he for sig in EXTRUDED_SHAPE_NAME_SIGNALS)
+    if _is_extruded_shape:
+        evidence_for.append(
+            "EV-010: extruded_shape_name_signal fired ('פתיתים אפויים') — "
+            "industrial extrusion + shaping + bake = NOVA 3 per EV-009 disrupted-grain classification; "
+            "Nutrition ruling 2026-06-05"
+        )
+        return {
+            "nova_level": 3,
+            "nova_confidence": round(max(0.20, 0.55 - (0.25 if _ingredient_data_degraded else 0.0)), 2),
+            "nova_confidence_band": "medium" if not _ingredient_data_degraded else "low",
+            "nova_evidence_for": evidence_for,
+            "nova_evidence_against": evidence_against,
+            "nova_uncertainty_notes": confidence_penalties + [
+                "EV-010 name-detection: 'פתיתים אפויים' confirms extrusion/shaping; "
+                "EV-010 full scoring signal pending D7 co-sign (follow-up scope)",
+                "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
+            ],
+        }
+
     # ---------------------------------------------------------------------------
     # Classify by score
     # ---------------------------------------------------------------------------
@@ -157,6 +214,9 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
     if ing_quality in ("corrupted", "missing", "malformed"):
         base_conf -= 0.20
         confidence_penalties.append(f"ingredient_quality={ing_quality}: confidence reduced")
+    if _prov_source == "bsip1_text_fallback":
+        base_conf -= 0.25
+        confidence_penalties.append("provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable")
     if ing_count == 0:
         base_conf -= 0.30
         confidence_penalties.append("no_ingredient_list: NOVA inference unreliable")

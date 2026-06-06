@@ -1,0 +1,59 @@
+{
+  "_LABEL": "TASK-169F bread recal harness — run record (MODEL, NOT LIVE)",
+  "run_id": "real_bread_retail_003_v1__169f_recal_model",
+  "date": "2026-06-04",
+  "flag": "BARI_RECAL_P0 (OFF baseline vs ON)",
+  "engine_config_hash": "ec97a9d6195a222c",
+  "engine_files_hashed": [
+    "score_engine.py",
+    "constants.py",
+    "nova_proxy.py",
+    "score_synthesis.py",
+    "interpretation_confidence.py"
+  ],
+  "corpus": "31 curated bread (24 displayed + 7 transparency-only)",
+  "artifacts": [
+    "02_products/bread_retail_003/_model_task169f/run_169f_bread_recal.py",
+    "02_products/bread_retail_003/_model_task169f/bread_recal_169f_result.json",
+    "02_products/bread_retail_003/_model_task169f/verify_169f_off_identical.py",
+    "02_products/bread_retail_003/_model_task169f/off_identical_169f_result.json"
+  ],
+  "results_summary": {
+    "n_curated": 31,
+    "n_scored": 31,
+    "n_recal_nonzero": 14,
+    "n_grade_affecting": 4,
+    "n_cosmetic_lt2": 10,
+    "grade_moves": [
+      {
+        "pid": "shufersal_2079996",
+        "off": "79.6/B",
+        "on": "82.0/A",
+        "delta": 2.4
+      },
+      {
+        "pid": "shufersal_2079477",
+        "off": "74.1/B",
+        "on": "80.5/A",
+        "delta": 6.4
+      },
+      {
+        "pid": "shufersal_7290018500316",
+        "off": "76.1/B",
+        "on": "82.0/A",
+        "delta": 5.9
+      },
+      {
+        "pid": "shufersal_96086000577",
+        "off": "77.7/B",
+        "on": "80.9/A",
+        "delta": 3.2
+      }
+    ]
+  },
+  "regression": {
+    "golden": "11 PASS / 1 WARN / 0 FAIL (flag-insensitive)",
+    "router": "13/13 PASS OFF and ON"
+  },
+  "off_identical": "flag-OFF deterministic PASS; OFF vs published build-time = 6/24 reproduce (18/24 pre-existing HEAD drift = TASK-178, not recal)"
+}

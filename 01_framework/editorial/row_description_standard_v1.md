@@ -4,7 +4,7 @@
 **Date:** 2026-06-02
 **Owner:** Content Agent
 **Scope:** Every per-product row description (`insightLine` / `rowVerdict`) across all live comparison categories
-**Extends:** `insight_line_spec_v1.md` (base) · `assertive_writing_v1.md` (floor) · `editorial_intelligence_v3.md` (forbidden words) · `comparison_template_v1.md` (page geometry)
+**Extends:** `insight_line_spec_v1.md` (base) · `assertive_writing_v1.md` (floor) · `editorial_intelligence_v3.md` (forbidden words) · `comparison-template-standard-v1.md` (page geometry)
 **Pairs with:** Nutrition's per-category grounding guide (`row_description_grounding_v1.md`) — what each category's verdict may *truthfully* cite
 **Supersedes:** v1's terse decision-driver single-line model (35–80 char tag). See §0 for the pivot.
 
@@ -17,9 +17,11 @@
 **v2 pivots the collapsed row from a tag to a 2-line interpretive VERDICT.** The line is now a short piece of writing by a human assessor: where the product *stands* in its category, *why* (the real drivers), the honest *catch*, and the *grade as the conclusion of that reasoning*. The dropdown still carries the full analysis + nutrition; the collapsed line is the verdict that makes the reader trust the dropdown is worth opening.
 
 **The approved target voice — יופלה GO 78/B:**
-> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס עדיין מעדן מתוק, לא מוצר חלבון.
+> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים, לא על מבנה חלב שלם.
 
-Read how it works: it *stands the product in the category* ("מהבולטים בקטגוריה"), gives the *real reasons* (10g protein from milk, 3 ingredients, rare on this shelf), then the *honest catch and the earned grade as its payoff* ("עוצר ב-B כי הבסיס עדיין מעדן מתוק"). That is the bar every one of the 84 verdicts must clear.
+Read how it works: it *stands the product in the category* ("מהבולטים בקטגוריה"), gives the *real reasons* (10g protein from milk, 3 ingredients, rare on this shelf), then the *honest catch and the earned grade as its payoff* ("עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים"). That is the bar every one of the 84 verdicts must clear.
+
+> **TASK-175 correction (Nutrition, 2026-06-03):** the original example ended "עוצר ב-B כי הבסיס עדיין מעדן מתוק, לא מוצר חלבון" — an **un-grounded** catch. GO's sugar value is unavailable (null), its 3-ingredient list has no sweetener, and the trace shows `sweetener_detected=false` / 0 added-sugar markers / zero sugar penalty. The B is driven by `nutrient_density` (protein-only) and the **reconstituted/enriched dairy base** (NOVA 2; added חלבוני חלב + אבקת חלב; fails the intact-matrix A-condition, RULING-DAIRY-A-01 C4) — not by sweetness. The catch was rewritten to the real, trace-anchored reason. This is the canonical illustration of the §grounding rule below: **the catch must name a signal the trace actually fired.**
 
 ### What v2 keeps from v1 (still true)
 - **Trace-anchored, always.** No invented number, ingredient, position, or claim. The grounding guide governs what is citable per category.
@@ -74,11 +76,11 @@ These extend the existing forbidden lists in `insight_line_spec_v1` (§Tone) and
 
 ### 2a. Grade-RATIONALE rule (v2 reversal of v1's grade-restatement ban)
 
-**v1 banned naming the grade. v2 reverses this.** Naming the grade as the **earned conclusion of a real reason** is now correct and wanted — it is the fourth move of the verdict (§1). The owner's example *requires* it: "עוצר ב-B כי הבסיס עדיין מעדן מתוק."
+**v1 banned naming the grade. v2 reverses this.** Naming the grade as the **earned conclusion of a real reason** is now correct and wanted — it is the fourth move of the verdict (§1). The owner's example *requires* it: "עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים."
 
 **WANTED — grade as the payoff of a reason:**
 ```
-עוצר ב-B כי [real reason]          ("…ושלושה רכיבים בלבד. עוצר ב-B כי הבסיס עדיין מעדן מתוק.")
+עוצר ב-B כי [real reason]          ("…ושלושה רכיבים בלבד. עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים.")
 נשאר ב-D כי [real reason]
 יורד ל-E בגלל [real reason]
 מטפס ל-C על [real reason] — אבל [catch]
@@ -123,8 +125,8 @@ Replace with the specific observable fact. The fact carries the line; the writer
 - **Soft target ~120–160 chars; hard ceiling ~170 chars** including spaces, excluding surrounding quotes used for label-claim citation. Above ~170 the verdict will wrap past two lines on a 280px mobile width and truncate.
 - **No hard floor**, but a verdict under ~80 chars usually means a move is missing (no standing, or no reason behind the grade) — check it isn't just a v1 tag in disguise.
 
-**Reference — the approved יופלה GO verdict is 132 characters and reads as 2 lines:**
-> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס עדיין מעדן מתוק, לא מוצר חלבון.
+**Reference — the approved יופלה GO verdict is 158 characters and reads as 2 lines:**
+> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים, לא על מבנה חלב שלם.
 
 **Checkable rule:** `len(verdict) ≤ ~170` and renders within 2 lines. A verdict that needs 3 lines is a fail — tighten the reasons, don't add a third clause.
 
@@ -185,6 +187,46 @@ Run all eight on every verdict. Any **FAIL** blocks publication.
 
 ---
 
+## 5b. Mandatory drivers — calorie density & sodium (added 2026-06-05, owner content review)
+
+The owner's granola review exposed a systemic failure across the live pages: verdicts
+that **name the grade with no real reason** ("עוצר ב-B כי גרנולה בכל זאת") and that
+**ignore or misattribute the dimensions the engine actually scored** — above all
+**calorie density**, the single biggest lever the copy was dropping (one granola was
+hard-capped at 70 *by calories* while its verdict blamed sodium). This section is a hard
+rule for **every** category, not just granola.
+
+**Rule A — calorie density is a first-class citable driver.** kcal/100g is a scored
+dimension (`calorie_density`, `lookup_calorie_density`) with hard caps (`SNACK_BAR_HIGH_CAL`,
+`HIGH_CAL_*`). When calorie density is the binding cap or a material driver of the grade,
+**the verdict must name it** ("…אבל 504 קק"ל ל-100 ג', מהצפופות במדף — הקלוריות מגבילות
+אותה ל-B"). When a product is notably light for its shelf, that is equally citable as a
+*strength*. Do **not** force calories where they are not the catch (a 362-kcal leader's
+catch is processing, not calories) — §1 anti-template still governs.
+
+**Rule B — the grade-reason must name a signal the trace actually fired.** Before writing
+"עוצר ב-X כי …", confirm the reason is a dimension/penalty/cap the trace shows
+(`dimension_scores`, `penalties_applied`, `caps_applied`). "Because it's granola/bread/a
+bar anyway" is the banned empty restatement (§2a) — replace it with the real driver
+(NOVA-3/4 processing → "מאפה מעובד, לא דגן בצורתו המלאה"; isolated protein → "חלבון מבודד,
+לא מהדגן"; named penalties → glucose syrup / seed oil / long ingredient list).
+
+**Rule C — sodium is cited as a FACT, never as a grade reason, *unless* the trace fires a
+sodium signal.** As of 2026-06-05 the engine does not meaningfully penalise sodium in
+several categories (e.g. granola: 700 mg trigger that real products never reach; frequent
+null capture — see TASK-189). So a verdict **may** state a high sodium value as a displayed
+fact and relative position ("394 מ"ג נתרן — גבוה למדף"), but **may not** place it inside a
+"כי …" clause until a sodium penalty/cap actually fires for that product. Keep sodium in its
+own sentence, after the grade-reason. When TASK-189 makes sodium a real driver for a
+category, re-author that category's verdicts so the catch may cite sodium causally.
+
+**Rollout:** the granola page (53 verdicts) is the reference implementation of this section
+(`patch_granola_verdicts_v2.py`, 2026-06-05). All other live categories (bread, milk,
+snacks, cheese, yogurt, hummus, maadanim, cereals) are to be re-audited against Rules A–C
+and rebuilt to the same bar — each grounded in its own run's trace, not granola's.
+
+---
+
 ## 6. Trace-Anchor Requirement
 
 **Rule:** Every claim in a line must be verifiable from *that specific product's* real BSIP2 / canonical data — its ingredient list, its nutrition panel, its score record, or a category-level fact computed across the real set. **No invented numbers, ingredients, positions, or claims, ever.** If the data needed to make a line decision-first isn't present, the line falls back to the strongest *available* trace-anchored fact — it does **not** fabricate a stronger one.
@@ -210,8 +252,8 @@ Six real verdicts from the rewritten set, chosen to show *differentiated leads a
 
 **1. יופלה GO מועשר בחלבון** — 78/B · `protein 10.0` · `ingredients: חלב, חלבוני חלב (7.4%), אבקת חלב` · `sugar: null`
 - **Shape:** standing-first (clean leader).
-> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס עדיין מעדן מתוק, לא מוצר חלבון.
-- *(Sugar `null` → never cited. Grade earned by a real catch.)*
+> מהבולטים בקטגוריה — 10 גרם חלבון מהחלב ושלושה רכיבים בלבד, נדיר במדף של ממתיקים ומייצבים. עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים, לא על מבנה חלב שלם.
+- *(Sugar `null` → never cited; and with no sweetener in the list and `sweetener_detected=false`, "sweet" cannot be the catch either. The grade is earned by a real, trace-fired signal: the reconstituted/enriched dairy base — NOVA 2, added חלבוני חלב + אבקת חלב — TASK-175.)*
 
 **2. מילקי בטעם שוקולד** — 40/D · `protein 3.0` · five stabilizers · cream before sugar
 - **Shape:** icon-paradox-first (the signature maadanim tension — icon ≠ architecture).

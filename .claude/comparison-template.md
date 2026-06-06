@@ -1,6 +1,6 @@
 # Bari Comparison Template — Implementation Guide
 
-**Authority document:** `C:\Bari\01_framework\frontend\comparison_template_v1.md`  
+**Authority document:** `C:\Bari\01_framework\frontend\comparison-template-standard-v1.md`  
 **Build sequence:** `C:\Bari\01_framework\frontend\component_build_sequence_v1.md`  
 **Handoff protocol:** `C:\Bari\01_framework\frontend\cursor_handoff_protocol_v1.md`  
 **Last verified:** 2026-05-30
@@ -325,7 +325,7 @@ When implementing a new category, use the maadanim pattern as the template.
 
 ## Sources
 
-- `C:\Bari\01_framework\frontend\comparison_template_v1.md`
+- `C:\Bari\01_framework\frontend\comparison-template-standard-v1.md`
 - `C:\Bari\01_framework\frontend\component_build_sequence_v1.md`
 - `C:\Bari\01_framework\frontend\cursor_handoff_protocol_v1.md`
 - `C:\Bari\01_framework\frontend\comparison_view_model_v1.md`

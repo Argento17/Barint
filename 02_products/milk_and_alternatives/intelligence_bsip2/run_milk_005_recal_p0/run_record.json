@@ -1,0 +1,23 @@
+{
+  "run_id": "run_milk_005_recal_p0",
+  "task": "TASK-169C",
+  "generated_at_utc": "2026-06-03T11:54:25Z",
+  "engine": "bsip2 proto_v0 HEAD",
+  "flag": "BARI_RECAL_P0",
+  "config_hash_constants_scoreengine_novaproxy": "832fdb55e03cae06",
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+  "corpus_n": 20,
+  "r_rules_active_milk": [
+    "R1 category-relative protein",
+    "R3 leanness",
+    "R5 sat-fat cap->penalty",
+    "R7 culture-gate (EXCLUDES plain milk)"
+  ],
+  "flag_off_inert_OFF_eq_OFF": true,
+  "NOT_SHIPPED": true,
+  "published_baseline_untouched": "run_004_recalibrated",
+  "output_dirs": {
+    "recal_on": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_milk_005_recal_p0\\products_recal_on",
+    "flagoff_baseline": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_milk_005_recal_p0\\products_flagoff_baseline"
+  }
+}

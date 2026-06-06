@@ -1,0 +1,164 @@
+{
+  "run_id": "run_cereals_multiretailer_001",
+  "generated": "2026-06-05 11:01 UTC",
+  "engine": "proto_v0 / BARI_RECAL_P0=on (byte-identical to run_cereals_005)",
+  "source": "Carrefour + Yochananof price feeds + OFF candidate panels; EV-045/045b curated; deduped vs run_005",
+  "processed": 42,
+  "scored": 40,
+  "errors": 0,
+  "grade_distribution": {
+    "D": 7,
+    "C": 17,
+    "B": 14,
+    "A": 1,
+    "E": 1
+  },
+  "score_median": 60.2,
+  "score_range": [
+    28.6,
+    81.2
+  ],
+  "misroute_count": 10,
+  "misroutes": [
+    {
+      "pid": "bsip1_cereal_4005528115218",
+      "name": "דגני חיטה ואורז בטעם",
+      "routed_to": "beverage"
+    },
+    {
+      "pid": "bsip1_cereal_5900020034021",
+      "name": "Fitness",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7290109352916",
+      "name": "Fitness",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7290112965660",
+      "name": "פיטנס מלח פלפל",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7290115205176",
+      "name": "Fitness",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7290115205312",
+      "name": "Fitness",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7290118420323",
+      "name": "Fitness Veggie Mix",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7613032045753",
+      "name": "Neslte Fitness Chocolate & Rice",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7613033548192",
+      "name": "Nestle Fitness Dark Chocolate",
+      "routed_to": "default"
+    },
+    {
+      "pid": "bsip1_cereal_7613037686906",
+      "name": "Fitness almond honey",
+      "routed_to": "default"
+    }
+  ],
+  "leaderboard_breakfast_cereals_top5": [
+    {
+      "score": 76.7,
+      "grade": "B",
+      "subpool": "standard_cereal",
+      "retailer": "carrefour",
+      "name": "שיבולת שועל הכנה מהירה",
+      "routed": "cereal"
+    },
+    {
+      "score": 76.5,
+      "grade": "B",
+      "subpool": "standard_cereal",
+      "retailer": "carrefour",
+      "name": "שיבולת שועל להכנה מהירה",
+      "routed": "cereal"
+    },
+    {
+      "score": 75,
+      "grade": "B",
+      "subpool": "standard_cereal",
+      "retailer": "carrefour",
+      "name": "קוואקר אורגני",
+      "routed": "cereal"
+    },
+    {
+      "score": 75,
+      "grade": "B",
+      "subpool": "standard_cereal",
+      "retailer": "carrefour",
+      "name": "קוואקר עדין אורגני",
+      "routed": "cereal"
+    },
+    {
+      "score": 74.8,
+      "grade": "B",
+      "subpool": "standard_cereal",
+      "retailer": "carrefour",
+      "name": "שיבולת שועל מלאה עבה",
+      "routed": "cereal"
+    }
+  ],
+  "leaderboard_granola_muesli_top5": [
+    {
+      "score": 81.2,
+      "grade": "A",
+      "subpool": "granola",
+      "retailer": "carrefour",
+      "name": "גרנולה בתוספת חלבון",
+      "routed": "snack_bar_granola"
+    },
+    {
+      "score": 75,
+      "grade": "B",
+      "subpool": "granola",
+      "retailer": "carrefour",
+      "name": "Protein granola",
+      "routed": "cereal"
+    },
+    {
+      "score": 75,
+      "grade": "B",
+      "subpool": "granola",
+      "retailer": "carrefour",
+      "name": "Granola Protein",
+      "routed": "cereal"
+    },
+    {
+      "score": 71.1,
+      "grade": "B",
+      "subpool": "granola",
+      "retailer": "carrefour",
+      "name": "Sugarless Gluten Free Granola",
+      "routed": "cereal"
+    },
+    {
+      "score": 70.5,
+      "grade": "B",
+      "subpool": "granola",
+      "retailer": "carrefour",
+      "name": "Mornflake Crispy Muesli Nutty",
+      "routed": "cereal"
+    }
+  ],
+  "error_detail": [],
+  "split_counts": {
+    "standard": 21,
+    "granola_muesli": 19
+  },
+  "note_A_grade": "81.2/A גרנולה בתוספת חלבון (Carrefour) is a NEW category-high on fresh data; run_005 (Shufersal-only) topped at 79.9/B. Earned on real OFF macros (24.8g protein, 15.4g fiber, 7.2g sugar, 46mg sodium); engine byte-identical. Surfaced to Nutrition Agent as FYI (Hard Rule 7) — not a scoring-logic anomaly."
+}

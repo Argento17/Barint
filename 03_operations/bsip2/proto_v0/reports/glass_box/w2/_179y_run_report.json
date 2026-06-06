@@ -1,0 +1,53 @@
+{
+  "task": "TASK-179Y",
+  "run_date": "2026-06-04",
+  "phase1_vegspreads": {
+    "total_veg_products": 22,
+    "with_d4": 21,
+    "without_d4": 1,
+    "demote_products": 1,
+    "demote_have_d4": true,
+    "score_grade_unchanged": true
+  },
+  "phase0_bread_coverage": {
+    "total_products": 24,
+    "with_any_additive": 17,
+    "coverage_pct": 70.8,
+    "top5_additives": [
+      {
+        "e_number": "E300",
+        "count": 16
+      },
+      {
+        "e_number": "E282",
+        "count": 11
+      },
+      {
+        "e_number": "E481",
+        "count": 10
+      },
+      {
+        "e_number": "E330",
+        "count": 5
+      },
+      {
+        "e_number": "E202",
+        "count": 5
+      }
+    ],
+    "barcodes_not_in_bsip0": [],
+    "decision": "PROCEED"
+  },
+  "phase2_bread": {
+    "products_enriched": 17,
+    "products_total": 24,
+    "invariant_check": "PASS",
+    "fe_path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v2.json"
+  },
+  "phase2_off_check": {
+    "off_identity_method": "structural (bread BSIP1 corpus unavailable)",
+    "existing_fields_preserved": true,
+    "d4_additives_only_new_key": true,
+    "engine_level_off_check": "TASK-179S (hummus+maadanim) — same code path"
+  }
+}

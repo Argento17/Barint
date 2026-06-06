@@ -62,6 +62,12 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
+# COV-007 — stage-agnostic nutrition data-integrity guard (TASK-192). Single source
+# of truth, also runnable standalone + importable by scrapers/builders so the gate is
+# identical at every BSIP0/BSIP1/frontend hop. See nutrition_integrity_guard.py.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from nutrition_integrity_guard import gate_corpus as _cov007_gate  # noqa: E402
+
 # ── Paths ──────────────────────────────────────────────────────────────────────
 BARI_ROOT      = pathlib.Path(r"C:\Bari")
 PRODUCTS_ROOT  = BARI_ROOT / "02_products"
@@ -418,6 +424,53 @@ def check_cov006(bsip1_files: list[tuple[pathlib.Path, dict]]) -> Check:
     return chk
 
 
+def check_cov007(
+    bsip1_files: list[tuple[pathlib.Path, dict]],
+    bsip0_raw_products: list[dict],
+    frontend_products: list[dict],
+) -> Check:
+    """COV-007: Permanent blocking nutrition data-integrity gate (COV-006 successor).
+
+    Delegates to nutrition_integrity_guard.gate_corpus — the SAME code a scraper or
+    BSIP1 builder calls — so the gate is stage-agnostic and identical at every hop.
+    Closes the two gaps that let the 'פחות מ 0.5' fat mis-capture recur (TASK-192):
+      GAP 1 (wiring): runs here unconditionally on every category QA, AND on the
+        BSIP0 raw + frontend stages when discoverable — not opt-in like COV-006 was.
+      GAP 2 (coverage): adds the 'less-than token in a TOTAL field' (S1) and
+        'sodium absurd' (S4) signatures COV-006 lacked, so the defect is caught even
+        when no saturated row exists (the exact cereals shape: 0 saturated rows, the
+        total fat row itself reads 'פחות מ 0.5').
+
+    Signatures (per nutrition_integrity_guard): S1 less-than token in a total field,
+    S2 saturated_fat>total_fat, S3 fat understated vs energy, S4 sodium>2000mg.
+    Hard FAIL if the gate blocks on ANY stage.
+    """
+    chk = Check("COV-007", "Nutrition data-integrity gate (פחות-מ / fat-overwrite / sodium)")
+    stages = [
+        ("BSIP1", [rec for _, rec in bsip1_files if not rec.get("_load_error")]),
+        ("BSIP0-raw", bsip0_raw_products),
+        ("frontend", frontend_products),
+    ]
+    any_block = False
+    chk.total = 0
+    for label, prods in stages:
+        if not prods:
+            chk.notes.append(f"{label}: no products discovered — stage not gated")
+            continue
+        res = _cov007_gate(prods)
+        chk.total += res["total"]
+        verdict = "BLOCK" if res["blocking"] else "ok"
+        chk.notes.append(f"{label}: {res['summary']} -> {verdict}")
+        if res["blocking"]:
+            any_block = True
+            chk.affected += res["flagged_products"]
+            for fd in res["findings"][:10]:
+                chk.notes.append(f"  [{label}/{fd['sig']}] {fd['name'][:38]}: {fd['detail']}")
+    if any_block:
+        chk.fail("COV-007 blocked — nutrition data-integrity defect present (see notes)")
+    return chk
+
+
 def check_can001(
     canonical_dir: pathlib.Path,
     bsip0_approved_count: int,
@@ -742,6 +795,33 @@ def main() -> int:
 
     rejected_codes = _rejected_codes_from_csv(review_csv)
 
+    # ── COV-007 extra stages: BSIP0 raw + live frontend JSON (best-effort) ────────
+    # The fat mis-capture is born at the BSIP0 scrape (the "פחות מ" token) and dies
+    # in the frontend (the published float). Gate BOTH ends in addition to BSIP1.
+    cov007_bsip0_raw: list[dict] = []
+    for raw_glob in (product_dir / "bsip0_outputs",):
+        if raw_glob.exists():
+            latest = sorted(raw_glob.glob("*_bsip0_raw_*.json"),
+                            key=lambda p: p.stat().st_mtime, reverse=True)
+            if latest:
+                try:
+                    cov007_bsip0_raw = json.loads(latest[0].read_text(encoding="utf-8"))
+                    print(f"COV-007 BSIP0 raw source    : {latest[0].name} ({len(cov007_bsip0_raw)})")
+                except Exception as e:
+                    print(f"WARN: could not read BSIP0 raw for COV-007: {e}")
+    cov007_frontend: list[dict] = []
+    fe_dir = pathlib.Path(r"C:\bari\bari-web\src\data\comparisons")
+    if fe_dir.exists():
+        fe_candidates = sorted(fe_dir.glob(f"{category}_frontend_v*.json"),
+                               key=lambda p: p.stat().st_mtime, reverse=True)
+        if fe_candidates:
+            try:
+                fe = json.loads(fe_candidates[0].read_text(encoding="utf-8"))
+                cov007_frontend = fe.get("products", fe) if isinstance(fe, dict) else fe
+                print(f"COV-007 frontend source     : {fe_candidates[0].name} ({len(cov007_frontend)})")
+            except Exception as e:
+                print(f"WARN: could not read frontend JSON for COV-007: {e}")
+
     print(f"BSIP0 approved observations : {bsip0_approved_count}")
     print(f"BSIP1 run output files      : {len(bsip1_run_files)}")
     print(f"canonical_bsip1 files       : {len(canonical_files)}")
@@ -786,6 +866,10 @@ def main() -> int:
     print(f"  {c.id:8}  {c.icon}")
 
     c = check_cov006(bsip1_run_files)
+    checks.append(c)
+    print(f"  {c.id:8}  {c.icon}")
+
+    c = check_cov007(bsip1_run_files, cov007_bsip0_raw, cov007_frontend)
     checks.append(c)
     print(f"  {c.id:8}  {c.icon}")
 

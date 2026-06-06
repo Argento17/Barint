@@ -1,0 +1,210 @@
+{
+  "task": "TASK-169C",
+  "run_id": "run_milk_005_recal_p0",
+  "generated_at": "2026-06-03T11:55:14.036707+00:00",
+  "baselines": {
+    "live_published": "run_004_recalibrated",
+    "head_off": "current HEAD flag-OFF (BARI_RECAL_P0=off)"
+  },
+  "ceiling_85A": {
+    "held": true,
+    "products_over_85": 0,
+    "top": [
+      "85/A whole 3.4%",
+      "85/A natural 4%",
+      "85/A goat"
+    ]
+  },
+  "lactose_free_2pct": {
+    "recal_on": "79.3/B",
+    "reaches_A": false,
+    "p0_v1_leak": "87.3/A",
+    "p0_v1.1_predicted": "79.3/B",
+    "match": true
+  },
+  "culture_bonus_leak_to_milk": false,
+  "grade_moves_vs_live_published": 1,
+  "grade_moves_vs_head_off": 2,
+  "rows": [
+    {
+      "pid": "bsip1_7290000051352",
+      "name": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+      "live_published": "85/A",
+      "head_off": "85/A",
+      "recal_on": "85/A",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290019790259",
+      "name": "חלב טבעי 4% 1 ליטר",
+      "live_published": "85/A",
+      "head_off": "85/A",
+      "recal_on": "85/A",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290102392094",
+      "name": "חלב עיזים בקרטון 1 ליטר",
+      "live_published": "85/A",
+      "head_off": "85/A",
+      "recal_on": "85/A",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290114313865",
+      "name": "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+      "live_published": "74.1/B",
+      "head_off": "74.1/B",
+      "recal_on": "79.3/B",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290116936116",
+      "name": "משקה סויה ללא סוכרים 1 ליטר",
+      "live_published": "67.0/B",
+      "head_off": "67.0/B",
+      "recal_on": "67.0/B",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290107932134",
+      "name": "חלב בבקבוק 1% מועשר- מהדרין",
+      "live_published": "60.2/C",
+      "head_off": "56.6/C",
+      "recal_on": "61.8/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290110324926",
+      "name": "משקה סויה ללא תוספת סוכר",
+      "live_published": "58.1/C",
+      "head_off": "58.1/C",
+      "recal_on": "58.1/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290014760141",
+      "name": "משקה שקדים",
+      "live_published": "52.7/C",
+      "head_off": "54.5/C",
+      "recal_on": "54.5/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7394376620904",
+      "name": "משקה שיבולת שועל ללא סוכר",
+      "live_published": "51.9/C",
+      "head_off": "51.9/C",
+      "recal_on": "54.5/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_5411188124689",
+      "name": "אלפרו שיבולת שועל ללא סוכר",
+      "live_published": "51.0/C",
+      "head_off": "51.0/C",
+      "recal_on": "53.7/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_8000215204219",
+      "name": "משקה אורז אורגני",
+      "live_published": "49.4/D",
+      "head_off": "49.4/D",
+      "recal_on": "52.3/C",
+      "grade_move_vs_live": true,
+      "grade_move_vs_headoff": true
+    },
+    {
+      "pid": "bsip1_7394376619939",
+      "name": "משקה בריסטה שיבולת שועל",
+      "live_published": "50.7/C",
+      "head_off": "50.7/C",
+      "recal_on": "50.7/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7394376621451",
+      "name": "משקה בריסטה שיבולת שועל להקצפה",
+      "live_published": "50.7/C",
+      "head_off": "50.7/C",
+      "recal_on": "50.7/C",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_5411188112709",
+      "name": "אלפרו שקדים ללא סוכר",
+      "live_published": "45.3/D",
+      "head_off": "47.1/D",
+      "recal_on": "49.9/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290114313285",
+      "name": "מולר פרוטאין משקה חלבון בטעם בננה 25גרם חלבון 0%שומן",
+      "live_published": "49.6/D",
+      "head_off": "46.5/D",
+      "recal_on": "49.8/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_8000215204554",
+      "name": "משקה אורז קוקוס אורגני",
+      "live_published": "49.1/D",
+      "head_off": "49.1/D",
+      "recal_on": "49.1/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290110325619",
+      "name": "משקה שיבולת שועל",
+      "live_published": "48.5/D",
+      "head_off": "48.5/D",
+      "recal_on": "48.5/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290119385560",
+      "name": "משקה סויה בריסטה אלפרו 500 מ\"ל",
+      "live_published": "48.7/D",
+      "head_off": "48.4/D",
+      "recal_on": "48.4/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_7290110324773",
+      "name": "משקה חלב גו 27 גרם חלבון 2% בטעם וניל 340 מ\"ל",
+      "live_published": "41.4/D",
+      "head_off": "40.4/D",
+      "recal_on": "42.8/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": false
+    },
+    {
+      "pid": "bsip1_5411188300328",
+      "name": "אלפרו שוקו משקה סויה",
+      "live_published": "38.1/D",
+      "head_off": "34.5/E",
+      "recal_on": "37.0/D",
+      "grade_move_vs_live": false,
+      "grade_move_vs_headoff": true
+    }
+  ]
+}

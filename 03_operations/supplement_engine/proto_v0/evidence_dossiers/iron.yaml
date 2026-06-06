@@ -1,0 +1,195 @@
+# evidence_dossiers/iron.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Iron is the NECESSITY/CONTRAINDICATION-nuance dossier (L1 shelf 1.6% / 6 SKUs). CRITICAL: per SIE Invariant 1,
+# necessity (who needs iron) is reader CONTEXT ONLY and NEVER scored. Iron also carries a real TOXICITY veto
+# (overload/accidental-pediatric-poisoning) — unlike the reversible-GI minerals — and an elemental-vs-compound trap.
+active:
+  canonical_name: "iron"
+  pubchem_cid: 23925                 # elemental Fe
+  molecular_formula: "Fe"
+  molecular_weight: 55.84
+  synonyms: ["iron", "Fe", "ferrous", "7439-89-6"]
+  category: "mineral"
+  compound_forms_identity:           # pubchem identity per form — STABLE
+    - form: "ferrous sulfate"
+      cid: 24393
+      formula: "FeO4S"
+      mw: 151.91
+      elemental_mg_fraction: 0.368   # anhydrous basis; heptahydrate (common) is ~0.20 — NEEDS-ENV-VERIFY hydrate state
+      identity_note: "Label 'ferrous sulfate' is usually the heptahydrate (FeSO4.7H2O, MW 278) -> ~0.20 elemental; anhydrous 0.368. Hydrate state changes the elemental fraction materially — flagged."
+    - form: "ferrous fumarate"
+      cid: 6433164
+      formula: "C4H2FeO4"
+      mw: 169.9
+      elemental_mg_fraction: 0.329
+    - form: "ferrous bisglycinate"
+      cid: 9837124
+      formula: "C4H8FeN2O4"
+      mw: 203.96
+      elemental_mg_fraction: 0.274
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:23252877", "PMID:26314490"]
+    rationale: "Oral iron corrects iron-deficiency anaemia — settled, large RCT/clinical base. NOTE: this is a DEFICIENCY-CORRECTION claim conditional on the user being iron-deficient; that conditionality is reader CONTEXT (SIE Invariant 1), NOT a score input. The engine scores the delivery (dose/form/honesty/safety), never whether the buyer needs iron."
+    tier_rationale: >
+      RATIFIED (D6) Strong — for the repletion endpoint. CRITICAL boundary (SIE Invariant 1): the necessity/deficiency
+      condition is encoded ONLY in necessity_context and surfaced to the reader; it NEVER feeds a sub-score, cap, or
+      grade. A well-delivered iron supplement is well-delivered regardless of whether a given person needs it. We tier
+      the studied endpoint (repletion = Strong); we do NOT score necessity.
+  - claim: "energy / reducing fatigue (in iron-deficient / low-ferritin individuals, incl. non-anaemic)"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:12763985", "PMID:41736325"]
+    rationale: "RCTs show iron reduces fatigue in iron-deficient (incl. non-anaemic, low-ferritin) women; effect is real but population-conditional (no benefit in iron-replete people) -> Moderate. The population conditionality is reader context, not scored."
+    tier_rationale: "RATIFIED (D6) Moderate. Consistent RCT fatigue benefit limited to iron-deficient subgroups -> Moderate. The 'only in deficiency' limitation is context (Invariant 1), the tier is on the studied endpoint."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 18                  # mg/day ELEMENTAL — adult RDA-adjacent maintenance; deficiency-repletion uses higher clinician-directed doses (30-100 mg, time-limited)
+  typical: 18                        # mg/day elemental (maintenance/multivit level)
+  upper_studied: 65                  # mg/day elemental — common repletion supplement dose (e.g. 325 mg ferrous sulfate ~= 65 mg elemental); alternate-day dosing improves absorption
+  unit: "mg"
+  dose_axis: "ELEMENTAL iron — NOT compound mass (§2.2 trap). 325 mg ferrous sulfate label != 325 mg iron; convert via elemental_mg_fraction (and HYDRATE STATE — see ferrous sulfate identity_note)."
+  market_range_dsld: [18, 65]        # DSLD: 18 mg (maintenance) and 28-65 mg (repletion) common. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:23252877"]
+  elemental_fraction: "see compound_forms_identity (per form)"
+  dose_note: "Repletion doses are clinician-directed and population-conditional; the SIE scores the labeled consumer dose vs the studied range, never whether repletion is indicated (Invariant 1)."
+
+forms:
+  preferred: ["ferrous bisglycinate (better tolerated, comparable/possibly better absorption; lower GI burden)", "ferrous sulfate (the studied reference salt — high absorption, more GI effects)"]
+  acceptable: ["ferrous fumarate", "ferrous gluconate"]
+  poor: ["ferric (Fe3+) salts / iron oxide (poorly absorbed vs ferrous Fe2+)", "carbonyl iron mis-sold as equivalent rapid repletion (slower)"]
+  rationale: "Ferrous (Fe2+) salts are well-absorbed; ferrous sulfate is the studied reference but causes more GI intolerance, while bisglycinate is comparably/better absorbed with less GI burden (a genuine tolerability advantage). Ferric (Fe3+) and iron-oxide forms are poorly bioavailable. Form ladder is GI-tolerability- AND absorption-weighted."
+  citations: ["PMID:23252877", "PMID:26314490"]
+  form_ladder_confidence: "medium — ferrous>ferric is robust; bisglycinate-vs-sulfate magnitude has heterogeneity"
+
+safety:
+  upper_limit_UL: 45                 # mg/day ELEMENTAL, adults — HARD VETO line (NIH ODS / IOM). Basis = GI distress acutely AND, critically, iron-OVERLOAD toxicity / accidental pediatric poisoning (a genuine toxicity ceiling, NOT reversible-only).
+  ul_basis: "mg/day elemental, adults. The 45 mg UL is set primarily on GI distress, but iron carries a SEPARATE genuine-toxicity profile: chronic overload (esp. hereditary hemochromatosis) and ACUTE pediatric poisoning (iron is a leading cause of fatal childhood supplement poisoning). -> toxicity-relevant -> HARD VETO above the UL, NOT a soft GI note."
+  ul_source: "NIH ODS Iron fact sheet / US IOM-FNB (45 mg/day adults UL)"
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 veto-vs-note): iron is classified VETO (not note) above 45 mg/day elemental despite the UL's
+    partial GI basis, because iron uniquely carries genuine systemic-toxicity and acute-poisoning hazard (overload,
+    pediatric fatalities) — it meets the harm bar §2.5 reserves for a hard floor. This DIFFERS from vitamin C/magnesium
+    (reversible GI -> note): iron's hazard is not self-limiting. NEEDS-ENV-VERIFY 45 mg primary value. The
+    contraindication context (hemochromatosis, take only if deficient) is reader context (Invariant 1), never scored.
+  ul_externally_maintained: true
+  risky_flags: ["iron overload / hemochromatosis (genuine toxicity) -> veto basis", "ACCIDENTAL PEDIATRIC POISONING — leading cause of fatal childhood supplement poisoning (child-resistant packaging is a regulatory/legitimacy signal, not scored, but noted)", "non-anaemic supplementation without indication -> overload risk over time (reader context)"]
+  notes: "Iron's UL is toxicity-relevant (overload + pediatric poisoning), unlike the reversible-GI minerals -> hard veto. Necessity/indication is CONTEXT ONLY (Invariant 1)."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Iron UL=45 mg adults", "PMID:26314490"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "energy"
+    resolves_to: "energy / reducing fatigue (in iron-deficient / low-ferritin individuals, incl. non-anaemic)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:12763985", "PMID:41736325"]
+    supp_ev: "SUPP-EV-009"
+    rationale: >
+      MAPS at MODERATE (BEST). 'Energy'/'fatigue' is a recognized physiological correlate of iron's studied fatigue
+      endpoint in iron-deficient individuals — unlike most other actives where 'energy' is a hand-wave, iron has a
+      genuine cited fatigue RCT base. So 'energy' maps to Moderate here. The population conditionality (only in
+      deficiency) is reader context (Invariant 1), NOT a reason to down-tier or refuse the mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "immune support"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-009"
+    rationale: >
+      DOES NOT MAP. Iron has an immune-function role in DEFICIENCY states, but there is no recognized studied
+      'immune benefit' endpoint for iron supplementation in replete adults — a deficiency-state finding generalized to
+      a benefit claim, which §2.1 explicitly excludes. No recognized cited correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "blood"
+    resolves_to: "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)"
+    resolved_tier: "Strong"
+    citations: ["PMID:23252877", "PMID:26314490"]
+    supp_ev: "SUPP-EV-009"
+    rationale: >
+      MAPS at STRONG. 'Blood'/'blood health' is a recognized physiological correlate of iron's anaemia-correction
+      endpoint (haemoglobin synthesis). This is the strongest mapped tier. NOTE: a 'blood building' claim that escalates
+      to a disease cure ('cures anaemia') for a general buyer would still resolve to Strong here but the necessity
+      conditionality stays reader-context; an over-specific disease claim is policed by §2.4 Honesty, not by refusing the map.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # Iron EFSA Art.13: normal formation of red blood cells/haemoglobin, reduction of tiredness and fatigue, immune function.
+  # Necessity conditionality stays reader-context only (Invariant 1) — NEVER a reason to refuse a mapping.
+  - phrase: "עייפות"                   # "fatigue" (Hebrew) — EFSA "reduction of tiredness and fatigue"
+    resolves_to: "energy / reducing fatigue (in iron-deficient / low-ferritin individuals, incl. non-anaemic)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:12763985", "PMID:41736325"]
+    supp_ev: "SUPP-EV-009"
+    rationale: >
+      MAPS at MODERATE. EFSA Art.13 authorizes "iron contributes to the reduction of tiredness and fatigue"
+      (EFSA Q-2008-1215) AND iron has a genuine cited fatigue RCT base in iron-deficient (incl. non-anaemic) individuals.
+      Hebrew alias of the English "energy" key. Population conditionality = reader context (Invariant 1), NOT a reason
+      to down-tier or refuse.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "תשישות"                   # "tiredness" (Hebrew, EFSA pairing)
+    resolves_to: "energy / reducing fatigue (in iron-deficient / low-ferritin individuals, incl. non-anaemic)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:12763985", "PMID:41736325"]
+    supp_ev: "SUPP-EV-009"
+    rationale: "MAPS at MODERATE. Second word of EFSA's 'עייפות ותשישות' (reduction of tiredness and fatigue, Q-2008-1215). Same routing as 'עייפות'."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "דם"                       # "blood" (Hebrew) — EFSA "normal formation of red blood cells and haemoglobin"
+    resolves_to: "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)"
+    resolved_tier: "Strong"
+    citations: ["PMID:23252877", "PMID:26314490"]
+    supp_ev: "SUPP-EV-009"
+    rationale: >
+      MAPS at STRONG (BEST). EFSA Art.13 authorizes "iron contributes to normal formation of red blood cells and
+      haemoglobin" (EFSA Q-2008-1215). Hebrew alias of the English "blood" key — strongest mapped tier.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Iron label "supports energy & healthy blood, immune" resolves: blood->anaemia-correction=Strong (maps, BEST),
+    energy->fatigue=Moderate (maps), immune->null (deficiency-only, does NOT map). Best mapped tier = STRONG (blood).
+    Necessity is NEVER scored (Invariant 1) — it is surfaced as context only.
+
+label_claims_common: ["energy", "fatigue", "blood health", "iron deficiency", "women's health"]
+necessity_context: >
+  Iron is necessary ONLY for iron-deficient individuals; supplementing without deficiency risks overload. THIS IS
+  READER CONTEXT ONLY and is the canonical SIE Invariant 1 case: the engine NEVER scores, ranks, or implies whether a
+  person needs iron. A well-delivered iron supplement scores on its delivery (dose/form/honesty/safety), full stop.
+contraindication_notes: "Hereditary hemochromatosis, repeated transfusion, active infection (context); KEEP AWAY FROM CHILDREN (acute poisoning). Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-009"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: "Tiers: anaemia-correction Strong, fatigue Moderate (both population-conditional = reader context only, NEVER scored — Invariant 1). UL 45 mg = TOXICITY veto (overload + pediatric poisoning), not a reversible-GI note. Umbrella: blood->Strong (best), energy->Moderate, immune->null. Candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); UL re-sync annual"
+  field_stability:
+    stable: ["pubchem_cid", "compound_forms_identity", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (45 mg/day adults)"
+      last_resync: "2026-06-03"
+      resync_note: "toxicity-relevant veto basis. NEEDS-ENV-VERIFY. Hydrate-state of ferrous sulfate affects elemental fraction — verify."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: עייפות/תשישות→fatigue(Moderate, EFSA Q-2008-1215 tiredness/fatigue); דם→anaemia-correction(Strong, EFSA Q-2008-1215 red-cell/haemoglobin). Necessity conditionality remains reader-context only (Invariant 1)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-009"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

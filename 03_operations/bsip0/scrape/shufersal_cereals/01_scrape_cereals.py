@@ -88,13 +88,16 @@ CATEGORY_URLS: list[tuple[str, str]] = [
     (f"{BASE}/online/he/c/A07?pageSize={PAGE_SIZE}", "A07_breakfast"),
 ]
 
-# Name-based EXCLUDE signals (bars / crackers / drinks / infant / spreads)
+# Name-based EXCLUDE signals (bars / crackers / drinks / infant / spreads / ptitim-pasta)
 EXCLUDE_SIGNALS = [
     "חטיף", "חטיפי", " bar", "בר ", "ביסקוויט", "עוגי", "עוגיו", "ופל", "wafer",
     "קרקר", "cracker", "פריכית", "פריכיות", "rice cake",
     "משקה", "drink", "שתיה", "שתייה", "חלב ", "יוגורט", "yogurt", "yoghurt",
     "דייסת תינוק", "מטרנה", "סימילק", "תוסף", "קפסול",
     "תה ", "קפה", "חמאת", "ממרח", "שוקולד למריחה",
+    # EV-045 — Israeli ptitim PASTA (Osem/Intaria/השדה), a starch side-dish, not a cereal.
+    # "פתיתים אפויים" + shapes leaked via the "פתיתי" include token (TASK-140, owner 2026-06-05).
+    "פתיתים אפויים", "פתיתים אורגנים", "בן גוריון", "פתיתי בצק",
 ]
 
 # Name-based INCLUDE gate (must look like a breakfast cereal)

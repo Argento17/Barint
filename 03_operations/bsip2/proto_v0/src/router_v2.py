@@ -111,6 +111,12 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("דנונה ביו", "dairy_protein", "bio_yogurt", 0.93),
     ("דנונה יווני", "dairy_protein", "greek_yogurt", 0.93),
     # ── Whole-food fats ───────────────────────────────────────────────────────
+    # TASK-191 — butter anchor. "חמאה" leads the product name for all pure dairy
+    # butter SKUs. Confidence 0.92 beats Stage 2 cracker/default signals that fire
+    # on "מלוחה" (salted) when no ingredient list is present. Must appear AFTER
+    # nut-butter anchors (חמאת בוטנים etc.) so those remain more specific.
+    # Exclusions: nut-butter phrases and "ממרח" spreads (handled below).
+    ("חמאה",           "whole_food_fat",    "dairy_butter",   0.92),
     ("טחינה",          "whole_food_fat",    "tahini",         0.93),
     # ── Dairy desserts (מעדנים) ─────────────────────────────────────────────────
     ("מילקי",          "dessert",           "milky_style",    0.96),
@@ -147,6 +153,12 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     # "שיבולת שועל" must not fire for oat drinks (beverage) or snack bars using oats as ingredient
     "שיבולת שועל":    ["לחם", "עוגיות", "מאפה", "ביסקוויט", "פריכיות",
                        "משקה", "שתייה", "חטיפי", "חטיף", "ברים"],
+    # TASK-191 — "חמאה" dairy butter anchor exclusions.
+    # Must not fire on: nut butter products ("חמאת X"), butter-flavored snacks, or
+    # spreads with "ממרח". The nut-butter multi-word anchors already outcompete this
+    # anchor via specificity (longer match), but we also add the exclusion as a guard.
+    "חמאה":           ["חמאת", "ממרח", "בטעם חמאה", "שמן קוקוס",
+                       "שמן דקל", "מרגרינה", "פלמנטין", "שומן אפייה"],
     # Nut butter anchors must not fire when the butter is a FILLING, not the product itself
     "חמאת בוטנים":    ["חטיף", "מילוי", "עוגיות", "שכבת"],
     "חמאת שקדים":     ["חטיף", "מילוי", "עוגיות", "שכבת"],

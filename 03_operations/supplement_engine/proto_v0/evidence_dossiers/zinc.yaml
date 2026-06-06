@@ -1,0 +1,225 @@
+# evidence_dossiers/zinc.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Zinc is a MINERAL coverage dossier (L1 shelf 2.2% / 8 SKUs). Exercises the same elemental-vs-compound + form-ladder
+# machinery as magnesium (oxide = high elemental, low absorbed; picolinate/citrate/gluconate better). Mirrors Mg pattern.
+active:
+  canonical_name: "zinc"
+  pubchem_cid: 23994                 # elemental Zn
+  molecular_formula: "Zn"
+  molecular_weight: 65.4
+  synonyms: ["zinc", "Zn", "7440-66-6"]
+  category: "mineral"
+  compound_forms_identity:           # pubchem identity per form — STABLE
+    - form: "zinc oxide"
+      cid: 3007857
+      formula: "OZn"
+      mw: 81.4
+      elemental_mg_fraction: 0.803   # HIGH elemental per mass (the trap — poorly absorbed)
+    - form: "zinc gluconate"
+      cid: 443445
+      formula: "C12H22O14Zn"
+      mw: 455.7
+      elemental_mg_fraction: 0.144
+    - form: "zinc picolinate"
+      cid: 9904746
+      formula: "C12H8N2O4Zn"
+      mw: 309.6
+      elemental_mg_fraction: 0.211
+    - form: "zinc sulfate"
+      cid: 24424
+      formula: "O4SZn"
+      mw: 161.4
+      elemental_mg_fraction: 0.405
+    - form: "zinc citrate"
+      cid: 100943
+      formula: "C12H10O14Zn3"
+      mw: 574.36
+      elemental_mg_fraction: 0.342
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "correcting/preventing zinc deficiency"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED
+    tier_confidence: "high"
+    citations: ["PMID:38367035", "PMID:29186856"]
+    rationale: "Zinc repletion corrects deficiency — settled. Deficiency-correction (dose->status) claim; Strong but does NOT inherit upward to the immune/cold marketing halo."
+    tier_rationale: "RATIFIED (D6). Repletion is the settled endpoint. Claim-specific Strong, repletion only."
+  - claim: "common cold — reduced duration when started within 24h of onset (zinc lozenges/acetate/gluconate)"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:23775705", "PMID:28515951"]
+    rationale: "Meta-analyses (Cochrane/SR) show zinc started within 24h of cold onset reduces duration; effect is real but heterogeneous (lozenge form, dose, ionic-zinc availability matter) and does NOT prevent colds. Consistent-but-conditional -> Moderate."
+    tier_rationale: >
+      RATIFIED (D6) Moderate. Replicated duration-reduction with meaningful limitations (timing-, form-, and dose-
+      dependent; high doses cause nausea/dysgeusia; no prevention) = Moderate (§2.1). This is the therapeutic-lozenge
+      claim; a daily oral-zinc capsule for general 'immunity' is the broad Weak claim below.
+  - claim: "broad 'immune system support' (daily oral zinc, general wellness)"
+    proposed_evidence_tier: "Weak"
+    evidence_tier: "Weak"            # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:29186856", "PMID:23775705"]
+    rationale: "Zinc is required for normal immune function (EFSA-recognized structure/function relationship); but a broad 'boosts immunity / fewer infections in replete adults' benefit from daily oral zinc is thin beyond the deficiency-correction and acute-lozenge contexts -> Weak."
+    tier_rationale: "RATIFIED (D6) Weak. Recognized immune role (maps an 'immune support' label) but the broad daily-capsule benefit is not Moderate-grade outside deficiency/lozenge contexts."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 8                   # mg/day ELEMENTAL — RDA-adjacent maintenance floor (women 8 / men 11)
+  typical: 15                        # mg/day elemental — common supplement dose
+  upper_studied: 40                  # mg/day elemental = the adult UL (studied ceiling coincides with UL)
+  unit: "mg"
+  dose_axis: "ELEMENTAL zinc — NOT compound mass (§2.2 trap). Convert label compound mass x elemental_mg_fraction. Lozenge acute-cold dosing (~75-100 mg/day short-term) is a distinct therapeutic regimen, time-limited."
+  market_range_dsld: [8, 50]         # DSLD: 15-50 mg elemental common; 50 mg labels approach/exceed the 40 mg UL. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:38367035"]
+  elemental_fraction: "see compound_forms_identity (per form)"
+
+forms:
+  preferred: ["zinc picolinate", "zinc citrate", "zinc gluconate (acetate for lozenges)"]
+  acceptable: ["zinc sulfate", "zinc bisglycinate"]
+  poor: ["zinc oxide (high elemental per mass 0.803 but lowest fractional absorption — 'oxide paradox', as in magnesium)"]
+  rationale: "Organic zinc salts (picolinate, citrate, gluconate) and sulfate show higher fractional absorption than oxide in human bioavailability studies. Oxide is HIGH elemental per compound mass but POORLY absorbed — high on the Dose elemental axis, low on Form (§2.3 oxide paradox; intentional non-double-count). For acute-cold lozenges, ionic-zinc availability (acetate/gluconate, no chelators) matters."
+  citations: ["PMID:16372518", "PMID:23775705"]
+  form_ladder_confidence: "medium — bioavailability ranking established directionally; some heterogeneity"
+  trap_note: "'high elemental zinc' on an OXIDE label is technically true but misleading (high elemental != high absorbed). Form scores it low; Honesty (§2.4) debits the misleading framing. Both fire — distinct failures."
+
+safety:
+  upper_limit_UL: 40                 # mg/day ELEMENTAL, adults — HARD VETO line (NIH ODS / IOM). Basis = copper-deficiency / impaired immune & lipid effects from chronic excess (a genuine toxicity-relevant ceiling, NOT reversible GI).
+  ul_basis: "mg/day elemental, adults. Chronic intake >40 mg/day impairs copper status (copper-deficiency anemia, neurologic effects) -> a real toxicity ceiling -> HARD VETO, not a soft note. Acute single high doses also cause nausea (separate, acute)."
+  ul_source: "NIH ODS Zinc fact sheet / US IOM-FNB (40 mg/day adults). EFSA UL = 25 mg/day adults (DISCREPANT — see governing decision)."
+  ul_secondary: 25                   # EFSA adult UL — DISCREPANT with NIH/IOM 40
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 veto-vs-note + discrepant-authority rule): zinc's UL is a genuine TOXICITY-relevant ceiling
+    (chronic copper antagonism), so it governs a HARD VETO (unlike vitamin C / magnesium's reversible GI thresholds).
+    NIH/IOM = 40 mg/day, EFSA = 25 mg/day — DISCREPANT. Per the meta-rule (registry SUPP-EV-005): the veto sits at the
+    most-credible TOLERANCE/HAZARD threshold. Both NIH and EFSA ULs are copper-antagonism-based toxicity thresholds, so
+    (like magnesium's two GI thresholds) the LOWER credible toxicity bound is the conservative veto candidate. HOWEVER
+    this is a CALIBRATION choice that MOVES behavior and needs Product co-sign before it scores: I propose VETO at 40
+    (NIH/IOM, the more commonly cited supplement-context ceiling) with a Safety NOTE in the 25-40 band (EFSA's lower
+    bound). This mirrors the magnesium graded reading (hard veto at the higher toxicity bound, soft note at the lower).
+    NEEDS-ENV-VERIFY both 40 (NIH) and 25 (EFSA). Candidate / calibration-pending; per-number Product gate if it moves a score.
+  ul_note_threshold: 25              # EFSA lower bound -> Safety NOTE band (25-40 mg/day)
+  ul_externally_maintained: true
+  risky_flags: ["chronic >40 mg/day -> copper deficiency (real harm) -> veto basis", "intranasal zinc (anosmia) is a separate route-specific hazard, out of oral-SKU scope"]
+  notes: "Unlike vitamin C/magnesium (reversible GI tolerance), zinc's UL is a real toxicity ceiling (copper antagonism) -> hard veto, with a graded note in the 25-40 discrepancy band."
+  safety_citations: ["NEEDS-ENV-VERIFY: NIH ODS Zinc UL=40 mg adults", "NEEDS-ENV-VERIFY: EFSA Zinc UL=25 mg adults", "PMID:29186856"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "immune support"
+    resolves_to: "common cold — reduced duration when started within 24h of onset (zinc lozenges/acetate/gluconate)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23775705", "PMID:28515951"]
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      MAPS at MODERATE (BEST). 'Immune support' is a recognized physiological correlate of zinc's immune role; the
+      strongest cited studied endpoint is the acute-cold duration reduction (Moderate). NOTE: that endpoint is the
+      lozenge/acute-onset regimen; a daily oral-zinc capsule sold 'for immunity' arguably resolves to the broad Weak
+      endpoint instead. Authoring decision: map 'immune support' to the BEST plausible studied endpoint (Moderate) per
+      §2.1 step 2 (most-favourable-mapped), and let Honesty (§2.4) police a daily capsule asserting acute-cure language.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "skin"
+    resolves_to: "broad 'immune system support' (daily oral zinc, general wellness)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29186856"]
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      MAPS at WEAK. Zinc has a recognized role in skin integrity/wound healing (and zinc deficiency causes dermatitis),
+      so 'skin' maps to a recognized physiological correlate — but a skin-OUTCOME benefit in replete adults from oral
+      zinc is thin/observational (acne evidence is heterogeneous). Maps (recognized + cited), held Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "antioxidant"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      DOES NOT MAP. Zinc is a cofactor for superoxide dismutase (a mechanistic antioxidant role), but there is no
+      recognized studied consumer 'antioxidant benefit' endpoint for zinc supplementation in replete adults — this is
+      a mechanism-only hand-wave, which §2.1 explicitly excludes. No recognized cited correlate -> no mapping.
+      (NOTE: EFSA Art.13 DOES authorize a zinc "protection of cells from oxidative stress" claim; the dossier's prior
+      D6 decision held the consumer 'antioxidant' benefit null. TASK-171K does not re-adjudicate it — flagged for the
+      next sweep as a candidate EFSA-divergence, like magnesium 'nerve'.)
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew + EFSA Art.13 claim vocab (candidate, should_affect_score_now:false) ===
+  # Zinc EFSA Art.13: immune function, normal skin/hair/nails, cognitive function, fertility — routed to existing tiers.
+  - phrase: "חיזוק חיסוני"             # "immune support" (Hebrew) — EFSA "normal function of the immune system"
+    resolves_to: "common cold — reduced duration when started within 24h of onset (zinc lozenges/acetate/gluconate)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23775705", "PMID:28515951"]
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      MAPS at MODERATE (BEST). EFSA Art.13 authorizes "zinc contributes to the normal function of the immune system"
+      (EFSA Q-2008-1322). Hebrew alias of the English "immune support" key, routed to the same best cited endpoint
+      (acute-cold duration = Moderate); Honesty (§2.4) polices a daily capsule asserting acute-cure language.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "מערכת החיסון"             # "the immune system" (Hebrew)
+    resolves_to: "common cold — reduced duration when started within 24h of onset (zinc lozenges/acetate/gluconate)"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23775705", "PMID:28515951"]
+    supp_ev: "SUPP-EV-008"
+    rationale: "MAPS at MODERATE. Plain Hebrew immune-system phrasing; same EFSA Art.13 basis/routing as 'חיזוק חיסוני'."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "עור"                      # "skin" (Hebrew) — EFSA "maintenance of normal skin"
+    resolves_to: "broad 'immune system support' (daily oral zinc, general wellness)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29186856"]
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "zinc contributes to the maintenance of normal skin" (EFSA Q-2008-1322).
+      Hebrew alias of the English "skin" key — recognized role maps; replete-adult skin-OUTCOME benefit thin → Weak.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "שיער"                     # "hair" (Hebrew) — EFSA "maintenance of normal hair"
+    resolves_to: "broad 'immune system support' (daily oral zinc, general wellness)"
+    resolved_tier: "Weak"
+    citations: ["PMID:29186856"]
+    supp_ev: "SUPP-EV-008"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "zinc contributes to the maintenance of normal hair/nails" (EFSA Q-2008-1322)
+      — a recognized + permitted correlate, so 'שיער/hair' MAPS (CONTRAST biotin, where hair is null: biotin's hair
+      benefit is deficiency-confined with NO EFSA authorization; zinc HAS an EFSA hair relationship). Held Weak: the
+      EFSA structure/function relationship is recognized but a consumer cosmetic benefit in replete adults is thin.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Zinc label "supports immune & skin health, antioxidant" resolves: immune->cold-duration=Moderate (maps, BEST),
+    skin->Weak (maps), antioxidant->null (mechanism-only, does NOT map). Best mapped tier = MODERATE. A vague immune
+    zinc is NOT Insufficient.
+
+label_claims_common: ["immune support", "skin health", "antioxidant", "acne", "high potency"]
+necessity_context: "Essential mineral; deficiency exists. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Chronic high intake antagonizes copper. Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-008"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: "Tiers: repletion Strong, acute-cold-duration Moderate, broad immune Weak. UL 40 mg = TOXICITY veto (copper antagonism), EFSA 25 = graded NOTE band; discrepant -> Product co-sign if it moves a score. Umbrella: immune->Moderate (best), skin->Weak, antioxidant->null. Candidate / should_affect_score_now:false."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); UL re-sync annual (NIH/EFSA discrepancy tracked)"
+  field_stability:
+    stable: ["pubchem_cid", "compound_forms_identity", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL", "forms"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "NIH ODS / US IOM-FNB (40) + EFSA (25, discrepant)"
+      last_resync: "2026-06-03"
+      resync_note: "discrepant NIH 40 vs EFSA 25; graded reading proposed. NEEDS-ENV-VERIFY both."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: חיזוק חיסוני/מערכת החיסון→acute-cold(Moderate, EFSA Q-2008-1322 immune); עור→Weak(EFSA skin); שיער→Weak(EFSA hair/nails — maps, CONTRAST biotin hair=null since zinc HAS EFSA authorization). 'antioxidant'-null left unchanged (EFSA-divergence flagged for sweep, not re-adjudicated)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-008"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return)."

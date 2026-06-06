@@ -1,0 +1,239 @@
+{
+  "sku_id": "POC-IL-MAGNESIUM-CGN-103273",
+  "dossier_active": "magnesium",
+  "provenance": {
+    "source": "iherb.com",
+    "source_id": "iherb:103273",
+    "source_url": "https://www.iherb.com/pr/california-gold-nutrition-magnesium-bisglycinate-chelate-albion-traacs-60-veggie-capsules-100-mg-per-capsule/103273",
+    "fetched_at": "2026-06-03T09:27:00Z",
+    "client_version": "firecrawl_scrape(json)/v2 + iHerb PDP",
+    "verification_status": "candidate",
+    "admission_note": "candidate only; demonstrates acquisition->engine reach; no BSIP0/QA pass; does NOT move any published score.",
+    "extraction_notes": "Panel lists 200 mg ELEMENTAL magnesium (from bisglycinate + a minor oxide). Passed as elemental; form='bisglycinate' to hit the form ladder WITHOUT re-triggering elemental conversion. On-label claim is structure/function ('bone, heart, nerve, muscle'), NOT one of the dossier's studied endpoints (BP / sleep) -> mapped to 'blood pressure reduction' is NOT honest; left as a vague claim that will resolve Insufficient. This is the real 'untethered claim' case."
+  },
+  "raw_extracted_panel": {
+    "brand": "California Gold Nutrition",
+    "product_name": "Magnesium Bisglycinate Chelate (Albion TRAACS)",
+    "primary_claim_on_label": "Supports bone, heart, nerve, and muscle health",
+    "barcode": "898220019014",
+    "serving_size": "2 capsules",
+    "servings_per_day_label": 30,
+    "proprietary_blend": false,
+    "active": {
+      "ingredient": "Magnesium",
+      "amount": 200,
+      "unit": "mg",
+      "form": "bisglycinate",
+      "basis": "elemental (per label)"
+    }
+  },
+  "missing_or_lossy_fields": [
+    "on-label studied endpoint (label claim is structure/function, not a dossier claim tier)"
+  ],
+  "bsip0s_label": {
+    "product_name": "California Gold Magnesium Bisglycinate 200 mg elemental",
+    "primary_claim_fed": "bone, heart, nerve and muscle health (structure/function)",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "Magnesium (bisglycinate)",
+        "quantity": 200,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ],
+    "servings_per_day": 1.0,
+    "labeled_regimen": "daily"
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "blend": 60.7,
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.1.0",
+    "methodology_version": "methodology_v1.md v1.2",
+    "trace_generated_at": "2026-06-03T09:32:38.190721Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "POC-IL-MAGNESIUM-CGN-103273",
+    "active": "magnesium",
+    "on_label_claim": "bone, heart, nerve and muscle health (structure/function)",
+    "claim_matched": null,
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 60.7,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  },
+  "claim_resolution_rescore": {
+    "_note": "v1.3 claim-resolution rescore (TASK-171E, Data D8 implementation). The ORIGINAL engine_output + trace above (E/34, binding cap_1_insufficient_evidence) are kept VISIBLE for before/after. Under the co-signed claim-resolution logic the vague structure/function claim 'bone, heart, nerve and muscle health' RESOLVES via the magnesium structure_function_umbrella: heart->blood pressure reduction=Moderate (BEST mapped tier), bone->BMD=Weak, muscle->sarcopenia=Weak, nerve->NON-MAPPING (no recognized cited correlate). Best plausibly-mapped tier=Moderate -> Evidence no longer Insufficient -> cap_1 does NOT fire -> moves off E to B.",
+    "rule": "methodology_v1.md v1.3 §2.1 claim resolution + §5 structure_function_umbrella (SUPP-EV-006); §2.4 over-promise catch not triggered (claim is compliant-vague, not over-specific).",
+    "before": { "score": 34.0, "grade": "E", "binding_constraint": "cap_1_insufficient_evidence", "evidence_tier": "Insufficient", "claim_matched": null },
+    "after":  { "score": 77.3, "grade": "B", "binding_constraint": "blend_dominant_limit", "evidence_tier": "Moderate", "claim_matched": "blood pressure reduction" },
+    "verification_status": "candidate",
+    "should_affect_score_now": false,
+    "carried_forward_data_qa_item": "Per methodology §5.1: the ACTUAL score-move (E->B becoming authoritative) requires (a) flipping SUPP-EV-006 should_affect_score_now true AND (b) QA re-validation of this PoC + the golden corpus under the co-signed rule. NEITHER is done here — left as a carried-forward Data+QA item. The PoC remains candidate / should_affect_score_now:false; the B/77.3 below is the EXPECTED result of the co-signed logic, NOT a shipped score.",
+    "engine_output": {
+      "claim_matched": "blood pressure reduction",
+      "score": 77.3,
+      "grade": "B",
+      "blend": 77.3,
+      "binding_constraint": {
+        "mechanism": "blend_dominant_limit",
+        "machine_reason": "limited_by_weakest_applicable_dimension"
+      },
+      "sub_scores": {
+        "evidence": 72.0,
+        "dose": 61.3,
+        "form": 92,
+        "honesty": 100,
+        "safety": "neutral"
+      },
+      "signature": {
+        "evidence": "HIGH",
+        "dose": "MID",
+        "form": "HIGH",
+        "honesty": "HIGH",
+        "safety": "NEUTRAL"
+      },
+      "claim_resolution": {
+        "via_umbrella": true,
+        "resolved_endpoint": "blood pressure reduction",
+        "resolved_phrase": "heart health",
+        "resolved_tier": "Moderate",
+        "resolution_supp_ev": "SUPP-EV-002",
+        "resolution_citations": ["PMID:27402922", "PMID:41000008", "PMID:39519450"],
+        "umbrella_mapped": [
+          { "phrase": "heart health", "resolves_to": "blood pressure reduction", "resolved_tier": "Moderate", "supp_ev": "SUPP-EV-002" },
+          { "phrase": "bone health", "resolves_to": "bone mineral density (BMD) in older adults", "resolved_tier": "Weak", "supp_ev": "SUPP-EV-006" },
+          { "phrase": "muscle health", "resolves_to": "muscle mass / strength (sarcopenia) in older adults", "resolved_tier": "Weak", "supp_ev": "SUPP-EV-006" }
+        ],
+        "umbrella_present_nonmapping": ["nerve health"],
+        "over_promise": false,
+        "over_promise_markers": []
+      },
+      "caps_vetoes_fired": []
+    },
+    "trace": {
+      "sie_engine_version": "proto_v0",
+      "sie_algorithm_version": "0.1.0",
+      "methodology_version": "methodology_v1.md v1.3",
+      "verification_status": "candidate",
+      "calibration_pending": true,
+      "sku_id": "POC-IL-MAGNESIUM-CGN-103273",
+      "active": "magnesium",
+      "on_label_claim": "bone, heart, nerve and muscle health (structure/function)",
+      "claim_matched": "blood pressure reduction",
+      "claim_resolution": {
+        "via_umbrella": true,
+        "resolved_endpoint": "blood pressure reduction",
+        "resolved_phrase": "heart health",
+        "resolved_tier": "Moderate",
+        "resolution_supp_ev": "SUPP-EV-002",
+        "resolution_citations": ["PMID:27402922", "PMID:41000008", "PMID:39519450"],
+        "umbrella_mapped": [
+          { "phrase": "heart health", "resolves_to": "blood pressure reduction", "resolved_tier": "Moderate", "supp_ev": "SUPP-EV-002" },
+          { "phrase": "bone health", "resolves_to": "bone mineral density (BMD) in older adults", "resolved_tier": "Weak", "supp_ev": "SUPP-EV-006" },
+          { "phrase": "muscle health", "resolves_to": "muscle mass / strength (sarcopenia) in older adults", "resolved_tier": "Weak", "supp_ev": "SUPP-EV-006" }
+        ],
+        "umbrella_present_nonmapping": ["nerve health"],
+        "over_promise": false,
+        "over_promise_markers": []
+      },
+      "sub_scores": {
+        "evidence": { "value": 72.0, "tier": "Moderate" },
+        "dose": { "value": 61.3, "reason": "sub_therapeutic" },
+        "form": { "value": 92 },
+        "honesty": { "value": 100 },
+        "safety": { "value": "neutral", "reason": "within_ul" }
+      },
+      "signature": { "evidence": "HIGH", "dose": "MID", "form": "HIGH", "honesty": "HIGH", "safety": "NEUTRAL" },
+      "caps_vetoes_fired": [],
+      "binding_constraint": { "mechanism": "blend_dominant_limit", "machine_reason": "limited_by_weakest_applicable_dimension" },
+      "also_fired": [],
+      "blend": 77.3,
+      "dossier_facts_used": [
+        { "field": "structure_function_umbrella[heart health].resolved_tier", "value": "Moderate", "supp_ev": "SUPP-EV-006", "resolves_to": "blood pressure reduction" },
+        { "field": "claims[blood pressure reduction].evidence_tier", "value": "Moderate", "supp_ev": "SUPP-EV-002" }
+      ],
+      "final": { "score": 77.3, "grade": "B" }
+    }
+  }
+}

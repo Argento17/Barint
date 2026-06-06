@@ -1,0 +1,208 @@
+{
+  "sku_id": "SP-7290013142894",
+  "barcode": "7290013142894",
+  "name_he": "מגנזיום UP אלטמן 60 כמוסות",
+  "brand_bucket": "altman",
+  "engine_active": "magnesium",
+  "price_ils": 83.9,
+  "resolution": {
+    "matched": true,
+    "method": "brand_active_dose",
+    "source": "altman",
+    "confidence": 0.75,
+    "ambiguous": false,
+    "reason": "brand_active_dose match via altman"
+  },
+  "verification_status": "candidate",
+  "outcome": "scored",
+  "panel": {
+    "url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+    "source": "altman",
+    "brand": "אלטמן",
+    "product_name": "מגנזיום Balance",
+    "barcode": "7290019444206",
+    "serving_size": "1 כמוסה",
+    "servings_per_container": "60",
+    "ingredient_list_raw": "מגנזיום אוקסיד, כמוסה צמחית (הידרוקסיפרופיל מתיל צלולוז), תמצית אשווגנדה (5%), מיצוי ולריאן (5%), פירידוקסין הידרוכלוריד(ויטמין B6)",
+    "primary_claim": "שילוב ייחודי של מגנזיום וצמחים לפעילות משולבת",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום",
+        "amount": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "אוקסיד",
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "תמצית אשווגנדה KSM-66",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": null,
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "מיצוי ולריאן",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": null,
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין B6",
+        "amount": 30.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "HCl",
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "7290019444206",
+      "source_url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+      "fetched_at": "2026-06-03T13:56:33Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "claim_note": "claim curated from on-label HE: 'שילוב ייחודי של מגנזיום וצמחים לפעילות משולבת'",
+  "lossy": [],
+  "bsip0s_label": {
+    "product_name": "מגנזיום Balance",
+    "primary_claim_fed": "heart health",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום",
+        "quantity": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "blood pressure reduction",
+    "score": 20.0,
+    "grade": "E",
+    "blend": 70.6,
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "sub_scores": {
+      "evidence": 72.0,
+      "dose": 72,
+      "form": 45,
+      "honesty": 100,
+      "safety": "veto"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-03T13:56:33.937272Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290013142894",
+    "active": "magnesium",
+    "on_label_claim": "heart health",
+    "claim_matched": "blood pressure reduction",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "blood pressure reduction",
+      "resolved_phrase": "heart health",
+      "resolved_tier": "Moderate",
+      "resolution_supp_ev": "SUPP-EV-002",
+      "resolution_citations": [
+        "PMID:27402922",
+        "PMID:41000008",
+        "PMID:39519450"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "heart health",
+          "resolves_to": "blood pressure reduction",
+          "resolved_tier": "Moderate",
+          "supp_ev": "SUPP-EV-002"
+        }
+      ],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 72.0,
+        "tier": "Moderate"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 45
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "veto",
+        "reason": "exceeds_UL"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "also_fired": [],
+    "blend": 70.6,
+    "dossier_facts_used": [
+      {
+        "field": "claims['blood pressure reduction'].evidence_tier",
+        "value": "Moderate",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 20.0,
+      "grade": "E"
+    }
+  }
+}

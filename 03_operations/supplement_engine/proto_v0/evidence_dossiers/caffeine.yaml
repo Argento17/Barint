@@ -1,0 +1,116 @@
+# evidence_dossiers/caffeine.yaml   (schema v1 — Phase 1, TASK-171B)
+# verification_status: candidate — NO score movement. Tiers are PROPOSALS for Nutrition D6/D7 co-sign.
+# Caffeine LEADS the Formulation Honesty dimension (proprietary-blend dose-hiding).
+active:
+  canonical_name: "caffeine"
+  pubchem_cid: 2519
+  molecular_formula: "C8H10N4O2"
+  molecular_weight: 194.19
+  synonyms: ["caffeine", "caffeine anhydrous", "1,3,7-trimethylxanthine", "58-08-2", "guaranine", "methyltheobromine"]
+  category: "stimulant"
+
+claims:                              # PROPOSED — pending Nutrition co-sign
+  - claim: "ergogenic / exercise performance (endurance, strength/power)"
+    proposed_evidence_tier: "Strong"
+    evidence_tier: "Strong"          # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "high"
+    citations: ["PMID:29876876", "PMID:30926628", "PMID:29527137", "PMID:36615805"]
+    rationale: "Large, consistent meta-analytic base (incl. BJSM consensus-aligned SR/MA) shows caffeine improves endurance and muscular strength/power at 3-6 mg/kg. Well-replicated -> Strong."
+    tier_rationale: "RATIFIED (Nutrition D6). Dose-anchored (3-6 mg/kg), large consistent MA base, IOC/BJSM-consensus aligned. Unambiguous Strong."
+  - claim: "alertness / vigilance / cognitive performance (acute)"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED as proposed
+    tier_confidence: "medium-high"
+    citations: ["PMID:20464765", "PMID:33800853"]
+    rationale: "Cochrane (20464765, shift-work errors/injuries) + sports-cognition SR/MA support acute alertness/vigilance benefit. Effect on simple alertness is robust; broader 'cognitive enhancement' framing weaker -> Moderate (claim-dependent)."
+    tier_rationale: >
+      RATIFIED (Nutrition D6) at Moderate, NOT Strong — deliberate. Acute alertness/vigilance is robust, but the
+      claim as commonly MARKETED bundles broad 'cognitive enhancement' (memory, executive function) where evidence is
+      thinner/inconsistent. Tiering the marketed claim (the SKU's actual claim selects the tier, §2.1) at Moderate is
+      the honest read: simple-alertness benefit is real, the broader cognitive halo is not Strong.
+
+effective_dose:
+  basis: "bodyweight"                # acute ergogenic dose is per-kg; normalize to standard adult for scoring
+  min_effective: 3                   # mg/kg (acute ergogenic) ~= 200 mg for ~67 kg adult
+  typical: 200                       # mg absolute (standard-adult assumption, §2.2 bodyweight edge case)
+  upper_studied: 6                   # mg/kg ergogenic ceiling (~400 mg adult); above this no added benefit, rising side effects
+  unit: "mg/kg (ergogenic); mg absolute for label comparison"
+  standard_adult_assumption: "scored against ~70 kg adult -> 3-6 mg/kg = ~210-420 mg; confidence note attached (dose_basis: bodyweight)"
+  market_range_dsld: [200, 200]      # DSLD: 200 mg is the dominant single-serving caffeine dose across labels (highly consistent)
+  dose_citations: ["PMID:29876876"]
+  elemental_fraction: null
+
+forms:
+  preferred: ["caffeine anhydrous", "caffeine citrate", "natural caffeine (coffee/green tea/guarana extract, dose-disclosed)"]
+  acceptable: []
+  poor: []
+  rationale: "Caffeine bioavailability is high and largely form-independent for common supplement forms; the Form dimension is NOT the discriminating axis for caffeine. The discriminating axis is HONESTY (is the per-serving caffeine dose disclosed, or hidden in a blend?). Form ladder is intentionally flat here."
+  citations: []
+  form_ladder_confidence: "n/a — form not discriminating for caffeine"
+
+safety:
+  upper_limit_UL: 400                # mg/day for healthy adults — NUTRITION D7: CONFIRMED (EFSA/FDA concordant)
+  ul_pregnancy_sublimit: 200         # mg/day pregnancy — CONFIRMED as a distinct sub-limit (regimen/population discriminator)
+  ul_single_dose: 200               # mg single dose guidance — CONFIRMED
+  ul_basis: "mg/day, healthy non-pregnant adults. Single-dose guidance ~200 mg. PREGNANCY ~200 mg/day. NOT an IOM-style UL — it is EFSA/FDA safe-intake guidance."
+  ul_source: "EFSA (400 mg/day adults; 200 mg single dose; 200 mg/day pregnancy); US FDA aligns ~400 mg/day — CONCORDANT, no discrepancy to resolve"
+  ul_governing_decision: "NUTRITION D7: CONFIRMED 400 mg/day adult / 200 mg single-dose / 200 mg pregnancy. EFSA and FDA concordant here — no conservative-veto choice needed; the concordant guidance governs. NEEDS-ENV-VERIFY exact EFSA-2015 numbers still in force."
+  ul_externally_maintained: true
+  risky_flags: ["combination with other stimulants / 'energy blends' raises total caffeine unknowably (ties to Honesty)", "pure powdered caffeine = overdose risk (teaspoon = lethal-range) — formulation/legitimacy flag"]
+  notes: "Safety relevance rises when caffeine is HIDDEN in a blend (total daily intake unknowable). The 200 mg single-dose / 400 mg daily guidance is the basis for the veto when a label's daily caffeine is computable."
+  safety_citations: ["NEEDS-ENV-VERIFY: EFSA caffeine safety opinion 2015 (400 mg/day; 200 mg single; 200 mg pregnancy)"]
+
+honesty_lead_note: >
+  Caffeine is the MVP Formulation-Honesty probe. PASS anchor: label states 'caffeine 200 mg' explicitly -> fully
+  disclosed -> Honesty high. FAIL anchor: caffeine named inside a 'proprietary energy blend 1,200 mg' with no
+  per-active split -> Dose Adequacy UNKNOWABLE -> Honesty cap fires (§2.4 / §3 cap 3). The signal is HIDDEN DOSE,
+  not the word 'blend' (a blend with full per-active disclosure is honest). DSLD calibrates what a normal disclosed
+  caffeine panel looks like (200 mg, explicit) so the cap threshold is grounded, not arbitrary.
+
+# structure_function_umbrella: DELIBERATELY NOT AUTHORED (TASK-171K decision, Nutrition D6).
+#   Caffeine is the one MVP active where authoring a claim-resolution umbrella would do more harm than good:
+#   (1) Caffeine's discriminating axis is FORMULATION HONESTY (per-serving dose hidden in a 'proprietary energy blend'),
+#       NOT claim-resolution — the corpus did not surface a Hebrew-claim miss for caffeine.
+#   (2) There is NO EFSA Article 13 AUTHORIZED caffeine health claim — EFSA's 2011 favourable opinions on alertness/
+#       endurance were NOT adopted as permitted Art.13 claims (public-health concern). So there is no authoritative
+#       permitted vocabulary to anchor on (unlike the minerals/vitamins).
+#   (3) Mapping the vague Hebrew shelf phrases 'אנרגיה/energy', 'פוקוס/focus', 'שריפת שומן/fat burner' to caffeine's
+#       ergogenic Strong (or alertness Moderate) tier would be a LOOPHOLE: a pre-workout could inherit a high Evidence
+#       tier off a vague 'energy' word while hiding its actual caffeine dose. The §2.1 moderate posture forbids this.
+#   The studied claims (ergogenic Strong, alertness Moderate) remain reachable via the §2.1 studied-claim matcher when a
+#   label states them explicitly; vague energy/focus correctly do NOT resolve (no umbrella → claim-specific path → the
+#   §2.1 default handles them). This is a documented, intentional non-authoring, flagged for any future re-visit if the
+#   regulatory/claim picture changes. (Mirrors the moderate-posture refusals elsewhere — recorded, not silently omitted.)
+
+label_claims_common: ["energy", "focus", "pre-workout", "fat burner", "alertness", "proprietary energy blend"]
+necessity_context: "Not a dietary necessity; a stimulant/ergogenic aid. Context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Anxiety disorders, arrhythmia, pregnancy (lower limit), poor metabolizers. Context only, not health advice."
+
+provenance:
+  built_by: ["research-agent", "nutrition-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-004"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true               # D6 (tiers) + D7 (UL confirm) co-signed 2026-06-03
+  cosign_note: "Tiers ratified (ergogenic Strong, alertness Moderate). UL 400/200-single/200-pregnancy CONFIRMED (EFSA/FDA concordant — no authority pick needed)."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03); EFSA/FDA guidance re-sync annual (stable)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.upper_limit_UL"]
+  externally_maintained:
+    - field: "safety.upper_limit_UL"
+      authority: "EFSA / US FDA (400 mg/day adults)"
+      last_resync: "2026-06-03"
+      resync_note: "stable guidance; note pregnancy 200 mg/day sub-limit separately"
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella"
+      change: "TASK-171K — DELIBERATELY did NOT author an umbrella (documented above label_claims_common). Reasons: caffeine's axis is Honesty not claim-resolution; NO EFSA Art.13 authorized caffeine claim; mapping vague 'energy/focus' would be a loophole (inherit a high tier off a vague word while hiding the dose). Studied claims stay reachable via the §2.1 explicit-claim matcher."
+      evidence: "EFSA did not authorize caffeine Art.13 claims (2011 opinions not adopted); §2.1 moderate-posture anti-loophole."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-004"
+      score_moving: "no — no umbrella authored; behavior unchanged (has_umbrella stays False)."

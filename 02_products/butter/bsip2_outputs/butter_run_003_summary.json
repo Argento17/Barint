@@ -1,0 +1,1007 @@
+{
+  "run_id": "butter_run_003",
+  "task": "TASK-191",
+  "phase": "B.2",
+  "generated_utc": "2026-06-05T16:44:51Z",
+  "engine_version": "proto_v0 / algorithm_version 0.4.1",
+  "engine_flags": {
+    "BARI_RECAL_P0": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_GLASSBOX_D5D6": "off"
+  },
+  "engine_fixes_active": {
+    "EV_047_kcal_ceiling_800": true,
+    "EV_048_sat_fat_cap_endemic_wff_fraction_0_50": true,
+    "EV_050_natural_dairy_trans_exempt": true
+  },
+  "bsip1_source": "C:\\Bari\\02_products\\butter\\bsip1_outputs\\butter_bsip1_merged.json",
+  "total_products": 39,
+  "pipeline_errors": 0,
+  "corpus_breakdown": {
+    "confirmed_products": 16,
+    "candidate_products": 23,
+    "confirmed_note": "canonical_trust_level=high (original BSIP0 scraped, nutrition from label)",
+    "candidate_note": "canonical_trust_level=low (enriched via OFF or USDA FDC; confidence ceiling applies; QA promotion required)"
+  },
+  "grade_distribution": {
+    "B": 26,
+    "C": 12,
+    "D": 1
+  },
+  "score_range": {
+    "min": 45.2,
+    "max": 70,
+    "mean": 63.3,
+    "count": 39
+  },
+  "confirmed_products": {
+    "grade_distribution": {
+      "B": 9,
+      "C": 6,
+      "D": 1
+    },
+    "score_range": {
+      "min": 45.2,
+      "max": 70,
+      "mean": 61.2,
+      "count": 16
+    }
+  },
+  "candidate_products": {
+    "grade_distribution": {
+      "B": 17,
+      "C": 6
+    },
+    "score_range": {
+      "min": 50,
+      "max": 70,
+      "mean": 64.8,
+      "count": 23
+    },
+    "confidence_ceiling_note": "trust_level=low deducts 10 confidence points. Combined with other deductions (nova_confidence=low), most candidates land at confidence<40 -> ceiling=50 (insufficient_data grade). A product with OFF-sourced ingredient data AND full nutrition may avoid this if nova_confidence lifts."
+  },
+  "sat_fat_caps_fired": 0,
+  "sat_fat_caps_gated_ev048": 39,
+  "sat_fat_note": "EV-048: ISRAELI_RED_LABEL_1_SAT_FAT cap suppressed for whole_food_fat products where sat_fat/fat >= 0.50. Plain dairy butter is exempt; emulsified spreads that fail this fraction threshold still fire the cap.",
+  "trans_fat_vetoes_fired": 0,
+  "trans_fat_note": "EV-050: TRANS_FAT_VETO exempt for whole_food_fat products with no PHVO markers. Natural dairy trans fat (CLA/vaccenic acid) reported by USDA FDC / OFF must not trigger the industrial-trans veto. Expect 0 vetoes after EV-050 fix.",
+  "ev050_fix_verification": {
+    "previously_0_E_products": 6,
+    "all_now_fixed": true,
+    "detail": [
+      {
+        "pid": "bsip1_butter_3161911229199",
+        "name": "חמאה צרפתית רכה למריחה",
+        "score": 70,
+        "grade": "B",
+        "ev050_fixed": true
+      },
+      {
+        "pid": "bsip1_butter_5099460004132",
+        "name": "חמאה קרי גולד מלוחה",
+        "score": 50,
+        "grade": "C",
+        "ev050_fixed": true
+      },
+      {
+        "pid": "bsip1_butter_9414544900022",
+        "name": "חמאה אנקור מלוחה",
+        "score": 50,
+        "grade": "C",
+        "ev050_fixed": true
+      },
+      {
+        "pid": "bsip1_butter_5740900400238",
+        "name": "חמאה לורפק מלוחה",
+        "score": 50,
+        "grade": "C",
+        "ev050_fixed": true
+      },
+      {
+        "pid": "bsip1_butter_7290000066035",
+        "name": "חמאה טרה מלוחה",
+        "score": 50,
+        "grade": "C",
+        "ev050_fixed": true
+      },
+      {
+        "pid": "bsip1_butter_3412130012534",
+        "name": "חמאה פיזן ברטון מלוחה",
+        "score": 50,
+        "grade": "C",
+        "ev050_fixed": true
+      }
+    ]
+  },
+  "floor_activations": 37,
+  "FLOOR_CAP_INTERACTION_count": 11,
+  "FLOOR_CAP_INTERACTION_detail": [
+    {
+      "pid": "bsip1_butter_3274932103857",
+      "name": "חמאה לה גל זהב עם מלח",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3451790562990",
+      "name": "חמאה מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_7290117263563",
+      "name": "חמאה מלוחה מבלגיה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_7290019635130",
+      "name": "חמאה איטלקית מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3161911366429",
+      "name": "חמאה מלוחה רכה למריחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_5099460004132",
+      "name": "חמאה קרי גולד מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_9414544900022",
+      "name": "חמאה אנקור מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3228021530012",
+      "name": "חמאה פרזידן מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS', 'HIGH_SODIUM_700MG_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_5740900400238",
+      "name": "חמאה לורפק מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_7290000066035",
+      "name": "חמאה טרה מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    },
+    {
+      "pid": "bsip1_butter_3412130012534",
+      "name": "חמאה פיזן ברטון מלוחה",
+      "flags": [
+        "FLOOR_CAP_INTERACTION: floor overrode cap (floor=50, caps=['ISRAELI_RED_LABELS_2_PLUS'])"
+      ]
+    }
+  ],
+  "FLOOR_CAP_INTERACTION_note": "Expected: only salted butters with ISRAELI_RED_LABELS_2_PLUS + HIGH_SODIUM_700MG_PLUS where floor=50 overrides remaining cap. Sat-fat cap should not appear here (EV-048).",
+  "additive_spread_differentiation": [
+    {
+      "barcode": "7290108507997",
+      "name": "חמאה למריחה ללת\"מ",
+      "score": 53.8,
+      "grade": "C",
+      "caps_applied": [
+        "ADDITIVE_MARKERS_3_PLUS",
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "unsalted_plain_butter_max": 70,
+      "differentiated_below_unsalted": false
+    }
+  ],
+  "routing_check": {
+    "all_whole_food_fat": true,
+    "misrouted": []
+  },
+  "fdc_source_clusters": [
+    {
+      "fdc_id": "173430",
+      "product_count": 11,
+      "description": "Butter, without salt",
+      "products": [
+        {
+          "barcode": "5099460004149",
+          "name": "חמאה קרי גולד ללא מלח",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "5099460004156",
+          "name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "9414544900015",
+          "name": "חמאה אנקור ללא מלח",
+          "brand": "Anchor",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290000066028",
+          "name": "חמאה טרה",
+          "brand": "טרה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290113401022",
+          "name": "חמאה אדום אדום",
+          "brand": "אדום אדום",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290006325046",
+          "name": "חמאה יוטבתה",
+          "brand": "יוטבתה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290105953020",
+          "name": "חמאה בית האמק",
+          "brand": "בית האמק",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "7290002492086",
+          "name": "חמאה נוגה",
+          "brand": "נוגה",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "5099460010935",
+          "name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "3760088100025",
+          "name": "חמאה אשירה AOP",
+          "brand": "Echire",
+          "fdc_description": "Butter, without salt"
+        },
+        {
+          "barcode": "3412130012558",
+          "name": "חמאה פיזן ברטון ללא מלח",
+          "brand": "Paysan Breton",
+          "fdc_description": "Butter, without salt"
+        }
+      ],
+      "note": "11 products share this USDA FDC entry — same nutrition profile -> same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "173410",
+      "product_count": 5,
+      "description": "Butter, salted",
+      "products": [
+        {
+          "barcode": "5099460004132",
+          "name": "חמאה קרי גולד מלוחה",
+          "brand": "Kerrygold",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "9414544900022",
+          "name": "חמאה אנקור מלוחה",
+          "brand": "Anchor",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "5740900400238",
+          "name": "חמאה לורפק מלוחה",
+          "brand": "לורפק",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "7290000066035",
+          "name": "חמאה טרה מלוחה",
+          "brand": "טרה",
+          "fdc_description": "Butter, salted"
+        },
+        {
+          "barcode": "3412130012534",
+          "name": "חמאה פיזן ברטון מלוחה",
+          "brand": "Paysan Breton",
+          "fdc_description": "Butter, salted"
+        }
+      ],
+      "note": "5 products share this USDA FDC entry — same nutrition profile -> same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "171314",
+      "product_count": 2,
+      "description": "Butter, Clarified butter (ghee)",
+      "products": [
+        {
+          "barcode": "8906060890143",
+          "name": "חמאה מזוקקת גהי",
+          "brand": "Pure",
+          "fdc_description": "Butter, Clarified butter (ghee)"
+        },
+        {
+          "barcode": "4260268321030",
+          "name": "שמן גהי",
+          "brand": "Ghee",
+          "fdc_description": "Butter, Clarified butter (ghee)"
+        }
+      ],
+      "note": "2 products share this USDA FDC entry — same nutrition profile -> same score (data-driven, not engine artefact)"
+    },
+    {
+      "fdc_id": "1868389",
+      "product_count": 1,
+      "description": "PRESIDENT, BUTTER, UNSALTED, UNSALTED",
+      "products": [
+        {
+          "barcode": "3228021530005",
+          "name": "חמאה פרזידן ללא מלח",
+          "brand": "President",
+          "fdc_description": "PRESIDENT, BUTTER, UNSALTED, UNSALTED"
+        }
+      ],
+      "note": "single product"
+    },
+    {
+      "fdc_id": "1868388",
+      "product_count": 1,
+      "description": "PRESIDENT, BUTTER, SALTED, SALTED",
+      "products": [
+        {
+          "barcode": "3228021530012",
+          "name": "חמאה פרזידן מלוחה",
+          "brand": "President",
+          "fdc_description": "PRESIDENT, BUTTER, SALTED, SALTED"
+        }
+      ],
+      "note": "single product"
+    },
+    {
+      "fdc_id": "1856663",
+      "product_count": 1,
+      "description": "LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED",
+      "products": [
+        {
+          "barcode": "5740900400221",
+          "name": "חמאה לורפק ללא מלח",
+          "brand": "לורפק",
+          "fdc_description": "LURPAK, UNSALTED IMPORTED BUTTER, UNSALTED"
+        }
+      ],
+      "note": "single product"
+    }
+  ],
+  "per_product_table": [
+    {
+      "barcode": "8175173",
+      "name": "חמאה ללא תוספת מלח",
+      "brand": "VALIO",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_8175173",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3274932103802",
+      "name": "חמאה לה גל זהב",
+      "brand": "LE GALL",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_3274932103802",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290108503746",
+      "name": "חמאה מלוחה",
+      "brand": "VALIO",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290108503746",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3451790562631",
+      "name": "חמאה צרפתית חצי שמנה 60%",
+      "brand": "אלוויר",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_3451790562631",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "4820217240114",
+      "name": "חמאה FERMA 82.5%",
+      "brand": "פרמה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 80,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_4820217240114",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3161911229199",
+      "name": "חמאה צרפתית רכה למריחה",
+      "brand": "אלוויר",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 75,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3161911229199",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "4823077630057",
+      "name": "חמאה 82.5% רושן",
+      "brand": "ROSHEN",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_4823077630057",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290015039130",
+      "name": "חמאה בלגית ללא תוספת מלח",
+      "brand": "יורו מחלבות אירופה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 80,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290015039130",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290116932033",
+      "name": "חמאה מהדרין",
+      "brand": "תנובה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290116932033",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290019635147",
+      "name": "חמאה איטלקית",
+      "brand": "מחלבות גד",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290019635147",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "4823077643064",
+      "name": "חמאה 82.5% רושן בד\"ץ",
+      "brand": "ROSHEN",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_4823077643064",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5099460004149",
+      "name": "חמאה קרי גולד ללא מלח",
+      "brand": "Kerrygold",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5099460004149",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5099460004156",
+      "name": "חמאה קרי גולד ללא מלח 250 גרם",
+      "brand": "Kerrygold",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5099460004156",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "9414544900015",
+      "name": "חמאה אנקור ללא מלח",
+      "brand": "Anchor",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_9414544900015",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3228021530005",
+      "name": "חמאה פרזידן ללא מלח",
+      "brand": "President",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3228021530005",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5740900400221",
+      "name": "חמאה לורפק ללא מלח",
+      "brand": "לורפק",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 50,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5740900400221",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290000066028",
+      "name": "חמאה טרה",
+      "brand": "טרה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290000066028",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290113401022",
+      "name": "חמאה אדום אדום",
+      "brand": "אדום אדום",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290113401022",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290006325046",
+      "name": "חמאה יוטבתה",
+      "brand": "יוטבתה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290006325046",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290105953020",
+      "name": "חמאה בית האמק",
+      "brand": "בית האמק",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290105953020",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "8906060890143",
+      "name": "חמאה מזוקקת גהי",
+      "brand": "Pure",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 45,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_8906060890143",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "4260268321030",
+      "name": "שמן גהי",
+      "brand": "Ghee",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 45,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_4260268321030",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290002492086",
+      "name": "חמאה נוגה",
+      "brand": "נוגה",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290002492086",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5099460010935",
+      "name": "חמאה קרי גולד ללא מלח 250 גרם",
+      "brand": "Kerrygold",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5099460010935",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3760088100025",
+      "name": "חמאה אשירה AOP",
+      "brand": "Echire",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3760088100025",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3412130012558",
+      "name": "חמאה פיזן ברטון ללא מלח",
+      "brand": "Paysan Breton",
+      "score": 70,
+      "grade": "B",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3412130012558",
+      "caps_applied": [],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290108507997",
+      "name": "חמאה למריחה ללת\"מ",
+      "brand": "יורו מחלבות אירופה",
+      "score": 53.8,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290108507997",
+      "caps_applied": [
+        "ADDITIVE_MARKERS_3_PLUS",
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "floors_applied": []
+    },
+    {
+      "barcode": "3274932103857",
+      "name": "חמאה לה גל זהב עם מלח",
+      "brand": "LE GALL",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_3274932103857",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "HIGH_SODIUM_700MG_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3451790562990",
+      "name": "חמאה מלוחה",
+      "brand": "אלוויר",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_3451790562990",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "HIGH_SODIUM_700MG_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290117263563",
+      "name": "חמאה מלוחה מבלגיה",
+      "brand": "יורו מחלבות אירופה",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290117263563",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290019635130",
+      "name": "חמאה איטלקית מלוחה",
+      "brand": "מחלבות גד",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_7290019635130",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3161911366429",
+      "name": "חמאה מלוחה רכה למריחה",
+      "brand": "אלוויר",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_3161911366429",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "HIGH_SODIUM_700MG_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5099460004132",
+      "name": "חמאה קרי גולד מלוחה",
+      "brand": "Kerrygold",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5099460004132",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "9414544900022",
+      "name": "חמאה אנקור מלוחה",
+      "brand": "Anchor",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_9414544900022",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3228021530012",
+      "name": "חמאה פרזידן מלוחה",
+      "brand": "President",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3228021530012",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "HIGH_SODIUM_700MG_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "5740900400238",
+      "name": "חמאה לורפק מלוחה",
+      "brand": "לורפק",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_5740900400238",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "7290000066035",
+      "name": "חמאה טרה מלוחה",
+      "brand": "טרה",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_7290000066035",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "3412130012534",
+      "name": "חמאה פיזן ברטון מלוחה",
+      "brand": "Paysan Breton",
+      "score": 50,
+      "grade": "C",
+      "confidence_band": "partial",
+      "confidence_score": 55,
+      "verification_status": "candidate",
+      "pid": "bsip1_butter_3412130012534",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS"
+      ],
+      "floors_applied": [
+        "whole_food_fat_nova1_2"
+      ]
+    },
+    {
+      "barcode": "369709",
+      "name": "חמאה מתובלת",
+      "brand": "גבינות ניצן",
+      "score": 45.2,
+      "grade": "D",
+      "confidence_band": "high",
+      "confidence_score": 85,
+      "verification_status": "confirmed",
+      "pid": "bsip1_butter_369709",
+      "caps_applied": [
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "floors_applied": []
+    }
+  ],
+  "error_detail": []
+}

@@ -1,0 +1,177 @@
+# evidence_dossiers/melatonin.yaml   (schema v1.3 — Phase 1 widen, TASK-171H)
+# verification_status: candidate — NO score movement. Tiers PROPOSED for Nutrition D6.
+# Melatonin is the OVER-DOSE-AS-NORM probe (market routinely sells ~10x the effective dose). NOTE on coverage:
+# IL routes melatonin pharmacist-counter/Rx-adjacent -> ~0 OPEN-shelf SKUs (per market_coverage_analysis_v1). Built
+# as a high-value ENGINE probe (the 'more is worse / lower is better' inversion), with the coverage caveat flagged.
+active:
+  canonical_name: "melatonin"
+  pubchem_cid: 896
+  molecular_formula: "C13H16N2O2"
+  molecular_weight: 232.28
+  synonyms: ["melatonin", "N-acetyl-5-methoxytryptamine", "73-31-4"]
+  category: "hormone-adjacent"        # endogenous hormone sold as a supplement (regulatory nuance)
+
+claims:                              # PROPOSED — Nutrition D6
+  - claim: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:23691095", "PMID:33417003"]
+    rationale: "Meta-analyses show melatonin modestly reduces sleep-onset latency and is effective for circadian-phase disorders; effect on total sleep time/quality is smaller. Consistent-but-modest, endpoint-specific -> Moderate."
+    tier_rationale: "RATIFIED (D6) Moderate. Sleep-onset latency + circadian realignment is replicated with a modest effect size -> Moderate (§2.1). NOT Strong (small effect on total sleep) and NOT Weak (the latency/circadian effect is real and meta-analytic)."
+  - claim: "jet lag prevention/reduction (eastward travel)"
+    proposed_evidence_tier: "Moderate"
+    evidence_tier: "Moderate"        # NUTRITION D6: RATIFIED
+    tier_confidence: "medium"
+    citations: ["PMID:12076414"]
+    rationale: "Cochrane: melatonin is effective for preventing/reducing jet lag, esp. eastward across multiple time zones. Replicated, endpoint-specific -> Moderate."
+    tier_rationale: "RATIFIED (D6) Moderate. Cochrane-supported jet-lag benefit; a clear circadian endpoint. Moderate."
+
+effective_dose:
+  basis: "per_day"
+  min_effective: 0.5                 # mg — LOW doses (0.5-1 mg) are as/more effective than high doses for sleep onset; timing matters more than dose
+  typical: 1                         # mg — the effective range is ~0.5-3 mg
+  upper_studied: 5                   # mg — above this NO added efficacy and rising grogginess/side effects; market sells 5-10 mg routinely (the over-dose-as-norm trap)
+  unit: "mg"
+  market_range_dsld: [1, 10]         # DSLD: 3, 5, 10 mg labels DOMINANT — i.e. the MARKET NORM is ABOVE the effective ceiling. NEEDS-ENV-VERIFY.
+  dose_citations: ["PMID:23691095"]
+  elemental_fraction: null
+  dose_note: >
+    THE INVERSION: melatonin is the canonical 'more is not better' case. 0.5-1 mg is effective; 5-10 mg (the market
+    norm) is NOT more effective and causes more next-day grogginess. Per §2.2, a dose ABOVE upper_studied earns NO Dose
+    bonus (and hands the excess to a Safety NOTE — next-day impairment, not toxicity). A 10 mg label is over-dosing
+    the norm, scored as no-better-than-effective, NOT as 'high potency' virtue.
+
+forms:
+  preferred: ["immediate-release melatonin (sleep-onset)", "prolonged/extended-release melatonin (sleep-maintenance / older adults)"]
+  acceptable: []
+  poor: []
+  rationale: "Form (IR vs PR) is endpoint-matched, not a quality ladder: IR suits sleep-onset, PR suits maintenance/older adults. Neither is 'poor'. Form is not the discriminating axis for melatonin — DOSE (the over-dose-as-norm) and TIMING are. Ladder intentionally flat (endpoint-matched)."
+  citations: ["PMID:33417003"]
+  form_ladder_confidence: "n/a — IR/PR are endpoint-matched, not a quality ranking"
+
+safety:
+  upper_limit_UL: null               # No formal toxicity UL; melatonin is well-tolerated short-term. Concern is functional (next-day grogginess) + uncertain long-term/developmental use, NOT acute toxicity.
+  ul_basis: "n/a — no formal toxicity UL. Short-term use is well-tolerated; the relevant safety signal is next-day sedation/grogginess at high doses + uncertain long-term & pediatric use (functional/precautionary, not toxicity)."
+  ul_source: "NIH/EFSA — no toxicity UL; EFSA recognizes a sleep-onset claim at ~1 mg. Regulatory STATUS varies by country (Rx in some, OTC in US, pharmacist-counter in IL)."
+  ul_governing_decision: >
+    NUTRITION D6 (§2.5 no-UL + over-dose handling): no toxicity UL -> no hard veto on dose magnitude. BUT melatonin is
+    the §2.2 'more is worse' case: a dose ABOVE upper_studied (5 mg) earns NO Dose bonus AND a Safety NOTE (next-day
+    impairment, precautionary long-term/pediatric), NOT a veto. The over-dose-as-norm is scored as 'no better, mild
+    note', not toxicity. REGULATORY-STATUS flag: melatonin's OTC-vs-Rx-vs-counter status varies (IL = pharmacist-
+    counter) — a legitimacy/context flag, surfaced not scored. NEEDS-ENV-VERIFY EFSA sleep-onset claim dose.
+  ul_note_threshold: 5               # >5 mg/day -> Safety NOTE (no added benefit + next-day grogginess), NOT a veto
+  ul_externally_maintained: true
+  risky_flags: ["next-day sedation/grogginess at high doses (functional)", "uncertain long-term & PEDIATRIC use (precautionary context)", "regulatory status varies (IL pharmacist-counter; Rx in EU/UK/AU) — legitimacy/context flag, not scored"]
+  notes: "No toxicity UL. The safety story is functional (grogginess) + precautionary (long-term/pediatric) + regulatory-status, NOT acute toxicity. Pairs with the §2.2 over-dose-no-bonus rule."
+  safety_citations: ["NEEDS-ENV-VERIFY: EFSA melatonin sleep-onset claim (~1 mg); regulatory-status by country"]
+
+structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER inferred.
+  mappings:
+  - phrase: "sleep"
+    resolves_to: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23691095", "PMID:33417003"]
+    supp_ev: "SUPP-EV-013"
+    rationale: >
+      MAPS at MODERATE (BEST). 'Sleep' / 'sleep support' is the canonical recognized correlate of melatonin's studied
+      sleep-onset-latency endpoint — best mapped tier. A 'cures insomnia' escalation fires the §2.4 over-promise catch
+      (resolves to the same Moderate tier + Honesty debit).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "relaxation"
+    resolves_to: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23691095"]
+    supp_ev: "SUPP-EV-013"
+    rationale: >
+      MAPS at MODERATE. 'Relaxation / calm before sleep' is a recognized correlate of melatonin's sleep-onset/circadian
+      role (it is a darkness/sleep signal, not an anxiolytic) -> resolves to the sleep-onset endpoint. Maps at Moderate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "immune support"
+    resolves_to: null                  # DELIBERATE NON-MAPPING
+    resolved_tier: null
+    citations: []
+    supp_ev: "SUPP-EV-013"
+    rationale: >
+      DOES NOT MAP. Melatonin has mechanistic/antioxidant and experimental immune-modulation literature, but there is
+      no recognized studied consumer 'immune benefit' endpoint for melatonin supplementation — mechanism/experimental
+      only, which §2.1 excludes. No recognized cited correlate -> no mapping.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  # === TASK-171K: real Israeli Hebrew claim vocab (candidate, should_affect_score_now:false) ===
+  # Melatonin EFSA Art.13: "reduction of time to fall asleep" + "alleviation of jet lag". Hebrew aliases of the existing
+  # English keys, routed to the SAME sleep-onset endpoint (cited pointers, no new tiers).
+  - phrase: "שינה"                     # "sleep" (Hebrew) — EFSA "reduction of time to fall asleep"
+    resolves_to: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23691095", "PMID:33417003"]
+    supp_ev: "SUPP-EV-013"
+    rationale: >
+      MAPS at MODERATE (BEST). EFSA Art.13 authorizes "melatonin contributes to the reduction of time to fall asleep"
+      (EFSA Q-2011-00531). Hebrew alias of the English "sleep" key — recognized sleep-onset correlate. A 'מרפא נדודי
+      שינה / cures insomnia' escalation fires the §2.4 over-promise catch.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "הירדמות"                  # "falling asleep" (Hebrew) — exact EFSA endpoint phrasing
+    resolves_to: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    resolved_tier: "Moderate"
+    citations: ["PMID:23691095", "PMID:33417003"]
+    supp_ev: "SUPP-EV-013"
+    rationale: "MAPS at MODERATE. 'הירדמות/falling asleep' is the exact Hebrew rendering of EFSA's 'reduction of time to fall asleep' (Q-2011-00531). Same routing/tier as 'שינה'."
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "ג'ט לג"                   # "jet lag" (Hebrew transliteration) — EFSA "alleviation of jet lag"
+    resolves_to: "reducing sleep-onset latency (time to fall asleep) in primary insomnia / delayed sleep phase"
+    resolved_tier: "Moderate"
+    citations: ["PMID:12076414"]
+    supp_ev: "SUPP-EV-013"
+    rationale: >
+      MAPS at MODERATE. EFSA Art.13 authorizes "melatonin contributes to the alleviation of subjective feelings of jet
+      lag" (EFSA Q-2011-00829). Hebrew transliteration of 'jet lag'. Routed to the sleep-onset/circadian endpoint
+      (the dossier's jet-lag claim is itself Moderate). Recognized circadian correlate.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  umbrella_resolution_summary: >
+    Melatonin label "for sleep & relaxation, immune" resolves: sleep->onset-latency=Moderate (maps, BEST),
+    relaxation->onset=Moderate (maps), immune->null (mechanism-only, does NOT map). Best mapped tier = MODERATE. A vague
+    sleep melatonin is NOT Insufficient. The dose story (over-dose-as-norm) is the discriminating axis, not Evidence.
+
+label_claims_common: ["sleep", "sleep support", "relaxation", "jet lag", "immune", "high potency"]
+necessity_context: "Not a dietary necessity; an endogenous hormone used for sleep-onset/circadian timing. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."
+contraindication_notes: "Next-day sedation; caution in pregnancy, children (precautionary), and with sedatives/anticoagulants. Context only, not health advice."
+
+provenance:
+  built_by: ["nutrition-agent", "research-agent"]
+  built_at: "2026-06-03"
+  supp_ev_refs: ["SUPP-EV-013"]
+  verification_status: "candidate"
+  should_affect_score_now: false
+  nutrition_cosign: true
+  cosign_note: >
+    Tiers: sleep-onset Moderate, jet-lag Moderate. NO toxicity UL — the safety/dose story is the OVER-DOSE-AS-NORM
+    inversion (effective 0.5-1 mg; market norm 5-10 mg = no added benefit + Safety NOTE, NOT toxicity veto). Umbrella:
+    sleep/relaxation->Moderate (best), immune->null. COVERAGE CAVEAT: ~0 IL open-shelf SKUs (pharmacist-counter) —
+    built as an engine probe (over-dose machinery), not for IL shelf coverage. Candidate / should_affect_score_now:false.
+  coverage_caveat: "Per market_coverage_analysis_v1: melatonin has ~0 open-shelf SKUs in IL (routed pharmacist-counter/Rx-adjacent). High-VALUE engine probe (over-dose-as-norm), LOW direct IL shelf coverage. Flagged for Product sequencing."
+
+lifecycle:
+  last_evidence_sweep: "2026-06-03"
+  review_by: "annual (2027-06-03)"
+  field_stability:
+    stable: ["pubchem_cid", "molecular_formula", "molecular_weight", "synonyms"]
+    drift: ["claims.*.proposed_evidence_tier", "effective_dose", "safety.ul_note_threshold"]
+  externally_maintained:
+    - field: "safety.ul_note_threshold"
+      authority: "EFSA (sleep-onset claim ~1 mg) / regulatory status by country"
+      last_resync: "2026-06-03"
+      resync_note: "no toxicity UL; over-dose-no-bonus + grogginess note. NEEDS-ENV-VERIFY."
+  change_log:
+    - date: "2026-06-03"
+      field: "structure_function_umbrella.mappings"
+      change: "TASK-171K — Hebrew + EFSA Art.13 vocab (candidate). MAPPING: שינה/הירדמות→sleep-onset(Moderate, EFSA Q-2011-00531 reduction of time to fall asleep); ג'ט לג→sleep-onset/circadian(Moderate, EFSA Q-2011-00829 jet lag)."
+      evidence: "EFSA Art.13 register (Reg (EU) 432/2012) + reused PMIDs (cited pointers)."
+      adjudicated_by: "nutrition-agent (D6)"
+      supp_ev: "SUPP-EV-013"
+      score_moving: "no — candidate aliases. Hebrew keys inert until engine tokenizer Hebrew-aware (TASK-171K return). (Coverage caveat: melatonin ~0 IL open-shelf SKUs.)"

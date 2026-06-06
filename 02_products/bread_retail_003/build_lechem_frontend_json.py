@@ -17,6 +17,9 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 ROOT      = Path(r"C:\Bari")
+
+sys.path.insert(0, str(ROOT / "03_operations/bsip2/proto_v0/src"))
+from grade_governance import apply_a_grade_floor  # noqa: E402  TASK-188
 BSIP2_DIR = ROOT / "02_products/bread_retail_003/bsip2"
 BSIP0_RAW = ROOT / "02_products/bread_retail_003/real_bread_retail_003_v1_20260525T194532_bsip0_raw.json"
 OUT_DIR   = ROOT / "02_products/bread_retail_003"
@@ -224,12 +227,27 @@ for fp in sorted(BSIP2_DIR.glob('*.json')):
     confidence, conf_label = confidence_vm(deg)
     nv = nutrition_vm(t.get('nutrition', {}))
 
+    # TASK-188: A-grade ingredient observability floor
+    # Bread BSIP2 traces use a flat nutrition dict at t['nutrition'] and
+    # ingredients come from BSIP0 (ing_raw). Pass the flat nutrition dict
+    # for Condition 3; no full trace available here (flat file format), so
+    # Condition 2 defaults to pass (belt-and-suspenders via C1 + C3).
+    disp_score = round(float(score))
+    disp_grade = t.get('final_grade', '?')
+    disp_score, disp_grade = apply_a_grade_floor(
+        score=disp_score,
+        grade=disp_grade,
+        ingredients=ing_raw,
+        nutrition=t.get('nutrition', {}),
+        trace=None,  # flat-file format; no trace dict for C2
+    )
+
     product = {
         'id':          barcode,
         'name':        name,
         'imageUrl':    image_url,
-        'score':       round(float(score)),
-        'grade':       t.get('final_grade', '?'),
+        'score':       disp_score,
+        'grade':       disp_grade,
         'insightLine': insight,
         'confidence':  confidence,
         'fermentationDetected': detect_fermentation(ing_raw),

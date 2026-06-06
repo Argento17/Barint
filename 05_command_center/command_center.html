@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-  BARI COMMAND CENTER — TASK BOARD  (TASK-125 redesign)
+  BARI COMMAND CENTER — TASK BOARD  (v3 — lively edition)
   ════════════════════════════════════════════════════════════════
-  One page, one question: "what can I action right now?"
-  Work is OBJECTIVES (TASK-125) with SUB-TASKS (TASK-125A/B).
-    • Objective  = the goal. Only CLOSE (cascades — closes its open sub-tasks).
-    • Sub-task   = the work. Full lifecycle buttons.
-  Closed items disappear from the board. No blockers/launch/audit sections.
-
-  RUN (required for the action buttons — adds POST /api/action):
-    cd C:\Bari\05_command_center
-    python serve.py
-    open http://localhost:8080/command_center.html
+  Features: agent chips · CC figure · status rings · hover lift ·
+            row flash on refresh · Ctrl+K palette · j/k nav
 -->
 <head>
   <meta charset="UTF-8">
@@ -24,81 +16,160 @@
       --border:rgba(56,189,248,.24); --border-sub:rgba(56,189,248,.10);
       --text:#dcefff; --text-muted:#84aecb; --text-dim:#52708c;
       --green:#34f5c5; --green-bg:rgba(52,245,197,.12);
-      --red:#ff5d6c; --red-bg:rgba(255,93,108,.13);
-      --amber:#ffd166; --amber-bg:rgba(255,209,102,.13);
+      --red:#ff5d6c;  --red-bg:rgba(255,93,108,.13);
+      --amber:#ffd166;--amber-bg:rgba(255,209,102,.13);
       --blue:#38bdf8; --blue-bg:rgba(56,189,248,.14);
       --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,.15);
-      --orange:#fb923c; --orange-bg:rgba(251,146,60,.15);
+      --orange:#fb923c;--orange-bg:rgba(251,146,60,.15);
       --gray:#84aecb; --gray-bg:rgba(132,174,203,.10);
       --glow:0 0 18px rgba(34,211,238,.22);
       --mono:ui-monospace,'Cascadia Code','SF Mono',Consolas,monospace;
       --sans:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
       --r:10px; --r-sm:5px;
     }
-    @keyframes hudpulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+
+    /* ── Animations ────────────────────────────────────────────── */
+    @keyframes hudpulse {0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+    @keyframes ip-ping  {0%{box-shadow:0 0 0 0 rgba(34,211,238,.6)}70%{box-shadow:0 0 0 5px rgba(34,211,238,.0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,.0)}}
+    @keyframes bl-blink {0%,100%{opacity:1}50%{opacity:.28}}
+    @keyframes row-flash{0%{background:rgba(34,211,238,.14)}100%{background:transparent}}
+    @keyframes cc-breathe{0%,100%{box-shadow:0 0 5px rgba(34,211,238,.3)}50%{box-shadow:0 0 14px rgba(34,211,238,.7),0 0 0 2px rgba(34,211,238,.15)}}
+    @keyframes chip-pop {0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+    @keyframes aurora   {0%{opacity:.5;transform:translate3d(0,0,0) scale(1)}100%{opacity:1;transform:translate3d(0,-18px,0) scale(1.06)}}
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{background:
-        radial-gradient(1200px 620px at 78% -12%, rgba(34,211,238,.10), transparent 60%),
-        linear-gradient(0deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/100% 36px,
-        linear-gradient(90deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/36px 100%,
-        var(--bg);
-      color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.55;min-height:100vh;
-      -webkit-font-smoothing:antialiased;}
+        radial-gradient(1300px 680px at 84% -16%, rgba(34,211,238,.20), transparent 56%),
+        radial-gradient(1100px 640px at 2% 114%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(1000px 1000px at 50% 42%, rgba(56,189,248,.07), transparent 68%),
+        linear-gradient(0deg,  rgba(56,189,248,.03) 1px, transparent 1px) 0 0/100% 40px,
+        linear-gradient(90deg, rgba(56,189,248,.03) 1px, transparent 1px) 0 0/40px 100%,
+        linear-gradient(160deg,#0a1426 0%, #070d1b 46%, #03050b 100%);
+      background-attachment:fixed;
+      color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.55;
+      min-height:100vh;-webkit-font-smoothing:antialiased;}
+    /* Drifting aurora across the whole page — fixed, behind everything, non-interactive */
+    body::before{content:'';position:fixed;inset:-15%;z-index:-2;pointer-events:none;
+      background:
+        radial-gradient(720px 520px at 14% 10%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(680px 580px at 88% 86%, rgba(124,92,255,.15), transparent 62%),
+        radial-gradient(560px 460px at 62% 28%, rgba(16,185,129,.10), transparent 64%);
+      filter:blur(10px);}  /* aurora drift killed (v2) — motion must mean change */
+    /* Edge vignette for depth — keeps the center readable, darkens the frame */
+    body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:radial-gradient(150% 120% at 50% 38%, transparent 56%, rgba(2,4,9,.55) 100%);}
+
+    /* ── Header ────────────────────────────────────────────────── */
     .hdr{position:sticky;top:0;z-index:100;
-      background:linear-gradient(180deg, rgba(8,15,28,.94), rgba(8,15,28,.66));
+      background:linear-gradient(180deg,rgba(8,15,28,.94),rgba(8,15,28,.66));
       backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(34,211,238,.18),0 10px 34px rgba(0,0,0,.55);
-      padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+      border-bottom:1px solid var(--border);
+      box-shadow:0 1px 0 rgba(34,211,238,.18),0 10px 34px rgba(0,0,0,.55);
+      padding:11px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
     .hdr-brand{display:flex;align-items:center;gap:10px;}
     .hdr-title{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
       color:#eafaff;text-shadow:0 0 12px rgba(34,211,238,.55);}
     .hdr-badge{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:var(--surface-2);
       padding:2px 7px;border-radius:var(--r-sm);border:1px solid var(--border);}
-    .hdr-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-    .hdr-health{display:flex;align-items:center;gap:7px;font-size:12px;}
+    .hdr-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+    .agents-bar{display:flex;align-items:center;gap:3px;padding:2px 4px;
+      border-radius:20px;border:1px solid var(--border-sub);background:rgba(12,22,40,.4);}
     .hdr-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);}
     .hdr-link{font-size:12px;color:var(--blue);text-decoration:none;border:1px solid var(--border);
       padding:4px 10px;border-radius:var(--r-sm);background:var(--surface);white-space:nowrap;}
     .hdr-link:hover{border-color:var(--blue);}
     .reg{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--border);}
     .reg.clean{color:var(--green);border-color:rgba(52,245,197,.4);}
-    .reg.warn{color:var(--amber);border-color:rgba(255,209,102,.45);}
-    .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;animation:hudpulse 2.4s ease-in-out infinite;}
-    .dot.GREEN{background:var(--green);box-shadow:0 0 10px var(--green);}
+    .reg.warn {color:var(--amber);border-color:rgba(255,209,102,.45);}
+    .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;
+      animation:hudpulse 2.4s ease-in-out infinite;}
+    .dot.GREEN {background:var(--green);box-shadow:0 0 10px var(--green);}
     .dot.YELLOW{background:var(--amber);box-shadow:0 0 10px var(--amber);}
-    .dot.RED{background:var(--red);box-shadow:0 0 10px var(--red);}
+    .dot.RED   {background:var(--red);  box-shadow:0 0 10px var(--red);}
+    .health-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;
+      padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
+    .health-lbl.GREEN {color:var(--green); border-color:rgba(52,245,197,.4);}
+    .health-lbl.YELLOW{color:var(--amber); border-color:rgba(255,209,102,.45);}
+    .health-lbl.RED   {color:var(--red);   border-color:rgba(255,93,108,.5);}
 
+    /* ── Agent chips ───────────────────────────────────────────── */
+    .achip{display:inline-flex;align-items:center;justify-content:center;
+      width:22px;height:22px;border-radius:50%;font-size:8.5px;font-weight:800;
+      font-family:var(--mono);letter-spacing:0;flex-shrink:0;border:1.5px solid;
+      text-transform:uppercase;cursor:default;
+      animation:chip-pop .2s ease-out;
+      transition:transform .12s,box-shadow .15s;}
+    .achip:hover{transform:scale(1.2);box-shadow:0 0 9px currentColor;}
+
+    /* ── CC Agent figure ───────────────────────────────────────── */
+    .cc-fig{display:inline-flex;align-items:center;justify-content:center;
+      width:20px;height:20px;border-radius:4px;font-size:9px;font-weight:900;
+      font-family:var(--mono);color:var(--cyan);
+      background:rgba(34,211,238,.10);border:1.5px solid rgba(34,211,238,.55);
+      animation:cc-breathe 3s ease-in-out infinite;cursor:default;flex-shrink:0;}
+    .cc-presence{display:inline-flex;align-items:center;gap:5px;font-size:10px;
+      font-family:var(--mono);color:var(--cyan);padding:2px 8px;border-radius:10px;
+      background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.25);
+      cursor:pointer;transition:background .12s,border-color .12s;}
+    .cc-presence:hover{background:rgba(34,211,238,.14);border-color:rgba(34,211,238,.5);}
+
+    /* ── Status rings ──────────────────────────────────────────── */
+    .sring{width:10px;height:10px;border-radius:50%;flex-shrink:0;
+      display:inline-block;vertical-align:middle;border:2px solid transparent;}
+    .sring.IN_PROGRESS      {border-color:var(--cyan); box-shadow:0 0 5px rgba(34,211,238,.5);
+                              animation:ip-ping 2s ease-in-out infinite;}
+    .sring.BLOCKED          {border-color:var(--amber);animation:bl-blink 1.4s ease-in-out infinite;}
+    .sring.RETURNED         {border-color:var(--cyan); border-right-color:transparent;transform:rotate(45deg);}
+    .sring.CHANGES_REQUESTED{border-color:var(--orange);background:rgba(251,146,60,.12);}
+    .sring.CLOSED           {background:var(--text-dim);border:none;opacity:.35;}
+
+    /* ── Row flash ─────────────────────────────────────────────── */
+    .flash{animation:row-flash .8s ease-out;}
+
+    /* ── Layout ────────────────────────────────────────────────── */
     .main{padding:18px 24px;max-width:1020px;margin:0 auto;}
-    .sec-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.16em;
-      text-transform:uppercase;color:var(--cyan);margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.35);}
+    .sec-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);
+      margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.35);}
     .sec-lbl .cap{font-family:var(--mono);color:var(--text-dim);letter-spacing:0;}
     .hint{font-size:11px;color:var(--text-dim);margin:0 2px 14px;}
     .hint code{font-family:var(--mono);color:var(--text-muted);}
-
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px 16px;
-      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 6px 22px rgba(0,0,0,.45);}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+      padding:6px 16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 6px 22px rgba(0,0,0,.45);}
     .calm{display:flex;align-items:center;gap:9px;color:var(--green);font-size:13px;padding:14px 2px;}
 
-    /* objective group */
-    .obj-group{padding:10px 0;border-bottom:1px solid var(--border-sub);}
+    /* ── Objective groups ──────────────────────────────────────── */
+    .obj-group{padding:10px 0;border-bottom:1px solid var(--border-sub);
+      border-radius:var(--r-sm);transition:background .15s;}
     .obj-group:last-child{border-bottom:none;}
+    .obj-group:hover{background:rgba(56,189,248,.035);}
+    .obj-group.kb-focus{outline:2px solid rgba(34,211,238,.55);outline-offset:3px;}
     .obj{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
-      border-left:3px solid var(--blue);padding:4px 0 4px 12px;}
+      border-left:3px solid var(--blue);padding:4px 0 4px 12px;
+      transition:border-left-color .2s;}
+    .obj.st-IN_PROGRESS      {border-left-color:var(--cyan);}
+    .obj.st-BLOCKED          {border-left-color:var(--amber);}
+    .obj.st-RETURNED         {border-left-color:var(--cyan);}
+    .obj.st-CHANGES_REQUESTED{border-left-color:var(--orange);}
     .obj-id{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
     .obj-title{font-size:14px;font-weight:600;}
     .obj-orphan{border-left-color:var(--text-dim);}
     .obj-orphan .obj-id{color:var(--text-dim);}
-    .obj-meta{display:inline-flex;gap:8px;align-items:center;}
+    .obj-meta{display:inline-flex;gap:6px;align-items:center;}
 
-    /* sub-task rows */
+    /* ── Sub-task rows ─────────────────────────────────────────── */
     .subs{margin:6px 0 2px 14px;border-left:1px dashed var(--border-sub);}
     .row{display:grid;grid-template-columns:90px 1fr auto;gap:10px;align-items:center;
-      padding:7px 0 7px 14px;border-bottom:1px solid var(--border-sub);}
+      padding:7px 0 7px 14px;border-bottom:1px solid var(--border-sub);
+      transition:background .12s,transform .1s;}
     .row:last-child{border-bottom:none;}
-    .row-id{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
+    .row:hover{background:rgba(56,189,248,.05);transform:translateX(2px);}
+    .row-id   {font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);}
     .row-title{font-size:12px;}
-    .row-meta{display:inline-flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
-    /* CC Agent review notes — collapsed badge (click to expand) */
+    .row-meta {display:inline-flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+
+    /* ── CC notes (with CC figure) ─────────────────────────────── */
     .cc{grid-column:1/-1;margin:5px 0 1px;}
     .obj-cc{margin:4px 0 0 14px;}
     .cc>summary{list-style:none;cursor:pointer;display:inline-flex;gap:5px;align-items:center;
@@ -111,105 +182,558 @@
     .cc[open] .cc-read::after{content:' ▲';}
     .cc:not([open]) .cc-read::after{content:' ▼';}
     .cc-body{display:flex;flex-direction:column;gap:5px;margin-top:6px;}
-    .cc-note{display:flex;gap:7px;align-items:flex-start;font-size:11px;line-height:1.45;
-      padding:6px 9px;border-radius:6px;background:var(--cc-bg,rgba(120,140,170,.08));
-      border-left:2px solid var(--cc-bd,#7a8aa0);}
-    .cc-note .cc-ic{flex:none;font-size:11px;line-height:1.45;}
-    .cc-note .cc-dt{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-left:4px;}
+    .cc-note{display:flex;gap:8px;align-items:flex-start;font-size:11px;line-height:1.45;
+      padding:7px 10px;border-radius:6px;
+      background:var(--cc-bg,rgba(120,140,170,.08));border-left:2px solid var(--cc-bd,#7a8aa0);}
+    .cc-note .cc-dt {font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-left:4px;}
     .cc-note .cc-lbl{font-weight:700;letter-spacing:.04em;}
-    .cc-chip.fyi,.cc-note.fyi{--cc-bd:#5a9bd4;--cc-bg:rgba(90,155,212,.10);}
+    .cc-chip.fyi,   .cc-note.fyi   {--cc-bd:#5a9bd4;--cc-bg:rgba(90,155,212,.10);}
     .cc-chip.verify,.cc-note.verify{--cc-bd:#d4a93a;--cc-bg:rgba(212,169,58,.12);}
     .cc-chip.blocker,.cc-note.blocker{--cc-bd:#d46a5a;--cc-bg:rgba(212,106,90,.13);}
     .no-subs{font-size:11px;color:var(--text-dim);padding:2px 0 2px 16px;}
 
-    .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;font-family:var(--mono);
-      text-transform:uppercase;letter-spacing:.03em;padding:1px 7px;border-radius:10px;white-space:nowrap;}
-    .p-green{background:var(--green-bg);color:var(--green);} .p-red{background:var(--red-bg);color:var(--red);}
-    .p-amber{background:var(--amber-bg);color:var(--amber);} .p-blue{background:var(--blue-bg);color:var(--blue);}
-    .p-cyan{background:var(--cyan-bg);color:var(--cyan);} .p-orange{background:var(--orange-bg);color:var(--orange);}
-    .p-gray{background:var(--gray-bg);color:var(--gray);}
-    .owner{font-size:10px;font-family:var(--mono);color:var(--text-dim);background:var(--surface-2);
-      border:1px solid var(--border);padding:1px 6px;border-radius:var(--r-sm);}
+    /* ── Pills ─────────────────────────────────────────────────── */
+    .p{display:inline-flex;align-items:center;font-size:10px;font-weight:600;
+      font-family:var(--mono);text-transform:uppercase;letter-spacing:.03em;
+      padding:1px 7px;border-radius:10px;white-space:nowrap;}
+    .p-green {background:var(--green-bg); color:var(--green);}
+    .p-red   {background:var(--red-bg);   color:var(--red);}
+    .p-amber {background:var(--amber-bg); color:var(--amber);}
+    .p-blue  {background:var(--blue-bg);  color:var(--blue);}
+    .p-cyan  {background:var(--cyan-bg);  color:var(--cyan);}
+    .p-orange{background:var(--orange-bg);color:var(--orange);}
+    .p-gray  {background:var(--gray-bg);  color:var(--gray);}
 
-    .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
-      cursor:pointer;border-radius:var(--r-sm);padding:3px 9px;border:1px solid var(--border);
-      background:var(--surface-2);color:var(--text-muted);transition:border-color .12s,color .12s,background .12s,box-shadow .12s;}
+    /* ── Buttons ───────────────────────────────────────────────── */
+    .btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.03em;
+      text-transform:uppercase;cursor:pointer;border-radius:var(--r-sm);padding:3px 9px;
+      border:1px solid var(--border);background:var(--surface-2);color:var(--text-muted);
+      transition:border-color .12s,color .12s,background .12s,box-shadow .12s;}
     .btn:hover{color:var(--text);border-color:var(--blue);box-shadow:var(--glow);}
     .btn:disabled{opacity:.45;cursor:default;box-shadow:none;}
-    .btn-accept,.btn-close{color:var(--green);border-color:rgba(52,245,197,.4);}
+    .btn-accept,.btn-close  {color:var(--green); border-color:rgba(52,245,197,.4);}
     .btn-accept:hover,.btn-close:hover{background:var(--green-bg);border-color:var(--green);}
-    .btn-changes{color:var(--orange);border-color:rgba(251,146,60,.4);} .btn-changes:hover{background:var(--orange-bg);border-color:var(--orange);}
-    .btn-block{color:var(--red);border-color:rgba(255,93,108,.4);} .btn-block:hover{background:var(--red-bg);border-color:var(--red);}
-    .btn-resume{color:var(--blue);border-color:rgba(56,189,248,.4);} .btn-resume:hover{background:var(--blue-bg);border-color:var(--blue);}
-    .btn-return{color:var(--cyan);border-color:rgba(34,211,238,.4);} .btn-return:hover{background:var(--cyan-bg);border-color:var(--cyan);}
+    .btn-changes{color:var(--orange);border-color:rgba(251,146,60,.4);}
+    .btn-changes:hover{background:var(--orange-bg);border-color:var(--orange);}
+    .btn-block  {color:var(--red);  border-color:rgba(255,93,108,.4);}
+    .btn-block:hover{background:var(--red-bg);border-color:var(--red);}
+    .btn-resume {color:var(--blue); border-color:rgba(56,189,248,.4);}
+    .btn-resume:hover{background:var(--blue-bg);border-color:var(--blue);}
+    .btn-return {color:var(--cyan); border-color:rgba(34,211,238,.4);}
+    .btn-return:hover{background:var(--cyan-bg);border-color:var(--cyan);}
 
-    .stale{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);padding:10px 14px;margin-bottom:14px;}
-    .stale.red{background:rgba(248,81,73,.14);border:1px solid rgba(248,81,73,.55);}
+    /* ── Stale banner ──────────────────────────────────────────── */
+    .stale{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r);
+      padding:10px 14px;margin-bottom:14px;}
+    .stale.red  {background:rgba(248,81,73,.14); border:1px solid rgba(248,81,73,.55);}
     .stale.amber{background:rgba(227,179,65,.10);border:1px solid rgba(227,179,65,.40);}
-    .stale-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;margin-top:1px;}
-    .stale.red .stale-lbl{color:var(--red);} .stale.amber .stale-lbl{color:var(--amber);}
-    .stale-txt{font-size:12px;color:var(--text-muted);} .stale-txt code{font-family:var(--mono);color:var(--text);}
-    /* health label beside the dot (color is not the only signal) */
-    .health-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.10em;
-      padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
-    .health-lbl.GREEN{color:var(--green);border-color:rgba(52,245,197,.4);}
-    .health-lbl.YELLOW{color:var(--amber);border-color:rgba(255,209,102,.45);}
-    .health-lbl.RED{color:var(--red);border-color:rgba(255,93,108,.5);}
-    /* ★ NEXT-ACTION card — the one thing to do now (5-second rule) */
+    .stale-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      white-space:nowrap;margin-top:1px;}
+    .stale.red   .stale-lbl{color:var(--red);}
+    .stale.amber .stale-lbl{color:var(--amber);}
+    .stale-txt{font-size:12px;color:var(--text-muted);}
+    .stale-txt code{font-family:var(--mono);color:var(--text);}
+
+    /* ── Glass Box / Pending sections ──────────────────────────── */
+    .gb-section{margin-bottom:16px;}
+    .gb-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);
+      margin:4px 2px 10px;text-shadow:0 0 10px rgba(34,211,238,.55);}
+    .gb-lbl .cap{font-family:var(--mono);color:var(--text-dim);letter-spacing:0;}
+    .pending-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin:18px 2px 10px;}
+    .pending-lbl .cap{font-family:var(--mono);letter-spacing:0;}
+
+    /* ── Next-action card ──────────────────────────────────────── */
     .nextcard{background:linear-gradient(180deg,var(--surface-2),var(--surface));
-      border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:var(--r);
-      padding:12px 16px;margin-bottom:16px;box-shadow:var(--glow),0 6px 22px rgba(0,0,0,.4);}
-    .nx-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+      border:1px solid var(--border);border-left:3px solid var(--cyan);
+      border-radius:var(--r);padding:12px 16px;margin-bottom:16px;
+      box-shadow:var(--glow),0 6px 22px rgba(0,0,0,.4);}
+    .nx-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
     .nx-lbl{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;
       color:var(--cyan);text-shadow:0 0 10px rgba(34,211,238,.4);}
-    .nx-id{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
+    .nx-id   {font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);}
     .nx-title{font-size:14px;font-weight:600;margin:5px 0 3px;}
-    .nx-reason{font-size:12px;color:var(--text-muted);}
+    .nx-reason  {font-size:12px;color:var(--text-muted);}
     .nx-unblocks{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:5px;}
-    .nx-chain{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:3px;}
-    .nx-blocker{display:flex;gap:7px;align-items:flex-start;margin-top:9px;padding-top:9px;
+    .nx-chain   {font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:3px;}
+    .nx-blocker {display:flex;gap:7px;align-items:flex-start;margin-top:9px;padding-top:9px;
       border-top:1px solid var(--border-sub);font-size:11px;color:var(--amber);}
-    /* collapsed "closed" log */
+
+    /* ── Closed log ────────────────────────────────────────────── */
     .closed{margin-top:18px;}
-    .closed>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--text-dim);padding:6px 2px;list-style:none;display:flex;align-items:center;gap:8px;}
+    .closed>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--text-dim);padding:6px 2px;list-style:none;
+      display:flex;align-items:center;gap:8px;}
     .closed>summary::-webkit-details-marker{display:none;}
     .closed>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
     .closed[open]>summary::before{transform:rotate(90deg);}
     .closed>summary:hover{color:var(--text-muted);}
     .closed .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;}
     .closed .card{padding:4px 16px;margin-top:4px;}
-    .crow{display:grid;grid-template-columns:82px 84px 1fr auto;gap:10px;align-items:baseline;
+    .crow{display:grid;grid-template-columns:82px 84px 1fr auto;gap:10px;align-items:center;
       padding:5px 0;border-bottom:1px solid var(--border-sub);font-size:11px;}
     .crow:last-child{border-bottom:none;}
-    .cdate{font-family:var(--mono);color:var(--text-dim);font-size:10px;}
-    .cid{font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
+    .cdate {font-family:var(--mono);color:var(--text-dim);font-size:10px;}
+    .cid   {font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
     .ctitle{color:var(--text-muted);}
     .creason{color:var(--text-dim);font-style:italic;}
     .creason::before{content:'— ';font-style:normal;}
-    .footer{margin-top:22px;padding:14px 24px;border-top:1px solid var(--border);font-size:11px;
+
+    /* ── Banked assets ─────────────────────────────────────────── */
+    .banked{margin-top:18px;}
+    .banked>summary{cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--text-muted);padding:6px 2px;list-style:none;
+      display:flex;align-items:center;gap:8px;}
+    .banked>summary::-webkit-details-marker{display:none;}
+    .banked>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
+    .banked[open]>summary::before{transform:rotate(90deg);}
+    .banked .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;}
+    .banked .card{padding:6px 16px;margin-top:4px;}
+    .brow{padding:10px 0;border-bottom:1px solid var(--border-sub);font-size:11px;}
+    .brow:last-child{border-bottom:none;}
+    .bhead{display:grid;grid-template-columns:82px 1fr auto;gap:10px;align-items:baseline;}
+    .bid  {font-family:var(--mono);color:var(--green);font-size:10px;font-weight:600;}
+    .btitle{color:var(--text);font-weight:600;}
+    .bstat {font-family:var(--mono);color:var(--text-dim);font-size:10px;}
+    .bwhy,.bgate{color:var(--text-muted);margin-top:5px;padding-left:92px;line-height:1.5;}
+    .bwhy b,.bgate b{color:var(--text-dim);font-weight:700;}
+    .bref{font-family:var(--mono);color:var(--text-dim);font-size:10px;margin-top:5px;padding-left:92px;}
+
+    /* ── Strategy (P1–P5) ─────────────────────────────────────── */
+    .strategy{margin-bottom:14px;}
+    .strategy>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;
+      padding:10px 18px;background:var(--surface);border:1px solid var(--border-sub);
+      border-radius:var(--r);font-size:10px;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--text-muted);}
+    .strategy>summary::-webkit-details-marker{display:none;}
+    .strategy>summary::before{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .12s;}
+    .strategy[open]>summary::before{transform:rotate(90deg);}
+    .strategy .cap{color:var(--text-dim);letter-spacing:0;font-family:var(--mono);font-weight:600;text-transform:none;}
+    .strat-body{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+    .strat-phase{border:1px solid var(--border-sub);border-radius:var(--r);background:var(--surface);overflow:hidden;}
+    .strat-phase.strat-current{border-color:rgba(34,211,238,.35);background:rgba(34,211,238,.03);}
+    .strat-ph-hd{display:flex;align-items:center;gap:10px;padding:9px 14px 6px;}
+    .strat-badge{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.08em;
+      padding:2px 8px;border-radius:9px;background:rgba(132,174,203,.12);
+      border:1px solid var(--border-sub);color:var(--text-dim);flex-shrink:0;}
+    .strat-current .strat-badge{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.38);color:var(--cyan);}
+    .strat-ptitle{font-size:12px;font-weight:600;color:var(--text);}
+    .strat-current .strat-ptitle{color:var(--cyan);}
+    .strat-now{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--cyan);background:rgba(34,211,238,.14);border:1px solid rgba(34,211,238,.28);
+      padding:1px 6px;border-radius:8px;margin-left:auto;}
+    .strat-sc{font-size:11px;color:var(--text-muted);padding:0 14px 8px;line-height:1.5;}
+    .strat-subs{padding:4px 14px 10px;border-top:1px solid var(--border-sub);
+      display:flex;flex-direction:column;gap:3px;}
+    .sphase{display:flex;gap:8px;align-items:baseline;padding:2px 0;}
+    .spid{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--text-dim);
+      letter-spacing:.06em;flex-shrink:0;min-width:38px;}
+    .sptitle{font-size:11px;color:var(--text-muted);font-weight:600;}
+    .sp-target{font-size:10px;color:var(--text-dim);padding-left:46px;margin-top:-1px;line-height:1.4;}
+    .strat-kpi{display:flex;align-items:center;gap:5px;flex-wrap:wrap;
+      padding:5px 14px 8px;border-top:1px solid var(--border-sub);}
+    .kpi-lbl{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.10em;
+      color:var(--green);text-transform:uppercase;margin-right:3px;}
+    .kpi-item{font-size:10px;color:var(--text);background:var(--green-bg);
+      border:1px solid rgba(52,245,197,.22);border-radius:5px;padding:1px 7px;}
+
+    /* ── Command palette ───────────────────────────────────────── */
+    dialog.palette{position:fixed;top:17%;left:50%;transform:translateX(-50%);
+      width:min(640px,92vw);max-height:64vh;display:flex;flex-direction:column;
+      background:rgba(5,10,22,.97);border:1px solid rgba(34,211,238,.42);
+      border-radius:var(--r);padding:0;
+      box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 0 1px rgba(34,211,238,.06),var(--glow);
+      backdrop-filter:blur(24px);overflow:hidden;}
+    dialog.palette::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(3px);}
+    .pal-head{display:flex;align-items:center;gap:10px;padding:12px 16px;
+      border-bottom:1px solid rgba(34,211,238,.15);}
+    .pal-ic  {color:var(--cyan);font-size:14px;flex-shrink:0;}
+    .pal-input{flex:1;background:transparent;border:none;outline:none;
+      font-family:var(--mono);font-size:13px;color:var(--text);caret-color:var(--cyan);}
+    .pal-input::placeholder{color:var(--text-dim);}
+    .pal-esc {font-family:var(--mono);font-size:10px;color:var(--text-dim);
+      padding:1px 6px;border-radius:3px;background:var(--surface-2);
+      border:1px solid rgba(255,255,255,.1);white-space:nowrap;flex-shrink:0;}
+    .pal-results{overflow-y:auto;flex:1;}
+    .pal-item{display:flex;align-items:center;gap:9px;padding:9px 16px;cursor:pointer;
+      border-bottom:1px solid rgba(56,189,248,.05);transition:background .07s;}
+    .pal-item:last-child{border-bottom:none;}
+    .pal-item.sel,.pal-item:hover{background:rgba(34,211,238,.09);}
+    .pal-id   {font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);
+      min-width:82px;flex-shrink:0;}
+    .pal-title{font-size:12px;color:var(--text);flex:1;overflow:hidden;
+      white-space:nowrap;text-overflow:ellipsis;}
+    .pal-empty{padding:24px;text-align:center;font-size:12px;color:var(--text-dim);}
+    .pal-foot {padding:7px 16px;border-top:1px solid rgba(34,211,238,.12);
+      display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--text-dim);}
+
+    /* ── kbd ───────────────────────────────────────────────────── */
+    kbd{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:3px;
+      background:var(--surface-2);border:1px solid rgba(255,255,255,.12);
+      color:var(--text-dim);line-height:1.6;}
+    .kbd-pair{display:flex;align-items:center;gap:2px;}
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    .footer{margin-top:22px;padding:12px 24px;border-top:1px solid var(--border);
+      font-size:11px;color:var(--text-dim);font-family:var(--mono);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+    .footer-keys{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+    .footer-keys span{display:flex;align-items:center;gap:4px;font-size:10px;}
+    .error{margin:24px;padding:16px 20px;background:var(--red-bg);
+      border:1px solid rgba(248,81,73,.3);border-radius:var(--r);
+      color:var(--red);font-family:var(--mono);font-size:12px;line-height:1.8;}
+
+    /* ── CC morning brief (v2 W1+W2 prose lead — TASK-187) ─────────────────── */
+    .cc-brief{margin:0 0 18px;padding:16px 20px 15px;border:1px solid var(--border);
+      border-left:3px solid var(--cyan);border-radius:var(--r);
+      background:linear-gradient(180deg,rgba(34,211,238,.06),var(--surface));
+      box-shadow:var(--glow);}
+    .cc-brief-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+    .cc-brief-head .cc-fig{flex:0 0 auto;}
+    .cc-brief-by{font-size:9px;letter-spacing:.16em;text-transform:uppercase;
       color:var(--text-dim);font-family:var(--mono);}
-    .error{margin:24px;padding:16px 20px;background:var(--red-bg);border:1px solid rgba(248,81,73,.3);
-      border-radius:var(--r);color:var(--red);font-family:var(--mono);font-size:12px;line-height:1.8;}
+    .cc-brief-by b{color:var(--cyan);font-weight:700;}
+    .cc-brief-date{margin-left:auto;font-size:9.5px;color:var(--text-dim);font-family:var(--mono);}
+    .cc-brief p{margin:0 0 7px;font-size:13.5px;line-height:1.62;color:var(--text);
+      font-family:var(--sans);}
+    .cc-brief p:last-child{margin-bottom:0;}
+    .cc-brief .lead{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;
+      font-weight:700;font-family:var(--mono);padding:1px 6px;border-radius:var(--r-sm);
+      margin-right:7px;vertical-align:1px;}
+    .cc-brief .lead.next{color:var(--cyan);background:var(--cyan-bg);border:1px solid var(--border);}
+    .cc-brief .lead.since{color:var(--green);background:var(--green-bg);border:1px solid rgba(52,245,197,.3);}
+    .cc-brief .lead.wrong{color:var(--amber);background:var(--amber-bg);border:1px solid rgba(255,209,102,.32);}
+    .cc-brief .lead.yours{color:var(--orange);background:var(--orange-bg);border:1px solid rgba(251,146,60,.34);}
+    .cc-brief b.tid{color:var(--cyan);font-family:var(--mono);font-weight:700;
+      font-size:12.5px;letter-spacing:.01em;}
+    .cc-brief .wrong-line b.tid{color:var(--amber);}
+    .cc-brief .calm{color:var(--text-muted);font-style:italic;}
+    .cc-brief .achip{transform:scale(.92);}
+
+    /* ── v2 Chief-of-Staff surface (TASK-187A) ─────────────────────────────── */
+    .cos-sec{margin:0 0 16px;}
+    .cos-h{display:flex;align-items:center;gap:8px;margin:0 0 8px;
+      font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--text-dim);}
+    .cos-h .cos-cnt{color:var(--text-muted);letter-spacing:.04em;}
+    .cos-h .cos-rule{flex:1;height:0;}   /* invisible spacer — keeps count right-aligned, no stray line */
+    .cos-card{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);
+      padding:0;overflow:hidden;}
+    .cos-row{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;
+      border-top:1px solid var(--border);font-size:12.5px;line-height:1.5;color:var(--text);}
+    .cos-row:first-child{border-top:none;}
+    .cos-row .cos-meta{font-family:var(--mono);font-size:10px;color:var(--text-dim);
+      flex:0 0 auto;min-width:54px;}
+    .cos-row .cos-main{flex:1;min-width:0;}
+    .cos-row .cos-sub{font-size:11px;color:var(--text-muted);margin-top:2px;}
+    .cos-row .cos-from{color:var(--text);font-weight:600;}
+    /* YOUR DECISION — the single escalated call */
+    .cos-decision{border-left:3px solid var(--orange);
+      background:linear-gradient(180deg,var(--orange-bg),var(--surface));}
+    .cos-decision .cos-q{font-size:13.5px;font-weight:600;color:var(--text);}
+    .cos-decision .cos-opts{font-size:12px;color:var(--text-muted);margin-top:5px;}
+    .cos-decision .cos-rec{font-size:12px;color:var(--orange);margin-top:5px;}
+    .badge-yours{font-family:var(--mono);font-size:8px;letter-spacing:.12em;
+      padding:1px 6px;border-radius:var(--r-sm);color:var(--orange);
+      background:var(--orange-bg);border:1px solid rgba(251,146,60,.34);}
+    .badge-handled{font-family:var(--mono);font-size:8px;letter-spacing:.12em;
+      padding:1px 6px;border-radius:var(--r-sm);color:var(--green);
+      background:var(--green-bg);border:1px solid rgba(52,245,197,.3);}
+    /* inbox draft stub button */
+    .cos-draft{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:var(--r-sm);
+      color:var(--cyan);background:var(--cyan-bg);border:1px solid var(--border);
+      cursor:pointer;white-space:nowrap;}
+    .cos-draft:hover{border-color:var(--cyan);}
+    .cos-draft[disabled]{opacity:.55;cursor:default;}
+    /* inbox dismiss (×) — local-to-this-board hide, never touches Gmail */
+    .cos-x{font-family:var(--mono);font-size:14px;line-height:1;padding:2px 8px;
+      border-radius:var(--r-sm);color:var(--text-dim);background:transparent;
+      border:1px solid var(--border);cursor:pointer;}
+    .cos-x:hover{color:var(--red);border-color:var(--red);}
+    .cos-dismissed-note{color:var(--text-dim);font-size:11px;}
+    .cos-dismissed-note a{color:var(--cyan);text-decoration:none;cursor:pointer;}
+    /* personal placeholder / loading / error */
+    .cos-placeholder{padding:13px 16px;font-size:12px;color:var(--text-dim);
+      border:1px dashed var(--border);border-radius:var(--r);background:var(--surface);
+      font-family:var(--sans);}
+    .cos-placeholder b{color:var(--text-muted);}
+    /* HANDLED ledger — the acid-test KPI */
+    .cos-kpi{display:flex;align-items:baseline;gap:14px;padding:12px 16px;flex-wrap:wrap;}
+    .cos-kpi .big{font-size:21px;font-weight:800;color:var(--green);font-family:var(--mono);}
+    .cos-kpi .lbl{font-size:11px;color:var(--text-muted);}
+    .cos-kpi .ratio{font-family:var(--mono);font-size:11px;color:var(--text-dim);
+      margin-left:auto;}
+    /* GOING WRONG */
+    .cos-wrong{border-left:3px solid var(--amber);}
+    .cos-wrong .cos-row{color:var(--text);}
+    .cos-wrong .wlbl{color:var(--amber);font-weight:700;font-family:var(--mono);font-size:11px;}
+    .cos-wrong .wfix{color:var(--text-dim);font-size:11px;display:block;margin-top:2px;}
+    /* BARI PORTFOLIO — the whole old board, demoted to one collapsible tile */
+    details.portfolio{margin:18px 0 0;border:1px solid var(--border);border-radius:var(--r);
+      background:var(--surface);overflow:hidden;}
+    details.portfolio>summary{list-style:none;cursor:pointer;padding:13px 18px;
+      display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;
+      color:var(--text);user-select:none;}
+    details.portfolio>summary::-webkit-details-marker{display:none;}
+    details.portfolio>summary::before{content:'▸';color:var(--text-dim);transition:transform .15s;}
+    details.portfolio[open]>summary::before{transform:rotate(90deg);}
+    details.portfolio>summary .ptag{font-weight:800;letter-spacing:.06em;color:var(--cyan);}
+    details.portfolio>summary .pline{color:var(--text-muted);font-size:11px;flex:1;
+      font-family:var(--sans);}
+    details.portfolio>summary .pverdict{font-family:var(--mono);font-size:10px;
+      letter-spacing:.1em;padding:2px 8px;border-radius:var(--r-sm);
+      color:var(--green);background:var(--green-bg);border:1px solid rgba(52,245,197,.3);}
+    .portfolio-body{padding:6px 16px 16px;border-top:1px solid var(--border);}
+
+    /* ── Tom's PRIVATE to-do list (#1) — his own items, NOT the agent registry ─ */
+    .todo-add{display:flex;gap:8px;padding:11px 16px;border-bottom:1px solid var(--border);}
+    .todo-input{flex:1;background:var(--surface-2);border:1px solid var(--border);
+      border-radius:var(--r-sm);padding:6px 10px;color:var(--text);font-family:var(--sans);
+      font-size:12.5px;outline:none;}
+    .todo-input:focus{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(34,211,238,.25);}
+    .todo-input::placeholder{color:var(--text-dim);}
+    .todo-addbtn{font-family:var(--mono);font-size:11px;padding:6px 12px;border-radius:var(--r-sm);
+      color:var(--cyan);background:var(--cyan-bg);border:1px solid var(--border);cursor:pointer;}
+    .todo-addbtn:hover{border-color:var(--cyan);}
+    .todo-row{display:flex;align-items:center;gap:10px;padding:9px 16px;
+      border-top:1px solid var(--border);font-size:12.5px;color:var(--text);}
+    .todo-row:first-of-type{border-top:none;}
+    .todo-check{width:16px;height:16px;flex:0 0 auto;cursor:pointer;accent-color:var(--green);}
+    .todo-text{flex:1;min-width:0;}
+    .todo-row.done .todo-text{color:var(--text-dim);text-decoration:line-through;}
+    .todo-rm{font-family:var(--mono);font-size:14px;line-height:1;padding:2px 8px;
+      border-radius:var(--r-sm);color:var(--text-dim);background:transparent;
+      border:1px solid var(--border);cursor:pointer;}
+    .todo-rm:hover{color:var(--red);border-color:var(--red);}
+    .todo-empty{padding:12px 16px;font-size:11px;color:var(--text-dim);font-style:italic;}
+
+    /* ── Tom's PRIVATE per-task note (#3) — distinct from CC's cc_comments ───── */
+    .mynote{margin-top:6px;}
+    .mynote-toggle{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;
+      color:var(--orange);background:var(--orange-bg);border:1px solid rgba(251,146,60,.30);
+      border-radius:9px;padding:1px 7px;cursor:pointer;}
+    .mynote-toggle:hover{border-color:var(--orange);}
+    .mynote-shown{display:flex;flex-direction:column;gap:5px;margin-top:5px;
+      padding:7px 10px;border-radius:6px;background:var(--orange-bg);
+      border-left:2px solid var(--orange);}
+    .mynote-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.10em;
+      text-transform:uppercase;color:var(--orange);}
+    .mynote-text{font-size:11.5px;line-height:1.45;color:var(--text);white-space:pre-wrap;
+      word-break:break-word;}
+    .mynote-edit{display:flex;flex-direction:column;gap:6px;margin-top:5px;}
+    .mynote-ta{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);
+      padding:6px 9px;color:var(--text);font-family:var(--sans);font-size:11.5px;
+      resize:vertical;min-height:46px;outline:none;}
+    .mynote-ta:focus{border-color:var(--orange);}
+    .mynote-actions{display:flex;gap:7px;}
+    .mynote-save{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:var(--r-sm);
+      color:var(--orange);background:var(--orange-bg);border:1px solid rgba(251,146,60,.34);cursor:pointer;}
+    .mynote-save:hover{border-color:var(--orange);}
+    .mynote-cancel{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:var(--r-sm);
+      color:var(--text-dim);background:transparent;border:1px solid var(--border);cursor:pointer;}
+
+    /* ── Going-wrong action controls (#4) ───────────────────────────────────── */
+    .cos-wrong .cos-row{align-items:flex-start;}
+    .wrong-actions{display:flex;gap:6px;align-items:center;flex:0 0 auto;flex-wrap:wrap;
+      justify-content:flex-end;}
+    .wbtn{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.02em;
+      text-transform:uppercase;cursor:pointer;border-radius:var(--r-sm);padding:3px 9px;
+      border:1px solid var(--border);background:var(--surface-2);color:var(--text-muted);
+      transition:border-color .12s,color .12s,background .12s;white-space:nowrap;}
+    .wbtn:hover{color:var(--text);border-color:var(--blue);}
+    .wbtn:disabled{opacity:.45;cursor:default;}
+    .wbtn-close {color:var(--green); border-color:rgba(52,245,197,.4);}
+    .wbtn-close:hover{background:var(--green-bg);border-color:var(--green);}
+    .wbtn-resume{color:var(--blue);  border-color:rgba(56,189,248,.4);}
+    .wbtn-resume:hover{background:var(--blue-bg);border-color:var(--blue);}
+    .wbtn-ack   {color:var(--text-muted);}
+    .wbtn-ack:hover{background:var(--gray-bg);border-color:var(--gray);color:var(--text);}
+    .wbtn-note  {color:var(--orange);border-color:rgba(251,146,60,.34);}
+    .wbtn-note:hover{background:var(--orange-bg);border-color:var(--orange);}
+    .quieted-note{padding:9px 16px;font-size:11px;color:var(--text-dim);
+      border-top:1px solid var(--border);}
+    .quieted-note a{color:var(--cyan);text-decoration:none;cursor:pointer;}
+    .wrong-err{color:var(--red);font-size:11px;margin-top:4px;display:block;}
   </style>
 </head>
 <body>
+<dialog id="palette" class="palette"></dialog>
 <div id="app"><div style="padding:80px;text-align:center;color:var(--text-dim)">Loading…</div></div>
 <script>
+// ── Utilities ──────────────────────────────────────────────────────────────────
 const esc=s=>s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const OWNER_SHORT={'product-agent':'product','nutrition-agent':'nutrition','research-agent':'research','data-agent':'data',
-  'frontend-agent':'frontend','design-agent':'design','qa-agent':'qa','content-agent':'content','marketing-agent':'marketing'};
-const owner=o=>`<span class="owner">${esc(OWNER_SHORT[o]||o||'—')}</span>`;
 const PRI={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};
 const statusColor={CLOSED:'green',IN_PROGRESS:'blue',RETURNED:'cyan',BLOCKED:'red',CHANGES_REQUESTED:'orange'};
 const pill=(t,c)=>`<span class="p p-${c}">${esc(t)}</span>`;
 const sPill=s=>s?pill(s.replace(/_/g,' '),statusColor[s]||'gray'):'';
-
-// ── id shape: objective (TASK-125) vs sub-task (TASK-125A) ──
 const isObjective=id=>/^TASK-\d+$/.test(id);
 const parentOf=id=>{const m=/^(TASK-\d+)[A-Z]+$/.exec(id);return m?m[1]:null;};
 
-// sub-task lifecycle (mirrors serve.py ACTIONS). Objectives get CLOSE only.
+// ── Tom's PRIVATE local store (#1 to-dos · #3 per-task notes · #4 soft-dismiss) ─
+// All of Tom's personal data lives server-side in ~/.bari/cc_personal.json (git-
+// ignored, never Gmail), reached only via /api/personal_store. We cache the last
+// fetched copy in window.__store so the UI can read it synchronously while
+// rendering, and every mutation returns the fresh full store (single source).
+window.__store={todos:[],task_notes:{},dismissed_faults:[]};
+function storeNotes(){return (window.__store&&window.__store.task_notes)||{};}
+function dismissedFaults(){return new Set((window.__store&&window.__store.dismissed_faults)||[]);}
+async function loadStore(){
+  try{
+    const res=await fetch('./api/personal_store',{cache:'no-store'});
+    const s=await res.json();
+    if(s&&!s.error) window.__store=s;
+  }catch(_){ /* store unreachable → keep last/default; board still renders */ }
+  return window.__store;
+}
+// One mutation primitive. On success it swaps in the fresh store and re-renders
+// the registry surface (so notes/dismissed-faults update) without re-fetching JSON.
+async function storeMutate(op,extra){
+  try{
+    const res=await fetch('./api/personal_store',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({op},extra||{}))});
+    const data=await res.json();
+    if(!res.ok||!data.ok){
+      // A 404 / "not found" on a known endpoint means the running serve.py predates
+      // this feature — the page was reloaded but the Python process wasn't restarted.
+      if(res.status===404||/not found/i.test(data.error||'')){
+        window.alert("Your serve.py is out of date — it doesn't have this endpoint yet.\n\nStop it (Ctrl+C in its terminal) and run it again:\n  python serve.py");
+      } else {
+        window.alert(`Couldn't save: ${data.error||('HTTP '+res.status)}`);
+      }
+      return false;
+    }
+    window.__store=data.store;
+    rerenderRegistry();      // re-paint to-dos / notes / going-wrong from the new store
+    return true;
+  }catch(err){window.alert(`Couldn't save (is serve.py running?) — ${err.message}`);return false;}
+}
+// Re-render only the parts that read window.__store + the cached dashboard json,
+// without a full init() (which would re-hit the network and reset scroll).
+function rerenderRegistry(){
+  const d=window.__lastData; if(!d) return;
+  const wrong=document.getElementById('cos-going-wrong');
+  if(wrong) wrong.innerHTML=renderGoingWrong(d);
+  const todo=document.getElementById('cos-todo');
+  if(todo) todo.innerHTML=renderTodos();
+  document.querySelectorAll('[data-noteslot]').forEach(slot=>{
+    slot.innerHTML=noteWidget(slot.getAttribute('data-noteslot'));
+  });
+  const brief=document.getElementById('cos-brief');
+  if(brief) brief.innerHTML=renderBrief(d);   // brief fault count respects dismissals
+}
+
+// ── #1 Personal to-do list ──────────────────────────────────────────────────────
+function renderTodos(){
+  const todos=(window.__store&&window.__store.todos)||[];
+  const rows=todos.length
+    ? todos.map(t=>`<div class="todo-row${t.done?' done':''}">
+        <input type="checkbox" class="todo-check" ${t.done?'checked':''}
+          onchange="todoToggle('${esc(t.id)}',this.checked)">
+        <span class="todo-text">${esc(t.text)}</span>
+        <button class="todo-rm" title="Remove" onclick="todoRemove('${esc(t.id)}')">×</button>
+      </div>`).join('')
+    : `<div class="todo-empty">No personal to-dos. These are yours — not the agent registry.</div>`;
+  const open=todos.filter(t=>!t.done).length;
+  return `<div class="cos-sec"><div class="cos-h">
+      <span style="color:var(--cyan)">Your to-do list — private</span><span class="cos-rule"></span>
+      <span class="cos-cnt">${open?`${open} open`:'all done'}</span></div>
+    <div class="cos-card">
+      <div class="todo-add">
+        <input class="todo-input" id="todo-new" placeholder="Add a personal to-do (yours only)…"
+          autocomplete="off" onkeydown="if(event.key==='Enter')todoAdd()">
+        <button class="todo-addbtn" onclick="todoAdd()">Add</button>
+      </div>
+      ${rows}
+    </div></div>`;
+}
+async function todoAdd(){
+  const inp=document.getElementById('todo-new'); if(!inp) return;
+  const text=inp.value.trim(); if(!text) return;
+  inp.value='';
+  await storeMutate('todo_add',{text});
+  const again=document.getElementById('todo-new'); if(again) again.focus();
+}
+function todoToggle(id,done){storeMutate('todo_toggle',{id,done});}
+function todoRemove(id){storeMutate('todo_remove',{id});}
+window.todoAdd=todoAdd; window.todoToggle=todoToggle; window.todoRemove=todoRemove;
+
+// ── #3 Per-task private note widget (Tom's own, NOT a CC comment) ────────────────
+// Rendered into a [data-noteslot="TASK-NNN"] container on each portfolio row and
+// going-wrong row. Two modes: a compact "+ note"/"note ●" toggle, and an inline
+// editor. State (which slot is editing) is kept on the DOM, not globally.
+function noteWidget(taskId){
+  const note=storeNotes()[taskId];
+  if(note&&note.text){
+    return `<div class="mynote-shown">
+      <span class="mynote-lbl">Your private note</span>
+      <span class="mynote-text">${esc(note.text)}</span>
+      <div class="mynote-actions">
+        <button class="mynote-save" onclick="noteEdit('${esc(taskId)}')">Edit</button>
+        <button class="mynote-cancel" onclick="noteClear('${esc(taskId)}')">Delete</button>
+      </div></div>`;
+  }
+  return `<button class="mynote-toggle" onclick="noteEdit('${esc(taskId)}')">＋ your note</button>`;
+}
+function noteEdit(taskId){
+  const slot=document.querySelector(`[data-noteslot="${cssEsc(taskId)}"]`); if(!slot) return;
+  const cur=(storeNotes()[taskId]&&storeNotes()[taskId].text)||'';
+  slot.innerHTML=`<div class="mynote-edit">
+    <textarea class="mynote-ta" id="nta-${esc(taskId)}" placeholder="Private note to yourself about ${esc(taskId)} (local only, never shared)…">${esc(cur)}</textarea>
+    <div class="mynote-actions">
+      <button class="mynote-save" onclick="noteSave('${esc(taskId)}')">Save</button>
+      <button class="mynote-cancel" onclick="noteCancel('${esc(taskId)}')">Cancel</button>
+    </div></div>`;
+  const ta=document.getElementById(`nta-${taskId}`); if(ta){ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}
+}
+async function noteSave(taskId){
+  const ta=document.getElementById(`nta-${taskId}`); if(!ta) return;
+  await storeMutate('note_set',{task_id:taskId,text:ta.value.trim()});
+}
+function noteClear(taskId){
+  if(!window.confirm(`Delete your private note on ${taskId}?`)) return;
+  storeMutate('note_set',{task_id:taskId,text:''});
+}
+function noteCancel(taskId){
+  const slot=document.querySelector(`[data-noteslot="${cssEsc(taskId)}"]`);
+  if(slot) slot.innerHTML=noteWidget(taskId);
+}
+const cssEsc=s=>String(s).replace(/"/g,'\\"');
+window.noteEdit=noteEdit; window.noteSave=noteSave; window.noteClear=noteClear; window.noteCancel=noteCancel;
+
+// ── Agent metadata ─────────────────────────────────────────────────────────────
+const AGENT_META={
+  'product-agent':   {i:'PR',c:'#a855f7',b:'rgba(168,85,247,.15)'},
+  'nutrition-agent': {i:'NU',c:'#10b981',b:'rgba(16,185,129,.15)'},
+  'research-agent':  {i:'RE',c:'#3b82f6',b:'rgba(59,130,246,.15)'},
+  'data-agent':      {i:'DA',c:'#f97316',b:'rgba(249,115,22,.15)'},
+  'frontend-agent':  {i:'FE',c:'#0ea5e9',b:'rgba(14,165,233,.15)'},
+  'design-agent':    {i:'DE',c:'#ec4899',b:'rgba(236,72,153,.15)'},
+  'qa-agent':        {i:'QA',c:'#eab308',b:'rgba(234,179,8,.15)'},
+  'content-agent':   {i:'CO',c:'#14b8a6',b:'rgba(20,184,166,.15)'},
+  'marketing-agent': {i:'MK',c:'#f43f5e',b:'rgba(244,63,94,.15)'},
+};
+
+function achip(id){
+  if(!id) return '';
+  const m=AGENT_META[id];
+  if(m) return `<span class="achip" style="color:${m.c};background:${m.b};border-color:${m.c}" title="${esc(id)}">${m.i}</span>`;
+  let h=0; for(let i=0;i<id.length;i++) h=(h*31+id.charCodeAt(i))>>>0;
+  const hue=h%360;
+  const init=id.split('-').map(w=>w[0]||'').join('').toUpperCase().slice(0,2)||'?';
+  return `<span class="achip" style="color:hsl(${hue},62%,62%);background:hsla(${hue},62%,40%,.15);border-color:hsl(${hue},62%,62%)" title="${esc(id)}">${esc(init)}</span>`;
+}
+
+function ccFig(){
+  return `<span class="cc-fig" title="CC Agent — Command Center">CC</span>`;
+}
+
+function sring(s){
+  return `<span class="sring ${s||''}" title="${esc(s||'')}"></span>`;
+}
+
+// ── Task action buttons ────────────────────────────────────────────────────────
 const TASK_ACTIONS={
   IN_PROGRESS:       [{a:'mark_returned',cls:'btn-return',label:'Mark Returned'},
                       {a:'close',cls:'btn-close',label:'Close'},{a:'block',cls:'btn-block',label:'Block'}],
@@ -221,37 +745,38 @@ const ACTION_PROMPT={block:'Reason for blocking',request_changes:'What changes a
 
 function subButtons(id,status){
   const defs=TASK_ACTIONS[status]; if(!defs) return '';
-  return `<span class="row-meta">${sPill(status)} ${owner(window.__owner[id]||'')}`+
+  return `<span class="row-meta">${sring(status)} ${sPill(status)} ${achip(window.__owner[id]||'')}`+
     defs.map(d=>`<button class="btn ${d.cls}" onclick="doAction('${esc(id)}','${d.a}')">${d.label}</button>`).join('')+`</span>`;
 }
 function objClose(id,status){
-  if(status==='CLOSED') return sPill(status);
-  return `${sPill(status)} <button class="btn btn-close" onclick="doAction('${esc(id)}','close')">Close</button>`;
+  if(status==='CLOSED') return `${sring(status)} ${sPill(status)}`;
+  return `${sring(status)} ${sPill(status)} <button class="btn btn-close" onclick="doAction('${esc(id)}','close')">Close</button>`;
 }
 
+// ── Action execution ───────────────────────────────────────────────────────────
 let actionBusy=false;
 async function doAction(taskId,action){
   if(actionBusy) return;
   let reason=null;
-  const objClosing = action==='close' && isObjective(taskId);
+  const objClosing=action==='close'&&isObjective(taskId);
   if(ACTION_PROMPT[action]){
-    const label = objClosing ? `Reason for closing objective ${taskId} (also closes its open sub-tasks)`
-                             : `${ACTION_PROMPT[action]} ${taskId}`;
+    const label=objClosing?`Reason for closing objective ${taskId} (also closes its open sub-tasks)`
+                          :`${ACTION_PROMPT[action]} ${taskId}`;
     reason=window.prompt(`${label}:`);
     if(reason===null) return;
     reason=reason.trim();
-    if(!reason){ window.alert('A reason is required for this action.'); return; }
+    if(!reason){window.alert('A reason is required for this action.');return;}
   }
   actionBusy=true;
   document.querySelectorAll('.btn').forEach(b=>b.disabled=true);
   try{
     const res=await fetch('./api/action',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({task_id:taskId,action,reason})});
-    let data={}; try{ data=await res.json(); }catch(_){}
+    let data={}; try{data=await res.json();}catch(_){}
     if(!res.ok||!data.ok){
       const msg=(res.status===501||res.status===405)
-        ? `This page is served by a process that can't apply actions (HTTP ${res.status}).\n\nRestart with:\n    python serve.py\n\nthen hard-refresh (Ctrl+F5).`
-        : `Action failed: ${data.error||('HTTP '+res.status)}`;
+        ?`This page is served by a process that can't apply actions (HTTP ${res.status}).\n\nRestart with:\n    python serve.py\n\nthen hard-refresh (Ctrl+F5).`
+        :`Action failed: ${data.error||('HTTP '+res.status)}`;
       window.alert(msg);
       document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
       return;
@@ -260,12 +785,92 @@ async function doAction(taskId,action){
   }catch(err){
     window.alert(`Action failed: ${err.message}\n\nIs serve.py running?`);
     document.querySelectorAll('.btn').forEach(b=>b.disabled=false);
-  }finally{ actionBusy=false; }
+  }finally{actionBusy=false;}
 }
 
+// ── Jump to task (palette + keyboard) ─────────────────────────────────────────
+function jumpToTask(id){
+  const dlg=document.getElementById('palette');
+  if(dlg&&dlg.open) dlg.close();
+  const sel=`[data-tid="${id.replace(/"/g,'\\"')}"]`;
+  const el=document.querySelector(sel);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),900);}
+}
+
+// ── Command palette ────────────────────────────────────────────────────────────
+function setupPalette(tasks){
+  const open=tasks.filter(t=>t.status!=='CLOSED');
+  window.__openPalette=function(){
+    const dlg=document.getElementById('palette');
+    if(dlg.open) return;
+    let sel=0;
+    const items=q=>{
+      q=q.toLowerCase().trim();
+      return q?open.filter(t=>t.id.toLowerCase().includes(q)||t.title.toLowerCase().includes(q)):open;
+    };
+    function renderList(q){
+      const list=items(q);
+      sel=Math.max(0,Math.min(sel,list.length-1));
+      const res=document.getElementById('pal-res');
+      if(!res) return;
+      res.innerHTML=list.length
+        ?list.map((t,i)=>`<div class="pal-item${i===sel?' sel':''}" data-id="${esc(t.id)}" onclick="jumpToTask('${esc(t.id)}')">
+            <span class="pal-id">${esc(t.id)}</span>
+            <span class="pal-title">${esc(t.title)}</span>
+            ${sring(t.status)}${achip(t.owner)}
+          </div>`).join('')
+        :`<div class="pal-empty">No matches</div>`;
+    }
+    dlg.innerHTML=`
+      <div class="pal-head">
+        <span class="pal-ic">⌘</span>
+        <input class="pal-input" id="pal-q" placeholder="Search tasks by ID or title…" autocomplete="off" spellcheck="false">
+        <span class="pal-esc">Esc close</span>
+      </div>
+      <div class="pal-results" id="pal-res"></div>
+      <div class="pal-foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>Enter</kbd> jump to task</span>
+        <span><kbd>Esc</kbd> close</span>
+      </div>`;
+    dlg.showModal();
+    const inp=document.getElementById('pal-q');
+    inp.focus();
+    renderList('');
+    inp.addEventListener('input',()=>{sel=0;renderList(inp.value);});
+    function onKey(e){
+      const list=items(inp?inp.value:'');
+      if(e.key==='ArrowDown'){sel=Math.min(sel+1,list.length-1);renderList(inp.value);e.preventDefault();}
+      else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);renderList(inp.value);e.preventDefault();}
+      else if(e.key==='Enter'){const it=document.querySelectorAll('.pal-item')[sel];if(it)jumpToTask(it.dataset.id);}
+    }
+    dlg.addEventListener('keydown',onKey);
+    dlg.addEventListener('close',()=>dlg.removeEventListener('keydown',onKey),{once:true});
+  };
+}
+
+// ── Keyboard nav (j/k + Ctrl+K) ───────────────────────────────────────────────
+function setupKeyNav(){
+  if(window.__keyNavReady) return;
+  window.__keyNavReady=true;
+  let kbIdx=-1;
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea,select,[contenteditable]')) return;
+    if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();window.__openPalette?.();return;}
+    const gs=[...document.querySelectorAll('.obj-group')];
+    if(!gs.length) return;
+    if(e.key==='j'){kbIdx=Math.min(kbIdx+1,gs.length-1);e.preventDefault();}
+    else if(e.key==='k'){kbIdx=Math.max(kbIdx-1,0);e.preventDefault();}
+    else return;
+    gs.forEach(g=>g.classList.remove('kb-focus'));
+    if(kbIdx>=0){gs[kbIdx].classList.add('kb-focus');gs[kbIdx].scrollIntoView({behavior:'smooth',block:'nearest'});}
+  });
+}
+
+// ── Stale banner ───────────────────────────────────────────────────────────────
 function renderStale(meta,drift){
-  meta=meta||{}; const snap=(drift?.counts?.SNAPSHOT_DRIFT)||0;
-  if(meta.stale===true||snap>0){
+  meta=meta||{};
+  if(meta.stale===true||(drift?.counts?.SNAPSHOT_DRIFT||0)>0){
     return `<div class="stale red"><span class="stale-lbl">⚠ Stale</span><span class="stale-txt">
       <b>Dashboard is out of date.</b> ${esc(meta.stale_reason||'Source files changed since this snapshot.')}<br>
       Run <code>python generate_dashboard.py</code> and refresh.</span></div>`;
@@ -273,129 +878,641 @@ function renderStale(meta,drift){
   return '';
 }
 
-// ★ The single most important thing to do now — actionability over decoration.
-function renderNext(na, ex, cp){
+// ── Next-action card ───────────────────────────────────────────────────────────
+function renderNext(na,ex,cp){
   ex=ex||{}; cp=cp||{};
   const chain=(cp.longest_chain&&cp.longest_chain.length>1)
-    ? `<div class="nx-chain">critical chain: ${cp.longest_chain.map(esc).join(' → ')}</div>` : '';
-  const blocker = ex.current_blocker
-    ? `<div class="nx-blocker">⚠ ${esc(ex.current_blocker)}</div>` : '';
-  if(!na) return blocker ? `<div class="nextcard">${blocker}</div>` : '';
-  const unblocks = (na.unblocks && na.unblocks!=='—')
-    ? `<div class="nx-unblocks">→ unblocks ${esc(na.unblocks)}</div>` : '';
+    ?`<div class="nx-chain">critical chain: ${cp.longest_chain.map(esc).join(' → ')}</div>`:'';
+  const blocker=ex.current_blocker
+    ?`<div class="nx-blocker">⚠ ${esc(ex.current_blocker)}</div>`:'';
+  if(!na) return blocker?`<div class="nextcard">${blocker}</div>`:'';
+  const unblocks=(na.unblocks&&na.unblocks!=='—')
+    ?`<div class="nx-unblocks">→ unblocks ${esc(na.unblocks)}</div>`:'';
   return `<div class="nextcard">
     <div class="nx-top"><span class="nx-lbl">NEXT</span>
-      <span class="nx-id">${esc(na.task_id)}</span>${sPill(na.status)}${owner(na.owner)}</div>
+      <span class="nx-id">${esc(na.task_id)}</span>${sPill(na.status)}${achip(na.owner)}</div>
     <div class="nx-title">${esc(na.title||'')}</div>
     <div class="nx-reason">${esc(na.reason||'')}</div>
     ${unblocks}${chain}${blocker}
   </div>`;
 }
 
+// ── v2 Chief-of-Staff surface (TASK-187A) ───────────────────────────────────────
+// All sections are exception-gated: a section that has nothing to say renders
+// NOTHING (earned silence). Registry sections compose from command_center.json;
+// the personal sections (#3 INBOX, #4 TODAY) are injected later by /api/personal —
+// NEVER from a file (see hydratePersonal).
+
+// #2 YOUR DECISION — the single escalated/tripwire call, framed. From registry.
+function renderDecision(d){
+  const pend=(d.decisions||[]).find(x=>
+    (x.status==='PENDING'||x.status==='OPEN') &&
+    String(x.required_from||'').toLowerCase()==='owner');
+  if(!pend) return '';   // silent when nothing is escalated to Tom
+  const opts=(pend.options&&pend.options.length)
+    ?`<div class="cos-opts">Options: ${pend.options.map(esc).join(' · ')}</div>`:'';
+  const rec=pend.recommendation?`<div class="cos-rec">CC recommends: ${esc(pend.recommendation)}</div>`:'';
+  const fact=pend.deciding_fact?`<div class="cos-sub">${esc(pend.deciding_fact)}</div>`:'';
+  return `<div class="cos-sec"><div class="cos-h">
+      <span style="color:var(--orange)">Your decision</span><span class="cos-rule"></span>
+      <span class="badge-yours">YOURS · DECIDE</span></div>
+    <div class="cos-card cos-decision"><div class="cos-row">
+      <div class="cos-main"><div class="cos-q">${esc(pend.title||pend.question||'(decision)')}</div>
+        ${opts}${rec}${fact}</div></div></div></div>`;
+}
+
+// #5 HANDLED SO YOU DIDN'T HAVE TO — absorption ratio (the acid-test KPI). Registry.
+function renderHandled(d){
+  const tasks=d.tasks||[], today=d.meta?.last_updated||'';
+  if(!today) return '';
+  const closedToday=tasks.filter(t=>t.status==='CLOSED'&&t.completed_at===today);
+  const openedToday=tasks.filter(t=>t.created_at===today&&t.status!=='CLOSED');
+  // escalated today = a task that went BLOCKED on the owner / a pending owner decision.
+  const escalated=(d.decisions||[]).filter(x=>
+    (x.status==='PENDING'||x.status==='OPEN')&&String(x.required_from||'').toLowerCase()==='owner').length;
+  const absorbed=closedToday.length+openedToday.length;
+  if(!absorbed && !escalated) return '';
+  const ratio=escalated===0?`${absorbed} absorbed · 0 reached you`
+    :`${absorbed} absorbed · ${escalated} escalated`;
+  const sample=closedToday.slice(0,5).map(t=>t.id).join(', ')
+    +(closedToday.length>5?`, +${closedToday.length-5}`:'');
+  return `<div class="cos-sec"><div class="cos-h">
+      <span style="color:var(--green)">Handled so you didn't have to</span><span class="cos-rule"></span>
+      <span class="badge-handled">REVERSIBLE · VETO</span></div>
+    <div class="cos-card"><div class="cos-kpi">
+      <span class="big">${absorbed}</span><span class="lbl">things handled today${closedToday.length?` — closed ${closedToday.length} (${esc(sample)})`:''}${openedToday.length?` · opened ${openedToday.length}`:''}</span>
+      <span class="ratio">${esc(ratio)}</span></div></div></div>`;
+}
+
+// #6 GOING WRONG / DECIDE-OR-KILL — named faults + parked items. Registry. Silent when clean.
+// Internal CC bookkeeping (WIP limits, owner load) is plumbing, not a fault in
+// Tom's world — it never belongs on his surface. Filter it out everywhere.
+const isInternalNoise=s=>/per-owner|wip limit|over the .*wip|wip over/i.test(String(s||''));
+// Collect the faults as structured objects (each with a stable `key` for soft-
+// dismiss + the related task id/status so Tom's action buttons know what to fire).
+// Used by BOTH renderGoingWrong (with controls) and renderBrief (count only).
+function collectFaults(d){
+  const tasks=d.tasks||[], byId={}; tasks.forEach(t=>byId[t.id]=t);
+  const faults=[], seen=new Set();
+  (d.alerts||[]).filter(a=>a.status==='OPEN'&&(a.severity==='CRITICAL'||a.severity==='HIGH'))
+    .forEach(a=>{let msg=String(a.message||'');
+      if(isInternalNoise(msg)) return;
+      if(a.related_task) msg=msg.replace(new RegExp('^\\s*'+a.related_task+'\\s*[:\\-—]\\s*'),'');
+      const key=a.related_task||a.id||msg;
+      if(seen.has(key)) return; seen.add(key);
+      faults.push({key:'alert:'+(a.id||key),lbl:a.related_task||a.severity,msg,
+        fix:a.resolution_path||'',task:byId[a.related_task]||null,task_id:a.related_task||null});});
+  tasks.filter(t=>t.status==='BLOCKED').forEach(t=>{
+    if(seen.has(t.id)) return; seen.add(t.id);
+    faults.push({key:'blocked:'+t.id,lbl:t.id,msg:t.blocker||'blocked',
+      fix:'unblock or escalate',task:t,task_id:t.id});});
+  // Drift — one row PER named task so each gets its own action buttons. Closure
+  // drift & unparseable name a real TASK; phantom names a missing one (no buttons).
+  const dr=d.drift||{};
+  (dr.closure_drift_tasks||[]).forEach(id=>{ if(seen.has(id))return; seen.add(id);
+    faults.push({key:'drift:'+id,lbl:id,msg:'closure drift — status says open but its deliverable already exists',
+      fix:'verify, then close or return',task:byId[id]||null,task_id:id});});
+  (dr.registry_unparseable||[]).forEach(id=>{ if(seen.has('un:'+id))return; seen.add('un:'+id);
+    faults.push({key:'drift:'+id,lbl:id,msg:'invalid YAML frontmatter — task is invisible on the board',
+      fix:'fix frontmatter, or close it out',task:byId[id]||null,task_id:id});});
+  (dr.phantom_tasks||[]).forEach(id=>{ if(seen.has('ph:'+id))return; seen.add('ph:'+id);
+    faults.push({key:'phantom:'+id,lbl:id,msg:'phantom — a deliverable claims this task but no registry file exists',
+      fix:'create the registry file',task:null,task_id:null});});
+  return faults;
+}
+// Action buttons for a fault, derived from the related task's CURRENT status.
+// Close is legal from IN_PROGRESS/BLOCKED/CHANGES_REQUESTED; Resume from BLOCKED/
+// CHANGES_REQUESTED. Unparseable/phantom faults have no live task → close-by-id is
+// still offered for unparseable (serve.py CAN parse its status even when the
+// generator can't render it) but not for phantom (no file). Plus: a soft "It's
+// fine" that quiets the row locally, and a private-note affordance.
+function faultActions(f){
+  const s=f.task?f.task.status:(f.task_id?'IN_PROGRESS':null);  // unparseable → treat as open for close
+  const id=f.task_id;
+  let real='';
+  if(id){
+    if(s==='BLOCKED'||s==='CHANGES_REQUESTED')
+      real+=`<button class="wbtn wbtn-resume" onclick="doAction('${esc(id)}','resume')">Resume</button>`;
+    if(s==='IN_PROGRESS'||s==='BLOCKED'||s==='CHANGES_REQUESTED')
+      real+=`<button class="wbtn wbtn-close" onclick="doAction('${esc(id)}','close')">Close</button>`;
+    if(s==='RETURNED')
+      real+=`<button class="wbtn wbtn-close" onclick="doAction('${esc(id)}','accept')">Accept</button>`;
+  }
+  const note=id?`<button class="wbtn wbtn-note" onclick="noteEdit('${esc(id)}')">＋ note</button>`:'';
+  const ack=`<button class="wbtn wbtn-ack" title="Quiet this on your board only — no registry change, reversible" onclick="dismissFault('${esc(f.key)}')">It's fine</button>`;
+  return `<div class="wrong-actions">${real}${note}${ack}</div>`;
+}
+function renderGoingWrong(d){
+  const all=collectFaults(d);
+  const dismissed=dismissedFaults();
+  const faults=all.filter(f=>!dismissed.has(f.key));
+  const quietN=all.length-faults.length;
+  const restore=quietN
+    ?`<div class="quieted-note">${quietN} quieted · <a onclick="restoreFaults()">restore</a></div>`:'';
+  if(!faults.length){
+    // Fully clean OR everything quieted: earned silence, but keep the restore line
+    // when Tom has quieted things so they're never lost.
+    return quietN?`<div class="cos-sec"><div class="cos-card cos-wrong">${restore}</div></div>`:'';
+  }
+  return `<div class="cos-sec"><div class="cos-h">
+      <span style="color:var(--amber)">Going wrong · decide or kill</span><span class="cos-rule"></span>
+      <span class="cos-cnt">${faults.length}</span></div>
+    <div class="cos-card cos-wrong">${faults.map(f=>`<div class="cos-row">
+      <span class="cos-meta wlbl">${esc(f.lbl)}</span>
+      <div class="cos-main">${esc(f.msg)}${f.fix?`<span class="wfix">↳ ${esc(f.fix)}</span>`:''}
+        ${f.task_id?`<div class="mynote" data-noteslot="${esc(f.task_id)}">${noteWidget(f.task_id)}</div>`:''}</div>
+      ${faultActions(f)}</div>`).join('')}${restore}</div></div>`;
+}
+function dismissFault(key){storeMutate('fault_dismiss',{fault_id:key});}
+function restoreFaults(){
+  // Restore ALL quieted faults at once (the simple, reversible default).
+  const ids=(window.__store&&window.__store.dismissed_faults)||[];
+  (async()=>{for(const id of ids){await storeMutate('fault_restore',{fault_id:id});}})();
+}
+window.dismissFault=dismissFault; window.restoreFaults=restoreFaults;
+
+// ── PERSONAL layer (#3 INBOX, #4 TODAY) — hydrated client-side from /api/personal,
+// NEVER from a file. Renders calm placeholders until the fetch returns.
+function personalPlaceholder(){
+  // No section header/rule here — a bare header rule under the brief reads as a
+  // stray line while the fetch is in flight. Just the calm box.
+  return `<div class="cos-sec">
+    <div class="cos-placeholder">Reading your inbox and calendar (live, never stored)…</div></div>`;
+}
+function senderName(raw){
+  const s=String(raw||'');
+  const m=/^\s*"?([^"<]+?)"?\s*<.*>/.exec(s);
+  return (m?m[1]:s).trim()||'(unknown sender)';
+}
+function fmtEventTime(iso,allDay){
+  if(allDay) return 'all-day';
+  if(!iso) return '';
+  const t=iso.slice(11,16);
+  return t||'';
+}
+// ── Local dismiss: hide a starred item from THIS board only (localStorage).
+// Read-only world stays untouched — un-star in Gmail to remove it at the source.
+const DISMISS_KEY='cc_dismissed_mail';
+function dismissedSet(){
+  try{return new Set(JSON.parse(localStorage.getItem(DISMISS_KEY)||'[]'));}catch(e){return new Set();}
+}
+function dismissMail(id){
+  const s=dismissedSet(); s.add(id);
+  localStorage.setItem(DISMISS_KEY,JSON.stringify([...s]));
+  const slot=document.getElementById('cos-personal');
+  if(slot&&window.__personal) slot.innerHTML=renderPersonal(window.__personal);
+}
+function clearDismissed(){
+  localStorage.removeItem(DISMISS_KEY);
+  const slot=document.getElementById('cos-personal');
+  if(slot&&window.__personal) slot.innerHTML=renderPersonal(window.__personal);
+}
+window.dismissMail=dismissMail; window.clearDismissed=clearDismissed;
+function renderPersonal(p){
+  if(!p||p.connected===false){
+    const hint=esc(p&&p.hint||'Gmail/Calendar not linked yet.');
+    return `<div class="cos-sec">
+      <div class="cos-placeholder"><b>Link your inbox.</b> ${hint}</div></div>`;
+  }
+  if(p.error){
+    return `<div class="cos-sec">
+      <div class="cos-placeholder">Can't read your inbox right now — ${esc(p.error)}</div></div>`;
+  }
+  let html='';
+  // #3 INBOX — only what Tom STARRED in Gmail (his curation), minus anything he
+  // dismissed locally. The × removes a row from this board only; un-star in Gmail
+  // to drop it at the source. Draft button is a read-only stub for a later wave.
+  const dismissed=dismissedSet();
+  const star=((p.inbox&&(p.inbox.starred||p.inbox.needs_reply))||[]).filter(m=>!dismissed.has(m.id));
+  const shown=star.slice(0,8), hiddenN=dismissed.size;
+  const restore=n=>`<a onclick="clearDismissed()">restore${n?` ${n}`:''}</a>`;
+  if(shown.length){
+    html+=`<div class="cos-sec"><div class="cos-h">
+        <span style="color:var(--cyan)">Starred — flagged by you</span><span class="cos-rule"></span>
+        <span class="cos-cnt">${shown.length}${star.length>shown.length?` of ${star.length}`:''}</span></div>
+      <div class="cos-card">${shown.map(m=>`<div class="cos-row">
+        <div class="cos-main"><span class="cos-from">${esc(senderName(m.sender))}</span>
+          <div class="cos-sub">${esc(m.subject||'(no subject)')}</div></div>
+        <button class="cos-x" title="Remove from this board (doesn't touch Gmail)" onclick="dismissMail('${esc(m.id)}')">×</button>
+        <button class="cos-draft" disabled title="CC draft-reply — coming in a later wave (read-only stub)">draft ✎</button>
+      </div>`).join('')}${hiddenN?`<div class="cos-row cos-dismissed-note"><div class="cos-main">${hiddenN} hidden · ${restore()}</div></div>`:''}</div></div>`;
+  } else {
+    html+=`<div class="cos-sec"><div class="cos-h">
+        <span style="color:var(--cyan)">Starred — flagged by you</span><span class="cos-rule"></span></div>
+      <div class="cos-placeholder">No starred mail. Star anything in Gmail you want CC to surface here.${hiddenN?` · ${restore(hiddenN+' hidden')}`:''}</div></div>`;
+  }
+  // #4 TODAY / THIS WEEK — events, conflicts, missing prep (Tom's local tz)
+  const cal=p.calendar||{}, evts=cal.events||[];
+  const wk=p.week||{};
+  const conflicts=cal.conflicts||[], noPrep=cal.no_prep||[];
+  const hasCal=evts.length||conflicts.length||noPrep.length||(wk.count||0);
+  if(hasCal){
+    let rows='';
+    if(evts.length){
+      rows+=evts.map(e=>`<div class="cos-row">
+        <span class="cos-meta">${esc(fmtEventTime(e.start,e.all_day))}</span>
+        <div class="cos-main">${esc(e.summary||'(no title)')}${e.attendees>=2&&!e.description?`<span class="cos-sub">⚠ no prep — draft?</span>`:''}</div></div>`).join('');
+    } else {
+      rows+=`<div class="cos-row"><div class="cos-main" style="color:var(--text-dim)">No meetings today${wk.count?` · ${wk.count} this week`:''}.</div></div>`;
+    }
+    if(conflicts.length){
+      rows+=conflicts.map(c=>`<div class="cos-row"><span class="cos-meta wlbl" style="color:var(--amber)">clash</span>
+        <div class="cos-main">${esc(c[0])} ↔ ${esc(c[1])}</div></div>`).join('');
+    }
+    html+=`<div class="cos-sec"><div class="cos-h">
+        <span style="color:var(--cyan)">Today / this week</span><span class="cos-rule"></span>
+        <span class="cos-cnt">${evts.length} today · ${wk.count||0} this week</span></div>
+      <div class="cos-card">${rows}</div></div>`;
+  }
+  if(!html){
+    html=`<div class="cos-sec">
+      <div class="cos-placeholder">Inbox quiet, nothing on the calendar that needs you.</div></div>`;
+  }
+  return html;
+}
+async function hydratePersonal(){
+  const slot=document.getElementById('cos-personal');
+  if(!slot) return;
+  try{
+    const res=await fetch('./api/personal',{cache:'no-store'});
+    const p=await res.json();
+    window.__personal=p;   // cached so dismiss/restore can re-render without re-fetching
+    slot.innerHTML=renderPersonal(p);
+  }catch(err){
+    slot.innerHTML=`<div class="cos-sec"><div class="cos-placeholder">`+
+      `Can't reach the personal layer (is serve.py running?) — ${esc(err.message)}</div></div>`;
+  }
+}
+
+// ── CC morning brief (v2 W1+W2 prose lead — TASK-187) ───────────────────────────
+// A short Chief-of-Staff paragraph composed ENTIRELY from command_center.json fields
+// already produced by generate_dashboard.py. Voice mirrors emit_digest: terse, factual,
+// CC's voice. Exception-gated — clean clauses stay silent. Missing field → clause omitted,
+// never faked. This is additive: it renders ABOVE the existing spine + board.
+function renderBrief(d){
+  const tasks=d.tasks||[];
+  const ex=d.executive||{}, na=d.next_action, cp=d.critical_path||{};
+  const today=(d.meta?.last_updated)||'';   // generator stamps registry "today"
+  const tid=id=>`<b class="tid">${esc(id)}</b>`;
+
+  // ── YOUR DECISION (escalation gate) — only a tripwire-class call waiting on Tom.
+  // Sources that already exist: a PENDING decision required_from "owner", or
+  // executive.next_recommended_decision. We do NOT manufacture a decision from a
+  // blocked task — a blocker is a fault (WHAT'S WRONG), not a decision. Silent today.
+  const pendingOwnerDec=(d.decisions||[]).find(x=>
+    (x.status==='PENDING'||x.status==='OPEN') &&
+    String(x.required_from||'').toLowerCase()==='owner');
+  let yoursP='';
+  if(pendingOwnerDec){
+    const rec=pendingOwnerDec.recommendation?` CC recommends ${esc(pendingOwnerDec.recommendation)}.`:'';
+    yoursP=`<p class="yours-line"><span class="lead yours">Your call</span>`+
+      `${esc(pendingOwnerDec.title)} — your decision.${rec}</p>`;
+  } else if(ex.next_recommended_decision){
+    yoursP=`<p class="yours-line"><span class="lead yours">Your call</span>`+
+      `${esc(ex.next_recommended_decision)}</p>`;
+  }
+
+  // ── NEXT MOVE — the org's next action, named. Always present while work is open.
+  const trim1=s=>String(s||'').trim().replace(/[.\s]+$/,'');  // drop trailing period
+  let nextP='';
+  if(na){
+    // emit_digest takes the title head before the em-dash; keep that brevity.
+    const head=esc(trim1(String(na.title||'').split('—')[0]));
+    const owner=na.owner?achip(na.owner):'';
+    const unblocks=(na.unblocks&&na.unblocks!=='—')?` → unblocks ${esc(trim1(na.unblocks))}`:'';
+    const reason=na.reason?` ${esc(trim1(na.reason))}.`:'';
+    // Show the critical chain ONLY when it actually explains this next move (the
+    // next-action task is in the chain) — otherwise it's an unrelated dependency edge.
+    const chainArr=cp.longest_chain||[];
+    const chain=(chainArr.length>1&&chainArr.includes(na.task_id))
+      ? ` Critical chain: ${chainArr.map(esc).join(' → ')}.` : '';
+    nextP=`<p><span class="lead next">Next move</span>`+
+      `${tid(na.task_id)} ${owner}${head?' — '+head:''}.${reason}${unblocks}${chain}</p>`;
+  } else if(ex.current_blocker){
+    nextP=`<p><span class="lead next">Next move</span>`+
+      `Nothing the org can advance unaided — see below.</p>`;
+  }
+
+  // ── SINCE YOU LEFT — autonomous-action ledger (closed/opened "today" per the
+  // registry stamp). Autonomous closes are CC close-readiness-gate passes.
+  let sinceP='';
+  if(today){
+    const closedToday=tasks.filter(t=>t.status==='CLOSED'&&t.completed_at===today);
+    const openedToday=tasks.filter(t=>t.created_at===today&&t.status!=='CLOSED');
+    if(closedToday.length||openedToday.length){
+      const autoClosed=closedToday.filter(t=>/close-readiness gate/i.test(t.close_reason||''));
+      const sample=closedToday.slice(0,4).map(t=>t.id).join(', ')
+        +(closedToday.length>4?`, +${closedToday.length-4} more`:'');
+      const sentences=[];
+      if(closedToday.length){
+        sentences.push(`closed ${closedToday.length} (${esc(sample)})`
+          +(autoClosed.length?`, ${autoClosed.length} on the CC close-readiness gate with no sign-off needed`:'')
+          +`.`);
+      }
+      if(openedToday.length){
+        sentences.push(`Opened ${openedToday.length}.`);
+      }
+      // Capitalize the first sentence ("Closed …").
+      let body=sentences.join(' ');
+      body=body.charAt(0).toUpperCase()+body.slice(1);
+      sinceP=`<p><span class="lead since">Since you left</span>`+
+        `${body} All reversible — flag any you want rolled back.</p>`;
+    }
+  }
+
+  // ── WHAT'S WRONG — a TERSE one-liner in the brief. The full, actionable list
+  // lives in the "Going wrong" section below; the brief must not duplicate it (that
+  // long stacked list was the stray "line" mid-card). Name the first fault, count
+  // the rest, point down. Silent when clean (earned silence).
+  // Share the SAME fault collection as the "going wrong" section, minus the ones
+  // Tom soft-dismissed ("it's fine") — the brief count must agree with the list.
+  const dismissed=dismissedFaults();
+  const liveFaults=collectFaults(d).filter(f=>!dismissed.has(f.key));
+  const faultLabels=liveFaults.map(f=>
+    (f.task_id?tid(f.task_id)+' ':'')+esc(String(f.msg||'').split(/[—-]/)[0].trim()).slice(0,60));
+  let wrongP='';
+  if(faultLabels.length){
+    const first=faultLabels[0];
+    const more=faultLabels.length>1
+      ? ` <span class="calm">· +${faultLabels.length-1} more — see “going wrong” below.</span>`
+      : '';
+    wrongP=`<p class="wrong-line"><span class="lead wrong">What's wrong</span>${first}${more}</p>`;
+  }
+
+  // ── Compose. NEXT and SINCE always lead the body when present; faults follow;
+  // YOUR DECISION sits at the very top when a real escalation exists.
+  const paras=[yoursP,nextP,sinceP,wrongP].filter(Boolean);
+  if(!paras.length){
+    paras.push(`<p class="calm">No open work needs you. The board is quiet.</p>`);
+  } else if(!wrongP){
+    // Clean board: end on the honest "nothing else needs you" line.
+    paras.push(`<p class="calm">Nothing else needs you — everything else is handled.</p>`);
+  }
+  const liveN=(d.category_state||[]).filter(c=>c.launch==='LIVE').length;
+  const liveBit=liveN?` · ${liveN} categor${liveN===1?'y':'ies'} live`:'';
+  const hr=new Date().getHours();
+  const partOfDay=hr<5?'late-night':hr<12?'morning':hr<17?'afternoon':hr<21?'evening':'night';
+  return `<div class="cc-brief">
+    <div class="cc-brief-head">${ccFig()}
+      <span class="cc-brief-by"><b>CC</b> — ${partOfDay} brief</span>
+      <span class="cc-brief-date">${esc(today||'—')}${liveBit}</span>
+    </div>
+    ${paras.join('')}
+  </div>`;
+}
+
+// ── Main render ────────────────────────────────────────────────────────────────
 function render(d){
+  window.__lastData=d;   // cached so store mutations can re-render without a re-fetch
   const tasks=d.tasks||[];
   window.__owner={}; tasks.forEach(t=>window.__owner[t.id]=t.owner);
   const open=tasks.filter(t=>t.status!=='CLOSED');
   const byId={}; tasks.forEach(t=>byId[t.id]=t);
   const health=d.executive?.system_health||'GREEN';
 
-  // group open tasks by objective id
+  // Row flash: detect status changes since last render
+  const prev=window.__prevStates||{};
+  const cur={}; tasks.forEach(t=>cur[t.id]=t.status);
+  const changed=new Set(Object.keys(cur).filter(id=>prev[id]&&prev[id]!==cur[id]));
+  window.__prevStates=cur;
+
+  // Group open tasks by objective
   const objIds=[...new Set(open.map(t=>isObjective(t.id)?t.id:parentOf(t.id)).filter(Boolean))];
   objIds.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
   const byPri=(a,b)=>(PRI[a.priority]??9)-(PRI[b.priority]??9)||a.id.localeCompare(b.id);
 
-  // CC Agent review notes — collapsed flag-count badge, click to expand full text.
-  // (extra:obj-cc spaces it under an objective head)
+  // CC notes renderer — now with CC figure as author identity
   const CC_IC={fyi:'💬',verify:'🔍',blocker:'⛔'};
   const CC_ORDER=['blocker','verify','fyi'];
   const ccNotes=(t,extra='')=>{
     const cs=(t&&t.cc_comments)||[]; if(!cs.length) return '';
-    const cnt={}; cs.forEach(c=>{const f=c.flag||'fyi'; cnt[f]=(cnt[f]||0)+1;});
-    const chips=CC_ORDER.filter(f=>cnt[f])
-      .map(f=>`<span class="cc-chip ${f}">${CC_IC[f]}${cnt[f]}</span>`).join('');
+    const cnt={}; cs.forEach(c=>{const f=c.flag||'fyi';cnt[f]=(cnt[f]||0)+1;});
+    const chips=CC_ORDER.filter(f=>cnt[f]).map(f=>`<span class="cc-chip ${f}">${CC_IC[f]}${cnt[f]}</span>`).join('');
     const body=cs.map(c=>{
       const f=c.flag||'fyi';
-      const lbl='CC'+(f!=='fyi'?' · '+f.toUpperCase():'');
+      const lbl=f!=='fyi'?' · '+f.toUpperCase():'';
       const dt=c.date?`<span class="cc-dt">${esc(c.date)}</span>`:'';
-      return `<div class="cc-note ${f}"><span class="cc-ic">${CC_IC[f]||'💬'}</span>`
-           +`<span><span class="cc-lbl">${lbl}:</span> ${esc(c.text)}${dt}</span></div>`;
+      return `<div class="cc-note ${f}">${ccFig()}<span><span class="cc-lbl">CC${lbl}:</span> ${esc(c.text)}${dt}</span></div>`;
     }).join('');
-    return `<details class="cc ${extra}"><summary>${chips}<span class="cc-read">read</span></summary>`
-         +`<div class="cc-body">${body}</div></details>`;
+    return `<details class="cc ${extra}"><summary>${ccFig()} ${chips}<span class="cc-read">read</span></summary>`
+          +`<div class="cc-body">${body}</div></details>`;
   };
 
-  const groups=objIds.map(oid=>{
+  // CC presence count for header
+  const ccTotal=tasks.reduce((n,t)=>n+(t.cc_comments||[]).length,0);
+  // Active agents (any open work)
+  const activeAgents=[...new Set(open.map(t=>t.owner).filter(Boolean))];
+
+  // Glass Box program umbrellas — current program-of-record is TASK-181 (continues the closed TASK-179)
+  const GLASSBOX_ROOTS=['TASK-181','TASK-179'];
+  const isGB=oid=>GLASSBOX_ROOTS.includes(oid);
+
+  const buildGroup=oid=>{
     const obj=byId[oid];
     const subs=open.filter(t=>parentOf(t.id)===oid).sort(byPri);
-    const orphan=!obj||obj.status==='CLOSED';   // open sub-tasks with no open objective
-    const head = orphan
-      ? `<div class="obj obj-orphan"><span class="obj-id">${esc(oid)}</span>
+    const orphan=!obj||obj.status==='CLOSED';
+    const fc=changed.has(oid)?' flash':'';
+    const stCls=obj&&!orphan?` st-${obj.status}`:'';
+    const head=orphan
+      ?`<div class="obj obj-orphan"><span class="obj-id">${esc(oid)}</span>
            <span class="obj-title">${esc(obj?obj.title:'(objective not open)')}</span>
-           <span class="obj-meta muted">${obj?sPill(obj.status):''}</span></div>`
-      : `<div class="obj"><span class="obj-id">${esc(obj.id)}</span>
+           <span class="obj-meta">${obj?sPill(obj.status):''}</span></div>`
+      :`<div class="obj${stCls}"><span class="obj-id">${esc(obj.id)}</span>
            <span class="obj-title">${esc(obj.title)}</span>
-           <span class="obj-meta">${objClose(obj.id,obj.status)}</span></div>`;
-    const subsHTML = subs.length
-      ? `<div class="subs">${subs.map(t=>`<div class="row">
-           <span class="row-id">${esc(t.id)}</span>
-           <span class="row-title">${esc(t.title)}</span>
-           ${subButtons(t.id,t.status)}
-           ${ccNotes(t)}</div>`).join('')}</div>`
-      : (orphan ? '' : `<div class="no-subs">No open sub-tasks — close the objective when the goal is met.</div>`);
-    return `<div class="obj-group">${head}${obj?ccNotes(obj,'obj-cc'):''}${subsHTML}</div>`;
-  });
+           <span class="obj-meta">${objClose(obj.id,obj.status)} ${achip(obj.owner)}</span></div>`;
+    const subsHTML=subs.length
+      ?`<div class="subs">${subs.map(t=>{
+          const rf=changed.has(t.id)?' flash':'';
+          return `<div class="row${rf}" data-tid="${esc(t.id)}">
+            <span class="row-id">${esc(t.id)}</span>
+            <span class="row-title">${esc(t.title)}</span>
+            ${subButtons(t.id,t.status)}${ccNotes(t)}
+            <div class="mynote" style="grid-column:1/-1" data-noteslot="${esc(t.id)}">${noteWidget(t.id)}</div></div>`;
+        }).join('')}</div>`
+      :(orphan?'':`<div class="no-subs">No open sub-tasks — close the objective when the goal is met.</div>`);
+    // Objective-level private note (so objectives like TASK-189/191 are annotatable).
+    const objNote=obj?`<div class="mynote obj-cc" data-noteslot="${esc(oid)}">${noteWidget(oid)}</div>`:'';
+    return `<div class="obj-group${fc}" data-tid="${esc(oid)}">${head}${obj?ccNotes(obj,'obj-cc'):''}${objNote}${subsHTML}</div>`;
+  };
 
-  const body = groups.length
-    ? `<div class="card">${groups.join('')}</div>`
-    : `<div class="card"><div class="calm"><span class="ic">✓</span>Nothing to action — no open work.</div></div>`;
+  const gbIds=objIds.filter(isGB);
+  const pendingIds=objIds.filter(oid=>!isGB(oid));
+  const gbGroups=gbIds.map(buildGroup);
+  const pendingGroups=pendingIds.map(buildGroup);
+  const gbSubCount=open.filter(t=>gbIds.includes(parentOf(t.id))).length;
+  const pendingSubCount=open.filter(t=>pendingIds.includes(parentOf(t.id))).length;
 
-  // recently closed — collapsed reference log, last 20, newest first
+  const gbSection=gbGroups.length
+    ?`<div class="gb-section">
+        <div class="gb-lbl">Glass Box <span class="cap">(${gbGroups.length} objective${gbGroups.length===1?'':'s'}${gbSubCount?` · ${gbSubCount} sub-task${gbSubCount===1?'':'s'}`:''})</span></div>
+        <div class="card">${gbGroups.join('')}</div>
+      </div>`:'' ;
+
+  const pendingSection=pendingGroups.length
+    ?`<div class="pending-lbl">Pending <span class="cap">(${pendingGroups.length} objective${pendingGroups.length===1?'':'s'}${pendingSubCount?` · ${pendingSubCount} sub-task${pendingSubCount===1?'':'s'}`:''})</span></div>
+      <div class="card">${pendingGroups.join('')}</div>`:'' ;
+
+  const nextHtml=pendingGroups.length?renderNext(d.next_action,d.executive,d.critical_path):'';
+
+  const body=(gbSection||pendingSection)
+    ?`${gbSection}${nextHtml}${pendingSection}`
+    :`<div class="card"><div class="calm"><span>✓</span>Nothing to action — no open work.</div></div>`;
+
+  // Closed log
   const allClosed=tasks.filter(t=>t.status==='CLOSED')
     .sort((a,b)=>String(b.completed_at||'').localeCompare(String(a.completed_at||''))
                  ||b.id.localeCompare(a.id,undefined,{numeric:true}));
-  const closed=allClosed.slice(0,20);
-  const closedHTML = allClosed.length===0 ? '' : `
+  const closedSlice=allClosed.slice(0,20);
+  const closedHTML=allClosed.length===0?'':`
     <details class="closed">
-      <summary>Closed <span class="cap">(last ${closed.length} of ${allClosed.length})</span></summary>
-      <div class="card">${closed.map(t=>`<div class="crow">
+      <summary>Closed <span class="cap">(last ${closedSlice.length} of ${allClosed.length})</span></summary>
+      <div class="card">${closedSlice.map(t=>`<div class="crow">
         <span class="cdate">${esc(t.completed_at||'—')}</span>
         <span class="cid">${esc(t.id)}</span>
         <span class="ctitle">${esc(t.title)}${t.close_reason?`<span class="creason">${esc(t.close_reason)}</span>`:''}</span>
-        <span>${owner(t.owner)}</span></div>`).join('')}</div>
+        <span>${achip(t.owner)}</span></div>`).join('')}</div>
     </details>`;
 
-  const dc=d.drift?.counts||{}; const issues=(dc.PHANTOM_TASK||0)+(dc.CLOSURE_DRIFT||0)+(dc.REGISTRY_UNPARSEABLE||0);
-  const reg=issues? `<span class="reg warn" title="registry hygiene">registry: ${issues} issue${issues===1?'':'s'}</span>`
-                  : `<span class="reg clean" title="no phantom / unparseable / closure drift">registry: clean</span>`;
+  // Banked assets
+  const banked=d.banked_assets||[];
+  const bankedHTML=banked.length===0?'':`
+    <details class="banked" open>
+      <summary>🏦 Banked assets <span class="cap">(${banked.length} — proven, not launched)</span></summary>
+      <div class="card">${banked.map(b=>`<div class="brow">
+        <div class="bhead"><span class="bid">${esc(b.task_id)}</span>
+          <span class="btitle">${esc(b.one_liner||b.title)}</span>
+          <span class="bstat">${esc(b.status)} · ${esc(b.banked_at||'—')}</span></div>
+        ${b.why_parked?`<div class="bwhy"><b>Parked:</b> ${esc(b.why_parked)}</div>`:''}
+        ${b.revival_gate?`<div class="bgate"><b>Revive when:</b> ${esc(b.revival_gate)}</div>`:''}
+        ${b.reference?`<div class="bref">${esc(b.reference)}</div>`:''}
+      </div>`).join('')}</div>
+    </details>`;
 
-  const objCount=groups.length, subCount=open.filter(t=>parentOf(t.id)).length;
+  // Strategy (P1–P5)
+  function renderStrategy(d){
+    const s=d.strategy||{};
+    const phases=s.phases||[];
+    if(!phases.length) return '';
+    const cur=s.current_phase||phases[0]?.id||'';
+    const phaseHtml=phases.map(p=>{
+      const isCur=p.id===cur;
+      const subs=(p.sub_phases||[]).map(sp=>`
+        <div class="sphase">
+          <span class="spid">${esc(sp.id)}</span>
+          <span class="sptitle">${esc(sp.title)}</span>
+        </div>
+        ${sp.target?`<div class="sp-target">${esc(sp.target)}</div>`:''}
+      `).join('');
+      const kpi=p.kpi_checkpoint?`
+        <div class="strat-kpi">
+          <span class="kpi-lbl">${esc(p.kpi_checkpoint.label)}</span>
+          ${(p.kpi_checkpoint.metrics||[]).map(m=>`<span class="kpi-item">${esc(m)}</span>`).join('')}
+        </div>`:'';
+      return `<div class="strat-phase${isCur?' strat-current':''}">
+        <div class="strat-ph-hd">
+          <span class="strat-badge">${esc(p.id)}</span>
+          <span class="strat-ptitle">${esc(p.title)}</span>
+          ${isCur?'<span class="strat-now">current</span>':''}
+        </div>
+        <div class="strat-sc">${esc(p.success_criteria||'')}</div>
+        ${subs?`<div class="strat-subs">${subs}</div>`:''}
+        ${kpi}
+      </div>`;
+    }).join('');
+    return `<details class="strategy">
+      <summary>🗺 2-Month Strategy <span class="cap">(P1–P5 · current: ${esc(cur)})</span></summary>
+      <div class="strat-body">${phaseHtml}</div>
+    </details>`;
+  }
+  const strategyHTML=renderStrategy(d);
+
+  const dc=d.drift?.counts||{};
+  const issues=(dc.PHANTOM_TASK||0)+(dc.CLOSURE_DRIFT||0)+(dc.REGISTRY_UNPARSEABLE||0);
+  const reg=issues
+    ?`<span class="reg warn">registry: ${issues} issue${issues===1?'':'s'}</span>`
+    :`<span class="reg clean">registry: clean</span>`;
+
+  const objCount=objIds.length, subCount=open.filter(t=>parentOf(t.id)).length;
+
+  // CC header badge — clicking scrolls to first CC note
+  const ccBadge=ccTotal>0
+    ?`<span class="cc-presence" onclick="document.querySelector('.cc')?.scrollIntoView({behavior:'smooth',block:'center'})" title="CC Agent: ${ccTotal} review note${ccTotal===1?'':'s'}">${ccFig()} ${ccTotal}</span>`
+    :'';
+
+  // ── Bari portfolio one-line verdict (the collapsed-tile headline) ──────────
+  const liveN=(d.category_state||[]).filter(c=>c.launch==='LIVE').length;
+  const blockedN=open.filter(t=>t.status==='BLOCKED').length;
+  const naBit=d.next_action?` · next: ${esc(d.next_action.task_id)}`:'';
+  const pVerdict=(health==='RED'||issues>0)?'NEEDS YOU':(blockedN>0?'1 BLOCKED':'ON-PACE');
+  const pLine=`${open.length} active · ${liveN} live${blockedN?` · ${blockedN} blocked`:''}${naBit}`;
+
+  // The entire previous board is preserved verbatim — just demoted into ONE
+  // collapsible Portfolio tile below Tom's personal surface. Bari is now one
+  // portfolio item, not the whole page.
+  const portfolioHTML=`<details class="portfolio">
+    <summary><span class="ptag">BARI PORTFOLIO</span>
+      <span class="pline">${esc(pLine)}</span>
+      <span class="pverdict">${esc(pVerdict)}</span></summary>
+    <div class="portfolio-body">
+      <div class="sec-lbl">Actions <span class="cap">(${objCount} objective${objCount===1?'':'s'} · ${subCount} sub-task${subCount===1?'':'s'})</span></div>
+      <div class="hint">Objectives (TASK-NNN) only <b>Close</b> — closing cascades to open sub-tasks. Add work: <code>python new_task.py --parent TASK-NNN --title "…" --owner …</code></div>
+      ${body}
+      ${bankedHTML}
+      ${closedHTML}
+    </div>
+  </details>`;
+
   return `
   <header class="hdr">
-    <div class="hdr-brand"><span class="dot ${health}" title="${health}"></span>
-      <span class="hdr-title">Bari Command Center</span><span class="hdr-badge">tasks</span>
-      <span class="health-lbl ${health}">${health}</span></div>
+    <div class="hdr-brand">
+      <span class="dot ${health}" title="${health}"></span>
+      <span class="hdr-title">Tom's Command Center</span>
+      <span class="hdr-badge">chief of staff</span>
+      <span class="health-lbl ${health}">${health}</span>
+    </div>
     <div class="hdr-right">
+      <div class="agents-bar" title="Active agents">${activeAgents.map(achip).join('')}</div>
+      ${ccBadge}
       ${reg}
       <span class="hdr-date">updated ${esc(d.meta?.last_updated||'—')}</span>
-      <a class="hdr-link" href="./seo.html">SEO →</a></div>
+      <span class="kbd-pair"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      <a class="hdr-link" href="./seo.html">SEO →</a>
+    </div>
   </header>
   <div class="main">
     ${renderStale(d.meta,d.drift)}
-    ${renderNext(d.next_action,d.executive,d.critical_path)}
-    <div class="sec-lbl">Actions <span class="cap">(${objCount} objective${objCount===1?'':'s'} · ${subCount} sub-task${subCount===1?'':'s'})</span></div>
-    <div class="hint">Objectives (TASK-NNN) only <b>Close</b> — and closing one closes its open sub-tasks. Sub-tasks (TASK-NNN·A) carry the lifecycle. Add work with <code>python new_task.py --parent TASK-NNN --title "…" --owner …</code></div>
-    ${body}
-    ${closedHTML}
+    <div id="cos-brief">${renderBrief(d)}</div>
+    ${renderDecision(d)}
+    <div id="cos-todo">${renderTodos()}</div>
+    <div id="cos-personal">${personalPlaceholder()}</div>
+    <div id="cos-going-wrong">${renderGoingWrong(d)}</div>
+    ${strategyHTML}
+    ${portfolioHTML}
   </div>
-  <div class="footer">Bari Command Center · task board · data: command_center.json · ${esc(d.meta?.generated_at||'—')}</div>`;
+  <div class="footer">
+    <span>Bari Command Center · task board · ${esc(d.meta?.generated_at||'—')}</span>
+    <div class="footer-keys">
+      <span><kbd>Ctrl</kbd><kbd>K</kbd> palette</span>
+      <span><kbd>j</kbd><kbd>k</kbd> navigate</span>
+    </div>
+  </div>`;
 }
 
+// ── Init ───────────────────────────────────────────────────────────────────────
 async function init(){
   const app=document.getElementById('app');
   try{
+    // Load Tom's private store FIRST so to-dos / notes / soft-dismissed faults are
+    // present on the very first paint (no flash of un-noted rows). Store-unreachable
+    // degrades to defaults inside loadStore — the board still renders.
+    await loadStore();
     const res=await fetch('./command_center.json',{cache:'no-store'});
     if(!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
-    app.innerHTML=render(await res.json());
+    const d=await res.json();
+    app.innerHTML=render(d);
+    setupPalette(d.tasks||[]);
+    setupKeyNav();
+    hydratePersonal();   // Starred inbox + calendar — live, never from a file
   }catch(err){
     app.innerHTML=`<div class="error">✗ Failed to load command_center.json<br><br>${esc(err.message)}<br><br>
       Run:&nbsp; cd C:\\Bari\\05_command_center &nbsp;then&nbsp; python serve.py</div>`;

@@ -1,0 +1,31 @@
+{
+  "run_id": "butter_run_001",
+  "task": "TASK-191",
+  "generated_utc": "2026-06-05T12:35:21Z",
+  "engine_flags": {
+    "BARI_RECAL_P0": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_GLASSBOX_D5D6": "off"
+  },
+  "bsip1_source": "C:\\Bari\\02_products\\butter\\bsip1_outputs\\butter_bsip1_merged.json",
+  "total_products": 39,
+  "pipeline_errors": 0,
+  "grade_distribution": {
+    "C": 15,
+    "insufficient_data": 23,
+    "D": 1
+  },
+  "score_range": {
+    "min": 45.2,
+    "max": 60,
+    "mean": 52.3
+  },
+  "routing_check": {
+    "all_whole_food_fat": true,
+    "misrouted": []
+  },
+  "floor_activations": 37,
+  "sat_fat_caps_fired": 16,
+  "insufficient_count": 23,
+  "error_detail": []
+}

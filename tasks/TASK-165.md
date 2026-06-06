@@ -1,6 +1,6 @@
 ---
 id: TASK-165
-title: Vegetable-spreads: give the protein bar a proper scale so bars aren't flat
+title: "Vegetable-spreads: give the protein bar a proper scale so bars aren't flat"
 owner: frontend-agent
 status: CLOSED
 priority: LOW
