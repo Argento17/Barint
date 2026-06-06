@@ -12,7 +12,7 @@ import {
   MetricColumn,
   type MetricSpec,
 } from "@/components/shared/comparison-metric-column";
-import type { BariGrade, BariProductVM } from "@/lib/view-models";
+import type { BariProductVM } from "@/lib/view-models";
 import { GLASS_BOX_WITHHOLD_LABEL } from "@/lib/view-models";
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { GLASSBOX_D5D6_ON, GLASSBOX_W4_ON } from "@/lib/feature-flags";
@@ -29,13 +29,10 @@ function glassBoxState(product: BariProductVM) {
   } as const;
 }
 
-const GRADE_LABELS: Record<BariGrade, string> = {
-  A: "מצוין",
-  B: "טוב",
-  C: "בינוני",
-  D: "חלש",
-  E: "נמוך",
-};
+// FIX-2: qualitative adjective labels removed. The chip renders only grade letter + numeric
+// score (e.g. "82 / B"). The GRADE_LABELS mapping is intentionally deleted; the gradeLabel
+// prop passed to BariGradeBadge is replaced with the grade letter itself so the chip
+// reads "B" rather than "B · טוב". Confidence labels (נתונים חלקיים etc.) are unaffected.
 
 // Strongest +/− beneath the name on the collapsed row (spec §3.3), from rowReason.
 function RowReason({ product }: { product: BariProductVM }) {
@@ -100,11 +97,12 @@ function GradeCell({ product }: { product: BariProductVM }) {
       </div>
     );
   }
+  // FIX-2: pass empty gradeLabel so BariGradeBadge renders only the grade letter (no adjective).
   return (
     <BariGradeBadge
       score={product.score}
       grade={product.grade}
-      gradeLabel={GRADE_LABELS[product.grade]}
+      gradeLabel=""
       size="sm"
       context="row"
     />
@@ -119,6 +117,7 @@ export const ComparisonRow = memo(function ComparisonRow({
   metricSpecs,
   registerRow,
   category,
+  suppressPartialBadge = false,
 }: {
   product: BariProductVM;
   rank: number;
@@ -128,6 +127,9 @@ export const ComparisonRow = memo(function ComparisonRow({
   registerRow: (id: string, el: HTMLElement | null) => void;
   /** Category slug for analytics context (anonymous — no user ID). */
   category?: string;
+  /** FIX-3: when true, suppress the per-product partial confidence badge (page-level
+   *  disclosure is shown instead when ≥50% of the page's products are partial). */
+  suppressPartialBadge?: boolean;
 }) {
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -184,6 +186,9 @@ export const ComparisonRow = memo(function ComparisonRow({
           ) : isWithheld ? (
             // Withhold: the `לא נוקד` chip carries the signal; no confidence dot needed.
             <span aria-hidden />
+          ) : suppressPartialBadge && product.confidence === "partial" ? (
+            // FIX-3: page-level disclosure is shown instead; skip the per-row badge.
+            null
           ) : (
             <ConfidenceIndicator
               confidence={product.confidence}
@@ -230,6 +235,7 @@ export const ComparisonRow = memo(function ComparisonRow({
                 }
                 productId={product.id}
                 category={category}
+                rowVerdict={product.rowVerdict}
               />
             ) : null}
           </div>

@@ -34,13 +34,42 @@ function stripCheeseInternalFields(
 
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const cheeseCorpusMeta = loaded.meta;
-const cheeseProducts = enrichRowSurface(
-  stripCheeseInternalFields(loaded.products as CheeseCorpusProduct[])
+
+// The Shufersal scrape carried the same physical product under several barcodes: e.g.
+// "גבינה לבנה 5% שומן" appears 3× at 82/A and 3× at 79/B with byte-identical nutrition and
+// the same verdict, so the shelf showed runs of indistinguishable rows. With no brand field
+// to tell them apart, disambiguation isn't possible — collapse rows that are identical in
+// every displayed dimension (name + score + per-100g nutrition), keeping the first. This
+// only touches true duplicates: the קוטג' 5% trio (87/84/75) differs on protein, so all
+// three correctly survive.
+function dedupeIdenticalProducts(products: BariProductVM[]): BariProductVM[] {
+  const seen = new Set<string>();
+  return products.filter((product) => {
+    const n = product.expansion?.nutrition;
+    // FIX-6: use Math.round(score) so two products with raw scores differing by
+    // <1pt (e.g. 82.1 vs 82.4) collapse correctly when they display the same chip value.
+    const sig = JSON.stringify([
+      product.name,
+      product.score != null ? Math.round(product.score) : null,
+      n?.protein ?? null,
+      n?.fat ?? null,
+      n?.satFat ?? null,
+      n?.sodium ?? null,
+      n?.energyKcal ?? null,
+    ]);
+    if (seen.has(sig)) return false;
+    seen.add(sig);
+    return true;
+  });
+}
+
+const cheeseProducts = dedupeIdenticalProducts(
+  enrichRowSurface(stripCheeseInternalFields(loaded.products as CheeseCorpusProduct[]))
 );
 
 export { cheeseCorpusMeta, cheeseProducts };
 
-export const cheeseMetadataLine = `${cheeseCorpusMeta.product_count} מוצרים נבדקו · מדגם מדף ישראלי · ממוין לפי ציון Bari`;
+export const cheeseMetadataLine = `${cheeseProducts.length} מוצרים נבדקו · מדגם מדף ישראלי · ממוין לפי ציון Bari`;
 
 export const cheeseHero = {
   eyebrow: "מנוע השוואה · גבינות לבנות וממרחים",
@@ -49,12 +78,14 @@ export const cheeseHero = {
 
 // Reviewed & refined by Content Agent against the insight-line spec (TASK-152;
 // recalibrated TASK-169B). Numbers cite the rounded chip values (ScoreChip renders
-// Math.round): leader קוטג' 1% = 90/A; 11 products reach A. The two 9% cottages are held
-// at 81/B by the A-gate (high on the data, but saturated fat over the line). Cream-cheese
+// Math.round): leader קוטג' 1% = 90/A; 9 products reach A after the identical-row dedupe
+// below (was 11 — two of the A's were byte-identical duplicates of גבינה לבנה 5% שומן).
+// The two 9% cottages are held at 81/B by the A-gate (high on the data, but saturated
+// fat over the line). Cream-cheese
 // pool falls on real fat (16–30%, EV-029) into C/D/E.
 export const cheesePrologueSentences = [
   "בדקנו את מדף הגבינות הלבנות והממרחים בשופרסל לפי מה שבאמת באריזה — חלבון, שומן וערכים תזונתיים כפי שמופיעים על המוצר עצמו. המדף מתפצל לארבע קבוצות: קוטג', גבינה לבנה / קוורק, ממרחי גבינת שמנת, ולבנה.",
-  "הקוטג' והגבינות הלבנות הרזות מובילות את המדף — בסיס חלבי, הרבה חלבון מול מעט שומן. בראש עומד קוטג' 1% עם 90/A, ואחת-עשרה גבינות טריות מגיעות ל-A.",
+  "הקוטג' והגבינות הלבנות הרזות מובילות את המדף — בסיס חלבי, הרבה חלבון מול מעט שומן. בראש עומד קוטג' 1% עם 90/A, ותשע גבינות טריות מגיעות ל-A.",
   "ממרחי גבינת השמנת הם סיפור אחר: ברגע שסופרים את השומן האמיתי שבהם — 16 עד 30 אחוז — החלבון מתגמד והם נופלים ל-C, D ואף E, גם כשהשם 'גבינה' זהה.",
   "ו'הכי טוב' עדיין לא אומר 'מושלם': אפילו גבינה עתירת חלבון יכולה להיעצר ב-B אם השומן הרווי שלה גבוה — כמו הקוטג' 9%, שנשאר ב-81/B דווקא מהסיבה הזו.",
 ] as const;

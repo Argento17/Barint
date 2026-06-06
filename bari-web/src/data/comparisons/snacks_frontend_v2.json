@@ -10,7 +10,7 @@
     "source_run_id": "yochananof_snack_retail_v1",
     "scope_note": "ניתוח מדף יוחננוף בלבד — לא סקר שוק ישראלי",
     "editorial_note": "18 מוצרים נבחרו מתוך 48 שקיבלו ציון על בסיס מגוון קטגוריות, פערי ציון משמעותיים ועניין עריכתי. snk-008 הוצא (כפילות קרובה לsnk-007). snk-014 הוצא (אי-יכולת אימות מול BSIP2).",
-    "production_pass": "CE-approved corpus v2; NOVA terminology removed from shelf-facing fields; limitingFactors added to all products; new products snk-015 through snk-020 added. Image integrity pass 2026-05-29: BSIP1 yochananof URLs synced. Explanation engine v2 pass 2026-05-29: all 18 explanations rebuilt against real BSIP2 trace data; banned phrases purged; specific ingredient counts and percentages added. RC-01 recalibration pass 2026-05-30: natural whole-fruit sugar cap relief applied; snk-015 score corrected 55→63 (SC-2 classification, NOVA2, 47.6g sugar from dates only); product reordered to 2nd place. TASK-130 vocabulary pass 2026-06-01: residual NOVA2/3/4 framework labels and two score-cap references purged from all consumer-facing rendered fields (insightLine/positiveSignals/limitingFactors/bottomLine/comparisonContext) and translated to plain processing-degree language; no score or nutrition changes."
+    "production_pass": "CE-approved corpus v2; NOVA terminology removed from shelf-facing fields; limitingFactors added to all products; new products snk-015 through snk-020 added. Image integrity pass 2026-05-29: BSIP1 yochananof URLs synced. Explanation engine v2 pass 2026-05-29: all 18 explanations rebuilt against real BSIP2 trace data; banned phrases purged; specific ingredient counts and percentages added. RC-01 recalibration pass 2026-05-30: natural whole-fruit sugar cap relief applied; snk-015 score corrected 55→63 (SC-2 classification, NOVA2, 47.6g sugar from dates only); product reordered to 2nd place. TASK-130 vocabulary pass 2026-06-01: residual NOVA2/3/4 framework labels and two score-cap references purged from all consumer-facing rendered fields (insightLine/positiveSignals/limitingFactors/bottomLine/comparisonContext) and translated to plain processing-degree language; no score or nutrition changes. TASK-180B re-baseline pass 2026-06-05: run_snackbars_007_headpin (engine-baseline-2026-06-04, config d6f0b99fc5c49e0e); 11 cosmetic score updates (all ≤2pt, zero grade changes); crosswalk corrected by imageUrl-barcode extraction; 69.5/B note voided (product not displayed). Note: comparisonContext/insightLine quoted scores may be ±2pt stale — Content Agent editorial pass pending."
   },
   "products": [
     {
@@ -90,7 +90,7 @@
       "id": "snk-004",
       "name": "מרבה סלים דליס שוקולד מריר",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8423207206495_h105-15-2023_13-17-20.jpg",
-      "score": 59,
+      "score": 60,
       "grade": "C",
       "insightLine": "מהבסיסים הפשוטים בקטגוריה — חמישה רכיבים בלבד עם שוקולד מריר 74% ראשון ודגן 24%. עוצר ב-C כי הדגן הוא קמח חיטה לא-מלא, ולציטין סויה מסמן עיבוד תעשייתי.",
       "confidence": "partial",
@@ -162,7 +162,7 @@
       "id": "snk-003",
       "name": "קראנצ'י שיבולת שועל עם דבש",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/0/1/016000548404_s1_1512-29-2024_06-37-26.jpg",
-      "score": 53,
+      "score": 55,
       "grade": "C",
       "insightLine": "שיבולת שועל מלאה 60% פותחת ראשונה ומשמעותית, מתוך תשעה רכיבים בלבד. עוצר ב-C כי הסוכר הלבן הוא הרכיב השני — לפני הדבש, שהוא בכלל רק 3% — והממתיק הבסיסי אינו הדבש שבשם.",
       "confidence": "verified",
@@ -192,13 +192,22 @@
         "bottomLine": "53/C: שיבולת שועל אמיתית לא מביאה ל-B כאשר סוכר לבן, שמן צמחי ולציטין באים מיד אחריה",
         "comparisonContext": "7 נקודות מעל גרסת השוקולד (46/D) — אותו בסיס שיבולת שועל; השוקולד מוסיף 4 מרכיבים נוספים ומוריד 7 נקודות"
       },
-      "_internal_cluster": "granola-oat"
+      "_internal_cluster": "granola-oat",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        }
+      ]
     },
     {
       "id": "snk-016",
       "name": "מרבה סלים טופינג אגוזי לוז",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8423207210928_h105-15-2023_13-25-08.jpg",
-      "score": 51,
+      "score": 53,
       "grade": "C",
       "insightLine": "שמו רומז על דגן, אבל הרכיב הראשון הוא שוקולד חלב 68% ואגוזי הלוז הם רק טופינג. עוצר ב-C כי הדגן מספק 21% בלבד, והחלבון 1.2 גרם למנה — נמוך לסדרה שממותגת כפיטנס.",
       "confidence": "partial",
@@ -234,7 +243,7 @@
       "id": "snk-009",
       "name": "נייצ'ר וואלי פרוטאין בוטנים ושוקולד",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610379_s1_15_gs102-19-2024_08-41-10.jpg",
-      "score": 47,
+      "score": 48,
       "grade": "D",
       "insightLine": "מהחלבון הגבוה בקטגוריה — בוטנים קלויים 37.3% ראשונים וחלבון סויה, כ-22 גרם חלבון ל-100 גרם. יורד ל-D כי סירופ גלוקוזה, סיבים סינתטיים ו-18 רכיבים עוטפים אותו במסגרת מעובדת.",
       "confidence": "verified",
@@ -271,7 +280,7 @@
       "id": "snk-005",
       "name": "חטיפי דגנים פיטנס קלאסי",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12505889_5900020039590.jpg",
-      "score": 46,
+      "score": 48,
       "grade": "D",
       "insightLine": "חיטה מלאה 38.3% ראשונה ואורז שני — נראה כמו בסיס נקי. יורד ל-D כי הרכיב השלישי הוא פולידקסטרוז, סיב תעשייתי שמנפח את ערך הסיבים, והשיבולת שבשם היא 3% בלבד.",
       "confidence": "verified",
@@ -338,13 +347,22 @@
         "bottomLine": "46/D: זהה כמעט לגרסת השוקולד (47/D) — אותו חלבון, אותה רמת עיבוד, 1 נקודה פחות בגלל מרכיב הקרמל",
         "comparisonContext": "1 נקודה מתחת לגרסת השוקולד (47/D) — הפרש זניח; הקרמל המלוח מוסיף מרכיבים, לא ערך תזונתי"
       },
-      "_internal_cluster": "protein"
+      "_internal_cluster": "protein",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        }
+      ]
     },
     {
       "id": "snk-018",
       "name": "קראנצ'י שיבולת שועל עם חתיכות שוקולד",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076602251_s1_1512-29-2024_06-26-36.jpg",
-      "score": 44,
+      "score": 46,
       "grade": "D",
       "insightLine": "אותו בסיס שיבולת שועל מלאה 54.8% של גרסת הדבש, עם חתיכות שוקולד אמיתי. יורד ל-D כי השוקולד וארבעה רכיבים נוספים מותחים את הרשימה ל-13 ומורידים תשע נקודות מגרסת הדבש.",
       "confidence": "verified",
@@ -451,6 +469,42 @@
       "_internal_cluster": "natural-gap"
     },
     {
+      "id": "snk-017",
+      "name": "נייצ'ר וואלי צ'ואי שוקולד מריר",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610508_s1_1503-02-2023_08-23-21.jpg",
+      "score": 41,
+      "grade": "D",
+      "insightLine": "הרשימה הארוכה בקטגוריה — 24 רכיבים סביב בוטנים ושיבולת שועל מלאה 14.1%. יורד ל-D כי סירופ גלוקוזה הוא הרכיב הרביעי, לפני השוקולד, ואינולין מוסף מנפח את הסיבים.",
+      "confidence": "verified",
+      "expansion": {
+        "unknowns": [
+          "ערכי אנרגיה, חלבון, סוכר, שומן, סיבים תזונתיים ונתרן לא היו זמינים במקור הנתונים — מדדים אלה לא נכללו בניתוח."
+        ],
+        "nutrition": {
+          "energyKcal": null,
+          "protein": null,
+          "sugar": null,
+          "fat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מלאים יחסית",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 14.1%: דגן שלם נוכח, לא רק קמח"
+        ],
+        "limitingFactors": [
+          "24 מרכיבים — הרשימה הארוכה ביותר מבין 18 המוצרים המוצגים",
+          "סירופ גלוקוזה כמרכיב 4 — לפני השוקולד ולפני הסיבים",
+          "אינולין (מעולש) 7.5%: סיב מוסף תעשייתי, לא מדגן שלם"
+        ],
+        "bottomLine": "39/D: 24 מרכיבים עם בסיס בוטן-שיבולת שועל — ה-Chewy הוא 'הגרסה הכיפית', לא הטובה תזונתית",
+        "comparisonContext": "8 נקודות מתחת לנייצ'ר וואלי פרוטאין (47/D) — אותו מותג; ה-Protein: בוטנים+חלבון סויה; ה-Chewy: 24 מרכיבים עם סירופ גלוקוזה קרוב יותר לראשית הרשימה"
+      },
+      "_internal_cluster": "protein"
+    },
+    {
       "id": "snk-019",
       "name": "חטיפי פיטנס שיבולת שועל דבש",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12615334_7290118247896.jpg",
@@ -485,49 +539,36 @@
         "bottomLine": "40/D: שיבולת שועל אמיתית (47%) לא מספיקה כשמרגרינה ו-7 מרכיבי עיבוד מגיעים איתה",
         "comparisonContext": "23 נקודות מעל פיטנס בר גרנולה שוקולד מריר (17/E) — אותו מותג; ציפוי שוקולד + שומן רווי כפול + שתי תוויות אדומות מורידים 23 נקודות"
       },
-      "_internal_cluster": "fitness"
-    },
-    {
-      "id": "snk-017",
-      "name": "נייצ'ר וואלי צ'ואי שוקולד מריר",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/4/8410076610508_s1_1503-02-2023_08-23-21.jpg",
-      "score": 39,
-      "grade": "D",
-      "insightLine": "הרשימה הארוכה בקטגוריה — 24 רכיבים סביב בוטנים ושיבולת שועל מלאה 14.1%. יורד ל-D כי סירופ גלוקוזה הוא הרכיב הרביעי, לפני השוקולד, ואינולין מוסף מנפח את הסיבים.",
-      "confidence": "verified",
-      "expansion": {
-        "unknowns": [
-          "ערכי אנרגיה, חלבון, סוכר, שומן, סיבים תזונתיים ונתרן לא היו זמינים במקור הנתונים — מדדים אלה לא נכללו בניתוח."
-        ],
-        "nutrition": {
-          "energyKcal": null,
-          "protein": null,
-          "sugar": null,
-          "fat": null,
-          "fiber": null,
-          "sodium": null
+      "_internal_cluster": "fitness",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "likely-neutral",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
         },
-        "ingredients": null,
-        "confidenceLabel": "נתונים מלאים יחסית",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "שיבולת שועל מלאה 14.1%: דגן שלם נוכח, לא רק קמח"
-        ],
-        "limitingFactors": [
-          "24 מרכיבים — הרשימה הארוכה ביותר מבין 18 המוצרים המוצגים",
-          "סירופ גלוקוזה כמרכיב 4 — לפני השוקולד ולפני הסיבים",
-          "אינולין (מעולש) 7.5%: סיב מוסף תעשייתי, לא מדגן שלם"
-        ],
-        "bottomLine": "39/D: 24 מרכיבים עם בסיס בוטן-שיבולת שועל — ה-Chewy הוא 'הגרסה הכיפית', לא הטובה תזונתית",
-        "comparisonContext": "8 נקודות מתחת לנייצ'ר וואלי פרוטאין (47/D) — אותו מותג; ה-Protein: בוטנים+חלבון סויה; ה-Chewy: 24 מרכיבים עם סירופ גלוקוזה קרוב יותר לראשית הרשימה"
-      },
-      "_internal_cluster": "protein"
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        },
+        {
+          "e_number": "E415",
+          "name_he": "קסנטן",
+          "tier": "functional",
+          "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
+          "explanation_he": "קסנטן הוא מייצב טבעי המופק בתסיסה חיידקית, ומשמש לשמירה על מרקם אחיד ומניעת הפרדת מים."
+        }
+      ]
     },
     {
       "id": "snk-020",
       "name": "מרבה סלים דליס קריספי אוכמניות",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290014525306_s105-31-2020_13-54-07.jpg",
-      "score": 33,
+      "score": 32,
       "grade": "E",
       "insightLine": "הבסיס קמח חיטה לבן, ומילוי ה'אוכמניות' 33% עשוי פרוקטוז, סירופ גלוקוזה ודקסטרוזה — לא פרי. יורד ל-E כי 35.5 גרם סוכר חוצים את התווית האדומה; ה-Slim הוא רק גודל המנה.",
       "confidence": "partial",
@@ -555,13 +596,29 @@
         "bottomLine": "33/E: 'דיאט קריספי' עם 35.5גׅ סוכר ל-100גׅ ומילוי פרוקטוז-גלוקוז. הקריספי הוא קמח חיטה; ה-Slim הוא גודל המנה",
         "comparisonContext": "18 נקודות מתחת למרבה סלים טופינג אגוזי לוז (51/C) — אותו מותג; ציון הקריספי נקבע על ידי 35.5גׅ סוכר ומילוי שנבנה מ-3 סוכרים"
       },
-      "_internal_cluster": "granola-oat"
+      "_internal_cluster": "granola-oat",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E296",
+          "name_he": "חומצה מאלית",
+          "tier": "functional",
+          "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
+          "explanation_he": "חומצה מאלית היא חומצה טבעית הקיימת גם בתפוחים ובפירות, ומשמשת לאיזון טעם."
+        }
+      ]
     },
     {
       "id": "snk-007",
       "name": "חטיפי דגנים פיטנס שוקולד מריר",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12506828_5900020015174.jpg",
-      "score": 28,
+      "score": 27,
       "grade": "E",
       "insightLine": "דגנים מלאים 34.1% מהבסיס — אבל שלושה מקורות סוכר (סירופ גלוקוזה, סוכר לבן, סירופ אינברטי) ו-22 רכיבים. יורד ל-E כי 24.8 גרם סוכר חוצים את התווית האדומה, לא שם המותג.",
       "confidence": "partial",
@@ -597,7 +654,7 @@
       "id": "snk-006",
       "name": "פיטנס בר גרנולה שוקולד מריר",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12615222_7290118427858.jpg",
-      "score": 17,
+      "score": 18,
       "grade": "E",
       "insightLine": "שיבולת שועל מלאה 32% פותחת ראשונה — אבל 20 רכיבים באים אחריה. יורד ל-E כי מרגרינה מביאה 7.2 גרם שומן רווי ו-22.1 גרם סוכר חוצים אף הם את הסף: שתי תוויות אדומות בבת אחת.",
       "confidence": "verified",
@@ -625,13 +682,36 @@
         "bottomLine": "17/E: שיבולת שועל ראשונה ברשימה — 20 מרכיבים אחריה, מרגרינה, ושתי תוויות אדומות. הציון מגיב לסיכום, לא למרכיב הראשון",
         "comparisonContext": "24 נקודות מתחת לפיטנס שיבולת שועל דבש (41/D) — אותו מותג; ציפוי שוקולד + מרגרינה + שתי תוויות אדומות עולים 24 נקודות"
       },
-      "_internal_cluster": "coated-cereal"
+      "_internal_cluster": "coated-cereal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "likely-neutral",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        },
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        },
+        {
+          "e_number": "E415",
+          "name_he": "קסנטן",
+          "tier": "functional",
+          "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
+          "explanation_he": "קסנטן הוא מייצב טבעי המופק בתסיסה חיידקית, ומשמש לשמירה על מרקם אחיד ומניעת הפרדת מים."
+        }
+      ]
     },
     {
       "id": "snk-013",
       "name": "שחור ולבן קורני שוקולד",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/4/0/4011800633516.jpg",
-      "score": 17,
+      "score": 16,
       "grade": "E",
       "insightLine": "הרכיב הראשון שוקולד מריר 24%, לפני כל דגן — ממתק עם גרגירים, לא חטיף דגנים. יורד ל-E כי חמישה מקורות סוכר מצטברים ל-33.3 גרם, ו-11.7 גרם שומן רווי מוסיפים תווית אדומה שנייה.",
       "confidence": "verified",
@@ -659,7 +739,16 @@
         "bottomLine": "17/E: מרכיב ראשון שוקולד, 5 מקורות סוכר. כשהדגן מופיע כמרכיב 2 ב-16% בלבד — זה ממתק, לא חטיף דגנים",
         "comparisonContext": "53 נקודות מתחת לחטיף התמרים המוביל (70/B) — בסיסים שונים לחלוטין: שם תמרים+שקדים עם 3 מרכיבים, כאן שוקולד+5 מקורות סוכר עם 15 מרכיבים"
       },
-      "_internal_cluster": "coated-cereal"
+      "_internal_cluster": "coated-cereal",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/hummus_frontend_v4.json";
+import rawCorpus from "@/data/comparisons/hummus_frontend_v5.json";
 
 import {
   loadComparisonCorpus,

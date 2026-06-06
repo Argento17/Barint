@@ -22,6 +22,7 @@ export default function HummusComparisonRoute() {
       prologueSentences={hummusPrologueSentences}
       methodologyLines={hummusMethodologyLines}
       categoryNote={hummusCategoryNote}
+      glassBoxMethodologyLink
     />
   );
 }

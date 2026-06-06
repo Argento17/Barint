@@ -25,6 +25,7 @@ export default function MaadanimComparisonRoute() {
       prologueSentences={maadanimPrologueSentences}
       methodologyLines={maadanimMethodologyLines}
       categoryNote={maadanimCategoryNote}
+      glassBoxMethodologyLink
     />
   );
 }

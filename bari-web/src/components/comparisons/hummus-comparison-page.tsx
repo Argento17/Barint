@@ -23,6 +23,8 @@ export interface HummusComparisonPageProps {
   /** IMP-6: single category-wide caveat (the fat-data note), shown once in the header. */
   categoryNote?: string;
   initialExpandedProductId?: string | null;
+  /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends the Glass Box methodology link. */
+  glassBoxMethodologyLink?: boolean;
 }
 
 const hummusShelfFilters = {
@@ -43,6 +45,7 @@ export function HummusComparisonPage({
   methodologyLines,
   categoryNote,
   initialExpandedProductId = null,
+  glassBoxMethodologyLink = false,
 }: HummusComparisonPageProps) {
   return (
     <ComparisonPage<HummusShelfFilterId>
@@ -56,6 +59,7 @@ export function HummusComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="hummus"
+      glassBoxMethodologyLink={glassBoxMethodologyLink}
     />
   );
 }

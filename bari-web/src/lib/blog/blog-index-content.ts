@@ -71,6 +71,19 @@ export const featuredArticle: BlogArticleCard = {
 
 export const secondaryArticles: BlogArticleCard[] = [
   {
+    slug: "shemen-zayit",
+    href: "/blog/shemen-zayit",
+    title: "20 שמני זית. 10 מותגים. אפס גילויים על תאריך הקציר.",
+    description:
+      "שופרסל מוכרת BORGES ו-MATTEO. יוחננוף מוכרת יד מרדכי, סבא חביב, ג'השאן, זיתא. שוק אחד, שני מדפים שונים לגמרי — ואף אחד לא מצהיר על תאריך קציר.",
+    cta: "לקריאת הניתוח",
+    category: "israeli-shelf",
+    categoryLabel: "מדף ישראלי",
+    readTime: "7 דקות",
+    metaLine: "יוני 2026 · 7 דקות קריאה · 10 מותגים",
+    published: "יוני 2026",
+  },
+  {
     slug: "bread-everyday",
     href: BREAD_EVERYDAY_HREF,
     title: "לחם יומיומי: למה מוצרים שנשמעים דומים מתפצלים בציון",

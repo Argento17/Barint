@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/hummus_frontend_v4.json";
+import rawCorpus from "@/data/comparisons/hummus_frontend_v5.json";
 
 import {
   loadComparisonCorpus,
@@ -62,12 +62,11 @@ export const vegetableSpreadsPrologueSentences = [
 ] as const;
 
 // Category caveat (cheese gold-standard format), rendered once in the header. This page
-// draws from the same source corpus as hummus (hummus_frontend_v3.json), so it inherits the
-// documented fat-data limitation (hummusCategoryNote). Second nuance: matbucha / eggplant /
-// pepper spreads are cooked-vegetable + oil bases — the score reads the ingredient list and
-// processing, but fat is not displayed for this source.
+// draws from the same source corpus as hummus (hummus_frontend_v5.json). Matbucha / eggplant /
+// pepper spreads are cooked-vegetable + oil bases — total fat IS present from the source scan
+// and is displayed by NutritionGrid. Saturated fat (satFat) was not available in the source data.
 export const vegetableSpreadsCategoryNote = [
-  "הערת קטגוריה — ערכי שומן אינם מוצגים\n\nבקטגוריה זו ערכי השומן אינם מוצגים בשל מגבלות באיכות מקור הנתונים. ממרחי ירקות נשענים לרוב על שמן כבסיס — שימו לב לכך בתווית גם כשהציון גבוה יחסית.",
+  "הערת קטגוריה — שומן רווי אינו מוצג\n\nערכי השומן הרווי לא היו זמינים בסריקת המקור. ערכי השומן הכולל מוצגים. ממרחי ירקות נשענים לרוב על שמן כבסיס — שימו לב לכמות בתווית.",
   "הערת קטגוריה — ההשוואה היא בתוך הקטגוריה בלבד\n\nמטבוחה, ממרח חצילים וממרח פלפלים נמדדים זה מול זה בלבד — לא מול חומוס או מזון אחר. הציון משקף את רשימת הרכיבים ורמת העיבוד כפי שהם מופיעים על האריזה.",
 ]
   .join("\n\n");

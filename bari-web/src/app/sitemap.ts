@@ -14,6 +14,7 @@ import { absoluteUrl } from "@/lib/site-url";
 const STATIC_PATHS = [
   "/",
   "/hashvaot",
+  "/hashvaot/butter",
   "/hashvaot/hummus",
   "/hashvaot/maadanim",
   "/hashvaot/snacks",

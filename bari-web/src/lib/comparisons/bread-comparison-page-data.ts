@@ -41,14 +41,20 @@ const breadCorpusMeta = loaded.meta;
 // fabricated. protein_g is left intact, so no shared/other-category behavior changes.
 const breadProducts = enrichRowSurface(
   stripBreadInternalFields(loaded.products as BreadCorpusProduct[])
-).map((product) => ({
-  ...product,
-  metrics: {
-    // protein_g is always set by enrichRowSurface; keep it intact alongside the new fiber_g.
-    protein_g: product.metrics?.protein_g ?? null,
-    fiber_g: product.expansion.nutrition?.fiber ?? null,
-  },
-}));
+)
+  .map((product) => ({
+    ...product,
+    metrics: {
+      // protein_g is always set by enrichRowSurface; keep it intact alongside the new fiber_g.
+      protein_g: product.metrics?.protein_g ?? null,
+      fiber_g: product.expansion.nutrition?.fiber ?? null,
+    },
+  }))
+  // Unlike the other v2 exports, the bread JSON ships in cluster order, not score order,
+  // so the shelf rendered out of rank (a 73 above an 80). The shared ComparisonPage
+  // preserves corpus order by design, so sort highest-score-first here; INSUFFICIENT
+  // products (score null) sink to the bottom. Shelf-lens filters still apply on top.
+  .sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
 
 export { breadCorpusMeta, breadProducts };
 

@@ -21,6 +21,8 @@ export interface MaadanimComparisonPageProps {
   /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
   categoryNote?: string;
   initialExpandedProductId?: string | null;
+  /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends the Glass Box methodology link. */
+  glassBoxMethodologyLink?: boolean;
 }
 
 const maadanimShelfFilters = {
@@ -40,6 +42,7 @@ export function MaadanimComparisonPage({
   methodologyLines,
   categoryNote,
   initialExpandedProductId = null,
+  glassBoxMethodologyLink = false,
 }: MaadanimComparisonPageProps) {
   return (
     <ComparisonPage<MaadanimShelfFilterId>
@@ -53,6 +56,7 @@ export function MaadanimComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="maadanim"
+      glassBoxMethodologyLink={glassBoxMethodologyLink}
     />
   );
 }

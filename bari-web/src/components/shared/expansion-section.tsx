@@ -414,6 +414,7 @@ export function ExpansionSection({
   d3Processing,
   productId,
   category,
+  rowVerdict,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -448,6 +449,14 @@ export function ExpansionSection({
   productId?: string;
   /** Category slug for analytics context. */
   category?: string;
+  /**
+   * Collapsed-row verdict text (granola / cereals). Shown at the top of the expansion
+   * ONLY when the product has no interpretive content (positiveSignals / limitingFactors
+   * etc.) — gives users the reasoning even when the full signal breakdown is absent.
+   * Products that already have interpretive content are unaffected (the `!interpretive`
+   * guard short-circuits).
+   */
+  rowVerdict?: string;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
   const confidenceText =
@@ -517,6 +526,10 @@ export function ExpansionSection({
           <InterpretiveExpansion expansion={expansion} wide={wide} />
         ) : null}
 
+        {!interpretive && rowVerdict?.trim() ? (
+          <p className="text-[13px] leading-[1.55] text-[#2F3531]">{rowVerdict}</p>
+        ) : null}
+
         {glassBox?.gateState === "demote" ? (
           <GlassBoxDisclosure glassBox={glassBox} />
         ) : null}
@@ -526,6 +539,7 @@ export function ExpansionSection({
         {d3Processing ? <ProcessingSignalNote signal={d3Processing} /> : null}
 
         {!interpretive &&
+        !rowVerdict?.trim() &&
         !hasTechnical &&
         glassBox?.gateState !== "demote" &&
         !d3Processing ? (

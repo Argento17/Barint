@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
-import { CategoryShelfLenses } from "@/components/shared/category-shelf-lenses";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import type { MetricSpec } from "@/components/shared/comparison-metric-column";
@@ -12,6 +11,22 @@ import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-t
 import type { ComparisonShelfFilters } from "@/lib/comparisons/registry/types";
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
+
+// FIX-1: methodology note — appears on every comparison page, below the category note.
+// Text is fixed; does not vary by category.
+const METHODOLOGY_NOTE =
+  "ציוני ברי מחושבים על ידי מערכת הערכה שבוחנת בצורה שיטתית ערכים תזונתיים, רכיבים ורמת עיבוד על בסיס נתוני התווית הזמנים. הציון מתאר את מה שנמצא במוצר לפי הנתונים הזמינים לנו. הוא אינו המלצה וגם לא קובע אם המוצר טוב או רע לאכילה, אלא מספק הקשר רחב יותר למה שנכנס לגוף שלך.";
+
+// FIX-3: If ≥50% of products have confidence==="partial", suppress per-product badges
+// and show a page-level disclosure note instead.
+const PARTIAL_PAGE_DISCLOSURE =
+  "חלק מהמוצרים בדף זה מבוססים על נתונים חלקיים מהתווית.\nהציון כולל את המידע שהיה זמין בסריקה.";
+
+function partialThresholdMet(products: BariProductVM[]): boolean {
+  if (products.length === 0) return false;
+  const partialCount = products.filter((p) => p.confidence === "partial").length;
+  return partialCount / products.length >= 0.5;
+}
 
 // The single unified comparison page (IMP-1 + IMP-4). Responsive from one tree:
 // the table reflows phone↔desktop via container queries (no second component), the
@@ -35,7 +50,13 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
   initialExpandedProductId?: string | null;
   /** Category slug for analytics context (TASK-179T — additive panel engagement events). */
   category?: string;
+  /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends a "פירוט המתודולוגיה" inline link
+   *  to /research/glass-box at the end of the methodology footer. When W5 is OFF, byte-identical to HEAD. */
+  glassBoxMethodologyLink?: boolean;
 }
+
+/** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
+export { partialThresholdMet };
 
 export function ComparisonPage<TFilterId extends string = string>({
   products,
@@ -49,12 +70,14 @@ export function ComparisonPage<TFilterId extends string = string>({
   blogLink,
   initialExpandedProductId = null,
   category,
+  glassBoxMethodologyLink = false,
 }: ComparisonPageProps<TFilterId>) {
-  const [activeFilters, setActiveFilters] = useState<TFilterId[]>([]);
-
+  // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
+  // retained on the interface so pages compile unchanged; filterProducts receives [] and
+  // returns the full corpus (no filtering applied).
   const filteredProducts = useMemo(
-    () => shelfFilters.filterProducts(products, activeFilters),
-    [activeFilters, products, shelfFilters]
+    () => shelfFilters.filterProducts(products, []),
+    [products, shelfFilters]
   );
 
   // Corpus order is preserved by filterProducts (Invariant 1); pick the first visible
@@ -67,6 +90,10 @@ export function ComparisonPage<TFilterId extends string = string>({
         : (filteredProducts[0]?.id ?? null),
     [filteredProducts, initialExpandedProductId]
   );
+
+  // FIX-3: compute threshold once against the full (unfiltered) product list so the
+  // page-level disclosure appears regardless of which shelf lens is active.
+  const suppressPartialBadges = partialThresholdMet(products);
 
   return (
     <div className="min-h-screen bg-[#EFEFEB] sm:py-8 lg:py-10" dir="rtl">
@@ -99,18 +126,24 @@ export function ComparisonPage<TFilterId extends string = string>({
           </div>
         ) : null}
 
-        <CategoryShelfLenses
-          lensOptions={shelfFilters.lensOptions}
-          activeFilters={activeFilters}
-          onToggle={(filter) =>
-            setActiveFilters((current) =>
-              current.includes(filter)
-                ? current.filter((value) => value !== filter)
-                : [...current, filter]
-            )
-          }
-          wide
-        />
+        {/* FIX-1: methodology disclaimer — appears on every page, below category note. */}
+        <div className={cn("px-4 pb-1 mt-2", comparisonWebSectionPaddingClass())}>
+          <p className="whitespace-pre-line rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-[1.5] text-[#6A6147]">
+            {METHODOLOGY_NOTE}
+          </p>
+        </div>
+
+        {/* FIX-3: page-level partial-data disclosure (shown when ≥50% of products are partial). */}
+        {suppressPartialBadges ? (
+          <div className={cn("px-4 pb-1 mt-2", comparisonWebSectionPaddingClass())}>
+            <p className="whitespace-pre-line rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-[1.5] text-[#6A6147]">
+              {PARTIAL_PAGE_DISCLOSURE}
+            </p>
+          </div>
+        ) : null}
+
+        {/* FIX-5: filter boxes hidden until a proper taxonomy is designed. The
+            CategoryShelfLenses component is kept in the tree but not rendered. */}
 
         <ComparisonTable
           key={expandedProductId ?? "none"}
@@ -119,9 +152,10 @@ export function ComparisonPage<TFilterId extends string = string>({
           showRail
           initialExpandedProductId={expandedProductId}
           category={category}
+          suppressPartialBadges={suppressPartialBadges}
         />
 
-        <MethodologyFooter lines={[...methodologyLines]} wide />
+        <MethodologyFooter lines={[...methodologyLines]} wide glassBoxMethodologyLink={glassBoxMethodologyLink} />
       </div>
     </div>
   );

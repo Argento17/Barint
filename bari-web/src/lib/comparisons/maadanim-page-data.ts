@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/maadanim_frontend_v2.json";
+import rawCorpus from "@/data/comparisons/maadanim_frontend_v3.json";
 
 import {
   formatComparisonMetadataLine,
@@ -62,6 +62,12 @@ const EXCLUDED_MAADANIM_IDS = new Set([
   // bsip1_maadanim_7290018249550 (the last also had score=null).
   "bsip1_maadanim_7290104501661", // פודינג וניל צרפתי — powder
   "bsip1_maadanim_7290018249123", // אינסטנט פודינג בטעם וניל — powder
+  // Category-boundary follow-up (2026-06-03): מילקי קייק is a packaged snack CAKE, not a
+  // ready-to-eat dairy dessert. Same shelf-boundary rule as the powders above — it scores
+  // (TASK-136 owns the number) but does not belong in the maadanim comparison view.
+  "bsip1_maadanim_7290106654099", // מילקי קייק מארז — cake
+  "bsip1_maadanim_7290106663121", // מילקי קייק — cake
+  "bsip1_maadanim_7290107957991", // מילקי קייק מיניס קרם חלב — cake
 ]);
 
 const { meta: maadanimCorpusMeta, products: loadedMaadanimProducts } =

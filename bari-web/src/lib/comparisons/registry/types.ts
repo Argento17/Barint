@@ -4,7 +4,7 @@ import type { BariProductVM } from "@/lib/view-models";
 
 import type { ComparisonCorpusMeta } from "../corpus";
 
-export type ComparisonCategoryId = "maadanim" | "bread" | "snacks" | "yogurts" | "hummus" | "vegetable-spreads" | "cheese";
+export type ComparisonCategoryId = "maadanim" | "bread" | "snacks" | "yogurts" | "hummus" | "vegetable-spreads" | "cheese" | "breakfast-cereals" | "granola" | "butter";
 
 export interface ComparisonShelfLensOption<TFilterId extends string = string> {
   id: TFilterId;

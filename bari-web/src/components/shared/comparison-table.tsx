@@ -21,6 +21,7 @@ export function ComparisonTable({
   showRail = false,
   initialExpandedProductId = null,
   category,
+  suppressPartialBadges = false,
 }: {
   products: BariProductVM[];
   metricSpecs: readonly MetricSpec[];
@@ -28,6 +29,9 @@ export function ComparisonTable({
   initialExpandedProductId?: string | null;
   /** Category slug passed through to analytics context in AdditivePanel. */
   category?: string;
+  /** FIX-3: when true, per-product partial confidence badges are suppressed (≥50%
+   *  of products are partial — the badge carries no signal). */
+  suppressPartialBadges?: boolean;
 }) {
   const [open, setOpen] = useState<Set<string>>(
     () => new Set(initialExpandedProductId ? [initialExpandedProductId] : [])
@@ -135,6 +139,7 @@ export function ComparisonTable({
               metricSpecs={metricSpecs}
               registerRow={registerRow}
               category={category}
+              suppressPartialBadge={suppressPartialBadges}
             />
           </Fragment>
         ))}

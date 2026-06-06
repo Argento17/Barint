@@ -108,8 +108,11 @@ export function BariGradeBadge({
           size === "lg" && rowTokens.labelSize.lg
         )}
       >
+        {/* FIX-2: gradeLabel is "" from comparison-row (adjectives removed) → renders
+            only the grade letter. Legacy blog callers pass a Hebrew adjective ("טוב")
+            → rendered as "B · טוב" preserving the existing display. */}
         <span style={{ color: colors.accent }}>{grade}</span>
-        <span> · {gradeLabel}</span>
+        {gradeLabel ? <span> · {gradeLabel}</span> : null}
       </span>
     </div>
   );

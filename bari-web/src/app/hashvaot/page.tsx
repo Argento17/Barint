@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { FeaturedBreakfastCerealsIntelligenceCard } from "@/components/hashvaot/featured-breakfast-cereals-intelligence-card";
+import { FeaturedButterIntelligenceCard } from "@/components/hashvaot/featured-butter-intelligence-card";
+import { FeaturedGranolaIntelligenceCard } from "@/components/hashvaot/featured-granola-intelligence-card";
 import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
 import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-cheese-intelligence-card";
 import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-hummus-intelligence-card";
@@ -19,6 +22,9 @@ import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummu
 import { maadanimProducts } from "@/lib/comparisons/maadanim-page-data";
 import { vegetableSpreadsProducts, vegetableSpreadsPrologueSentences } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
 import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-comparison-page-data";
+import { cerealsProducts } from "@/lib/comparisons/cereals-page-data";
+import { butterProducts, butterPrologueSentences } from "@/lib/comparisons/butter-page-data";
+import { granolaProducts } from "@/lib/comparisons/granola-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -29,6 +35,9 @@ export const metadata: Metadata = {
     "השוואות אינטליגנציית מזון אינטראקטיביות — ניתוח רב-פרמטרי של מוצרים דומים.",
 };
 
+const BUTTER_COMPARISON_HREF = "/hashvaot/butter";
+const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
+const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
 const MAADANIM_COMPARISON_HREF = "/hashvaot/maadanim";
 const VEGETABLE_SPREADS_COMPARISON_HREF = "/hashvaot/vegetable-spreads";
@@ -36,6 +45,9 @@ const CHEESE_COMPARISON_HREF = "/hashvaot/cheese";
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
 
 export default function HashvaotIndexPage() {
+  const butterDescription = `${butterPrologueSentences[0]} ${butterProducts.length} מוצרים בדף ההשוואה.`;
+  const cerealsDescription = `רוב דגני הבוקר במדף נושאים תווית «דגנים מלאים» — אבל לא כולם מצדיקים אותה. בדקנו ${cerealsProducts.length} מוצרים: אף אחד לא הגיע ל-A, הציון הגבוה ביותר הוא 78/B, וארבעה מוצרים מיועדים לילדים. גרנולה ומוזלי הופרדו לקטגוריה משלהם.`;
+  const granolaDescription = `גרנולה ומוזלי נראים כמו בחירת הבריאות של המדף — אבל ${granolaProducts.length} המוצרים שבדקנו נעים בין 76/B ל-29/E, פער של 47 נקודות. הציון תלוי בכמות הסוכר, השומן והסירופ בפועל, לא בתדמית.`;
   const productCount = milkProducts.length;
   const milkDescription = `השוואה בין ${productCount} מוצרי חלב ומשקאות חלב פופולריים בישראל — כולל חלב פרה, סויה, שיבולת שועל, שקדים ומוצרים עתירי חלבון. Bari מנתחת רכיבים, ערכים תזונתיים, רמת עיבוד ותוספים כדי להציג את הטריידאופים בין המוצרים.`;
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
@@ -89,6 +101,18 @@ export default function HashvaotIndexPage() {
           <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
             ניתוח עדכני
           </h2>
+          <FeaturedBreakfastCerealsIntelligenceCard
+            href={CEREALS_COMPARISON_HREF}
+            description={cerealsDescription}
+          />
+          <FeaturedGranolaIntelligenceCard
+            href={GRANOLA_COMPARISON_HREF}
+            description={granolaDescription}
+          />
+          <FeaturedButterIntelligenceCard
+            href={BUTTER_COMPARISON_HREF}
+            description={butterDescription}
+          />
           <FeaturedMaadanimIntelligenceCard
             href={MAADANIM_COMPARISON_HREF}
             description={maadanimDescription}

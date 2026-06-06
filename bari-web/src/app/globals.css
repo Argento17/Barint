@@ -556,6 +556,12 @@
       top: 0;
       z-index: 3;
       grid-template-columns: 30px 80px minmax(0, 1fr) 232px 156px;
+      /* Use the SAME named areas as .bari-cmp-rowhead so the header tracks the rows
+         under RTL. Without areas the header placed children by source order, which
+         resolves to the opposite column direction from the area-based rows — the
+         header read mirror-flipped (# on the left over rank 1 on the right, the
+         metric label sitting beside the bar instead of above it). */
+      grid-template-areas: "rank thumb name metric grade";
       font-family: var(--font-mono, monospace);
       font-size: 0.58rem;
       font-weight: 700;
@@ -563,11 +569,23 @@
       letter-spacing: 0.09em;
       color: #7a817c;
     }
+    .bari-cmp-colhead-thumb {
+      grid-area: thumb;
+    }
+    .bari-cmp-colhead-name {
+      grid-area: name;
+    }
     .bari-cmp-colhead-metric {
+      grid-area: metric;
       text-align: start;
     }
     .bari-cmp-colhead-grade {
+      grid-area: grade;
       text-align: end;
+    }
+    .bari-cmp-colhead-avg {
+      font-weight: 800;
+      color: #4a524e;
     }
 
     .bari-cmp-thumbcell {

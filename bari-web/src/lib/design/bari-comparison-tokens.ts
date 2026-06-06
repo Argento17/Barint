@@ -1,10 +1,10 @@
 export const BARI_COMPARISON_TOKENS = {
   gradePalette: {
     A: { accent: "#1E7A4F", bg: "#E7F4EC", text: "#155C3C", border: "#1E7A4F33", dot: "top" },
-    B: { accent: "#3C8C7A", bg: "#E6F2EF", text: "#2A6357", border: "#3C8C7A33", dot: "upper" },
-    C: { accent: "#B07A12", bg: "#FAF3DF", text: "#7A5400", border: "#B07A1233", dot: "middle" },
-    D: { accent: "#C2552E", bg: "#FBEDE6", text: "#8F3A1C", border: "#C2552E33", dot: "lower" },
-    E: { accent: "#A23030", bg: "#F7E7E5", text: "#7A2020", border: "#A2303033", dot: "bottom" },
+    B: { accent: "#5F7D17", bg: "#F0F3DF", text: "#4C6314", border: "#5F7D1733", dot: "upper" },
+    C: { accent: "#A87A0C", bg: "#FBF3D8", text: "#7E5800", border: "#A87A0C33", dot: "middle" },
+    D: { accent: "#D85C1C", bg: "#FCEAD9", text: "#9A4012", border: "#D85C1C33", dot: "lower" },
+    E: { accent: "#A52121", bg: "#F7E3E1", text: "#7A1A1A", border: "#A5212133", dot: "bottom" },
   },
   rows: {
     oddBg: "#FFFFFF",

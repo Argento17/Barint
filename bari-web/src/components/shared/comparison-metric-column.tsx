@@ -25,6 +25,9 @@ export interface MetricSpec {
   label: string;
   /** unit suffix on the value, e.g. "ג׳" or "%". Omit for counts. */
   unit?: string;
+  /** per-serving basis shown in the column HEADER, e.g. "ל-100 ג׳" / "ל-100 מ״ל".
+   *  Makes the metric's basis explicit above the column (the value cell stays terse). */
+  perLabel?: string;
   render: "bar" | "pips";
   /** display scale max (bar fill / pip count). */
   scaleMax: number;
@@ -45,6 +48,7 @@ export const PROTEIN_METRIC: MetricSpec = {
   key: "protein_g",
   label: "חלבון",
   unit: "ג׳",
+  perLabel: "ל-100 ג׳",
   render: "bar",
   scaleMax: 20,
   good: 10,
@@ -60,6 +64,7 @@ export const DAIRY_PROTEIN_METRIC: MetricSpec = {
   key: "protein_g",
   label: "חלבון",
   unit: "ג׳",
+  perLabel: "ל-100 מ״ל",
   render: "bar",
   scaleMax: 8,
   good: 5,
@@ -76,6 +81,7 @@ export const VEG_PROTEIN_METRIC: MetricSpec = {
   key: "protein_g",
   label: "חלבון",
   unit: "ג׳",
+  perLabel: "ל-100 ג׳",
   render: "bar",
   scaleMax: 7,
   good: 3,
@@ -91,6 +97,7 @@ export const FIBER_METRIC: MetricSpec = {
   key: "fiber_g",
   label: "סיבים",
   unit: "ג׳",
+  perLabel: "ל-100 ג׳",
   render: "bar",
   scaleMax: 20,
   good: 7,

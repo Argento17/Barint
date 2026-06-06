@@ -1,7 +1,6 @@
 "use client";
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
-import { VEG_PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   filterVegetableSpreadsProducts,
   VEGETABLE_SPREADS_SHELF_LENS_OPTIONS,
@@ -28,12 +27,13 @@ const vegetableSpreadsShelfFilters = {
   filterProducts: filterVegetableSpreadsProducts,
 } as const;
 
-// Protein is the vegetable-spread row metric (TASK-161A). Uses VEG_PROTEIN_METRIC (TASK-165),
-// NOT the hummus PROTEIN_METRIC nor the dairy preset: these spreads draw from the hummus corpus
-// (protein is per 100 GRAMS) but run only 0.7–6.3g, so the 0–20g hummus scale flattened every bar.
-// VEG_PROTEIN_METRIC drops scaleMax to 7 so the bars discriminate, while keeping the per-100g
-// aria unit (these are solids — DAIRY_PROTEIN_METRIC's "ל-100 מ״ל" would be factually wrong).
-const VEGETABLE_SPREADS_METRIC_SPECS = [VEG_PROTEIN_METRIC] as const;
+// No metric bar for vegetable spreads (Design ruling, TASK-168 follow-up). Protein (0.7–2.2g
+// here) is the category's least-relevant signal and a protein bar mis-signals that these
+// spreads are protein-driven (grounding §2 forbids that). The real differentiator — sodium —
+// is already stated, with the number, in each row's verdict, so a bar would only duplicate it.
+// "No bar" matches the snacks precedent. The hummus page keeps its protein bar; only this
+// (filtered) view drops it.
+const VEGETABLE_SPREADS_METRIC_SPECS = [] as const;
 
 export function VegetableSpreadsComparisonPage({
   products,

@@ -88,6 +88,8 @@ const MAX_VISIBLE_ROWS = 3;
 // 24px height, 8px h-padding, 11px font, border-radius 4px (spec §5.5).
 // Rectangular — NOT the circular score chip. Must not be confused with grade chips.
 
+// Polish 1 (TASK-181Q): TierChip font size 11px → 12px, height 24px → 26px.
+// Improves Hebrew legibility at 375px. H-padding (8px) unchanged.
 function TierChip({ tier }: { tier: AdditiveTier }) {
   const visual = TIER_VISUALS[tier] ?? TIER_VISUALS.unclassified;
   return (
@@ -95,11 +97,11 @@ function TierChip({ tier }: { tier: AdditiveTier }) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        height: "24px",
+        height: "26px",
         paddingLeft: "8px",
         paddingRight: "8px",
         borderRadius: "4px",
-        fontSize: "11px",
+        fontSize: "12px",
         fontWeight: 600,
         lineHeight: 1,
         whiteSpace: "nowrap",
@@ -117,10 +119,19 @@ function TierChip({ tier }: { tier: AdditiveTier }) {
 }
 
 // ─── Explanation truncation helper ───────────────────────────────────────────
+// Copy doc (w2_additive_copy_v1.md) uses ";" as a natural clause break:
+// first clause = "what it is", second clause = safety/controversy context.
+// Prefer cutting at the semicolon so the preview always shows a complete thought.
+// Hard fallback: last word boundary near maxChars, with "…" suffix.
 
 function truncate(text: string, maxChars: number): string {
   if (text.length <= maxChars) return text;
-  return text.slice(0, maxChars).trimEnd() + "…";
+  const semiIdx = text.indexOf(";");
+  if (semiIdx > 0 && semiIdx < maxChars) return text.slice(0, semiIdx + 1);
+  const slice = text.slice(0, maxChars);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > 0 ? slice.slice(0, lastSpace) : slice;
+  return cut.trimEnd() + "…";
 }
 
 // ─── AdditiveRow ─────────────────────────────────────────────────────────────
@@ -143,7 +154,7 @@ function AdditiveRow({
   // RT-3 crash guard: explanation_he may be absent at runtime before TASK-179U
   // joins the field from w2_additive_copy_v1.md (TypeScript says required but
   // the data path can be missing). Fall back to empty string defensively.
-  const truncatedExplanation = truncate(entry.explanation_he ?? "", 80);
+  const truncatedExplanation = truncate(entry.explanation_he ?? "", 120);
 
   return (
     <div
@@ -185,7 +196,7 @@ function AdditiveRow({
         </span>
       </div>
 
-      {/* Line 2: one-line explanation (truncated at 80 chars) */}
+      {/* Line 2: explanation — complete first clause (up to ";"), 120-char hard limit */}
       <p
         style={{
           margin: "4px 0 0",
@@ -444,10 +455,12 @@ export function AdditivePanel({
             {highestSeverityTier !== null && (
               <TierChip tier={highestSeverityTier} />
             )}
+            {/* Polish 2 (TASK-181Q): fontWeight 600 → 500 on the count+action label.
+                Restores hierarchy: TierChip (600) = signal, label (500) = affordance. */}
             <span
               style={{
                 fontSize: "13px",
-                fontWeight: 600,
+                fontWeight: 500,
                 color: "#3C443F",
               }}
             >
