@@ -13,3 +13,7 @@ Sources:
   pagespeed        — Google PageSpeed Insights (Frontend)
   github_artifacts — merged-commit / CI / deploy state via `gh` (CC)
 """
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)

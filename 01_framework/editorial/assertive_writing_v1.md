@@ -982,7 +982,7 @@ Bari has an extended tonal range that includes dry humor, wry observation, and c
 4. HeBERT validates that the line doesn't land as aggressive, mocking, or alarming. If HeBERT scores the line negative/anger: rewrite.
 
 **HeBERT tone gate (for any line with intended wit or criticism):**
-Run the Hebrew line through HeBERT/HebEMO. The emotional output should be `joy`, `trust`, or neutral — not `anger`, `disgust`, or `fear`. If the model returns a negative emotion: the line reads as aggressive to a Hebrew reader, rewrite before publishing.
+Run the Hebrew line through `avichr/hebEMO_anger` and `avichr/hebEMO_disgust`. Both must return `LABEL_0` (emotion absent) to pass. Either returning `LABEL_1` (emotion present) means the line reads as aggressive to a Hebrew reader — rewrite before publishing.
 
 ---
 
