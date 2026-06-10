@@ -2,7 +2,9 @@
 id: TASK-229
 title: "Score-0 floor artifact — engine returns exactly 0/E for products lacking positive-driver signals (surfaced by salty-snacks v4 rebuild)"
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-06-10
+close_reason: "Both items resolved with NO scoring-engine change. (1) Score-0 'floor' was a trans-veto firing on bad OFF data — fixed at the data layer for beet cracker (60/C) and Apropo caramel (18/E); salty-snacks now has 0 products at score==0. (2) Protein-reward: OWNER SIGNED OFF on Nutrition's 'no change' recommendation (2026-06-10) — protein already credited, symptom was the bad-trans data (now fixed), a real change would be sub-noise (±1-2pts) and spill into live categories. No engine change ships → no D7 rule co-sign required. RT-3 (whether a hard trans-veto should fire on absence-of-PHVO data) noted as a separate, non-blocking robustness question for a future Nutrition/owner review."
 priority: MEDIUM
 created_at: 2026-06-10
 depends_on: [TASK-228]
