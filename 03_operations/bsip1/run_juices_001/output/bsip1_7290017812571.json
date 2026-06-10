@@ -1,0 +1,104 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_juice_7290017812571",
+  "barcode": "7290017812571",
+  "canonical_name_he": "מיץ ענבים תירוש אדום יקבי כרמל",
+  "canonical_name_en": "מיץ ענבים אדום",
+  "brand": "כרמל מזרחי",
+  "package_size_ml": 750,
+  "unit_count": null,
+  "serving_size_ml": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "image_urls": [],
+  "source_retailers": [
+    "yohananof"
+  ],
+  "source_url": "https://world.openfoodfacts.org/api/v2/product/7290017812571.json",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 66,
+    "fat_g": 0,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 21.0,
+    "carbohydrates_g": 16,
+    "sugars_g": 15.8,
+    "dietary_fiber_g": null,
+    "protein_g": 0
+  },
+  "nutrition_unit": "per_100ml",
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "",
+  "ingredients_list": [],
+  "ingredients_raw": "",
+  "ingredients_raw_provenance": {
+    "source": "open_food_facts",
+    "bsip0_status": "bsip0_enrichment",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": true,
+    "note": "Ingredient text from OFF candidate record."
+  },
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims_raw": "",
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100ml",
+    "matched_by": "off_barcode_lookup",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "il_prices transparency feed barcode + OFF barcode match.",
+  "nutrition_basis_claimed": "ל-100 מ\"ל",
+  "nutrition_basis_detected": "per_100ml",
+  "nutrition_consistency_status": "consistent",
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "missing",
+  "ingredient_warnings": [
+    "no_ingredient_list_in_source"
+  ],
+  "canonical_trust_score": 0.65,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "off_candidate_panel"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [
+    "juice_sub_pool",
+    "nova_group_candidate"
+  ],
+  "audit_ref": null,
+  "juice_sub_pool": "juice_100",
+  "fruit_content_pct": null,
+  "nova_group_candidate": 3,
+  "volume_ml": 750,
+  "provenance": {
+    "identity_source": "curated_barcode_list + il_prices",
+    "panel_source": "open_food_facts",
+    "panel_found": true,
+    "panel_has_macros": true,
+    "off_completeness": 0.3,
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-07T10:55:28.719210",
+    "client_version": "1.0"
+  },
+  "price": null,
+  "acquisition_query": "curated_barcodes:juices_run_juices_001",
+  "ingredient_order": []
+}

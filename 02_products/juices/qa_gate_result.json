@@ -1,0 +1,39 @@
+{
+  "schema_version": "qa_gate_v1",
+  "category_slug": "juices",
+  "pipeline_run": "run_juices_001",
+  "evaluated_at": "2026-06-07",
+  "evaluated_by": "data-agent",
+  "gate_result": "pass_with_warnings",
+  "hard_fails": [],
+  "warnings": [
+    {
+      "id": "W-JUICE-001",
+      "severity": "warning",
+      "description": "56/65 products use FDC generic type references rather than scanned panels. Sugar values are type-anchored, not SKU-specific.",
+      "resolution": "Accepted — Israeli juice brands are under-represented in OFF. FDC references are appropriate directional anchors. All stamped candidate.",
+      "accepted_by": "data-agent"
+    },
+    {
+      "id": "W-JUICE-002",
+      "severity": "warning",
+      "description": "1 product (7290006696717, מיץ מוסקט אפרת) misrouted to 'dessert' by engine. Score 57.4/C.",
+      "resolution": "Accepted — score is plausible. Product annotated in frontend with routing_flag. Engine anchor for 'מוסקט' is a known gap; flagged for future router update.",
+      "accepted_by": "data-agent"
+    },
+    {
+      "id": "W-JUICE-003",
+      "severity": "info",
+      "description": "3 cold-pressed products score 54-57/C despite NOVA 1. Cold-press process does not reduce sugar content; the engine correctly weights sugar over processing class for beverages.",
+      "resolution": "Valid finding — confirmed expected behavior. Consumer insight: cold-press improves processing profile but does not change sugar load.",
+      "accepted_by": "data-agent"
+    },
+    {
+      "id": "W-JUICE-004",
+      "severity": "info",
+      "description": "Fresh-squeezed סחוט תפוזים 1 (barcode 7290003009640) scores 85/A — sole A in category. This product has NOVA 1 assignment from OFF + lower FDC sugar reference (7.6g vs 8.4g typical OJ).",
+      "resolution": "Score verified against trace. The A is driven by NOVA 1 (minimal processing) + calorie density well within beverage table tier 1. Directionally correct.",
+      "accepted_by": "data-agent"
+    }
+  ]
+}

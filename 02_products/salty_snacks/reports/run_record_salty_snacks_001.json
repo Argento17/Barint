@@ -1,0 +1,69 @@
+{
+  "run_id": "run_salty_snacks_001",
+  "task_id": "TASK-213",
+  "category": "salty-snacks",
+  "category_he": "חטיפים מלוחים",
+  "run_date": "2026-06-07",
+  "engine_tag": "proto_v0 / BARI_RECAL_P0=on",
+  "pipeline_stages": {
+    "bsip0": {
+      "status": "COMPLETE",
+      "retailers": ["shufersal", "yohananof", "carrefour"],
+      "raw_records": 66,
+      "output_files": [
+        "C:\\Bari\\02_products\\salty_snacks\\bsip0_outputs\\salty_snacks_bsip0_shufersal.json",
+        "C:\\Bari\\02_products\\salty_snacks\\bsip0_outputs\\salty_snacks_bsip0_yohananof.json",
+        "C:\\Bari\\02_products\\salty_snacks\\bsip0_outputs\\salty_snacks_bsip0_carrefour.json"
+      ]
+    },
+    "bsip1": {
+      "status": "COMPLETE",
+      "run_id": "run_salty_snacks_bsip1_001",
+      "input_records": 66,
+      "dedup_removed": 12,
+      "canonical_count": 54,
+      "nova_distribution_bsip1": {"2": 12, "3": 11, "4": 31},
+      "subpool_distribution": {
+        "chips": 11, "popcorn": 8, "puffed": 11, "baked": 13, "rice_cakes": 7, "pretzels": 4
+      },
+      "output_dir": "C:\\Bari\\02_products\\salty_snacks\\bsip1_outputs",
+      "dedup_report": "C:\\Bari\\02_products\\salty_snacks\\reports\\dedup_report.json"
+    },
+    "bsip2": {
+      "status": "COMPLETE",
+      "run_id": "run_salty_snacks_001",
+      "scored": 54,
+      "errors": 0,
+      "grade_distribution": {"A": 7, "B": 17, "C": 18, "D": 8, "E": 4},
+      "score_range": [21.4, 87.5],
+      "score_median": 62.9,
+      "nova_distribution_engine": {"1": 1, "2": 19, "3": 30, "4": 4},
+      "output_dir": "C:\\Bari\\02_products\\salty_snacks\\bsip2_outputs\\run_salty_snacks_001",
+      "run_summary": "C:\\Bari\\02_products\\salty_snacks\\reports\\run_salty_snacks_001_run_summary.json"
+    },
+    "frontend": {
+      "status": "COMPLETE",
+      "product_count": 54,
+      "output_workspace": "C:\\Bari\\02_products\\salty_snacks\\salty_snacks_frontend_v1.json",
+      "output_web": "C:\\bari\\bari-web\\src\\data\\comparisons\\salty_snacks_frontend_v1.json"
+    }
+  },
+  "corpus_notes": {
+    "shufersal_raw": 28,
+    "yohananof_raw": 19,
+    "carrefour_raw": 19,
+    "cross_retailer_duplicates": 12,
+    "final_corpus": 54,
+    "retailer_breakdown_final": {"shufersal": 22, "yohananof": 13, "carrefour": 19}
+  },
+  "known_issues": [
+    {
+      "issue_id": "KI-001-TASK213",
+      "severity": "moderate",
+      "description": "Engine NOVA inference assigns NOVA 2 to extruded puffed snacks (Bamba, Bisli) due to short ingredient lists (3-4 ingredients, no E-numbers). BSIP1 correctly assigns NOVA 4 based on industrial extrusion context, but the engine independently re-calculates NOVA from ingredient keywords only. This inflates scores for extruded puffed snacks by ~15-20 points. Bamba scores 70/B (engine NOVA 2) instead of expected C/D range (NOVA 4). Bisli scores 54/C instead of expected D range.",
+      "affected_products": ["7290000066003", "7290000630006", "7290000630020", "7290009900003"],
+      "escalation": "TASK-189 scope — engine improvement; do not adjust scores ad hoc"
+    }
+  ],
+  "configuration_hash": "BARI_RECAL_P0=on; engine=proto_v0; bsip1_schema=bsip1_v0_1"
+}

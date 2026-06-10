@@ -1,0 +1,87 @@
+{
+  "schema_version": "bsip0_v1",
+  "run_id": "run_hard_cheeses_rerun_001",
+  "run_ts": "2026-06-07T11:40:38.178793+00:00",
+  "retailer": "multi_retailer",
+  "category": "hard_cheeses",
+  "identity_source": "known_barcode_registry (Israeli hard cheese catalog)",
+  "panel_source": "open_food_facts_v2_api",
+  "product_count": 1,
+  "excluded_count": 24,
+  "excluded_detail": {
+    "not_found_on_off": [
+      "7290000062419",
+      "7290000062426",
+      "7290000062433",
+      "7290000062440",
+      "7290000062457",
+      "7290000062464",
+      "7290000062471",
+      "7290000062488",
+      "7290000062495",
+      "7290000062501",
+      "7290000062518",
+      "7290000062525",
+      "7290000062532",
+      "7290000062549",
+      "7290000062556",
+      "7290000067659",
+      "7290004701765",
+      "7290012301070",
+      "7290000067734",
+      "3256228310201",
+      "3270190045023",
+      "8001840000715",
+      "7290010048101",
+      "7290000067772"
+    ],
+    "found_but_no_panel": []
+  },
+  "gate_check": {
+    "no_panel_rate": 0.96,
+    "missing_ingredients_rate": 0.0,
+    "gate_pass": false,
+    "gate_failures": [
+      "Corpus too small: 1 products (minimum 10)",
+      "No-panel rate 96.0% exceeds 20% threshold"
+    ]
+  },
+  "products": [
+    {
+      "schema_version": "bsip0_v1",
+      "barcode": "8076809523523",
+      "product_name_he": "פרמזן גרנה פדנו",
+      "name_off": "Mini Pipe Rigate",
+      "brand": "Barilla",
+      "retailer": "multi_retailer",
+      "unit": "per_100g",
+      "category_tag": "hard_cheese",
+      "nova_group_candidate": 1,
+      "image_url": "https://images.openfoodfacts.org/images/products/807/680/952/3523/front_en.70.400.jpg",
+      "nutrition_per_100g": {
+        "energy_kcal": 359.0,
+        "fat_g": 2.0,
+        "fat_saturated_g": 0.5,
+        "carbohydrates_g": 72.0,
+        "sugars_g": 3.5,
+        "protein_g": 12.0,
+        "sodium_mg": 4.0,
+        "dietary_fiber_g": 3.0,
+        "calcium_mg": null
+      },
+      "ingredients_text_he": "durum wheat semolina, water, may contain traces of soy,",
+      "off_found": true,
+      "off_has_panel": true,
+      "off_nova_group": 1,
+      "off_completeness": 0.8625,
+      "data_sufficiency": "sufficient",
+      "provenance": {
+        "identity_source": "known_barcode_registry:8076809523523",
+        "panel_source": "open_food_facts",
+        "panel_found": true,
+        "verification_status": "candidate",
+        "fetched_at": "2026-06-07T11:40:47.194298+00:00"
+      }
+    }
+  ]
+}

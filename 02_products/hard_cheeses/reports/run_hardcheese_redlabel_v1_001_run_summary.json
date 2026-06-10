@@ -1,0 +1,32 @@
+{
+  "run_id": "run_hardcheese_redlabel_v1_001",
+  "generated": "2026-06-08T19:14:30.998715+00:00",
+  "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0",
+  "flags": [
+    "BARI_REDLABEL_V1",
+    "BARI_RECAL_P0"
+  ],
+  "d7_approved": "2026-06-08",
+  "pilot_scope": "hard_cheese",
+  "task": "TASK-REDLABEL-001",
+  "processed": 67,
+  "scored": 67,
+  "errors": 1,
+  "grade_distribution": {
+    "B": 15,
+    "insufficient_data": 37,
+    "C": 14,
+    "D": 1
+  },
+  "score_range": {
+    "min": 37.6,
+    "max": 75.9,
+    "mean": 56.1
+  },
+  "error_detail": [
+    {
+      "product_id": "unknown",
+      "error": "unsupported operand type(s) for /: 'WindowsPath' and 'NoneType'"
+    }
+  ]
+}

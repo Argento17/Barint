@@ -4,8 +4,9 @@
 
 - One `TASK-NNN.md` file per task. Task state lives in the YAML frontmatter `status:` field.
 - States (Registry Protocol v1, no others): `IN_PROGRESS` · `BLOCKED` · `RETURNED` · `CHANGES_REQUESTED` · `CLOSED`.
-- The dashboard is **derived** from these files: `python 05_command_center/generate_dashboard.py` → `command_center.json` → `command_center_v4.html`. Never hand-edit `command_center.json`.
-- Only the **Central Controller** records `CLOSED`. Agents propose `RETURNED` / `BLOCKED` in their return block.
+- **This directory contains live (non-CLOSED) tasks only.** Closed tasks live in `tasks/closed/`. CC moves them on close.
+- The dashboard is **derived** from these files: `python 05_command_center/generate_dashboard.py` reads both `tasks/` and `tasks/closed/`. Never hand-edit `command_center.json`.
+- Only the **Central Controller** records `CLOSED` and immediately moves the file to `tasks/closed/`. Agents propose `RETURNED` / `BLOCKED` in their return block.
 
 ## Governance
 - `01_framework/operations/work_classification_v1.md` — Conversation Work vs Registry Work (what becomes a task at all).

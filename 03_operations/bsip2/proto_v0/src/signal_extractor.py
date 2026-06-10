@@ -23,6 +23,14 @@ from constants import KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER  # EV-047
 # everywhere else. This is fully reversible: unset the env var → frozen behavior returns.
 TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 
+# BARI_DAIRY_SAT_FAT_INFER — when ON, dairy products with fat_g known but
+# fat_saturated_g absent have sat_fat estimated at 0.62 × fat_g (typical hard-cheese
+# ratio from compositional reference data). This eliminates the data-asymmetry where
+# products with declared sat_fat receive the Israeli red label but unlabelled products
+# escape it. Conservative: does not apply to processed-cheese sub_pool (different
+# fat profile). Gated so other category runs are unaffected. Default OFF.
+DAIRY_SAT_FAT_INFER_ON = os.environ.get("BARI_DAIRY_SAT_FAT_INFER", "off").lower() == "on"
+
 # ---------------------------------------------------------------------------
 # Hebrew ingredient keyword lists
 # ---------------------------------------------------------------------------
@@ -130,6 +138,37 @@ ADDITIVE_MARKER_PATTERNS = [
     (r"E-300|E-920|E920|חומר הוספה לקמח", "flour_treatment"),
 ]
 
+# Natural colorants: plant or animal-derived pigments whose presence in a product
+# does NOT signal industrial ultra-processing. When a "color" marker fires but the
+# entire evidence is covered by this exemption list (and no synthetic dye is found),
+# has_artificial_color is set to False — the additive_marker_count is unchanged.
+# Evidence: annatto (E160b) is a natural seed-extract pigment; β-carotene, turmeric,
+# paprika, and anthocyanins are whole-food pigments; none are NOVA 4 markers.
+NATURAL_COLORANT_MARKERS_HE: list[str] = [
+    "אנאטו", "אנטו",           # annatto E160b — both spellings incl. common OCR variant
+    "בטא קרוטן", "בטא-קרוטן",  # beta-carotene E160a
+    "קרוטן",                   # carotene (generic carotenoid)
+    "ספירולינה",                # spirulina pigment
+    "פפריקה",                   # paprika / paprika extract E160c
+    "כורכום",                   # turmeric / curcumin E100
+    "אנתוציאנין",              # anthocyanins E163
+    "E160", "E-160",           # carotenoid family (E160a–f; all naturally sourced)
+    "E161", "E-161",           # xanthophylls (natural)
+    "E162", "E-162",           # betanin / beet-red (natural)
+    "E163", "E-163",           # anthocyanins (natural)
+    "E100", "E-100",           # curcumin / turmeric (natural)
+    "E120", "E-120",           # carmine / cochineal (animal-derived, not synthetic)
+    "E140", "E-140",           # chlorophylls (natural)
+    "E141", "E-141",           # copper–chlorophyll complexes (natural derivative)
+]
+
+# Synthetic azo, xanthene, and triarylmethane dyes whose presence means the color
+# signal IS artificial even if natural colorants are also listed.
+_SYNTHETIC_COLOR_RE = re.compile(
+    r"E-?10[2-9]|E-?1[1-5][0-9](?!\d)|טרטרזין|sunset|כרמוזין|קרמוזין",
+    re.IGNORECASE
+)
+
 # Seed oil markers
 SEED_OIL_MARKERS_HE = [
     "שמן חמניות",   # sunflower oil
@@ -171,7 +210,10 @@ WHOLE_GRAIN_MARKERS_HE = [
 FERMENTATION_MARKERS_HE = [
     "תרבויות חיות", "תרביות חיות", "חיידקים פרוביוטיים",
     "לקטובציל", "בידפידוס", "חומצה לקטית", "חמץ",
-    "מחמצת", "ספיח", "שמר",
+    "מחמצת", "ספיח",
+    # NOTE: "שמר" (yeast) is intentionally NOT in this list — it is a substring of
+    # "משמרים" (preservatives) and caused a false fermentation positive on products
+    # with "ללא חומרים משמרים" (no preservatives). Use _FERMENTATION_WORDBOUND_RE below.
     # ── Israeli retail live-culture vocabulary (mirror of TASK-139B FERMENTATION_TERMS) ──
     "תרבויות",                                  # plain plural (label often omits "חיות")
     "חיידק פרוביוטי", "חיידקי פרוביוטי", "חיידקים פרוביוטי",
@@ -180,6 +222,18 @@ FERMENTATION_MARKERS_HE = [
     "ביפידוס", "ביפדוס", "bifidus",             # bifidobacterium (case-insensitive → BIFIDUS)
     "תרבית",                                    # singular "culture"
 ]
+
+# EV-051 / TASK-198 — Word-boundary fermentation detection for short/ambiguous markers.
+# "שמר" (yeast/fermentation) MUST NOT match as a substring of "משמרים" (preservatives).
+# "ללא חומרים משמרים" = "no preservatives" — the "שמרים" sub-word is a false positive.
+# Hebrew word-boundary: require that "שמר" is NOT preceded by a Hebrew letter (mem of
+# "מ-שמרים" would be caught by (?<![א-ת])). This mirrors the BREAD_INGREDIENT_RE guard
+# in the BSIP1 builder (same EV-029-family class of substring-collision bug).
+# All other FERMENTATION_MARKERS_HE are long-form phrases not susceptible to this trap.
+_FERMENTATION_WORDBOUND_RE = re.compile(
+    r"(?<![א-ת])שמר(?:[ים]+)?(?![א-ת])",   # שמר / שמרים / שמרי — not preceded by Hebrew letter
+    re.UNICODE
+)
 
 # Protein isolate markers
 PROTEIN_ISOLATE_MARKERS_HE = [
@@ -635,26 +689,42 @@ def extract_signals(product: dict) -> dict:
     additive_marker_count = len(additive_categories)
     additive_categories_list = sorted(additive_categories.keys())
 
+    # Distinguish natural from artificial colorants.
+    # has_artificial_color = True only when the color match is NOT fully covered by
+    # known natural colorant markers, or when a synthetic dye code is explicitly present.
+    # Keeps additive_marker_count and the "color" category entry intact (additive burden
+    # is unchanged); only the NOVA-4 +2 weight and the R4-demotion-block are suppressed
+    # for natural colorants. Evidence: annatto/E160b, β-carotene, turmeric, paprika,
+    # and anthocyanins are whole-food pigments — not markers of industrial processing.
+    _natural_color_hits = [m for m in NATURAL_COLORANT_MARKERS_HE
+                           if m.lower() in full_text.lower()]
+    has_artificial_color = has_color and (
+        bool(_SYNTHETIC_COLOR_RE.search(full_text)) or not _natural_color_hits
+    )
+
     # --- Sprint 1: EV-003/019 emulsifier tier detection ---
+    # TASK-222A (2026-06-09): sprint1 +2/−1 additive-count corrections RETIRED.
+    # The identity-based F1 deltas (ADDITIVE_IDENTITY_DELTAS in constants.py)
+    # now handle emulsifier scoring via per-ingredient point adjustments on
+    # additive_quality. sprint1 corrections were a coarse proxy; keeping the
+    # detection calls below for traceability/rollback but zeroing the output.
     high_risk_emuls_detected, high_risk_emuls_found = _detect_high_risk_emulsifier(full_text)
     neutral_emuls_detected,   neutral_emuls_found   = _detect_neutral_emulsifier(full_text)
     prebiotic_gum_detected,   prebiotic_gum_found   = _detect_prebiotic_gum(full_text)
 
-    sprint1_additive_correction = 0
-    correction_notes = []
-    if "emulsifier" in additive_categories and neutral_emuls_detected:
-        if not NON_LECITHIN_EMULSIFIER_RE.search(full_text) and not high_risk_emuls_detected:
-            sprint1_additive_correction -= 1
-            correction_notes.append("EV-003/019: lecithin-only emulsifier removed (-1)")
-    if prebiotic_gum_detected and "stabilizer" in additive_categories:
-        OTHER_STAB_RE = re.compile(r"E-?410|E-?412|E-?415|E-?440|מייצב(?!\s*גומי)", re.IGNORECASE)
-        if not OTHER_STAB_RE.search(full_text):
-            sprint1_additive_correction -= 1
-            correction_notes.append("EV-019: prebiotic gum removed from stabilizer count (-1)")
-    if high_risk_emuls_detected:
-        sprint1_additive_correction += 2
-        correction_notes.append(f"EV-003: high-risk emulsifier (+2): {high_risk_emuls_found[:2]}")
-    sprint1_additive_count = max(0, additive_marker_count + sprint1_additive_correction)
+    sprint1_additive_correction = 0   # retired — identity deltas replace this
+    correction_notes = []              # retired
+    # Sprint1 correction logic preserved below for rollback reference:
+    # if "emulsifier" in additive_categories and neutral_emuls_detected:
+    #     if not NON_LECITHIN_EMULSIFIER_RE.search(full_text) and not high_risk_emuls_detected:
+    #         sprint1_additive_correction -= 1
+    # if prebiotic_gum_detected and "stabilizer" in additive_categories:
+    #     OTHER_STAB_RE = re.compile(r"E-?410|E-?412|E-?415|E-?440|מייצב(?!\s*גומי)", re.IGNORECASE)
+    #     if not OTHER_STAB_RE.search(full_text):
+    #         sprint1_additive_correction -= 1
+    # if high_risk_emuls_detected:
+    #     sprint1_additive_correction += 2
+    sprint1_additive_count = additive_marker_count   # TASK-222A: no correction; raw count only
 
     # --- TASK-133 (F1/F2/F4): ingredient identity + fragmentation via taxonomy ---
     # Resolves named additives (emulsifier identity, BHA/BHT) and structural form
@@ -732,6 +802,25 @@ def extract_signals(product: dict) -> dict:
     first_three_text = " ".join(ingredients[:3]).lower() if ingredients else ing_text[:200].lower()
     product_type_dairy = any(m in first_three_text for m in DAIRY_BASE_MARKERS_HE)
 
+    # BARI_DAIRY_SAT_FAT_INFER — infer sat_fat for dairy products where it is absent.
+    # Hard/semi-hard cheese sat_fat is consistently ~62% of total fat (compositional
+    # reference range: 58–66%). This corrects the scoring asymmetry where a product
+    # that declares sat_fat on the label is penalised by the Israeli sat_fat red label
+    # while a nutritionally identical product without the declaration escapes it.
+    # Guard: not applied to processed-cheese sub_pool (emulsified matrix, different
+    # fat composition). Tagged in L3 as sat_fat_inferred=True for full traceability.
+    _sat_fat_inferred = False
+    _sat_fat_inferred_value = None
+    if DAIRY_SAT_FAT_INFER_ON and sat_f is None and product_type_dairy and fat is not None and fat > 0:
+        _sub_pool_for_infer = (
+            (product.get("bsip_cheese_subpool") or product.get("sub_pool") or "")
+            .lower().strip()
+        )
+        if _sub_pool_for_infer != "processed":
+            _sat_fat_inferred_value = round(fat * 0.62, 1)
+            sat_f = _sat_fat_inferred_value
+            _sat_fat_inferred = True
+
     # Protein source
     isolate_matches = _search(full_text, PROTEIN_ISOLATE_MARKERS_HE)
     # TASK-144 Fix 3 / EV-028 — dairy protein source typing.
@@ -798,7 +887,15 @@ def extract_signals(product: dict) -> dict:
     has_fruit_concentrate = bool(fruit_conc_matches)
 
     # Fermentation
+    # EV-051 / TASK-198 — combine substring matches for long-form markers with the
+    # word-boundary regex check for "שמר" (yeast). Substring matching of "שמר" alone
+    # caused a false positive on "ללא חומרים משמרים" (no preservatives), because "שמרים"
+    # is a substring of "משמרים". The word-boundary regex (_FERMENTATION_WORDBOUND_RE)
+    # is required: (?<![א-ת])שמר ensures the match is not prefixed by a Hebrew letter.
     ferm_matches = _search(full_text, FERMENTATION_MARKERS_HE)
+    ferm_wordbound = _FERMENTATION_WORDBOUND_RE.search(full_text)
+    if ferm_wordbound:
+        ferm_matches = list(ferm_matches) + [ferm_wordbound.group()]
     has_fermentation = bool(ferm_matches)
 
     # Trans fat flag
@@ -871,7 +968,9 @@ def extract_signals(product: dict) -> dict:
         "additive_marker_count":    additive_marker_count,
         "additive_categories":      additive_categories_list,
         "has_flavor_enhancer":      has_flavor_enhancer,
-        "has_artificial_color":     has_color,
+        "has_artificial_color":     has_artificial_color,
+        "has_natural_color":        bool(_natural_color_hits),
+        "natural_color_hits":       _natural_color_hits,
         "has_seed_oil":             has_seed_oil,
         "seed_oil_matches":         seed_oil_matches,
         "has_palm_oil":             has_palm_oil,
@@ -925,11 +1024,19 @@ def extract_signals(product: dict) -> dict:
         # no longer trip the ">5 ingredients" NOVA-3 path.
         "sanitized_ingredient_count":            len(ingredients),
         "primary_fragmentation":                 frag_profile.get("dominant_fragmentation"),
+        # BARI_DAIRY_SAT_FAT_INFER fields — traceability for inferred sat_fat
+        "sat_fat_inferred":                      _sat_fat_inferred,
+        "sat_fat_inferred_value":                _sat_fat_inferred_value,
+        "sat_fat_inferred_basis": (
+            "0.62 × fat_g: typical sat_fat fraction in hard/semi-hard dairy cheese "
+            "(compositional reference range 58–66%); BARI_DAIRY_SAT_FAT_INFER=on"
+            if _sat_fat_inferred else None
+        ),
         "inference_confidence_notes": [
             "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
             "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
             "Additive count reflects distinct functional categories detected, not total additive instances",
-            "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+            "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
             "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups",
         ],
     }

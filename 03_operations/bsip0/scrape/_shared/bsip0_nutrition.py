@@ -410,6 +410,234 @@ def nutrition_implausible(nutr: dict) -> str | None:
     return None
 
 
+# ── TASK-211: Multi-retailer corpus filter functions ──────────────────────────
+#
+# These filter functions guard the BSIP0 gate for all retailer scrapers
+# (Shufersal, Rami Levy, Carrefour, Victory, Yochananof, etc.). They are the
+# shared enforcement layer so no individual scraper can silently skip a check.
+# All functions operate on the raw BSIP0 product record dict (as written by the
+# scraper) and return (should_filter: bool, reason: str | None).
+
+# Core nutrient fields (raw strings) that must be present for a product to be
+# scoreable. Missing >= 3 of these 6 → nutritionally incomplete.
+_CORE_NUTRIENT_FIELDS = [
+    "energy_kcal_raw",
+    "fat_raw",
+    "carbs_raw",
+    "protein_raw",
+    "sodium_raw",
+]
+# "sugar_raw" and "sugars_raw" are the same field spelled two ways across scrapers.
+_SUGAR_FIELD_VARIANTS = ("sugar_raw", "sugars_raw")
+
+# Non-informative ingredient placeholder strings — treated the same as null/empty.
+# Covers Hebrew ("ראה אריזה"), French ("voir emballage"), and English ("see packaging").
+NON_INFORMATIVE_INGREDIENTS: frozenset[str] = frozenset({
+    "ראה אריזה",
+    "see packaging",
+    "voir emballage",
+    "ver embalaje",
+})
+
+# Subcategory values that unambiguously mark a product as non-food.
+NON_FOOD_SUBCATEGORIES: frozenset[str] = frozenset({
+    "baby_care", "cleaning", "personal_care", "cosmetics",
+    "pet_care", "hygiene", "household", "pharmacy",
+})
+
+# Plausible kcal/100g ceiling for any food (EV-047). Energy values above this
+# signal a kJ-as-kcal unit mismatch (3138 kJ butter → 3138 kcal is impossible;
+# true value is 3138 × 0.239 ≈ 750 kcal).
+KCAL_PLAUSIBLE_UPPER: float = 900.0
+
+
+def _count_present_core_nutrients(nutrition: dict) -> int:
+    """Count how many of the 6 core nutrient fields are non-empty.
+
+    The 6 core fields are: energy_kcal_raw, fat_raw, carbs_raw, protein_raw,
+    sodium_raw, and sugar (either 'sugar_raw' or 'sugars_raw'). Returns 0–6.
+    """
+    present = 0
+    for field in _CORE_NUTRIENT_FIELDS:
+        if str(nutrition.get(field) or "").strip():
+            present += 1
+    # Sugar field: accept either spelling.
+    for sf in _SUGAR_FIELD_VARIANTS:
+        if str(nutrition.get(sf) or "").strip():
+            present += 1
+            break
+    return present
+
+
+def filter_incomplete_nutrition(product: dict) -> tuple[bool, str | None]:
+    """F1 gate — reject products missing >= 3 of the 6 core nutrient fields.
+
+    Returns ``(True, reason)`` when the product should be filtered, else
+    ``(False, None)``. Operates on the raw BSIP0 product record; reads
+    ``product["nutrition"]``.
+    """
+    nutrition = product.get("nutrition") or {}
+    present = _count_present_core_nutrients(nutrition)
+    missing = 6 - present
+    if missing >= 3:
+        return True, f"incomplete_nutrition: {present}/6 core nutrients present ({missing} missing)"
+    return False, None
+
+
+def filter_ingredients_absent(product: dict) -> tuple[bool, str | None]:
+    """F2 gate — reject products with null, empty, or non-informative ingredients.
+
+    Catches ``ingredients_raw: null``, ``""``, and placeholder strings such as
+    ``"ראה אריזה"`` (see packaging). NOVA and additive scoring are impossible
+    without a real ingredient list.
+
+    Returns ``(True, reason)`` when the product should be filtered.
+    """
+    raw = product.get("ingredients_raw")
+    if raw is None:
+        return True, "ingredients_absent: ingredients_raw is null"
+    text = str(raw).strip()
+    if not text:
+        return True, "ingredients_absent: ingredients_raw is empty string"
+    if text in NON_INFORMATIVE_INGREDIENTS:
+        return True, f"ingredients_absent: non-informative placeholder '{text}'"
+    return False, None
+
+
+def filter_non_food(product: dict) -> tuple[bool, str | None]:
+    """F3 gate — reject non-food / cosmetic products scraped from mixed shelves.
+
+    A product is non-food when ALL THREE hold simultaneously:
+      (a) All 8 nutrition fields are empty/null.
+      (b) ``ingredients_raw`` is null, empty, or a known placeholder.
+      (c) ``subcategory_raw`` is in the non-food category set.
+
+    Requiring all three prevents false-positives on legitimately zero-nutrition
+    foods (water, pure salt) — those carry real ingredient lists.
+
+    Returns ``(True, reason)`` when the product should be filtered.
+    """
+    nutrition = product.get("nutrition") or {}
+    all_empty = all(
+        not str(nutrition.get(f) or "").strip()
+        for f in ("energy_kcal_raw", "protein_raw", "carbs_raw", "fat_raw",
+                  "fiber_raw", "sodium_raw", "sugar_raw", "saturated_fat_raw")
+    )
+    raw = product.get("ingredients_raw")
+    ingredients_absent = (
+        raw is None
+        or str(raw).strip() in ("", *NON_INFORMATIVE_INGREDIENTS)
+    )
+    subcategory = str(product.get("subcategory_raw") or "").strip().lower()
+    non_food_cat = subcategory in NON_FOOD_SUBCATEGORIES
+
+    if all_empty and ingredients_absent and non_food_cat:
+        return True, (
+            f"non_food: zero nutrition + no ingredients + subcategory='{subcategory}'"
+        )
+    return False, None
+
+
+def dedup_by_barcode(products: list[dict]) -> dict:
+    """F4 gate — deduplicate a product list by barcode, keeping the most complete record.
+
+    Completeness = count of non-empty nutrition fields across all 8 raw keys.
+    Ties are broken by ``scraped_at`` (most recent wins).
+
+    Returns ``{"survivors": [...], "dropped": [...]}``. The caller should log
+    dropped records for the run record. Products with no barcode are kept as-is
+    (cannot deduplicate without a key).
+    """
+    from collections import defaultdict
+
+    by_barcode: dict[str, list] = defaultdict(list)
+    no_barcode = []
+    for p in products:
+        bc = str(p.get("barcode") or "").strip()
+        if bc:
+            by_barcode[bc].append(p)
+        else:
+            no_barcode.append(p)
+
+    survivors, dropped = list(no_barcode), []
+    for _, group in by_barcode.items():
+        if len(group) == 1:
+            survivors.append(group[0])
+            continue
+
+        def _score(p: dict) -> tuple[int, str]:
+            nutr = p.get("nutrition") or {}
+            filled = sum(
+                1 for f in ("energy_kcal_raw", "protein_raw", "carbs_raw", "fat_raw",
+                             "fiber_raw", "sodium_raw", "sugar_raw", "saturated_fat_raw")
+                if str(nutr.get(f) or "").strip()
+            )
+            return filled, str(p.get("scraped_at") or "")
+
+        ranked = sorted(group, key=_score, reverse=True)
+        survivors.append(ranked[0])
+        dropped.extend(ranked[1:])
+
+    return {"survivors": survivors, "dropped": dropped}
+
+
+def detect_kj_energy_misparse(product: dict) -> tuple[bool, str | None, float | None]:
+    """F6 gate — detect EU kJ-as-kcal misparsing in the energy_kcal_raw field.
+
+    EU-labeled products (common on Carrefour Israel) sometimes declare energy in
+    kJ only. If the scraper captures the kJ row and stores it under
+    ``energy_kcal_raw``, ``parse_num`` extracts the kJ number (e.g. 3138) which
+    is physically impossible as kcal/100g for any food (ceiling is 900 kcal/100g).
+
+    Returns ``(is_mismatch, reason_or_None, parsed_value_or_None)``.
+      - ``is_mismatch=True``:  the field should be suppressed / re-parsed with the
+                               0.239 kJ→kcal conversion before any scoring.
+      - ``is_mismatch=False``: the value is plausible as kcal or the field is empty.
+    """
+    nutrition = product.get("nutrition") or {}
+    raw_energy = str(nutrition.get("energy_kcal_raw") or "").strip()
+    parsed_val = parse_num(raw_energy)
+
+    has_kj_token = "kj" in raw_energy.lower()
+    exceeds_ceiling = parsed_val is not None and parsed_val > KCAL_PLAUSIBLE_UPPER
+
+    if has_kj_token and exceeds_ceiling:
+        approx_kcal = round(parsed_val * 0.239)
+        reason = (
+            f"energy_unit_kj_misread_as_kcal: raw='{raw_energy}' parsed to "
+            f"{parsed_val:.0f} which exceeds plausible kcal ceiling {KCAL_PLAUSIBLE_UPPER:.0f}. "
+            f"Likely kJ value ({parsed_val:.0f} kJ ≈ {approx_kcal} kcal)."
+        )
+        return True, reason, parsed_val
+    if exceeds_ceiling:
+        reason = (
+            f"energy_implausibly_high: raw='{raw_energy}' → {parsed_val:.0f} "
+            f"> ceiling {KCAL_PLAUSIBLE_UPPER:.0f} (possible kJ without unit token — inspect)"
+        )
+        return True, reason, parsed_val
+    return False, None, parsed_val
+
+
+def apply_bsip0_filters(product: dict) -> tuple[bool, list[str]]:
+    """Run all BSIP0 corpus filters against a single product record.
+
+    Convenience wrapper that calls F1–F3 and F6 in sequence. F4 (dedup) must be
+    run at corpus level via ``dedup_by_barcode``, not per-product.
+
+    Returns ``(should_filter, [list_of_reasons])``. If any filter fires, the
+    product should be excluded from the BSIP1 enrichment corpus.
+    """
+    reasons: list[str] = []
+    for fn in (filter_incomplete_nutrition, filter_ingredients_absent, filter_non_food):
+        fired, reason = fn(product)
+        if fired:
+            reasons.append(reason)
+    kj_mismatch, kj_reason, _ = detect_kj_energy_misparse(product)
+    if kj_mismatch:
+        reasons.append(kj_reason)
+    return bool(reasons), reasons
+
+
 def composition_nutrition_report(products: list[dict], fail_pct: float = 5.0) -> dict:
     """Corpus-level plausibility tally for a BSIP0 ``main()`` composition gate.
 

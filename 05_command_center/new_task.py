@@ -37,7 +37,18 @@ from pathlib import Path
 
 BARI_ROOT = Path(r"C:\Bari")
 TASKS_DIR = BARI_ROOT / "tasks"
+CLOSED_DIR = TASKS_DIR / "closed"          # archived CLOSED files (id-allocation must see these)
 HERE = Path(__file__).resolve().parent
+
+
+def _all_task_files(pattern):
+    """Every task file matching pattern across the live registry AND the closed
+    archive. ID allocation must scan both so a freshly-closed (moved) task can
+    never have its number re-issued."""
+    files = list(TASKS_DIR.glob(pattern))
+    if CLOSED_DIR.exists():
+        files += list(CLOSED_DIR.glob(pattern))
+    return files
 GENERATOR = HERE / "generate_dashboard.py"
 
 # Regenerate under the project venv, never whatever interpreter happens to be on
@@ -58,7 +69,7 @@ PRIORITIES = ("CRITICAL", "HIGH", "MEDIUM", "LOW")
 
 def existing_ids():
     ids = []
-    for f in TASKS_DIR.glob("TASK-*.md"):
+    for f in _all_task_files("TASK-*.md"):
         m = re.match(r"TASK-(\d+)", f.stem)
         if m:
             ids.append(int(m.group(1)))
@@ -79,7 +90,7 @@ def next_subtask_id(objective_id):
     """Next free letter sub-task under an objective: TASK-125 -> TASK-125A/B/..."""
     used = set()
     pat = re.compile(rf"^{re.escape(objective_id)}([A-Z]+)$")
-    for f in TASKS_DIR.glob(f"{objective_id}[A-Z]*.md"):
+    for f in _all_task_files(f"{objective_id}[A-Z]*.md"):
         m = pat.match(f.stem)
         if m:
             used.add(m.group(1))

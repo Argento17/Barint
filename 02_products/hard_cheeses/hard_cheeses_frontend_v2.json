@@ -1,0 +1,1978 @@
+{
+  "_meta": {
+    "generated": "2026-06-08T19:56:32.157197+00:00",
+    "category": "hard_cheeses",
+    "run_id": "run_hardcheese_redlabel_v1_001",
+    "product_count": 30,
+    "scored_count": 30,
+    "schema": "BariProductVM[]",
+    "version": "v2",
+    "provenance": "bsip0_yohananof_hard_cheeses_storefront_20260607_151235.json → BSIP1 run_hard_cheeses_yohananof_001 → BSIP2 run_hardcheese_redlabel_v1_001 (NOVA fix 2026-06-08)",
+    "grade_distribution": {
+      "B": 28,
+      "C": 1,
+      "D": 1
+    },
+    "nova_fix": "BSIP2-HC-002 (short-dairy NOVA 1); R4 natural-colorant exclusion; BSIP2-HC-001B (phosphate emulsifying salt → NOVA 4)",
+    "floor_fix": "HC-FIX-001: nova1_single_ingredient floor gated to ingredient_count<=1 (TASK-215 2026-06-08)"
+  },
+  "products": [
+    {
+      "id": "hc-001",
+      "name": "פרוסות גבינת גאודה 28% יורו צ'יז 400 גרם",
+      "barcode": "7290108502725",
+      "imageUrl": null,
+      "score": 78,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 25g ל-100g לצד 28% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 352.0,
+          "protein": 25.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב מפוסטר , מלח , תרבית גבינה , מקריש רנט , מגביר חוזק , קלציום כלוריד",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (25g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 78.5,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.7,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.7,
+          "additive_quality": 100,
+          "satiety_support": 85.2
+        }
+      }
+    },
+    {
+      "id": "hc-002",
+      "name": "פרוסות גאודה עיזים",
+      "barcode": "7290019635192",
+      "imageUrl": null,
+      "score": 78,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 22g ל-100g לצד 30% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 365.0,
+          "protein": 22.0,
+          "sugar": null,
+          "fat": 30.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 659.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח.",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (22g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (30g ל-100g)",
+          "נתרן גבוה (659mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 77.6,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=659.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.5,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.5,
+          "additive_quality": 100,
+          "satiety_support": 72.3
+        }
+      }
+    },
+    {
+      "id": "hc-003",
+      "name": "פרוסות גבינת גלבוע 5% 200 גרם",
+      "barcode": "7290110324872",
+      "imageUrl": null,
+      "score": 76,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 5% — חלבון 33g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 491מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 177.0,
+          "protein": 33.0,
+          "sugar": null,
+          "fat": 5.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 491.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (33g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (491mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 75.6,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=491.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 96.2,
+          "calorie_density": 70.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.2,
+          "additive_quality": 64.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-004",
+      "name": "פרוסות גבינת טל העמק 32% בסגנון אמנטל 200 גרם",
+      "barcode": "7290110323301",
+      "imageUrl": null,
+      "score": 75,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 32% — חלבון 27g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 550מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 27.0,
+          "sugar": null,
+          "fat": 32.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 550.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל : אנאטו (ממקור צמחי), חומר משמר (E-202). מתכון חדש",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (27g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (32g ל-100g)",
+          "נתרן גבוה (550mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 74.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=550.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.8,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.8,
+          "additive_quality": 64.0,
+          "satiety_support": 81.6
+        }
+      }
+    },
+    {
+      "id": "hc-005",
+      "name": "פרוסות גאודה עמק 200 גרם",
+      "barcode": "7290116931524",
+      "imageUrl": null,
+      "score": 74,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 30% — חלבון 24g ל-100g. מכילה 3 תוסף/תוספות מזוהים. נתרן 540מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 364.0,
+          "protein": 23.5,
+          "sugar": null,
+          "fat": 30.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 540.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומרים משמרים (E-202, E-234, E-235).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (24g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (30g ל-100g)",
+          "נתרן גבוה (540mg ל-100g)",
+          "תוספות מזוהות: E-202, E-234, E-235"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 74.4,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=540.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 77.5
+        }
+      }
+    },
+    {
+      "id": "hc-006",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 9% נעם 200 גרם",
+      "barcode": "7290102394845",
+      "imageUrl": null,
+      "score": 74,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "מופחת שומן 9% — פחות שומן, פחות תוספות מהגרסה המלאה. נתרן: 620מ\"ג ל-100 גרם.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 201.0,
+          "protein": 30.0,
+          "sugar": null,
+          "fat": 9.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 620.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן)",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (30g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד",
+          "מופחת שומן (9%)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (620mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow_light",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 74.2,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=620.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 96.0,
+          "calorie_density": 55.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.0,
+          "additive_quality": 82.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-007",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 9% נעם 360 גרם",
+      "barcode": "7290102396672",
+      "imageUrl": null,
+      "score": 74,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "מופחת שומן 9% — פחות שומן, פחות תוספות מהגרסה המלאה. נתרן: 620מ\"ג ל-100 גרם.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 201.0,
+          "protein": 30.0,
+          "sugar": null,
+          "fat": 9.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 620.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנאטו).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (30g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד",
+          "מופחת שומן (9%)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (620mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow_light",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 74.2,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=620.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 96.0,
+          "calorie_density": 55.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.0,
+          "additive_quality": 82.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-008",
+      "name": "גבינת גאודה עיזים.",
+      "barcode": "8711528211138",
+      "imageUrl": null,
+      "score": 73,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "4 רכיבים, חלב עיזים 97.7% — נקי מאוד לקטגוריה. הנתרן (800 מ״ג) הוא גורם ההגבלה כאן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 24.0,
+          "sugar": null,
+          "fat": 34.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 800.0
+        },
+        "ingredients": "חלב עיזים מפוסטר (97.7%),מלח,רנט,תרבית לקטית. ציפוי הגבינה לא למאכל.",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (24g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (34g ל-100g)",
+          "נתרן גבוה (800mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 73.2,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 8,
+            "note": "sodium=800.0mg band=700–899 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 100,
+          "satiety_support": 72.5
+        }
+      }
+    },
+    {
+      "id": "hc-009",
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
+      "barcode": "7290004122348",
+      "imageUrl": null,
+      "score": 72,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "מופחת שומן 9% — פחות שומן, פחות תוספות מהגרסה המלאה. נתרן: 495מ\"ג ל-100 גרם.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 202.0,
+          "protein": 30.0,
+          "sugar": null,
+          "fat": 9.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 495.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (30g ל-100g)",
+          "מופחת שומן (9%)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (495mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow_light",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 72.3,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=495.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 96.0,
+          "calorie_density": 55.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.0,
+          "additive_quality": 64.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-010",
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בקופסא 400 גרם",
+      "barcode": "7290004137311",
+      "imageUrl": null,
+      "score": 72,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "מופחת שומן 9% — פחות שומן, פחות תוספות מהגרסה המלאה. נתרן: 491מ\"ג ל-100 גרם.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 201.0,
+          "protein": 30.0,
+          "sugar": null,
+          "fat": 9.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 491.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (30g ל-100g)",
+          "מופחת שומן (9%)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (491mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow_light",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 72.3,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=491.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 96.0,
+          "calorie_density": 55.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.0,
+          "additive_quality": 64.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-011",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 22% נעם 200 גרם",
+      "barcode": "7290102397204",
+      "imageUrl": null,
+      "score": 72,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 25g ל-100g לצד 22% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 298.0,
+          "protein": 25.0,
+          "sugar": null,
+          "fat": 22.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 670.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן)",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (25g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (670mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 71.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=670.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.7,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.7,
+          "additive_quality": 82.0,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-012",
+      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
+      "barcode": "3073781199918",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 23g ל-100g לצד 24% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 305.0,
+          "protein": 23.0,
+          "sugar": 0.1,
+          "fat": 24.0,
+          "satFat": 16.0,
+          "fiber": null,
+          "sodium": 710.0
+        },
+        "ingredients": "חלב פרה מפוסטר(98%), מלח, תרבית לקטית, רנט.",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (710mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 71.4,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 8,
+            "note": "sodium=710.0mg band=700–899 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 89.8,
+          "protein_quality": 95.6,
+          "additive_quality": 100,
+          "satiety_support": 90.5
+        }
+      }
+    },
+    {
+      "id": "hc-013",
+      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+      "barcode": "7290017065434",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 23g ל-100g לצד 30% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 368.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 30.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 831.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנטו).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (30g ל-100g)",
+          "נתרן גבוה (831mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 71.4,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 8,
+            "note": "sodium=831.0mg band=700–899 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 82.0,
+          "satiety_support": 75.0
+        }
+      }
+    },
+    {
+      "id": "hc-014",
+      "name": "גבינת גאודה מגורדת 28% יורו צ'יז 500 גרם",
+      "barcode": "7290108501346",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה קשה לגרירה — חלבון גבוה (27g ל-100g), שומן 28%. מיועדת לכמויות קטנות — גורם הריכוז הופך את ערכי ה-100g לגבוהים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 363.0,
+          "protein": 27.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 630.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, תרבית לקטית, חומר מייצב: קלציום כלוריד, מקריש, חומר מונע התגיישות (E460)",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (27g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (630mg ל-100g)",
+          "תוספות מזוהות: E460",
+          "מכיל מייצבים"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "hard_grating",
+      "novaGroup": 3,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 71.1,
+        "grade_estimate": "B",
+        "binding_cap": 87.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=630.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 65.0,
+          "nutrient_density": 95.8,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.8,
+          "additive_quality": 82.0,
+          "satiety_support": 89.3
+        }
+      }
+    },
+    {
+      "id": "hc-015",
+      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+      "barcode": "7290117265888",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה קשה לגרירה — חלבון גבוה (25g ל-100g), שומן 28%. מיועדת לכמויות קטנות — גורם הריכוז הופך את ערכי ה-100g לגבוהים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 352.0,
+          "protein": 25.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד, חומר מונע התגיישות: E460.",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (25g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E460",
+          "מכיל מייצבים"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "hard_grating",
+      "novaGroup": 3,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 70.8,
+        "grade_estimate": "B",
+        "binding_cap": 87.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 65.0,
+          "nutrient_density": 95.7,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.7,
+          "additive_quality": 82.0,
+          "satiety_support": 85.2
+        }
+      }
+    },
+    {
+      "id": "hc-016",
+      "name": "גבינת גאודה פרוסות יוחננוף 400 גרם",
+      "barcode": "7290117265918",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 25g ל-100g, נתרן 640מ\"ג. עיבוד מינימלי.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 352.0,
+          "protein": 25.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד,",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (25g ל-100g)",
+          "ללא תוספות מזוהות"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "מכיל מייצבים"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 3,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 70.8,
+        "grade_estimate": "B",
+        "binding_cap": 87.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 65.0,
+          "nutrient_density": 95.7,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.7,
+          "additive_quality": 82.0,
+          "satiety_support": 85.2
+        }
+      }
+    },
+    {
+      "id": "hc-017",
+      "name": "פרוסות גבינה צהובה חצי קשה 28% נעם 500 גרם",
+      "barcode": "7290102394463",
+      "imageUrl": null,
+      "score": 71,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה עם רכיבים בלבד — חלב, מלח ואנזים. לא מעובדת. חלבון 24g ל-100g לצד 28% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 346.0,
+          "protein": 23.5,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 660.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן)",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (24g ל-100g)",
+          "ללא תוספות מזוהות",
+          "גבינה עם רכיבים מינימליים — חלב, מלח ותרביות בלבד"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (660mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 70.6,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=660.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 95.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 82.0,
+          "satiety_support": 81.5
+        }
+      }
+    },
+    {
+      "id": "hc-018",
+      "name": "גאודה פסטו ירוק 200 גרם",
+      "barcode": "7290102302864",
+      "imageUrl": null,
+      "score": 65,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 34% — חלבון 24g ל-100g, נתרן ?מ\"ג. עיבוד מינימלי.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 24.0,
+          "sugar": null,
+          "fat": 34.0,
+          "satFat": 21.0,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "חלב פרה מפוסטר, מלח, צבעי מאכל (ספירולינה, חריע), בזיליקום, שום, רנט, חומר משמר (סודיום ניטרט), cheese culture , מגביר חוזק (קלציום כלוריד).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (24g ל-100g)",
+          "ללא תוספות מזוהות"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (34g ל-100g)",
+          "מכיל מייצבים"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 3,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 69.6,
+        "grade_estimate": "B",
+        "binding_cap": 87.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "dimension_scores": {
+          "processing_quality": 65.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 100,
+          "satiety_support": 72.5
+        }
+      }
+    },
+    {
+      "id": "hc-019",
+      "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 200 גרם",
+      "barcode": "7290004122195",
+      "imageUrl": null,
+      "score": 69,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 510מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 345.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 510.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (510mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 68.8,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=510.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.0
+        }
+      }
+    },
+    {
+      "id": "hc-020",
+      "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 400 גרם",
+      "barcode": "7290014760912",
+      "imageUrl": null,
+      "score": 69,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 510מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 345.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 510.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (510mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 68.8,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 2,
+            "note": "sodium=510.0mg band=450–599 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.0
+        }
+      }
+    },
+    {
+      "id": "hc-021",
+      "name": "פרוסות גבינת עמק דק 28% 200 גרם",
+      "barcode": "7290000057088",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 345.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.0
+        }
+      }
+    },
+    {
+      "id": "hc-022",
+      "name": "פרוסות גבינת עמק 28% 400 גרם",
+      "barcode": "7290000057118",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 345.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.0
+        }
+      }
+    },
+    {
+      "id": "hc-023",
+      "name": "פרוסות גבינת עמק 28% בקופסא 200 גרם",
+      "barcode": "7290004122270",
+      "imageUrl": null,
+      "score": 65,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 344.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.2
+        }
+      }
+    },
+    {
+      "id": "hc-024",
+      "name": "אצבעות גבינת עמק 28% 172 גרם",
+      "barcode": "7290004122683",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 344.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.2
+        }
+      }
+    },
+    {
+      "id": "hc-025",
+      "name": "פרוסות גבינת עמק 28% בקופסא 400 גרם",
+      "barcode": "7290004125776",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 344.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.2
+        }
+      }
+    },
+    {
+      "id": "hc-026",
+      "name": "פרוסות גבינת עמק 28% 600 גרם",
+      "barcode": "7290014763395",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה צהובה 28% — חלבון 23g ל-100g. מכילה 1 תוסף/תוספות מזוהים. נתרן 640מ\"ג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 345.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.0
+        }
+      }
+    },
+    {
+      "id": "hc-027",
+      "name": "גבינת עמק מגורדת 28% 200 גרם",
+      "barcode": "7290110320850",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה קשה לגרירה — חלבון גבוה (23g ל-100g), שומן 28%. מיועדת לכמויות קטנות — גורם הריכוז הופך את ערכי ה-100g לגבוהים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 344.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "hard_grating",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.2
+        }
+      }
+    },
+    {
+      "id": "hc-028",
+      "name": "גבינת עמק מגורדת 28% 500 גרם",
+      "barcode": "7290110320867",
+      "imageUrl": null,
+      "score": 67,
+      "grade": "B",
+      "confidence": "verified",
+      "insightLine": "גבינה קשה לגרירה — חלבון גבוה (23g ל-100g), שומן 28%. מיועדת לכמויות קטנות — גורם הריכוז הופך את ערכי ה-100g לגבוהים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 344.0,
+          "protein": 23.0,
+          "sugar": null,
+          "fat": 28.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 640.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (23g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (28g ל-100g)",
+          "נתרן גבוה (640mg ל-100g)",
+          "תוספות מזוהות: E-202"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "hard_grating",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 66.7,
+        "grade_estimate": "B",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=640.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 85.0,
+          "nutrient_density": 95.6,
+          "calorie_density": 40.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 95.6,
+          "additive_quality": 64.0,
+          "satiety_support": 80.2
+        }
+      }
+    },
+    {
+      "id": "hc-029",
+      "name": "גבינה איטלקית גרנה פדנו קשה מגורדת 29% 100 גרם",
+      "barcode": "7290014455252",
+      "imageUrl": null,
+      "score": 62,
+      "grade": "C",
+      "confidence": "verified",
+      "insightLine": "גבינה קשה לגרירה — חלבון גבוה (33g ל-100g), שומן 29%. מיועדת לכמויות קטנות — גורם הריכוז הופך את ערכי ה-100g לגבוהים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 393.0,
+          "protein": 33.0,
+          "sugar": null,
+          "fat": 29.0,
+          "satFat": 18.0,
+          "fiber": null,
+          "sodium": 600.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (33g ל-100g)",
+          "ללא תוספות מזוהות"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (29g ל-100g)",
+          "נתרן גבוה (600mg ל-100g)"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "hard_grating",
+      "novaGroup": 2,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 62.4,
+        "grade_estimate": "C",
+        "binding_cap": null,
+        "caps_fired": null,
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 4,
+            "note": "sodium=600.0mg band=600–699 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 64.0,
+          "nutrient_density": 96.2,
+          "calorie_density": 25.0,
+          "glycemic_quality": 90.0,
+          "protein_quality": 96.2,
+          "additive_quality": 100,
+          "satiety_support": 100
+        }
+      }
+    },
+    {
+      "id": "hc-030",
+      "name": "פרוסות גבינה מותכת 13% בטעם גאודה יורו צ'יז 150 גרם",
+      "barcode": "7290108503999",
+      "imageUrl": null,
+      "score": 40,
+      "grade": "D",
+      "confidence": "verified",
+      "insightLine": "גבינה מעובדת עם פוספטים — E 144, E202, E330 ברשימת הרכיבים מציינים עיבוד תעשייתי. הציון משקף את פרופיל התוספים והשומן הגבוה.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 222.0,
+          "protein": 8.2,
+          "sugar": 4.5,
+          "fat": 13.6,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 1300.0
+        },
+        "ingredients": "גבינה (חלב מפוסטר , מלח, תרבית לקטית , מקריש רנט ),עמילן מעובד E 144, מתחלבים E331,E330,E339,NKJ '' חומר משמר E202",
+        "confidenceLabel": "נתונים מאומתים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "נתרן גבוה (1300mg ל-100g)",
+          "תוספות מזוהות: E 144, E202, E330, E331",
+          "גבינה מעובדת — עיבוד תעשייתי"
+        ]
+      },
+      "retailer": "yohananof",
+      "subPool": "processed",
+      "novaGroup": 4,
+      "bsip2_score_trace": {
+        "run_id": "run_hardcheese_redlabel_v1_001",
+        "engine_tag": "BARI_REDLABEL_V1+BARI_RECAL_P0+NOVA_FIX",
+        "run_date": "2026-06-08",
+        "final_score_raw": 40.0,
+        "grade_estimate": "D",
+        "binding_cap": 68.0,
+        "caps_fired": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [
+          {
+            "rule": "SODIUM_LOAD_GENERAL_GRAD",
+            "amount": 12,
+            "note": "sodium=1300.0mg band=>=900 (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)"
+          },
+          {
+            "rule": "HP_FAT_SODIUM_COMBO",
+            "amount": 6.0,
+            "note": "raw_pen=6 × nova_weight=1.0"
+          }
+        ],
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 59.0,
+          "calorie_density": 55.0,
+          "glycemic_quality": 78.8,
+          "protein_quality": 59.0,
+          "additive_quality": 46.0,
+          "satiety_support": 44.3
+        }
+      }
+    }
+  ]
+}

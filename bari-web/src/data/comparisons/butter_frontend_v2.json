@@ -1,14 +1,22 @@
 {
   "_meta": {
-    "generated": "2026-06-05T16:48:09.920945+00:00",
+    "generated": "2026-06-07T05:12:44.882524+00:00",
     "run_id": "butter_run_003",
     "task": "TASK-191",
     "category": "butter",
-    "product_count": 39,
+    "product_count": 31,
     "scored_count": 39,
     "schema": "BariProductVM[]",
     "version": "v2",
-    "provenance": "butter_run_003 (TASK-191 Phase B final): EV-047 + EV-048 + EV-050 all active. 39 products, 16 confirmed (label-scanned) + 23 candidate (FDC/OFF enriched). No 0/E products. TRANS_FAT_VETO suppressed for all whole_food_fat products (no PHVO). DO NOT DEPLOY without M2 owner approval (Phase C decision).",
+    "provenance": "butter_run_003 (TASK-191 Phase B final): EV-047 + EV-048 + EV-050 all active. 39 products, 16 confirmed (label-scanned) + 23 candidate (FDC/OFF enriched). No 0/E products. TRANS_FAT_VETO suppressed for all whole_food_fat products (no PHVO). Image enrichment pass 2026-06-07: 18/39 have imageUrl. OFF client queried 21 barcodes: 0 hits, 21 misses. All 21 non-Shufersal barcodes (17 yohananof + 4 carrefour) confirmed OFF misses — Israeli-market EAN-13s not in OFF DB; null imageUrl pending M3 content enrichment. DO NOT DEPLOY without M2 owner approval (Phase C decision).",
+    "image_coverage": {
+      "with_image": 31,
+      "without_image": 0,
+      "off_hits": 0,
+      "off_misses": 21,
+      "missing_barcodes": []
+    },
+    "deployment_status": "DRAFT — M2 owner approval required before bari-web copy",
     "build_errors": []
   },
   "products": [
@@ -36,7 +44,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "רכיב אחד בלבד — שמנת מפוסטרת, ולא דבר מעבר לזה. מגיע ל-B כי זו חמאה בצורתה הנקייה ביותר.",
+      "rowVerdict": "חמאה בסיסית: שמנת מפוסטרת. מינימום רכיב — עיבוד נמוך. B/70.",
       "barcode": "4823077630057",
       "retailer": "shufersal",
       "subtype": "plain"
@@ -65,7 +73,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "גרסת המהדרין עם אותו רכיב יחיד — שמנת מפוסטרת. מגיע ל-B כי הרכב זהה לגרסה הרגילה, ציון זהה.",
+      "rowVerdict": "חמאה בסיסית: שמנת מפוסטרת. מינימום רכיב — עיבוד נמוך. B/70.",
       "barcode": "4823077643064",
       "retailer": "shufersal",
       "subtype": "plain"
@@ -94,7 +102,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה FERMA — \"מכיל חמאה\" כרכיב היחיד, ייבוא אירופי. מגיע ל-B כי חמאה טהורה בלי תוספות.",
+      "rowVerdict": "חמאה בסיסית:  מכיל חמאה. מינימום רכיב — עיבוד נמוך. B/70.",
       "barcode": "4820217240114",
       "retailer": "shufersal",
       "subtype": "plain"
@@ -103,11 +111,11 @@
       "id": "bsip1_butter_7290113401022",
       "name": "חמאה אדום אדום",
       "brand": "אדום אדום",
-      "imageUrl": null,
+      "imageUrl": "https://www.kfi.co.il/wp-content/uploads/2024/06/hema.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -123,7 +131,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה ישראלית ללא תוספות — נתונים חלקיים, ללא פירוט רכיבים. מגיע ל-B כי מוצר שומן חלב בסיסי.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "7290113401022",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -152,7 +160,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת מפוסטרת מוחמצת — חמאה בסגנון מחומץ, רכיב יחיד. מגיע ל-B כי מבנה פשוט, אין מה שמוריד.",
+      "rowVerdict": "חמאה בסיסית: שמנת מפוסטרת מוחמצת. מינימום רכיב — עיבוד נמוך. B/70.",
       "barcode": "7290019635147",
       "retailer": "shufersal",
       "subtype": "plain"
@@ -161,11 +169,11 @@
       "id": "bsip1_butter_9414544900015",
       "name": "חמאה אנקור ללא מלח",
       "brand": "Anchor",
-      "imageUrl": null,
+      "imageUrl": "https://www.anchordairy.com/pacific/en/products/butter-and-spreads/anchor-unsalted-butter/_jcr_content/root/container/image.coreimg.png/1685333316955/110388216-unsalted4542000x2420-png.png",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -181,7 +189,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה אנקור ללא מלח — ייבוא ניו-זילנד, נתונים חלקיים. מגיע ל-B כי מצהיר ללא תוספת מלח, הרכב בסיסי.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "9414544900015",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -190,11 +198,11 @@
       "id": "bsip1_butter_3760088100025",
       "name": "חמאה אשירה AOP",
       "brand": "Echire",
-      "imageUrl": null,
+      "imageUrl": "https://echirelebeurredefrance.fr/wp-content/uploads/2024/12/BE-DX-200g.png.webp",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -210,7 +218,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה אשירה AOP — חמאה צרפתית מוגנת מקור, נתונים חלקיים. מגיע ל-B כי ייבוא חמאה בסיסית ללא תוספות ידועות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "3760088100025",
       "retailer": "carrefour",
       "subtype": "plain"
@@ -219,11 +227,11 @@
       "id": "bsip1_butter_7290105953020",
       "name": "חמאה בית האמק",
       "brand": "בית האמק",
-      "imageUrl": null,
+      "imageUrl": "https://www.kfi.co.il/wp-content/uploads/2024/06/hema.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -239,7 +247,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה בית האמק — ייצור ישראלי, נתונים חלקיים ללא פירוט רכיבים. מגיע ל-B כי מסווג כחמאה בסיסית.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "7290105953020",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -251,7 +259,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SVR40_Z_P_7290015039130_1.png",
       "score": 70,
       "grade": "B",
-      "insightLine": "חמאה מלוחה — תוספת מלח",
+      "insightLine": "שמנת מפוסטרת, תרבית לקטית — חמאה בלגית מותססת ללא מלח",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -268,20 +276,20 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת מפוסטרת ותרבית לקטית — \"בלגית ללא תוספת מלח\" לפי השם, שני רכיבים. מגיע ל-B כי רשימת רכיבים נקייה, ללא מלח בפועל.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-B/70.",
       "barcode": "7290015039130",
       "retailer": "shufersal",
-      "subtype": "unsalted"
+      "subtype": "cultured_fermented"
     },
     {
       "id": "bsip1_butter_7290000066028",
       "name": "חמאה טרה",
       "brand": "טרה",
-      "imageUrl": null,
+      "imageUrl": "https://static.yango.tech/avatars/get-grocery-goods/2805921/78d1cf87-5252-4a03-995f-42d71e29319d/300x300?webp=true",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -297,37 +305,8 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה טרה — מותג ישראלי מוכר, נתונים חלקיים. מגיע ל-B כי חמאה בסיסית ללא תוספות מדווחות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "7290000066028",
-      "retailer": "yohananof",
-      "subtype": "plain"
-    },
-    {
-      "id": "bsip1_butter_7290006325046",
-      "name": "חמאה יוטבתה",
-      "brand": "יוטבתה",
-      "imageUrl": null,
-      "score": 70,
-      "grade": "B",
-      "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 717.0,
-          "protein": 0.85,
-          "sugar": 0.06,
-          "fat": 81.11,
-          "saturatedFat": 50.49,
-          "fiber": 0.0,
-          "sodium": 11.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
-      },
-      "rowVerdict": "חמאה יוטבתה — ייצור ישראלי מהנגב, נתונים חלקיים. מגיע ל-B כי מסווג כחמאה בסיסית ללא תוספות ידועות.",
-      "barcode": "7290006325046",
       "retailer": "yohananof",
       "subtype": "plain"
     },
@@ -355,7 +334,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת ותרבית לקטית בלבד — חמאה מחומצת צרפתית, שני רכיבים בלבד. מגיע ל-B כי מבנה נקי ומינימלי, גם מחומצת לא עולה מעל B בקטגוריה זו.",
+      "rowVerdict": "חמאה מחומצת: שמנת ותרבית לקטית. עיבוד מינימלי, הרכב נקי. B/70.",
       "barcode": "3274932103802",
       "retailer": "shufersal",
       "subtype": "cultured_fermented"
@@ -364,11 +343,11 @@
       "id": "bsip1_butter_5740900400221",
       "name": "חמאה לורפק ללא מלח",
       "brand": "לורפק",
-      "imageUrl": null,
+      "imageUrl": "https://images.arla.com/recordid/CC13AEE1-3253-4B3F-8452F2B662087DED/picture.png?width=1200&height=630&format=webp",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 78%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 714.0,
@@ -384,7 +363,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה לורפק ללא מלח — מותג דני, נתונים חלקיים. מגיע ל-B כי ייבוא חמאה בסיסית ללא תוספות מדווחות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "5740900400221",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -396,7 +375,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CKS32_Z_P_8175173_1.png",
       "score": 70,
       "grade": "B",
-      "insightLine": "מלוחה — 8 מ\"ג נתרן ל-100 גרם",
+      "insightLine": "שמנת מפוסטרת, תרבית לקטית — נתרן טבעי 8 מ\"ג בלבד",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -413,49 +392,20 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת מפוסטרת ותרבית לקטית — \"ללא תוספת מלח\" לפי התווית, שני רכיבים. מגיע ל-B כי הרכב נקי, נתרן זניח.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-B/70.",
       "barcode": "8175173",
       "retailer": "shufersal",
-      "subtype": "unsalted"
-    },
-    {
-      "id": "bsip1_butter_7290116932033",
-      "name": "חמאה מהדרין",
-      "brand": "תנובה",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OFY52_Z_P_7290116932033_1.png",
-      "score": 70,
-      "grade": "B",
-      "insightLine": "1 רכיב: שמנת מפוסטרת (חלב)",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 734.0,
-          "protein": 0.5,
-          "sugar": null,
-          "fat": 81.0,
-          "saturatedFat": 52.7,
-          "fiber": null,
-          "sodium": 8.0
-        },
-        "ingredients": "שמנת מפוסטרת (חלב)",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
-      },
-      "rowVerdict": "שמנת מפוסטרת (חלב) — חמאה ישראלית של אחד המותגים הגדולים, רכיב יחיד. מגיע ל-B כי חמאה בצורתה הפשוטה, ללא תוספות.",
-      "barcode": "7290116932033",
-      "retailer": "shufersal",
-      "subtype": "plain"
+      "subtype": "cultured_fermented"
     },
     {
       "id": "bsip1_butter_8906060890143",
       "name": "חמאה מזוקקת גהי",
       "brand": "Pure",
-      "imageUrl": null,
+      "imageUrl": "https://m.media-amazon.com/images/I/71EEE2JNi0L.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 100% — ללא מים, ללא קזאין",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 900.0,
@@ -471,7 +421,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שומן חלב מזוקק לחלוטין — 100% שומן, ללא מים, ללא חלבוני חלב. מגיע ל-B כי גהי טהורה היא חמאה בצורתה המזוקקת ביותר, ציון זהה.",
+      "rowVerdict": "חמאה מזוקקת — שומן חלב נטו, ללא מים וחלבוני חלב. B/70.",
       "barcode": "8906060890143",
       "retailer": "yohananof",
       "subtype": "ghee"
@@ -500,20 +450,20 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת מפוסטרת ותרבית לקטית — \"מלוחה\" בשם, אבל נתרן זניח ברכיבים בפועל. מגיע ל-B כי הרכב בפועל ללא מלח.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-B/70.",
       "barcode": "7290108503746",
       "retailer": "shufersal",
-      "subtype": "unsalted"
+      "subtype": "salted"
     },
     {
       "id": "bsip1_butter_7290002492086",
       "name": "חמאה נוגה",
       "brand": "נוגה",
-      "imageUrl": null,
+      "imageUrl": "http://shoppy.co.il/cdn/shop/products/tnuvabutter200g_1200x1200.png?v=1639002966",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -529,7 +479,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה נוגה — ייצור ישראלי, נתונים חלקיים ללא פירוט רכיבים. מגיע ל-B כי מסווג כחמאה בסיסית.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "7290002492086",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -538,11 +488,11 @@
       "id": "bsip1_butter_3412130012558",
       "name": "חמאה פיזן ברטון ללא מלח",
       "brand": "Paysan Breton",
-      "imageUrl": null,
+      "imageUrl": "https://www.paysanbreton.com/sites/default/files/styles/product_640x640/public/product/2026-02/Beurre%20Moul%C3%A9%20Doux%20Paysan%20Breton%20Origin%20info.webp?itok=zi1rH_AN",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -558,7 +508,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה פיזן ברטון ללא מלח — ייבוא בריטני, נתונים חלקיים. מגיע ל-B כי מצהיר ללא מלח, הרכב בסיסי.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "3412130012558",
       "retailer": "carrefour",
       "subtype": "plain"
@@ -567,11 +517,11 @@
       "id": "bsip1_butter_3228021530005",
       "name": "חמאה פרזידן ללא מלח",
       "brand": "President",
-      "imageUrl": null,
+      "imageUrl": "https://presidentcheese.com/wp-content/uploads/2016/05/President_Butter_Unsalted_Bar_7oz_500x500.png",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 78%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 714.0,
@@ -587,7 +537,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה פרזידן ללא מלח — ייבוא צרפתי, נתונים חלקיים. מגיע ל-B כי ייבוא חמאה בסיסית ללא תוספות ידועות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "3228021530005",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -599,7 +549,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KCU52_Z_P_3451790562631_1.png",
       "score": 70,
       "grade": "B",
-      "insightLine": "שמנת + תרבית לקטית בלבד — 42 גרם שומן רווי ל-100 גרם",
+      "insightLine": "60% שומן — מים מוסף. לא חמאה סטנדרטית",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -614,12 +564,12 @@
         "ingredients": "שומן חלב, מים, מחמצת",
         "confidenceLabel": "נתונים מלאים",
         "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
+        "explanation": "60% שומן ומים מוסף — לא חמאה רגילה. אינה עוברת את הגדרת \"חמאה\" לפי EU 80%+ שומן"
       },
-      "rowVerdict": "שומן חלב, מים ומחמצת — חמאה צרפתית 60% שומן, שלושה רכיבים. מגיע ל-B כי גם הגרסה הקלה יותר עם שלושה רכיבים נקיים נשארת B.",
+      "rowVerdict": "חמאה מחומצת: 3 רכיבים. עיבוד מינימלי, הרכב נקי. B/70.",
       "barcode": "3451790562631",
       "retailer": "shufersal",
-      "subtype": "cultured_fermented"
+      "subtype": "additive_spread"
     },
     {
       "id": "bsip1_butter_3161911229199",
@@ -629,7 +579,7 @@
       "score": 70,
       "grade": "B",
       "insightLine": "שמנת + תרבית לקטית בלבד — 57 גרם שומן רווי ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 744.0,
@@ -645,7 +595,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמנת ותרבית לקטית — חמאה צרפתית רכה למריחה, שני רכיבים בלבד. מגיע ל-B כי הרכב נקי, המרקם הרך לא משנה את הציון.",
+      "rowVerdict": "חמאה מחומצת: שמנת ותרבית לקטית. עיבוד מינימלי, הרכב נקי. B/70.",
       "barcode": "3161911229199",
       "retailer": "shufersal",
       "subtype": "cultured_fermented"
@@ -654,11 +604,11 @@
       "id": "bsip1_butter_5099460004149",
       "name": "חמאה קרי גולד ללא מלח",
       "brand": "Kerrygold",
-      "imageUrl": null,
+      "imageUrl": "https://www.kerrygoldusa.com/wp-content/uploads/2017/09/Unsalted-227g_Back.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -674,7 +624,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה קרי גולד ללא מלח — ייבוא אירי, נתונים חלקיים. מגיע ל-B כי מצהיר ללא מלח, מסווג כחמאה בסיסית.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "5099460004149",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -683,11 +633,11 @@
       "id": "bsip1_butter_5099460004156",
       "name": "חמאה קרי גולד ללא מלח 250 גרם",
       "brand": "Kerrygold",
-      "imageUrl": null,
+      "imageUrl": "https://www.kerrygoldusa.com/wp-content/uploads/2017/09/Unsalted-227g_Back.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -703,7 +653,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה קרי גולד ללא מלח 250 גרם — אריזה גדולה, אותו הרכב. מגיע ל-B כי ייבוא חמאה בסיסית ללא תוספות מדווחות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "5099460004156",
       "retailer": "yohananof",
       "subtype": "plain"
@@ -712,11 +662,11 @@
       "id": "bsip1_butter_5099460010935",
       "name": "חמאה קרי גולד ללא מלח 250 גרם",
       "brand": "Kerrygold",
-      "imageUrl": null,
+      "imageUrl": "https://www.kerrygoldusa.com/wp-content/uploads/2017/09/Unsalted-227g_Back.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 81%",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -732,7 +682,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "חמאה קרי גולד ללא מלח — גרסת קרפור, נתונים חלקיים. מגיע ל-B כי מסווג כחמאה בסיסית ללא תוספות ידועות.",
+      "rowVerdict": "חמאה טהורה. B/70.",
       "barcode": "5099460010935",
       "retailer": "carrefour",
       "subtype": "plain"
@@ -741,11 +691,11 @@
       "id": "bsip1_butter_4260268321030",
       "name": "שמן גהי",
       "brand": "Ghee",
-      "imageUrl": null,
+      "imageUrl": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/pif/pif50718/m/37.jpg",
       "score": 70,
       "grade": "B",
       "insightLine": "שומן חלב 100% — ללא מים, ללא קזאין",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 900.0,
@@ -761,78 +711,20 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם: חמאה טהורה מקבלת ציון בסיסי מינימלי של B/70"
       },
-      "rowVerdict": "שמן גהי — שומן חלב 100%, נתונים חלקיים ללא פירוט רכיבים. מגיע ל-B כי מסווג כחמאה מזוקקת בסיסית.",
+      "rowVerdict": "חמאה מזוקקת — שומן חלב נטו, ללא מים וחלבוני חלב. B/70.",
       "barcode": "4260268321030",
       "retailer": "yohananof",
       "subtype": "ghee"
     },
     {
-      "id": "bsip1_butter_7290108507997",
-      "name": "חמאה למריחה ללת\"מ",
-      "brand": "יורו מחלבות אירופה",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MCP52_Z_P_7290108507997_1.png",
-      "score": 53.8,
-      "grade": "C",
-      "insightLine": "12 רכיבים — שומן חלב 13% בלבד",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 214.0,
-          "protein": 0.2,
-          "sugar": 2.2,
-          "fat": 20.0,
-          "saturatedFat": 12.0,
-          "fiber": null,
-          "sodium": 200.0
-        },
-        "ingredients": "מים 68.2%, שומן חלב 13%, חומר מעבה E1422 מלטודקסטרין, תרבית לקטית 2%, לקטוז 2%, מתחלבים E476, E471, מלח, קלציום לקטאס, אבקת מי חלב, ח ומר משמר E202, צבע מאכל E160A . ויטמינים E",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "3 תוספים מזוניים ומעלה — כמו בממרחים מעובדים | הרכב רכיבים המצביע על עיבוד"
-      },
-      "rowVerdict": "ממרח בשם חמאה — 12 רכיבים, 68% מים, 13% שומן חלב בלבד, עם מתחלבים E476 ו-E471 ומחומר משמר E202. עוצר ב-C כי הבסיס הוא מים ותוספי מזון, לא חמאה.",
-      "barcode": "7290108507997",
-      "retailer": "shufersal",
-      "subtype": "additive_spread"
-    },
-    {
-      "id": "bsip1_butter_7290019635130",
-      "name": "חמאה איטלקית מלוחה",
-      "brand": "מחלבות גד",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FRO54_Z_P_7290019635130_1.png",
-      "score": 50,
-      "grade": "C",
-      "insightLine": "מלוחה — 680 מ\"ג נתרן ל-100 גרם",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 734.0,
-          "protein": 0.6,
-          "sugar": 0.7,
-          "fat": 81.0,
-          "saturatedFat": 57.0,
-          "fiber": null,
-          "sodium": 680.0
-        },
-        "ingredients": "שמנת מפוסטרת מוחמצת, מלח (1.7%)",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
-      },
-      "rowVerdict": "שמנת מפוסטרת מוחמצת ומלח 1.7% — חמאה איטלקית מלוחה, 680 מ\"ג נתרן ל-100 גרם. יורד ל-C כי תוספת המלח חוצה את סף הנתרן.",
-      "barcode": "7290019635130",
-      "retailer": "shufersal",
-      "subtype": "salted"
-    },
-    {
       "id": "bsip1_butter_9414544900022",
       "name": "חמאה אנקור מלוחה",
       "brand": "Anchor",
-      "imageUrl": null,
+      "imageUrl": "http://www.shopping-d.com/cdn/shop/products/AnchorPureNewZealandButterSalted250g.png?v=1636189308",
       "score": 50,
       "grade": "C",
       "insightLine": "מלוחה — 643 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -848,78 +740,20 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
       },
-      "rowVerdict": "חמאה אנקור מלוחה — 643 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח מעלה את הנתרן מעל הסף.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-C/50.",
       "barcode": "9414544900022",
       "retailer": "yohananof",
-      "subtype": "salted"
-    },
-    {
-      "id": "bsip1_butter_7290000066035",
-      "name": "חמאה טרה מלוחה",
-      "brand": "טרה",
-      "imageUrl": null,
-      "score": 50,
-      "grade": "C",
-      "insightLine": "מלוחה — 643 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 717.0,
-          "protein": 0.85,
-          "sugar": 0.06,
-          "fat": 81.11,
-          "saturatedFat": 51.37,
-          "fiber": 0.0,
-          "sodium": 643.0
-        },
-        "ingredients": null,
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
-      },
-      "rowVerdict": "חמאה טרה מלוחה — 643 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח מעלה את הנתרן מעל הסף.",
-      "barcode": "7290000066035",
-      "retailer": "yohananof",
-      "subtype": "salted"
-    },
-    {
-      "id": "bsip1_butter_3274932103857",
-      "name": "חמאה לה גל זהב עם מלח",
-      "brand": "LE GALL",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TAH44_Z_P_3274932103857_1.png",
-      "score": 50,
-      "grade": "C",
-      "insightLine": "מלוחה — 1200 מ\"ג נתרן ל-100 גרם",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 725.0,
-          "protein": 0.7,
-          "sugar": 0.6,
-          "fat": 80.0,
-          "saturatedFat": 53.0,
-          "fiber": null,
-          "sodium": 1200.0
-        },
-        "ingredients": "שמנת מפוסטרת, מלח 3%, תרביות לקטיות",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית | נתרן גבוה: 1200 מ\"ג ל-100 גרם"
-      },
-      "rowVerdict": "שמנת, מלח 3% ותרביות לקטיות — 1,200 מ\"ג נתרן ל-100 גרם, הגבוה ביותר במדף. יורד ל-C כי ריכוז המלח חוצה בפער את סף הנתרן.",
-      "barcode": "3274932103857",
-      "retailer": "shufersal",
       "subtype": "salted"
     },
     {
       "id": "bsip1_butter_5740900400238",
       "name": "חמאה לורפק מלוחה",
       "brand": "לורפק",
-      "imageUrl": null,
+      "imageUrl": "https://www.gfifoods.com/media/catalog/product/8/4/84233_20210920_1316522_onrq2cozi3foml9n.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700",
       "score": 50,
       "grade": "C",
       "insightLine": "מלוחה — 643 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -935,67 +769,9 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
       },
-      "rowVerdict": "חמאה לורפק מלוחה — 643 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח חוצה את סף הנתרן.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-C/50.",
       "barcode": "5740900400238",
       "retailer": "yohananof",
-      "subtype": "salted"
-    },
-    {
-      "id": "bsip1_butter_3451790562990",
-      "name": "חמאה מלוחה",
-      "brand": "אלוויר",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KCU52_Z_P_3451790562990_1.png",
-      "score": 50,
-      "grade": "C",
-      "insightLine": "מלוחה — 720 מ\"ג נתרן ל-100 גרם",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 547.0,
-          "protein": 1.0,
-          "sugar": 0.8,
-          "fat": 60.0,
-          "saturatedFat": 42.0,
-          "fiber": null,
-          "sodium": 720.0
-        },
-        "ingredients": "שומן חלב, מים, מלח, מחמצת",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית | נתרן גבוה: 720 מ\"ג ל-100 גרם"
-      },
-      "rowVerdict": "שומן חלב, מים, מלח ומחמצת — 720 מ\"ג נתרן ל-100 גרם. יורד ל-C כי תוספת המלח חוצה את סף הנתרן הגבוה.",
-      "barcode": "3451790562990",
-      "retailer": "shufersal",
-      "subtype": "salted"
-    },
-    {
-      "id": "bsip1_butter_7290117263563",
-      "name": "חמאה מלוחה מבלגיה",
-      "brand": "יורו מחלבות אירופה",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OFY52_Z_P_7290117263563_1.png",
-      "score": 50,
-      "grade": "C",
-      "insightLine": "מלוחה — 640 מ\"ג נתרן ל-100 גרם",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 731.0,
-          "protein": 1.0,
-          "sugar": 0.5,
-          "fat": 80.0,
-          "saturatedFat": 58.0,
-          "fiber": null,
-          "sodium": 640.0
-        },
-        "ingredients": "חמאה מלוחה משמנת מפוסטרת",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
-      },
-      "rowVerdict": "חמאה משמנת מפוסטרת עם מלח — 640 מ\"ג נתרן ל-100 גרם. יורד ל-C כי תוספת המלח מציבה אותה מעל סף הנתרן.",
-      "barcode": "7290117263563",
-      "retailer": "shufersal",
       "subtype": "salted"
     },
     {
@@ -1022,7 +798,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית | נתרן גבוה: 800 מ\"ג ל-100 גרם"
       },
-      "rowVerdict": "חמאה ומלח ים אטלנטי \"גראנד\" — 800 מ\"ג נתרן ל-100 גרם. יורד ל-C כי גם מלח ים איכותי מעלה את הנתרן מעל הסף.",
+      "rowVerdict": "חמאה מלוחה: 800 מ\"ג נתרן ל-100 גרם. תוספת המלח מביאה תווית אדומה על נתרן — רצפת קטגוריה: C/50. עוצרת ב-C/50.",
       "barcode": "3161911366429",
       "retailer": "shufersal",
       "subtype": "salted"
@@ -1031,11 +807,11 @@
       "id": "bsip1_butter_3412130012534",
       "name": "חמאה פיזן ברטון מלוחה",
       "brand": "Paysan Breton",
-      "imageUrl": null,
+      "imageUrl": "https://www.paysanbreton.com/sites/default/files/styles/product_640x640/public/product/2026-02/Beurre%20Moul%C3%A9%20Demi%20Sel%20Paysan%20Breton%20Origin%20info.webp?itok=Jxvn0Nui",
       "score": 50,
       "grade": "C",
       "insightLine": "מלוחה — 643 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -1051,7 +827,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
       },
-      "rowVerdict": "חמאה פיזן ברטון מלוחה — 643 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח מעלה את הנתרן מעל הסף.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-C/50.",
       "barcode": "3412130012534",
       "retailer": "carrefour",
       "subtype": "salted"
@@ -1060,11 +836,11 @@
       "id": "bsip1_butter_3228021530012",
       "name": "חמאה פרזידן מלוחה",
       "brand": "President",
-      "imageUrl": null,
+      "imageUrl": "http://www.mrmarcel.com/cdn/shop/files/president-salted-butter-7oz.jpg?crop=center&height=1200&v=1720804234&width=1200",
       "score": 50,
       "grade": "C",
       "insightLine": "מלוחה — 750 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 714.0,
@@ -1080,7 +856,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית | נתרן גבוה: 750 מ\"ג ל-100 גרם"
       },
-      "rowVerdict": "חמאה פרזידן מלוחה — 750 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח חוצה את סף הנתרן.",
+      "rowVerdict": "חמאה מלוחה: 750 מ\"ג נתרן ל-100 גרם. תוספת המלח מביאה תווית אדומה על נתרן — רצפת קטגוריה: C/50. עוצרת ב-C/50.",
       "barcode": "3228021530012",
       "retailer": "yohananof",
       "subtype": "salted"
@@ -1089,11 +865,11 @@
       "id": "bsip1_butter_5099460004132",
       "name": "חמאה קרי גולד מלוחה",
       "brand": "Kerrygold",
-      "imageUrl": null,
+      "imageUrl": "https://melcom.com/media/catalog/product/cache/d0e1b0d5c74d14bfa9f7dd43ec52d082/1/1/119333_1.png",
       "score": 50,
       "grade": "C",
       "insightLine": "מלוחה — 643 מ\"ג נתרן ל-100 גרם",
-      "confidence": "insufficient",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 717.0,
@@ -1109,7 +885,7 @@
         "servingNote": "ל-100 גרם",
         "explanation": "מזון שלם עם עיבוד מועט: ציון בסיסי C/50 בשל נתרן גבוה | 2 תוויות אדומות ומעלה על-פי תקינה ישראלית"
       },
-      "rowVerdict": "חמאה קרי גולד מלוחה — 643 מ\"ג נתרן ל-100 גרם, נתונים חלקיים. יורד ל-C כי תוספת המלח מעלה את הנתרן מעל הסף.",
+      "rowVerdict": "חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-C/50.",
       "barcode": "5099460004132",
       "retailer": "yohananof",
       "subtype": "salted"
@@ -1138,16 +914,10 @@
         "servingNote": "ל-100 גרם",
         "explanation": "הרכב רכיבים המצביע על עיבוד"
       },
-      "rowVerdict": "חמאה, שמן צמחי, תבלינים, מלח וחומר משמר E-202 — חמישה רכיבים. נשאר ב-D כי ממרח מתובל עם חומר משמר מדורג אחרת מחמאה טהורה.",
+      "rowVerdict": "חמאה עם תיבול — הרכב שונה מחמאה בסיסית. D/45.2.",
       "barcode": "369709",
       "retailer": "shufersal",
       "subtype": "flavored"
     }
-  ],
-  "category_note": "חמאה היא אחד המוצרים הפשוטים ביותר במדף — שמנת מפוסטרת, לעיתים תרבית לקטית, ותו לא. המדף כמעט כולו נצבר בציון B, וזה הממצא הנכון: כשהרכיב היחיד הוא שמנת, אין מה להוריד ממנו. מה שמזיז את הציון כלפי מטה הוא מלח — חמאה מלוחה יורדת ל-C בגלל כמות הנתרן הגבוהה, לא בגלל ההרכב הבסיסי. ממרחי חמאה עם 12 רכיבים ותוספי מזון הם קטגוריה שונה לחלוטין ונבדקים בהתאם. חמאה מתובלת, עם חומר משמר ושמן צמחי ברשימה, יורדת ל-D.",
-  "insight_lines": [
-    "כמעט כל החמאות הלא-מלוחות מגיעות לאותו ציון B — הרכב זהה, ציון זהה",
-    "חמאה מלוחה: 640–1200 מ\"ג נתרן ל-100 גרם, ציון C",
-    "ממרח למריחה — 12 רכיבים, 13% שומן חלב בלבד, ציון C"
   ]
 }

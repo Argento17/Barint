@@ -1,0 +1,218 @@
+{
+  "run_id": "run_hard_cheeses_001",
+  "generated": "2026-06-08 19:52 UTC",
+  "task": "TASK-215",
+  "engine": "proto_v0 / 0.4.1 + BARI_RECAL_P0=on",
+  "alignment_check": "PASS (2026-06-07) — Gouda 28%=70.8/B > Yellow light 16%=39.0/D > Processed=32.0/E",
+  "source": "BSIP1 run_hard_cheeses_001 — 3 retailers (Shufersal/Yohananof/Carrefour) + supplementary",
+  "processed": 37,
+  "scored": 37,
+  "insufficient": 0,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 16,
+    "C": 5,
+    "D": 15,
+    "E": 1
+  },
+  "score_median": 54.0,
+  "score_range": [
+    32.0,
+    78.6
+  ],
+  "grade_thresholds_engine": {
+    "S": 90,
+    "A": 80,
+    "B": 65,
+    "C": 50,
+    "D": 35,
+    "E": 0
+  },
+  "nova_distribution": {
+    "NOVA_1": 27,
+    "NOVA_3": 6,
+    "NOVA_4": 4
+  },
+  "subpool_stats": {
+    "yellow": {
+      "count": 15,
+      "grades": {
+        "B": 15
+      },
+      "score_median": 75.6,
+      "score_range": [
+        69.8,
+        78.6
+      ]
+    },
+    "yellow_light": {
+      "count": 4,
+      "grades": {
+        "C": 1,
+        "D": 2,
+        "B": 1
+      },
+      "score_median": 64.3,
+      "score_range": [
+        39.0,
+        66.4
+      ]
+    },
+    "hard_grating": {
+      "count": 3,
+      "grades": {
+        "D": 3
+      },
+      "score_median": 39.0,
+      "score_range": [
+        39.0,
+        39.0
+      ]
+    },
+    "bulgarian": {
+      "count": 7,
+      "grades": {
+        "D": 5,
+        "C": 2
+      },
+      "score_median": 39.0,
+      "score_range": [
+        39.0,
+        54.0
+      ]
+    },
+    "tzfatit": {
+      "count": 4,
+      "grades": {
+        "D": 2,
+        "C": 2
+      },
+      "score_median": 50,
+      "score_range": [
+        39.0,
+        54.0
+      ]
+    },
+    "processed": {
+      "count": 4,
+      "grades": {
+        "D": 3,
+        "E": 1
+      },
+      "score_median": 35.0,
+      "score_range": [
+        32.0,
+        35.0
+      ]
+    }
+  },
+  "misroute_count": 12,
+  "misroute_pct": 32.4,
+  "misroute_exit_gate_lt5pct": false,
+  "misroutes": [
+    {
+      "pid": "bsip1_hardcheese_7290000062419",
+      "name": "עמק צהוב 28% בלוק",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062426",
+      "name": "עמק צהוב 9% מופחת שומן",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062464",
+      "name": "פרמזן מגורר תנובה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062471",
+      "name": "פרמזן אמיתי 32% מיובא",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062501",
+      "name": "עמק בלוק 28% שטראוס",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062525",
+      "name": "עמק 28% מיני עגול",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062594",
+      "name": "מונסטר צהוב 30% גד",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062601",
+      "name": "קולבי גד 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000425023",
+      "name": "גבינה צפתית 28% שמן מלא",
+      "subpool": "tzfatit",
+      "routed_to": "whole_food_fat"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290010644781",
+      "name": "פרמזן מגורד דינה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178901",
+      "name": "פרוסות צהובות עמק 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178918",
+      "name": "פרוסות מופחת שומן עמק 9%",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    }
+  ],
+  "light_vs_fullfat_sample": [
+    {
+      "light_product": "עמק צהוב 9% מופחת שומן",
+      "light_score": 64.3,
+      "light_fat_per_100g": 9.0,
+      "full_fat_sample": "אמנטל מיובא צרפת 28%",
+      "full_fat_score": 78.6
+    },
+    {
+      "light_product": "גבינה צהובה מופחת שומן 16%",
+      "light_score": 39.0,
+      "light_fat_per_100g": 16.0,
+      "full_fat_sample": "אמנטל מיובא צרפת 28%",
+      "full_fat_score": 78.6
+    },
+    {
+      "light_product": "גבינה צהובה מופחת 9% תנובה פרוסות",
+      "light_score": 66.4,
+      "light_fat_per_100g": 9.0,
+      "full_fat_sample": "אמנטל מיובא צרפת 28%",
+      "full_fat_score": 78.6
+    },
+    {
+      "light_product": "פרוסות מופחת שומן עמק 9%",
+      "light_score": 39.0,
+      "light_fat_per_100g": 9.0,
+      "full_fat_sample": "אמנטל מיובא צרפת 28%",
+      "full_fat_score": 78.6
+    }
+  ],
+  "error_detail": [],
+  "fat_labeling_note": "18/23 original products show both fat_per_100g and fat_in_dry_matter_pct. Scoring uses fat_per_100g only per TASK-215."
+}

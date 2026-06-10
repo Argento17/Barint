@@ -25,6 +25,7 @@ export type BlogArticleCard = {
   metaLine?: string;
   featured?: boolean;
   comingSoon?: boolean;
+  stat?: { value: string; unit: string };
 };
 
 export const blogCategories: { id: BlogCategoryId; label: string }[] = [
@@ -67,6 +68,7 @@ export const featuredArticle: BlogArticleCard = {
   published: "מאי 2026",
   metaLine: "מאי 2026 · 6 דקות קריאה · 18 מוצרים נותחו",
   featured: true,
+  stat: { value: "18", unit: "מוצרים נותחו" },
 };
 
 export const secondaryArticles: BlogArticleCard[] = [
@@ -82,6 +84,7 @@ export const secondaryArticles: BlogArticleCard[] = [
     readTime: "7 דקות",
     metaLine: "יוני 2026 · 7 דקות קריאה · 12 מותגים · 4 רשתות",
     published: "יוני 2026",
+    stat: { value: "12", unit: "מותגים" },
   },
   {
     slug: "bread-everyday",

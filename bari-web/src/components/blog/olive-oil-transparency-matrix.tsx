@@ -11,9 +11,7 @@ const ORIGIN_COLORS: Record<string, string> = {
 
 const RETAILER_COLORS: Record<string, string> = {
   שופרסל: "bg-[#E8F4F0] text-[#1F8F6A]",
-  יוחננוף: "bg-[#EBF3F8] text-[#2E6E9E]",
-  קרפור: "bg-[#F3EBF8] text-[#7B3FB0]",
-  ויקטורי: "bg-[#FEF3E8] text-[#C05A10]",
+  יוחננוף: "bg-[#EEF2FB] text-[#3B5BAD]",
 };
 
 function Cell({ value }: { value: boolean }) {
@@ -113,7 +111,7 @@ export function OliveOilTransparencyMatrix() {
       </div>
 
       <p className="text-right text-xs text-[#7A817C]">
-        ✗ = לא מצוין על התווית שנסרקה · ✓ = מצוין בבירור · מקור: סריקת מדפי שופרסל ויוחננוף, יוני 2026
+        ✗ = לא מצוין על התווית שנסרקה · ✓ = מצוין בבירור · מקור: שופרסל (6 מותגים) + יוחננוף (4 מותגים) — 19 מוצרים סה"כ, סריקה מלאה, יוני 2026
       </p>
     </section>
   );

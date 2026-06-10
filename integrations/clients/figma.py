@@ -1,21 +1,11 @@
-"""Figma — design source-of-truth (REST API).
+"""RETIRED — Figma client not used.
 
-For: Design + Frontend Agents. Lets the agents read the design file the comparison pages
-are built against: the document node tree, named components, and — the high-value part —
-the published design *variables/styles* (color, spacing, type tokens). That closes the
-loop the Design Token Governance doc opens: instead of asserting token values from memory,
-the agent can diff the live Tailwind/token set against what Figma actually publishes and
-flag drift.
+Design tokens live in bari-web/colors_and_type.css (in-repo, no API key needed).
+The Design Agent reads that file directly for drift detection.
+This client is kept for reference only — do not call it.
 
-Read-only: only GET endpoints (files, nodes, styles, images render). No write-back to
-Figma — design authorship stays human.
-
-AUTH (both required): FIGMA_TOKEN (personal access token, figma.com > Settings > Personal
-access tokens) and a file key (the part of a Figma URL after /file/ or /design/). Status
-is NEEDS-ENV-VERIFY until a token + the Bari file key exist — endpoints are documented and
-stable; live verification waits on the connected account.
-
-Docs: https://www.figma.com/developers/api
+Original purpose: read Figma design file for token drift detection.
+Replaced by: direct file read of bari-web/colors_and_type.css (2026-06-06).
 """
 from __future__ import annotations
 

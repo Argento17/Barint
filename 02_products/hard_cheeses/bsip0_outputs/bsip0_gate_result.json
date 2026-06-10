@@ -1,0 +1,53 @@
+{
+  "run_id": "run_hard_cheeses_rerun_001",
+  "run_ts": "2026-06-07T11:40:38.178793+00:00",
+  "category": "hard_cheeses",
+  "result": "FAIL",
+  "result_reason": "BSIP0 hard gate failure: corpus 1 product (minimum 10), no-panel rate 96.0% exceeds 20% threshold. No FDC generics used — all exclusions are honest data gaps.",
+  "product_count": 1,
+  "panel_source_breakdown": {
+    "open_food_facts_real_panel": 0,
+    "firecrawl_retailer": 0,
+    "fdc_generic": 0,
+    "fdc_type_reference": 0,
+    "note": "The 1 accepted product (barcode 8076809523523) was a false positive — OFF identifies it as 'Mini Pipe Rigate' (pasta), not cheese. Effective real panel count = 0."
+  },
+  "panel_coverage_pct": 0.0,
+  "no_panel_rate": 1.0,
+  "missing_ingredients_rate": null,
+  "gate_failures": [
+    "Corpus = 0 real cheese products with verified panels (minimum 10)",
+    "No-panel rate 100% for valid cheese candidates — all 25 Israeli hard cheese barcodes return NOT FOUND on Open Food Facts",
+    "False positive removed: barcode 8076809523523 identified as pasta product on OFF, not cheese"
+  ],
+  "hard_rules_compliance": {
+    "fdc_generics_used": false,
+    "fabricated_records": false,
+    "round_timestamps": false,
+    "gate_self_passed": false,
+    "note": "Previous run fabricated all three retailer BSIP0 files (byte-identical nutrition, round-hour timestamps 08:00Z/08:15Z/08:30Z). This rerun uses OFF per-barcode only — none of the Israeli hard cheese barcodes exist on OFF."
+  },
+  "data_availability_diagnosis": {
+    "open_food_facts": "Israeli hard cheese barcodes (729-prefix Tnuva/Gad/Strauss series) are NOT in the OFF database. 0 of 25 tested barcodes found.",
+    "shufersal_website": "IN MAINTENANCE MODE — product pages unavailable.",
+    "yohananof_laibcatalog": "TIMEOUT at rerun time.",
+    "il_prices_delta_files": "Only 96 barcodes from recent price changes — does not cover cheese catalog.",
+    "rami_levy": "CLOUDFLARE BLOCKED.",
+    "root_cause": "Israeli domestic dairy products from major brands (Tnuva, Gad, Strauss) are systematically absent from OFF. They require either: (1) retailer product page scraping (Shufersal/Yohananof), or (2) a dedicated Israeli nutrition database. Neither is available right now."
+  },
+  "unblock_conditions": {
+    "primary_path": "Wait for Shufersal maintenance to end. Scrape product pages via Firecrawl for known hard cheese barcodes. Shufersal product pages showed working nutrition extraction earlier today (barcode 7290000066003 returned full panel via cached Firecrawl scrape). The 729-prefix barcodes are real — only nutrition sourcing is blocked.",
+    "evidence_that_products_exist": "The 729000006xxxx barcode range is Tnuva's documented EAN range. Emek 28% (7290000062419) is a known real product. The problem is exclusively provenance: OFF has zero coverage, not that the products are fake.",
+    "alternative": "Use il_gov_data food_manufacturers registry to confirm Tnuva/Gad legitimacy (identity layer), then scrape Shufersal product pages for nutrition when portal recovers.",
+    "do_not_do": "Do NOT fall back to USDA FDC generic cheese types (e.g., 'cheddar_generic') or any invented nutrition values. Hard gate: no FDC generics permitted."
+  },
+  "all_excluded_barcodes": [
+    "7290000062419", "7290000062426", "7290000062433", "7290000062440",
+    "7290000062457", "7290000062464", "7290000062471", "7290000062488",
+    "7290000062495", "7290000062501", "7290000062518", "7290000062525",
+    "7290000062532", "7290000062549", "7290000062556", "7290000067659",
+    "7290004701765", "7290012301070", "7290000067734", "3256228310201",
+    "3270190045023", "8001840000715", "7290010048101", "7290000067772"
+  ],
+  "provenance": "bsip0_rerun_real.py — all panels from OFF per-barcode API v2, no FDC generics, no invented data"
+}

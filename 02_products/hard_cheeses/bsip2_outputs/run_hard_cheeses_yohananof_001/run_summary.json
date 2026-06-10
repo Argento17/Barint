@@ -1,0 +1,193 @@
+{
+  "run_id": "run_hard_cheeses_yohananof_001",
+  "generated": "2026-06-08 17:00 UTC",
+  "engine": "proto_v0 / 0.4.1 + BARI_RECAL_P0=on (TASK-215)",
+  "source": "Yohananof storefront scrape → BSIP1 run_hard_cheeses_yohananof_001",
+  "processed": 67,
+  "scored": 67,
+  "errors": 1,
+  "grade_distribution": {
+    "D": 21,
+    "insufficient_data": 37,
+    "B": 9
+  },
+  "score_median": 50,
+  "score_range": [
+    37.6,
+    73.6
+  ],
+  "grade_thresholds": {
+    "S": 90,
+    "A": 80,
+    "B": 65,
+    "C": 50,
+    "D": 35,
+    "E": 0
+  },
+  "subpool_stats": {
+    "yellow": {
+      "count": 35,
+      "grades": {
+        "D": 14,
+        "insufficient_data": 15,
+        "B": 6
+      },
+      "score_median": 50,
+      "score_range": [
+        39.0,
+        73.6
+      ]
+    },
+    "yellow_light": {
+      "count": 8,
+      "grades": {
+        "insufficient_data": 4,
+        "B": 2,
+        "D": 2
+      },
+      "score_median": 45.8,
+      "score_range": [
+        39.0,
+        68.6
+      ]
+    },
+    "hard_grating": {
+      "count": 8,
+      "grades": {
+        "insufficient_data": 3,
+        "B": 1,
+        "D": 4
+      },
+      "score_median": 50,
+      "score_range": [
+        39.0,
+        66.1
+      ]
+    },
+    "bulgarian": {
+      "count": 7,
+      "grades": {
+        "insufficient_data": 7
+      },
+      "score_median": 50,
+      "score_range": [
+        50,
+        50
+      ]
+    },
+    "tzfatit": {
+      "count": 4,
+      "grades": {
+        "insufficient_data": 4
+      },
+      "score_median": 50,
+      "score_range": [
+        50,
+        50
+      ]
+    },
+    "processed": {
+      "count": 5,
+      "grades": {
+        "insufficient_data": 4,
+        "D": 1
+      },
+      "score_median": 40.6,
+      "score_range": [
+        37.6,
+        47.3
+      ]
+    }
+  },
+  "anomalies": [],
+  "misroute_count": 12,
+  "misroute_pct": 17.9,
+  "misroutes": [
+    {
+      "pid": "bsip1_hardcheese_7290000062419",
+      "name": "עמק צהוב 28% בלוק",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062426",
+      "name": "עמק צהוב 9% מופחת שומן",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062464",
+      "name": "פרמזן מגורר תנובה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062471",
+      "name": "פרמזן אמיתי 32% מיובא",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062501",
+      "name": "עמק בלוק 28% שטראוס",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062525",
+      "name": "עמק 28% מיני עגול",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062594",
+      "name": "מונסטר צהוב 30% גד",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062601",
+      "name": "קולבי גד 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000425023",
+      "name": "גבינה צפתית 28% שמן מלא",
+      "subpool": "tzfatit",
+      "routed_to": "whole_food_fat"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290010644781",
+      "name": "פרמזן מגורד דינה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178901",
+      "name": "פרוסות צהובות עמק 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178918",
+      "name": "פרוסות מופחת שומן עמק 9%",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    }
+  ],
+  "error_detail": [
+    {
+      "product_id": "unknown",
+      "error": "unsupported operand type(s) for /: 'WindowsPath' and 'NoneType'"
+    }
+  ],
+  "plausibility_check": {
+    "expected_score_range": [
+      25,
+      80
+    ],
+    "expected_no_A_grade": true,
+    "anomaly_count": 0
+  }
+}

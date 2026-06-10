@@ -1,0 +1,95 @@
+{
+  "run_id": "run_yogurt_yohananof_001",
+  "retailer": "yohananof",
+  "generated": "2026-06-07T06:14:09.265275+00:00",
+  "source_file": "C:\\Bari\\02_products\\yogurt_system\\bsip0_outputs\\yohananof_yogurt_bsip0_raw_20260607T060832.json",
+  "raw_count": 143,
+  "bsip0_filter_count": 132,
+  "bsip0_filter_tally": {
+    "incomplete_nutrition": 74,
+    "ingredients_absent": 132
+  },
+  "dedup_dropped": 0,
+  "included_count": 8,
+  "excluded_count": 3,
+  "exclusion_tally": {
+    "non_yogurt_dairy_excluded": 1,
+    "not_spoon_yogurt": 2
+  },
+  "ingredient_coverage": "8/8",
+  "included": [
+    {
+      "barcode": "7290000408316",
+      "name": "יוגורט ביו שטראוס 3 אחו",
+      "subtype": "bio",
+      "has_ingredients": true,
+      "nutrition_fields": 4
+    },
+    {
+      "barcode": "7290102394081",
+      "name": "מולר Mix קונרפלקס",
+      "subtype": "plain_natural",
+      "has_ingredients": true,
+      "nutrition_fields": 8
+    },
+    {
+      "barcode": "7290107936309",
+      "name": "Greek yogurt",
+      "subtype": "greek",
+      "has_ingredients": true,
+      "nutrition_fields": 6
+    },
+    {
+      "barcode": "7290110565527",
+      "name": "דנונה PRO יוגורט 20 גר׳ חלבון 1.5% שומן",
+      "subtype": "high_protein",
+      "has_ingredients": true,
+      "nutrition_fields": 8
+    },
+    {
+      "barcode": "7290102399819",
+      "name": "יוגורט מועשר בחלבון עם פירות יער",
+      "subtype": "high_protein",
+      "has_ingredients": true,
+      "nutrition_fields": 6
+    },
+    {
+      "barcode": "7290110328764",
+      "name": "יוגורט גו במרקם סמיך תות",
+      "subtype": "flavored",
+      "has_ingredients": true,
+      "nutrition_fields": 6
+    },
+    {
+      "barcode": "7290112330352",
+      "name": "Yogurt Pro 20",
+      "subtype": "high_protein",
+      "has_ingredients": true,
+      "nutrition_fields": 6
+    },
+    {
+      "barcode": "7290116934402",
+      "name": "Go Yogurt, Mango",
+      "subtype": "plain_natural",
+      "has_ingredients": true,
+      "nutrition_fields": 6
+    }
+  ],
+  "excluded": [
+    {
+      "barcode": "7290002868996",
+      "name": "קוטג׳ 5%",
+      "reason": "non_yogurt_dairy_excluded"
+    },
+    {
+      "barcode": "7622202257803",
+      "name": "Milka Schokolade",
+      "reason": "not_spoon_yogurt"
+    },
+    {
+      "barcode": "8000500121436",
+      "name": "Kinder Bueno white",
+      "reason": "not_spoon_yogurt"
+    }
+  ]
+}

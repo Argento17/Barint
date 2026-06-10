@@ -65,6 +65,7 @@ except ImportError:
 BARI_ROOT      = Path(r"C:\Bari")
 PRODUCTS_DIR   = BARI_ROOT / "02_products"
 TASKS_DIR      = BARI_ROOT / "tasks"
+TASKS_CLOSED_DIR = BARI_ROOT / "tasks" / "closed"   # archived CLOSED files
 DECISIONS_FILE = BARI_ROOT / "decisions" / "decisions.json"
 QA_OPS_DIR     = BARI_ROOT / "03_operations" / "qa" / "reports"
 
@@ -416,7 +417,8 @@ def load_tasks():
 
     tasks = []
     unparseable = []
-    for f in sorted(TASKS_DIR.glob("TASK-*.md")):
+    _task_files = sorted(TASKS_DIR.glob("TASK-*.md")) + sorted(TASKS_CLOSED_DIR.glob("TASK-*.md") if TASKS_CLOSED_DIR.exists() else [])
+    for f in _task_files:
         content = read_text(f)
         m = re.match(r"^---\s*\n(.*?)\n---", content, re.DOTALL)
         if not m:

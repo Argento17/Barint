@@ -1,0 +1,1229 @@
+{
+  "_meta": {
+    "generated": "2026-06-07T06:06:48.657195+00:00",
+    "category": "breakfast-cereals",
+    "product_count": 34,
+    "scored_count": 34,
+    "schema": "BariProductVM[]",
+    "version": "v2",
+    "provenance": "TASK-210 multi-retailer expansion (cleaned). Shufersal pool (37 products): frozen from cereals_frontend_v1.json / run_cereals_008. New retailer pool (1 net-new product): run_cereals_multiretailer_001 — Carrefour. Source: Israeli price-transparency feeds (il_prices) + OFF candidate panels (EDPG). BSIP0 filters applied (F1-F4). 19 granola-subpool products removed (belong to /granolas corpus — 18 already in granola_frontend_v1.json; 1 orphan גרנולה בתוספת חלבון pending granola pipeline). 7 cross-retailer duplicate IDs removed (kept shufersal baseline). Score range: 32-75. Grade dist: B:6 C:15 D:16 E:1. Additionally removed 4 out-of-scope products: Fitness Thin (wafer), דייסת דגנים מעורבים (porridge), קורנפלקס (no-image generic), מארז קורנפלקס של אלופים (bundle pack).",
+    "retailer_breakdown": {
+      "shufersal": 37,
+      "carrefour": 1
+    },
+    "dedup_notes": {
+      "cross_retailer_overlaps_removed": 16,
+      "cross_retailer_duplicates_carrefour_yohananof": 2,
+      "baseline": "run_cereals_005 / run_cereals_008 (66 Shufersal barcodes)"
+    }
+  },
+  "products": [
+    {
+      "id": "bsip1_cereal_5010029000061",
+      "name": "דגני בוקר ויטביקס",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KAG24_Z_P_5010029000061_1.png",
+      "score": 75,
+      "grade": "B",
+      "insightLine": "95% חיטה, 12 גרם חלבון, 10 גרם סיבים — הכי גבוה בקטגוריה על שני הממדים.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 342.0,
+          "protein": 12.0,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 10.0,
+          "sodium": 110.0
+        },
+        "ingredients": "חיטה (מכיל גלוטן) (95%),מיצוי לתת שעורה,סוכר,מלח,ויטמינים ומינרלים, (ניאצין,ריבואפלאבין,תיאמין,ח' פולית,ברזל). מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "95% חיטה, הרכב פשוט, 12 גרם חלבון ו-10 גרם סיבים ל-100 גרם — הגבוהים בקטגוריה. ליון עמד על 78/B בגרסה הקודמת עקב תקלת נתונים; הציון המתוקן הוא 55/C. הפער האמיתי מ-ויטביקס הוא 20 נקודות. עוצר ב-B כי מועשר בוויטמינים (לא ספונטני) ו-342 קלוריות ל-100 גרם.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5010029000061",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "Fitness almond honey",
+      "grade": "B",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "תווית 'פיטנס' — 10 גרם סוכר ל-100 גרם.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/768/6906/front_en.5.400.jpg",
+      "confidence": "partial",
+      "rowVerdict": "קורנפלקס פיטנס בטעם שקדים ודבש — 10 גרם חלבון, 7.7 גרם סיבים ושומן נמוך, אבל גם 10 גרם סוכר ל-100 גרם. עוצר ב-B כי הפרופיל סביר, אך הסוכר המוסף בולט לצד שם ה'פיטנס'.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 386.0,
+          "protein": 10.0,
+          "sugar": 10.0,
+          "fat": 5.6,
+          "fiber": 7.7,
+          "sodium": 134.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_7613037686906",
+      "_wholeGrainClaim": false,
+      "score": 70,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7613037686906",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290017325910",
+      "name": "קורנפלקס אורגני הרדוף",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VQT46_Z_P_7290017325910_1.png",
+      "score": 69,
+      "grade": "B",
+      "insightLine": "קמח תירס אורגני 94%, 600 מ\"ג נתרן — גבוה משמעותית.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 369.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": 1.0,
+          "fiber": 4.0,
+          "sodium": 600.0
+        },
+        "ingredients": "קמח תירס אורגני (%94 ,(קמח nלתת שעורה אורגני (%5 ,(מלח. מאפיינים נוספים ללא צבעי מאכל,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס אורגני עם שתי שורות רכיבים — 94% קמח תירס אורגני, בלי תוספים. יורד ל-C כי 600 מ\"ג נתרן ל-100 גרם — הסף האדום של משרד הבריאות — גבוה לקטגוריה שבה רוב המוצרים מתחת ל-200 מ\"ג.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017325910",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "Nestle Fitness Dark Chocolate",
+      "grade": "B",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "תווית 'פיטנס' עם שוקולד — 14 גרם סוכר, 10.3 גרם סיבים.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/354/8192/front_en.10.400.jpg",
+      "confidence": "partial",
+      "rowVerdict": "קורנפלקס פיטנס בטעם שוקולד מריר — 10.3 גרם סיבים מרשימים, אבל 14 גרם סוכר ל-100 גרם. עוצר ב-B כי הסיבים גבוהים, אבל השוקולד והסוכר המוסף מושכים מטה לצד שם ה'פיטנס'.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 393.3,
+          "protein": 9.0,
+          "sugar": 14.0,
+          "fat": 7.7,
+          "fiber": 10.3,
+          "sodium": 186.7
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_7613033548192",
+      "_wholeGrainClaim": false,
+      "score": 68,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7613033548192",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7297488098688",
+      "name": "פצפוצי אורז ללת\"ס",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ERH84_Z_P_7297488098688_1.png",
+      "score": 67,
+      "grade": "B",
+      "insightLine": "100% אורז מלא, אפס סוכר ואפס מלח — 71 מ\"ג נתרן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 385.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": 2.3,
+          "fiber": 3.0,
+          "sodium": 71.0
+        },
+        "ingredients": "100% אורז מלא (ללא תוספת סוכר ומלח) מאפיינים נוספים ללא תוספת סוכר",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "פצפוצי אורז מלא ללא תוספת סוכר ומלח — 100% אורז מלא, 3 גרם סיבים, 71 מ\"ג נתרן בלבד. עוצר ב-B ולא מעלה כי 3 גרם סיבים נמוך יחסית למיטב הקטגוריה, ואין רשימת רכיבים מורחבת.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7297488098688",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "קורנפלקס פיטנס",
+      "grade": "B",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "קורנפלקס — 3 גרם סוכר, אבל 1.3 גרם סיבים בלבד.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/590/002/004/1142/front_en.3.400.jpg",
+      "confidence": "partial",
+      "rowVerdict": "קורנפלקס פיטנס עם סוכר נמוך של 3 גרם ושומן נמוך מאוד — אבל גם 1.3 גרם סיבים בלבד ל-100 גרם. עוצר ב-B כי הסוכר מתון, אך מבנה התירס המעובד כמעט נטול סיבים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 8.0,
+          "sugar": 3.0,
+          "fat": 2.3,
+          "fiber": 1.3,
+          "sodium": null
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_5900020041142",
+      "_wholeGrainClaim": false,
+      "score": 65,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5900020041142",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290116535371",
+      "name": "קורנפלקס לל\"ג כשל\"פ",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LFG50_Z_P_7290116535371_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "תווית \"עשיר בדגנים מלאים\" — 92% קמח תירס, 3 גרם סיבים.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 377.0,
+          "protein": 6.2,
+          "sugar": null,
+          "fat": 1.0,
+          "fiber": 3.0,
+          "sodium": 117.0
+        },
+        "ingredients": "קמח תירס (92%), סוכר, מלח. מאפיינים נוספים עשיר בדגנים מלאים,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס עם תווית דגנים מלאים — אבל 92% קמח תירס ו-3 גרם סיבים בלבד. C כי ההצהרה על הקופסה אינה מתיישבת עם פרופיל הסיבים הנמוך.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290116535371",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7297488199590",
+      "name": "פצפוצי אורז תפוח",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XYD78_Z_P_7297488199590_1.png",
+      "score": 62,
+      "grade": "C",
+      "insightLine": "95% אורז לבן, 0.8 גרם סיבים — מהנמוכים בקטגוריה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 351.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": 1.0,
+          "fiber": 0.8,
+          "sodium": 390.0
+        },
+        "ingredients": "אורז לבן (95%), סוכר, מלח ערכים תזונתיים 100 גרם 0.8 גרם סיבים תזונתיים 3.8 גרם סוכרים מתוך פחמימות 351 קל אנרגיה 7 גרם חלבונים 78 גרם פחמימות 1 גרם שומנים 390 מג נתרן 1 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "פצפוצי אורז קלאסיים — 95% אורז לבן, 7 גרם חלבון, אבל 0.8 גרם סיבים בלבד ו-390 מ\"ג נתרן. C; פשוט אך חסר ממשק תזונתי מלא.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7297488199590",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7296073642046",
+      "name": "קורנפלקס ללא גלוטן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PET56_Z_P_7296073642046_1.png",
+      "score": 61,
+      "grade": "C",
+      "insightLine": "89% גריסי תירס, 390 מ\"ג נתרן, ללא גלוטן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": 1.3,
+          "fiber": 2.2,
+          "sodium": 390.0
+        },
+        "ingredients": "גריסי תירס (89%), סוכר, מלח, מתחלב (E471). עלול להכיל בוטנים,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס ללא גלוטן — 89% גריסי תירס, 8 גרם חלבון, אבל 390 מ\"ג נתרן ו-2.2 גרם סיבים בלבד. C; האפשרות לנמנעי הגלוטן, אך הפרופיל פשוט.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים של חומצות שומן",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב מרקם ומניעת ייבוש",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים מאוד המיוצרים משמנים צמחיים, המשמשים לשמירה על מרקם אחיד ומניעת פירורת. מאושרים לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7296073642046",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "Corn flakes",
+      "grade": "C",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "תירס 92%, סוכר ומלח — 320 מ\"ג נתרן.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/356/007/101/6074/front_fr.48.400.jpg",
+      "confidence": "verified",
+      "rowVerdict": "קורנפלקס פשוט — 92% תירס, ואחריו סוכר, מלח ותמצית לתת. נשאר ב-C כי הרשימה קצרה אבל מבנה התירס המעובד מותיר רק 2.5 גרם סיבים, ו-320 מ\"ג הנתרן בולטים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383.0,
+          "protein": 6.9,
+          "sugar": 7.2,
+          "fat": 1.2,
+          "fiber": 2.5,
+          "sodium": 320.0
+        },
+        "ingredients": "Maïs 92 %, sucre, sel, extrait de malt d'_orge_.\nPeut contenir des traces d'arachides, de fruits à coque, de lait, de soja, de graines de sésame, de moutarde et de lupin",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_3560071016074",
+      "_wholeGrainClaim": false,
+      "score": 61,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "3560071016074",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290112494351",
+      "name": "קורנפלקס של אלופים בד\"ץ",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NJK48_Z_P_7290112494351_1.png",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "89% קמח תירס, 7 גרם חלבון, 3 גרם סיבים.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 375.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": 0.9,
+          "fiber": 3.0,
+          "sodium": 375.0
+        },
+        "ingredients": "קמח תירס (89%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), ויטמינים (B3 (ניאצין),B2, B6(ריבופלאבין),  B1(תיאמין), חומצה פולית, B12), ברזל. מאפיינים נוספים ללא צבעי מאכל,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס מועשר בוויטמינים — 89% קמח תירס, 3 גרם סיבים, 375 מ\"ג נתרן. C על פרופיל בינוני; ההעשרה לא מפצה על נמיכות הסיבים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים של חומצות שומן",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב מרקם ומניעת ייבוש",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים מאוד המיוצרים משמנים צמחיים, המשמשים לשמירה על מרקם אחיד ומניעת פירורת. מאושרים לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290112494351",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_5900020036407",
+      "name": "ליון דגני שוקולד וקרמל",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZNC36_Z_P_5900020036407_1.png",
+      "score": 55,
+      "grade": "C",
+      "insightLine": "24.7 גרם סוכר ל-100 גרם, שומן רווי 2.5 גרם. הציון הקודם היה שגוי — נתוני שומן וסוכר לא הועברו למנוע.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 8.5,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 6.5,
+          "sodium": 177.0
+        },
+        "ingredients": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל, סידן וויטמינים מקבוקת B • ללא צבעי מאכל • ללא חומרים משמרים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "ליון: דגני שוקולד וקרמל עם 24.7 גרם סוכר ו-6.2 גרם שומן ל-100 גרם — ערכים שלא הועברו לגרסה הקודמת. הציון הנכון הוא 55/C. 8.5 גרם חלבון ו-6.5 גרם סיבים, אך גלוקוז גבוה וארכיטקטורת שומן בינונית מורידים את הציון.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5900020036407",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_5900020012814",
+      "name": "דגני בוקר נסקוויק",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QPR32_Z_P_5900020012814_1.png",
+      "score": 55,
+      "grade": "C",
+      "insightLine": "מוצר ילדים שהציון הקודם שלו היה מנופח. 24.7 גרם סוכר ל-100 גרם — גבוה לקטגוריה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 381.0,
+          "protein": 8.9,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 8.0,
+          "sodium": 88.0
+        },
+        "ingredients": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל וויטמינים מקבוצת B • ללא חומרים משמרים • ללא צבעי מאכל",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "נסקוויק: חיטה מלאה ראשונה ברשימה, 8.9 גרם חלבון ו-8 גרם סיבים — אבל 24.7 גרם סוכר ל-100 גרם. הציון הקודם (78/B) לא כלל נתוני סוכר ושומן מלאים. הציון הנכון 55/C.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5900020012814",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_72968",
+      "name": "דגני בוקר סיני מיניס",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CXL32_Z_P_72968_1.png",
+      "score": 55,
+      "grade": "C",
+      "insightLine": "חיטה מלאה ראשונה, 338 מ\"ג נתרן — גבוה לקטגוריה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 414.0,
+          "protein": 5.9,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 5.7,
+          "sodium": 338.0
+        },
+        "ingredients": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל, סידן וויטמינים מקבוצת B • ללא חומרים משמרים",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "חיטה מלאה ראשונה ברשימה ו-5.7 גרם סיבים, אבל 338 מ\"ג נתרן ל-100 גרם — גבוה מהמדיאן בקטגוריה. B על בסיס הדגן המלא; הנתרן מושך כלפי מטה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "72968",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290107647731",
+      "name": "דגני בוקר קוקומן חום לבן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TUY54_Z_P_7290107647731_1.png",
+      "score": 55,
+      "grade": "C",
+      "insightLine": "תווית \"חום\" — סוכר הרכיב השני, 382 מ\"ג נתרן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 384.0,
+          "protein": 9.4,
+          "sugar": null,
+          "fat": 1.6,
+          "fiber": 5.0,
+          "sodium": 382.0
+        },
+        "ingredients": "דגנים (71%) (קמח חיטה (מכיל גלוטן), קמח חיטה מלא, קמח לתת שעורה (מכיל גלוטן)), סוכר, עמילן חיטה, אבקת קקאו,  מלח, חומרי טעם וריח, תע רובת ויטמינים ומינרלים, מתחלב (לציטין סויה). מאפיינים נוספים ללא צבעי מאכל מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קוקומן עם תיוג ילדים ותווית שנשמעת דגנים מלאים — סוכר הרכיב השני, 382 מ\"ג נתרן. עוצר ב-B תחתון כי הדגנים המלאים נוכחים (71%), אבל פרופיל הסוכר והנתרן אינם לטובת ילדים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290107647731",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290107647854",
+      "name": "דגני בוקר שוגי",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TZR60_Z_P_7290107647854_1.png",
+      "score": 53,
+      "grade": "C",
+      "insightLine": "82% קמח תירס, 12% סוכר, 435 מ\"ג נתרן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383.0,
+          "protein": 6.7,
+          "sugar": null,
+          "fat": 0.9,
+          "fiber": null,
+          "sodium": 435.0
+        },
+        "ingredients": "קמח תירס (82%), סוכר (12%), תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמנים ומינרלים. מאפיינים נוספים ללא צבעי מאכל,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס קלאסי — 82% קמח תירס, סוכר 12%, נתרן 435 מ\"ג. C; פרופיל ישיר ולא מורכב, אך גבוה בנתרן.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים של חומצות שומן",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב מרקם ומניעת ייבוש",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים מאוד המיוצרים משמנים צמחיים, המשמשים לשמירה על מרקם אחיד ומניעת פירורת. מאושרים לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290107647854",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "כריות נוגט",
+      "grade": "C",
+      "_isChildrens": true,
+      "_subpool": "standard_cereal",
+      "insightLine": "מוצר ילדים — 16.3 גרם שומן, 5.7 גרם חלבון.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/729/011/653/7351/front_he.3.400.jpg",
+      "confidence": "partial",
+      "rowVerdict": "כריות נוגט מקטגוריית הילדים — 16.3 גרם שומן ל-100 גרם, 217 מ\"ג נתרן ורק 5.7 גרם חלבון. נשאר ב-C כי המילוי המתוק מגדיר את המוצר, ונתוני הסוכר והסיבים אינם זמינים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 5.7,
+          "sugar": null,
+          "fat": 16.3,
+          "fiber": null,
+          "sodium": 217.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_7290116537351",
+      "_wholeGrainClaim": false,
+      "score": 52,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290116537351",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "דגני חיטה ואורז בטעם",
+      "grade": "D",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "30 גרם סוכר ל-100 גרם — כמעט שליש מהמשקל.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/400/552/811/5218/front_ro.3.400.jpg",
+      "confidence": "partial",
+      "rowVerdict": "דגני חיטה ואורז בטעם — 30 גרם סוכר ל-100 גרם, כמעט שליש מהמשקל, ו-2.3 גרם סיבים בלבד. נשאר ב-D כי הסוכר הוא הגורם המגביל ומבנה הדגן המעובד דל בסיבים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 382.0,
+          "protein": 7.1,
+          "sugar": 30.0,
+          "fat": 0.7,
+          "fiber": 2.3,
+          "sodium": 200.0
+        },
+        "ingredients": "",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_4005528115218",
+      "_wholeGrainClaim": false,
+      "score": 48,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "4005528115218",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290112495433",
+      "name": "דגני בוקר דליפקאן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZA50_Z_P_7290112495433_1.png",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "13% אגוזי פקאן מקורמלים, 9.9 גרם חלבון.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 421.0,
+          "protein": 9.9,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 7.4,
+          "sodium": 285.0
+        },
+        "ingredients": "דגנים (63%) (קמח חיטה מלא (35%) (מכיל גלוטן) קמח אורז, שיבולת שועל מלאה (6%) (מכיל גלוטן) תמצית לתת שעורה (מכיל גלוטן) גריסי תירס, ק מח שיפון, (מכיל גלוטן)), סוכר, אגוזי פקאן מקורמלים (13%) (אגוזי פקאן (8.5%), סוכר, סירופ סוכר שרוף), שקדים (7%), עמילן חיטה, דבש (1% ), מלח, מתחלב (E471). מאפיינים נוספים עשיר בדגנים מלאים מכיל אגוזי פקאן,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "דגני בוקר עם פקאן ושקדים — 9.9 גרם חלבון ו-7.4 גרם סיבים, אגוזי פקאן 8.5% ומקורמלים. C; האגוזים אמיתיים, אבל הסוכר לקירמל ורמת העיבוד מושכים כלפי מטה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים של חומצות שומן",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב מרקם ומניעת ייבוש",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים מאוד המיוצרים משמנים צמחיים, המשמשים לשמירה על מרקם אחיד ומניעת פירורת. מאושרים לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290112495433",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7296073705550",
+      "name": "כדורי דגנים טעם שוקו",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDF56_Z_P_7296073705550_1.png",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "תווית \"דגנים מלאים\" — סוכר הרכיב הרביעי, גלוקוז-פרוקטוז ברשימה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 393.0,
+          "protein": 8.5,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 7.7,
+          "sodium": 200.0
+        },
+        "ingredients": "גריסי תירס 26%, קמח חיטה מלאה (מכיל גלוטן) 25%, קמח חיטה (מכיל גלוטן), סוכר לבן, סירופ גלוקוז-פרוקטוז, אבקת קקאו, קמח שיבולת שועל (מ כיל גלוטן), דקסטרוז, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם וריח, תערובת ויטמינים (ויטמין C, ויטמין B1, ויטמין B2, ניאצין, ויטמ ין B6, חומצה פולית, ביוטיו, חומצה פנטותנית, ויטמין B12, ויטמין E). מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "כדורי דגנים עם תווית דגנים מלאים — 25% חיטה מלאה, אבל סוכר וסירופ גלוקוז-פרוקטוז ברשימה המוקדמת. C; הדגנים המלאים נוכחים, אבל לא הרכיב הדומיננטי.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7296073705550",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7296073705567",
+      "name": "טבעות דגנים בטעם דבש",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDW64_Z_P_7296073705567_1.png",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "36% חיטה מלאה, 26% שיבולת שועל, דבש 2%.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 375.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 6.0,
+          "sodium": 200.0
+        },
+        "ingredients": "קמח חיטה מלא 36% (מכיל גלוטן), קמח שיבולת שועל 26% (מכיל גלוטן), סוכר לבן, עמילן חיטה (מכיל גלוטן), דבש 2%, סירופ גלוקוז-פרוקטוז, מו לסה, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם וריח טבעי, תערובת ויטמינים (ויטמין C, ויטמין B1, ויטמין B2, ניאצין, ויטמין B6, חומצ ה פולית, ביוטין, חומצה פנטותנית, ויטמין B12, ויטמין E). מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "טבעות דגנים עם 36% חיטה מלאה ו-26% שיבולת שועל — 8 גרם חלבון, 6 גרם סיבים. C; הדגנים המלאים נוכחים, אבל סוכר, סירופ גלוקוז-פרוקטוז ומולסה מגבילים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7296073705567",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290017894911",
+      "name": "טבעות דגנים שיבולת שועל",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FJK58_Z_P_7290017894911_1.png",
+      "score": 46,
+      "grade": "D",
+      "insightLine": "54% שיבולת שועל מלאה, 7 גרם סיבים — 8.9 גרם חלבון.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 389.0,
+          "protein": 8.9,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 7.0,
+          "sodium": 76.0
+        },
+        "ingredients": "קמח שיבולת שועל מלאה (54%)n(מכיל גלוטן), סולת תירס, סוכר קנים,nסירופ גלוקוז, אבקת תמרים, סירופ אגבה,nמתפיח: סידן פחמתי, טעם טבעי וניל וקרמל,nמלח, נוגד חמצון: תמצית טוקופרול.nסך הדגנים במוצר: 76%n71% מסך הדגנים במוצר הינם שיבולת שועל מלאה. ערכים תזונתיים 100 גרם 7 גרם סיבים תזונתיים 22 גרם סוכרים מתוך פחמימות 389 קל אנרגיה 8.9 גרם חלבונים 74 גרם פחמימות 4.7 גרם שומנים 0 מג כולסטרול 76 מג נתרן 0.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 5.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "טבעות עם 54% שיבולת שועל מלאה — 8.9 גרם חלבון ו-7 גרם סיבים. C כי סולת תירס, סירופ גלוקוז ואגבה ברשימה; רמת העיבוד גבוהה משיבולת שועל עבה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017894911",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "Cereal",
+      "grade": "D",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "סוכר הרכיב הראשון — 42.9 גרם ל-100 גרם.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/004/240/010/8153/front_en.5.400.jpg",
+      "confidence": "verified",
+      "rowVerdict": "דגני בוקר שהסוכר הוא הרכיב הראשון בהם — 42.9 גרם ל-100 גרם, כמעט מחצית המשקל, עם צבעי מאכל ברשימה. יורד ל-D כי הסוכר שולט וחלבון של 3.6 גרם בלבד; הדגן המלא שולי.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 392.9,
+          "protein": 3.6,
+          "sugar": 42.9,
+          "fat": 3.6,
+          "fiber": 3.6,
+          "sodium": 453.6
+        },
+        "ingredients": "Sugar, corn flour, wheat flour, whole grain oat flour, corn syrup, salt, contains 1% or less of: calcium carbonate, natural flavor, red 40, yellow 6, yellow 5, blue 1. bht added to preserve freshness. vitamins and minerals: ferric orthophosphate (source of iron), niacinamide (vitamin b3), zinc oxide (source of zinc), thiamin mononitrate (vitamin b1), calcium pantothenate (vitamin b5), pyridoxine hydrochloride (vitamin b6), folic acid.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_42400108153",
+      "_wholeGrainClaim": true,
+      "score": 44,
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E321",
+          "name_he": "BHT — בוטילהידרוקסיטואן",
+          "tier": "contested",
+          "function_he": "מונע חמצון — שמירת טריות שומנים",
+          "explanation_he": "BHT הוא נוגד חמצון סינתטי המשמש למניעת עפשות שומנים. מאושר בריכוזים מסוימים, אך קיימות דאגות מחקריות לגבי צריכה גבוהה; ה-EFSA הנחה לבדיקה מחדש."
+        },
+        {
+          "e_number": "E133",
+          "name_he": "כחול מבריק (Brilliant Blue)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל כחול סינתטי",
+          "explanation_he": "צבע מאכל כחול סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        },
+        {
+          "e_number": "E129",
+          "name_he": "אדום אלורה (Red 40)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל אדום סינתטי",
+          "explanation_he": "צבע מאכל אדום סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        },
+        {
+          "e_number": "E110",
+          "name_he": "סנסט ילו (Yellow 6)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל צהוב-כתום סינתטי",
+          "explanation_he": "צבע מאכל צהוב-כתום סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        },
+        {
+          "e_number": "E102",
+          "name_he": "טרטרזין (Yellow 5)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל צהוב סינתטי",
+          "explanation_he": "צבע מאכל צהוב סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים ולתגובות אלרגיות; מחויב בסימון אזהרה באירופה."
+        }
+      ],
+      "barcode": "42400108153",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "name": "Cheerios",
+      "grade": "D",
+      "_isChildrens": false,
+      "_subpool": "standard_cereal",
+      "insightLine": "שיבולת שועל מלאה 92%, אבל סוכר הרכיב השני.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/590/002/004/6833/front_he.3.400.jpg",
+      "confidence": "verified",
+      "rowVerdict": "צ'יריוס עם 92% קמח שיבולת שועל מלא ו-10.7 גרם חלבון — אבל סוכר הרכיב השני וסירופ סוכר אינברטי אחריו. נשאר ב-D כי הדגן המלא חזק אך הסוכר המוסף מוקדם, ונתוני הסיבים חסרים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383.3,
+          "protein": 10.7,
+          "sugar": 9.0,
+          "fat": 6.0,
+          "fiber": null,
+          "sodium": 286.7
+        },
+        "ingredients": "Nestle A ср Cereal Partners Worldwide Nestlé and General Mills Nestle Good food, Good life רכיבים: קמח שיבולת שועל מלא (מכיל גלוטן) (92%), סוכר, עמילן חיטה (מכיל גלוטן), מינרלים סידן (קלציום קרבונט), ברזל], סירופ סוכר אינברטי, מלח, מווסת חומציות (טריפוטסיום פוספט), מולסה, שמן צמחי, מעכב חמצון (טוקופרולים), ויטמינים [ויטמין C, ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין D]. סן הדגנים במוצר: 92% 100% מסך הדגנים במוצר הינם דגנים מלאים. מידע על רכיבים אלרגניים מכיל גלוטן שיבולת שועל וחיטה. עלול להכיל אגוזים, שקדים וחלב. סימון ב-100 ג' מזן נמנה 30 1* ... | 1&quot; תזונתי 43041005 ! אנרגיה (קלוריות) סך השומנים (ג') מתוכם: חומצות שומן רוויות (ג') 115 383 1.8 0.3 1 طاقة (سعرات حرارية) إجمالي الدهنيات (غم) ومنها: أحماض دهنية مشبعة (غم) חומצות שומן טראנס (ג')| פחות מ-0.5 פחות מ-10.5 di dalla أحماض دهنية غير مشبعة - ترانس اغم) כולסטרול (מ&quot;ג) נתרן (מ&quot;ג) 10 המסתומות ו' 0.5(1) 0 0 86 286 66.5 220 كولسترول (ملغم) ( إجمالي الكربوهيدرات (غم)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "id": "bsip1_cereal_5900020046833",
+      "_wholeGrainClaim": true,
+      "score": 44,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5900020046833",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290017894928",
+      "name": "צדפי דגנים טעם שוקולד",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FKB66_Z_P_7290017894928_1.png",
+      "score": 43,
+      "grade": "D",
+      "insightLine": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 9.6,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 8.5,
+          "sodium": 80.0
+        },
+        "ingredients": "רכיבים: קמח שיבולת שועל מלאה (57%)n(מכיל גלוטן), סולת תירס, סוכר קנים, סירופnאגבה, אבקת חרובים, אבקת קקאו דל שומן,nאבקת תמרים, סי רופ גלוקוז, שמן חמניות,nמתפיח: סידן פחמתי, טעם טבעי וניל וקקאוnמלח, נוגד חמצון: תמצית טוקופרול, אבקת קינמון.nסך הדגנים במוצר: 79% n73% מסך הדגנים במוצר הינם שיבולת שועל מלאה. ערכים תזונתיים 100 גרם 8.5 גרם סיבים תזונתיים 22 גרם סוכרים מתוך פחמימות 397 קל אנרגיה 9.6 גרם חלבונים 72 גרם פחמימות 6 גרם שומנים 0 מג כולסטרול 80 מג נתרן 0.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 5.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "שיבולת שועל מלאה 57% בצורת צדף — 9.6 גרם חלבון ו-8.5 גרם סיבים. C; סירופ אגבה וסוכר קנים ברשימה, ורמת העיבוד הגבוהה מגבילה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017894928",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290017894904",
+      "name": "כדורי דגנים טעם שוקולד",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FJD60_Z_P_7290017894904_1.png",
+      "score": 43,
+      "grade": "D",
+      "insightLine": "57% שיבולת שועל מלאה, 9.6 גרם חלבון — גרסת כדורים.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397.0,
+          "protein": 9.6,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 8.5,
+          "sodium": 80.0
+        },
+        "ingredients": "קמח שיבולת שועל מלאה (57%)n(מכיל גלוטן), סולת תירס, סוכר קנים, סירופnאגבה, אבקת חרובים, אבקת קקאו דל שומן,nאבקת תמרים, סירופ גלוק וז, שמן חמניות,nמתפיח: סידן פחמתי, טעם טבעי וניל וקקאו, מלח,nנוגד חמצון: תמצית טוקופרול, אבקת קינמון.nסך הדגנים במוצר: 79%n73% מ סך הדגנים במוצר הינם שיבולת שועל מלאה. ערכים תזונתיים 100 גרם 8.5 גרם סיבים תזונתיים 22 גרם סוכרים מתוך פחמימות 397 קל אנרגיה 9.6 גרם חלבונים 72 גרם פחמימות 6 גרם שומנים 0 מג כולסטרול 80 מג נתרן 0.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 5.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "כדורי קציר עם אותו הרכב כמו הצדפים — 57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים. C; שיתוף פרופיל עם גרסת הצדף, רמת עיבוד זהה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017894904",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7296073642022",
+      "name": "דגני בוקר טבעות דבש לל\"ג",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PDV50_Z_P_7296073642022_1.png",
+      "score": 43,
+      "grade": "D",
+      "insightLine": "65% גריסי תירס, 1.8 גרם סיבים — הנמוך בין הטבעות.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 360.0,
+          "protein": 5.4,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 1.8,
+          "sodium": 240.0
+        },
+        "ingredients": "גריסי תירס (65%), סוכר, קמח אורז (4%), דבש (4%), סירופ גלוקוז פרוקטוז, שמן לפתית מזוכך, אבקת דקסטרוז, מלח, סירופ תירס, מתחלב (לציטין  סויה) מכיל סויה עלול להכיל אגוזי לוז,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "טבעות ללא גלוטן — 65% גריסי תירס, 4% דבש, 1.8 גרם סיבים בלבד. C; הגרסה ללא גלוטן, אבל הסיבים מהנמוכים בקטגוריה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7296073642022",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_8445291638839",
+      "name": "צ'יריוס טעם דבש ושקדים",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XRC70_Z_P_8445291638839_1.png",
+      "score": 42,
+      "grade": "D",
+      "insightLine": "81.9% דגנים, 92% מהם מלאים — אבל סוכר רכיב שלישי.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 371.0,
+          "protein": 8.3,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 9.4,
+          "sodium": 248.0
+        },
+        "ingredients": "קמח שיבולת שועל מלא (מכיל גלוטן) (30.1%), קמח חיטה מלא (מכיל גלוטן) (28%), סוכר, קמח שעורה מלא (מכיל גלוטן) (17.2%), קמח חיטה (6.6%)  , דבש (2.4%), סירופ סוכר אינברטי, מינרלים (סידן (קלציום קרבונט), ברזל), שמן צמחי, מלח, מולסה, חומרי טעם וריח (מכיל שקדים), מעכב חמצ ון (טוקופרולים), ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין),  ויטמין D).n* סך הדגנים במוצר: 81.9%n 91.9% מסך הדגנים במוצר הינם דגנים מלאים. מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "צ'יריוס עם פרופיל מרשים על הנייר — 81.9% דגנים, 91.9% מהם מלאים, 9.4 גרם סיבים. D כי סוכר הרכיב השלישי, ואריזת הדגנים המלאים לא מציגה פרופיל חלבון מספק (8.3 גרם).",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "8445291638839",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7290112495228",
+      "name": "קורנפלקס דבש",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ORD52_Z_P_7290112495228_1.png",
+      "score": 40,
+      "grade": "D",
+      "insightLine": "79% קמח תירס, דבש 0.7% בלבד — שאר המתיקות מסוכר.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 387.0,
+          "protein": 6.7,
+          "sugar": null,
+          "fat": 0.9,
+          "fiber": null,
+          "sodium": 368.0
+        },
+        "ingredients": "קמח תירס (79%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, דבש (0.7%), מתחלב (E471), סירופ סוכר שרוף, תערובת ויטמינים, ברזל, חומרי טעם  וריח. מאפיינים נוספים ללא צבע וללא משמר מכיל גלוטן שעורה עלול להכיל אגוזי לוז,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קורנפלקס דבש עם 0.7% דבש בפועל — 79% קמח תירס, 6.7 גרם חלבון, 368 מ\"ג נתרן. C; הדבש בשם לא מייצג את הממתיק האמיתי שהוא סוכר.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים של חומצות שומן",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב מרקם ומניעת ייבוש",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים מאוד המיוצרים משמנים צמחיים, המשמשים לשמירה על מרקם אחיד ומניעת פירורת. מאושרים לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290112495228",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_8445290964595",
+      "name": "דגני בוקר קיטקט",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OGQ70_Z_P_8445290964595_1.png",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "31.4% חיטה מלאה, שוקולד חלב 2%, 6 רמות סוכר שונות.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 420.0,
+          "protein": 7.8,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 6.4,
+          "sodium": 148.0
+        },
+        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (31.4%), גריסי תירס (21.7%), סוכר, דקסטרוז, שמנים צמחיים, קמח חיטה (6.1%), אבקת קקאו*, סירופ גלוקוז, עמילן  חיטה, שוקולד חלב (2%), אבקת חלב כחוש, מינרלים (סידן (קלציום קרבונט), ברזל), תמצית לתת שעורה (מכיל גלוטן), אבקת קקאו* מופחת שומן, חו מרי טעם וריח, מלח, חומר מתחלב (לציטין), מעכב חמצון (טוקופרולים), ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנתטונית), ויטמין B2  (ריבופלאבין), ויטמין B6, חומצה פולית).n*סך הדגנים במוצר: 59.2%n53% מסך הדגנים במוצר הינם דגנים מלאיםnמוצקי קקאו בשוקולד חלב – 25 % לפחות מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "קיטקט כדגני בוקר — 31.4% חיטה מלאה אבל גם סוכר, דקסטרוז, גלוקוז וסירופ כמרכיבים שונים. D; הדגן המלא נוכח אבל מוקף ממתיקים ועיבוד גבוה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "8445290964595",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_3387390525960",
+      "name": "דגני בוקר קראנץ'",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XRL60_Z_P_3387390525960_1.png",
+      "score": 37,
+      "grade": "D",
+      "insightLine": "31.5% חיטה מלאה, 12.6% שוקולד, 7.4 גרם חלבון.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 402.0,
+          "protein": 7.4,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 7.2,
+          "sodium": 16.0
+        },
+        "ingredients": "חיטה מלאה (מכיל גלוטן) (31.5% ), קמח אורז (22.7%), סוכר, סמולינת תירס (8.4%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, שמן צמחי, עיסת קק או, סירופ סוכר אינברטי, מינרלים (סידן (קלציום קרבונט), ברזל), חומר מתחלב (לציטין), מולסה, חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצי ן), ויטמין B5 (חומצה פנטותנית), ויטמין B2 (ריבופלאבין), ויטמין B6, ויטמין B1 (תיאמין), חומצה פולית, ויטמין D).rn*סך הדגנים במוצר: 62.6%rn50% מסך הדגנים במוצר הינם דגנים מלאיםrnrn** המוצר מכיל 12.6% שוקולד מריר מאפיינים נוספים מכיל דגנים מלאים מכיל גלוטן חיטה עלול להכיל אגוזים,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "נסטלה קראנץ' עם 12.6% שוקולד מריר — 31.5% חיטה מלאה, 7.4 גרם חלבון ו-7.2 גרם סיבים. D; השוקולד והעיבוד הגבוה מורידים משמעותית למרות הדגן המלא.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "3387390525960",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7296073705574",
+      "name": "ריבועי דגנים עם קינמון",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FED62_Z_P_7296073705574_1.png",
+      "score": 36,
+      "grade": "D",
+      "insightLine": "42% חיטה מלאה, 0.6% קינמון, 320 מ\"ג נתרן.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 440.0,
+          "protein": 6.7,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 6.5,
+          "sodium": 320.0
+        },
+        "ingredients": "קמח חיטה מלאה (מכיל גלוטן) 42%, סוכר לבן, אורז 21%, שמן חמניות, פרוקטוז, מלח, קינמון 0.6%, ויטמינים (ויטמין C, ויטמין B1, ויטמין B2,  ניאצין, ויטמין B6, חומצה פולית, ביוטין, חומצה פנטותנית, ויטמין B12, ויטמין E). מכיל גלוטן חיטה עלול להכיל אגוזי לוז,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "42% חיטה מלאה וקינמון אמיתי — אבל סוכר, פרוקטוז ושמן חמניות אחרי הדגן המלא. יורד ל-C כי 320 מ\"ג נתרן ל-100 גרם — גבוה לדגני בוקר, שרוב מוצריו מתחת ל-100 מ\"ג.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7296073705574",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_884912126115",
+      "name": "דגני גרייט גריינס דייטס",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BQQ48_Z_P_884912126115_1.png",
+      "score": 35,
+      "grade": "D",
+      "insightLine": "65.7% קמח דגנים מלאים, BHT כנוגד חמצון ברשימה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 389.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 7.4,
+          "sodium": 241.0
+        },
+        "ingredients": "מכיל 12 סוגים של ויטמינים ומינרלים.nרכיבים: קמח דגנים (65.7%) (חיטה מלאה, שיבולת שועל, אורז) פירות מיובשים (17.4%) (צימוקים, תמרי ם מיובשים), סוכר חום, פקאן (4%), שמן צמחי, לתת שעורה, מלח, סירופ תירס, מי גבינה, צבע קרמל, מונע חמצון (BHT, E321).nויטמינים ומינרל ים: ברזל, ניאצין (ויטמין B3), תחמוצת אבץ, ויטמין B6, ויטמין A (פלמיטט), ריבופלאבין (ויטמין B-2), תיאמין (ויטמין B-1), חומצה פולית, ו יטמין B-12, ויטמין D. מכיל אגוזי פקאן,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "תערובת דגנים מלאים עם תמרים ופקאן — 65.7% קמח, 7.4 גרם סיבים. D כי BHT (E321) ברשימה — נוגד חמצון שנוי במחלוקת; הציון מגביל בקטגוריה הישראלית.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E321",
+          "name_he": "BHT — בוטילהידרוקסיטואן",
+          "tier": "contested",
+          "function_he": "מונע חמצון — שמירת טריות שומנים",
+          "explanation_he": "BHT הוא נוגד חמצון סינתטי המשמש למניעת עפשות שומנים. מאושר בריכוזים מסוימים, אך קיימות דאגות מחקריות לגבי צריכה גבוהה; ה-EFSA הנחה לבדיקה מחדש."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        }
+      ],
+      "barcode": "884912126115",
+      "source_traceability_status": "resolved"
+    },
+    {
+      "id": "bsip1_cereal_7613030979647",
+      "name": "טריקס דגנים בטעם פירות",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KJO62_Z_P_7613030979647_1.png",
+      "score": 32,
+      "grade": "E",
+      "insightLine": "תווית ילדים ו\"דגנים מלאים\" — 5 גרם חלבון, צבעי מאכל ברשימה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 395.0,
+          "protein": 5.0,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 5.7,
+          "sodium": 287.0
+        },
+        "ingredients": "קמח תירס מלא (35.1%), סמולינת תירס (33.7%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מייצב (גאם-ארביק), מינרלים (סידן (קלציום קרבונט), אבץ , ברזל), חומרי תפיחה (E341iii ,E341), מלח, מווסתי חומציות (E331, E339, E330), חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצין), ויטמין B 5 (חומצה פנטותנית), ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין B1 (תיאמין), חומצה פולית), צבעי מאכל (E133,  אדום אלורה, סנסט ילו).rnrnסך הדגנים במוצר: 68.8%rn51% מסך הדגנים במוצר הינם דגנים מלאים מאפיינים נוספים עשיר בדגנים מלאים עלול להכיל אגוזים,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "טריקס: מוצר ילדים עם תווית דגנים מלאים — אבל צבעי מאכל סינתטיים, סירופ גלוקוז ו-5 גרם חלבון בלבד. D כי הצבעים הסינתטיים והרמת העיבוד הגבוהה בולטים לרעה בקטגוריית ילדים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E133",
+          "name_he": "כחול מבריק (Brilliant Blue)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל כחול סינתטי",
+          "explanation_he": "צבע מאכל כחול סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        },
+        {
+          "e_number": "E129",
+          "name_he": "אדום אלורה (Red 40)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל אדום סינתטי",
+          "explanation_he": "צבע מאכל אדום סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        },
+        {
+          "e_number": "E110",
+          "name_he": "סנסט ילו (Yellow 6)",
+          "tier": "dose-dependent",
+          "function_he": "צבע מאכל צהוב-כתום סינתטי",
+          "explanation_he": "צבע מאכל צהוב-כתום סינתטי. ה-EFSA מצא קשר אפשרי להיפראקטיביות בילדים; מחויב בסימון אזהרה באירופה."
+        }
+      ],
+      "barcode": "7613030979647",
+      "source_traceability_status": "resolved"
+    }
+  ]
+}

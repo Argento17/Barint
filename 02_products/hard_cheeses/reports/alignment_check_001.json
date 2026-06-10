@@ -1,0 +1,80 @@
+{
+  "alignment_check": "bsip2_alignment_hard_cheeses",
+  "run_id": "run_hard_cheeses_001",
+  "engine_flags": {
+    "BARI_RECAL_P0": "on"
+  },
+  "archetypes_scored": {
+    "archetype_1_minimal_aged": {
+      "pid": "bsip1_hardcheese_7290000062433",
+      "name": "עמק גאודה שנה 28%",
+      "nova": 2,
+      "score": 70.8,
+      "grade": "B",
+      "caps_applied": [],
+      "penalties_applied": [
+        "HP_FAT_SODIUM_COMBO"
+      ],
+      "subpool": "yellow"
+    },
+    "archetype_2_light_stabilizers": {
+      "pid": "bsip1_hardcheese_7290000062495",
+      "name": "גבינה צהובה מופחת שומן 16%",
+      "nova": 3,
+      "score": 39.0,
+      "grade": "D",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "penalties_applied": [
+        "HP_FAT_SODIUM_COMBO"
+      ],
+      "subpool": "yellow_light"
+    },
+    "archetype_3_processed_slices": {
+      "pid": "bsip1_hardcheese_7290000900018",
+      "name": "גבינה אמריקאית מעובדת לסנדוויץ",
+      "nova": 3,
+      "score": 32.0,
+      "grade": "E",
+      "caps_applied": [
+        "ISRAELI_RED_LABELS_2_PLUS",
+        "NOVA_PROXY_3_PROCESSED",
+        "HIGH_SODIUM_700MG_PLUS"
+      ],
+      "penalties_applied": [
+        "LONG_INGREDIENT_LIST",
+        "SEED_OIL_PRESENT",
+        "HP_FAT_SODIUM_COMBO"
+      ],
+      "subpool": "processed"
+    }
+  },
+  "checks": [
+    {
+      "check": "Archetype 1 (minimal aged) in B range (65-82)",
+      "expected": "65-82",
+      "actual": 70.8,
+      "pass": true,
+      "severity": "OK"
+    },
+    {
+      "check": "Archetype 2 (light+stabilizers) does not outscore archetype 1 (minimal)",
+      "expected": "score <= 70.8 + 3",
+      "actual": 39.0,
+      "pass": true,
+      "severity": "OK"
+    },
+    {
+      "check": "Archetype 3 (processed) is lowest scorer",
+      "expected": "score < min(70.8, 39.0)",
+      "actual": 32.0,
+      "pass": true,
+      "severity": "OK"
+    }
+  ],
+  "criticals": 0,
+  "alignment_result": "PASS",
+  "proceed_to_full_scoring": true
+}

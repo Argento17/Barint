@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { OliveOilArticleHero } from "@/components/blog/olive-oil-article-hero";
@@ -83,6 +83,87 @@ function BuyingGuideCard({
   );
 }
 
+/**
+ * ScienceSection — renders the polyphenol/freshness narrative with formal citations.
+ * Template note: any article with a "science" section in its content object
+ * can render this component pattern. Props are the typed science object from
+ * the content file.
+ */
+function ScienceSection({
+  science,
+}: {
+  science: typeof oliveOilArticle.science;
+}) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <section id="science" className="border-t border-black/6 bg-[#FFFFFF] py-14 md:py-20">
+      <HomeContainer>
+        <div className="mx-auto max-w-3xl">
+          <header className="mb-8 text-right">
+            <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#7A9450]/85">
+              מדע הרעננות
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tighter text-[#111318] md:text-4xl">
+              {science.title}
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-[#4E5663]">
+              {science.subtitle}
+            </p>
+          </header>
+
+          <div className="space-y-5">
+            {science.paragraphs.map((p, i) => (
+              <motion.p
+                key={i}
+                initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.45, delay: i * 0.04 }}
+                className="text-base leading-[1.85] text-[#111318] md:text-lg"
+              >
+                {p}
+              </motion.p>
+            ))}
+          </div>
+
+          {/* Formal citations */}
+          <div className="mt-10 rounded-[1rem] border border-black/[0.06] bg-[#F7F7F2] px-5 py-5">
+            <p className="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#7A817C]">
+              מקורות
+            </p>
+            <ol className="space-y-3">
+              {science.citations.map((c) => (
+                <li key={c.id} className="flex gap-3 text-right">
+                  <span className="mt-0.5 shrink-0 font-mono text-[0.65rem] font-bold text-[#7A9450]">
+                    [{c.id}]
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold leading-relaxed text-[#111318]">
+                      {c.short}
+                    </p>
+                    <p className="mt-0.5 text-[0.65rem] leading-relaxed text-[#7A817C]">
+                      {c.claim}
+                    </p>
+                    <a
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#1F8F6A] hover:underline"
+                    >
+                      קישור למקור
+                      <ExternalLink className="size-3" aria-hidden />
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </HomeContainer>
+    </section>
+  );
+}
+
 function RecentArticleCard({
   href,
   title,
@@ -143,10 +224,72 @@ export function OliveOilArticle() {
           </div>
         </HomeContainer>
 
-        <HomeContainer className="pb-4">
+        {/* Science of freshness — polyphenols, IOC standard, citations */}
+        <ScienceSection science={article.science} />
+
+        {/* Extra virgin guarantees — what the grade means and doesn't mean */}
+
+        <section id="extra-virgin" className="border-t border-black/6 bg-[#F7F7F2] py-14 md:py-20">
+          <HomeContainer>
+            <div className="mx-auto max-w-3xl">
+              <header className="mb-8 text-right">
+                <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#7A9450]/85">
+                  מה הדרגה אומרת
+                </p>
+                <h2 className="mt-2 text-3xl font-extrabold tracking-tighter text-[#111318] md:text-4xl">
+                  {article.extraVirginGuarantees.title}
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-[#4E5663]">
+                  {article.extraVirginGuarantees.subtitle}
+                </p>
+              </header>
+              <div className="space-y-5">
+                {article.extraVirginGuarantees.paragraphs.map((p, i) => (
+                  <p
+                    key={i}
+                    className="text-base leading-[1.85] text-[#111318] md:text-lg"
+                  >
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </HomeContainer>
+        </section>
+
+        <HomeContainer className="pb-4 pt-10 md:pt-12">
           <div className="mx-auto max-w-3xl">
             <InsightBlock quote={article.editorialInsights[0]} index={0} />
           </div>
+        </HomeContainer>
+
+        {/* What we checked — methodology (up front so readers know the basis before findings) */}
+        <HomeContainer className="py-10 md:py-12">
+          <section
+            id="methodology"
+            className="mx-auto max-w-3xl rounded-[1.15rem] border border-black/6 bg-[#FFFFFF]/60 p-6 md:p-8"
+          >
+            <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#7A9450]/85">
+              מה בדקנו
+            </p>
+            <h2 className="mt-2 text-lg font-extrabold text-[#111318]">
+              {article.methodology.title}
+            </h2>
+            <ol className="mt-4 grid gap-3 md:grid-cols-3">
+              {article.methodology.steps.map((step, i) => (
+                <li key={step.title} className="list-none text-sm">
+                  <span className="font-mono text-xs font-bold text-[#7A9450]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="mt-1 font-bold text-[#111318]">{step.title}</p>
+                  <p className="mt-1 leading-relaxed text-[#7A817C]">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-4 text-xs leading-relaxed text-[#7A817C]">
+              {article.methodology.footnote}
+            </p>
+          </section>
         </HomeContainer>
 
         {/* Findings */}
@@ -157,7 +300,7 @@ export function OliveOilArticle() {
           <HomeContainer>
             <header className="mx-auto mb-10 max-w-3xl text-right md:mb-14">
               <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#7A9450]/85">
-                תובנות מהשטח
+                מה מצאנו
               </p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tighter text-[#111318] md:text-4xl">
                 {article.findings.title}
@@ -260,30 +403,6 @@ export function OliveOilArticle() {
                   </p>
                 ))}
               </div>
-            </section>
-
-            {/* Methodology */}
-            <section
-              id="methodology"
-              className="rounded-[1.15rem] border border-black/6 bg-[#FFFFFF]/60 p-6 md:p-8"
-            >
-              <h2 className="text-lg font-extrabold text-[#111318]">
-                {article.methodology.title}
-              </h2>
-              <ol className="mt-4 grid gap-3 md:grid-cols-3">
-                {article.methodology.steps.map((step, i) => (
-                  <li key={step.title} className="list-none text-sm">
-                    <span className="font-mono text-xs font-bold text-[#7A9450]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="mt-1 font-bold text-[#111318]">{step.title}</p>
-                    <p className="mt-1 leading-relaxed text-[#7A817C]">{step.text}</p>
-                  </li>
-                ))}
-              </ol>
-              <p className="mt-4 text-xs leading-relaxed text-[#7A817C]">
-                {article.methodology.footnote}
-              </p>
             </section>
 
             {/* Final CTA */}

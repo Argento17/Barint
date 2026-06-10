@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
@@ -53,6 +53,16 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
   /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends a "פירוט המתודולוגיה" inline link
    *  to /research/glass-box at the end of the methodology footer. When W5 is OFF, byte-identical to HEAD. */
   glassBoxMethodologyLink?: boolean;
+  /**
+   * Optional escape hatch for categories that need custom product rendering (e.g. section
+   * grouping). When provided, replaces the default <ComparisonTable> call entirely.
+   * Receives the filtered product list and the resolved initialExpandedProductId so the
+   * caller can pass them through to its own <ComparisonTable> instances.
+   */
+  renderProducts?: (
+    filteredProducts: BariProductVM[],
+    expandedProductId: string | null
+  ) => React.ReactNode;
 }
 
 /** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
@@ -71,6 +81,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   initialExpandedProductId = null,
   category,
   glassBoxMethodologyLink = false,
+  renderProducts,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -145,15 +156,19 @@ export function ComparisonPage<TFilterId extends string = string>({
         {/* FIX-5: filter boxes hidden until a proper taxonomy is designed. The
             CategoryShelfLenses component is kept in the tree but not rendered. */}
 
-        <ComparisonTable
-          key={expandedProductId ?? "none"}
-          products={filteredProducts}
-          metricSpecs={metricSpecs}
-          showRail
-          initialExpandedProductId={expandedProductId}
-          category={category}
-          suppressPartialBadges={suppressPartialBadges}
-        />
+        {renderProducts ? (
+          renderProducts(filteredProducts, expandedProductId)
+        ) : (
+          <ComparisonTable
+            key={expandedProductId ?? "none"}
+            products={filteredProducts}
+            metricSpecs={metricSpecs}
+            showRail
+            initialExpandedProductId={expandedProductId}
+            category={category}
+            suppressPartialBadges={suppressPartialBadges}
+          />
+        )}
 
         <MethodologyFooter lines={[...methodologyLines]} wide glassBoxMethodologyLink={glassBoxMethodologyLink} />
       </div>

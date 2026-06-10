@@ -124,13 +124,13 @@ _ADDITIVES: list[Identity] = [
     Identity(
         canonical="bha", e_number="E320",
         additive_class="antioxidant_named", is_named_concern=True,
-        synonyms_he=("בוטילציאניזול", "בוטילטד הידרוקסיאניזול", "BHA", "E320", "E 320"),
+        synonyms_he=("בוטילציאניזול", "בוטילטד הידרוקסיאניזול", "BHA", "E320", "E-320", "E 320"),
     ),
     Identity(
         canonical="bht", e_number="E321",
         # NOT a named concern — F4 explicitly differentiates BHT from BHA.
         additive_class="antioxidant_named", is_named_concern=False,
-        synonyms_he=("בוטילהידרוקסיטולואן", "בוטילטד הידרוקסיטולואן", "BHT", "E321", "E 321"),
+        synonyms_he=("בוטילהידרוקסיטולואן", "בוטילטד הידרוקסיטולואן", "BHT", "E321", "E-321", "E 321"),
     ),
 ]
 

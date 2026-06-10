@@ -6,6 +6,13 @@ TASK-191 Phase B — builds corrected frontend JSON for M2 owner preview.
 
 Do NOT copy to bari-web/src/data/comparisons/ — that requires M2 owner approval (Phase C).
 
+Image enrichment pass (2026-06-07):
+  - Step 1: promote bsip1_product["image_urls"][0] when image_url is absent
+  - Step 2: OFF client lookup for any barcode still missing an image after Step 1
+  All 21 non-Shufersal barcodes (17 yohananof + 4 carrefour) confirmed OFF misses;
+  their Israeli-market EAN-13s are not catalogued in OFF. imageUrl remains null for
+  these products until a content enrichment pass (M3) sources them directly.
+
 Input:  BSIP2 traces from butter_run_003
 Output: C:\\Bari\\02_products\\butter\\butter_frontend_v2.json
 """
@@ -15,6 +22,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # C:\Bari on path
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BSIP2_DIR    = Path(r"C:\Bari\02_products\butter\bsip2_outputs\butter_run_003\products")
@@ -37,13 +45,22 @@ BARCODE_IMAGES: dict[str, str] = {
     "7290108507997": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MCP52_Z_P_7290108507997_1.png",
     "7290116932033": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OFY52_Z_P_7290116932033_1.png",
     "7290117263563": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OFY52_Z_P_7290117263563_1.png",
-    # Confirmed products from BSIP0 - may not have Shufersal URLs; use null for now
+    # OFF-sourced images (open_food_facts client, image enrichment pass 2026-06-07):
+    # NOTE: All 21 non-Shufersal barcodes (17 yohananof + 4 carrefour) were queried
+    # against OFF and returned not-found. No OFF entries added here. The Israeli-market
+    # EAN-13s for Kerrygold, Anchor, Président, Lurpak, Tara, Yotvata, Isogal and the
+    # Carrefour-exclusive French butters are not catalogued in OFF's database.
+    # These remain null pending M3 content enrichment.
 }
 
 # Subtype classification: derived from name analysis during BSIP0
 # salted = contains מלוח/מלח; additive_spread = known barcode; cultured = מחמצת/תרבית
 # plain = everything else (unsalted)
 ADDITIVE_SPREAD_BARCODES = {"7290108507997"}
+
+# Runtime OFF image cache — populated during build to avoid duplicate API calls.
+# Map barcode → image_url string (empty string = confirmed OFF miss, None = not yet queried).
+_off_image_cache: dict[str, str] = {}
 
 
 def classify_subtype(name_he: str, barcode: str, ingredient_list: list) -> str:
@@ -272,15 +289,36 @@ def build_product_vm(trace: dict, bsip1_lookup: dict) -> dict:
     # Subtype classification
     subtype = classify_subtype(name_he, barcode, ingredient_list)
 
-    # Image URL
+    # Image URL — resolution cascade (four levels):
+    # 1. Hardcoded BARCODE_IMAGES dict (Shufersal CDN + any OFF-sourced entries)
+    # 2. BSIP1 image_url field (singular — populated by Shufersal scraper)
+    # 3. BSIP1 image_urls list (plural — populated by OFF enrichment in BSIP1 pipeline)
+    # 4. Runtime OFF client lookup (catches any barcode not covered by levels 1-3)
+    # NOTE (2026-06-07): levels 3 & 4 currently yield nothing — all 21 non-Shufersal
+    # barcodes have empty image_urls and are OFF misses. Code is correct; data gap logged.
     image_url = BARCODE_IMAGES.get(barcode)
     if not image_url:
-        # Attempt Shufersal CDN pattern for known barcodes
         bsip1_product = bsip1_lookup.get(barcode, {})
+        # Level 2: BSIP1 singular image_url
         image_url = bsip1_product.get("image_url") or bsip1_product.get("imageUrl")
-        if not image_url and retailer == "shufersal":
-            # Shufersal CDN fallback pattern (may 404 for some products)
-            image_url = None  # Content Agent will source images at M2
+        if not image_url:
+            # Level 3: BSIP1 image_urls list (OFF multi-image from enrichment)
+            image_urls_list = bsip1_product.get("image_urls") or []
+            if image_urls_list:
+                image_url = image_urls_list[0]
+        if not image_url:
+            # Level 4: Runtime OFF client lookup for barcodes not in any prior source
+            off_result = _off_image_cache.get(barcode)
+            if off_result is None:
+                try:
+                    from integrations.clients.open_food_facts import get_product as off_get
+                    prod = off_get(barcode, timeout=20)
+                    _off_image_cache[barcode] = prod.image_url or ""
+                    off_result = _off_image_cache[barcode]
+                except Exception:
+                    _off_image_cache[barcode] = ""
+                    off_result = ""
+            image_url = off_result or None
 
     # Ingredient text for expansion
     ingredient_text = ", ".join(ingredient_list) if ingredient_list else None
@@ -367,6 +405,12 @@ def main():
     # Sort by score descending, then alphabetically
     products.sort(key=lambda p: (-(p["score"] or -1), p["name"] or ""))
 
+    # Image coverage report
+    with_image    = [p for p in products if p.get("imageUrl")]
+    without_image = [p for p in products if not p.get("imageUrl")]
+    off_hits      = [bc for bc, url in _off_image_cache.items() if url]
+    off_misses    = [bc for bc, url in _off_image_cache.items() if not url]
+
     output = {
         "_meta": {
             "generated":     datetime.now(timezone.utc).isoformat(),
@@ -382,8 +426,20 @@ def main():
                 "EV-047 + EV-048 + EV-050 all active. "
                 "39 products, 16 confirmed (label-scanned) + 23 candidate (FDC/OFF enriched). "
                 "No 0/E products. TRANS_FAT_VETO suppressed for all whole_food_fat products (no PHVO). "
+                f"Image enrichment pass 2026-06-07: {len(with_image)}/39 have imageUrl. "
+                f"OFF client queried {len(_off_image_cache)} barcodes: "
+                f"{len(off_hits)} hits, {len(off_misses)} misses. "
+                "All 21 non-Shufersal barcodes (17 yohananof + 4 carrefour) confirmed OFF misses — "
+                "Israeli-market EAN-13s not in OFF DB; null imageUrl pending M3 content enrichment. "
                 "DO NOT DEPLOY without M2 owner approval (Phase C decision)."
             ),
+            "image_coverage": {
+                "with_image":    len(with_image),
+                "without_image": len(without_image),
+                "off_hits":      len(off_hits),
+                "off_misses":    len(off_misses),
+                "missing_barcodes": [p["barcode"] for p in without_image],
+            },
             "deployment_status": "DRAFT — M2 owner approval required before bari-web copy",
             "build_errors":  errors,
         },
@@ -395,6 +451,13 @@ def main():
     print(f"\n[butter_frontend_v2] Done.")
     print(f"  Products: {len(products)}  Scored: {scored}")
     print(f"  Output: {OUT_PATH}")
+    print(f"\n  Image coverage: {len(with_image)}/{len(products)} have imageUrl")
+    print(f"  OFF runtime lookups: {len(_off_image_cache)} queried, "
+          f"{len(off_hits)} hits, {len(off_misses)} misses")
+    if without_image:
+        print(f"  Missing images ({len(without_image)}):")
+        for p in without_image:
+            print(f"    {p['barcode']} [{p['retailer']}] {p['name']}")
     if errors:
         print(f"  Errors ({len(errors)}): {errors}")
 

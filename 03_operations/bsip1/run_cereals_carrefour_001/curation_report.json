@@ -1,18 +1,19 @@
 {
  "run_id": "run_cereals_carrefour_001",
  "retailer": "carrefour",
- "generated": "2026-06-05T11:16:18.940758+00:00",
+ "generated": "2026-06-07T06:04:47.539962+00:00",
  "source_file": "C:\\Bari\\02_products\\breakfast_cereals\\bsip0_outputs\\multiretailer\\carrefour_bsip0_raw_20260605T104358.json",
  "raw_count": 217,
- "included_count": 54,
- "excluded_count": 163,
+ "included_count": 49,
+ "excluded_count": 168,
  "exclusion_tally": {
   "non_cereal_excluded": 22,
-  "no_usable_nutrition": 48,
+  "no_usable_nutrition": 45,
   "bar_excluded_snack_overlap": 35,
   "chocolate_confection_excluded": 4,
   "not_cereal": 48,
   "energy_implausible_for_dry_cereal": 5,
+  "plain_oats_out_of_scope": 8,
   "drink_excluded": 1
  },
  "ev_045c_fitness_flag_count": 6,
@@ -99,17 +100,6 @@
     "savory_descriptor_in_name",
     "fat_ge_13_and_no_sweet_signal"
    ]
-  },
-  {
-   "barcode": "7290008263641",
-   "name": "קוואקר עדין אורגני",
-   "subtype": "oat_cereal",
-   "has_ingredients": false,
-   "nutrition_fields": 7,
-   "data_sufficiency": "sufficient",
-   "subpool": "standard_cereal",
-   "ev_045c_flag": false,
-   "ev_045c_triggers": null
   },
   {
    "barcode": "4005528115218",
@@ -284,39 +274,6 @@
    "nutrition_fields": 8,
    "data_sufficiency": "sufficient",
    "subpool": "granola",
-   "ev_045c_flag": false,
-   "ev_045c_triggers": null
-  },
-  {
-   "barcode": "7290008263597",
-   "name": "קוואקר אורגני",
-   "subtype": "oat_cereal",
-   "has_ingredients": false,
-   "nutrition_fields": 7,
-   "data_sufficiency": "sufficient",
-   "subpool": "standard_cereal",
-   "ev_045c_flag": false,
-   "ev_045c_triggers": null
-  },
-  {
-   "barcode": "7290000480107",
-   "name": "שיבולת שועל להכנה מהירה",
-   "subtype": "oat_cereal",
-   "has_ingredients": false,
-   "nutrition_fields": 8,
-   "data_sufficiency": "sufficient",
-   "subpool": "standard_cereal",
-   "ev_045c_flag": false,
-   "ev_045c_triggers": null
-  },
-  {
-   "barcode": "7290000480442",
-   "name": "שיבולת שועל הכנה מהירה",
-   "subtype": "oat_cereal",
-   "has_ingredients": false,
-   "nutrition_fields": 8,
-   "data_sufficiency": "sufficient",
-   "subpool": "standard_cereal",
    "ev_045c_flag": false,
    "ev_045c_triggers": null
   },
@@ -628,17 +585,6 @@
    ]
   },
   {
-   "barcode": "7290017068985",
-   "name": "שיבולת שועל מלאה עבה",
-   "subtype": "oat_cereal",
-   "has_ingredients": false,
-   "nutrition_fields": 6,
-   "data_sufficiency": "sufficient",
-   "subpool": "standard_cereal",
-   "ev_045c_flag": false,
-   "ev_045c_triggers": null
-  },
-  {
    "barcode": "5900020041142",
    "name": "קורנפלקס פיטנס",
    "subtype": "cornflakes",
@@ -826,6 +772,11 @@
    "reason": "no_usable_nutrition"
   },
   {
+   "barcode": "7290008263641",
+   "name": "קוואקר עדין אורגני",
+   "reason": "plain_oats_out_of_scope"
+  },
+  {
    "barcode": "8410076602251",
    "name": "Crunchy Oatmeal And Chocolate Bar",
    "reason": "bar_excluded_snack_overlap"
@@ -948,7 +899,7 @@
   {
    "barcode": "7290010153541",
    "name": "קוואקר מהיר להכנה מי",
-   "reason": "no_usable_nutrition"
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "7290118426530",
@@ -958,7 +909,7 @@
   {
    "barcode": "7290113194946",
    "name": "קוואקר פלוס בתוספת צ",
-   "reason": "no_usable_nutrition"
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "7394376621451",
@@ -1041,6 +992,11 @@
    "reason": "non_cereal_excluded"
   },
   {
+   "barcode": "7290008263597",
+   "name": "קוואקר אורגני",
+   "reason": "plain_oats_out_of_scope"
+  },
+  {
    "barcode": "7290100659090",
    "name": "חטיף דגנים תמרים וקינמון",
    "reason": "bar_excluded_snack_overlap"
@@ -1069,6 +1025,16 @@
    "barcode": "8423207207362",
    "name": "Slimdelice",
    "reason": "not_cereal"
+  },
+  {
+   "barcode": "7290000480107",
+   "name": "שיבולת שועל להכנה מהירה",
+   "reason": "plain_oats_out_of_scope"
+  },
+  {
+   "barcode": "7290000480442",
+   "name": "שיבולת שועל הכנה מהירה",
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "7290103700386",
@@ -1416,9 +1382,14 @@
    "reason": "bar_excluded_snack_overlap"
   },
   {
+   "barcode": "7290017068985",
+   "name": "שיבולת שועל מלאה עבה",
+   "reason": "plain_oats_out_of_scope"
+  },
+  {
    "barcode": "7290017068978",
    "name": "שיבולת שועל מלאה להכ",
-   "reason": "no_usable_nutrition"
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "8431876289558",

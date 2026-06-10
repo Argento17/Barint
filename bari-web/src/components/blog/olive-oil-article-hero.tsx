@@ -32,21 +32,21 @@ export function OliveOilArticleHero() {
 
           <div className="mt-6 flex gap-8 border-t border-black/6 pt-5">
             <div>
-              <p className="text-2xl font-extrabold tracking-tight text-[#111318]">12</p>
+              <p className="text-2xl font-extrabold tracking-tight text-[#111318]">13</p>
               <p className="mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">
-                מותגים · 4 רשתות
+                מוצרים · מדף שופרסל
               </p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold tracking-tight text-[#C0392B]">0 מתוך 12</p>
+              <p className="text-2xl font-extrabold tracking-tight text-[#C0392B]">0 מתוך 13</p>
               <p className="mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">
                 מצהירים על תאריך קציר
               </p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold tracking-tight text-[#111318]">4</p>
+              <p className="text-2xl font-extrabold tracking-tight text-[#111318]">0 מתוך 13</p>
               <p className="mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">
-                רשתות נסרקו
+                מחזיקים ב-PDO / PGI
               </p>
             </div>
           </div>

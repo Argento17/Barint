@@ -19,6 +19,7 @@ export function ComparisonTable({
   metricSpecs,
   /** Desktop page hosts the side band rail; phone-frame pages omit it. */
   showRail = false,
+  showRank = true,
   initialExpandedProductId = null,
   category,
   suppressPartialBadges = false,
@@ -26,6 +27,8 @@ export function ComparisonTable({
   products: BariProductVM[];
   metricSpecs: readonly MetricSpec[];
   showRail?: boolean;
+  /** When false, rank numbers are not rendered (useful when ordering carries no signal). */
+  showRank?: boolean;
   initialExpandedProductId?: string | null;
   /** Category slug passed through to analytics context in AdditivePanel. */
   category?: string;
@@ -133,7 +136,7 @@ export function ComparisonTable({
             ) : null}
             <ComparisonRow
               product={product}
-              rank={index + 1}
+              rank={showRank ? index + 1 : 0}
               open={open.has(product.id)}
               onToggle={onToggle}
               metricSpecs={metricSpecs}

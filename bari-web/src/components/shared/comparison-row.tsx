@@ -152,7 +152,7 @@ export const ComparisonRow = memo(function ComparisonRow({
         onKeyDown={onKeyDown}
       >
         <span className="bari-cmp-rank bari-mono" aria-hidden>
-          {rank}
+          {rank > 0 ? rank : null}
         </span>
         <span className="bari-cmp-thumbcell">
           <BariProductThumbnail product={product} size="fill" />

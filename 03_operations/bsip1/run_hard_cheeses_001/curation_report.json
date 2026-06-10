@@ -1,0 +1,297 @@
+{
+  "run_id": "run_hard_cheeses_001",
+  "generated": "2026-06-07T09:00:19.326670+00:00",
+  "source_retailers": [
+    "shufersal",
+    "yohananof",
+    "carrefour",
+    "supplementary"
+  ],
+  "raw_count_per_retailer": {
+    "shufersal": 22,
+    "yohananof": 18,
+    "carrefour": 20,
+    "supplementary": 14
+  },
+  "raw_total": 74,
+  "post_dedup_count": 37,
+  "sufficient_count": 37,
+  "insufficient_count": 0,
+  "insufficient_product_ids": [],
+  "ingredient_coverage": "37/37",
+  "subpool_distribution": {
+    "yellow": 15,
+    "yellow_light": 4,
+    "bulgarian": 7,
+    "tzfatit": 4,
+    "hard_grating": 3,
+    "processed": 4
+  },
+  "nova_distribution": {
+    "NOVA_1": 26,
+    "NOVA_3": 7,
+    "NOVA_4": 4
+  },
+  "dual_fat_label_products": {
+    "count": 33,
+    "note": "Products where both fat_per_100g and fat_in_dry_matter_pct appear on label. Scoring uses fat_per_100g only.",
+    "products": [
+      {
+        "barcode": "7290000062419",
+        "name": "עמק צהוב 28% בלוק",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062426",
+        "name": "עמק צהוב 9% מופחת שומן",
+        "fat_per_100g": 9.0,
+        "fat_in_dry_matter_pct": 18.0,
+        "note": "Both values on label: fat_per_100g=9.0g, fat_in_dry_matter_pct=18.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062433",
+        "name": "עמק גאודה שנה 28%",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062440",
+        "name": "גאודה גרנד פרמייר 30%",
+        "fat_per_100g": 30.0,
+        "fat_in_dry_matter_pct": 48.0,
+        "note": "Both values on label: fat_per_100g=30.0g, fat_in_dry_matter_pct=48.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062457",
+        "name": "אמנטל 29% גד",
+        "fat_per_100g": 29.0,
+        "fat_in_dry_matter_pct": 44.0,
+        "note": "Both values on label: fat_per_100g=29.0g, fat_in_dry_matter_pct=44.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290010644743",
+        "name": "גבינה בולגרית 16%",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 30.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=30.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290010644750",
+        "name": "גבינה בולגרית 5% מופחת שומן",
+        "fat_per_100g": 5.0,
+        "fat_in_dry_matter_pct": 12.0,
+        "note": "Both values on label: fat_per_100g=5.0g, fat_in_dry_matter_pct=12.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000425009",
+        "name": "גבינה צפתית 5%",
+        "fat_per_100g": 5.0,
+        "fat_in_dry_matter_pct": 14.0,
+        "note": "Both values on label: fat_per_100g=5.0g, fat_in_dry_matter_pct=14.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000425016",
+        "name": "גבינה צפתית 16%",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 32.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=32.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062464",
+        "name": "פרמזן מגורר תנובה",
+        "fat_per_100g": 30.0,
+        "fat_in_dry_matter_pct": 35.0,
+        "note": "Both values on label: fat_per_100g=30.0g, fat_in_dry_matter_pct=35.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062471",
+        "name": "פרמזן אמיתי 32% מיובא",
+        "fat_per_100g": 32.0,
+        "fat_in_dry_matter_pct": 38.0,
+        "note": "Both values on label: fat_per_100g=32.0g, fat_in_dry_matter_pct=38.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290110178901",
+        "name": "פרוסות צהובות עמק 28%",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290110178918",
+        "name": "פרוסות מופחת שומן עמק 9%",
+        "fat_per_100g": 9.0,
+        "fat_in_dry_matter_pct": 18.0,
+        "note": "Both values on label: fat_per_100g=9.0g, fat_in_dry_matter_pct=18.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "8866972",
+        "name": "גבינה גרוויר 31%",
+        "fat_per_100g": 31.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=31.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062488",
+        "name": "גבינה בולגרית 16% גד",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 30.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=30.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290019866105",
+        "name": "עמק פרוסות מיוחדות גאודה",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 44.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=44.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290010644767",
+        "name": "גבינה בולגרית 16% ארוז",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 30.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=30.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062495",
+        "name": "גבינה צהובה מופחת שומן 16%",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 28.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=28.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062501",
+        "name": "עמק בלוק 28% שטראוס",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062518",
+        "name": "גבינה צפתית מסורתית 20%",
+        "fat_per_100g": 20.0,
+        "fat_in_dry_matter_pct": 40.0,
+        "note": "Both values on label: fat_per_100g=20.0g, fat_in_dry_matter_pct=40.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290010644774",
+        "name": "גבינה בולגרית עיזים 16%",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 30.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=30.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290010644781",
+        "name": "פרמזן מגורד דינה",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 34.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=34.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062525",
+        "name": "עמק 28% מיני עגול",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062532",
+        "name": "גאודה אדום 30% שטראוס",
+        "fat_per_100g": 30.0,
+        "fat_in_dry_matter_pct": 48.0,
+        "note": "Both values on label: fat_per_100g=30.0g, fat_in_dry_matter_pct=48.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062549",
+        "name": "גאודה פרוסות 28% שטראוס",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 44.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=44.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062556",
+        "name": "גבינה צהובה מופחת 9% תנובה פרוסות",
+        "fat_per_100g": 9.0,
+        "fat_in_dry_matter_pct": 18.0,
+        "note": "Both values on label: fat_per_100g=9.0g, fat_in_dry_matter_pct=18.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062563",
+        "name": "גבינה בולגרית 16% שטראוס בלוק",
+        "fat_per_100g": 16.0,
+        "fat_in_dry_matter_pct": 30.0,
+        "note": "Both values on label: fat_per_100g=16.0g, fat_in_dry_matter_pct=30.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062570",
+        "name": "גבינה בולגרית 5% שטראוס",
+        "fat_per_100g": 5.0,
+        "fat_in_dry_matter_pct": 12.0,
+        "note": "Both values on label: fat_per_100g=5.0g, fat_in_dry_matter_pct=12.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000425023",
+        "name": "גבינה צפתית 28% שמן מלא",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 50.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=50.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "3256228310201",
+        "name": "אמנטל מיובא צרפת 28%",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 43.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=43.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062594",
+        "name": "מונסטר צהוב 30% גד",
+        "fat_per_100g": 30.0,
+        "fat_in_dry_matter_pct": 47.0,
+        "note": "Both values on label: fat_per_100g=30.0g, fat_in_dry_matter_pct=47.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062601",
+        "name": "קולבי גד 28%",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      },
+      {
+        "barcode": "7290000062618",
+        "name": "גאודה 28% ארוז מהדרין",
+        "fat_per_100g": 28.0,
+        "fat_in_dry_matter_pct": 45.0,
+        "note": "Both values on label: fat_per_100g=28.0g, fat_in_dry_matter_pct=45.0%. Scoring uses fat_per_100g only per TASK-215."
+      }
+    ]
+  },
+  "subpool_merge_decisions": [
+    {
+      "decision": "hard_grating retained as separate sub-pool",
+      "count": 3,
+      "meets_threshold": true,
+      "note": "3+ products (Parmesan grated tenuva, Parmesan block imported, previously-seen Parmesan variants). Retained."
+    },
+    {
+      "decision": "processed retained as sub-pool",
+      "count": 4,
+      "meets_threshold": true,
+      "note": "Processed cheese slices distinctly different from natural cheese. Retained as sub-pool."
+    },
+    {
+      "decision": "tzfatit retained as sub-pool",
+      "count": 4,
+      "meets_threshold": true,
+      "note": "3 tzfatit products (5%, 16%, 20%). Retained."
+    }
+  ],
+  "gate_checks": {
+    "minimum_corpus_30_products": true,
+    "ingredient_coverage_threshold_15pct": true,
+    "ingredient_coverage_actual_pct": 100.0
+  }
+}

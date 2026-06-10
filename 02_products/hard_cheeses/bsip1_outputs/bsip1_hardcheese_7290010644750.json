@@ -1,0 +1,75 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "canonical_product_id": "bsip1_hardcheese_7290010644750",
+  "barcode": "7290010644750",
+  "canonical_name_he": "גבינה בולגרית 5% מופחת שומן",
+  "brand": "תנובה",
+  "weight_g": 250,
+  "category": "hard_cheeses",
+  "bsip_cheese_subpool": "bulgarian",
+  "source_retailers": [
+    "shufersal",
+    "yohananof"
+  ],
+  "retailer_prices": {
+    "shufersal": 16.9,
+    "yohananof": 16.9
+  },
+  "image_url": "https://d226b0iufwcjmj.cloudfront.net/catalog/product/7/2/7290010644750.jpg",
+  "fat_per_100g_scored": 5.0,
+  "fat_in_dry_matter_pct": 12.0,
+  "both_fat_values_on_label": true,
+  "fat_label_documentation": "Both values on label: fat_per_100g=5.0g, fat_in_dry_matter_pct=12.0%. Scoring uses fat_per_100g only per TASK-215.",
+  "energy_kcal": 120.0,
+  "fat_g": 5.0,
+  "fat_saturated_g": 2.5,
+  "protein_g": 14.0,
+  "carbohydrates_g": 1.5,
+  "sugars_g": 1.5,
+  "sodium_mg": 900.0,
+  "calcium_mg": 330.0,
+  "ingredients_text_he": "חלב פסטורי מופחת שומן, עמילן מתוקן (E1442), מלח, חומרי ייצוב (E407), תרביות חיידקים, אנזים קימוסין",
+  "ingredient_count": 8,
+  "ingredient_text_quality": "good",
+  "nova_proxy": 3,
+  "nova_confidence": 0.8,
+  "nova_confidence_band": "high",
+  "nova_notes": [
+    "modified_starch_or_stabilizers_detected: NOVA 3 processed"
+  ],
+  "detected_additives": [
+    {
+      "e_number": "E407",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "E1442",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "modified_starch",
+      "name_he": "עמילן מתוקן",
+      "detected_in": "ingredients_text_he"
+    }
+  ],
+  "additive_count": 3,
+  "data_sufficiency": "sufficient",
+  "bsip1_trust_level": "high",
+  "bsip1_trust_score": 0.85,
+  "bsip1_risk_flags": [],
+  "nutrition_consistency_status": "consistent",
+  "consistency_checks": {
+    "sugar_le_carbs": true,
+    "satfat_le_fat": true,
+    "kcal_plausible": true,
+    "macros_plausible": true
+  },
+  "provenance": {
+    "source": "il_prices+open_food_facts",
+    "fetched_at": "2026-06-07T08:00:00Z",
+    "client_version": "il_prices/1.2 + off/2.1",
+    "verification_status": "candidate"
+  },
+  "enrichment_timestamp": "2026-06-07T08:58:31.038444+00:00",
+  "run_id": "run_hard_cheeses_001"
+}

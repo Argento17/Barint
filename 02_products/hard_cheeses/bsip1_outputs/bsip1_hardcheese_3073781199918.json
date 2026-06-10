@@ -1,0 +1,95 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_hardcheese_3073781199918",
+  "barcode": "3073781199918",
+  "canonical_name_he": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
+  "brand": null,
+  "weight_g": null,
+  "category": "hard_cheeses",
+  "bsip_cheese_subpool": "yellow",
+  "source_retailers": [
+    "yohananof"
+  ],
+  "retailer_prices": {
+    "yohananof": null
+  },
+  "image_url": null,
+  "fat_per_100g_scored": 24.0,
+  "fat_in_dry_matter_pct": null,
+  "both_fat_values_on_label": false,
+  "fat_label_documentation": null,
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 305.0,
+    "fat_g": 24.0,
+    "fat_saturated_g": 16.0,
+    "fat_trans_g": 1.0,
+    "sodium_mg": 710.0,
+    "carbohydrates_g": 0.1,
+    "sugars_g": 0.1,
+    "dietary_fiber_g": null,
+    "protein_g": 23.0
+  },
+  "energy_kcal": 305.0,
+  "fat_g": 24.0,
+  "fat_saturated_g": 16.0,
+  "fat_trans_g": 1.0,
+  "protein_g": 23.0,
+  "carbohydrates_g": 0.1,
+  "sugars_g": 0.1,
+  "sodium_mg": 710.0,
+  "dietary_fiber_g": null,
+  "calcium_mg": null,
+  "ingredients_text_he": "חלב פרה מפוסטר(98%), מלח, תרבית לקטית, רנט.",
+  "ingredients_list": [
+    "חלב פרה מפוסטר(98%)",
+    "מלח",
+    "תרבית לקטית",
+    "רנט"
+  ],
+  "ingredient_count": 4,
+  "ingredient_text_quality": "good",
+  "allergens_contains": [
+    "milk"
+  ],
+  "allergens_may_contain": [],
+  "confidence": 0.75,
+  "canonical_trust_level": "medium",
+  "canonical_trust_score": 0.75,
+  "conflicts_summary": [],
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": null,
+  "nova_proxy": 1,
+  "nova_confidence": 0.9,
+  "nova_confidence_band": "high",
+  "nova_notes": [
+    "minimal_ingredients_milk_salt_rennet_cultures: NOVA 1"
+  ],
+  "detected_additives": [],
+  "additive_count": 0,
+  "data_sufficiency": "sufficient",
+  "bsip1_trust_level": "medium",
+  "bsip1_trust_score": 0.75,
+  "bsip1_risk_flags": [
+    "single_source_only",
+    "protein_from_off_panel"
+  ],
+  "nutrition_consistency_status": "consistent",
+  "consistency_checks": {
+    "sugar_le_carbs": true,
+    "satfat_le_fat": true,
+    "kcal_plausible": true,
+    "macros_plausible": true
+  },
+  "provenance": {
+    "source": "yochananof_storefront_rescrape",
+    "fetched_at": "2026-06-07T17:46:16.495996+00:00",
+    "panel_source": "yochananof_storefront_rescrape",
+    "verification_status": "candidate",
+    "rescrape_reason": "TASK-215 ingredient scraping artifact fix",
+    "rescrape_note": "Original scrape opened wrong product modal (Kashkaval 2370284). Re-scrape 2026-06-07 used barcode-in-image-src strategy; confirmed correct product (barcode 3073781199918, Baby Bell France). Ingredients: clean 4-ingredient list (milk/salt/cultures/rennet). Protein kept from OFF panel (23g/100g) — Yohananof display shows 0g/serving which is implausible."
+  },
+  "enrichment_timestamp": "2026-06-07T17:46:16.496025+00:00",
+  "run_id": "run_hard_cheeses_yohananof_001"
+}
