@@ -179,7 +179,6 @@ function renderButterProducts(
             key={`${section.heading}-${expandedProductId ?? "none"}`}
             products={section.products}
             metricSpecs={BUTTER_METRIC_SPECS}
-            showRail={false}
             showRank={false}
             initialExpandedProductId={
               section.products.some((p) => p.id === expandedProductId)
