@@ -453,12 +453,28 @@ def main():
             if raw_dec.search(s):
                 decimal_failures.append((p["id"], key, s))
 
-    if leak_failures or decimal_failures:
+    # ── HARD GATE: confidence-label ↔ ingredient consistency (TASK-232 gap, 2026-06-10).
+    #    A product with NO ingredient list must NOT claim full/verified ("based on the
+    #    ingredient list") — that ships a false provenance claim. It must read panel-only. ──
+    confidence_failures = []
+    for p in products:
+        ing = (p["expansion"].get("ingredients") or "").strip()
+        label = (p.get("confidence_label_he") or "") + " " + \
+                (p.get("confidence_tooltip_he") or "") + " " + \
+                (p["expansion"].get("confidenceLabel") or "")
+        claims_full = (p.get("confidence") == "verified") or \
+                      ("מלאים" in label) or ("רשימת הרכיבים" in label and "לא הי" not in label)
+        if claims_full and not ing:
+            confidence_failures.append((p["id"], p.get("confidence"), p.get("confidence_label_he")))
+
+    if leak_failures or decimal_failures or confidence_failures:
         print("!!! GATE FAILURES !!!")
         for f in leak_failures:
             print("  LEAK", f)
         for f in decimal_failures:
             print("  RAW DECIMAL", f)
+        for f in confidence_failures:
+            print("  CONFIDENCE/INGREDIENT MISMATCH (full-data label, no ingredients)", f)
         sys.exit(1)
     print(f"GATE PASS: all consumer strings clean across {len(products)} products "
           f"(no framework/score/recommendation leaks, no raw decimals).")

@@ -98,6 +98,11 @@ Verify that what was built actually works, that data is consistent, and that not
 - [ ] Confidence level in frontend JSON matches trace `confidence_level`
 - [ ] Insight line field is populated (not empty string) for scored products
 - [ ] All required nutrition fields present or explicitly null
+- [ ] **Confidence-label ↔ data consistency** (added 2026-06-10, TASK-232 gap): the confidence
+      label/tooltip must match the data actually present. A product with **empty/absent ingredients**
+      must NOT carry a `verified` / "full data" / "based on the ingredient list" label — it must read
+      panel-only (`partial` / "חסרים נתוני רכיבים"). A product labeled full/verified MUST have a
+      non-empty ingredient list. Flag any mismatch (it ships a false provenance claim to the consumer).
 
 ### Build Validation
 - [ ] `npm run build` exits 0
