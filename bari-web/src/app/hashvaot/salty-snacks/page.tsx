@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת חטיפים מלוחים | Bari",
   description:
-    "השוואת 41 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 38 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
 export default function SaltySnacksComparisonRoute() {
