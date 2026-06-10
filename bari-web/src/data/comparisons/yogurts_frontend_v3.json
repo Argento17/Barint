@@ -2,14 +2,14 @@
   "_meta": {
     "generated": "2026-06-07T06:18:30.750857+00:00",
     "category": "yogurts",
-    "product_count": 19,
-    "scored_count": 19,
+    "product_count": 18,
+    "scored_count": 18,
     "schema": "BariProductVM[]",
     "version": "v3",
     "provenance": "TASK-210 multi-retailer expansion. Shufersal pool (11 products): frozen from yogurts_frontend_v2.json / run_yogurt_006_recal_p0_trim. New Yohananof pool (8 products): run_yogurt_yohananof_001 — il_prices identity + OFF candidate panels (EDPG candidate). BSIP0 filter rate: 132/143 (92%) — primarily ingredients_absent (OFF miss on Israeli yogurt barcodes). S-grade display capped to A per yogurt pool convention (run_yogurt_006_recal_p0_trim). ",
     "retailer_breakdown": {
       "shufersal": 11,
-      "yohananof": 8
+      "yohananof": 7
     },
     "grade_distribution": {
       "A": 7,
@@ -456,7 +456,7 @@
       "imageUrl": "https://images.openfoodfacts.org/images/products/729/000/040/8316/front_he.3.400.jpg",
       "score": 78,
       "grade": "B",
-      "insightLine": "5.2 גרם חלבון ל-100 גרם — 3.0 גרם שומן — NOVA 3",
+      "insightLine": "5.2 גרם חלבון ל-100 גרם — 3.0 גרם שומן",
       "confidence": "partial",
       "expansion": {
         "nutrition": {
@@ -472,7 +472,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם"
       },
-      "rowVerdict": "יוגורט ביו שטראוס 3 אחו: 5.2 גרם חלבון ל-100 גרם — 3.0 גרם שומן — NOVA 3. מקור: יוחננוף.",
+      "rowVerdict": "יוגורט ביו שטראוס 3 אחו: 5.2 גרם חלבון ל-100 גרם — 3.0 גרם שומן. מקור: יוחננוף.",
       "confidence_level": {
         "identity_confidence": "high",
         "barcode_confidence": "confirmed",
@@ -530,46 +530,6 @@
       "confidence_sub_reason": "missing_nutrition"
     },
     {
-      "id": "bsip1_yogurt_7290107936309",
-      "name": "Greek yogurt",
-      "brand": "Danone",
-      "imageUrl": "https://images.openfoodfacts.org/images/products/729/010/793/6309/front_en.8.400.jpg",
-      "score": 75,
-      "grade": "B",
-      "insightLine": "5.5 גרם חלבון ל-100 גרם — 6.5 גרם שומן — NOVA 3",
-      "confidence": "partial",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 101.538461538462,
-          "protein": 5.53846153846154,
-          "sugar": 4.23076923076923,
-          "fat": 6.53846153846154,
-          "fiber": null,
-          "sodium": null,
-          "satFat": 3.92307692307692
-        },
-        "ingredients": "CALG LL GOA 352:01 רכיבי חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת חיידק פרוביוטי Bifidus. (מידע על אלרגנים: מכיל: חלב. ללא גלוטן סימון תזונתי ב - 100 גרם / בגביע אנרגיה (קלוריות) סך השומנים (גרם) מתוכם: חומצות שומן רוויות (גרם) חומצות שומן טראנס (גרם) כולסטרול (מ&quot;ג) נתרן (מ&quot;ג) סך הפחמימות (גרם) מתוכן: 132 101 8.5 6.5 5.1 3.9 0.5&gt; 0.5&gt; 29 22 61 47 55 4.3 סוכרים (שמקורם בחלב וברכיביו) (גרס 4.3 55 כפיות סוכר (שמקורו בחלב וברכיביו) 1.0 15 חלבונים (גרם) סידן (מ&quot;ג) ן כשו חלבי בהשגחת הרבנות נהריה | מיוצר ע&quot;י שטראוס בריאות בע&quot;מ. ן פארק תעשיות בר-לב, ד.נ. משגב.. 72 5.5 211 162 לשמור במקרר X",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "Greek yogurt: 5.5 גרם חלבון ל-100 גרם — 6.5 גרם שומן — NOVA 3. מקור: יוחננוף.",
-      "confidence_level": {
-        "identity_confidence": "high",
-        "barcode_confidence": "confirmed",
-        "nutrition_confidence": "confirmed_per_100g",
-        "matched_by": "shufersal_barcode_single_source",
-        "observation_count": 1
-      },
-      "retailer": "yohananof",
-      "retailer_he": "יוחננוף",
-      "provenance": "off_candidate_panel",
-      "barcode": "7290107936309",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition"
-    },
-    {
       "id": "bsip1_yogurt_7290110328764",
       "name": "יוגורט גו במרקם סמיך תות",
       "brand": "Yoplait",
@@ -616,7 +576,7 @@
       "imageUrl": "https://images.openfoodfacts.org/images/products/729/010/239/9819/front_en.3.400.jpg",
       "score": 66,
       "grade": "B",
-      "insightLine": "10.0 גרם חלבון ל-100 גרם — 1.6 גרם שומן — NOVA 4",
+      "insightLine": "10.0 גרם חלבון ל-100 גרם — 1.6 גרם שומן",
       "confidence": "partial",
       "expansion": {
         "nutrition": {
@@ -632,7 +592,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם"
       },
-      "rowVerdict": "יוגורט מועשר בחלבון עם פירות יער: 10.0 גרם חלבון ל-100 גרם — 1.6 גרם שומן — NOVA 4. מקור: יוחננוף.",
+      "rowVerdict": "יוגורט מועשר בחלבון עם פירות יער: 10.0 גרם חלבון ל-100 גרם — 1.6 גרם שומן. מקור: יוחננוף.",
       "confidence_level": {
         "identity_confidence": "high",
         "barcode_confidence": "confirmed",

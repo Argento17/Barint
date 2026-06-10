@@ -1,0 +1,62 @@
+name: Prompt Governance CI
+
+# Deliverable 3 — TASK-BARI-PROMPT-REGISTRY-CI-EVAL-V1
+# Gates: copy golden-diff (verified deterministic only), CLS-06 false-close
+# negative control, llm-import-tripwire, + existing deterministic regression suites.
+# Additive: does not change prompts, scoring, consumer copy, or page JSON.
+
+on:
+  pull_request:
+    paths:
+      - "01_framework/operations/**"
+      - "02_products/**/build_*.py"
+      - "03_operations/bsip2/proto_v0/src/build_*.py"
+      - "03_operations/bsip2/proto_v0/src/run_*regression*.py"
+      - "03_operations/bsip2/proto_v0/src/router_v2.py"
+      - "bari-web/src/**"
+      - ".github/workflows/prompt_governance_ci.yml"
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+jobs:
+  prompt-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install minimal deps
+        run: pip install pyyaml
+
+      # Hard gate: any unregistered anthropic/openai/litellm import outside .venv fails.
+      - name: LLM import tripwire
+        run: python 01_framework/operations/evals/check_llm_import_tripwire.py
+
+      # Golden-diff for VERIFIED-DETERMINISTIC copy generators only.
+      - name: Copy golden-diff
+        run: python 01_framework/operations/evals/run_copy_golden_diff.py
+
+      # D3b — schema validity >= 98% on explanation arrays.
+      - name: Schema validation
+        run: python 01_framework/operations/evals/run_schema_validation_gate.py
+
+      # D3b — pairwise verdict ledger (fresh PASS required) + unsafe-wording scan.
+      - name: Pairwise review gate
+        run: python 01_framework/operations/evals/run_pairwise_review_gate.py
+
+      # Closure false-close negative control.
+      - name: CLS-06 negative control
+        run: python 01_framework/operations/evals/run_cls06_check.py
+
+      # Existing deterministic regression suites must remain green.
+      - name: Router regression (existing)
+        working-directory: 03_operations/bsip2/proto_v0/src
+        run: python run_router_regression.py
+
+      - name: Scoring regression (existing)
+        working-directory: 03_operations/bsip2/proto_v0/src
+        run: python run_regression_check.py

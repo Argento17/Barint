@@ -18,20 +18,8 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type CheeseCorpusMeta = ComparisonCorpusMeta;
 
-type CheeseCorpusProduct = BariProductVM & { _cluster?: string };
-
-// Strip the internal `_cluster` (used only by the shelf-lens filter) before the
-// VM reaches the UI — the UI never sees sub-pool routing fields.
-function stripCheeseInternalFields(
-  products: CheeseCorpusProduct[]
-): BariProductVM[] {
-  return products.map((product) => {
-    const { _cluster, ...rest } = product;
-    void _cluster;
-    return rest;
-  });
-}
-
+// `_cluster` (read off the raw JSON by cheese-shelf-filters) is now stripped centrally
+// by loadComparisonCorpus' BariProductVM allowlist (TASK-233A) — no local strip needed.
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const cheeseCorpusMeta = loaded.meta;
 
@@ -64,7 +52,7 @@ function dedupeIdenticalProducts(products: BariProductVM[]): BariProductVM[] {
 }
 
 const cheeseProducts = dedupeIdenticalProducts(
-  enrichRowSurface(stripCheeseInternalFields(loaded.products as CheeseCorpusProduct[]))
+  enrichRowSurface(loaded.products)
 );
 
 export { cheeseCorpusMeta, cheeseProducts };

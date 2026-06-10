@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T13:18:02.244723Z",
+  "trace_generated_at": "2026-06-10T15:03:21.515431Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290104500572",
@@ -47,7 +47,7 @@
     "energy_kcal": 538.0,
     "fat_g": 30.0,
     "fat_saturated_g": 3.6,
-    "fat_trans_g": 0.6,
+    "fat_trans_g": 0.0,
     "sodium_mg": 340,
     "carbohydrates_g": 62.6,
     "sugars_g": 4.2,
@@ -118,7 +118,7 @@
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
-    "trans_fat_status": "high_concern",
+    "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": false,
     "red_labels": [],
@@ -240,7 +240,7 @@
     "protein_quality": 24.0,
     "additive_quality": 100,
     "satiety_support": 10.7,
-    "fat_quality": 73.0,
+    "fat_quality": 93.0,
     "regulatory_quality": 95.0,
     "whole_food_integrity": 85
   },
@@ -252,7 +252,7 @@
     "protein_quality": "protein=4.8g base=24.0, source=whole_food(×1.0) → 24.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.8×3 + 0×5) / 538.0 × 400 = 10.7",
-    "fat_quality": "EV-012 fat_ratio: fat=30.0g ratio=7.333 base=93.0-seed0-trans20=73.0",
+    "fat_quality": "EV-012 fat_ratio: fat=30.0g ratio=7.333 base=93.0-seed0-trans0=93.0",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 2 base=85, ing_count=0 complexity_pen=0 → 85"
   },
@@ -268,7 +268,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 53.76,
+  "weighted_dimension_score": 55.36,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -368,7 +368,7 @@
     }
   ],
   "binding_cap": 55,
-  "score_after_cap": 53.76,
+  "score_after_cap": 55,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -432,7 +432,7 @@
   "total_penalty_before_scaling": 12.0,
   "total_penalty_after_scaling": 12.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 41.76,
+  "score_after_penalty": 43.0,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -501,11 +501,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 41.76,
+  "score_after_floors": 43.0,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 41.8,
+  "final_score_estimate": 43.0,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -515,7 +515,6 @@
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3",
-    "HIGH_TRANS_FAT_CONCERN: trans_fat in 0.5-1.0g range (exclusive), no veto but flagged",
     "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
   ],
   "structural_class": {

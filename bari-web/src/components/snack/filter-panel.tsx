@@ -14,6 +14,12 @@ import { cn } from "@/lib/utils";
 
 const GRADES: SnackGrade[] = ["B", "C", "D", "E"];
 const NOVA_OPTIONS: SnackNOVA[] = [2, 3, 4];
+// Consumer labels for processing depth — keep the framework scale out of the UI.
+const PROCESSING_DEPTH_LABELS: Record<SnackNOVA, string> = {
+  2: "מינימלי",
+  3: "בינוני",
+  4: "עמוק",
+};
 
 export const defaultSnackEngineFilters: SnackEngineFilters = {
   grades: [],
@@ -85,7 +91,7 @@ export function FilterPanel({
             ))}
           </div>
 
-          <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">NOVA</p>
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">עומק עיבוד</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {NOVA_OPTIONS.map((nova) => (
               <button
@@ -99,7 +105,7 @@ export function FilterPanel({
                     : "border-black/[0.08] text-[#4E5663]"
                 )}
               >
-                {nova}
+                {PROCESSING_DEPTH_LABELS[nova]}
               </button>
             ))}
           </div>

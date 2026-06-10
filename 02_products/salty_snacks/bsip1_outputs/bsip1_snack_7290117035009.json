@@ -21,7 +21,7 @@
     "energy_kcal": 224.0,
     "fat_g": 10.0,
     "fat_saturated_g": 4.5,
-    "fat_trans_g": 0.5,
+    "fat_trans_g": 0.0,
     "sodium_mg": 492,
     "carbohydrates_g": 26.5,
     "sugars_g": null,
@@ -73,5 +73,15 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "data_corrections": [
+    {
+      "field": "normalized_nutrition_per_100g.fat_trans_g",
+      "old_value": 0.5,
+      "new_value": 0.0,
+      "reason": "OFF trans-fat per-100g (0.5) is the Israeli '<1g' serving THRESHOLD DECLARATION (serving=Noneg, serving_fraction=None), not a measured value. No PHVO/hydrogenated-oil marker present. Yochananof popcorn: 0.5g '<1g' decl at per-100g (no serving block). (engine already no-penalty).",
+      "task": "TASK-234",
+      "corrected_at_source": "open_food_facts (authoritative serving-level re-probe, off_reprobe_task234.json)"
+    }
+  ]
 }

@@ -25,7 +25,10 @@ BSIP1_DIR = ROOT / "02_products" / "hard_cheeses" / "bsip1_outputs"
 BSIP2_DIR = (ROOT / "02_products" / "hard_cheeses" / "bsip2_outputs"
              / "run_hardcheese_redlabel_v1_001" / "products")
 OUT_LOCAL = ROOT / "02_products" / "hard_cheeses" / "hard_cheeses_frontend_v2.json"
-OUT_WEB   = ROOT / "bari-web" / "src" / "data" / "comparisons" / "hard_cheeses.json"
+# DA-010: the live page imports hard_cheeses_frontend_v2.json — the generator previously
+# wrote the orphan filename hard_cheeses.json (not imported by any page), so a re-run never
+# updated the page. Point at the imported filename.
+OUT_WEB   = ROOT / "bari-web" / "src" / "data" / "comparisons" / "hard_cheeses_frontend_v2.json"
 RUN_ID    = "run_hardcheese_redlabel_v1_001"
 
 # Yohananof barcodes eligible for the frontend (same 30 as the prior run)

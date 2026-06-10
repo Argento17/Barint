@@ -23,25 +23,14 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type SnacksCorpusMeta = ComparisonCorpusMeta;
 
-type SnacksCorpusProduct = BariProductVM & {
-  _internal_cluster?: string;
-};
-
-function stripSnacksInternalFields(products: SnacksCorpusProduct[]): BariProductVM[] {
-  return products.map((product) => {
-    const { _internal_cluster, ...rest } = product;
-    void _internal_cluster;
-    return rest;
-  });
-}
-
+// `_internal_cluster` (the snacks lens reads its sub-pool off the snack data module,
+// not the loaded VM) is now stripped centrally by loadComparisonCorpus' BariProductVM
+// allowlist (TASK-233A) — no local strip needed.
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const snacksCorpusMeta = loaded.meta;
 // rowReason only — NO metric bar. All snack nutrition is null (the category invariant),
 // so a protein bar would be fabricated; the page keeps metricSpecs={[]} (TASK-161A).
-const snacksProducts = enrichRowReasonOnly(
-  stripSnacksInternalFields(loaded.products as SnacksCorpusProduct[])
-);
+const snacksProducts = enrichRowReasonOnly(loaded.products);
 
 export { snacksCorpusMeta, snacksProducts };
 

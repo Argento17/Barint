@@ -46,6 +46,15 @@ Hard fails block promotion. Treat any of the following as a hard fail:
 - Traceability gap (see above)
 - Duplicate product entries in QA sample
 - QA runner version mismatch with pipeline version
+- **Default / fallback routing, or any product routed with confidence `< 0.50`.** A product
+  that lands on a category by default rather than by an anchor is a routing failure, not a
+  low-confidence score. (The 35 `CATEGORY_INSTABILITY` flags on the first frozen-veg run
+  were this — the router had no anchors for the category.) Resolution: register the
+  category's anchors in `router_v2.py` and re-run.
+- **Nutrition-field inconsistency for the same barcode** — the same product carrying
+  conflicting nutrition values (e.g. a per-cube table and a per-100g table both parsed onto
+  one record, the ginger dual-table bug). Hard fail; fix at the BSIP0 parser, do not patch
+  the value by hand and ship.
 
 For each hard fail, record:
 ```json
@@ -66,6 +75,9 @@ Warnings do not automatically block promotion but must be explicitly accepted or
 - Label distribution significantly skewed compared to baseline
 - Enrichment confidence scores below target for a non-negligible portion of corpus
 - New labels present that were not in the prior baseline (may indicate enrichment drift)
+- **Routing-distribution drift against baseline** — the share of products landing in each
+  category moved materially from the prior run. Not an automatic block, but spot-check 5
+  products of known type (e.g. hummus must not route to sauce_spread) before accepting.
 
 For each warning, record:
 ```json

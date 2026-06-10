@@ -23,10 +23,14 @@ WEB_DIR = pathlib.Path(r"C:\bari\bari-web\src\data\comparisons")
 PROD_BASE = pathlib.Path(r"C:\Bari\02_products")
 DRY = "--dry-run" in sys.argv
 
-# The 14 live category files (current versions). salty_snacks v2 is superseded by v3.
+# The live category files (current versions). salty_snacks v2 is superseded by v3.
+# frozen_vegetables added (TASK-233D DA-006): its 53 products carry data-gap `unknowns`,
+# so re-deriving via the trace flips them off the false "verified/full data" framing to
+# the honest partial state — the contradiction the sweep flagged.
 LIVE_FILES = [
     "bread_frontend_v2.json", "butter_frontend_v2.json", "cereals_frontend_v2.json",
-    "cheese_frontend_v3.json", "crackers_staged_v1.json", "granola_frontend_v1.json",
+    "cheese_frontend_v3.json", "crackers_staged_v1.json",
+    "frozen_vegetables_frontend_v1.json", "granola_frontend_v1.json",
     "hard_cheeses_frontend_v2.json", "hummus_frontend_v5.json", "juices_frontend_v3.json",
     "maadanim_frontend_v3.json", "olive_oil_frontend_v1.json", "salty_snacks_frontend_v3.json",
     "snacks_frontend_v2.json", "yogurts_frontend_v3.json",

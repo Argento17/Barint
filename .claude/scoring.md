@@ -301,6 +301,37 @@ This JSON is then transformed to `BariProductVM` in the frontend transformation 
 
 ---
 
+## Pre-flight checks (before scoring a new or re-run category)
+
+Run these before the BSIP2 batch runner. They are cheap and each one maps to a bug that
+reached production on the frozen-vegetables run (retrospective, 2026-06-10).
+
+1. **Router anchors exist for the category.** Confirm `router_v2.py` has an anchor set for
+   the new product class *before* running. A missing anchor set produces mass
+   `CATEGORY_INSTABILITY` flags and default routings (35 on the first frozen-veg run).
+2. **No duplicate barcodes** in the BSIP0/BSIP1 input, and no single barcode carrying
+   conflicting nutrition tables (the per-cube vs per-100g "dual-table" trap that corrupted
+   the ginger record). Fix at the parser (`bsip0_nutrition.py`), not by hand-editing values.
+3. **Nutrient values in range** — sanity-bound energy/protein/fat/sodium per 100g; reject
+   obviously out-of-range values rather than scoring them.
+4. **Correct imports** — the batch runner imports `evaluation_scope`, `router_v2`, and the
+   current `constants.py` (not a stale copy).
+
+## Post-run review checklist (after scoring completes, before frontend packaging)
+
+1. **Routing distribution** — eyeball the category breakdown; investigate any unexpected
+   concentration.
+2. **No default / low-confidence routing** — zero products on a default category; flag any
+   with routing confidence `< 0.50`.
+3. **Spot-check 5 products of known type** — confirm they routed to the expected category
+   (e.g. hummus → not sauce_spread). This was a manual audit on frozen veg; keep doing it.
+4. **Score plausibility** — top and bottom of the distribution match expectations for the
+   product class (e.g. a single-ingredient frozen vegetable should reach A).
+5. **Run regression** — `run_regression_check.py` + `run_router_regression.py` after any
+   engine or router change.
+
+---
+
 ## Sources
 
 - `C:\Bari\03_operations\bsip2\proto_v0\src\score_engine.py`

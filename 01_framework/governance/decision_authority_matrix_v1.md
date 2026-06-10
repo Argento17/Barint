@@ -18,7 +18,7 @@ Mandate** section.
 
 ## The core rule
 
-> **Default to autonomous action.** The owning agent (or orchestrator / CC / Product)
+> **Default to autonomous action.** The owning agent (or orchestrator / Product)
 > decides and acts. Escalate to the owner **only** if the decision trips one of the 5
 > strategic tripwires below. **If you're unsure whether a wire is tripped — it isn't.**
 > Act, keep it reversible, and log it for after-the-fact review.
@@ -48,8 +48,8 @@ Every decision = how reversible × how wide. This maps to who owns it.
 
 |  | **Single artifact** | **One category** | **Whole product / brand** |
 |---|---|---|---|
-| **Two-way door** (reversible: flag / PR / draft) | Owning agent — autonomous | Owning agent — autonomous, log | Orchestrator + CC — autonomous, log |
-| **One-way door** (public, irreversible) | Orchestrator + CC — verify, then act | Product Agent — recommends → ships unless a wire fires | **★ OWNER ★** — the only always-escalate cell |
+| **Two-way door** (reversible: flag / PR / draft) | Owning agent — autonomous | Owning agent — autonomous, log | Orchestrator — autonomous, log |
+| **One-way door** (public, irreversible) | Orchestrator — verify, then act | Product Agent — recommends → ships unless a wire fires | **★ OWNER ★** — the only always-escalate cell |
 
 Only the **bottom-right cell** is the owner's by default. Everything else resolves below.
 
@@ -61,16 +61,16 @@ Only the **bottom-right cell** is the owner's by default. Everything else resolv
   Nutrition interprets scoring behavior, Content writes the copy, Data runs the pipeline,
   QA rules pass/fail. **Recommend the single best option and implement it — never hand the
   owner an A/B menu for an expert call.**
-- **Orchestrator + CC Agent** — prioritization within an approved roadmap; accept/reject of
-  returned deliverables (CC's close-readiness gate); cross-agent tradeoffs that don't ship
-  or move published scores. CC holds closing authority (delegated 2026-06-02).
+- **Orchestrator** — prioritization within an approved roadmap; accept/reject of returned
+  deliverables (verify claims before closing); cross-agent tradeoffs that don't ship or
+  move published scores. Closing authority lives here directly.
 - **Product Agent** — the mid-tier judgment that *used to* reach the owner: build/pause/cut
   within scope, rollout sequencing, MVP rationalization, cross-domain conflicts. Product is
   the owner's proxy for "important but not existential."
 - **Owner** — the 5 tripwires. Nothing else.
 
 **Routing rule:** a decision that exceeds your lane but trips **no** wire goes to
-Product / Orchestrator / CC — **not** the owner.
+Product / Orchestrator — **not** the owner.
 
 ---
 
@@ -81,8 +81,8 @@ they are what makes every autonomous action recoverable:
 
 1. **Flag-gate score/logic changes** (the `BARI_RECAL_*` pattern: OFF = byte-identical).
    Nothing public moves until a wire-1/wire-2 owner sign-off.
-2. **CC close-readiness gate** stays mandatory — return-block claims verified against
-   artifacts, never trusted.
+2. **Verify before closing** — the orchestrator checks return-block claims against artifacts
+   before writing `CLOSED`. Never trusted on prose alone.
 3. **Everything lands in the registry + audit log** — the owner reviews *after the fact*
    instead of gating *before*.
 4. **PR, never direct-to-main** on shipped surfaces — a two-way door by construction.
@@ -110,3 +110,6 @@ The owner's role shifts from *approving work* → *spot-auditing direction* + *r
 - **v1 (2026-06-04):** Created by owner directive ("be more autonomous; owner makes
   extremely strategic decisions only"). Confirmed list = exactly the 5 tripwires.
   Wired into `CLAUDE.md` and all 10 agent files (Autonomy Mandate section).
+- **v1.1 (2026-06-10):** CC Agent layer removed. Closing authority consolidated into
+  the orchestrator (main chat). "CC close-readiness gate" renamed to "verify before
+  closing" — same discipline, no separate agent layer required.

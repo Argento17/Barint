@@ -242,7 +242,7 @@ As of 2026-05-31, the Bari Skill Architecture v1 is frozen.
 
 **Pending (source required):** Git Worktrees, Superpowers (BLOCKED), Tapestry (BLOCKED)
 
-**MCP Servers (active):** Firecrawl (`firecrawl-mcp-server` — see `mcp_registry.md`)
+**MCP Servers (active):** none (Firecrawl removed 2026-06-10 — see `mcp_registry.md`)
 
 **Pending (MCP configuration):** Supermemory (blocked pending data residency policy review)
 

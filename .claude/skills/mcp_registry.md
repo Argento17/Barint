@@ -23,43 +23,17 @@ This registry tracks all MCP (Model Context Protocol) server integrations for th
 
 ## Registered MCP Servers
 
-### Firecrawl
+### Firecrawl — REMOVED (2026-06-10)
 
 | Field | Value |
 |---|---|
-| **Status** | ACTIVE |
-| Server name | `firecrawl-mcp-server` |
-| Package | `firecrawl-mcp` (via npx) |
-| Source | `github.com/mendableai/firecrawl-mcp-server` |
-| Installed | 2026-05-31 |
-| Task | TASK-057 |
-| Config file | `C:\Bari\.mcp.json` |
-| Approval | `enabledMcpjsonServers` in `C:\Bari\.claude\settings.json` |
-| API key storage | `C:\Bari\.mcp.json` env block (not version controlled) |
-| Scope | Project-level (`C:\Bari` only) |
-| Health | ✓ Connected (verified 2026-05-31) |
+| **Status** | REMOVED — no longer used |
+| Server name | `firecrawl-mcp-server` (de-registered) |
+| Removed | 2026-06-10 |
+| Reason | No longer needed; its API key was exposed on GitHub, revoked, and purged from git history. |
+| Cleanup | `.mcp.json` entry removed; dropped from `enabledMcpjsonServers`; `firecrawl_mcp_setup_report.md` deleted; literal key scrubbed from all history via `git filter-repo`. |
 
-**Purpose:** Web scraping and crawling — fetches structured content from URLs for use in Bari research workflows.
-
-**Primary tools exposed:**
-- `firecrawl_scrape` — scrape a single URL, returns clean markdown
-- `firecrawl_crawl` — crawl a site and return multiple pages
-- `firecrawl_search` — search the web and return structured results
-- `firecrawl_map` — map all URLs on a domain
-
-**Usage rights:**
-
-| Agent | Rights | Restrictions |
-|---|---|---|
-| Research Agent | Primary | None |
-| Product Agent | Supporting | None |
-| Marketing Agent | Supporting | None |
-| Content Agent | Supporting | None |
-| Nutrition Agent | Conditional | Source discovery only — not scientific evidence |
-| Data Agent | Conditional | Product research only — not authoritative product data without acquisition workflow approval |
-| Frontend Agent | Limited | Documentation lookup only |
-| Design Agent | Not assigned | — |
-| QA Agent | Not assigned | — |
+To re-add Firecrawl (or any keyed MCP) in future: store the key in a **gitignored** `.env` and reference it as `${FIRECRAWL_API_KEY}` in `.mcp.json` — never a literal in any tracked file.
 
 ---
 
@@ -88,14 +62,13 @@ The `claude mcp add` command has a variadic flag parsing bug that prevents stand
 2. Add server name to `enabledMcpjsonServers` in `C:\Bari\.claude\settings.json`
 3. Verify with `claude mcp list` (from `C:\Bari`)
 
-See `firecrawl_mcp_setup_report.md` for full details.
-
 ### API Key Security
 
-API keys for MCP servers must be stored in:
-- `C:\Bari\.mcp.json` — acceptable only because C:\Bari is not a git repo
-- If C:\Bari is ever git-initialised, `.mcp.json` must be added to `.gitignore` before the first commit
+`C:\Bari` **is** a git repository. API keys for MCP servers must **never** be written as a literal into any tracked file. Instead:
+- Store the key in a **gitignored** `.env` (the `.env` / `.env.*` patterns are in `.gitignore`).
+- Reference it in `.mcp.json` via env-var expansion: `"FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"`.
 
 Never store API keys in:
+- `C:\Bari\.mcp.json` as a literal (use `${ENV_VAR}` expansion only)
 - `C:\Bari\.claude\settings.json` (this file is reviewed and should be clean)
-- Any file that may be shared or version-controlled
+- Any file that is tracked, shared, or version-controlled

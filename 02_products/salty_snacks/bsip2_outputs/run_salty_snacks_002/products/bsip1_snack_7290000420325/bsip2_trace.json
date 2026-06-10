@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T13:18:02.206405Z",
+  "trace_generated_at": "2026-06-10T15:03:21.506918Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290000420325",
@@ -47,7 +47,7 @@
     "energy_kcal": 425.0,
     "fat_g": 14.0,
     "fat_saturated_g": 5.0,
-    "fat_trans_g": 0.4,
+    "fat_trans_g": 0.0,
     "sodium_mg": 800,
     "carbohydrates_g": 60.0,
     "sugars_g": 0.75,
@@ -118,7 +118,7 @@
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
-    "trans_fat_status": "present",
+    "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": false,
     "red_labels": [
@@ -242,7 +242,7 @@
     "protein_quality": 50.0,
     "additive_quality": 100,
     "satiety_support": 75.3,
-    "fat_quality": 57.0,
+    "fat_quality": 67.0,
     "regulatory_quality": 60.0,
     "whole_food_integrity": 85
   },
@@ -254,7 +254,7 @@
     "protein_quality": "protein=10.0g base=50.0, source=whole_food(×1.0) → 50.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 10.0×5) / 425.0 × 400 = 75.3",
-    "fat_quality": "EV-012 fat_ratio: fat=14.0g ratio=1.800 base=67.0-seed0-trans10=57.0",
+    "fat_quality": "EV-012 fat_ratio: fat=14.0g ratio=1.800 base=67.0-seed0-trans0=67.0",
     "regulatory_quality": "1 red label: ['sodium']",
     "whole_food_integrity": "NOVA 2 base=85, ing_count=0 complexity_pen=0 → 85"
   },
@@ -270,7 +270,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 68.55,
+  "weighted_dimension_score": 69.35,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -508,7 +508,6 @@
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3",
-    "TRANS_FAT_PRESENT: trans_fat 0.2-0.5g (confirmed above threshold declaration)",
     "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
   ],
   "structural_class": {

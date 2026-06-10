@@ -124,13 +124,33 @@ Consumer
 
 1. Create `02_products/{category}/` workspace
 2. Run BSIP0 scraper → populate `observations_bsip0/`
-3. Run BSIP1 enricher → produce `canonical_bsip1/`
-4. Run BSIP2 batch runner → produce `intelligence_bsip2/`
-5. Run `build_frontend_dataset.py` → produce `{category}_frontend_vN.json`
-6. Copy JSON to `C:\bari\bari-web\src\data\comparisons\`
-7. Add category definition to `src/lib/comparisons/registry/categories/`
-8. Add route page at `src/app/hashvaot/{category}/page.tsx`
-9. Build canonical frontend components following `component_build_sequence_v1.md`
+3. **BSIP0 validation gate** — before enriching, scan scraper output for: duplicate
+   barcodes, the same barcode carrying conflicting nutrition values (the per-cube vs
+   per-100g "dual-table" trap that produced the ginger bug), missing core fields, and
+   out-of-range nutrient values. A clean pass here is a precondition for step 4.
+4. **Router anchor registration** — confirm `router_v2.py` has anchors for the new
+   `{category}` *before* running BSIP1/BSIP2. A missing anchor set is what produced the
+   35 `CATEGORY_INSTABILITY` flags on the first frozen-veg run.
+5. Run BSIP1 enricher → produce `canonical_bsip1/`
+6. Run BSIP2 batch runner → produce `intelligence_bsip2/`
+7. **Post-run sanity check** — review routing distribution, flag any default/`conf < 0.50`
+   routings, and spot-check 5 products of known type (e.g. hummus must not route to
+   sauce_spread). This was a manual audit; keep doing it until it is in the QA runner.
+8. Run `build_frontend_dataset.py` → produce `{category}_frontend_vN.json`
+9. **Leak-free output gate** — scan the generated JSON for internal terms (`BSIP`,
+   `CATEGORY_INSTABILITY`, `*_estimate`) and for product fields not declared in
+   `BariProductVM` (e.g. `source_traceability_status`). Internal-only fields must be
+   stripped at the page-data boundary, never shipped onto the runtime VM.
+10. Copy JSON to `C:\bari\bari-web\src\data\comparisons\`
+11. Add category definition to `src/lib/comparisons/registry/categories/`
+12. Add route page at `src/app/hashvaot/{category}/page.tsx`
+13. Build canonical frontend components following `component_build_sequence_v1.md`. **Shelf
+    filters that key off an internal field (e.g. `_cluster`) must read it from the raw JSON
+    at module init (cheese pattern), not from the post-strip product list — otherwise every
+    lens returns zero products.**
+
+_Gates added 2026-06-10 after the frozen-vegetables retrospective: BSIP0 validation,
+router anchors, post-run sanity, leak-free output, and the shelf-filter `_cluster` rule._
 
 ### Updating an existing category's data
 

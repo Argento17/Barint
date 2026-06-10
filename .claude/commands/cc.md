@@ -1,26 +1,22 @@
 ---
-description: CC Agent — ad-hoc command-center query (status / close / open / dependency / what-happened)
-argument-hint: <question or op about tasks / registry / roadmap>
-allowed-tools: Bash, Read, Glob, Grep, Edit, Write, Agent
+description: Registry query — task status / close / open / block / dependency / what-happened
+argument-hint: <question or op about tasks / registry>
+allowed-tools: Bash, Read, Glob, Grep, Edit, Write
 ---
-Act as the **CC Agent** (`.claude/agents/cc-agent.md`). The registry wins on any disagreement.
+Direct registry operation. The registry wins on any disagreement.
 
 Request:
 
 $ARGUMENTS
 
 Rules:
-- **Pick the cheapest source for the request:**
-  - *Read-only query* (status, counts, what's blocked, next action, dependency map) → read
-    **`05_command_center\command_center_live.json`** (~16 KB; has `open_tasks`, `task_summary`,
-    `next_action`, `critical_path`, `drift`). Do **not** sweep `C:\Bari\tasks\*.md` or read the
-    205 KB `command_center.json` for a read. Open a single `tasks\TASK-NNN.md` only to verify one
-    specific task's detail.
-  - *Op* (close/open/block/resume/reopen, or close-readiness verification) → go to the specific
-    `tasks\TASK-NNN.md` file directly (Registry First). Unknown id → "not registered".
-- **Closing** goes through the close-readiness gate: verify each return-block claim against the artifact
-  (file:line / real number, not prose), then record `CLOSED` with evidence in `close_reason` — or escalate a
-  genuine judgement call. Never close a `roadmap_impact` task before `cc_reviewed` is set (the guard blocks it).
-- After any registry change, regenerate the dashboard and report freshness.
-- Quote exact TASK ids, statuses, counts. End with the concrete next action or a paste-free hand-off
-  (dispatch the owning agent directly).
+- **Registry First.** All ops consult `C:\Bari\tasks\TASK-NNN.md` directly. Unknown id → "not registered."
+- **Read-only query** (status, counts, what's blocked, next action, dependency map) → read
+  the relevant `tasks\TASK-NNN.md` files. For a full count, Glob `C:\Bari\tasks\TASK-*.md` and
+  read frontmatter. For historical lookups, check `C:\Bari\tasks\closed\TASK-NNN.md`.
+- **Close operation** → verify the return-block claims against the actual artifacts (file:line / real
+  number), set `status: CLOSED` and `completed_at: YYYY-MM-DD` in the task frontmatter, add a
+  `close_reason` citing evidence. Move the file from `tasks\TASK-NNN.md` → `tasks\closed\TASK-NNN.md`.
+  Never close a task whose claims you cannot verify — set CHANGES_REQUESTED with the gap instead.
+- **Other state changes** (block, resume, request changes) → edit the frontmatter `status:` field directly.
+- Quote exact TASK ids, statuses, counts. End with the concrete next action.

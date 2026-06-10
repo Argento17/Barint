@@ -1,7 +1,6 @@
 # Agent Router v1 — Dispatch Disambiguation
 
-**Status:** Authoritative · **Effective:** 2026-06-04  
-**Maintained by:** CC Agent  
+**Status:** Authoritative · **Effective:** 2026-06-04 · **Updated:** 2026-06-10 (CC layer removed)
 **Coverage map:** `agent_coverage_map_v1.md`
 
 ---
@@ -18,7 +17,7 @@ The orchestrator dispatches agents via the `Agent` tool using the agent's `descr
 
 | If the query contains… | Dispatch to |
 |---|---|
-| "close this task" / "mark CLOSED" / "registry" / "drift" / "dashboard" | `cc-agent` |
+| "close this task" / "mark CLOSED" / "registry" / "drift" | handle inline (orchestrator) |
 | "score correct?" / "propagation" / "build pass?" / "lint" / "regression check" | `qa-agent` |
 | "write copy" / "insight line" / "prologue" / "Hebrew" / "editorial" | `content-agent` |
 | "implement" / "component" / "route" / "Next.js" / "bari-web" | `frontend-agent` |
@@ -64,7 +63,7 @@ Common parallel patterns:
 
 ### Rule 4: Default (no rule matched)
 
-Route to `product-agent` for strategy ambiguity; `cc-agent` for registry ambiguity; `qa-agent` for verification ambiguity.
+Route to `product-agent` for strategy ambiguity; handle registry ops inline (orchestrator); `qa-agent` for verification ambiguity.
 
 ---
 
@@ -81,7 +80,7 @@ changelog:
 
 - Bump minor version (`1.0 → 1.1`) for: added sections, updated hard rules, new skills.
 - Bump major version (`1.X → 2.0`) for: lane changes, ownership transfers, new authority grants.
-- Run `python 05_command_center/validate_agents.py` after any agent change.
+- Optionally run `python 05_command_center/validate_agents.py` after any agent change (utility; not auto-triggered).
 - Open a tracked task (`work_type: coordination`) for any agent file change that shifts decision rights or adds/removes a lane.
 
 ---
@@ -115,9 +114,9 @@ changelog:
 ```
 
 2. Add an entry to `agent_coverage_map_v1.md` (Domain → Owner table + coverage gap resolved).
-3. Add the slug to `VALID_OWNERS` in `validate_agents.py`.
+3. Add the slug to `VALID_OWNERS` in `validate_agents.py` (optional validation utility).
 4. Update the routing disambiguation table if the new agent creates any boundary ambiguity.
-5. Run `python validate_agents.py` — must pass clean before the agent is dispatched.
+5. Optionally run `python 05_command_center/validate_agents.py` to verify agent file structure.
 
 ---
 

@@ -1,0 +1,238 @@
+ledger_meta:
+  task: TASK-BARI-PROMPT-REGISTRY-CI-EVAL-V1 D3b
+  rubric: 01_framework/editorial/hebrew_content_golden_eval_v1.md
+  note: Hash mismatch -> stale -> fresh human/agent verdict required. TTL entries
+    expire after 90 days.
+acknowledged_exceptions: []
+verdicts:
+- eval_id: CMP-02
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/hummus_frontend_v5.json
+  reviewed_hash: f69420e2834eae5f
+- eval_id: CMP-03
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/cheese_frontend_v3.json
+  reviewed_hash: 89bc493538d53bb1
+- eval_id: CMP-04
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/cereals_frontend_v2.json
+  reviewed_hash: 21c657584eaf4831
+- eval_id: CMP-05
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/bread_frontend_v2.json
+  reviewed_hash: 9aa29c0d72f60ea5
+- eval_id: CMP-06
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/yogurts_frontend_v3.json
+  reviewed_hash: 198465ffb3ac4cf3
+- eval_id: CMP-07
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/juices_frontend_v3.json
+  reviewed_hash: 10358b9ebdd2c19e
+- eval_id: CMP-08
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/hard_cheeses_frontend_v2.json
+  reviewed_hash: 4e99737d54fd8060
+- eval_id: CMP-09
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/maadanim_frontend_v3.json
+  reviewed_hash: 66c2adbc91a4467b
+- eval_id: CMP-12
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/granola_frontend_v1.json
+  reviewed_hash: 5eb24dd62497a866
+- eval_id: CMP-13
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: CMP-14
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: CMP-15
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: CMP-16
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: CMP-17
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/cereals_frontend_v2.json
+  reviewed_hash: 21c657584eaf4831
+- eval_id: CMP-18
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: CAV-01
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-comparison-page-data.ts
+  reviewed_hash: 8935ba6f7e395c70
+- eval_id: CAV-02
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/hummus-comparison-page-data.ts
+  reviewed_hash: 1d673cac9c0f5d23
+- eval_id: CAV-03
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/snacks-comparison-page-data.ts
+  reviewed_hash: 1f7e29f44af95b25
+- eval_id: CAV-04
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/cereals-page-data.ts
+  reviewed_hash: 2210d5e86e7fbd9f
+- eval_id: CAV-05
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/bread-comparison-page-data.ts
+  reviewed_hash: 14314e76592f6386
+- eval_id: CAV-06
+  verdict: PASS
+  reviewer: qa-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/cheese-comparison-page-data.ts
+  reviewed_hash: a2539d68f1c72241
+- eval_id: EXP-05
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/data/comparisons/hummus_frontend_v5.json
+  reviewed_hash: f69420e2834eae5f
+- eval_id: EXP-09
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: EXP-10
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/lib/comparisons/milk-product-insights.ts
+  reviewed_hash: 3f7a3520bd16696c
+- eval_id: HMG-01
+  verdict: PASS
+  reviewer: marketing-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/components/home/content.ts
+  reviewed_hash: 8afdae0fa347d03a
+- eval_id: HMG-02
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: bari-web/src/components/home/home-methodology.tsx
+  reviewed_hash: 4d400977b83f0e96
+- eval_id: HMG-04
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: 01_framework/glass_box/w2_additive_copy_v1.md
+  reviewed_hash: 2500665b3c219bbe
+- eval_id: EVD-01
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: EVD-02
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: EVD-03
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: EVD-04
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: EVD-05
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'
+- eval_id: EVD-06
+  verdict: PASS
+  reviewer: nutrition-agent
+  date: '2026-06-10'
+  note: BASELINE CERTIFICATION of existing production copy (already shipped & reviewed).
+  reviewed_path: null
+  review_ttl_until: '2026-09-08'

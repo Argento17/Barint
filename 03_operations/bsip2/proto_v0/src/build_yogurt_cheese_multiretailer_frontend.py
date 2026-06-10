@@ -15,6 +15,11 @@ import sys, io, json, pathlib, datetime
 from collections import Counter
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+# TASK-233B: shared packaging core owns grade derivation, confidence derivation, image
+# selection, the VM strip, and the A-cap field name. Local grade_from_score /
+# confidence_* are thin wrappers around the core to preserve call sites.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import frontend_core as FC
 
 LIVE_YOGURT   = pathlib.Path(r"C:\Bari\bari-web\src\data\comparisons\yogurts_frontend_v2.json")
 LIVE_CHEESE   = pathlib.Path(r"C:\Bari\bari-web\src\data\comparisons\cheese_frontend_v2.json")
@@ -64,19 +69,10 @@ def load_traces(trace_dir):
             traces[pid] = t
     return traces
 
-def confidence_label(lvl):
-    return "נתונים מלאים" if lvl == "sufficient" else "נתונים חלקיים"
-
-def confidence_badge(lvl):
-    return "verified" if lvl == "sufficient" else "partial"
-
 def grade_from_score(score):
-    if score is None: return "?"
-    if score >= 80: return "A"
-    if score >= 65: return "B"
-    if score >= 50: return "C"
-    if score >= 35: return "D"
-    return "E"
+    # Shared core: 5-grade, byte-matching corpus.ts so disk grade == runtime grade
+    # (DA-002/DA-009). The engine S folds to A here; never a bespoke '?'/'S' on disk.
+    return FC.grade_from_score(score)
 
 def build_new_products(traces, bsip1_by_pid, category_prefix, retailer="yohananof", cap_S_to_A=False):
     """Build frontend records for new retailer products."""
@@ -90,21 +86,24 @@ def build_new_products(traces, bsip1_by_pid, category_prefix, retailer="yohanano
         signals = trace.get("L1_observed_signals") or {}
         name = ref.get("product_name_he") or ref.get("canonical_name_he") or b1.get("canonical_name_he") or ""
         brand = b1.get("brand") or ""
-        confidence_lvl = trace.get("confidence") or b1.get("confidence") or "partial"
-        grade = grade_from_score(score)
+        # DA-007/DA-005: confidence is trace-derived (medium != verified; verified needs a
+        # full panel + ingredients), with the canonical 7-state label/tooltip. No bespoke
+        # sufficient->verified flag.
+        conf_fields = FC.confidence_from_trace(trace)
+        # DA-009: grade from the ROUNDED score that ships (and that corpus.ts re-derives).
+        score_display = FC.round_score(score)
+        grade = grade_from_score(score_display)
 
-        # Apply S→A cap if requested (yogurt pool convention from run_yogurt_006)
+        # S folds into A in the 5-grade core, so there is no longer an 'S' to cap here;
+        # the yogurt-pool 89-ceiling stays as an explicit display cap on the score value.
         display_grade = grade
         capped = False
-        if cap_S_to_A and grade == "S":
+        if cap_S_to_A and score_display is not None and score_display >= 90:
             display_grade = "A"
-            score_display = min(round(score), 89)  # cap at 89 per yogurt convention
+            score_display = min(score_display, 89)  # cap at 89 per yogurt convention
             capped = True
-        else:
-            score_display = round(score)
 
-        img_urls = b1.get("image_urls") or []
-        image_url = img_urls[0] if img_urls else ""
+        image_url = FC.select_image_url(b1) or ""
         ingredients = b1.get("ingredients_text_he") or b1.get("ingredients_raw") or ""
 
         nutrition = {
@@ -143,21 +142,27 @@ def build_new_products(traces, bsip1_by_pid, category_prefix, retailer="yohanano
             "score": score_display,
             "grade": display_grade,
             "insightLine": insight_line,
-            "confidence": confidence_badge(confidence_lvl),
+            "confidence": conf_fields["confidence"],
             "expansion": {
                 "nutrition": nutrition,
                 "ingredients": ingredients,
-                "confidenceLabel": confidence_label(confidence_lvl),
+                "confidenceLabel": conf_fields["confidence_label_he"],
                 "servingNote": "ל-100 גרם",
             },
             "rowVerdict": row_verdict,
-            "confidence_level": confidence_lvl,
+            "confidence_label_he": conf_fields["confidence_label_he"],
+            "confidence_tooltip_he": conf_fields["confidence_tooltip_he"],
+            "confidence_sub_reason": conf_fields["confidence_sub_reason"],
             "retailer": retailer,
             "retailer_he": retailer_he,
             "provenance": "off_candidate_panel",
         }
         if capped:
-            record["_score_capped"] = f"engine_score={round(score)}/S capped to A per yogurt_pool_convention"
+            # Display cap on the score VALUE (engine score >=90 held at 89/A per the
+            # yogurt-pool convention). Represented via the canonical A-cap field corpus.ts
+            # honors so a regeneration emits a cap the runtime respects.
+            record[FC.A_CAP_FIELD] = True
+            record["_score_capped"] = f"engine_score={round(score)} (>=90) capped to 89/A per yogurt_pool_convention"
         new.append(record)
     return new
 
@@ -185,6 +190,11 @@ print(f"New Yohananof yogurt after dedup: {len(new_yogurt_deduped)}")
 
 all_yogurt = sorted(yogurt_shufersal, key=lambda p: -(p.get("score") or 0)) + \
              sorted(new_yogurt_deduped, key=lambda p: -(p.get("score") or 0))
+# TASK-233B emission strip (DA-012): keep only VM keys + barcode/retailer + the
+# load-bearing `_cluster` (yogurt shelf filters read it off the raw JSON). Drops
+# source_traceability_status, confidence_level, retailer_he, provenance, _score_capped,
+# _a_gate_reason, brand and other non-VM keys. `_aCappedToB` is preserved by the allowlist.
+all_yogurt = [FC.strip_non_vm_fields(p, keep={"_cluster"}) for p in all_yogurt]
 yogurt_grade_dist = Counter(p.get("grade") for p in all_yogurt)
 yogurt_out = {
     "_meta": {
@@ -236,7 +246,10 @@ def apply_cheese_a_gate(products):
         if p.get("grade") in ("A", "S"):
             if sodium is None or sat_fat is None or sodium > 400 or sat_fat > 4.0:
                 p["grade"] = "B"
-                p["_a_gate_capped"] = f"A-ceiling gate: sodium={sodium} sat_fat={sat_fat} (threshold: sodium<=400, sat_fat<=4.0)"
+                # DA-011: corpus.ts normalizeGrade reads `_aCappedToB` (NOT `_a_gate_capped`)
+                # to hold an A-eligible product at B. Write the name the runtime honors.
+                p[FC.A_CAP_FIELD] = True
+                p["_a_gate_reason"] = f"A-ceiling gate: sodium={sodium} sat_fat={sat_fat} (threshold: sodium<=400, sat_fat<=4.0)"
         out.append(p)
     return out
 
@@ -255,6 +268,10 @@ print(f"New Yohananof cheese after dedup: {len(new_cheese_deduped)}")
 
 all_cheese = sorted(cheese_shufersal, key=lambda p: -(p.get("score") or 0)) + \
              sorted(new_cheese_deduped, key=lambda p: -(p.get("score") or 0))
+# TASK-233B emission strip (DA-012): same policy as yogurt. `_cluster` (cheese shelf
+# filters) and `_aCappedToB` (the A-ceiling cap corpus.ts honors) are preserved; all
+# other internal/non-VM keys are dropped.
+all_cheese = [FC.strip_non_vm_fields(p, keep={"_cluster"}) for p in all_cheese]
 cheese_grade_dist = Counter(p.get("grade") for p in all_cheese)
 cheese_out = {
     "_meta": {

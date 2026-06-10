@@ -73,5 +73,15 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "data_corrections": [
+    {
+      "field": "BASIS_ERROR_DIAGNOSIS",
+      "old_value": 139.0,
+      "new_value": "excluded_from_shelf",
+      "reason": "Whole-panel per-serving basis mislabeled per-100g (Atwater~135 == stated 139). Unrecoverable -> dropped from shelf.",
+      "task": "TASK-234",
+      "corrected_at_source": "open_food_facts (authoritative serving-level re-probe, off_reprobe_task234.json)"
+    }
+  ]
 }

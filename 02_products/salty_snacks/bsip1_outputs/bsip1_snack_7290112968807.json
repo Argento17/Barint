@@ -50,7 +50,7 @@
   "ingredient_count": 15,
   "claims_raw": "",
   "claims": [],
-  "nova_proxy": 4,
+  "nova_proxy": 3,
   "nova_confidence": 0.6,
   "additive_categories": [],
   "additive_count": 1,
@@ -96,6 +96,15 @@
       "reason": "OFF trans-fat_100g (2.326) was a serving-scaling artifact: serving panel 0.5 g / 0.215 serving fraction. 0.5 g serving = Israeli '<1g' threshold declaration, not measured. No PHVO/hydrogenated oil in ingredients. Corrected to 0.0 (no measured trans). TASK-231.",
       "task": "TASK-231",
       "corrected_at_source": "open_food_facts (serving-scaling artifact)"
+    },
+    {
+      "field": "nova_proxy",
+      "old_value": 4,
+      "new_value": 3,
+      "reason": "RT-7 reconciliation: stored nova_proxy was the RAW OFF nova_group (4); the scoring engine infers and publishes NOVA-3 for this product (the value that actually scores). Raw OFF value preserved as nova_group_off_raw (provenance only). No score change: engine NOVA was already the published value.",
+      "task": "TASK-234",
+      "corrected_at_source": "engine infer_nova (authoritative scored NOVA)"
     }
-  ]
+  ],
+  "nova_group_off_raw": 4
 }

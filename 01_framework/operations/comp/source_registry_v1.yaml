@@ -1,0 +1,1070 @@
+# Project Comp — Source Registry v1
+# ============================================================================
+# Purpose: The verified, public source universe that Project Comp monitors daily.
+# This file holds ONLY sources confirmed (via web search, 2026-06-10) to be
+# public and relevant. Uncertain / unverified-handle sources live in
+# source_candidates_v1.yaml — NOT here (Rule 9).
+#
+# Core principle: influencers are signal, not evidence. credibility_weight and
+# discourse_weight are SEPARATE axes — a viral account can be discourse:high /
+# credibility:low. Never collapse them. Never treat follower count as credibility.
+#
+# Field contract (per source):
+#   id, platform, handle_or_name, url, language(he|en|mixed),
+#   market(israel|us|uk|eu|global), source_type, credibility_weight(high|medium|low),
+#   discourse_weight(high|medium|low), bari_use[], topics[],
+#   status(active|candidate|exclude), discovery_reason, notes
+#
+# Owner: Research Agent (evidence) + Marketing Agent (signal) — joint.
+# Status: D0 build. NOT yet wired to a scheduled run (Rule 10).
+# Built: 2026-06-10
+# ============================================================================
+
+meta:
+  version: v1
+  built: 2026-06-10
+  last_updated: 2026-06-10  # D0b — IL creators (il-023..031); D0c — Yaniv Salman (il-032) + global creators (gl-027..034)
+  verification_method: "web search confirmation of public URL + relevance, 2026-06-10"
+  active_count_israel: 32   # 22 at D0; +9 at D0b; +1 at D0c (Yaniv Salman)
+  active_count_global: 34   # 26 at D0/D0b; +8 verified creators at D0c
+  principle: "credibility != virality; influencers are signal not evidence; small high-quality > large noisy"
+  promotion_standard_d0b: >
+    A creator is ACTIVE only if a public URL/handle was seen RESOLVING as an actual result link
+    (own site / Substack / podcast / instagram.com/<handle>) AND the source publishes an ongoing
+    public content stream. Handles seen only inside a search-engine summary (not as a live link),
+    or service/clinic sites with no evident content stream, stay in candidates (no guessed handles).
+  source_type_vocab_extension:
+    added: [food_culture]
+    reason: >
+      D0b introduced 'Israeli food culture figures who shape consumer food discourse' (e.g. Omer Miller).
+      These are signal/consumer voices that fit no original enum value. 'food_culture' is signal-only:
+      credibility for nutrition is low by default; never evidence_reference. QA-flagged vocab change.
+
+# ============================================================================
+# A. ISRAELI / HEBREW SOURCES
+# ============================================================================
+israel:
+
+  # --- Regulators & institutional ---
+  - id: il-001
+    platform: web
+    handle_or_name: "משרד הבריאות — אפשריבריא (Efshari Bari)"
+    url: https://efsharibari.health.gov.il
+    language: he
+    market: israel
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, category_discovery]
+    topics: [ultra_processed, sugar, additives, fiber, kids_food]
+    status: active
+    discovery_reason: "Official MoH national nutrition program; defines Israeli dietary guidance & UPF reduction messaging."
+    notes: "Authoritative for Israeli policy framing. Hosts the national food rainbow (קשת המזון) and UPF-reduction guidance."
+
+  - id: il-002
+    platform: web
+    handle_or_name: "משרד הבריאות — מערך הפיקוח על המזון (Food Control Services)"
+    url: https://www.health.gov.il/UnitsOffice/HD/PH/FCS/Pages/default.aspx
+    language: he
+    market: israel
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [additives, food_dyes, preservatives, clean_label]
+    status: active
+    discovery_reason: "Statutory food supervision; source of additive/labeling regulation incl. the 2020 front-of-pack warning-label reform."
+    notes: "Anchor for the red-label thresholds (sugar>10g, sat-fat>4g, sodium>400mg /100g)."
+
+  - id: il-003
+    platform: web
+    handle_or_name: "מאגר התזונה הלאומי הישראלי (Tzameret / national nutrition DB)"
+    url: https://data.gov.il/dataset/nutrition-database
+    language: he
+    market: israel
+    source_type: regulator
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [protein, sugar, fiber, additives]
+    status: active
+    discovery_reason: "Government open-data nutrition composition DB."
+    notes: "DIRECTIONAL ONLY per owner directive — known data-quality issues. Never authoritative; prefer USDA FDC + BSIP0 panel. Monitored for changes, not cited as truth."
+
+  - id: il-004
+    platform: web
+    handle_or_name: "PAN ישראל — ארגון רופאים לתזונה (Physicians Assoc. for Nutrition)"
+    url: https://pan-il.org
+    language: he
+    market: israel
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, content_inspiration]
+    topics: [plant_based, ultra_processed, fiber, sugar, additives]
+    status: active
+    discovery_reason: "Physician-led nutrition org publishing label-reading guides & dietary-guideline explainers in Hebrew."
+    notes: "Plant-based leaning — note bias when reading. Strong, citable Hebrew explainer content (how-to-read-labels, guidelines)."
+
+  - id: il-005
+    platform: web
+    handle_or_name: "האיגוד הישראלי לרפואת ילדים (Israeli Pediatric Association)"
+    url: https://pediatrics.doctorsonly.co.il
+    language: he
+    market: israel
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [kids_food, protein]
+    status: active
+    discovery_reason: "Professional pediatric body — authoritative on kids-food / infant nutrition positions."
+    notes: "Use for kids-food category guardrails."
+
+  # --- Health funds (public-health voices, mass reach) ---
+  - id: il-006
+    platform: web
+    handle_or_name: "כללית — תזונה (Clalit Health Services, nutrition)"
+    url: https://www.clalit.co.il
+    language: he
+    market: israel
+    source_type: public_health
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [evidence_reference, consumer_signal]
+    topics: [weight_loss, sugar, fiber, kids_food, GLP1]
+    status: active
+    discovery_reason: "Largest Israeli HMO; consumer-facing nutrition content with mass reach."
+    notes: "Institutional consumer education — middlebrow register, good read on what mainstream IL consumers are told."
+
+  - id: il-007
+    platform: web
+    handle_or_name: "לאומית — שירותי תזונה ודיאטה (Leumit, nutrition)"
+    url: https://www.leumit.co.il/nutrition/
+    language: he
+    market: israel
+    source_type: public_health
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [evidence_reference, consumer_signal]
+    topics: [weight_loss, sugar, fiber]
+    status: active
+    discovery_reason: "HMO nutrition service content, public."
+    notes: "Secondary to Clalit/Maccabi; monitor for campaign topics."
+
+  # --- Mainstream Israeli media nutrition sections ---
+  - id: il-008
+    platform: web
+    handle_or_name: "ynet בריאות (Ynet Health)"
+    url: https://www.ynet.co.il/health
+    language: he
+    market: israel
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery]
+    topics: [ultra_processed, sugar, protein, GLP1, weight_loss, additives]
+    status: active
+    discovery_reason: "Largest IL news portal health desk; sets mainstream nutrition narrative & covered the labeling reform."
+    notes: "High discourse / medium credibility — reports research, not original evidence. Strong early signal on what goes mainstream in Hebrew."
+
+  - id: il-009
+    platform: web
+    handle_or_name: "mako בריאות — תזונה נכונה (Mako Healthy Nutrition)"
+    url: https://www.mako.co.il/health-wellness/healthy-nutrition
+    language: he
+    market: israel
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery]
+    topics: [ultra_processed, sugar, protein, sweeteners, weight_loss]
+    status: active
+    discovery_reason: "Major IL portal (Keshet) nutrition section with broad reach."
+    notes: "Discourse signal; cross-check claims against evidence sources."
+
+  - id: il-010
+    platform: web
+    handle_or_name: "הארץ — אוכל (Haaretz Food)"
+    url: https://www.haaretz.co.il/food
+    language: he
+    market: israel
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [ultra_processed, fiber, clean_label, plant_based]
+    status: active
+    discovery_reason: "Quality-press food/nutrition writing; higher-brow framing."
+    notes: "Section landing is public; individual articles are often paywalled (premium) — DO NOT scrape paywalled bodies (Rule 2). Headlines/decks only."
+
+  - id: il-011
+    platform: web
+    handle_or_name: "וואלה בריאות — תזונת ילדים (Walla Health, kids nutrition)"
+    url: https://healthy.walla.co.il/category/587
+    language: he
+    market: israel
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, category_discovery]
+    topics: [kids_food, sugar, protein]
+    status: active
+    discovery_reason: "Dedicated kids-nutrition section — direct read on parenting/kids-food discourse."
+    notes: "Useful for kids-food category signal."
+
+  # --- Israeli dietitians / clinicians with verified public presence ---
+  - id: il-012
+    platform: web
+    handle_or_name: "קרן אן גיימן (Karen Ann Gaiman) — תזונאית קלינית + תזונת ספורט"
+    url: https://www.karenann.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [protein, weight_loss, high_protein_dairy, fiber]
+    status: active
+    discovery_reason: "Clinical + sports dietitian, public site; protein/fitness-nutrition crossover relevant to high-protein dairy discourse."
+    notes: "Credibility = licensed; treat content as practitioner opinion, not primary evidence. IG handle to confirm before adding social monitoring."
+
+  - id: il-013
+    platform: web
+    handle_or_name: "דגנית עין בר (Dganit Ein Bar) — מומחית לחם ותווית מזון"
+    url: https://www.einbar.co.il
+    language: he
+    market: israel
+    source_type: food_label_reviewer
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [content_inspiration, category_discovery]
+    topics: [clean_label, additives, fiber, preservatives]
+    status: active
+    discovery_reason: "Public educator on bread + how-to-read-food-labels — directly adjacent to Bari's label-literacy mission."
+    notes: "Strong overlap with Bari's bread/label work. Practitioner voice, not evidence."
+
+  - id: il-014
+    platform: web
+    handle_or_name: "מותר לי — סיגלית פז (Mutarli / Siglit Paz) — תזונאית, גישת נון-דיאט"
+    url: https://www.mutarli.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [weight_loss, sugar, gut_health]
+    status: active
+    discovery_reason: "Non-diet / intuitive-eating dietitian — represents the anti-restriction wing of IL discourse."
+    notes: "Counterweight to diet-culture sources; useful for balanced consumer-signal reading."
+
+  - id: il-015
+    platform: web
+    handle_or_name: "מרכז דעת הגוף (Daat HaGuf) — דיאטנית קלינית ת״א, נון-דיאט"
+    url: https://www.daat-haguf.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [content_inspiration]
+    topics: [gut_health, weight_loss]
+    status: active
+    discovery_reason: "Clinical dietitian practice, non-diet approach, public site."
+    notes: "Practitioner voice."
+
+  - id: il-016
+    platform: web
+    handle_or_name: "Eatless (איטלס) — בלוג תזונה"
+    url: https://www.eatless.co.il
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [ultra_processed, sugar, weight_loss, clean_label]
+    status: active
+    discovery_reason: "Active Hebrew nutrition blog tracking MoH guideline updates."
+    notes: "Blog tier — monitor for consumer framing, not for evidence."
+
+  # --- Israeli food brands with strong nutrition messaging (brand = signal, not evidence) ---
+  - id: il-017
+    platform: web
+    handle_or_name: "תנובה (Tnuva)"
+    url: https://www.tnuva.co.il
+    language: he
+    market: israel
+    source_type: brand
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [competitor_signal, category_discovery]
+    topics: [protein, high_protein_dairy, sugar]
+    status: active
+    discovery_reason: "Dominant IL dairy brand; heavy protein / high-protein-dairy marketing shapes category discourse."
+    notes: "Brand claims are marketing, never evidence (Rule 4). Monitor for what nutrition messaging the market is being sold (esp. high-protein dairy)."
+
+  - id: il-018
+    platform: web
+    handle_or_name: "שטראוס (Strauss Group)"
+    url: https://www.strauss-group.com
+    language: he
+    market: israel
+    source_type: brand
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [competitor_signal, category_discovery]
+    topics: [sugar, protein, kids_food, clean_label]
+    status: active
+    discovery_reason: "Major IL food manufacturer; snacks/dairy/kids-food messaging."
+    notes: "Brand = signal only. Watch reformulation & 'clean label' claims."
+
+  - id: il-019
+    platform: web
+    handle_or_name: "תבל / תיבול — טבעוני: Tivall / plant-based IL brands"
+    url: https://www.tivall.co.il
+    language: he
+    market: israel
+    source_type: brand
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [competitor_signal, category_discovery]
+    topics: [plant_based, protein, ultra_processed]
+    status: active
+    discovery_reason: "Leading IL plant-based brand; plant-based-vs-UPF tension is live category discourse."
+    notes: "Brand signal. Plant-based products are often themselves UPF — useful tension to track."
+
+  # --- Israeli retailer (label + assortment + price data, public) ---
+  - id: il-020
+    platform: web
+    handle_or_name: "שופרסל אונליין (Shufersal online)"
+    url: https://www.shufersal.co.il
+    language: he
+    market: israel
+    source_type: retailer
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [category_discovery, competitor_signal]
+    topics: [ultra_processed, protein, frozen_food, kids_food, clean_label]
+    status: active
+    discovery_reason: "Primary BSIP0 scrape source; assortment & label data define which categories/products exist on IL shelves."
+    notes: "Already the operational scrape backbone. Public product pages only; honors existing BSIP0 retailer-coverage standard."
+
+  - id: il-021
+    platform: web
+    handle_or_name: "ynet אוכל — חשבונות מומלצים / Foodnews"
+    url: https://www.ynet.co.il/food
+    language: he
+    market: israel
+    source_type: mainstream_health_media
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [clean_label, plant_based, kids_food]
+    status: active
+    discovery_reason: "Food desk that curates IL food/nutrition Instagram accounts — a discovery feed for new IL creators."
+    notes: "Use as a DISCOVERY pipe into source_candidates, not as evidence."
+
+  - id: il-022
+    platform: web
+    handle_or_name: "ד״ר אפי / drkids — רפואת ילדים (incl. infant nutrition)"
+    url: https://drkids.co.il
+    language: he
+    market: israel
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [kids_food, protein]
+    status: active
+    discovery_reason: "Senior pediatrician public site covering infant/child nutrition — parenting/kids-food voice."
+    notes: "Doctor credibility on pediatrics; nutrition content is practitioner guidance, not primary evidence."
+
+  # ==========================================================================
+  # D0b — Israeli creator / influencer layer (added 2026-06-10)
+  # Verified public URL/handle + ongoing content stream. Influencers = SIGNAL.
+  # ==========================================================================
+
+  - id: il-023
+    platform: web
+    handle_or_name: "ד״ר מאיה רוזמן (Dr. Maya Roseman) — דיאטנית קלינית, PhD"
+    url: https://dietmaya.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, misinformation_watch]
+    topics: [weight_loss, sugar, kids_food, protein, sweeteners]
+    status: active
+    discovery_reason: "Highest-profile IL clinical dietitian (PhD nutrition/genetics, 35+ yrs, TV/radio/books); runs myth-busting Substack (dietmaya.substack.com). Promoted from cand-001."
+    notes: "credibility:medium (licensed PhD, but a public-figure popularizer — verify specific claims). discourse:high. Best single IL nutrition signal source. IG handle to confirm; site + Substack verified."
+
+  - id: il-024
+    platform: instagram
+    handle_or_name: "עומר מילר (Omer Miller) — @omermiller"
+    url: https://www.instagram.com/omermiller
+    language: he
+    market: israel
+    source_type: food_culture
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, category_discovery]
+    topics: [plant_based, protein, clean_label]
+    status: active
+    discovery_reason: "~380K-follower chef/food-culture figure (also omermiller.co.il); shapes mainstream IL home-cooking + diet discourse. Personally keto since 2021, Crohn's."
+    notes: "credibility:LOW for nutrition (chef, personal keto stance — not a clinician). Pure SIGNAL: read for what IL consumers are excited about, never as evidence (Rule 4). Verified handle."
+
+  - id: il-025
+    platform: web
+    handle_or_name: "גל רובינשטיין וישניה — 'תזונה שפויה' (Gal Rubinstein) — דיאטנית קלינית"
+    url: https://healthybygal.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [weight_loss, sugar, fiber, gut_health]
+    status: active
+    discovery_reason: "Clinical dietitian with active IG presence ('sane nutrition' / anti-diet-culture brand); verified site + reels."
+    notes: "credibility:medium (licensed). Non-diet wing — counterweight to restriction culture. IG handle to confirm; site verified."
+
+  - id: il-026
+    platform: web
+    handle_or_name: "ד״ר אולגה רז (Dr. Olga Raz) — דיאטנית קלינית"
+    url: https://www.olgaraz.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration, evidence_reference]
+    topics: [weight_loss, kids_food, sugar, protein]
+    status: active
+    discovery_reason: "Veteran clinical dietitian (ex-Ichilov), well-known public author; publishes consumer diet content incl. kids."
+    notes: "credibility:medium-high (clinical/hospital pedigree) — closest of the creator tier to evidence-adjacent. Verified site with content stream."
+
+  - id: il-027
+    platform: web
+    handle_or_name: "חלבון / Proteins.co.il (Tal & Omri) — פלטפורמת כושר ותזונה"
+    url: https://www.proteins.co.il
+    language: he
+    market: israel
+    source_type: fitness_nutrition
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [protein, high_protein_dairy, supplements, weight_loss, satiety]
+    status: active
+    discovery_reason: "Science-leaning IL fitness-nutrition content platform (states it sources from scientific orgs, no-conflict-of-interest)."
+    notes: "credibility:medium — claims evidence basis but is commercial; treat as content, not primary evidence. Strong read on IL protein/supplement discourse."
+
+  - id: il-028
+    platform: web
+    handle_or_name: "טל בן משה — TBM Academy (Tal Ben Moshe) — מדע כושר ותזונה"
+    url: https://tbm-academy.com
+    language: he
+    market: israel
+    source_type: fitness_nutrition
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [content_inspiration, consumer_signal, misinformation_watch]
+    topics: [protein, weight_loss, supplements, sweeteners]
+    status: active
+    discovery_reason: "Science-based fitness/nutrition educator explicitly focused on debunking social-media nutrition myths."
+    notes: "credibility:medium. The pro-evidence / myth-busting wing of IL fitness discourse — useful model + misinformation_watch lens. Commercial (academy)."
+
+  - id: il-029
+    platform: web
+    handle_or_name: "צביה / Zvia Diet — דיאטנית קלינית (קריאת תוויות מזון)"
+    url: https://www.zviadiet.co.il
+    language: he
+    market: israel
+    source_type: food_label_reviewer
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [content_inspiration, category_discovery]
+    topics: [ultra_processed, clean_label, additives, sugar]
+    status: active
+    discovery_reason: "Clinical dietitian publishing how-to-read-supermarket-labels content — directly adjacent to Bari's label-literacy mission."
+    notes: "credibility:medium (licensed). Lower discourse but high topical fit. Verified site with label-reading posts."
+
+  - id: il-030
+    platform: web
+    handle_or_name: "רותי פינק — 'תזונה: הצעד הבא' (Ruti Fink) — פודקאסט תזונה"
+    url: https://finkruti.podbean.com
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [weight_loss, sugar, gut_health, GLP1]
+    status: active
+    discovery_reason: "Active Hebrew nutrition podcast covering chronic-disease / metabolic nutrition (diabetes, obesity prevention)."
+    notes: "Podcast URL verified. IG handle (search-surfaced as @rutifink) NOT independently confirmed — do not use handle until verified. Audio format = manual-sweep monitoring."
+
+  - id: il-031
+    platform: web
+    handle_or_name: "סיגל בלצר (Sigal Belzer) — דיאטנית ילדים"
+    url: https://www.sigalbel.co.il
+    language: he
+    market: israel
+    source_type: parenting_kids_food
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [kids_food, sugar]
+    status: active
+    discovery_reason: "Pediatric/adolescent clinical dietitian with public educational content — the kids-food creator representative in the active set."
+    notes: "credibility:medium (licensed). Kids category is mandatory but thin on social-discourse creators — Belzer is clinic-oriented; a true kids-food INFLUENCER remains a gap (see candidates + report §D0b)."
+
+  # --- D0c addition (owner-flagged) ---
+  - id: il-032
+    platform: instagram
+    handle_or_name: "יניב סלמן (Yaniv Salman) — @yanivsalman120"
+    url: https://www.instagram.com/yanivsalman120
+    language: he
+    market: israel
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, misinformation_watch]
+    topics: [protein, weight_loss, clean_label, ultra_processed, supplements]
+    status: active
+    discovery_reason: "Owner-flagged as relevant to Bari. High-reach IL fitness/nutrition creator; cross-platform (IG/TikTok/YouTube under yanivsalman120) with confirmed nutrition content."
+    notes: >
+      Owner direction; primary handle confirmed @yanivsalman120 (disambiguated 2026-06-10 — a nutrition
+      post on proper fruit-washing + consistent cross-platform presence). @yan_sal_ is a same-name profile
+      left UNUSED (content unverified); a separate Yaniv Salman MUSICIAN exists — do NOT monitor that one.
+      credibility:LOW until credentials confirmed (fitness influencer ≠ clinician) → treat as SIGNAL.
+
+# ============================================================================
+# B. ENGLISH / GLOBAL SOURCES
+# ============================================================================
+global:
+
+  # --- Direct competitors / adjacent platforms ---
+  - id: gl-001
+    platform: web
+    handle_or_name: "Yuka"
+    url: https://yuka.io
+    language: en
+    market: global
+    source_type: competitor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [competitor_signal]
+    topics: [additives, ultra_processed, sugar, clean_label, food_dyes]
+    status: active
+    discovery_reason: "Closest analog — barcode food/cosmetic scanner with 0–100 score; drives reformulation, shuts out makers."
+    notes: "Direct competitor benchmark. Score = additives + nutrition + organic. Methodology critique relevant to Bari's positioning."
+
+  - id: gl-002
+    platform: web
+    handle_or_name: "Open Food Facts"
+    url: https://world.openfoodfacts.org
+    language: mixed
+    market: global
+    source_type: competitor
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [competitor_signal, evidence_reference, category_discovery]
+    topics: [ultra_processed, additives, clean_label]
+    status: active
+    discovery_reason: "Open product/label database powering Nutri-Score + NOVA; both competitor and a usable open data layer."
+    notes: "Dual role: competitor (scoring) AND open ingredient/label dataset. Already in external integration layer (OFF client)."
+
+  - id: gl-003
+    platform: web
+    handle_or_name: "Fooducate"
+    url: https://www.fooducate.com
+    language: en
+    market: us
+    source_type: competitor
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [competitor_signal]
+    topics: [sugar, additives, ultra_processed, weight_loss]
+    status: active
+    discovery_reason: "A/B/C letter-grade food scanner — closest to Bari's grade model."
+    notes: "Letter-grade analog; compare grading philosophy."
+
+  - id: gl-004
+    platform: web
+    handle_or_name: "EWG Food Scores"
+    url: https://www.ewg.org/foodscores
+    language: en
+    market: us
+    source_type: competitor
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [competitor_signal, misinformation_watch]
+    topics: [additives, food_dyes, organic, clean_label]
+    status: active
+    discovery_reason: "1–10 food scoring; high reach but contested methodology (hazard- not dose-based)."
+    notes: "Discourse:high / credibility:low — frequently criticized for fear-based / non-dose scoring. Watch as both competitor AND misinformation pattern."
+
+  - id: gl-005
+    platform: web
+    handle_or_name: "ZOE"
+    url: https://zoe.com
+    language: en
+    market: uk
+    source_type: competitor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [competitor_signal, content_inspiration]
+    topics: [ultra_processed, gut_health, additives, fiber]
+    status: active
+    discovery_reason: "Personalized-nutrition platform w/ its own Processed Food Risk Scale + heavy gut-health / UPF content engine (Tim Spector)."
+    notes: "Strong science-comms model worth studying. Commercial bias (sells testing) — credibility medium."
+
+  # --- Evidence references (high-credibility) ---
+  - id: gl-006
+    platform: web
+    handle_or_name: "Examine.com"
+    url: https://examine.com
+    language: en
+    market: global
+    source_type: nutrition_blog
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference]
+    topics: [supplements, protein, sweeteners, gut_health, fiber]
+    status: active
+    discovery_reason: "Independent, citation-dense supplement/nutrition evidence aggregator — no product sales."
+    notes: "Top-tier secondary evidence source. Ideal for supplement & ingredient claim verification."
+
+  - id: gl-007
+    platform: web
+    handle_or_name: "Harvard T.H. Chan — The Nutrition Source"
+    url: https://nutritionsource.hsph.harvard.edu
+    language: en
+    market: us
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, content_inspiration]
+    topics: [fiber, sugar, protein, plant_based, seed_oils]
+    status: active
+    discovery_reason: "Academic public-health nutrition reference, consumer-readable."
+    notes: "Excellent for evidence-grounded consumer framing (e.g. seed-oils, fats)."
+
+  - id: gl-008
+    platform: web
+    handle_or_name: "NutritionFacts.org (Dr. Michael Greger)"
+    url: https://nutritionfacts.org
+    language: en
+    market: us
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [evidence_reference, content_inspiration, misinformation_watch]
+    topics: [plant_based, ultra_processed, fiber, gut_health]
+    status: active
+    discovery_reason: "Physician, citation-heavy video library; large reach."
+    notes: "Strong whole-food-plant-based bias — cites real studies but selectively. Credibility medium: verify, don't inherit conclusions."
+
+  - id: gl-009
+    platform: web
+    handle_or_name: "Marion Nestle — Food Politics"
+    url: https://www.foodpolitics.com
+    language: en
+    market: us
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, content_inspiration]
+    topics: [ultra_processed, food_dyes, clean_label, sugar]
+    status: active
+    discovery_reason: "Leading food-policy academic; tracks industry influence & labeling policy."
+    notes: "Authoritative on conflict-of-interest & food-industry framing."
+
+  # --- Public-health / regulatory bodies ---
+  - id: gl-010
+    platform: web
+    handle_or_name: "WHO — Nutrition & Food Safety"
+    url: https://www.who.int/health-topics/nutrition
+    language: en
+    market: global
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference]
+    topics: [sugar, sweeteners, ultra_processed, additives]
+    status: active
+    discovery_reason: "Global authority; sets sugar/sweetener (e.g. aspartame, non-sugar-sweetener) positions."
+    notes: "Top-tier policy evidence."
+
+  - id: gl-011
+    platform: web
+    handle_or_name: "EFSA — European Food Safety Authority"
+    url: https://www.efsa.europa.eu
+    language: en
+    market: eu
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [additives, food_dyes, sweeteners, emulsifiers, preservatives]
+    status: active
+    discovery_reason: "EU additive/E-number safety re-evaluations — primary for emulsifier/dye/sweetener risk."
+    notes: "Authoritative on E-numbers, ADIs, additive re-evaluations. Directly relevant to BSIP2 additive scoring evidence."
+
+  - id: gl-012
+    platform: web
+    handle_or_name: "US FDA — Food"
+    url: https://www.fda.gov/food
+    language: en
+    market: us
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference]
+    topics: [food_dyes, additives, ultra_processed, clean_label]
+    status: active
+    discovery_reason: "US food regulator; dye bans / UPF-definition rulemaking are active 2026."
+    notes: "Watch the 2025–26 UPF-definition + dye-phaseout rulemaking."
+
+  - id: gl-013
+    platform: web
+    handle_or_name: "British Dietetic Association (BDA)"
+    url: https://www.bda.uk.com
+    language: en
+    market: uk
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference, misinformation_watch]
+    topics: [weight_loss, GLP1, supplements, gut_health]
+    status: active
+    discovery_reason: "Professional dietetic body; publishes evidence positions + myth-busting food fact sheets."
+    notes: "Good myth-debunk reference (fad diets, detox, etc.)."
+
+  - id: gl-014
+    platform: web
+    handle_or_name: "Academy of Nutrition and Dietetics (eatright.org)"
+    url: https://www.eatright.org
+    language: en
+    market: us
+    source_type: public_health
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [protein, fiber, kids_food, weight_loss]
+    status: active
+    discovery_reason: "Largest US dietitian body; consumer guidance."
+    notes: "Note historical industry-funding criticism — credibility medium, cross-check on additive/UPF topics."
+
+  # --- Food policy / industry / food-tech commentary ---
+  - id: gl-015
+    platform: web
+    handle_or_name: "FoodNavigator"
+    url: https://www.foodnavigator.com
+    language: en
+    market: eu
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [competitor_signal, category_discovery]
+    topics: [ultra_processed, clean_label, protein, plant_based, sweeteners]
+    status: active
+    discovery_reason: "Food-industry trade news — reformulation, regulation, CPG launches (e.g. covered Yuka's reformulation pressure)."
+    notes: "Best read on what the FOOD INDUSTRY is doing (reformulation, clean-label trend, ingredient shifts)."
+
+  - id: gl-016
+    platform: web
+    handle_or_name: "STAT News — Health/Nutrition policy"
+    url: https://www.statnews.com
+    language: en
+    market: us
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, category_discovery]
+    topics: [ultra_processed, GLP1, food_dyes]
+    status: active
+    discovery_reason: "Serious health-policy journalism; covered the 2026 UPF-policy push."
+    notes: "Higher-rigor than general press. Some paywall — headlines/decks only."
+
+  - id: gl-017
+    platform: web
+    handle_or_name: "The Nutrition Tea — Shana Minei Spence, RD (Substack)"
+    url: https://thenutritiontea.substack.com
+    language: en
+    market: us
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, misinformation_watch]
+    topics: [ultra_processed, weight_loss, sugar, clean_label]
+    status: active
+    discovery_reason: "RD newsletter pushing back on UPF panic / diet-culture — represents the anti-fearmongering wing."
+    notes: "Useful counterweight: argues against lumping all processed food together. Helps Bari avoid fear-based framing."
+
+  - id: gl-018
+    platform: web
+    handle_or_name: "Abbie Attwood Wellness (Substack)"
+    url: https://abbieattwoodwellness.substack.com
+    language: en
+    market: us
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [protein, ultra_processed, weight_loss]
+    status: active
+    discovery_reason: "Anti-diet RD newsletter; critiques protein-hype & guideline politics (MAHA, dietary guidelines)."
+    notes: "Anti-diet lens — pair with pro-protein voices for balance."
+
+  # --- Mainstream health media (references ONLY — keep light per Rule 8) ---
+  - id: gl-019
+    platform: web
+    handle_or_name: "Healthline"
+    url: https://www.healthline.com/nutrition
+    language: en
+    market: us
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal]
+    topics: [protein, supplements, sugar, seed_oils, gut_health]
+    status: active
+    discovery_reason: "Highest-traffic nutrition explainer site — a baseline for what consumers read first."
+    notes: "Reference only (Rule 8). SEO-optimized, medically reviewed but generic. Read as consumer baseline, never as evidence."
+
+  - id: gl-020
+    platform: web
+    handle_or_name: "Verywell Health / Verywell Fit"
+    url: https://www.verywellhealth.com
+    language: en
+    market: us
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal]
+    topics: [protein, weight_loss, fiber, supplements]
+    status: active
+    discovery_reason: "Mainstream explainer reference."
+    notes: "Reference only. One mainstream explainer is enough alongside Healthline — keep the rest out."
+
+  # --- Major social creators (public, relevant) — discourse high, credibility scrutinized ---
+  - id: gl-021
+    platform: instagram
+    handle_or_name: "Glucose Goddess — Jessie Inchauspé (@glucosegoddess)"
+    url: https://www.instagram.com/glucosegoddess
+    language: en
+    market: global
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [sugar, sweeteners, gut_health, weight_loss]
+    status: active
+    discovery_reason: "Massive 'glucose spikes' movement shaping how consumers think about sugar/order-of-eating."
+    notes: "discourse:high / credibility:low — popularizes oversimplified glucose claims. Track as SIGNAL + misinformation pattern, never as evidence (Rule 4)."
+
+  - id: gl-022
+    platform: instagram
+    handle_or_name: "Dr. Layne Norton (@biolayne)"
+    url: https://www.instagram.com/biolayne
+    language: en
+    market: us
+    source_type: fitness_nutrition
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, misinformation_watch]
+    topics: [protein, high_protein_dairy, weight_loss, sweeteners]
+    status: active
+    discovery_reason: "PhD nutrition-science fitness voice; large reach; actively debunks nutrition myths (esp. protein, sweeteners)."
+    notes: "credibility:medium — cites evidence, has fitness-industry bias. Strongest pro-protein / pro-evidence counter-voice to the anti-diet wing."
+
+  - id: gl-023
+    platform: web
+    handle_or_name: "Dr. Mark Hyman"
+    url: https://drhyman.com
+    language: en
+    market: us
+    source_type: doctor
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [misinformation_watch, consumer_signal]
+    topics: [ultra_processed, seed_oils, gut_health, clean_label]
+    status: active
+    discovery_reason: "Functional-medicine doctor, huge reach; drives seed-oil / 'food as medicine' narratives."
+    notes: "credibility:low for many claims (sells supplements/programs). Key node for seed-oil + clean-label hype — misinformation_watch."
+
+  - id: gl-024
+    platform: web
+    handle_or_name: "Examine-adjacent: Cochrane (nutrition reviews)"
+    url: https://www.cochrane.org
+    language: en
+    market: global
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [supplements, fiber, sugar, sweeteners]
+    status: active
+    discovery_reason: "Systematic-review gold standard for settling contested nutrition claims."
+    notes: "Use to adjudicate when discourse sources conflict. Low discourse, top evidence."
+
+  - id: gl-025
+    platform: web
+    handle_or_name: "DSLD — NIH Dietary Supplement Label Database"
+    url: https://dsld.od.nih.gov
+    language: en
+    market: us
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [supplements]
+    status: active
+    discovery_reason: "Authoritative supplement-label database; already in Bari external integration layer."
+    notes: "Evidence/data layer for supplement category. Already integrated (DSLD client)."
+
+  - id: gl-026
+    platform: web
+    handle_or_name: "PubChem"
+    url: https://pubchem.ncbi.nlm.nih.gov
+    language: en
+    market: global
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [additives, sweeteners, food_dyes, emulsifiers]
+    status: active
+    discovery_reason: "Chemical/additive reference (NIH); resolves additive identity & properties."
+    notes: "Evidence/data layer for additive identity. Already integrated (PubChem client)."
+
+  # ==========================================================================
+  # D0c — US / European creator / influencer layer (added 2026-06-10)
+  # Verified handles (seen as live profile links). Influencers = SIGNAL.
+  # Skews toward the EVIDENCE-BASED / myth-busting wing on purpose — these are
+  # the global models for Bari's own voice — balanced by named hype accounts.
+  # ==========================================================================
+
+  - id: gl-027
+    platform: instagram
+    handle_or_name: "Andrew Huberman — @hubermanlab"
+    url: https://www.instagram.com/hubermanlab
+    language: en
+    market: us
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [supplements, gut_health, protein, sweeteners, satiety]
+    status: active
+    discovery_reason: "Owner-cited. Enormous-reach neuroscientist whose supplement/nutrition tangents move consumer behavior globally and into IL discourse. Promoted from cand-014."
+    notes: "credibility:LOW for nutrition specifically (neuroscience background, supplement-sponsor ties, contested claims). Pure SIGNAL + misinformation_watch — never evidence. Verified handle."
+
+  - id: gl-028
+    platform: instagram
+    handle_or_name: "Prof. Tim Spector — @tim.spector"
+    url: https://www.instagram.com/tim.spector
+    language: en
+    market: uk
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [evidence_reference, content_inspiration, consumer_signal]
+    topics: [ultra_processed, gut_health, fiber, plant_based, additives]
+    status: active
+    discovery_reason: "Genetic-epidemiology professor (King's College London), ZOE co-founder; ~765K reach, leading UPF/microbiome science communicator. Promoted from cand-015 (individual, distinct from the ZOE platform gl-005)."
+    notes: "credibility:medium — genuine academic, but ZOE commercial bias (sells testing). The science-comms model Bari should study most. Verified handle."
+
+  - id: gl-029
+    platform: instagram
+    handle_or_name: "Prof. Giles Yeo — @gilesyeo"
+    url: https://www.instagram.com/gilesyeo
+    language: en
+    market: uk
+    source_type: doctor
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, content_inspiration, misinformation_watch]
+    topics: [ultra_processed, weight_loss, GLP1, sugar]
+    status: active
+    discovery_reason: "Cambridge geneticist (obesity/appetite), author ('Why Calories Don't Count', 'Gene Eating'); rigorous myth-busting on UPF and diets."
+    notes: "credibility:HIGH (academic, less commercial than ZOE peers). Strong evidence-adjacent European voice. Verified handle."
+
+  - id: gl-030
+    platform: instagram
+    handle_or_name: "Steph Grasso, MS, RD — @stephgrassodietitian"
+    url: https://www.instagram.com/stephgrassodietitian
+    language: en
+    market: us
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [content_inspiration, consumer_signal, misinformation_watch]
+    topics: [ultra_processed, sugar, sweeteners, clean_label, protein]
+    status: active
+    discovery_reason: "RD (MS) with ~2.4M combined reach; evidence-based myth-debunking on trending nutrition claims."
+    notes: "credibility:medium (licensed RD). Top model for high-reach + evidence-based register. Watch for any brand-sponsorship conflicts (a known RD-influencer risk)."
+
+  - id: gl-031
+    platform: instagram
+    handle_or_name: "Dr. Jessica Knurick, PhD, RDN — @drjessicaknurick"
+    url: https://www.instagram.com/drjessicaknurick
+    language: en
+    market: us
+    source_type: licensed_dietitian
+    credibility_weight: high
+    discourse_weight: high
+    bari_use: [evidence_reference, content_inspiration, misinformation_watch]
+    topics: [ultra_processed, food_dyes, additives, clean_label, protein]
+    status: active
+    discovery_reason: "PhD + RDN; one of the most prominent evidence-based critics of the MAHA movement and US food-environment misinformation; citation-heavy."
+    notes: "credibility:HIGH (PhD RDN, cites primary research). The single best US model for Bari's evidence-vs-hype positioning. Promoted from the cand-022 cluster."
+
+  - id: gl-032
+    platform: instagram
+    handle_or_name: "Abbey Sharp, RD — @abbeyskitchen"
+    url: https://www.instagram.com/abbeyskitchen
+    language: en
+    market: global
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [content_inspiration, consumer_signal, misinformation_watch]
+    topics: [ultra_processed, weight_loss, kids_food, clean_label]
+    status: active
+    discovery_reason: "Canadian RD, 'Bite Back' podcast; high-reach anti-diet, debunks fad diets & influencer claims."
+    notes: "credibility:medium (licensed). Market tagged global (Canada-based, anglophone reach). Anti-diet wing. Promoted from the cand-022 cluster."
+
+  - id: gl-033
+    platform: instagram
+    handle_or_name: "Graeme Tomlinson — 'The Fitness Chef' — @thefitnesschef_"
+    url: https://www.instagram.com/thefitnesschef_
+    language: en
+    market: uk
+    source_type: fitness_nutrition
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [content_inspiration, consumer_signal, misinformation_watch]
+    topics: [weight_loss, clean_label, sugar, protein, ultra_processed]
+    status: active
+    discovery_reason: "UK coach with massive reach; debunks misleading 'healthy' food marketing and label spin — directly parallel to Bari's mission of exposing what a label really means."
+    notes: "credibility:medium (coach, evidence-leaning, not clinician). Tightest content parallel to Bari among global creators (label/marketing truth). Verified handle."
+
+  - id: gl-034
+    platform: instagram
+    handle_or_name: "Itay Shechter — 'GFBEEF' — @gfbeef"
+    url: https://www.instagram.com/gfbeef
+    language: en
+    market: us
+    source_type: food_label_reviewer
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery, content_inspiration, misinformation_watch]
+    topics: [ultra_processed, additives, clean_label, seed_oils, protein]
+    status: active
+    discovery_reason: "Owner-cited ('Itay Scheter'). ~802K-follower creator exposing 'what's really in food' / additives vs. whole food — same consumer hook as Bari."
+    notes: "Owner-cited; name corrected to Itay SHECHTER, handle @gfbeef verified. credibility:LOW (not a clinician; whole-food/anti-additive advocacy leans appeal-to-nature — additive fear can tip into misinformation). SIGNAL + misinformation_watch; never evidence (Rule 4)."

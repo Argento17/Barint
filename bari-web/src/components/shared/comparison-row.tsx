@@ -135,6 +135,7 @@ export const ComparisonRow = memo(function ComparisonRow({
   registerRow,
   category,
   suppressPartialBadge = false,
+  eagerThumb = false,
 }: {
   product: BariProductVM;
   rank: number;
@@ -147,6 +148,8 @@ export const ComparisonRow = memo(function ComparisonRow({
   /** FIX-3: when true, suppress the per-product partial confidence badge (page-level
    *  disclosure is shown instead when ≥50% of the page's products are partial). */
   suppressPartialBadge?: boolean;
+  /** TASK-233E — above-the-fold row: load its thumbnail eagerly on first paint. */
+  eagerThumb?: boolean;
 }) {
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -172,7 +175,7 @@ export const ComparisonRow = memo(function ComparisonRow({
           {rank > 0 ? rank : null}
         </span>
         <span className="bari-cmp-thumbcell">
-          <BariProductThumbnail product={product} size="fill" />
+          <BariProductThumbnail product={product} size="fill" eager={eagerThumb} />
         </span>
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">

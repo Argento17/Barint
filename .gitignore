@@ -6,9 +6,11 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Secrets / local env (never track)
+# Secrets / local env (never track). Covers .env, .env.local, .env.production,
+# .env.*.local, etc. — every variant except the safe-to-track .env.example.
 .env
-.env.local
+.env.*
+!.env.example
 
 # Personal credentials — Google Workspace (Gmail/Calendar) connector for CC.
 # The real token lives at ~/.bari/google_token.json (outside the repo). These

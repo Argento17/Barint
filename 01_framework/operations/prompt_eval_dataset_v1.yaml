@@ -1,0 +1,746 @@
+# =============================================================================
+# Bari Prompt/Artifact Eval Dataset — v1 (50 golden examples)  [CORRECTED 2026-06-10]
+# =============================================================================
+# Task:    TASK-BARI-PROMPT-REGISTRY-CI-EVAL-V1 — Deliverable 2
+# Owners:  content-agent + qa-agent
+# Refs:    prompt_registry_v1.yaml, prompt_surface_inventory_v1.md,
+#          authored_vs_deterministic_copy_audit_v1.md (Step 0, v1.1 CORRECTED),
+#          hebrew_content_golden_eval_v1.md (judge rubric for pairwise examples)
+#
+# CORRECTION (v1.1): QA review found the v1.0 Step-0 classification inverted.
+# Per-builder file evidence shows most shipped insightLine/explanation arrays are
+# content-authored or carried-verbatim, NOT deterministic. Routing is corrected:
+# only verified-computed builder output uses golden_diff; authored/carried/patched
+# copy uses pairwise_judge; unverified provenance uses manual_review until proven.
+#
+# SCOPE GUARD: references EXISTING artifacts as golden baselines. Does NOT author
+# new copy, change prompts, change scoring, or wire CI. Deterministic categorization
+# / parsing / scoring already covered by router_regression_corpus.json /
+# run_regression_check.py / run_router_regression.py are NOT included.
+#
+# eval_method legend: golden_diff | schema_validation | pairwise_judge | manual_review
+# pairwise rubric = hebrew_content_golden_eval_v1.md (D1 factual_accuracy,
+# D2 consumer-facing, D3 assertive/no-apology, D4 framework-invisible, D5 safe-wording).
+# =============================================================================
+
+dataset_meta:
+  status: "v1 SEED — count-complete (50/50), field-complete (12/12 per example), high-risk coverage PARTIAL (8/17)"
+  total_examples: 50
+  buckets:
+    comparison_copy: 18
+    category_caveats: 6
+    score_explanation_arrays: 10
+    homepage_methodology_glassbox: 4
+    evidence_extraction_fidelity: 6
+    task_closure_verification: 6
+  method_distribution: {pairwise_judge: 33, golden_diff: 10, schema_validation: 4, manual_review: 3}
+  method_distribution_note: >
+    Primary method per example, verified against this file. golden_diff is now only
+    on verified-computed builder output (salty_snacks/snacks/butter insightLine,
+    snacks limitingFactors) + closure decisions. manual_review also runs as a SECOND
+    gate on CAV-01/02/06 and HMG-02.
+  baseline_capture_date: "2026-06-10"
+  enforcement_d3b:
+    schema_validation: "run_schema_validation_gate.py (EXP-01..04; threshold >= 98%) — ALL PASS 100%"
+    pairwise_judge: "run_pairwise_review_gate.py (33 examples; verdict ledger reviews/pairwise_verdicts_v1.yaml + unsafe-wording scan wording_check.py) — ALL PASS"
+    unsafe_wording: "wording_check.py + config/unsafe_wording_lexicon_v1.yaml (absolute + needs-reference banned phrases, framework terms, apology markers)"
+    open_finding: "CMP-06 yogurt insightLines leak literal 'NOVA 3/4' into consumer copy — recorded as tracked OPEN acknowledged_exception; NOT fixed here (no consumer-copy change in this task); needs content-agent remediation."
+  coverage_note: >
+    SEED only. High-risk surfaces with concrete examples: T1-01..05, T1-07, T3-03,
+    T3-13 (+T3-04). Uncovered high-risk (deferred, NOT closed): nutrition-agent,
+    data-agent, skills bundle, and Tier-2 instruction prompts. A v2 coverage task is
+    recommended but NOT opened in this deliverable.
+
+examples:
+
+# -----------------------------------------------------------------------------
+# BUCKET 1 — COMPARISON COPY (18)
+# golden_diff (verified computed): CMP-01 salty_snacks, CMP-10 snacks, CMP-11 butter
+# pairwise (authored/carried/patched): the rest
+# -----------------------------------------------------------------------------
+
+  - eval_id: CMP-01
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/salty_snacks_frontend_v2.json (build_salty_snacks_frontend_v2.py::build_insight_line)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "BSIP2 trace + BSIP1 for pid bsip1_snack_3560071033002"
+    expected_output_or_baseline: "FROZEN SNAPSHOT of products[pid].insightLine (computed from trace caps/sodium/fat/fiber)"
+    eval_method: golden_diff
+    snapshot_path: "01_framework/operations/evals/golden_snapshots/copy/CMP-01.txt"
+    input_fixture: "01_framework/operations/evals/fixtures/copy_inputs/salty_snacks__CMP-01.json"
+    wired_in: "D3 (run_copy_golden_diff.py)"
+    pass_criteria: "Regenerated insightLine byte-identical to frozen snapshot for identical trace input."
+    fail_conditions: "Any non-approved change; template change altering >0 displayed lines without registry change_reason."
+    reviewer: qa-agent
+    notes: "VERIFIED computed (build_insight_line fn, lines 57/160). WIRED in D3."
+
+  - eval_id: CMP-02
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/hummus_frontend_v5.json (build_glassbox_w4_frontend.py carries v4 verbatim)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Hummus product insightLine + BSIP2 trace for grounding check"
+    expected_output_or_baseline: "AUTHORED gold: existing carried-verbatim insightLine (captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold on D1-D4; safe wording (D5)."
+    fail_conditions: "Factual drift vs trace; framework jargon; apology register; unsafe wording >0."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. AUTHORED carried-verbatim (v5<-v4; v4 flagged 'STALE — Content Agent must rewrite', build_hummus_frontend_v4.py:91-93). NOT computed."
+
+  - eval_id: CMP-03
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/cheese_frontend_v3.json (build_yogurt_cheese_multiretailer_frontend.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Cheese-spread product insightLine + trace"
+    expected_output_or_baseline: "AUTHORED gold: existing carried-verbatim insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Carried-verbatim authored ('carry ALL fields verbatim from live JSONs', builder line 6/145)."
+
+  - eval_id: CMP-04
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/cereals_frontend_v2.json (build_cereals_008_frontend.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Cereal product insightLine + trace (pid bsip1_cereal_5010029000061)"
+    expected_output_or_baseline: "AUTHORED gold: existing authored/carried insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Authored carry ('load existing authored Hebrew copy -> carry forward', builder line 15). Granola/cereal sodium gap (TASK-189) is SCORING, out of scope."
+
+  - eval_id: CMP-05
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/bread_frontend_v2.json (build_lechem_frontend_json.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Bread product insightLine + trace (pid shufersal_2079996)"
+    expected_output_or_baseline: "AUTHORED gold: existing content-authored insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Content-authored (INSIGHT_LINES dict from content_draft, builder line 213). Bread provenance frozen (real_bread_retail_003_v1)."
+
+  - eval_id: CMP-06
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/yogurts_frontend_v3.json (build_yogurts_frontend_v2.py lineage)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Yogurt product insightLine + trace (pid bsip1_yogurt_7290110565527)"
+    expected_output_or_baseline: "AUTHORED gold: existing content-authored insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Content-authored verbatim (content_reauthor_143_run_yogurt_004.md, builder lines 11/18/38)."
+
+  - eval_id: CMP-07
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/juices_frontend_v3.json (build_juices_frontend_v3.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Juice product insightLine + trace (pid jc-001)"
+    expected_output_or_baseline: "AUTHORED gold: existing content-authored insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Content-authored (content_draft_v1.md, builder lines 7/32)."
+
+  - eval_id: CMP-08
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/hard_cheeses_frontend_v2.json (build_final_frontend_v2.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Hard-cheese product insightLine + trace"
+    expected_output_or_baseline: "AUTHORED gold: existing content-authored insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Content-authored (INSIGHT_LINES from content_draft_v1.md, builder lines 22-23/128)."
+
+  - eval_id: CMP-09
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/maadanim_frontend_v3.json (build_glassbox_w4_frontend.py carries v4 verbatim)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Maadanim product insightLine + trace (canonical reference category)"
+    expected_output_or_baseline: "AUTHORED gold: existing carried-verbatim insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Carried-verbatim authored (build_glassbox_w4 line 16). מעדנים is canonical reference."
+
+  - eval_id: CMP-10
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/snacks_frontend_v2.json (build_salty_snacks_frontend_v2.py::build_insight_line)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Trace for snk-001 (snack-bar ceiling 70/B)"
+    expected_output_or_baseline: "FROZEN SNAPSHOT of products[pid].insightLine (computed)"
+    eval_method: golden_diff
+    snapshot_path: "01_framework/operations/evals/golden_snapshots/copy/CMP-10.txt"
+    input_fixture: "01_framework/operations/evals/fixtures/copy_inputs/snacks__CMP-10.json"
+    wired_in: "D3 (run_copy_golden_diff.py)"
+    pass_criteria: "Byte-identical regeneration from same trace."
+    fail_conditions: "Unapproved change; copy implying A-grade for a snack bar."
+    reviewer: qa-agent
+    notes: "VERIFIED computed (same deterministic builder as salty_snacks). WIRED in D3. snk ceiling 70/B is frozen."
+
+  - eval_id: CMP-11
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/butter_frontend_v2.json (butter/build_frontend_v2.py::build_insight_line)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Trace for top butter product"
+    expected_output_or_baseline: "FROZEN SNAPSHOT of products[pid].insightLine (computed)"
+    eval_method: golden_diff
+    snapshot_path: "01_framework/operations/evals/golden_snapshots/copy/CMP-11.txt"
+    input_fixture: "01_framework/operations/evals/fixtures/copy_inputs/butter__CMP-11.json"
+    wired_in: "D3 (run_copy_golden_diff.py)"
+    pass_criteria: "Byte-identical regeneration from same trace."
+    fail_conditions: "Unapproved change; copy manufacturing differentiation in a genuinely clustered category."
+    reviewer: qa-agent
+    notes: "VERIFIED computed (build_insight_line fn, line 84). WIRED in D3. Butter clustering is an honest finding."
+
+  - eval_id: CMP-12
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/granola_frontend_v1.json (patch_granola_verdicts_v2.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Granola product insightLine + trace"
+    expected_output_or_baseline: "AUTHORED gold: existing patched insightLine"
+    eval_method: pairwise_judge
+    pass_criteria: "Verifiable vs trace; ties/beats gold."
+    fail_conditions: "Factual drift; jargon; unsafe wording."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. Patched authored (patch_granola_verdicts_v2.py line 3/30)."
+
+  - eval_id: CMP-13
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk pid 7290000051352 (natural milk) + BSIP2 context"
+    expected_output_or_baseline: "AUTHORED gold: whatMatters = 'כאן הסיפור הוא מבנה חלב טבעי — חלבון, שומן — בלי שכבות פורמולציה.'"
+    eval_method: pairwise_judge
+    pass_criteria: "Candidate ties/beats gold on D1-D4; no unsafe wording (D5)."
+    fail_conditions: "Factual drift vs trace; framework jargon; apology register; unsafe wording >0."
+    reviewer: qa-agent
+    notes: "AUTHORED TS. Milk scores frozen run_005_headpin — copy must not restate/alter score."
+
+  - eval_id: CMP-14
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk pid 7290000051352 — positives[] array"
+    expected_output_or_baseline: "AUTHORED gold: positives ['רשימת רכיבים קצרה: חלב בלבד', 'חלבון טבעי סביר ל־100 מ\"ל', 'מתאים כבסיס יומיומי ולבישול']"
+    eval_method: pairwise_judge
+    pass_criteria: "Each positive verifiable against milk panel; ties/beats gold."
+    fail_conditions: "Unsupported positive; invented nutrient."
+    reviewer: nutrition-agent
+    notes: "Authored. Nutrition reviews factual grounding."
+
+  - eval_id: CMP-15
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk plant-alternative product — cautions[] array"
+    expected_output_or_baseline: "AUTHORED gold: cautions (existing strings, captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Cautions fact-based, non-alarmist; ties/beats gold."
+    fail_conditions: "Alarmist/blaming register; sodium presented as judgement not fact."
+    reviewer: qa-agent
+    notes: "Authored. Sodium = displayed fact only (verdict standard)."
+
+  - eval_id: CMP-16
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk pid 7290000051352 — takeaway"
+    expected_output_or_baseline: "AUTHORED gold: takeaway = 'בחירה ישירה כשמחפשים חלב בסיסי מהמדף.'"
+    eval_method: pairwise_judge
+    pass_criteria: "Single decisive consumer takeaway; ties/beats gold."
+    fail_conditions: "Hedging; multi-clause non-decision; framework terms."
+    reviewer: qa-agent
+    notes: "Authored. Restrained-but-fearless."
+
+  - eval_id: CMP-17
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "bari-web/src/data/comparisons/cereals_frontend_v2.json rowVerdict (build_cereals_008_frontend.py UPDATED_COPY)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Cereals product rowVerdict (008 run) + trace"
+    expected_output_or_baseline: "AUTHORED gold: existing literal rowVerdict string (captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Follows standing->why->catch->grade; grounded in trace; ties/beats gold."
+    fail_conditions: "Verdict contradicts grade; ungrounded claim; terse-tag regression."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. rowVerdict SPLITS BY RUN: build_cereals_008 = AUTHORED literal strings (lines 75/80) -> pairwise; build_cereals_multiretailer_frontend.py COMPUTES row_verdict (line 170) -> those products would be golden_diff. Route by producing run, NOT category."
+
+  - eval_id: CMP-18
+    linked_prompt_id: bari-consumer-comparison-copy
+    source_file: "granola_frontend_v1.json rowVerdict (patch_granola_verdicts_v2.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Granola product whose rowVerdict was PATCHED (authored)"
+    expected_output_or_baseline: "AUTHORED gold: patched rowVerdict string (captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Follows standing->why->catch->grade; grounded in trace; <=185 chars; ties/beats gold."
+    fail_conditions: "Verdict contradicts grade; ungrounded claim; terse-tag regression; overlength."
+    reviewer: qa-agent
+    notes: "AUTHORED patch (line 3/30; overlength guard at line 328). Correctly pairwise."
+
+# -----------------------------------------------------------------------------
+# BUCKET 2 — CATEGORY CAVEATS (6)  [all authored -> pairwise + manual]
+# -----------------------------------------------------------------------------
+
+  - eval_id: CAV-01
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/milk-comparison-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk category engine behavior (frozen run_005; whole/4%/goat at top)"
+    expected_output_or_baseline: "AUTHORED gold: existing milk category caveat (הערת קטגוריה), captured 2026-06-10"
+    eval_method: pairwise_judge
+    pass_criteria: "Caveat grounded in REAL engine behavior; ties/beats gold; no jargon."
+    fail_conditions: "Generic caveat not tied to engine behavior; contradicts frozen invariant; unsafe wording."
+    reviewer: nutrition-agent
+    notes: "Authored. Mandatory per page (owner directive). manual_review second gate."
+
+  - eval_id: CAV-02
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/hummus-comparison-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Hummus engine behavior + NOVA-1 raw-chickpea exclusion rationale"
+    expected_output_or_baseline: "AUTHORED gold: existing hummus category caveat"
+    eval_method: pairwise_judge
+    pass_criteria: "Explains prepared-spread vs raw boundary honestly; ties/beats gold."
+    fail_conditions: "Misstates the raw/prepared boundary (must be tahini+sodium+energy, never protein/'סלט')."
+    reviewer: nutrition-agent
+    notes: "Authored. Raw-vs-prepared boundary is owner-pinned. manual_review second gate."
+
+  - eval_id: CAV-03
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/snacks-comparison-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Snack-bar category: no bar reaches A; 70/B ceiling"
+    expected_output_or_baseline: "AUTHORED gold: existing snacks category caveat"
+    eval_method: pairwise_judge
+    pass_criteria: "Conveys the category ceiling honestly; ties/beats gold."
+    fail_conditions: "Implies a snack bar can be excellent/A; unsafe wording."
+    reviewer: qa-agent
+    notes: "Authored. Frozen invariant: snk ceiling 70/B."
+
+  - eval_id: CAV-04
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/cereals-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Cereal/granola engine behavior incl. known sodium-scoring gap (TASK-189)"
+    expected_output_or_baseline: "AUTHORED gold: existing cereals category caveat"
+    eval_method: pairwise_judge
+    pass_criteria: "Grounded in real behavior; ties/beats gold."
+    fail_conditions: "Claims sodium fully penalized when engine gap exists; overstated."
+    reviewer: nutrition-agent
+    notes: "Authored. Honest about known engine limitation without exposing internals."
+
+  - eval_id: CAV-05
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/bread-comparison-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Bread category (Shufersal provenance, 31 curated)"
+    expected_output_or_baseline: "AUTHORED gold: existing bread category caveat"
+    eval_method: pairwise_judge
+    pass_criteria: "Grounded; ties/beats gold."
+    fail_conditions: "Misstates provenance/scope; unsafe wording."
+    reviewer: qa-agent
+    notes: "Authored. EXCEPTION-001 bread fermentation tooltip exists; caveat must align."
+
+  - eval_id: CAV-06
+    linked_prompt_id: bari-consumer-category-caveat
+    source_file: "bari-web/src/lib/comparisons/cheese-comparison-page-data.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Cheese-spread category engine behavior"
+    expected_output_or_baseline: "AUTHORED gold: existing cheese category caveat"
+    eval_method: pairwise_judge
+    pass_criteria: "Grounded; ties/beats gold."
+    fail_conditions: "Generic; not tied to engine behavior."
+    reviewer: qa-agent
+    notes: "Authored. manual_review second gate."
+
+# -----------------------------------------------------------------------------
+# BUCKET 3 — SCORE-EXPLANATION ARRAYS (10)
+# schema (structure): EXP-01..04 · golden_diff (computed): EXP-06
+# pairwise (authored): EXP-05, EXP-09, EXP-10 · manual_review (unverified): EXP-07, EXP-08
+# -----------------------------------------------------------------------------
+
+  - eval_id: EXP-01
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/hummus_frontend_v5.json expansion"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Hummus product expansion arrays"
+    expected_output_or_baseline: "SCHEMA: 4 arrays present, each item a string, lengths within caps, no banned phrase (explanation engine v2 9-banned list)"
+    eval_method: schema_validation
+    pass_criteria: "All 4 arrays valid types/shape; banned-phrase count = 0; schema validity >= 98%."
+    fail_conditions: "Missing array; non-string item; banned phrase; schema validity < 98%."
+    reviewer: qa-agent
+    notes: "Structure check (provenance-agnostic). Content of these arrays is authored (see EXP-05)."
+
+  - eval_id: EXP-02
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/snacks_frontend_v2.json expansion"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Snack expansion incl. bottomLine/comparisonContext"
+    expected_output_or_baseline: "SCHEMA: required arrays present + bottomLine string; no banned phrase"
+    eval_method: schema_validation
+    pass_criteria: "Schema valid; banned-phrase = 0."
+    fail_conditions: "Schema invalid; banned phrase."
+    reviewer: qa-agent
+    notes: "Structure check."
+
+  - eval_id: EXP-03
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/bread_frontend_v2.json expansion"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Bread expansion (positiveSignals/bottomLine/comparisonContext)"
+    expected_output_or_baseline: "SCHEMA: arrays/fields present + types"
+    eval_method: schema_validation
+    pass_criteria: "Schema valid."
+    fail_conditions: "Schema invalid."
+    reviewer: qa-agent
+    notes: "Structure check."
+
+  - eval_id: EXP-04
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/yogurts_frontend_v3.json expansion"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Yogurt expansion (positiveSignals/limitingFactors/unknowns)"
+    expected_output_or_baseline: "SCHEMA: arrays present + types"
+    eval_method: schema_validation
+    pass_criteria: "Schema valid."
+    fail_conditions: "Schema invalid."
+    reviewer: qa-agent
+    notes: "Structure check."
+
+  - eval_id: EXP-05
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/data/comparisons/hummus_frontend_v5.json (carried via build_glassbox_w4_frontend.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Hummus product positiveSignals[] content vs trace"
+    expected_output_or_baseline: "AUTHORED gold: existing carried-verbatim positiveSignals[]"
+    eval_method: pairwise_judge
+    pass_criteria: "Each signal verifiable vs trace; ties/beats gold."
+    fail_conditions: "Unsupported claim; stale claim referencing old score/position; unsafe wording."
+    reviewer: nutrition-agent
+    notes: "RECLASSIFIED golden_diff->pairwise. v5 arrays are CARRIED-VERBATIM authored (build_glassbox_w4 line 16); v4 flagged them STALE (build_hummus_frontend_v4.py:93). NOT output of deterministic build_hummus_explanation_v1.py."
+
+  - eval_id: EXP-06
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/snacks_frontend_v2.json (build_salty_snacks_frontend_v2.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Snack product limitingFactors[] (computed from caps/penalties)"
+    expected_output_or_baseline: "FROZEN SNAPSHOT of limitingFactors[]"
+    eval_method: golden_diff
+    snapshot_path: "PENDING — not wired in D3"
+    wired_in: "DEFERRED"
+    pass_criteria: "Byte-identical regeneration from same trace (once wired)."
+    fail_conditions: "Drift without registry change_reason."
+    reviewer: qa-agent
+    notes: "VERIFIED computed (limiting=[] from caps/penalties, dedup[:4], builder lines 146-158) BUT the logic is INLINE in main(), not a pure function. Cannot be wired as function-import golden_diff in D3 without (a) running the builder (writes production JSON — forbidden) or (b) extracting the logic to a function (production change — forbidden). DEFERRED: needs a one-function extraction in a future change before snapshotting. NOT routed to manual_review because it is genuinely deterministic."
+
+  - eval_id: EXP-07
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/bread_frontend_v2.json positiveSignals (build_lechem_frontend_json.py)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Bread product positiveSignals[]"
+    expected_output_or_baseline: "EXISTING positiveSignals[] (captured 2026-06-10); provenance to be proven"
+    eval_method: manual_review
+    pass_criteria: "Reviewer confirms provenance (computed vs authored), then routes to golden_diff or pairwise."
+    fail_conditions: "Routed to an automated method before provenance is proven."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->manual_review. UNVERIFIED — no positiveSignals assignment found in build_lechem_frontend_json.py. Governance rule: unverified -> manual_review until proven."
+
+  - eval_id: EXP-08
+    linked_prompt_id: bari-consumer-score-explanation
+    source_file: "bari-web/src/data/comparisons/yogurts_frontend_v3.json unknowns (build_yogurts_frontend_v2.py lineage)"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Yogurt product unknowns[]"
+    expected_output_or_baseline: "EXISTING unknowns[] (captured 2026-06-10); provenance to be proven"
+    eval_method: manual_review
+    pass_criteria: "Reviewer confirms provenance, then routes to golden_diff or pairwise."
+    fail_conditions: "Routed to an automated method before provenance is proven."
+    reviewer: qa-agent
+    notes: "RECLASSIFIED golden_diff->manual_review. UNVERIFIED — v2 builder 'interpretive expansion explicitly deferred by 3b' (line 19); v3 array source unproven."
+
+  - eval_id: EXP-09
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk authored positives[] vs milk panel"
+    expected_output_or_baseline: "AUTHORED gold: existing positives[] (captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Every positive verifiable; ties/beats gold on D1."
+    fail_conditions: "Unsupported claim; invented nutrient."
+    reviewer: nutrition-agent
+    notes: "Authored explanation array."
+
+  - eval_id: EXP-10
+    linked_prompt_id: bari-consumer-editorial-insights
+    source_file: "bari-web/src/lib/comparisons/milk-product-insights.ts"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Milk authored cautions[] vs panel"
+    expected_output_or_baseline: "AUTHORED gold: existing cautions[]"
+    eval_method: pairwise_judge
+    pass_criteria: "Cautions fact-based, non-blaming; ties/beats gold."
+    fail_conditions: "Alarmist; sodium framed as judgement; unsafe wording."
+    reviewer: nutrition-agent
+    notes: "Authored."
+
+# -----------------------------------------------------------------------------
+# BUCKET 4 — HOMEPAGE / METHODOLOGY / GLASS BOX (4)  [authored -> pairwise/manual]
+# -----------------------------------------------------------------------------
+
+  - eval_id: HMG-01
+    linked_prompt_id: bari-consumer-home-methodology
+    source_file: "bari-web/src/components/home/content.ts + home-hero.tsx"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Homepage hero copy + brand framing"
+    expected_output_or_baseline: "AUTHORED gold: existing hero copy (captured 2026-06-10)"
+    eval_method: pairwise_judge
+    pass_criteria: "Preserves 'best != excellent' framing; ties/beats gold; framework-invisible."
+    fail_conditions: "Drops/contradicts framing (frozen invariant); jargon; unsafe wording."
+    reviewer: marketing-agent
+    notes: "Authored. Framing frozen; wording versionable."
+
+  - eval_id: HMG-02
+    linked_prompt_id: bari-consumer-home-methodology
+    source_file: "bari-web/src/components/home/home-methodology.tsx"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Homepage methodology section copy"
+    expected_output_or_baseline: "AUTHORED gold: existing methodology copy"
+    eval_method: pairwise_judge
+    pass_criteria: "Explains method without exposing NOVA/dimension internals; ties/beats gold."
+    fail_conditions: "Framework terms surfaced; misrepresents scoring."
+    reviewer: nutrition-agent
+    notes: "Authored. manual_review second gate."
+
+  - eval_id: HMG-03
+    linked_prompt_id: bari-consumer-glassbox-methodology
+    source_file: "01_framework/glass_box/w1_disclosure_copy_v1.md"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Glass-box W1 disclosure copy"
+    expected_output_or_baseline: "AUTHORED gold: existing W1 disclosure copy"
+    eval_method: manual_review
+    pass_criteria: "Disclosure accurate, non-demoralizing; reviewer sign-off."
+    fail_conditions: "Overclaims certainty; demoralizing register (violates d3 spec)."
+    reviewer: nutrition-agent
+    notes: "Authored. Methodology disclosure — manual gate primary."
+
+  - eval_id: HMG-04
+    linked_prompt_id: bari-consumer-glassbox-methodology
+    source_file: "01_framework/glass_box/w2_additive_copy_v1.md"
+    surface_tier: consumer_facing
+    agent_owner: content-agent
+    input_artifact_or_context: "Glass-box W2 additive explanation copy"
+    expected_output_or_baseline: "AUTHORED gold: existing W2 additive copy"
+    eval_method: pairwise_judge
+    pass_criteria: "Additive explanations factual, non-alarmist; ties/beats gold."
+    fail_conditions: "Fear-based framing; unsupported additive claim."
+    reviewer: nutrition-agent
+    notes: "Authored. Additive library is evidence-backed; copy must not editorialize beyond it."
+
+# -----------------------------------------------------------------------------
+# BUCKET 5 — EVIDENCE-EXTRACTION FIDELITY (6)  [research-agent -> pairwise]
+# -----------------------------------------------------------------------------
+
+  - eval_id: EVD-01
+    linked_prompt_id: bari-agent-research
+    source_file: "evidence registry EV-029 (BSIP0 fat-overwrite)"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "Source: BSIP0 nutrition parser behavior + scrape replay data"
+    expected_output_or_baseline: "GOLD: extracted finding = fat parser bug; claim must trace to cited scrape/source"
+    eval_method: pairwise_judge
+    pass_criteria: "Every extracted claim maps to a cited source; no overclaim; ties/beats gold."
+    fail_conditions: "Claim not supported by cited source; miscitation; scope inflation."
+    reviewer: nutrition-agent
+    notes: "Evidence extraction modeled as research-agent (gap#2). Nutrition co-signs."
+
+  - eval_id: EVD-02
+    linked_prompt_id: bari-agent-research
+    source_file: "evidence registry EV-047 (kcal plausibility bounds)"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "Source basis for KCAL_PLAUSIBLE_UPPER/LOWER constants"
+    expected_output_or_baseline: "GOLD: plausibility bounds traceable to cited basis"
+    eval_method: pairwise_judge
+    pass_criteria: "Bounds justified by cited source; ties/beats gold."
+    fail_conditions: "Bounds asserted without source; misread source."
+    reviewer: nutrition-agent
+    notes: "Affects signal_extractor sanity checks (data quality)."
+
+  - eval_id: EVD-03
+    linked_prompt_id: bari-agent-research
+    source_file: "evidence registry EV-006 (fiber vocabulary milestone)"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "Fiber vocabulary evidence (recent EV-006 close)"
+    expected_output_or_baseline: "GOLD: fiber vocabulary terms each grounded in source"
+    eval_method: pairwise_judge
+    pass_criteria: "Vocabulary entries source-backed; ties/beats gold."
+    fail_conditions: "Unsourced term added to vocabulary."
+    reviewer: nutrition-agent
+    notes: "Recently closed milestone; good provenance."
+
+  - eval_id: EVD-04
+    linked_prompt_id: bari-agent-research
+    source_file: "evidence registry EV-003 / EV-019 (additive concern mechanisms)"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "Additive concern evidence used in concern-coordination review (TASK-225)"
+    expected_output_or_baseline: "GOLD: each additive mechanism claim cites a source"
+    eval_method: pairwise_judge
+    pass_criteria: "Mechanism claims source-backed; ties/beats gold."
+    fail_conditions: "Mechanism asserted without evidence."
+    reviewer: nutrition-agent
+    notes: "Feeds additive scoring — fidelity is high-value."
+
+  - eval_id: EVD-05
+    linked_prompt_id: bari-agent-research
+    source_file: "evidence registry EV-043 / EV-045 (ECS-v1 emulsifier complexity)"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "Emulsifier complexity evidence (ECS-v1, TASK-223/224)"
+    expected_output_or_baseline: "GOLD: emulsifier-complexity claims traceable to cited literature"
+    eval_method: pairwise_judge
+    pass_criteria: "Claims source-backed; ties/beats gold."
+    fail_conditions: "Overclaim beyond cited evidence."
+    reviewer: nutrition-agent
+    notes: "ECS-v1 recently shipped; strong baseline."
+
+  - eval_id: EVD-06
+    linked_prompt_id: bari-agent-research
+    source_file: "external integration layer (TASK-170): OFF / DSLD / literature clients"
+    surface_tier: operational_agent_os
+    agent_owner: research-agent
+    input_artifact_or_context: "A claim extracted from an external read-only source (e.g. OFF additive entry)"
+    expected_output_or_baseline: "GOLD: claim matches the external record; Tzameret treated as DIRECTIONAL ONLY"
+    eval_method: pairwise_judge
+    pass_criteria: "Claim matches source record; Tzameret never cited as authoritative; ties/beats gold."
+    fail_conditions: "Tzameret used as authority; claim diverges from external record."
+    reviewer: nutrition-agent
+    notes: "Owner directive: Tzameret directional only; prefer USDA FDC + BSIP0 panel."
+
+# -----------------------------------------------------------------------------
+# BUCKET 6 — TASK-CLOSURE VERIFICATION (6)  [closure/QA -> golden_diff on decision]
+# -----------------------------------------------------------------------------
+
+  - eval_id: CLS-01
+    linked_prompt_id: bari-ops-closure-orchestration
+    source_file: "tasks/closed/TASK-225.md"
+    surface_tier: operational_agent_os
+    agent_owner: product-agent
+    input_artifact_or_context: "Return block + DoD (6 items) + artifact reports/concern_coordination_additives_v1.md"
+    expected_output_or_baseline: "GOLD decision: CLOSED with close_reason citing the coordination report (all DoD met)"
+    eval_method: golden_diff
+    pass_criteria: "Verifier reproduces CLOSED + cites the same artifacts; each DoD claim checked at file."
+    fail_conditions: "Closes with unmet DoD; or returns a correctly-complete task; missing close_reason."
+    reviewer: qa-agent
+    notes: "Closing authority = orchestrator. Decision-diff (legitimately deterministic expected output)."
+
+  - eval_id: CLS-02
+    linked_prompt_id: bari-ops-closure-orchestration
+    source_file: "tasks/closed/TASK-224.md"
+    surface_tier: operational_agent_os
+    agent_owner: product-agent
+    input_artifact_or_context: "ECS-v1 implementation return block + artifacts"
+    expected_output_or_baseline: "GOLD decision: CLOSED with evidence-cited close_reason"
+    eval_method: golden_diff
+    pass_criteria: "Reproduces CLOSED; artifact claims verified."
+    fail_conditions: "Wrong decision; unverified close."
+    reviewer: qa-agent
+    notes: "Implementation task — checks claim-vs-artifact at file:line."
+
+  - eval_id: CLS-03
+    linked_prompt_id: bari-ops-closure-orchestration
+    source_file: "tasks/closed/TASK-223.md"
+    surface_tier: operational_agent_os
+    agent_owner: product-agent
+    input_artifact_or_context: "ECS-v1 design + QA return block"
+    expected_output_or_baseline: "GOLD decision: CLOSED"
+    eval_method: golden_diff
+    pass_criteria: "Reproduces CLOSED with rationale."
+    fail_conditions: "Wrong decision."
+    reviewer: qa-agent
+    notes: "Design+QA task."
+
+  - eval_id: CLS-04
+    linked_prompt_id: bari-ops-closure-orchestration
+    source_file: "tasks/closed/TASK-221.md"
+    surface_tier: operational_agent_os
+    agent_owner: product-agent
+    input_artifact_or_context: "Visual-regression task return block with KNOWN limitations + 'to close' instruction"
+    expected_output_or_baseline: "GOLD decision: CLOSED only after baseline PNG review condition acknowledged"
+    eval_method: golden_diff
+    pass_criteria: "Verifier requires the stated to-close condition before CLOSED."
+    fail_conditions: "Closes while ignoring the explicit to-close review condition."
+    reviewer: qa-agent
+    notes: "Tests that conditional close instructions are honored."
+
+  - eval_id: CLS-05
+    linked_prompt_id: bari-agent-qa
+    source_file: "tasks/closed/TASK-REGTEST-001.md"
+    surface_tier: operational_agent_os
+    agent_owner: qa-agent
+    input_artifact_or_context: "Regression-test task return block + artifacts"
+    expected_output_or_baseline: "GOLD decision: CLOSED with regression evidence"
+    eval_method: golden_diff
+    pass_criteria: "QA verifier reproduces CLOSED with regression-green evidence."
+    fail_conditions: "Closes without regression evidence."
+    reviewer: product-agent
+    notes: "QA-agent ownership of propagation/regression verification."
+
+  - eval_id: CLS-06
+    linked_prompt_id: bari-ops-closure-orchestration
+    source_file: "synthetic RETURNED fixture (negative control; to be built in D3 at 01_framework/operations/evals/fixtures/cls06_returned_fixture.md)"
+    surface_tier: operational_agent_os
+    agent_owner: product-agent
+    input_artifact_or_context: "A return block claiming done but with one DoD item unmet at file-check"
+    expected_output_or_baseline: "GOLD decision: RETURNED / CHANGES_REQUESTED (NOT closed)"
+    eval_method: golden_diff
+    fixture_path: "01_framework/operations/evals/fixtures/cls06_returned_fixture.md"
+    verifier: "01_framework/operations/evals/run_cls06_check.py"
+    wired_in: "D3 (run_cls06_check.py)"
+    pass_criteria: "Verifier detects the unmet DoD and does NOT close."
+    fail_conditions: "Closes a task with an unmet, file-checkable DoD item (false-close)."
+    reviewer: qa-agent
+    notes: "Negative control — most important closure failure mode. WIRED in D3: fixture lives OUTSIDE tasks/; verifier returns RETURNED. No production task altered."

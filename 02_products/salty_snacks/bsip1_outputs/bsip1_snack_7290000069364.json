@@ -37,7 +37,7 @@
   "ingredient_count": 2,
   "claims_raw": "",
   "claims": [],
-  "nova_proxy": 4,
+  "nova_proxy": 2,
   "nova_confidence": 0.6,
   "additive_categories": [],
   "additive_count": 2,
@@ -74,5 +74,16 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "nova_group_off_raw": 4,
+  "data_corrections": [
+    {
+      "field": "nova_proxy",
+      "old_value": 4,
+      "new_value": 2,
+      "reason": "RT-7 reconciliation: stored nova_proxy was the RAW OFF nova_group (4); the scoring engine infers and publishes NOVA-2 for this product (the value that actually scores). Raw OFF value preserved as nova_group_off_raw (provenance only). No score change: engine NOVA was already the published value.",
+      "task": "TASK-234",
+      "corrected_at_source": "engine infer_nova (authoritative scored NOVA)"
+    }
+  ]
 }

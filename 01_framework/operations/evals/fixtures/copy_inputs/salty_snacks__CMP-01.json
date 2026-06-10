@@ -1,0 +1,18 @@
+{
+  "_fixture": "CMP-01 — salty_snacks build_insight_line (verified deterministic)",
+  "_note": "Frozen input. Exercises the SODIUM cap branch + fat secondary. Do not edit without re-capturing the snapshot via --update and a registry change_reason.",
+  "trace": {
+    "L1_observed_signals": {
+      "fat_g": 30,
+      "sodium_mg": 820,
+      "dietary_fiber_g": 2.0,
+      "sugars_g": 3
+    },
+    "nova_proxy": 4,
+    "final_score_estimate": 48,
+    "grade_estimate": "D",
+    "caps_applied": [{ "rule": "SODIUM_CAP" }],
+    "penalties_applied": []
+  },
+  "b1": {}
+}

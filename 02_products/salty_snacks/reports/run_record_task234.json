@@ -1,0 +1,83 @@
+{
+  "run_id": "run_salty_snacks_002",
+  "remediation_task": "TASK-234",
+  "depends_on": ["TASK-231", "TASK-229", "TASK-228"],
+  "category": "salty-snacks",
+  "category_he": "חטיפים מלוחים",
+  "run_date": "2026-06-10",
+  "branch": "salty-snacks-v4",
+  "engine_tag": "engine-baseline-2026-06-04 + TASK-216 (BARI_RECAL_P0=on)",
+  "engine_changed": false,
+  "configuration_hash": "BARI_RECAL_P0=on; engine=proto_v0 engine-baseline-2026-06-04+TASK-216; bsip1_schema=bsip1_v0_1; data-only remediation (no engine/cap/veto change)",
+  "scope": "Red-team v4 in-lane data corrections: corpus-wide 0.5g trans-declaration artifact guard (RT-2), beet-cracker NOVA/ingredient reconciliation (RT-7), implausible per-100g kcal/fiber basis errors (RT-5/RT-6). No scoring-engine, cap, or veto change.",
+  "authoritative_source_reprobe": "C:\\Bari\\02_products\\salty_snacks\\bsip0_outputs\\off_reprobe_task234.json (OFF serving-level re-fetch by EAN: trans-fat_serving, energy-kcal_serving/100g, fiber, used to confirm the declaration artifact + basis errors)",
+  "corrections": {
+    "trans_artifact_neutralized": {
+      "rule": "OFF trans-fat_serving=0.5g (or sub-1g token) is the Israeli '<1g' threshold DECLARATION, not a measured value; scaled by serving fraction it yields phantom per-100g trans. Neutralize fat_trans_g -> 0.0 where the value traces to such a declaration AND no PHVO/hydrogenated-oil marker is present (or ingredients absent).",
+      "products": [
+        {"barcode": "7290000066318", "name": "במבה קלאסי", "trans_before": 0.625, "trans_after": 0.0, "serving_decl": 0.5, "serving_frac": 0.80, "engine_effect_before": "high_concern -20", "score_before": 61.2, "score_after": 62.8, "grade_after": "C"},
+        {"barcode": "7290104500572", "name": "אפרופו איטליאנו", "trans_before": 0.6, "trans_after": 0.0, "serving_decl": 0.3, "serving_frac": 0.50, "engine_effect_before": "high_concern -20", "score_before": 41.8, "score_after": 43.0, "grade_after": "D"},
+        {"barcode": "7290000420325", "name": "פופקורן Pop Star", "trans_before": 0.4, "trans_after": 0.0, "serving_decl": 0.4, "serving_frac": 1.00, "engine_effect_before": "present -10 (redundant under sodium cap)", "score_before": 54.0, "score_after": 54.0, "grade_after": "C"},
+        {"barcode": "7290004943738", "name": "צ'יפס אמריקאי מילוטל", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": 0.5, "serving_frac": 1.00, "engine_effect_before": "threshold_declaration (no penalty)", "score_before": 63.4, "score_after": 63.4, "note": "also basis-error excluded from shelf"},
+        {"barcode": "5701932026971", "name": "פופקורן הוט פופ", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": 0.5, "serving_frac": 1.00, "engine_effect_before": "threshold_declaration (no penalty)", "score_before": 50.0, "score_after": 50.0, "grade_after": "C"},
+        {"barcode": "7290117035009", "name": "פופקורן מיקרוגל יוחננוף", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": null, "serving_frac": null, "engine_effect_before": "threshold_declaration (no penalty)", "score_before": 61.5, "score_after": 61.5, "grade_after": "C"},
+        {"barcode": "7290018198254", "name": "קריספי צ'יפס תפוגן", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": null, "serving_frac": null, "engine_effect_before": "threshold_declaration (no penalty)", "note": "also basis-error excluded from shelf"},
+        {"barcode": "7290110551926", "name": "תפוצ'יפס גורמה בטטה", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": null, "serving_frac": null, "engine_effect_before": "threshold_declaration (no penalty)", "score_before": 36.1, "score_after": 36.1, "grade_after": "D"},
+        {"barcode": "4011800528416", "name": "קורני בוטנים", "trans_before": 0.5, "trans_after": 0.0, "serving_decl": null, "serving_frac": null, "engine_effect_before": "threshold_declaration (no penalty)", "score_before": 29.6, "score_after": 29.6, "grade_after": "E"}
+      ],
+      "phvo_guard_confirmed": "Only product with a real PHVO marker (שמן צמחי מוקשה) is קליק כריות נוגט 7290116537375, which carries trans=None and is NOT in this set; correctly untouched.",
+      "score_changes": "Only the two non-exact-0.5 artifacts moved (Bamba +1.6, Apropo Italiano +1.2); the exact-0.5 set was already engine-neutralized, so 0 score change there (data made honest)."
+    },
+    "fiber_single_field_omission": {
+      "barcode": "7290112494313", "name": "קליק קורנפלקס",
+      "field": "dietary_fiber_g", "before": 38.0, "after": null,
+      "reason": "fiber 38g impossible: fiber(38)+sugars(29.6)=67.6 > total carbohydrates(66.15); fiber is a subset of carbs. Rest of panel plausible -> omit fiber only, keep product.",
+      "score_before": 25.0, "score_after": 14.0, "grade_after": "E",
+      "note": "Score dropped because the product was previously gaining a satiety/nutrient-density benefit from fabricated fiber; removal is the correct de-inflation."
+    },
+    "basis_error_excluded": {
+      "rule": "Whole-panel per-serving values mislabeled per-100g (Atwater(macros) reproduces stated kcal; real fried/baked potato crisp ~450-540 kcal/100g). OFF carries no serving_size to recover the scale factor -> per-100g basis UNRECOVERABLE -> drop from scored shelf (every macro is on the wrong basis; not a single-field omission).",
+      "products": [
+        {"barcode": "7290018198254", "name": "קריספי צ'יפס תפוגן", "kcal_per_100g": 128, "prev_score": 67, "prev_grade": "B"},
+        {"barcode": "7290018198148", "name": "קריספי צ'יפס קלאסי תפוגן", "kcal_per_100g": 139, "prev_score": 66, "prev_grade": "B"},
+        {"barcode": "7290004943738", "name": "צ'יפס אמריקאי מילוטל", "kcal_per_100g": 145, "prev_score": 63, "prev_grade": "C"}
+      ]
+    },
+    "rt7_nova_reconciliation": {
+      "rule": "BSIP1 stored nova_proxy = raw OFF nova_group (often 4) while the engine independently infers + publishes its own NOVA (the value that scores). Reconciled BSIP1 nova_proxy to the engine-inferred value; raw OFF preserved as nova_group_off_raw (provenance). Build now publishes novaGroup only when ingredientCount>0 (else null + nova_suppressed_reason), so novaGroup/ingredientCount/ingredients are internally consistent. Score-neutral (engine NOVA was already the published value).",
+      "products_reconciled": [
+        {"barcode": "4014400925319", "off_raw": 4, "engine": 3},
+        {"barcode": "7290000069364", "off_raw": 4, "engine": 2},
+        {"barcode": "7290112494313", "off_raw": 4, "engine": 3},
+        {"barcode": "7290112968807", "off_raw": 4, "engine": 3},
+        {"barcode": "7290116537375", "off_raw": 4, "engine": 3}
+      ]
+    }
+  },
+  "grade_distribution": {
+    "before": {"product_count": 41, "B": 12, "C": 18, "D": 4, "E": 7},
+    "after": {"product_count": 38, "B": 11, "C": 16, "D": 4, "E": 7},
+    "delta_note": "41 -> 38 (3 basis-error chips dropped: one was B, one was B, one was C). Remaining grade moves are within-grade (Bamba/Apropo Italiano gained points but did not cross a boundary; Click 25/E -> 14/E stays E)."
+  },
+  "gates": {
+    "scoring_engine_unchanged": true,
+    "products_at_score_zero": 0,
+    "consumer_strings_is_clean": "PASS (build hard-gate: all 38 products, no framework/score/recommendation leaks, no raw decimals)",
+    "tsc": "PASS (npx tsc --noEmit, exit 0)",
+    "next_build": "PASS (npx next build, exit 0; /hashvaot/salty-snacks prerendered static)",
+    "trace_freshness": "PASS (all 38 published scores reproduce exactly from on-disk bsip2 traces; no stale 0/E trace ships)",
+    "image_url_http_200": "DEFERRED — imageUrls are UNCHANGED from the verified BSIP1 source (this task touched no imageUrl). First-pass check returned 24/38 = HTTP 200; the Yochananof CDN then returned transient 502 Bad Gateway (upstream rate-limit on this environment's IP) for all URLs including previously-passing ones. Not a per-product broken image (502 != 404). Re-run image-200 gate from an un-throttled network (QA Agent) for a clean full pass."
+  },
+  "output_artifacts": {
+    "frontend_local": "C:\\Bari\\02_products\\salty_snacks\\salty_snacks_frontend_v4.json",
+    "frontend_web": "C:\\bari\\bari-web\\src\\data\\comparisons\\salty_snacks_frontend_v4.json",
+    "bsip1_dir": "C:\\Bari\\02_products\\salty_snacks\\bsip1_outputs",
+    "bsip2_traces": "C:\\Bari\\02_products\\salty_snacks\\bsip2_outputs\\run_salty_snacks_002\\products",
+    "fix_scripts": [
+      "C:\\Bari\\03_operations\\bsip0\\scrape\\salty_snacks_real\\fix_trans_artifacts_corpus.py",
+      "C:\\Bari\\03_operations\\bsip0\\scrape\\salty_snacks_real\\fix_nova_provenance_rt7.py"
+    ],
+    "build_script": "C:\\Bari\\03_operations\\bsip0\\scrape\\salty_snacks_real\\03_build_frontend_v4.py",
+    "off_reprobe": "C:\\Bari\\02_products\\salty_snacks\\bsip0_outputs\\off_reprobe_task234.json"
+  }
+}

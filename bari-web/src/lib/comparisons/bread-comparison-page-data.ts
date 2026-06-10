@@ -19,18 +19,9 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type BreadCorpusMeta = ComparisonCorpusMeta;
 
-type BreadCorpusProduct = BariProductVM & {
-  _website_cluster?: string;
-};
-
-function stripBreadInternalFields(products: BreadCorpusProduct[]): BariProductVM[] {
-  return products.map((product) => {
-    const { _website_cluster, ...rest } = product;
-    void _website_cluster;
-    return rest;
-  });
-}
-
+// `_website_cluster` (the bread lens reads its cluster off bread-retail-curated.json,
+// not the loaded VM) is now stripped centrally by loadComparisonCorpus' BariProductVM
+// allowlist (TASK-233A) — no local strip needed.
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const breadCorpusMeta = loaded.meta;
 
@@ -39,9 +30,7 @@ const breadCorpusMeta = loaded.meta;
 // fiber_g on top here — bread-only — reading the real per-100g value straight off
 // expansion.nutrition.fiber. null passes through untouched (metric column renders "—"); never
 // fabricated. protein_g is left intact, so no shared/other-category behavior changes.
-const breadProducts = enrichRowSurface(
-  stripBreadInternalFields(loaded.products as BreadCorpusProduct[])
-)
+const breadProducts = enrichRowSurface(loaded.products)
   .map((product) => ({
     ...product,
     metrics: {

@@ -92,7 +92,7 @@ export function ComparisonTable({
           </div>
         ) : null}
 
-        {rows.map(({ product, index, band, showDivider }) => (
+        {rows.map(({ product, index, band, showDivider }, i) => (
           <Fragment key={product.id}>
             {showDivider ? (
               <div className="bari-cmp-divider" aria-hidden>
@@ -112,6 +112,7 @@ export function ComparisonTable({
               registerRow={registerRow}
               category={category}
               suppressPartialBadge={suppressPartialBadges}
+              eagerThumb={i < 6}
             />
           </Fragment>
         ))}

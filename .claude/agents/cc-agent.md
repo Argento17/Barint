@@ -1,7 +1,7 @@
 ---
 name: CC Agent
-description: Owns Command Center accuracy AND closing authority — verifies every task and sub-task in C:\Bari\tasks\ maps correctly to the derived dashboard, independently verifies return-block claims against artifacts, records CLOSED on verified work, resolves registry/deliverable drift, and produces the live decision map (what is done, what is in flight, what is left). Reads the full task + sub-task history fast, then drafts ready-to-paste delegation specs for the owning agents to fulfill missing or blocked work. Use for registry health audits, drift triage, close-readiness verification, "what's left?" maps, dependency-graph questions, and generating hand-off prompts to other agents.
-version: 2.1
+description: DEPRECATED (2026-06-10) — Command Center operational layer retired. The CC Agent no longer exists as a required process step. Closing authority and registry verification are now the orchestrator's direct responsibility. This agent file is retained as a historical archive only. Do NOT use for registry health audits, drift triage, close-readiness verification, "what's left?" maps, dependency-graph questions, or generating hand-off prompts — handle all of these inline in the main chat. See ADR-004 and CLAUDE.md for the current model.
+version: 3.0
 changelog:
   - version: "1.0"
     date: "2026-06-02"
@@ -12,9 +12,23 @@ changelog:
   - version: "2.1"
     date: "2026-06-04"
     summary: "Extended close guard: HIGH priority tasks now hard-blocked without cc_reviewed (closes non-roadmap-impact enforcement gap); go_live tasks hard-blocked without red_team_cleared; red-team agent added to owning-agent routing; red-team pre-launch gate added to adversarial review section."
+  - version: "3.0"
+    date: "2026-06-10"
+    summary: "DEPRECATED. Command Center operational layer removed. Registry remains source of truth; orchestrator (main chat) now holds closing authority directly. guard-roadmap-close.ps1 and regen-dashboard-on-task-change.ps1 hooks removed. /cc and /roadmap slash commands updated to work without this agent."
 ---
 
-# CC Agent — Bari Command Center
+# CC Agent — DEPRECATED (2026-06-10)
+
+> **This agent has been retired.** The Command Center operational layer was removed because it
+> added coordination overhead without proportional governance value. The registry (`C:\Bari\tasks\`)
+> remains the single source of truth. Closing authority and verification now rest directly with the
+> orchestrator (main chat). See `decisions/adr/ADR-004-cc-deprecation.md` for the rationale.
+>
+> **Do not spawn this agent.** Historical reference only.
+
+---
+
+# CC Agent — Bari Command Center (archived)
 
 ## Mission
 

@@ -12,7 +12,7 @@ export function buildSnackWhyLanded(product: SnackProduct): SnackWhyLanded {
     product.score != null && product.score < 60
       ? product.caps_applied.length
         ? `מגבלות שהופעלו: ${product.caps_applied.join(" · ")}`
-        : `עומק עיבוד (${product.nova ? `NOVA${product.nova}` : "—"}) ו${product.sweetener_pattern} ממתיקים הגבילו את הציון.`
+        : `עומק עיבוד ו${product.sweetener_pattern} ממתיקים הגבילו את הציון.`
       : undefined;
 
   const uncertainty_he =
@@ -35,7 +35,7 @@ export function buildSnackComposition(product: SnackProduct): SnackCompositionRo
           ? "בסיס שלם תמך בציון."
           : product.structural_base === "בסיס מעובד"
             ? "בסיס מעובד הוריד את התקרה."
-            : "בסיס מהונדס משך את המוצר לקצה התחתון.",
+            : "בסיס מורכב משך את המוצר לקצה התחתון.",
     },
     {
       dimension: "ארכיטקטורת סוכר",
@@ -49,13 +49,20 @@ export function buildSnackComposition(product: SnackProduct): SnackCompositionRo
     },
     {
       dimension: "עומק עיבוד",
-      value: product.nova ? `NOVA${product.nova}` : "—",
+      value:
+        product.nova === 2
+          ? "מינימלי"
+          : product.nova === 3
+            ? "בינוני"
+            : product.nova === 4
+              ? "עמוק"
+              : "—",
       effect_he:
         product.nova === 2
           ? "עיבוד מינימלי."
           : product.nova === 3
             ? "עיבוד בינוני."
-            : "NOVA4 — תקרת ציון D–E.",
+            : "עיבוד עמוק — תקרת ציון D–E.",
     },
     {
       dimension: "עומס תוספות",
@@ -72,7 +79,7 @@ export function buildSnackComposition(product: SnackProduct): SnackCompositionRo
       value: product.positioning,
       effect_he:
         product.positioning === "טבעי/תמרים" && product.nova === 4
-          ? "פער מיצוב: 'תמרים' מול NOVA4."
+          ? "פער מיצוב: 'תמרים' מול עיבוד עמוק."
           : product.positioning === "פרוטאין" || product.positioning === "פיטנס"
             ? "מיצוב לא עקף את מגבלות העיבוד."
             : "השם על האריזה תואם יחסית למבנה.",
@@ -83,7 +90,7 @@ export function buildSnackComposition(product: SnackProduct): SnackCompositionRo
 export function buildSnackScoreDrivers(product: SnackProduct): SnackScoreDriverRow[] {
   const drivers: SnackScoreDriverRow[] = product.explainability_tags.map((tag) => ({
     driver: tag,
-    impact_he: tag.includes("NOVA4") || tag.includes("תוספות") || tag.includes("ממתיקים")
+    impact_he: tag.includes("עיבוד עמוק") || tag.includes("תוספות") || tag.includes("ממתיקים")
       ? "מחליש"
       : tag.includes("לא נוקד")
         ? "לא ניתן לניקוד"

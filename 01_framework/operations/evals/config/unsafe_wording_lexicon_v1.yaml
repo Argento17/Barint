@@ -1,0 +1,51 @@
+# Unsafe-wording lexicon — v1  (D3b, TASK-BARI-PROMPT-REGISTRY-CI-EVAL-V1)
+# Deterministic (no-LLM) lexical enforcement of the "unsafe/unapproved consumer
+# wording > 0 = fail" threshold. Sourced from existing governance, NOT invented:
+#   - banned phrases: Explanation Engine v2 (02_products/snack_bars/reports/explanation_engine_v2.md Part 2)
+#   - framework_terms: framework-invisibility rule (editorial_intelligence_v3, score_presentation_v1)
+#   - apology_markers: no-apology rule (assertive_writing_v1)
+# This file changes NO production copy; it is the checklist the gate scans for.
+#
+# IMPORTANT (precision): the 9 banned phrases split into two kinds —
+#   * ABSOLUTE: category-describing / tautological; wrong in any context -> hard auto-fail.
+#   * NEEDS_REFERENCE: "comparative/vague WITHOUT a reference"; the APPROVED replacement
+#     is the same phrase PAIRED WITH a specific number (e.g. "חלבון נמוך לקטגוריה (5.7 גרם)").
+#     These auto-fail ONLY when NO digit appears within ref_window chars; otherwise they
+#     are the compliant form. (Naive substring matching here false-positives on shipped,
+#     compliant copy — verified 2026-06-10 on hummus/maadanim/granola insightLines.)
+
+ref_window: 20   # chars after a needs_reference phrase within which a digit makes it compliant
+
+banned_phrases_absolute:
+  - "עיבוד מרבי"
+  - "בסיס מהונדס"
+  - "ריבוי ממתיקים"
+  - "מיצוב פיטנס"
+  - "מוצר מעובד מאוד"
+  - "ציון בסיסי"
+
+banned_phrases_needs_reference:
+  - "בעיית סוכר"
+  - "חלבון נמוך"
+  - "מרכיבים רבים"
+
+# Framework-internal terms that must not leak into consumer copy.
+# NOTE: scanned only over machine-isolated consumer strings (JSON insightLine +
+# expansion), never over raw .ts/.md (which legitimately contain these in code/comments).
+framework_terms:
+  - "NOVA"
+  - "BSIP0"
+  - "BSIP1"
+  - "BSIP2"
+  - "structural_class"
+  - "nova_proxy"
+
+# Apology / hedging register markers (no-apology rule). Hebrew, substring.
+apology_markers:
+  - "אנו מתנצלים"
+  - "למרבה הצער"
+  - "לצערנו"
+
+# A hit (absolute, unreferenced needs_reference, framework term, or apology marker)
+# in a machine-isolatable consumer string = unsafe wording > 0 = CI fail, unless
+# listed in the verdict ledger's acknowledged_exceptions ("<eval_id>:<phrase>").

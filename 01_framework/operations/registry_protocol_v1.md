@@ -1,10 +1,10 @@
 # Registry Protocol — v1
 
 **Status:** Active — **MANDATORY**
-**Date:** 2026-05-31 (relocated to the Agent OS under TASK-117)
+**Date:** 2026-05-31 (relocated to the Agent OS under TASK-117; updated 2026-06-10 — CC layer removed)
 **Scope:** All agent task work across Agent OS (Frontend, Content/CE, Data, Product, QA agents)
 **Authority:** Governs how task state is reported and recorded in the authoritative registry.
-**Related:** [`work_classification_v1.md`](./work_classification_v1.md) · [`registry_first_rule_v1.md`](./registry_first_rule_v1.md) · [`operating_model_v2.md`](./operating_model_v2.md)
+**Related:** [`work_classification_v1.md`](./work_classification_v1.md) · [`registry_first_rule_v1.md`](./registry_first_rule_v1.md) · [`orchestration_model_v1.md`](./orchestration_model_v1.md)
 
 ---
 
@@ -12,7 +12,7 @@
 
 **`C:\Bari\tasks\` — one `TASK-NNN.md` file per task; state lives in the YAML frontmatter `status:` field.**
 
-`generate_dashboard.py` reads these files → `command_center.json` → the dashboard. There is exactly one registry. (The former markdown registry at `C:\bari\bari-web\Bari\01_framework\operations\task_registry_v1.md` is a frozen, non-authoritative historical snapshot — do not edit or consult it for live state.)
+The registry is the single source of truth. (The former markdown registry at `C:\bari\bari-web\Bari\01_framework\operations\task_registry_v1.md` is a frozen, non-authoritative historical snapshot — do not edit or consult it for live state.)
 
 This protocol applies only to **Registry Work** (see [`work_classification_v1.md`](./work_classification_v1.md)). Conversation Work never enters the registry.
 
@@ -20,7 +20,7 @@ This protocol applies only to **Registry Work** (see [`work_classification_v1.md
 
 ## 1. Why this exists
 
-Agents return deliverables but do not report structured state. The result is **dashboard drift**: tasks read `IN_PROGRESS` after the work is done, and the Central Controller manually reconstructs what changed. This protocol removes the reconstruction step: **every task return ends with a structured Registry Update block**, and the Controller records it. **Domain agents never write `CLOSED`** — they *propose*, the controller *commits*. **Closing authority is the Central Controller's and, by delegation (2026-06-02), the CC Agent's**, which commits `CLOSED` only after its close-readiness gate passes (claims independently verified against artifacts) and escalates genuine judgement calls. Throughout this document, "Central Controller" closing authority is read to include the delegated CC Agent. See `.claude/agents/cc-agent.md`.
+Agents return deliverables but do not report structured state. The result is **dashboard drift**: tasks read `IN_PROGRESS` after the work is done, and the orchestrator manually reconstructs what changed. This protocol removes the reconstruction step: **every task return ends with a structured Registry Update block**, and the orchestrator records it. **Domain agents never write `CLOSED`** — they *propose*, the orchestrator *commits*. **Closing authority is the orchestrator (main chat)**, which records `CLOSED` only after verifying return-block claims against artifacts.
 
 ---
 
@@ -28,14 +28,14 @@ Agents return deliverables but do not report structured state. The result is **d
 
 | State | Meaning | Entered by | Terminal? |
 |-------|---------|-----------|-----------|
-| `IN_PROGRESS` | Agent actively working | Controller (on assignment / on resume) | no |
-| `BLOCKED` | Waiting on a named dependency | Controller (from an agent's proposed `BLOCKED`) | no |
-| `RETURNED` | Work delivered, awaiting review — **not complete** | Controller (from an agent's proposed `RETURNED`) | no |
-| `CHANGES_REQUESTED` | Returned for rework | Controller (on rejection) | no |
-| `CLOSED` | Explicitly accepted by the Central Controller | **Controller only** (on acceptance) | **yes** |
+| `IN_PROGRESS` | Agent actively working | Orchestrator (on assignment / on resume) | no |
+| `BLOCKED` | Waiting on a named dependency | Orchestrator (from an agent's proposed `BLOCKED`) | no |
+| `RETURNED` | Work delivered, awaiting review — **not complete** | Orchestrator (from an agent's proposed `RETURNED`) | no |
+| `CHANGES_REQUESTED` | Returned for rework | Orchestrator (on rejection) | no |
+| `CLOSED` | Explicitly accepted by the orchestrator | **Orchestrator only** (on acceptance) | **yes** |
 
 ```
-   assign        propose RETURNED        accept (Controller only)
+   assign        propose RETURNED        accept (Orchestrator only)
   ───────► IN_PROGRESS ─────────────► RETURNED ──────────────────► CLOSED
               ▲   │                       │
     resume    │   │ propose BLOCKED       │ request changes
@@ -44,8 +44,8 @@ Agents return deliverables but do not report structured state. The result is **d
               └───┴── resume → IN_PROGRESS ──┘
 ```
 
-- An agent leaves `IN_PROGRESS` only by *proposing* `RETURNED` or `BLOCKED` in its return block. The Controller records it.
-- `RETURNED → CLOSED` and `RETURNED → CHANGES_REQUESTED` are **Controller-only**.
+- An agent leaves `IN_PROGRESS` only by *proposing* `RETURNED` or `BLOCKED` in its return block. The orchestrator records it.
+- `RETURNED → CLOSED` and `RETURNED → CHANGES_REQUESTED` are **orchestrator-only**.
 - `CHANGES_REQUESTED → IN_PROGRESS` on resume; `BLOCKED → IN_PROGRESS` when the dependency clears.
 
 ---
@@ -83,22 +83,29 @@ or
 - Open TASK-XXX
 ```
 
-**Rules:** Agents may propose `RETURNED` or `BLOCKED`. Agents may **never** propose `CLOSED` / `ACCEPTED`. Only the Central Controller closes work.
+**Rules:** Agents may propose `RETURNED` or `BLOCKED`. Agents may **never** propose `CLOSED` / `ACCEPTED`. Only the orchestrator closes work.
 
 ---
 
-## 4. How state is recorded (the Controller, in `C:\Bari\tasks\`)
+## 4. How state is recorded (the orchestrator, in `C:\Bari\tasks\`)
 
-State is recorded by editing the task file's frontmatter, then regenerating the dashboard:
+State is recorded by editing the task file's frontmatter:
 
-- **Accept:** set `status: CLOSED` and `completed_at: YYYY-MM-DD` in `tasks/TASK-NNN.md`.
+- **Accept / Close:** set `status: CLOSED`, `completed_at: YYYY-MM-DD`, and `close_reason: <one-line citing evidence>` in `tasks/TASK-NNN.md`. Move the file to `tasks/closed/TASK-NNN.md`.
 - **Reject:** set `status: CHANGES_REQUESTED` (capture the reason in the body / return).
 - **Return / Block (recording an agent proposal):** set `status: RETURNED` or `status: BLOCKED`.
 - **Resume:** set `status: IN_PROGRESS`.
 
-Then run `python generate_dashboard.py` (in `05_command_center`) so the dashboard reflects the change. The dashboard is **derived** — never hand-edit `command_center.json`.
+### Closing discipline
 
-### Controller acceptance block
+Before writing `CLOSED`, the orchestrator verifies the claims:
+
+1. Re-read the DoD in the task file; list each exit criterion.
+2. Check each claim against the artifact — quote file:line / the real number. If an artifact doesn't exist or contradicts the claim → `CHANGES_REQUESTED` with the gap.
+3. Look for what the return did NOT say (silent side-effects). Surface them in `close_reason` or as a follow-up task.
+4. High-stakes work (live score swap, frozen-invariant, governance) → get a second-agent review before closing.
+
+### Orchestrator close block
 ```
 --- Registry Update ---
 Task: TASK-NNN
@@ -106,11 +113,11 @@ New State:
 - CLOSED
 Accepted Date:
 - YYYY-MM-DD
-Notes:
-- optional
+Close Reason:
+- <artifact checked: file:line / run output>
 ```
 
-### Controller rejection block
+### Orchestrator rejection block
 ```
 --- Registry Update ---
 Task: TASK-NNN
@@ -123,9 +130,9 @@ On resume the state becomes `IN_PROGRESS`.
 
 ---
 
-## 5. Command Center behavior (state → section)
+## 5. Task sections in the registry (state → section)
 
-The dashboard renders state directly from the registry frontmatter:
+The registry renders state directly from the frontmatter:
 
 | State | Section |
 |-------|---------|
@@ -133,7 +140,7 @@ The dashboard renders state directly from the registry frontmatter:
 | `RETURNED` | Awaiting Review |
 | `BLOCKED` | Blockers |
 | `CHANGES_REQUESTED` | Changes Requested |
-| `CLOSED` | excluded from operational sections (closed/history only) |
+| `CLOSED` | Archive (`tasks/closed/`) |
 
 A done-but-unaccepted task reads `RETURNED`, not `IN_PROGRESS` — the specific drift this protocol eliminates.
 
@@ -144,14 +151,14 @@ A done-but-unaccepted task reads `RETURNED`, not `IN_PROGRESS` — the specific 
 | Action | Owner |
 |--------|-------|
 | Classify the request (Conversation vs Registry Work) | Whoever receives it |
-| Register `tasks/TASK-NNN.md` when Registry Work begins | Assigned agent / Controller |
+| Register `tasks/TASK-NNN.md` when Registry Work begins | Assigned agent / Orchestrator |
 | Emit `Registry Update (proposed)` on every return | **Assigned agent** |
 | Propose `RETURNED` / `BLOCKED` | Assigned agent |
-| Record state in the registry frontmatter | **Central Controller** |
-| `CLOSED` / `ACCEPTED` transition | **Central Controller (sole authority)** |
+| Record state in the registry frontmatter | **Orchestrator** |
+| `CLOSED` / `ACCEPTED` transition | **Orchestrator (sole authority)** |
 
 No agent self-closes its own work.
 
 ---
 
-*Registry Protocol v1 — Bari Agent OS / 2026-05-31*
+*Registry Protocol v1 — Bari Agent OS / 2026-05-31 · updated 2026-06-10*

@@ -21,7 +21,7 @@
     "energy_kcal": 538.0,
     "fat_g": 30.0,
     "fat_saturated_g": 3.6,
-    "fat_trans_g": 0.6,
+    "fat_trans_g": 0.0,
     "sodium_mg": 340,
     "carbohydrates_g": 62.6,
     "sugars_g": 4.2,
@@ -73,5 +73,15 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "data_corrections": [
+    {
+      "field": "normalized_nutrition_per_100g.fat_trans_g",
+      "old_value": 0.6,
+      "new_value": 0.0,
+      "reason": "OFF trans-fat per-100g (0.6) is the Israeli '<1g' serving THRESHOLD DECLARATION (serving=0.3g, serving_fraction=0.5), not a measured value. No PHVO/hydrogenated-oil marker present. Apropo Italiano: 0.3g '<1g' decl / 0.50 serving (every macro scales 0.50). high_concern -20 on artifact.",
+      "task": "TASK-234",
+      "corrected_at_source": "open_food_facts (authoritative serving-level re-probe, off_reprobe_task234.json)"
+    }
+  ]
 }

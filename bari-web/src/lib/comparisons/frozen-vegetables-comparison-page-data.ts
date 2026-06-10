@@ -18,25 +18,12 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type FrozenVegetablesCorpusMeta = ComparisonCorpusMeta;
 
-type FrozenVegetablesCorpusProduct = BariProductVM & {
-  _cluster?: string;
-};
-
-function stripInternalFields(
-  products: FrozenVegetablesCorpusProduct[]
-): BariProductVM[] {
-  return products.map((product) => {
-    const { _cluster, ...rest } = product;
-    void _cluster;
-    return rest;
-  });
-}
-
+// `_cluster` (shelf sub-pool, read off the raw JSON in frozen-vegetables-shelf-filters)
+// and `source_traceability_status` (internal provenance) are now stripped centrally by
+// loadComparisonCorpus' BariProductVM allowlist (TASK-233A) — no local strip needed.
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const corpusMeta = loaded.meta;
-const frozenVegetablesProducts = enrichRowSurface(
-  stripInternalFields(loaded.products as FrozenVegetablesCorpusProduct[])
-);
+const frozenVegetablesProducts = enrichRowSurface(loaded.products);
 
 export { corpusMeta, frozenVegetablesProducts };
 

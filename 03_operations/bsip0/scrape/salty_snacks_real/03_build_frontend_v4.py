@@ -20,6 +20,11 @@ from collections import Counter
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, r"C:\Bari\integrations\clients")
 import hebrew_readability as hr  # noqa: E402
+# TASK-233B: shared packaging core owns grade derivation, confidence derivation (7-state),
+# image-URL selection, and the VM field strip. Local grade_from_score / confidence_fields
+# kept only as thin wrappers around the core to preserve this generator's call sites.
+sys.path.insert(0, r"C:\Bari\03_operations\bsip2\proto_v0\src")
+import frontend_core as FC  # noqa: E402
 
 TRACES_DIR = pathlib.Path(r"C:\Bari\02_products\salty_snacks\bsip2_outputs\run_salty_snacks_002\products")
 BSIP1_DIR  = pathlib.Path(r"C:\Bari\02_products\salty_snacks\bsip1_outputs")
@@ -38,6 +43,20 @@ DROP_IDS = {
     "bsip1_snack_7290118426226",  # במבה ביסלי בצל מיקס 70 גרם
     "bsip1_snack_7290118426240",  # במבה ביסלי ברביקיו מיקס 70 גרם
     "bsip1_snack_7290100687109",  # במבה במילוי קרם נוגט (redundant sweet Bamba)
+}
+
+# ── TASK-234 (RT-5 MEDIUM): whole-panel per-100g basis error — drop from shelf ──
+# Three "chips" carry 128/139/145 kcal/100g; Atwater(macros) reproduces the stated kcal,
+# so the ENTIRE panel (every macro) is on a per-serving basis mislabeled per-100g (a real
+# fried/baked potato crisp is ~450-540 kcal/100g). OFF carries no serving_size to recover
+# the scale factor -> the per-100g basis is UNRECOVERABLE. Honest action: drop from the
+# scored shelf rather than publish/score a panel known to be on the wrong basis (which
+# inflates the score by suppressing calorie-density + fat penalties). See
+# fix_trans_artifacts_corpus.py BASIS_ERROR_CHIPS + BSIP1 data_corrections.
+BASIS_ERROR_EXCLUDE = {
+    "bsip1_snack_7290018198254": "128 kcal/100g — per-serving panel mislabeled per-100g; unrecoverable",
+    "bsip1_snack_7290018198148": "139 kcal/100g — per-serving panel mislabeled per-100g; unrecoverable",
+    "bsip1_snack_7290004943738": "145 kcal/100g — per-serving panel mislabeled per-100g; unrecoverable",
 }
 
 # ── TASK-231 brand normalization: one canonical string per maker ───────────────
@@ -81,12 +100,10 @@ INGREDIENTS_OMIT = {
 
 
 def grade_from_score(s):
-    if s is None: return "?"
-    if s >= 80: return "A"
-    if s >= 65: return "B"
-    if s >= 50: return "C"
-    if s >= 35: return "D"
-    return "E"
+    # Delegates to the shared core so disk grade == corpus.ts runtime grade. Fixes the
+    # DA-009 boundary drift (e.g. 7290000066332 = 65 was shipping disk 'C' while the
+    # runtime normalizer derived 'B'). None -> None (unscored chip), never a bespoke '?'.
+    return FC.grade_from_score(s)
 
 
 def retailer_he(r):
@@ -259,19 +276,20 @@ def bottom_line(grade, sig):
     return "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן."
 
 
-def confidence_fields(has_ing):
-    """Spec §5 — shopper-legible confidence labels (no jargon)."""
-    if has_ing:
-        return {
-            "confidenceLabel": "רכיבים + טבלה תזונתית",
-            "confidence_label_he": "דירוג לפי רכיבים וטבלה תזונתית",
-            "confidence_tooltip_he": "הדירוג נשען גם על רשימת הרכיבים וגם על הטבלה התזונתית.",
-        }
+def confidence_fields(trace):
+    """TASK-233B DA-007: confidence (state + canonical 7-state label/tooltip + sub_reason)
+    is derived from the BSIP2 trace via the shared core, NOT a bespoke has_ing flag that
+    mapped to verified without requiring a full panel. The core guarantees the canonical
+    tooltip set and never the retired 'official food source' overclaim. `confidenceLabel`
+    (the expansion badge) reuses the core-derived Hebrew label so the row and expansion agree.
+    """
+    f = FC.confidence_from_trace(trace)
     return {
-        "confidenceLabel": "טבלה תזונתית בלבד",
-        "confidence_label_he": "דירוג לפי הטבלה התזונתית בלבד",
-        "confidence_tooltip_he": ("רשימת הרכיבים לא הופיעה על המוצר, אז הדירוג נשען על "
-                                  "הטבלה התזונתית בלבד — בלי ניתוח רשימת הרכיבים."),
+        "confidence": f["confidence"],
+        "confidenceLabel": f["confidence_label_he"],
+        "confidence_label_he": f["confidence_label_he"],
+        "confidence_tooltip_he": f["confidence_tooltip_he"],
+        "confidence_sub_reason": f["confidence_sub_reason"],
     }
 
 
@@ -282,6 +300,7 @@ def main():
     products = []
     skipped = {}
     dropped = []
+    basis_excluded = []
 
     for t in traces:
         ref = t.get("input_reference") or {}
@@ -291,10 +310,16 @@ def main():
             skipped[pid] = "insufficient"; continue
         if pid in DROP_IDS:
             dropped.append(pid); continue
+        if pid in BASIS_ERROR_EXCLUDE:          # TASK-234 RT-5: unrecoverable per-100g basis
+            basis_excluded.append(pid); continue
 
         rec1 = b1.get(pid, {})
         sig = t.get("L1_observed_signals") or {}
-        grade = grade_from_score(score)
+        # DA-009: derive grade from the ROUNDED score that actually ships (and that
+        # corpus.ts re-derives from), not the raw float — else a 64.8 rounds to 65 on
+        # disk but the disk grade computed from 64.8 says C while runtime says B.
+        score_int = FC.round_score(score)
+        grade = grade_from_score(score_int)
         nova = t.get("nova_proxy")
         barcode = rec1.get("barcode") or ""
 
@@ -321,10 +346,26 @@ def main():
         # panel-only if ingredients omitted OR bsip1 didn't have clean ingredients
         has_ing = (rec1.get("ingredient_text_quality") == "clean") and not omit_ing
 
+        # ── TASK-234 (RT-7): internal consistency of novaGroup / ingredientCount /
+        # ingredient text. The engine ALWAYS infers a NOVA level (proxy), but for
+        # panel-only products it does so WITHOUT a visible ingredient list
+        # (nova_confidence: low). Publishing a composition-derived NOVA badge next to
+        # ingredientCount=0 / ingredients="" is internally contradictory (the exact RT-7
+        # finding: the beet cracker 7290112968807 showed NOVA-3 with 0 ingredients while
+        # its own BSIP1 record carried a 15-item list + raw OFF NOVA-4). Rule: publish
+        # novaGroup ONLY when the consumer can see the composition it summarizes
+        # (ingredientCount > 0). Otherwise suppress to null with an explicit reason, so
+        # all three fields agree on "composition not shown". Display-only; the engine's
+        # internal scoring NOVA is unchanged, so no score moves.
+        ingredient_count_pub = 0 if omit_ing else (rec1.get("ingredient_count") or 0)
+        nova_pub = nova if ingredient_count_pub > 0 else None
+        nova_suppressed_reason = None if nova_pub is not None else (
+            "ingredients_unavailable" if not has_ing else None)
+
         pos = positive_signals(sig)
         lim_text = limiting_signals(sig, nova)
         insight = build_insight(score, grade, sig)
-        conf_fields = confidence_fields(has_ing)
+        conf_fields = confidence_fields(t)
 
         # row-chip limitingFactors tokens (internal enums, not consumer prose)
         lim_tokens = []
@@ -344,17 +385,18 @@ def main():
             "id": pid,
             "name": name,
             "brand": brand,
-            "imageUrl": rec1.get("image_url") or "",
-            "score": round(score),
+            # Real scraped Yochananof catalog image; never a synthesized prefix.
+            "imageUrl": FC.select_image_url(rec1) or "",
+            "score": FC.round_score(score),
             "grade": grade,
             "insightLine": insight,
-            "confidence": "verified" if has_ing else "partial",
+            "confidence": conf_fields["confidence"],
             "subPool": rec1.get("sub_pool") or "chips",
-            "novaGroup": nova,
+            "novaGroup": nova_pub,
             "retailer": retailer,
             "retailer_he": retailer_he(retailer),
             "limitingFactors": lim_tokens,
-            "ingredientCount": (0 if omit_ing else (rec1.get("ingredient_count") or 0)),
+            "ingredientCount": ingredient_count_pub,
             "expansion": {
                 "nutrition": nutrition,
                 "sodiumUnavailable": sodium_unavailable,
@@ -371,7 +413,8 @@ def main():
             "source_traceability_status": "resolved" if has_ing else "panel_only",
             "confidence_label_he": conf_fields["confidence_label_he"],
             "confidence_tooltip_he": conf_fields["confidence_tooltip_he"],
-            "confidence_sub_reason": None if has_ing else "ingredients_unavailable",
+            "confidence_sub_reason": conf_fields["confidence_sub_reason"],
+            "nova_suppressed_reason": nova_suppressed_reason,  # TASK-234 RT-7
         }
         if sodium_unavailable:
             record["sodium_note_he"] = "ערך הנתרן לא דווח במקור עבור מוצר זה."
@@ -425,6 +468,14 @@ def main():
     nova_dist = dict(Counter(str(p["novaGroup"]) for p in products))
     retailer_dist = dict(Counter(p["retailer"] for p in products))
     ing_cov = sum(1 for p in products if p["source_traceability_status"] == "resolved")
+    sodium_unavail_ids = [p["id"] for p in products if p["expansion"].get("sodiumUnavailable")]
+
+    # ── TASK-233B emission strip (DA-012): keep only BariProductVM keys + barcode/retailer
+    #    + d4_additives + the load-bearing `subPool` (salty shelf filters read it off the
+    #    runtime VM). Drops source_traceability_status, novaGroup, ingredientCount, brand,
+    #    retailer_he, provenance, sodiumUnavailable, sodium_note_he and other non-VM keys.
+    #    Internal fields used for the _meta report above are already captured. ──
+    products = [FC.strip_non_vm_fields(p, keep={"subPool"}) for p in products]
 
     output = {
         "_meta": {
@@ -463,13 +514,39 @@ def main():
             "task231_remediation": {
                 "bamba_dropped": sorted(DROP_IDS),
                 "ingredients_omitted_panel_only": sorted(INGREDIENTS_OMIT - DROP_IDS),
-                "sodium_unavailable_marked": [p["id"] for p in products
-                                              if p["expansion"].get("sodiumUnavailable")],
+                "sodium_unavailable_marked": sodium_unavail_ids,
                 "beet_cracker_trans_corrected": "7290112968807: 0/E -> 60/C "
                                                 "(OFF trans 2.33g/100g was serving-scaling artifact)",
                 "apropo_caramel_trans_corrected": "7290118421603: 0/E -> 18/E "
                                                   "(OFF trans 1.25g/100g was the same serving-scaling "
                                                   "artifact: 0.5g '<1g' declaration / 0.40 serving; TASK-229)",
+            },
+            "task234_remediation": {
+                "trans_artifact_neutralized_corpus_wide": [
+                    "7290000066318 (Bamba 0.625->0)", "7290104500572 (Apropo Italiano 0.6->0)",
+                    "7290000420325 (Pop Star 0.4->0)", "7290004943738 (Milotal 0.5->0)",
+                    "5701932026971 (Hot Pop 0.5->0)", "7290117035009 (Yoh popcorn 0.5->0)",
+                    "7290018198254 (Tapugan 0.5->0)", "7290110551926 (Tapuchips bt 0.5->0)",
+                    "4011800528416 (Corny 0.5->0)",
+                ],
+                "trans_artifact_note": ("OFF trans-fat_serving=0.5g is the Israeli '<1g' threshold "
+                                        "DECLARATION; scaled by serving fraction it yields phantom "
+                                        "per-100g values (0.4/0.6/0.625/1.25/2.33). Neutralized to 0.0 "
+                                        "where no PHVO marker present (authoritative OFF serving-level "
+                                        "re-probe). Engine unchanged."),
+                "fiber_omitted": "7290112494313 (Click cornflakes): fiber 38g/100g impossible "
+                                 "(fiber+sugars>carbs); set None. Re-scored 25/E -> 14/E.",
+                "basis_error_excluded": sorted(BASIS_ERROR_EXCLUDE),
+                "basis_error_note": ("7290018198254/7290018198148/7290004943738: whole-panel "
+                                     "per-serving basis mislabeled per-100g (128/139/145 kcal vs real "
+                                     "~450-540); unrecoverable (no serving_size) -> dropped from shelf."),
+                "rt7_nova_reconciled": ["4014400925319", "7290000069364", "7290112494313",
+                                        "7290112968807", "7290116537375"],
+                "rt7_note": ("BSIP1 nova_proxy held the raw OFF nova_group (often 4) while the engine "
+                             "infers + publishes its own NOVA; reconciled BSIP1 nova_proxy to the "
+                             "engine-inferred value (raw OFF kept as nova_group_off_raw). novaGroup is "
+                             "published only when ingredientCount>0 (else null) so novaGroup/"
+                             "ingredientCount/ingredients are internally consistent. Score-neutral."),
             },
         },
         "products": products,
@@ -481,6 +558,7 @@ def main():
     print(f"Written: {OUT_WEB}")
     print(f"Products: {len(products)}  grades: {grade_dist}")
     print(f"Dropped Bamba variants: {len(dropped)} -> {dropped}")
+    print(f"Basis-error excluded (TASK-234 RT-5): {len(basis_excluded)} -> {basis_excluded}")
     print(f"Ingredient coverage: {ing_cov}/{len(products)}")
     print(f"Skipped insufficient: {len(skipped)} -> {list(skipped)}")
 
