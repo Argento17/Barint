@@ -53,6 +53,27 @@ Owner review of shipped v4 found data defects. All in
 - [ ] imageUrl 200 preserved; sodium/fiber bars still populate; tsc + build clean
 - [ ] New corpus shipped (v4 updated or v5); page wired; product count + grade dist reported
 
+## QA audit additions (TASK-232 FAIL, 2026-06-10)
+
+- **120 score-mechanic leaks (BIG, was missed):** every `insightLine` ends `"הציון 77/B משקף…"` and
+  every `bottomLine` embeds `(77/B)` — grade mechanic in prose (banned). Plus raw unrounded macros
+  as TEXT in positiveSignals (×21) / limitingFactors (×13), e.g. `"15.0 גרם חלבון ל-100 גרם"`. When
+  applying the TASK-230 templates, ensure NO `"X/Y"` grade and NO raw decimals in any consumer
+  string; re-run `hebrew_readability.is_clean` = True on all. (Gate now flags "עדיף לבחור" too.)
+- **Brand normalization specifics:** `Some` (8851016002685), `Salty`, `اوسم` (Arabic); split
+  spellings: אסם×10 vs `Osem`×7, פיטנס vs `Fitness`, קליק vs `Click`, תפוצ'יפס(U+05F3) vs
+  תפוצ׳יפס(U+05F4); 3 empty brand. Normalize to one canonical per maker.
+- **Bamba — QA correction (Hard Rule 4):** the 8 Bamba products are NOT duplicate SKUs (distinct
+  barcodes/variants). Not a dedup *bug* — but owner asked to cut the clutter; reduce to ~1–2
+  canonical Bamba (balance call: 8/47 = 17% one brand-family).
+- **VERIFY the beet-cracker trans value:** `7290112968807` scores 0/E via a hard trans-fat veto
+  (`fat_trans_g = 2.33`). Implausible for a whole-grain beet cracker with no hydrogenated oil —
+  CHECK the source OFF panel. If bad, correct it; re-scoring likely resolves the 0/E with NO scoring
+  change. If real, routes to Nutrition (TASK-229).
+- **Route metadata 54→47 already fixed** by orchestrator in `app/hashvaot/salty-snacks/page.tsx`.
+
 ## Return block
 Report: final product count after dedup, brand normalization map, ingredients fixed/omitted,
-Apropo sodium outcome, and confirmation copy is leakage-clean + recommendation-free.
+Apropo sodium outcome, beet-cracker trans verification result, and confirmation copy is
+leakage-clean (is_clean True on all consumer strings, no "X/Y" grades or raw decimals) +
+recommendation-free.
