@@ -188,10 +188,13 @@ study_objects:
 | **recommended_action** | implement_now |
 | **affected_categories** | cereal_system, snack_bars, bread (whole_food categories with fiber claims) |
 | **candidate_signal_name** | `viscosity_fiber_ratio`, `viscous_fiber_g` |
-| **should_affect_score_now** | false — requires viscous fiber vocabulary dictionary to parse ingredient text reliably |
+| **should_affect_score_now** | false — vocabulary input now COMPLETE (see vocabulary_milestone); scoring still gated on the items in remaining_gates. Not wired. |
 | **required_input_fields** | `ingredients_list`, `normalized_nutrition_per_100g.dietary_fiber_g` |
 | **risk_of_misuse** | Exact viscous fiber quantity is not on the label; presence-only detection risks under-crediting psyllium-dominant products |
-| **notes** | Viscous: psyllium husk (קליפת צ'יה, פסיליום), oat beta-glucan (ביתא גלוקן שיבולת שועל), guar gum (גואר). Non-viscous/prebiotic: inulin (אינולין), FOS, chicory root (שורש עולש), polydextrose, resistant dextrin. Implement vocabulary before scoring. |
+| **vocabulary_milestone** | ✅ **CLOSED PASS (2026-06-10)** — viscous/non-viscous fiber vocabulary dictionary completed. Artifact: `01_framework/bsip2_framework/docs/scoring/fiber_functional_vocabulary_v1.md` (FFV-v1), covering all 12 target fibers with Hebrew + English patterns, E-numbers, functional class, false-positive risks, Israeli-label context. **Scoring remains inactive / not wired** — dictionary is documented only, imported nowhere. |
+| **remaining_gates** | Before `should_affect_score_now` may flip to true (all scoring-side, out of vocabulary scope): (1) **presence-only credit cap** — quantity is not label-observable, so credit must be capped on presence; (2) **viscous vs non-viscous signal weighting** — viscous (gel-forming) fibers earn glycemic-dampening credit, non-viscous/prebiotic fibers do not; (3) **regression fixtures** — golden corpus cases proving no unintended score movement. |
+| **parser_risks** | (a) **PHGG** (partially hydrolyzed guar gum / `גואר מפורק חלקית` / Sunfiber) is non-viscous — hydrolysis strips viscosity — and MUST suppress native-guar viscosity classification (PHGG-before-guar guard). (b) **Resistant dextrin / resistant maltodextrin** (`דקסטרין עמיד` / `מלטודקסטרין עמיד` / Nutriose / Fibersol) counts as fiber ONLY when the resistance qualifier (`עמיד`/`resistant`/brand) is explicit. (c) **Bare maltodextrin / bare dextrin** (`מלטודקסטרין` / `דקסטרין`) is a rapidly-digestible glucose polymer and MUST NOT count as fiber. Full rule set: FFV-v1 §4. |
+| **notes** | Viscous: psyllium husk (קליפת פסיליום, פסיליום), oat beta-glucan (ביתא גלוקן שיבולת שועל), guar gum (גואר, native only — see parser_risks). Non-viscous/prebiotic: inulin (אינולין), FOS, chicory root (שורש עולש), polydextrose, resistant dextrin (דקסטרין עמיד — resistance must be explicit). Vocabulary now complete (FFV-v1); scoring gates remain. C-1 corrected: psyllium husk Hebrew was wrongly `קליפת צ'יה` (chia husk) → corrected to `קליפת פסיליום`. |
 
 ---
 
@@ -1375,6 +1378,196 @@ Formally logged gaps where current data or testing is insufficient to resolve a 
 | **co_sign** | Nutrition Agent D7 — self-authored (TASK-191 sub-task, 2026-06-05). **Product Agent D7 co-sign required** before butter goes live. |
 | **risk_of_misuse** | (1) Applying a false "dairy is safe" claim in consumer copy — the gate is an engine correction, not a health claim. Consumer-facing text must not say natural dairy trans fat is harmless. (2) Extending the gate to non-whole_food_fat categories — the gate is explicitly scoped to `whole_food_fat` only. Processed dairy products that happen to contain elevated trans fat (e.g., full-fat cream cheese routed to `dairy_protein`) do NOT qualify — they are not `whole_food_fat`. (3) Assuming absence of PHVO in the ingredient text confirms absence of industrial trans fat in all cases — the signal is necessary but not sufficient for a full trans fat source audit; it is sufficient for the purpose of preventing a categorical veto misfire on plain dairy fat. |
 | **notes** | The 6 affected butter_run_002 products: חמאה צרפתית רכה למריחה (trans=3.7, OFF-sourced), חמאה קרי גולד מלוחה, חמאה אנקור מלוחה, חמאה לורפק מלוחה, חמאה טרה מלוחה, חמאה פיזן ברטון מלוחה (all trans=3.28, USDA FDC SR Legacy fdc_id=173410). Ingredient text confirms plain dairy composition (שמנת מפוסטרת or similar; no PHVO). After the gate, these products score on their nutritional architecture and receive the existing `trans_pen = 20` on the fat_quality dimension (trans_fat_status="veto" is preserved in L3, which triggers the fat-dimension penalty in `_score_fat_quality_sprint1`). |
+
+---
+
+---
+
+### EV-REDLABEL-001 — Continuous Regulatory Quality Base Deduction (`REGQUAL_BASE_PER_LABEL = 12.0`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-001 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | At-threshold red label deduction in `score_regulatory_quality()`. With `BARI_REDLABEL_V1=on`, each red label at exactly the MoH threshold contributes 12 pts off the regulatory_quality dimension (0–100). The dimension carries 5% weight; 12 pts on the dimension ≈ 0.6 composite points, replacing the prior step-function cliff (0 labels→95, 1 label→60). |
+| **rationale** | 12 pts reflects that a label at-threshold is a moderate signal: the product meets the minimum disclosure condition but just barely. The prior cliff of 35 pts at first label was disproportionate and not calibrated to severity. |
+| **evidence_strength** | Moderate — calibrated by internal corpus analysis; revisitable after flag-ON pilot. |
+| **label_observability** | Fully label-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 co-sign required before engine activation. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-002 — Regulatory Quality Severity Slope (`REGQUAL_SLOPE_PER_LABEL = 15.0`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-002 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Excess-ratio multiplier for `score_regulatory_quality()`. `excess_ratio = (value − threshold) / threshold`. Each 100% excess above the MoH threshold contributes an additional 15 pts of deduction on top of the base 12. A product twice the threshold earns: 12 + 1.0 × 15 = 27 pts deduction (capped at 28 by EV-REDLABEL-003). |
+| **rationale** | Slope ensures that a product marginally above the threshold (excess=0.1 → +1.5 pts) is treated materially differently from one far above it (excess=1.0 → +15 pts), while the cap prevents unbounded punishment. |
+| **evidence_strength** | Moderate — calibrated by internal corpus analysis. |
+| **label_observability** | Fully label-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-003 — Per-Label Deduction Ceiling (`REGQUAL_MAX_PER_LABEL = 28.0`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-003 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Maximum contribution per individual red label to the regulatory_quality deduction. At 28 pts on the dimension (5% weight) ≈ 1.4 composite points. |
+| **rationale** | Prevents a single extreme nutrient value from dominating the regulatory_quality dimension signal. The dimension is one of ten; capping per-label deduction preserves the proportional contribution structure. |
+| **evidence_strength** | Moderate. |
+| **label_observability** | N/A (engineering bound). |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-004 — Regulatory Quality Dimension Floor (`REGQUAL_FLOOR = 20.0`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-004 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Minimum value for the regulatory_quality dimension sub-score regardless of label count or severity. Prevents the dimension from reaching zero even for products with three extreme red labels. |
+| **rationale** | The prior 25.0 step (3+ labels) was already the effective floor. This makes it explicit, continuous, and bounded. The dimension floor does not prevent other dimensions or caps from producing a low final score. |
+| **evidence_strength** | Moderate. |
+| **label_observability** | N/A (engineering bound). |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-005 — Endemic Sat-Fat Categories (`REDLABEL_ENDEMIC_SATFAT_CATEGORIES`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-005 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Categories `dairy_protein` and `whole_food_fat` are classified as endemic-sat-fat archetypes. Within these categories, a sat_fat red label is treated as a structurally fixed property of the product class, not a reformulable excess. This extends the EV-048 (butter-specific whole_food_fat gate) to the full dairy_protein category (hard cheeses, soft cheeses, cream cheese). |
+| **rationale** | Hard cheese (29–34g fat/100g, typical sat_fat/fat ratio 0.60–0.70) structurally guarantees a sat_fat red label. Unlike sugar or sodium — which can be reduced by reformulation — the saturated fat content of cheese reflects its fundamental composition. Applying the multi-label cap because a cheese has both a sat_fat label and a sodium label is a category-design artifact, not a signal of reformulable excess. EV-048 made this ruling for butter; EV-REDLABEL-005 extends it to the full dairy spectrum. |
+| **evidence_strength** | Strong — the compositional structure of dairy fat is well established (USDA FDC, FAO dairy fat composition data). |
+| **label_observability** | Category-observable (router output). The endemic exclusion does NOT suppress the red label annotation in the UI — consumers still see the disclosure. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-006 — Reformulable Labels 2+ Cap (`REDLABEL_MULTI_CAP_VALUE = 45`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-006 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | The `REFORMULABLE_LABELS_2_PLUS` cap (value=45) replaces `ISRAELI_RED_LABELS_2_PLUS` (value=45) under `BARI_REDLABEL_V1`. The cap magnitude is unchanged (45); the condition changes: triggers only when `reformulable_rl_count >= 2`, where endemic sat_fat labels in dairy/whole_food_fat categories are excluded from the count. |
+| **rationale** | The original cap was designed to penalise products that exceed two MoH thresholds across reformulable nutrients (sugar, sodium, avoidable saturated fat). Dairy-endemic sat_fat was never intended to be "the second label" that triggers this cap — the cap was designed for sugar+sodium or sugar+avoidable-fat combinations. The category-aware count restores the intent. |
+| **evidence_strength** | Moderate — governed by the EV-REDLABEL-005 classification. |
+| **label_observability** | Category-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-009 — General Graduated Sodium Bands (`SODIUM_GENERAL_BANDS`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-009 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Under `BARI_REDLABEL_V1`, for non-cereal/non-granola categories, the `HIGH_SODIUM_700MG_PLUS` hard cap (cliff at 700mg → cap=60) is replaced by graduated `SODIUM_LOAD_GENERAL_GRAD` penalties: `<450mg → 0`, `450–599 → −2`, `600–699 → −4`, `700–899 → −8`, `≥900 → −12`, all within `SODIUM_FAMILY_BUDGET=8`. EV-REDLABEL-010 records the band rationale. |
+| **rationale** | The 700mg cliff was calibrated for heavily processed, reformulable-excess products (canned soups, processed meats). In the cheese corpus, natural cheeses aged to 640–710mg sodium fail the same cliff as a 1300mg processed spread. Near-threshold continuity: a product at 699mg vs 701mg should differ by ~2 penalty points, not by a 40-point cliff. The graduated system achieves this. The SODIUM_FAMILY_BUDGET caps the maximum penalty at 8 points, preventing sodium from dominating the score above its natural dimension weight. |
+| **evidence_strength** | Moderate — calibrated by internal corpus analysis on hard cheeses (30 products). Revisitable after flag-ON pilot. |
+| **label_observability** | Fully label-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-010 — Graduated Sodium Band Values
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-010 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Band penalty values for `SODIUM_GENERAL_BANDS`. Band thresholds aligned with MoH red-label boundary (600mg) and dietary reference values: `450mg` ≈ 18% daily sodium reference intake (2500mg); `600mg` = MoH red-label threshold; `700mg` = prior Bari cliff; `900mg` = extreme salt concern level. |
+| **evidence_strength** | Moderate. |
+| **label_observability** | Fully label-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-011 — Graduated Sugar Penalty Bands (`SUGAR_GRADUATED_BANDS`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-011 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Under `BARI_REDLABEL_V1`, graduated sugar penalty applied as a `SUGAR_LOAD`-family penalty: `<12g → 0`, `12.0–17.49g → −2`, `17.5–24.99g → −5`, `≥25g → 0` (hard caps already handle this band). The near-threshold smoothing ensures a product at 16.5g vs 18.5g differs in score smoothly, not by a cliff at 17.5g. |
+| **rationale** | The existing `ISRAELI_RED_LABEL_1_SUGAR` cap fires at >=17.5g. Products just below (e.g. 16.5g) currently receive zero sugar penalty from this mechanism. Products just above receive a cap=55. The graduated penalty adds 2 pts of texture below the threshold and 5 pts of additional penalty (stacked with the cap) above it, creating a smooth ramp across the cliff. |
+| **evidence_strength** | Moderate. |
+| **label_observability** | Fully label-observable. |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+---
+
+### EV-REDLABEL-012 — Null Sat-Fat Imputation for Endemic Categories
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-012 |
+| **task** | TASK-REDLABEL-001 |
+| **recorded** | 2026-06-08 |
+| **signal** | Three parameters govern null sat_fat imputation: `REDLABEL_NULL_SATFAT_FAT_FLOOR = 15.0` (g/100g — fat threshold below which imputation is not attempted); `REDLABEL_DAIRY_SATFAT_FRACTION = 0.63` (implied sat_fat = fat × 0.63); `REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT = 0.50` (all implied consequences applied at 50% weight). Applies in `score_regulatory_quality()` and the null sat_fat annotation path when `fat_saturated_g` is null, `fat_g >= 15`, and `category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES`. |
+| **rationale** | 27 of 30 hard cheeses in the pilot corpus omit sat_fat from the nutrition label. Israeli labeling law does not require sat_fat disclosure. Products with fat 22–34g/100g and null sat_fat are highly likely to exceed the 5g/100g MoH threshold (at 0.63 ratio: 22g fat → ~13.9g sat_fat). The disclosure asymmetry currently creates a 40+ point gap between otherwise-identical products depending on whether they declare sat_fat. The 50% haircut reflects imputation uncertainty; the 0.63 fraction is USDA FDC calibrated (mean sat_fat/fat ratio across hard cheeses: cheddar=0.64, gouda=0.62, edam=0.65). |
+| **evidence_strength** | Moderate — ratio derived from USDA FDC SR Legacy hard cheese data. Israeli-specific validation awaited. The 50% haircut explicitly captures the remaining uncertainty. |
+| **label_observability** | Partially label-observable. The imputation is flagged in the trace (`implied_sat_fat`, `haircut`). UI annotation: "שומן רווי לא הוצהר — הערכה חלקית". Does NOT add a red-label icon in the UI (annotation only). |
+| **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required before activation. |
+| **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
+| **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+### EV-045 — Emulsifier/Stabilizer Complexity Score
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-045 |
+| **concept** | Aggregate emulsifier/stabilizer complexity is a scoring signal distinct from individual additive risk. Multiple texture-stabilizing agents acting in combination indicate higher formulation engineering than any single agent alone. |
+| **scientific_rationale_short** | EV-003 grounds individual concern-tier differentiation for CMC/P80/carrageenan vs lecithin. This finding extends that logic: a product with 3+ distinct emulsifier/stabilizer agents represents a meaningfully different formulation strategy than one with zero or one. Multi-agent stabilizer systems are indicative of engineered texture reconstruction (matrix-integrity Req 1). Concentration data (grams/serving) would enable dose-based scoring, but is not label-observable in Israel — count and identity are the available signals. |
+| **evidence_strength** | Moderate (aggregate count as a proxy for formulation engineering is mechanistically sound; exact penalty magnitudes require calibration against the real shelf) |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — the existing `ADDITIVE_IDENTITY_DELTAS` penalise the three named concern emulsifiers (CMC/P80/carrageenan) at −3 each (cap −6) but do not capture: (a) medium-concern agents (mono/diglycerides, modified starches), (b) low/contextual agents (gums, pectin, lecithin), or (c) the aggregate complexity of multi-agent systems. This finding introduces a separate `emulsifier_complexity` dimension signal computed as: highest individual concern penalty + small complexity adjustment (0/1/2 agents = simple, 2 = moderate, 3+ = high). |
+| **implementation_complexity** | Low — consumes existing `tax_emulsifier_concern` and `tax_emulsifier_benign` signals from `signal_extractor.py` plus new `tax_emulsifier_medium` and `tax_emulsifier_low` signals for the full agent set. No nutrition panel data required. |
+| **recommended_action** | implement_now |
+| **affected_categories** | All; highest impact: snack_bars, dairy_protein, sauce_spread, beverage, cereal, bread, cracker, dessert |
+| **candidate_signal_name** | `emulsifier_complexity_score`, `emulsifier_agent_count`, `emulsifier_complexity_tier` |
+| **should_affect_score_now** | true — ingredient text matching is sufficient; the ingredient taxonomy can be extended to cover all known emulsifier/stabilizer agents in the registry mapping |
+| **required_input_fields** | `ingredients_list`, `tax_emulsifier_concern`, `tax_emulsifier_benign`, plus new resolved agent signals |
+| **risk_of_misuse** | (1) Must not double-count with existing `ADDITIVE_IDENTITY_DELTAS` — this score is additive to (not a replacement for) the per-agent identity deltas. (2) Ingredient order is a weak proxy only — a complexity penalty should not automatically double because an agent appears early in the list. (3) Lecithin and prebiotic gums must not trigger the same penalty weight as CMC/P80. |
+| **notes** | The full agent registry mapping (40+ agents across high/medium/low tiers) is defined in `docs/scoring/emulsifier_complexity_spec_v1.md`. Multiplicative penalties (concentration × complexity) are deferred until serving-level additive dose data is available — the spec explicitly avoids "dose" language for now. Consumer-facing copy: "Contains several texture-stabilizing additives" — never "high dose," "unsafe," "toxic," or "exceeds safe amount." |
 
 ---
 

@@ -141,14 +141,17 @@ def compute_interpretation_confidence(
     elif trust == "unknown":
         deduct(8, "trust_level_unknown")
 
-    # OCR quality
+    # OCR quality / data quality
     ing_quality = product.get("ingredient_text_quality", "clean")
     if ing_quality == "corrupted":
         deduct(12, "ingredient_text_quality=corrupted")
     elif ing_quality == "malformed":
         deduct(8, "ingredient_text_quality=malformed")
-    elif ing_quality == "partial":
-        deduct(4, "ingredient_text_quality=partial")
+    elif ing_quality in ("partial", "marketing_bleed"):
+        # EV-051 / TASK-198: "marketing_bleed" (Nestlé-style front-of-pack copy served
+        # as ingredient list) carries the same deduction as "partial" — ingredient-derived
+        # signals are unreliable but nutrition data may still be valid.
+        deduct(4, f"ingredient_text_quality={ing_quality}")
 
     # Nutrition consistency
     consistency = product.get("nutrition_consistency_status", "consistent")

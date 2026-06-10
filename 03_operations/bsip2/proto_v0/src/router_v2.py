@@ -35,6 +35,8 @@ CATEGORIES = [
     "bread",
     "cracker",
     "crispbread",
+    # Frozen vegetable (TASK-??? / EV-006 follow-up)
+    "frozen_vegetable",
     "default",
 ]
 
@@ -86,6 +88,14 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("מוסלי",          "snack_bar_granola", "muesli",         0.88),
     ("גרנולה",         "snack_bar_granola", "granola",        0.90),
     # ── Dairy ─────────────────────────────────────────────────────────────────
+    # Hard & semi-hard cheese anchors — product names use "גאודה" or omit "גבינה" entirely.
+    # Without these anchors, Gouda SKUs route to default (conf=0.30) because the Hebrew
+    # absolute-form "גבינה" doesn't match the name-only signal when the product name uses
+    # only the variety name ("גאודה", "אמנטל", "גרנה פדנו", "ברי").
+    ("גאודה",           "dairy_protein",     "hard_cheese",    0.88),
+    ("אמנטל",          "dairy_protein",     "hard_cheese",    0.88),
+    ("גרנה פדנו",       "dairy_protein",     "hard_cheese",    0.88),
+    ("ברי",             "dairy_protein",     "soft_ripened",   0.87),
     ("קוטג'",          "dairy_protein",     "cottage",        0.93),
     # Cream-cheese / spread pool (TASK-145 — fixes run_cheese_001 QA-CHS-001). These lack
     # dairy signal strength (high fat, low protein, flavored) and fell to default/whole_food_fat.
@@ -126,6 +136,12 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("עדנה",           "dessert",           "dairy_dessert",  0.93),
     ("פרוביו",         "dessert",           "probiotic_dessert", 0.92),
     ("יופלה",          "dessert",           "flavored_yogurt_dessert", 0.91),
+    # ── Frozen vegetables ──────────────────────────────────────────────────────
+    # Anchors fire on explicit frozen indicators in product names. Exclusions
+    # (ANCHOR_EXCLUSIONS) block non-veg frozen products (bread, pizza, fish, meat,
+    # chicken, patties, schnitzel, pastries, sauces, etc.).
+    ("קפוא",           "frozen_vegetable",  None,  0.90),
+    ("מוקפא",          "frozen_vegetable",  None,  0.90),
 ]
 
 # Anchors that require the matched term to appear at the START of the product name
@@ -136,7 +152,7 @@ ANCHOR_REQUIRES_POSITION_CHECK: set[str] = {
 
 # For dairy anchors: suppress if the term appears AFTER a flavor descriptor
 # in the product name ("בטעם יוגורט" = yogurt-flavored, not a yogurt product).
-DAIRY_ANCHOR_TERMS: set[str] = {"יוגורט", "קפיר", "קוטג'", "גבינה", "לבן"}
+DAIRY_ANCHOR_TERMS: set[str] = {"יוגורט", "קפיר", "קוטג'", "גבינה", "גבינת", "גאודה", "לבן"}
 DAIRY_FLAVOR_SUPPRESSORS: list[str] = ["בטעם", "טעם", "בניחוח"]
 
 # TASK-139C — Dairy-head topping suppression.
@@ -177,6 +193,11 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "טחינה":          ["חציל", "חצילים"],            # "חציל על האש בטחינה" = eggplant spread, not tahini product
     # Cream-cheese anchors (TASK-145) — must not fire on the napoleon CAKE / pastry (עוגת פס נפוליאון)
     "נפוליאון":       ["עוגה", "עוגת", "פס", "מאפה", "בצק"],
+    # Hard cheese anchors — must not fire in snack/filling/flavouring context
+    "גאודה":          ["חטיף", "מילוי", "בטעם", "שמן", "רוטב"],
+    "אמנטל":         ["חטיף", "מילוי", "בטעם"],
+    "גרנה פדנו":      ["חטיף", "מילוי", "רוטב"],
+    "ברי":            ["חטיף", "מילוי", "עוגת", "בטעם"],
     # פילדלפיה anchor (TASK-153 / EV-030) — must not fire on a SEASONING blend
     # (תערובת תיבול פילדלפיה, brand טעם וריח, Shufersal seasonings shelf, sodium 7,905 mg/100g).
     # The seasoning phrase "תערובת תיבול" is exclusive to spice blends; real herbed פילדלפיה
@@ -188,6 +209,12 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "יופלה":          [],
     "פרוביו":         [],
     "מילקי":          [],
+    # Frozen vegetable exclusions — must not fire on non-veg frozen products
+    "קפוא":           ["לחם", "פיצה", "דג", "דגים", "בשר", "בקר", "עוף",
+                       "קציצה", "קציצות", "שניצל", "המבורגר", "קניש", "מאפה",
+                       "כריך", "מילוי", "רוטב", "טופו"],
+    "מוקפא":          ["לחם", "פיצה", "דג", "עוף", "קציצה", "שניצל",
+                       "המבורגר", "קניש", "מאפה", "כריך", "טופו"],
     "מעדן חלבון":     [],
     "מעדן ילדים":     [],
     # Yogurt sub-brand anchors (TASK-139C) must NOT fire for drinkable variants —
@@ -380,6 +407,9 @@ _DAIRY: list[tuple[str, float, str]] = [
     ("יוגורט",       0.95, "name_only"),
     ("קוטג'",        0.95, "name_only"),
     ("גבינה",        0.85, "name_only"),
+    # "גבינת" is the Hebrew construct form of "גבינה" ("גבינת עיזים" = goat cheese,
+    # "גבינת גאודה" = Gouda cheese). It does not match the absolute-form signal above.
+    ("גבינת",        0.85, "name_only"),
     ("חלב",          0.70, "name_only"),
     ("לבן",          0.60, "name_only"),
     ("קפיר",         0.95, "name_only"),
@@ -485,8 +515,9 @@ _PLANT_MILK_SOLID_EXCL: list[str] = [
 #
 # Field → routed category. Mirrors the two governed corpora; extend per new category.
 CATEGORY_PRIOR_SUBTYPE_FIELDS: dict[str, str] = {
-    "bsip_cereal_subtype":  "cereal",
-    "bsip_yogurt_subtype":  "dairy_protein",
+    "bsip_cereal_subtype":          "cereal",
+    "bsip_yogurt_subtype":          "dairy_protein",
+    "bsip_frozen_vegetable_subtype": "frozen_vegetable",
 }
 # Subtype values that do NOT assert category membership (do not carry a prior).
 _CATEGORY_PRIOR_NULL_SUBTYPES: set[str] = {

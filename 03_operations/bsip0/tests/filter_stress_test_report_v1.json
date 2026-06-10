@@ -1,0 +1,214 @@
+{
+  "run_date": "2026-06-07T05:51:16Z",
+  "runner_version": "1.1",
+  "task_id": "TASK-211",
+  "corpus_path": "C:\\Bari\\03_operations\\bsip0\\tests\\golden_corpus_bad_products.json",
+  "notes": [
+    "F1/F2/F3/F4/F6 filter logic added to bsip0_nutrition.py (TASK-211).",
+    "Runner delegates to shared module so this test also validates exports.",
+    "No filter bugs found: all 13 cases passed without code changes.",
+    "F6-001: kJ mismatch correctly caught by detect_kj_energy_misparse.",
+    "F5-002: fat_understated implausibility correctly fired.",
+    "F4 dedup: completeness-ranked sort correctly selects richer record."
+  ],
+  "total_tests": 13,
+  "passed": 13,
+  "failed": 0,
+  "pass_rate_pct": 100.0,
+  "errors": [],
+  "by_category": {
+    "F1_incomplete_nutrition": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "F2_ingredients_absent": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "F3_non_food": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "F4_duplicate_barcode": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "F5_score_sanity": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "F6_eu_label_quirks": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "test_id": "F1-001",
+      "filter_category": "F1_incomplete_nutrition",
+      "description": "Product missing energy, protein, and sodium (3 of 6 core nutrients absent) — should be rejected as nutritionally incomplete",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "incomplete_nutrition: 3/6 core nutrients present (3 missing)",
+      "passed": true
+    },
+    {
+      "test_id": "F1-002",
+      "filter_category": "F1_incomplete_nutrition",
+      "description": "Product with only energy present — all other core fields absent — catastrophic incompleteness from Carrefour scrape miss",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "incomplete_nutrition: 1/6 core nutrients present (5 missing)",
+      "passed": true
+    },
+    {
+      "test_id": "F2-001",
+      "filter_category": "F2_ingredients_absent",
+      "description": "Product with ingredients field null — cannot compute NOVA or additive score",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "ingredients_absent: ingredients_raw is null",
+      "passed": true
+    },
+    {
+      "test_id": "F2-002",
+      "filter_category": "F2_ingredients_absent",
+      "description": "Product with ingredients set to 'ראה אריזה' (see packaging) — non-informative placeholder, should be filtered",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "ingredients_absent: non-informative placeholder 'ראה אריזה'",
+      "passed": true
+    },
+    {
+      "test_id": "F2-003",
+      "filter_category": "F2_ingredients_absent",
+      "description": "Product with ingredients set to empty string — should be filtered like null",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "ingredients_absent: ingredients_raw is empty string",
+      "passed": true
+    },
+    {
+      "test_id": "F3-001",
+      "filter_category": "F3_non_food",
+      "description": "Baby wipes product scraped from Rami Levy multi-category shelf — no nutrition, no ingredients, name contains non-food signals",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "non_food: zero nutrition + no ingredients + subcategory='baby_care'",
+      "passed": true
+    },
+    {
+      "test_id": "F3-002",
+      "filter_category": "F3_non_food",
+      "description": "Cleaning product (dish soap) scraped from mixed shelf — no nutrition table at all",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "filter_reason": "non_food: zero nutrition + no ingredients + subcategory='cleaning'",
+      "passed": true
+    },
+    {
+      "test_id": "F4-001",
+      "filter_category": "F4_duplicate_barcode",
+      "description": "Corpus with two records sharing barcode 7290000888004: first is complete (all 6 nutrients), second is incomplete (missing energy and protein). Dedup should keep the complete record.",
+      "expected_outcome": "deduplicated",
+      "actual_outcome": "deduplicated",
+      "expected_survivor_retailer": "shufersal",
+      "actual_survivor_retailer": "shufersal",
+      "survivor_correct": true,
+      "passed": true
+    },
+    {
+      "test_id": "F4-002",
+      "filter_category": "F4_duplicate_barcode",
+      "description": "Corpus with two records sharing barcode 7290000999005: both complete but one has more non-null fields (has fiber and sugar; other doesn't). Dedup should keep the richer record.",
+      "expected_outcome": "deduplicated",
+      "actual_outcome": "deduplicated",
+      "expected_survivor_retailer": "shufersal",
+      "actual_survivor_retailer": "shufersal",
+      "survivor_correct": true,
+      "passed": true
+    },
+    {
+      "test_id": "F5-001",
+      "filter_category": "F5_score_sanity",
+      "description": "Worst-case product: max sugar (55g), max sodium (1800mg), max saturated fat (35g out of 40g total fat), min fiber (0), min protein (0.5g), NOVA=4. All pre-score signals should be at worst values. Verifies BSIP0 signals are correct inputs for a guaranteed low score.",
+      "expected_outcome": "pass_with_worst_signals",
+      "actual_outcome": "pass_with_worst_signals",
+      "implausible_reason": null,
+      "parsed_signals": {
+        "energy_kcal": 530.0,
+        "fat_g": 40.0,
+        "fat_saturated_g": 35.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 1800.0,
+        "carbohydrates_g": 70.0,
+        "sugars_g": 55.0,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 0.5
+      },
+      "signal_failures": [],
+      "passed": true
+    },
+    {
+      "test_id": "F5-002",
+      "filter_category": "F5_score_sanity",
+      "description": "Implausibility trap: product declares only 0.3g total fat but 730 kcal (energy consistent with 82g fat). nutrition_implausible should catch this as fat_understated signature.",
+      "expected_outcome": "implausible",
+      "actual_outcome": "implausible",
+      "implausible_reason": "fat_understated: total_fat=0.3g but declared 730.0kcal exceeds protein+carb+fat energy (8kcal) by 722kcal",
+      "parsed_signals": {
+        "energy_kcal": 730.0,
+        "fat_g": 0.3,
+        "fat_saturated_g": 0.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 8000.0,
+        "carbohydrates_g": 0.8,
+        "sugars_g": 0.5,
+        "dietary_fiber_g": null,
+        "protein_g": 0.6
+      },
+      "passed": true
+    },
+    {
+      "test_id": "F6-001",
+      "filter_category": "F6_eu_label_quirks",
+      "description": "EU-style Carrefour record: energy declared in kJ only (3,138 kJ, which is ~750 kcal for butter). Parser must not use 3138 as if it were kcal — would produce an absurd 3138 kcal/100g score.",
+      "expected_outcome": "flagged_kj_mismatch",
+      "actual_outcome": "flagged_kj_mismatch",
+      "kj_reason": "energy_unit_kj_misread_as_kcal: raw='3138 kJ' parsed to 3138 which exceeds plausible kcal ceiling 900. Likely kJ value (3138 kJ ≈ 750 kcal).",
+      "parsed_energy_value": 3138.0,
+      "passed": true
+    },
+    {
+      "test_id": "F6-002",
+      "filter_category": "F6_eu_label_quirks",
+      "description": "Carrefour real record with fully empty nutrition (off_miss) — all nutrition fields blank. This is the actual observed Carrefour pattern. The parser must not crash or produce plausible-looking zeros; it must flag as incomplete.",
+      "expected_outcome": "filtered",
+      "actual_outcome": "filtered",
+      "f1_fired": true,
+      "f1_reason": "incomplete_nutrition: 0/6 core nutrients present (6 missing)",
+      "f2_fired": true,
+      "f2_reason": "ingredients_absent: ingredients_raw is empty string",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "filter_bugs_found": [],
+  "filter_bugs_fixed": [],
+  "new_shared_functions_added": [
+    "filter_incomplete_nutrition(product) -> (bool, reason)",
+    "filter_ingredients_absent(product) -> (bool, reason)",
+    "filter_non_food(product) -> (bool, reason)",
+    "dedup_by_barcode(products) -> {survivors, dropped}",
+    "detect_kj_energy_misparse(product) -> (bool, reason, value)",
+    "apply_bsip0_filters(product) -> (bool, [reasons])"
+  ]
+}

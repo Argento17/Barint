@@ -1,0 +1,35 @@
+{
+  "run_id": "run_juices_001",
+  "run_date": "2026-06-07T11:00:04.519045",
+  "category": "juices",
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_juices_001\\output",
+  "output_root": "C:\\Bari\\02_products\\juices\\bsip2_outputs\\run_juices_001",
+  "products_loaded": 65,
+  "products_scored": 65,
+  "errors": [],
+  "misroutes": [
+    {
+      "pid": "bsip1_juice_7290006696717",
+      "name": "מיץ מוסקט אפרת",
+      "routed_to": "dessert"
+    }
+  ],
+  "grade_distribution": {
+    "C": 54,
+    "D": 10,
+    "A": 1
+  },
+  "nova_distribution": {
+    "2": 63,
+    "3": 1,
+    "1": 1
+  },
+  "score_range": {
+    "min": 48.7,
+    "max": 85
+  },
+  "engine_flags": {
+    "BARI_RECAL_P0": "on",
+    "BARI_GLASSBOX_W4": "on"
+  }
+}

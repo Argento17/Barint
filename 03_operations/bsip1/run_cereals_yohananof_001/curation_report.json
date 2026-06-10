@@ -1,16 +1,17 @@
 {
  "run_id": "run_cereals_yohananof_001",
  "retailer": "yohananof",
- "generated": "2026-06-05T11:16:18.957751+00:00",
+ "generated": "2026-06-07T06:04:47.556997+00:00",
  "source_file": "C:\\Bari\\02_products\\breakfast_cereals\\bsip0_outputs\\multiretailer\\yohananof_bsip0_raw_20260605T104358.json",
  "raw_count": 94,
  "included_count": 6,
  "excluded_count": 88,
  "exclusion_tally": {
-  "no_usable_nutrition": 44,
+  "no_usable_nutrition": 42,
   "bar_excluded_snack_overlap": 15,
   "not_cereal": 11,
   "non_cereal_excluded": 17,
+  "plain_oats_out_of_scope": 2,
   "chocolate_confection_excluded": 1
  },
  "ev_045c_fitness_flag_count": 1,
@@ -222,12 +223,12 @@
   {
    "barcode": "7290017068978",
    "name": "שיבולת שועל  מלאה  להכנה מהירה 500 גר`",
-   "reason": "no_usable_nutrition"
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "7290017068985",
    "name": "שיבולת שועל  מלאה עבה 500 גר`",
-   "reason": "no_usable_nutrition"
+   "reason": "plain_oats_out_of_scope"
   },
   {
    "barcode": "7290017457574",

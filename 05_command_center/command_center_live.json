@@ -3,25 +3,20 @@
   "_note": "Lean live view. Full board: command_center.json · closed detail: command_center_archive.json",
   "meta": {
     "version": "3.0",
-    "last_updated": "2026-06-06",
-    "generated_at": "2026-06-06T19:16:13",
-    "newest_source_at": "2026-06-06T19:16:05",
+    "last_updated": "2026-06-09",
+    "generated_at": "2026-06-09T19:50:18",
+    "newest_source_at": "2026-06-09T19:50:01",
     "updated_by": "generate_dashboard.py",
     "task_capacity": 3,
     "owner_wip_limit": 2,
     "schema_version": "command_center_v3",
-    "drift_checked_at": "2026-06-06T19:16:13",
+    "drift_checked_at": "2026-06-09T19:50:18",
     "stale": false,
     "stale_reason": null
   },
   "executive": {
     "system_health": "YELLOW",
     "active_task_ids": [
-      "TASK-198",
-      "TASK-199",
-      "TASK-200",
-      "TASK-201",
-      "TASK-202",
       "TASK-203",
       "TASK-204",
       "TASK-205",
@@ -29,29 +24,29 @@
       "TASK-182"
     ],
     "latest_completed_task": {
-      "id": "TASK-197",
-      "title": "Olive Oil + Authenticity Pilot — new category + label-detectable authenticity annotation layer",
-      "completed_at": "2026-06-06"
+      "id": "TASK-222F",
+      "title": "Fermentation vocabulary audit (DESIGN_ONLY)",
+      "completed_at": "2026-06-09"
     },
     "current_blocker": "TASK-182: Waiting for clinician to sign the NDA (sent 2026-06-05). Pending steps cannot proceed until signature is returned.",
     "next_recommended_decision": null
   },
   "next_action": {
-    "task_id": "TASK-198",
-    "title": "Cereals: Lion/Wittebix inversion — data pipeline bugs inflated Lion 78/B above Wittebix 75/B",
-    "owner": "nutrition-agent",
+    "task_id": "TASK-203",
+    "title": "Cheese Spreads Blog Post — full-depth article using blog template from TASK-199",
+    "owner": "content-agent",
     "status": "IN_PROGRESS",
-    "priority": "HIGH",
-    "reason": "Last gate before Breakfast Cereals launch.",
-    "unblocks": "Breakfast Cereals launch"
+    "priority": "MEDIUM",
+    "reason": "Currently in progress — finish this first.",
+    "unblocks": "Cottage / White Cheese (Cheese Spreads) launch"
   },
   "task_summary": {
-    "active": 10,
-    "in_progress": 9,
+    "active": 5,
+    "in_progress": 4,
     "blocked": 1,
-    "returned": 0,
+    "returned": 2,
     "changes_requested": 0,
-    "closed": 233,
+    "closed": 259,
     "wip": 0,
     "wip_task_ids": [],
     "wip_by_owner": {},
@@ -59,38 +54,23 @@
     "wip_over_limit": []
   },
   "critical_path": {
-    "longest_chain": [
-      "TASK-199",
-      "TASK-200"
-    ],
-    "top_unblockers": [
-      {
-        "task_id": "TASK-199",
-        "unblocks_count": 7,
-        "unblocks": [
-          "TASK-200",
-          "TASK-201",
-          "TASK-202",
-          "TASK-203",
-          "TASK-204",
-          "TASK-205",
-          "TASK-206"
-        ]
-      }
-    ]
+    "longest_chain": [],
+    "top_unblockers": []
   },
   "drift": {
-    "checked_at": "2026-06-06T19:16:16",
-    "clean": true,
+    "checked_at": "2026-06-09T19:50:22",
+    "clean": false,
     "counts": {
       "PHANTOM_TASK": 0,
       "CLOSURE_DRIFT": 0,
       "SNAPSHOT_DRIFT": 0,
-      "REGISTRY_UNPARSEABLE": 0
+      "REGISTRY_UNPARSEABLE": 1
     },
     "phantom_tasks": [],
     "closure_drift_tasks": [],
-    "registry_unparseable": [],
+    "registry_unparseable": [
+      "TASK-221"
+    ],
     "acknowledged": []
   },
   "category_state": [
@@ -101,7 +81,16 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": "TASK-200"
+      "blocking_task": null
+    },
+    {
+      "id": "breakfast-cereals",
+      "name_he": "דגני בוקר",
+      "launch": "LIVE",
+      "bsip2": "NOT_STARTED",
+      "dataset": "NOT_BUILT",
+      "website": "LIVE",
+      "blocking_task": null
     },
     {
       "id": "cheese",
@@ -128,7 +117,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": "TASK-202"
+      "blocking_task": null
     },
     {
       "id": "milk",
@@ -138,6 +127,15 @@
       "dataset": "DEPLOYED",
       "website": "LEGACY",
       "blocking_task": "TASK-205"
+    },
+    {
+      "id": "salty-snacks",
+      "name_he": "חטיפים מלוחים",
+      "launch": "LIVE",
+      "bsip2": "COMPLETE",
+      "dataset": "DEPLOYED",
+      "website": "LEGACY",
+      "blocking_task": null
     },
     {
       "id": "snacks",
@@ -155,16 +153,7 @@
       "bsip2": "AUTHORITATIVE",
       "dataset": "DEPLOYED",
       "website": "LIVE",
-      "blocking_task": "TASK-201"
-    },
-    {
-      "id": "breakfast-cereals",
-      "name_he": "דגני בוקר",
-      "launch": "QUEUED",
-      "bsip2": "NOT_STARTED",
-      "dataset": "NOT_BUILT",
-      "website": "LIVE",
-      "blocking_task": "TASK-198"
+      "blocking_task": null
     },
     {
       "id": "tahini",
@@ -482,127 +471,6 @@
   },
   "open_tasks": [
     {
-      "id": "TASK-198",
-      "title": "Cereals: Lion/Wittebix inversion — data pipeline bugs inflated Lion 78/B above Wittebix 75/B",
-      "owner": "nutrition-agent",
-      "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "created_at": "2026-06-06",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": "breakfast-cereals",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "",
-      "work_type": "scoring-calibration",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": false,
-      "cc_reviewed": null,
-      "banked_asset": null,
-      "deferred": false
-    },
-    {
-      "id": "TASK-199",
-      "title": "Olive Oil Blog Post — first full-depth article + blog template for all future posts",
-      "owner": "content-agent",
-      "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "created_at": "2026-06-06",
-      "completed_at": null,
-      "depends_on": [],
-      "blocks": [],
-      "category_id": null,
-      "blocker": null,
-      "close_reason": null,
-      "summary": "",
-      "work_type": "editorial-product",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null,
-      "deferred": false
-    },
-    {
-      "id": "TASK-200",
-      "title": "Bread Blog Post — full-depth article using blog template from TASK-199",
-      "owner": "content-agent",
-      "status": "IN_PROGRESS",
-      "priority": "MEDIUM",
-      "created_at": "2026-06-06",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-199"
-      ],
-      "blocks": [],
-      "category_id": "bread",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "",
-      "work_type": "editorial-product",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null,
-      "deferred": false
-    },
-    {
-      "id": "TASK-201",
-      "title": "Yogurt Blog Post — full-depth article using blog template from TASK-199",
-      "owner": "content-agent",
-      "status": "IN_PROGRESS",
-      "priority": "MEDIUM",
-      "created_at": "2026-06-06",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-199"
-      ],
-      "blocks": [],
-      "category_id": "yogurts",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "",
-      "work_type": "editorial-product",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null,
-      "deferred": false
-    },
-    {
-      "id": "TASK-202",
-      "title": "Hummus Blog Post — full-depth article using blog template from TASK-199",
-      "owner": "content-agent",
-      "status": "IN_PROGRESS",
-      "priority": "MEDIUM",
-      "created_at": "2026-06-06",
-      "completed_at": null,
-      "depends_on": [
-        "TASK-199"
-      ],
-      "blocks": [],
-      "category_id": "hummus",
-      "blocker": null,
-      "close_reason": null,
-      "summary": "",
-      "work_type": "editorial-product",
-      "drift_ack": null,
-      "reopened_at": null,
-      "age_days": 0,
-      "roadmap_impact": true,
-      "cc_reviewed": null,
-      "banked_asset": null,
-      "deferred": false
-    },
-    {
       "id": "TASK-203",
       "title": "Cheese Spreads Blog Post — full-depth article using blog template from TASK-199",
       "owner": "content-agent",
@@ -621,7 +489,7 @@
       "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 3,
       "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null,
@@ -646,7 +514,7 @@
       "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 3,
       "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null,
@@ -671,7 +539,7 @@
       "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 3,
       "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null,
@@ -696,7 +564,7 @@
       "work_type": "editorial-product",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 0,
+      "age_days": 3,
       "roadmap_impact": true,
       "cc_reviewed": null,
       "banked_asset": null,
@@ -719,11 +587,59 @@
       "work_type": "objective",
       "drift_ack": null,
       "reopened_at": null,
-      "age_days": 1,
+      "age_days": 4,
       "roadmap_impact": false,
       "cc_reviewed": null,
       "banked_asset": null,
       "deferred": true
+    },
+    {
+      "id": "TASK-218",
+      "title": "BSIP0 QA Standard — systematic quality gates for all BSIP0 scrape runs",
+      "owner": "qa-agent",
+      "status": "RETURNED",
+      "priority": "HIGH",
+      "created_at": "2026-06-07",
+      "completed_at": null,
+      "depends_on": [],
+      "blocks": [],
+      "category_id": null,
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "infrastructure",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 2,
+      "roadmap_impact": false,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
+    },
+    {
+      "id": "TASK-217",
+      "title": "D7 Scoring Rule — Juice NOVA-1 Floor Gate: gate nova1_single_ingredient floor for reconstituted-from-concentrate juice_100",
+      "owner": "nutrition-agent",
+      "status": "RETURNED",
+      "priority": "MEDIUM",
+      "created_at": "2026-06-07",
+      "completed_at": null,
+      "depends_on": [
+        "TASK-214"
+      ],
+      "blocks": [],
+      "category_id": "juices",
+      "blocker": null,
+      "close_reason": null,
+      "summary": "",
+      "work_type": "scoring-rule-change",
+      "drift_ack": null,
+      "reopened_at": null,
+      "age_days": 2,
+      "roadmap_impact": false,
+      "cc_reviewed": null,
+      "banked_asset": null,
+      "deferred": false
     }
   ],
   "alerts": [
@@ -735,10 +651,23 @@
       "related_category": null,
       "related_task": "TASK-182",
       "related_agent": null,
-      "created_at": "2026-06-06",
+      "created_at": "2026-06-09",
       "resolved_at": null,
       "status": "OPEN",
       "resolution_path": "Resolve the blocker, then set status to IN_PROGRESS."
+    },
+    {
+      "id": "ALT-002",
+      "type": "REGISTRY_UNPARSEABLE",
+      "severity": "HIGH",
+      "message": "TASK-221: tasks/TASK-221.md exists but is not shown on the Task Board (frontmatter missing required 'id' field) — existing task file is invisible",
+      "related_category": null,
+      "related_task": "TASK-221",
+      "related_agent": null,
+      "created_at": "2026-06-09",
+      "resolved_at": null,
+      "status": "OPEN",
+      "resolution_path": "Add YAML frontmatter (id/title/owner/status/priority) to tasks/TASK-221.md, then re-run generate_dashboard.py."
     }
   ]
 }

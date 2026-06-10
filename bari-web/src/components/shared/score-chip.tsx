@@ -61,7 +61,7 @@ export function ScoreChip({
       />
       <span
         className="font-extrabold tabular-nums leading-none"
-        style={{ fontSize: scoreSize, color: palette.accent }}
+        style={{ fontSize: scoreSize, color: palette.text }}
         aria-hidden
       >
         {Math.round(score)}
@@ -71,7 +71,7 @@ export function ScoreChip({
         style={{ fontSize: "10px" }}
         aria-hidden
       >
-        <span style={{ color: palette.accent }}>{grade}</span>
+        <span style={{ color: palette.text }}>{grade}</span>
       </span>
     </div>
   );

@@ -1,0 +1,59 @@
+{
+  "schema_version": "shelf_map_v1",
+  "category_slug": "juices",
+  "pipeline_run": "run_juices_001",
+  "mapped_at": "2026-06-07",
+  "mapped_by": "data-agent",
+  "shelves": [
+    {
+      "shelf_slug": "juices_ambient",
+      "category_slug": "juices",
+      "retailer_shelf_labels": [
+        "מיצים ומשקאות פירות",
+        "מיצים",
+        "נקטרים ומשקאות פירות"
+      ],
+      "mapping_rationale": "Ambient shelf at all three retailers covers 100% juices, nectars and fruit drinks in Tetra Pak / PET / glass — the primary juice aisle."
+    },
+    {
+      "shelf_slug": "juices_chilled",
+      "category_slug": "juices",
+      "retailer_shelf_labels": [
+        "מיצים קרים",
+        "מיצים טריים",
+        "מיצים סחוטים",
+        "מיץ טרי"
+      ],
+      "mapping_rationale": "Chilled / refrigerated shelf covers fresh-squeezed, cold-pressed and pasteurised-chilled juices — higher fruit content claim, shorter shelf life, premium positioning."
+    },
+    {
+      "shelf_slug": "smoothies",
+      "category_slug": "juices",
+      "retailer_shelf_labels": [
+        "שייקים ומשקאות פירות",
+        "שייקים טבעיים"
+      ],
+      "mapping_rationale": "Blended / pureed fruit-forward drinks; classified separately as sub-pool 'smoothie' when fruit puree is first ingredient and texture is opaque."
+    }
+  ],
+  "excluded_shelves": [
+    {
+      "shelf_slug": "carbonated_drinks",
+      "reason": "Scope exclusion — not fruit juice or fruit drink by definition."
+    },
+    {
+      "shelf_slug": "sports_drinks",
+      "reason": "Scope exclusion — electrolyte/sports drinks are not fruit juice."
+    },
+    {
+      "shelf_slug": "vegetable_juices",
+      "reason": "Deprioritised — small shelf; if V8 or tomato-juice products appear they are tagged vegetable_juice and excluded from scoring corpus."
+    },
+    {
+      "shelf_slug": "concentrate_packs",
+      "reason": "Excluded unless significant shelf presence (>5 SKUs) at at least one retailer — flag for Product Agent review."
+    }
+  ],
+  "conflicts_with_existing_categories": [],
+  "shelf_mapping_status": "pass"
+}

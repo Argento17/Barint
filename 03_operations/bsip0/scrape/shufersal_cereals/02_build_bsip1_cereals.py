@@ -257,6 +257,69 @@ CEREAL_RE    = re.compile(r"דגני|דגנים|קורנפלקס|corn ?flakes|ג
                           r"פתיתי|בראן|\bbran\b|fitness|פיטנס|kellogg|weetabix|ויטבי|כוסמין|"
                           r"\bcereal\b|דייסה", re.I)
 
+# ── EV-051 — Marketing-bleed ingredient detection (TASK-198) ─────────────────
+# A small number of Nestlé/multinational cereal pages serve FRONT-OF-PACK MARKETING
+# COPY (bullet-point benefit claims) as the ingredient declaration instead of the actual
+# ingredient list. These can be identified by the presence of:
+#   (a) promotional boilerplate phrases that never appear in real ingredient lists, OR
+#   (b) absence of standard ingredient-list structure (comma-separated food substances).
+#
+# Marketing-bleed PHRASES: phrases that unambiguously belong to marketing copy, not
+# ingredient declarations. Conservative: we require at least one phrase that is diagnostic.
+#   "תענוג פראי" / "תענוג" alone → promotional tagline (Lion "wild delight!")
+#   "ניתן להוסיף" → "you can add" — serving suggestion, not an ingredient
+#   "לארוחת בוקר" → "for breakfast" — usage description
+#   "מס' 1" → "#1 brand/cereal" — marketing rank claim
+# STRUCTURE ABSENCE: a real ingredient list must contain at least one comma-separated or
+# period-separated substance name. If the text has no commas (the primary Hebrew separator)
+# and contains a marketing phrase, we flag it.
+# Tier 1 — phrases that are CATEGORICALLY IMPOSSIBLE in a real ingredient declaration
+# and therefore sufficient alone to confirm marketing bleed, regardless of commas:
+#   "ניתן להוסיף" = "you can add" (serving suggestion)
+#   "תענוג פראי" = "wild delight" (promotional tagline)
+# These two phrases are present in Lion. They cannot appear in a real ingredient list.
+_MARKETING_BLEED_TIER1 = re.compile(
+    r"ניתן להוסיף|תענוג פראי",
+    re.I
+)
+# Tier 2 — phrases that are strong marketing copy indicators, but require corroboration
+# (bullet-format and low real comma count) because they could theoretically appear as
+# part of a product name within an otherwise real ingredient list:
+_MARKETING_BLEED_TIER2 = re.compile(
+    r"לארוחת בוקר\s+ניתן|מספר 1 ב|מס[''׳]? ?1 (?:חיטה|דגן)|"
+    r"מספר אחד|#1\s|מוביל בישראל|הדגן המוביל|לאכול עם חלב",
+    re.I
+)
+
+
+def _detect_marketing_bleed(ingr_text: str) -> tuple[bool, str | None]:
+    """Return (is_bleed, reason) — True when the ingredient text is marketing copy.
+
+    Two-tier detection:
+    Tier 1: A phrase that is categorically impossible in a real ingredient declaration
+      ("ניתן להוסיף" = serving suggestion; "תענוג פראי" = promotional tagline).
+      These are sufficient alone — no structural condition required.
+    Tier 2: Phrases that are strong marketing indicators but could theoretically appear
+      in a name-within-ingredients context. Require corroboration: bullet-format
+      separators AND the comma count is attributable to the marketing phrases, not to
+      a real ingredient list structure.
+
+    Note: Lion's text has 4 commas, but they all come from the serving suggestion phrase
+    "ניתן להוסיף : חלב, פרי טרי, מים" — not from ingredient separators. The Tier 1
+    detection catches this correctly without needing to parse comma origin.
+    """
+    if not ingr_text:
+        return False, None
+    # Tier 1: categorically impossible phrases — sufficient alone
+    if _MARKETING_BLEED_TIER1.search(ingr_text):
+        phrases_found = _MARKETING_BLEED_TIER1.findall(ingr_text)
+        return True, f"marketing_tier1_definitive_phrase: {phrases_found[0] if phrases_found else 'match'}"
+    # Tier 2: corroboration required
+    has_bullet = "•" in ingr_text
+    if _MARKETING_BLEED_TIER2.search(ingr_text) and has_bullet:
+        return True, "marketing_tier2_phrase_plus_bullet_format"
+    return False, None
+
 # TASK-192 / EV-046: these three thin wrappers DELEGATE to the canonical shared path.
 # Byte-identical to the former local copies for every value already handled; the shared
 # version additionally preserves the "פחות מ N" less-than flag and enforces
@@ -597,8 +660,24 @@ def main():
             "nutrition_consistency_status": conf["nutrition_consistency_status"],
             "data_sufficiency": conf["data_sufficiency"],
             "nutrition_consistency_warnings": [],
-            "ingredient_text_quality": "clean" if ingr_text else "missing",
-            "ingredient_warnings": [] if ingr_text else ["no_ingredient_list_in_source"],
+            # EV-051 / TASK-198 — marketing-bleed detection (Nestlé-style front-of-pack copy
+            # served as ingredient declaration). When detected: quality = "marketing_bleed"
+            # so downstream NOVA proxy and confidence scorer treat ingredient signals as
+            # unreliable (same degradation path as "corrupted"/"malformed").
+            "ingredient_text_quality": (
+                "missing" if not ingr_text
+                else ("marketing_bleed" if _detect_marketing_bleed(ingr_text)[0] else "clean")
+            ),
+            "ingredient_warnings": (
+                ["no_ingredient_list_in_source"] if not ingr_text
+                else (
+                    [f"marketing_bleed_detected: {_detect_marketing_bleed(ingr_text)[1]}; "
+                     "ingredient signals suppressed — front-of-pack copy served as ingredient list; "
+                     "real ingredients (sugar, cocoa, caramel, emulsifiers) not captured. "
+                     "Evidence: TASK-198 / EV-051."]
+                    if _detect_marketing_bleed(ingr_text)[0] else []
+                )
+            ),
             "canonical_trust_score": conf["canonical_trust_score"],
             "canonical_trust_level": conf["canonical_trust_level"],
             "canonical_risk_flags": ["single_source_only"],

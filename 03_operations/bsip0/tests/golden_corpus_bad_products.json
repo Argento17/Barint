@@ -1,0 +1,522 @@
+[
+  {
+    "test_id": "F1-001",
+    "filter_category": "F1_incomplete_nutrition",
+    "description": "Product missing energy, protein, and sodium (3 of 6 core nutrients absent) — should be rejected as nutritionally incomplete",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/12345",
+      "scraped_at": "2026-06-07T10:00:00",
+      "name_he": "דגני בוקר ללא גלוטן",
+      "name_en": "",
+      "brand": "מותג לדוגמה",
+      "barcode": "7291000001111",
+      "category_raw": "דגנים",
+      "subcategory_raw": "cereals",
+      "nutrition": {
+        "energy_kcal_raw": "",
+        "protein_raw": "",
+        "carbs_raw": "75",
+        "fat_raw": "3.5",
+        "fiber_raw": "4",
+        "sodium_raw": "",
+        "sugar_raw": "12",
+        "saturated_fat_raw": "0.5"
+      },
+      "ingredients_raw": "קמח אורז, סוכר, שמן צמחי, מלח",
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "incomplete_nutrition",
+    "note": "Missing energy_kcal, protein, and sodium — 3 of 6 core fields absent"
+  },
+  {
+    "test_id": "F1-002",
+    "filter_category": "F1_incomplete_nutrition",
+    "description": "Product with only energy present — all other core fields absent — catastrophic incompleteness from Carrefour scrape miss",
+    "input": {
+      "retailer_id": "carrefour",
+      "retailer_name": "קרפור",
+      "source_url": "https://www.carrefour.co.il/product/99999",
+      "scraped_at": "2026-06-07T10:01:00",
+      "name_he": "שמנת חמוצה 15%",
+      "name_en": "",
+      "brand": "Carrefour Bio",
+      "barcode": "3045320094084",
+      "category_raw": "מוצרי חלב",
+      "subcategory_raw": "cream",
+      "nutrition": {
+        "energy_kcal_raw": "162",
+        "protein_raw": "",
+        "carbs_raw": "",
+        "fat_raw": "",
+        "fiber_raw": "",
+        "sodium_raw": "",
+        "sugar_raw": "",
+        "saturated_fat_raw": ""
+      },
+      "ingredients_raw": "שמנת, חומצות לקטיות",
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "incomplete_nutrition",
+    "note": "Only energy_kcal present — 5 of 6 core fields absent, cannot score"
+  },
+  {
+    "test_id": "F2-001",
+    "filter_category": "F2_ingredients_absent",
+    "description": "Product with ingredients field null — cannot compute NOVA or additive score",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/22222",
+      "scraped_at": "2026-06-07T10:02:00",
+      "name_he": "לחם אחיד פרוס",
+      "name_en": "",
+      "brand": "אנג'ל",
+      "barcode": "7290000555001",
+      "category_raw": "לחם ומאפים",
+      "subcategory_raw": "bread",
+      "nutrition": {
+        "energy_kcal_raw": "250",
+        "protein_raw": "8",
+        "carbs_raw": "48",
+        "fat_raw": "2",
+        "fiber_raw": "3",
+        "sodium_raw": "450",
+        "sugar_raw": "3",
+        "saturated_fat_raw": "0.4"
+      },
+      "ingredients_raw": null,
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "ingredients_absent",
+    "note": "ingredients_raw is null — NOVA and additive scoring impossible"
+  },
+  {
+    "test_id": "F2-002",
+    "filter_category": "F2_ingredients_absent",
+    "description": "Product with ingredients set to 'ראה אריזה' (see packaging) — non-informative placeholder, should be filtered",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/33333",
+      "scraped_at": "2026-06-07T10:03:00",
+      "name_he": "יוגורט פרי תות",
+      "name_en": "",
+      "brand": "טרה",
+      "barcode": "7290000666002",
+      "category_raw": "מוצרי חלב",
+      "subcategory_raw": "yogurt",
+      "nutrition": {
+        "energy_kcal_raw": "95",
+        "protein_raw": "4",
+        "carbs_raw": "14",
+        "fat_raw": "2.5",
+        "fiber_raw": "",
+        "sodium_raw": "60",
+        "sugar_raw": "13",
+        "saturated_fat_raw": "1.6"
+      },
+      "ingredients_raw": "ראה אריזה",
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "ingredients_absent",
+    "note": "'ראה אריזה' is a non-informative placeholder — equivalent to null for NOVA purposes"
+  },
+  {
+    "test_id": "F2-003",
+    "filter_category": "F2_ingredients_absent",
+    "description": "Product with ingredients set to empty string — should be filtered like null",
+    "input": {
+      "retailer_id": "victory",
+      "retailer_name": "ויקטורי",
+      "source_url": "https://www.victory.co.il/product/44444",
+      "scraped_at": "2026-06-07T10:04:00",
+      "name_he": "גבינה צהובה 28%",
+      "name_en": "",
+      "brand": "תנובה",
+      "barcode": "7290000777003",
+      "category_raw": "גבינות",
+      "subcategory_raw": "cheese",
+      "nutrition": {
+        "energy_kcal_raw": "310",
+        "protein_raw": "24",
+        "carbs_raw": "1.5",
+        "fat_raw": "22",
+        "fiber_raw": "",
+        "sodium_raw": "680",
+        "sugar_raw": "1",
+        "saturated_fat_raw": "14"
+      },
+      "ingredients_raw": "",
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "ingredients_absent",
+    "note": "ingredients_raw is empty string — identical treatment to null"
+  },
+  {
+    "test_id": "F3-001",
+    "filter_category": "F3_non_food",
+    "description": "Baby wipes product scraped from Rami Levy multi-category shelf — no nutrition, no ingredients, name contains non-food signals",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/55555",
+      "scraped_at": "2026-06-07T10:05:00",
+      "name_he": "מגבונים לחים לתינוק ללא ריח",
+      "name_en": "Baby Wipes Unscented",
+      "brand": "Huggies",
+      "barcode": "0036000291452",
+      "category_raw": "טיפול בתינוק",
+      "subcategory_raw": "baby_care",
+      "nutrition": {
+        "energy_kcal_raw": "",
+        "protein_raw": "",
+        "carbs_raw": "",
+        "fat_raw": "",
+        "fiber_raw": "",
+        "sodium_raw": "",
+        "sugar_raw": "",
+        "saturated_fat_raw": ""
+      },
+      "ingredients_raw": null,
+      "ingredients_language": null
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "non_food",
+    "note": "Zero nutrition fields, null ingredients, category='baby_care' — unambiguous non-food"
+  },
+  {
+    "test_id": "F3-002",
+    "filter_category": "F3_non_food",
+    "description": "Cleaning product (dish soap) scraped from mixed shelf — no nutrition table at all",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/66666",
+      "scraped_at": "2026-06-07T10:06:00",
+      "name_he": "נוזל כלים לימון",
+      "name_en": "Dish Soap Lemon",
+      "brand": "Fairy",
+      "barcode": "8001841790473",
+      "category_raw": "ניקוי הבית",
+      "subcategory_raw": "cleaning",
+      "nutrition": {
+        "energy_kcal_raw": "",
+        "protein_raw": "",
+        "carbs_raw": "",
+        "fat_raw": "",
+        "fiber_raw": "",
+        "sodium_raw": "",
+        "sugar_raw": "",
+        "saturated_fat_raw": ""
+      },
+      "ingredients_raw": null,
+      "ingredients_language": null
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "non_food",
+    "note": "Cleaning product — zero nutrition, null ingredients, cleaning category"
+  },
+  {
+    "test_id": "F4-001",
+    "filter_category": "F4_duplicate_barcode",
+    "description": "Corpus with two records sharing barcode 7290000888004: first is complete (all 6 nutrients), second is incomplete (missing energy and protein). Dedup should keep the complete record.",
+    "input": [
+      {
+        "retailer_id": "shufersal",
+        "retailer_name": "שופרסל",
+        "source_url": "https://www.shufersal.co.il/product/p1",
+        "scraped_at": "2026-06-07T10:07:00",
+        "name_he": "חמאה 82% שומן",
+        "name_en": "",
+        "brand": "Anchor",
+        "barcode": "7290000888004",
+        "category_raw": "חמאה",
+        "subcategory_raw": "butter",
+        "nutrition": {
+          "energy_kcal_raw": "744",
+          "protein_raw": "0.5",
+          "carbs_raw": "0.6",
+          "fat_raw": "82",
+          "fiber_raw": "",
+          "sodium_raw": "10",
+          "sugar_raw": "0.5",
+          "saturated_fat_raw": "52"
+        },
+        "ingredients_raw": "שמנת מפוסטרת, תרבית חומצת חלב",
+        "ingredients_language": "he"
+      },
+      {
+        "retailer_id": "rami_levy",
+        "retailer_name": "רמי לוי",
+        "source_url": "https://www.rami-levy.co.il/product/p2",
+        "scraped_at": "2026-06-07T10:08:00",
+        "name_he": "חמאה 82% שומן",
+        "name_en": "",
+        "brand": "Anchor",
+        "barcode": "7290000888004",
+        "category_raw": "חמאה",
+        "subcategory_raw": "butter",
+        "nutrition": {
+          "energy_kcal_raw": "",
+          "protein_raw": "",
+          "carbs_raw": "0.6",
+          "fat_raw": "82",
+          "fiber_raw": "",
+          "sodium_raw": "10",
+          "sugar_raw": "0.5",
+          "saturated_fat_raw": "52"
+        },
+        "ingredients_raw": "שמנת מפוסטרת",
+        "ingredients_language": "he"
+      }
+    ],
+    "expected_outcome": "deduplicated",
+    "expected_filter_reason": "duplicate_barcode_keep_complete",
+    "expected_survivor_retailer": "shufersal",
+    "note": "Shufersal record is complete (6/6 core nutrients present); Rami Levy record missing energy + protein. Complete survives."
+  },
+  {
+    "test_id": "F4-002",
+    "filter_category": "F4_duplicate_barcode",
+    "description": "Corpus with two records sharing barcode 7290000999005: both complete but one has more non-null fields (has fiber and sugar; other doesn't). Dedup should keep the richer record.",
+    "input": [
+      {
+        "retailer_id": "carrefour",
+        "retailer_name": "קרפור",
+        "source_url": "https://www.carrefour.co.il/product/p3",
+        "scraped_at": "2026-06-07T10:09:00",
+        "name_he": "שמן זית כתית מעולה",
+        "name_en": "Extra Virgin Olive Oil",
+        "brand": "Bertolli",
+        "barcode": "7290000999005",
+        "category_raw": "שמנים",
+        "subcategory_raw": "oils",
+        "nutrition": {
+          "energy_kcal_raw": "828",
+          "protein_raw": "0",
+          "carbs_raw": "0",
+          "fat_raw": "92",
+          "fiber_raw": "",
+          "sodium_raw": "0",
+          "sugar_raw": "",
+          "saturated_fat_raw": "13.5"
+        },
+        "ingredients_raw": "שמן זית כתית מעולה",
+        "ingredients_language": "he"
+      },
+      {
+        "retailer_id": "shufersal",
+        "retailer_name": "שופרסל",
+        "source_url": "https://www.shufersal.co.il/product/p4",
+        "scraped_at": "2026-06-06T09:00:00",
+        "name_he": "שמן זית כתית מעולה",
+        "name_en": "Extra Virgin Olive Oil",
+        "brand": "Bertolli",
+        "barcode": "7290000999005",
+        "category_raw": "שמנים",
+        "subcategory_raw": "oils",
+        "nutrition": {
+          "energy_kcal_raw": "828",
+          "protein_raw": "0",
+          "carbs_raw": "0",
+          "fat_raw": "92",
+          "fiber_raw": "0",
+          "sodium_raw": "0",
+          "sugar_raw": "0",
+          "saturated_fat_raw": "13.5"
+        },
+        "ingredients_raw": "שמן זית כתית מעולה",
+        "ingredients_language": "he"
+      }
+    ],
+    "expected_outcome": "deduplicated",
+    "expected_filter_reason": "duplicate_barcode_keep_complete",
+    "expected_survivor_retailer": "shufersal",
+    "note": "Shufersal has 8/8 non-empty nutrition fields; Carrefour has 6/8 (fiber and sugar empty). Shufersal wins."
+  },
+  {
+    "test_id": "F5-001",
+    "filter_category": "F5_score_sanity",
+    "description": "Worst-case product: max sugar (55g), max sodium (1800mg), max saturated fat (35g out of 40g total fat), min fiber (0), min protein (0.5g), NOVA=4. All pre-score signals should be at worst values. Verifies BSIP0 signals are correct inputs for a guaranteed low score.",
+    "input": {
+      "retailer_id": "rami_levy",
+      "retailer_name": "רמי לוי",
+      "source_url": "https://www.rami-levy.co.il/product/77777",
+      "scraped_at": "2026-06-07T10:10:00",
+      "name_he": "עוגיות שוקולד ממולאות קרם",
+      "name_en": "Chocolate Cream Cookies",
+      "brand": "Test Brand",
+      "barcode": "0000000000001",
+      "category_raw": "עוגיות ומתוקים",
+      "subcategory_raw": "cookies",
+      "nutrition": {
+        "energy_kcal_raw": "530",
+        "protein_raw": "0.5",
+        "carbs_raw": "70",
+        "fat_raw": "40",
+        "fiber_raw": "0",
+        "sodium_raw": "1800",
+        "sugar_raw": "55",
+        "saturated_fat_raw": "35"
+      },
+      "ingredients_raw": "קמח חיטה, סוכר, שמן דקל, קקאו, גלוקוז-פרוקטוז, חומרים משמרים (E202), צבע מאכל (E129), מסטיק (E414), לציטין סויה (E322), מייצב (E471), ממתיק מלאכותי (E950)",
+      "ingredients_language": "he",
+      "nova_class": 4,
+      "_test_signal_expectations": {
+        "sugar_g": 55,
+        "sodium_mg": 1800,
+        "saturated_fat_g": 35,
+        "sat_pct_of_total_fat": 87.5,
+        "fiber_g": 0,
+        "protein_g": 0.5,
+        "nova_class": 4,
+        "red_label_sugar": true,
+        "red_label_sodium": true,
+        "red_label_saturated_fat": true,
+        "expected_max_score": 35
+      }
+    },
+    "expected_outcome": "pass_with_worst_signals",
+    "expected_filter_reason": null,
+    "note": "This product is nutritionally valid (passes BSIP0) but all signals are worst-case. Verifies that parse_nutrition_numeric correctly extracts all worst-value signals without distortion. Score should be ≤35 in BSIP2."
+  },
+  {
+    "test_id": "F5-002",
+    "filter_category": "F5_score_sanity",
+    "description": "Implausibility trap: product declares only 0.3g total fat but 730 kcal (energy consistent with 82g fat). nutrition_implausible should catch this as fat_understated signature.",
+    "input": {
+      "retailer_id": "carrefour",
+      "retailer_name": "קרפור",
+      "source_url": "https://www.carrefour.co.il/product/88888",
+      "scraped_at": "2026-06-07T10:11:00",
+      "name_he": "חמאה ללא מלח — שגיאת מיצוי",
+      "name_en": "Butter unsalted — extraction error",
+      "brand": "Test Corrupt",
+      "barcode": "0000000000002",
+      "category_raw": "חמאה",
+      "subcategory_raw": "butter",
+      "nutrition": {
+        "energy_kcal_raw": "730",
+        "protein_raw": "0.6",
+        "carbs_raw": "0.8",
+        "fat_raw": "0.3",
+        "fiber_raw": "",
+        "sodium_raw": "8",
+        "sugar_raw": "0.5",
+        "saturated_fat_raw": "0.2"
+      },
+      "ingredients_raw": "שמנת מפוסטרת, תרבית לקטית",
+      "ingredients_language": "he"
+    },
+    "expected_outcome": "implausible",
+    "expected_filter_reason": "fat_understated",
+    "note": "730 kcal with only 0.3g fat is physically impossible for butter — the fat-overwrite signature. nutrition_implausible must flag this."
+  },
+  {
+    "test_id": "F6-001",
+    "filter_category": "F6_eu_label_quirks",
+    "description": "EU-style Carrefour record: energy declared in kJ only (3,138 kJ, which is ~750 kcal for butter). Parser must not use 3138 as if it were kcal — would produce an absurd 3138 kcal/100g score.",
+    "input": {
+      "retailer_id": "carrefour",
+      "retailer_name": "קרפור",
+      "source_url": "https://www.carrefour.co.il/product/kj_test",
+      "scraped_at": "2026-06-07T10:12:00",
+      "name_he": "חמאה אירופאית ללא מלח",
+      "name_en": "European Unsalted Butter",
+      "brand": "Président",
+      "barcode": "3045320050233",
+      "category_raw": "חמאה",
+      "subcategory_raw": "butter",
+      "nutrition": {
+        "energy_kcal_raw": "3138 kJ",
+        "protein_raw": "0.7",
+        "carbs_raw": "0.6",
+        "fat_raw": "82",
+        "fiber_raw": "0",
+        "sodium_raw": "11",
+        "sugar_raw": "0.5",
+        "saturated_fat_raw": "51"
+      },
+      "nutrition_raw_source": {
+        "rows": [
+          {"value": "3138", "unit": "kJ", "label": "Energy"},
+          {"value": "750", "unit": "kcal", "label": "Energy"},
+          {"value": "82", "unit": "g", "label": "Fat"},
+          {"value": "51", "unit": "g", "label": "Saturated Fat"},
+          {"value": "0.6", "unit": "g", "label": "Carbohydrates"},
+          {"value": "0.5", "unit": "g", "label": "Sugars"},
+          {"value": "0.7", "unit": "g", "label": "Protein"},
+          {"value": "11", "unit": "mg", "label": "Sodium"}
+        ],
+        "html": ""
+      },
+      "ingredients_raw": "שמנת מפוסטרת, תרבית לקטית",
+      "ingredients_language": "he",
+      "_test_kj_context": {
+        "raw_energy_string": "3138 kJ",
+        "true_energy_kcal": 750,
+        "kj_to_kcal_factor": 0.239,
+        "plausible_kcal_range": [700, 760],
+        "known_source": "EU dual-label: kJ + kcal both declared; scraper captured kJ row only"
+      }
+    },
+    "expected_outcome": "flagged_kj_mismatch",
+    "expected_filter_reason": "energy_unit_kj_misread_as_kcal",
+    "note": "energy_kcal_raw='3138 kJ' — if parsed naively as kcal this yields 3138, far outside plausible butter range [700–760]. The EV-047 gate (KCAL_PLAUSIBLE_UPPER) should catch this. 3138 kJ = ~750 kcal (correct value)."
+  },
+  {
+    "test_id": "F6-002",
+    "filter_category": "F6_eu_label_quirks",
+    "description": "Carrefour real record with fully empty nutrition (off_miss) — all nutrition fields blank. This is the actual observed Carrefour pattern. The parser must not crash or produce plausible-looking zeros; it must flag as incomplete.",
+    "input": {
+      "retailer_id": "carrefour",
+      "retailer_name": "קרפור",
+      "source_url": "https://www.carrefour.co.il/search?text=kerrygold",
+      "scraped_at": "2026-06-05T12:23:04.952343+00:00",
+      "name_he": "חמאה קרי גולד ללא מלח",
+      "name_en": "",
+      "brand": "Kerrygold",
+      "barcode": "5099460004149",
+      "category_raw": "חמאה",
+      "subcategory_raw": "butter",
+      "nutrition": {
+        "energy_kcal_raw": "",
+        "protein_raw": "",
+        "carbs_raw": "",
+        "fat_raw": "",
+        "fiber_raw": "",
+        "sodium_raw": "",
+        "sugar_raw": "",
+        "saturated_fat_raw": ""
+      },
+      "nutrition_raw_source": {
+        "rows": [],
+        "html": ""
+      },
+      "ingredients_raw": "",
+      "ingredients_language": "he",
+      "extraction_method": "off_api",
+      "extraction_confidence": "off_miss",
+      "off_found": false,
+      "off_miss_reason": "off_not_found",
+      "provenance": {
+        "source": "open_food_facts",
+        "source_id": "5099460004149",
+        "source_url": "https://world.openfoodfacts.org/product/5099460004149",
+        "fetched_at": "2026-06-05T12:23:04.952362+00:00",
+        "client_version": "1.0",
+        "verification_status": "candidate"
+      }
+    },
+    "expected_outcome": "filtered",
+    "expected_filter_reason": "incomplete_nutrition",
+    "note": "Real Carrefour off_miss product. All nutrition fields empty, ingredients empty. Must be caught by F1 (incomplete) and F2 (ingredients) filters — not slip through as zeros."
+  }
+]

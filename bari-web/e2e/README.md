@@ -21,6 +21,7 @@ Everything is a **devDependency** — zero runtime/bundle impact on the shipped 
 | `npm run test:e2e`     | Smoke E2E — comparison routes render, RTL Hebrew, product rows paint |
 | `npm run test:a11y`    | axe-core WCAG 2 A/AA scan; **fails on serious/critical** violations |
 | `npm run test:perf`    | **Web-Vitals (LCP/CLS/FCP) via Playwright — key-free, primary perf gate.** Measure against production (see below) |
+| `npm run test:visual` | Visual regression — full-page screenshots of 5 key routes on mobile (pixel-compare against baselines in `e2e/snapshots/`) |
 | `npm run test:e2e:all` | Full suite, mobile + desktop projects |
 | `npm run analyze`      | Next 16 built-in Turbopack bundle analyzer (`next experimental-analyze`) |
 | `npm run lhci`         | Lighthouse CI — full perf/a11y/SEO scores (`lighthouserc.json`). Best on Linux/CI |
@@ -59,6 +60,30 @@ Point at a deployed preview instead with `PLAYWRIGHT_BASE_URL=https://… npm ru
   on a `chrome-launcher` temp-cleanup `EPERM` race. Treat it as the **CI/Linux** perf+SEO
   path; use `test:perf` for reliable local Web-Vitals. PageSpeed Insights (`pagespeed`
   client) is a third option but needs a *public* URL + a process-level `PAGESPEED_API_KEY`.
+
+## Visual regression (`test:visual`)
+
+**First-run setup** — create baseline screenshots:
+```bash
+npx playwright test e2e/visual.spec.ts --update-snapshots --project=mobile
+npx playwright test e2e/visual.spec.ts --update-snapshots --project=desktop
+```
+
+Review and commit the generated PNGs in `e2e/snapshots/`. Subsequent runs compare:
+```bash
+npm run test:visual
+```
+
+On failure, actual/diff images are written to `test-results/` (gitignored).
+
+Routes covered: `/`, `/hashvaot`, `/hashvaot/maadanim`, `/hashvaot/hard-cheeses`, `/hashvaot/snack-bars`, `/hashvaot/milk-comparison`.
+
+Mobile full-page routes use JS freeze (`page.screenshot` + `toMatchSnapshot` with
+3% tolerance) to work around unstoppable SVG radar chart / expandable card animations.
+Desktop routes use standard `toHaveScreenshot` (2% threshold). See the spec file for
+the exact branching logic.
+
+Each route checks: 200 OK, RTL Hebrew, header visible, substantive text, no error overlay, grade chips present (comparison pages), filters not accidentally open, and a full-page pixel-compare screenshot. Mobile additionally checks for horizontal overflow.
 
 ## Bundle analyzer note
 

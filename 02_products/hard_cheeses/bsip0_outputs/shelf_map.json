@@ -1,0 +1,54 @@
+{
+  "category_slug": "hard_cheeses",
+  "pipeline_run": "run_hard_cheeses_001",
+  "generated": "2026-06-07T08:45:00Z",
+  "shelf_mappings": [
+    {
+      "shelf_slug": "yellow_hard_block",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "yellow",
+      "mapping_rationale": "Semi-hard and hard yellow block cheeses (Emek, Gouda, Emmental, Gruyere). Primary Israeli sandwich cheese shelf. Excluded from cheese_spreads (confirmed: bsip1/run_cheese_003 excluded barcode 8866972 גבינה גרוויר as yellow_hard_processed_excluded)."
+    },
+    {
+      "shelf_slug": "yellow_sliced",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "yellow",
+      "mapping_rationale": "Pre-packaged sliced yellow cheeses (Emek slices, Gouda slices). Same formulation as block, different form factor. No overlap with cheese_spreads."
+    },
+    {
+      "shelf_slug": "yellow_light_reduced_fat",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "yellow_light",
+      "mapping_rationale": "Reduced-fat variants of yellow cheese, typically 9-16% fat per 100g vs 28-31% in full-fat. Often contain added stabilizers/starches. Distinct from full-fat pool by fat level and ingredient complexity."
+    },
+    {
+      "shelf_slug": "bulgarian_brined",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "bulgarian",
+      "mapping_rationale": "Bulgarian-style white brined cheese (גבינה בולגרית), blocks or vacuum packs. Semi-hard, high-sodium, sold as separate product type. No overlap with cheese_spreads (labaneh/cottage are excluded)."
+    },
+    {
+      "shelf_slug": "tzfatit",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "tzfatit",
+      "mapping_rationale": "Tzfatit-style cheese (גבינה צפתית), Israeli artisanal tradition, similar to Bulgarian but distinct brand identity. Semi-hard, brined."
+    },
+    {
+      "shelf_slug": "hard_grating",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "hard_grating",
+      "mapping_rationale": "Hard aged cheeses for grating (Parmesan-style), pre-grated or block. High protein (28-33g/100g), high sodium (1370-1600mg/100g). Distinct shelf section in Israeli supermarkets."
+    },
+    {
+      "shelf_slug": "processed_cheese",
+      "category_slug": "hard_cheeses",
+      "sub_pool": "processed",
+      "mapping_rationale": "Processed cheese slices and blocks (American singles, sandwich cheese). Contains added emulsifiers, phosphates, vegetable oils. Classified as sub-pool within hard_cheeses per TASK-215 scope, not separate category."
+    }
+  ],
+  "conflict_check": {
+    "cheese_spreads": "CLEAR — cheese_spreads covers cottage, labaneh, quark, cream cheese. Hard yellow, Bulgarian, Tzfatit, Parmesan, processed slices are out-of-scope for cheese_spreads. Confirmed via run_cheese_003 exclusion list.",
+    "yogurt": "CLEAR",
+    "milk_and_alternatives": "CLEAR"
+  }
+}

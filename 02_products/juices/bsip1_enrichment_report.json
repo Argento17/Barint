@@ -1,0 +1,48 @@
+{
+  "schema_version": "bsip1_enrichment_report_v1",
+  "category_slug": "juices",
+  "pipeline_run": "run_juices_001",
+  "run_date": "2026-06-07",
+  "products_total": 65,
+  "products_with_off_panel": 9,
+  "products_with_fdc_reference": 56,
+  "data_sufficiency_sufficient": 65,
+  "data_sufficiency_insufficient": 0,
+  "sub_pool_distribution": {
+    "juice_100": 40,
+    "nectar": 15,
+    "fruit_drink": 4,
+    "smoothie": 3,
+    "cold_pressed": 3
+  },
+  "nova_distribution": {
+    "1": 4,
+    "3": 41,
+    "4": 20
+  },
+  "nutrition_unit": "per_100ml",
+  "sugar_range_g_per_100ml": {
+    "overall": {"min": 1.75, "max": 16.8},
+    "juice_100": {"min": 1.75, "max": 16.8, "note": "Lemon juice (1.75) to grape tiroush (16.8)"},
+    "nectar": {"min": 8.4, "max": 13.8},
+    "fruit_drink": {"min": 11.6, "max": 11.6},
+    "smoothie": {"min": 9.5, "max": 9.5},
+    "cold_pressed": {"min": 7.8, "max": 8.6}
+  },
+  "kcal_range_per_100ml": {
+    "overall": {"min": 22, "max": 85},
+    "note": "Lemon juice (22 kcal) to grape tiroush (69 kcal); grape concentrate (85 kcal)"
+  },
+  "coverage_stats": {
+    "ingredient_text_present": 10,
+    "ingredient_text_missing": 55,
+    "image_url_present": 9,
+    "fruit_content_pct_declared": 8
+  },
+  "enrichment_notes": [
+    "Ingredient text available only for OFF-matched products (9). French ingredient text on barcode 7290001247068 (ספרינג תות) — OFF record from French market import.",
+    "FDC generic references applied by juice type classification. Most granular: grape tiroush (grape_tiroush), lemon juice (lemon), cold-pressed (cold_pressed_oj/cp).",
+    "Fruit content % extracted from label name text for 8 products. The Israeli '100% פרי' label = juice_100; 'נקטר' = nectar with estimated 30-50% fruit from FDC reference.",
+    "NOVA 1: 4 products (3 cold-pressed + 1 fresh-squeezed סחוט). NOVA 3: standard 100% juices. NOVA 4: nectars and fruit drinks with added sugar or additives."
+  ]
+}

@@ -206,18 +206,19 @@ Status: **READY** — REST endpoint, no setup required. Call directly from any P
 
 ---
 
-### HeBERT / HebEMO — Tone Gate (install: `pip install transformers torch`, models: `avichr/heBERT_sentiment_analysis` + `avichr/hebEmo`)
+### HeBERT / HebEMO — Tone Gate (models: `avichr/heBERT_sentiment_analysis`, `avichr/hebEMO_anger`, `avichr/hebEMO_disgust`)
 
 Use **only** when a line is intended to carry dry wit, irony, light criticism, or humor (see Tonal Range in `assertive_writing_v1.md`). Not needed for standard descriptive copy.
 
-| Function | Use |
+| Model | Use |
 |---|---|
-| HeBERT sentiment | Classifies Hebrew text as positive / negative / neutral — catches lines that read as hostile instead of wry |
-| HebEMO emotion | Returns 8 emotions (joy, trust, anger, disgust, fear, sadness, surprise, anticipation) |
+| `avichr/heBERT_sentiment_analysis` | Positive / negative / neutral — secondary check |
+| `avichr/hebEMO_anger` | `LABEL_0` = no anger (safe), `LABEL_1` = anger detected (rewrite) |
+| `avichr/hebEMO_disgust` | `LABEL_0` = no disgust (safe), `LABEL_1` = disgust detected (rewrite) |
 
-**Gate rule:** Any intended-humorous or critical line must return `joy`, `trust`, or neutral from HebEMO before publishing. `anger`, `disgust`, or `fear` = rewrite. This is the only approved use of HeBERT in content authoring — do not run standard descriptive copy through it.
+**Gate rule:** Any intended-humorous or critical line must return `LABEL_0` from both `hebEMO_anger` and `hebEMO_disgust` before publishing. `LABEL_1` on either = rewrite. Verified working — dry wit passes, aggressive language fails.
 
-Status: **TO INSTALL** — run `pip install transformers torch` in the Bari Python environment, then models download on first use.
+Status: **LIVE** — `transformers` + `torch` installed; `HF_TOKEN` set in `.env`; models cache on first use.
 
 ---
 

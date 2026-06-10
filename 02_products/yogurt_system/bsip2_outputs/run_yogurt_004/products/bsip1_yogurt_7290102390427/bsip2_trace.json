@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-02T06:50:47.211497Z",
+  "trace_generated_at": "2026-06-09T15:34:11.451678Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290102390427",
@@ -32,18 +32,20 @@
     "hard_anchor:יוגורט"
   ],
   "nova_proxy": 4,
-  "nova_confidence": 0.8,
+  "nova_confidence": 0.82,
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
     "multiple_added_sugar_sources: 3",
-    "high_additive_category_count: 5"
+    "high_additive_category_count: 5",
+    "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "EV-030: ingredient_data_degraded (quality=clean, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
+    "BSIP2-HC-001 sub-rule A (modified_starch): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
+    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis"
   ],
   "L1_observed_signals": {
     "energy_kcal": 90.0,
@@ -123,6 +125,8 @@
     ],
     "has_flavor_enhancer": true,
     "has_artificial_color": true,
+    "has_natural_color": false,
+    "natural_color_hits": [],
     "has_seed_oil": false,
     "seed_oil_matches": [],
     "has_palm_oil": false,
@@ -146,6 +150,7 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
+    "has_phvo": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
@@ -176,11 +181,14 @@
     "protein_matrix_form": null,
     "sanitized_ingredient_count": 15,
     "primary_fragmentation": null,
+    "sat_fat_inferred": false,
+    "sat_fat_inferred_value": null,
+    "sat_fat_inferred_basis": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
-      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 30.0,
@@ -245,7 +253,7 @@
   "confidence_band": "high",
   "confidence_reductions": [],
   "dimension_scores": {
-    "processing_quality": 35,
+    "processing_quality": 35.0,
     "nutrient_density": 18.1,
     "calorie_density": 88.0,
     "glycemic_quality": 67.8,
@@ -257,7 +265,7 @@
     "whole_food_integrity": 16
   },
   "dimension_notes": {
-    "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=4.5g→22.5, fiber=1.0g→10.0, weighted 65/35=18.1",
     "calorie_density": "kcal=90.0, category=yogurt → 88",
     "glycemic_quality": "90 - sugar_penalty(24.2) + fiber(2.0) + wg(0) = 67.8",
@@ -338,7 +346,7 @@
     },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 68,
+      "cap": 68.0,
       "condition": true,
       "fired": true
     },
@@ -356,7 +364,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 87,
+      "cap": 87.0,
       "condition": false,
       "fired": false
     },
@@ -376,7 +384,7 @@
   "caps_applied": [
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 68
+      "cap": 68.0
     },
     {
       "rule": "ADDITIVE_MARKERS_5_PLUS",

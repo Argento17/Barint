@@ -1,22 +1,22 @@
 {
   "_meta": {
-    "generated": "2026-06-05T00:00:00+00:00",
+    "generated": "2026-06-07T05:23:06.033439+00:00",
     "category": "granola",
-    "product_count": 53,
+    "product_count": 42,
     "scored_count": 53,
     "schema": "BariProductVM[]",
     "version": "v1",
-    "provenance": "run_cereals_005 granola sub-pool, promoted to a standalone category (TASK-140, owner 2026-06-05). | +18 multi-retailer (Carrefour/Yochananof, run_cereals_multiretailer_001, EV-045/045b/045c; held A artifact + sodium artifact). 2026-06-05. | run_006 scores promoted 2026-06-05 (TASK-190 D7 granted, fat-capture + sodium-unit fix). | BARI_SODIUM_CEREAL=on promoted 2026-06-05 (TASK-189 D7 granted; run_cereals_007_sodium): 8 score updates in granola pool, 3 grade movers (D->E)."
+    "provenance": "run_cereals_005 granola sub-pool, promoted to a standalone category (TASK-140, owner 2026-06-05). | +18 multi-retailer (Carrefour/Yochananof, run_cereals_multiretailer_001, EV-045/045b/045c; held A artifact + sodium artifact). 2026-06-05. | run_006 scores promoted 2026-06-05 (TASK-190 D7 granted, fat-capture + sodium-unit fix). | BARI_SODIUM_CEREAL=on promoted 2026-06-05 (TASK-189 D7 granted; run_cereals_007_sodium): 8 score updates in granola pool, 3 grade movers (D->E). | run_cereals_008 score update (TASK-198 fermentation word-boundary fix, EV-051). Pool composition unchanged. | run_cereals_008 score update (TASK-198 fermentation word-boundary fix, EV-051). Pool composition unchanged."
   },
   "products": [
     {
       "id": "bsip1_cereal_1164266",
       "name": "גרנולה ממותקת בסילאן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FGL26_Z_P_1164266_1.png",
-      "score": 76.0,
+      "score": 76,
       "grade": "B",
       "insightLine": "16 ג' חלבון, 12 ג' סיבים — ו-372 קק\"ל, מהנמוכות במדף.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 372.0,
@@ -28,38 +28,26 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן), סובין שיבולת שועל (מכיל גלוטן), פתיתי סויה, סילאן תמרים, גרעיני חמנייה, גרעיני דלעת, תפוחי עץ, עולש, שקדים , שומשום, אבקת חרובים מאפיינים נוספים ללא תוספת סוכר,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (372 קק\"ל)",
+          "עשיר בחלבון (16 גרם)",
+          "עשיר בסיבים (12 גרם)"
+        ],
+        "comparisonContext": "מהטובות במדף — חלבון וסיבים גבוהים יחד. נדיר בקטגוריה."
       },
       "rowVerdict": "הגרנולה החזקה במדף — כ-16 ג' חלבון, 12 ג' סיבים וסילאן תמרים כממתיק היחיד, בלי סירופ גלוקוז. עוצרת ב-B כי גם הטובה היא מאפה צפוף-קלוריות (372 קק\"ל ל-100 ג'), לא דגן בצורתו המלאה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
-    },
-    {
-      "name": "Protein granola",
-      "grade": "B",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "16.4 ג' חלבון, 9.8 ג' סיבים — אבל 460 קק\"ל, מהגבוהות.",
-      "imageUrl": "",
-      "confidence": "partial",
-      "rowVerdict": "מהחזקות בחלבון (16.4 ג') ובסיבים (9.8 ג') במדף, עם 9.3 ג' סוכר. עוצרת ב-B כי 460 קק\"ל ל-100 ג' — מהצפופות במדף; גם גרנולת חלבון נשארת מאפה צפוף-קלוריות.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 460.0,
-          "protein": 16.4,
-          "sugar": 9.3,
-          "fat": 23.7,
-          "fiber": 9.8,
-          "sodium": null
-        },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_7290114603041",
       "_wholeGrainClaim": false,
-      "score": 75
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "1164266",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "name": "Granola Protein",
@@ -81,11 +69,22 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (22 גרם)"
+        ],
+        "comparisonContext": "מובילת חלבון במדף. הציון משקף פרופיל חלבון מוביל עם מבנה סביר."
       },
       "id": "bsip1_cereal_7290120871069",
       "_wholeGrainClaim": false,
-      "score": 75
+      "score": 75,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290120871069",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "name": "Sugarless Gluten Free Granola",
@@ -107,11 +106,26 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (14 גרם)",
+          "עשיר בסיבים (10 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (491 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מהטובות במדף — חלבון וסיבים גבוהים יחד. נדיר בקטגוריה."
       },
       "id": "bsip1_cereal_7297488099821",
       "_wholeGrainClaim": false,
-      "score": 71
+      "score": 71,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7297488099821",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "name": "Mornflake Crispy Muesli Nutty",
@@ -120,7 +134,7 @@
       "_subpool": "granola",
       "insightLine": "18% אגוזים, רק 5 ג' סוכר — אבל 449 קק\"ל מהאגוזים.",
       "imageUrl": "https://images.openfoodfacts.org/images/products/501/002/651/5919/front_en.25.400.jpg",
-      "confidence": "verified",
+      "confidence": "partial",
       "rowVerdict": "מוזלי עשיר באגוזים (18%) עם סוכר נמוך במיוחד (5 ג') ו-14.5 ג' חלבון. עוצר ב-B כי האגוזים מביאים 449 קק\"ל — צפוף — ושבבי הדגנים קלויים ומעובדים.",
       "expansion": {
         "nutrition": {
@@ -133,20 +147,35 @@
         },
         "ingredients": "Mixed Nuts (18%) (PECAN NUTS (6%), ALMONDS (6%), HAZELNUTS (5%), PISTACHIO NUTS (1%)), Toasted WHEATFLAKES, OATFLAKES, Mixed Seeds (Pumpkin Seeds (4.5%), Sunflower Seeds), WHEATFLAKES, BARLEY Flakes, Dried Apple (5%) (contains Preservative SULPHUR DIOXIDE), Coconut (4%)",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (14 גרם)",
+          "סוכר נמוך (5 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (449 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מובילת חלבון במדף. הציון משקף פרופיל חלבון מוביל עם מבנה סביר."
       },
       "id": "bsip1_cereal_5010026515919",
       "_wholeGrainClaim": false,
-      "score": 70
+      "score": 70,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5010026515919",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290017962047",
       "name": "גרנולה חמוציות ושקדים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ARO54_Z_P_7290017962047_1.png",
-      "score": 69.7,
+      "score": 70,
       "grade": "B",
       "insightLine": "14.5 ג' סיבים — מהגבוהות במדף, אבל ממותקת ברכז תפוחים.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 386.0,
@@ -158,21 +187,33 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן),סיבים תזונתיים (עולש), רכז תפוחים,,שקדים (5%) חמוציות ברכז תפוחים (5%) ,גרעיני חמניה,קוקוס, גרעיני פשתן,אוכ מניות ,שומשום מלא,זרעי צ'יה, קינמון מאפיינים נוספים ללא צבעי מאכל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בסיבים (14 גרם)"
+        ],
+        "comparisonContext": "מובילת סיבים במדף. כמות הסיבים יוצאת דופן לקטגוריה."
       },
       "rowVerdict": "מהגבוהות בסיבים במדף — 14.5 ג', עם 11.4 ג' חלבון. נשארת ב-C כי הסיבים מוגברים בעולש מוסף והחמוציות ממותקות ברכז תפוחים — מאפה מהונדס לסיבים, 386 קק\"ל.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017962047",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290116534619",
       "name": "גרנולה פרוטאין+שוקולד",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KCI54_Z_P_7290116534619_1.png",
-      "score": 69.2,
+      "score": 69,
       "grade": "B",
       "insightLine": "20.7 ג' חלבון — אבל מחלבון סויה מבודד, וסירופ גלוקוז ברשימה.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 411.0,
@@ -184,21 +225,34 @@
         },
         "ingredients": "רכיבים: שיבולת שועל מלאה (54%) (מכילה גלוטן), חלבון סויה (13.7%) (חלבון סויה מרוכז, איזולט חלבון סויה), סירופ גלוקוז, נטיפי שוקולד מ ריר (6.5%), שברי אגוזי קשיו (4%), טחינה משומשום מלא, גרעיני חמנייה, אוליגופרוקטוז, רכז פרי המונק.  כלל מוצקי קקאו בשוקולד מריר: מיני מום 45% עלול להכיל קליפות מכיל אגוזי קשיו,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (21 גרם)",
+          "עשיר בסיבים (12 גרם)"
+        ],
+        "comparisonContext": "מספר החלבון מרשים, אך מגיע מחלבון מרוכז ולא מהדגן עצמו — שוני מהותי."
       },
       "rowVerdict": "מובילת החלבון במדף — 20.7 ג' — אבל הוא מגיע מחלבון סויה מרוכז ומבודד, לא מהדגן, ועם סירופ גלוקוז ונטיפי שוקולד. עוצרת ב-B: 411 קק\"ל ורשימה מהונדסת סביב מספר החלבון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290116534619",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_5018357006731",
       "name": "תע.דגנים 40% פירות ואגוז",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SNC46_Z_P_5018357006731_1.png",
-      "score": 68.5,
+      "score": 68,
       "grade": "B",
       "insightLine": "28% פירות, 11% אגוזים, ללא תוספת סוכר — 379 קק\"ל.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 379.0,
@@ -210,12 +264,24 @@
         },
         "ingredients": "פירות יבשים 28%, פתיתי שיבולת שועל (מכיל גלוטן),פתיתי חיטה מולתת וקלויה (מכיל גלוטן)(חיטה שעורה,לתת),פתיתי שעורה (מכיל גלוטן),פתיתי חיטה (מכיל גלוטן),אגוזים 11% (אגוזי קשיו,אגוזי ברזיל,אגוזי לוז קלויים,פתיתי שקדים).nn מאפיינים נוספים ללא תוספת סוכר,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (379 קק\"ל)"
+        ],
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "rowVerdict": "28% פירות יבשים ו-11% אגוזים, ללא תוספת סוכר ו-379 קק\"ל בלבד. נשארת ב-C כי הדגנים קלויים ומעובדים והחלבון בינוני (10.3 ג') — תערובת נעימה, לא דגן מלא.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5018357006731",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "name": "גרנולה אגוזים צימוקים וחמוציות",
@@ -237,20 +303,31 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (373 קק\"ל)"
+        ],
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "id": "bsip1_cereal_7290114603034",
       "_wholeGrainClaim": false,
-      "score": 68
+      "score": 68,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290114603034",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "id": "bsip1_cereal_7290017962023",
       "name": "גרנולה מייפל תמר פקאן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AQQ48_Z_P_7290017962023_1.png",
-      "score": 65.9,
+      "score": 66,
       "grade": "B",
       "insightLine": "12.1 ג' חלבון, 9.5 ג' סיבים — אבל ממותקת בסירופ מייפל 8%.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 414.0,
@@ -262,21 +339,30 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן), סירופ מייפל קנדי (8%),גרעיני חמניות,אוכמניות (5%) ,אגוזי פקאן (5%) ,קוקוס,סיבים תזונתיים (עולש) גרעיני פשת ן,זרעי צ'יה,שומשום מלא,ממתיק:מונק פרוט מאפיינים נוספים ללא ממתיקים מלאכותיים,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "rowVerdict": "מייפל, פקאן ואוכמניות — 12.1 ג' חלבון ו-9.5 ג' סיבים, וממתיק מונק-פרוט במקום מלאכותי. נשארת ב-C כי 414 קק\"ל וסירופ מייפל 8% הם בכל זאת מתוק מוסף וצפוף.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017962023",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_1164273",
       "name": "חגיגת גרנולה",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FGS24_Z_P_1164273_1.png",
-      "score": 65.8,
+      "score": 66,
       "grade": "B",
       "insightLine": "362 קק\"ל — מהנמוכות במדף, אבל פירות יבשים עם סוכר ברשימה.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 362.0,
@@ -288,21 +374,33 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן), פירות יבשים (פפיה, אננס, תמרים, משמש, צימוקים, סוכר) סילאן תמרים, גרעיני חמנייה, סויה, שומשום,שקדים, גרעינ י דלעת, סובין שיבולת שועל (מכיל גלוטן), אבקת חרובים. מאפיינים נוספים ללא תוספת צבעי מאכל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (362 קק\"ל)"
+        ],
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "rowVerdict": "מהקלות במדף — 362 קק\"ל, 11.5 ג' חלבון ו-8 ג' סיבים. עוצרת ב-B כי הפירות היבשים מגיעים עם סוכר מוסף ורשימת הרכיבים ארוכה — מאפה ממותק, גם אם מתון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "1164273",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290106771369",
       "name": "גרנולה לוז וקינמון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XKS58_Z_P_7290106771369_1.png",
-      "score": 65.0,
+      "score": 65,
       "grade": "B",
       "insightLine": "14.7 ג' סיבים — אבל 451 קק\"ל וסירופ אגבה ושמן קוקוס.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 451.0,
@@ -314,21 +412,37 @@
         },
         "ingredients": "שיבולת שועל מלאה (56%) (גלוטן), אגוזי לוז (11%), גרעיני חמנייה, סיבים תזונתיים (עולש) (8%), שקדים, סירופ אגבה, סילאן טבעי, שמן קוקוס , קינמון (1%) מכיל אגוזי לוז,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (15 גרם)",
+          "עשיר בסיבים (15 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (451 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "פרופיל תזונתי סביר, אך הקלוריות הגבוהות מגבילות. המדף מציע אפשרויות קלות יותר."
       },
       "rowVerdict": "אגוזי לוז 11% ושיא סיבים (14.7 ג') עם 14.6 ג' חלבון. יורדת ל-C כי 451 קק\"ל — מהצפופות במדף — וסירופ אגבה ושמן קוקוס מוסיפים מתוק ושומן רווי.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290106771369",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290013433244",
       "name": "גרנולה 18% חלבון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JGV42_Z_P_7290013433244_1.png",
-      "score": 64.7,
+      "score": 65,
       "grade": "C",
       "insightLine": "18 ג' חלבון — בתוספת חלבון אפונה, סיבים נמוכים יחסית (6.3 ג').",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 401.0,
@@ -340,47 +454,41 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן), פירות 17.5% (סילאן תמרים טבעי, חמוציות), פתיתי סויה, גרעינים 5.3% (שומשום, גרעיני דלעת, גרעיני חמניה), פ צפוצי אורז, טחינה 4%, אגוזי קשיו 3%, חלבון אפונה, שומן צמחי, לציטין סויה, תמצית וניל טבעית מאפיינים נוספים עשיר בחלבונים,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (18 גרם)"
+        ],
+        "comparisonContext": "מספר החלבון מרשים, אך מגיע מחלבון מרוכז ולא מהדגן עצמו — שוני מהותי."
       },
       "rowVerdict": "18 ג' חלבון משילוב שיבולת שועל, פצפוצי סויה וחלבון אפונה מוסף. עוצרת ב-B כי הסיבים נמוכים יחסית (6.3 ג'), רשימת הרכיבים ארוכה והחלבון מחוזק ולא טבעי לדגן.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
-    },
-    {
-      "name": "Granola With Bittersweet Chocolate",
-      "grade": "C",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "18 ג' סוכר ושוקולד — 414 קק\"ל, חלבון 10 ג'.",
-      "imageUrl": "",
-      "confidence": "partial",
-      "rowVerdict": "גרנולת שוקולד עם 10 ג' חלבון ו-7 ג' סיבים. נשארת ב-C כי 18 ג' סוכר ל-100 ג' ו-414 קק\"ל — השוקולד מביא מתיקות וצפיפות שגוברות על הדגן.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 414.0,
-          "protein": 10.0,
-          "sugar": 18.0,
-          "fat": 14.3,
-          "fiber": 7.0,
-          "sodium": 7.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_7290019603627",
       "_wholeGrainClaim": false,
-      "score": 63
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290013433244",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290112498007",
       "name": "גרנולה חלבון שקד+חמוציות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SUA50_Z_P_7290112498007_1.png",
-      "score": 62.5,
+      "score": 62,
       "grade": "C",
       "insightLine": "23.6 ג' חלבון — אבל מסויה מבודדת, עם סירופ ושמן, 15 רכיבים.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 411.0,
@@ -392,21 +500,34 @@
         },
         "ingredients": "רכיבים: שיבולת שועל מלאה (55%) (מכילה גלוטן), חלבון סויה (14%) (חלבון סויה מרוכז, איזולט חלבון סויה), סירופ גלוקוז, סילאן, גרעיני דל עת, טחינה משומשום מלא, שקדים (3.5%), חמוציות מיובשות ומסוכרות (3.5%) (חמוציות (1.9%), סוכר, שמן צמחי), גרעיני חמנייה, סיבים תזונתיים  (סיבי עולש), שבבי קוקוס, קינמון. מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (24 גרם)",
+          "עשיר בסיבים (13 גרם)"
+        ],
+        "comparisonContext": "מספר החלבון מרשים, אך מגיע מחלבון מרוכז ולא מהדגן עצמו — שוני מהותי."
       },
       "rowVerdict": "המספר הכי גבוה במדף — 23.6 ג' חלבון ו-12.8 ג' סיבים. יורדת ל-C כי החלבון מגיע מסויה מבודדת ולא מהדגן, עם סירופ גלוקוז, שמן ו-15 רכיבים — הרבה הנדסה למספר יפה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290112498007",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290013433336",
       "name": "גרנולה 48% סופרפוד",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JKJ44_Z_P_7290013433336_1.png",
-      "score": 62.4,
+      "score": 62,
       "grade": "C",
       "insightLine": "12 ג' חלבון, 9.4 ג' סיבים — והשם 'סופרפוד', רשימה ארוכה.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 410.0,
@@ -418,21 +539,30 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן),פירות ורכיביהם 19% (סילאן טבעי, רכז תפוחים טבעי, גוג'י ברי, אבקת חרובים), גרעינים וזרעים 20 % (,שומשום ש חור, פשתן, גרעיני דלעת, צ'יה), אגוזים 8%, פצפוצי אורז תפוח, שמן זית 1% , תמצית טעם טבעית, מלח מכיל אגוזי לוז,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "rowVerdict": "מגוון זרעים ופירות עם 12 ג' חלבון ו-9.4 ג' סיבים. עוצרת ב-B כי מאחורי השם 'סופרפוד' עומדים 410 קק\"ל ורשימת רכיבים ארוכה — מאפה צפוף, לא תוסף-על.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290013433336",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290112497994",
       "name": "גרנולה פרוטאין+אגוזים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/STN64_Z_P_7290112497994_1.png",
-      "score": 61.0,
+      "score": 61,
       "grade": "C",
       "insightLine": "23.7 ג' חלבון — אבל 431 קק\"ל, סויה מבודדת וסירופ גלוקוז.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 431.0,
@@ -444,21 +574,36 @@
         },
         "ingredients": "רכיבים: שיבולת שועל מלאה (51%) (מכילה גלוטן), חלבון סויה (13.6%) (חלבון סויה מרוכז, איזולט חלבון סויה), סירופ גלוקוז, סיבים תזונתיים  (סיבי עולש), אגוזים (9%) (קשיו, שקדים, פקאן, קוקוס), טחינה משומשום מלא, סילאן, סוכר, גרעיני חמנייה, גרעיני דלעת, קינמון.  עלול להכי ל קליפות מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (24 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (431 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "פרופיל תזונתי סביר, אך הקלוריות הגבוהות מגבילות. המדף מציע אפשרויות קלות יותר."
       },
       "rowVerdict": "שיא החלבון במדף — 23.7 ג' — אבל שוב מסויה מבודדת, עם סירופ גלוקוז וסוכר. יורדת ל-C כי 431 קק\"ל וההנדסה סביב החלבון גוברות על המספר עצמו.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290112497994",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290106771314",
       "name": "גרנולה אגוזים חמוציות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIP48_Z_P_7290106771314_1.png",
-      "score": 60.9,
+      "score": 61,
       "grade": "C",
       "insightLine": "14.4 ג' סיבים — אבל 440 קק\"ל וסיבי עולש מוספים.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 440.0,
@@ -470,38 +615,27 @@
         },
         "ingredients": "שיבולת שועל מלאה (54%) (גלוטן), אגוזים (11.5%) (קשיו, לוז, שקדים), סיבים תזונתיים (עולש) (10%), גרעיני חמנייה, גרעיני דלעת, סילאן טב עי, חמוציות (4.5%) (חמוציות, רכז תפוחים, שמן חמניות), שמן קוקוס, קינמון. מכיל אגוזי לוז,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בסיבים (14 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (440 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "פרופיל תזונתי סביר, אך הקלוריות הגבוהות מגבילות. המדף מציע אפשרויות קלות יותר."
       },
       "rowVerdict": "אגוזים 11.5% וסיבים גבוהים (14.4 ג') עם 11.8 ג' חלבון. יורדת ל-C כי 440 קק\"ל, הסיבים מוגברים בעולש מוסף, והחמוציות ברכז תפוחים — מהונדסת לסיבים.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
-    },
-    {
-      "name": "גרנולה",
-      "grade": "C",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "21 ג' סוכר ל-100 ג' — חלבון 8.9 ג', 376 קק\"ל.",
-      "imageUrl": "",
-      "confidence": "partial",
-      "rowVerdict": "גרנולה בסיסית עם 8.9 ג' חלבון ו-6 ג' סיבים. נשארת ב-C כי 21 ג' סוכר ל-100 ג' — כחמש כפיות — ממקמות אותה בצד המתוק של המדף.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 376.0,
-          "protein": 8.9,
-          "sugar": 21.0,
-          "fat": 11.5,
-          "fiber": 6.0,
-          "sodium": null
-        },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_7290001343845",
-      "_wholeGrainClaim": false,
-      "score": 60
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290106771314",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "name": "גרנולה קוקוס ופירות",
@@ -523,20 +657,31 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סוכר גבוה (20 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מדד ביניים — פרופיל סביר אך לא בולט על אחד מהממדים המרכזיים."
       },
       "id": "bsip1_cereal_7290019603634",
       "_wholeGrainClaim": false,
-      "score": 60
+      "score": 60,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290019603634",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "id": "bsip1_cereal_7290106773714",
       "name": "גרנולה מיקס קראנץ' מלוח",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AWX54_Z_P_7290106773714_1.png",
-      "score": 55.0,
+      "score": 60,
       "grade": "C",
-      "insightLine": "504 קק\"ל — מהגבוהות במדף; הקלוריות מגבילות ל-B.",
-      "confidence": "verified",
+      "insightLine": "504 קק\"ל — מהגבוהות במדף; הקלוריות מגבילות ל-C.",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 504.0,
@@ -548,21 +693,37 @@
         },
         "ingredients": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 17.7 גרם חלבונים 27 גרם פחמימות 34.2 גרם שומנים 0 מג כולסטרול 394 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (18 גרם)",
+          "עשיר בסיבים (12 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (504 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "פרופיל תזונתי סביר, אך הקלוריות הגבוהות מגבילות. המדף מציע אפשרויות קלות יותר."
       },
       "rowVerdict": "פרופיל חזק וייחודי — 17.7 ג' חלבון, 11.7 ג' סיבים, מלוחה ולא מתוקה. אבל 504 קק\"ל ל-100 ג', מהצפופות במדף — הקלוריות הן שמגבילות אותה ל-B. 394 מ\"ג נתרן גבוה לגרנולה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290106773714",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_5018357006755",
       "name": "תע.דגנים 50% פירות ואגוז",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SOA52_Z_P_5018357006755_1.png",
-      "score": 55.0,
+      "score": 55,
       "grade": "C",
       "insightLine": "36% פירות יבשים, ללא תוספת סוכר — אבל 8.7 ג' חלבון בלבד.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 394.0,
@@ -574,21 +735,33 @@
         },
         "ingredients": "שבבי חיטה מלאה  קלויים, פירות יבשים 36%, שבבי שיבולת שועל מלאה, גרעיני חמניה 4.5%, אגוזי לוז קלויים וחתוכים מאפיינים נוספים ללא תוספת סוכר,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "חלבון נמוך (8.7 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "rowVerdict": "תערובת דגנים עם 36% פירות יבשים וללא תוספת סוכר — הסוכר כאן טבעי לפרי. נשארת ל-C כי החלבון נמוך (8.7 ג') וזו תערובת דגנים קלויה ומעובדת, לא דגן שלם.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5018357006755",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290106771161",
       "name": "גרנולה מייפל פקאן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XCS48_Z_P_7290106771161_1.png",
-      "score": 54.3,
+      "score": 54,
       "grade": "C",
       "insightLine": "451 קק\"ל — מהגבוהות; ממותקת במייפל ואגבה, שמן קוקוס.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 451.0,
@@ -600,12 +773,24 @@
         },
         "ingredients": "שיבולת שועל מלאה (57%) (גלוטן), סירופ מייפל טבעי (8%), פקאן (7%), קשיו, גרעיני חמניה, סירופ אגבה, סילאן טבעי, שמן קוקוס. מכיל אגוזי קשיו,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "קלורית גבוהה (451 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "rowVerdict": "מייפל ופקאן על בסיס 57% שיבולת שועל מלאה, 10.4 ג' חלבון. יורדת ל-C כי 451 קק\"ל וכפל ממתיקים (מייפל + אגבה) ושמן קוקוס — צפופה ומתוקה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290106771161",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "name": "Crispy Muesli",
@@ -627,20 +812,34 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (377 קק\"ל)"
+        ],
+        "limitingFactors": [
+          "סוכר גבוה (24 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "id": "bsip1_cereal_5010026521149",
       "_wholeGrainClaim": false,
-      "score": 54
+      "score": 54,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5010026521149",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "id": "bsip1_cereal_7290013433091",
       "name": "גרנולה 8% שוקולד מריר",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JAY42_Z_P_7290013433091_1.png",
-      "score": 53.5,
+      "score": 54,
       "grade": "C",
       "insightLine": "סוכר חום הרכיב השני, נטיפי שוקולד ושמן — 416 קק\"ל.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 416.0,
@@ -652,12 +851,29 @@
         },
         "ingredients": "דגנים 57% (שיבולת שועל (מכיל גלוטן), פצפוצי אורז), סוכר חום, נטיפי שוקולד 7.5%, קורנפלקס, סילאן תמרים, שומן צמחי, טחינה, עיסת קקאו, אבקת קקאו, מלח, לציטין סויה, תמציות טעם טבעיות מאפיינים נוספים ללא כולסטרול,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "rowVerdict": "שיבולת שועל ושוקולד מריר אמיתי (7.5%) עם 11 ג' חלבון. יורדת ל-C כי סוכר חום הוא הרכיב השני, ושמן צמחי ופצפוצי אורז ברשימה — מאפה מתוק של 416 קק\"ל.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290013433091",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "name": "גרנולה",
@@ -679,11 +895,22 @@
         },
         "ingredients": "",
         "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סוכר גבוה (26 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "id": "bsip1_cereal_7290011668570",
       "_wholeGrainClaim": false,
-      "score": 52
+      "score": 52,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290011668570",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "name": "MUESLI & Co 2 CHOCOLATS & NOISETTES",
@@ -692,7 +919,7 @@
       "_subpool": "granola",
       "insightLine": "שוקולד 12%, 24 ג' סוכר — 428 קק\"ל, חלבון 9.7 ג'.",
       "imageUrl": "https://images.openfoodfacts.org/images/products/356/007/082/6186/front_fr.53.400.jpg",
-      "confidence": "verified",
+      "confidence": "partial",
       "rowVerdict": "מוזלי עם שוקולד מריר (12%) ואגוזי לוז, 9.7 ג' חלבון ו-7.2 ג' סיבים. יורד ל-C כי 24 ג' סוכר ל-100 ג' ו-428 קק\"ל — השוקולד מביא מתיקות וצפיפות.",
       "expansion": {
         "nutrition": {
@@ -705,95 +932,28 @@
         },
         "ingredients": "Flocons d'_avoine_ complète 43 %, morceaux de chocolat noir 12 % (pâte de cacao, sucre, beurre de cacao, émulsifiant: lécithines), morceaux de chocolat au lait 11 % (sucre, pâte de cacao, _lait_ entier en poudre, beurre de cacao, émulsifiant: lécithines), sucre, farine de _blé_ 6,9 %, _noisettes_ grillées en moitié 5%, _orge_ complète 4,7 %, maïs 2,9 %, cacao maigre en poudre, amidon de _blé_, huile de palme, flocons de _blé_ complet 0,5 %, noix de coco râpée, farine de riz 0,4 %, extrait de malt d'_orge_, sirop de glucose-fructose, sel, dextrose, _gluten_ de _blé_, arômes naturels, farine de malt d'_orge_ et de malt de _blé_. Peut contenir d'arachides, d'autres fruits à coque, de graines de sésame, de moutarde et de lupin.",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סוכר גבוה (24 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "id": "bsip1_cereal_3560070826186",
       "_wholeGrainClaim": false,
-      "score": 51
-    },
-    {
-      "name": "Multigrain Cheerios",
-      "grade": "C",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "9.7 ג' סיבים — אבל 17.7 ג' סוכר ו-313 מ\"ג נתרן.",
-      "imageUrl": "https://images.openfoodfacts.org/images/products/844/529/130/1948/front_en.12.400.jpg",
-      "confidence": "verified",
-      "rowVerdict": "דגני בוקר מרובי-דגנים עם 9.7 ג' סיבים ו-10 ג' חלבון. יורד ל-C על 17.7 ג' סוכר ל-100 ג' והרכב מעובד-ממותק. 313 מ\"ג נתרן גבוה לדגני בוקר.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 376.7,
-          "protein": 10.0,
-          "sugar": 17.7,
-          "fat": 4.7,
-          "fiber": 9.7,
-          "sodium": 313.3
-        },
-        "ingredients": "whole grain oat flour (31,9%), whole grain wheat flour (29,6%), whole grain barley flour (18,2%), sugar, wheat flour (contains calcium carbonate, vitamin b3, iron, vitamin b1), invert sugar syrup, calcium carbonate, sunflower oil, molasses, salt, caramelised sugar syrup, colours: carotene, annatto norbixin, antioxidant: tocopherols, iron, vitamins c, b3, b5, b9, d, b6, b2",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_8445291301948",
-      "_wholeGrainClaim": true,
-      "score": 51
-    },
-    {
-      "name": "Great Grains Cereal Blueberry Morning imp",
-      "grade": "C",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "27.2 ג' סוכר ו-339 מ\"ג נתרן — חלבון 7.2 ג' בלבד.",
-      "imageUrl": "https://images.openfoodfacts.org/images/products/088/491/210/2102/front_en.50.400.jpg",
-      "confidence": "verified",
-      "rowVerdict": "דגני בוקר 'דגנים מלאים' עם אוכמניות, 7.2 ג' חלבון. יורד ל-C כי 27.2 ג' סוכר ל-100 ג' (סוכר קנים ואינברט) והרכב מעובד. 339 מ\"ג נתרן גבוה.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 372.4,
-          "protein": 7.2,
-          "sugar": 27.2,
-          "fat": 4.8,
-          "fiber": 5.7,
-          "sodium": 339.0
-        },
-        "ingredients": "Whole grain wheat, rice, cane sugar, dried blueberries (blueberries, invert sugar, glycerin, sunflower oil, natural flavor), whole grain rolled oats, almonds, expeller pressed canola oil, salt, barley malt extract, rice syrup, molasses, caramel color, natural flavor. bht added to preserve freshness. vitamins and minerals: niacinamide (vitamin b3), reduced iron, zinc oxide, vitamin a palmitate, pyridoxine hydrochloride (vitamin b6), thiamin mononitrate (vitamin b1), riboflavin (vitamin b2), folic acid, vitamin d3, vitamin b12.",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_884912102102",
-      "_wholeGrainClaim": true,
-      "score": 51
-    },
-    {
-      "name": "דגני בוקר במילוי קרם בטעם נוגט",
-      "grade": "C",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "מילוי קרם, 24 ג' סוכר ו-445 קק\"ל — חלבון 6.8 ג'.",
-      "imageUrl": "",
-      "confidence": "partial",
-      "rowVerdict": "דגני בוקר במילוי קרם נוגט — 6.8 ג' חלבון וסיבים נמוכים (4.5 ג'). נשארת ב-C כי 24 ג' סוכר ו-445 קק\"ל — קרובה לקינוח מדגן בוקר. 200 מ\"ג נתרן גבוה למדף.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 445.0,
-          "protein": 6.8,
-          "sugar": 24.0,
-          "fat": 14.6,
-          "fiber": 4.5,
-          "sodium": 200.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_7290104506819",
-      "_wholeGrainClaim": false,
-      "score": 50
+      "score": 51,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "3560070826186",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290013433107",
       "name": "גרנולה חלבה תמר קשיו",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JBO40_Z_P_7290013433107_1.png",
-      "score": 48.6,
+      "score": 49,
       "grade": "D",
       "insightLine": "11% חלבה עם מלטיטול — 432 קק\"ל, מהמעובדות במדף.",
       "confidence": "verified",
@@ -808,21 +968,51 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן) 50%, גרעינים 13% (פשתן, טחינה, שומשום, גרעיני חמנייה, גרעיני דלעת, צ'יה), תמרים 12%, חלבה 11% (טחינה מ שומשום, מלטיטול, שומן צמחי, תמצית שורש ספונירה, חומצת לימון, ונילין), פצפוצי אורז, טחינה 4%, קשיו 3%, שומן צמחי, לציטין סויה, תמצי ת וניל טבעית מאפיינים נוספים ללא תוספת סוכר,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "עשיר בחלבון (13 גרם)"
+        ],
+        "limitingFactors": [
+          "קלורית גבוהה (432 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "rowVerdict": "13 ג' חלבון ו-8.2 ג' סיבים עם חלבה (11%) ותמרים. יורדת ל-C כי החלבה מביאה מלטיטול ושומן צמחי, 432 קק\"ל ועיבוד גבוה — מאפה-קינוח יותר מדגן.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "barcode": "7290013433107",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_6582751",
       "name": "גרנולה עם פירות יבשים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MTS34_Z_P_6582751_1.png",
-      "score": 48.6,
+      "score": 49,
       "grade": "D",
       "insightLine": "364 קק\"ל אך סוכר, שמן לפתית ודבש — וללא נתוני סיבים.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 364.0,
@@ -834,12 +1024,35 @@
         },
         "ingredients": "גרנולה  83% ( פתיתי שיבולת שועל (מכיל גלוטן), סוכר חום, שמן לפתית, דבש, סירופ גלוקוז, מתחלב ׁ(E322) חומרי טעם וריח) פירות 17% (פפאיה , אננס, צימוקים, בננה, חמוציות תפוח) מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (364 קק\"ל)"
+        ],
+        "limitingFactors": [
+          "חלבון נמוך (8.9 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "rowVerdict": "364 קק\"ל הנמוכות לא משקפות את ההרכב — סוכר חום, שמן לפתית, דבש וסירופ גלוקוז בתוך ה'גרנולה' (83%). יורדת ל-D, 8.9 ג' חלבון וללא נתוני סיבים.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "6582751",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition"
     },
     {
       "name": "פיטנס גרנולה חמוציות",
@@ -848,7 +1061,7 @@
       "_subpool": "granola",
       "insightLine": "'פיטנס' — סוכר הרכיב השני, 18.7 ג' סוכר, 437 קק\"ל.",
       "imageUrl": "https://images.openfoodfacts.org/images/products/761/303/575/8834/front_en.36.400.jpg",
-      "confidence": "verified",
+      "confidence": "partial",
       "rowVerdict": "'פיטנס' בשם, אבל סוכר הוא הרכיב השני עם 18.7 ג' סוכר ל-100 ג'. יורדת ל-D על 437 קק\"ל והרכב ממותק-מעובד; 9.5 ג' חלבון.",
       "expansion": {
         "nutrition": {
@@ -861,43 +1074,123 @@
         },
         "ingredients": "whole oatmeal 58,4%, sugar, malted grilled wheat petals 9,3% (wheat flour, malt extract, emulsifier,' sunflower lecithin), dried cranberry pieces (cranberries 3,5%, sugar), squash seeds 4,3%, molasses, puffed rice chips 3,5% (rice semolina, wheat flour, sugar, barley malt extract, salt), sunflower oil, whole oat flour , invert sugar syrup, minerals: calcium carbonate, acidity corrector, citric acid, salt, cinnamon,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "קלורית גבוהה (437 קק\"ל ל-100 גרם)",
+          "סוכר גבוה (19 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
       "id": "bsip1_cereal_7613035758834",
       "_wholeGrainClaim": false,
-      "score": 46
+      "score": 46,
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7613035758834",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
-      "name": "קראנצ'י שיבולת שועל עם שוקולד מריר",
+      "id": "bsip1_cereal_7290011131371",
+      "name": "מוזלי קראנצ'י בוטנ+שקדים",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KDG36_Z_P_7290011131371_1.png",
+      "score": 46,
       "grade": "D",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "26.9 ג' סוכר, 474 קק\"ל ו-259 מ\"ג נתרן — חלבון 8.8 ג'.",
-      "imageUrl": "",
+      "insightLine": "שמן דקלים שני, אגוזים 4.7% בלבד — ו-350 מ\"ג נתרן.",
       "confidence": "partial",
-      "rowVerdict": "קראנצ'י שיבולת שועל ושוקולד מריר עם 8.8 ג' חלבון. יורד ל-D כי 26.9 ג' סוכר ו-474 קק\"ל — מהצפופות במדף. 259 מ\"ג נתרן גבוה.",
       "expansion": {
         "nutrition": {
-          "energyKcal": 473.8,
-          "protein": 8.8,
-          "sugar": 26.9,
-          "fat": 19.8,
-          "fiber": 6.9,
-          "sodium": 259.0
+          "energyKcal": 385.0,
+          "protein": 9.3,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 5.2,
+          "sodium": 350.0
         },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
+        "ingredients": "פתיתי שיבולת שועל 38% (מכיל גלוטן) , שמן צמחי (דקלים),  סוכר חום מקנה סוכר, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), אגוזים 4.7% (בוטנים  2.7%, אגוזי לוז 1%, שקדים 1%), קוקוס, גרעיני חמניות, אבקת קקאו, מלח, מתחלב לציטין סויה, חומר טעם. מכיל בוטנים,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סיבים נמוכים (5.2 גרם ל-100 גרם)",
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מתחת לממוצע הקטגוריה. בדרך כלל: ממתיקים מוקדמים, שמן דקלים, או עיבוד כפול."
       },
-      "id": "bsip1_cereal_16000423534",
+      "rowVerdict": "מוזלי קראנצ'י שהאגוזים בו שוליים (4.7%) — שמן דקלים, סוכר וסירופ גלוקוז פותחים. יורד ל-D כי ההרכב בנוי על שמן ומתוק, לא על אגוזים. 350 מ\"ג נתרן — גבוה לקטגוריה; 9.3 גרם חלבון.",
+      "_subpool": "granola",
+      "_isChildrens": false,
       "_wholeGrainClaim": false,
-      "score": 46
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290011131371",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
+    },
+    {
+      "id": "bsip1_cereal_7290011131388",
+      "name": "מוזלי קראנצי תפוח קינמון",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KDX44_Z_P_7290011131388_1.png",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "שמן דקלים וסוכר מוקדם ברשימה — ו-380 מ\"ג נתרן.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 394.0,
+          "protein": 7.1,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 5.8,
+          "sodium": 380.0
+        },
+        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן)  39% , שמן צמחי (דקלים)סוכר חום מקני סוכר , סירופ גלוקוזה, קמח חיטה (מכיל גלוטן)   צימוקים, תפוחי עץ מיובשים (2%) גרעיני חמניות (1.5%) אבקת קקאו, מלח, קינמון (0.2%) מתחלב: לציטין סוי, חומר טעם. מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "חלבון נמוך (7.1 גרם ל-100 גרם)",
+          "סיבים נמוכים (5.8 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
+      },
+      "rowVerdict": "מוזלי תפוח-קינמון עם 7.1 ג' חלבון בלבד. יורד ל-C כי שמן דקלים, סוכר חום וסירופ גלוקוז פותחים את הרשימה. 380 מ\"ג נתרן — גבוה לדגני בוקר.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290011131388",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290011131050",
       "name": "גרנולה פקאן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JQX30_Z_P_7290011131050_1.png",
-      "score": 41.4,
+      "score": 41,
       "grade": "D",
       "insightLine": "שני שלבי עיבוד, שמן דקלים וצבע קרמל — פקאן שולי.",
       "confidence": "verified",
@@ -912,21 +1205,41 @@
         },
         "ingredients": "גרנולה 75% (פתיתי שיבולת שועל(מכיל גלוטן) , קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעורה (מ כיל גלוטן), סוכר חום,  סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת קקאו, קינמון ,צבע מאכל: קרמל, חטיפי דגנים 19% (פתיתי שיבולת שועל ( מכיל גלוטן), קמח חיטה (מכיל גלוטן), אורז תפוח, שמן צמחי (דקלים), סוכר, סירופ גלוקוז, תמצית לתת שעורה (מכיל גלוטן), קמח תירס, סירופ  תמרים, סוכר חום, מתחלב:לציטין סויה, מלח, חומר טעם, אבקת קקאו, צבע מאכל: קרמל), צימוקים 3%, אגוזי פקאן 3%. מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "'פקאן' בשם, אבל הבסיס הוא גרנולה 75% וחטיפי דגנים 19% עם שמן דקלים, סוכר וצבע קרמל. יורדת ל-D, 414 קק\"ל ו-10 ג' חלבון — מאפה כפול-עיבוד.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290011131050",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_7613037012095",
       "name": "גרנולה שוקולד קינואה",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QCU44_Z_P_7613037012095_1.png",
-      "score": 41.0,
+      "score": 41,
       "grade": "D",
       "insightLine": "'קינואה' בשם — בפועל 2.9%, סוכר הרכיב השני.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 443.0,
@@ -938,21 +1251,41 @@
         },
         "ingredients": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (40.8%), סוכר, קמח חיטה מלא (מכיל גלוטן)(9%), שמן חמניות, קמח שיבולת שועל מלא (8.7%), סירופ גלוק וז מיובש, נטיפי שוקולד מריר (4.8%) (מכיל חומר מתחלב: לציטין סויה), שקדים (4.7%), קינואה מלאה תפוחה (2.9%), סירופ סוכר אינברטי, גריסי  תירס (2.4%), מינרלים (סידן (קלציום קרבונט), ברזל), רכז מיץ תמרים, קוקוס, חומר תפיחה (סודיום ביקרבונט), מלח, מעכב חמצון (טוקופרולים) .n* סך הדגנים במוצר: 60.9%n 96% מסך הדגנים במוצר הינם דגנים מלאים.                                                         מוצקי ק קאו בשוקולד מינימום 35%nnמכיל כ-49% שיבולת שועל מלאה מכיל גלוטן חיטה,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "קלורית גבוהה (443 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "השם מבטיח קינואה — שמופיעה כ-2.9% בלבד, אחרי סוכר שהוא הרכיב השני. יורדת ל-D כי 443 קק\"ל, סירופ גלוקוז ושמן חמניות — מאפה ממותק, 9.1 ג' חלבון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7613037012095",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7613035635845",
       "name": "גרנולה שוקולד פיטנס",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IGC56_Z_P_7613035635845_1.png",
-      "score": 41.0,
+      "score": 41,
       "grade": "D",
       "insightLine": "'פיטנס' בשם — סוכר הרכיב השלישי, שמן לפני השוקולד.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 435.0,
@@ -964,44 +1297,38 @@
         },
         "ingredients": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (42.8%), קמח חיטה מלא (מכיל גלוטן) (14.1%), סוכר, שמן חמניות, שבבי שוקולד מריר (6.5%) (מכיל חומר  מתחלב (לציטין)), סירופ גלוקוז מיובש, קמח שיבולת שועל מלא (4.1%), גריסי תירס (3.2%), פתיתי חיטה מלאה (2.6%), סירופ סוכר אינברטי,  אב קת קקאו, מינרלים (סידן (קלציום קרבונט), ברזל), קוקוס, מלח, מעכב חמצון (טוקופרולים). nסך הדגנים במוצר: 66.8%n95% מסך הדגנים במוצר ה ינם דגנים מלאים                                                      מוצקי קקאו בשוקולד מינימום 35% מכיל גלוטן חיטה,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "קלורית גבוהה (435 קק\"ל ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "'פיטנס' על האריזה, אבל סוכר הוא הרכיב השלישי ושמן חמניות מופיע לפני שבבי השוקולד. יורדת ל-D על 435 קק\"ל והרכב ממותק-מעובד; 9 ג' חלבון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
-    },
-    {
-      "id": "bsip1_cereal_7290011131371",
-      "name": "מוזלי קראנצ'י בוטנ+שקדים",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KDG36_Z_P_7290011131371_1.png",
-      "score": 40.6,
-      "grade": "D",
-      "insightLine": "שמן דקלים שני, אגוזים 4.7% בלבד — ו-350 מ\"ג נתרן.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 385.0,
-          "protein": 9.3,
-          "sugar": null,
-          "fat": 0.5,
-          "fiber": 5.2,
-          "sodium": 350.0
-        },
-        "ingredients": "פתיתי שיבולת שועל 38% (מכיל גלוטן) , שמן צמחי (דקלים),  סוכר חום מקנה סוכר, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), אגוזים 4.7% (בוטנים  2.7%, אגוזי לוז 1%, שקדים 1%), קוקוס, גרעיני חמניות, אבקת קקאו, מלח, מתחלב לציטין סויה, חומר טעם. מכיל בוטנים,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "מוזלי קראנצ'י שהאגוזים בו שוליים (4.7%) — שמן דקלים, סוכר וסירופ גלוקוז פותחים. יורד ל-D כי ההרכב בנוי על שמן ומתוק, לא על אגוזים. 350 מ\"ג נתרן — גבוה לקטגוריה; 9.3 גרם חלבון.",
-      "_subpool": "granola",
-      "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7613035635845",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
       "id": "bsip1_cereal_7290011131968",
       "name": "גרנולה אגוזים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LAF48_Z_P_7290011131968_1.png",
-      "score": 39.5,
+      "score": 40,
       "grade": "D",
       "insightLine": "כפל עיבוד — גרנולה + חטיפי דגנים, וצבע קרמל.",
       "confidence": "verified",
@@ -1016,44 +1343,85 @@
         },
         "ingredients": "גרנולה 71% (פתיתי שיבולת שועל 46% (מכיל גלוטן), קמח חיטה (מכיל גלוטן) , שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעו רה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב:לציטין סויה , אבקת קקאו, קינמון, צבע מאכל: קרמל, חטיפי דגנים 17% (פתיתי שיבולת ש ועל (מכיל גלוטן), קמח חיטה (מכיל גלוטן), אורז תפוח , שמן צמחי (דקלים), סוכר, סירופ גלוקוז, תמצית לתת שעורה (מכיל גלוטן), קמח תירס,סי רופ תמרים, סוכר חום, מתחלב: לציטין סויה, מלח, חומר טעם, אבקת קקאו, צבע מאכל: קרמל), צימוקים 6.5%, אגוזים 4.5% (אגוזי לוז 2%, שקדים 1 .5%, אגוזי מלך 1%). מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "בנויה משתי שכבות מעובדות — גרנולה 71% וחטיפי דגנים 17% — עם שמן דקלים, סוכר וצבע קרמל. יורדת ל-D, 10 ג' חלבון; האגוזים 4.5% בלבד.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290011131968",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
-      "id": "bsip1_cereal_7290011131388",
-      "name": "מוזלי קראנצי תפוח קינמון",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KDX44_Z_P_7290011131388_1.png",
-      "score": 39.2,
+      "id": "bsip1_cereal_7290014471412",
+      "name": "מוזלי בוטנים, לוז, שקדים",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LAJ42_Z_P_7290014471412_1.png",
+      "score": 40,
       "grade": "D",
-      "insightLine": "שמן דקלים וסוכר מוקדם ברשימה — ו-380 מ\"ג נתרן.",
+      "insightLine": "שמן דקלים ראשון, 400 מ\"ג נתרן — מהמלוחות במדף.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
-          "energyKcal": 394.0,
-          "protein": 7.1,
+          "energyKcal": 384.0,
+          "protein": 9.3,
           "sugar": null,
           "fat": 0.5,
-          "fiber": 5.8,
-          "sodium": 380.0
+          "fiber": 5.2,
+          "sodium": 400.0
         },
-        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן)  39% , שמן צמחי (דקלים)סוכר חום מקני סוכר , סירופ גלוקוזה, קמח חיטה (מכיל גלוטן)   צימוקים, תפוחי עץ מיובשים (2%) גרעיני חמניות (1.5%) אבקת קקאו, מלח, קינמון (0.2%) מתחלב: לציטין סוי, חומר טעם. מכיל גלוטן חיטה,",
+        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן) 38%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן) בוטנים 2.7%, אגוזי לוז 1%, שקדים 1%, קוקוס, גרעיני חמנייה, אבקת קקאו, מלח, מתלב (E322), חומרי טעם וריח מאפיינים נוספים ללא צבעי מאכל מכיל בוטנים,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סיבים נמוכים (5.2 גרם ל-100 גרם)",
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
-      "rowVerdict": "מוזלי תפוח-קינמון עם 7.1 ג' חלבון בלבד. יורד ל-C כי שמן דקלים, סוכר חום וסירופ גלוקוז פותחים את הרשימה. 380 מ\"ג נתרן — גבוה לדגני בוקר.",
+      "rowVerdict": "השמן הדומיננטי הוא דקלים, לפני האגוזים שהם 4.7% בלבד, עם סוכר וסירופ גלוקוז ברשימה. יורד ל-E כי 400 מ\"ג נתרן ל-100 גרם — גבוה לקטגוריה; גרנולה נקייה לא מכילה מלח כזה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290014471412",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_7613035622623",
       "name": "גרנולה דבש פיטנס",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ORO46_Z_P_7613035622623_1.png",
-      "score": 38.8,
+      "score": 39,
       "grade": "D",
       "insightLine": "'דבש פיטנס' — סוכר שלישי, סירופ גלוקוז ושמן.",
       "confidence": "verified",
@@ -1068,21 +1436,33 @@
         },
         "ingredients": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (44.5%), קמח חיטה מלא (מכיל גלוטן)  (14.7%), סוכר, שמן חמניות, סירופ גלוקוז מיובש, קמח שיבולת שו על מלא (4.2%), גריסי תירס (3.4%), סירופ סוכר אינברטי,  פתיתי חיטה מלאה (2.8%), דבש (2.1%), מינרלים (סידן (קלציום קרבונט), ברזל), קוק וס, חומרי טעם וריח, חומר תפיחה (סודיום ביקרבונט), מלח, מעכב חמצון (טוקופרולים).nnסך הדגנים במוצר: 69.6%n95% מסך הדגנים במוצר הינם  דגנים מלאים מאפיינים נוספים מכיל דגנים מלאים מכיל גלוטן חיטה,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "חלבון נמוך (8.7 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "'דבש' ו'פיטנס' בשם, אבל סוכר הוא הרכיב השלישי עם סירופ גלוקוז ושמן חמניות. יורדת ל-D על 428 קק\"ל והרכב מעובד-ממותק. 8.7 ג' חלבון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7613035622623",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_7290016883183",
       "name": "מוזלי 47% דגנים מלאים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QSU56_Z_P_7290016883183_1.png",
-      "score": 37.5,
+      "score": 38,
       "grade": "D",
       "insightLine": "434 קק\"ל, שמן דקלים וסירופ — בוטנים 2% בלבד.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 434.0,
@@ -1094,73 +1474,42 @@
         },
         "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן), 47%,אורז תפוח 9% (אורז,בוכר,),סוכר חום,שמן צמחי (דקלים),סירופ גלוקוז,קמח חיטה (מכיל גלוטן),בוטנים 2% ,אגוזי לוז 2%,קוקוס,אבקת קקאו, מתחלב (E322),חומרי טעם וריח, מלח.n מאפיינים נוספים ללא צבעי מאכל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "קלורית גבוהה (434 קק\"ל ל-100 גרם)",
+          "חלבון נמוך (8.5 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "47% דגנים מלאים בשם, אבל שמן דקלים, סוכר חום וסירופ גלוקוז ברשימה והבוטנים 2% בלבד. יורד ל-D על 434 קק\"ל והרכב מעובד; 8.5 ג' חלבון, ללא נתוני סיבים.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
-    },
-    {
-      "id": "bsip1_cereal_7290016883176",
-      "name": "מוזלי 47% דגנים מלאים",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QSN58_Z_P_7290016883176_1.png",
-      "score": 36.9,
-      "grade": "D",
-      "insightLine": "443 קק\"ל עם שוקולד — שמן דקלים וסירופ גלוקוז.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 443.0,
-          "protein": 8.0,
-          "sugar": null,
-          "fat": 0.5,
-          "fiber": null,
-          "sodium": 100.0
-        },
-        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן), 47%,אורז תפוח 10% (אורז סוכר),סוכר חום,שמן צמחי (דקלים),סירופ גלוקוז,קמח חיטה (מכיל גלוטן),קוקוס 5%, שוקולד מריר 4% (סוכר,עיסת קקאו,חמאת קקאו,מתחלב (E322),אבקת קקאו,מתחלב (E322),חומרי טעם וריח,מלח.nשוקולד מריר לפחות 45% מוצקי קקאו. מאפיינים נוספים ללא צבעי מאכל,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "גרסת השוקולד — 47% דגנים מלאים בשם, אבל שמן דקלים, סוכר וסירופ גלוקוז מובילים. יורד ל-D על 443 קק\"ל והרכב מעובד-ממותק; 8 ג' חלבון.",
-      "_subpool": "granola",
-      "_isChildrens": false,
-      "_wholeGrainClaim": true
-    },
-    {
-      "id": "bsip1_cereal_7290014471443",
-      "name": "גרנולה אגוזים",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LBO46_Z_P_7290014471443_1.png",
-      "score": 36.7,
-      "grade": "D",
-      "insightLine": "371 קק\"ל אך שמן דקלים, סוכר ודבש — אגוזים 4.5% בלבד.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 371.0,
-          "protein": 9.0,
-          "sugar": null,
-          "fat": 0.5,
-          "fiber": 6.0,
-          "sodium": 20.0
-        },
-        "ingredients": "גרנולה 89% (פתיתי שיבולת שועל (מכיל גלוטן) 72%, סוכר חום, שמן צמחי (דקלים), סירופגלוקוז, דבש, מתחלב (E322)חומרי טעם וריח), צימוקים 6 .5%, אגוזים 4.5% (אגוזי לוז 2%, שקדים 1.5%, אגוזי מלך 1%) מאפיינים נוספים ללא צבעי מאכל מכיל אגוזי לוז,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "למרות 371 קק\"ל הנמוכות, היא מהמעובדות במדף — שמן דקלים, סוכר חום, סירופ גלוקוז ודבש פותחים את הרשימה, והאגוזים 4.5% בלבד. נשארת ב-C, 9 ג' חלבון.",
-      "_subpool": "granola",
-      "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        }
+      ],
+      "barcode": "7290016883183",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition"
     },
     {
       "id": "bsip1_cereal_7290011668587",
       "name": "גרנולה עשירה",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YVK60_Z_P_7290011668587_1.png",
-      "score": 36.0,
+      "score": 38,
       "grade": "D",
       "insightLine": "423 קק\"ל, חומר משמר ואיזוגלוקוז — ו-195 מ\"ג נתרן.",
-      "confidence": "verified",
+      "confidence": "partial",
       "expansion": {
         "nutrition": {
           "energyKcal": 423.0,
@@ -1172,70 +1521,92 @@
         },
         "ingredients": "שיבולת שועל (מכיל גלוטן), פירות יבשים (14%), אננס, צימוקים, פפאיה, קליפות הדר, חומר משמר (דו תחמוצת הגופרית) , סוכר, טחינה, גרעינים (6%), (גרעיני חמנייה, גרעיני דלעת), אגוזי לוז, קורנפלס, איזוגלוקוז, סילאן תמרים, שקדים (2.3%), קוקוס ( חומר משמר דו תחמוצת הגופרית) , אגוזי קשיו, חומר תפיחה (סודיום בי קרבונט), תבלינים, מיץ לימון, מלח. מאפיינים נוספים מכיל דגנים מלאים,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "סיבים נמוכים (5.7 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "עושר של פירות ואגוזים עם 11.2 ג' חלבון, אבל סוכר ואיזוגלוקוז ברשימה וחומר משמר (דו-תחמוצת הגופרית). נשארת ב-B כי ההרכב צפוף-קלוריות (423) ומורכב. 195 מ\"ג נתרן גבוה למדף.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": true
-    },
-    {
-      "name": "Honey Roasted Cereal with Granola",
-      "grade": "D",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "533 קק\"ל ו-463 מ\"ג נתרן — מהגבוהים במדף בשני המדדים.",
-      "imageUrl": "https://images.openfoodfacts.org/images/products/088/491/235/9155/front_en.56.400.jpg",
-      "confidence": "verified",
-      "rowVerdict": "דגני בוקר קלויים בדבש עם גרנולה — 7.3 ג' חלבון בלבד. יורדת ל-D כי 533 קק\"ל — מהגבוהות במדף — ו-22 ג' סוכר. 463 מ\"ג נתרן גבוה במיוחד.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 533.3,
-          "protein": 7.3,
-          "sugar": 22.0,
-          "fat": 4.9,
-          "fiber": 4.9,
-          "sodium": 463.4
-        },
-        "ingredients": "opost consumer brands, llc 6% 6% 10% ingredients: corn, whole grain wheat, sugar, whole grain rolled oats, rice, canola and/or soybean cil, wheat flour, malted barley flour, corn syrup, salt, molasses, honey, caramel color, barley malt extract, natural and artificial flavor, annatto extract (color), bht added to preserve freshness, vitamins and minerals: reduced iron, niacinamide (vitamin b3),  vitamin a palmitate, pyridoxine hydrochloride (vitamin b6), zinc oxide, thiamin mononitrate (vitamin b1), riboflavin (vitamin b2), folic acid, vitamin d3, vitamin b12, contains wheat,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_884912359155",
       "_wholeGrainClaim": true,
-      "score": 36
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        }
+      ],
+      "barcode": "7290011668587",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     },
     {
-      "id": "bsip1_cereal_7290014471412",
-      "name": "מוזלי בוטנים, לוז, שקדים",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LAJ42_Z_P_7290014471412_1.png",
-      "score": 34.5,
-      "grade": "E",
-      "insightLine": "שמן דקלים ראשון, 400 מ\"ג נתרן — מהמלוחות במדף.",
+      "id": "bsip1_cereal_7290014471436",
+      "name": "מוזלי צימוק תפוח וקינמון",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LBH48_Z_P_7290014471436_1.png",
+      "score": 36,
+      "grade": "D",
+      "insightLine": "שמן דקלים וסוכר מוקדם, 400 מ\"ג נתרן — חלבון 7.1 ג'.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
-          "energyKcal": 384.0,
-          "protein": 9.3,
+          "energyKcal": 393.0,
+          "protein": 7.1,
           "sugar": null,
           "fat": 0.5,
-          "fiber": 5.2,
+          "fiber": 5.8,
           "sodium": 400.0
         },
-        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן) 38%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן) בוטנים 2.7%, אגוזי לוז 1%, שקדים 1%, קוקוס, גרעיני חמנייה, אבקת קקאו, מלח, מתלב (E322), חומרי טעם וריח מאפיינים נוספים ללא צבעי מאכל מכיל בוטנים,",
+        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן) 39%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), צימוקים 4%, תפוח עץ מיובש 2% (מכיל חומר משמר (דו תחמוצת הגפרית E220) גרעיני חמנייה 1.5%, אבקת קקאו, מלח, קינמון 0.2%, מתחלב E322, חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל מכיל גלוטן חיטה,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "חלבון נמוך (7.1 גרם ל-100 גרם)",
+          "סיבים נמוכים (5.8 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
-      "rowVerdict": "השמן הדומיננטי הוא דקלים, לפני האגוזים שהם 4.7% בלבד, עם סוכר וסירופ גלוקוז ברשימה. יורד ל-E כי 400 מ\"ג נתרן ל-100 גרם — גבוה לקטגוריה; גרנולה נקייה לא מכילה מלח כזה.",
+      "rowVerdict": "מוזלי תפוח-קינמון שמן הדקלים, סוכר חום וסירופ גלוקוז פותחים ברשימתו — 7.1 גרם חלבון. יורד ל-E כי 400 מ\"ג נתרן ל-100 גרם — גבוה לקטגוריה — מצטרף לחומר המשמר בתפוח המיובש.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        }
+      ],
+      "barcode": "7290014471436",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_7290011131975",
       "name": "גרנולה פירות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LAM46_Z_P_7290011131975_1.png",
-      "score": 33.3,
+      "score": 33,
       "grade": "E",
       "insightLine": "כפל עיבוד וצבע קרמל — פירות מסוכרים בתוספת.",
       "confidence": "verified",
@@ -1250,18 +1621,52 @@
         },
         "ingredients": "גרנולה 65% (פתיתי שיבולת שועל 43% (מכיל גלוטן) , קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים),סוכר , קמח תירס, סירופ תמרים, תמצית לתת שעו רה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת קקאו, קינמון, צבע מאכל: קרמל, חטיפי דגנים 16% (פתיתי שיבולת ש ועל 6% (מכיל גלוטן), קמח חיטה (מכיל גלוטן), אורז תפוח , שמן צמחי (דגלים, סוכר, סירופ גלוקוז, תמצית לתת שעורה(מכיל גלוטן), קמח תירס, סירופ תמרים, סוכר חום, מתחלב :לציטין סויה, מלח, חומר טעם, אבקת קקאו, צבע מאכל: קרמל),  פירות 17% (פפאיה מסוכרת (פפאיה, סוכר, מווסת ח ומציות (E330), חומר משמר גופרית דו - חמצנית (E220)), אננס מסוכר 5% (אננס, סוכר, מווסת חומציות (E330), חומר משמר גופרית דו - חמצנית (  E220)), אננס מסוכר (אננס, סוכר, מווסת חומציות (E330), חומר משמר גופרית דו חמצנית (E220)), צימוקים, בנננה מסוכרת (בננה, סוכר, שמן קו קוס, דבש, חומר טעם), חמוציות מסוכרות ( חמוציות, סוכר, שמן חמניות, חומר משמר גופרית דו - חמצנית (E220)), תפוח עץ מיובש ( תפוח, חומר מ שמר (E220)). מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "בנויה מגרנולה 65% וחטיפי דגנים עם שמן דקלים, סוכר, סירופ תמרים וצבע קרמל. יורדת ל-D, 396 קק\"ל ו-9 ג' חלבון — מאפה מעובד עם פירות מסוכרים.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "barcode": "7290011131975",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_1343845",
       "name": "גרנולה עם פירות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KXI28_Z_P_1343845_1.png",
-      "score": 32.7,
+      "score": 33,
       "grade": "E",
       "insightLine": "364 קק\"ל אך מהמעובדות — שמן דקלים, סוכר, סירופ ודבש.",
       "confidence": "verified",
@@ -1276,96 +1681,63 @@
         },
         "ingredients": "גרנולה 83% (פתיתי שיבולת שועל (מכיל גלוטן) 70%, סוכר חום, שמן צמחי (דקלים), סירופ גלוקוז, דבש, מתחלב (E322) חומרי טעם וריח) פירות יב שים ומסוכרים  17% (פפאיה מסוכרת (פפאיה, סוכר, מווסת חומציות (E300), חומר משמר (דו תחמוצת הגפרית (E220)), אננס מסוכר (אננס, סוכר, מוו סת חומציות  (E330), חומר משמר (דו תחמוצת הגפרית (E220)), צימוקים, שבבי בננה מסוכרת (בננה, סוכר, שמן קוקוס, דבש, חומרי טעם וריח ), חמ וציות מסוכרות (חמציות, סוכר, שמן חמניות, חומר משמר  (דו תחמוצת  הגפרית (E220)) , תפוחי עץ  מיובשים( תפוחי עץ, חומר משמר (דו תחמוצת ה גפרית (E220)) מאפיינים נוספים ללא צבעי מאכל מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (364 קק\"ל)"
+        ],
+        "limitingFactors": [
+          "חלבון נמוך (8.9 גרם ל-100 גרם)",
+          "שמן דקלים ברשימת הרכיבים"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "364 קק\"ל הנמוכות מטעות — הבסיס הוא 'גרנולה' 83% עם שמן דקלים, סוכר חום, סירופ גלוקוז ודבש. יורדת ל-D, מהמעובדות במדף, 8.9 ג' חלבון.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
-    },
-    {
-      "id": "bsip1_cereal_7290011131395",
-      "name": "מוזלי 30% פירות",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KEE42_Z_P_7290011131395_1.png",
-      "score": 32.0,
-      "grade": "E",
-      "insightLine": "30% פירות מסוכרים, שמן דקלים — 350 מ\"ג נתרן, 7 ג' חלבון.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 424.0,
-          "protein": 7.0,
-          "sugar": null,
-          "fat": 0.5,
-          "fiber": 4.0,
-          "sodium": 350.0
-        },
-        "ingredients": "פתיתי שיבולת שועל 40% (מכיל גלוטן) , פירות מיובשים 30% ((צימוקים 16%, אננס מסוכר 9% (אננס, סוכר, מווסת חומציות (E330), חומר משמר גור פית דו - חמצנית (E220)), תמרים 3%, שבבי בננה מסוכרת 2% (בננה, סוכר, שמן קוקוס, דבש, חומר טעם וריח )), שמן צמחי (דקלים), אורז תפוח, ק מח חיטה (מכיל גלוטן), סירופ גלוקוז, סוכר  קנים חום ,קוקוס,  גרעיני חמניות , אבקת קקאו, מלח,   מתחלב לציטין סויה, חומר טעם. מכיל גלוטן חיטה,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "מוזלי עתיר פירות (30%) על בסיס שמן דקלים, סוכר וסירופ גלוקוז — הפרי מסוכר ו-7 גרם חלבון בלבד. יורד ל-E כי 350 מ\"ג נתרן ל-100 גרם — גרנולה נקייה לא מוסיפה מלח כזה.",
-      "_subpool": "granola",
-      "_isChildrens": false,
-      "_wholeGrainClaim": false
-    },
-    {
-      "id": "bsip1_cereal_7290014471436",
-      "name": "מוזלי צימוק תפוח וקינמון",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LBH48_Z_P_7290014471436_1.png",
-      "score": 31.2,
-      "grade": "E",
-      "insightLine": "שמן דקלים וסוכר מוקדם, 400 מ\"ג נתרן — חלבון 7.1 ג'.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 393.0,
-          "protein": 7.1,
-          "sugar": null,
-          "fat": 0.5,
-          "fiber": 5.8,
-          "sodium": 400.0
-        },
-        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן) 39%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), צימוקים 4%, תפוח עץ מיובש 2% (מכיל חומר משמר (דו תחמוצת הגפרית E220) גרעיני חמנייה 1.5%, אבקת קקאו, מלח, קינמון 0.2%, מתחלב E322, חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל מכיל גלוטן חיטה,",
-        "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "מוזלי תפוח-קינמון שמן הדקלים, סוכר חום וסירופ גלוקוז פותחים ברשימתו — 7.1 גרם חלבון. יורד ל-E כי 400 מ\"ג נתרן ל-100 גרם — גבוה לקטגוריה — מצטרף לחומר המשמר בתפוח המיובש.",
-      "_subpool": "granola",
-      "_isChildrens": false,
-      "_wholeGrainClaim": false
-    },
-    {
-      "name": "כריות וניל חדש",
-      "grade": "E",
-      "_isChildrens": false,
-      "_subpool": "granola",
-      "insightLine": "38.5 ג' סוכר ו-0 סיבים — החלשה במדף, 4.3 ג' חלבון.",
-      "imageUrl": "",
-      "confidence": "partial",
-      "rowVerdict": "כריות וניל ממולאות — החלשה במדף: 38.5 ג' סוכר ל-100 ג', אפס סיבים ו-4.3 ג' חלבון בלבד. יורדת ל-E — ממתק דגנים יותר מדגן בוקר, 451 קק\"ל.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 451.0,
-          "protein": 4.3,
-          "sugar": 38.5,
-          "fat": 13.5,
-          "fiber": 0.0,
-          "sodium": 258.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם"
-      },
-      "id": "bsip1_cereal_7290116537962",
       "_wholeGrainClaim": false,
-      "score": 29
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון (ויטמין C)",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת כנוגד חמצון טבעי לשמירת צבע ומניעת חמצון שומנים; הגוף מכיר אותה כוויטמין מוכר."
+        }
+      ],
+      "barcode": "1343845",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_cereal_7290014471429",
       "name": "מוזלי פירות יבשים",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LBA50_Z_P_7290014471429_1.png",
-      "score": 27.0,
+      "score": 32,
       "grade": "E",
       "insightLine": "30% פירות מסוכרים, 400 מ\"ג נתרן — חלבון 6.8 ג'.",
       "confidence": "verified",
@@ -1380,12 +1752,111 @@
         },
         "ingredients": "פתיתי שיבולת שועל (מעל גלוטן) 27%, פירות מיובשים ומסוכרים 30% (צימוקים 16%, אננס מסוכר 9% (אננס, סוכר, מווסת חומציות E330, חומר משמר  (דו תחמוצת  הגפרית E220, תמרים 3%, שבבי בננה מסוכרת 2% (בננה, שמן קוקוס, סוכר, דבש, חומרי טעם וריח, חומר משמר (דו תחמוצת הגפרית E22 0ׂ)), שמן צמחי (דקלים) סוכר קנים חום, סירופ גלוקוז, קוקוס, גרעיני חמנייה, אבקת קקאו, מלח, מתחלב (E322), חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל מכיל גלוטן שיבולת שועל,",
         "confidenceLabel": "נתונים מלאים",
-        "servingNote": "ל-100 גרם"
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "קלוריות נמוכות יחסית (378 קק\"ל)"
+        ],
+        "limitingFactors": [
+          "חלבון נמוך (6.8 גרם ל-100 גרם)",
+          "סיבים נמוכים (4.9 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
       "rowVerdict": "מוזלי עתיר פירות מסוכרים (30%) עם חלבון נמוך (6.8 ג') וסיבים 4.9 ג'. יורד ל-D כי שמן דקלים, סוכר וחומר משמר ברשימה. 400 מ\"ג נתרן — גבוה.",
       "_subpool": "granola",
       "_isChildrens": false,
-      "_wholeGrainClaim": false
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "barcode": "7290014471429",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_cereal_7290011131395",
+      "name": "מוזלי 30% פירות",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KEE42_Z_P_7290011131395_1.png",
+      "score": 26,
+      "grade": "E",
+      "insightLine": "30% פירות מסוכרים, שמן דקלים — 350 מ\"ג נתרן, 7 ג' חלבון.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 424.0,
+          "protein": 7.0,
+          "sugar": null,
+          "fat": 0.5,
+          "fiber": 4.0,
+          "sodium": 350.0
+        },
+        "ingredients": "פתיתי שיבולת שועל 40% (מכיל גלוטן) , פירות מיובשים 30% ((צימוקים 16%, אננס מסוכר 9% (אננס, סוכר, מווסת חומציות (E330), חומר משמר גור פית דו - חמצנית (E220)), תמרים 3%, שבבי בננה מסוכרת 2% (בננה, סוכר, שמן קוקוס, דבש, חומר טעם וריח )), שמן צמחי (דקלים), אורז תפוח, ק מח חיטה (מכיל גלוטן), סירופ גלוקוז, סוכר  קנים חום ,קוקוס,  גרעיני חמניות , אבקת קקאו, מלח,   מתחלב לציטין סויה, חומר טעם. מכיל גלוטן חיטה,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "limitingFactors": [
+          "חלבון נמוך (7.0 גרם ל-100 גרם)",
+          "סיבים נמוכים (4.0 גרם ל-100 גרם)"
+        ],
+        "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
+      },
+      "rowVerdict": "מוזלי עתיר פירות (30%) על בסיס שמן דקלים, סוכר וסירופ גלוקוז — הפרי מסוכר ו-7 גרם חלבון בלבד. יורד ל-E כי 350 מ\"ג נתרן ל-100 גרם — גרנולה נקייה לא מוסיפה מלח כזה.",
+      "_subpool": "granola",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין סויה",
+          "tier": "functional",
+          "function_he": "חומר תחליב — ייצוב שומן ומניעת הפרדה",
+          "explanation_he": "לציטין סויה הוא חומר תחליב נפוץ מאוד שמקורו בסויה, המשמש לשמירה על מרקם אחיד ומניעת הפרדת שמן. מאושר לשימוש על ידי רשויות הבריאות האירופיות והישראליות."
+        },
+        {
+          "e_number": "E220",
+          "name_he": "דו תחמוצת הגופרית",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר נגד עובש / מניעת חמצון בפירות יבשים",
+          "explanation_he": "דו תחמוצת הגופרית משמשת לשימור פירות יבשים ומניעת שינוי צבע; היא מוכרת כגורם אלרגי אצל אנשים הסובלים מאסתמה ורגישות לגופריות — מופיעה בהצהרת אלרגנים חובה."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "barcode": "7290011131395",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction"
     }
   ]
 }

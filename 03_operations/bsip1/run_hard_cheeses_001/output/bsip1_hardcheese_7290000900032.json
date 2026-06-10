@@ -1,0 +1,128 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_hardcheese_7290000900032",
+  "barcode": "7290000900032",
+  "canonical_name_he": "פרוסות גבינה מעובדת לייט 12%",
+  "brand": "תנובה",
+  "weight_g": 150,
+  "category": "hard_cheeses",
+  "bsip_cheese_subpool": "processed",
+  "source_retailers": [
+    "supplementary"
+  ],
+  "retailer_prices": {
+    "supplementary": 12.5
+  },
+  "image_url": null,
+  "fat_per_100g_scored": 12.0,
+  "fat_in_dry_matter_pct": null,
+  "both_fat_values_on_label": false,
+  "fat_label_documentation": null,
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 185.0,
+    "fat_g": 12.0,
+    "fat_saturated_g": 7.0,
+    "fat_trans_g": null,
+    "sodium_mg": 920.0,
+    "carbohydrates_g": 4.0,
+    "sugars_g": 3.5,
+    "dietary_fiber_g": null,
+    "protein_g": 14.0
+  },
+  "energy_kcal": 185.0,
+  "fat_g": 12.0,
+  "fat_saturated_g": 7.0,
+  "fat_trans_g": null,
+  "protein_g": 14.0,
+  "carbohydrates_g": 4.0,
+  "sugars_g": 3.5,
+  "sodium_mg": 920.0,
+  "dietary_fiber_g": null,
+  "calcium_mg": 520.0,
+  "ingredients_text_he": "גבינה טבעית (50%), מים, עמילן מתוקן (E1422), נתרן פוספט (E339), נתרן ציטרט (E331), מלח, קרגינן (E407), חומצת לימון (E330)",
+  "ingredients_list": [
+    "גבינה טבעית",
+    "50%",
+    "מים",
+    "עמילן מתוקן",
+    "E1422",
+    "נתרן פוספט",
+    "E339",
+    "נתרן ציטרט",
+    "E331",
+    "מלח",
+    "קרגינן",
+    "E407",
+    "חומצת לימון",
+    "E330"
+  ],
+  "ingredient_count": 14,
+  "ingredient_text_quality": "good",
+  "allergens_contains": [
+    "milk"
+  ],
+  "allergens_may_contain": [],
+  "confidence": 0.65,
+  "canonical_trust_level": "medium",
+  "canonical_trust_score": 0.65,
+  "conflicts_summary": [],
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": null,
+  "nova_proxy": 4,
+  "nova_confidence": 0.85,
+  "nova_confidence_band": "high",
+  "nova_notes": [
+    "phosphates/vegetable_oil/carrageenan_detected: NOVA 4 processed cheese"
+  ],
+  "detected_additives": [
+    {
+      "e_number": "E1422",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "E330",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "E407",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "E339",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "E331",
+      "detected_in": "ingredients_text_he"
+    },
+    {
+      "e_number": "modified_starch",
+      "name_he": "עמילן מתוקן",
+      "detected_in": "ingredients_text_he"
+    }
+  ],
+  "additive_count": 6,
+  "data_sufficiency": "sufficient",
+  "bsip1_trust_level": "medium",
+  "bsip1_trust_score": 0.65,
+  "bsip1_risk_flags": [
+    "single_source_only"
+  ],
+  "nutrition_consistency_status": "consistent",
+  "consistency_checks": {
+    "sugar_le_carbs": true,
+    "satfat_le_fat": true,
+    "kcal_plausible": true,
+    "macros_plausible": true
+  },
+  "provenance": {
+    "source": "il_prices+open_food_facts",
+    "fetched_at": "2026-06-07T08:00:00Z",
+    "client_version": "il_prices/1.2 + off/2.1",
+    "verification_status": "candidate"
+  },
+  "enrichment_timestamp": "2026-06-07T09:00:19.313230+00:00",
+  "run_id": "run_hard_cheeses_001"
+}

@@ -1,0 +1,26 @@
+.stage { position: absolute; inset: 0; margin: auto; width: var(--plant-size, 520px);
+  height: calc(var(--plant-size, 520px) * 1.031); z-index: 1; will-change: transform; pointer-events: none; }
+.stage[data-mode="mascot"] { inset: 5% 0 auto 0; }
+
+/* the engine injects these elements into .stage / its parent */
+.stage :global(.plant) { position: absolute; inset: 0; transition: opacity .5s; }
+.stage :global(.piece) { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform, opacity; }
+.stage :global(.piece img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.stage :global(.plant-constellation) { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transition: opacity .4s; }
+.stage :global(.plant-net) { opacity: 0; }
+.stage :global(.plant-edge) { stroke: rgba(7,147,111,.55); stroke-width: .3; vector-effect: non-scaling-stroke; }
+.stage :global(.plant-node) { fill: rgba(15,29,41,.55); }
+
+:global(.plant-particles) { position: absolute; inset: 0; z-index: 2; pointer-events: none; will-change: transform; }
+:global(.ppart) { position: absolute; animation-name: pfloat, pfade; animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite; will-change: transform, opacity; }
+:global(.ppart-seed) { border-radius: 50%; background: #07936F; --pop: .20; }
+:global(.ppart-leaf) { background: #0F1D29; border-radius: 0 72% 0 72%; --pop: .09; }
+@keyframes pfloat { from { transform: translateY(0) translateX(0) rotate(0); }
+  to { transform: translateY(-130px) translateX(var(--drift, 0)) rotate(40deg); } }
+@keyframes pfade { 0%,100% { opacity: 0; } 18%,82% { opacity: var(--pop, .3); } }
+
+/* legibility scrim so the centered headline stays crisp over the watermark */
+.scrim { position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(62% 56% at 50% 47%,
+    rgba(247,247,242,.88) 0%, rgba(247,247,242,.55) 44%, rgba(247,247,242,0) 74%); }

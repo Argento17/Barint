@@ -23,6 +23,14 @@ from constants import KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER  # EV-047
 # everywhere else. This is fully reversible: unset the env var → frozen behavior returns.
 TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 
+# BARI_DAIRY_SAT_FAT_INFER — when ON, dairy products with fat_g known but
+# fat_saturated_g absent have sat_fat estimated at 0.62 × fat_g (typical hard-cheese
+# ratio from compositional reference data). This eliminates the data-asymmetry where
+# products with declared sat_fat receive the Israeli red label but unlabelled products
+# escape it. Conservative: does not apply to processed-cheese sub_pool (different
+# fat profile). Gated so other category runs are unaffected. Default OFF.
+DAIRY_SAT_FAT_INFER_ON = os.environ.get("BARI_DAIRY_SAT_FAT_INFER", "off").lower() == "on"
+
 # ---------------------------------------------------------------------------
 # Hebrew ingredient keyword lists
 # ---------------------------------------------------------------------------
@@ -130,6 +138,37 @@ ADDITIVE_MARKER_PATTERNS = [
     (r"E-300|E-920|E920|חומר הוספה לקמח", "flour_treatment"),
 ]
 
+# Natural colorants: plant or animal-derived pigments whose presence in a product
+# does NOT signal industrial ultra-processing. When a "color" marker fires but the
+# entire evidence is covered by this exemption list (and no synthetic dye is found),
+# has_artificial_color is set to False — the additive_marker_count is unchanged.
+# Evidence: annatto (E160b) is a natural seed-extract pigment; β-carotene, turmeric,
+# paprika, and anthocyanins are whole-food pigments; none are NOVA 4 markers.
+NATURAL_COLORANT_MARKERS_HE: list[str] = [
+    "אנאטו", "אנטו",           # annatto E160b — both spellings incl. common OCR variant
+    "בטא קרוטן", "בטא-קרוטן",  # beta-carotene E160a
+    "קרוטן",                   # carotene (generic carotenoid)
+    "ספירולינה",                # spirulina pigment
+    "פפריקה",                   # paprika / paprika extract E160c
+    "כורכום",                   # turmeric / curcumin E100
+    "אנתוציאנין",              # anthocyanins E163
+    "E160", "E-160",           # carotenoid family (E160a–f; all naturally sourced)
+    "E161", "E-161",           # xanthophylls (natural)
+    "E162", "E-162",           # betanin / beet-red (natural)
+    "E163", "E-163",           # anthocyanins (natural)
+    "E100", "E-100",           # curcumin / turmeric (natural)
+    "E120", "E-120",           # carmine / cochineal (animal-derived, not synthetic)
+    "E140", "E-140",           # chlorophylls (natural)
+    "E141", "E-141",           # copper–chlorophyll complexes (natural derivative)
+]
+
+# Synthetic azo, xanthene, and triarylmethane dyes whose presence means the color
+# signal IS artificial even if natural colorants are also listed.
+_SYNTHETIC_COLOR_RE = re.compile(
+    r"E-?10[2-9]|E-?1[1-5][0-9](?!\d)|טרטרזין|sunset|כרמוזין|קרמוזין",
+    re.IGNORECASE
+)
+
 # Seed oil markers
 SEED_OIL_MARKERS_HE = [
     "שמן חמניות",   # sunflower oil
@@ -171,7 +210,10 @@ WHOLE_GRAIN_MARKERS_HE = [
 FERMENTATION_MARKERS_HE = [
     "תרבויות חיות", "תרביות חיות", "חיידקים פרוביוטיים",
     "לקטובציל", "בידפידוס", "חומצה לקטית", "חמץ",
-    "מחמצת", "ספיח", "שמר",
+    "מחמצת", "ספיח",
+    # NOTE: "שמר" (yeast) is intentionally NOT in this list — it is a substring of
+    # "משמרים" (preservatives) and caused a false fermentation positive on products
+    # with "ללא חומרים משמרים" (no preservatives). Use _FERMENTATION_WORDBOUND_RE below.
     # ── Israeli retail live-culture vocabulary (mirror of TASK-139B FERMENTATION_TERMS) ──
     "תרבויות",                                  # plain plural (label often omits "חיות")
     "חיידק פרוביוטי", "חיידקי פרוביוטי", "חיידקים פרוביוטי",
@@ -180,6 +222,18 @@ FERMENTATION_MARKERS_HE = [
     "ביפידוס", "ביפדוס", "bifidus",             # bifidobacterium (case-insensitive → BIFIDUS)
     "תרבית",                                    # singular "culture"
 ]
+
+# EV-051 / TASK-198 — Word-boundary fermentation detection for short/ambiguous markers.
+# "שמר" (yeast/fermentation) MUST NOT match as a substring of "משמרים" (preservatives).
+# "ללא חומרים משמרים" = "no preservatives" — the "שמרים" sub-word is a false positive.
+# Hebrew word-boundary: require that "שמר" is NOT preceded by a Hebrew letter (mem of
+# "מ-שמרים" would be caught by (?<![א-ת])). This mirrors the BREAD_INGREDIENT_RE guard
+# in the BSIP1 builder (same EV-029-family class of substring-collision bug).
+# All other FERMENTATION_MARKERS_HE are long-form phrases not susceptible to this trap.
+_FERMENTATION_WORDBOUND_RE = re.compile(
+    r"(?<![א-ת])שמר(?:[ים]+)?(?![א-ת])",   # שמר / שמרים / שמרי — not preceded by Hebrew letter
+    re.UNICODE
+)
 
 # Protein isolate markers
 PROTEIN_ISOLATE_MARKERS_HE = [
@@ -293,6 +347,94 @@ HUMECTANT_GROUP_RE = re.compile(
     re.IGNORECASE | re.UNICODE
 )
 
+# ---------------------------------------------------------------------------
+# EV-006 — Functional fiber vocabulary (FFV-v1)
+# ---------------------------------------------------------------------------
+# Viscous (gel-forming) soluble fibers — glycemic-dampening credit
+# Source: fiber_functional_vocabulary_v1.md §§3.1–3.4
+# Each entry: (detection_key, [pattern_list])
+VISCOUS_FIBER_PATTERNS = {
+    "beta_glucan": [
+        "beta-glucan", "beta glucan", "β-glucan", "betaglucan",
+        "בטא גלוקן", "בטא-גלוקן", "ביתא גלוקן", "ביתא-גלוקן", "בטא גלוקאן",
+    ],
+    "psyllium": [
+        "psyllium", "ispaghula", "plantago",
+        "פסיליום", "קליפת פסיליום", "זרעי פסיליום", "איספגולה", "פלנטגו",
+    ],
+    "guar_native": [
+        "guar gum", "guar", "E412", "E-412",
+        "גואר", "גומי גואר", "גואר גאם", "שרף גואר",
+    ],
+    "pectin": [
+        "pectin", "E440", "E-440",
+        "פקטין", "פקטין תפוחים", "פקטין הדרים",
+    ],
+}
+
+# Non-viscous prebiotic fermentable fibers — NO glycemic-gel credit
+# Source: fiber_functional_vocabulary_v1.md §§3.5–3.12
+PREBIOTIC_FIBER_PATTERNS = {
+    "phgg": [
+        "partially hydrolyzed guar gum", "partially hydrolysed guar gum",
+        "PHGG", "hydrolyzed guar", "sunfiber",
+        "גואר מפורק חלקית", "גואר מהידרוליזה חלקית", "סאנפייבר",
+    ],
+    "inulin": [
+        "inulin", "chicory inulin",
+        "אינולין",
+    ],
+    "chicory": [
+        "chicory root", "chicory fiber", "chicory fibre", "chicory root fiber",
+        "סיבי עולש", "שורש עולש", "סיבי שורש עולש", "סיבים משורש עולש",
+    ],
+    "fos": [
+        "fructo-oligosaccharides", "fructooligosaccharides", "oligofructose",
+        "פרוקטו-אוליגוסכרידים", "פרוקטו אוליגוסכרידים", "אוליגופרוקטוז",
+    ],
+    "gos": [
+        "galacto-oligosaccharides", "galactooligosaccharides",
+        "גלקטו-אוליגוסכרידים", "גלקטו אוליגוסכרידים",
+    ],
+    "resistant_dextrin": [
+        "resistant dextrin", "resistant maltodextrin", "soluble corn fiber",
+        "nutriose", "fibersol", "fibersol-2", "wheat dextrin",
+        "דקסטרין עמיד", "מלטודקסטרין עמיד", "נוטריוז", "פיברסול",
+    ],
+    "arabinogalactan": [
+        "arabinogalactan", "larch arabinogalactan", "fiberaid",
+        "ארבינוגלקטן", "ערבינוגלקטן",
+    ],
+    "acacia": [
+        "gum arabic", "acacia gum", "acacia fiber", "acacia fibre",
+        "arabic gum", "E414", "E-414",
+        "גומי ערבי", "גומי אקאציה", "גאם ערביק", "סיבי שיטה",
+    ],
+}
+
+# Disambiguation guards for functional fiber detection
+# PHGG markers — if any fire, native_guar is suppressed from viscous class
+PHGG_MARKERS = [
+    "partially hydrolyzed", "partially hydrolysed", "מפורק חלקית",
+    "מהידרוליזה", "PHGG", "sunfiber", "סאנפייבר",
+]
+
+# Bare maltodextrin/dextrin EXCLUDE list — never count as fiber
+MALTODEXTRIN_EXCLUDE = [
+    "maltodextrin", "מלטודקסטרין", "dextrin", "דקסטרין",
+]
+
+# Resistance qualifier required for dextrin/maltodextrin to count
+RESISTANCE_QUALIFIER = [
+    "resistant", "עמיד", "לעיכול", "nutriose", "fibersol",
+    "נוטריוז", "פיברסול", "soluble corn fiber",
+]
+
+# Non-cereal beta-glucan context — suppress viscous credit
+BETA_GLUCAN_NON_CEREAL = [
+    "yeast", "שמרים", "mushroom", "פטריות", "reishi", "ריישי",
+]
+
 
 def _search(text: str, patterns: list[str]) -> list[str]:
     """Return list of matched patterns (case-insensitive, multiline)."""
@@ -334,6 +476,94 @@ def _detect_prebiotic_gum(text: str) -> tuple:
 
 def _detect_allulose(text: str) -> bool:
     return any(p.lower() in text.lower() for p in ALLULOSE_PATTERNS)
+
+
+def _detect_functional_fiber(text: str) -> dict:
+    """Detect EV-006 functional fiber types from ingredient text.
+
+    Returns:
+        dict with keys:
+            functional_fiber_detected: bool
+            functional_fiber_type: "viscous" | "prebiotic" | "both" | "none"
+            functional_fiber_terms_matched: list[str]
+            functional_fiber_viscous_terms: list[str]
+            functional_fiber_prebiotic_terms: list[str]
+    """
+    text_lower = text.lower()
+    matched_terms = []
+    viscous_matched = []
+    prebiotic_matched = []
+
+    # --- Guard 1: PHGG suppresses native guar viscosity ---
+    has_phgg = any(p.lower() in text_lower for p in PHGG_MARKERS)
+
+    # --- Guard 2: Resistant dextrin vs bare maltodextrin/dextrin ---
+    has_resistant_dextrin = False
+    for p in RESISTANCE_QUALIFIER:
+        if p.lower() in text_lower:
+            # Check that a dextrin/maltodextrin term co-occurs
+            for d in ["dextrin", "maltodextrin", "דקסטרין", "מלטודקסטרין", "corn fiber"]:
+                if d.lower() in text_lower:
+                    has_resistant_dextrin = True
+                    break
+            if has_resistant_dextrin:
+                break
+
+    # --- Guard 3: Non-cereal beta-glucan context ---
+    has_beta_glucan = False
+    for p in VISCOUS_FIBER_PATTERNS["beta_glucan"]:
+        if p.lower() in text_lower:
+            has_beta_glucan = True
+            break
+    beta_glucan_non_cereal = False
+    if has_beta_glucan:
+        for p in BETA_GLUCAN_NON_CEREAL:
+            if p.lower() in text_lower:
+                beta_glucan_non_cereal = True
+                break
+
+    # --- Detect viscous fibers ---
+    for key, patterns in VISCOUS_FIBER_PATTERNS.items():
+        for p in patterns:
+            if p.lower() in text_lower:
+                if key == "beta_glucan" and beta_glucan_non_cereal:
+                    continue  # non-cereal β-glucan → no viscous credit
+                if key == "guar_native" and has_phgg:
+                    continue  # PHGG suppresses native guar viscosity
+                viscous_matched.append(p)
+                matched_terms.append(p)
+                break  # one match per key is enough
+
+    # --- Detect prebiotic fibers ---
+    for key, patterns in PREBIOTIC_FIBER_PATTERNS.items():
+        for p in patterns:
+            if p.lower() in text_lower:
+                if key == "resistant_dextrin" and not has_resistant_dextrin:
+                    continue  # bare maltodextrin/dextrin → excluded
+                prebiotic_matched.append(p)
+                matched_terms.append(p)
+                break
+
+    # --- Classify ---
+    has_viscous = len(viscous_matched) > 0
+    has_prebiotic = len(prebiotic_matched) > 0
+
+    if has_viscous and has_prebiotic:
+        fiber_type = "both"
+    elif has_viscous:
+        fiber_type = "viscous"
+    elif has_prebiotic:
+        fiber_type = "prebiotic"
+    else:
+        fiber_type = "none"
+
+    return {
+        "functional_fiber_detected": fiber_type != "none",
+        "functional_fiber_type": fiber_type,
+        "functional_fiber_terms_matched": sorted(set(matched_terms)),
+        "functional_fiber_viscous_terms": sorted(set(viscous_matched)),
+        "functional_fiber_prebiotic_terms": sorted(set(prebiotic_matched)),
+    }
 
 
 def _count_polyol_types(text: str) -> tuple:
@@ -635,26 +865,42 @@ def extract_signals(product: dict) -> dict:
     additive_marker_count = len(additive_categories)
     additive_categories_list = sorted(additive_categories.keys())
 
+    # Distinguish natural from artificial colorants.
+    # has_artificial_color = True only when the color match is NOT fully covered by
+    # known natural colorant markers, or when a synthetic dye code is explicitly present.
+    # Keeps additive_marker_count and the "color" category entry intact (additive burden
+    # is unchanged); only the NOVA-4 +2 weight and the R4-demotion-block are suppressed
+    # for natural colorants. Evidence: annatto/E160b, β-carotene, turmeric, paprika,
+    # and anthocyanins are whole-food pigments — not markers of industrial processing.
+    _natural_color_hits = [m for m in NATURAL_COLORANT_MARKERS_HE
+                           if m.lower() in full_text.lower()]
+    has_artificial_color = has_color and (
+        bool(_SYNTHETIC_COLOR_RE.search(full_text)) or not _natural_color_hits
+    )
+
     # --- Sprint 1: EV-003/019 emulsifier tier detection ---
+    # TASK-222A (2026-06-09): sprint1 +2/−1 additive-count corrections RETIRED.
+    # The identity-based F1 deltas (ADDITIVE_IDENTITY_DELTAS in constants.py)
+    # now handle emulsifier scoring via per-ingredient point adjustments on
+    # additive_quality. sprint1 corrections were a coarse proxy; keeping the
+    # detection calls below for traceability/rollback but zeroing the output.
     high_risk_emuls_detected, high_risk_emuls_found = _detect_high_risk_emulsifier(full_text)
     neutral_emuls_detected,   neutral_emuls_found   = _detect_neutral_emulsifier(full_text)
     prebiotic_gum_detected,   prebiotic_gum_found   = _detect_prebiotic_gum(full_text)
 
-    sprint1_additive_correction = 0
-    correction_notes = []
-    if "emulsifier" in additive_categories and neutral_emuls_detected:
-        if not NON_LECITHIN_EMULSIFIER_RE.search(full_text) and not high_risk_emuls_detected:
-            sprint1_additive_correction -= 1
-            correction_notes.append("EV-003/019: lecithin-only emulsifier removed (-1)")
-    if prebiotic_gum_detected and "stabilizer" in additive_categories:
-        OTHER_STAB_RE = re.compile(r"E-?410|E-?412|E-?415|E-?440|מייצב(?!\s*גומי)", re.IGNORECASE)
-        if not OTHER_STAB_RE.search(full_text):
-            sprint1_additive_correction -= 1
-            correction_notes.append("EV-019: prebiotic gum removed from stabilizer count (-1)")
-    if high_risk_emuls_detected:
-        sprint1_additive_correction += 2
-        correction_notes.append(f"EV-003: high-risk emulsifier (+2): {high_risk_emuls_found[:2]}")
-    sprint1_additive_count = max(0, additive_marker_count + sprint1_additive_correction)
+    sprint1_additive_correction = 0   # retired — identity deltas replace this
+    correction_notes = []              # retired
+    # Sprint1 correction logic preserved below for rollback reference:
+    # if "emulsifier" in additive_categories and neutral_emuls_detected:
+    #     if not NON_LECITHIN_EMULSIFIER_RE.search(full_text) and not high_risk_emuls_detected:
+    #         sprint1_additive_correction -= 1
+    # if prebiotic_gum_detected and "stabilizer" in additive_categories:
+    #     OTHER_STAB_RE = re.compile(r"E-?410|E-?412|E-?415|E-?440|מייצב(?!\s*גומי)", re.IGNORECASE)
+    #     if not OTHER_STAB_RE.search(full_text):
+    #         sprint1_additive_correction -= 1
+    # if high_risk_emuls_detected:
+    #     sprint1_additive_correction += 2
+    sprint1_additive_count = additive_marker_count   # TASK-222A: no correction; raw count only
 
     # --- TASK-133 (F1/F2/F4): ingredient identity + fragmentation via taxonomy ---
     # Resolves named additives (emulsifier identity, BHA/BHT) and structural form
@@ -668,6 +914,8 @@ def extract_signals(product: dict) -> dict:
 
     tax_emulsifier_concern: list[str] = []   # carrageenan / CMC / polysorbate-80 (F1 up)
     tax_emulsifier_benign:  list[str] = []   # soy / sunflower lecithin (F1 down)
+    tax_emulsifier_medium:  list[str] = []   # mono/diglycerides, DATEM, SSL, PGPR (ECS-v1 / EV-045)
+    tax_emulsifier_low:     list[str] = []   # gums, pectin, agar, alginate, gellan (ECS-v1 / EV-045)
     tax_named_concern_additives: list[str] = []
     tax_bha_present = False                  # F4 named penalty
     tax_bht_present = False                  # F4 explicitly NOT penalized
@@ -679,6 +927,10 @@ def extract_signals(product: dict) -> dict:
             tax_emulsifier_concern.append(ident.canonical)
         elif ident.additive_class == "emulsifier_benign" and ident.canonical not in tax_emulsifier_benign:
             tax_emulsifier_benign.append(ident.canonical)
+        elif ident.additive_class == "emulsifier_medium" and ident.canonical not in tax_emulsifier_medium:
+            tax_emulsifier_medium.append(ident.canonical)
+        elif ident.additive_class == "emulsifier_low" and ident.canonical not in tax_emulsifier_low:
+            tax_emulsifier_low.append(ident.canonical)
         if ident.canonical == "bha":
             tax_bha_present = True
         if ident.canonical == "bht":
@@ -692,6 +944,7 @@ def extract_signals(product: dict) -> dict:
     # Native vs modified starch (F1: native starch leaves the additive burden)
     tax_native_starch = False
     tax_modified_starch = False
+    tax_modified_starch_positions: list[int] = []   # ECS-v1 gate: position ≥ 4 counts as stabiliser
     for item in ingredient_order:
         s_ident = itax.resolve_structural(item["text"], None)
         if s_ident is None:
@@ -700,6 +953,15 @@ def extract_signals(product: dict) -> dict:
             tax_native_starch = True
         elif s_ident.canonical == "modified_starch":
             tax_modified_starch = True
+            tax_modified_starch_positions.append(item["position"])
+
+    # ECS-v1 / EV-045: modified_starch_stabilizer gate — count modified starch as a
+    # medium-concern complexity agent when position ≥ 4 or product has light/diet signal.
+    _product_name = (product.get("canonical_name_he") or product.get("product_name_he") or "")
+    _light_diet_signal = any(t in _product_name for t in ("קל", "דיאט", "לייט", "lite", "light"))
+    _mod_starch_late = any(p >= 4 for p in tax_modified_starch_positions)
+    if tax_modified_starch and (_mod_starch_late or _light_diet_signal):
+        tax_emulsifier_medium.append("modified_starch_stabilizer")
 
     # F2: collagen marker (reconstructed-protein matrix form is set below, once the
     # isolate-marker detection has run).
@@ -726,11 +988,33 @@ def extract_signals(product: dict) -> dict:
     whole_grain_matches = _search(full_text, WHOLE_GRAIN_MARKERS_HE)
     has_whole_grain = bool(whole_grain_matches)
 
+    # EV-006 — Functional fiber detection (FFV-v1 vocabulary)
+    functional_fiber = _detect_functional_fiber(ing_text)
+
     # R-04: plain dairy detection (first three ingredients) — computed here (ahead of the
     # protein-source block) because TASK-144 Fix 3 dairy-source typing depends on it.
     DAIRY_BASE_MARKERS_HE = ["חלב", "יוגורט", "גבינת", "מי גבינה", "קזאין"]
     first_three_text = " ".join(ingredients[:3]).lower() if ingredients else ing_text[:200].lower()
     product_type_dairy = any(m in first_three_text for m in DAIRY_BASE_MARKERS_HE)
+
+    # BARI_DAIRY_SAT_FAT_INFER — infer sat_fat for dairy products where it is absent.
+    # Hard/semi-hard cheese sat_fat is consistently ~62% of total fat (compositional
+    # reference range: 58–66%). This corrects the scoring asymmetry where a product
+    # that declares sat_fat on the label is penalised by the Israeli sat_fat red label
+    # while a nutritionally identical product without the declaration escapes it.
+    # Guard: not applied to processed-cheese sub_pool (emulsified matrix, different
+    # fat composition). Tagged in L3 as sat_fat_inferred=True for full traceability.
+    _sat_fat_inferred = False
+    _sat_fat_inferred_value = None
+    if DAIRY_SAT_FAT_INFER_ON and sat_f is None and product_type_dairy and fat is not None and fat > 0:
+        _sub_pool_for_infer = (
+            (product.get("bsip_cheese_subpool") or product.get("sub_pool") or "")
+            .lower().strip()
+        )
+        if _sub_pool_for_infer != "processed":
+            _sat_fat_inferred_value = round(fat * 0.62, 1)
+            sat_f = _sat_fat_inferred_value
+            _sat_fat_inferred = True
 
     # Protein source
     isolate_matches = _search(full_text, PROTEIN_ISOLATE_MARKERS_HE)
@@ -798,7 +1082,15 @@ def extract_signals(product: dict) -> dict:
     has_fruit_concentrate = bool(fruit_conc_matches)
 
     # Fermentation
+    # EV-051 / TASK-198 — combine substring matches for long-form markers with the
+    # word-boundary regex check for "שמר" (yeast). Substring matching of "שמר" alone
+    # caused a false positive on "ללא חומרים משמרים" (no preservatives), because "שמרים"
+    # is a substring of "משמרים". The word-boundary regex (_FERMENTATION_WORDBOUND_RE)
+    # is required: (?<![א-ת])שמר ensures the match is not prefixed by a Hebrew letter.
     ferm_matches = _search(full_text, FERMENTATION_MARKERS_HE)
+    ferm_wordbound = _FERMENTATION_WORDBOUND_RE.search(full_text)
+    if ferm_wordbound:
+        ferm_matches = list(ferm_matches) + [ferm_wordbound.group()]
     has_fermentation = bool(ferm_matches)
 
     # Trans fat flag
@@ -871,7 +1163,9 @@ def extract_signals(product: dict) -> dict:
         "additive_marker_count":    additive_marker_count,
         "additive_categories":      additive_categories_list,
         "has_flavor_enhancer":      has_flavor_enhancer,
-        "has_artificial_color":     has_color,
+        "has_artificial_color":     has_artificial_color,
+        "has_natural_color":        bool(_natural_color_hits),
+        "natural_color_hits":       _natural_color_hits,
         "has_seed_oil":             has_seed_oil,
         "seed_oil_matches":         seed_oil_matches,
         "has_palm_oil":             has_palm_oil,
@@ -910,9 +1204,17 @@ def extract_signals(product: dict) -> dict:
         "sprint1_humectant_polyols":             sorted(humectant_polyols_detected),
         "sprint1_penalty_polyol_count":          penalty_polyol_count,
         "sprint1_penalty_polyols":               penalty_polyols,
+        # EV-006 — Functional fiber detection (FFV-v1 vocabulary)
+        "functional_fiber_detected":             functional_fiber["functional_fiber_detected"],
+        "functional_fiber_type":                 functional_fiber["functional_fiber_type"],
+        "functional_fiber_terms_matched":        functional_fiber["functional_fiber_terms_matched"],
+        "functional_fiber_viscous_terms":        functional_fiber["functional_fiber_viscous_terms"],
+        "functional_fiber_prebiotic_terms":      functional_fiber["functional_fiber_prebiotic_terms"],
         # TASK-133 (F1/F2/F4) — ingredient identity + fragmentation (magnitudes applied downstream)
         "tax_emulsifier_concern":                tax_emulsifier_concern,      # F1: carrageenan/CMC/P80 (up)
         "tax_emulsifier_benign":                 tax_emulsifier_benign,       # F1: lecithin (toward neutral)
+        "tax_emulsifier_medium":                 tax_emulsifier_medium,       # ECS-v1: mono/diglycerides, DATEM, SSL, PGPR, modified starch (gated)
+        "tax_emulsifier_low":                    tax_emulsifier_low,          # ECS-v1: gums, pectin, agar, alginate, gellan
         "tax_named_concern_additives":           tax_named_concern_additives,
         "tax_native_starch":                     tax_native_starch,           # F1: out of additive burden
         "tax_modified_starch":                   tax_modified_starch,         # F1: stays penalized
@@ -925,11 +1227,21 @@ def extract_signals(product: dict) -> dict:
         # no longer trip the ">5 ingredients" NOVA-3 path.
         "sanitized_ingredient_count":            len(ingredients),
         "primary_fragmentation":                 frag_profile.get("dominant_fragmentation"),
+        # BARI_DAIRY_SAT_FAT_INFER fields — traceability for inferred sat_fat
+        "sat_fat_inferred":                      _sat_fat_inferred,
+        "sat_fat_inferred_value":                _sat_fat_inferred_value,
+        "sat_fat_inferred_basis": (
+            "0.62 × fat_g: typical sat_fat fraction in hard/semi-hard dairy cheese "
+            "(compositional reference range 58–66%); BARI_DAIRY_SAT_FAT_INFER=on"
+            if _sat_fat_inferred else None
+        ),
         "inference_confidence_notes": [
             "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
             "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
             "Additive count reflects distinct functional categories detected, not total additive instances",
-            "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+            "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+            "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+            "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
             "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups",
         ],
     }

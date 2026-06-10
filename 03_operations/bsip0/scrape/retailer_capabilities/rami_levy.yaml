@@ -1,0 +1,73 @@
+# Rami Levy Israel — BSIP0 retailer capability assessment
+# Produced: 2026-06-07 (TASK-210 Phase A)
+# Status: DEFERRED — price-transparency portal unreachable; storefront is login-gated SPA
+
+bsip0_version: "bsip0_v0_2"
+retailer: rami_levy_israel
+retailer_url: https://www.ramilevi.co.il
+
+# ── Capability verdict ──────────────────────────────────────────────────────────
+verdict: DEFERRED
+defer_reason: >
+  Both known price-transparency endpoints for Rami Levy are unreachable from this
+  network (ConnectionError / DNS failure on every probe, 2026-06-05 and 2026-06-07).
+  The storefront (www.ramilevi.co.il) is a login-gated JavaScript SPA with no public
+  catalog API discoverable via static inspection. No structured barcode/nutrition feed
+  is available.
+
+# ── Price-transparency portal probes ───────────────────────────────────────────
+price_transparency_probes:
+  probed_at:
+    - "2026-06-05T10:43:58Z"  # multiretailer_cereals/01_acquire_multiretailer.py
+    - "2026-06-07T09:00:00Z"  # TASK-210 Phase A re-probe
+  endpoints_tested:
+    - url: "https://prices.rami-levy.co.il/"
+      result: "ConnectionError: Max retries exceeded (DNS/TCP failure)"
+    - url: "http://prices.rami-levy.co.il/"
+      result: "ConnectionError: Max retries exceeded"
+    - url: "https://publishedprices.co.il/"
+      result: "ConnectionError: Max retries exceeded (old Cerberus host, confirmed dead)"
+    - url: "https://url.publishedprices.co.il/"
+      result: "ConnectionError: Max retries exceeded"
+  laibcatalog_chains_present: false
+  # Note: laibcatalog.co.il (live replacement for Cerberus) only lists
+  # chain 7290455000004 (Yochananof/Yohananof) as of 2026-06-07 probe.
+  # Rami Levy (chain 7290058140886 / Mega-style) is NOT present.
+
+# ── Storefront assessment ───────────────────────────────────────────────────────
+storefront:
+  url: https://www.ramilevi.co.il
+  js_framework: SPA (JavaScript-heavy; product detail pages require login or dynamic token)
+  product_page_accessible: unknown  # login-gated; no unauthenticated product-page probe attempted
+  ingredients_accessible: unknown
+  nutrition_table_accessible: unknown
+  barcode_extractable: unknown
+  scrape_approach_available: "Playwright session with valid login cookie (not available)"
+
+# ── Data source alternatives ───────────────────────────────────────────────────
+alternatives:
+  - source: open_food_facts
+    coverage_estimate: "moderate for major Israeli brands; low for Rami Levy private label"
+    blocker: "Rami Levy barcode list required as input — cannot discover barcodes without identity feed"
+  - source: matrixcatalog.co.il
+    status: "Not probed; may host Rami Levy feed — requires investigation"
+  - source: Playwright authenticated session
+    status: "Would require Rami Levy account credentials and session management"
+
+# ── Ingredient & nutrition coverage estimate ────────────────────────────────────
+ingredient_coverage_estimate: null  # Cannot estimate — no products accessible
+nutrition_coverage_estimate: null
+
+# ── Recommendation ─────────────────────────────────────────────────────────────
+recommendation: >
+  Defer Rami Levy to a dedicated follow-up task. Before scraping:
+  1. Probe matrixcatalog.co.il for a Rami Levy chain_id (may host their feed).
+  2. Confirm whether prices.rami-levy.co.il is a geo-restricted or network-restricted
+     portal (may require an Israeli IP or a specific ISP route).
+  3. If a barcode feed is obtained, pair with OFF using the same il_prices+OFF model
+     as multiretailer_cereals (01_acquire_multiretailer.py). Filter rate expected >50%
+     due to Rami Levy's private-label volume and lower labeling transparency.
+  Ingredient coverage cannot be estimated until a product sample is accessible.
+  The 70% ingredient coverage threshold (TASK-210 Phase A gate) cannot be evaluated.
+
+next_task_suggestion: "TASK-210 follow-up: Rami Levy portal re-probe + matrixcatalog investigation"

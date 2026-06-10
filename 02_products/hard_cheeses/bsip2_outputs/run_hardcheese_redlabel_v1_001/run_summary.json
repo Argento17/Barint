@@ -1,0 +1,196 @@
+{
+  "run_id": "run_hardcheese_redlabel_v1_001",
+  "generated": "2026-06-08 19:54 UTC",
+  "task": "TASK-REDLABEL-001",
+  "engine": "proto_v0 / 0.4.1 + BARI_RECAL_P0=on + BARI_REDLABEL_V1=on",
+  "nova_fixes": [
+    "BSIP2-HC-002: short-ingredient dairy NOVA 1 rule (≤6 ings, no industrial additives)",
+    "R4 natural-colorant exclusion: annatto/beta-carotene no longer block NOVA 3→2 demotion",
+    "BSIP2-HC-001 sub-rule B: phosphate emulsifying salts (E339/E450/E451) → NOVA 4"
+  ],
+  "source": "BSIP1 bsip1_outputs/ (67 products)",
+  "processed": 67,
+  "scored_with_grade": 30,
+  "insufficient_data": 37,
+  "errors": 1,
+  "grade_distribution": {
+    "B": 28,
+    "insufficient_data": 37,
+    "C": 1,
+    "D": 1
+  },
+  "score_median": 50,
+  "score_range": [
+    34.6,
+    78.5
+  ],
+  "grade_thresholds": {
+    "S": 90,
+    "A": 80,
+    "B": 65,
+    "C": 50,
+    "D": 35,
+    "E": 0
+  },
+  "nova_distribution": {
+    "NOVA_1": 36,
+    "NOVA_2": 16,
+    "NOVA_3": 10,
+    "NOVA_4": 5
+  },
+  "subpool_stats": {
+    "yellow": {
+      "count": 35,
+      "grades": {
+        "B": 20,
+        "insufficient_data": 15
+      },
+      "score_median": 66.7,
+      "score_range": [
+        50,
+        78.5
+      ]
+    },
+    "yellow_light": {
+      "count": 8,
+      "grades": {
+        "insufficient_data": 4,
+        "B": 4
+      },
+      "score_median": 72.3,
+      "score_range": [
+        40.6,
+        74.2
+      ]
+    },
+    "hard_grating": {
+      "count": 8,
+      "grades": {
+        "insufficient_data": 3,
+        "C": 1,
+        "B": 4
+      },
+      "score_median": 66.7,
+      "score_range": [
+        50,
+        71.1
+      ]
+    },
+    "bulgarian": {
+      "count": 7,
+      "grades": {
+        "insufficient_data": 7
+      },
+      "score_median": 50,
+      "score_range": [
+        50,
+        50
+      ]
+    },
+    "tzfatit": {
+      "count": 4,
+      "grades": {
+        "insufficient_data": 4
+      },
+      "score_median": 50,
+      "score_range": [
+        50,
+        50
+      ]
+    },
+    "processed": {
+      "count": 5,
+      "grades": {
+        "insufficient_data": 4,
+        "D": 1
+      },
+      "score_median": 37.6,
+      "score_range": [
+        34.6,
+        40.0
+      ]
+    }
+  },
+  "misroute_count": 12,
+  "misroute_pct": 17.9,
+  "misroutes": [
+    {
+      "pid": "bsip1_hardcheese_7290000062419",
+      "name": "עמק צהוב 28% בלוק",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062426",
+      "name": "עמק צהוב 9% מופחת שומן",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062464",
+      "name": "פרמזן מגורר תנובה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062471",
+      "name": "פרמזן אמיתי 32% מיובא",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062501",
+      "name": "עמק בלוק 28% שטראוס",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062525",
+      "name": "עמק 28% מיני עגול",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062594",
+      "name": "מונסטר צהוב 30% גד",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000062601",
+      "name": "קולבי גד 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290000425023",
+      "name": "גבינה צפתית 28% שמן מלא",
+      "subpool": "tzfatit",
+      "routed_to": "whole_food_fat"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290010644781",
+      "name": "פרמזן מגורד דינה",
+      "subpool": "hard_grating",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178901",
+      "name": "פרוסות צהובות עמק 28%",
+      "subpool": "yellow",
+      "routed_to": "dessert"
+    },
+    {
+      "pid": "bsip1_hardcheese_7290110178918",
+      "name": "פרוסות מופחת שומן עמק 9%",
+      "subpool": "yellow_light",
+      "routed_to": "dessert"
+    }
+  ],
+  "error_detail": [
+    {
+      "product_id": "unknown",
+      "error": "unsupported operand type(s) for /: 'WindowsPath' and 'NoneType'"
+    }
+  ]
+}

@@ -40,7 +40,7 @@ export const BARI_COMPARISON_TOKENS = {
   },
   methodology: {
     fontSize: "12px",
-    color: "#AAAAAA",
+    color: "#666C67",
     maxSentences: 4,
   },
   score: {

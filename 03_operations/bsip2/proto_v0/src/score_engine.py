@@ -30,6 +30,8 @@ from constants import (
     PROCESSING_CAPS, FERMENTATION_DIRECT_BONUS,
     PROTEIN_QUALITY_MATRIX_DISCOUNT, PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES,
     ADDITIVE_IDENTITY_DELTAS, BHA_NAMED_PENALTY,
+    EMULSIFIER_COMPLEXITY_CONSTANTS, EMULSIFIER_COMPLEXITY_FAMILY_BUDGET,
+    FIBER_FUNCTIONAL_BONUS,
     FIBER_NOT_APPLICABLE_CATEGORIES,
     PROTEIN_SCALE_TABLES, lookup_protein_scale,
     RECAL_P0_FIBER_NOT_APPLICABLE, NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS,
@@ -54,6 +56,12 @@ from constants import (
     SODIUM_CEREAL_RED_LABEL_BOUNDARY,
     KCAL_PLAUSIBLE_UPPER, KCAL_PLAUSIBLE_LOWER,  # EV-047
     SAT_FAT_CAP_ENDEMIC_WFF_FRACTION,             # EV-048
+    REGQUAL_BASE_PER_LABEL, REGQUAL_SLOPE_PER_LABEL, REGQUAL_MAX_PER_LABEL, REGQUAL_FLOOR,
+    REGQUAL_SODIUM_BY_CATEGORY,
+    REDLABEL_ENDEMIC_SATFAT_CATEGORIES, REDLABEL_MULTI_CAP_VALUE,
+    SODIUM_GENERAL_BANDS, SUGAR_GRADUATED_BANDS,
+    REDLABEL_NULL_SATFAT_FAT_FLOOR, REDLABEL_DAIRY_SATFAT_FRACTION,
+    REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT,      # EV-REDLABEL-001–012
 )
 import re as _re
 
@@ -120,6 +128,11 @@ BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "on").lower() != "off"  # 
 # baselines are fully isolated — no cross-category movement).
 # D7 co-signed: Nutrition Agent + Product Agent, 2026-06-05.
 BARI_SODIUM_CEREAL = os.environ.get("BARI_SODIUM_CEREAL", "off").lower() == "on"
+
+# TASK-REDLABEL-001 — Continuous red-label scoring (eliminates hard threshold cliffs).
+# DEFAULT OFF → engine byte-identical to baseline. D7 co-sign (Product Agent) required
+# before activation. Source: redlabel_v1_design_spec.md. EV-REDLABEL-001–012.
+BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
 # TASK-181G — Glass Box W4: D3 de-moralization helpers (EV-042 bound values).
@@ -854,7 +867,10 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
     # Missing ingredients
     if not product.get("ingredients_list"):
         deduct(25, "missing: ingredient_list")
-    elif product.get("ingredient_text_quality") in ("corrupted", "malformed"):
+    elif product.get("ingredient_text_quality") in ("corrupted", "malformed", "marketing_bleed"):
+        # EV-051 / TASK-198: "marketing_bleed" carries the same confidence deduction as
+        # "corrupted" — the ingredient signals derived from marketing copy are unreliable
+        # (ingredient_count, has_whole_grain, has_fermentation are all potentially false).
         deduct(10, f"ingredient_quality={product.get('ingredient_text_quality')}")
 
     # Data consistency failures
@@ -1179,7 +1195,7 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
 
 
 def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
-    """EV-004: allulose-adjusted glycemic quality."""
+    """EV-004: allulose-adjusted glycemic quality + EV-006: functional fiber bonus."""
     sugar = nn.get("sugars_g") or 0
     fiber = nn.get("dietary_fiber_g") or 0
     has_whole_grain   = l3.get("has_whole_grain", False)
@@ -1198,18 +1214,35 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
     score = round(max(0, min(100, raw)), 1)
     note  = (f"90 - sugar_penalty({sugar_penalty:.1f}) + fiber({fiber_bonus:.1f})"
              f" + wg({wg_bonus}) = {raw:.1f}{allulose_note}{sw_note}")
+
+    # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    ff_type = l3.get("functional_fiber_type", "none")
+    ff_bonus = 0
+    ff_note = ""
+    if ff_type != "none":
+        if ff_type in ("viscous", "both"):
+            ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_glycemic_quality_bonus"]
+        if ff_type in ("prebiotic", "both"):
+            ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_glycemic_quality_bonus"]
+        ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
+        score = round(min(100, score + ff_bonus), 1)
+        ff_note = f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
+        note += ff_note
+
     return score, note
 
 
 def _identity_additive_deltas(l3: dict) -> tuple[float, list[str]]:
-    """TASK-133 F1/F4 — per-identity point deltas on the additive_quality dimension.
+    """TASK-133 F1/F4 → TASK-222A — per-identity point deltas on additive_quality.
 
     Consumes the TASK-133A taxonomy identity (carrageenan/CMC vs lecithin, native
-    vs modified starch, BHA vs BHT). F1 emulsifier/starch deltas default to NEUTRAL
-    (DEC-004 — directions are already live via the EV-003 sprint1 count correction;
-    setting them non-zero now would double-count). F4's BHA named penalty is a
-    genuinely new, non-double-counting signal (distinct from the generic
-    antioxidant-category count BHA shares with BHT and benign tocopherol).
+    vs modified starch, BHA vs BHT). F1 emulsifier/starch deltas were ACTIVATED
+    by TASK-222A (2026-06-09): the sprint1 +2/−1 count corrections are RETIRED;
+    identity-based deltas from ADDITIVE_IDENTITY_DELTAS now fire (carrageenan/CMC/
+    P80 → −3 each, cap −6; lecithin → +2 relief). No double-count — both targeted
+    the same dimension and only identity deltas fire now. F4's BHA named penalty
+    is a separate signal (distinct from the generic antioxidant-category count
+    BHA shares with BHT and benign tocopherol).
     Returns (signed_delta, notes).
     """
     delta = 0.0
@@ -1237,9 +1270,94 @@ def _identity_additive_deltas(l3: dict) -> tuple[float, list[str]]:
     return delta, notes
 
 
+def _emulsifier_complexity(l3: dict) -> tuple[float, str, dict]:
+    """ECS-v1 / EV-045: emulsifier complexity penalty on a separate signal.
+
+    Consumes three L3 signal lists:
+      - tax_emulsifier_concern: CMC, P80 (carrageenan counted as medium here)
+      - tax_emulsifier_medium:  mono/diglycerides, DATEM, SSL, PGPR, gated modified starch
+      - tax_emulsifier_low:     lecithins, gums, pectin, agar, alginate, gellan
+
+    Formula:
+      1. Categorise agents: high={CMC,P80}, medium={carrageenan + medium list}, low={low list}
+      2. highest_penalty = max(high_weight, medium_weight, low_weight) for detected agents
+      3. complexity_adj based on total distinct agent count (0/1/2/3+)
+      4. total = highest_penalty + complexity_adj, clamped to family budget
+
+    Returns (total_penalty, note, detail_dict).
+    """
+    C = EMULSIFIER_COMPLEXITY_CONSTANTS
+    high = C["high_weight"]
+    med  = C["medium_weight"]
+    low  = C["low_weight"]
+
+    concern = l3.get("tax_emulsifier_concern") or []
+    medium  = l3.get("tax_emulsifier_medium") or []
+    low_l   = l3.get("tax_emulsifier_low") or []
+
+    # Categorise: carrageenan moves from concern → medium for complexity purposes
+    high_agents = [a for a in concern if a not in ("carrageenan",)]
+    carrageenan_detected = "carrageenan" in concern
+    medium_agents = list(medium)
+    if carrageenan_detected and "carrageenan" not in medium_agents:
+        medium_agents.append("carrageenan")
+    low_agents = list(low_l)
+
+    # Build per-agent penalties
+    agent_penalties = []
+    for a in high_agents:
+        agent_penalties.append(high)
+    for a in medium_agents:
+        agent_penalties.append(med)
+    for a in low_agents:
+        agent_penalties.append(low)
+
+    distinct_count = len(high_agents) + len(medium_agents) + len(low_agents)
+    highest_penalty = max(agent_penalties) if agent_penalties else 0
+
+    # Complexity tier
+    if distinct_count == 0:
+        complexity_tier = "none"
+        complexity_adj = 0
+    elif distinct_count == 1:
+        complexity_tier = "simple"
+        complexity_adj = 0
+    elif distinct_count == 2:
+        complexity_tier = "moderate"
+        complexity_adj = C["complexity_moderate"]
+    else:
+        complexity_tier = "high"
+        complexity_adj = C["complexity_high"]
+
+    total = highest_penalty + complexity_adj
+    # Clamp to family budget
+    total_capped = min(total, EMULSIFIER_COMPLEXITY_FAMILY_BUDGET)
+
+    detail = {
+        "high_agents": list(high_agents),
+        "medium_agents": list(medium_agents),
+        "low_agents": list(low_agents),
+        "distinct_agent_count": distinct_count,
+        "highest_individual_penalty": highest_penalty,
+        "complexity_tier": complexity_tier,
+        "complexity_adjustment": complexity_adj,
+        "total_penalty": total,
+        "total_capped": total_capped,
+    }
+    note = (
+        f"ECS-v1: {distinct_count} agent(s) [high={high_agents}, med={medium_agents}, "
+        f"low={low_agents}] highest_penalty={highest_penalty}, "
+        f"complexity={complexity_tier}(adj={complexity_adj}) → total={total}"
+        + (f" (capped to {total_capped})" if total != total_capped else "")
+    )
+    return total_capped, note, detail
+
+
 def _score_additive_quality_sprint1(l3: dict) -> tuple:
-    """EV-003/019: uses sprint1_additive_count (emulsifier/gum tier corrections).
-    TASK-133 F1/F4: applies per-identity point deltas on top (taxonomy identity)."""
+    """TASK-222A: additive quality from raw additive count + F1 identity deltas.
+    sprint1 +2/−1 corrections RETIRED (2026-06-09). Uses raw additive_marker_count
+    as the base; F1 identity deltas (ADDITIVE_IDENTITY_DELTAS) apply per-ingredient
+    point adjustments on top. F4 BHA named penalty fires separately."""
     ac    = l3.get("sprint1_additive_count", l3.get("additive_marker_count", 0))
     ac_v1 = l3.get("additive_marker_count", 0)
     sw_tier = l3.get("sweetener_tier")
@@ -1350,14 +1468,30 @@ def score_additive_quality(l3: dict) -> tuple[float, str]:
     return score, f"additive_categories={ac} → base={base}, sweetener{tier_note}_penalty={sw_pen} → {score}"
 
 
-def score_satiety_support(nn: dict) -> tuple[float, str]:
+def score_satiety_support(nn: dict, l3: dict | None = None) -> tuple[float, str]:
+    """EV-008: protein/fiber-to-kcal satiety + EV-006: functional fiber bonus."""
     prot  = nn.get("protein_g") or 0
     fiber = nn.get("dietary_fiber_g") or 0
     kcal  = max(50, nn.get("energy_kcal") or 50)  # floor 50 to avoid division by tiny kcal
     numerator = prot * 3.0 + fiber * 5.0
     raw = (numerator / kcal) * 400
     score = round(max(0, min(100, raw)), 1)
-    return score, f"(protein×3 + fiber×5) / max(50,kcal) × 400 = ({prot}×3 + {fiber}×5) / {kcal} × 400 = {score}"
+    note = f"(protein×3 + fiber×5) / max(50,kcal) × 400 = ({prot}×3 + {fiber}×5) / {kcal} × 400 = {score}"
+
+    # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    if l3:
+        ff_type = l3.get("functional_fiber_type", "none")
+        ff_bonus = 0
+        if ff_type != "none":
+            if ff_type in ("viscous", "both"):
+                ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_satiety_bonus"]
+            if ff_type in ("prebiotic", "both"):
+                ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_satiety_bonus"]
+            ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
+            score = round(min(100, score + ff_bonus), 1)
+            note += f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
+
+    return score, note
 
 
 def score_fat_quality(nn: dict, l3: dict, se_result: dict) -> tuple[float, str]:
@@ -1389,15 +1523,80 @@ def score_fat_quality(nn: dict, l3: dict, se_result: dict) -> tuple[float, str]:
     return score, note
 
 
-def score_regulatory_quality(l3: dict) -> tuple[float, str]:
-    count = l3.get("red_label_count", 0)
+def score_regulatory_quality(l3: dict, nn: dict = None, category: str = "") -> tuple[float, str]:
+    count  = l3.get("red_label_count", 0)
     labels = l3.get("red_labels", [])
-    if count == 0:
+
+    if not BARI_REDLABEL_V1:
+        # Legacy: hard step function (unchanged)
+        if count == 0:
+            return 95.0, "no Israeli red labels"
+        elif count == 1:
+            return 60.0, f"1 red label: {labels}"
+        else:
+            return 25.0, f"{count} red labels: {labels}"
+
+    # BARI_REDLABEL_V1: continuous per-label deduction, zero-base formula.
+    # score = max(REGQUAL_FLOOR, 95 − Σ min(MAX[cat], SLOPE[cat] × excess_ratio))
+    # BASE is retired (always 0). Category-specific SLOPE/MAX via REGQUAL_SODIUM_BY_CATEGORY.
+    # Formula continuity fix (2026-06-08): old BASE caused a 0→BASE cliff at MoH threshold.
+    # Null sat_fat imputation (EV-REDLABEL-012): if fat_g >= FAT_FLOOR in endemic
+    # category and sat_fat is undisclosed, infer at 50% haircut.
+    if nn is None:
+        nn = {}
+
+    label_values = {
+        "sugar":   nn.get("sugars_g") or 0,
+        "sat_fat": nn.get("fat_saturated_g"),  # may be None (undisclosed)
+        "sodium":  nn.get("sodium_mg") or 0,
+    }
+    thresholds = _RED_LABEL_THRESHOLDS  # {"sugar": 17.5, "sat_fat": 5.0, "sodium": 600.0}
+
+    # Per-nutrient slope/max lookup: sodium is category-dispatched; others use global fallback.
+    def _regqual_params(nutrient: str) -> tuple[float, float]:
+        if nutrient == "sodium" and category in REGQUAL_SODIUM_BY_CATEGORY:
+            return REGQUAL_SODIUM_BY_CATEGORY[category]
+        return (REGQUAL_SLOPE_PER_LABEL, REGQUAL_MAX_PER_LABEL)
+
+    total_deduction = 0.0
+    notes = []
+
+    for lbl in labels:
+        val = label_values.get(lbl)
+        if val is None:
+            val = thresholds.get(lbl, 0)  # treat undisclosed declared label as at-threshold
+        thr = thresholds.get(lbl, 1.0)
+        excess = max(0.0, (val - thr) / thr) if thr > 0 else 0.0
+        slope, max_ded = _regqual_params(lbl)
+        ded = min(max_ded, slope * excess)   # zero-base: no BASE jump at threshold
+        total_deduction += ded
+        notes.append(f"{lbl}={val:.1f} excess={excess:.2f} ded={ded:.1f}")
+
+    # Null sat_fat imputation (EV-REDLABEL-012): close disclosure asymmetry.
+    if "sat_fat" not in labels:
+        fat_g    = nn.get("fat_g") or 0
+        sat_f_g  = nn.get("fat_saturated_g")
+        if (sat_f_g is None
+                and fat_g >= REDLABEL_NULL_SATFAT_FAT_FLOOR
+                and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES):
+            implied = fat_g * REDLABEL_DAIRY_SATFAT_FRACTION
+            if implied >= thresholds["sat_fat"]:
+                excess = max(0.0, (implied - thresholds["sat_fat"]) / thresholds["sat_fat"])
+                slope, max_ded = _regqual_params("sat_fat")
+                ded = min(max_ded, slope * excess)   # zero-base formula, same as above
+                ded *= REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT
+                total_deduction += ded
+                notes.append(f"implied_sat_fat={implied:.1f}g (fat={fat_g}g×{REDLABEL_DAIRY_SATFAT_FRACTION}) "
+                              f"haircut={REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT} ded={ded:.1f} (EV-REDLABEL-012)")
+
+    if total_deduction == 0:
         return 95.0, "no Israeli red labels"
-    elif count == 1:
-        return 60.0, f"1 red label: {labels}"
-    else:
-        return 25.0, f"{count} red labels: {labels}"
+
+    score = round(max(REGQUAL_FLOOR, 95.0 - total_deduction), 1)
+    label_str = str(labels) if labels else "none (imputed only)"
+    note = (f"{count} label(s): {label_str}; {'; '.join(notes)}"
+            f" → total_ded={total_deduction:.1f} → score={score}")
+    return score, note
 
 
 def score_whole_food_integrity(nova_level: int, ing_count: int, has_fermentation: bool = False) -> tuple[float, str]:
@@ -1433,6 +1632,17 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     red_label_sugar   = "sugar" in l3.get("red_labels", [])
     red_label_sat_fat = "sat_fat" in l3.get("red_labels", [])
     red_label_count   = l3.get("red_label_count", 0)
+
+    # BARI_REDLABEL_V1 — family-aware reformulable label count.
+    # Endemic sat_fat (dairy_protein / whole_food_fat) is compositionally fixed and
+    # excluded from the >=2 reformulable-label cap trigger (EV-REDLABEL-005/006).
+    if BARI_REDLABEL_V1:
+        _rl_sat_fat_endemic = red_label_sat_fat and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
+        reformulable_rl_count = red_label_count - (1 if _rl_sat_fat_endemic else 0)
+        endemic_sat_fat_excluded = bool(_rl_sat_fat_endemic)
+    else:
+        reformulable_rl_count = red_label_count
+        endemic_sat_fat_excluded = False
 
     # EV-049 boundary fix (BARI_SODIUM_CEREAL scope only):
     # signal_extractor uses >600 (strict); the MoH threshold is >=600 (inclusive).
@@ -1568,12 +1778,39 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     else:
         _isr_sugar_cap = 63 if sc2_or_plain_dairy else 55
         check_cap("ISRAELI_RED_LABEL_1_SUGAR", red_label_sugar, _isr_sugar_cap, sugar_caps_fired)
-    check_cap("ISRAELI_RED_LABELS_2_PLUS",    red_label_count >= 2, 45, sugar_caps_fired)
+    # BARI_REDLABEL_V1: family-aware cap uses reformulable count (endemic sat_fat excluded).
+    # Legacy: ISRAELI_RED_LABELS_2_PLUS fires on any red_label_count >= 2.
+    if BARI_REDLABEL_V1:
+        check_cap("REFORMULABLE_LABELS_2_PLUS", reformulable_rl_count >= 2,
+                  REDLABEL_MULTI_CAP_VALUE, sugar_caps_fired)
+    else:
+        check_cap("ISRAELI_RED_LABELS_2_PLUS", red_label_count >= 2, 45, sugar_caps_fired)
 
     # Sugar penalties
     check_penalty("MULTIPLE_ADDED_SUGAR_MARKERS", added_sugar_ct >= 2, 5, sugar_pens_fired,
                   f"added_sugar_sources={added_sugar_ct}")
     check_penalty("HIGH_CAL_HIGH_SUGAR_SOFT",     kcal >= 430 and sugar >= sugar_threshold_15, 5, sugar_pens_fired)
+
+    # BARI_REDLABEL_V1: graduated sugar penalty for near-threshold continuity (EV-REDLABEL-011).
+    # Smooths the cliff at the 17.5g red-label boundary.
+    if BARI_REDLABEL_V1:
+        _sugar_grad_pen = 0
+        _sugar_grad_band = None
+        # BARI_REDLABEL_V1: scoped to dairy_protein/whole_food_fat until cross-category D7
+        if category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES:
+            for _lo, _hi, _pen in SUGAR_GRADUATED_BANDS:
+                if _hi is None:
+                    if sugar >= _lo:
+                        _sugar_grad_pen = _pen
+                        _sugar_grad_band = f">={_lo}"
+                        break
+                elif _lo <= sugar <= _hi:
+                    _sugar_grad_pen = _pen
+                    _sugar_grad_band = f"{_lo}–{_hi}"
+                    break
+        if _sugar_grad_pen > 0:
+            check_penalty("SUGAR_GRADUATED_BAND", True, _sugar_grad_pen, sugar_pens_fired,
+                          f"sugar={sugar:.1f}g band={_sugar_grad_band} (EV-REDLABEL-011)")
 
     sugar_cap, sugar_pen, sugar_detail = _coordinate_family(sugar_caps_fired, sugar_pens_fired, SUGAR_FAMILY_BUDGET)
 
@@ -1729,18 +1966,71 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                                      "condition": f"sodium={sodium}<700 (BARI_SODIUM_CEREAL scope)"})
     else:
         # --- Baseline (all non-cereal/granola categories or flag OFF) ---
-        raw_sodium_fires = sodium >= 700
-        if raw_sodium_fires:
-            effective_sodium_cap = int(60 / sodium_weight) if sodium_weight < 1.0 else 60
-            # For brined foods, apply at 70% weight → effective cap slightly higher
-            actual_cap = max(60, int(60 + (100-60) * (1-sodium_weight))) if sodium_weight < 1 else 60
-            sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
-            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
-                                     "note": f"sodium={sodium}mg (context weight={sodium_weight})"})
-            caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
+        if BARI_REDLABEL_V1:
+            # BARI_REDLABEL_V1: scoped to dairy_protein/whole_food_fat until cross-category D7
+            if category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES:
+                # Replace hard 700mg cliff with graduated penalty bands for endemic categories.
+                # HIGH_SODIUM_700MG_PLUS cap is suppressed; SODIUM_GENERAL_BANDS penalty applied.
+                caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
+                                         "fired": False,
+                                         "note": "BARI_REDLABEL_V1: replaced by SODIUM_GENERAL_BANDS graduated penalty (EV-REDLABEL-009/010)"})
+                _sodium_grad_pen = 0
+                _sodium_grad_band = None
+                for _lo, _hi, _pen in SODIUM_GENERAL_BANDS:
+                    if _hi is None:
+                        if sodium >= _lo:
+                            _sodium_grad_pen = _pen
+                            _sodium_grad_band = f">={_lo}"
+                            break
+                    elif _lo <= sodium <= _hi:
+                        _sodium_grad_pen = _pen
+                        _sodium_grad_band = f"{_lo}–{_hi}"
+                        break
+                if _sodium_grad_pen > 0:
+                    sodium_pens_fired.append(("SODIUM_LOAD_GENERAL_GRAD", _sodium_grad_pen))
+                    penalties_considered.append({
+                        "rule": "SODIUM_LOAD_GENERAL_GRAD",
+                        "amount": _sodium_grad_pen,
+                        "condition": f"sodium={sodium}mg band={_sodium_grad_band} (EV-REDLABEL-009/010)",
+                        "fired": True,
+                    })
+                    penalties_applied.append({
+                        "rule": "SODIUM_LOAD_GENERAL_GRAD",
+                        "amount": _sodium_grad_pen,
+                        "note": f"sodium={sodium}mg band={_sodium_grad_band} (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)",
+                    })
+                else:
+                    penalties_considered.append({
+                        "rule": "SODIUM_LOAD_GENERAL_GRAD",
+                        "amount": 0,
+                        "condition": f"sodium={sodium}mg band={_sodium_grad_band} — no penalty",
+                        "fired": False,
+                    })
+            else:
+                # Non-endemic category: use baseline HIGH_SODIUM_700MG_PLUS path (scope guard).
+                raw_sodium_fires = sodium >= 700
+                if raw_sodium_fires:
+                    actual_cap = max(60, int(60 + (100-60) * (1-sodium_weight))) if sodium_weight < 1 else 60
+                    sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
+                    caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
+                                             "note": f"sodium={sodium}mg (BARI_REDLABEL_V1 scope guard: non-endemic category, baseline path)"})
+                    caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
+                else:
+                    caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
+                                             "fired": False, "condition": f"sodium={sodium}<700"})
         else:
-            caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
-                                     "fired": False, "condition": f"sodium={sodium}<700"})
+            raw_sodium_fires = sodium >= 700
+            if raw_sodium_fires:
+                effective_sodium_cap = int(60 / sodium_weight) if sodium_weight < 1.0 else 60
+                # For brined foods, apply at 70% weight → effective cap slightly higher
+                actual_cap = max(60, int(60 + (100-60) * (1-sodium_weight))) if sodium_weight < 1 else 60
+                sodium_caps_fired.append(("HIGH_SODIUM_700MG_PLUS", actual_cap))
+                caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap, "fired": True,
+                                         "note": f"sodium={sodium}mg (context weight={sodium_weight})"})
+                caps_applied.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": actual_cap})
+            else:
+                caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
+                                         "fired": False, "condition": f"sodium={sodium}<700"})
 
     sodium_cap, sodium_pen, sodium_detail = _coordinate_family(
         sodium_caps_fired, sodium_pens_fired, SODIUM_FAMILY_BUDGET
@@ -1857,6 +2147,8 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         "sc_class": sc_class,
         "satiety_rules_gated": satiety_rules_gated,
         "hp_nova_weight": hp_nova_weight,
+        "reformulable_rl_count": reformulable_rl_count,
+        "endemic_sat_fat_excluded": endemic_sat_fat_excluded,
         "caps_considered": caps_considered,
         "caps_applied": caps_applied,
         "penalties_considered": penalties_considered,
@@ -1939,15 +2231,128 @@ def _classify_sugar_context(l3: dict, nn: dict, nova_level: int) -> str:
 # Floor application (SRC-01)
 # ---------------------------------------------------------------------------
 
+# TASK-217 / BEV-084 — juice_100 NOVA-1 floor gate.
+# Hebrew and English reconstitution markers that disqualify the nova1_single_ingredient
+# floor for juice_100 products. Presence of any of these in the ingredient text means
+# the product is reconstituted-from-concentrate (structurally distinct from fresh-pressed)
+# and must not receive the NOVA 1 whole-food floor.
+_JUICE_RECONSTITUTION_MARKERS = (
+    "רכז",          # concentrate (Hebrew)
+    "משוחזר",       # reconstituted (Hebrew)
+    "מרוכז",        # concentrated (Hebrew)
+    "concentrate",  # English
+    "from concentrate",  # English
+)
+
+
+def _juice100_floor_gate(nova_level: int, category: str,
+                         ingredient_text: str, has_fruit_concentrate: bool) -> tuple[bool, str]:
+    """TASK-217 / BEV-084 — three-condition gate on nova1_single_ingredient floor for juice_100.
+
+    Returns (gate_passes: bool, reason: str).
+    gate_passes=True  → floor is allowed to fire (all conditions satisfied).
+    gate_passes=False → floor is blocked; caller must demote nova_proxy to minimum 2.
+
+    Only evaluated when nova_level == 1 AND category == "beverage".
+    For all other categories / nova levels this gate is never entered.
+    """
+    # Gate only applies to beverage category, NOVA 1 products.
+    if nova_level != 1 or category != "beverage":
+        return True, "gate not applicable (non-beverage or non-NOVA-1)"
+
+    # Condition 1: nova_proxy == 1 (already confirmed by the caller's nova_level check above)
+
+    # Condition 2: has_fruit_concentrate field (BSIP1 enrichment)
+    if has_fruit_concentrate is True:
+        return False, "BEV-084: has_fruit_concentrate=True → floor blocked (BSIP1 enrichment flag)"
+
+    # Condition 3: ingredient text substring check for reconstitution markers
+    if ingredient_text:
+        ing_lower = ingredient_text.lower()
+        for marker in _JUICE_RECONSTITUTION_MARKERS:
+            if marker.lower() in ing_lower:
+                return False, (f"BEV-084: reconstitution marker '{marker}' found in ingredient "
+                               f"text → floor blocked (TASK-217)")
+
+    # All conditions satisfied: no reconstitution evidence
+    return True, "BEV-084 gate: no reconstitution markers detected → floor permitted"
+
+
 def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
-                  category: str, guardrail_result: dict, red_label_count: int) -> dict:
-    """Apply floors per SRC-01 floor-cap hierarchy."""
+                  category: str, guardrail_result: dict, red_label_count: int,
+                  ingredient_text: str = "", has_fruit_concentrate: bool = False,
+                  ingredient_count: int = 0) -> dict:
+    """Apply floors per SRC-01 floor-cap hierarchy.
+
+    TASK-217 / BEV-084: added ingredient_text + has_fruit_concentrate params to support
+    the juice_100 NOVA-1 floor gate. Both default to safe values so all existing callers
+    are byte-identical when not passing them.
+
+    TASK-215 / HC-FIX-001: added ingredient_count param to gate nova1_single_ingredient
+    floor. The floor was designed for truly single-ingredient whole foods (plain nuts,
+    unsweetened yogurt, etc.). Multi-ingredient products (e.g. hard cheese with 2–6
+    culinary ingredients) that happen to be NOVA 1 are correctly NOVA-classified but do
+    NOT qualify for this floor — their nutrition must stand on its own merits. Gate fires
+    only when ingredient_count <= 1. Defaults to 0 (safe: caller that does not pass this
+    param gets the old behaviour, but the floor never fires on ingredient_count=0 for
+    categories other than single-ingredient whole foods, and the beverage gate still
+    covers juice_100 independently).
+    """
     floors_considered = []
     floors_applied = []
 
-    # Determine which floor is applicable
-    single_ingredient_nova1 = (nova_level == 1 and nova_conf >= 0.70)
+    # Determine which floor is applicable.
+    # nova1_single_ingredient floor: requires NOVA 1 AND genuinely single-ingredient (<=1).
+    # Multi-ingredient NOVA-1 products (e.g. hard cheeses with 2–6 culinary ingredients)
+    # are correctly classified NOVA 1 per Monteiro criteria but do NOT qualify for this
+    # floor — their per-dimension score reflects actual nutritional quality.
+    # ingredient_count=0 (unknown/not passed) is treated as ineligible for safety.
+    single_ingredient_nova1 = (nova_level == 1 and nova_conf >= 0.70 and ingredient_count <= 1)
     whole_food_fat_nova12   = (nova_level <= 2 and category == "whole_food_fat")
+
+    # TASK-215 / HC-FIX-001: if a NOVA-1 product has >1 ingredient, log that the
+    # nova1_single_ingredient floor was considered but blocked by ingredient count.
+    # This keeps the trace auditable for multi-ingredient clean dairy (hard cheese, etc.).
+    if nova_level == 1 and nova_conf >= 0.70 and ingredient_count > 1:
+        floors_considered.append({
+            "gate": "nova1_single_ingredient_count_gate",
+            "result": "blocked",
+            "ingredient_count": ingredient_count,
+            "reason": (
+                f"nova1_single_ingredient floor requires ingredient_count<=1; "
+                f"this product has {ingredient_count} ingredients. NOVA 1 classification "
+                f"is retained but floor does not apply — score reflects per-dimension quality."
+            ),
+        })
+
+    # TASK-217 / BEV-084: juice_100 NOVA-1 floor gate.
+    # If the product is a NOVA 1 single-ingredient beverage, check whether it is
+    # genuinely fresh/unprocessed or is reconstituted-from-concentrate. If it fails
+    # the gate, we demote nova_level to 2 for floor-selection purposes only — this
+    # does NOT change the nova_proxy in the rest of the trace; it simply ensures
+    # the floor does not fire for concentrate products.
+    effective_nova_level = nova_level
+    gate_note = None
+    if single_ingredient_nova1 and category == "beverage":
+        gate_passes, gate_reason = _juice100_floor_gate(
+            nova_level, category, ingredient_text, has_fruit_concentrate
+        )
+        if not gate_passes:
+            effective_nova_level = 2  # demote for floor selection only
+            single_ingredient_nova1 = False
+            gate_note = gate_reason
+            floors_considered.append({
+                "gate": "juice100_nova1_floor_gate",
+                "result": "blocked",
+                "effective_nova_for_floor": effective_nova_level,
+                "reason": gate_note,
+            })
+        else:
+            floors_considered.append({
+                "gate": "juice100_nova1_floor_gate",
+                "result": "passed",
+                "reason": gate_reason,
+            })
 
     if single_ingredient_nova1:
         target_floor = NOVA1_SINGLE_FLOOR
@@ -1967,6 +2372,7 @@ def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
         "HIGH_CAL_HIGH_SUGAR_SEVERE", "HIGH_CAL_HIGH_SUGAR_MODERATE", "HIGH_SUGAR_25G_PLUS",
         "SNACK_BAR_HIGH_CAL_SUGAR", "SNACK_BAR_RED_SUGAR_LABEL",
         "ISRAELI_RED_LABEL_1_SUGAR", "ISRAELI_RED_LABELS_2_PLUS",
+        "REFORMULABLE_LABELS_2_PLUS",  # BARI_REDLABEL_V1 replacement for ISRAELI_RED_LABELS_2_PLUS
         "HIGH_CAL_LOW_SATIETY_SEVERE", "HIGH_CAL_LOW_SATIETY_SOFT",
         "HIGH_SODIUM_700MG_PLUS",
         "ISRAELI_RED_LABEL_1_SAT_FAT",
@@ -1980,10 +2386,14 @@ def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
         effective_floor = target_floor
         note = "SRC-01: no Class B physiological caps fired → full floor applies"
     else:
-        # Physiological moderation
-        if red_label_count >= 2:
+        # Physiological moderation.
+        # BARI_REDLABEL_V1: use reformulable_rl_count (endemic sat_fat excluded) so a
+        # dairy product with a single non-endemic label is not over-suppressed.
+        _rl_physio_count = (guardrail_result.get("reformulable_rl_count", red_label_count)
+                            if BARI_REDLABEL_V1 else red_label_count)
+        if _rl_physio_count >= 2:
             effective_floor = PHYSIO_2PLUS_LABELS_MIN
-            note = f"SRC-01: Class B caps fired + 2+ red labels → floor={PHYSIO_2PLUS_LABELS_MIN}"
+            note = f"SRC-01: Class B caps fired + 2+ reformulable labels → floor={PHYSIO_2PLUS_LABELS_MIN}"
         else:
             effective_floor = PHYSIO_MODERATION_MIN
             note = f"SRC-01: Class B caps fired on whole food → physiological moderation minimum={PHYSIO_MODERATION_MIN}"
@@ -2181,9 +2591,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     gq_score,  gq_note  = _score_glycemic_quality_sprint1(nn, l3)   # EV-004
     prq_score, prq_note = score_protein_quality(nn, l3, category)    # F2: matrix discount
     aq_score,  aq_note  = _score_additive_quality_sprint1(l3)        # EV-003/019 + F1/F4 identity
-    ss_score,  ss_note  = score_satiety_support(nn)
+    ss_score,  ss_note  = score_satiety_support(nn, l3)   # EV-008 + EV-006
     fq_score,  fq_note  = _score_fat_quality_sprint1(nn, l3, se_result)  # EV-012
-    rq_score,  rq_note  = score_regulatory_quality(l3)
+    rq_score,  rq_note  = score_regulatory_quality(l3, nn, category)
     wfi_score, wfi_note = score_whole_food_integrity(nova_level, l1.get("ingredient_count", 0), has_fermentation)
 
     dim_scores = {
@@ -2400,14 +2810,41 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         scaled_penalty = total_pen
         penalty_scaling_note = None
 
-    # Stage 7: Penalty application (guardrails + EV-005 polyol post-cap)
+    # Stage 7: Penalty application (guardrails + EV-005 polyol + ECS-v1 emulsifier_complexity)
     product_name = (product.get("canonical_name_he") or product.get("product_name_he") or "")
     polyol_penalty, polyol_note = _compute_polyol_penalty(l3, product_name)
-    score_after_penalty = round(score_after_cap - scaled_penalty - polyol_penalty, 2)
+    emul_comp_penalty, emul_comp_note, emul_comp_detail = _emulsifier_complexity(l3)
+    score_after_penalty = round(score_after_cap - scaled_penalty - polyol_penalty - emul_comp_penalty, 2)
     score_after_penalty = max(ABSOLUTE_SCORE_FLOOR, score_after_penalty)  # absolute floor
 
     # Stage 8: Floor application (SRC-01)
-    floor_result = apply_floors(score_after_penalty, nova_level, nova_conf, category, gr, red_label_ct)
+    # TASK-217 / BEV-084: pass ingredient text + has_fruit_concentrate for juice_100 gate.
+    # ingredient_text is the raw BSIP1 ingredient string (same source the NOVA proxy used).
+    # has_fruit_concentrate is the BSIP1 enrichment flag (absent → False, gate falls back
+    # to text-marker detection only, which is sufficient per TASK-217 spec).
+    # TASK-215 / HC-FIX-001: pass ingredient_count so nova1_single_ingredient floor is
+    # gated to truly single-ingredient whole foods only.
+    _ing_text_for_gate = (
+        product.get("ingredients_text_he")
+        or product.get("ingredients_raw")
+        or ""
+    )
+    if not _ing_text_for_gate and product.get("ingredients_list"):
+        _ing_text_for_gate = ", ".join(product["ingredients_list"])
+    _has_fruit_conc = bool(product.get("has_fruit_concentrate", False))
+    # ingredient_count: prefer sanitized_ingredient_count (from nova_proxy via l3),
+    # fall back to L1 ingredient_count, then 0 (safe: floor will not fire).
+    _ing_count_for_floor = (
+        l3.get("sanitized_ingredient_count")
+        or l1.get("ingredient_count")
+        or 0
+    )
+    floor_result = apply_floors(
+        score_after_penalty, nova_level, nova_conf, category, gr, red_label_ct,
+        ingredient_text=_ing_text_for_gate,
+        has_fruit_concentrate=_has_fruit_conc,
+        ingredient_count=_ing_count_for_floor,
+    )
     score_after_floors = floor_result["final_score_after_floors"]
 
     # Stage 9: Confidence ceiling
@@ -2499,6 +2936,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "penalty_scaling_note": penalty_scaling_note,
         "polyol_penalty":       polyol_penalty,
         "polyol_penalty_note":  polyol_note if polyol_penalty > 0 else None,
+        "emulsifier_complexity_penalty":      emul_comp_penalty,
+        "emulsifier_complexity_penalty_note": emul_comp_note if emul_comp_penalty > 0 else None,
+        "emulsifier_complexity_detail":       emul_comp_detail if emul_comp_penalty > 0 else None,
         "score_after_penalty":  score_after_penalty,
         "concern_family_coordination": gr.get("concern_family_coordination", {}),
         "floors_considered": floor_result.get("floors_considered", []),
@@ -2510,6 +2950,8 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "data_sufficiency": data_sufficiency,
         "sugar_context_class": gr.get("sc_class"),
         "hp_nova_weight": gr.get("hp_nova_weight"),
+        "reformulable_rl_count": gr.get("reformulable_rl_count") if BARI_REDLABEL_V1 else None,
+        "endemic_sat_fat_excluded": gr.get("endemic_sat_fat_excluded") if BARI_REDLABEL_V1 else None,
         "explanation_drivers": drivers,
         "unresolved_flags": flags,
     }

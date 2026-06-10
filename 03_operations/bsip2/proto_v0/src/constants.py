@@ -41,6 +41,8 @@ CALORIE_DENSITY_TABLES = {
     "crispbread":        [(200,90),(300,85),(380,70),(450,50),(520,30),(1e9,15)],
     # R-05: yogurt archetype — plain 50–120 kcal, flavored/full-fat up to ~200
     "yogurt":            [(60,95),(100,88),(140,78),(180,65),(250,50),(1e9,30)],
+    # Frozen vegetable — maps to default table (same calorie density profile)
+    "frozen_vegetable":  [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
     "default":           [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
 }
 
@@ -189,6 +191,87 @@ KCAL_PLAUSIBLE_UPPER_STANDARD = 700   # original standard-archetype bound (retai
 SAT_FAT_CAP_ENDEMIC_WFF_FRACTION = 0.50   # sat-fat fraction threshold; ≥ this → cap gated (EV-048)
 
 # ---------------------------------------------------------------------------
+# TASK-REDLABEL-001 — BARI_REDLABEL_V1: Continuous red-label scoring.
+# Gated by env flag BARI_REDLABEL_V1 (default OFF). Flag OFF → engine is
+# byte-identical to baseline. D7 co-sign (Product Agent) required before
+# activation. Source: redlabel_v1_design_spec.md.
+# Evidence citations: EV-REDLABEL-001 through EV-REDLABEL-012.
+# ---------------------------------------------------------------------------
+
+# EV-REDLABEL-001 — Base deduction per red label at threshold.
+# Revision (2026-06-08, formula-continuity fix): BASE retired to 0.0.
+# Old formula: deduction = min(MAX, BASE + excess_ratio × SLOPE)  ← cliff at threshold
+# New formula: deduction = min(MAX, SLOPE × excess_ratio)          ← continuous everywhere
+# BASE=12 created a 0→12 step at the MoH threshold (0.6 composite pts for bread).
+# That step is the same architectural defect as the hard caps — removed.
+REGQUAL_BASE_PER_LABEL    = 0.0
+
+# EV-REDLABEL-002 — Severity slope (global fallback for categories without override).
+# Category-specific slopes: dairy_protein=38, bread=60, snacks=55, sauces_spreads=45.
+# Each 100% excess above threshold adds SLOPE deduction points.
+REGQUAL_SLOPE_PER_LABEL   = 40.0
+
+# EV-REDLABEL-003 — Per-label deduction ceiling (global fallback).
+# Category-specific maxima: dairy_protein=20, bread=40, snacks=35, sauces_spreads=30.
+REGQUAL_MAX_PER_LABEL     = 28.0
+
+# EV-REDLABEL-004 — Floor for regulatory_quality dimension (never below this).
+REGQUAL_FLOOR             = 20.0
+
+# Category-specific reg_quality constants for sodium label.
+# Format: {category: (slope, max)}. Falls back to REGQUAL_SLOPE/MAX_PER_LABEL if absent.
+REGQUAL_SODIUM_BY_CATEGORY = {
+    "dairy_protein":         (38, 20),
+    "whole_food_fat":        (20, 14),
+    "bread":                 (60, 40),
+    "snacks":                (55, 35),
+    "grain_snack":           (55, 35),
+    "sauces_spreads":        (45, 30),
+    "frozen_prepared_meals": (65, 40),
+    "sweet_dairy":           (30, 18),
+    "processed_meats":       (70, 40),
+}
+
+# EV-REDLABEL-005 — Categories where sat_fat red label is endemic (compositionally
+# fixed, not reformulable). Extends EV-048 (butter whole_food_fat) to the full
+# dairy_protein spectrum.
+REDLABEL_ENDEMIC_SATFAT_CATEGORIES = frozenset({"dairy_protein", "whole_food_fat"})
+
+# EV-REDLABEL-006 — Cap for REFORMULABLE_LABELS_2_PLUS (replaces ISRAELI_RED_LABELS_2_PLUS).
+# Only counts labels NOT in endemic categories toward the >=2 trigger.
+REDLABEL_MULTI_CAP_VALUE  = 45
+
+# EV-REDLABEL-009 / EV-REDLABEL-010 — General (non-cereal) graduated sodium bands.
+# (lo_mg, hi_mg_or_None, penalty_points); hi=None means unbounded above.
+# Under BARI_REDLABEL_V1, replaces the HIGH_SODIUM_700MG_PLUS hard cliff for
+# non-cereal categories.
+SODIUM_GENERAL_BANDS = [
+    (900, None, 12),
+    (700, 899,   8),
+    (600, 699,   4),
+    (450, 599,   2),
+    (0,   449,   0),
+]
+
+# EV-REDLABEL-011 — Graduated sugar penalty for near-threshold continuity.
+# Applied as a SUGAR_LOAD-family penalty; smooths the cliff at 17.5g red-label boundary.
+# (lo_g_inclusive, hi_g_inclusive_or_None, penalty_points)
+SUGAR_GRADUATED_BANDS = [
+    (25.0, None,  0),    # >=25g: hard caps handle this range; no stacked penalty
+    (17.5, 24.99, 5),
+    (12.0, 17.49, 2),
+    (0.0,  11.99, 0),
+]
+
+# EV-REDLABEL-012 — Null sat_fat imputation for endemic-sat-fat categories.
+# When fat_g >= FAT_FLOOR and sat_fat is null and category in ENDEMIC set:
+#   sat_fat_implied = fat_g × DAIRY_SATFAT_FRACTION
+# Any consequence is applied at CONFIDENCE_HAIRCUT weight (annotated, not hard-score).
+REDLABEL_NULL_SATFAT_FAT_FLOOR          = 15.0  # g/100g — fat threshold to attempt imputation
+REDLABEL_DAIRY_SATFAT_FRACTION          = 0.63  # USDA FDC calibrated dairy sat_fat/fat ratio
+REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT = 0.50  # apply implied consequence at 50% weight
+
+# ---------------------------------------------------------------------------
 # SWEETENER caps and penalties by tier (independent — outside CONCERNS graph, SRC-03 note)
 # Tier A: fermentation-derived / natural (stevia, monkfruit, thaumatin) — lightest penalty
 # Tier B: sugar alcohols (erythritol, xylitol, sorbitol, maltitol, isomalt)
@@ -204,14 +287,17 @@ SWEETENER_PENALTY_C = 15
 
 # ---------------------------------------------------------------------------
 # TASK-133 — Evidence-Watch 2026-06-01 revisions (F2 / F1 / F4)
-# ALL magnitudes below are placeholders gated by DEC-004 (calibration_signoff).
-# The STRUCTURE is owner-approved; the NUMBERS are set in a dedicated calibration
-# run against real corpora. See research/TASK-133_implementation_roadmap.md.
+# F1 (emulsifier identity) → TASK-222A activated 2026-06-09.
+# F2 (matrix discount)     → TASK-222B activated 2026-06-09.
+# F4 (BHA penalty) → TASK-222C confirmed 2026-06-09 (near-zero corpus prevalence).
+# The STRUCTURE is owner-approved; the NUMBERS beyond those activated are set
+# in a dedicated calibration run against real corpora.
+# See research/TASK-133_implementation_roadmap.md.
 # ---------------------------------------------------------------------------
 
-# ── F2 / TASK-133B — Protein Quality matrix discount ────────────────────────
-# Discounts the protein-QUALITY contribution ONLY (DEC-004 G2 = quality-only).
-# Protein MASS still feeds satiety_support + nutrient_density untouched.
+# ── F2 / TASK-133B → TASK-222B — Protein Quality matrix discount ────────────
+# ACTIVATED 2026-06-09 (TASK-222B). Discounts the protein-QUALITY contribution
+# ONLY — protein MASS still feeds satiety_support + nutrient_density untouched.
 # Applies to bar-format products whose protein is reconstructed (isolate-style) —
 # the documented isolate-bar gaming hole. Empirical basis: bar-matrix DIAAS
 # measured at 47–81% of label — a conservative BAND, not a per-product number;
@@ -221,45 +307,86 @@ SWEETENER_PENALTY_C = 15
 # degradation pull is NOT wired into the composite score, so there is no
 # double-count today; if it is ever composited in, it must NOT re-penalize
 # reconstructed protein (PROCESSING_LOAD-family coordination note).
+# Corpus impact: 0 non-zero score deltas (only 2 products with reconstructed form,
+# both 0g protein). Verified: router 16/16 PASS, golden 11 PASS / 1 pre-existing WARN.
 PROTEIN_QUALITY_MATRIX_DISCOUNT = {
-    "reconstructed": 0.80,   # bar-format isolate: placeholder ~midpoint of 47–81% band — DEC-004
-    "collagen":      0.55,   # incomplete AA profile, lowest matrix DIAAS — DEC-004
+    "reconstructed": 0.80,   # bar-format isolate: midpoint of 47–81% DIAAS band — TASK-222B
+    "collagen":      0.55,   # incomplete AA profile, lowest matrix DIAAS — TASK-222B
 }
 # Bar-format scoring categories the F2 reconstructed discount applies to.
 # Restriction to bar formats PROTECTS in-context whey isolate (protein puddings /
 # Greek yogurt are not bar-format → unchanged). Collagen discounts in any format.
 PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES = ("snack_bar_granola",)
 
-# ── F1 / TASK-133C — emulsifier identity tiering + native-starch exclusion ──
-# DIRECTIONS ARE ALREADY LIVE via the EV-003 sprint1 correction in
-# signal_extractor (carrageenan/CMC → +2 count = stronger penalty; lecithin-only
-# → −1 count = relief) and native/modified starch are already correctly
-# differentiated by ADDITIVE_MARKER_PATTERNS (native עמילן is not an additive;
-# modified עמילן מוקשה/משונה counts as thickener). TASK-133A's taxonomy now
-# supplies EXACT identity (carrageenan vs CMC vs lecithin, E-numbers).
-# These per-identity point deltas on the additive_quality dimension default to
-# NEUTRAL (no-op) so they do NOT double-count sprint1; the calibration run
-# (DEC-004) sets the precise weights AND reconciles/retires the coarse sprint1
-# nudges. No new caps (Tension-5 rule budget). Note: food-grade carrageenan
-# (E407) is the modelled form; degraded poligeenan is not a food additive.
+# ── F1 / TASK-133C → TASK-222A — emulsifier identity deltas activate ─────────
+# ACTIVATED 2026-06-09 (TASK-222A). sprint1 +2/−1 additive-count corrections
+# are RETIRED — the EV-003 sprint1 correction in signal_extractor is set to
+# zero (preserved in code for rollback). Identity-based point deltas replace
+# the coarse count adjustment: carrageenan/CMC/P80 → −3 pts each on
+# additive_quality (cap −6); lecithin → +2 relief. The sprint1 correction and
+# identity deltas targeted the SAME dimension (additive_quality); only the
+# identity system fires now — no double-count. Native/modified starch
+# differentiation unchanged (native is not an additive; modified counts as
+# thickener — already correct in ADDITIVE_MARKER_PATTERNS).
+# Note: food-grade carrageenan (E407) is the modelled form; degraded
+# poligeenan is not a food additive.
 ADDITIVE_IDENTITY_DELTAS = {
-    "emulsifier_concern_each":  0,   # carrageenan / CMC / P80 — DEC-004 (sprint1 already +2 count)
-    "emulsifier_concern_cap":   0,   # max stacked concern delta — DEC-004
-    "lecithin_relief":          0,   # soy/sunflower lecithin toward neutral — DEC-004 (sprint1 already −1)
-    "native_starch_relief":     0,   # native starch already excluded from burden — DEC-004
+    "emulsifier_concern_each":  3,   # carrageenan / CMC / P80 → −3 pts each on additive_quality — TASK-222A
+    "emulsifier_concern_cap":   6,   # max stacked concern delta = −6 — hard ceiling TASK-222A
+    "lecithin_relief":          2,   # soy/sunflower lecithin toward neutral → +2 relief — TASK-222A
+    "native_starch_relief":     0,   # native starch already excluded from burden — DEC-004 (unchanged)
 }
 
-# ── F4 / TASK-133D — BHA named penalty (BHT explicitly excluded) ────────────
-# GATE PASSED (WebSearch 2026-06-01): FDA launched a post-market reassessment of
-# BHA (E320) on 2026-02-10 (RFI closed 2026-04-13; no final GRAS rule has landed
-# as of 2026-06); NTP lists BHA as "reasonably anticipated to be a human
-# carcinogen." BHT (E321) is NOT yet under reassessment (FDA reassesses it only
-# after BHA) → explicitly differentiated, no penalty. Small NAMED penalty on the
-# additive_quality dimension, distinct from the generic antioxidant-category
-# count (which BHA, BHT and benign tocopherol currently share). No
-# regulatory-status tracking subsystem — a static named penalty is correct while
-# no rule has landed. Magnitude gated by DEC-004.
-BHA_NAMED_PENALTY = 5   # points on additive_quality — placeholder, DEC-004
+# ── ECS-v1 / EV-045 — emulsifier_complexity family ──────────────────────────
+# Emulsifier Complexity Score (ECS-v1): measures aggregate burden of texture-
+# stabilising additives across three concern tiers. Distinct from F1 identity
+# deltas (which target additive_quality dimension). This family fires on a
+# separate emulsifier_complexity penalty signal.
+# Source: docs/scoring/emulsifier_complexity_spec_v1.md
+# Magnitudes confirmed per EV-045 (2026-06-10).
+EMULSIFIER_COMPLEXITY_CONSTANTS = {
+    "high_weight":          5,   # −5 per high-concern agent (CMC, P80)
+    "medium_weight":        3,   # −3 per medium-concern agent (carrageenan, mono/diglycerides, DATEM, SSL, PGPR, modified starch gated)
+    "low_weight":           1,   # −1 per low-concern agent (lecithins, gums, pectin, agar, alginate, gellan)
+    "complexity_moderate":  1,   # −1 for 2 distinct agents
+    "complexity_high":      3,   # −3 for 3+ distinct agents
+}
+EMULSIFIER_COMPLEXITY_FAMILY_BUDGET = 8   # max total complexity penalty (concern coordination)
+
+# ── F4 / TASK-133D → TASK-222C — BHA named penalty (BHT explicitly excluded) ─
+# ACTIVATED 2026-06-09 (TASK-222C): DEC-004 magnitude confirmed (BHA_NAMED_PENALTY=5).
+# Previously the magnitude was documented as DEC-004 gated, but the code was always
+# structurally live at BHA_NAMED_PENALTY=5 (unlike the zero-gated F1 identity deltas).
+# TASK-222C adds E-320 and E-321 synonym forms to ingredient_taxonomy.py so the hyphen
+# variant is correctly detected (bread light products use "E-320" in ingredient text).
+# FDA launched a post-market reassessment of BHA (E320) on 2026-02-10 (RFI closed
+# 2026-04-13; no final GRAS rule has landed as of 2026-06); NTP lists BHA as "reasonably
+# anticipated to be a human carcinogen." BHT (E321) is NOT yet under reassessment (FDA
+# reassesses it only after BHA) → explicitly differentiated, no penalty. Small NAMED
+# penalty on the additive_quality dimension, distinct from the generic antioxidant-category
+# count (which BHA, BHT and benign tocopherol currently share). No regulatory-status
+# tracking subsystem — a static named penalty is correct while no rule has landed.
+# Corpus prevalence: 2/1357 products (0.15%, both bread light) — near-zero, no scoring
+# sprint warranted. The penalty was always active; TASK-222C confirms the value and fixes
+# the taxonomy synonym gap.
+BHA_NAMED_PENALTY = 5   # points on additive_quality — confirmed, TASK-222C
+
+# ---------------------------------------------------------------------------
+# EV-006 — Functional fiber scoring constants (FFV-v1 vocabulary)
+# ---------------------------------------------------------------------------
+# Capped presence-only bonus for viscous (gel-forming) and non-viscous (prebiotic)
+# fibers, applied AFTER existing total_fiber_g scoring. No fiber quantity is
+# observed from labels — presence-only detection with strict caps.
+# Source: docs/scoring/fiber_functional_vocabulary_v1.md (FFV-v1)
+# Evidence: EV-006 (bsip2_evidence_registry_v1.md:177)
+# Vocabulary complete: 2026-06-10. SCORING WIRED: 2026-06-10.
+FIBER_FUNCTIONAL_BONUS = {
+    "viscous_glycemic_quality_bonus":   2,   # +2 to glycemic_quality for viscous fiber presence
+    "viscous_satiety_bonus":            2,   # +2 to satiety_support numerator equiv for viscous fiber
+    "prebiotic_glycemic_quality_bonus": 1,   # +1 to glycemic_quality for non-viscous prebiotic fiber
+    "prebiotic_satiety_bonus":          1,   # +1 to satiety_support numerator equiv for prebiotic fiber
+    "presence_bonus_cap_per_dimension": 2,   # max total bonus per dimension from functional fiber
+}
 
 # ---------------------------------------------------------------------------
 # TASK-144 Fix 2 — Fiber "absent ≠ zero" for naturally fiber-free dairy categories

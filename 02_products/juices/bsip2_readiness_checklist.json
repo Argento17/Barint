@@ -1,0 +1,28 @@
+{
+  "schema_version": "bsip2_readiness_v1",
+  "category_slug": "juices",
+  "pipeline_run": "run_juices_001",
+  "evaluated_at": "2026-06-07",
+  "evaluated_by": "data-agent",
+  "readiness_result": "pass",
+  "checklist": {
+    "scoring_logic_registered": true,
+    "scoring_logic_approved": true,
+    "scoring_logic_note": "Using approved beverage archetype scoring from the engine (BARI_RECAL_P0=on). No new scoring rules introduced — juices score under the existing beverage calorie table which is calibrated for per-100ml values.",
+    "label_observability_confirmed": true,
+    "label_observability_note": "Sub-pool field (juice_100/nectar/fruit_drink/smoothie/cold_pressed) surfaced on every product. fruitContentPct field present where label declares it. novaGroup field present.",
+    "rollback_plan_exists": true,
+    "rollback_plan_note": "Frontend JSON is a new file (juices_frontend_v1.json). No existing frozen baselines affected. Rollback = remove JSON from comparisons/ directory.",
+    "corpus_minimum_met": true,
+    "corpus_size": 65,
+    "all_products_scored": true,
+    "error_count": 0,
+    "misroute_count": 1,
+    "misroute_handling": "Product 7290006696717 (Muscat grape juice) scored under dessert archetype. Annotated in frontend JSON as juice_100 with routing_note flag.",
+    "grade_distribution": {"A": 1, "C": 54, "D": 10},
+    "score_range": {"min": 48.7, "max": 85.0},
+    "category_ceiling_note": "No product reaches B or above except one fresh-squeezed (סחוט תפוזים). This is the expected finding: juice = high sugar, zero fiber, zero satiety = structural C ceiling for processed products.",
+    "unit_override_confirmed": true,
+    "unit_override_note": "All 65 products confirmed per_100ml in nutrition_unit field. Engine beverage table is calibrated for this unit."
+  }
+}

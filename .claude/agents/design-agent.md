@@ -197,14 +197,10 @@ Instruments that turn design critique from assertion into evidence:
 |---|---|---|
 | `bari-web` `npm run test:a11y` | axe-core WCAG2 A/AA scan over the live comparison pages. **It already found a real one:** a serious **WCAG 1.4.3 color-contrast** violation on the grade chips (`/hashvaot/maadanim`). The color-coded chip scale (A green / B olive / C gold / D orange / E red) is exactly where contrast hides — this is yours to resolve. See `bari-web/e2e/README.md`. | LIVE-VERIFIED |
 | `bari-web` `npm run lhci` | Lighthouse CI also scores **accessibility** (gate ≥ 0.9) alongside performance — run after `next build`. | CONFIGURED |
-| `figma.get_styles()` / `.get_file()` | Read the design file's published color/type/spacing **styles** and component names — diff the live Tailwind/token set against what Figma actually publishes to catch drift (closes the Design Token Governance loop). | NEEDS-ENV-VERIFY (`FIGMA_TOKEN` + `FIGMA_FILE_KEY`) |
+| `bari-web/colors_and_type.css` | The canonical design token source — every approved color, radius, shadow, type scale, and motion value. Diff any component's hardcoded values against this file to catch drift. If a value appears in a component but not here, it is an unapproved token. If a value here is overridden inline in a component, it is drift. Read this file before any design critique. | LIVE (in-repo, no key needed) |
 | `pagespeed.analyze(url,"mobile")` | Core Web Vitals for the comprehension-critical mobile view (LCP/CLS/TBT). | LIVE-VERIFIED |
 
-**Guardrails.** These *measure*; they don't design. a11y is a floor, not the goal — a page
-can pass axe and still fail the 15–20-second comprehension test, which remains your
-judgement. Read-only (Figma is GET-only; design authorship stays human). The contrast
-finding is real signal — fix it on the chips without flattening the grade-scale legibility
-that earns the color in the first place.
+**Guardrails.** These *measure*; they don't design. a11y is a floor, not the goal — a page can pass axe and still fail the 15–20-second comprehension test, which remains your judgement. `colors_and_type.css` is read-only — design authorship stays human; the agent reads it and flags drift, never edits it. The contrast finding is real signal — fix it on the chips without flattening the grade-scale legibility that earns the color in the first place.
 
 ---
 

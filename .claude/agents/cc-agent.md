@@ -34,10 +34,14 @@ calls. It never hand-edits generated JSON.
 
 | Location | Path | Purpose |
 |---|---|---|
-| Registry (authoritative) | `C:\Bari\tasks\TASK-*.md` | Read all task + sub-task state from YAML frontmatter |
-| Command Center | `C:\Bari\05_command_center\` | Run generators/checkers; read `command_center.json` (never edit it) |
+| Live registry | `C:\Bari\tasks\TASK-*.md` | **Active tasks only** (~12 files). Read these for normal ops. |
+| Closed archive | `C:\Bari\tasks\closed\TASK-*.md` | All CLOSED tasks. Read only when investigating a specific historical task. |
+| Dashboard (lean) | `C:\Bari\05_command_center\command_center_live.json` | **Default read path** (~22 KB). Open tasks + alerts + category state. |
+| Dashboard (full) | `C:\Bari\05_command_center\command_center.json` | Full board with CLOSED rows trimmed. Read only when live.json is insufficient. |
 | Decisions | `C:\Bari\decisions\decisions.json` | Append-only decision registry feeding alerts |
 | Governance | `C:\Bari\01_framework\operations\` | `registry_first_rule_v1.md`, `registry_protocol_v1.md`, `work_classification_v1.md` |
+
+**Read discipline:** start with `command_center_live.json` + `tasks/TASK-*.md` (~35 KB total). Only expand to `tasks/closed/` or `command_center.json` when a specific historical lookup demands it. Never read `command_center_archive.json` unless explicitly reconstructing closed-task history.
 
 **Rule:** the registry wins. If a `TASK-*.md` and `command_center.json` disagree,
 the markdown is authoritative and the JSON is stale — regenerate, don't reconcile
@@ -262,7 +266,9 @@ When the user corrects CC, or a failure mode recurs:
 2. Record `CLOSED` only after the close-readiness gate passes — claims verified
    against artifacts, evidence cited in `close_reason`. Never close a
    `roadmap_impact` task before `cc_reviewed` is set, and never close a genuine
-   judgement call — escalate it.
+   judgement call — escalate it. **On close: immediately move the file from
+   `tasks/TASK-NNN.md` → `tasks/closed/TASK-NNN.md`** to keep the live registry
+   lean (archive discipline, 2026-06-07).
 3. Never invent a task, status, dependency, or completion. Quote the registry.
 4. After opening or changing any registry file, re-run `generate_dashboard.py`
    (or `check_drift.py`) so the dashboard is not left stale — then report the

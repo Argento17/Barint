@@ -1,0 +1,61 @@
+{
+  "schema_version": "corpus_filter_v1",
+  "category_slug": "juices",
+  "pipeline_run": "run_juices_001",
+  "created_at": "2026-06-07",
+  "created_by": "data-agent",
+  "include_rules": [
+    {
+      "rule_id": "CF-J-001",
+      "field": "category_tag",
+      "operator": "in",
+      "values": ["juice_100", "nectar", "fruit_drink", "smoothie", "cold_pressed"],
+      "rationale": "All five sub-pools are in scope."
+    },
+    {
+      "rule_id": "CF-J-002",
+      "field": "product_form",
+      "operator": "in",
+      "values": ["liquid", "beverage"],
+      "rationale": "Only liquid fruit beverages — powders and concentrates excluded."
+    },
+    {
+      "rule_id": "CF-J-003",
+      "field": "primary_ingredient_type",
+      "operator": "contains_any",
+      "values": ["fruit_juice", "fruit_puree", "fruit_concentrate", "fruit_extract"],
+      "rationale": "Must have a fruit-based first ingredient or declared fruit content."
+    }
+  ],
+  "exclude_rules": [
+    {
+      "rule_id": "CF-J-X001",
+      "field": "category_tag",
+      "operator": "in",
+      "values": ["carbonated", "sports_drink", "flavored_water", "vegetable_juice", "concentrate_pack"],
+      "rationale": "Explicit scope exclusions per pipeline brief."
+    },
+    {
+      "rule_id": "CF-J-X002",
+      "field": "data_sufficiency",
+      "operator": "equals",
+      "value": "insufficient",
+      "rationale": "Products without a scorable nutrition panel are not included."
+    }
+  ],
+  "unit_override": {
+    "nutrition_unit": "per_100ml",
+    "rationale": "Juices are beverages — all nutrition panels reported per 100ml. No unit conversion applied."
+  },
+  "sub_pool_rules": {
+    "juice_100": "fruit_content_pct >= 100 OR label_claim contains '100% פרי' OR label_claim contains '100% מיץ'",
+    "nectar": "fruit_content_pct >= 25 AND fruit_content_pct < 100 OR label_claim contains 'נקטר'",
+    "fruit_drink": "fruit_content_pct < 25 OR label_claim contains 'משקה פירות' AND NOT nectar AND NOT juice_100",
+    "smoothie": "product_form = smoothie OR ingredient_1_type = fruit_puree AND texture = opaque",
+    "cold_pressed": "processing_claim contains 'סחוט קר' OR processing_claim contains 'cold pressed' — merge into juice_100 if fewer than 3 products"
+  },
+  "minimum_corpus_threshold": 40,
+  "estimated_product_count_pre_dedup": "50-70",
+  "estimated_product_count_post_dedup": "40-55",
+  "corpus_filter_status": "pass"
+}

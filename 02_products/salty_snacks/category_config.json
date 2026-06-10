@@ -1,0 +1,44 @@
+{
+  "category_id": "salty-snacks",
+  "name_he": "חטיפים מלוחים",
+  "name_en": "Salty Snacks",
+  "route_name": "salty-snacks",
+  "dataset_glob": "salty_snacks*.json",
+  "forced_launch_status": "LIVE",
+  "sub_pools": ["chips", "popcorn", "puffed", "baked", "rice_cakes", "pretzels"],
+  "baseline": {
+    "bsip0": {
+      "status": "COMPLETE",
+      "run_id": "run_salty_snacks_bsip0_001",
+      "retailers": ["shufersal", "yohananof", "carrefour"],
+      "raw_count": 66,
+      "completed_at": "2026-06-07"
+    },
+    "bsip1": {
+      "status": "COMPLETE",
+      "run_id": "run_salty_snacks_bsip1_001",
+      "canonical_count": 54,
+      "dedup_removed": 12,
+      "completed_at": "2026-06-07"
+    },
+    "bsip2": {
+      "status": "COMPLETE",
+      "run_id": "run_salty_snacks_001",
+      "scored_count": 54,
+      "completed_at": "2026-06-07"
+    },
+    "qa": {
+      "status": "NOT_STARTED"
+    }
+  },
+  "known_issues": [
+    {
+      "issue_id": "KI-001",
+      "description": "Engine assigns NOVA 2 to Bamba and similar extruded puffed snacks due to short ingredient lists (corn+peanut butter+palm oil+salt). The correct NOVA is 4 — industrial extrusion is NOVA 4 by nature. BSIP1 assigns NOVA 4 but the engine independently re-calculates and downgrades. This scores Bamba at 70/B instead of the expected low-C/D range. Flagged to Nutrition Agent for TASK-189/engine fix.",
+      "affected_subcategory": "puffed",
+      "example_products": ["7290000066003"],
+      "engine_impact": "NOVA 2 → score inflated by ~15-20 points for extruded puffed snacks without E-number additives",
+      "action": "Log and note in run summary; do not adjust scores ad hoc per TASK-213 protocol"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "run_id": "run_salty_snacks_002",
+  "generated": "2026-06-07 08:37 UTC",
+  "engine": "proto_v0 / BARI_RECAL_P0=on",
+  "change": "EV-043 industrial-extrusion NOVA 4 signal (TASK-216)",
+  "source": "Shufersal + Yohananof + Carrefour; deduped by barcode",
+  "processed": 54,
+  "scored": 54,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 16,
+    "C": 18,
+    "A": 7,
+    "D": 9,
+    "E": 4
+  },
+  "score_median": 58.3,
+  "score_range": [
+    21.4,
+    87.5
+  ],
+  "nova_distribution": {
+    "2": 18,
+    "3": 22,
+    "4": 13,
+    "1": 1
+  },
+  "top5": [
+    {
+      "name": "חטיף עדשים אפוי קרפור",
+      "score": 87.5,
+      "grade": "A"
+    },
+    {
+      "name": "פצפוצי אורז רגיל",
+      "score": 85,
+      "grade": "A"
+    },
+    {
+      "name": "חטיף חומוס אפוי קרפור",
+      "score": 84.0,
+      "grade": "A"
+    },
+    {
+      "name": "ביסקוצ'י קרפור חיטה מלאה",
+      "score": 83.4,
+      "grade": "A"
+    },
+    {
+      "name": "קרקרים קריספ מחיטה מלאה",
+      "score": 83.4,
+      "grade": "A"
+    }
+  ],
+  "bottom5": [
+    {
+      "name": "פופקורן ריינבו קרמל",
+      "score": 21.4,
+      "grade": "E"
+    },
+    {
+      "name": "פופקורן Flex קרמל",
+      "score": 23.6,
+      "grade": "E"
+    },
+    {
+      "name": "במבה עם קרם שוקולד",
+      "score": 28.7,
+      "grade": "E"
+    },
+    {
+      "name": "טייסטי גבינה",
+      "score": 33.0,
+      "grade": "E"
+    },
+    {
+      "name": "פופקורן Good Boy גבינה",
+      "score": 36.0,
+      "grade": "D"
+    }
+  ],
+  "delta_from_run_001": [
+    {
+      "pid": "bsip1_snack_3560071063009",
+      "name": "ביסקוצ'י קרפור גבינה",
+      "score_001": 39.0,
+      "score_002": 39.0,
+      "score_delta": 0.0,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "D"
+    },
+    {
+      "pid": "bsip1_snack_7290000066003",
+      "name": "במבה",
+      "score_001": 70,
+      "score_002": 54.1,
+      "score_delta": -15.9,
+      "nova_001": 2,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "C"
+    },
+    {
+      "pid": "bsip1_snack_7290000066010",
+      "name": "במבה עם קרם שוקולד",
+      "score_001": 32.0,
+      "score_002": 28.7,
+      "score_delta": -3.3,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "E"
+    },
+    {
+      "pid": "bsip1_snack_7290000078006",
+      "name": "קרקרים שם טוב גבינה",
+      "score_001": 39.0,
+      "score_002": 39.0,
+      "score_delta": 0.0,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "D"
+    },
+    {
+      "pid": "bsip1_snack_7290000630006",
+      "name": "ביסלי גריל",
+      "score_001": 54.0,
+      "score_002": 54.0,
+      "score_delta": 0.0,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "C"
+    },
+    {
+      "pid": "bsip1_snack_7290000630020",
+      "name": "ביסלי בצל",
+      "score_001": 54.0,
+      "score_002": 52.4,
+      "score_delta": -1.6,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "C"
+    },
+    {
+      "pid": "bsip1_snack_7290009900003",
+      "name": "ביסלי ספגטי",
+      "score_001": 54.0,
+      "score_002": 52.9,
+      "score_delta": -1.1,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "C"
+    },
+    {
+      "pid": "bsip1_snack_7290014250018",
+      "name": "טייסטי גבינה",
+      "score_001": 33.0,
+      "score_002": 33.0,
+      "score_delta": 0.0,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "E"
+    },
+    {
+      "pid": "bsip1_snack_7290015700001",
+      "name": "תפוצ'יפס טעם גבינה",
+      "score_001": 62.9,
+      "score_002": 49.2,
+      "score_delta": -13.7,
+      "nova_001": 3,
+      "nova_002": 4,
+      "grade_001": null,
+      "grade_002": "D"
+    }
+  ],
+  "error_detail": []
+}

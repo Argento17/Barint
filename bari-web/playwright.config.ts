@@ -18,6 +18,7 @@ export default defineConfig({
   expect: { timeout: 10_000 },
   fullyParallel: true,
   reporter: process.env.CI ? "github" : "list",
+  snapshotDir: "./e2e/snapshots",
   use: {
     baseURL,
     trace: "on-first-retry",

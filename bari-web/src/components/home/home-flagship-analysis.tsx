@@ -22,7 +22,7 @@ export function HomeFlagshipAnalysis() {
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[#4E5663] md:text-lg">
               {featuredArticle.description}
             </p>
-            <p className="mt-2 text-sm text-[#7A817C]">{featuredArticle.metaLine}</p>
+            <p className="mt-2 text-sm text-[#5E6560]">{featuredArticle.metaLine}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -70,7 +70,7 @@ export function HomeFlagshipAnalysis() {
               <p className="text-base font-extrabold leading-snug tracking-[-0.02em] text-[#111318]">
                 מוצרים שנראים דומים על המדף — מתפצלים ברכיבים, בעיבוד ובתזונה.
               </p>
-              <p className="mt-1 text-xs text-[#7A817C]">
+              <p className="mt-1 text-xs text-[#5E6560]">
                 מסקנה מניתוח 18 מוצרי חלב ושתייה צמחית
               </p>
             </blockquote>

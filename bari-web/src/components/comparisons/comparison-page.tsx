@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
@@ -12,10 +12,11 @@ import type { ComparisonShelfFilters } from "@/lib/comparisons/registry/types";
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
 
-// FIX-1: methodology note — appears on every comparison page, below the category note.
-// Text is fixed; does not vary by category.
-const METHODOLOGY_NOTE =
-  "ציוני ברי מחושבים על ידי מערכת הערכה שבוחנת בצורה שיטתית ערכים תזונתיים, רכיבים ורמת עיבוד על בסיס נתוני התווית הזמנים. הציון מתאר את מה שנמצא במוצר לפי הנתונים הזמינים לנו. הוא אינו המלצה וגם לא קובע אם המוצר טוב או רע לאכילה, אלא מספק הקשר רחב יותר למה שנכנס לגוף שלך.";
+// TASK-226 COPY-LOCK: the methodology disclaimer no longer renders as a second yellow box
+// above the table. The single revised sentence moves into the MethodologyFooter (below the
+// table). Text is fixed; does not vary by category.
+const METHODOLOGY_FOOTER_NOTE =
+  "הציון מסכם את מה שכתוב על תווית המוצר. הוא אינו המלצה ואינו קובע אם המוצר טוב או רע לאכילה.";
 
 // FIX-3: If ≥50% of products have confidence==="partial", suppress per-product badges
 // and show a page-level disclosure note instead.
@@ -53,6 +54,16 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
   /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends a "פירוט המתודולוגיה" inline link
    *  to /research/glass-box at the end of the methodology footer. When W5 is OFF, byte-identical to HEAD. */
   glassBoxMethodologyLink?: boolean;
+  /**
+   * Optional escape hatch for categories that need custom product rendering (e.g. section
+   * grouping). When provided, replaces the default <ComparisonTable> call entirely.
+   * Receives the filtered product list and the resolved initialExpandedProductId so the
+   * caller can pass them through to its own <ComparisonTable> instances.
+   */
+  renderProducts?: (
+    filteredProducts: BariProductVM[],
+    expandedProductId: string | null
+  ) => React.ReactNode;
 }
 
 /** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
@@ -71,6 +82,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   initialExpandedProductId = null,
   category,
   glassBoxMethodologyLink = false,
+  renderProducts,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -126,12 +138,9 @@ export function ComparisonPage<TFilterId extends string = string>({
           </div>
         ) : null}
 
-        {/* FIX-1: methodology disclaimer — appears on every page, below category note. */}
-        <div className={cn("px-4 pb-1 mt-2", comparisonWebSectionPaddingClass())}>
-          <p className="whitespace-pre-line rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-[1.5] text-[#6A6147]">
-            {METHODOLOGY_NOTE}
-          </p>
-        </div>
+        {/* TASK-226: the methodology disclaimer moved out of this pre-table yellow box and
+            into the MethodologyFooter (below the table). Only the single categoryNote box
+            remains above the table. */}
 
         {/* FIX-3: page-level partial-data disclosure (shown when ≥50% of products are partial). */}
         {suppressPartialBadges ? (
@@ -145,17 +154,24 @@ export function ComparisonPage<TFilterId extends string = string>({
         {/* FIX-5: filter boxes hidden until a proper taxonomy is designed. The
             CategoryShelfLenses component is kept in the tree but not rendered. */}
 
-        <ComparisonTable
-          key={expandedProductId ?? "none"}
-          products={filteredProducts}
-          metricSpecs={metricSpecs}
-          showRail
-          initialExpandedProductId={expandedProductId}
-          category={category}
-          suppressPartialBadges={suppressPartialBadges}
-        />
+        {renderProducts ? (
+          renderProducts(filteredProducts, expandedProductId)
+        ) : (
+          <ComparisonTable
+            key={expandedProductId ?? "none"}
+            products={filteredProducts}
+            metricSpecs={metricSpecs}
+            initialExpandedProductId={expandedProductId}
+            category={category}
+            suppressPartialBadges={suppressPartialBadges}
+          />
+        )}
 
-        <MethodologyFooter lines={[...methodologyLines]} wide glassBoxMethodologyLink={glassBoxMethodologyLink} />
+        <MethodologyFooter
+          lines={[...methodologyLines, METHODOLOGY_FOOTER_NOTE]}
+          wide
+          glassBoxMethodologyLink={glassBoxMethodologyLink}
+        />
       </div>
     </div>
   );

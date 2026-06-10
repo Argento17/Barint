@@ -1,0 +1,105 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_juice_5449000133489",
+  "barcode": "5449000133489",
+  "canonical_name_he": "נקטר תפוחים Minute Maid 1 ליטר",
+  "canonical_name_en": null,
+  "brand": "Minute Maid",
+  "package_size_ml": 1000,
+  "unit_count": null,
+  "serving_size_ml": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": null,
+  "image_urls": [],
+  "source_retailers": [
+    "carrefour"
+  ],
+  "source_url": null,
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 47,
+    "fat_g": 0.1,
+    "fat_saturated_g": 0.0,
+    "fat_trans_g": 0,
+    "sodium_mg": 4,
+    "carbohydrates_g": 11.7,
+    "sugars_g": 9.6,
+    "dietary_fiber_g": 0.2,
+    "protein_g": 0.1
+  },
+  "nutrition_unit": "per_100ml",
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "",
+  "ingredients_list": [],
+  "ingredients_raw": "",
+  "ingredients_raw_provenance": {
+    "source": "none",
+    "bsip0_status": "bsip0_enrichment",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": true,
+    "note": "No ingredient text available."
+  },
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims_raw": "",
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "inferred_per_100ml",
+    "matched_by": "fdc_type_reference:apple_100",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "il_prices transparency feed barcode + OFF barcode match.",
+  "nutrition_basis_claimed": "ל-100 מ\"ל",
+  "nutrition_basis_detected": "per_100ml",
+  "nutrition_consistency_status": "inferred_from_type_reference",
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "missing",
+  "ingredient_warnings": [
+    "no_ingredient_list_in_source"
+  ],
+  "canonical_trust_score": 0.55,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "fdc_type_reference",
+    "no_sku_panel_verified"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [
+    "juice_sub_pool",
+    "nova_group_candidate"
+  ],
+  "audit_ref": null,
+  "juice_sub_pool": "nectar",
+  "fruit_content_pct": null,
+  "nova_group_candidate": 4,
+  "volume_ml": 1000,
+  "provenance": {
+    "identity_source": "curated_barcode_list + il_prices",
+    "panel_source": "usda_fdc_generic:apple_100",
+    "panel_found": true,
+    "panel_has_macros": true,
+    "off_completeness": null,
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-07T10:55:28.719210",
+    "client_version": "1.0",
+    "fdc_ref": "USDA FDC 786789 apple juice"
+  },
+  "price": null,
+  "acquisition_query": "curated_barcodes:juices_run_juices_001",
+  "ingredient_order": []
+}

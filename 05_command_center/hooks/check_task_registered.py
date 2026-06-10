@@ -36,7 +36,9 @@ def main():
             seen.add(m)
             ids.append(m)
 
-    missing = [t for t in ids if not (TASKS_DIR / f"{t}.md").exists()]
+    missing = [t for t in ids
+               if not (TASKS_DIR / f"{t}.md").exists()
+               and not (TASKS_DIR / "closed" / f"{t}.md").exists()]
     if missing:
         print(
             f"[registry-guard] Referenced but NOT in the registry: {', '.join(missing)}. "

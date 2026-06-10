@@ -1,0 +1,64 @@
+{
+  "run_id": "run_juices_rerun_001",
+  "run_ts": "2026-06-07T11:39:10.641841+00:00",
+  "category": "juices",
+  "result": "FAIL",
+  "result_reason": "BSIP0 hard gate failure: corpus 4 products (minimum 10), no-panel rate 88.6% exceeds 20% threshold. No FDC generics used — all exclusions are honest data gaps.",
+  "product_count": 4,
+  "panel_source_breakdown": {
+    "open_food_facts_real_panel": 4,
+    "firecrawl_retailer": 0,
+    "fdc_generic": 0,
+    "fdc_type_reference": 0
+  },
+  "panel_coverage_pct": 11.4,
+  "no_panel_rate": 0.8857,
+  "missing_ingredients_rate": 0.75,
+  "gate_failures": [
+    "Corpus too small: 4 products accepted with real panels (minimum 10)",
+    "No-panel rate 88.6% exceeds 20% threshold — 31 of 35 candidate barcodes have no real nutrition panel"
+  ],
+  "hard_rules_compliance": {
+    "fdc_generics_used": false,
+    "fabricated_records": false,
+    "round_timestamps": false,
+    "gate_self_passed": false,
+    "note": "Previous run violated CLAUDE.md by using FDC generic type references. This rerun uses OFF per-barcode only, excludes all products without real panels."
+  },
+  "data_availability_diagnosis": {
+    "shufersal_website": "IN MAINTENANCE MODE — product pages at shufersal.co.il/online/he/A{barcode} return Maintenance1.jpg. Cannot scrape nutrition.",
+    "shufersal_price_portal": "LIVE but DELTA FILES ONLY — 20 delta Price files covering only 96 barcodes (recent price changes). No PriceFull files available.",
+    "yohananof_laibcatalog": "TIMEOUT — laibcatalog.co.il unreachable at rerun time. Real il_prices run at 10:52:10 UTC yielded 20 Yohananof juice barcodes with organic timestamps — those barcodes are the valid identity layer.",
+    "rami_levy": "CLOUDFLARE BLOCKED — 403 on all endpoints.",
+    "open_food_facts_per_barcode": "WORKING — but Israeli juice barcodes (729-prefix) have very poor OFF coverage. Only 4 of 35 candidates found with real panels.",
+    "open_food_facts_search": "503 Service Unavailable at rerun time.",
+    "firecrawl_shufersal": "MAINTENANCE — product pages return maintenance image, not nutrition content."
+  },
+  "banked_valid_products": [
+    {"barcode": "7290001247068", "product_name_he": "נקטר ספרינג תות 1 ליטר", "off_name": "תות בננה", "energy_kcal": 40.0, "category_tag": "nectar"},
+    {"barcode": "7290001247143", "product_name_he": "נקטר ספרינג תפוחים 1 ליטר", "off_name": "Nectar Pomme", "energy_kcal": 40.0, "category_tag": "nectar"},
+    {"barcode": "7290008757386", "product_name_he": "מיץ פז ענבים", "off_name": "Mitz Paz Grape Juice", "energy_kcal": 42.0, "category_tag": "juice_100"},
+    {"barcode": "7290017812571", "product_name_he": "מיץ ענבים תירוש אדום יקבי כרמל", "off_name": "מיץ ענבים אדום", "energy_kcal": 66.0, "category_tag": "juice_100"}
+  ],
+  "unblock_conditions": {
+    "primary_path": "Wait for Shufersal maintenance to end, then scrape product pages via Firecrawl for the 20 Yohananof barcodes. Shufersal product pages return full nutrition panels when operational (confirmed with barcode 7290000066003 earlier today).",
+    "alternative_path": "Wait for laibcatalog.co.il to recover, re-run Yohananof il_prices, use OFF per-barcode + Firecrawl for nutrition.",
+    "do_not_reuse": "Prior BSIP2 barcodes (7290000039xxx, 5449000133xxx, 3168930010xxx, 0012000163xxx, 7290000052xxx) were fabricated — NOT FOUND on OFF, do not originate from any real retailer scrape. Never re-use them."
+  },
+  "excluded_products": {
+    "lemon_squeeze_bottle": ["7290106668577"],
+    "bare_internal_code": ["545"],
+    "not_found_on_off": [
+      "7290000209043", "7290002263661", "7290002404972", "7290003681945",
+      "7290004658847", "7290006696717", "7290008836494", "7290015348423",
+      "7290002263586", "7290016682397", "7290017812588", "7290017812618",
+      "7290017841588", "7290000052060", "7290000052077", "7290000052091",
+      "7290000052114", "3168930010085", "3168930010092", "3168930010108",
+      "5449000133489", "5449000145482", "0012000163356", "0012000163370",
+      "0012000167477", "7290000039442", "7290000039459", "7290000039497",
+      "7290000039503", "7290000039510"
+    ],
+    "found_on_off_no_real_panel": ["7290012404955"]
+  },
+  "provenance": "bsip0_rerun_real.py — all panels from OFF per-barcode API v2, no FDC generics, no invented data"
+}

@@ -38,7 +38,7 @@ export function HomeTrust() {
             </li>
           ))}
         </ul>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-xs leading-relaxed text-[#7A817C]">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-xs leading-relaxed text-[#5E6560]">
           הנתונים נאספים ממקורות ציבוריים ומתוויות מוצר; הציון משקף את מודל Bari ואינו
           תחליף לייעוץ רפואי או תזונתי אישי.
         </p>

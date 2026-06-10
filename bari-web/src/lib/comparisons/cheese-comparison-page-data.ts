@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/cheese_frontend_v2.json";
+import rawCorpus from "@/data/comparisons/cheese_frontend_v3.json";
 
 import {
   loadComparisonCorpus,

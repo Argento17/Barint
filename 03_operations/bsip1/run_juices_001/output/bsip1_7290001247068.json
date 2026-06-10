@@ -1,0 +1,183 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_juice_7290001247068",
+  "barcode": "7290001247068",
+  "canonical_name_he": "נקטר ספרינג תות 1 ליטר",
+  "canonical_name_en": "תות בננה",
+  "brand": "ספרינג",
+  "package_size_ml": 1000,
+  "unit_count": null,
+  "serving_size_ml": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": "https://images.openfoodfacts.org/images/products/729/000/124/7068/front_fr.9.400.jpg",
+  "image_urls": [
+    "https://images.openfoodfacts.org/images/products/729/000/124/7068/front_fr.9.400.jpg"
+  ],
+  "source_retailers": [
+    "yohananof"
+  ],
+  "source_url": "https://world.openfoodfacts.org/api/v2/product/7290001247068.json",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 40,
+    "fat_g": 0,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": null,
+    "carbohydrates_g": 10.1,
+    "sugars_g": 9.8,
+    "dietary_fiber_g": null,
+    "protein_g": 0
+  },
+  "nutrition_unit": "per_100ml",
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": "Eau, Jus de pomme (16%)*, Purée de fraises (8%)*, Purée de bananes (7%), Jus de fruits (oranges, fruit de la passion, fruits rouges)*, sucre, stabilisant naturel - Pectine, Acide comestible - Acide citrique, Arômes naturels.\r\n\r\n*issu de concentré",
+  "ingredients_list": [
+    "Eau",
+    "Jus de pomme (16%)*",
+    "Purée de fraises (8%)*",
+    "Purée de bananes (7%)",
+    "Jus de fruits (oranges",
+    "fruit de la passion",
+    "fruits rouges)*",
+    "sucre",
+    "stabilisant naturel - Pectine",
+    "Acide comestible - Acide citrique",
+    "Arômes naturels.\r\n\r\n*issu de concentré"
+  ],
+  "ingredients_raw": "Eau, Jus de pomme (16%)*, Purée de fraises (8%)*, Purée de bananes (7%), Jus de fruits (oranges, fruit de la passion, fruits rouges)*, sucre, stabilisant naturel - Pectine, Acide comestible - Acide citrique, Arômes naturels.\r\n\r\n*issu de concentré",
+  "ingredients_raw_provenance": {
+    "source": "open_food_facts",
+    "bsip0_status": "bsip0_enrichment",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "Ingredient text from OFF candidate record."
+  },
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims_raw": "",
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "confirmed",
+    "nutrition_confidence": "confirmed_per_100ml",
+    "matched_by": "off_barcode_lookup",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "retailer_confirmed",
+  "barcode_confidence_reason": "il_prices transparency feed barcode + OFF barcode match.",
+  "nutrition_basis_claimed": "ל-100 מ\"ל",
+  "nutrition_basis_detected": "per_100ml",
+  "nutrition_consistency_status": "consistent",
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "good",
+  "ingredient_warnings": [],
+  "canonical_trust_score": 0.65,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "off_candidate_panel"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [],
+  "inferred_fields": [
+    "juice_sub_pool",
+    "nova_group_candidate"
+  ],
+  "audit_ref": null,
+  "juice_sub_pool": "nectar",
+  "fruit_content_pct": null,
+  "nova_group_candidate": 4,
+  "volume_ml": 1000,
+  "provenance": {
+    "identity_source": "curated_barcode_list + il_prices",
+    "panel_source": "open_food_facts",
+    "panel_found": true,
+    "panel_has_macros": true,
+    "off_completeness": 0.7,
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-07T10:55:28.719210",
+    "client_version": "1.0"
+  },
+  "price": null,
+  "acquisition_query": "curated_barcodes:juices_run_juices_001",
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "Eau",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "Jus de pomme (16%)*",
+      "percentage_declared": 16.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "Purée de fraises (8%)*",
+      "percentage_declared": 8.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "Purée de bananes (7%)",
+      "percentage_declared": 7.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "Jus de fruits (oranges",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "fruit de la passion",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "fruits rouges)*",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "sucre",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "stabilisant naturel - Pectine",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "Acide comestible - Acide citrique",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "Arômes naturels.\r\n\r\n*issu de concentré",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ]
+}

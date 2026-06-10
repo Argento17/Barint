@@ -1,0 +1,46 @@
+{
+  "run_id": "run_cereals_008",
+  "generated": "2026-06-07 05:11 UTC",
+  "engine": "proto_v0 / BARI_RECAL_P0=on (byte-identical to run_006/007)",
+  "data_fixes": [
+    "TASK-198 / EV-051 Bug1: fat/sugar/sat-fat pass-through corrected (run_cereals_006 fix, carried forward)",
+    "TASK-198 / EV-051 Bug2: marketing-bleed detection added to BSIP1 builder (Lion ingredient_text_quality=marketing_bleed)",
+    "TASK-198 / EV-051 Bug2b: fermentation word-boundary fix in signal_extractor (שמר not in משמרים)"
+  ],
+  "source": "Shufersal real scrape 2026-06-05 -> BSIP1 run_cereals_008 (TASK-198 fixes)",
+  "processed": 63,
+  "scored": 63,
+  "errors": 0,
+  "grade_distribution": {
+    "B": 10,
+    "E": 6,
+    "D": 27,
+    "C": 20
+  },
+  "score_median": 48.6,
+  "score_range": [
+    26.1,
+    76.0
+  ],
+  "misroute_count": 0,
+  "misroute_pct": 0.0,
+  "misroutes": [],
+  "split_for_new_categories": {
+    "breakfast_cereals_standard_count": 38,
+    "granola_count": 25,
+    "split_note": "25 products classified category=snack_bar_granola in trace files; excluded from cereals_frontend_v1.json. Granola routing was executed at corpus curation stage, not at pipeline stage — run summary was generated before routing confirmation (EV-metadata-001)."
+  },
+  "task198_inversion_delta": {
+    "lion_run_005_score": 78,
+    "lion_run_005_grade": "B",
+    "lion_run_008_score": 55,
+    "lion_run_008_grade": "C",
+    "wittebix_run_005_score": 75,
+    "wittebix_run_005_grade": "B",
+    "wittebix_run_008_score": 75,
+    "wittebix_run_008_grade": "B",
+    "inversion_resolved": true,
+    "note": "Lion delta = -23pts / grade B->C. Bug1 (fat 0.5->6.2g, sugar null->24.7g, sat_fat null->2.5g) + Bug2 (marketing_bleed ingredient text suppressed, fermentation false positive removed). Wittebix unchanged. Source: bsip2_trace.json files verified directly."
+  },
+  "error_detail": []
+}

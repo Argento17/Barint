@@ -1,6 +1,6 @@
 # BSIP2 Router v2 Regression Report
 
-**Run date:** 2026-06-05 16:39 UTC
+**Run date:** 2026-06-09 16:23 UTC
 **Router:** router_v2
 **Corpus:** v1
 **Overall:** PASS
@@ -106,7 +106,7 @@ Raw scores: `dairy_protein=0.950`
 **Cream cheese — anchor must fire to dairy_protein (TASK-145)**  
 Failure mode tested: `cream-cheese anchor gap (run_cheese_001 QA-CHS-001)`  
 Category: **dairy_protein** (expected: dairy_protein) | Conf: 0.93 (high) | Anchor: True | Subtype: cream_cheese
-Raw scores: ``
+Raw scores: `dairy_protein=0.850`
 
 ### ✓ `anchor_cheese_spread` — PASS
 

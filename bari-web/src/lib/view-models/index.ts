@@ -213,6 +213,26 @@ export interface BariProductVM {
   grade: BariGrade | null;
   insightLine: string;
   confidence: BariConfidence;
+  /**
+   * Backend-prerendered Hebrew confidence label (e.g. "מבוסס על נתונים מלאים",
+   * "חסרים נתוני תזונה"). Rendered VERBATIM in the expansion confidence row — the UI
+   * never branches copy off the sub-reason. Snake_case to match the live frontend JSON
+   * key (`confidence_label_he`), which the corpus loader spreads straight onto the VM.
+   * Optional: categories whose JSON predates the field fall back to the legacy
+   * 3-state label map.
+   */
+  confidence_label_he?: string;
+  /**
+   * Backend-prerendered Hebrew tooltip sentence (the supporting confidence line shown
+   * in 10px in the expansion). Rendered VERBATIM. Optional; see confidence_label_he.
+   */
+  confidence_tooltip_he?: string;
+  /**
+   * Metadata-only display sub-reason enum (e.g. "missing_nutrition" | "low_extraction").
+   * NON-RENDERING: the UI must NOT branch Hebrew copy off this — the pre-rendered
+   * label/tooltip already encode the right specialised string. Carried for provenance only.
+   */
+  confidence_sub_reason?: string | null;
   expansion: BariExpansionVM;
   metrics?: BariProductMetricsVM;
   rowReason?: BariRowReasonVM;

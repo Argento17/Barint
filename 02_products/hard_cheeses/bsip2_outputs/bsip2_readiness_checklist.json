@@ -1,0 +1,71 @@
+{
+  "gate": "BSIP2_READINESS",
+  "run_id": "run_hard_cheeses_001",
+  "generated": "2026-06-07T10:05:00Z",
+  "task": "TASK-215",
+  "result": "PASS",
+  "scoring_logic": {
+    "engine": "proto_v0 / bsip2_concept_v1 + score_resolution_contract_SRC-v1",
+    "version": "0.4.1",
+    "recal_flags": {"BARI_RECAL_P0": "on"},
+    "scoring_rules_approved": true,
+    "scoring_rules_note": "proto_v0 engine uses approved scoring rules from bsip2_concept_v1 + SRC-v1. No new scoring rules introduced for this category — existing rules applied as-is. No D7 approval required for rule modification (no rules were modified).",
+    "no_custom_rules_for_category": true
+  },
+  "label_observability": {
+    "status": "confirmed",
+    "fat_per_100g": "present for all 37 products",
+    "fat_in_dry_matter_pct": "present for 33/37 products where applicable (4 processed cheese products do not carry dry-matter labeling by convention)",
+    "dual_fat_label_documented": true,
+    "dual_fat_label_count": 33,
+    "scoring_uses_fat_per_100g_only": true,
+    "protein_per_100g": "present for all 37 products",
+    "sodium_per_100g": "present for all 37 products",
+    "ingredient_list_hebrew": "present for all 37 products (100% coverage)",
+    "nova_group": "all 37 products have NOVA proxy (BSIP2-inferred)"
+  },
+  "rollback_plan": {
+    "status": "confirmed",
+    "prior_state": "Category hard_cheeses did not previously exist on frontend. This is a new category launch — rollback is file removal from bari-web/src/data/comparisons/. No existing scores to revert.",
+    "rollback_action": "Delete C:\\bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v1.json",
+    "rollback_triggers": ["critical scoring error discovered post-launch", "governance override from Nutrition Agent or Product Agent"],
+    "run_record_preserved_at": "C:\\Bari\\02_products\\hard_cheeses\\reports\\run_hard_cheeses_001_run_summary.json"
+  },
+  "acceptance_criteria_check": {
+    "bsip0_from_3_retailers": {"status": "PASS", "evidence": "Shufersal 22, Yohananof 18, Carrefour 20 + supplementary 14"},
+    "alignment_check_3_products": {"status": "PASS", "evidence": "Gouda28%=70.8/B > YellowLight16%=39.0/D > Processed=32.0/E — all in expected range"},
+    "post_dedup_corpus_30_plus": {"status": "PASS", "actual": 37, "minimum": 30},
+    "all_products_scored_with_trace": {"status": "PASS", "scored": 37, "with_trace": 37},
+    "subpool_classification": {"status": "PASS", "pools": ["yellow(15)", "yellow_light(4)", "bulgarian(7)", "tzfatit(4)", "hard_grating(3)", "processed(4)"]},
+    "fat_per_100g_vs_dry_matter_documented": {"status": "PASS", "products_documented": 33},
+    "frontend_json_generated": {"status": "PASS", "path": "C:\\Bari\\02_products\\hard_cheeses\\hard_cheeses_frontend_v1.json"},
+    "frontend_json_copied_to_bari_web": {"status": "PASS", "path": "C:\\bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v1.json"},
+    "run_summary_generated": {"status": "PASS", "path": "C:\\Bari\\02_products\\hard_cheeses\\reports\\run_hard_cheeses_001_run_summary.json"},
+    "d4_additive_wiring": {"status": "PASS", "products_enriched": 13, "coverage_pct": 35.1, "coverage_gate_15pct": true},
+    "red_team_challenge": {"status": "PASS", "critical_findings": 0, "report": "C:\\Bari\\02_products\\hard_cheeses\\reports\\red_team_run_hard_cheeses_001.md"},
+    "qa_gate": {"status": "PASS_WITH_WARNINGS", "hard_fails": 0, "warnings_accepted": 4}
+  },
+  "evidence_registry_entries": [
+    {
+      "id": "EV-CHEESE-001",
+      "description": "Fat per 100g vs fat-in-dry-matter: 33 products with dual labeling documented in curation_report.json. Scoring uses fat_per_100g only.",
+      "artifact": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\curation_report.json"
+    },
+    {
+      "id": "EV-CHEESE-002",
+      "description": "Alignment check: 3 archetypes scored before full corpus. Gouda 28%=70.8/B > Light 16%=39.0/D > Processed=32.0/E. PASS.",
+      "artifact": "C:\\Bari\\02_products\\hard_cheeses\\reports\\alignment_check_001.json"
+    },
+    {
+      "id": "EV-CHEESE-003",
+      "description": "Engine category misroute to 'dessert' for 20 products: documented as expected artifact of proto_v0 engine lacking hard_cheeses category. Zero score impact.",
+      "artifact": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\qa_gate_result.json"
+    },
+    {
+      "id": "EV-CHEESE-004",
+      "description": "Red-team challenge: 4 HIGH findings, 0 CRITICAL. All closed with accepted rationale.",
+      "artifact": "C:\\Bari\\02_products\\hard_cheeses\\reports\\red_team_run_hard_cheeses_001.md"
+    }
+  ],
+  "gate_decision": "PASS — all acceptance criteria met, red-team cleared, QA gate passed with accepted warnings. Frontend JSON deployed. Category ready for go-live review by Product Agent."
+}

@@ -97,7 +97,7 @@ function ProductMiniColumn({
         <span className="text-2xl font-extrabold tabular-nums tracking-[-0.04em] text-[#111318]">
           {formatScore(product.score)}
         </span>
-        <span className="text-[0.65rem] font-semibold text-[#7A817C]">ציון Bari</span>
+        <span className="text-[0.65rem] font-semibold text-[#5E6560]">ציון Bari</span>
       </div>
       <ul className="space-y-1">
         {product.strengths.map((s) => (
@@ -126,7 +126,7 @@ function ComparisonCardLayout({ card }: { card: ComparisonCard }) {
       <div className="mt-4 flex flex-1 flex-col gap-3">
         <div className="flex items-center gap-2">
           <ProductMiniColumn product={card.leftProduct} side="left" />
-          <span className="shrink-0 text-xs font-extrabold text-[#7A817C]" aria-hidden>
+          <span className="shrink-0 text-xs font-extrabold text-[#5E6560]" aria-hidden>
             מול
           </span>
           <ProductMiniColumn product={card.rightProduct} side="right" />
@@ -164,7 +164,7 @@ function EditorialCardLayout({ card }: { card: EditorialCard }) {
             <span className="text-3xl font-extrabold tabular-nums tracking-[-0.04em] text-[#111318]">
               {card.stat.value}
             </span>
-            <span className="text-xs font-semibold text-[#7A817C]">{card.stat.label}</span>
+            <span className="text-xs font-semibold text-[#5E6560]">{card.stat.label}</span>
           </div>
         ) : null}
 
@@ -175,7 +175,7 @@ function EditorialCardLayout({ card }: { card: EditorialCard }) {
         </div>
 
         {card.context ? (
-          <p className="text-xs text-[#7A817C]">{card.context}</p>
+          <p className="text-xs text-[#5E6560]">{card.context}</p>
         ) : null}
       </div>
 

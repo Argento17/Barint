@@ -1,0 +1,1070 @@
+{
+  "run_date": "2026-06-07",
+  "schema_notes": {
+    "barcode": "field only present in butter schema",
+    "brand": "field only present in butter schema",
+    "retailer": "field only present in butter schema; all other categories missing this field (tracked separately as missing_retailer)",
+    "rowVerdict": "field only present in cereals, granola, butter schemas"
+  },
+  "categories": {
+    "hummus": {
+      "file": "hummus_frontend_v5.json",
+      "n_products": 64,
+      "defects": [
+        {
+          "product_id": "bsip1_7290010931330",
+          "product_name": "סלט מטבוחה",
+          "field": "grade",
+          "issue": "mismatch: score=65 expects_grade=B actual_grade=C",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_7290107958639",
+          "product_name": "מטבוחה חריפה אש",
+          "field": "grade",
+          "issue": "mismatch: score=65 expects_grade=B actual_grade=C",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_8644112",
+          "product_name": "סלט מטבוחה יום יום",
+          "field": "grade",
+          "issue": "mismatch: score=65 expects_grade=B actual_grade=C",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 6 products share score=61",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=63",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=65",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 8 products share score=66",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 6 products share score=67",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=68",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 64 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 64,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 3,
+        "template_bleed_suspects": 0,
+        "score_clusters": [
+          {
+            "score": 61,
+            "count": 6
+          },
+          {
+            "score": 63,
+            "count": 5
+          },
+          {
+            "score": 65,
+            "count": 5
+          },
+          {
+            "score": 66,
+            "count": 8
+          },
+          {
+            "score": 67,
+            "count": 6
+          },
+          {
+            "score": 68,
+            "count": 5
+          }
+        ]
+      }
+    },
+    "yogurts": {
+      "file": "yogurts_frontend_v2.json",
+      "n_products": 11,
+      "defects": [
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 11 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 11,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 0,
+        "template_bleed_suspects": 0,
+        "score_clusters": []
+      }
+    },
+    "cereals": {
+      "file": "cereals_frontend_v1.json",
+      "n_products": 38,
+      "defects": [
+        {
+          "product_id": "bsip1_cereal_7290118420811",
+          "product_name": "פריכ.דקות דגנים+קטניות",
+          "field": "grade",
+          "issue": "mismatch: score=65 expects_grade=B actual_grade=C",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290116533599",
+          "product_name": "קורנפלקס",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_884912126115",
+          "product_name": "דגני גרייט גריינס דייטס",
+          "field": "grade",
+          "issue": "mismatch: score=35 expects_grade=D actual_grade=E",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 38 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 1,
+        "missing_retailer": 38,
+        "missing_insight_line": 0,
+        "missing_row_verdict": 0,
+        "score_grade_mismatches": 2,
+        "template_bleed_suspects": 0,
+        "score_clusters": []
+      }
+    },
+    "granola": {
+      "file": "granola_frontend_v1.json",
+      "n_products": 53,
+      "defects": [
+        {
+          "product_id": "bsip1_cereal_7290114603041",
+          "product_name": "Protein granola",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290013433244",
+          "product_name": "גרנולה 18% חלבון",
+          "field": "grade",
+          "issue": "mismatch: score=65 expects_grade=B actual_grade=C",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290019603627",
+          "product_name": "Granola With Bittersweet Chocolate",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290001343845",
+          "product_name": "גרנולה",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290104506819",
+          "product_name": "דגני בוקר במילוי קרם בטעם נוגט",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_16000423534",
+          "product_name": "קראנצ'י שיבולת שועל עם שוקולד מריר",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_cereal_7290116537962",
+          "product_name": "כריות וניל חדש",
+          "field": "imageUrl",
+          "issue": "empty_string",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 53 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 6,
+        "missing_retailer": 53,
+        "missing_insight_line": 0,
+        "missing_row_verdict": 0,
+        "score_grade_mismatches": 1,
+        "template_bleed_suspects": 0,
+        "score_clusters": []
+      }
+    },
+    "snacks": {
+      "file": "snacks_frontend_v2.json",
+      "n_products": 18,
+      "defects": [
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 18 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 18,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 0,
+        "template_bleed_suspects": 0,
+        "score_clusters": []
+      }
+    },
+    "maadanim": {
+      "file": "maadanim_frontend_v3.json",
+      "n_products": 84,
+      "defects": [
+        {
+          "product_id": "bsip1_maadanim_7290112339874",
+          "product_name": "גמדים לדרך תות בננה",
+          "field": "grade",
+          "issue": "mismatch: score=50 expects_grade=C actual_grade=D",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_maadanim_554402",
+          "product_name": "מלבי",
+          "field": "name",
+          "issue": "too_short (4 chars)",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_maadanim_5431968",
+          "product_name": "מלבי שמנת",
+          "field": "grade",
+          "issue": "mismatch: score=35 expects_grade=D actual_grade=E",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_maadanim_7290104501661",
+          "product_name": "פודינג וניל צרפתי",
+          "field": "grade",
+          "issue": "mismatch: score=35 expects_grade=D actual_grade=E",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=38",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=40",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=51",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 84 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 84,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 3,
+        "template_bleed_suspects": 0,
+        "score_clusters": [
+          {
+            "score": 38,
+            "count": 5
+          },
+          {
+            "score": 40,
+            "count": 5
+          },
+          {
+            "score": 51,
+            "count": 5
+          }
+        ]
+      }
+    },
+    "cheese": {
+      "file": "cheese_frontend_v2.json",
+      "n_products": 52,
+      "defects": [
+        {
+          "product_id": "che-4127336",
+          "product_name": "קוטג' 9% שומן",
+          "field": "grade",
+          "issue": "mismatch: score=81 expects_grade=A actual_grade=B",
+          "severity": "high"
+        },
+        {
+          "product_id": "che-41452",
+          "product_name": "קוטג' מהדרין 9% שומן",
+          "field": "grade",
+          "issue": "mismatch: score=81 expects_grade=A actual_grade=B",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 5 products share score=75",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 52 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 52,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 2,
+        "template_bleed_suspects": 0,
+        "score_clusters": [
+          {
+            "score": 75,
+            "count": 5
+          }
+        ]
+      }
+    },
+    "butter": {
+      "file": "butter_frontend_v2.json",
+      "n_products": 39,
+      "defects": [
+        {
+          "product_id": "bsip1_butter_4820217240114",
+          "product_name": "חמאה FERMA 82.5%",
+          "field": "insightLine",
+          "issue": "too_short (18 chars): '1 רכיב:  מכיל חמאה'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290113401022",
+          "product_name": "חמאה אדום אדום",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290113401022",
+          "product_name": "חמאה אדום אדום",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290113401022",
+          "product_name": "חמאה אדום אדום",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290113401022",
+          "product_name": "חמאה אדום אדום",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900015",
+          "product_name": "חמאה אנקור ללא מלח",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900015",
+          "product_name": "חמאה אנקור ללא מלח",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900015",
+          "product_name": "חמאה אנקור ללא מלח",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900015",
+          "product_name": "חמאה אנקור ללא מלח",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3760088100025",
+          "product_name": "חמאה אשירה AOP",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3760088100025",
+          "product_name": "חמאה אשירה AOP",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3760088100025",
+          "product_name": "חמאה אשירה AOP",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3760088100025",
+          "product_name": "חמאה אשירה AOP",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290105953020",
+          "product_name": "חמאה בית האמק",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290105953020",
+          "product_name": "חמאה בית האמק",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290105953020",
+          "product_name": "חמאה בית האמק",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290105953020",
+          "product_name": "חמאה בית האמק",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290015039130",
+          "product_name": "חמאה בלגית ללא תוספת מלח",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 3x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066028",
+          "product_name": "חמאה טרה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066028",
+          "product_name": "חמאה טרה",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066028",
+          "product_name": "חמאה טרה",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066028",
+          "product_name": "חמאה טרה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290006325046",
+          "product_name": "חמאה יוטבתה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290006325046",
+          "product_name": "חמאה יוטבתה",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290006325046",
+          "product_name": "חמאה יוטבתה",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290006325046",
+          "product_name": "חמאה יוטבתה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400221",
+          "product_name": "חמאה לורפק ללא מלח",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400221",
+          "product_name": "חמאה לורפק ללא מלח",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 78%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400221",
+          "product_name": "חמאה לורפק ללא מלח",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400221",
+          "product_name": "חמאה לורפק ללא מלח",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_8175173",
+          "product_name": "חמאה ללא תוספת מלח",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 3x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_8906060890143",
+          "product_name": "חמאה מזוקקת גהי",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_8906060890143",
+          "product_name": "חמאה מזוקקת גהי",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290108503746",
+          "product_name": "חמאה מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 3x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290002492086",
+          "product_name": "חמאה נוגה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290002492086",
+          "product_name": "חמאה נוגה",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290002492086",
+          "product_name": "חמאה נוגה",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290002492086",
+          "product_name": "חמאה נוגה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012558",
+          "product_name": "חמאה פיזן ברטון ללא מלח",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012558",
+          "product_name": "חמאה פיזן ברטון ללא מלח",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012558",
+          "product_name": "חמאה פיזן ברטון ללא מלח",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012558",
+          "product_name": "חמאה פיזן ברטון ללא מלח",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530005",
+          "product_name": "חמאה פרזידן ללא מלח",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530005",
+          "product_name": "חמאה פרזידן ללא מלח",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 78%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530005",
+          "product_name": "חמאה פרזידן ללא מלח",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530005",
+          "product_name": "חמאה פרזידן ללא מלח",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3161911229199",
+          "product_name": "חמאה צרפתית רכה למריחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004149",
+          "product_name": "חמאה קרי גולד ללא מלח",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004149",
+          "product_name": "חמאה קרי גולד ללא מלח",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004149",
+          "product_name": "חמאה קרי גולד ללא מלח",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004149",
+          "product_name": "חמאה קרי גולד ללא מלח",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004156",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004156",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004156",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004156",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460010935",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460010935",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "insightLine",
+          "issue": "too_short (12 chars): 'שומן חלב 81%'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460010935",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "rowVerdict",
+          "issue": "too_short (17 chars): 'חמאה טהורה. B/70.'",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460010935",
+          "product_name": "חמאה קרי גולד ללא מלח 250 גרם",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_4260268321030",
+          "product_name": "שמן גהי",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_4260268321030",
+          "product_name": "שמן גהי",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290019635130",
+          "product_name": "חמאה איטלקית מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900022",
+          "product_name": "חמאה אנקור מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900022",
+          "product_name": "חמאה אנקור מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_9414544900022",
+          "product_name": "חמאה אנקור מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066035",
+          "product_name": "חמאה טרה מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066035",
+          "product_name": "חמאה טרה מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_7290000066035",
+          "product_name": "חמאה טרה מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400238",
+          "product_name": "חמאה לורפק מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400238",
+          "product_name": "חמאה לורפק מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5740900400238",
+          "product_name": "חמאה לורפק מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_7290117263563",
+          "product_name": "חמאה מלוחה מבלגיה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012534",
+          "product_name": "חמאה פיזן ברטון מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012534",
+          "product_name": "חמאה פיזן ברטון מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_3412130012534",
+          "product_name": "חמאה פיזן ברטון מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530012",
+          "product_name": "חמאה פרזידן מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_3228021530012",
+          "product_name": "חמאה פרזידן מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004132",
+          "product_name": "חמאה קרי גולד מלוחה",
+          "field": "imageUrl",
+          "issue": "null",
+          "severity": "high"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004132",
+          "product_name": "חמאה קרי גולד מלוחה",
+          "field": "rowVerdict",
+          "issue": "template_bleed: appears 7x in category",
+          "severity": "medium"
+        },
+        {
+          "product_id": "bsip1_butter_5099460004132",
+          "product_name": "חמאה קרי גולד מלוחה",
+          "field": "confidence",
+          "issue": "invalid_value (insufficient) — not in {verified, partial, inferred}",
+          "severity": "high"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 11 products share score=50",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 26 products share score=70",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "rowVerdict",
+          "issue": "template_bleed_summary: 'חמאה טהורה. B/70.' appears 13x",
+          "severity": "medium"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "rowVerdict",
+          "issue": "template_bleed_summary: 'חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-B/70.' appears 3x",
+          "severity": "medium"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "rowVerdict",
+          "issue": "template_bleed_summary: 'חמאה מלוחה — מלח כרכיב נוסף. עוצרת ב-C/50.' appears 7x",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 21,
+        "missing_retailer": 0,
+        "missing_insight_line": 14,
+        "missing_row_verdict": 13,
+        "score_grade_mismatches": 0,
+        "template_bleed_suspects": 3,
+        "score_clusters": [
+          {
+            "score": 50,
+            "count": 11
+          },
+          {
+            "score": 70,
+            "count": 26
+          }
+        ]
+      }
+    },
+    "bread": {
+      "file": "bread_frontend_v2.json",
+      "n_products": 24,
+      "defects": [
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "score",
+          "issue": "score_cluster: 10 products share score=82",
+          "severity": "low"
+        },
+        {
+          "product_id": "_category",
+          "product_name": "_all",
+          "field": "retailer",
+          "issue": "field_absent_from_schema: 24 products have no retailer field (TASK-209 scope)",
+          "severity": "medium"
+        }
+      ],
+      "summary": {
+        "missing_image": 0,
+        "missing_retailer": 24,
+        "missing_insight_line": 0,
+        "missing_row_verdict": "N/A (field not in schema)",
+        "score_grade_mismatches": 0,
+        "template_bleed_suspects": 0,
+        "score_clusters": [
+          {
+            "score": 82,
+            "count": 10
+          }
+        ]
+      }
+    }
+  },
+  "totals": {
+    "high": 62,
+    "medium": 48,
+    "low": 13,
+    "total_defects": 123
+  }
+}

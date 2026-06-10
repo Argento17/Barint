@@ -538,11 +538,6 @@
     letter-spacing: 0.06em;
   }
 
-  /* band rail (v2 §3) — hidden on narrow containers */
-  .bari-cmp-rail {
-    display: none;
-  }
-
   /* ===================== WIDE (container ≥ 680px) ===================== */
   @container bari-cmptable (min-width: 680px) {
     .bari-cmp-colhead {
@@ -583,10 +578,6 @@
       grid-area: grade;
       text-align: end;
     }
-    .bari-cmp-colhead-avg {
-      font-weight: 800;
-      color: #4a524e;
-    }
 
     .bari-cmp-thumbcell {
       width: 80px;
@@ -626,73 +617,5 @@
     .bari-cmp-gradecell .bari-cmp-conf {
       order: -1;
     }
-  }
-
-  /* rail visible only when the host marks the workspace wide AND on lg+ viewports */
-  @media (min-width: 64rem) {
-    .bari-cmp-workspace--wide .bari-cmp-rail {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      width: 172px;
-      flex: none;
-      align-self: stretch;
-      border-inline-start: 1px solid rgba(17, 19, 24, 0.06);
-      padding: 16px;
-      position: sticky;
-      top: 0;
-    }
-  }
-  .bari-cmp-rail-title {
-    margin: 0 0 8px;
-    font-family: var(--font-mono, monospace);
-    font-size: 0.56rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #7a817c;
-  }
-  .bari-cmp-rail-band {
-    border: 0;
-    background: transparent;
-    font: inherit;
-    cursor: pointer;
-    padding: 7px 8px;
-    border-radius: 9px;
-    text-align: start;
-    transition: background 0.16s;
-  }
-  .bari-cmp-rail-band:hover {
-    background: rgba(31, 143, 106, 0.06);
-  }
-  .bari-cmp-rail-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px;
-  }
-  .bari-cmp-rail-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #4e5663;
-  }
-  .bari-cmp-rail-count {
-    font-size: 0.7rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: #7a817c;
-  }
-  .bari-cmp-rail-bar {
-    display: block;
-    margin-top: 5px;
-    height: 4px;
-    background: #edede7;
-    border-radius: 9999px;
-    overflow: hidden;
-  }
-  .bari-cmp-rail-bar i {
-    display: block;
-    height: 100%;
-    border-radius: 9999px;
   }
 }

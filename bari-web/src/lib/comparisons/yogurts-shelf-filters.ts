@@ -1,4 +1,4 @@
-import rawCorpus from "@/data/comparisons/yogurts_frontend_v2.json";
+import rawCorpus from "@/data/comparisons/yogurts_frontend_v3.json";
 
 import type { BariProductVM } from "@/lib/view-models";
 

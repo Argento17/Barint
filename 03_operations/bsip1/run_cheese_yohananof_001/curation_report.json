@@ -1,0 +1,111 @@
+{
+  "run_id": "run_cheese_yohananof_001",
+  "retailer": "yohananof",
+  "generated": "2026-06-07T06:15:57.566533+00:00",
+  "source_file": "C:\\Bari\\02_products\\cheese_spreads\\bsip0_outputs\\yohananof_cheese_bsip0_raw_20260607T061055.json",
+  "raw_count": 190,
+  "bsip0_filter_count": 175,
+  "bsip0_filter_tally": {
+    "incomplete_nutrition": 88,
+    "ingredients_absent": 174
+  },
+  "dedup_dropped": 0,
+  "included_count": 5,
+  "excluded_count": 10,
+  "exclusion_tally": {
+    "not_fresh_cheese": 7,
+    "yellow_hard_processed_excluded": 1,
+    "plant_based_non_dairy_out_of_scope": 1,
+    "prepared_meal_or_sauce_excluded": 1
+  },
+  "ingredient_coverage": "5/5",
+  "included": [
+    {
+      "barcode": "7290000047621",
+      "name": "גבינה לבנה",
+      "subpool": "white_cheese_quark",
+      "has_ingredients": true,
+      "nutrition_fields": 7
+    },
+    {
+      "barcode": "7290000048185",
+      "name": "גבינה לבנה 5%",
+      "subpool": "white_cheese_quark",
+      "has_ingredients": true,
+      "nutrition_fields": 7
+    },
+    {
+      "barcode": "7290002868996",
+      "name": "קוטג׳ 5%",
+      "subpool": "cottage",
+      "has_ingredients": true,
+      "nutrition_fields": 7
+    },
+    {
+      "barcode": "7290004127329",
+      "name": "קוטג' 5%",
+      "subpool": "cottage",
+      "has_ingredients": true,
+      "nutrition_fields": 7
+    },
+    {
+      "barcode": "7290004127336",
+      "name": "קוטג' 9%",
+      "subpool": "cottage",
+      "has_ingredients": true,
+      "nutrition_fields": 7
+    }
+  ],
+  "excluded": [
+    {
+      "barcode": "5010677554398",
+      "name": "Breezer Watermelon",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "72600062306",
+      "name": "Herrs Baked cheese curls",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "8076800195057",
+      "name": "Spaghetti N° 5",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "8076802085738",
+      "name": "Penne Rigate No. 73 Durum Wheat Semolina Pasta",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "8076808050440",
+      "name": "MACCHERONI N°44",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "4000417222008",
+      "name": "ريتر سبورت شكولاته بالبندق",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "7290116931524",
+      "name": "גאודה",
+      "reason": "yellow_hard_processed_excluded"
+    },
+    {
+      "barcode": "7290119385607",
+      "name": "אלפרו בריסטה סויה",
+      "reason": "plant_based_non_dairy_out_of_scope"
+    },
+    {
+      "barcode": "8076809523714",
+      "name": "BARILLA TAGLIATELLE 500g",
+      "reason": "not_fresh_cheese"
+    },
+    {
+      "barcode": "8076809580144",
+      "name": "פסטה פרפלה קולזיאונה N.65",
+      "reason": "prepared_meal_or_sauce_excluded"
+    }
+  ]
+}

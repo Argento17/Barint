@@ -897,4 +897,123 @@ study_objects:
 
 ---
 
-*End of Evidence Registry v1. Next BEV entry: BEV-083.*
+---
+
+## Section 14 — Juice NOVA-1 Floor Gate (TASK-217)
+
+*Entry BEV-084 governs the three-condition gate on the `nova1_single_ingredient` floor for the `beverage / juice_100` sub-category. D7-approved by Nutrition Agent + Product Agent, 2026-06-07. Source: accepted food science on concentration/reconstitution as a processing step materially distinct from fresh-pressing.*
+
+### BEV-084
+**Topic:** NOVA-1 single-ingredient floor gate for reconstituted-from-concentrate juice (juice_100 category)
+**Summary:** The `nova1_single_ingredient` floor (NOVA1_SINGLE_FLOOR = 85, score lifted to A) was designed for genuine single-ingredient whole foods — nuts, plain fruit, cold-pressed juice — where the engine's penalty architecture would incorrectly penalise natural composition. Reconstituted-from-concentrate juice is a structurally distinct processing step: water removal by heat evaporation drives volatile loss (aromatic compounds, heat-labile vitamin C fractions), followed by water re-addition. Published food science consistently documents that this cycle (a) destroys a portion of heat-labile phytochemicals, (b) alters flavonoid and polyphenol bioavailability profiles, and (c) modifies the product's sensory and enzymatic profile relative to cold-pressed or freshly squeezed equivalents — even when macronutrient panels (sugar, calories, protein) converge. This is not a health claim; it is a structural-processing classification consistent with BSIP2's NOVA 3 assignment for reconstituted-from-concentrate products. The floor was not designed to benefit NOVA 3 products, and its mis-application to unlabelled reconstituted juice (where reconstitution markers are present in ingredient text but NOVA inference did not fire NOVA 3) produces a category A score (85) on a product whose weighted dimension score may be as low as 57–58. The gate conditions below close this gap. Evidence tier: Moderate (well-established food science; volatile and phytochemical loss in juice concentration is documented in peer-reviewed food chemistry literature; no RCT is required or applicable for a processing-classification rule). Label observability: all three conditions are extractable from observable label data (BSIP1 `nova_proxy` field, BSIP1 `has_fruit_concentrate` enrichment flag when present, and direct ingredient-text substring matching for Hebrew and English reconstitution markers — no per-person parameters required).
+
+**Gate rule (ALL three conditions must be satisfied for floor to fire):**
+1. `nova_proxy == 1` (floor was triggered)
+2. `has_fruit_concentrate == false` (BSIP1 enrichment flag; when absent, derived from condition 3)
+3. Ingredient text does NOT contain any of: `רכז`, `משוחזר`, `מרוכז`, `concentrate`, `from concentrate`
+
+**If any condition fails:** floor does not fire; `nova_proxy` is set to minimum 2; product is subject to existing NOVA 2/3 caps. No other scoring logic changes.
+
+**Scope:** `beverage / juice_100` sub-category only. Other categories (whole_food_fat, dairy, etc.) with NOVA 1 single-ingredient floors are unaffected.
+
+**Category scope guard:** `juice_100_floor_gate_active` flag — only active when `category == "beverage"` and product has `juice_subpool == "juice_100"` OR is routed as a single-ingredient beverage. Guard prevents blast-radius to other beverage sub-types.
+
+**Scientific basis:** Heat-driven volatile loss in juice concentration (documented); altered phytochemical and flavonoid profiles in reconstituted vs. fresh-pressed juice (documented); enzymatic changes from pasteurisation required post-reconstitution (documented). These are L2/L3-level structural-processing facts, not individual dietary predictions.
+
+**Evidence tier:** Moderate (B) — consistent directional finding in peer-reviewed food chemistry; no RCT applicable; mechanistic basis is robust.
+
+**Status:** Accepted — `score_moving` (implemented TASK-217, 2026-06-07). D7 co-sign: Nutrition Agent + Product Agent.
+
+**Implementation:** `03_operations/bsip2/proto_v0/src/score_engine.py`, `apply_floors()`, three-condition gate block (TASK-217 / BEV-084).
+
+**Impact:** Scoring (juice_100 category)
+
+**Task:** TASK-217
+
+---
+
+## Registry Summary (updated)
+
+| Section | ID Range | Count | Notes |
+|---|---|---|---|
+| Core Framework & Philosophy | BEV-001 – BEV-010 | 10 | All Accepted |
+| Scoring Architecture | BEV-011 – BEV-020 | 10 | BEV-020 Under Review |
+| Processing Science Positions | BEV-021 – BEV-031 | 11 | BEV-026 Under Review |
+| Nutritional Science Positions | BEV-032 – BEV-040 | 9 | BEV-036 Under Review |
+| Category Calibrations | BEV-041 – BEV-048 | 8 | All Accepted |
+| Hard Cap & Floor Rules | BEV-049 – BEV-053 | 5 | BEV-053 Under Review |
+| Product-Level Rulings | BEV-054 – BEV-061 | 8 | Mixed |
+| Known Distortions | BEV-062 – BEV-066 | 5 | All Under Review |
+| Future Architecture | BEV-067 – BEV-070 | 4 | All Future Work |
+| Language & Editorial | BEV-071 – BEV-077 | 7 | All Accepted |
+| Glass Box D4: Additive Evidence | BEV-078 – BEV-081 | 4 | score_moving_pending_d7 (BEV-078, BEV-079); annotate_only (BEV-080, BEV-081) |
+| Glass Box D1: Energy Density | BEV-082 | 1 | score_moving_pending_d7 |
+| Olive Oil D5/D6 Authenticity | BEV-083 | 1 | annotate_only; reclassified D5→D6 2026-06-06 |
+| Juice NOVA-1 Floor Gate | BEV-084 | 1 | score_moving; D7 co-signed 2026-06-07; TASK-217 |
+| **Total** | **BEV-001 – BEV-084** | **85** | |
+
+### Status Totals
+| Status | Count |
+|---|---|
+| Accepted | 55 |
+| Under Review | 18 |
+| Rejected | 0 |
+| Future Work (distinct from Accepted) | 6 |
+| score_moving_pending_d7 | 4 |
+| annotate_only | 2 |
+| score_moving (implemented) | 1 |
+
+---
+
+## Section 15 — Emulsifier Identity Deltas (TASK-222A)
+
+*Entry BEV-085 governs the TASK-222A activation of F1 identity deltas (`ADDITIVE_IDENTITY_DELTAS` in constants.py) and retirement of the sprint1 +2/−1 additive-count corrections. Source: BSIP2 research review batch (2026-06-09), synthesizing human RCT evidence for carrageenan/CMC gut-barrier effects, commercial DIAAS data for protein-bar matrix discount, and FDA regulatory status for BHA/E320.*
+
+### BEV-085
+**Topic:** Emulsifier identity-based scoring — carrageenan/CMC/P80 penalty (−3 each, cap −6) and lecithin relief (+2) via F1 identity deltas
+**Summary:** The sprint1 EV-003/019 system used a coarse additive-count correction (+2 for high-risk emulsifiers, −1 for lecithin-only) as a proxy until per-ingredient identity signals were available. TASK-133A's ingredient taxonomy now supplies exact identity resolution. Three evidence streams support the transition:
+- **Carrageenan/CMC (human RCT):** A placebo-controlled human feeding study (2023) found that carrageenan (∼250 mg/day) increased gut permeability (lactulose/mannitol ratio) vs placebo, and CMC (∼15 g/day for 11 days) reduced fecal SCFAs and altered the microbiome. These are the first human RCT data for food-relevant doses directly measuring gut-barrier effects. Evidence tier: Strong (A) for carrageenan/CMC — human placebo-controlled RCT, food-relevant dose, direct endpoint. Polysorbate-80 remains mechanistic/animal only — evidence tier: Moderate (B).
+- **Lecithin (regulatory consensus):** Soy/sunflower lecithin (E322) has a well-established safety profile (GRAS, EFSA acceptable intake not specified). It is a naturally occurring phospholipid emulsifier. The +2 relief reflects its benign status — less penalizing than the sprint1 full count-exclusion (−18 base) but still marking it as an additive (unlike native starch which is fully excluded).
+- **Cap rationale:** The −6 cap ensures that even a product with 3+ high-risk emulsifiers never has additive_quality reduced by more than 6 points from this rule alone. This is bounded by the existing ADDITIVE_FAMILY_BUDGET which already limits total additive_quality loss.
+**Evidence tier:** Strong (A) for carrageenan/CMC human RCT; Moderate (B) for P80 (mechanistic only); Regulatory consensus for lecithin (not human RCT).
+**Label observability:** Fully observable. `tax_emulsifier_concern` and `tax_emulsifier_benign` are extracted from ingredient text via ingredient_taxonomy.py resolution. The sprint1 detection functions (lexical patterns for Hebrew and E-numbers) remain for traceability/rollback.
+**Status:** Accepted — score_moving (implemented TASK-222A, 2026-06-09). Replaces retired sprint1 EV-003/019 additive-count corrections.
+**Implementation:** `03_operations/bsip2/proto_v0/src/constants.py` — `ADDITIVE_IDENTITY_DELTAS` values set non-zero; `03_operations/bsip2/proto_v0/src/signal_extractor.py` — sprint1 corrections retired to zero; `03_operations/bsip2/proto_v0/src/score_engine.py` — `_identity_additive_deltas()` now active.
+**Impact:** Scoring (additive_quality dimension — processed categories)
+**Task:** TASK-222A
+
+---
+
+*Entry BEV-086 governs the TASK-222B activation of F2 protein-bar matrix discount (`PROTEIN_QUALITY_MATRIX_DISCOUNT` in constants.py). Source: BSIP2 research review batch (2026-06-09), synthesizing commercial DIAAS data for bar-matrix protein bioavailability reduction. Same batch as BEV-085 (emulsifier deltas) and planned BEV-087 (BHA/E320).*
+
+### BEV-086
+**Topic:** Protein-bar matrix discount — reconstructed-protein quality penalty (×0.80) for bar-format isolates and collagen (×0.55) for any format
+**Summary:** The BSIP2 scoring engine has a documented structural gap: bar-format products using reconstructed protein isolates (whey/soy/pea/egg/casein isolate) receive full protein-quality credit even though the bar matrix reduces amino-acid bioavailability by 47–81% relative to isolated protein (DIAAS measurements, commercial study). Collagen is additionally discounted because it is an incomplete protein (lacks tryptophan) with the lowest matrix DIAAS. Two discount tiers:
+- **Reconstructed (×0.80):** Bar-format isolate products in `snack_bar_granola` category. Midpoint of the 47–81% DIAAS band — conservative, does not assume the worst-case reduction. Scoped to bar-format only to PROTECT in-context whey isolate (protein puddings, Greek yogurt with whey concentrate — not bar-format, unchanged).
+- **Collagen (×0.55):** Any product where collagen peptides appear in the primary ingredient window (position ≤ 3). Incomplete AA profile (no tryptophan) and lowest matrix DIAAS. Applies regardless of category.
+**Evidence tier:** Moderate (B) — commercial DIAAS data, directionally consistent with known matrix effects, but single-source and not yet independently replicated in peer-reviewed literature at bar-relevant DIAAS scale. Conservative midpoint values mitigate over-penalization risk.
+**Label observability:** Fully observable. `protein_matrix_form` extracted from ingredient text primary window (positions 1–3) via `RECONSTRUCTED_PROTEIN_MARKERS_HE` and `COLLAGEN_MARKERS_HE` in signal_extractor.py. Excludes milk powder (verified false-positive source: milk-powder chocolate/cereal bars must not trigger the discount).
+**Status:** Accepted — score_moving (implemented TASK-222B, 2026-06-09). Corpus impact: 0 non-zero score deltas (2 products with reconstructed form, both 0g protein; 0 collagen products).
+**Implementation:** `03_operations/bsip2/proto_v0/src/constants.py` — `PROTEIN_QUALITY_MATRIX_DISCOUNT` activated (DEC-004 placeholder values confirmed); `03_operations/bsip2/proto_v0/src/score_engine.py` — `score_protein_quality()` uses discount on quality score only.
+**Impact:** Scoring (protein_quality dimension — snack_bar_granola category for reconstructed, any category for collagen)
+**Task:** TASK-222B
+
+---
+
+*Entry BEV-087 governs the TASK-222C confirmation of F4 BHA named penalty (E320). Source: BSIP2 research review batch (2026-06-09), FDA reassessment RFI (2026-02-10), NTP listing. Same batch as BEV-085/086.*
+
+### BEV-087
+**Topic:** BHA/E320 named penalty — regulatory-transparency flag on additive_quality (−5) for Butylated hydroxyanisole
+**Summary:** FDA launched a post-market reassessment of BHA (E320) on 2026-02-10 (RFI closed 2026-04-13); no final GRAS rule has landed as of 2026-06. NTP lists BHA as "reasonably anticipated to be a human carcinogen." The penalty is a small regulatory-transparency flag, not a health-risk score — distinct from the generic antioxidant-category count (which BHA, BHT and benign tocopherol currently share). BHT (E321) is explicitly differentiated: NOT under FDA reassessment, no penalty.
+- **Synonym gap fix (TASK-222C):** The ingredient taxonomy had `E320` and `E 320` as BHA synonyms but not `E-320` (hyphen form). Bread light products use `E-320` in ingredient text. TASK-222C adds `"E-320"` to BHA synonyms and `"E-321"` to BHT synonyms for data-consistency.
+- **Corpus prevalence (TASK-222C scan):** 2/1,357 products (0.15%) across all BSIP1 runs — both in bread light corpus (`run_bread_light_001`). Near-zero prevalence; no scoring sprint warranted. The penalty was always structurally live at -5; TASK-222C confirms the magnitude and fixes the taxonomy gap.
+**Evidence tier:** Regulatory (FDA RFI + NTP listing) — not a human RCT tier. Appropriate for a small transparency flag, not a major scoring driver.
+**Label observability:** Fully observable. `tax_bha_present` extracted via `ingredient_taxonomy.resolve_additive()` matching Hebrew/E-number synonyms. `E-320` variant now included (TASK-222C).
+**Status:** Accepted — score_moving (code was always live; TASK-222C fixes taxonomy gap). Corpus impact: 2 products affected (−5 additive_quality; net −3 after lecithin relief).
+**Implementation:** `03_operations/bsip2/proto_v0/src/constants.py` — `BHA_NAMED_PENALTY=5` confirmed; `03_operations/bsip2/proto_v0/src/ingredient_taxonomy.py` — `"E-320"` and `"E-321"` synonyms added; `03_operations/bsip2/proto_v0/src/score_engine.py` — `_identity_additive_deltas()` already applied penalty on `tax_bha_present`.
+**Impact:** Scoring (additive_quality dimension — any category with BHA-bearing products; currently bread light only)
+**Task:** TASK-222C
+
+---
+
+*End of Evidence Registry v1. Next BEV entry: BEV-088.*

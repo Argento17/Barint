@@ -198,12 +198,13 @@
         "viscous_fiber_g"
       ],
       "should_affect_score_now": false,
-      "should_affect_score_now_reason": "Requires viscous fiber vocabulary dictionary to parse ingredient text reliably",
+      "should_affect_score_now_reason": "Vocabulary input COMPLETE (see vocabulary_milestone); scoring still gated on remaining_gates. Not wired.",
       "required_input_fields": [
         "ingredients_list",
         "normalized_nutrition_per_100g.dietary_fiber_g"
       ],
       "viscous_fiber_terms_he": [
+        "קליפת פסיליום",
         "פסיליום",
         "ביתא גלוקן",
         "גואר"
@@ -212,10 +213,34 @@
         "אינולין",
         "שורש עולש",
         "פוליי-דקסטרוז",
-        "דקסטרין"
+        "דקסטרין עמיד"
       ],
       "risk_of_misuse": "Exact viscous fiber quantity not on label; presence-only detection risks under-crediting psyllium-dominant products",
-      "notes": "Implement vocabulary dictionary before modifying scoring. This finding is the scientific basis for fiber source differentiation."
+      "vocabulary_milestone": {
+        "status": "complete",
+        "closure": "PASS",
+        "closed_date": "2026-06-10",
+        "date": "2026-06-10",
+        "artifact": "01_framework/bsip2_framework/docs/scoring/fiber_functional_vocabulary_v1.md",
+        "artifact_id": "FFV-v1",
+        "scoring_wired": false,
+        "close_reason": "Verified at file level: FFV-v1 artifact present (12 fibers, He+En patterns, E-numbers, functional class, false-positive risks); md+json twins in sync; should_affect_score_now=false; no scoring source modified; bare דקסטרין replaced with דקסטרין עמיד; C-1 Hebrew correction applied (קליפת צ'יה → קליפת פסיליום); PHGG/resistant-dextrin/bare-maltodextrin parser guards recorded; 3 remaining scoring-side gates preserved.",
+        "note": "Viscous/non-viscous fiber vocabulary dictionary completed for all 12 target fibers (Hebrew + English patterns, E-numbers, functional class, false-positive risks). Documented only; imported nowhere. Scoring remains inactive."
+      },
+      "remaining_gates": [
+        "presence-only credit cap (quantity not label-observable)",
+        "viscous vs non-viscous signal weighting (only viscous/gel-forming fibers earn glycemic-dampening credit)",
+        "regression fixtures (golden corpus proof of no unintended score movement)"
+      ],
+      "parser_risks": [
+        "PHGG / partially hydrolyzed guar gum is non-viscous and MUST suppress native-guar viscosity classification",
+        "Resistant maltodextrin / resistant dextrin counts as fiber ONLY when resistance is explicit (עמיד/resistant/brand)",
+        "Bare maltodextrin / bare dextrin (מלטודקסטרין / דקסטרין) is rapidly-digestible glucose and MUST NOT count as fiber"
+      ],
+      "corrections": [
+        "C-1 (2026-06-10): psyllium husk Hebrew was wrongly קליפת צ'יה (chia husk); corrected to קליפת פסיליום."
+      ],
+      "notes": "Vocabulary dictionary complete (FFV-v1); scoring gates remain (see remaining_gates). This finding is the scientific basis for fiber source differentiation. Bare דקסטרין removed from non_viscous_terms_he and replaced with דקסטרין עמיד per parser_risks."
     },
     {
       "finding_id": "EV-007",

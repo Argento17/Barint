@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 type BariBrandLogoProps = {
@@ -6,6 +8,7 @@ type BariBrandLogoProps = {
   mark?: boolean;
 };
 
+/** Icon-only mark — used in small badge contexts (e.g. hero badge). */
 export function BariSignalMark({
   className,
   surface = "light",
@@ -13,68 +16,41 @@ export function BariSignalMark({
   className?: string;
   surface?: "light" | "dark";
 }) {
-  const isDark = surface === "dark";
-
+  // surface kept in signature for API compatibility; icon PNG is always the same asset
+  void surface;
   return (
-    <svg
-      viewBox="0 0 48 48"
+    <Image
+      src="/bari-icon-optimized.webp"
+      alt="Bari icon"
+      width={62}
+      height={64}
       className={cn(
-        "size-8 shrink-0 transition-[opacity,transform] duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-90",
-        isDark ? "text-[#111318]" : "text-[#111318]",
+        "shrink-0 transition-[opacity,transform] duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-90",
         className
       )}
-      fill="none"
       aria-hidden
-    >
-      <g stroke="currentColor" strokeLinecap="round" strokeWidth="3.2">
-        <path d="M16 16h16" />
-        <path d="M12 24h24" />
-        <path d="M16 32h16" />
-      </g>
-      <g fill="currentColor">
-        <circle cx="24" cy="8" r="2.7" />
-        <circle cx="16" cy="16" r="2.35" />
-        <circle cx="32" cy="16" r="2.35" />
-        <circle cx="12" cy="24" r="2.35" />
-        <circle cx="36" cy="24" r="2.35" />
-        <circle cx="16" cy="32" r="2.35" />
-        <circle cx="32" cy="32" r="2.35" />
-        <circle cx="24" cy="40" r="2.7" />
-      </g>
-      <g className={isDark ? "fill-[#1F8F6A]" : "fill-[#2FAE82]"}>
-        <circle cx="24" cy="16" r="2.45" />
-        <circle cx="24" cy="24" r="2.65" />
-        <circle cx="24" cy="32" r="2.45" />
-      </g>
-      <path
-        d="M24 16v16"
-        className={isDark ? "stroke-[#1F8F6A]" : "stroke-[#2FAE82]"}
-        strokeLinecap="round"
-        strokeWidth="3.2"
-      />
-    </svg>
+    />
   );
 }
 
+/** Full wordmark + icon logo — used in navbar, footer, and mobile sheet. */
 export function BariBrandLogo({ className, surface = "light", mark = true }: BariBrandLogoProps) {
-  const isDark = surface === "dark";
-
+  // surface and mark kept for API compatibility; full logo PNG already contains both
+  void surface;
+  void mark;
   return (
     <span
-      className={cn(
-        "inline-flex max-w-full shrink-0 items-center gap-2.5 rounded-full",
-        isDark ? "text-[#111318]" : "text-[#111318]",
-        className
-      )}
+      className={cn("inline-flex shrink-0 items-center rounded-full", className)}
       aria-label="Bari"
     >
-      {mark ? <BariSignalMark surface={surface} /> : null}
-      <span
-        className="text-[1.76rem] font-extrabold leading-none tracking-[-0.065em] transition-opacity duration-500 ease-out group-hover:opacity-85"
-        aria-hidden
-      >
-        Bari
-      </span>
+      <Image
+        src="/bari-logo-optimized.webp"
+        alt="Bari"
+        width={180}
+        height={88}
+        priority
+        className="h-[44px] w-auto transition-opacity duration-500 ease-out group-hover:opacity-85"
+      />
     </span>
   );
 }

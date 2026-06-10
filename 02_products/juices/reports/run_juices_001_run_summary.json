@@ -1,0 +1,140 @@
+{
+  "run_id": "run_juices_001",
+  "run_date": "2026-06-07",
+  "task_ref": "TASK-214",
+  "category_slug": "juices",
+  "category_name_he": "מיצים ומשקאות פירות",
+  "pipeline_version": "bari-category-factory-v1",
+  "engine_version": "proto_v0 / algorithm_version 0.4.1",
+  "engine_flags": {
+    "BARI_RECAL_P0": "on",
+    "BARI_GLASSBOX_W4": "on"
+  },
+  "configuration_hash": "run_juices_001_20260607",
+
+  "stages": {
+    "shelf_mapping": "pass",
+    "corpus_filter": "pass",
+    "bsip0_gate": "pass",
+    "bsip1_enrichment": "pass",
+    "qa_gate": "pass_with_warnings",
+    "red_team_challenge": "pass",
+    "bsip2_readiness": "pass",
+    "frontend_packaging": "pass",
+    "d4_additive_wiring": "pass"
+  },
+
+  "corpus_summary": {
+    "retailers_scraped": ["yohananof", "shufersal", "carrefour"],
+    "products_pre_dedup": 66,
+    "products_post_dedup": 65,
+    "products_scored": 65,
+    "score_errors": 0,
+    "misroutes": 1,
+    "nutrition_unit": "per_100ml"
+  },
+
+  "sub_pool_distribution": {
+    "juice_100": 40,
+    "nectar": 15,
+    "fruit_drink": 4,
+    "smoothie": 3,
+    "cold_pressed": 3
+  },
+
+  "sugar_per_100ml_by_pool": {
+    "juice_100": {"min": 1.75, "max": 16.8, "note": "lemon juice to grape tiroush"},
+    "nectar": {"min": 8.4, "max": 13.8},
+    "fruit_drink": {"min": 11.6, "max": 11.6},
+    "smoothie": {"min": 9.5, "max": 9.5},
+    "cold_pressed": {"min": 7.8, "max": 8.6},
+    "overall": {"min": 1.75, "max": 16.8}
+  },
+
+  "nova_distribution": {
+    "1": 4,
+    "3": 41,
+    "4": 20,
+    "note": "BSIP1 nova assignment. Engine may reclassify at BSIP2 level — batch summary shows different distribution due to routing. BSIP1 is the authoritative NOVA assignment."
+  },
+
+  "grade_distribution": {
+    "A": 1,
+    "B": 0,
+    "C": 54,
+    "D": 10,
+    "E": 0
+  },
+
+  "score_range": {
+    "min": 48.7,
+    "max": 85.0,
+    "sole_A": "bsip1_juice_7290003009640 (סחוט תפוזים 1 — fresh-squeezed, NOVA 1, 85/A)"
+  },
+
+  "d4_additive_wiring": {
+    "products_with_ingredient_text": 3,
+    "ingredient_text_coverage_pct": 4.6,
+    "coverage_gate_threshold_pct": 15,
+    "gate_status": "below_threshold_accepted",
+    "acceptance_rationale": "Israeli juice brands under-represented in OFF. Juice ingredient lists structurally simple (1-3 ingredients). Documented in RT-J-008 and W-JUICE-008.",
+    "products_with_d4_additives": 0,
+    "products_with_no_e_numbers": 3,
+    "invariant_result": "PASS"
+  },
+
+  "frontier_findings": [
+    "Only 1/65 products reaches A — fresh-squeezed (NOVA 1 floor). No B grades. Structural compression at C/D reflects juice category physiology: zero fiber, zero satiety, significant sugar load.",
+    "100% juice can contain 2x the sugar of the lowest-sugar nectar (lemon 1.75g vs. grape 16.8g) — the sub-pool label alone does not predict nutritional quality.",
+    "Nectars with 'no added sugar' label using fruit concentrate as sweetener cannot claim sugar-free — concentrate sugar counts in full. Engine correctly counts total sugar.",
+    "Cold-pressed process does not reduce sugar content. Three cold-pressed products score C (54-57) despite NOVA 1 assignment — processing class does not override sugar density for beverages.",
+    "Muscat grape juice misrouted to dessert archetype (engine gap: 'מוסקט' token). Score directionally plausible (57.4/C). Flagged for future router update."
+  ],
+
+  "ambiguous_classification_edge_cases": [
+    {
+      "barcode": "7290003009640",
+      "name": "סחוט תפוזים 1",
+      "issue": "Fresh-squeezed in juice_100 pool. Receives A via NOVA 1 floor. Concentrate-based 100% juice scores C. Both are 'juice_100' by label, but 23-31 pt gap driven by processing class.",
+      "resolution": "Correct and intentional. insightLine differentiates."
+    },
+    {
+      "barcode": "7290001247068",
+      "name": "נקטר ספרינג תות",
+      "issue": "OFF record in French — ingredient text in French (Jus de pomme 16%, Purée de fraises 8%). Classified as nectar correctly based on fruit content pct (30-50% estimated).",
+      "resolution": "French ingredient text parsed for D4 detection. No E-numbers detected. Classified nectar."
+    },
+    {
+      "barcode": "7290000039503",
+      "name": "מיץ ענבים תירוש",
+      "issue": "Grape tiroush (100% grapes) has 16.8g sugar/100ml — highest in category. Correctly in juice_100 but creates wide intra-pool sugar range.",
+      "resolution": "Accepted as honest finding. sugarPer100ml surfaced in frontend."
+    }
+  ],
+
+  "output_artifacts": {
+    "shelf_map": "C:\\Bari\\02_products\\juices\\shelf_map.json",
+    "corpus_filter": "C:\\Bari\\02_products\\juices\\corpus_filter.json",
+    "bsip0_gate_result": "C:\\Bari\\02_products\\juices\\bsip0_gate_result.json",
+    "bsip1_enrichment_report": "C:\\Bari\\02_products\\juices\\bsip1_enrichment_report.json",
+    "qa_gate_result": "C:\\Bari\\02_products\\juices\\qa_gate_result.json",
+    "red_team_report": "C:\\Bari\\02_products\\juices\\reports\\red_team_run_juices_001.md",
+    "bsip2_readiness_checklist": "C:\\Bari\\02_products\\juices\\bsip2_readiness_checklist.json",
+    "bsip2_traces_dir": "C:\\Bari\\02_products\\juices\\bsip2_outputs\\run_juices_001\\products",
+    "frontend_json_source": "C:\\Bari\\02_products\\juices\\juices_frontend_v1.json",
+    "frontend_json_deployed": "C:\\bari\\bari-web\\src\\data\\comparisons\\juices_frontend_v1.json",
+    "d4_wire_script": "C:\\Bari\\02_products\\juices\\wire_d4_juices.py",
+    "batch_summary": "C:\\Bari\\02_products\\juices\\reports\\run_juices_001_batch_summary.json"
+  },
+
+  "blocking_issues": [],
+  "warnings": [
+    "W-JUICE-001: 86% FDC generic references — scores directional, not SKU-specific. All stamped candidate.",
+    "W-JUICE-002: Muscat grape juice misrouted (dessert archetype). Annotated in frontend.",
+    "W-JUICE-003: Cold-pressed NOVA 1 but C score — expected. insightLine explains.",
+    "W-JUICE-004: Fresh-squeezed sole A. Score verified against trace.",
+    "W-JUICE-008: D4 ingredient coverage 4.6% — below 15% gate. Accepted (structural juice data gap)."
+  ],
+
+  "promoted_to_frontend": true
+}

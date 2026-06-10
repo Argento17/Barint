@@ -43,7 +43,7 @@ export function HomeFooter() {
 
         <Separator className="my-8 bg-black/[0.08]" />
 
-        <p className="text-center text-sm text-[#7A817C]">© {copyrightYear} Bari. כל הזכויות שמורות.</p>
+        <p className="text-center text-sm text-[#5E6560]">© {copyrightYear} Bari. כל הזכויות שמורות.</p>
       </HomeContainer>
     </footer>
   );

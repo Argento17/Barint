@@ -402,7 +402,7 @@ export function AdditivePanel({
             margin: 0,
             fontSize: "13px",
             lineHeight: 1.5,
-            color: "#7A817C",
+            color: "#5E6560",
           }}
         >
           לא זוהו תוספי מזון שכיחים — המוצר מבוסס על רכיבים מזוהים בלבד.

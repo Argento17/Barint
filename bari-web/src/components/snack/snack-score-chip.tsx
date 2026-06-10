@@ -75,13 +75,13 @@ export function SnackScoreChip({
         />
         <span
           className={cn(rowTokens.scoreClass, rowTokens.scoreSize.md)}
-          style={{ color: colors.accent }}
+          style={{ color: colors.text }}
         >
           {Math.round(score)}
         </span>
         <span
           className={cn(rowTokens.labelClass, rowTokens.labelSize.md)}
-          style={{ color: colors.accent }}
+          style={{ color: colors.text }}
         >
           {grade}
         </span>
