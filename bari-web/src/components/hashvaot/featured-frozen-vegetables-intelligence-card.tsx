@@ -6,8 +6,10 @@ import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-
 import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   corpusMeta as frozenVegetablesCorpusMeta,
-  frozenVegetablesProducts,
+  frozenVegetablesBands,
+  frozenVegetablesHero,
   frozenVegetablesPrologueSentences,
+  frozenVegetablesV2Products,
 } from "@/lib/comparisons/frozen-vegetables-comparison-page-data";
 import { cn } from "@/lib/utils";
 
@@ -16,36 +18,28 @@ type Props = {
   description?: string;
 };
 
+// TASK-235 Phase 4 — SCORE-FREE index card for Frozen Vegetables v2.
+// No score, no grade, no "A"/"S", no scored-count. The frozen shelf is presented by its
+// four kitchen-use bands; counts are per-band totals, never quality tiers.
 export function FeaturedFrozenVegetablesIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? frozenVegetablesPrologueSentences[0];
 
-  const displayedCount = frozenVegetablesProducts.length;
-  const scoredCount = frozenVegetablesProducts.filter((product) => product.score != null).length;
-  const aGradeCount = frozenVegetablesProducts.filter((product) => product.grade === "A").length;
+  const displayedCount = frozenVegetablesV2Products.length;
+  const bandCount = frozenVegetablesBands.length;
 
-  const displayedScores = frozenVegetablesProducts
-    .map((product) => product.score)
-    .filter((score): score is number => score != null);
-  const topScore = displayedScores.length ? Math.max(...displayedScores) : null;
-  const bottomScore = displayedScores.length ? Math.min(...displayedScores) : null;
-  const scoreGap = topScore != null && bottomScore != null ? topScore - bottomScore : null;
+  const bandTotals = new Map<string, number>();
+  for (const product of frozenVegetablesV2Products) {
+    bandTotals.set(product.band, (bandTotals.get(product.band) ?? 0) + 1);
+  }
 
-  const aGradeInsightLine =
-    aGradeCount > 0
-      ? `${aGradeCount} מוצרים מגיעים לציון A — ירק קפוא בלי תוספות, רכיב אחד`
-      : "אף מוצר לא מגיע לציון A בירקות קפואים";
-
-  const gapInsightLine =
-    scoreGap != null
-      ? `פער של ${scoreGap} נקודות בין המוביל לתחתית — מתערובות עם תוספות ועד ירקות בודדים`
-      : "";
-
+  // Score-free insight lines: what each use-band is, and that the page does not rank or score.
   const insightLines = [
-    "35 מוצרים עם רכיב אחד בלבד — אפונה, תרד, ברוקולי, שעועית, תירס — מקבלים A",
-    aGradeInsightLine,
-    gapInsightLine,
-    "אין S בירקות קפואים — A הוא הגבוה האפשרי, ואפילו המוביל (89/A) הוא לא יוצא דופן",
-  ].filter(Boolean) as readonly string[];
+    ...frozenVegetablesBands.map((band) => {
+      const count = bandTotals.get(band.id) ?? 0;
+      return `${band.title}: ${count} מוצרים — ${band.standingMarker}`;
+    }),
+    "אין כאן ציון ואין דירוג — כל מוצר מתואר לפי מה שהוא מביא לשימוש שלו",
+  ] as readonly string[];
 
   return (
     <Link
@@ -58,13 +52,12 @@ export function FeaturedFrozenVegetablesIntelligenceCard({ href, description }: 
       <ComparisonIntelligenceHero
         badge="חדש"
         categoryTags="ירקות קפואים · שופרסל"
-        title="ירקות קפואים: מה באמת באריזה?"
+        title={frozenVegetablesHero.title}
         description={cardDescription}
         insightLines={insightLines}
         stats={[
           { value: displayedCount, label: "מוצרים בהשוואה" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aGradeCount, label: "בציון A" },
+          { value: bandCount, label: "שימושים במטבח" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(frozenVegetablesCorpusMeta.generated)}
         asLinkChild
