@@ -3,7 +3,7 @@ id: TASK-229
 title: "Score-0 floor artifact — engine returns exactly 0/E for products lacking positive-driver signals (surfaced by salty-snacks v4 rebuild)"
 owner: nutrition-agent
 status: IN_PROGRESS
-priority: HIGH
+priority: MEDIUM
 created_at: 2026-06-10
 depends_on: [TASK-228]
 blocks: []
@@ -12,6 +12,15 @@ work_type: scoring-review
 d7_cosign_required: true
 tripwire: "#1 — touches scoring philosophy / score floor. Requires owner sign-off before any engine change ships."
 ---
+
+> **ORCHESTRATOR UPDATE (2026-06-10):** The acute, original framing ("engine zeros products
+> lacking positive drivers") was WRONG — root cause is the trans-fat veto, and the beet cracker's
+> 0/E was a **bad OFF data value**, fixed in TASK-231 (re-scored 60/C on the unchanged engine, no
+> tripwire). Priority downgraded to MEDIUM. Two residual scoring questions remain for Nutrition,
+> both NON-blocking and owner-gated: (1) `אפרופו קרמל` is still **0/E** from the same trans veto
+> (trans 1.25 — verify whether it's also a "<1g declaration ÷ serving" artifact like the beet
+> cracker, or genuinely real); (2) the owner's general "reward protein more in salty snacks" —
+> evaluate calibration now that the veto artifact is removed (it was the main symptom).
 
 # TASK-229 — Score-0 floor artifact
 

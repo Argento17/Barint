@@ -2,7 +2,9 @@
 id: TASK-230
 title: "Salty-snacks v4 copy remediation — kill framework leakage + recommendation language, fix confusing labels, raise description quality"
 owner: content-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-06-10
+close_reason: "Copy spec delivered (COPY_SPEC_v4_TASK230.md) and APPLIED by Data Agent (TASK-231) to the regenerated 41-product v4. Orchestrator-verified: 198 consumer strings all pass hebrew_readability.is_clean — 0 framework/NOVA leaks, 0 score-mechanic (X/Y grades + raw decimals), 0 recommendation lines. Confidence label reworded. Leakage gate hardened for the עדיף stem."
 priority: HIGH
 created_at: 2026-06-10
 depends_on: [TASK-228]

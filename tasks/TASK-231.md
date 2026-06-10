@@ -2,14 +2,13 @@
 id: TASK-231
 title: "Salty-snacks v4 data remediation — dedup Bamba/brand normalization, fix garbled+English ingredients, recover Apropo sodium, fix NOVA field/copy contradiction, regenerate v4"
 owner: data-agent
-status: BLOCKED
-priority: HIGH
-created_at: 2026-06-10
+status: CLOSED
+closed_at: 2026-06-10
 depends_on: [TASK-228, TASK-230]
 blocks: [TASK-232]
 roadmap_impact: true
 work_type: data-remediation
-block_reason: "Waits on TASK-230 (Content corrected copy templates) so the regeneration applies clean copy, not the current leaky/recommendation templates."
+close_reason: "Orchestrator-verified on commit 16e523eb: 41 products (8→2 Bamba), grades B12 C18 D4 E7, 41/41 images api.yochananof.co.il (0 fake hosts), 198/198 consumer strings pass is_clean, brand field normalized (0 empty), English/garbled ingredients omitted+panel-only, Apropo sodium genuinely null → flagged sodiumUnavailable (no fabrication). Beet-cracker trans value was a bad OFF serving-division artifact → corrected at BSIP1, re-scored on UNCHANGED engine 0/E→60/C (no scoring-rule change). tsc+build clean."
 ---
 
 # TASK-231 — Salty-snacks v4 data remediation
