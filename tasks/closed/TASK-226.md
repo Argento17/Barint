@@ -46,10 +46,11 @@ commit_topology: >
   missed: rail/average removal (comparison-table.tsx, globals.css, butter-comparison-page.tsx),
   pre-table methodology relocation (comparison-page.tsx), and this close file. Net: all TASK-226
   scope is committed; the salty-snacks prologue (scope 4) remains uncommitted, deferred to a
-  dedicated TASK-222 commit per owner decision.
+  dedicated TASK-227 commit per owner decision (salty-snacks rebuild; renumbered from 222 —
+  see TASK-227 renumber_note).
 source: Combined Review — Salty-Snacks Comparison Page (verdict: FAIL before launch)
 blocks_launch: salty-snacks
-depends_on: TASK-222
+depends_on: TASK-227   # salty-snacks rebuild (renumbered from 222 to resolve id collision)
 governance:
   - 01_framework/frontend/score_confidence_indicators_spec_v1.md   # D12 authority — supersedes comparison_ui_reference_v2
   - CLAUDE.md Hard Rules (Hard Rule 1 — chip is the only color axis)
