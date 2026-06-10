@@ -1,8 +1,18 @@
 # Project Comp — Schedule Spec v1
 
-**Status:** D1 design — approved spec. **The scheduled run is NOT yet created.** This file is the
-blueprint for creating it; creation is an owner trigger (a recurring autonomous run is a program
-start — see CLAUDE.md decision authority). **Built:** 2026-06-10.
+**Status:** D1 — **CREATED & LIVE** (owner-triggered 2026-06-10). **Built:** 2026-06-10.
+
+**Live routine (cloud):**
+- Routine ID: `trig_0171rxWLPZrTBfUjquGVA2vJ`
+- Manage: https://claude.ai/code/routines/trig_0171rxWLPZrTBfUjquGVA2vJ
+- Cron: `30 17 * * *` **UTC** = 20:30 Asia/Jerusalem (IDT/UTC+3). First run: 2026-06-10 20:30 IL.
+- Repo: `Argento17/Barint` @ master · model `claude-sonnet-4-6` · tools incl. WebSearch/WebFetch.
+- MCP connectors: **none** (stripped 2026-06-10 — not needed for this task).
+- **DST caveat:** cron is fixed UTC. When Israel switches to UTC+2 (~late Oct), update cron to `30 18 * * *` to hold 20:30 local.
+
+**First-run baseline:** run 1 is a **comprehensive ~5-month look-back** (since ~2026-01-01) — a
+landscape snapshot of standing competitor/regulator positions and recurring discourse, prioritizing
+durable signals over one-off spikes. **From run 2 onward it is a daily ~24–36h delta.** (See run prompt → RUN WINDOW.)
 
 ---
 

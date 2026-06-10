@@ -13,7 +13,7 @@ skeleton and fills it. Keep section order and headings. If a section has no sign
 ```markdown
 # Project Comp — Daily Signal Report — <YYYY-MM-DD>
 
-**Run:** project-comp-daily · evening · **Window:** last ~24–36h
+**Run:** project-comp-daily · evening · **Window:** last ~24–36h (FIRST RUN = ~5-month baseline since ~2026-01-01)
 **Principle:** influencers are signal, not evidence — C (credibility) and D (discourse) shown separately.
 
 ---

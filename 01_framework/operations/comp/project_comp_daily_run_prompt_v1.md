@@ -37,6 +37,18 @@ reach stand in for reliability.
 from a single creator is a `monitor` row at most, never P0/P1. qa-agent reviews all three before any
 downstream `TASK-XXX` is opened.
 
+**RUN WINDOW — how far back to look:**
+- **FIRST RUN ONLY** (no prior `daily_reports/*.md` exist, ignoring `.gitkeep`): produce a
+  **comprehensive baseline** covering **the last ~4–5 months (since ~2026-01-01)** instead of 24–36h.
+  This is a *landscape snapshot*, not a day-log: for each Tier-A source and each watch-term cluster,
+  capture the **standing positions, major moves, and recurring themes** over the window — competitor
+  methodology/positioning, regulator/institutional actions, the dominant consumer + creator debates,
+  and which misinformation patterns have been sustained. **Prioritize durable/recurring signals over
+  one-off spikes.** Stamp Context `RUN MODE: calibration (run 1/3) — BASELINE (~5-month look-back since 2026-01-01)`.
+  Expect a longer run; depth over completeness — say what you could not cover rather than padding.
+- **EVERY RUN AFTER THE FIRST:** revert to the **daily ~24–36h** window. From tomorrow on, each run
+  is a daily delta against the baseline + prior reports (dedupe; only report what's new or escalated).
+
 ---
 
 ## TODAY'S SOURCE SCOPE (build this list, then state it in the source log)
@@ -69,7 +81,8 @@ registry entry).
 1. **Build today's source list** per the tiering above; write it into the source log section with a
    per-source status: `checked` / `no_update` / `not_checked (social — last swept YYYY-MM-DD)` /
    `inaccessible (reason)`. Every active source must appear with one of these — no silent gaps.
-2. **Pull recent public content** from each in-scope source (last ~24–36h). Use only public pages.
+2. **Pull recent public content** from each in-scope source within the **RUN WINDOW** above
+   (first run = ~5-month baseline; every later run = last ~24–36h). Use only public pages.
    If a page is paywalled / logged-in / private → stop, mark `inaccessible (paywalled)`, move on.
 3. **Extract candidate signals.** For each, capture: source id, one-line what, the public URL, and —
    for any creator/competitor/media voice — `credibility_weight` and `discourse_weight` (inherit
