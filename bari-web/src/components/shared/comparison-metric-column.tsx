@@ -17,7 +17,13 @@ const TONE = {
   emptyPip: "#E6E6E0",
 } as const;
 
-type MetricNumberKey = "protein_g" | "fiber_g" | "additive_count" | "base_pct" | "sugar_g";
+type MetricNumberKey =
+  | "protein_g"
+  | "fiber_g"
+  | "additive_count"
+  | "base_pct"
+  | "sugar_g"
+  | "sodium_mg";
 
 export interface MetricSpec {
   key: MetricNumberKey;
@@ -105,6 +111,24 @@ export const FIBER_METRIC: MetricSpec = {
   ariaUnit: "גרם סיבים ל-100 גרם",
 };
 
+// Salty-snacks variant (TASK-227): sodium is the category's second headline number after
+// fiber — it's what separates a baked-legume snack from a salt-loaded extruded puff. Real
+// per-100g label value; shelf range is ~10–920mg, so a 0–1000 max keeps the bars meaningful.
+// Lower is better: ≤300mg (genuinely low for a salty snack) reads good, ≥600mg reads as a
+// limit worth seeing. Information, not alarm — amber, never red (§4.3).
+export const SODIUM_METRIC: MetricSpec = {
+  key: "sodium_mg",
+  label: "נתרן",
+  unit: 'מ״ג',
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 1000,
+  good: 300,
+  poor: 600,
+  lowerIsBetter: true,
+  ariaUnit: 'מ״ג נתרן ל-100 גרם',
+};
+
 export const ADDITIVES_METRIC: MetricSpec = {
   key: "additive_count",
   label: "תוספים",
@@ -139,6 +163,14 @@ export const SUGAR_METRIC: MetricSpec = {
   ariaUnit: "גרם סוכר ל-100 מ״ל",
 };
 
+// Display rounding: raw per-100g values can carry full float precision (e.g. fiber
+// 7.66666666666667 from a back-computed panel). Round to at most 1 decimal and drop a
+// trailing ".0" so the value fits the 62px cell and never overflows into the next metric.
+function formatMetricValue(value: number): string {
+  const rounded = Math.round(value * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+}
+
 function toneFor(spec: MetricSpec, value: number): keyof typeof TONE {
   const { good, poor, lowerIsBetter } = spec;
   if (good == null || poor == null) return "neutral";
@@ -155,7 +187,7 @@ function toneFor(spec: MetricSpec, value: number): keyof typeof TONE {
 function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
   const hasValue = typeof value === "number";
   const ariaLabel = hasValue
-    ? `${spec.label} ${value} ${spec.ariaUnit}`
+    ? `${spec.label} ${formatMetricValue(value)} ${spec.ariaUnit}`
     : `${spec.label} — נתון לא זמין`;
   const tone = hasValue ? toneFor(spec, value) : "neutral";
 
@@ -172,7 +204,7 @@ function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
         >
           {hasValue ? (
             <>
-              {value}
+              {formatMetricValue(value)}
               {spec.unit ? (
                 <i className="text-[0.56rem] font-medium not-italic text-[#9AA09B]">
                   {spec.unit === "%" ? "%" : ` ${spec.unit}`}

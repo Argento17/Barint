@@ -1,7 +1,10 @@
 "use client";
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
-import { FIBER_METRIC } from "@/components/shared/comparison-metric-column";
+import {
+  FIBER_METRIC,
+  SODIUM_METRIC,
+} from "@/components/shared/comparison-metric-column";
 import {
   filterSaltySnacksProducts,
   SALTY_SNACKS_SHELF_LENS_OPTIONS,
@@ -27,9 +30,11 @@ const saltySnacksShelfFilters = {
   filterProducts: filterSaltySnacksProducts,
 } as const;
 
-// Fiber is the key differentiator in the salty-snacks category — it separates
-// baked-legume snacks (12g fiber) from extruded puffs and plain chips (0–2g).
-// Scale 0–15 fits the real shelf range; thresholds ≥6g good / <2g poor.
+// Two headline numbers for the salty-snacks shelf, shown column-aligned:
+//  • Fiber separates baked-legume snacks (12g) from extruded puffs/plain chips (0–2g).
+//    Scale 0–15 fits the real shelf range; ≥6g good / <2g poor.
+//  • Sodium is what separates a clean snack from a salt-loaded one — real per-100g range
+//    is ~10–920mg (median 560). Lower is better; ≤300mg good / ≥600mg a visible limit.
 const SALTY_SNACKS_METRIC_SPECS = [
   {
     ...FIBER_METRIC,
@@ -37,6 +42,7 @@ const SALTY_SNACKS_METRIC_SPECS = [
     good: 6,
     poor: 2,
   },
+  SODIUM_METRIC,
 ] as const;
 
 export function SaltySnacksComparisonPage({
