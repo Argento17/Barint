@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T12:16:19.576194Z",
+  "trace_generated_at": "2026-06-10T13:06:19.470058Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_103730",
@@ -22,15 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "default",
-  "category_confidence": 0.85,
-  "secondary_category": "whole_food_fat",
-  "secondary_confidence": 0.1,
+  "category": "frozen_vegetable",
+  "category_confidence": 0.78,
+  "secondary_category": "sauce_spread",
+  "secondary_confidence": 0.37,
   "category_instability_flag": false,
-  "category_confidence_band": "high",
+  "category_confidence_band": "medium",
   "classification_basis": [
-    "sauce_spread:רוטב(ing×0.5)",
-    "sauce_spread:פסטה(name×2)"
+    "frozen_vegetable:category_prior(+2.00)"
   ],
   "nova_proxy": 3,
   "nova_confidence": 0.55,
@@ -266,12 +265,16 @@
     },
     "se_note": null
   },
-  "confidence_score": 90,
+  "confidence_score": 82,
   "confidence_band": "high",
   "confidence_reductions": [
     {
       "factor": "nova_confidence=medium",
       "reduction": -5
+    },
+    {
+      "factor": "category_confidence=medium (0.78)",
+      "reduction": -8
     },
     {
       "factor": "d3_nonmaterial_gap (peripheral unresolved term; processing read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; max-combined with D5)",
@@ -293,7 +296,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=3.1g→15.5, fiber=3.6g→36.0, weighted 65/35=22.7",
-    "calorie_density": "kcal=70.0, category=default → 90",
+    "calorie_density": "kcal=70.0, category=frozen_vegetable (conf 0.78, relaxed by 1.05x) → 90",
     "glycemic_quality": "90 - sugar_penalty(3.8) + fiber(7.2) + wg(0) = 93.5",
     "protein_quality": "protein=3.1g base=15.5, source=whole_food(×1.0) → 15.5",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",

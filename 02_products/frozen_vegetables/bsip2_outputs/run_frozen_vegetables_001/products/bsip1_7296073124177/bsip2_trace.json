@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T12:16:19.644646Z",
+  "trace_generated_at": "2026-06-10T13:06:19.543834Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7296073124177",
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "default",
-  "category_confidence": 0.85,
-  "secondary_category": "default",
-  "secondary_confidence": 0.1,
-  "category_instability_flag": true,
-  "category_confidence_band": "uncertain",
+  "category": "frozen_vegetable",
+  "category_confidence": 0.9,
+  "secondary_category": "whole_food_fat",
+  "secondary_confidence": 0.6,
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "routing_uncertain:insufficient_signal_mass"
+    "hard_anchor:קפוא"
   ],
   "nova_proxy": 2,
   "nova_confidence": 0.5,
@@ -250,7 +250,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 85.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=5.4g→27.0, fiber=0.6g→6.0, weighted 65/35=19.6",
-    "calorie_density": "kcal=169.0, category=default → 80",
+    "calorie_density": "kcal=169.0, category=frozen_vegetable → 80",
     "glycemic_quality": "90 - sugar_penalty(3.5) + fiber(1.2) + wg(0) = 87.7",
     "protein_quality": "protein=5.4g base=27.0, source=whole_food(×1.0) → 27.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
@@ -510,9 +510,7 @@
     "PRIMARY SIGNAL: nutrient_density=19.6 (lowest dimension)",
     "PENALTIES: ['SEED_OIL_PRESENT', 'HP_FAT_SODIUM_COMBO']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.85"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "B",
     "primary_label": "Lightly Transformed Traditional",

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T12:16:19.518453Z",
+  "trace_generated_at": "2026-06-10T13:06:19.411546Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_107189",
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "default",
-  "category_confidence": 0.85,
-  "secondary_category": "default",
+  "category": "frozen_vegetable",
+  "category_confidence": 0.92,
+  "secondary_category": "whole_food_fat",
   "secondary_confidence": 0.1,
-  "category_instability_flag": true,
-  "category_confidence_band": "uncertain",
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "routing_uncertain:insufficient_signal_mass"
+    "frozen_vegetable:category_prior(+2.00)"
   ],
   "nova_proxy": 3,
   "nova_confidence": 0.55,
@@ -247,7 +247,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=1.9g→9.5, fiber=4.5g→43.8, weighted 65/35=21.5",
-    "calorie_density": "kcal=36.0, category=default → 90",
+    "calorie_density": "kcal=36.0, category=frozen_vegetable → 90",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(9.0) + wg(0) = 99.0",
     "protein_quality": "protein=1.9g base=9.5, source=whole_food(×1.0) → 9.5",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
@@ -490,9 +490,7 @@
   "explanation_drivers": [
     "DOMINANT: Binding cap=87.0 from rules: ['NOVA_PROXY_3_PROCESSED']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.85"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",

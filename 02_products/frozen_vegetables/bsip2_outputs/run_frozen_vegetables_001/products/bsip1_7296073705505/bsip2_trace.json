@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T12:16:19.544761Z",
+  "trace_generated_at": "2026-06-10T13:06:19.437673Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7296073705505",
@@ -22,8 +22,8 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "default",
-  "category_confidence": 0.85,
+  "category": "sauce_spread",
+  "category_confidence": 0.94,
   "secondary_category": "dessert",
   "secondary_confidence": 0.46,
   "category_instability_flag": false,
@@ -221,10 +221,10 @@
   "confidence_reductions": [],
   "dimension_scores": {
     "processing_quality": 95.0,
-    "nutrient_density": 44.2,
+    "nutrient_density": 58.9,
     "calorie_density": 90.0,
     "glycemic_quality": 100,
-    "protein_quality": 42.0,
+    "protein_quality": 64.7,
     "additive_quality": 100,
     "satiety_support": 100,
     "fat_quality": 79.4,
@@ -233,10 +233,10 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 1 base=95 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 95.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=8.4g→42.0, fiber=5.1g→48.2, weighted 65/35=44.2",
-    "calorie_density": "kcal=121.0, category=default → 90",
+    "nutrient_density": "protein=8.4g→64.7, fiber=5.1g→48.2, weighted 65/35=58.9",
+    "calorie_density": "kcal=121.0, category=sauce_spread → 90",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(10.2) + wg(0) = 100.2",
-    "protein_quality": "protein=8.4g base=42.0, source=whole_food(×1.0) → 42.0",
+    "protein_quality": "protein=8.4g base=64.7, source=whole_food(×1.0) → 64.7",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.4×3 + 5.1×5) / 121.0 × 400 = 100",
     "fat_quality": "R3 leanness: fat=2.1g sat_fat absent (treated 0) → 79.4",
@@ -255,7 +255,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 81.68,
+  "weighted_dimension_score": 86.16,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -350,7 +350,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 81.68,
+  "score_after_cap": 86.16,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -401,7 +401,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 81.68,
+  "score_after_penalty": 86.16,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -461,42 +461,35 @@
   "floors_considered": [
     {
       "floor_type": "nova1_single_ingredient",
-      "floor_value": 85
-    }
-  ],
-  "floors_applied": [
-    {
-      "floor_type": "nova1_single_ingredient",
       "floor_value": 85,
-      "pre_floor": 81.68,
-      "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+      "note": "floor=85 not binding (score=86.2)"
     }
   ],
-  "score_after_floors": 85,
+  "floors_applied": [],
+  "score_after_floors": 86.16,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 85,
+  "final_score_estimate": 86.2,
   "grade_estimate": "A",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: protein_quality=42.0 (lowest dimension)",
-    "FLOOR APPLIED: nova1_single_ingredient → minimum 85"
+    "PRIMARY SIGNAL: nutrient_density=58.9 (lowest dimension)"
   ],
   "unresolved_flags": [],
   "structural_class": {
     "primary": "A",
     "primary_label": "Intact Whole Food",
-    "primary_confidence": 0.747,
+    "primary_confidence": 0.702,
     "secondary": null,
     "secondary_label": null,
     "secondary_confidence": null,
     "class_weights": {
-      "A": 0.747,
-      "B": 0.155,
+      "A": 0.702,
+      "B": 0.146,
       "C": 0.0,
       "D": 0.0,
-      "E": 0.097,
+      "E": 0.153,
       "F": 0.0
     },
     "is_between_worlds": false,
@@ -504,7 +497,7 @@
       "nova_1_signal",
       "no_additives_detected",
       "whole_food_integrity_intact",
-      "moderate_protein_quality",
+      "high_protein_quality",
       "minimal_ingredients",
       "zero_additive_categories"
     ],

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T12:16:19.598730Z",
+  "trace_generated_at": "2026-06-10T13:06:19.492167Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290018989357",
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "default",
-  "category_confidence": 0.85,
-  "secondary_category": "whole_food_fat",
-  "secondary_confidence": 0.45,
-  "category_instability_flag": true,
-  "category_confidence_band": "medium",
+  "category": "frozen_vegetable",
+  "category_confidence": 0.9,
+  "secondary_category": "sauce_spread",
+  "secondary_confidence": 0.55,
+  "category_instability_flag": false,
+  "category_confidence_band": "high",
   "classification_basis": [
-    "sauce_spread:ממרח(name×2)"
+    "hard_anchor:מוקפא"
   ],
   "nova_proxy": 3,
   "nova_confidence": 0.55,
@@ -257,7 +257,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=5.1g→25.5, fiber=0g→0.0, weighted 65/35=16.6",
-    "calorie_density": "kcal=252.0, category=default → 65",
+    "calorie_density": "kcal=252.0, category=frozen_vegetable → 65",
     "glycemic_quality": "90 - sugar_penalty(11.2) + fiber(0.0) + wg(0) = 78.8",
     "protein_quality": "protein=5.1g base=25.5, source=whole_food(×1.0) → 25.5",
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
@@ -513,9 +513,7 @@
     "DOMINANT: Binding cap=87.0 from rules: ['NOVA_PROXY_3_PROCESSED']",
     "PENALTIES: ['HP_FAT_SODIUM_COMBO']"
   ],
-  "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=default secondary=whole_food_fat, confidence=0.85"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
