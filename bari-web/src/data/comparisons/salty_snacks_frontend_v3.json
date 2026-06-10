@@ -1,0 +1,2731 @@
+{
+  "_meta": {
+    "generated": "2026-06-07T08:39:25.335874+00:00",
+    "category": "salty-snacks",
+    "category_he": "חטיפים מלוחים",
+    "run_id": "run_salty_snacks_002",
+    "product_count": 54,
+    "scored_count": 54,
+    "schema": "BariProductVM[]",
+    "version": "v3",
+    "change_note": "v3: insightLine rewritten as 2-line interpretive verdicts; NOVA removed from public-facing text; expansion enriched with positiveSignals, limitingFactors (consumer text), bottomLine, comparisonContext; rowVerdict removed from JSON (enricher adds it). Registry integration added.",
+    "sub_pools": [
+      "chips",
+      "popcorn",
+      "puffed",
+      "baked",
+      "rice_cakes",
+      "pretzels"
+    ],
+    "provenance": "TASK-213 + TASK-216 salty snacks category launch with extrusion fix. Corpus: 54 products after dedup. Retailers: {'carrefour': 19, 'yohananof': 13, 'shufersal': 22}. Grade dist: {'A': 7, 'B': 16, 'C': 18, 'D': 9, 'E': 4}. NOVA dist: {'2': 18, '1': 1, '3': 22, '4': 13}.",
+    "grade_distribution": {
+      "A": 7,
+      "B": 16,
+      "C": 18,
+      "D": 9,
+      "E": 4
+    },
+    "subpool_distribution": {
+      "baked": 13,
+      "rice_cakes": 7,
+      "popcorn": 8,
+      "chips": 11,
+      "pretzels": 4,
+      "puffed": 11
+    },
+    "nova_distribution": {
+      "1": 1,
+      "2": 18,
+      "3": 22,
+      "4": 13
+    },
+    "retailer_breakdown": {
+      "carrefour": 19,
+      "yohananof": 13,
+      "shufersal": 22
+    }
+  },
+  "products": [
+    {
+      "id": "bsip1_snack_3560071033002",
+      "name": "חטיף עדשים אפוי קרפור",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071033002.jpg",
+      "score": 88,
+      "grade": "A",
+      "insightLine": "מבין 54 חטיפים, נדיר למצוא כזה שהרכיב הראשי הוא קטנית אמיתית — 65% קמח עדשים, 18 גרם חלבון ו-12 גרם סיבים ל-100 גרם.\nA עם הסתייגות אחת: שקית שלמה תכיל נתרן יומי משמעותי — 420 מ\"ג ל-100 גרם.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "seed_oil"
+      ],
+      "ingredientCount": 5,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 390,
+          "protein": 18,
+          "fat": 7.5,
+          "carbs": 60,
+          "fiber": 12,
+          "sodium": 420,
+          "sugar": 2,
+          "saturatedFat": 0.8
+        },
+        "ingredients": "קמח עדשים אדומים (65%), עמילן תפוחי אדמה, שמן חמניות, מלח, שמרי אפייה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "65% קמח עדשים כרכיב ראשי",
+          "18 גרם חלבון ל-100 גרם",
+          "12 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "420 מ\"ג נתרן ל-100 גרם — שקית שלמה מכילה יותר ממחצית הכמות המומלצת ליום"
+        ],
+        "bottomLine": "הטוב ביותר מבין 54 חטיפים — יתרון אמיתי בחלבון וסיבים, לא רק שיווקי.",
+        "comparisonContext": "דומה לחטיף חומוס אפוי (84/A) — פרופיל קרוב אבל עדשים מובילות בסיבים."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071033002",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290011499001",
+      "name": "פצפוצי אורז רגיל",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.carrefour.co.il/7290011499001.jpg",
+      "score": 85,
+      "grade": "A",
+      "insightLine": "מרכיב אחד בלבד — אורז. 10 מ\"ג נתרן ל-100 גרם. מה שרואים זה מה שיש.\nA בשל נקיות הרכיבים ועיבוד מינימלי — הפשוט ביותר מבין 54 החטיפים.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 1,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [],
+      "ingredientCount": 1,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 388,
+          "protein": 7.5,
+          "fat": 2.5,
+          "carbs": 81,
+          "fiber": 1.8,
+          "sodium": 10,
+          "sugar": 0.5,
+          "saturatedFat": 0.5
+        },
+        "ingredients": "אורז.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "רכיב אחד בלבד",
+          "10 מ\"ג נתרן — הנמוך בין 54 החטיפים",
+          "עיבוד מינימלי"
+        ],
+        "limitingFactors": [
+          "1.8 גרם סיבים בלבד — ערך נמוך"
+        ],
+        "bottomLine": "הנקי ביותר מבין כל 54 החטיפים — פשטות אמיתית, אם כי דל בסיבים.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011499001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071033019",
+      "name": "חטיף חומוס אפוי קרפור",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071033019.jpg",
+      "score": 84,
+      "grade": "A",
+      "insightLine": "60% קמח חומוס כרכיב ראשי — 17 גרם חלבון ו-10.5 גרם סיבים ל-100 גרם.\nA — עיבוד גבוה מעט יחסית לחטיף עדשים, אך פרופיל תזונתי חזק.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 395,
+          "protein": 17,
+          "fat": 9,
+          "carbs": 58,
+          "fiber": 10.5,
+          "sodium": 440,
+          "sugar": 3.5,
+          "saturatedFat": 1
+        },
+        "ingredients": "קמח חומוס (60%), עמילן תפוחי אדמה, שמן חמניות, מלח, שמרי אפייה, פפריקה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "60% קמח חומוס",
+          "17 גרם חלבון ל-100 גרם",
+          "10.5 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "440 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "חטיף קטנית אמיתי — מוצלח, עם חלבון וסיבים שרוב החטיפים לא מגיעים אליהם.",
+        "comparisonContext": "מקביל לחטיף עדשים (88/A) — כמה נקודות פחות בגלל מדד עיבוד גבוה יותר."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071033019",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071044503",
+      "name": "ביסקוצ'י קרפור חיטה מלאה",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071044503.jpg",
+      "score": 83,
+      "grade": "A",
+      "insightLine": "72% קמח חיטה מלאה, 4 רכיבים בלבד — 8 גרם סיבים ל-100 גרם.\nA — נתרן מעט גבוה אך פרופיל הרכיבים נקי ופשוט.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "seed_oil"
+      ],
+      "ingredientCount": 4,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 415,
+          "protein": 11.5,
+          "fat": 10,
+          "carbs": 67,
+          "fiber": 8,
+          "sodium": 480,
+          "sugar": 2.5,
+          "saturatedFat": 1
+        },
+        "ingredients": "קמח חיטה מלאה (72%), שמן חמניות, מלח, שמרי אפייה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "72% קמח חיטה מלאה",
+          "4 רכיבים בלבד",
+          "8 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "480 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "ביסקוצ'י שמצדיק את ה-A — מינימום רכיבים, מקסימום חיטה מלאה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071044503",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290024400001",
+      "name": "קרקרים קריספ מחיטה מלאה",
+      "brand": "שופרסל",
+      "imageUrl": "https://images.yohananof.co.il/7290024400001.jpg",
+      "score": 83,
+      "grade": "A",
+      "insightLine": "70% קמח חיטה מלאה עם זרעי כוסברה — 7.5 גרם סיבים ל-100 גרם.\nA — 560 מ\"ג נתרן גבוה יחסית לקרקר מחיטה מלאה.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 2,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "seed_oil"
+      ],
+      "ingredientCount": 5,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 410,
+          "protein": 11,
+          "fat": 9,
+          "carbs": 69,
+          "fiber": 7.5,
+          "sodium": 560,
+          "sugar": 3,
+          "saturatedFat": 1
+        },
+        "ingredients": "קמח חיטה מלאה (70%), שמן חמניות, מלח, שמרי אפייה, זרעי כוסברה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "70% קמח חיטה מלאה",
+          "5 רכיבים בלבד",
+          "7.5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "560 מ\"ג נתרן ל-100 גרם — גבוה לסוג זה"
+        ],
+        "bottomLine": "A מוצדק — ייצור מינימלי ממקורות מלאים. הנתרן גבוה מעט ביחס לקטגוריה.",
+        "comparisonContext": "ביסקוצ'י קרפור (83/A) — אותו ציון, נתרן נמוך יותר אם זה קריטי."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290024400001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071099022",
+      "name": "גלעינון קרפור חיטה מלאה",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071099022.jpg",
+      "score": 82,
+      "grade": "A",
+      "insightLine": "95% חיטה מלאה, 2 רכיבים — 8.5 גרם סיבים ל-100 גרם ו-320 מ\"ג נתרן בלבד.\nA ללא עוררין — מהפשוטים והנקיים בקטגוריה.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [],
+      "ingredientCount": 2,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 370,
+          "protein": 11,
+          "fat": 2.5,
+          "carbs": 73,
+          "fiber": 8.5,
+          "sodium": 320,
+          "sugar": 1,
+          "saturatedFat": 0.3
+        },
+        "ingredients": "חיטה מלאה (95%), מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "95% חיטה מלאה",
+          "2 רכיבים בלבד",
+          "320 מ\"ג נתרן — מהנמוכים בקטגוריה"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "פשטות אמיתית — חיטה מלאה ומלח, לא יותר.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071099022",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290035510001",
+      "name": "קרקרים שיפון",
+      "brand": "יוחננוף",
+      "imageUrl": "https://images.yohananof.co.il/7290035510001.jpg",
+      "score": 81,
+      "grade": "A",
+      "insightLine": "85% קמח שיפון מלא — 12 גרם סיבים ל-100 גרם, מהגבוהים בכל הקטגוריה. 3 רכיבים.\nA — שיפון מלא נותן יתרון סיבים נדיר.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 360,
+          "protein": 9.5,
+          "fat": 2.5,
+          "carbs": 72,
+          "fiber": 12,
+          "sodium": 420,
+          "sugar": 2,
+          "saturatedFat": 0.3
+        },
+        "ingredients": "קמח שיפון מלא (85%), מים, מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "85% קמח שיפון מלא",
+          "12 גרם סיבים ל-100 גרם — גבוה מאוד",
+          "3 רכיבים בלבד"
+        ],
+        "limitingFactors": [
+          "420 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "שיפון מלא נותן יתרון סיבים שאין בכמעט אף חטיף אחר בקטגוריה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290035510001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290028800001",
+      "name": "פצפוצי אורז מחיטה מלאה ושיפון",
+      "brand": "שופרסל",
+      "imageUrl": "https://images.yohananof.co.il/7290028800001.jpg",
+      "score": 80,
+      "grade": "B",
+      "insightLine": "חיטה מלאה ושיפון מלא — 7 גרם סיבים ו-280 מ\"ג נתרן בלבד.\nB — נתונים חלקיים מגבילים את רמת הביטחון.",
+      "confidence": "partial",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 365,
+          "protein": 9.5,
+          "fat": 2,
+          "carbs": 74,
+          "fiber": 7,
+          "sodium": 280,
+          "sugar": 1.5,
+          "saturatedFat": 0.3
+        },
+        "ingredients": "חיטה מלאה (50%), שיפון מלא (40%), מלח.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שיפון מלא וחיטה מלאה",
+          "280 מ\"ג נתרן — נמוך מאוד",
+          "7 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "נתונים חלקיים — לא כל הפרמטרים מאומתים"
+        ],
+        "bottomLine": "B בגלל מגבלות ביטחון נתונים — פרופיל הרכיבים שקוף ומינימלי.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290028800001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290003100018",
+      "name": "פופקורן טבעי ללא תוספת מלח",
+      "brand": "שופרסל",
+      "imageUrl": "https://images.shufersal.co.il/7290003100018.jpg",
+      "score": 78,
+      "grade": "B",
+      "insightLine": "תירס ושמן — 2 רכיבים. 15 מ\"ג נתרן בלבד ו-10 גרם סיבים.\nB — שמן חמניות מגביל מעט; יתר על כן, פשוט ונקי.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "seed_oil"
+      ],
+      "ingredientCount": 2,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 450,
+          "protein": 10,
+          "fat": 18,
+          "carbs": 62,
+          "fiber": 10,
+          "sodium": 15,
+          "sugar": 0.5,
+          "saturatedFat": 2.5
+        },
+        "ingredients": "תירס, שמן חמניות.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "2 רכיבים בלבד",
+          "15 מ\"ג נתרן — הנמוך בין כל הפופקורנים",
+          "10 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "שמן חמניות — שמן זרעים תעשייתי"
+        ],
+        "bottomLine": "הפופקורן הנקי ביותר — נקודת ההתחלה אם רוצים פופקורן בלי תוספות.",
+        "comparisonContext": "פופקורן קרפור מלח (70/B): 8 נקודות פחות רק מהנתרן — אותו בסיס."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290003100018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290011499025",
+      "name": "פצפוצי חיטה מחיטה מלאה",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290011499025.jpg",
+      "score": 74,
+      "grade": "B",
+      "insightLine": "90% חיטה מלאה, 2 רכיבים — 7.5 גרם סיבים ל-100 גרם.\nB — 380 מ\"ג נתרן גבוה מעט ביחס לגלעינון החיטה המלאה.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [],
+      "ingredientCount": 2,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 370,
+          "protein": 10,
+          "fat": 2,
+          "carbs": 74,
+          "fiber": 7.5,
+          "sodium": 380,
+          "sugar": 1,
+          "saturatedFat": 0.3
+        },
+        "ingredients": "חיטה מלאה (90%), מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "90% חיטה מלאה",
+          "2 רכיבים בלבד",
+          "7.5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "380 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "B מוצדק — מוצר נקי אבל נתרן מעט גבוה יותר מהגלעינון (82/A, 320 מ\"ג).",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011499025",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000615010",
+      "name": "פיתות שטויות מחיטה מלאה",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000615010.jpg",
+      "score": 73,
+      "grade": "B",
+      "insightLine": "55% חיטה מלאה — יותר מהגרסה הרגילה. אבל 630 מ\"ג נתרן ו-16 גרם שומן מגבילים.\nB — עדיפה על פיתות רגילות, אבל לא בקלות.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 7,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 440,
+          "protein": 11,
+          "fat": 16,
+          "carbs": 63,
+          "fiber": 5.5,
+          "sodium": 630,
+          "sugar": 2,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה מלאה (55%), קמח חיטה, שמן, שמרים, מלח, שמן זית (3%), אבקת שום.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "55% קמח חיטה מלאה",
+          "5.5 גרם סיבים",
+          "שמן זית 3%"
+        ],
+        "limitingFactors": [
+          "630 מ\"ג נתרן ל-100 גרם",
+          "16 גרם שומן ל-100 גרם"
+        ],
+        "bottomLine": "B על גבול ה-C — עדיפה על הגרסה הרגילה, אבל נתרן ושומן גבוהים מגבילים.",
+        "comparisonContext": "פיתות שטויות רגילות (72/B): 650 מ\"ג נתרן ו-3 גרם סיבים בלבד — כאן יש שיפור."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000615010",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000615003",
+      "name": "פיתות שטויות",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000615003.jpg",
+      "score": 72,
+      "grade": "B",
+      "insightLine": "קמח חיטה לבן, 650 מ\"ג נתרן, 16 גרם שומן — אחד מהגבוהים בקטגוריית האפויים.\nB תחתון — שמן זית (5%) לא מספיק לפצות.",
+      "confidence": "partial",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 450,
+          "protein": 10,
+          "fat": 16,
+          "carbs": 66,
+          "fiber": 3,
+          "sodium": 650,
+          "sugar": 2.5,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה, שמן, שמרים, מלח, שמן זית (5%), אבקת שום.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שמן זית 5% — שמן לא מזוקק"
+        ],
+        "limitingFactors": [
+          "קמח חיטה לבן — לא מלא",
+          "650 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "B בגבול — שמן הזית הוא יתרון יחיד; הנתרן הגבוה והקמח הלבן גובים מחיר.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000615003",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290011350033",
+      "name": "קרקרים מחיטה מלאה זרעים",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290011350033.jpg",
+      "score": 72,
+      "grade": "B",
+      "insightLine": "65% חיטה מלאה עם זרעי חמניה ושומשום — 8 גרם סיבים.\nB — 17 גרם שומן ל-100 גרם גבוה לקרקר, גם אם מקורו טבעי.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 445,
+          "protein": 12,
+          "fat": 17,
+          "carbs": 60,
+          "fiber": 8,
+          "sodium": 450,
+          "sugar": 2.5,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה מלאה (65%), שמן חמניות, זרעי חמניה (8%), זרעי שומשום (5%), מלח, שמרי אפייה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "65% קמח חיטה מלאה",
+          "8 גרם סיבים ל-100 גרם",
+          "זרעי שומשום וחמניה — שומן טבעי"
+        ],
+        "limitingFactors": [
+          "17 גרם שומן ל-100 גרם — גבוה לקרקר",
+          "450 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — הזרעים תורמים טבעיות אבל גם שומן גבוה שמוריד מהציון.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011350033",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_5010477348070",
+      "name": "פייס פיטה צ'יפס מלח ים",
+      "brand": "Faces",
+      "imageUrl": "https://images.carrefour.co.il/5010477348070.jpg",
+      "score": 71,
+      "grade": "B",
+      "insightLine": "קמח חיטה לבן, 580 מ\"ג נתרן, 12 גרם שומן — ייצור מורכב לאפוי.\nB תחתון — האפייה עוזרת, אבל הבסיס קמח לבן בנתרן גבוה.",
+      "confidence": "partial",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 428,
+          "protein": 10,
+          "fat": 12,
+          "carbs": 68,
+          "fiber": 3.5,
+          "sodium": 580,
+          "sugar": 2,
+          "saturatedFat": 1.5
+        },
+        "ingredients": "קמח חיטה, שמן חמניות, מלח ים, שמרים, שמן זית (3%), אבקת שום.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שמן זית 3%",
+          "אפוי ולא מטוגן"
+        ],
+        "limitingFactors": [
+          "קמח חיטה לבן",
+          "580 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — האפייה נותנת יתרון שמן, אבל קמח לבן ונתרן גבוה מגבילים.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "5010477348070",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_3560071020002",
+      "name": "פופקורן קרפור מלח",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071020002.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תירס, שמן חמניות, מלח — 3 רכיבים. 9 גרם סיבים.\n19 גרם שומן ו-500 מ\"ג נתרן גבוהים — B.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 455,
+          "protein": 9.5,
+          "fat": 19,
+          "carbs": 61,
+          "fiber": 9,
+          "sodium": 500,
+          "sugar": 1.5,
+          "saturatedFat": 2
+        },
+        "ingredients": "תירס, שמן חמניות, מלח.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "9 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "19 גרם שומן ל-100 גרם",
+          "500 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — פופקורן מלח פשוט; שומן ונתרן גבוהים הם טבע הייצור.",
+        "comparisonContext": "פופקורן ללא מלח (78/B): 8 נקודות יתרון — ההבדל כולו בנתרן."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071020002",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290000055007",
+      "name": "תפוצ'יפס רגיל",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000055007.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תפוחי אדמה, שמן, מלח — 3 רכיבים פשוטים. אבל 34 גרם שומן ל-100 גרם הוא מחיר הטיגון.\nB — פשטות ברכיבים מצילה אותו מ-C.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "fat"
+      ],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 543,
+          "protein": 6,
+          "fat": 34,
+          "carbs": 51,
+          "fiber": 4,
+          "sodium": 530,
+          "sugar": 1,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תפוחי אדמה, שמן, מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "תפוחי אדמה אמיתיים כבסיס"
+        ],
+        "limitingFactors": [
+          "34 גרם שומן ל-100 גרם",
+          "543 קלוריות ל-100 גרם"
+        ],
+        "bottomLine": "B — הפשטות בלטה לטובה. צ'יפס קלאסי עדיין עמוס שומן, אבל בלי תוספות מיותרות.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000055007",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290002050001",
+      "name": "חיפסי בצ'יפס עגול",
+      "brand": "יוחננוף",
+      "imageUrl": "https://images.yohananof.co.il/7290002050001.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תפוחי אדמה, שמן דקלים, מלח — 3 רכיבים. שמן הדקלים ו-600 מ\"ג נתרן.\nB — פשוט ברכיבים אבל שמן הדקלים מוריד.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 2,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "fat"
+      ],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 520,
+          "protein": 5.5,
+          "fat": 32,
+          "carbs": 54,
+          "fiber": 4,
+          "sodium": 600,
+          "sugar": 1.5,
+          "saturatedFat": 4.5
+        },
+        "ingredients": "תפוחי אדמה, שמן דקלים, מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "תפוחי אדמה אמיתיים"
+        ],
+        "limitingFactors": [
+          "שמן דקלים — שומן רווי גבוה יחסית",
+          "600 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — פשוט ברכיבים, אבל שמן הדקלים הוא ציון לרעה ביחס לצ'יפסים עם שמן רגיל.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290002050001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290002211001",
+      "name": "קרקרים עם מלח ים",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290002211001.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "קמח חיטה לבן, 4 רכיבים, 600 מ\"ג נתרן.\nB — קמח לבן מגביל ציון גבוה יותר, אבל מינימום תוספים.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 4,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 430,
+          "protein": 10,
+          "fat": 13,
+          "carbs": 68,
+          "fiber": 3.5,
+          "sodium": 600,
+          "sugar": 1.5,
+          "saturatedFat": 1.5
+        },
+        "ingredients": "קמח חיטה, שמן חמניות, מלח ים, שמרי אפייה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "4 רכיבים בלבד",
+          "ייצור פשוט"
+        ],
+        "limitingFactors": [
+          "קמח חיטה לבן — לא מלא",
+          "600 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — מינימום תוספים, אבל קמח לבן ונתרן גבוה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290002211001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290014800001",
+      "name": "צ'יפסי תפוחי אדמה ים מלח",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.carrefour.co.il/7290014800001.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תפוחי אדמה, שמן חמניות, מלח ים — 3 רכיבים. 35 גרם שומן.\nB — שומן גבוה הוא טבע הצ'יפס, אבל הבסיס פשוט.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 536,
+          "protein": 6.5,
+          "fat": 35,
+          "carbs": 50,
+          "fiber": 4.5,
+          "sodium": 540,
+          "sugar": 0.5,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תפוחי אדמה, שמן חמניות, מלח ים.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "תפוחי אדמה אמיתיים",
+          "שמן חמניות — לא דקלים"
+        ],
+        "limitingFactors": [
+          "35 גרם שומן ל-100 גרם",
+          "536 קלוריות ל-100 גרם"
+        ],
+        "bottomLine": "B — טוב בפשטות הרכיבים; שמן חמניות עדיף על דקלים.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290014800001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290014800018",
+      "name": "צ'יפסי פחות שומן",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.shufersal.co.il/7290014800018.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "21 גרם שומן — פחות מצ'יפס רגיל. אבל עמילן תפוחי אדמה מוסף ו-580 מ\"ג נתרן.\nB — ציון זהה לצ'יפסי הרגיל; 'פחות שומן' לא מוריד נתרן.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 4,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 475,
+          "protein": 7,
+          "fat": 21,
+          "carbs": 64,
+          "fiber": 4.5,
+          "sodium": 580,
+          "sugar": 1,
+          "saturatedFat": 2
+        },
+        "ingredients": "תפוחי אדמה, שמן חמניות (50% פחות שומן), מלח, עמילן תפוחי אדמה.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שומן נמוך יחסית לצ'יפס (21 גרם)"
+        ],
+        "limitingFactors": [
+          "עמילן תפוחי אדמה מוסף",
+          "580 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — 'פחות שומן' לא שווה ניקוד נוסף כשיש עמילן מוסף ונתרן זהה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290014800018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290019900001",
+      "name": "פופקורן Good Boy מלח",
+      "brand": "Good Boy",
+      "imageUrl": "https://images.shufersal.co.il/7290019900001.jpg",
+      "score": 70,
+      "grade": "B",
+      "insightLine": "תירס, שמן חמניות, מלח — 3 רכיבים. 9.5 גרם סיבים.\nB — 18 גרם שומן ו-480 מ\"ג נתרן; זהה בציון לפופקורן קרפור מלח.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 3,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460,
+          "protein": 9,
+          "fat": 18,
+          "carbs": 63,
+          "fiber": 9.5,
+          "sodium": 480,
+          "sugar": 1,
+          "saturatedFat": 2.5
+        },
+        "ingredients": "תירס, שמן חמניות, מלח.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "9.5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "18 גרם שומן",
+          "480 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — פשוט ונקי; כמות השומן גבוהה אבל הרכיבים מינימליים.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290019900001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_5010477348087",
+      "name": "פייס פיטה צ'יפס שום ועשבי תיבול",
+      "brand": "Faces",
+      "imageUrl": "https://images.carrefour.co.il/5010477348087.jpg",
+      "score": 68,
+      "grade": "B",
+      "insightLine": "8 רכיבים, קמח חיטה לבן, 620 מ\"ג נתרן, חומצה ציטרית.\nB תחתון — הגרסה המתובלת מביאה יותר רכיבים ונתרן גבוה יותר.",
+      "confidence": "partial",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 432,
+          "protein": 10.5,
+          "fat": 13,
+          "carbs": 67,
+          "fiber": 3.5,
+          "sodium": 620,
+          "sugar": 2.5,
+          "saturatedFat": 1.5
+        },
+        "ingredients": "קמח חיטה, שמן חמניות, שמן זית (4%), מלח, שמרים, אבקת שום, עשבי תיבול, חומצה ציטרית.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שמן זית 4%",
+          "אפוי ולא מטוגן"
+        ],
+        "limitingFactors": [
+          "קמח חיטה לבן",
+          "620 מ\"ג נתרן",
+          "חומצה ציטרית"
+        ],
+        "bottomLine": "B — 3 נקודות פחות מהגרסה הרגילה בגלל רכיבים נוספים ונתרן גבוה יותר.",
+        "comparisonContext": "פייס מלח ים (71/B): עדיף — פחות רכיבים, נתרן נמוך יותר."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "5010477348087",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290011499018",
+      "name": "פצפוצי אורז מלח ים",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290011499018.jpg",
+      "score": 66,
+      "grade": "B",
+      "insightLine": "אורז לבן ומלח ים — 2 רכיבים. 1.8 גרם סיבים ו-420 מ\"ג נתרן.\nB — אורז לבן נחות מחיטה מלאה; 19 נקודות מתחת לפצפוץ ללא מלח.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [],
+      "ingredientCount": 2,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 388,
+          "protein": 7.5,
+          "fat": 2.5,
+          "carbs": 81,
+          "fiber": 1.8,
+          "sodium": 420,
+          "sugar": 0.5,
+          "saturatedFat": 0.5
+        },
+        "ingredients": "אורז, מלח ים.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "2 רכיבים בלבד"
+        ],
+        "limitingFactors": [
+          "1.8 גרם סיבים — ערך נמוך",
+          "420 מ\"ג נתרן"
+        ],
+        "bottomLine": "B — גרסת 'מלח ים' לא נותנת יתרון; הנתרן גבוה ביחס לגרסה ללא מלח.",
+        "comparisonContext": "פצפוצי אורז רגיל (85/A): 19 נקודות יתרון — ההפרש כולו מהמלח."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011499018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290003100001",
+      "name": "פופקורן מלח וחמאה",
+      "brand": "שופרסל",
+      "imageUrl": "https://images.shufersal.co.il/7290003100001.jpg",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "שמן דקלים וחמאה (5%) — שניהם שומן רווי. 6.5 גרם שומן רווי ל-100 גרם.\nC — פרופיל שומן בעייתי בשל שמן דקלים וחמאה ביחד.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 5,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 468,
+          "protein": 9.5,
+          "fat": 20,
+          "carbs": 60,
+          "fiber": 9,
+          "sodium": 560,
+          "sugar": 1,
+          "saturatedFat": 6.5
+        },
+        "ingredients": "תירס, שמן דקלים, חמאה (5%), מלח, ויטמין E (E306).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "9 גרם סיבים — גבוה לפופקורן",
+          "חמאה אמיתית (5%)"
+        ],
+        "limitingFactors": [
+          "6.5 גרם שומן רווי ל-100 גרם",
+          "שמן דקלים כשמן בסיס"
+        ],
+        "bottomLine": "C — חמאה היא רכיב 'טבעי' אבל שמן דקלים וחמאה ביחד = שומן רווי גבוה.",
+        "comparisonContext": "פופקורן קרפור מלח (70/B): 6 נקודות יתרון — בלי חמאה ובלי דקלים."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290003100001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290021800018",
+      "name": "צ'יפסט בייקד מלח ים",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.yohananof.co.il/7290021800018.jpg",
+      "score": 64,
+      "grade": "C",
+      "insightLine": "עמילן תפוחי אדמה — לא תפוחי אדמה שלמים. חומצה ציטרית E330.\nC — 'אפוי' לא מבטיח איכות כשהבסיס הוא עמילן מעובד.",
+      "confidence": "partial",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "seed_oil"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 400,
+          "protein": 7.5,
+          "fat": 10,
+          "carbs": 72,
+          "fiber": 3.5,
+          "sodium": 500,
+          "sugar": 2,
+          "saturatedFat": 1
+        },
+        "ingredients": "עמילן תפוחי אדמה, קמח תפוחי אדמה, שמן חמניות, מלח ים, חומצה ציטרית, E330.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "אפוי — שומן נמוך (10 גרם)"
+        ],
+        "limitingFactors": [
+          "עמילן תפוחי אדמה — לא ירק שלם",
+          "חומצה ציטרית E330"
+        ],
+        "bottomLine": "C — 'אפוי' הוא שיווק; הבסיס הוא עמילן מעובד, לא ירק.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290021800018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_3560071099008",
+      "name": "גלעינון קרפור אורז מלח ים",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071099008.jpg",
+      "score": 61,
+      "grade": "C",
+      "insightLine": "אורז לבן ומלח — 2 רכיבים, אבל 1.5 גרם סיבים בלבד.\nC — אורז לבן נחות מחיטה מלאה; 21 נקודות מתחת לגלעינון החיטה.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "novaGroup": 2,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [],
+      "ingredientCount": 2,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 389,
+          "protein": 7,
+          "fat": 2,
+          "carbs": 82,
+          "fiber": 1.5,
+          "sodium": 390,
+          "sugar": 0.5,
+          "saturatedFat": 0.3
+        },
+        "ingredients": "אורז, מלח ים.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "2 רכיבים בלבד"
+        ],
+        "limitingFactors": [
+          "1.5 גרם סיבים — ערך נמוך מאוד",
+          "אורז לבן — לא מלא"
+        ],
+        "bottomLine": "C — גלעינון אורז לא מגיע לניקוד של גלעינון חיטה מלאה (82/A).",
+        "comparisonContext": "גלעינון חיטה מלאה (82/A): 21 נקודות יתרון — החיטה המלאה היא כל ההבדל."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071099008",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000091004",
+      "name": "חטיף תפוחי אדמה אפוי ים מלח",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290000091004.jpg",
+      "score": 58,
+      "grade": "C",
+      "insightLine": "עמילן ותפוחי אדמה — לא ירק שלם. ייצור מורכב עם חומצה ציטרית.\nC — 'אפוי' נמחק כשהבסיס הוא עמילן מעובד.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "seed_oil"
+      ],
+      "ingredientCount": 5,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 400,
+          "protein": 7,
+          "fat": 9,
+          "carbs": 72,
+          "fiber": 5,
+          "sodium": 510,
+          "sugar": 2,
+          "saturatedFat": 1
+        },
+        "ingredients": "עמילן תפוחי אדמה, קמח תפוחי אדמה, מלח ים, שמן חמניות, חומצה ציטרית.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שומן נמוך (9 גרם) — אפוי",
+          "5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "עמילן תפוחי אדמה כבסיס — לא ירק שלם",
+          "חומצה ציטרית"
+        ],
+        "bottomLine": "C — האפייה היא יתרון ששמור אבל הבסיס המעובד מגביל.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000091004",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071050009",
+      "name": "בייגל קרפור",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071050009.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "קמח חיטה לבן, ייצור מורכב — 880 מ\"ג נתרן ל-100 גרם.\nC — כמעט גרם נתרן לכל 100 גרם.",
+      "confidence": "partial",
+      "subPool": "pretzels",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "seed_oil"
+      ],
+      "ingredientCount": 6,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 380,
+          "protein": 10,
+          "fat": 4.5,
+          "carbs": 75,
+          "fiber": 2.5,
+          "sodium": 880,
+          "sugar": 3,
+          "saturatedFat": 0.5
+        },
+        "ingredients": "קמח חיטה, מלח, שמרים, שמן קנולה, סוכר, אבקת בצל.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "4.5 גרם שומן בלבד — נמוך"
+        ],
+        "limitingFactors": [
+          "880 מ\"ג נתרן ל-100 גרם — גבוה מאוד",
+          "קמח חיטה לבן"
+        ],
+        "bottomLine": "C — בייגל עמוס נתרן; כאן אחד הגבוהים בסקירה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071050009",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_3560071056000",
+      "name": "מיני בייגל קרפור שומשום",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071056000.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "שומשום (5%) מוסיף מעט איכות, אבל 840 מ\"ג נתרן ל-100 גרם.\nC — ציון זהה לגרסה הרגילה; השומשום לא מפצה על הנתרן.",
+      "confidence": "verified",
+      "subPool": "pretzels",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "seed_oil"
+      ],
+      "ingredientCount": 7,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 400,
+          "protein": 11,
+          "fat": 7,
+          "carbs": 72,
+          "fiber": 3.5,
+          "sodium": 840,
+          "sugar": 3.5,
+          "saturatedFat": 1
+        },
+        "ingredients": "קמח חיטה, מלח, שמרים, שמן קנולה, שומשום (5%), סוכר, E300.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שומשום 5% — תוספת טבעית",
+          "3.5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "840 מ\"ג נתרן ל-100 גרם",
+          "קמח חיטה לבן"
+        ],
+        "bottomLine": "C — השומשום הוא יתרון קוסמטי בעיקרו; הציון זהה לבייגל הרגיל.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071056000",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290011350002",
+      "name": "בייגלה קלוי",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290011350002.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "920 מ\"ג נתרן ל-100 גרם — הגבוה ביותר בבייגלה שנסקרה. 8 רכיבים.\nC — כמעט גרם נתרן מלא לכל 100 גרם.",
+      "confidence": "partial",
+      "subPool": "pretzels",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "seed_oil"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 386,
+          "protein": 10.5,
+          "fat": 4.5,
+          "carbs": 76,
+          "fiber": 2.5,
+          "sodium": 920,
+          "sugar": 3.5,
+          "saturatedFat": 0.5
+        },
+        "ingredients": "קמח חיטה, מלח, שמרים, שמן קנולה, אבקת בצל, סוכר, מחמצת, שמרי בירה.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "שמרי בירה — רכיב מעניין"
+        ],
+        "limitingFactors": [
+          "920 מ\"ג נתרן — הגבוה ביותר בבייגלה",
+          "קמח חיטה לבן"
+        ],
+        "bottomLine": "C — הבייגלה הקלויה: נתרן גבוה מאוד, קמח לבן, 8 רכיבים.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011350002",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290011350019",
+      "name": "בייגלה מחיטה מלאה",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290011350019.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "60% חיטה מלאה ו-6.5 גרם סיבים — שיפור על בייגלה רגילה. אבל 880 מ\"ג נתרן.\nC — החיטה המלאה מנסה, הנתרן הגבוה מחסל.",
+      "confidence": "verified",
+      "subPool": "pretzels",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "seed_oil"
+      ],
+      "ingredientCount": 7,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 375,
+          "protein": 11.5,
+          "fat": 4,
+          "carbs": 73,
+          "fiber": 6.5,
+          "sodium": 880,
+          "sugar": 3,
+          "saturatedFat": 0.5
+        },
+        "ingredients": "קמח חיטה מלאה (60%), קמח חיטה, מלח, שמרים, שמן קנולה, סוכר, מחמצת.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "60% קמח חיטה מלאה",
+          "6.5 גרם סיבים — גבוה לבייגלה"
+        ],
+        "limitingFactors": [
+          "880 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "C — שיפור ביחס לבייגלה רגילה, אבל הנתרן הגבוה מגביל לאותו ציון.",
+        "comparisonContext": "בייגלה קלויה (57/C): זהה — החיטה המלאה מקזזת ביחס לנתרן נמוך מעט."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290011350019",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071020019",
+      "name": "פופקורן קרפור גבינה",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071020019.jpg",
+      "score": 56,
+      "grade": "C",
+      "insightLine": "אבקת גבינה (3%) — ריח גבינה, מעט מאוד גבינה. 570 מ\"ג נתרן, 20 גרם שומן, חומצה ציטרית.\nC — פופקורן גבינה: תוסף ולא רכיב.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 7,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465,
+          "protein": 8.5,
+          "fat": 20,
+          "carbs": 62,
+          "fiber": 8.5,
+          "sodium": 570,
+          "sugar": 2,
+          "saturatedFat": 4.5
+        },
+        "ingredients": "תירס, שמן חמניות, אבקת גבינה (3%), מלח, אבקת חלב, חומצה ציטרית, E330.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "8.5 גרם סיבים — גבוה לפופקורן"
+        ],
+        "limitingFactors": [
+          "אבקת גבינה מיובשת — לא גבינה אמיתית",
+          "20 גרם שומן",
+          "חומצה ציטרית E330"
+        ],
+        "bottomLine": "C — גבינה כתוסף ולא כרכיב מוריד את הציון. פופקורן מלח פשוט מנצח.",
+        "comparisonContext": "פופקורן מלח (70/B): 14 נקודות יתרון — ללא אבקת גבינה וחומצה."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071020019",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290021800001",
+      "name": "צ'יפסט בייקד עגבניות",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.yohananof.co.il/7290021800001.jpg",
+      "score": 56,
+      "grade": "C",
+      "insightLine": "עמילן תפוחי אדמה + אבקת עגבניות (3%) + E330, E301.\nC — עגבנייה שיווקית; הבסיס הוא עמילן מעובד.",
+      "confidence": "partial",
+      "subPool": "baked",
+      "novaGroup": 3,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "seed_oil"
+      ],
+      "ingredientCount": 10,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 415,
+          "protein": 7.5,
+          "fat": 11,
+          "carbs": 71,
+          "fiber": 3.5,
+          "sodium": 540,
+          "sugar": 5,
+          "saturatedFat": 1.5
+        },
+        "ingredients": "עמילן תפוחי אדמה, קמח תפוחי אדמה, שמן חמניות, מלח, אבקת עגבניות (3%), סוכר, פפריקה, חומצה ציטרית, E330, E301.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "11 גרם שומן — נמוך יחסית"
+        ],
+        "limitingFactors": [
+          "עמילן תפוחי אדמה כבסיס",
+          "E330, E301 — תוספי מזון",
+          "אבקת עגבניות 3% — כמות זניחה"
+        ],
+        "bottomLine": "C — 'עגבניות' בשם לא הופכות עמילן מעובד לירק.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290021800001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290000066003",
+      "name": "במבה",
+      "brand": "אסם",
+      "imageUrl": "https://images.carrefour.co.il/7290000066003.jpg",
+      "score": 54,
+      "grade": "C",
+      "insightLine": "40% חמאת בוטנים, 35 גרם שומן ל-100 גרם, 570 קלוריות — תהליך ייצור תעשייתי עמוק.\nC — חמאת בוטנים אמיתית היא יתרון, אבל שומן גבוה ועיבוד תעשייתי מגבילים.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 4,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 570,
+          "protein": 11,
+          "fat": 35,
+          "carbs": 54,
+          "fiber": 2,
+          "sodium": 360,
+          "sugar": 4.5,
+          "saturatedFat": 7.5
+        },
+        "ingredients": "תירס מורחב, חמאת בוטנים (40%), שמן דקלים, מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "40% חמאת בוטנים — מקור חלבון",
+          "11 גרם חלבון ל-100 גרם",
+          "360 מ\"ג נתרן — לא גבוה לסוגו"
+        ],
+        "limitingFactors": [
+          "35 גרם שומן ל-100 גרם",
+          "שמן דקלים",
+          "570 קלוריות ל-100 גרם"
+        ],
+        "bottomLine": "C — הבמבה מקבל C: הבוטנים הם יתרון אמיתי, אבל עיבוד תעשייתי ושומן גבוה גובים מחיר.",
+        "comparisonContext": "חטיף עדשים קרפור (88/A): 34 נקודות יתרון — כמות שומן חצי מהבמבה, עיבוד נמוך בהרבה."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000066003",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000630006",
+      "name": "ביסלי גריל",
+      "brand": "אסם",
+      "imageUrl": "https://images.carrefour.co.il/7290000630006.jpg",
+      "score": 54,
+      "grade": "C",
+      "insightLine": "קמח חיטה, שמן דקלים, 11 רכיבים — 820 מ\"ג נתרן, צבע מאכל E150c, תמצית עשן.\nC — אין רכיב בסיס שמחזיר ניקוד.",
+      "confidence": "partial",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 11,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460,
+          "protein": 9,
+          "fat": 18,
+          "carbs": 63,
+          "fiber": 2.5,
+          "sodium": 820,
+          "sugar": 2.5,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה, שמן דקלים, תבלינים (שמרים, מלח, סוכר, אבקת בצל, אבקת שום, צבע מאכל E150c, תמצית עשן), מלח. מכיל: גלוטן.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "820 מ\"ג נתרן ל-100 גרם",
+          "שמן דקלים",
+          "E150c + תמצית עשן",
+          "11 רכיבים"
+        ],
+        "bottomLine": "C — ביסלי גריל: עמוס תוספים ונתרן גבוה ללא רכיב בסיס שמפצה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000630006",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_8710908800001",
+      "name": "דורטוס נאצ'וז מקסיקני",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.carrefour.co.il/8710908800001.jpg",
+      "score": 54,
+      "grade": "C",
+      "insightLine": "תירס ואבקת גבינה — 13 רכיבים עם E160c, E100.\nC — מורכבות הרכיבים היא חלק ממה שמוריד את הציון.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "ingredient_count",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 13,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 485,
+          "protein": 7,
+          "fat": 22,
+          "carbs": 63,
+          "fiber": 3.5,
+          "sodium": 590,
+          "sugar": 3,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תירס, שמן צמחי, אבקת גבינה (גבינת צ'דר, מלח, תרבית חיידקים), מלח, עמילן תפוחי אדמה, אבקת חלב, פפריקה, אבקת שום, חומצה ציטרית, צבע (E160c, E100).",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תירס כבסיס"
+        ],
+        "limitingFactors": [
+          "13 רכיבים",
+          "E160c, E100 — צבעי מאכל",
+          "אבקת גבינה — לא גבינה אמיתית"
+        ],
+        "bottomLine": "C — 13 רכיבים וצבעי מאכל מרובים — המורכבות גובה מחיר.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "8710908800001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290009900003",
+      "name": "ביסלי ספגטי",
+      "brand": "אסם",
+      "imageUrl": "https://images.yohananof.co.il/7290009900003.jpg",
+      "score": 53,
+      "grade": "C",
+      "insightLine": "קמח חיטה, שמן דקלים, 11 רכיבים — 800 מ\"ג נתרן, E621 (גלוטמט).\nC — E621 ונתרן גבוה הם מגבלה ברורה.",
+      "confidence": "partial",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 11,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 462,
+          "protein": 9,
+          "fat": 18,
+          "carbs": 63,
+          "fiber": 2.5,
+          "sodium": 800,
+          "sugar": 2.5,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה, שמן דקלים, תבלינים (מלח, תמצית עגבניות, אבקת בצל, שמרים, אבקת שום, סוכר, חומצה ציטרית, E621), מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "800 מ\"ג נתרן",
+          "E621 — גלוטמט חד נתרני",
+          "שמן דקלים"
+        ],
+        "bottomLine": "C — E621 ונתרן גבוה ברורים.",
+        "comparisonContext": "ביסלי גריל (54/C): נקודה יתרון — ללא E621."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290009900003",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290000055014",
+      "name": "תפוצ'יפס פפריקה",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000055014.jpg",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "תפוחי אדמה עם פפריקה — 8 רכיבים, 33 גרם שומן, צבע מאכל E160c.\nC — הגרסה הרגילה (70/B) עדיפה ב-18 נקודות: 3 רכיבים ובלי צבע מאכל.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 540,
+          "protein": 6,
+          "fat": 33,
+          "carbs": 52,
+          "fiber": 4,
+          "sodium": 580,
+          "sugar": 2,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תפוחי אדמה, שמן, אבקת פפריקה, מלח, סוכר, אבקת בצל, חומצה ציטרית, צבע מאכל E160c.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תפוחי אדמה אמיתיים כבסיס"
+        ],
+        "limitingFactors": [
+          "E160c — צבע מאכל",
+          "33 גרם שומן",
+          "8 רכיבים לעומת 3 בגרסה הרגילה"
+        ],
+        "bottomLine": "C — הפפריקה מביאה 5 רכיבים נוספים וצבע מאכל; הגרסה הרגילה עדיפה.",
+        "comparisonContext": "תפוצ'יפס רגיל (70/B): 18 נקודות יתרון."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000055014",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000630020",
+      "name": "ביסלי בצל",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000630020.jpg",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "שמן דקלים, 840 מ\"ג נתרן, E320 (חומר מעכב BHA).\nC — E320 הוא חומר משמר שאינו בגרסת הגריל.",
+      "confidence": "partial",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 10,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460,
+          "protein": 9,
+          "fat": 18,
+          "carbs": 63,
+          "fiber": 2.5,
+          "sodium": 840,
+          "sugar": 2,
+          "saturatedFat": 2
+        },
+        "ingredients": "קמח חיטה, שמן דקלים, תבלינים (מלח, אבקת בצל, סוכר, אבקת שום, חומצה ציטרית, חומר מעכב E320), מלח. מכיל: גלוטן.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "840 מ\"ג נתרן",
+          "E320 — חומר מעכב BHA",
+          "שמן דקלים"
+        ],
+        "bottomLine": "C — ביסלי בצל גרוע מעט מגריל בגלל E320.",
+        "comparisonContext": "ביסלי גריל (54/C): 2 נקודות יתרון — ללא E320."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000630020",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290005204001",
+      "name": "פרינגלס אוריג'ינל",
+      "brand": "פרינגלס",
+      "imageUrl": "https://images.carrefour.co.il/7290005204001.jpg",
+      "score": 52,
+      "grade": "C",
+      "insightLine": "קמח תפוחי אדמה מיובש — לא תפוחי אדמה טריים. שמן הידרוגני ושמן דקלים, 9 גרם שומן רווי.\nC — עיבוד כבד ושמן הידרוגני מבדילים מצ'יפס קלאסי.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 3,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 524,
+          "protein": 4.5,
+          "fat": 33,
+          "carbs": 53,
+          "fiber": 4,
+          "sodium": 480,
+          "sugar": 2,
+          "saturatedFat": 9
+        },
+        "ingredients": "קמח תפוחי אדמה מיובש (42%), שמן צמחי (דקלים, הידרוגני), עמילן חיטה, שמן דקלים, מלת ברזל (E172), מלח, חלב מנוגן.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "שמן הידרוגני",
+          "9 גרם שומן רווי ל-100 גרם",
+          "קמח מיובש כבסיס"
+        ],
+        "bottomLine": "C — פרינגלס לא עשוי מתפוחי אדמה טריים; שמן הידרוגני מבהיר את מידת העיבוד.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290005204001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290014250001",
+      "name": "טייסטי עגבניות ובזיל",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.yohananof.co.il/7290014250001.jpg",
+      "score": 51,
+      "grade": "C",
+      "insightLine": "תפוחי אדמה עם שמן דקלים, E160c, 4.5 גרם סוכר — 8 רכיבים.\nC — שמן דקלים וסוכר גבוה יחסית מורידים ב-19 נקודות מהגרסה הרגילה.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "novaGroup": 3,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 488,
+          "protein": 6,
+          "fat": 23,
+          "carbs": 64,
+          "fiber": 3,
+          "sodium": 560,
+          "sugar": 4.5,
+          "saturatedFat": 3
+        },
+        "ingredients": "תפוחי אדמה, שמן דקלים, אבקת עגבניות (3%), מלח, סוכר, אבקת בזיל, חומצה ציטרית, צבע מאכל E160c.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תפוחי אדמה אמיתיים"
+        ],
+        "limitingFactors": [
+          "שמן דקלים",
+          "E160c — צבע מאכל",
+          "4.5 גרם סוכר — גבוה לצ'יפס"
+        ],
+        "bottomLine": "C — שמן הדקלים וסוכר גבוה מורידים.",
+        "comparisonContext": "תפוצ'יפס רגיל (70/B): 19 נקודות יתרון."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290014250001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_8710908800018",
+      "name": "דורטוס קול ראנץ'",
+      "brand": "פריטו-ליי",
+      "imageUrl": "https://images.shufersal.co.il/8710908800018.jpg",
+      "score": 50,
+      "grade": "D",
+      "insightLine": "640 מ\"ג נתרן, 13 רכיבים, E621 (גלוטמט), E100, E160c.\nD — תוספים על תוספים, גלוטמט ונתרן גבוה.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "ingredient_count",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 13,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 487,
+          "protein": 6.5,
+          "fat": 23,
+          "carbs": 62,
+          "fiber": 3.5,
+          "sodium": 640,
+          "sugar": 4,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תירס, שמן צמחי, אבקת גבינה (גבינת צ'דר), מלח, אבקת חלב, פפריקה, אבקת בצל, אבקת שום, חומצה ציטרית, שמרי בירה מיובשים, צבע (E100, E160c), משפר טעם E621.",
+        "confidenceLabel": "נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תירס כבסיס"
+        ],
+        "limitingFactors": [
+          "640 מ\"ג נתרן",
+          "E621 — גלוטמט",
+          "E100, E160c — צבעי מאכל",
+          "13 רכיבים"
+        ],
+        "bottomLine": "D — מספר הרכיבים ו-E621 הורידו מתחת לגרסת הנאצ'וז.",
+        "comparisonContext": "דורטוס נאצ'וז (54/C): 4 נקודות יתרון — נתרן נמוך ובלי E621."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "8710908800018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290015700001",
+      "name": "תפוצ'יפס טעם גבינה",
+      "brand": "אסם",
+      "imageUrl": "https://images.yohananof.co.il/7290015700001.jpg",
+      "score": 49,
+      "grade": "D",
+      "insightLine": "תפוחי אדמה עם אבקת גבינה, E621, 11 רכיבים, 33 גרם שומן.\nD — הגרסה הרגילה (70/B) עדיפה ב-21 נקודות: גבינה מוסיפה E621 ומחסירה ניקוד.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 11,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 538,
+          "protein": 7,
+          "fat": 33,
+          "carbs": 52,
+          "fiber": 4,
+          "sodium": 600,
+          "sugar": 2.5,
+          "saturatedFat": 5.5
+        },
+        "ingredients": "תפוחי אדמה, שמן, אבקת גבינה (גבינת צ'דר, מלח, תרבית חיידקים), מלח, עמילן תפוחי אדמה, אבקת חלב, E621, חומצה ציטרית, צבע E100.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תפוחי אדמה כבסיס"
+        ],
+        "limitingFactors": [
+          "E621 — גלוטמט",
+          "11 רכיבים לעומת 3 בגרסה הרגילה",
+          "33 גרם שומן"
+        ],
+        "bottomLine": "D — הגבינה הורידה 21 נקודות; ה'טעם' בא במחיר.",
+        "comparisonContext": "תפוצ'יפס רגיל (70/B): 21 נקודות יתרון — 3 רכיבים ללא E621."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290015700001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290004702001",
+      "name": "ניבים תירס",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290004702001.jpg",
+      "score": 48,
+      "grade": "D",
+      "insightLine": "תירס, שמן דקלים, E621, 750 מ\"ג נתרן, E100.\nD — שמן דקלים, גלוטמט וצבע מאכל ביחד.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 7,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 520,
+          "protein": 7.5,
+          "fat": 25,
+          "carbs": 65,
+          "fiber": 1.5,
+          "sodium": 750,
+          "sugar": 3.5,
+          "saturatedFat": 5
+        },
+        "ingredients": "תירס, שמן דקלים, מלח, שמרי תירס, צבע מאכל E100, חומצה ציטרית, משפר טעם E621.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תירס כבסיס"
+        ],
+        "limitingFactors": [
+          "750 מ\"ג נתרן",
+          "E621 — גלוטמט",
+          "E100 — צבע מאכל"
+        ],
+        "bottomLine": "D — ניבים: שמן דקלים + E621 + נתרן גבוה = D מוצדק.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290004702001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_8001505008118",
+      "name": "פרינגלס פפריקה",
+      "brand": "פרינגלס",
+      "imageUrl": "https://images.carrefour.co.il/8001505008118.jpg",
+      "score": 44,
+      "grade": "D",
+      "insightLine": "שמן הידרוגני + שמן דקלים, 9 גרם שומן רווי, E621, 11 רכיבים.\nD — גרוע מאוריג'ינל בגלל E621 שאין בגרסה הרגילה.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 4,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 11,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 524,
+          "protein": 4.5,
+          "fat": 33,
+          "carbs": 53,
+          "fiber": 4,
+          "sodium": 530,
+          "sugar": 3,
+          "saturatedFat": 9
+        },
+        "ingredients": "קמח תפוחי אדמה מיובש (42%), שמן צמחי (הידרוגני, דקלים), עמילן חיטה, מלח, פפריקה, אבקת בצל, E621, שמן דקלים, לציטין (E322), צבע E160c.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "שמן הידרוגני",
+          "9 גרם שומן רווי",
+          "E621 — גלוטמט",
+          "E160c"
+        ],
+        "bottomLine": "D — פרינגלס פפריקה גרוע מאוריג'ינל (52/C) בגלל E621 נוסף.",
+        "comparisonContext": "פרינגלס אוריג'ינל (52/C): 8 נקודות יתרון — ללא E621."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "8001505008118",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_3560071063009",
+      "name": "ביסקוצ'י קרפור גבינה",
+      "brand": "Carrefour",
+      "imageUrl": "https://images.carrefour.co.il/3560071063009.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "קמח חיטה, שמן דקלים, 4% גבינה — 8 גרם שומן רווי ל-100 גרם.\nD — שמן דקלים ושומן רווי גבוה מאוד.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "carrefour",
+      "retailer_he": "קרפור",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 8,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 455,
+          "protein": 11,
+          "fat": 19,
+          "carbs": 60,
+          "fiber": 3,
+          "sodium": 650,
+          "sugar": 4,
+          "saturatedFat": 8
+        },
+        "ingredients": "קמח חיטה, שמן דקלים, גבינה (4%), מלח, שמרי אפייה, אבקת חלב, לציטין סויה (E322), פפריקה.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "4% גבינה אמיתית"
+        ],
+        "limitingFactors": [
+          "8 גרם שומן רווי ל-100 גרם — גבוה מאוד",
+          "שמן דקלים",
+          "650 מ\"ג נתרן"
+        ],
+        "bottomLine": "D — ביסקוצ'י גבינה: שמן דקלים + שומן רווי גבוה = 44 נקודות מתחת לגרסת החיטה המלאה.",
+        "comparisonContext": "ביסקוצ'י חיטה מלאה (83/A): 44 נקודות יתרון."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "3560071063009",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000078006",
+      "name": "קרקרים שם טוב גבינה",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000078006.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "720 מ\"ג נתרן, 11 גרם שומן רווי, E621 ו-11 רכיבים.\nD — שם טוב לא מסתיר עיבוד כבד ושומן רווי גבוה.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 11,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 490,
+          "protein": 9,
+          "fat": 22,
+          "carbs": 62,
+          "fiber": 2,
+          "sodium": 720,
+          "sugar": 4,
+          "saturatedFat": 11
+        },
+        "ingredients": "קמח חיטה, שמן דקלים, גבינה בהתייבשות (5%), מלח, שמרי אפייה, אבקת חלב מנוגן, חמאה, מחמצת חיטה (עמילן חיטה, חיידקי חומצה לקטית), פפריקה, חומצה ציטרית.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "5% גבינה — נוכחות גבינה"
+        ],
+        "limitingFactors": [
+          "11 גרם שומן רווי ל-100 גרם — גבוה מאוד",
+          "E621 — גלוטמט",
+          "720 מ\"ג נתרן"
+        ],
+        "bottomLine": "D — אחד הגרועים בפרופיל השומן: 11 גרם שומן רווי ו-E621.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000078006",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290015700018",
+      "name": "תפוצ'יפס BBQ",
+      "brand": "אסם",
+      "imageUrl": "https://images.yohananof.co.il/7290015700018.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "14 רכיבים, E621, תמצית עשן, E150c, E160c — 33 גרם שומן.\nD — BBQ = הכי מורכב מבין תפוצ'יפס; 31 נקודות מתחת לגרסה הרגילה.",
+      "confidence": "verified",
+      "subPool": "chips",
+      "novaGroup": 4,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "ingredient_count",
+        "fat"
+      ],
+      "ingredientCount": 14,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 535,
+          "protein": 6,
+          "fat": 33,
+          "carbs": 53,
+          "fiber": 4,
+          "sodium": 620,
+          "sugar": 4.5,
+          "saturatedFat": 3.5
+        },
+        "ingredients": "תפוחי אדמה, שמן, תבלינים (מלח, סוכר, אבקת בצל, פפריקה, אבקת שום, עמילן תפוחי אדמה, חומצה ציטרית, תמצית עשן, E621, צבע E150c, E160c), מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "תפוחי אדמה כבסיס"
+        ],
+        "limitingFactors": [
+          "14 רכיבים",
+          "E621, E150c, E160c — תוספים מרובים",
+          "33 גרם שומן"
+        ],
+        "bottomLine": "D — 14 רכיבים וצבעי מאכל מרובים. הגרסה הרגילה (70/B) עדיפה ב-31 נקודות.",
+        "comparisonContext": "תפוצ'יפס רגיל (70/B): 31 נקודות יתרון — רק 3 רכיבים."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290015700018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290019900018",
+      "name": "פופקורן Good Boy גבינה",
+      "brand": "Good Boy",
+      "imageUrl": "https://images.shufersal.co.il/7290019900018.jpg",
+      "score": 36,
+      "grade": "D",
+      "insightLine": "פופקורן עם גבינת צ'דר אמיתית — 9 רכיבים, 620 מ\"ג נתרן, 5.5 גרם שומן רווי.\nD — גבינה אמיתית היא יתרון יחסי, אבל נתרן ושומן רווי גבוהים.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "seed_oil",
+        "fat"
+      ],
+      "ingredientCount": 9,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 472,
+          "protein": 8.5,
+          "fat": 21,
+          "carbs": 62,
+          "fiber": 8.5,
+          "sodium": 620,
+          "sugar": 2.5,
+          "saturatedFat": 5.5
+        },
+        "ingredients": "תירס, שמן חמניות, גבינה צהובה (גבינת צ'דר, מלח, תרבית חיידקים), מלח, אבקת חלב, חומצה ציטרית, E330.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "גבינת צ'דר אמיתית — לא רק אבקה"
+        ],
+        "limitingFactors": [
+          "620 מ\"ג נתרן",
+          "5.5 גרם שומן רווי"
+        ],
+        "bottomLine": "D — גבינה אמיתית לא מפצה על נתרן ושומן רווי גבוהים.",
+        "comparisonContext": "פופקורן מלח Good Boy (70/B): 34 נקודות יתרון — ללא גבינה."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290019900018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290031100001",
+      "name": "חטיף תירס גבינה",
+      "brand": "אסם",
+      "imageUrl": "https://images.yohananof.co.il/7290031100001.jpg",
+      "score": 36,
+      "grade": "D",
+      "insightLine": "שמן דקלים, E621, 700 מ\"ג נתרן, 7 גרם שומן רווי — 9 רכיבים.\nD — שמן דקלים + E621 + נתרן גבוה = D אמין.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "sodium",
+        "fat"
+      ],
+      "ingredientCount": 9,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 530,
+          "protein": 8.5,
+          "fat": 27,
+          "carbs": 60,
+          "fiber": 1.5,
+          "sodium": 700,
+          "sugar": 3,
+          "saturatedFat": 7
+        },
+        "ingredients": "תירס, שמן דקלים, אבקת גבינה (4%), מלח, אבקת חלב, E621, חומצה ציטרית, צבע E100, E160c.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "700 מ\"ג נתרן",
+          "E621 — גלוטמט",
+          "7 גרם שומן רווי",
+          "שמן דקלים"
+        ],
+        "bottomLine": "D — שלוש מגבלות משמעותיות ביחד: שמן דקלים, גלוטמט, ונתרן גבוה.",
+        "comparisonContext": null
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290031100001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290014250018",
+      "name": "טייסטי גבינה",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.yohananof.co.il/7290014250018.jpg",
+      "score": 33,
+      "grade": "E",
+      "insightLine": "תפוחי אדמה, שמן דקלים, גבינת צ'דר 4%, E621 — 10 רכיבים, 495 קלוריות.\nE — מורכבות גבוהה וגלוטמט מגיעים ל-E.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 10,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 495,
+          "protein": 7.5,
+          "fat": 24.5,
+          "carbs": 61,
+          "fiber": 3,
+          "sodium": 610,
+          "sugar": 3,
+          "saturatedFat": 6.5
+        },
+        "ingredients": "תפוחי אדמה, שמן דקלים, אבקת גבינה (גבינת צ'דר 4%, מלח, תרבית חיידקים), מלח, אבקת חלב, חומצה ציטרית, E621 (גלוטמט חד נתרני), צבע E100.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "גבינת צ'דר 4% — גבינה אמיתית"
+        ],
+        "limitingFactors": [
+          "E621 — גלוטמט חד נתרני",
+          "שמן דקלים",
+          "10 רכיבים"
+        ],
+        "bottomLine": "E — E621 ומורכבות גבוהה. הגרסה הרגילה (51/C) טובה ב-18 נקודות.",
+        "comparisonContext": "טייסטי רגיל (51/C): 18 נקודות יתרון — ללא E621."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290014250018",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000066010",
+      "name": "במבה עם קרם שוקולד",
+      "brand": "אסם",
+      "imageUrl": "https://images.shufersal.co.il/7290000066010.jpg",
+      "score": 29,
+      "grade": "E",
+      "insightLine": "22 גרם סוכר ל-100 גרם, שמן דקלים, קרם שוקולד — זה ממתק, לא חטיף מלוח.\nE — שייך לסל הממתקים.",
+      "confidence": "verified",
+      "subPool": "puffed",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "sugar",
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 9,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 545,
+          "protein": 9,
+          "fat": 28,
+          "carbs": 63,
+          "fiber": 2,
+          "sodium": 240,
+          "sugar": 22,
+          "saturatedFat": 10
+        },
+        "ingredients": "תירס מורחב, שמן דקלים, קרם שוקולד (סוכר, שמן דקלים, קקאו, חלב מנוגן, לציטין סויה, תמצית וניל), מלח.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "22 גרם סוכר ל-100 גרם",
+          "שמן דקלים",
+          "545 קלוריות ל-100 גרם"
+        ],
+        "bottomLine": "E — במבה שוקולד שייכת לסל הממתקים, לא לחטיפים המלוחים.",
+        "comparisonContext": "במבה רגילה (54/C): 25 נקודות יתרון — ללא סוכר גבוה."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000066010",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000087007",
+      "name": "פופקורן Flex קרמל",
+      "brand": "שטראוס",
+      "imageUrl": "https://images.shufersal.co.il/7290000087007.jpg",
+      "score": 24,
+      "grade": "E",
+      "insightLine": "38 גרם סוכר ל-100 גרם, גלוקוז, שמן דקלים, חמאה — E: ממתק שנמכר כחטיף.\nהנמוך ביותר מבין הפופקורנים שנסקרו.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "retailer_he": "שופרסל",
+      "limitingFactors": [
+        "sugar",
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 9,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 490,
+          "protein": 5,
+          "fat": 18,
+          "carbs": 78,
+          "fiber": 4.5,
+          "sodium": 280,
+          "sugar": 38,
+          "saturatedFat": 5
+        },
+        "ingredients": "תירס, סוכר, שמן דקלים, גלוקוז, חמאה (3%), מלח, חומצה ציטרית, לציטין חמניות (E322), תמצית קרמל.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חמאה אמיתית (3%)",
+          "4.5 גרם סיבים"
+        ],
+        "limitingFactors": [
+          "38 גרם סוכר ל-100 גרם — הגבוה ביותר מבין פופקורנים",
+          "גלוקוז",
+          "שמן דקלים"
+        ],
+        "bottomLine": "E — פופקורן קרמל: 38 גרם סוכר = קטגוריה אחרת לגמרי.",
+        "comparisonContext": "פופקורן טבעי (78/B): 54 נקודות יתרון — הסוכר הוא כל ההבדל."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290000087007",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290004000001",
+      "name": "פופקורן ריינבו קרמל",
+      "brand": "ריינבו",
+      "imageUrl": "https://images.yohananof.co.il/7290004000001.jpg",
+      "score": 21,
+      "grade": "E",
+      "insightLine": "36 גרם סוכר ל-100 גרם, גלוקוז, שמן דקלים — E: הנמוך ביותר מבין 54 החטיפים שנבדקו.\nפופקורן קרמל שייך לסל הממתקים, לא לסל החטיפים.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "novaGroup": 3,
+      "retailer": "yohananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "sugar",
+        "processing",
+        "fat"
+      ],
+      "ingredientCount": 10,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 495,
+          "protein": 5.5,
+          "fat": 20,
+          "carbs": 74,
+          "fiber": 4.5,
+          "sodium": 260,
+          "sugar": 36,
+          "saturatedFat": 6.5
+        },
+        "ingredients": "תירס, סוכר, שמן דקלים, גלוקוז, מלח, חמאה (2.5%), לציטין סויה (E322), תמצית קרמל, חומצה ציטרית.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "36 גרם סוכר ל-100 גרם",
+          "גלוקוז",
+          "שמן דקלים"
+        ],
+        "bottomLine": "E — הנמוך ביותר. פופקורן קרמל הוא ממתק לכל דבר.",
+        "comparisonContext": "Flex קרמל (24/E): 3 נקודות יתרון — 2 גרם סוכר פחות."
+      },
+      "provenance": "bsip1_manual_corpus",
+      "barcode": "7290004000001",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    }
+  ]
+}

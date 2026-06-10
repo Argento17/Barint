@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/salty_snacks_frontend_v2.json";
+import rawCorpus from "@/data/comparisons/salty_snacks_frontend_v3.json";
 
 import {
   formatComparisonMetadataLine,
@@ -34,9 +34,10 @@ const saltySnacksProducts: BariProductVM[] = _saltySnacksProductsRaw.map(
   (p) => ({
     ...p,
     metrics: {
-      protein_g: p.metrics?.protein_g ?? null,
+      protein_g: p.expansion?.nutrition?.protein ?? null,
       fiber_g: p.expansion?.nutrition?.fiber ?? null,
     },
+    rowVerdict: p.insightLine,
   })
 );
 
@@ -49,14 +50,13 @@ export const saltySnacksMetadataLine = formatComparisonMetadataLine(
 
 export const saltySnacksHero = {
   eyebrow: "חטיפים מלוחים",
-  title: "54 חטיפים, מאורז בלבד עד עמוס בתוספים",
+  title: "הבמבה מקבל C — חטיף עדשים של קרפור מקבל A.",
 } as const;
 
+// TASK-226 COPY-LOCK: single shelf-investigator line. Removed the stat-dump prologue
+// (counts / grams / grade names) and any leaked scoring-axis names.
 export const saltySnacksPrologueSentences = [
-  "בדקנו 54 חטיפים מלוחים מהמדף הישראלי — שופרסל, קרפור ויוחננוף; קטגוריה שמכסה עולמות שונים מאוד: צ'יפס, פצפוצי אורז, פופקורן, חטיפי קטניות אפויים ופרצלים.",
-  "7 מוצרים קיבלו A, 16 קיבלו B — חלקם חטיפי קטניות אפויים או פצפוצי אורז פשוטים; 18 קיבלו C ו-13 D או E.",
-  "פצפוצי אורז פשוטים ממוקמים בראש לא בגלל שהם 'בריאים' — אלא כי הם פשוטים: רכיב אחד, מינימום עיבוד, מינימום נתרן.",
-  "חטיפים אפויים מקטניות (עדשים, חומוס) מגיעים לA וB בזכות סיבים וחלבון — אך גם הם מכילים שמן ומלח, ומחיר הנוחות הוא שקית, לא פרוסה.",
+  "עברנו על מדף החטיפים המלוחים בסופר, מקצה לקצה, ומיינו אותו בשבילכם.",
 ] as const;
 
 // Category caveat — visible without scroll on mobile (spec requirement).

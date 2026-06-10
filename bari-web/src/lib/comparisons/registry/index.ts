@@ -5,6 +5,7 @@ import { granolaCategoryDefinition } from "./categories/granola";
 import { cheeseCategoryDefinition } from "./categories/cheese";
 import { hummusCategoryDefinition } from "./categories/hummus";
 import { maadanimCategoryDefinition } from "./categories/maadanim";
+import { saltySnacksCategoryDefinition } from "./categories/salty-snacks";
 import { snacksCategoryDefinition } from "./categories/snacks";
 import { vegetableSpreadsCategoryDefinition } from "./categories/vegetable-spreads";
 import { yogurtsCategoryDefinition } from "./categories/yogurts";
@@ -19,6 +20,7 @@ const comparisonCategoryRegistry = {
   bread: breadCategoryDefinition,
   butter: butterCategoryDefinition,
   snacks: snacksCategoryDefinition,
+  "salty-snacks": saltySnacksCategoryDefinition,
   yogurts: yogurtsCategoryDefinition,
   hummus: hummusCategoryDefinition,
   "vegetable-spreads": vegetableSpreadsCategoryDefinition,
