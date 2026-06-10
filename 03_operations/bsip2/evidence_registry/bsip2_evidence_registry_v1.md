@@ -188,10 +188,13 @@ study_objects:
 | **recommended_action** | implement_now |
 | **affected_categories** | cereal_system, snack_bars, bread (whole_food categories with fiber claims) |
 | **candidate_signal_name** | `viscosity_fiber_ratio`, `viscous_fiber_g` |
-| **should_affect_score_now** | false — requires viscous fiber vocabulary dictionary to parse ingredient text reliably |
+| **should_affect_score_now** | false — vocabulary input now COMPLETE (see vocabulary_milestone); scoring still gated on the items in remaining_gates. Not wired. |
 | **required_input_fields** | `ingredients_list`, `normalized_nutrition_per_100g.dietary_fiber_g` |
 | **risk_of_misuse** | Exact viscous fiber quantity is not on the label; presence-only detection risks under-crediting psyllium-dominant products |
-| **notes** | Viscous: psyllium husk (קליפת צ'יה, פסיליום), oat beta-glucan (ביתא גלוקן שיבולת שועל), guar gum (גואר). Non-viscous/prebiotic: inulin (אינולין), FOS, chicory root (שורש עולש), polydextrose, resistant dextrin. Implement vocabulary before scoring. |
+| **vocabulary_milestone** | ✅ **CLOSED PASS (2026-06-10)** — viscous/non-viscous fiber vocabulary dictionary completed. Artifact: `01_framework/bsip2_framework/docs/scoring/fiber_functional_vocabulary_v1.md` (FFV-v1), covering all 12 target fibers with Hebrew + English patterns, E-numbers, functional class, false-positive risks, Israeli-label context. **Scoring remains inactive / not wired** — dictionary is documented only, imported nowhere. |
+| **remaining_gates** | Before `should_affect_score_now` may flip to true (all scoring-side, out of vocabulary scope): (1) **presence-only credit cap** — quantity is not label-observable, so credit must be capped on presence; (2) **viscous vs non-viscous signal weighting** — viscous (gel-forming) fibers earn glycemic-dampening credit, non-viscous/prebiotic fibers do not; (3) **regression fixtures** — golden corpus cases proving no unintended score movement. |
+| **parser_risks** | (a) **PHGG** (partially hydrolyzed guar gum / `גואר מפורק חלקית` / Sunfiber) is non-viscous — hydrolysis strips viscosity — and MUST suppress native-guar viscosity classification (PHGG-before-guar guard). (b) **Resistant dextrin / resistant maltodextrin** (`דקסטרין עמיד` / `מלטודקסטרין עמיד` / Nutriose / Fibersol) counts as fiber ONLY when the resistance qualifier (`עמיד`/`resistant`/brand) is explicit. (c) **Bare maltodextrin / bare dextrin** (`מלטודקסטרין` / `דקסטרין`) is a rapidly-digestible glucose polymer and MUST NOT count as fiber. Full rule set: FFV-v1 §4. |
+| **notes** | Viscous: psyllium husk (קליפת פסיליום, פסיליום), oat beta-glucan (ביתא גלוקן שיבולת שועל), guar gum (גואר, native only — see parser_risks). Non-viscous/prebiotic: inulin (אינולין), FOS, chicory root (שורש עולש), polydextrose, resistant dextrin (דקסטרין עמיד — resistance must be explicit). Vocabulary now complete (FFV-v1); scoring gates remain. C-1 corrected: psyllium husk Hebrew was wrongly `קליפת צ'יה` (chia husk) → corrected to `קליפת פסיליום`. |
 
 ---
 
@@ -1546,6 +1549,25 @@ Formally logged gaps where current data or testing is insufficient to resolve a 
 | **co_sign** | Nutrition Agent — self-authored (TASK-REDLABEL-001, 2026-06-08). Product D7 required before activation. |
 | **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
 | **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
+
+### EV-045 — Emulsifier/Stabilizer Complexity Score
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-045 |
+| **concept** | Aggregate emulsifier/stabilizer complexity is a scoring signal distinct from individual additive risk. Multiple texture-stabilizing agents acting in combination indicate higher formulation engineering than any single agent alone. |
+| **scientific_rationale_short** | EV-003 grounds individual concern-tier differentiation for CMC/P80/carrageenan vs lecithin. This finding extends that logic: a product with 3+ distinct emulsifier/stabilizer agents represents a meaningfully different formulation strategy than one with zero or one. Multi-agent stabilizer systems are indicative of engineered texture reconstruction (matrix-integrity Req 1). Concentration data (grams/serving) would enable dose-based scoring, but is not label-observable in Israel — count and identity are the available signals. |
+| **evidence_strength** | Moderate (aggregate count as a proxy for formulation engineering is mechanistically sound; exact penalty magnitudes require calibration against the real shelf) |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Direct — the existing `ADDITIVE_IDENTITY_DELTAS` penalise the three named concern emulsifiers (CMC/P80/carrageenan) at −3 each (cap −6) but do not capture: (a) medium-concern agents (mono/diglycerides, modified starches), (b) low/contextual agents (gums, pectin, lecithin), or (c) the aggregate complexity of multi-agent systems. This finding introduces a separate `emulsifier_complexity` dimension signal computed as: highest individual concern penalty + small complexity adjustment (0/1/2 agents = simple, 2 = moderate, 3+ = high). |
+| **implementation_complexity** | Low — consumes existing `tax_emulsifier_concern` and `tax_emulsifier_benign` signals from `signal_extractor.py` plus new `tax_emulsifier_medium` and `tax_emulsifier_low` signals for the full agent set. No nutrition panel data required. |
+| **recommended_action** | implement_now |
+| **affected_categories** | All; highest impact: snack_bars, dairy_protein, sauce_spread, beverage, cereal, bread, cracker, dessert |
+| **candidate_signal_name** | `emulsifier_complexity_score`, `emulsifier_agent_count`, `emulsifier_complexity_tier` |
+| **should_affect_score_now** | true — ingredient text matching is sufficient; the ingredient taxonomy can be extended to cover all known emulsifier/stabilizer agents in the registry mapping |
+| **required_input_fields** | `ingredients_list`, `tax_emulsifier_concern`, `tax_emulsifier_benign`, plus new resolved agent signals |
+| **risk_of_misuse** | (1) Must not double-count with existing `ADDITIVE_IDENTITY_DELTAS` — this score is additive to (not a replacement for) the per-agent identity deltas. (2) Ingredient order is a weak proxy only — a complexity penalty should not automatically double because an agent appears early in the list. (3) Lecithin and prebiotic gums must not trigger the same penalty weight as CMC/P80. |
+| **notes** | The full agent registry mapping (40+ agents across high/medium/low tiers) is defined in `docs/scoring/emulsifier_complexity_spec_v1.md`. Multiplicative penalties (concentration × complexity) are deferred until serving-level additive dose data is available — the spec explicitly avoids "dose" language for now. Consumer-facing copy: "Contains several texture-stabilizing additives" — never "high dose," "unsafe," "toxic," or "exceeds safe amount." |
 
 ---
 
