@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-06-10T14:17:22.003081+00:00",
+    "generated": "2026-06-10T14:44:04.460971+00:00",
     "category": "salty-snacks",
     "category_he": "חטיפים מלוחים",
     "run_id": "run_salty_snacks_002",
@@ -63,7 +63,8 @@
         "bsip1_snack_7290106573314",
         "bsip1_snack_7290116537375"
       ],
-      "beet_cracker_trans_corrected": "7290112968807: 0/E -> 60/C (OFF trans 2.33g/100g was serving-scaling artifact)"
+      "beet_cracker_trans_corrected": "7290112968807: 0/E -> 60/C (OFF trans 2.33g/100g was serving-scaling artifact)",
+      "apropo_caramel_trans_corrected": "7290118421603: 0/E -> 18/E (OFF trans 1.25g/100g was the same serving-scaling artifact: 0.5g '<1g' declaration / 0.40 serving; TASK-229)"
     }
   },
   "products": [
@@ -1885,6 +1886,55 @@
       ]
     },
     {
+      "id": "bsip1_snack_7290118421603",
+      "name": "אפרופו קרמל 40 גרם",
+      "brand": "אפרופו",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12552902_7290118421603.jpg",
+      "score": 18,
+      "grade": "E",
+      "insightLine": "חטיף מתוק שמתחזה למלוח: 35 גרם סוכר ל-100 גרם.\nרוב הקלוריות כאן מגיעות מהשומן.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "novaGroup": 2,
+      "retailer": "yochananof",
+      "retailer_he": "יוחננוף",
+      "limitingFactors": [
+        "sugar",
+        "saturated_fat",
+        "fat"
+      ],
+      "ingredientCount": 0,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 547.5,
+          "protein": 5.0,
+          "fat": 31.5,
+          "carbs": 61.0,
+          "fiber": null,
+          "sodium": 300,
+          "sugar": 35.0,
+          "saturatedFat": 13.0
+        },
+        "sodiumUnavailable": false,
+        "ingredients": "",
+        "confidenceLabel": "טבלה תזונתית בלבד",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "13 גרם שומן רווי ל-100 גרם",
+          "35 גרם סוכר ל-100 גרם"
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "provenance": "bsip0_yochananof_real_scrape + off_panel",
+      "barcode": "7290118421603",
+      "source_traceability_status": "panel_only",
+      "confidence_label_he": "דירוג לפי הטבלה התזונתית בלבד",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הופיעה על המוצר, אז הדירוג נשען על הטבלה התזונתית בלבד — בלי ניתוח רשימת הרכיבים.",
+      "confidence_sub_reason": "ingredients_unavailable"
+    },
+    {
       "id": "bsip1_snack_4014400925319",
       "name": "פופקורן בציפוי קרמל 140 גרם",
       "brand": "Werther's Original",
@@ -1992,51 +2042,6 @@
           "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
         }
       ]
-    },
-    {
-      "id": "bsip1_snack_7290118421603",
-      "name": "אפרופו קרמל 40 גרם",
-      "brand": "אפרופו",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12552902_7290118421603.jpg",
-      "score": 0,
-      "grade": "E",
-      "insightLine": "חטיף מתוק שמתחזה למלוח: 35 גרם סוכר ל-100 גרם.\nרוב הקלוריות כאן מגיעות מהשומן.",
-      "confidence": "partial",
-      "subPool": "chips",
-      "novaGroup": 2,
-      "retailer": "yochananof",
-      "retailer_he": "יוחננוף",
-      "limitingFactors": [],
-      "ingredientCount": 0,
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 547.5,
-          "protein": 5.0,
-          "fat": 31.5,
-          "carbs": 61.0,
-          "fiber": null,
-          "sodium": 300,
-          "sugar": 35.0,
-          "saturatedFat": 13.0
-        },
-        "sodiumUnavailable": false,
-        "ingredients": "",
-        "confidenceLabel": "טבלה תזונתית בלבד",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "13 גרם שומן רווי ל-100 גרם",
-          "35 גרם סוכר ל-100 גרם"
-        ],
-        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-        "comparisonContext": ""
-      },
-      "provenance": "bsip0_yochananof_real_scrape + off_panel",
-      "barcode": "7290118421603",
-      "source_traceability_status": "panel_only",
-      "confidence_label_he": "דירוג לפי הטבלה התזונתית בלבד",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הופיעה על המוצר, אז הדירוג נשען על הטבלה התזונתית בלבד — בלי ניתוח רשימת הרכיבים.",
-      "confidence_sub_reason": "ingredients_unavailable"
     }
   ]
 }

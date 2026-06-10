@@ -467,6 +467,9 @@ def main():
                                               if p["expansion"].get("sodiumUnavailable")],
                 "beet_cracker_trans_corrected": "7290112968807: 0/E -> 60/C "
                                                 "(OFF trans 2.33g/100g was serving-scaling artifact)",
+                "apropo_caramel_trans_corrected": "7290118421603: 0/E -> 18/E "
+                                                  "(OFF trans 1.25g/100g was the same serving-scaling "
+                                                  "artifact: 0.5g '<1g' declaration / 0.40 serving; TASK-229)",
             },
         },
         "products": products,

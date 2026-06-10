@@ -21,7 +21,7 @@
     "energy_kcal": 547.5,
     "fat_g": 31.5,
     "fat_saturated_g": 13.0,
-    "fat_trans_g": 1.25,
+    "fat_trans_g": 0.0,
     "sodium_mg": 300,
     "carbohydrates_g": 61.0,
     "sugars_g": 35.0,
@@ -73,5 +73,15 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "data_corrections": [
+    {
+      "field": "normalized_nutrition_per_100g.fat_trans_g",
+      "old_value": 1.25,
+      "new_value": 0.0,
+      "reason": "OFF trans-fat_100g (1.25) was a serving-scaling artifact: serving panel 0.5 g / 0.40 serving fraction (40 g serving, confirmed by all other macros scaling at 0.40). 0.5 g serving = Israeli '<1g' threshold declaration (identical canned value to the beet cracker), not measured. Sat/fat 41% consistent with palm oil + caramel, no PHVO trans source. Corrected to 0.0 (no measured trans). TASK-229.",
+      "task": "TASK-229",
+      "corrected_at_source": "open_food_facts (serving-scaling artifact)"
+    }
+  ]
 }
