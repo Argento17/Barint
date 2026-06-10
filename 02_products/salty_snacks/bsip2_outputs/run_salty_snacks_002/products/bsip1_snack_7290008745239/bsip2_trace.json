@@ -1,13 +1,13 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T13:18:02.215471Z",
+  "trace_generated_at": "2026-06-10T16:33:44.074614Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290008745239",
     "barcode": "7290008745239",
     "product_name_he": "תפוציפס קראנצ'",
-    "brand": "תפוצ'יפס",
+    "brand": "",
     "source_retailers": [
       "yochananof"
     ],
@@ -44,19 +44,19 @@
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
-    "energy_kcal": 548.0,
-    "fat_g": 34.6,
-    "fat_saturated_g": 3.4,
-    "fat_trans_g": null,
+    "energy_kcal": 549,
+    "fat_g": 35.0,
+    "fat_saturated_g": 3.5,
+    "fat_trans_g": 0.5,
     "sodium_mg": 393,
-    "carbohydrates_g": 54.0,
-    "sugars_g": null,
+    "carbohydrates_g": 53.0,
+    "sugars_g": 0.0,
     "dietary_fiber_g": null,
-    "protein_g": 6.0,
+    "protein_g": 5.9,
     "ingredient_count": 3,
     "ingredient_list": [
       "תפוחי אדמה (64%)",
-      "שמן חמניות",
+      "שמן צמחי",
       "מלח"
     ],
     "ingredient_count_raw": 3,
@@ -69,26 +69,25 @@
     },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
-    "bsip1_trust_score": 0.75,
+    "bsip1_trust_score": 0.85,
     "bsip1_risk_flags": [],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
     "missing_nutrition_fields": [
-      "sugars_g",
       "dietary_fiber_g"
     ],
     "consistency_checks": {
-      "sugar_le_carbs": null,
+      "sugar_le_carbs": true,
       "satfat_le_fat": true,
       "kcal_plausible": true,
       "macros_plausible": true
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 56.82,
-    "saturated_fat_fraction": 0.098,
-    "sugar_to_carb_ratio": null,
-    "protein_per_kcal": 0.0109,
+    "fat_pct_of_kcal": 57.38,
+    "saturated_fat_fraction": 0.1,
+    "sugar_to_carb_ratio": 0.0,
+    "protein_per_kcal": 0.0107,
     "derivation_notes": [
       "fat_pct_of_kcal = (fat_g * 9 / energy_kcal) * 100",
       "saturated_fat_fraction = fat_saturated_g / fat_g",
@@ -108,7 +107,7 @@
     "natural_color_hits": [],
     "has_seed_oil": true,
     "seed_oil_matches": [
-      "שמן חמניות"
+      "שמן צמחי"
     ],
     "has_palm_oil": false,
     "palm_oil_matches": [],
@@ -125,8 +124,8 @@
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
-    "trans_fat_status": "not_detected",
-    "trans_fat_threshold_declaration_possible": false,
+    "trans_fat_status": "threshold_declaration",
+    "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
     "red_labels": [],
     "red_label_count": 0,
@@ -177,10 +176,10 @@
       "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 56.82,
+    "fat_pct_of_kcal": 57.38,
     "ingredient_list": [
       "תפוחי אדמה (64%)",
-      "שמן חמניות",
+      "שמן צמחי",
       "מלח"
     ]
   },
@@ -245,25 +244,25 @@
   ],
   "dimension_scores": {
     "processing_quality": 85.0,
-    "nutrient_density": 19.5,
+    "nutrient_density": 19.2,
     "calorie_density": 75.0,
     "glycemic_quality": 90.0,
-    "protein_quality": 30.0,
+    "protein_quality": 29.5,
     "additive_quality": 100,
-    "satiety_support": 13.1,
+    "satiety_support": 12.9,
     "fat_quality": 83.0,
     "regulatory_quality": 95.0,
     "whole_food_integrity": 85
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 85.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=6.0g→30.0, fiber=0g→0.0, weighted 65/35=19.5",
-    "calorie_density": "kcal=548.0, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
+    "nutrient_density": "protein=5.9g→29.5, fiber=0g→0.0, weighted 65/35=19.2",
+    "calorie_density": "kcal=549, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
-    "protein_quality": "protein=6.0g base=30.0, source=whole_food(×1.0) → 30.0",
+    "protein_quality": "protein=5.9g base=29.5, source=whole_food(×1.0) → 29.5",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (6.0×3 + 0×5) / 548.0 × 400 = 13.1",
-    "fat_quality": "EV-012 fat_ratio: fat=34.6g ratio=9.176 base=93.0-seed10-trans0=83.0",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.9×3 + 0×5) / 549 × 400 = 12.9",
+    "fat_quality": "EV-012 fat_ratio: fat=35.0g ratio=9.000 base=93.0-seed10-trans0=83.0",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 2 base=85, ing_count=3 complexity_pen=0 → 85"
   },
@@ -279,7 +278,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 66.3,
+  "weighted_dimension_score": 66.19,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -374,7 +373,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 66.3,
+  "score_after_cap": 66.19,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -409,7 +408,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=56.8<30.0 or sugar=0<20.0"
+      "condition": "fat_pct=57.4<30.0 or sugar=0<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -438,7 +437,7 @@
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 57.3,
+  "score_after_penalty": 57.19,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -513,7 +512,7 @@
     {
       "floor_type": "whole_food_fat_nova1_2",
       "floor_value": 70,
-      "pre_floor": 57.3,
+      "pre_floor": 57.19,
       "note": "SRC-01: no Class B physiological caps fired → full floor applies"
     }
   ],
@@ -525,7 +524,7 @@
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: satiety_support=13.1 (lowest dimension)",
+    "PRIMARY SIGNAL: satiety_support=12.9 (lowest dimension)",
     "FLOOR APPLIED: whole_food_fat_nova1_2 → minimum 70",
     "PENALTIES: ['SEED_OIL_PRESENT', 'HP_FAT_SODIUM_COMBO']"
   ],

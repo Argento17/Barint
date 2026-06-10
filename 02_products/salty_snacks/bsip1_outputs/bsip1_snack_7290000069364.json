@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290000069364",
   "barcode": "7290000069364",
   "canonical_name_he": "פריכונים מאורז מלא ללא תוספת מלח",
-  "canonical_name_en": "פריכונים",
-  "brand": "Osem",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,29 +18,28 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 384.0,
+    "energy_kcal": 384,
     "fat_g": 2.8,
     "fat_saturated_g": 0.7,
-    "fat_trans_g": null,
+    "fat_trans_g": 0.5,
     "sodium_mg": 15,
     "carbohydrates_g": 79.0,
     "sugars_g": 0.5,
     "dietary_fiber_g": 4.2,
     "protein_g": 8.5
   },
-  "ingredients_text_he": "whole rice (99.9%), soy lecithin",
+  "ingredients_text_he": "אורז מלא (100%)",
   "ingredients_list": [
-    "whole rice (99.9%)",
-    "soy lecithin"
+    "אורז מלא (100%)"
   ],
-  "ingredients_raw": "whole rice (99.9%), soy lecithin",
-  "ingredient_count": 2,
+  "ingredients_raw": "אורז מלא (100%)",
+  "ingredient_count": 1,
   "claims_raw": "",
   "claims": [],
-  "nova_proxy": 2,
-  "nova_confidence": 0.6,
+  "nova_proxy": null,
+  "nova_confidence": null,
   "additive_categories": [],
-  "additive_count": 2,
+  "additive_count": 0,
   "allergens_contains": [],
   "allergens_may_contain": [],
   "data_sufficiency": "sufficient",
@@ -48,42 +47,42 @@
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
   "ingredient_text_quality": "clean",
-  "canonical_trust_score": 0.75,
+  "canonical_trust_score": 0.85,
   "canonical_trust_level": "high",
   "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
   "missing_fields": [],
-  "inferred_fields": [
-    "nova_proxy"
-  ],
+  "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290000069364",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290000069364.json",
-    "fetched_at": "2026-06-10T13:11:56Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "protein_g": "חלבונים (גרם) 8.5",
+      "carbohydrates_g": "סך הפחמימות (גרם) 79",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.5",
+      "fat_g": "שומנים (גרם) 2.8",
+      "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.7",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 15",
+      "dietary_fiber_g": "סיבים תזונתיים (גרם) 4.2",
+      "energy_kcal": "אנרגיה (קלוריות) 384"
+    },
+    "no_off": true
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean",
-  "nova_group_off_raw": 4,
-  "data_corrections": [
-    {
-      "field": "nova_proxy",
-      "old_value": 4,
-      "new_value": 2,
-      "reason": "RT-7 reconciliation: stored nova_proxy was the RAW OFF nova_group (4); the scoring engine infers and publishes NOVA-2 for this product (the value that actually scores). Raw OFF value preserved as nova_group_off_raw (provenance only). No score change: engine NOVA was already the published value.",
-      "task": "TASK-234",
-      "corrected_at_source": "engine infer_nova (authoritative scored NOVA)"
-    }
-  ]
+  "panel_source": "retailer_product_page",
+  "identity_source": "yochananof_catalog_harvest_real_ean"
 }

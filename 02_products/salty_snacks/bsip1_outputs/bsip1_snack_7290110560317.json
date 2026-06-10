@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290110560317",
   "barcode": "7290110560317",
   "canonical_name_he": "פריכיות משולשות מלח ים",
-  "canonical_name_en": "הפרגיות הטעימות",
-  "brand": "Energy",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,20 +18,29 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 443.333333333333,
-    "fat_g": 12.0,
-    "fat_saturated_g": 1.33333333333333,
-    "fat_trans_g": null,
-    "sodium_mg": 400,
+    "energy_kcal": 444,
+    "fat_g": 12.1,
+    "fat_saturated_g": null,
+    "fat_trans_g": 0.5,
+    "sodium_mg": 399,
     "carbohydrates_g": 65.0,
-    "sugars_g": 1.33333333333333,
-    "dietary_fiber_g": 7.66666666666667,
-    "protein_g": 15.0
+    "sugars_g": 1.4,
+    "dietary_fiber_g": 7.7,
+    "protein_g": 14.9
   },
-  "ingredients_text_he": "",
-  "ingredients_list": [],
-  "ingredients_raw": "",
-  "ingredient_count": 0,
+  "ingredients_text_he": "קמח חומוס 39%, קמח אורז 32%, שמן חמניות, עדשים שחורות 9%, קינואה 9%, מלח 0.4%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+  "ingredients_list": [
+    "קמח חומוס 39%",
+    "קמח אורז 32%",
+    "שמן חמניות",
+    "עדשים שחורות 9%",
+    "קינואה 9%",
+    "מלח 0.4%",
+    "מונע התגיישות (אבקת צלולוז)",
+    "מתחלב (לציטין סויה)"
+  ],
+  "ingredients_raw": "קמח חומוס 39%, קמח אורז 32%, שמן חמניות, עדשים שחורות 9%, קינואה 9%, מלח 0.4%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+  "ingredient_count": 8,
   "claims_raw": "",
   "claims": [],
   "nova_proxy": null,
@@ -40,38 +49,46 @@
   "additive_count": 0,
   "allergens_contains": [],
   "allergens_may_contain": [],
-  "data_sufficiency": "partial",
+  "data_sufficiency": "sufficient",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
-  "ingredient_text_quality": "absent",
-  "canonical_trust_score": 0.6,
-  "canonical_trust_level": "medium",
-  "canonical_risk_flags": [
-    "ingredients_unavailable"
-  ],
+  "ingredient_text_quality": "clean",
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
-  "missing_fields": [
-    "ingredients_text_he"
-  ],
+  "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290110560317",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290110560317.json",
-    "fetched_at": "2026-06-10T13:11:42Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "protein_g": "חלבונים (גרם) 14.9",
+      "carbohydrates_g": "סך הפחמימות (גרם) 65",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.4",
+      "fat_g": "שומנים (גרם) 12.1",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 399",
+      "dietary_fiber_g": "סיבים תזונתיים (גרם) 7.7",
+      "energy_kcal": "אנרגיה (קלוריות) 444"
+    },
+    "no_off": true
   },
+  "panel_source": "retailer_product_page",
   "identity_source": "yochananof_catalog_harvest_real_ean"
 }

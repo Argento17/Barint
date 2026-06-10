@@ -1,13 +1,13 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T15:03:21.503890Z",
+  "trace_generated_at": "2026-06-10T16:33:44.046133Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290000066318",
     "barcode": "7290000066318",
     "product_name_he": "במבה קלאסי 80 ג'",
-    "brand": "אסם",
+    "brand": "",
     "source_retailers": [
       "yochananof"
     ],
@@ -44,35 +44,42 @@
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
-    "energy_kcal": 535.0,
+    "energy_kcal": 534,
     "fat_g": 30.0,
-    "fat_saturated_g": 3.875,
-    "fat_trans_g": 0.0,
+    "fat_saturated_g": 3.9,
+    "fat_trans_g": 0.5,
     "sodium_mg": 390,
     "carbohydrates_g": 49.0,
     "sugars_g": 3.5,
     "dietary_fiber_g": null,
     "protein_g": 17.0,
-    "ingredient_count": 6,
+    "ingredient_count": 13,
     "ingredient_list": [
       "בוטנים טחונים (54%)",
       "גריסי תירס",
       "שמן חמניות",
       "מלח",
-      "ברזל",
-      "יטמינים"
+      "יטמינים (ויטמין C",
+      "יטמין B3 (ניאצין)",
+      "יטמין E",
+      "יטמין B1 (תיאמין)",
+      "יטמין B6",
+      "יטמין A",
+      "חומצה פולית",
+      "יטמין B12)",
+      "ברזל"
     ],
-    "ingredient_count_raw": 6,
+    "ingredient_count_raw": 13,
     "ingredient_sanitization": {
-      "raw_count": 6,
-      "clean_count": 6,
+      "raw_count": 13,
+      "clean_count": 13,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
-    "bsip1_trust_score": 0.75,
+    "bsip1_trust_score": 0.85,
     "bsip1_risk_flags": [],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
@@ -87,8 +94,8 @@
     }
   },
   "L2_derived_signals": {
-    "fat_pct_of_kcal": 50.47,
-    "saturated_fat_fraction": 0.129,
+    "fat_pct_of_kcal": 50.56,
+    "saturated_fat_fraction": 0.13,
     "sugar_to_carb_ratio": 0.071,
     "protein_per_kcal": 0.0318,
     "derivation_notes": [
@@ -125,10 +132,17 @@
     "has_fruit_concentrate": false,
     "has_fermentation": false,
     "product_type_dairy": false,
-    "has_fortification": false,
-    "fortification_evidence": [],
-    "trans_fat_status": "not_detected",
-    "trans_fat_threshold_declaration_possible": false,
+    "has_fortification": true,
+    "fortification_evidence": [
+      "ויטמין C",
+      "ויטמין B12",
+      "ויטמין B6",
+      "חומצה פולית",
+      "ניאצין",
+      "תיאמין"
+    ],
+    "trans_fat_status": "threshold_declaration",
+    "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
     "red_labels": [],
     "red_label_count": 0,
@@ -165,7 +179,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 6,
+    "sanitized_ingredient_count": 13,
     "primary_fragmentation": "fractional",
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -179,14 +193,21 @@
       "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
-    "fat_pct_of_kcal": 50.47,
+    "fat_pct_of_kcal": 50.56,
     "ingredient_list": [
       "בוטנים טחונים (54%)",
       "גריסי תירס",
       "שמן חמניות",
       "מלח",
-      "ברזל",
-      "יטמינים"
+      "יטמינים (ויטמין C",
+      "יטמין B3 (ניאצין)",
+      "יטמין E",
+      "יטמין B1 (תיאמין)",
+      "יטמין B6",
+      "יטמין A",
+      "חומצה פולית",
+      "יטמין B12)",
+      "ברזל"
     ]
   },
   "L4_interpreted_concerns": {
@@ -250,27 +271,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 65.0,
-    "nutrient_density": 49.4,
+    "nutrient_density": 39.5,
     "calorie_density": 75.0,
     "glycemic_quality": 81.2,
     "protein_quality": 76.0,
     "additive_quality": 100,
-    "satiety_support": 38.1,
+    "satiety_support": 38.2,
     "fat_quality": 83.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 60
+    "whole_food_integrity": 50
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=17.0g→76.0, fiber=0g→0.0, weighted 65/35=49.4",
-    "calorie_density": "kcal=535.0, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
+    "nutrient_density": "protein=17.0g→76.0, fiber=0g→0.0, weighted 65/35=49.4 × 0.80 fortification_discount → 39.5",
+    "calorie_density": "kcal=534, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
     "glycemic_quality": "90 - sugar_penalty(8.8) + fiber(0.0) + wg(0) = 81.2",
     "protein_quality": "protein=17.0g base=76.0, source=whole_food(×1.0) → 76.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (17.0×3 + 0×5) / 535.0 × 400 = 38.1",
-    "fat_quality": "EV-012 fat_ratio: fat=30.0g ratio=6.742 base=93.0-seed10-trans0=83.0",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (17.0×3 + 0×5) / 534 × 400 = 38.2",
+    "fat_quality": "EV-012 fat_ratio: fat=30.0g ratio=6.692 base=93.0-seed10-trans0=83.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=6 complexity_pen=0 → 60"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=13 complexity_pen=10 → 50"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -284,7 +305,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 71.83,
+  "weighted_dimension_score": 69.95,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -384,7 +405,7 @@
     }
   ],
   "binding_cap": 87.0,
-  "score_after_cap": 71.83,
+  "score_after_cap": 69.95,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -407,8 +428,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "False",
-      "fired": false
+      "condition": "True",
+      "fired": true
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -419,7 +440,7 @@
     {
       "rule": "HP_FAT_SUGAR_COMBO",
       "fired": false,
-      "condition": "fat_pct=50.5<30.0 or sugar=3.5<20.0"
+      "condition": "fat_pct=50.6<30.0 or sugar=3.5<20.0"
     },
     {
       "rule": "HP_FAT_SODIUM_COMBO",
@@ -435,6 +456,11 @@
   ],
   "penalties_applied": [
     {
+      "rule": "LONG_INGREDIENT_LIST",
+      "amount": 4,
+      "note": "ingredient_count=13"
+    },
+    {
       "rule": "SEED_OIL_PRESENT",
       "amount": 3,
       "note": ""
@@ -445,10 +471,10 @@
       "note": "raw_pen=6 × nova_weight=1.0"
     }
   ],
-  "total_penalty_before_scaling": 9.0,
-  "total_penalty_after_scaling": 9.0,
+  "total_penalty_before_scaling": 13.0,
+  "total_penalty_after_scaling": 13.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 62.83,
+  "score_after_penalty": 56.95,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -470,11 +496,15 @@
     },
     "processing_load": {
       "binding_cap": 87.0,
-      "coordinated_penalty": 0.0,
+      "coordinated_penalty": 4,
       "detail": {
-        "winner": null,
+        "winner": {
+          "rule": "LONG_INGREDIENT_LIST",
+          "amount": 4
+        },
         "supporters": [],
-        "total_before_budget": 0
+        "total_before_budget": 4,
+        "budget_applied": false
       }
     },
     "sodium_load": {
@@ -517,16 +547,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 62.83,
+  "score_after_floors": 56.95,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 62.8,
+  "final_score_estimate": 57.0,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=87.0 from rules: ['NOVA_PROXY_3_PROCESSED']",
-    "PENALTIES: ['SEED_OIL_PRESENT', 'HP_FAT_SODIUM_COMBO']"
+    "PENALTIES: ['LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT', 'HP_FAT_SODIUM_COMBO']"
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=whole_food_fat secondary=snack_bar_granola, confidence=0.55"
@@ -534,19 +564,19 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.257,
+    "primary_confidence": 0.312,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.214,
+    "secondary_confidence": 0.276,
     "class_weights": {
-      "A": 0.203,
-      "B": 0.139,
-      "C": 0.187,
-      "D": 0.257,
-      "E": 0.214,
+      "A": 0.198,
+      "B": 0.12,
+      "C": 0.094,
+      "D": 0.312,
+      "E": 0.276,
       "F": 0.0
     },
-    "is_between_worlds": false,
+    "is_between_worlds": true,
     "classification_notes": [
       "nova_3_signal",
       "no_additives_detected",

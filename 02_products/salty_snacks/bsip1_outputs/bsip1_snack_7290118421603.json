@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290118421603",
   "barcode": "7290118421603",
   "canonical_name_he": "אפרופו קרמל 40 גרם",
-  "canonical_name_en": "אפרופו בטעם קרמל",
-  "brand": "אסם",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,20 +18,37 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 547.5,
-    "fat_g": 31.5,
-    "fat_saturated_g": 13.0,
-    "fat_trans_g": 0.0,
-    "sodium_mg": 300,
-    "carbohydrates_g": 61.0,
-    "sugars_g": 35.0,
+    "energy_kcal": 219,
+    "fat_g": 12.6,
+    "fat_saturated_g": 5.2,
+    "fat_trans_g": 0.5,
+    "sodium_mg": 120,
+    "carbohydrates_g": 24.4,
+    "sugars_g": 14.0,
     "dietary_fiber_g": null,
-    "protein_g": 5.0
+    "protein_g": 2.0
   },
-  "ingredients_text_he": "",
-  "ingredients_list": [],
-  "ingredients_raw": "",
-  "ingredient_count": 0,
+  "ingredients_text_he": "קרם בטעם קרמל מלוח (57%) (סוכר, חמאת קקאו, אבקת חלב, מתחלבים (לציטין לפתית, E476), סוכר שרוף (סוכר, מלטודקסטרין), מלח, חומרי טעם וריח), אפרופו (43%), (גריסי תירס (29%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט)).",
+  "ingredients_list": [
+    "קרם בטעם קרמל מלוח (57%) (סוכר",
+    "חמאת קקאו",
+    "אבקת חלב",
+    "מתחלבים (לציטין לפתית",
+    "E476)",
+    "סוכר שרוף (סוכר",
+    "מלטודקסטרין)",
+    "מלח",
+    "חומרי טעם",
+    "ריח)",
+    "אפרופו (43%)",
+    "(גריסי תירס (29%)",
+    "שמנים מהצומח",
+    "סוכר",
+    "מלח",
+    "חומר תפיחה (פוטסיום ביקרבונט))"
+  ],
+  "ingredients_raw": "קרם בטעם קרמל מלוח (57%) (סוכר, חמאת קקאו, אבקת חלב, מתחלבים (לציטין לפתית, E476), סוכר שרוף (סוכר, מלטודקסטרין), מלח, חומרי טעם וריח), אפרופו (43%), (גריסי תירס (29%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט)).",
+  "ingredient_count": 16,
   "claims_raw": "",
   "claims": [],
   "nova_proxy": null,
@@ -40,48 +57,46 @@
   "additive_count": 0,
   "allergens_contains": [],
   "allergens_may_contain": [],
-  "data_sufficiency": "partial",
+  "data_sufficiency": "sufficient",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
-  "ingredient_text_quality": "absent",
-  "canonical_trust_score": 0.6,
-  "canonical_trust_level": "medium",
-  "canonical_risk_flags": [
-    "ingredients_unavailable"
-  ],
+  "ingredient_text_quality": "clean",
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
-  "missing_fields": [
-    "ingredients_text_he"
-  ],
+  "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290118421603",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290118421603.json",
-    "fetched_at": "2026-06-10T13:10:12Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "energy_kcal": "אנרגיה (קלוריות) 219",
+      "protein_g": "חלבונים (גרם) 2",
+      "carbohydrates_g": "סך הפחמימות (גרם) 24.4",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 14",
+      "fat_g": "שומנים (גרם) 12.6",
+      "fat_saturated_g": "חומצות שומן רוויות (גרם) 5.2",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 120"
+    },
+    "no_off": true
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean",
-  "data_corrections": [
-    {
-      "field": "normalized_nutrition_per_100g.fat_trans_g",
-      "old_value": 1.25,
-      "new_value": 0.0,
-      "reason": "OFF trans-fat_100g (1.25) was a serving-scaling artifact: serving panel 0.5 g / 0.40 serving fraction (40 g serving, confirmed by all other macros scaling at 0.40). 0.5 g serving = Israeli '<1g' threshold declaration (identical canned value to the beet cracker), not measured. Sat/fat 41% consistent with palm oil + caramel, no PHVO trans source. Corrected to 0.0 (no measured trans). TASK-229.",
-      "task": "TASK-229",
-      "corrected_at_source": "open_food_facts (serving-scaling artifact)"
-    }
-  ]
+  "panel_source": "retailer_product_page",
+  "identity_source": "yochananof_catalog_harvest_real_ean"
 }

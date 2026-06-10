@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290112967381",
   "barcode": "7290112967381",
   "canonical_name_he": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
-  "canonical_name_en": "חטיף פריכיות דגנים עם קטניות",
-  "brand": "Nestlé",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,20 +18,36 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 430.0,
-    "fat_g": 13.6666666666667,
-    "fat_saturated_g": 1.33333333333333,
-    "fat_trans_g": 0.0,
+    "energy_kcal": 430,
+    "fat_g": 13.5,
+    "fat_saturated_g": 1.2,
+    "fat_trans_g": 0.5,
     "sodium_mg": 390,
-    "carbohydrates_g": 83.0,
-    "sugars_g": 3.33333333333333,
-    "dietary_fiber_g": 20.0,
-    "protein_g": 11.3333333333333
+    "carbohydrates_g": 63.0,
+    "sugars_g": 3.3,
+    "dietary_fiber_g": 6.0,
+    "protein_g": 11.2
   },
-  "ingredients_text_he": "",
-  "ingredients_list": [],
-  "ingredients_raw": "",
-  "ingredient_count": 0,
+  "ingredients_text_he": "קמח תירס מלא (28.3%), קמח אורז (14.9%), עדשים שחורות (13.1%), אפונה (13.1%), קמח שיבולת שועל מלא (11.5%) (ללא גלוטן), שמן קנולה, גריסי תירס (3%), סוכר, פתיתי סלק מיובש (0.9%), מלח (0.9%), מונע התגיישות (סיבי צלולוז), אורז (0.5%), חומר תפיחה (E500), מתחלב (לציטין סויה), תמצית תה. סך הדגנים במוצר 58.2%. מכיל 39.8% דגנים מלאים.",
+  "ingredients_list": [
+    "קמח תירס מלא (28.3%)",
+    "קמח אורז (14.9%)",
+    "עדשים שחורות (13.1%)",
+    "אפונה (13.1%)",
+    "קמח שיבולת שועל מלא (11.5%) (ללא גלוטן)",
+    "שמן קנולה",
+    "גריסי תירס (3%)",
+    "סוכר",
+    "פתיתי סלק מיובש (0.9%)",
+    "מלח (0.9%)",
+    "מונע התגיישות (סיבי צלולוז)",
+    "אורז (0.5%)",
+    "חומר תפיחה (E500)",
+    "מתחלב (לציטין סויה)",
+    "תמצית תה. סך הדגנים במוצר 58.2%. מכיל 39.8% דגנים מלאים"
+  ],
+  "ingredients_raw": "קמח תירס מלא (28.3%), קמח אורז (14.9%), עדשים שחורות (13.1%), אפונה (13.1%), קמח שיבולת שועל מלא (11.5%) (ללא גלוטן), שמן קנולה, גריסי תירס (3%), סוכר, פתיתי סלק מיובש (0.9%), מלח (0.9%), מונע התגיישות (סיבי צלולוז), אורז (0.5%), חומר תפיחה (E500), מתחלב (לציטין סויה), תמצית תה. סך הדגנים במוצר 58.2%. מכיל 39.8% דגנים מלאים.",
+  "ingredient_count": 15,
   "claims_raw": "",
   "claims": [],
   "nova_proxy": null,
@@ -40,38 +56,47 @@
   "additive_count": 0,
   "allergens_contains": [],
   "allergens_may_contain": [],
-  "data_sufficiency": "partial",
+  "data_sufficiency": "sufficient",
   "nutrition_basis_claimed": "ל-100 גרם",
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
-  "ingredient_text_quality": "absent",
-  "canonical_trust_score": 0.6,
-  "canonical_trust_level": "medium",
-  "canonical_risk_flags": [
-    "ingredients_unavailable"
-  ],
+  "ingredient_text_quality": "clean",
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "high",
+  "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
-  "missing_fields": [
-    "ingredients_text_he"
-  ],
+  "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290112967381",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290112967381.json",
-    "fetched_at": "2026-06-10T13:11:19Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "protein_g": "חלבונים (גרם) 11.2",
+      "carbohydrates_g": "סך הפחמימות (גרם) 63",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.3",
+      "fat_g": "שומנים (גרם) 13.5",
+      "fat_saturated_g": "חומצות שומן רוויות (גרם) 1.2",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 390",
+      "dietary_fiber_g": "סיבים תזונתיים (גרם) 6",
+      "energy_kcal": "אנרגיה (קלוריות) 430"
+    },
+    "no_off": true
   },
+  "panel_source": "retailer_product_page",
   "identity_source": "yochananof_catalog_harvest_real_ean"
 }

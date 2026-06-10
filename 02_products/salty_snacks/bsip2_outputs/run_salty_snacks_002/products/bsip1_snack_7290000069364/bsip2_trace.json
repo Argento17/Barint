@@ -1,13 +1,13 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T13:18:02.193097Z",
+  "trace_generated_at": "2026-06-10T16:33:44.056429Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290000069364",
     "barcode": "7290000069364",
     "product_name_he": "פריכונים מאורז מלא ללא תוספת מלח",
-    "brand": "Osem",
+    "brand": "",
     "source_retailers": [
       "yochananof"
     ],
@@ -31,43 +31,42 @@
   "classification_basis": [
     "bread:מלא(name×2)"
   ],
-  "nova_proxy": 2,
-  "nova_confidence": 0.5,
-  "nova_confidence_band": "medium",
+  "nova_proxy": 1,
+  "nova_confidence": 0.9,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
-    "minimal_additives_and_processing_signals"
+    "single_ingredient",
+    "no_additives_detected"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "Single ingredient is strong NOVA 1 signal; undetected additives could change this"
   ],
   "L1_observed_signals": {
-    "energy_kcal": 384.0,
+    "energy_kcal": 384,
     "fat_g": 2.8,
     "fat_saturated_g": 0.7,
-    "fat_trans_g": null,
+    "fat_trans_g": 0.5,
     "sodium_mg": 15,
     "carbohydrates_g": 79.0,
     "sugars_g": 0.5,
     "dietary_fiber_g": 4.2,
     "protein_g": 8.5,
-    "ingredient_count": 2,
+    "ingredient_count": 1,
     "ingredient_list": [
-      "whole rice (99.9%)",
-      "soy lecithin"
+      "אורז מלא (100%)"
     ],
-    "ingredient_count_raw": 2,
+    "ingredient_count_raw": 1,
     "ingredient_sanitization": {
-      "raw_count": 2,
-      "clean_count": 2,
+      "raw_count": 1,
+      "clean_count": 1,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
-    "bsip1_trust_score": 0.75,
+    "bsip1_trust_score": 0.85,
     "bsip1_risk_flags": [],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
@@ -105,8 +104,10 @@
     "seed_oil_matches": [],
     "has_palm_oil": false,
     "palm_oil_matches": [],
-    "has_whole_grain": false,
-    "whole_grain_matches": [],
+    "has_whole_grain": true,
+    "whole_grain_matches": [
+      "אורז מלא"
+    ],
     "protein_source": "whole_food",
     "protein_source_basis": [
       "no isolate markers detected"
@@ -118,8 +119,8 @@
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
-    "trans_fat_status": "not_detected",
-    "trans_fat_threshold_declaration_possible": false,
+    "trans_fat_status": "threshold_declaration",
+    "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
     "red_labels": [],
     "red_label_count": 0,
@@ -156,7 +157,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 2,
+    "sanitized_ingredient_count": 1,
     "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -172,8 +173,7 @@
     ],
     "fat_pct_of_kcal": 6.56,
     "ingredient_list": [
-      "whole rice (99.9%)",
-      "soy lecithin"
+      "אורז מלא (100%)"
     ]
   },
   "L4_interpreted_concerns": {
@@ -215,45 +215,37 @@
     },
     "se_note": null
   },
-  "confidence_score": 82,
+  "confidence_score": 92,
   "confidence_band": "high",
   "confidence_reductions": [
     {
-      "factor": "nova_confidence=medium",
-      "reduction": -5
-    },
-    {
       "factor": "category_confidence=medium (0.67)",
       "reduction": -8
-    },
-    {
-      "factor": "d3_nonmaterial_gap (peripheral unresolved term; processing read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; max-combined with D5)",
-      "reduction": -5
     }
   ],
   "dimension_scores": {
-    "processing_quality": 85.0,
+    "processing_quality": 95.0,
     "nutrient_density": 55.5,
     "calorie_density": 55.0,
-    "glycemic_quality": 97.2,
+    "glycemic_quality": 100,
     "protein_quality": 63.0,
     "additive_quality": 100,
     "satiety_support": 48.4,
     "fat_quality": 91.7,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 85
+    "whole_food_integrity": 100
   },
   "dimension_notes": {
-    "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 85.0 (EV-042 revised, TASK-181J)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 1 base=95 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 95.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=8.5g→63.0, fiber=4.2g→41.5, weighted 65/35=55.5",
-    "calorie_density": "kcal=384.0, category=bread (conf 0.67, relaxed by 1.05x) → 55",
-    "glycemic_quality": "90 - sugar_penalty(1.2) + fiber(8.4) + wg(0) = 97.2",
+    "calorie_density": "kcal=384, category=bread (conf 0.67, relaxed by 1.05x) → 55",
+    "glycemic_quality": "90 - sugar_penalty(1.2) + fiber(8.4) + wg(5) = 102.2",
     "protein_quality": "protein=8.5g base=63.0, source=whole_food(×1.0) → 63.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.5×3 + 4.2×5) / 384.0 × 400 = 48.4",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.5×3 + 4.2×5) / 384 × 400 = 48.4",
     "fat_quality": "fat_v1(fat=2.8g<8.0): sat=0.7g base=91.7-seed0-trans0=91.7",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=2 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 1 base=100, ing_count=1 complexity_pen=0 → 100"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -267,7 +259,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 75.68,
+  "weighted_dimension_score": 78.11,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -362,7 +354,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 75.68,
+  "score_after_cap": 78.11,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -413,7 +405,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 75.68,
+  "score_after_penalty": 78.11,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -471,41 +463,53 @@
     }
   },
   "floors_considered": [
-    "no_applicable_floor"
+    {
+      "floor_type": "nova1_single_ingredient",
+      "floor_value": 85
+    }
   ],
-  "floors_applied": [],
-  "score_after_floors": 75.68,
+  "floors_applied": [
+    {
+      "floor_type": "nova1_single_ingredient",
+      "floor_value": 85,
+      "pre_floor": 78.11,
+      "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+    }
+  ],
+  "score_after_floors": 85,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 75.7,
-  "grade_estimate": "B",
+  "final_score_estimate": 85,
+  "grade_estimate": "A",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: satiety_support=48.4 (lowest dimension)"
+    "PRIMARY SIGNAL: satiety_support=48.4 (lowest dimension)",
+    "FLOOR APPLIED: nova1_single_ingredient → minimum 85"
   ],
   "unresolved_flags": [
     "CATEGORY_INSTABILITY: primary=bread secondary=beverage, confidence=0.67"
   ],
   "structural_class": {
-    "primary": "B",
-    "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.43,
-    "secondary": "A",
-    "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.249,
+    "primary": "A",
+    "primary_label": "Intact Whole Food",
+    "primary_confidence": 0.702,
+    "secondary": null,
+    "secondary_label": null,
+    "secondary_confidence": null,
     "class_weights": {
-      "A": 0.249,
-      "B": 0.43,
-      "C": 0.192,
+      "A": 0.702,
+      "B": 0.146,
+      "C": 0.0,
       "D": 0.0,
-      "E": 0.13,
+      "E": 0.153,
       "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_2_signal",
+      "nova_1_signal",
       "no_additives_detected",
+      "whole_food_integrity_intact",
       "high_protein_quality",
       "minimal_ingredients",
       "zero_additive_categories"

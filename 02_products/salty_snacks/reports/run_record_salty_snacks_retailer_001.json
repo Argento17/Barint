@@ -1,0 +1,45 @@
+{
+  "run_id": "run_salty_snacks_retailer_001",
+  "task": "TASK-237",
+  "date": "2026-06-10T16:37:42.938821+00:00",
+  "purpose": "Remove Open Food Facts from salty-snacks; re-source nutrition + Hebrew ingredients from real Yochananof retailer product-page panels; re-score on unchanged engine.",
+  "engine_tag": "engine-baseline-2026-06-04 + TASK-216 (BARI_RECAL_P0=on); UNCHANGED (data re-source only)",
+  "panel_source": "retailer_product_page (yochananof storefront product modal, Playwright)",
+  "off_removed": true,
+  "config_hashes": {
+    "bsip0_scraper": "8ef84244ebc50159",
+    "bsip1_builder": "5b4a99083adeb498",
+    "frontend_builder": "a1c6bd03d5e6c0b1",
+    "bsip0_output": "20743c66e94fc35f",
+    "frontend_json": "1886e7f250e1d67f"
+  },
+  "artifacts": {
+    "bsip0_raw": "C:/Bari/02_products/salty_snacks/bsip0_outputs/bsip0_salty_snacks_retailer_raw.json",
+    "bsip0_raw_html_dir": "C:/Bari/03_operations/bsip0/scrape/salty_snacks_real/yoh_product_html/",
+    "bsip1_dir": "C:/Bari/02_products/salty_snacks/bsip1_outputs/",
+    "bsip2_traces": "C:/Bari/02_products/salty_snacks/bsip2_outputs/run_salty_snacks_002/products/",
+    "bsip2_summary": "C:/Bari/02_products/salty_snacks/reports/run_salty_snacks_002_run_summary.json",
+    "drop_manifest": "C:/Bari/02_products/salty_snacks/reports/salty_snacks_retailer_drops.json",
+    "frontend_local": "C:/Bari/02_products/salty_snacks/salty_snacks_frontend_v4.json",
+    "frontend_web": "C:/bari/bari-web/src/data/comparisons/salty_snacks_frontend_v4.json"
+  },
+  "counts": {
+    "targets": 38,
+    "real_retailer_panel": 37,
+    "with_real_hebrew_ingredients": 37,
+    "shelf_published": 25,
+    "panel_only": 0,
+    "from_off": 0,
+    "dropped_total": 13,
+    "dropped_no_panel": 1,
+    "dropped_basis_error": 12
+  },
+  "gates": {
+    "is_clean": "PASS",
+    "confidence_ingredient_consistency": "PASS",
+    "images_yochananof_200": "PASS",
+    "tsc": "PASS",
+    "next_build": "PASS",
+    "d4_invariant": "PASS"
+  }
+}

@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290000066332",
   "barcode": "7290000066332",
   "canonical_name_he": "אפרופו 50 ג'",
-  "canonical_name_en": "אפּרוֹפּוֹ",
-  "brand": "Osem",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,34 +18,32 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 268.0,
-    "fat_g": 15.0,
+    "energy_kcal": 536,
+    "fat_g": 30.0,
     "fat_saturated_g": null,
-    "fat_trans_g": null,
-    "sodium_mg": null,
-    "carbohydrates_g": 31.0,
-    "sugars_g": null,
+    "fat_trans_g": 0.5,
+    "sodium_mg": 390,
+    "carbohydrates_g": 62.0,
+    "sugars_g": 3.5,
     "dietary_fiber_g": null,
-    "protein_g": 2.3
+    "protein_g": 4.5
   },
-  "ingredients_text_he": "גריסי תירס (61%), שמנים מהצומח, סוכר, עמילן מפורק חלקית, מלח, חומר תפיחה (פוטסיום ביקרבונט), תמצית שמרים.",
+  "ingredients_text_he": "גריסי תירס (68%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט).",
   "ingredients_list": [
-    "גריסי תירס (61%)",
+    "גריסי תירס (68%)",
     "שמנים מהצומח",
     "סוכר",
-    "עמילן מפורק חלקית",
     "מלח",
-    "חומר תפיחה (פוטסיום ביקרבונט)",
-    "תמצית שמרים"
+    "חומר תפיחה (פוטסיום ביקרבונט)"
   ],
-  "ingredients_raw": "גריסי תירס (61%), שמנים מהצומח, סוכר, עמילן מפורק חלקית, מלח, חומר תפיחה (פוטסיום ביקרבונט), תמצית שמרים.",
-  "ingredient_count": 7,
+  "ingredients_raw": "גריסי תירס (68%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט).",
+  "ingredient_count": 5,
   "claims_raw": "",
   "claims": [],
-  "nova_proxy": 3,
-  "nova_confidence": 0.6,
+  "nova_proxy": null,
+  "nova_confidence": null,
   "additive_categories": [],
-  "additive_count": 2,
+  "additive_count": 0,
   "allergens_contains": [],
   "allergens_may_contain": [],
   "data_sufficiency": "sufficient",
@@ -53,31 +51,40 @@
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
   "ingredient_text_quality": "clean",
-  "canonical_trust_score": 0.75,
+  "canonical_trust_score": 0.85,
   "canonical_trust_level": "high",
   "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
   "missing_fields": [],
-  "inferred_fields": [
-    "nova_proxy"
-  ],
+  "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290000066332",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290000066332.json",
-    "fetched_at": "2026-06-10T13:10:10Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "protein_g": "חלבונים (גרם) 4.5",
+      "carbohydrates_g": "סך הפחמימות (גרם) 62",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.5",
+      "fat_g": "שומנים (גרם) 30",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 390",
+      "energy_kcal": "אנרגיה (קלוריות) 536"
+    },
+    "no_off": true
   },
+  "panel_source": "retailer_product_page",
   "identity_source": "yochananof_catalog_harvest_real_ean"
 }

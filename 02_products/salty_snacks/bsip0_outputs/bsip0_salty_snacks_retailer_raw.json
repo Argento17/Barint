@@ -1,0 +1,1575 @@
+{
+  "schema_version": "bsip0_v1",
+  "run_id": "salty_snacks_retailer_001",
+  "run_ts": "2026-06-10T16:21:57.740718+00:00",
+  "category": "salty_snacks",
+  "retailer": "yochananof",
+  "acquisition_method": "yochananof_storefront_product_modal (playwright)",
+  "scrape_date": "2026-06-10",
+  "identity_source": "yochananof storefront catalog (real EAN + real image URL)",
+  "panel_source": "retailer_product_page",
+  "product_count": 38,
+  "completeness": {
+    "with_nutrition_4plus": 37,
+    "with_real_ingredients": 37,
+    "modal_opened": 38
+  },
+  "provenance": {
+    "identity": "yochananof_catalog_harvest",
+    "panel": "yochananof_product_modal_html (real Hebrew panel + ingredients)",
+    "no_off": "Open Food Facts NOT used (TASK-237)",
+    "fetched_at": "2026-06-10T16:21:57.740857+00:00"
+  },
+  "products": [
+    {
+      "barcode": "7290110560317",
+      "name_he": "פריכיות משולשות מלח ים",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 14.9,
+        "carbohydrates_g": 65.0,
+        "sugars_g": 1.4,
+        "fat_g": 12.1,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 399,
+        "dietary_fiber_g": 7.7,
+        "energy_kcal": 444
+      },
+      "ingredients_text_he": "קמח חומוס 39%, קמח אורז 32%, שמן חמניות, עדשים שחורות 9%, קינואה 9%, מלח 0.4%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 14.9",
+          "carbohydrates_g": "סך הפחמימות (גרם) 65",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.4",
+          "fat_g": "שומנים (גרם) 12.1",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 399",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 7.7",
+          "energy_kcal": "אנרגיה (קלוריות) 444"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000069364",
+      "name_he": "פריכונים מאורז מלא ללא תוספת מלח",
+      "sub_pool": "rice_cakes",
+      "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6916258_7290000069364_1.jpg",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 8.5,
+        "carbohydrates_g": 79.0,
+        "sugars_g": 0.5,
+        "fat_g": 2.8,
+        "fat_saturated_g": 0.7,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 15,
+        "dietary_fiber_g": 4.2,
+        "energy_kcal": 384
+      },
+      "ingredients_text_he": "אורז מלא (100%)",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 8.5",
+          "carbohydrates_g": "סך הפחמימות (גרם) 79",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.5",
+          "fat_g": "שומנים (גרם) 2.8",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.7",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 15",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 4.2",
+          "energy_kcal": "אנרגיה (קלוריות) 384"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000060071",
+      "name_he": "חטיפי פריכונים מאורז מלא",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 115,
+        "protein_g": 2.5,
+        "carbohydrates_g": 23.7,
+        "sugars_g": 0.3,
+        "fat_g": 0.9,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 120,
+        "dietary_fiber_g": 1.0
+      },
+      "ingredients_text_he": "אורז חום מלא (99%), מלח",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 115",
+          "protein_g": "חלבונים (גרם) 2.5",
+          "carbohydrates_g": "סך הפחמימות (גרם) 23.7",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.3",
+          "fat_g": "שומנים (גרם) 0.9",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 120",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290111564277",
+      "name_he": "פריכיות דקות 3 דגנים",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 77,
+        "protein_g": 1.7,
+        "carbohydrates_g": 15.4,
+        "sugars_g": 0.8,
+        "fat_saturated_g": 0.1,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 76,
+        "dietary_fiber_g": 1.0
+      },
+      "ingredients_text_he": "קמח תירס מלא (49%), קמח אורז (26%), קמח שיבולת שועל מלא (ללא גלוטן) (20%), סוכר, מלח, חומר תפיחה (E500), מתחלב (לציטין סויה). סך הדגנים במוצר 95%, מכיל 69% דגנים מלאים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 77",
+          "protein_g": "חלבונים (גרם) 1.7",
+          "carbohydrates_g": "סך הפחמימות (גרם) 15.4",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.8",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.1",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 76",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290111564291",
+      "name_he": "פריכיות דקות עם קינואה",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 78,
+        "protein_g": 1.8,
+        "carbohydrates_g": 15.5,
+        "sugars_g": 0.8,
+        "fat_saturated_g": 0.1,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 74,
+        "dietary_fiber_g": 1.1
+      },
+      "ingredients_text_he": "קקמח תירס מלא (40%), קמח אורז (21%), קינואה (19%), קמח שיבולת שועל מלא (ללא גלוטן) (16%), סוכר, מלח, חומר תפיחה (E500), מתחלב (לציטין סויה). סך הדגנים במוצר 77%, מכיל 56% דגנים מלאים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 78",
+          "protein_g": "חלבונים (גרם) 1.8",
+          "carbohydrates_g": "סך הפחמימות (גרם) 15.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.8",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.1",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 74",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.1"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290112967381",
+      "name_he": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 11.2,
+        "carbohydrates_g": 63.0,
+        "sugars_g": 3.3,
+        "fat_g": 13.5,
+        "fat_saturated_g": 1.2,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 390,
+        "dietary_fiber_g": 6.0,
+        "energy_kcal": 430
+      },
+      "ingredients_text_he": "קמח תירס מלא (28.3%), קמח אורז (14.9%), עדשים שחורות (13.1%), אפונה (13.1%), קמח שיבולת שועל מלא (11.5%) (ללא גלוטן), שמן קנולה, גריסי תירס (3%), סוכר, פתיתי סלק מיובש (0.9%), מלח (0.9%), מונע התגיישות (סיבי צלולוז), אורז (0.5%), חומר תפיחה (E500), מתחלב (לציטין סויה), תמצית תה. סך הדגנים במוצר 58.2%. מכיל 39.8% דגנים מלאים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 11.2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 63",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.3",
+          "fat_g": "שומנים (גרם) 13.5",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1.2",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 390",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 6",
+          "energy_kcal": "אנרגיה (קלוריות) 430"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290008745239",
+      "name_he": "תפוציפס קראנצ'",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 5.9,
+        "carbohydrates_g": 53.0,
+        "sugars_g": 0.0,
+        "fat_g": 35.0,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 393,
+        "energy_kcal": 549
+      },
+      "ingredients_text_he": "תפוחי אדמה (64%), שמן צמחי, מלח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 5.9",
+          "carbohydrates_g": "סך הפחמימות (גרם) 53",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0",
+          "fat_g": "שומנים (גרם) 35",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 3.5",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 393",
+          "energy_kcal": "אנרגיה (קלוריות) 549"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "9322969000022",
+      "name_he": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 47,
+        "protein_g": 1.3,
+        "carbohydrates_g": 7.7,
+        "sugars_g": 0.1,
+        "fat_g": 0.7,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 16
+      },
+      "ingredients_text_he": "תירס (89%), זרעי פשתן (6%), סויה (2%), שמן סויה (1.3%), זרעי צ''יה, מלח ים, תמצית רוזמרין",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 47",
+          "protein_g": "חלבונים (גרם) 1.3",
+          "carbohydrates_g": "סך הפחמימות (גרם) 7.7",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.1",
+          "fat_g": "שומנים (גרם) 0.7",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 15.6"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 7,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290119373345",
+      "name_he": "פריכיות משולשות תפו\"א ואפונה",
+      "sub_pool": "rice_cakes",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 7.7,
+        "carbohydrates_g": 72.0,
+        "sugars_g": 1.2,
+        "fat_g": 11.0,
+        "fat_saturated_g": 1.3,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 370,
+        "dietary_fiber_g": 4.0,
+        "energy_kcal": 427
+      },
+      "ingredients_text_he": "תפוח אדמה מיובש 41.2%, עמילן תפוח אדמה, קמח אורז 16.9%, אפונה ירוקה מיובשת 13.0%, שמן חמניות, מלח 0.8%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 7.7",
+          "carbohydrates_g": "סך הפחמימות (גרם) 72",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.2",
+          "fat_g": "שומנים (גרם) 11.0",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1.3",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 370",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 4.0",
+          "energy_kcal": "אנרגיה (קלוריות) 427"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7702024074625",
+      "name_he": "חטיפי קרקר פיטנס חיטה מלאה 234 גרם",
+      "sub_pool": "baked",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 111,
+        "protein_g": 2.6,
+        "carbohydrates_g": 18.2,
+        "fat_g": 2.9,
+        "fat_saturated_g": 1.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 81,
+        "dietary_fiber_g": 1.6
+      },
+      "ingredients_text_he": "קמח חיטה מלא (מכיל גלוטן)(37%), קמח חיטה, שמן צמחי, סוכר אינברטי, סוכר, חומר מלוי (סורביטול), חומרי תפיחה (E500, E341, E503), תחליף מלח (מלח אשלגן), מלח, מתחלב (לציטין סויה), אבקת חלב מלא, חומר לטיפול בקמח (סולפיט), מעכב חמצון (בוטיליטיד הידרוקסיאניזול), מחזק טעם (מונוסודיום גלוטמט), ויטמין B3 (ניאצין), ברזל סולפט, ברזל פומרט, ויטמין B1 (תיאמין), ויטמין B2 (ריבופלאוין), ויטמין B9 (חומצה פולית), פוטסיום יודיד.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 111",
+          "protein_g": "חלבונים (גרם) 2.6",
+          "carbohydrates_g": "סך הפחמימות (גרם) 18.2",
+          "fat_g": "שומנים (גרם) 2.9",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 81",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.6"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000066332",
+      "name_he": "אפרופו 50 ג'",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 4.5,
+        "carbohydrates_g": 62.0,
+        "sugars_g": 3.5,
+        "fat_g": 30.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 390,
+        "energy_kcal": 536
+      },
+      "ingredients_text_he": "גריסי תירס (68%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 4.5",
+          "carbohydrates_g": "סך הפחמימות (גרם) 62",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.5",
+          "fat_g": "שומנים (גרם) 30",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 390",
+          "energy_kcal": "אנרגיה (קלוריות) 536"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 7,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290122782615",
+      "name_he": "קרקר דק כוסמין ודבש פיטנס 140 גרם",
+      "sub_pool": "baked",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 99,
+        "protein_g": 2.6,
+        "carbohydrates_g": 13.4,
+        "sugars_g": 2.1,
+        "fat_g": 3.6,
+        "fat_saturated_g": 0.3,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 86,
+        "dietary_fiber_g": 1.2
+      },
+      "ingredients_text_he": "קמח חיטה מלא (27%) (מכיל גלוטן), קמח אורז (25%), קמח חיטה (17%), שמנים צמחיים, קמח כוסמין מלא (13%), דבש (5%), גלוטן חיטה, עמילן אורז, סוכר, מלח ים, מלטודקסטרין, שומשום, שמרים, חומרי טעם וריח, חומר לטיפול בקמח (סולפיט). סך הדגנים במוצר 82%, מכיל 40% דגנים מלאים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 99",
+          "protein_g": "חלבונים (גרם) 2.6",
+          "carbohydrates_g": "סך הפחמימות (גרם) 13.4",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 2.1",
+          "fat_g": "שומנים (גרם) 3.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.3",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 86",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.2"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000066318",
+      "name_he": "במבה קלאסי 80 ג'",
+      "sub_pool": "puffed",
+      "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6919901_7290000066318_1.jpg",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 17.0,
+        "carbohydrates_g": 49.0,
+        "sugars_g": 3.5,
+        "fat_g": 30.0,
+        "fat_saturated_g": 3.9,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 390,
+        "energy_kcal": 534
+      },
+      "ingredients_text_he": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח, ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין E, ויטמין B1 (תיאמין), ויטמין B6, ויטמין A, חומצה פולית, ויטמין B12), ברזל.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 17",
+          "carbohydrates_g": "סך הפחמימות (גרם) 49",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.5",
+          "fat_g": "שומנים (גרם) 30",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 3.9",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 390",
+          "energy_kcal": "אנרגיה (קלוריות) 534"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290115679960",
+      "name_he": "ציטוס פופקורן טבעי 60 גרם",
+      "sub_pool": "popcorn",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 7.7,
+        "carbohydrates_g": 57.0,
+        "sugars_g": 0.8,
+        "fat_g": 24.0,
+        "fat_saturated_g": 2.6,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 392,
+        "energy_kcal": 487,
+        "dietary_fiber_g": 8.0
+      },
+      "ingredients_text_he": "גרעיני תירס (79%), שמן צמחי, מלח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 7.7",
+          "carbohydrates_g": "סך הפחמימות (גרם) 57",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.8",
+          "fat_g": "שומנים (גרם) 24",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.6",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 392",
+          "energy_kcal": "אנרגיה (קלוריות) 487",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 8.0"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290117035009",
+      "name_he": "גרעיני תירס לפופקורן במיקרוגל בתוספת מלח 5*100 גרם",
+      "sub_pool": "popcorn",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 9.0,
+        "carbohydrates_g": 53.0,
+        "sugars_g": 0.7,
+        "fat_g": 20.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 984,
+        "dietary_fiber_g": 10.0,
+        "energy_kcal": 448
+      },
+      "ingredients_text_he": "גרעיני תירס 80%,שמן צמחי(דקל),מלח",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 9",
+          "carbohydrates_g": "סך הפחמימות (גרם) 53",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.7",
+          "fat_g": "שומנים (גרם) 20",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 984",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 10",
+          "energy_kcal": "אנרגיה (קלוריות) 448"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000070919",
+      "name_he": "בייגלה רשתות מלח 400 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12502393_7290000070919_l.jpg",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 122,
+        "protein_g": 3.2,
+        "carbohydrates_g": 23.5,
+        "sugars_g": 0.9,
+        "fat_g": 1.7,
+        "fat_saturated_g": 0.7,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 255
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שמן צמחי, מלח (1.7%), סוכר, לתת שעורה, מווסת חומציות (E524), חומר תפיחה (סודיום ביקרבונט - סודה לשתיה), מתחלב (לציטין סויה), חומצת מאכל (חומצת לימון).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 122",
+          "protein_g": "חלבונים (גרם) 3.2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 23.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.9",
+          "fat_g": "שומנים (גרם) 1.7",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.7",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 255"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000071008",
+      "name_he": "בייגלה שטוחים מלח 60 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 9.8,
+        "carbohydrates_g": 77.8,
+        "sugars_g": 7.4,
+        "fat_g": 6.4,
+        "fat_saturated_g": 2.7,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 850,
+        "energy_kcal": 408
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שמן צמחי, סוכר, לתת שעורה, מלח (1.7%), חומר תפיחה (סודיום ביקרבונט - סודה לשתיה), מווסת חומציות (E524), מתחלב (לציטין סויה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 9.8",
+          "carbohydrates_g": "סך הפחמימות (גרם) 77.8",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 7.4",
+          "fat_g": "שומנים (גרם) 6.4",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.7",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 850",
+          "energy_kcal": "אנרגיה (קלוריות) 408"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000076133",
+      "name_he": "בייגלה שמיניות קטנות 400 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 120,
+        "protein_g": 3.2,
+        "carbohydrates_g": 23.9,
+        "sugars_g": 1.0,
+        "fat_g": 1.4,
+        "fat_saturated_g": 0.6,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 255
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שמן צמחי, מלח (1.9%), סוכר, תמצית לתת שעורה, חומר תפיחה (סודיום ביקרבונט -סודה לשתיה), מווסתי חומציות (E524, חומצת לימון), מתחלב (לציטין סויה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 120",
+          "protein_g": "חלבונים (גרם) 3.2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 23.9",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1",
+          "fat_g": "שומנים (גרם) 1.4",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.6",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 255"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290017928364",
+      "name_he": "בייגלה XL עם מלח 300 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "carbohydrates_g": 66.0,
+        "sugars_g": 2.1,
+        "fat_g": 5.6,
+        "fat_saturated_g": 2.4,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 746,
+        "energy_kcal": 357
+      },
+      "ingredients_text_he": "קמח חיטה ( מכיל גלוטן ) , שומן צמחי, לתת שעורה ( מכיל גלוטן ) , מלח 2.5 %, גלוטן - חיטה , שמרים , מווסת חומציות E-524",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "carbohydrates_g": "סך הפחמימות (גרם) 66",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 2.1",
+          "fat_g": "שומנים (גרם) 5.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.4",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 746",
+          "energy_kcal": "אנרגיה (קלוריות) 357"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 7,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290018893654",
+      "name_he": "בייגלה בתוספת מלח צ'וקטה 200 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 9.0,
+        "carbohydrates_g": 72.4,
+        "sugars_g": 6.6,
+        "fat_g": 9.2,
+        "fat_saturated_g": 0.8,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 1120,
+        "dietary_fiber_g": 1.7,
+        "energy_kcal": 412
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שמן לפתית מזוכך, סוכר לבן, תמצית לתת שעורה (מכיל גלוטן), מלח מטבח (2.5%), מתחלב (לציטין סויה), מתפיח (סודיום הידרוג''ן קרבונט), מעכב חמצון (תמצית רוזמרין).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 9",
+          "carbohydrates_g": "סך הפחמימות (גרם) 72.4",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 6.6",
+          "fat_g": "שומנים (גרם) 9.2",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.8",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 1120",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.7",
+          "energy_kcal": "אנרגיה (קלוריות) 412"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290106574953",
+      "name_he": "בייגלה שטוחים שומשום 300 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 131,
+        "protein_g": 3.5,
+        "carbohydrates_g": 21.2,
+        "sugars_g": 2.0,
+        "fat_g": 3.6,
+        "fat_saturated_g": 1.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 255
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שומשום (10%), שמן צמחי, סוכר, לתת שעורה, מלח, חומר תפיחה (סודיום ביקרבונט - סודה לשתיה), מווסת חומציות (E524), מתחלב (לציטין סויה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 131",
+          "protein_g": "חלבונים (גרם) 3.5",
+          "carbohydrates_g": "סך הפחמימות (גרם) 21.2",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 2",
+          "fat_g": "שומנים (גרם) 3.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 255"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290112968807",
+      "name_he": "פיטנס קרקר דק סלק 140 גרם",
+      "sub_pool": "baked",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 99,
+        "protein_g": 2.6,
+        "carbohydrates_g": 13.8,
+        "sugars_g": 1.9,
+        "fat_g": 3.4,
+        "fat_saturated_g": 0.4,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 86,
+        "dietary_fiber_g": 1.4
+      },
+      "ingredients_text_he": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23%), קמח חיטה (15.5%), שמנים צמחיים, אבקת סלק (7.5%), קמח אורז מלא (6%), גלוטן חיטה, עמילן אורז, סוכר, שמרים, מלח ים, בצל מיובש (0.9%), שומשום, חומרי טעם וריח, שום מיובש, חומר לטיפול בקמח (סולפיט), מעכב חמצון (תמצית רוזמרין). סך הדגנים במוצר % 75.5, מכיל 37% דגנים מלאים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 99",
+          "protein_g": "חלבונים (גרם) 2.6",
+          "carbohydrates_g": "סך הפחמימות (גרם) 13.8",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.9",
+          "fat_g": "שומנים (גרם) 3.4",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.4",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 86",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.4"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290106573314",
+      "name_he": "חטיף קריספי אפוי כפרי 150 גרם",
+      "sub_pool": "baked",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 132,
+        "protein_g": 3.2,
+        "carbohydrates_g": 18.5,
+        "sugars_g": 1.7,
+        "fat_g": 5.0,
+        "fat_saturated_g": 0.7,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 210
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), קמח אורז, שמנים צמחיים, שומשום (4.6%), גלוטן חיטה, פרג (2.3%), מלח, שמרים, סוכר, בצל מיובש (1.2%), תבלינים, עמילן מעובד (E1442), חומר לטיפול בקמח (סולפיט), מווסת חומציות (חומצת לימון).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 132",
+          "protein_g": "חלבונים (גרם) 3.2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 18.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.7",
+          "fat_g": "שומנים (גרם) 5",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.7",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 210"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290017928661",
+      "name_he": "שברי בייגלה בטעם צ'דר 300 גרם",
+      "sub_pool": "pretzels",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "carbohydrates_g": 61.0,
+        "sugars_g": 6.0,
+        "fat_g": 24.0,
+        "fat_saturated_g": 2.3,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 600,
+        "energy_kcal": 492
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן ), שמן חמניות מזוכך, תערובת בטעם צ''דר 10% (מלטודקסטרין, מלח שולחן, סוכר לבן, אבקת גבינה 12%, אבקת חלב כחוש, קמח אורז, אבקת בצל, פלפל לבן טחון, אבקת עגבניות, אבקת שום, מווסתי חומציות (טרי קלציום פוספאט, טרי סודיום פוספאט, חומצה ציטרית), צבע מאכל (מיצוי פפריקה)), מתחלב E-471, שמרים, מווסת חומציות E-524.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "carbohydrates_g": "סך הפחמימות (גרם) 61",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 6",
+          "fat_g": "שומנים (גרם) 24",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.3",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 600",
+          "energy_kcal": "אנרגיה (קלוריות) 492"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 7,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000420325",
+      "name_he": "פופקורן בטעם טבעי למיקרוגל חמישייה",
+      "sub_pool": "popcorn",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 10.0,
+        "carbohydrates_g": 60.0,
+        "sugars_g": 0.75,
+        "fat_g": 14.0,
+        "fat_saturated_g": 5.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 800,
+        "energy_kcal": 425
+      },
+      "ingredients_text_he": "גרעיני תירס (83%), שמן דקל מזוכך, מלח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 10",
+          "carbohydrates_g": "סך הפחמימות (גרם) 60",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.75",
+          "fat_g": "שומנים (גרם) 14",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 5",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 800",
+          "energy_kcal": "אנרגיה (קלוריות) 425"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290112965684",
+      "name_he": "פיטנס חטיף מולטיגריין עשבי תיבול 25 גרם",
+      "sub_pool": "baked",
+      "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12423960_7290112965684_1.jpg",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 119,
+        "protein_g": 1.6,
+        "carbohydrates_g": 15.0,
+        "sugars_g": 1.8,
+        "fat_g": 5.6,
+        "fat_saturated_g": 0.6,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 95,
+        "dietary_fiber_g": 1.4
+      },
+      "ingredients_text_he": "קמח תירס מלא (39%), שמן חמניות, קמח אורז (15%), קמח חיטה (מכיל גלוטן) (15%), קמח שיבולת שועל מלא (מכיל גלוטן) (11%), סוכר, סובין חיטה (3.5%), מלח, תבלינים, ירקות מיובשים (עגבניה, עלי פטרוזיליה), תמצית שמרים, שמרים מיובשים, תמציות תבלינים (אורגנו, בזיליקום), שמן זית, לימון מיובש. סך הדגנים במוצר 83%, מכיל 50% דגנים מלאים",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 119",
+          "protein_g": "חלבונים (גרם) 1.6",
+          "carbohydrates_g": "סך הפחמימות (גרם) 15",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.8",
+          "fat_g": "שומנים (גרם) 5.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 0.6",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 95",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 1.4"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "5701932026971",
+      "name_he": "פופקורן בטעם חמאה הוט פופ 6 יח'",
+      "sub_pool": "popcorn",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 7.8,
+        "carbohydrates_g": 43.5,
+        "sugars_g": 0.7,
+        "fat_g": 28.5,
+        "fat_saturated_g": 13.8,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 800,
+        "dietary_fiber_g": 9.3,
+        "energy_kcal": 480
+      },
+      "ingredients_text_he": "גרעיני תירס 72%, שמן דקל מזוכך, מלח מטבח, מלח, חומרי טעם וריח, צבע מאכל (אנאטו)",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 7.8",
+          "carbohydrates_g": "סך הפחמימות (גרם) 43.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 0.7",
+          "fat_g": "שומנים (גרם) 28.5",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 13.8",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) 0.5",
+          "sodium_mg": "נתרן (מג) 800",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 9.3",
+          "energy_kcal": "אנרגיה (קלוריות) 480"
+        },
+        "threshold_declared": {}
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290104500572",
+      "name_he": "אפרופו איטליאנו 50 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 4.7,
+        "carbohydrates_g": 62.5,
+        "sugars_g": 4.2,
+        "fat_g": 30.0,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 340,
+        "energy_kcal": 539
+      },
+      "ingredients_text_he": "גריסי תירס (63%), שמנים מהצומח, סוכרים, חומר תפיחה (פוטסיום ביקרבונט), קמח אורז*, פלפל אדום מיובש, מלטודקסטרין, מלח, מחזקי טעם (מונוסודיום גלוטמט, E635*), שמרים מיובשים, תמצית שמרים*, תחליף מלח (מלח אשלגן), אבקת שום, אבקת בצל, חומרי טעם וריח, תמציות תבלינים, חומצת מאכל (חומצה אסקורבית). *לא קיים במוצר כשר לפסח",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 4.7",
+          "carbohydrates_g": "סך הפחמימות (גרם) 62.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 4.2",
+          "fat_g": "שומנים (גרם) 30",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 3.5",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 340",
+          "energy_kcal": "אנרגיה (קלוריות) 539"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000066141",
+      "name_he": "ביסלי גריל 70 גרם",
+      "sub_pool": "puffed",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 10.0,
+        "carbohydrates_g": 65.0,
+        "sugars_g": 1.2,
+        "fat_g": 23.0,
+        "fat_saturated_g": 2.4,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 390,
+        "energy_kcal": 507
+      },
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן) (84%), שמן חמניות, שמרים מיובשים, סוכרים, הידרוליזט חלבון סויה, מלח, מחזקי טעם (מונוסודיום גלוטמט, E635), קמח אורז, תבלינים (בצל ושום), חומרי טעם וריח, שמן קנולה, תמצית פפריקה, תמצית שמרים.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 10",
+          "carbohydrates_g": "סך הפחמימות (גרם) 65",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.2",
+          "fat_g": "שומנים (גרם) 23",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.4",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 390",
+          "energy_kcal": "אנרגיה (קלוריות) 507"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290100850916",
+      "name_he": "דוריטוס חמוץ חריף 70",
+      "sub_pool": "chips",
+      "image_url": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/7/87649_7290100850916_1.jpg",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 8.2,
+        "carbohydrates_g": 63.0,
+        "sugars_g": 1.4,
+        "fat_g": 27.0,
+        "fat_saturated_g": 2.9,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 379,
+        "energy_kcal": 528
+      },
+      "ingredients_text_he": "תירס (70%), שמן צמחי, תערובת תיבול,חלבון תירס מעובד, אשלגן כלורי, מווסתי חומציות ( חומצה מאלית, סודיום דיאצטט), צבעי מאכל( תמצית פפריקה, כורכומין), מחזקי טעם ( E627, E631) , ממתיק (סוכרלוז), חומרי טעם וריח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 8.2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 63",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 1.4",
+          "fat_g": "שומנים (גרם) 27",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 2.9",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 379",
+          "energy_kcal": "אנרגיה (קלוריות) 528"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290110551926",
+      "name_he": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 242,
+        "protein_g": 1.5,
+        "carbohydrates_g": 20.0,
+        "sugars_g": 11.4,
+        "fat_g": 16.0,
+        "fat_saturated_g": 1.4,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 180,
+        "dietary_fiber_g": 4.5
+      },
+      "ingredients_text_he": "בטטה (62%), שמן צמחי, מלח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 242",
+          "protein_g": "חלבונים (גרם) 1.5",
+          "carbohydrates_g": "סך הפחמימות (גרם) 20",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 11.4",
+          "fat_g": "שומנים (גרם) 16.0",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1.4",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 180",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 4.5"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "8851016002685",
+      "name_he": "מקלות תפו\"א צ'יפס+ מטבל צ'ילי קלבי 55 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {},
+      "ingredients_text_he": null,
+      "nutrition_provenance": {
+        "raw_rows": {},
+        "threshold_declared": {}
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 0,
+        "has_ingredients": false
+      }
+    },
+    {
+      "barcode": "4011800528416",
+      "name_he": "קורני חטיפי דגנים בוטנים מתוק מלוח",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 12.3,
+        "carbohydrates_g": 52.5,
+        "sugars_g": 22.5,
+        "fat_g": 24.9,
+        "fat_saturated_g": 10.6,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 377,
+        "dietary_fiber_g": 3.9,
+        "energy_kcal": 492
+      },
+      "ingredients_text_he": "בוטנים קלויים (27%), סירופ גלוקוז, פצפוצי דגנים (14%) (קמח חיטה(10%, מכיל גלוטן), סוכר לבן, קמח אורז(2%), קמח תירס(2%), מיצוי לתת שעורה (מכיל גלוטן), מלח, סירופ סוכר לבן מקורמל), סירופ גלוקוז - פרוקטוז, פיתי דגנים מלאים (8%), (שיבולת שועל (6%, מכיל גלוטן), חיטה(2%, מכיל גלוטן)),שמן דקלים, אבקת חלב רזה, פתיתי תירס (4%) (תירס (4%), מלח, מיצוי לתת שעורה (מכיל גלוטן)), מחית בוטנים(4%), סוכר לבן , שמן קוקוס, מלח, אבקת קקאו מופחת שומן, סירופ סוכר לבן מקורמל, מתחלב (לציטין חמניה).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 12.3",
+          "carbohydrates_g": "סך הפחמימות (גרם) 52.5",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 22.5",
+          "fat_g": "שומנים (גרם) 24.9",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 10.6",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 377",
+          "dietary_fiber_g": "סיבים תזונתיים (גרם) 3.9",
+          "energy_kcal": "אנרגיה (קלוריות) 492"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 9,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290000066295",
+      "name_he": "במבה מתוקה מחומרים טבעיים 30 גרם",
+      "sub_pool": "puffed",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 3.0,
+        "carbohydrates_g": 78.0,
+        "sugars_g": 35.0,
+        "fat_g": 15.5,
+        "fat_saturated_g": 1.6,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 20,
+        "energy_kcal": 464
+      },
+      "ingredients_text_he": "גריסי תירס, סוכרים, שמן חמניות, מלטודקסטרין, צבע מאכל טבעי (רכז סלק), חומר מתחלב (לציטין סויה), חומרי טעם וריח, רכז לימון.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 3",
+          "carbohydrates_g": "סך הפחמימות (גרם) 78",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 35",
+          "fat_g": "שומנים (גרם) 15.5",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 1.6",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 20",
+          "energy_kcal": "אנרגיה (קלוריות) 464"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290118421603",
+      "name_he": "אפרופו קרמל 40 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 219,
+        "protein_g": 2.0,
+        "carbohydrates_g": 24.4,
+        "sugars_g": 14.0,
+        "fat_g": 12.6,
+        "fat_saturated_g": 5.2,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 120
+      },
+      "ingredients_text_he": "קרם בטעם קרמל מלוח (57%) (סוכר, חמאת קקאו, אבקת חלב, מתחלבים (לציטין לפתית, E476), סוכר שרוף (סוכר, מלטודקסטרין), מלח, חומרי טעם וריח), אפרופו (43%), (גריסי תירס (29%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט)).",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 219",
+          "protein_g": "חלבונים (גרם) 2",
+          "carbohydrates_g": "סך הפחמימות (גרם) 24.4",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 14",
+          "fat_g": "שומנים (גרם) 12.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 5.2",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 120"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "4014400925319",
+      "name_he": "פופקורן בציפוי קרמל 140 גרם",
+      "sub_pool": "popcorn",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 2.9,
+        "carbohydrates_g": 72.9,
+        "sugars_g": 53.2,
+        "fat_g": 16.1,
+        "fat_saturated_g": 10.2,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 510,
+        "energy_kcal": 456
+      },
+      "ingredients_text_he": "סוכר, גרעיני תירס, סירופ גלוקוז, שומן חמאה, שמנת (חלב) (6.7%), מי גבינה מרוכזים, חמאה, מלח, סירופ סוכר קנים, שמן חמנייה, מתחלב (לציטין סויה), חומרי טעם וריח.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 2.9",
+          "carbohydrates_g": "סך הפחמימות (גרם) 72.9",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 53.2",
+          "fat_g": "שומנים (גרם) 16.1",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 10.2",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 510",
+          "energy_kcal": "אנרגיה (קלוריות) 456"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290116537375",
+      "name_he": "קליק כריות נוגט 65 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "energy_kcal": 316,
+        "protein_g": 4.3,
+        "carbohydrates_g": 44.1,
+        "sugars_g": 31.3,
+        "fat_g": 13.6,
+        "fat_saturated_g": 6.3,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 106
+      },
+      "ingredients_text_he": "שוקולד חלב (53%), דגנים פריכים במילוי קרם נוגט (45%) [רכיבי דגנים (20.7%) (קמח חיטה (מכיל גלוטן), גריסי תירס, קמח תירס, קמח חיטה מלא), נוגט (18%) (סוכר, שמן צמחי, אגוזי לוז (3.1%), אבקת קקאו, שמן צמחי מוקשה, מתחלב (לציטין לפתית)), סוכר, מלטודקסטרין, אבקת קקאו, שמן צמחי, מלח, חומר מונע התגיישות (מגנזיום קרבונט), מתחלב (E471)], מים, מייצב (אקציה גאם), סוכר.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "energy_kcal": "אנרגיה (קלוריות) 316",
+          "protein_g": "חלבונים (גרם) 4.3",
+          "carbohydrates_g": "סך הפחמימות (גרם) 44.1",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 31.3",
+          "fat_g": "שומנים (גרם) 13.6",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 6.3",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 106"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    },
+    {
+      "barcode": "7290112494313",
+      "name_he": "קליק קורנפלקס 65 גרם",
+      "sub_pool": "chips",
+      "image_url": "",
+      "identity_source": "yochananof_catalog_harvest",
+      "panel_source": "retailer_product_page",
+      "retailer": "yochananof",
+      "normalized_nutrition_per_100g": {
+        "protein_g": 8.0,
+        "carbohydrates_g": 66.2,
+        "sugars_g": 45.5,
+        "fat_g": 20.7,
+        "fat_saturated_g": 12.0,
+        "fat_trans_g": 0.5,
+        "sodium_mg": 250,
+        "energy_kcal": 483
+      },
+      "ingredients_text_he": "שוקולד חלב (73%), פתיתי תירס (26%) (קמח תירס (23.1%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמינים ומינרלים), מים, מייצב (אקציה גאם), סוכר.",
+      "nutrition_provenance": {
+        "raw_rows": {
+          "protein_g": "חלבונים (גרם) 8",
+          "carbohydrates_g": "סך הפחמימות (גרם) 66.2",
+          "sugars_g": "סוכרים מתוך פחמימות (גרם) 45.5",
+          "fat_g": "שומנים (גרם) 20.7",
+          "fat_saturated_g": "חומצות שומן רוויות (גרם) 12",
+          "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+          "sodium_mg": "נתרן (מג) 250",
+          "energy_kcal": "אנרגיה (קלוריות) 483"
+        },
+        "threshold_declared": {
+          "fat_trans_g": true
+        }
+      },
+      "capture": {
+        "modal_opened": true,
+        "basis_per_100g": true,
+        "nutrition_rows": 8,
+        "has_ingredients": true
+      }
+    }
+  ]
+}

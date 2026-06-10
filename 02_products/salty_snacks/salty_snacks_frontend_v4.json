@@ -1,14 +1,14 @@
 {
   "_meta": {
-    "generated": "2026-06-10T15:09:46.064880+00:00",
+    "generated": "2026-06-10T16:35:24.614058+00:00",
     "category": "salty-snacks",
     "category_he": "חטיפים מלוחים",
     "run_id": "run_salty_snacks_002",
-    "product_count": 38,
-    "scored_count": 38,
+    "product_count": 25,
+    "scored_count": 25,
     "schema": "BariProductVM[]",
     "version": "v4",
-    "change_note": "v4 REAL rebuild (TASK-228) + TASK-231 remediation (TASK-230 copy spec). Corpus from real Yochananof catalog (real EAN + real image URL, HTTP-200) + OFF panels by EAN (EDPG candidate->verified via BSIP0/QA). Engine unchanged (engine-baseline-2026-06-04 + TASK-216). TASK-231: copy de-leaked (no NOVA/score/recommendation strings, no raw decimals; is_clean gate enforced); Bamba clutter cut 8->2; brand field normalized; garbled/English ingredients omitted+panel-only; 3 null-sodium snacks marked honestly; novaGroup<->copy contradiction removed; beet-cracker (7290112968807) trans corrected (OFF serving-scaling artifact) and re-scored 0/E -> 60/C.",
+    "change_note": "v4 REAL RETAILER-PANEL re-source (TASK-237). Open Food Facts REMOVED from the salty pipeline entirely. Nutrition + Hebrew ingredients re-sourced per product from the Yochananof storefront product modal (panel_source=retailer_product_page). Engine UNCHANGED (engine-baseline-2026-06-04 + TASK-216); re-scored on real data (scores moved — authorized data re-source, not a scoring change). Trans \"<0.5\"/\"L 0.5\" declarations carried as fat_trans_g==0.5 -> engine threshold_declaration convention (no penalty); NO manual trans data_corrections, NO OFF ingredient omits. Identity+image unchanged (Yochananof catalog, real EAN, HTTP-200). 13 products dropped: 1 Calbee import (no retailer panel) + 12 whose Yochananof panel declares 'ל100 גרם' but is on a per-serving basis (kcal<200, Atwater-consistent; unrecoverable, TASK-234 basis-error precedent). NONE backfilled from OFF. PRESERVED: is_clean gate, confidence<->ingredient gate, no recommendation language, reworded confidence labels, brand normalization.",
     "sub_pools": [
       "chips",
       "popcorn",
@@ -17,138 +17,143 @@
       "rice_cakes",
       "pretzels"
     ],
-    "provenance": "TASK-228 real rebuild + TASK-231 remediation. Identity+image: Yochananof catalog (real EAN). Panel: Open Food Facts by real EAN. Corpus: 38 products (6 Bamba variants curated out). Ingredient coverage: 6/38. Grade dist: {'B': 11, 'C': 16, 'D': 4, 'E': 7}. NOVA dist: {'None': 32, '2': 1, '3': 3, '4': 2}.",
+    "provenance": "TASK-237 real retailer re-source. Identity+image: Yochananof catalog (real EAN). Panel: Yochananof product-page modal (real Hebrew nutrition + ingredients). NO Open Food Facts. Corpus: 25 products (13 dropped: 1 no-panel + 12 per-serving-basis error). Ingredient coverage: 25/25 (real Hebrew). Grade dist: {'A': 1, 'B': 3, 'C': 9, 'D': 4, 'E': 8}. NOVA dist: {'1': 1, '2': 5, '3': 12, '4': 7}.",
     "grade_distribution": {
-      "B": 11,
-      "C": 16,
+      "A": 1,
+      "B": 3,
+      "C": 9,
       "D": 4,
-      "E": 7
+      "E": 8
     },
     "subpool_distribution": {
-      "rice_cakes": 8,
-      "chips": 10,
-      "baked": 5,
-      "puffed": 3,
+      "rice_cakes": 4,
+      "chips": 9,
       "popcorn": 5,
-      "pretzels": 7
+      "pretzels": 4,
+      "puffed": 3
     },
     "nova_distribution": {
-      "None": 32,
-      "2": 1,
-      "3": 3,
-      "4": 2
+      "1": 1,
+      "2": 5,
+      "3": 12,
+      "4": 7
     },
     "retailer_breakdown": {
-      "yochananof": 38
+      "yochananof": 25
     },
-    "ingredient_coverage": "6/38",
-    "task231_remediation": {
-      "bamba_dropped": [
-        "bsip1_snack_7290000068770",
-        "bsip1_snack_7290100687109",
-        "bsip1_snack_7290105693341",
-        "bsip1_snack_7290118426202",
-        "bsip1_snack_7290118426226",
-        "bsip1_snack_7290118426240"
-      ],
-      "ingredients_omitted_panel_only": [
-        "4014400925319",
-        "7290000068770",
-        "7290000069364",
-        "7290112494313",
-        "7290112968807",
-        "9322969000022"
-      ],
-      "sodium_unavailable_marked": [
-        "bsip1_snack_7290000066332",
-        "bsip1_snack_7290106573314",
-        "bsip1_snack_7290116537375"
-      ],
-      "beet_cracker_trans_corrected": "7290112968807: 0/E -> 60/C (OFF trans 2.33g/100g was serving-scaling artifact)",
-      "apropo_caramel_trans_corrected": "7290118421603: 0/E -> 18/E (OFF trans 1.25g/100g was the same serving-scaling artifact: 0.5g '<1g' declaration / 0.40 serving; TASK-229)"
-    },
-    "task234_remediation": {
-      "trans_artifact_neutralized_corpus_wide": [
-        "7290000066318 (Bamba 0.625->0)",
-        "7290104500572 (Apropo Italiano 0.6->0)",
-        "7290000420325 (Pop Star 0.4->0)",
-        "7290004943738 (Milotal 0.5->0)",
-        "5701932026971 (Hot Pop 0.5->0)",
-        "7290117035009 (Yoh popcorn 0.5->0)",
-        "7290018198254 (Tapugan 0.5->0)",
-        "7290110551926 (Tapuchips bt 0.5->0)",
-        "4011800528416 (Corny 0.5->0)"
-      ],
-      "trans_artifact_note": "OFF trans-fat_serving=0.5g is the Israeli '<1g' threshold DECLARATION; scaled by serving fraction it yields phantom per-100g values (0.4/0.6/0.625/1.25/2.33). Neutralized to 0.0 where no PHVO marker present (authoritative OFF serving-level re-probe). Engine unchanged.",
-      "fiber_omitted": "7290112494313 (Click cornflakes): fiber 38g/100g impossible (fiber+sugars>carbs); set None. Re-scored 25/E -> 14/E.",
-      "basis_error_excluded": [
-        "bsip1_snack_7290004943738",
-        "bsip1_snack_7290018198148",
-        "bsip1_snack_7290018198254"
-      ],
-      "basis_error_note": "7290018198254/7290018198148/7290004943738: whole-panel per-serving basis mislabeled per-100g (128/139/145 kcal vs real ~450-540); unrecoverable (no serving_size) -> dropped from shelf.",
-      "rt7_nova_reconciled": [
-        "4014400925319",
-        "7290000069364",
-        "7290112494313",
-        "7290112968807",
-        "7290116537375"
-      ],
-      "rt7_note": "BSIP1 nova_proxy held the raw OFF nova_group (often 4) while the engine infers + publishes its own NOVA; reconciled BSIP1 nova_proxy to the engine-inferred value (raw OFF kept as nova_group_off_raw). novaGroup is published only when ingredientCount>0 (else null) so novaGroup/ingredientCount/ingredients are internally consistent. Score-neutral."
-    }
+    "ingredient_coverage": "25/25",
+    "panel_only_ids": [],
+    "sodium_unavailable_marked": [],
+    "off_removed": true,
+    "panel_source": "retailer_product_page (yochananof storefront modal)",
+    "dropped_products": [
+      {
+        "barcode": "7290000060071",
+        "name": "חטיפי פריכונים מאורז מלא",
+        "drop_class": "basis_error",
+        "energy_kcal": 115,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290111564277",
+        "name": "פריכיות דקות 3 דגנים",
+        "drop_class": "basis_error",
+        "energy_kcal": 77,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290111564291",
+        "name": "פריכיות דקות עם קינואה",
+        "drop_class": "basis_error",
+        "energy_kcal": 78,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "9322969000022",
+        "name": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
+        "drop_class": "basis_error",
+        "energy_kcal": 47,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7702024074625",
+        "name": "חטיפי קרקר פיטנס חיטה מלאה 234 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 111,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290122782615",
+        "name": "קרקר דק כוסמין ודבש פיטנס 140 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 99,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290000070919",
+        "name": "בייגלה רשתות מלח 400 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 122,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290000076133",
+        "name": "בייגלה שמיניות קטנות 400 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 120,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290106574953",
+        "name": "בייגלה שטוחים שומשום 300 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 131,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290112968807",
+        "name": "פיטנס קרקר דק סלק 140 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 99,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290106573314",
+        "name": "חטיף קריספי אפוי כפרי 150 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 132,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "7290112965684",
+        "name": "פיטנס חטיף מולטיגריין עשבי תיבול 25 גרם",
+        "drop_class": "basis_error",
+        "energy_kcal": 119,
+        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
+      },
+      {
+        "barcode": "8851016002685",
+        "name": "מקלות תפו\"א צ'יפס+ מטבל צ'ילי קלבי 55 גרם",
+        "drop_class": "no_panel",
+        "reason": "retailer page has no nutrition panel (and no ingredients); not scoreable; NOT backfilled from OFF"
+      }
+    ],
+    "dropped_count": 13
   },
   "products": [
-    {
-      "id": "bsip1_snack_7290110560317",
-      "name": "פריכיות משולשות מלח ים",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/7/370582_7290110560317.jpg",
-      "score": 77,
-      "grade": "B",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 8 גרם סיבים ו-15 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 443.333333333333,
-          "protein": 15.0,
-          "fat": 12.0,
-          "carbs": 65.0,
-          "fiber": 7.66666666666667,
-          "sodium": 400,
-          "sugar": 1.33333333333333,
-          "saturatedFat": 1.33333333333333
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "8 גרם סיבים ל-100 גרם",
-          "15 גרם חלבון ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "7290110560317",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
     {
       "id": "bsip1_snack_7290000069364",
       "name": "פריכונים מאורז מלא ללא תוספת מלח",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6916258_7290000069364_1.jpg",
-      "score": 76,
-      "grade": "B",
+      "score": 85,
+      "grade": "A",
       "insightLine": "מהפרופילים הנקיים במדף: רק 15 מ\"ג נתרן ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
+      "confidence": "verified",
       "subPool": "rice_cakes",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 384.0,
+          "energyKcal": 384,
           "protein": 8.5,
           "fat": 2.8,
           "carbs": 79.0,
@@ -157,8 +162,8 @@
           "sugar": 0.5,
           "saturatedFat": 0.7
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "אורז מלא (100%)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "נתרן נמוך: 15 מ\"ג ל-100 גרם",
@@ -169,150 +174,9 @@
         "comparisonContext": ""
       },
       "barcode": "7290000069364",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null
-    },
-    {
-      "id": "bsip1_snack_7290000060071",
-      "name": "חטיפי פריכונים מאורז מלא",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6913121_7290000060071.jpg",
-      "score": 72,
-      "grade": "B",
-      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 384.0,
-          "protein": 8.5,
-          "fat": 2.8,
-          "carbs": 79.0,
-          "fiber": 4.2,
-          "sodium": 400,
-          "sugar": 0.5,
-          "saturatedFat": 0.7
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "7290000060071",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290111564277",
-      "name": "פריכיות דקות 3 דגנים",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12352861_7290111564277.jpg",
-      "score": 71,
-      "grade": "B",
-      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 385.0,
-          "protein": 8.5,
-          "fat": 4.0,
-          "carbs": 77.0,
-          "fiber": 5.0,
-          "sodium": 380,
-          "sugar": 4.5,
-          "saturatedFat": 0.5
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "7290111564277",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290111564291",
-      "name": "פריכיות דקות עם קינואה",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12352860_7290111564291.jpg",
-      "score": 71,
-      "grade": "B",
-      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 390.0,
-          "protein": 8.8,
-          "fat": 3.8,
-          "carbs": 77.5,
-          "fiber": 5.3,
-          "sodium": 148,
-          "sugar": 3.5,
-          "saturatedFat": 0.7
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "7290111564291",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290112967381",
-      "name": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12433484_7290112967381.jpg",
-      "score": 71,
-      "grade": "B",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 20 גרם סיבים ו-11 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 430.0,
-          "protein": 11.3333333333333,
-          "fat": 13.6666666666667,
-          "carbs": 83.0,
-          "fiber": 20.0,
-          "sodium": 390,
-          "sugar": 3.33333333333333,
-          "saturatedFat": 1.33333333333333
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "20 גרם סיבים ל-100 גרם",
-          "11 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "7290112967381",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
     },
     {
       "id": "bsip1_snack_7290008745239",
@@ -326,19 +190,21 @@
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 548.0,
-          "protein": 6.0,
-          "fat": 34.6,
-          "carbs": 54.0,
+          "energyKcal": 549,
+          "protein": 5.9,
+          "fat": 35.0,
+          "carbs": 53.0,
           "fiber": null,
           "sodium": 393,
-          "sugar": null,
-          "saturatedFat": 3.4
+          "sugar": 0.0,
+          "saturatedFat": 3.5
         },
-        "ingredients": "תפוחי אדמה (64%), שמן חמניות, מלח",
-        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "תפוחי אדמה (64%), שמן צמחי, מלח.",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
+        "positiveSignals": [
+          "כמעט בלי סוכר"
+        ],
         "limitingFactors": [
           "35 גרם שומן ל-100 גרם"
         ],
@@ -346,204 +212,275 @@
         "comparisonContext": ""
       },
       "barcode": "7290008745239",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition"
-    },
-    {
-      "id": "bsip1_snack_9322969000022",
-      "name": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/9/3/9322969000022_s1_1506-22-2020_23-00-12.jpg",
-      "score": 68,
-      "grade": "B",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 11 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
-      "subPool": "rice_cakes",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 391.0,
-          "protein": 10.8,
-          "fat": 5.7,
-          "carbs": 64.4,
-          "fiber": null,
-          "sodium": 200,
-          "sugar": 0.8,
-          "saturatedFat": 0.1
-        },
-        "ingredients": "",
-        "confidenceLabel": "מבוסס על נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "11 גרם חלבון ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
-        "comparisonContext": ""
-      },
-      "barcode": "9322969000022",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
       "confidence_sub_reason": "partial_field"
     },
     {
-      "id": "bsip1_snack_7290119373345",
-      "name": "פריכיות משולשות תפו\"א ואפונה",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/7/370583_7290119373345.jpg",
-      "score": 67,
+      "id": "bsip1_snack_7290115679960",
+      "name": "ציטוס פופקורן טבעי 60 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/360481_7290115679960.jpg",
+      "score": 70,
       "grade": "B",
-      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 8 גרם סיבים ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
       "confidence": "partial",
-      "subPool": "rice_cakes",
+      "subPool": "popcorn",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 426.666666666667,
-          "protein": 7.66666666666667,
-          "fat": 11.0,
-          "carbs": 73.3333333333333,
-          "fiber": 4.0,
-          "sodium": 370,
-          "sugar": 1.33333333333333,
-          "saturatedFat": 1.33333333333333
+          "energyKcal": 487,
+          "protein": 7.7,
+          "fat": 24.0,
+          "carbs": 57.0,
+          "fiber": 8.0,
+          "sodium": 392,
+          "sugar": 0.8,
+          "saturatedFat": 2.6
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "גרעיני תירס (79%), שמן צמחי, מלח.",
+        "confidenceLabel": "קטגוריה משוערת",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
+          "8 גרם סיבים ל-100 גרם",
           "כמעט בלי סוכר"
         ],
         "limitingFactors": [],
         "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
         "comparisonContext": ""
       },
-      "barcode": "7290119373345",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290115679960",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
     },
     {
-      "id": "bsip1_snack_7702024074625",
-      "name": "חטיפי קרקר פיטנס חיטה מלאה 234 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12392582_7702024074625.jpg",
-      "score": 67,
+      "id": "bsip1_snack_7290110560317",
+      "name": "פריכיות משולשות מלח ים",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/7/370582_7290110560317.jpg",
+      "score": 68,
       "grade": "B",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 6 גרם סיבים ו-10 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 8 גרם סיבים ו-15 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
       "confidence": "partial",
-      "subPool": "baked",
+      "subPool": "rice_cakes",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 426.923076923077,
-          "protein": 10.0,
-          "fat": 11.1538461538462,
-          "carbs": 70.0,
-          "fiber": 6.15384615384615,
-          "sodium": 312,
-          "sugar": 10.0,
-          "saturatedFat": 3.84615384615385
+          "energyKcal": 444,
+          "protein": 14.9,
+          "fat": 12.1,
+          "carbs": 65.0,
+          "fiber": 7.7,
+          "sodium": 399,
+          "sugar": 1.4,
+          "saturatedFat": null
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "קמח חומוס 39%, קמח אורז 32%, שמן חמניות, עדשים שחורות 9%, קינואה 9%, מלח 0.4%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
-          "6 גרם סיבים ל-100 גרם",
-          "10 גרם חלבון ל-100 גרם"
+          "8 גרם סיבים ל-100 גרם",
+          "15 גרם חלבון ל-100 גרם",
+          "כמעט בלי סוכר"
         ],
         "limitingFactors": [],
         "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
         "comparisonContext": ""
       },
-      "barcode": "7702024074625",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290110560317",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
+      "confidence_sub_reason": "partial_field"
     },
     {
-      "id": "bsip1_snack_7290000066332",
-      "name": "אפרופו 50 ג'",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6901287_7290000066332.jpg",
-      "score": 65,
-      "grade": "B",
-      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
-      "confidence": "partial",
+      "id": "bsip1_snack_7290110551926",
+      "name": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/361707_7290110551926.jpg",
+      "score": 61,
+      "grade": "C",
+      "insightLine": "פרופיל ממוצע: לא בולט לטובה אבל גם לא נופל.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
+      "confidence": "verified",
       "subPool": "chips",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 268.0,
-          "protein": 2.3,
-          "fat": 15.0,
-          "carbs": 31.0,
-          "fiber": null,
-          "sodium": null,
-          "sugar": null,
-          "saturatedFat": null
+          "energyKcal": 242,
+          "protein": 1.5,
+          "fat": 16.0,
+          "carbs": 20.0,
+          "fiber": 4.5,
+          "sodium": 180,
+          "sugar": 11.4,
+          "saturatedFat": 1.4
         },
-        "ingredients": "גריסי תירס (61%), שמנים מהצומח, סוכר, עמילן מפורק חלקית, מלח, חומר תפיחה (פוטסיום ביקרבונט), תמצית שמרים.",
-        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "בטטה (62%), שמן צמחי, מלח.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [],
-        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
         "comparisonContext": ""
       },
-      "barcode": "7290000066332",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition",
-      "d4_additives": [
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        }
-      ]
+      "barcode": "7290110551926",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
-      "id": "bsip1_snack_7290122782615",
-      "name": "קרקר דק כוסמין ודבש פיטנס 140 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/3/13867640_7290122782615.jpg",
-      "score": 64,
+      "id": "bsip1_snack_7290119373345",
+      "name": "פריכיות משולשות תפו\"א ואפונה",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/7/370583_7290119373345.jpg",
+      "score": 61,
       "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 12 גרם חלבון ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "baked",
+      "insightLine": "פרופיל ממוצע: לא בולט לטובה אבל גם לא נופל.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 459.0,
-          "protein": 12.3,
-          "fat": 16.6,
-          "carbs": 62.3,
-          "fiber": 5.5,
-          "sodium": 400,
-          "sugar": 9.8,
-          "saturatedFat": 1.5
+          "energyKcal": 427,
+          "protein": 7.7,
+          "fat": 11.0,
+          "carbs": 72.0,
+          "fiber": 4.0,
+          "sodium": 370,
+          "sugar": 1.2,
+          "saturatedFat": 1.3
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "תפוח אדמה מיובש 41.2%, עמילן תפוח אדמה, קמח אורז 16.9%, אפונה ירוקה מיובשת 13.0%, שמן חמניות, מלח 0.8%, מונע התגיישות (אבקת צלולוז), מתחלב (לציטין סויה).",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
-          "12 גרם חלבון ל-100 גרם"
+          "כמעט בלי סוכר"
         ],
         "limitingFactors": [],
         "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
         "comparisonContext": ""
       },
-      "barcode": "7290122782615",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290119373345",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000420325",
+      "name": "פופקורן בטעם טבעי למיקרוגל חמישייה",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000420325_s1_1505-08-2025_08-00-11.jpg",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 425,
+          "protein": 10.0,
+          "fat": 14.0,
+          "carbs": 60.0,
+          "fiber": null,
+          "sodium": 800,
+          "sugar": 0.75,
+          "saturatedFat": 5.0
+        },
+        "ingredients": "גרעיני תירס (83%), שמן דקל מזוכך, מלח.",
+        "confidenceLabel": "קטגוריה משוערת",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם",
+          "כמעט בלי סוכר"
+        ],
+        "limitingFactors": [
+          "800 מ\"ג נתרן ל-100 גרם",
+          "5 גרם שומן רווי ל-100 גרם"
+        ],
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290000420325",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290018893654",
+      "name": "בייגלה בתוספת מלח צ'וקטה 200 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290018893654_s103-03-2026_18-25-34.jpg",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 9 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "confidence": "partial",
+      "subPool": "pretzels",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 412,
+          "protein": 9.0,
+          "fat": 9.2,
+          "carbs": 72.4,
+          "fiber": 1.7,
+          "sodium": 1120,
+          "sugar": 6.6,
+          "saturatedFat": 0.8
+        },
+        "ingredients": "קמח חיטה (מכיל גלוטן), שמן לפתית מזוכך, סוכר לבן, תמצית לתת שעורה (מכיל גלוטן), מלח מטבח (2.5%), מתחלב (לציטין סויה), מתפיח (סודיום הידרוג''ן קרבונט), מעכב חמצון (תמצית רוזמרין).",
+        "confidenceLabel": "קטגוריה משוערת",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "1120 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290018893654",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
+    },
+    {
+      "id": "bsip1_snack_7290117035009",
+      "name": "גרעיני תירס לפופקורן במיקרוגל בתוספת מלח 5*100 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117035009_s101-18-2023_09-51-40.jpg",
+      "score": 60,
+      "grade": "C",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם סיבים ו-9 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 448,
+          "protein": 9.0,
+          "fat": 20.0,
+          "carbs": 53.0,
+          "fiber": 10.0,
+          "sodium": 984,
+          "sugar": 0.7,
+          "saturatedFat": null
+        },
+        "ingredients": "גרעיני תירס 80%,שמן צמחי(דקל),מלח",
+        "confidenceLabel": "קטגוריה משוערת",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "10 גרם סיבים ל-100 גרם",
+          "כמעט בלי סוכר"
+        ],
+        "limitingFactors": [
+          "984 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290117035009",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category"
     },
     {
       "id": "bsip1_snack_7290000066318",
       "name": "במבה קלאסי 80 ג'",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6919901_7290000066318_1.jpg",
-      "score": 63,
+      "score": 57,
       "grade": "C",
       "insightLine": "אחד החטיפים הבודדים במדף עם 17 גרם חלבון ל-100 גרם.\nרוב הקלוריות כאן מגיעות מהשומן.",
       "confidence": "partial",
@@ -551,16 +488,16 @@
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 535.0,
+          "energyKcal": 534,
           "protein": 17.0,
           "fat": 30.0,
           "carbs": 49.0,
           "fiber": null,
           "sodium": 390,
           "sugar": 3.5,
-          "saturatedFat": 3.875
+          "saturatedFat": 3.9
         },
-        "ingredients": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח,  ברזל, ויטמינים",
+        "ingredients": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח, ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין E, ויטמין B1 (תיאמין), ויטמין B6, ויטמין A, חומצה פולית, ויטמין B12), ברזל.",
         "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -575,215 +512,40 @@
       "barcode": "7290000066318",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field"
-    },
-    {
-      "id": "bsip1_snack_7290115679960",
-      "name": "ציטוס פופקורן טבעי 60 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/360481_7290115679960.jpg",
-      "score": 63,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 8 גרם סיבים ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "popcorn",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 486.666666666667,
-          "protein": 7.66666666666667,
-          "fat": 23.8333333333333,
-          "carbs": 56.6666666666667,
-          "fiber": 8.0,
-          "sodium": 392,
-          "sugar": 0.833333333333333,
-          "saturatedFat": 2.66666666666667
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "8 גרם סיבים ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290115679960",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290117035009",
-      "name": "גרעיני תירס לפופקורן במיקרוגל בתוספת מלח 5*100 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117035009_s101-18-2023_09-51-40.jpg",
-      "score": 62,
-      "grade": "C",
-      "insightLine": "פרופיל ממוצע: לא בולט לטובה אבל גם לא נופל.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "popcorn",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 224.0,
-          "protein": 4.5,
-          "fat": 10.0,
-          "carbs": 26.5,
-          "fiber": 5.0,
-          "sodium": 492,
-          "sugar": null,
-          "saturatedFat": 4.5
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290117035009",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290000070919",
-      "name": "בייגלה רשתות מלח 400 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12502393_7290000070919_l.jpg",
-      "score": 60,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "pretzels",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 408.0,
-          "protein": 9.5,
-          "fat": 6.0,
-          "carbs": 79.0,
-          "fiber": null,
-          "sodium": 850,
-          "sugar": 1.2,
-          "saturatedFat": 2.6
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [
-          "850 מ\"ג נתרן ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290000070919",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290000071008",
-      "name": "בייגלה שטוחים מלח 60 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6925610_7290000071008.jpg",
-      "score": 60,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "pretzels",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 409.0,
-          "protein": 9.8,
-          "fat": 6.4,
-          "carbs": 78.0,
-          "fiber": null,
-          "sodium": 850,
-          "sugar": 5.4,
-          "saturatedFat": 2.4
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "850 מ\"ג נתרן ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290000071008",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290000076133",
-      "name": "בייגלה שמיניות קטנות 400 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6901617_7290000076133.jpg",
-      "score": 60,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "pretzels",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 400.0,
-          "protein": 10.5,
-          "fat": 4.6,
-          "carbs": 79.5,
-          "fiber": null,
-          "sodium": 850,
-          "sugar": 1.2,
-          "saturatedFat": 2.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "10 גרם חלבון ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [
-          "850 מ\"ג נתרן ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290000076133",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "confidence_sub_reason": "partial_field",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        }
+      ]
     },
     {
       "id": "bsip1_snack_7290017928364",
       "name": "בייגלה XL עם מלח 300 גרם",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290017928364_front11-26-2025_09-21-38.jpg",
-      "score": 60,
+      "score": 56,
       "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 9 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "insightLine": "חטיף מלוח מאוד: 746 מ\"ג נתרן ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
       "confidence": "partial",
       "subPool": "pretzels",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 357.0,
-          "protein": 9.4,
+          "energyKcal": 357,
+          "protein": null,
           "fat": 5.6,
           "carbs": 66.0,
-          "fiber": 2.8,
+          "fiber": null,
           "sodium": 746,
           "sugar": 2.1,
           "saturatedFat": 2.4
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "קמח חיטה ( מכיל גלוטן ) , שומן צמחי, לתת שעורה ( מכיל גלוטן ) , מלח 2.5 %, גלוטן - חיטה , שמרים , מווסת חומציות E-524",
+        "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [
@@ -793,343 +555,100 @@
         "comparisonContext": ""
       },
       "barcode": "7290017928364",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition"
     },
     {
-      "id": "bsip1_snack_7290018893654",
-      "name": "בייגלה בתוספת מלח צ'וקטה 200 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290018893654_s103-03-2026_18-25-34.jpg",
-      "score": 60,
+      "id": "bsip1_snack_7290000071008",
+      "name": "בייגלה שטוחים מלח 60 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6925610_7290000071008.jpg",
+      "score": 55,
       "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 9 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
       "confidence": "partial",
       "subPool": "pretzels",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 412.0,
-          "protein": 9.0,
-          "fat": 9.2,
-          "carbs": 72.4,
-          "fiber": 1.7,
-          "sodium": 1120,
-          "sugar": 6.6,
-          "saturatedFat": 0.8
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "1120 מ\"ג נתרן ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290018893654",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290106574953",
-      "name": "בייגלה שטוחים שומשום 300 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12502486_7290106574953.jpg",
-      "score": 60,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 12 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "pretzels",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 436.0,
-          "protein": 11.5,
-          "fat": 12.0,
-          "carbs": 70.5,
+          "energyKcal": 408,
+          "protein": 9.8,
+          "fat": 6.4,
+          "carbs": 77.8,
           "fiber": null,
           "sodium": 850,
-          "sugar": 6.5,
-          "saturatedFat": 3.2
+          "sugar": 7.4,
+          "saturatedFat": 2.7
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "קמח חיטה (מכיל גלוטן), שמן צמחי, סוכר, לתת שעורה, מלח (1.7%), חומר תפיחה (סודיום ביקרבונט - סודה לשתיה), מווסת חומציות (E524), מתחלב (לציטין סויה).",
+        "confidenceLabel": "קטגוריה משוערת",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "12 גרם חלבון ל-100 גרם"
-        ],
+        "positiveSignals": [],
         "limitingFactors": [
           "850 מ\"ג נתרן ל-100 גרם"
         ],
         "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
         "comparisonContext": ""
       },
-      "barcode": "7290106574953",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290000071008",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        }
+      ]
     },
     {
-      "id": "bsip1_snack_7290112968807",
-      "name": "פיטנס קרקר דק סלק 140 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12562837_7290112968807.jpg",
-      "score": 60,
+      "id": "bsip1_snack_7290112967381",
+      "name": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12433484_7290112967381.jpg",
+      "score": 54,
       "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 7 גרם סיבים ו-12 גרם חלבון ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "baked",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 6 גרם סיבים ו-11 גרם חלבון ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 458.0,
-          "protein": 12.093023255814,
-          "fat": 15.8139534883721,
-          "carbs": 64.1860465116279,
-          "fiber": 6.51162790697674,
-          "sodium": 400,
-          "sugar": 8.83720930232558,
-          "saturatedFat": 1.86046511627907
+          "energyKcal": 430,
+          "protein": 11.2,
+          "fat": 13.5,
+          "carbs": 63.0,
+          "fiber": 6.0,
+          "sodium": 390,
+          "sugar": 3.3,
+          "saturatedFat": 1.2
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "קמח תירס מלא (28.3%), קמח אורז (14.9%), עדשים שחורות (13.1%), אפונה (13.1%), קמח שיבולת שועל מלא (11.5%) (ללא גלוטן), שמן קנולה, גריסי תירס (3%), סוכר, פתיתי סלק מיובש (0.9%), מלח (0.9%), מונע התגיישות (סיבי צלולוז), אורז (0.5%), חומר תפיחה (E500), מתחלב (לציטין סויה), תמצית תה. סך הדגנים במוצר 58.2%. מכיל 39.8% דגנים מלאים.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
-          "7 גרם סיבים ל-100 גרם",
-          "12 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290112968807",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": null
-    },
-    {
-      "id": "bsip1_snack_7290106573314",
-      "name": "חטיף קריספי אפוי כפרי 150 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12609153_7290106573314.jpg",
-      "score": 59,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 11 גרם חלבון ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "baked",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 471.428571428571,
-          "protein": 11.4285714285714,
-          "fat": 17.8571428571429,
-          "carbs": 66.0714285714286,
-          "fiber": null,
-          "sodium": null,
-          "sugar": null,
-          "saturatedFat": null
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
+          "6 גרם סיבים ל-100 גרם",
           "11 גרם חלבון ל-100 גרם"
         ],
         "limitingFactors": [],
         "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
         "comparisonContext": ""
       },
-      "barcode": "7290106573314",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290017928661",
-      "name": "שברי בייגלה בטעם צ'דר 300 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290017928661_front05-29-2025_07-50-31.jpg",
-      "score": 58,
-      "grade": "C",
-      "insightLine": "חטיף מלוח מאוד: 600 מ\"ג נתרן ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "pretzels",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 492.0,
-          "protein": 8.3,
-          "fat": 24.0,
-          "carbs": 61.0,
-          "fiber": 2.6,
-          "sodium": 600,
-          "sugar": 6.0,
-          "saturatedFat": 2.3
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "600 מ\"ג נתרן ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290017928661",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290000420325",
-      "name": "פופקורן בטעם טבעי למיקרוגל חמישייה",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000420325_s1_1505-08-2025_08-00-11.jpg",
-      "score": 54,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם סיבים ו-10 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "popcorn",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 425.0,
-          "protein": 10.0,
-          "fat": 14.0,
-          "carbs": 60.0,
-          "fiber": 10.0,
-          "sodium": 800,
-          "sugar": 0.75,
-          "saturatedFat": 5.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "10 גרם סיבים ל-100 גרם",
-          "10 גרם חלבון ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [
-          "800 מ\"ג נתרן ל-100 גרם",
-          "5 גרם שומן רווי ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290000420325",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290112965684",
-      "name": "פיטנס חטיף מולטיגריין עשבי תיבול 25 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12423960_7290112965684_1.jpg",
-      "score": 54,
-      "grade": "C",
-      "insightLine": "פרופיל ממוצע: לא בולט לטובה אבל גם לא נופל.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
-      "confidence": "partial",
-      "subPool": "baked",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 478.0,
-          "protein": 6.5,
-          "fat": 22.3,
-          "carbs": 60.0,
-          "fiber": 5.5,
-          "sodium": 380,
-          "sugar": 7.0,
-          "saturatedFat": 2.5
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290112965684",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_5701932026971",
-      "name": "פופקורן בטעם חמאה הוט פופ 6 יח'",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/5/7/5701932026971_s103-09-2020_10-59-2408-01-2023_10-11-08.jpg",
-      "score": 50,
-      "grade": "C",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 9 גרם סיבים ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
-      "confidence": "partial",
-      "subPool": "popcorn",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 480.0,
-          "protein": 7.8,
-          "fat": 28.5,
-          "carbs": 43.5,
-          "fiber": 9.3,
-          "sodium": 800,
-          "sugar": 0.7,
-          "saturatedFat": 13.8
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "9 גרם סיבים ל-100 גרם",
-          "כמעט בלי סוכר"
-        ],
-        "limitingFactors": [
-          "800 מ\"ג נתרן ל-100 גרם",
-          "14 גרם שומן רווי ל-100 גרם"
-        ],
-        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
-        "comparisonContext": ""
-      },
-      "barcode": "5701932026971",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290104500572",
-      "name": "אפרופו איטליאנו 50 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6925783_7290104500572.jpg",
-      "score": 43,
-      "grade": "D",
-      "insightLine": "חטיף עתיר שומן: 30 גרם שומן ל-100 גרם, רובו מהטיגון והשמן.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-      "confidence": "partial",
-      "subPool": "chips",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 538.0,
-          "protein": 4.8,
-          "fat": 30.0,
-          "carbs": 62.6,
-          "fiber": 0.0,
-          "sodium": 340,
-          "sugar": 4.2,
-          "saturatedFat": 3.6
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "30 גרם שומן ל-100 גרם"
-        ],
-        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290104500572",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290112967381",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        }
+      ]
     },
     {
       "id": "bsip1_snack_7290000066141",
@@ -1143,7 +662,7 @@
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 507.0,
+          "energyKcal": 507,
           "protein": 10.0,
           "fat": 23.0,
           "carbs": 65.0,
@@ -1152,7 +671,7 @@
           "sugar": 1.2,
           "saturatedFat": 2.4
         },
-        "ingredients": "קמח חיטה (75%), שמן חמניות, שמרים מיובשים, סוכרים, הידרוליזט חלבון סויה, (e627, e631, מחזקי טעם (מונוסודיום גלוטמט , מלח, קמח אורז, תבלינים, חומרי טעם וריח, שמן קנולה, תמצית פפריקה, תצצית שמרים",
+        "ingredients": "קמח חיטה (מכיל גלוטן) (84%), שמן חמניות, שמרים מיובשים, סוכרים, הידרוליזט חלבון סויה, מלח, מחזקי טעם (מונוסודיום גלוטמט, E635), קמח אורז, תבלינים (בצל ושום), חומרי טעם וריח, שמן קנולה, תמצית פפריקה, תמצית שמרים.",
         "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1171,10 +690,96 @@
       "confidence_sub_reason": "partial_field"
     },
     {
+      "id": "bsip1_snack_5701932026971",
+      "name": "פופקורן בטעם חמאה הוט פופ 6 יח'",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/5/7/5701932026971_s103-09-2020_10-59-2408-01-2023_10-11-08.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 9 גרם סיבים ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "confidence": "verified",
+      "subPool": "popcorn",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 480,
+          "protein": 7.8,
+          "fat": 28.5,
+          "carbs": 43.5,
+          "fiber": 9.3,
+          "sodium": 800,
+          "sugar": 0.7,
+          "saturatedFat": 13.8
+        },
+        "ingredients": "גרעיני תירס 72%, שמן דקל מזוכך, מלח מטבח, מלח, חומרי טעם וריח, צבע מאכל (אנאטו)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "9 גרם סיבים ל-100 גרם",
+          "כמעט בלי סוכר"
+        ],
+        "limitingFactors": [
+          "800 מ\"ג נתרן ל-100 גרם",
+          "14 גרם שומן רווי ל-100 גרם",
+          "מעובד מאוד, עם רשימת רכיבים ארוכה ורחוקה מהחומר הגלם."
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "barcode": "5701932026971",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290000066332",
+      "name": "אפרופו 50 ג'",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6901287_7290000066332.jpg",
+      "score": 39,
+      "grade": "D",
+      "insightLine": "חטיף עתיר שומן: 30 גרם שומן ל-100 גרם, רובו מהטיגון והשמן.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 536,
+          "protein": 4.5,
+          "fat": 30.0,
+          "carbs": 62.0,
+          "fiber": null,
+          "sodium": 390,
+          "sugar": 3.5,
+          "saturatedFat": null
+        },
+        "ingredients": "גריסי תירס (68%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט).",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "30 גרם שומן ל-100 גרם"
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290000066332",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        }
+      ]
+    },
+    {
       "id": "bsip1_snack_7290100850916",
       "name": "דוריטוס חמוץ חריף 70",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/7/87649_7290100850916_1.jpg",
-      "score": 36,
+      "score": 37,
       "grade": "D",
       "insightLine": "מהחלק התחתון של המדף, עם פרופיל תזונתי חלש.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
       "confidence": "partial",
@@ -1182,7 +787,7 @@
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 528.0,
+          "energyKcal": 528,
           "protein": 8.2,
           "fat": 27.0,
           "carbs": 63.0,
@@ -1191,7 +796,7 @@
           "sugar": 1.4,
           "saturatedFat": 2.9
         },
-        "ingredients": "תירס (70.5%), שמן חמניות, סוכר, תערובת תיבול, חלבון סויה מעובד, תערובת מלחים (אשלג כלורי, מלח),   (סודיום דיאצטט, חומצה מאלית)  מווסתי חומציות , (E551, E552) מונע התגיישות , צבעי מאכל (תמצית פפריקה, כורכומין), מחזקי טעם (E631, E627), ממתיק (אספרטיים), חומרי טעם וריח",
+        "ingredients": "תירס (70%), שמן צמחי, תערובת תיבול,חלבון תירס מעובד, אשלגן כלורי, מווסתי חומציות ( חומצה מאלית, סודיום דיאצטט), צבעי מאכל( תמצית פפריקה, כורכומין), מחזקי טעם ( E627, E631) , ממתיק (סוכרלוז), חומרי טעם וריח.",
         "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1222,110 +827,199 @@
           "tier": "functional",
           "function_he": "צבע מאכל צהוב ממקור כורכום",
           "explanation_he": "כורכומין הוא פיגמנט צהוב המופק מהכורכום, ומשמש כצבע מאכל טבעי."
+        },
+        {
+          "e_number": "E955",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך."
         }
       ]
     },
     {
-      "id": "bsip1_snack_7290110551926",
-      "name": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/361707_7290110551926.jpg",
-      "score": 36,
-      "grade": "D",
-      "insightLine": "אחד החטיפים הבודדים במדף עם 10 גרם סיבים ל-100 גרם.\nרוב הקלוריות כאן מגיעות מהשומן.",
+      "id": "bsip1_snack_7290118421603",
+      "name": "אפרופו קרמל 40 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12552902_7290118421603.jpg",
+      "score": 32,
+      "grade": "E",
+      "insightLine": "מהפרופילים הנקיים במדף: רק 120 מ\"ג נתרן ל-100 גרם.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
       "confidence": "partial",
       "subPool": "chips",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 538.0,
-          "protein": 3.4,
-          "fat": 36.0,
-          "carbs": 45.0,
-          "fiber": 9.9,
-          "sodium": 400,
-          "sugar": 25.0,
-          "saturatedFat": 3.2
+          "energyKcal": 219,
+          "protein": 2.0,
+          "fat": 12.6,
+          "carbs": 24.4,
+          "fiber": null,
+          "sodium": 120,
+          "sugar": 14.0,
+          "saturatedFat": 5.2
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "קרם בטעם קרמל מלוח (57%) (סוכר, חמאת קקאו, אבקת חלב, מתחלבים (לציטין לפתית, E476), סוכר שרוף (סוכר, מלטודקסטרין), מלח, חומרי טעם וריח), אפרופו (43%), (גריסי תירס (29%), שמנים מהצומח, סוכר, מלח, חומר תפיחה (פוטסיום ביקרבונט)).",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
-          "10 גרם סיבים ל-100 גרם"
+          "נתרן נמוך: 120 מ\"ג ל-100 גרם"
         ],
         "limitingFactors": [
-          "25 גרם סוכר ל-100 גרם",
-          "36 גרם שומן ל-100 גרם"
+          "5 גרם שומן רווי ל-100 גרם",
+          "מעובד מאוד, עם רשימת רכיבים ארוכה ורחוקה מהחומר הגלם."
         ],
         "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
         "comparisonContext": ""
       },
-      "barcode": "7290110551926",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290118421603",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
+      "confidence_sub_reason": "partial_field",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        }
+      ]
     },
     {
-      "id": "bsip1_snack_8851016002685",
-      "name": "מקלות תפו\"א צ'יפס+ מטבל צ'ילי קלבי 55 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/8/8851016002685_s1_1504-24-2025_09-03-53.jpg",
-      "score": 33,
+      "id": "bsip1_snack_7290017928661",
+      "name": "שברי בייגלה בטעם צ'דר 300 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290017928661_front05-29-2025_07-50-31.jpg",
+      "score": 30,
       "grade": "E",
-      "insightLine": "חטיף מלוח מאוד: 836 מ\"ג נתרן ל-100 גרם.\nכולל 8 גרם שומן רווי ל-100 גרם.",
+      "insightLine": "חטיף מלוח מאוד: 600 מ\"ג נתרן ל-100 גרם.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+      "confidence": "partial",
+      "subPool": "pretzels",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 492,
+          "protein": null,
+          "fat": 24.0,
+          "carbs": 61.0,
+          "fiber": null,
+          "sodium": 600,
+          "sugar": 6.0,
+          "saturatedFat": 2.3
+        },
+        "ingredients": "קמח חיטה (מכיל גלוטן ), שמן חמניות מזוכך, תערובת בטעם צ''דר 10% (מלטודקסטרין, מלח שולחן, סוכר לבן, אבקת גבינה 12%, אבקת חלב כחוש, קמח אורז, אבקת בצל, פלפל לבן טחון, אבקת עגבניות, אבקת שום, מווסתי חומציות (טרי קלציום פוספאט, טרי סודיום פוספאט, חומצה ציטרית), צבע מאכל (מיצוי פפריקה)), מתחלב E-471, שמרים, מווסת חומציות E-524.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "600 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290017928661",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "likely-neutral",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        }
+      ]
+    },
+    {
+      "id": "bsip1_snack_7290104500572",
+      "name": "אפרופו איטליאנו 50 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6925783_7290104500572.jpg",
+      "score": 30,
+      "grade": "E",
+      "insightLine": "חטיף עתיר שומן: 30 גרם שומן ל-100 גרם, רובו מהטיגון והשמן.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
       "confidence": "partial",
       "subPool": "chips",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 472.727272727273,
-          "protein": 3.63636363636364,
-          "fat": 20.0,
-          "carbs": 70.9090909090909,
-          "fiber": 3.63636363636364,
-          "sodium": 836,
-          "sugar": 1.81818181818182,
-          "saturatedFat": 8.18181818181818
+          "energyKcal": 539,
+          "protein": 4.7,
+          "fat": 30.0,
+          "carbs": 62.5,
+          "fiber": null,
+          "sodium": 340,
+          "sugar": 4.2,
+          "saturatedFat": 3.5
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "גריסי תירס (63%), שמנים מהצומח, סוכרים, חומר תפיחה (פוטסיום ביקרבונט), קמח אורז*, פלפל אדום מיובש, מלטודקסטרין, מלח, מחזקי טעם (מונוסודיום גלוטמט, E635*), שמרים מיובשים, תמצית שמרים*, תחליף מלח (מלח אשלגן), אבקת שום, אבקת בצל, חומרי טעם וריח, תמציות תבלינים, חומצת מאכל (חומצה אסקורבית). *לא קיים במוצר כשר לפסח",
+        "confidenceLabel": "קטגוריה משוערת",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "כמעט בלי סוכר"
-        ],
+        "positiveSignals": [],
         "limitingFactors": [
-          "836 מ\"ג נתרן ל-100 גרם",
-          "8 גרם שומן רווי ל-100 גרם"
+          "30 גרם שומן ל-100 גרם",
+          "מעובד מאוד, עם רשימת רכיבים ארוכה ורחוקה מהחומר הגלם."
         ],
         "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
         "comparisonContext": ""
       },
-      "barcode": "8851016002685",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "barcode": "7290104500572",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        }
+      ]
     },
     {
       "id": "bsip1_snack_4011800528416",
       "name": "קורני חטיפי דגנים בוטנים מתוק מלוח",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/4/0/4011800528416_s1_1507-09-2025_07-38-41.jpg",
-      "score": 30,
+      "score": 24,
       "grade": "E",
       "insightLine": "אחד החטיפים הבודדים במדף עם 12 גרם חלבון ל-100 גרם.\nכולל 11 גרם שומן רווי ל-100 גרם.",
-      "confidence": "partial",
+      "confidence": "verified",
       "subPool": "chips",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 497.0,
-          "protein": 11.6,
-          "fat": 26.9,
-          "carbs": 50.1,
-          "fiber": 4.0,
-          "sodium": 356,
-          "sugar": 22.3,
-          "saturatedFat": 11.0
+          "energyKcal": 492,
+          "protein": 12.3,
+          "fat": 24.9,
+          "carbs": 52.5,
+          "fiber": 3.9,
+          "sodium": 377,
+          "sugar": 22.5,
+          "saturatedFat": 10.6
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "בוטנים קלויים (27%), סירופ גלוקוז, פצפוצי דגנים (14%) (קמח חיטה(10%, מכיל גלוטן), סוכר לבן, קמח אורז(2%), קמח תירס(2%), מיצוי לתת שעורה (מכיל גלוטן), מלח, סירופ סוכר לבן מקורמל), סירופ גלוקוז - פרוקטוז, פיתי דגנים מלאים (8%), (שיבולת שועל (6%, מכיל גלוטן), חיטה(2%, מכיל גלוטן)),שמן דקלים, אבקת חלב רזה, פתיתי תירס (4%) (תירס (4%), מלח, מיצוי לתת שעורה (מכיל גלוטן)), מחית בוטנים(4%), סוכר לבן , שמן קוקוס, מלח, אבקת קקאו מופחת שומן, סירופ סוכר לבן מקורמל, מתחלב (לציטין חמניה).",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "12 גרם חלבון ל-100 גרם"
@@ -1338,166 +1032,55 @@
         "comparisonContext": ""
       },
       "barcode": "4011800528416",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_snack_7290000066295",
       "name": "במבה מתוקה מחומרים טבעיים 30 גרם",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/6/9/6920896_7290000066295.jpg",
-      "score": 30,
+      "score": 19,
       "grade": "E",
-      "insightLine": "מהפרופילים הנקיים במדף: רק 33 מ\"ג נתרן ל-100 גרם.\nהסוכר הוא הסיפור כאן, לא המליחות.",
+      "insightLine": "מהפרופילים הנקיים במדף: רק 20 מ\"ג נתרן ל-100 גרם.\nהסוכר הוא הסיפור כאן, לא המליחות.",
       "confidence": "partial",
       "subPool": "puffed",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 470.0,
-          "protein": 3.33333333333333,
-          "fat": 15.0,
-          "carbs": 80.0,
+          "energyKcal": 464,
+          "protein": 3.0,
+          "fat": 15.5,
+          "carbs": 78.0,
           "fiber": null,
-          "sodium": 33,
-          "sugar": 43.3333333333333,
-          "saturatedFat": 6.66666666666667
+          "sodium": 20,
+          "sugar": 35.0,
+          "saturatedFat": 1.6
         },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": "גריסי תירס, סוכרים, שמן חמניות, מלטודקסטרין, צבע מאכל טבעי (רכז סלק), חומר מתחלב (לציטין סויה), חומרי טעם וריח, רכז לימון.",
+        "confidenceLabel": "קטגוריה משוערת",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
-          "נתרן נמוך: 33 מ\"ג ל-100 גרם"
+          "נתרן נמוך: 20 מ\"ג ל-100 גרם"
         ],
         "limitingFactors": [
-          "7 גרם שומן רווי ל-100 גרם",
-          "43 גרם סוכר ל-100 גרם"
+          "35 גרם סוכר ל-100 גרם",
+          "מעובד מאוד, עם רשימת רכיבים ארוכה ורחוקה מהחומר הגלם."
         ],
         "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
         "comparisonContext": ""
       },
       "barcode": "7290000066295",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_7290118421603",
-      "name": "אפרופו קרמל 40 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12552902_7290118421603.jpg",
-      "score": 18,
-      "grade": "E",
-      "insightLine": "חטיף מתוק שמתחזה למלוח: 35 גרם סוכר ל-100 גרם.\nרוב הקלוריות כאן מגיעות מהשומן.",
-      "confidence": "partial",
-      "subPool": "chips",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 547.5,
-          "protein": 5.0,
-          "fat": 31.5,
-          "carbs": 61.0,
-          "fiber": null,
-          "sodium": 300,
-          "sugar": 35.0,
-          "saturatedFat": 13.0
-        },
-        "ingredients": "",
-        "confidenceLabel": "חסרים נתוני רכיבים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "13 גרם שומן רווי ל-100 גרם",
-          "35 גרם סוכר ל-100 גרם"
-        ],
-        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290118421603",
-      "confidence_label_he": "חסרים נתוני רכיבים",
-      "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד.",
-      "confidence_sub_reason": "missing_ingredients"
-    },
-    {
-      "id": "bsip1_snack_4014400925319",
-      "name": "פופקורן בציפוי קרמל 140 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/4/0/4014400925319_s1_1507-03-2022_12-22-26.jpg",
-      "score": 17,
-      "grade": "E",
-      "insightLine": "חטיף מתוק שמתחזה למלוח: 53 גרם סוכר ל-100 גרם.\nכולל 10 גרם שומן רווי ל-100 גרם.",
-      "confidence": "partial",
-      "subPool": "popcorn",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 456.0,
-          "protein": 2.9,
-          "fat": 16.1,
-          "carbs": 72.9,
-          "fiber": null,
-          "sodium": 511,
-          "sugar": 53.2,
-          "saturatedFat": 10.2
-        },
-        "ingredients": "",
-        "confidenceLabel": "מבוסס על נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "511 מ\"ג נתרן ל-100 גרם",
-          "10 גרם שומן רווי ל-100 גרם",
-          "53 גרם סוכר ל-100 גרם"
-        ],
-        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-        "comparisonContext": ""
-      },
-      "barcode": "4014400925319",
-      "confidence_label_he": "מבוסס על נתונים חלקיים",
-      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field"
-    },
-    {
-      "id": "bsip1_snack_7290116537375",
-      "name": "קליק כריות נוגט 65 גרם",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116537375.jpg",
-      "score": 16,
-      "grade": "E",
-      "insightLine": "חטיף מתוק שמתחזה למלוח: 48 גרם סוכר ל-100 גרם.\nפרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-      "confidence": "partial",
-      "subPool": "chips",
-      "retailer": "yochananof",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 486.153846153846,
-          "protein": 6.61538461538461,
-          "fat": 20.9230769230769,
-          "carbs": 67.8461538461538,
-          "fiber": null,
-          "sodium": null,
-          "sugar": 48.1538461538462,
-          "saturatedFat": null
-        },
-        "ingredients": "רכיבים שוקולד חלב (53%) (מכיל לציטין סויה), דגנים פריכים במילוי נוגט (45%) (רכיבי דגנים (20%) (קמח חיטה (מכיל גלוטן), קמח תירס, סובין חיטה), נוגט (18%) (סוכר, אגוזי לוז (4%) שמן צמחי, אבקת קקאו, שמן צמחי מוקשה, מתחלב (לציטין מסויה)), סוכר, אבקת קקאן, מלטודקסטרין, שמן צמחי, מלח, חומר מונע התגיישות (מגנזיום קרבונט), מתחלב (E471), מים, מייצב (אקציה גאם), סוכר. מינימום מוצקי קקאו בשוקולד 29% עלול להכיל אגוזי פקאן, אגוזי קוקוס, אגוזי קשיו, בוטנים, שומשום, שקדים",
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "48 גרם סוכר ל-100 גרם"
-        ],
-        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
-        "comparisonContext": ""
-      },
-      "barcode": "7290116537375",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition",
+      "confidence_label_he": "קטגוריה משוערת",
+      "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
+      "confidence_sub_reason": "inferred_category",
       "d4_additives": [
         {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "likely-neutral",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+          "e_number": "E162",
+          "name_he": "אדום סלק",
+          "tier": "functional",
+          "function_he": "צבע מאכל אדום ממקור סלק",
+          "explanation_he": "אדום סלק הוא פיגמנט המופק מסלק ומשמש כצבע אדום טבעי."
         }
       ]
     },
@@ -1505,32 +1088,30 @@
       "id": "bsip1_snack_7290112494313",
       "name": "קליק קורנפלקס 65 גרם",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290112494313.jpg",
-      "score": 14,
+      "score": 18,
       "grade": "E",
-      "insightLine": "מהפרופילים הנקיים במדף: רק 65 מ\"ג נתרן ל-100 גרם.\nכולל 12 גרם שומן רווי ל-100 גרם.",
+      "insightLine": "חטיף מתוק שמתחזה למלוח: 46 גרם סוכר ל-100 גרם.\nכולל 12 גרם שומן רווי ל-100 גרם.",
       "confidence": "partial",
       "subPool": "chips",
       "retailer": "yochananof",
       "expansion": {
         "nutrition": {
-          "energyKcal": 483.07692,
-          "protein": 5.2,
-          "fat": 20.76923,
-          "carbs": 66.15385,
+          "energyKcal": 483,
+          "protein": 8.0,
+          "fat": 20.7,
+          "carbs": 66.2,
           "fiber": null,
-          "sodium": 65,
-          "sugar": 29.6,
+          "sodium": 250,
+          "sugar": 45.5,
           "saturatedFat": 12.0
         },
-        "ingredients": "",
+        "ingredients": "שוקולד חלב (73%), פתיתי תירס (26%) (קמח תירס (23.1%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמינים ומינרלים), מים, מייצב (אקציה גאם), סוכר.",
         "confidenceLabel": "מבוסס על נתונים חלקיים",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "נתרן נמוך: 65 מ\"ג ל-100 גרם"
-        ],
+        "positiveSignals": [],
         "limitingFactors": [
           "12 גרם שומן רווי ל-100 גרם",
-          "30 גרם סוכר ל-100 גרם"
+          "46 גרם סוכר ל-100 גרם"
         ],
         "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
         "comparisonContext": ""
@@ -1548,6 +1129,92 @@
           "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
         }
       ]
+    },
+    {
+      "id": "bsip1_snack_7290116537375",
+      "name": "קליק כריות נוגט 65 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116537375.jpg",
+      "score": 16,
+      "grade": "E",
+      "insightLine": "מהפרופילים הנקיים במדף: רק 106 מ\"ג נתרן ל-100 גרם.\nהסוכר הוא הסיפור כאן, לא המליחות.",
+      "confidence": "partial",
+      "subPool": "chips",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 316,
+          "protein": 4.3,
+          "fat": 13.6,
+          "carbs": 44.1,
+          "fiber": null,
+          "sodium": 106,
+          "sugar": 31.3,
+          "saturatedFat": 6.3
+        },
+        "ingredients": "שוקולד חלב (53%), דגנים פריכים במילוי קרם נוגט (45%) [רכיבי דגנים (20.7%) (קמח חיטה (מכיל גלוטן), גריסי תירס, קמח תירס, קמח חיטה מלא), נוגט (18%) (סוכר, שמן צמחי, אגוזי לוז (3.1%), אבקת קקאו, שמן צמחי מוקשה, מתחלב (לציטין לפתית)), סוכר, מלטודקסטרין, אבקת קקאו, שמן צמחי, מלח, חומר מונע התגיישות (מגנזיום קרבונט), מתחלב (E471)], מים, מייצב (אקציה גאם), סוכר.",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "נתרן נמוך: 106 מ\"ג ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "6 גרם שומן רווי ל-100 גרם",
+          "31 גרם סוכר ל-100 גרם"
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290116537375",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
+      "confidence_sub_reason": "partial_field",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "likely-neutral",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        }
+      ]
+    },
+    {
+      "id": "bsip1_snack_4014400925319",
+      "name": "פופקורן בציפוי קרמל 140 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/4/0/4014400925319_s1_1507-03-2022_12-22-26.jpg",
+      "score": 13,
+      "grade": "E",
+      "insightLine": "חטיף מתוק שמתחזה למלוח: 53 גרם סוכר ל-100 גרם.\nכולל 10 גרם שומן רווי ל-100 גרם.",
+      "confidence": "partial",
+      "subPool": "popcorn",
+      "retailer": "yochananof",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 456,
+          "protein": 2.9,
+          "fat": 16.1,
+          "carbs": 72.9,
+          "fiber": null,
+          "sodium": 510,
+          "sugar": 53.2,
+          "saturatedFat": 10.2
+        },
+        "ingredients": "סוכר, גרעיני תירס, סירופ גלוקוז, שומן חמאה, שמנת (חלב) (6.7%), מי גבינה מרוכזים, חמאה, מלח, סירופ סוכר קנים, שמן חמנייה, מתחלב (לציטין סויה), חומרי טעם וריח.",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "510 מ\"ג נתרן ל-100 גרם",
+          "10 גרם שומן רווי ל-100 גרם",
+          "53 גרם סוכר ל-100 גרם"
+        ],
+        "bottomLine": "מהחלשים במדף: פרופיל עתיר שומן, נתרן או סוכר, בלי צד מאזן.",
+        "comparisonContext": ""
+      },
+      "barcode": "4014400925319",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
+      "confidence_sub_reason": "partial_field"
     }
   ]
 }

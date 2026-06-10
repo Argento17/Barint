@@ -1,13 +1,13 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-10T13:18:02.241866Z",
+  "trace_generated_at": "2026-06-10T16:33:44.097581Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_snack_7290100850916",
     "barcode": "7290100850916",
     "product_name_he": "דוריטוס חמוץ חריף 70",
-    "brand": "עלית דוריטוס",
+    "brand": "",
     "source_retailers": [
       "yochananof"
     ],
@@ -37,8 +37,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "sweetener_detected",
-    "very_long_ingredient_list: 20"
+    "sweetener_detected"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
@@ -46,49 +45,43 @@
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
   "L1_observed_signals": {
-    "energy_kcal": 528.0,
+    "energy_kcal": 528,
     "fat_g": 27.0,
     "fat_saturated_g": 2.9,
-    "fat_trans_g": null,
+    "fat_trans_g": 0.5,
     "sodium_mg": 379,
     "carbohydrates_g": 63.0,
     "sugars_g": 1.4,
     "dietary_fiber_g": null,
     "protein_g": 8.2,
-    "ingredient_count": 20,
+    "ingredient_count": 14,
     "ingredient_list": [
-      "תירס (70",
-      "5%)",
-      "שמן חמניות",
-      "סוכר",
+      "תירס (70%)",
+      "שמן צמחי",
       "תערובת תיבול",
-      "חלבון סויה מעובד",
-      "תערובת מלחים (אשלג כלורי",
-      "מלח)",
-      "(סודיום דיאצטט",
-      "חומצה מאלית)  מווסתי חומציות",
-      "(E551",
-      "E552) מונע התגיישות",
-      "צבעי מאכל (תמצית פפריקה",
+      "חלבון תירס מעובד",
+      "אשלגן כלורי",
+      "מווסתי חומציות ( חומצה מאלית",
+      "סודיום דיאצטט)",
+      "צבעי מאכל( תמצית פפריקה",
       "כורכומין)",
-      "מחזקי טעם (E631",
-      "E627)",
-      "ממתיק (אספרטיים)",
+      "מחזקי טעם ( E627",
+      "E631)",
+      "ממתיק (סוכרלוז)",
       "חומרי טעם",
-      "ריח",
-      "aspartam"
+      "ריח"
     ],
-    "ingredient_count_raw": 20,
+    "ingredient_count_raw": 14,
     "ingredient_sanitization": {
-      "raw_count": 20,
-      "clean_count": 20,
+      "raw_count": 14,
+      "clean_count": 14,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
     "ingredient_text_quality": "clean",
     "bsip1_trust_level": "high",
-    "bsip1_trust_score": 0.75,
+    "bsip1_trust_score": 0.85,
     "bsip1_risk_flags": [],
     "nutrition_consistency_status": "consistent",
     "nutrition_consistency_warnings": [],
@@ -118,6 +111,7 @@
     "sweetener_detected": true,
     "sweetener_tier": "C",
     "sweetener_matches": [
+      "סוכרלוז",
       "ממתיק"
     ],
     "additive_marker_count": 1,
@@ -132,15 +126,15 @@
     ],
     "has_seed_oil": true,
     "seed_oil_matches": [
-      "שמן חמניות"
+      "שמן צמחי"
     ],
     "has_palm_oil": false,
     "palm_oil_matches": [],
     "has_whole_grain": false,
     "whole_grain_matches": [],
-    "protein_source": "mixed",
+    "protein_source": "whole_food",
     "protein_source_basis": [
-      "חלבון סויה"
+      "no isolate markers detected"
     ],
     "added_sugar_sources_count": 2,
     "added_sugar_matches": [
@@ -152,8 +146,8 @@
     "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
-    "trans_fat_status": "not_detected",
-    "trans_fat_threshold_declaration_possible": false,
+    "trans_fat_status": "threshold_declaration",
+    "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
     "red_labels": [],
     "red_label_count": 0,
@@ -190,7 +184,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 20,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -206,26 +200,20 @@
     ],
     "fat_pct_of_kcal": 46.02,
     "ingredient_list": [
-      "תירס (70",
-      "5%)",
-      "שמן חמניות",
-      "סוכר",
+      "תירס (70%)",
+      "שמן צמחי",
       "תערובת תיבול",
-      "חלבון סויה מעובד",
-      "תערובת מלחים (אשלג כלורי",
-      "מלח)",
-      "(סודיום דיאצטט",
-      "חומצה מאלית)  מווסתי חומציות",
-      "(E551",
-      "E552) מונע התגיישות",
-      "צבעי מאכל (תמצית פפריקה",
+      "חלבון תירס מעובד",
+      "אשלגן כלורי",
+      "מווסתי חומציות ( חומצה מאלית",
+      "סודיום דיאצטט)",
+      "צבעי מאכל( תמצית פפריקה",
       "כורכומין)",
-      "מחזקי טעם (E631",
-      "E627)",
-      "ממתיק (אספרטיים)",
+      "מחזקי טעם ( E627",
+      "E631)",
+      "ממתיק (סוכרלוז)",
       "חומרי טעם",
-      "ריח",
-      "aspartam"
+      "ריח"
     ]
   },
   "L4_interpreted_concerns": {
@@ -284,24 +272,24 @@
     "nutrient_density": 26.7,
     "calorie_density": 75.0,
     "glycemic_quality": 86.5,
-    "protein_quality": 34.9,
+    "protein_quality": 41.0,
     "additive_quality": 67.0,
     "satiety_support": 18.6,
     "fat_quality": 83.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 6
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=8.2g→41.0, fiber=0g→0.0, weighted 65/35=26.7",
-    "calorie_density": "kcal=528.0, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
+    "calorie_density": "kcal=528, category=whole_food_fat (conf 0.55, relaxed by 1.05x) → 75",
     "glycemic_quality": "90 - sugar_penalty(3.5) + fiber(0.0) + wg(0) = 86.5 (sweetener tier-C)",
-    "protein_quality": "protein=8.2g base=41.0, source=mixed(×0.85) → 34.9",
+    "protein_quality": "protein=8.2g base=41.0, source=whole_food(×1.0) → 41.0",
     "additive_quality": "sprint1_additives=1 base=82 sw tier-C_pen=15→67.0",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.2×3 + 0×5) / 528.0 × 400 = 18.6",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.2×3 + 0×5) / 528 × 400 = 18.6",
     "fat_quality": "EV-012 fat_ratio: fat=27.0g ratio=8.310 base=93.0-seed10-trans0=83.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=20 complexity_pen=24 → 6"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -315,7 +303,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 53.82,
+  "weighted_dimension_score": 54.91,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -415,7 +403,7 @@
     }
   ],
   "binding_cap": 68.0,
-  "score_after_cap": 53.82,
+  "score_after_cap": 54.91,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -473,7 +461,7 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "note": "ingredient_count=20"
+      "note": "ingredient_count=14"
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -489,7 +477,7 @@
   "total_penalty_before_scaling": 18.0,
   "total_penalty_after_scaling": 18.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 35.82,
+  "score_after_penalty": 36.91,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -566,11 +554,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 35.82,
+  "score_after_floors": 36.91,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 35.8,
+  "final_score_estimate": 36.9,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -581,24 +569,24 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.411,
+    "primary_confidence": 0.351,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.285,
+    "secondary_confidence": 0.339,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.127,
-      "D": 0.177,
-      "E": 0.285,
-      "F": 0.411
+      "C": 0.135,
+      "D": 0.175,
+      "E": 0.339,
+      "F": 0.351
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "whole_food_integrity_low",
-      "sweetener_detected",
-      "high_complexity_assembly"
+      "moderate_protein_quality",
+      "sweetener_detected"
     ],
     "classifier_version": "structural_classifier_v1"
   }

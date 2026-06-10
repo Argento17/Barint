@@ -4,8 +4,8 @@
   "canonical_product_id": "bsip1_snack_7290000066318",
   "barcode": "7290000066318",
   "canonical_name_he": "במבה קלאסי 80 ג'",
-  "canonical_name_en": "במבה",
-  "brand": "אסם",
+  "canonical_name_en": "",
+  "brand": "",
   "package_size_g": null,
   "source_retailers": [
     "yochananof"
@@ -18,27 +18,34 @@
   ],
   "price_ils": null,
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 535.0,
+    "energy_kcal": 534,
     "fat_g": 30.0,
-    "fat_saturated_g": 3.875,
-    "fat_trans_g": 0.0,
+    "fat_saturated_g": 3.9,
+    "fat_trans_g": 0.5,
     "sodium_mg": 390,
     "carbohydrates_g": 49.0,
     "sugars_g": 3.5,
     "dietary_fiber_g": null,
     "protein_g": 17.0
   },
-  "ingredients_text_he": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח,  ברזל, ויטמינים",
+  "ingredients_text_he": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח, ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין E, ויטמין B1 (תיאמין), ויטמין B6, ויטמין A, חומצה פולית, ויטמין B12), ברזל.",
   "ingredients_list": [
     "בוטנים טחונים (54%)",
     "גריסי תירס",
     "שמן חמניות",
     "מלח",
-    "ברזל",
-    "יטמינים"
+    "יטמינים (ויטמין C",
+    "יטמין B3 (ניאצין)",
+    "יטמין E",
+    "יטמין B1 (תיאמין)",
+    "יטמין B6",
+    "יטמין A",
+    "חומצה פולית",
+    "יטמין B12)",
+    "ברזל"
   ],
-  "ingredients_raw": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח,  ברזל, ויטמינים",
-  "ingredient_count": 6,
+  "ingredients_raw": "בוטנים טחונים (54%), גריסי תירס, שמן חמניות, מלח, ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין E, ויטמין B1 (תיאמין), ויטמין B6, ויטמין A, חומצה פולית, ויטמין B12), ברזל.",
+  "ingredient_count": 13,
   "claims_raw": "",
   "claims": [],
   "nova_proxy": null,
@@ -52,39 +59,41 @@
   "nutrition_basis_detected": "per_100g",
   "nutrition_consistency_status": "consistent",
   "ingredient_text_quality": "clean",
-  "canonical_trust_score": 0.75,
+  "canonical_trust_score": 0.85,
   "canonical_trust_level": "high",
   "canonical_risk_flags": [],
   "confidence": {
     "identity_confidence": "high",
     "barcode_confidence": "confirmed",
     "nutrition_confidence": "confirmed_per_100g",
-    "matched_by": "yochananof_catalog_real_ean + off_panel",
+    "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
     "observation_count": 1
   },
   "conflicts_summary": [],
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": null,
-  "enrichment_run_id": "run_salty_snacks_bsip1_real_001",
-  "enriched_at": "2026-06-10T13:17:54.947627+00:00",
+  "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
+  "enriched_at": "2026-06-10T16:33:43.692895+00:00",
   "panel_provenance": {
-    "source": "open_food_facts",
-    "source_id": "7290000066318",
-    "source_url": "https://world.openfoodfacts.org/api/v2/product/7290000066318.json",
-    "fetched_at": "2026-06-10T13:09:31Z",
-    "client_version": "1.0",
-    "verification_status": "candidate"
+    "panel_source": "retailer_product_page",
+    "retailer": "yochananof",
+    "acquisition": "yochananof_storefront_product_modal",
+    "trans_threshold_declared": [
+      "fat_trans_g"
+    ],
+    "raw_rows": {
+      "protein_g": "חלבונים (גרם) 17",
+      "carbohydrates_g": "סך הפחמימות (גרם) 49",
+      "sugars_g": "סוכרים מתוך פחמימות (גרם) 3.5",
+      "fat_g": "שומנים (גרם) 30",
+      "fat_saturated_g": "חומצות שומן רוויות (גרם) 3.9",
+      "fat_trans_g": "חומצות שומן טראנס (גרם) L 0.5",
+      "sodium_mg": "נתרן (מג) 390",
+      "energy_kcal": "אנרגיה (קלוריות) 534"
+    },
+    "no_off": true
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean",
-  "data_corrections": [
-    {
-      "field": "normalized_nutrition_per_100g.fat_trans_g",
-      "old_value": 0.625,
-      "new_value": 0.0,
-      "reason": "OFF trans-fat per-100g (0.625) is the Israeli '<1g' serving THRESHOLD DECLARATION (serving=0.5g, serving_fraction=0.8), not a measured value. No PHVO/hydrogenated-oil marker present. Bamba classic: 0.5g/0.80 serving (kcal 428/535). high_concern -20 on artifact.",
-      "task": "TASK-234",
-      "corrected_at_source": "open_food_facts (authoritative serving-level re-probe, off_reprobe_task234.json)"
-    }
-  ]
+  "panel_source": "retailer_product_page",
+  "identity_source": "yochananof_catalog_harvest_real_ean"
 }

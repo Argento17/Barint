@@ -1,79 +1,81 @@
 {
   "run_id": "run_salty_snacks_002",
-  "generated": "2026-06-10 13:18 UTC",
+  "generated": "2026-06-10 16:33 UTC",
   "engine": "proto_v0 / BARI_RECAL_P0=on",
   "change": "EV-043 industrial-extrusion NOVA 4 signal (TASK-216)",
   "source": "Shufersal + Yohananof + Carrefour; deduped by barcode",
-  "processed": 49,
-  "scored": 47,
+  "processed": 25,
+  "scored": 25,
   "errors": 0,
   "grade_distribution": {
-    "E": 9,
-    "C": 21,
-    "B": 12,
-    "D": 5
+    "E": 8,
+    "D": 4,
+    "C": 9,
+    "A": 1,
+    "B": 3
   },
-  "score_median": 60.0,
+  "score_median": 54.0,
   "score_range": [
-    0,
-    77.2
+    13.3,
+    85
   ],
   "nova_distribution": {
-    "2": 39,
-    "3": 7,
-    "4": 3
+    "3": 12,
+    "4": 7,
+    "1": 1,
+    "2": 5
   },
   "top5": [
     {
-      "name": "פריכיות משולשות מלח ים",
-      "score": 77.2,
-      "grade": "B"
-    },
-    {
       "name": "פריכונים מאורז מלא ללא תוספת מלח",
-      "score": 75.7,
+      "score": 85,
+      "grade": "A"
+    },
+    {
+      "name": "תפוציפס קראנצ'",
+      "score": 70,
       "grade": "B"
     },
     {
-      "name": "חטיפי פריכונים מאורז מלא",
-      "score": 72.5,
+      "name": "ציטוס פופקורן טבעי 60 גרם",
+      "score": 70,
       "grade": "B"
     },
     {
-      "name": "פריכיות דקות עם קינואה",
-      "score": 71.3,
+      "name": "פריכיות משולשות מלח ים",
+      "score": 68.3,
       "grade": "B"
     },
     {
-      "name": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
-      "score": 71.3,
-      "grade": "B"
+      "name": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
+      "score": 60.7,
+      "grade": "C"
     }
   ],
   "bottom5": [
     {
-      "name": "פיטנס קרקר דק סלק 140 גרם",
-      "score": 0,
-      "grade": "E"
-    },
-    {
-      "name": "אפרופו קרמל 40 גרם",
-      "score": 0,
+      "name": "פופקורן בציפוי קרמל 140 גרם",
+      "score": 13.3,
       "grade": "E"
     },
     {
       "name": "קליק כריות נוגט 65 גרם",
-      "score": 15.5,
-      "grade": "E"
-    },
-    {
-      "name": "פופקורן בציפוי קרמל 140 גרם",
-      "score": 16.7,
+      "score": 15.9,
       "grade": "E"
     },
     {
       "name": "קליק קורנפלקס 65 גרם",
-      "score": 25.0,
+      "score": 17.6,
+      "grade": "E"
+    },
+    {
+      "name": "במבה מתוקה מחומרים טבעיים 30 גרם",
+      "score": 19.1,
+      "grade": "E"
+    },
+    {
+      "name": "קורני חטיפי דגנים בוטנים מתוק מלוח",
+      "score": 23.6,
       "grade": "E"
     }
   ],
@@ -82,10 +84,10 @@
       "pid": "bsip1_snack_4011800528416",
       "name": "קורני חטיפי דגנים בוטנים מתוק מלוח",
       "score_001": null,
-      "score_002": 29.6,
-      "score_delta": 29.6,
+      "score_002": 23.6,
+      "score_delta": 23.6,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "E"
     },
@@ -93,10 +95,10 @@
       "pid": "bsip1_snack_4014400925319",
       "name": "פופקורן בציפוי קרמל 140 גרם",
       "score_001": null,
-      "score_002": 16.7,
-      "score_delta": 16.7,
+      "score_002": 13.3,
+      "score_delta": 13.3,
       "nova_001": null,
-      "nova_002": 3,
+      "nova_002": 4,
       "grade_001": null,
       "grade_002": "E"
     },
@@ -104,23 +106,12 @@
       "pid": "bsip1_snack_5701932026971",
       "name": "פופקורן בטעם חמאה הוט פופ 6 יח'",
       "score_001": null,
-      "score_002": 50,
-      "score_delta": 50,
+      "score_002": 39.0,
+      "score_delta": 39.0,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 4,
       "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290000060071",
-      "name": "חטיפי פריכונים מאורז מלא",
-      "score_001": null,
-      "score_002": 72.5,
-      "score_delta": 72.5,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
+      "grade_002": "D"
     },
     {
       "pid": "bsip1_snack_7290000066141",
@@ -137,10 +128,10 @@
       "pid": "bsip1_snack_7290000066295",
       "name": "במבה מתוקה מחומרים טבעיים 30 גרם",
       "score_001": null,
-      "score_002": 29.9,
-      "score_delta": 29.9,
+      "score_002": 19.1,
+      "score_delta": 19.1,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 4,
       "grade_001": null,
       "grade_002": "E"
     },
@@ -148,8 +139,8 @@
       "pid": "bsip1_snack_7290000066318",
       "name": "במבה קלאסי 80 ג'",
       "score_001": null,
-      "score_002": 61.2,
-      "score_delta": 61.2,
+      "score_002": 57.0,
+      "score_delta": 57.0,
       "nova_001": null,
       "nova_002": 3,
       "grade_001": null,
@@ -159,65 +150,32 @@
       "pid": "bsip1_snack_7290000066332",
       "name": "אפרופו 50 ג'",
       "score_001": null,
-      "score_002": 64.8,
-      "score_delta": 64.8,
+      "score_002": 38.9,
+      "score_delta": 38.9,
       "nova_001": null,
       "nova_002": 3,
       "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290000068770",
-      "name": "במבה יום הולדת 80 גרם",
-      "score_001": null,
-      "score_002": 64.6,
-      "score_delta": 64.6,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
+      "grade_002": "D"
     },
     {
       "pid": "bsip1_snack_7290000069364",
       "name": "פריכונים מאורז מלא ללא תוספת מלח",
       "score_001": null,
-      "score_002": 75.7,
-      "score_delta": 75.7,
+      "score_002": 85,
+      "score_delta": 85,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 1,
       "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_7290000070919",
-      "name": "בייגלה רשתות מלח 400 גרם",
-      "score_001": null,
-      "score_002": 60.0,
-      "score_delta": 60.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
+      "grade_002": "A"
     },
     {
       "pid": "bsip1_snack_7290000071008",
       "name": "בייגלה שטוחים מלח 60 גרם",
       "score_001": null,
-      "score_002": 60.0,
-      "score_delta": 60.0,
+      "score_002": 55.4,
+      "score_delta": 55.4,
       "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290000076133",
-      "name": "בייגלה שמיניות קטנות 400 גרם",
-      "score_001": null,
-      "score_002": 60.0,
-      "score_delta": 60.0,
-      "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "C"
     },
@@ -225,19 +183,8 @@
       "pid": "bsip1_snack_7290000420325",
       "name": "פופקורן בטעם טבעי למיקרוגל חמישייה",
       "score_001": null,
-      "score_002": 54.0,
-      "score_delta": 54.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290004943738",
-      "name": "צ'יפס אמריקאי מילוטל 1.5 ק\"ג",
-      "score_001": null,
-      "score_002": 63.4,
-      "score_delta": 63.4,
+      "score_002": 60,
+      "score_delta": 60,
       "nova_001": null,
       "nova_002": 2,
       "grade_001": null,
@@ -258,10 +205,10 @@
       "pid": "bsip1_snack_7290017928364",
       "name": "בייגלה XL עם מלח 300 גרם",
       "score_001": null,
-      "score_002": 60.0,
-      "score_delta": 60.0,
+      "score_002": 56.2,
+      "score_delta": 56.2,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "C"
     },
@@ -269,34 +216,12 @@
       "pid": "bsip1_snack_7290017928661",
       "name": "שברי בייגלה בטעם צ'דר 300 גרם",
       "score_001": null,
-      "score_002": 57.7,
-      "score_delta": 57.7,
+      "score_002": 30.2,
+      "score_delta": 30.2,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290018198148",
-      "name": "קריספי צ'יפס קלאסי תפוגן 1.25 ק\"ג",
-      "score_001": null,
-      "score_002": 66.3,
-      "score_delta": 66.3,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_7290018198254",
-      "name": "קריספי צ'יפס פוטטוס תפוגן 1.25 ק\"ג",
-      "score_001": null,
-      "score_002": 67.0,
-      "score_delta": 67.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
+      "grade_002": "E"
     },
     {
       "pid": "bsip1_snack_7290018893654",
@@ -305,27 +230,16 @@
       "score_002": 60.0,
       "score_delta": 60.0,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290100687109",
-      "name": "במבה במילוי קרם נוגט 60 גרם",
-      "score_001": null,
-      "score_002": 32.0,
-      "score_delta": 32.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "E"
     },
     {
       "pid": "bsip1_snack_7290100850916",
       "name": "דוריטוס חמוץ חריף 70",
       "score_001": null,
-      "score_002": 35.8,
-      "score_delta": 35.8,
+      "score_002": 36.9,
+      "score_delta": 36.9,
       "nova_001": null,
       "nova_002": 4,
       "grade_001": null,
@@ -335,87 +249,32 @@
       "pid": "bsip1_snack_7290104500572",
       "name": "אפרופו איטליאנו 50 גרם",
       "score_001": null,
-      "score_002": 41.8,
-      "score_delta": 41.8,
+      "score_002": 30.2,
+      "score_delta": 30.2,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 4,
       "grade_001": null,
-      "grade_002": "D"
-    },
-    {
-      "pid": "bsip1_snack_7290105693341",
-      "name": "במבה מארז 10*25 גרם",
-      "score_001": null,
-      "score_002": 61.6,
-      "score_delta": 61.6,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290106573314",
-      "name": "חטיף קריספי אפוי כפרי 150 גרם",
-      "score_001": null,
-      "score_002": 59.0,
-      "score_delta": 59.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290106574953",
-      "name": "בייגלה שטוחים שומשום 300 גרם",
-      "score_001": null,
-      "score_002": 60.0,
-      "score_delta": 60.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
+      "grade_002": "E"
     },
     {
       "pid": "bsip1_snack_7290110551926",
       "name": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
       "score_001": null,
-      "score_002": 36.1,
-      "score_delta": 36.1,
+      "score_002": 60.7,
+      "score_delta": 60.7,
       "nova_001": null,
       "nova_002": 2,
       "grade_001": null,
-      "grade_002": "D"
+      "grade_002": "C"
     },
     {
       "pid": "bsip1_snack_7290110560317",
       "name": "פריכיות משולשות מלח ים",
       "score_001": null,
-      "score_002": 77.2,
-      "score_delta": 77.2,
+      "score_002": 68.3,
+      "score_delta": 68.3,
       "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_7290111564277",
-      "name": "פריכיות דקות 3 דגנים",
-      "score_001": null,
-      "score_002": 70.6,
-      "score_delta": 70.6,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_7290111564291",
-      "name": "פריכיות דקות עם קינואה",
-      "score_001": null,
-      "score_002": 71.3,
-      "score_delta": 71.3,
-      "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "B"
     },
@@ -423,63 +282,41 @@
       "pid": "bsip1_snack_7290112494313",
       "name": "קליק קורנפלקס 65 גרם",
       "score_001": null,
-      "score_002": 25.0,
-      "score_delta": 25.0,
+      "score_002": 17.6,
+      "score_delta": 17.6,
       "nova_001": null,
       "nova_002": 3,
       "grade_001": null,
       "grade_002": "E"
     },
     {
-      "pid": "bsip1_snack_7290112965684",
-      "name": "פיטנס חטיף מולטיגריין עשבי תיבול 25 גרם",
+      "pid": "bsip1_snack_7290112967381",
+      "name": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
       "score_001": null,
-      "score_002": 54.4,
-      "score_delta": 54.4,
+      "score_002": 54.0,
+      "score_delta": 54.0,
       "nova_001": null,
-      "nova_002": 2,
+      "nova_002": 3,
       "grade_001": null,
       "grade_002": "C"
     },
     {
-      "pid": "bsip1_snack_7290112967381",
-      "name": "חטיפי פריכיות דגנים וקטניות בתיבול מלח ים",
+      "pid": "bsip1_snack_7290115679960",
+      "name": "ציטוס פופקורן טבעי 60 גרם",
       "score_001": null,
-      "score_002": 71.3,
-      "score_delta": 71.3,
+      "score_002": 70,
+      "score_delta": 70,
       "nova_001": null,
       "nova_002": 2,
       "grade_001": null,
       "grade_002": "B"
     },
     {
-      "pid": "bsip1_snack_7290112968807",
-      "name": "פיטנס קרקר דק סלק 140 גרם",
-      "score_001": null,
-      "score_002": 0,
-      "score_delta": 0,
-      "nova_001": null,
-      "nova_002": 3,
-      "grade_001": null,
-      "grade_002": "E"
-    },
-    {
-      "pid": "bsip1_snack_7290115679960",
-      "name": "ציטוס פופקורן טבעי 60 גרם",
-      "score_001": null,
-      "score_002": 62.9,
-      "score_delta": 62.9,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
       "pid": "bsip1_snack_7290116537375",
       "name": "קליק כריות נוגט 65 גרם",
       "score_001": null,
-      "score_002": 15.5,
-      "score_delta": 15.5,
+      "score_002": 15.9,
+      "score_delta": 15.9,
       "nova_001": null,
       "nova_002": 3,
       "grade_001": null,
@@ -489,8 +326,8 @@
       "pid": "bsip1_snack_7290117035009",
       "name": "גרעיני תירס לפופקורן במיקרוגל בתוספת מלח 5*100 גרם",
       "score_001": null,
-      "score_002": 61.5,
-      "score_delta": 61.5,
+      "score_002": 60,
+      "score_delta": 60,
       "nova_001": null,
       "nova_002": 2,
       "grade_001": null,
@@ -500,100 +337,23 @@
       "pid": "bsip1_snack_7290118421603",
       "name": "אפרופו קרמל 40 גרם",
       "score_001": null,
-      "score_002": 0,
-      "score_delta": 0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "E"
-    },
-    {
-      "pid": "bsip1_snack_7290118426202",
-      "name": "במבה ביסלי גריל מיקס 70 גרם",
-      "score_001": null,
-      "score_002": 59.2,
-      "score_delta": 59.2,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290118426226",
-      "name": "במבה ביסלי בצל מיקס 70 גרם",
-      "score_001": null,
-      "score_002": 58.7,
-      "score_delta": 58.7,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7290118426240",
-      "name": "במבה ביסלי ברביקיו מיקס 70 גרם",
-      "score_001": null,
-      "score_002": 44.0,
-      "score_delta": 44.0,
+      "score_002": 31.6,
+      "score_delta": 31.6,
       "nova_001": null,
       "nova_002": 4,
       "grade_001": null,
-      "grade_002": "D"
+      "grade_002": "E"
     },
     {
       "pid": "bsip1_snack_7290119373345",
       "name": "פריכיות משולשות תפו\"א ואפונה",
       "score_001": null,
-      "score_002": 66.9,
-      "score_delta": 66.9,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_7290122782615",
-      "name": "קרקר דק כוסמין ודבש פיטנס 140 גרם",
-      "score_001": null,
-      "score_002": 64.4,
-      "score_delta": 64.4,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "C"
-    },
-    {
-      "pid": "bsip1_snack_7702024074625",
-      "name": "חטיפי קרקר פיטנס חיטה מלאה 234 גרם",
-      "score_001": null,
-      "score_002": 67.0,
-      "score_delta": 67.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "B"
-    },
-    {
-      "pid": "bsip1_snack_8851016002685",
-      "name": "מקלות תפו\"א צ'יפס+ מטבל צ'ילי קלבי 55 גרם",
-      "score_001": null,
-      "score_002": 33.0,
-      "score_delta": 33.0,
-      "nova_001": null,
-      "nova_002": 2,
-      "grade_001": null,
-      "grade_002": "E"
-    },
-    {
-      "pid": "bsip1_snack_9322969000022",
-      "name": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
-      "score_001": null,
-      "score_002": 68.4,
-      "score_delta": 68.4,
+      "score_002": 60.7,
+      "score_delta": 60.7,
       "nova_001": null,
       "nova_002": 3,
       "grade_001": null,
-      "grade_002": "B"
+      "grade_002": "C"
     }
   ],
   "error_detail": []
