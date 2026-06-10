@@ -82,7 +82,7 @@ export function HomeCategoryIntelligence() {
                     className={
                       cat.status === "זמין"
                         ? "shrink-0 rounded-full bg-[#1F8F6A] px-2 py-0.5 text-[0.65rem] font-bold text-[#F7F7F2]"
-                        : "shrink-0 rounded-full border border-black/[0.08] bg-[#FFFFFF] px-2 py-0.5 text-[0.65rem] font-bold text-[#7A817C]"
+                        : "shrink-0 rounded-full border border-black/[0.08] bg-[#FFFFFF] px-2 py-0.5 text-[0.65rem] font-bold text-[#5E6560]"
                     }
                   >
                     {cat.status}

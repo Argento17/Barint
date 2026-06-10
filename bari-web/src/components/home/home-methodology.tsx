@@ -345,7 +345,7 @@ function SignalRadar({
           <div className="mt-1 text-sm font-extrabold tracking-[-0.02em] text-[#111318]">
             {activeSignalData.axis}
           </div>
-          <div className="mt-1 text-xs font-semibold text-[#7A817C]">{activeSignalData.value}/100</div>
+          <div className="mt-1 text-xs font-semibold text-[#5E6560]">{activeSignalData.value}/100</div>
         </div>
       </div>
     </div>
@@ -389,7 +389,7 @@ function SignalBenchmarkRow({
           <div className="text-sm font-bold text-[#111318] transition-colors duration-300 group-hover:text-[#1F8F6A]">
             {row.label}
           </div>
-          <div className="mt-0.5 text-xs text-[#7A817C] transition-colors duration-300 group-hover:text-[#4E5663]">
+          <div className="mt-0.5 text-xs text-[#5E6560] transition-colors duration-300 group-hover:text-[#4E5663]">
             {row.note}
           </div>
         </div>
@@ -446,7 +446,7 @@ function SignalBenchmarkRow({
         />
       </div>
 
-      <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-[#7A817C]">
+      <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-[#5E6560]">
         <span>חלש</span>
         <span className="transition-colors duration-300 group-hover:text-[#1F8F6A]">קו קטגוריה</span>
         <span>חזק</span>
@@ -527,7 +527,7 @@ export function HomeMethodology() {
           <div className="relative overflow-hidden rounded-[1.65rem] border border-black/[0.08] bg-[#FFFFFF]/72 p-4 md:p-6">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#7A817C]">פרופיל מוצר לדוגמה</p>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5E6560]">פרופיל מוצר לדוגמה</p>
                 <h3 className="mt-1 text-xl font-extrabold tracking-[-0.035em] text-[#111318]">
                   ניתוח רב־ממדי של מוצר
                 </h3>
@@ -555,7 +555,7 @@ export function HomeMethodology() {
 
           <div className="flex flex-col justify-between gap-7 p-1 md:p-2">
             <div className="space-y-3">
-              <p className="text-xs font-bold tracking-[0.16em] text-[#7A817C]">השוואה לפי קטגוריה</p>
+              <p className="text-xs font-bold tracking-[0.16em] text-[#5E6560]">השוואה לפי קטגוריה</p>
               <h3 className="text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">
                 השוואה בתוך קטגוריית המוצר.
               </h3>
@@ -585,7 +585,7 @@ export function HomeMethodology() {
                   >
                     <Icon className="mb-3 size-5 text-[#1F8F6A]" aria-hidden />
                     <h4 className="text-sm font-extrabold text-[#111318]">{card.title}</h4>
-                    <p className="mt-2 text-xs leading-relaxed text-[#7A817C]">{card.text}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-[#5E6560]">{card.text}</p>
                   </div>
                 );
               })}

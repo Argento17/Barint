@@ -5,7 +5,11 @@ import { ChevronDown } from "lucide-react";
 
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
 import { BariProductThumbnail } from "@/components/comparisons/bari-product-thumbnail";
-import { ConfidenceIndicator } from "@/components/shared/confidence-indicator";
+import {
+  ConfidenceDot,
+  ConfidenceRing,
+  NullScorePill,
+} from "@/components/shared/confidence-marker";
 import { ExpansionSection } from "@/components/shared/expansion-section";
 import { GlassBoxPartialFlag } from "@/components/shared/glass-box-flag";
 import {
@@ -68,9 +72,8 @@ function GradeCell({ product }: { product: BariProductVM }) {
   // TASK-179I — Glass Box WITHHOLD: show `לא נוקד` where the grade chip would be.
   // Same neutral box as an unscored product (no error look, no number), distinct
   // label text. Only when the flag is ON and the product is gated to withhold.
-  if (isWithheld || product.score == null || product.grade == null) {
+  if (isWithheld) {
     const rowTokens = BARI_COMPARISON_TOKENS.score.rowChip;
-    const labelText = isWithheld ? GLASS_BOX_WITHHOLD_LABEL : "ללא ציון";
     return (
       <div
         className={cn(rowTokens.container, rowTokens.size.sm)}
@@ -78,7 +81,7 @@ function GradeCell({ product }: { product: BariProductVM }) {
           backgroundColor: "#F7F7F2",
           borderColor: "rgba(17,19,24,0.10)",
         }}
-        aria-label={labelText}
+        aria-label={GLASS_BOX_WITHHOLD_LABEL}
       >
         <span
           className={cn(rowTokens.scoreClass, rowTokens.scoreSize.sm)}
@@ -92,20 +95,34 @@ function GradeCell({ product }: { product: BariProductVM }) {
           style={{ color: "#9AA09B" }}
           aria-hidden
         >
-          {labelText}
+          {GLASS_BOX_WITHHOLD_LABEL}
         </span>
       </div>
     );
   }
+
+  // State 7 — `insufficient` / unscored: SUPPRESS the grade chip and render the
+  // null-state pill in its footprint (spec §5). Same width band / radius / row height
+  // as the chip → no layout shift vs scored rows. No digits, no grade letter, no hue.
+  if (product.score == null || product.grade == null) {
+    return <NullScorePill />;
+  }
+
+  // Scored row. The confidence ring (partial only) is an absolute overlay on the chip's
+  // footprint — wrap in a relative span so the outline registers against the chip box
+  // without enlarging its layout width (spec §2/§7, 0 extra width / no CLS).
   // FIX-2: pass empty gradeLabel so BariGradeBadge renders only the grade letter (no adjective).
   return (
-    <BariGradeBadge
-      score={product.score}
-      grade={product.grade}
-      gradeLabel=""
-      size="sm"
-      context="row"
-    />
+    <span className="relative inline-flex">
+      <BariGradeBadge
+        score={product.score}
+        grade={product.grade}
+        gradeLabel=""
+        size="sm"
+        context="row"
+      />
+      <ConfidenceRing confidence={product.confidence} />
+    </span>
   );
 }
 
@@ -189,10 +206,18 @@ export const ComparisonRow = memo(function ComparisonRow({
           ) : suppressPartialBadge && product.confidence === "partial" ? (
             // FIX-3: page-level disclosure is shown instead; skip the per-row badge.
             null
+          ) : product.score == null || product.grade == null ? (
+            // Chip is suppressed → NullScorePill renders in its footprint and carries the
+            // signal itself (DESIGN-LOCK §93). No gutter dot in that case.
+            <span aria-hidden />
           ) : (
-            <ConfidenceIndicator
+            // Score Confidence Indicators (TASK-226 DESIGN-LOCK): achromatic 6px grey dot
+            // in the chip's inline-start gutter for partial AND insufficient (identical
+            // marker; gap type is differentiated only in the expansion). No text on the
+            // row; no color encoding. verified → renders nothing. The dotted ring rides ON
+            // the chip (see GradeCell).
+            <ConfidenceDot
               confidence={product.confidence}
-              variant="dot"
               className="bari-cmp-conf"
             />
           )}
@@ -215,6 +240,8 @@ export const ComparisonRow = memo(function ComparisonRow({
               <ExpansionSection
                 expansion={product.expansion}
                 confidence={product.confidence}
+                confidenceLabelHe={product.confidence_label_he}
+                confidenceTooltipHe={product.confidence_tooltip_he}
                 onCollapse={() => onToggle(product.id)}
                 wide
                 confidencePromoted

@@ -88,7 +88,7 @@ function NoteList({ lines }: { lines: string[] }) {
   return (
     <ul className="mt-1.5 space-y-1">
       {lines.map((line) => (
-        <li key={line} className="flex gap-1.5 text-[12px] leading-relaxed text-[#7A817C]">
+        <li key={line} className="flex gap-1.5 text-[12px] leading-relaxed text-[#5E6560]">
           <span className="shrink-0 text-[#C5CAC6]" aria-hidden>
             ·
           </span>
@@ -187,7 +187,7 @@ function InterpretiveExpansion({
 
         {comparisonContext?.trim() ? (
           <InterpretiveSection label={LABEL_COMPARISON} spaced>
-            <p className="mt-1.5 text-[12px] leading-relaxed text-[#7A817C]">
+            <p className="mt-1.5 text-[12px] leading-relaxed text-[#5E6560]">
               {comparisonContext}
             </p>
           </InterpretiveSection>
@@ -239,7 +239,7 @@ function InterpretiveExpansion({
     sections.push({
       label: LABEL_COMPARISON,
       body: (
-        <p className="mt-1.5 text-[12px] leading-relaxed text-[#7A817C]">
+        <p className="mt-1.5 text-[12px] leading-relaxed text-[#5E6560]">
           {comparisonContext}
         </p>
       ),
@@ -313,7 +313,7 @@ function IngredientList({ ingredients }: { ingredients: string }) {
   return (
     <div>
       <p
-        className="text-[11px] leading-relaxed text-[#7A817C]"
+        className="text-[11px] leading-relaxed text-[#5E6560]"
         style={
           showAll
             ? undefined
@@ -407,6 +407,8 @@ function GlassBoxDisclosure({ glassBox }: { glassBox: BariGlassBoxVM }) {
 export function ExpansionSection({
   expansion,
   confidence,
+  confidenceLabelHe,
+  confidenceTooltipHe,
   onCollapse,
   wide = false,
   confidencePromoted = false,
@@ -419,6 +421,17 @@ export function ExpansionSection({
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
+  /**
+   * Backend-prerendered Hebrew confidence label (Score Confidence Indicators spec §6).
+   * Rendered VERBATIM in `.bari-meta` / --fg3 in the existing confidence row. When absent
+   * (categories predating the field) the legacy 3-state label map is used.
+   */
+  confidenceLabelHe?: string;
+  /**
+   * Backend-prerendered Hebrew tooltip sentence. Rendered VERBATIM in `.bari-footnote`
+   * (10px / --fg4) beneath the label. Absent → no tooltip line (the label still shows).
+   */
+  confidenceTooltipHe?: string;
   onCollapse: () => void;
   wide?: boolean;
   /**
@@ -460,8 +473,14 @@ export function ExpansionSection({
   rowVerdict?: string;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
+  // Score Confidence Indicators spec §6/§7: prefer the backend-prerendered label
+  // (verbatim, state-specialised) over the legacy 3-state map. UI never branches copy
+  // off confidence_sub_reason — it renders the pre-rendered string as-is.
   const confidenceText =
-    CONFIDENCE_LABELS[confidence] ?? expansion.confidenceLabel;
+    confidenceLabelHe?.trim() ||
+    CONFIDENCE_LABELS[confidence] ||
+    expansion.confidenceLabel;
+  const confidenceTooltip = confidenceTooltipHe?.trim() || null;
   const interpretive = hasInterpretiveContent(expansion);
   const hasTechnical =
     (expansion.nutrition != null &&
@@ -490,16 +509,11 @@ export function ExpansionSection({
       >
         <div className="space-y-2 pt-0.5 lg:space-y-2">
           <p className="text-xs leading-relaxed text-[#6E756F]">{withheldReason}</p>
-          <div className="flex items-center justify-between pt-0.5">
-            {confidencePromoted ? (
+          <div className="flex items-end justify-between pt-0.5">
+            {confidencePromoted && !confidenceTooltip ? (
               <span aria-hidden />
             ) : (
-              <span
-                className="text-[10px]"
-                style={{ color: BARI_COMPARISON_TOKENS.methodology.color }}
-              >
-                {confidenceText}
-              </span>
+              <ConfidenceRow label={confidenceText} tooltip={confidenceTooltip} />
             )}
             <button
               type="button"
@@ -507,7 +521,7 @@ export function ExpansionSection({
                 e.stopPropagation();
                 onCollapse();
               }}
-              className="text-[11px] text-[#AAAAAA]"
+              className="text-[11px] text-[#666C67]"
             >
               סגור
             </button>
@@ -558,25 +572,41 @@ export function ExpansionSection({
           />
         ) : null}
 
-        <div className="flex items-center justify-between pt-2 lg:pt-1.5">
-          <span
-            className="text-[10px]"
-            style={{ color: BARI_COMPARISON_TOKENS.methodology.color }}
-          >
-            {confidenceText}
-          </span>
+        <div className="flex items-end justify-between pt-2 lg:pt-1.5">
+          <ConfidenceRow label={confidenceText} tooltip={confidenceTooltip} />
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               onCollapse();
             }}
-            className="text-[11px] text-[#AAAAAA]"
+            className="shrink-0 text-[11px] text-[#666C67]"
           >
             סגור
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+// Score Confidence Indicators spec §6 — the confidence row at the bottom of the
+// expansion. Label in .bari-meta (0.8125rem / --fg3 #7A817C); the backend tooltip
+// sentence beneath it in .bari-footnote (0.625rem / --fg4 #AAAAAA). Both rendered
+// VERBATIM. No new heading, no card, no border — the existing confidence row reused.
+function ConfidenceRow({
+  label,
+  tooltip,
+}: {
+  label: string;
+  tooltip: string | null;
+}) {
+  return (
+    <div className="min-w-0 flex flex-col gap-0.5">
+      <span className="text-[0.8125rem] leading-snug text-[#5E6560]">{label}</span>
+      {tooltip ? (
+        <span className="text-[0.625rem] leading-snug text-[#666C67]">{tooltip}</span>
+      ) : null}
     </div>
   );
 }

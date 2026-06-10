@@ -48,9 +48,9 @@ export function HomeGuides() {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4E5663]">
                 {article.description}
               </p>
-              <p className="mt-2 text-xs text-[#7A817C]">{article.readTime}</p>
+              <p className="mt-2 text-xs text-[#5E6560]">{article.readTime}</p>
               {article.comingSoon ? (
-                <span className="mt-3 text-sm font-bold text-[#7A817C]">בקרוב</span>
+                <span className="mt-3 text-sm font-bold text-[#5E6560]">בקרוב</span>
               ) : (
                 <Link
                   href={article.href}
