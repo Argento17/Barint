@@ -120,6 +120,79 @@ _ADDITIVES: list[Identity] = [
         additive_class="emulsifier_benign", is_named_concern=True,
         synonyms_he=("לציטין חמניות", "לציטין מחמניות", "לציטין חמנית"),
     ),
+    # ── Emulsifier complexity — ECS-v1 / EV-045: medium-concern agents ──
+    Identity(
+        canonical="mono_diglyceride", e_number="E471",
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=("מונו-גליצריד", "מונוגליצריד", "דיגליצריד",
+                     "מונו ודיגליצריד", "מונו-ודי-גליצריד", "E471", "E-471"),
+    ),
+    Identity(
+        canonical="datem", e_number="E472e",
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=("DATEM", "E472e", "E-472e", "E472", "E-472"),
+    ),
+    Identity(
+        canonical="ssl", e_number="E481",
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=("E481", "E-481", "סודיום סטיארויל לקטילט",
+                     "נתרן סטיארויל לקטילט"),
+    ),
+    Identity(
+        canonical="pgpr", e_number="E476",
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=("E476", "E-476", "פוליגליצרול פוליריצינולאט"),
+    ),
+    # ── Emulsifier complexity — ECS-v1 / EV-045: low-concern agents ──
+    Identity(
+        canonical="pectin", e_number="E440",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("פקטין", "E440", "E-440"),
+    ),
+    Identity(
+        canonical="gum_arabic", e_number="E414",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("גומי ערבי", "גומי אקאציה", "E414", "E-414"),
+    ),
+    Identity(
+        canonical="guar_gum", e_number="E412",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("גואר", "גואר גאם", "E412", "E-412"),
+    ),
+    Identity(
+        canonical="xanthan_gum", e_number="E415",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("קסנטן", "קסנטן גאם", "E415", "E-415"),
+    ),
+    Identity(
+        canonical="locust_bean_gum", e_number="E410",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("גומי חרוב", "E410", "E-410"),
+    ),
+    Identity(
+        canonical="agar", e_number="E406",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("אגר", "אגר-אגר", "E406", "E-406"),
+    ),
+    Identity(
+        canonical="gellan_gum", e_number="E418",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("ג'לאן גאם", "E418", "E-418"),
+    ),
+    Identity(
+        canonical="sodium_alginate", e_number="E401",
+        additive_class="emulsifier_low", is_named_concern=False,
+        synonyms_he=("נתרן אלגינט", "E401", "E-401"),
+    ),
+    # ── Modified starch stabilizer (ECS-v1 / EV-045): signal-gated medium agent ──
+    # Detected via the structural term "modified_starch" (not normal additive resolution);
+    # the signal extractor applies a position/light-diet gate before counting it.
+    # This entry exists for canonical registry so _BY_CANONICAL resolves it.
+    Identity(
+        canonical="modified_starch_stabilizer", e_number="E1400",
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=(),   # detected externally via structural path + gate
+    ),
     # ── Named antioxidants — F4 / TASK-133D (BHA concern; BHT explicitly NOT) ──
     Identity(
         canonical="bha", e_number="E320",

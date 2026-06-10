@@ -347,6 +347,94 @@ HUMECTANT_GROUP_RE = re.compile(
     re.IGNORECASE | re.UNICODE
 )
 
+# ---------------------------------------------------------------------------
+# EV-006 — Functional fiber vocabulary (FFV-v1)
+# ---------------------------------------------------------------------------
+# Viscous (gel-forming) soluble fibers — glycemic-dampening credit
+# Source: fiber_functional_vocabulary_v1.md §§3.1–3.4
+# Each entry: (detection_key, [pattern_list])
+VISCOUS_FIBER_PATTERNS = {
+    "beta_glucan": [
+        "beta-glucan", "beta glucan", "β-glucan", "betaglucan",
+        "בטא גלוקן", "בטא-גלוקן", "ביתא גלוקן", "ביתא-גלוקן", "בטא גלוקאן",
+    ],
+    "psyllium": [
+        "psyllium", "ispaghula", "plantago",
+        "פסיליום", "קליפת פסיליום", "זרעי פסיליום", "איספגולה", "פלנטגו",
+    ],
+    "guar_native": [
+        "guar gum", "guar", "E412", "E-412",
+        "גואר", "גומי גואר", "גואר גאם", "שרף גואר",
+    ],
+    "pectin": [
+        "pectin", "E440", "E-440",
+        "פקטין", "פקטין תפוחים", "פקטין הדרים",
+    ],
+}
+
+# Non-viscous prebiotic fermentable fibers — NO glycemic-gel credit
+# Source: fiber_functional_vocabulary_v1.md §§3.5–3.12
+PREBIOTIC_FIBER_PATTERNS = {
+    "phgg": [
+        "partially hydrolyzed guar gum", "partially hydrolysed guar gum",
+        "PHGG", "hydrolyzed guar", "sunfiber",
+        "גואר מפורק חלקית", "גואר מהידרוליזה חלקית", "סאנפייבר",
+    ],
+    "inulin": [
+        "inulin", "chicory inulin",
+        "אינולין",
+    ],
+    "chicory": [
+        "chicory root", "chicory fiber", "chicory fibre", "chicory root fiber",
+        "סיבי עולש", "שורש עולש", "סיבי שורש עולש", "סיבים משורש עולש",
+    ],
+    "fos": [
+        "fructo-oligosaccharides", "fructooligosaccharides", "oligofructose",
+        "פרוקטו-אוליגוסכרידים", "פרוקטו אוליגוסכרידים", "אוליגופרוקטוז",
+    ],
+    "gos": [
+        "galacto-oligosaccharides", "galactooligosaccharides",
+        "גלקטו-אוליגוסכרידים", "גלקטו אוליגוסכרידים",
+    ],
+    "resistant_dextrin": [
+        "resistant dextrin", "resistant maltodextrin", "soluble corn fiber",
+        "nutriose", "fibersol", "fibersol-2", "wheat dextrin",
+        "דקסטרין עמיד", "מלטודקסטרין עמיד", "נוטריוז", "פיברסול",
+    ],
+    "arabinogalactan": [
+        "arabinogalactan", "larch arabinogalactan", "fiberaid",
+        "ארבינוגלקטן", "ערבינוגלקטן",
+    ],
+    "acacia": [
+        "gum arabic", "acacia gum", "acacia fiber", "acacia fibre",
+        "arabic gum", "E414", "E-414",
+        "גומי ערבי", "גומי אקאציה", "גאם ערביק", "סיבי שיטה",
+    ],
+}
+
+# Disambiguation guards for functional fiber detection
+# PHGG markers — if any fire, native_guar is suppressed from viscous class
+PHGG_MARKERS = [
+    "partially hydrolyzed", "partially hydrolysed", "מפורק חלקית",
+    "מהידרוליזה", "PHGG", "sunfiber", "סאנפייבר",
+]
+
+# Bare maltodextrin/dextrin EXCLUDE list — never count as fiber
+MALTODEXTRIN_EXCLUDE = [
+    "maltodextrin", "מלטודקסטרין", "dextrin", "דקסטרין",
+]
+
+# Resistance qualifier required for dextrin/maltodextrin to count
+RESISTANCE_QUALIFIER = [
+    "resistant", "עמיד", "לעיכול", "nutriose", "fibersol",
+    "נוטריוז", "פיברסול", "soluble corn fiber",
+]
+
+# Non-cereal beta-glucan context — suppress viscous credit
+BETA_GLUCAN_NON_CEREAL = [
+    "yeast", "שמרים", "mushroom", "פטריות", "reishi", "ריישי",
+]
+
 
 def _search(text: str, patterns: list[str]) -> list[str]:
     """Return list of matched patterns (case-insensitive, multiline)."""
@@ -388,6 +476,94 @@ def _detect_prebiotic_gum(text: str) -> tuple:
 
 def _detect_allulose(text: str) -> bool:
     return any(p.lower() in text.lower() for p in ALLULOSE_PATTERNS)
+
+
+def _detect_functional_fiber(text: str) -> dict:
+    """Detect EV-006 functional fiber types from ingredient text.
+
+    Returns:
+        dict with keys:
+            functional_fiber_detected: bool
+            functional_fiber_type: "viscous" | "prebiotic" | "both" | "none"
+            functional_fiber_terms_matched: list[str]
+            functional_fiber_viscous_terms: list[str]
+            functional_fiber_prebiotic_terms: list[str]
+    """
+    text_lower = text.lower()
+    matched_terms = []
+    viscous_matched = []
+    prebiotic_matched = []
+
+    # --- Guard 1: PHGG suppresses native guar viscosity ---
+    has_phgg = any(p.lower() in text_lower for p in PHGG_MARKERS)
+
+    # --- Guard 2: Resistant dextrin vs bare maltodextrin/dextrin ---
+    has_resistant_dextrin = False
+    for p in RESISTANCE_QUALIFIER:
+        if p.lower() in text_lower:
+            # Check that a dextrin/maltodextrin term co-occurs
+            for d in ["dextrin", "maltodextrin", "דקסטרין", "מלטודקסטרין", "corn fiber"]:
+                if d.lower() in text_lower:
+                    has_resistant_dextrin = True
+                    break
+            if has_resistant_dextrin:
+                break
+
+    # --- Guard 3: Non-cereal beta-glucan context ---
+    has_beta_glucan = False
+    for p in VISCOUS_FIBER_PATTERNS["beta_glucan"]:
+        if p.lower() in text_lower:
+            has_beta_glucan = True
+            break
+    beta_glucan_non_cereal = False
+    if has_beta_glucan:
+        for p in BETA_GLUCAN_NON_CEREAL:
+            if p.lower() in text_lower:
+                beta_glucan_non_cereal = True
+                break
+
+    # --- Detect viscous fibers ---
+    for key, patterns in VISCOUS_FIBER_PATTERNS.items():
+        for p in patterns:
+            if p.lower() in text_lower:
+                if key == "beta_glucan" and beta_glucan_non_cereal:
+                    continue  # non-cereal β-glucan → no viscous credit
+                if key == "guar_native" and has_phgg:
+                    continue  # PHGG suppresses native guar viscosity
+                viscous_matched.append(p)
+                matched_terms.append(p)
+                break  # one match per key is enough
+
+    # --- Detect prebiotic fibers ---
+    for key, patterns in PREBIOTIC_FIBER_PATTERNS.items():
+        for p in patterns:
+            if p.lower() in text_lower:
+                if key == "resistant_dextrin" and not has_resistant_dextrin:
+                    continue  # bare maltodextrin/dextrin → excluded
+                prebiotic_matched.append(p)
+                matched_terms.append(p)
+                break
+
+    # --- Classify ---
+    has_viscous = len(viscous_matched) > 0
+    has_prebiotic = len(prebiotic_matched) > 0
+
+    if has_viscous and has_prebiotic:
+        fiber_type = "both"
+    elif has_viscous:
+        fiber_type = "viscous"
+    elif has_prebiotic:
+        fiber_type = "prebiotic"
+    else:
+        fiber_type = "none"
+
+    return {
+        "functional_fiber_detected": fiber_type != "none",
+        "functional_fiber_type": fiber_type,
+        "functional_fiber_terms_matched": sorted(set(matched_terms)),
+        "functional_fiber_viscous_terms": sorted(set(viscous_matched)),
+        "functional_fiber_prebiotic_terms": sorted(set(prebiotic_matched)),
+    }
 
 
 def _count_polyol_types(text: str) -> tuple:
@@ -738,6 +914,8 @@ def extract_signals(product: dict) -> dict:
 
     tax_emulsifier_concern: list[str] = []   # carrageenan / CMC / polysorbate-80 (F1 up)
     tax_emulsifier_benign:  list[str] = []   # soy / sunflower lecithin (F1 down)
+    tax_emulsifier_medium:  list[str] = []   # mono/diglycerides, DATEM, SSL, PGPR (ECS-v1 / EV-045)
+    tax_emulsifier_low:     list[str] = []   # gums, pectin, agar, alginate, gellan (ECS-v1 / EV-045)
     tax_named_concern_additives: list[str] = []
     tax_bha_present = False                  # F4 named penalty
     tax_bht_present = False                  # F4 explicitly NOT penalized
@@ -749,6 +927,10 @@ def extract_signals(product: dict) -> dict:
             tax_emulsifier_concern.append(ident.canonical)
         elif ident.additive_class == "emulsifier_benign" and ident.canonical not in tax_emulsifier_benign:
             tax_emulsifier_benign.append(ident.canonical)
+        elif ident.additive_class == "emulsifier_medium" and ident.canonical not in tax_emulsifier_medium:
+            tax_emulsifier_medium.append(ident.canonical)
+        elif ident.additive_class == "emulsifier_low" and ident.canonical not in tax_emulsifier_low:
+            tax_emulsifier_low.append(ident.canonical)
         if ident.canonical == "bha":
             tax_bha_present = True
         if ident.canonical == "bht":
@@ -762,6 +944,7 @@ def extract_signals(product: dict) -> dict:
     # Native vs modified starch (F1: native starch leaves the additive burden)
     tax_native_starch = False
     tax_modified_starch = False
+    tax_modified_starch_positions: list[int] = []   # ECS-v1 gate: position ≥ 4 counts as stabiliser
     for item in ingredient_order:
         s_ident = itax.resolve_structural(item["text"], None)
         if s_ident is None:
@@ -770,6 +953,15 @@ def extract_signals(product: dict) -> dict:
             tax_native_starch = True
         elif s_ident.canonical == "modified_starch":
             tax_modified_starch = True
+            tax_modified_starch_positions.append(item["position"])
+
+    # ECS-v1 / EV-045: modified_starch_stabilizer gate — count modified starch as a
+    # medium-concern complexity agent when position ≥ 4 or product has light/diet signal.
+    _product_name = (product.get("canonical_name_he") or product.get("product_name_he") or "")
+    _light_diet_signal = any(t in _product_name for t in ("קל", "דיאט", "לייט", "lite", "light"))
+    _mod_starch_late = any(p >= 4 for p in tax_modified_starch_positions)
+    if tax_modified_starch and (_mod_starch_late or _light_diet_signal):
+        tax_emulsifier_medium.append("modified_starch_stabilizer")
 
     # F2: collagen marker (reconstructed-protein matrix form is set below, once the
     # isolate-marker detection has run).
@@ -795,6 +987,9 @@ def extract_signals(product: dict) -> dict:
     # Whole grain
     whole_grain_matches = _search(full_text, WHOLE_GRAIN_MARKERS_HE)
     has_whole_grain = bool(whole_grain_matches)
+
+    # EV-006 — Functional fiber detection (FFV-v1 vocabulary)
+    functional_fiber = _detect_functional_fiber(ing_text)
 
     # R-04: plain dairy detection (first three ingredients) — computed here (ahead of the
     # protein-source block) because TASK-144 Fix 3 dairy-source typing depends on it.
@@ -1009,9 +1204,17 @@ def extract_signals(product: dict) -> dict:
         "sprint1_humectant_polyols":             sorted(humectant_polyols_detected),
         "sprint1_penalty_polyol_count":          penalty_polyol_count,
         "sprint1_penalty_polyols":               penalty_polyols,
+        # EV-006 — Functional fiber detection (FFV-v1 vocabulary)
+        "functional_fiber_detected":             functional_fiber["functional_fiber_detected"],
+        "functional_fiber_type":                 functional_fiber["functional_fiber_type"],
+        "functional_fiber_terms_matched":        functional_fiber["functional_fiber_terms_matched"],
+        "functional_fiber_viscous_terms":        functional_fiber["functional_fiber_viscous_terms"],
+        "functional_fiber_prebiotic_terms":      functional_fiber["functional_fiber_prebiotic_terms"],
         # TASK-133 (F1/F2/F4) — ingredient identity + fragmentation (magnitudes applied downstream)
         "tax_emulsifier_concern":                tax_emulsifier_concern,      # F1: carrageenan/CMC/P80 (up)
         "tax_emulsifier_benign":                 tax_emulsifier_benign,       # F1: lecithin (toward neutral)
+        "tax_emulsifier_medium":                 tax_emulsifier_medium,       # ECS-v1: mono/diglycerides, DATEM, SSL, PGPR, modified starch (gated)
+        "tax_emulsifier_low":                    tax_emulsifier_low,          # ECS-v1: gums, pectin, agar, alginate, gellan
         "tax_named_concern_additives":           tax_named_concern_additives,
         "tax_native_starch":                     tax_native_starch,           # F1: out of additive burden
         "tax_modified_starch":                   tax_modified_starch,         # F1: stays penalized
@@ -1037,6 +1240,8 @@ def extract_signals(product: dict) -> dict:
             "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
             "Additive count reflects distinct functional categories detected, not total additive instances",
             "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+            "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+            "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
             "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups",
         ],
     }

@@ -41,6 +41,8 @@ CALORIE_DENSITY_TABLES = {
     "crispbread":        [(200,90),(300,85),(380,70),(450,50),(520,30),(1e9,15)],
     # R-05: yogurt archetype — plain 50–120 kcal, flavored/full-fat up to ~200
     "yogurt":            [(60,95),(100,88),(140,78),(180,65),(250,50),(1e9,30)],
+    # Frozen vegetable — maps to default table (same calorie density profile)
+    "frozen_vegetable":  [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
     "default":           [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
 }
 
@@ -335,6 +337,22 @@ ADDITIVE_IDENTITY_DELTAS = {
     "native_starch_relief":     0,   # native starch already excluded from burden — DEC-004 (unchanged)
 }
 
+# ── ECS-v1 / EV-045 — emulsifier_complexity family ──────────────────────────
+# Emulsifier Complexity Score (ECS-v1): measures aggregate burden of texture-
+# stabilising additives across three concern tiers. Distinct from F1 identity
+# deltas (which target additive_quality dimension). This family fires on a
+# separate emulsifier_complexity penalty signal.
+# Source: docs/scoring/emulsifier_complexity_spec_v1.md
+# Magnitudes confirmed per EV-045 (2026-06-10).
+EMULSIFIER_COMPLEXITY_CONSTANTS = {
+    "high_weight":          5,   # −5 per high-concern agent (CMC, P80)
+    "medium_weight":        3,   # −3 per medium-concern agent (carrageenan, mono/diglycerides, DATEM, SSL, PGPR, modified starch gated)
+    "low_weight":           1,   # −1 per low-concern agent (lecithins, gums, pectin, agar, alginate, gellan)
+    "complexity_moderate":  1,   # −1 for 2 distinct agents
+    "complexity_high":      3,   # −3 for 3+ distinct agents
+}
+EMULSIFIER_COMPLEXITY_FAMILY_BUDGET = 8   # max total complexity penalty (concern coordination)
+
 # ── F4 / TASK-133D → TASK-222C — BHA named penalty (BHT explicitly excluded) ─
 # ACTIVATED 2026-06-09 (TASK-222C): DEC-004 magnitude confirmed (BHA_NAMED_PENALTY=5).
 # Previously the magnitude was documented as DEC-004 gated, but the code was always
@@ -352,6 +370,23 @@ ADDITIVE_IDENTITY_DELTAS = {
 # sprint warranted. The penalty was always active; TASK-222C confirms the value and fixes
 # the taxonomy synonym gap.
 BHA_NAMED_PENALTY = 5   # points on additive_quality — confirmed, TASK-222C
+
+# ---------------------------------------------------------------------------
+# EV-006 — Functional fiber scoring constants (FFV-v1 vocabulary)
+# ---------------------------------------------------------------------------
+# Capped presence-only bonus for viscous (gel-forming) and non-viscous (prebiotic)
+# fibers, applied AFTER existing total_fiber_g scoring. No fiber quantity is
+# observed from labels — presence-only detection with strict caps.
+# Source: docs/scoring/fiber_functional_vocabulary_v1.md (FFV-v1)
+# Evidence: EV-006 (bsip2_evidence_registry_v1.md:177)
+# Vocabulary complete: 2026-06-10. SCORING WIRED: 2026-06-10.
+FIBER_FUNCTIONAL_BONUS = {
+    "viscous_glycemic_quality_bonus":   2,   # +2 to glycemic_quality for viscous fiber presence
+    "viscous_satiety_bonus":            2,   # +2 to satiety_support numerator equiv for viscous fiber
+    "prebiotic_glycemic_quality_bonus": 1,   # +1 to glycemic_quality for non-viscous prebiotic fiber
+    "prebiotic_satiety_bonus":          1,   # +1 to satiety_support numerator equiv for prebiotic fiber
+    "presence_bonus_cap_per_dimension": 2,   # max total bonus per dimension from functional fiber
+}
 
 # ---------------------------------------------------------------------------
 # TASK-144 Fix 2 — Fiber "absent ≠ zero" for naturally fiber-free dairy categories

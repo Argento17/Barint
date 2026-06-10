@@ -30,6 +30,8 @@ from constants import (
     PROCESSING_CAPS, FERMENTATION_DIRECT_BONUS,
     PROTEIN_QUALITY_MATRIX_DISCOUNT, PROTEIN_MATRIX_DISCOUNT_BAR_CATEGORIES,
     ADDITIVE_IDENTITY_DELTAS, BHA_NAMED_PENALTY,
+    EMULSIFIER_COMPLEXITY_CONSTANTS, EMULSIFIER_COMPLEXITY_FAMILY_BUDGET,
+    FIBER_FUNCTIONAL_BONUS,
     FIBER_NOT_APPLICABLE_CATEGORIES,
     PROTEIN_SCALE_TABLES, lookup_protein_scale,
     RECAL_P0_FIBER_NOT_APPLICABLE, NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS,
@@ -1193,7 +1195,7 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
 
 
 def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
-    """EV-004: allulose-adjusted glycemic quality."""
+    """EV-004: allulose-adjusted glycemic quality + EV-006: functional fiber bonus."""
     sugar = nn.get("sugars_g") or 0
     fiber = nn.get("dietary_fiber_g") or 0
     has_whole_grain   = l3.get("has_whole_grain", False)
@@ -1212,6 +1214,21 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
     score = round(max(0, min(100, raw)), 1)
     note  = (f"90 - sugar_penalty({sugar_penalty:.1f}) + fiber({fiber_bonus:.1f})"
              f" + wg({wg_bonus}) = {raw:.1f}{allulose_note}{sw_note}")
+
+    # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    ff_type = l3.get("functional_fiber_type", "none")
+    ff_bonus = 0
+    ff_note = ""
+    if ff_type != "none":
+        if ff_type in ("viscous", "both"):
+            ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_glycemic_quality_bonus"]
+        if ff_type in ("prebiotic", "both"):
+            ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_glycemic_quality_bonus"]
+        ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
+        score = round(min(100, score + ff_bonus), 1)
+        ff_note = f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
+        note += ff_note
+
     return score, note
 
 
@@ -1251,6 +1268,89 @@ def _identity_additive_deltas(l3: dict) -> tuple[float, list[str]]:
         notes.append(f"F4 BHA (E320) named penalty −{BHA_NAMED_PENALTY} "
                      f"(FDA reassessment active 2026-02-10; BHT differentiated)")
     return delta, notes
+
+
+def _emulsifier_complexity(l3: dict) -> tuple[float, str, dict]:
+    """ECS-v1 / EV-045: emulsifier complexity penalty on a separate signal.
+
+    Consumes three L3 signal lists:
+      - tax_emulsifier_concern: CMC, P80 (carrageenan counted as medium here)
+      - tax_emulsifier_medium:  mono/diglycerides, DATEM, SSL, PGPR, gated modified starch
+      - tax_emulsifier_low:     lecithins, gums, pectin, agar, alginate, gellan
+
+    Formula:
+      1. Categorise agents: high={CMC,P80}, medium={carrageenan + medium list}, low={low list}
+      2. highest_penalty = max(high_weight, medium_weight, low_weight) for detected agents
+      3. complexity_adj based on total distinct agent count (0/1/2/3+)
+      4. total = highest_penalty + complexity_adj, clamped to family budget
+
+    Returns (total_penalty, note, detail_dict).
+    """
+    C = EMULSIFIER_COMPLEXITY_CONSTANTS
+    high = C["high_weight"]
+    med  = C["medium_weight"]
+    low  = C["low_weight"]
+
+    concern = l3.get("tax_emulsifier_concern") or []
+    medium  = l3.get("tax_emulsifier_medium") or []
+    low_l   = l3.get("tax_emulsifier_low") or []
+
+    # Categorise: carrageenan moves from concern → medium for complexity purposes
+    high_agents = [a for a in concern if a not in ("carrageenan",)]
+    carrageenan_detected = "carrageenan" in concern
+    medium_agents = list(medium)
+    if carrageenan_detected and "carrageenan" not in medium_agents:
+        medium_agents.append("carrageenan")
+    low_agents = list(low_l)
+
+    # Build per-agent penalties
+    agent_penalties = []
+    for a in high_agents:
+        agent_penalties.append(high)
+    for a in medium_agents:
+        agent_penalties.append(med)
+    for a in low_agents:
+        agent_penalties.append(low)
+
+    distinct_count = len(high_agents) + len(medium_agents) + len(low_agents)
+    highest_penalty = max(agent_penalties) if agent_penalties else 0
+
+    # Complexity tier
+    if distinct_count == 0:
+        complexity_tier = "none"
+        complexity_adj = 0
+    elif distinct_count == 1:
+        complexity_tier = "simple"
+        complexity_adj = 0
+    elif distinct_count == 2:
+        complexity_tier = "moderate"
+        complexity_adj = C["complexity_moderate"]
+    else:
+        complexity_tier = "high"
+        complexity_adj = C["complexity_high"]
+
+    total = highest_penalty + complexity_adj
+    # Clamp to family budget
+    total_capped = min(total, EMULSIFIER_COMPLEXITY_FAMILY_BUDGET)
+
+    detail = {
+        "high_agents": list(high_agents),
+        "medium_agents": list(medium_agents),
+        "low_agents": list(low_agents),
+        "distinct_agent_count": distinct_count,
+        "highest_individual_penalty": highest_penalty,
+        "complexity_tier": complexity_tier,
+        "complexity_adjustment": complexity_adj,
+        "total_penalty": total,
+        "total_capped": total_capped,
+    }
+    note = (
+        f"ECS-v1: {distinct_count} agent(s) [high={high_agents}, med={medium_agents}, "
+        f"low={low_agents}] highest_penalty={highest_penalty}, "
+        f"complexity={complexity_tier}(adj={complexity_adj}) → total={total}"
+        + (f" (capped to {total_capped})" if total != total_capped else "")
+    )
+    return total_capped, note, detail
 
 
 def _score_additive_quality_sprint1(l3: dict) -> tuple:
@@ -1368,14 +1468,30 @@ def score_additive_quality(l3: dict) -> tuple[float, str]:
     return score, f"additive_categories={ac} → base={base}, sweetener{tier_note}_penalty={sw_pen} → {score}"
 
 
-def score_satiety_support(nn: dict) -> tuple[float, str]:
+def score_satiety_support(nn: dict, l3: dict | None = None) -> tuple[float, str]:
+    """EV-008: protein/fiber-to-kcal satiety + EV-006: functional fiber bonus."""
     prot  = nn.get("protein_g") or 0
     fiber = nn.get("dietary_fiber_g") or 0
     kcal  = max(50, nn.get("energy_kcal") or 50)  # floor 50 to avoid division by tiny kcal
     numerator = prot * 3.0 + fiber * 5.0
     raw = (numerator / kcal) * 400
     score = round(max(0, min(100, raw)), 1)
-    return score, f"(protein×3 + fiber×5) / max(50,kcal) × 400 = ({prot}×3 + {fiber}×5) / {kcal} × 400 = {score}"
+    note = f"(protein×3 + fiber×5) / max(50,kcal) × 400 = ({prot}×3 + {fiber}×5) / {kcal} × 400 = {score}"
+
+    # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    if l3:
+        ff_type = l3.get("functional_fiber_type", "none")
+        ff_bonus = 0
+        if ff_type != "none":
+            if ff_type in ("viscous", "both"):
+                ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_satiety_bonus"]
+            if ff_type in ("prebiotic", "both"):
+                ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_satiety_bonus"]
+            ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
+            score = round(min(100, score + ff_bonus), 1)
+            note += f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
+
+    return score, note
 
 
 def score_fat_quality(nn: dict, l3: dict, se_result: dict) -> tuple[float, str]:
@@ -2475,7 +2591,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     gq_score,  gq_note  = _score_glycemic_quality_sprint1(nn, l3)   # EV-004
     prq_score, prq_note = score_protein_quality(nn, l3, category)    # F2: matrix discount
     aq_score,  aq_note  = _score_additive_quality_sprint1(l3)        # EV-003/019 + F1/F4 identity
-    ss_score,  ss_note  = score_satiety_support(nn)
+    ss_score,  ss_note  = score_satiety_support(nn, l3)   # EV-008 + EV-006
     fq_score,  fq_note  = _score_fat_quality_sprint1(nn, l3, se_result)  # EV-012
     rq_score,  rq_note  = score_regulatory_quality(l3, nn, category)
     wfi_score, wfi_note = score_whole_food_integrity(nova_level, l1.get("ingredient_count", 0), has_fermentation)
@@ -2694,10 +2810,11 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         scaled_penalty = total_pen
         penalty_scaling_note = None
 
-    # Stage 7: Penalty application (guardrails + EV-005 polyol post-cap)
+    # Stage 7: Penalty application (guardrails + EV-005 polyol + ECS-v1 emulsifier_complexity)
     product_name = (product.get("canonical_name_he") or product.get("product_name_he") or "")
     polyol_penalty, polyol_note = _compute_polyol_penalty(l3, product_name)
-    score_after_penalty = round(score_after_cap - scaled_penalty - polyol_penalty, 2)
+    emul_comp_penalty, emul_comp_note, emul_comp_detail = _emulsifier_complexity(l3)
+    score_after_penalty = round(score_after_cap - scaled_penalty - polyol_penalty - emul_comp_penalty, 2)
     score_after_penalty = max(ABSOLUTE_SCORE_FLOOR, score_after_penalty)  # absolute floor
 
     # Stage 8: Floor application (SRC-01)
@@ -2819,6 +2936,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "penalty_scaling_note": penalty_scaling_note,
         "polyol_penalty":       polyol_penalty,
         "polyol_penalty_note":  polyol_note if polyol_penalty > 0 else None,
+        "emulsifier_complexity_penalty":      emul_comp_penalty,
+        "emulsifier_complexity_penalty_note": emul_comp_note if emul_comp_penalty > 0 else None,
+        "emulsifier_complexity_detail":       emul_comp_detail if emul_comp_penalty > 0 else None,
         "score_after_penalty":  score_after_penalty,
         "concern_family_coordination": gr.get("concern_family_coordination", {}),
         "floors_considered": floor_result.get("floors_considered", []),

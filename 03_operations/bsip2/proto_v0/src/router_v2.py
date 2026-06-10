@@ -35,6 +35,8 @@ CATEGORIES = [
     "bread",
     "cracker",
     "crispbread",
+    # Frozen vegetable (TASK-??? / EV-006 follow-up)
+    "frozen_vegetable",
     "default",
 ]
 
@@ -134,6 +136,12 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("עדנה",           "dessert",           "dairy_dessert",  0.93),
     ("פרוביו",         "dessert",           "probiotic_dessert", 0.92),
     ("יופלה",          "dessert",           "flavored_yogurt_dessert", 0.91),
+    # ── Frozen vegetables ──────────────────────────────────────────────────────
+    # Anchors fire on explicit frozen indicators in product names. Exclusions
+    # (ANCHOR_EXCLUSIONS) block non-veg frozen products (bread, pizza, fish, meat,
+    # chicken, patties, schnitzel, pastries, sauces, etc.).
+    ("קפוא",           "frozen_vegetable",  None,  0.90),
+    ("מוקפא",          "frozen_vegetable",  None,  0.90),
 ]
 
 # Anchors that require the matched term to appear at the START of the product name
@@ -201,6 +209,12 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "יופלה":          [],
     "פרוביו":         [],
     "מילקי":          [],
+    # Frozen vegetable exclusions — must not fire on non-veg frozen products
+    "קפוא":           ["לחם", "פיצה", "דג", "דגים", "בשר", "בקר", "עוף",
+                       "קציצה", "קציצות", "שניצל", "המבורגר", "קניש", "מאפה",
+                       "כריך", "מילוי", "רוטב", "טופו"],
+    "מוקפא":          ["לחם", "פיצה", "דג", "עוף", "קציצה", "שניצל",
+                       "המבורגר", "קניש", "מאפה", "כריך", "טופו"],
     "מעדן חלבון":     [],
     "מעדן ילדים":     [],
     # Yogurt sub-brand anchors (TASK-139C) must NOT fire for drinkable variants —
@@ -501,8 +515,9 @@ _PLANT_MILK_SOLID_EXCL: list[str] = [
 #
 # Field → routed category. Mirrors the two governed corpora; extend per new category.
 CATEGORY_PRIOR_SUBTYPE_FIELDS: dict[str, str] = {
-    "bsip_cereal_subtype":  "cereal",
-    "bsip_yogurt_subtype":  "dairy_protein",
+    "bsip_cereal_subtype":          "cereal",
+    "bsip_yogurt_subtype":          "dairy_protein",
+    "bsip_frozen_vegetable_subtype": "frozen_vegetable",
 }
 # Subtype values that do NOT assert category membership (do not carry a prior).
 _CATEGORY_PRIOR_NULL_SUBTYPES: set[str] = {

@@ -1,0 +1,17 @@
+﻿Test 1: additive_quality independence
+  additive_quality score: 40.0
+  ECS penalty: -8
+python : Traceback (most recent call last):
+At line:1 char:58
++ ... e:Encoding'] = 'utf8'; python src/run_ecs_integration.py *>&1 | Out-F ...
++                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Bari\03_operations\bsip2\proto_v0\src\run_ecs_integration.py", line 40, in <module>
+    print(f"  Note: {aq_note}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 56: character maps to <undefined>
