@@ -6,6 +6,12 @@ BASE = pathlib.Path(r'C:\Bari')
 TRACES_DIR = BASE / '02_products' / 'frozen_vegetables' / 'bsip2_outputs' / 'run_frozen_vegetables_001' / 'products'
 OUTPUT = BASE / 'bari-web' / 'src' / 'data' / 'comparisons' / 'frozen_vegetables_frontend_v1.json'
 
+# Confidence copy/state is derived by the shared engine module — the single source
+# of truth for the 7-state confidence spec. Do NOT hand-roll confidence strings here
+# (a bespoke version once shipped a false "official food source" claim, TASK fix 2026-06-10).
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import confidence_annotation as CA
+
 def load_traces():
     traces = []
     for d in sorted(TRACES_DIR.iterdir()):
@@ -211,21 +217,21 @@ for idx, t in enumerate(traces):
     caveats = build_caveats(t)
     insight = build_insight_line(t)
     bottom = build_bottom_line(t)
-    conf = build_confidence(score, t)
-    
+    conf_fields = CA.annotate_from_trace(t)  # engine-derived: confidence + label + tooltip + sub_reason
+
     prod = {
         'id': prod_id,
         'name': name,
         'imageUrl': image_url,
         'score': score_int,
         'grade': grade,
-        'confidence': conf,
+        'confidence': conf_fields['confidence'],
         'insightLine': insight,
         '_cluster': cluster,
         'expansion': {
             'nutrition': nn,
             'ingredients': None,
-            'confidenceLabel': build_confidence_label(conf),
+            'confidenceLabel': conf_fields['confidence_label_he'],
             'servingNote': 'ל-100 גרם',
             'positiveSignals': positive,
             'limitingFactors': limiting,
@@ -237,9 +243,9 @@ for idx, t in enumerate(traces):
         'retailer': 'shufersal',
         'barcode': barcode if barcode else None,
         'source_traceability_status': 'resolved',
-        'confidence_label_he': build_confidence_label(conf),
-        'confidence_tooltip_he': build_confidence_tooltip(conf),
-        'confidence_sub_reason': build_confidence_sub_reason(unknowns),
+        'confidence_label_he': conf_fields['confidence_label_he'],
+        'confidence_tooltip_he': conf_fields['confidence_tooltip_he'],
+        'confidence_sub_reason': conf_fields['confidence_sub_reason'],
     }
     products.append(prod)
 
