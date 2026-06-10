@@ -1,0 +1,82 @@
+{
+  "run_id": "run_salty_snacks_rescue_task241",
+  "task": "TASK-241",
+  "depends_on": "TASK-237 (run_salty_snacks_retailer_001)",
+  "date": "2026-06-10T19:05:00+00:00",
+  "purpose": "Rescue the 12 basis-error salty-snacks drops from TASK-237 by re-sourcing REAL per-100g nutrition panels + Hebrew ingredients from the Shufersal product page (Yochananof pages carried per-serving panels mislabeled as per-100g, kcal 47-132/100g). Identity + image stay Yochananof; only PANEL + INGREDIENTS come from Shufersal for recovered products. Re-score on the UNCHANGED engine (data re-source, not a scoring change). OFF stays removed (salty-snacks-LOCAL).",
+  "engine_tag": "engine-baseline-2026-06-04 + TASK-216 (BARI_RECAL_P0=on); UNCHANGED",
+  "off_removed": true,
+  "panel_source": "shufersal_product_page (for 4 rescued) + retailer_product_page/yochananof (for the other 25)",
+  "identity_method": "Shufersal name-based search (EAN-search returns 0); ACCEPT ONLY when the candidate product page's JSON-LD gtin13 == the full target barcode. Name similarity alone NOT trusted (same-line-different-flavor and same-name-different-barcode collisions were observed and rejected).",
+  "per_100g_verification": "Shared bsip0_nutrition multi-table parser selects the per-100g panel; accepted only when basis classified per_100g AND Atwater (4*protein+4*carbs+9*fat) within 0.80-1.25 of stated kcal AND kcal in the real-snack window 300-600/100g.",
+  "results": {
+    "rescue_targets_basis_error": 12,
+    "recovered": 4,
+    "left_dropped": 8,
+    "recovered_products": [
+      {"barcode": "7290111564291", "name_he": "פריכיות דקות עם קינואה", "shufersal_code": "P_7290111564291", "panel_source": "shufersal_product_page", "kcal_per_100g": 390, "sodium_mg": 370, "score": 67, "grade": "B"},
+      {"barcode": "9322969000022", "name_he": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן", "shufersal_code": "P_9322969000022", "panel_source": "shufersal_product_page", "kcal_per_100g": 391, "sodium_mg": 130, "score": 74, "grade": "B"},
+      {"barcode": "7290106574953", "name_he": "בייגלה שטוחים שומשום 300 גרם", "shufersal_code": "P_7290106574953", "panel_source": "shufersal_product_page", "kcal_per_100g": 436, "sodium_mg": 850, "score": 57, "grade": "C"},
+      {"barcode": "7290112968807", "name_he": "פיטנס קרקר דק סלק 140 גרם", "shufersal_code": "P_7290112968807", "panel_source": "shufersal_product_page", "kcal_per_100g": 458, "sodium_mg": 400, "score": 61, "grade": "C"}
+    ],
+    "left_dropped_products": [
+      {"barcode": "7290000060071", "name_he": "חטיפי פריכונים מאורז מלא", "drop_class": "basis_error", "why": "no Shufersal listing with gtin13 == full barcode; the nearest by SKU-suffix (P_60071, gtin '60071') is a DIFFERENT flavor (טבעי vs מאורז מלא) — a name-only guess, not identity-confirmed"},
+      {"barcode": "7290111564277", "name_he": "פריכיות דקות 3 דגנים", "drop_class": "basis_error", "why": "nearest Shufersal candidate gtin13=7290112340122 (different brand line) — not the target SKU"},
+      {"barcode": "7702024074625", "name_he": "חטיפי קרקר פיטנס חיטה מלאה 234 גרם", "drop_class": "basis_error", "why": "nearest candidate gtin13=8434165658530 (קריט קרם, different product) — not identity-confirmed"},
+      {"barcode": "7290122782615", "name_he": "קרקר דק כוסמין ודבש פיטנס 140 גרם", "drop_class": "basis_error", "why": "nearest candidate gtin13=7290112963918 is the same Fitness line but DIFFERENT flavor (רוזמרין vs כוסמין ודבש) — wrong SKU"},
+      {"barcode": "7290000070919", "name_he": "בייגלה רשתות מלח 400 גרם", "drop_class": "basis_error", "why": "nearest candidate gtin13=7290018893654 is a DIFFERENT barcode already on the shelf (בייגלה בתוספת מלח צ'וקטה) — collision, would duplicate"},
+      {"barcode": "7290000076133", "name_he": "בייגלה שמיניות קטנות 400 גרם", "drop_class": "basis_error", "why": "Shufersal exposes only a short internal SKU (gtin '76133'), not the full barcode; name flavor differs (עם מלח vs קטנות) — cannot identity-confirm"},
+      {"barcode": "7290106573314", "name_he": "חטיף קריספי אפוי כפרי 150 גרם", "drop_class": "basis_error", "why": "no Shufersal candidate with gtin13 == full barcode"},
+      {"barcode": "7290112965684", "name_he": "פיטנס חטיף מולטיגריין עשבי תיבול 25 גרם", "drop_class": "basis_error", "why": "no Shufersal candidate with gtin13 == full barcode"}
+    ],
+    "calbee_no_panel_left_dropped": {"barcode": "8851016002685", "drop_class": "no_panel", "why": "no retailer nutrition panel anywhere; out of TASK-241 scope by design"}
+  },
+  "shelf": {
+    "final_shelf_size": 29,
+    "previous_shelf_size_task237": 25,
+    "net_added": 4,
+    "grade_distribution": {"A": 1, "B": 5, "C": 11, "D": 4, "E": 8},
+    "score_median": 56.2,
+    "score_range": [13.3, 85],
+    "retailer_breakdown": {"yochananof": 25, "shufersal": 4},
+    "ingredient_coverage": "29/29 real Hebrew",
+    "dropped_total": 9,
+    "dropped_basis_error": 8,
+    "dropped_no_panel": 1
+  },
+  "gates": {
+    "off_removed": "PASS (off_removed=true; no OFF data in corpus or frontend)",
+    "is_clean": "PASS (GATE PASS across all 29 consumer strings)",
+    "confidence_ingredient_consistency": "PASS (no 'verified' without ingredients; 1 rescued product honestly 'partial' due to Shufersal panel omitting fiber)",
+    "images_http_200": "PASS (4 recovered Yochananof images 200; CDN may 502-throttle but no 404)",
+    "brand_normalization": "PASS",
+    "sodium_bar": "PASS (real sodium present for all 4 recovered: 130/370/400/850 mg)",
+    "tsc": "PASS",
+    "next_build": "PASS",
+    "d4_invariant": "PASS (engine unchanged; no scoring rule change)"
+  },
+  "config_hashes": {
+    "rescue_scraper_04": "80016f8a2039377f",
+    "inject_script_05": "2b6e248012e7bafd",
+    "bsip1_builder_02": "de69a1a5bf3a11bc",
+    "frontend_builder_03": "9d11d955b7dffcb2",
+    "rescue_panels_json": "9a31ac11af28d084",
+    "bsip0_retailer_raw": "3ebeaa4ca7739418",
+    "frontend_json": "9ed81ca0f331358a"
+  },
+  "artifacts": {
+    "rescue_scraper": "C:/Bari/03_operations/bsip0/scrape/salty_snacks_real/04_rescue_shufersal_panels.py",
+    "inject_script": "C:/Bari/03_operations/bsip0/scrape/salty_snacks_real/05_inject_shufersal_rescue.py",
+    "rescue_panels": "C:/Bari/02_products/salty_snacks/bsip0_outputs/shufersal_rescue_panels.json",
+    "shufersal_raw_html_dir": "C:/Bari/03_operations/bsip0/scrape/salty_snacks_real/shuf_rescue_html/",
+    "bsip0_retailer_raw": "C:/Bari/02_products/salty_snacks/bsip0_outputs/bsip0_salty_snacks_retailer_raw.json",
+    "bsip0_backup_pre_task241": "C:/Bari/02_products/salty_snacks/bsip0_outputs/bsip0_salty_snacks_retailer_raw.pre_task241.json",
+    "bsip1_dir": "C:/Bari/02_products/salty_snacks/bsip1_outputs/",
+    "bsip2_traces": "C:/Bari/02_products/salty_snacks/bsip2_outputs/run_salty_snacks_002/products/",
+    "bsip2_summary": "C:/Bari/02_products/salty_snacks/reports/run_salty_snacks_002_run_summary.json",
+    "drop_manifest": "C:/Bari/02_products/salty_snacks/reports/salty_snacks_retailer_drops.json",
+    "frontend_local": "C:/Bari/02_products/salty_snacks/salty_snacks_frontend_v4.json",
+    "frontend_web": "C:/bari/bari-web/src/data/comparisons/salty_snacks_frontend_v4.json"
+  },
+  "hero_note": "Hero copy + re-QA are the orchestrator's to do AFTER this settles the final shelf (per TASK-241 return block). The hero was NOT touched by this run."
+}

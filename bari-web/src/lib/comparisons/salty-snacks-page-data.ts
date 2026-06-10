@@ -51,7 +51,7 @@ export const saltySnacksMetadataLine = formatComparisonMetadataLine(
 
 export const saltySnacksHero = {
   eyebrow: "חטיפים מלוחים",
-  title: "הבמבה מקבל C — והכי גבוה במדף עוצר ב-B.",
+  title: "הבמבה מקבל C — רק חטיף אורז מלא בלי מלח מגיע ל-A.",
 } as const;
 
 // TASK-226 COPY-LOCK: single shelf-investigator line. Removed the stat-dump prologue
@@ -66,7 +66,7 @@ export const saltySnacksCategoryNote =
   "הדירוג מבוסס על 100 גרם. חטיפים נמכרים בשקיות של 50–200 גרם — כדאי לבדוק כמה סידרת לאכול, לא רק מה הציון.";
 
 export const saltySnacksMethodologyLines = [
-  "בדקנו 38 חטיפים מלוחים ממדף יוחננוף — רכיבים, ערכי תזונה ורמת עיבוד.",
+  "בדקנו 29 חטיפים מלוחים ממדפי יוחננוף ושופרסל — רכיבים, ערכי תזונה ורמת עיבוד.",
   "הציונים יחסיים לקטגוריית חטיפים מלוחים בלבד; מוצר עם A בקטגוריה זו אינו בהכרח שקול ל-A בקטגוריה אחרת.",
   "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין על האריזה.",
   "מסד הנתונים עודכן ביוני 2026 — ייתכן שינויים בנוסחאות שאינם משתקפים עדיין בציון.",
@@ -75,7 +75,7 @@ export const saltySnacksMethodologyLines = [
 export const saltySnacksComparisonMetadata: Metadata = {
   title: "השוואת חטיפים מלוחים | Bari",
   description:
-    "השוואת 38 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 29 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
 const saltySnacksShelfFilters = {

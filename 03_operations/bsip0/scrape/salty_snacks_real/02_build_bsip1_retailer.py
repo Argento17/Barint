@@ -105,6 +105,10 @@ def main():
         ing_text = (p.get("ingredients_text_he") or "").strip()
         prov = p.get("nutrition_provenance") or {}
         thr = prov.get("threshold_declared") or {}
+        # Panel source is carried THROUGH from BSIP0 so a TASK-241 Shufersal-rescued
+        # product is honestly stamped shufersal_product_page (not the default Yochananof).
+        panel_src = p.get("panel_source") or "retailer_product_page"
+        panel_retailer = p.get("retailer") or "yochananof"
 
         # DROP if no scoreable panel (cannot score without core macros)
         if not has_core_macros(nn):
@@ -143,7 +147,7 @@ def main():
             "canonical_name_en": "",
             "brand": p.get("brand") or "",
             "package_size_g": None,
-            "source_retailers": ["yochananof"],
+            "source_retailers": [panel_retailer],
             "sub_pool": p["sub_pool"],
             "category": "salty_snack",
             "image_url": image_url,
@@ -186,7 +190,11 @@ def main():
                 "identity_confidence": "high",
                 "barcode_confidence": "confirmed",
                 "nutrition_confidence": "confirmed_per_100g",
-                "matched_by": "yochananof_catalog_real_ean + retailer_product_page_panel",
+                "matched_by": (
+                    "yochananof_catalog_real_ean + shufersal_product_page_panel (gtin13_exact, TASK-241)"
+                    if panel_src == "shufersal_product_page"
+                    else "yochananof_catalog_real_ean + retailer_product_page_panel"
+                ),
                 "observation_count": 1,
             },
             "conflicts_summary": [],
@@ -196,14 +204,18 @@ def main():
             "enrichment_run_id": "run_salty_snacks_bsip1_retailer_001",
             "enriched_at": now,
             "panel_provenance": {
-                "panel_source": "retailer_product_page",
-                "retailer": "yochananof",
-                "acquisition": "yochananof_storefront_product_modal",
+                "panel_source": panel_src,
+                "retailer": panel_retailer,
+                "acquisition": ("shufersal_product_page (name-search, gtin13_exact identity match, TASK-241)"
+                                if panel_src == "shufersal_product_page"
+                                else "yochananof_storefront_product_modal"),
                 "trans_threshold_declared": list(thr.keys()),
                 "raw_rows": prov.get("raw_rows"),
+                "shufersal_product_code": prov.get("shufersal_product_code"),
+                "shufersal_product_url": prov.get("shufersal_product_url"),
                 "no_off": True,
             },
-            "panel_source": "retailer_product_page",
+            "panel_source": panel_src,
             "identity_source": "yochananof_catalog_harvest_real_ean",
         }
         (OUT_DIR / f"{pid}.json").write_text(json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")

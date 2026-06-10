@@ -2,7 +2,7 @@
 id: TASK-241
 title: "Salty-snacks: rescue the 12 basis-error drops from Shufersal real per-100g panels, re-score, re-add"
 owner: data-agent
-status: IN_PROGRESS
+status: RETURNED
 priority: HIGH
 created_at: 2026-06-10
 depends_on: [TASK-237]
@@ -48,3 +48,23 @@ images HTTP 200; leakage-clean copy + brand normalization + sodium bar; tsc+buil
 How many of the 12 recovered vs left dropped (+why), final shelf size, grade distribution, panel
 source per recovered product, gate confirmation. Do NOT close — RETURN for orchestrator verification.
 Hero copy + re-QA are handled by orchestrator AFTER this settles the final shelf.
+
+## RETURN (data-agent, 2026-06-10) — RETURNED for orchestrator verification
+Recovered **4 of 12** basis-error drops from Shufersal; **8 left honestly dropped**. Final shelf
+**29** (was 25). Grades A1/B5/C11/D4/E8, median 56.2. Engine UNCHANGED (data re-source only).
+
+Recovered (panel_source=shufersal_product_page, identity gtin13==barcode, verified per-100g):
+- 7290111564291 פריכיות דקות עם קינואה — kcal 390, 67/B
+- 9322969000022 פריכיות תירס עם סויה וזרעי פשתן — kcal 391, 74/B
+- 7290106574953 בייגלה שטוחים שומשום — kcal 436, 57/C (confidence "partial": Shufersal panel omits fiber — honest)
+- 7290112968807 פיטנס קרקר דק סלק — kcal 458, 61/C
+
+Left dropped (no Shufersal page with gtin13 == full barcode; only same-line-different-flavor or
+different-barcode collisions — refused to ship a name-only guessed panel): 7290000060071,
+7290111564277, 7702024074625, 7290122782615, 7290000070919, 7290000076133, 7290106573314,
+7290112965684. (Calbee 8851016002685 no_panel stays dropped, out of scope by design.)
+
+Gates: off_removed=true, is_clean PASS (29/29), confidence↔ingredient PASS, images HTTP 200 (4/4),
+brand-norm + sodium-bar PASS, tsc PASS, next build PASS, engine/D4 unchanged.
+Run record: 02_products/salty_snacks/reports/run_record_salty_snacks_rescue_task241.json
+Hero NOT touched (orchestrator's, per brief).

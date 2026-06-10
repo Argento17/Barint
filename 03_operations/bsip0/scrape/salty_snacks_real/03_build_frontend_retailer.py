@@ -370,6 +370,10 @@ def main():
     subpool_dist = dict(Counter(p["subPool"] for p in products))
     nova_dist = dict(Counter(str(p["novaGroup"]) for p in products))
     retailer_dist = dict(Counter(p["retailer"] for p in products))
+    # TASK-241: products whose panel was rescued from Shufersal (panel_source carried
+    # through BSIP1). These keep Yochananof identity+image; only the panel is Shufersal.
+    rescued_ids = [p["id"] for p in products
+                   if (b1.get(p["id"], {}).get("panel_source") == "shufersal_product_page")]
     ing_cov = sum(1 for p in products if p["source_traceability_status"] == "resolved")
     sodium_unavail_ids = [p["id"] for p in products if p["expansion"].get("sodiumUnavailable")]
     panel_only_ids = [p["id"] for p in products if p["source_traceability_status"] == "panel_only"]
@@ -388,26 +392,33 @@ def main():
             "schema": "BariProductVM[]",
             "version": "v4",
             "change_note": (
-                "v4 REAL RETAILER-PANEL re-source (TASK-237). Open Food Facts REMOVED from the "
-                "salty pipeline entirely. Nutrition + Hebrew ingredients re-sourced per product "
-                "from the Yochananof storefront product modal (panel_source=retailer_product_page). "
+                "v4 REAL RETAILER-PANEL re-source (TASK-237) + Shufersal basis-error RESCUE "
+                "(TASK-241). Open Food Facts REMOVED from the salty pipeline entirely (LOCAL to "
+                "salty-snacks). Nutrition + Hebrew ingredients re-sourced per product from real "
+                "retailer product pages (Yochananof storefront modal; "
+                f"{len(rescued_ids)} basis-error drops rescued from the Shufersal product page, "
+                "panel_source=shufersal_product_page, identity-confirmed by JSON-LD gtin13==barcode "
+                "and verified genuinely per-100g via Atwater + snack-kcal-range checks). "
                 "Engine UNCHANGED (engine-baseline-2026-06-04 + TASK-216); re-scored on real data "
-                "(scores moved — authorized data re-source, not a scoring change). Trans \"<0.5\"/"
-                "\"L 0.5\" declarations carried as fat_trans_g==0.5 -> engine threshold_declaration "
-                "convention (no penalty); NO manual trans data_corrections, NO OFF ingredient omits. "
-                "Identity+image unchanged (Yochananof catalog, real EAN, HTTP-200). "
+                "(authorized data re-source, not a scoring change). Trans \"<0.5\"/\"L 0.5\" "
+                "declarations carried as fat_trans_g==0.5 -> engine threshold_declaration convention "
+                "(no penalty); NO manual trans data_corrections, NO OFF ingredient omits. "
+                "Identity+image unchanged (Yochananof catalog, real EAN, HTTP-200) for ALL products "
+                "including the rescued 4. "
                 f"{len(drops)} products dropped: 1 Calbee import (no retailer panel) + "
-                f"{sum(1 for d in drops if d.get('drop_class')=='basis_error')} whose Yochananof panel "
-                "declares 'ל100 גרם' but is on a per-serving basis (kcal<200, Atwater-consistent; "
-                "unrecoverable, TASK-234 basis-error precedent). NONE backfilled from OFF. "
+                f"{sum(1 for d in drops if d.get('drop_class')=='basis_error')} whose retailer panel "
+                "is on an unrecoverable per-serving basis with no identity-confirmed Shufersal "
+                "per-100g panel available (TASK-234 basis-error precedent). NONE backfilled from OFF, "
+                "NONE from a name-only guessed Shufersal SKU. "
                 "PRESERVED: is_clean gate, confidence<->ingredient gate, no recommendation language, "
                 "reworded confidence labels, brand normalization."
             ),
             "sub_pools": ["chips", "popcorn", "puffed", "baked", "rice_cakes", "pretzels"],
             "provenance": (
-                "TASK-237 real retailer re-source. Identity+image: Yochananof catalog (real EAN). "
-                "Panel: Yochananof product-page modal (real Hebrew nutrition + ingredients). "
-                "NO Open Food Facts. "
+                "TASK-237 real retailer re-source + TASK-241 Shufersal rescue. Identity+image: "
+                "Yochananof catalog (real EAN) for ALL products. Panel: Yochananof product-page modal; "
+                f"{len(rescued_ids)} rescued panels from Shufersal product page (gtin13-confirmed, "
+                "verified per-100g). NO Open Food Facts. "
                 f"Corpus: {len(products)} products ({len(drops)} dropped: 1 no-panel + "
                 f"{sum(1 for d in drops if d.get('drop_class')=='basis_error')} per-serving-basis error). "
                 f"Ingredient coverage: {ing_cov}/{len(products)} (real Hebrew). "
@@ -421,7 +432,10 @@ def main():
             "panel_only_ids": panel_only_ids,
             "sodium_unavailable_marked": sodium_unavail_ids,
             "off_removed": True,
-            "panel_source": "retailer_product_page (yochananof storefront modal)",
+            "panel_source": ("retailer_product_page (yochananof storefront modal) + "
+                             "shufersal_product_page (4 TASK-241 rescued panels)"),
+            "rescued_from_shufersal_ids": rescued_ids,
+            "rescued_from_shufersal_count": len(rescued_ids),
             "dropped_products": drops,
             "dropped_count": len(drops),
         },

@@ -1,14 +1,14 @@
 {
   "_meta": {
-    "generated": "2026-06-10T16:35:24.614058+00:00",
+    "generated": "2026-06-10T17:04:35.963558+00:00",
     "category": "salty-snacks",
     "category_he": "חטיפים מלוחים",
     "run_id": "run_salty_snacks_002",
-    "product_count": 25,
-    "scored_count": 25,
+    "product_count": 29,
+    "scored_count": 29,
     "schema": "BariProductVM[]",
     "version": "v4",
-    "change_note": "v4 REAL RETAILER-PANEL re-source (TASK-237). Open Food Facts REMOVED from the salty pipeline entirely. Nutrition + Hebrew ingredients re-sourced per product from the Yochananof storefront product modal (panel_source=retailer_product_page). Engine UNCHANGED (engine-baseline-2026-06-04 + TASK-216); re-scored on real data (scores moved — authorized data re-source, not a scoring change). Trans \"<0.5\"/\"L 0.5\" declarations carried as fat_trans_g==0.5 -> engine threshold_declaration convention (no penalty); NO manual trans data_corrections, NO OFF ingredient omits. Identity+image unchanged (Yochananof catalog, real EAN, HTTP-200). 13 products dropped: 1 Calbee import (no retailer panel) + 12 whose Yochananof panel declares 'ל100 גרם' but is on a per-serving basis (kcal<200, Atwater-consistent; unrecoverable, TASK-234 basis-error precedent). NONE backfilled from OFF. PRESERVED: is_clean gate, confidence<->ingredient gate, no recommendation language, reworded confidence labels, brand normalization.",
+    "change_note": "v4 REAL RETAILER-PANEL re-source (TASK-237) + Shufersal basis-error RESCUE (TASK-241). Open Food Facts REMOVED from the salty pipeline entirely (LOCAL to salty-snacks). Nutrition + Hebrew ingredients re-sourced per product from real retailer product pages (Yochananof storefront modal; 4 basis-error drops rescued from the Shufersal product page, panel_source=shufersal_product_page, identity-confirmed by JSON-LD gtin13==barcode and verified genuinely per-100g via Atwater + snack-kcal-range checks). Engine UNCHANGED (engine-baseline-2026-06-04 + TASK-216); re-scored on real data (authorized data re-source, not a scoring change). Trans \"<0.5\"/\"L 0.5\" declarations carried as fat_trans_g==0.5 -> engine threshold_declaration convention (no penalty); NO manual trans data_corrections, NO OFF ingredient omits. Identity+image unchanged (Yochananof catalog, real EAN, HTTP-200) for ALL products including the rescued 4. 9 products dropped: 1 Calbee import (no retailer panel) + 8 whose retailer panel is on an unrecoverable per-serving basis with no identity-confirmed Shufersal per-100g panel available (TASK-234 basis-error precedent). NONE backfilled from OFF, NONE from a name-only guessed Shufersal SKU. PRESERVED: is_clean gate, confidence<->ingredient gate, no recommendation language, reworded confidence labels, brand normalization.",
     "sub_pools": [
       "chips",
       "popcorn",
@@ -17,35 +17,44 @@
       "rice_cakes",
       "pretzels"
     ],
-    "provenance": "TASK-237 real retailer re-source. Identity+image: Yochananof catalog (real EAN). Panel: Yochananof product-page modal (real Hebrew nutrition + ingredients). NO Open Food Facts. Corpus: 25 products (13 dropped: 1 no-panel + 12 per-serving-basis error). Ingredient coverage: 25/25 (real Hebrew). Grade dist: {'A': 1, 'B': 3, 'C': 9, 'D': 4, 'E': 8}. NOVA dist: {'1': 1, '2': 5, '3': 12, '4': 7}.",
+    "provenance": "TASK-237 real retailer re-source + TASK-241 Shufersal rescue. Identity+image: Yochananof catalog (real EAN) for ALL products. Panel: Yochananof product-page modal; 4 rescued panels from Shufersal product page (gtin13-confirmed, verified per-100g). NO Open Food Facts. Corpus: 29 products (9 dropped: 1 no-panel + 8 per-serving-basis error). Ingredient coverage: 29/29 (real Hebrew). Grade dist: {'A': 1, 'B': 5, 'C': 11, 'D': 4, 'E': 8}. NOVA dist: {'1': 1, '3': 16, '2': 5, '4': 7}.",
     "grade_distribution": {
       "A": 1,
-      "B": 3,
-      "C": 9,
+      "B": 5,
+      "C": 11,
       "D": 4,
       "E": 8
     },
     "subpool_distribution": {
-      "rice_cakes": 4,
+      "rice_cakes": 6,
       "chips": 9,
       "popcorn": 5,
-      "pretzels": 4,
+      "baked": 1,
+      "pretzels": 5,
       "puffed": 3
     },
     "nova_distribution": {
       "1": 1,
+      "3": 16,
       "2": 5,
-      "3": 12,
       "4": 7
     },
     "retailer_breakdown": {
-      "yochananof": 25
+      "yochananof": 25,
+      "shufersal": 4
     },
-    "ingredient_coverage": "25/25",
+    "ingredient_coverage": "29/29",
     "panel_only_ids": [],
     "sodium_unavailable_marked": [],
     "off_removed": true,
-    "panel_source": "retailer_product_page (yochananof storefront modal)",
+    "panel_source": "retailer_product_page (yochananof storefront modal) + shufersal_product_page (4 TASK-241 rescued panels)",
+    "rescued_from_shufersal_ids": [
+      "bsip1_snack_9322969000022",
+      "bsip1_snack_7290111564291",
+      "bsip1_snack_7290112968807",
+      "bsip1_snack_7290106574953"
+    ],
+    "rescued_from_shufersal_count": 4,
     "dropped_products": [
       {
         "barcode": "7290000060071",
@@ -59,20 +68,6 @@
         "name": "פריכיות דקות 3 דגנים",
         "drop_class": "basis_error",
         "energy_kcal": 77,
-        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
-      },
-      {
-        "barcode": "7290111564291",
-        "name": "פריכיות דקות עם קינואה",
-        "drop_class": "basis_error",
-        "energy_kcal": 78,
-        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
-      },
-      {
-        "barcode": "9322969000022",
-        "name": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
-        "drop_class": "basis_error",
-        "energy_kcal": 47,
         "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
       },
       {
@@ -104,20 +99,6 @@
         "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
       },
       {
-        "barcode": "7290106574953",
-        "name": "בייגלה שטוחים שומשום 300 גרם",
-        "drop_class": "basis_error",
-        "energy_kcal": 131,
-        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
-      },
-      {
-        "barcode": "7290112968807",
-        "name": "פיטנס קרקר דק סלק 140 גרם",
-        "drop_class": "basis_error",
-        "energy_kcal": 99,
-        "reason": "retailer page declares 'ל100 גרם' but the whole panel is on a per-serving basis (kcal<200, Atwater-consistent); unrecoverable (no numeric serving size); publishing per-100g distorts the shelf. Dropped per TASK-234 basis-error precedent; NOT backfilled from OFF"
-      },
-      {
         "barcode": "7290106573314",
         "name": "חטיף קריספי אפוי כפרי 150 גרם",
         "drop_class": "basis_error",
@@ -138,7 +119,7 @@
         "reason": "retailer page has no nutrition panel (and no ingredients); not scoreable; NOT backfilled from OFF"
       }
     ],
-    "dropped_count": 13
+    "dropped_count": 9
   },
   "products": [
     {
@@ -174,6 +155,44 @@
         "comparisonContext": ""
       },
       "barcode": "7290000069364",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_9322969000022",
+      "name": "פריכיות תירס עם סויה וזרעי פשתן ללא גלוטן",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/9/3/9322969000022_s1_1506-22-2020_23-00-12.jpg",
+      "score": 74,
+      "grade": "B",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 11 גרם סיבים ו-11 גרם חלבון ל-100 גרם.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 391,
+          "protein": 10.8,
+          "fat": 5.7,
+          "carbs": 64.4,
+          "fiber": 11.1,
+          "sodium": 130,
+          "sugar": 0.8,
+          "saturatedFat": 1.0
+        },
+        "ingredients": "תירס (89%), זרעי פשתן (6%), סויה (2%), שמן סויה (1.3%), זרעי צ'יה, מלח ים, תמצית רוזמרין",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "11 גרם סיבים ל-100 גרם",
+          "11 גרם חלבון ל-100 גרם",
+          "כמעט בלי סוכר"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
+        "comparisonContext": ""
+      },
+      "barcode": "9322969000022",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null
@@ -292,6 +311,40 @@
       "confidence_sub_reason": "partial_field"
     },
     {
+      "id": "bsip1_snack_7290111564291",
+      "name": "פריכיות דקות עם קינואה",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12352860_7290111564291.jpg",
+      "score": 67,
+      "grade": "B",
+      "insightLine": "נשאר בין הטובים במדף, גם בלי תכונה אחת שבולטת.\nנשאר חטיף מעובד, אבל מהפרופילים הסבירים שתמצאו על המדף הזה.",
+      "confidence": "verified",
+      "subPool": "rice_cakes",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 390,
+          "protein": 8.8,
+          "fat": 3.8,
+          "carbs": 77.5,
+          "fiber": 5.3,
+          "sodium": 370,
+          "sugar": 4.0,
+          "saturatedFat": 0.7
+        },
+        "ingredients": "קמח תירס מלא (40%), קמח אורז (21%), קינואה (19%), קמח שיבולת שועל מלא (ללא גלוטן) (16%), סוכר, מלח, חומר תפיחה (E500), מתחלב (לציטין סויה).rnסך הדגנים במוצר 77%, מכיל 56% דגנים מלאים.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [],
+        "bottomLine": "מהטובים שתמצאו על המדף הזה, וזה עדיין חטיף מעובד. \"הכי טוב\" כאן לא אומר \"מצוין\".",
+        "comparisonContext": ""
+      },
+      "barcode": "7290111564291",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
       "id": "bsip1_snack_7290110551926",
       "name": "חטיף תפוצ'יפס גורמה בטעם בטטה 45 גרם",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/361707_7290110551926.jpg",
@@ -321,6 +374,43 @@
         "comparisonContext": ""
       },
       "barcode": "7290110551926",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null
+    },
+    {
+      "id": "bsip1_snack_7290112968807",
+      "name": "פיטנס קרקר דק סלק 140 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12562837_7290112968807.jpg",
+      "score": 61,
+      "grade": "C",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 6 גרם סיבים ו-12 גרם חלבון ל-100 גרם.\nנתרן וקלוריות במרכז הטווח של המדף, בלי יתרון תזונתי שמושך תשומת לב.",
+      "confidence": "verified",
+      "subPool": "baked",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 458,
+          "protein": 12.0,
+          "fat": 15.6,
+          "carbs": 64.2,
+          "fiber": 6.5,
+          "sodium": 400,
+          "sugar": 8.8,
+          "saturatedFat": 1.7
+        },
+        "ingredients": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23%), קמח חיטה (15.5%), שמנים צמחיים, אבקת סלק (7.5%), קמח אורז מלא (6%), גלוטן חיטה, עמי לן אורז, סוכר, שמרים, מלח ים, בצל מיובש (0.9%), שומשום, חומרי טעם וריח, שום מיובש, חומר לטיפול בקמח (סולפיט), מעכב חמצון (תמצית רוז מרין).nסך הדגנים במוצר % 75.5, מכיל 37% דגנים מלאים.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "6 גרם סיבים ל-100 גרם",
+          "12 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [],
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290112968807",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null
@@ -512,16 +602,45 @@
       "barcode": "7290000066318",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field",
-      "d4_additives": [
-        {
-          "e_number": "E300",
-          "name_he": "חומצה אסקורבית",
-          "tier": "functional",
-          "function_he": "נוגד חמצון / משפר בצק",
-          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
-        }
-      ]
+      "confidence_sub_reason": "partial_field"
+    },
+    {
+      "id": "bsip1_snack_7290106574953",
+      "name": "בייגלה שטוחים שומשום 300 גרם",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/2/12502486_7290106574953.jpg",
+      "score": 57,
+      "grade": "C",
+      "insightLine": "אחד החטיפים הבודדים במדף עם 12 גרם חלבון ל-100 גרם.\nשקית שלמה לבדה מכסה חלק ניכר מהנתרן היומי.",
+      "confidence": "partial",
+      "subPool": "pretzels",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 436,
+          "protein": 11.5,
+          "fat": 12.0,
+          "carbs": 70.5,
+          "fiber": null,
+          "sodium": 850,
+          "sugar": 6.5,
+          "saturatedFat": 3.2
+        },
+        "ingredients": "קמח חיטה (מכיל גלוטן), שומשום (10%), שמן צמחי, סוכר, לתת שעורה, מלח, חומר תפיחה (סודיום ביקרבונט - סודה לשתיה), מווסת חומציות (E524) , מתחלב (לציטין סויה).",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "12 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "850 מ\"ג נתרן ל-100 גרם"
+        ],
+        "bottomLine": "חטיף סביר בלי יתרון תזונתי בולט. נמצא בדיוק במרכז המדף.",
+        "comparisonContext": ""
+      },
+      "barcode": "7290106574953",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
+      "confidence_sub_reason": "partial_field"
     },
     {
       "id": "bsip1_snack_7290017928364",
@@ -593,16 +712,7 @@
       "barcode": "7290000071008",
       "confidence_label_he": "קטגוריה משוערת",
       "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
-      "confidence_sub_reason": "inferred_category",
-      "d4_additives": [
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        }
-      ]
+      "confidence_sub_reason": "inferred_category"
     },
     {
       "id": "bsip1_snack_7290112967381",
@@ -639,16 +749,7 @@
       "barcode": "7290112967381",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "d4_additives": [
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        }
-      ]
+      "confidence_sub_reason": null
     },
     {
       "id": "bsip1_snack_7290000066141",
@@ -764,16 +865,7 @@
       "barcode": "7290000066332",
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition",
-      "d4_additives": [
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        }
-      ]
+      "confidence_sub_reason": "missing_nutrition"
     },
     {
       "id": "bsip1_snack_7290100850916",
@@ -812,30 +904,7 @@
       "barcode": "7290100850916",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field",
-      "d4_additives": [
-        {
-          "e_number": "E296",
-          "name_he": "חומצה מאלית",
-          "tier": "functional",
-          "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
-          "explanation_he": "חומצה מאלית היא חומצה טבעית הקיימת גם בתפוחים ובפירות, ומשמשת לאיזון טעם."
-        },
-        {
-          "e_number": "E100",
-          "name_he": "כורכומין",
-          "tier": "functional",
-          "function_he": "צבע מאכל צהוב ממקור כורכום",
-          "explanation_he": "כורכומין הוא פיגמנט צהוב המופק מהכורכום, ומשמש כצבע מאכל טבעי."
-        },
-        {
-          "e_number": "E955",
-          "name_he": "סוכרלוז",
-          "tier": "dose-dependent",
-          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
-          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך."
-        }
-      ]
+      "confidence_sub_reason": "partial_field"
     },
     {
       "id": "bsip1_snack_7290118421603",
@@ -874,23 +943,7 @@
       "barcode": "7290118421603",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field",
-      "d4_additives": [
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        }
-      ]
+      "confidence_sub_reason": "partial_field"
     },
     {
       "id": "bsip1_snack_7290017928661",
@@ -926,23 +979,7 @@
       "barcode": "7290017928661",
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "confidence_sub_reason": "missing_nutrition",
-      "d4_additives": [
-        {
-          "e_number": "E330",
-          "name_he": "חומצת לימון",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / מונע חמצון",
-          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "likely-neutral",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        }
-      ]
+      "confidence_sub_reason": "missing_nutrition"
     },
     {
       "id": "bsip1_snack_7290104500572",
@@ -979,23 +1016,7 @@
       "barcode": "7290104500572",
       "confidence_label_he": "קטגוריה משוערת",
       "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
-      "confidence_sub_reason": "inferred_category",
-      "d4_additives": [
-        {
-          "e_number": "E500",
-          "name_he": "סודיום קרבונט",
-          "tier": "functional",
-          "function_he": "מווסת חומציות / חומר תפיחה",
-          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
-        },
-        {
-          "e_number": "E300",
-          "name_he": "חומצה אסקורבית",
-          "tier": "functional",
-          "function_he": "נוגד חמצון / משפר בצק",
-          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
-        }
-      ]
+      "confidence_sub_reason": "inferred_category"
     },
     {
       "id": "bsip1_snack_4011800528416",
@@ -1073,16 +1094,7 @@
       "barcode": "7290000066295",
       "confidence_label_he": "קטגוריה משוערת",
       "confidence_tooltip_he": "הקטגוריה זוהתה באופן משוער. הציון עשוי להתעדכן כשיתווספו נתונים.",
-      "confidence_sub_reason": "inferred_category",
-      "d4_additives": [
-        {
-          "e_number": "E162",
-          "name_he": "אדום סלק",
-          "tier": "functional",
-          "function_he": "צבע מאכל אדום ממקור סלק",
-          "explanation_he": "אדום סלק הוא פיגמנט המופק מסלק ומשמש כצבע אדום טבעי."
-        }
-      ]
+      "confidence_sub_reason": "inferred_category"
     },
     {
       "id": "bsip1_snack_7290112494313",
@@ -1119,16 +1131,7 @@
       "barcode": "7290112494313",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field",
-      "d4_additives": [
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "likely-neutral",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        }
-      ]
+      "confidence_sub_reason": "partial_field"
     },
     {
       "id": "bsip1_snack_7290116537375",
@@ -1167,16 +1170,7 @@
       "barcode": "7290116537375",
       "confidence_label_he": "מבוסס על נתונים חלקיים",
       "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "confidence_sub_reason": "partial_field",
-      "d4_additives": [
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "likely-neutral",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        }
-      ]
+      "confidence_sub_reason": "partial_field"
     },
     {
       "id": "bsip1_snack_4014400925319",
