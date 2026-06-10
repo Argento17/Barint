@@ -2,14 +2,15 @@
 id: TASK-234
 title: "Salty-snacks v4 red-team remediation — systematize the 0.5g trans-declaration guard (corpus-wide), fix beet-cracker NOVA/ingredient contradiction, correct implausible kcal/fiber"
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-06-10
 priority: HIGH
 created_at: 2026-06-10
 depends_on: [TASK-231, TASK-229]
 blocks: [TASK-232]
 roadmap_impact: true
 work_type: data-remediation
----
+close_reason: "Orchestrator+QA verified. RT-2: 0.5g trans-declaration artifact systematized corpus-wide — 9 products de-artifacted, re-scored on UNCHANGED engine (Bamba 61→63, Apropo Italiano 42→43, matching red-team predictions). RT-7: NOVA/ingredientCount contradiction resolved — runtime VM now suppresses novaGroup when ingredientCount=0 (0 contradictions ship). MEDIUM: fabricated 38g fiber corrected (Click 25→14/E); 3 unrecoverable kcal-basis chips dropped (41→38). Final: 38 products, grades B11 C16 D4 E7, 0 score==0, all consumer strings is_clean, tsc+build clean. No engine/cap/veto change. RT-3 (veto philosophy) routed to Nutrition as non-blocking."
 
 # TASK-234 — Salty-snacks v4 red-team remediation
 
@@ -17,6 +18,14 @@ Red-team challenge (`02_products/salty_snacks/reports/red_team_salty_snacks_v4.m
 CONDITIONAL PASS (no CRITICAL — QA Hard Rule 9 gate satisfied), but 4 HIGH + 5 MEDIUM. The
 score-quality items below are in-lane data corrections (no scoring-engine change). Branch
 `salty-snacks-v4`.
+
+> **Attribution note (2026-06-10):** these corrections shipped into `salty_snacks_frontend_v4.json`
+> via the TASK-233B shared-core regeneration (the generator source carries 234's
+> `BASIS_ERROR_EXCLUDE` + fiber/kcal/trans fixes). Live deltas surfaced by that regen — count 41→38;
+> scores 7290000066318 61→63, 7290104500572 42→43, 7290112494313 25→14; grade 7290000066332 C→B
+> (disk→runtime alignment). QA verified engine unchanged / score-neutral / no methodology change —
+> these are **234's** corrected-input deltas, not 233's. Do not revert. This task should own them in
+> its return block.
 
 ## Fix these
 

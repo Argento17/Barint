@@ -2,14 +2,15 @@
 id: TASK-232
 title: "Salty-snacks v4 golden-standard QA audit — leakage, propagation, rank-order/protein sanity, copy compliance"
 owner: qa-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-06-10
 priority: HIGH
 created_at: 2026-06-10
 depends_on: [TASK-228]
 blocks: []
 roadmap_impact: true
 work_type: qa-audit
----
+close_reason: "Initial audit FAIL → all 5 blockers remediated (TASK-230 copy, TASK-231 data, TASK-234 red-team cleanup, TASK-229 scoring owner-signed). Re-audit verdict = CONDITIONAL PASS: propagation 38/38 (0 mismatches), leakage 0, recommendation 0, drift PASS, rank-order 0 inversions (incl. protein pairs), 0 score==0, red-team gate satisfied (no CRITICAL), tsc+build clean. Condition 1 (stale '41' count in 3 strings) FIXED by orchestrator → 38 (commit f26a1c02). Condition 2 (live imageUrl HTTP-200) is environmental only — CDN rate-limiting this IP with 502s; URLs byte-identical to the TASK-228/231 verified-200 set, untouched. Re-confirm 200 from an un-throttled network before flipping live."
 
 # TASK-232 — Salty-snacks v4 golden-standard QA audit
 
