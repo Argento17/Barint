@@ -21,7 +21,7 @@
     "energy_kcal": 458.0,
     "fat_g": 15.8139534883721,
     "fat_saturated_g": 1.86046511627907,
-    "fat_trans_g": 2.32558139534884,
+    "fat_trans_g": 0.0,
     "sodium_mg": 400,
     "carbohydrates_g": 64.1860465116279,
     "sugars_g": 8.83720930232558,
@@ -87,5 +87,15 @@
     "client_version": "1.0",
     "verification_status": "candidate"
   },
-  "identity_source": "yochananof_catalog_harvest_real_ean"
+  "identity_source": "yochananof_catalog_harvest_real_ean",
+  "data_corrections": [
+    {
+      "field": "normalized_nutrition_per_100g.fat_trans_g",
+      "old_value": 2.32558139534884,
+      "new_value": 0.0,
+      "reason": "OFF trans-fat_100g (2.326) was a serving-scaling artifact: serving panel 0.5 g / 0.215 serving fraction. 0.5 g serving = Israeli '<1g' threshold declaration, not measured. No PHVO/hydrogenated oil in ingredients. Corrected to 0.0 (no measured trans). TASK-231.",
+      "task": "TASK-231",
+      "corrected_at_source": "open_food_facts (serving-scaling artifact)"
+    }
+  ]
 }
