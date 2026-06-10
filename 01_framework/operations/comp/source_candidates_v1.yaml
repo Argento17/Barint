@@ -1,0 +1,791 @@
+# Project Comp — Source Candidates v1
+# ============================================================================
+# Holding pen for sources that are PLAUSIBLE but NOT yet verified public/relevant,
+# OR where the exact handle/URL could not be confirmed at D0 (Rule 5, Rule 9).
+# Nothing here is monitored until promoted to source_registry_v1.yaml after
+# manual verification (action: the verify_action field).
+#
+# Same field contract as the registry. status is always `candidate` here.
+# Built: 2026-06-10
+# ============================================================================
+
+meta:
+  version: v1
+  built: 2026-06-10
+  last_updated: 2026-06-10  # D0b — IL creators (cand-028..044); D0c — global creators + tombstones (cand-045..047)
+  candidate_count: 47       # entries total; 5 tombstones (cand-001/014/015/022 promoted, cand-046 deferred), 42 live candidates
+  promotion_rule: "Promote to registry ONLY after a human/Research confirms (a) public access, (b) relevance, (c) exact current handle/URL. Until then, do not monitor."
+  d0b_note: >
+    cand-001 (Maya Roseman) was PROMOTED to active il-023. Several D0b candidates carry handles that
+    appeared only in a search-engine summary, NOT as a resolved profile link — these are explicitly
+    'confirm before use' and must not be monitored until a human sees the live profile (no guessed handles)."
+
+candidates:
+
+  # --- Israeli individuals: real public figures, handle/URL NOT confirmed at D0 ---
+  - id: cand-001
+    platform: web
+    handle_or_name: "מאיה רוזמן (Maya Roseman) — PROMOTED → il-023"
+    url: https://dietmaya.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [consumer_signal, content_inspiration, misinformation_watch]
+    topics: [weight_loss, sugar, kids_food, protein]
+    status: exclude  # tombstone — promoted to active registry at D0b
+    discovery_reason: "Site (dietmaya.co.il) + Substack verified at D0b; promoted to active il-023."
+    verify_action: "DONE — promoted. Remaining: confirm her IG handle to add social monitoring."
+    notes: "TOMBSTONE: no longer a candidate. See il-023 in source_registry_v1.yaml."
+
+  - id: cand-002
+    platform: instagram
+    handle_or_name: "מיכל אנסקי (Michal Ansky) — @michalansky (food journalist/entrepreneur)"
+    url: https://www.instagram.com/michalansky
+    language: he
+    market: israel
+    source_type: food_label_reviewer
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery, content_inspiration]
+    topics: [clean_label, organic, plant_based]
+    status: candidate
+    discovery_reason: "Prominent IL food journalist (markets, real-food advocacy); appeared in IL food-influencer rankings."
+    verify_action: "Confirm IG handle live + that nutrition/label content (not just culinary) is recurring."
+    notes: "More culinary than nutrition — relevance to Bari's label/score mission needs confirming before promotion."
+
+  - id: cand-003
+    platform: instagram
+    handle_or_name: "ליה נוגה (Liya Noga) — @liyanoga.x"
+    url: https://www.instagram.com/liyanoga.x
+    language: he
+    market: israel
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [weight_loss, protein, sugar]
+    status: candidate
+    discovery_reason: "Flagged as fastest-growing IL healthy-nutrition/diet creator (May 2026, +7.2%/mo)."
+    verify_action: "Verify credentials (is she a licensed dietitian?) + whether claims are evidence-based or hype."
+    notes: "Growth = discourse signal ONLY. Follower velocity is NOT credibility (Rule 3). Treat as hype_watch until credentials confirmed."
+
+  - id: cand-004
+    platform: web
+    handle_or_name: "מיכל גרשוביץ (Michal Gershovitz) — דיאטנית קלינית"
+    url: https://michal-diet.co.il
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [content_inspiration]
+    topics: [weight_loss]
+    status: candidate
+    discovery_reason: "Licensed clinical dietitian, public site (menopause-nutrition niche)."
+    verify_action: "Confirm content cadence + general (non-niche) relevance before promoting."
+    notes: "Niche (menopause) — narrow fit. Verified site exists; relevance breadth is the open question."
+
+  - id: cand-005
+    platform: web
+    handle_or_name: "לימור ספקטור (Limor Spector) — דיאטנית + טכנולוגית מזון"
+    url: https://www.limordiet.com
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [content_inspiration, evidence_reference]
+    topics: [weight_loss, clean_label]
+    status: candidate
+    discovery_reason: "Dietitian + food technologist — the food-tech background is unusually relevant to label/ingredient analysis."
+    verify_action: "Confirm active publishing + whether she covers ingredient/label topics publicly."
+    notes: "Food-technologist angle = high potential fit if she publishes label content."
+
+  - id: cand-006
+    platform: web
+    handle_or_name: "פרופ׳ אפי בילבסקי / drkids team — pediatric nutrition specialists"
+    url: "UNVERIFIED individual handles — see il-022 (drkids.co.il) already active"
+    language: he
+    market: israel
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [kids_food]
+    status: candidate
+    discovery_reason: "Named pediatric experts behind drkids; potential individual evidence voices."
+    verify_action: "Decide whether to monitor individuals separately from the il-022 site."
+    notes: "Likely redundant with il-022. Keep as candidate to avoid double-counting."
+
+  - id: cand-007
+    platform: web
+    handle_or_name: "מכבי שירותי בריאות — תזונה (Maccabi Healthcare, nutrition)"
+    url: "UNVERIFIED nutrition section URL — confirm landing page"
+    language: he
+    market: israel
+    source_type: public_health
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [evidence_reference, consumer_signal]
+    topics: [weight_loss, sugar, GLP1]
+    status: candidate
+    discovery_reason: "Major IL HMO; consumer nutrition content like Clalit/Leumit."
+    verify_action: "Confirm a stable public nutrition landing page."
+    notes: "Completes the HMO set (Clalit il-006, Leumit il-007 already active)."
+
+  - id: cand-008
+    platform: web
+    handle_or_name: "השף הבריא (Chef Bari / chef-bari.co.il)"
+    url: https://www.chef-bari.co.il
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [content_inspiration]
+    topics: [clean_label, weight_loss]
+    status: candidate
+    discovery_reason: "Hebrew healthy-cooking/nutrition blog referencing MoH guidance."
+    verify_action: "Assess authority/cadence; NOTE name collision with 'Bari' brand — confirm unrelated."
+    notes: "Name clash with our own product ('Bari') — verify it is an unrelated third party before any monitoring."
+
+  - id: cand-009
+    platform: web
+    handle_or_name: "MedReviews — דירוג דיאטניות (IL dietitian directory)"
+    url: https://www.medreviews.co.il/search/nutrition-and-diet
+    language: he
+    market: israel
+    source_type: food_label_reviewer
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [category_discovery]
+    topics: []
+    status: candidate
+    discovery_reason: "Directory — a DISCOVERY tool for finding more verified IL dietitians, not a source itself."
+    verify_action: "Use as a discovery pipe to populate more candidates; do not monitor as a source."
+    notes: "Tool, not a voice."
+
+  - id: cand-010
+    platform: web
+    handle_or_name: "Israeli food brands — second tier (Tara, Yotvata, Tnuva-Alt, Osem, Telma, Sano)"
+    url: "UNVERIFIED set — confirm which run real nutrition messaging"
+    language: he
+    market: israel
+    source_type: brand
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [competitor_signal, category_discovery]
+    topics: [protein, sugar, kids_food, clean_label]
+    status: candidate
+    discovery_reason: "Additional IL brands beyond Tnuva/Strauss/Tivall that may carry nutrition messaging."
+    verify_action: "Pick only those with ACTIVE nutrition (not just product) messaging; avoid brand-list bloat."
+    notes: "Brands = signal only (Rule 4). Add selectively — do not flood the registry with brand accounts."
+
+  # --- Israeli channels needing format/access verification ---
+  - id: cand-011
+    platform: tiktok
+    handle_or_name: "IL nutrition TikTok cluster (handles TBD)"
+    url: "UNVERIFIED — TikTok IL nutrition creators"
+    language: he
+    market: israel
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [protein, sugar, weight_loss, GLP1]
+    status: candidate
+    discovery_reason: "TikTok is a primary misinformation/trend vector for younger IL audience; not yet mapped."
+    verify_action: "Identify 3–5 specific high-reach IL nutrition TikTok handles; verify public + relevance."
+    notes: "Known blind spot. TikTok content is hardest to access programmatically — flag platform-access risk."
+
+  - id: cand-012
+    platform: facebook
+    handle_or_name: "IL parenting/kids-food Facebook groups (public pages only)"
+    url: "UNVERIFIED — public pages, NOT private groups"
+    language: he
+    market: israel
+    source_type: parenting_kids_food
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery]
+    topics: [kids_food, sugar, additives]
+    status: candidate
+    discovery_reason: "Parenting communities drive kids-food anxiety discourse (additives, sugar, 'what to pack')."
+    verify_action: "Find PUBLIC pages only. EXCLUDE all private/closed groups (Rule 2)."
+    notes: "HARD LIMIT: private groups are off-limits. Only public brand/community pages eligible."
+
+  # --- Global: plausible but light / needs scoping ---
+  - id: cand-013
+    platform: web
+    handle_or_name: "WebMD — Diet & Nutrition"
+    url: https://www.webmd.com/diet
+    language: en
+    market: us
+    source_type: mainstream_health_media
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal]
+    topics: [weight_loss, supplements, sugar]
+    status: candidate
+    discovery_reason: "Listed as a mainstream reference in the brief."
+    verify_action: "Decide if a THIRD mainstream explainer adds value beyond Healthline + Verywell."
+    notes: "Likely redundant (Rule 8 — don't drown in mainstream sites). Hold unless a gap appears."
+
+  - id: cand-014
+    platform: instagram
+    handle_or_name: "Andrew Huberman — PROMOTED → gl-027"
+    url: https://www.instagram.com/hubermanlab
+    language: en
+    market: us
+    source_type: fitness_nutrition
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [misinformation_watch, consumer_signal]
+    topics: [supplements, gut_health, protein, sweeteners]
+    status: exclude  # tombstone — promoted to active gl-027 at D0c (owner-cited)
+    discovery_reason: "Owner-cited at D0c; promoted to active gl-027."
+    verify_action: "DONE — promoted."
+    notes: "TOMBSTONE. See gl-027. Monitored as SIGNAL + misinformation_watch, never evidence."
+
+  - id: cand-015
+    platform: instagram
+    handle_or_name: "Prof. Tim Spector — PROMOTED → gl-028"
+    url: https://www.instagram.com/tim.spector
+    language: en
+    market: uk
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [evidence_reference, content_inspiration]
+    topics: [gut_health, ultra_processed, fiber, plant_based]
+    status: exclude  # tombstone — promoted to active gl-028 at D0c (handle verified)
+    discovery_reason: "Handle @tim.spector verified at D0c; promoted to active gl-028 as an individual distinct from the ZOE platform (gl-005)."
+    verify_action: "DONE — promoted."
+    notes: "TOMBSTONE. See gl-028. Distinct from gl-005 (ZOE platform)."
+
+  - id: cand-016
+    platform: substack
+    handle_or_name: "Food Fix — Mark Bittman (food-policy newsletter)"
+    url: "UNVERIFIED current URL — confirm"
+    language: en
+    market: us
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [content_inspiration, category_discovery]
+    topics: [ultra_processed, food_dyes, clean_label]
+    status: candidate
+    discovery_reason: "Established food-policy commentary."
+    verify_action: "Confirm current newsletter URL + cadence."
+    notes: "Adds a food-policy voice alongside Marion Nestle (gl-009); confirm before adding to avoid overlap."
+
+  - id: cand-017
+    platform: web
+    handle_or_name: "Nutri-Score (official EU scheme site)"
+    url: "UNVERIFIED canonical URL"
+    language: en
+    market: eu
+    source_type: competitor
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [competitor_signal, evidence_reference]
+    topics: [sugar, fiber, ultra_processed, clean_label]
+    status: candidate
+    discovery_reason: "The dominant EU front-of-pack scoring scheme — a methodological competitor/benchmark."
+    verify_action: "Confirm a stable canonical site (vs. fragmented national pages)."
+    notes: "Partly covered via Open Food Facts (gl-002). Useful as a scoring-methodology benchmark."
+
+  - id: cand-018
+    platform: web
+    handle_or_name: "GreenChoice"
+    url: https://www.greenchoicenow.com
+    language: en
+    market: us
+    source_type: competitor
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [competitor_signal]
+    topics: [organic, clean_label, additives]
+    status: candidate
+    discovery_reason: "Yuka-adjacent food scoring/scanner with sustainability angle."
+    verify_action: "Confirm still operating + scoring relevance."
+    notes: "Adjacent competitor; lower priority than Yuka/Fooducate/EWG."
+
+  - id: cand-019
+    platform: web
+    handle_or_name: "CheckIt / app-comparison aggregators"
+    url: https://getcheck.it
+    language: en
+    market: us
+    source_type: competitor
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [competitor_signal]
+    topics: [additives, ultra_processed]
+    status: candidate
+    discovery_reason: "Aggregator comparing food-scanner apps — a discovery pipe for new competitors."
+    verify_action: "Use as discovery tool, not a monitored source."
+    notes: "Tool for finding competitors, not a voice."
+
+  - id: cand-020
+    platform: web
+    handle_or_name: "American Journal of Public Health / Lancet / BMJ — UPF special issues"
+    url: "UNVERIFIED — journal alerts, not a single URL"
+    language: en
+    market: global
+    source_type: public_health
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [ultra_processed, additives, sugar]
+    status: candidate
+    discovery_reason: "Primary literature is the evidence backbone for UPF claims (AJPH UPF special edition, 2026)."
+    verify_action: "Set up topic alerts rather than monitoring a homepage; route to Research Agent literature client."
+    notes: "Better handled by the existing literature integration client than as an RSS source. Coordinate, don't duplicate."
+
+  - id: cand-021
+    platform: web
+    handle_or_name: "MAHA / 'Make America Healthy Again' food-policy discourse cluster"
+    url: "UNVERIFIED — distributed movement, no single source"
+    language: en
+    market: us
+    source_type: hype_watch
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [misinformation_watch, consumer_signal]
+    topics: [seed_oils, food_dyes, ultra_processed, additives]
+    status: candidate
+    discovery_reason: "Politically-charged 2026 food movement driving seed-oil / dye / additive narratives into the mainstream."
+    verify_action: "Pick 1–2 concrete public anchor accounts/sites rather than monitoring a diffuse movement."
+    notes: "High discourse, high misinformation load. Needs a concrete anchor before it can be a registry entry."
+
+  - id: cand-022
+    platform: instagram
+    handle_or_name: "Global RD myth-busters cluster — PARTIALLY PROMOTED"
+    url: "Knurick → gl-031; Abbey Sharp → gl-032 (both verified at D0c)"
+    language: en
+    market: global
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [content_inspiration, misinformation_watch]
+    topics: [ultra_processed, protein, weight_loss, clean_label]
+    status: exclude  # tombstone — split into individuals (gl-031, gl-032); residual leads moved to cand-045
+    discovery_reason: "Cluster resolved at D0c: Jessica Knurick (gl-031) and Abbey Sharp (gl-032) promoted as individuals. Remaining unverified leads tracked at cand-045."
+    verify_action: "DONE for Knurick/Sharp. See cand-045 for residual RD leads."
+    notes: "TOMBSTONE. No longer monitored as a blob (it never should be) — individuals only."
+
+  - id: cand-023
+    platform: web
+    handle_or_name: "USDA / Dietary Guidelines for Americans (2025–26)"
+    url: https://www.dietaryguidelines.gov
+    language: en
+    market: us
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference]
+    topics: [ultra_processed, sugar, protein, fiber]
+    status: candidate
+    discovery_reason: "2025–26 guidelines actively naming 'highly processed foods' — major policy signal."
+    verify_action: "Confirm canonical URL + add as active regulator if stable."
+    notes: "Strong promote candidate. Held only pending canonical-URL confirmation."
+
+  - id: cand-024
+    platform: web
+    handle_or_name: "FDA UPF-definition rulemaking docket (regulations.gov)"
+    url: "UNVERIFIED specific docket URL"
+    language: en
+    market: us
+    source_type: regulator
+    credibility_weight: high
+    discourse_weight: medium
+    bari_use: [evidence_reference, category_discovery]
+    topics: [ultra_processed, additives, clean_label]
+    status: candidate
+    discovery_reason: "The 2025–26 federal UPF-definition process (>5,000 comments) will set the regulatory meaning of 'ultra-processed'."
+    verify_action: "Locate the specific docket; decide if FDA Food (gl-012) coverage suffices."
+    notes: "Possibly covered by gl-012. The DEFINITION outcome directly affects Bari's UPF framing — worth a dedicated watch."
+
+  - id: cand-025
+    platform: web
+    handle_or_name: "ProVeg / plant-based advocacy orgs"
+    url: "UNVERIFIED"
+    language: en
+    market: global
+    source_type: public_health
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal, category_discovery]
+    topics: [plant_based, protein, ultra_processed]
+    status: candidate
+    discovery_reason: "Plant-based advocacy shapes the plant-based-vs-UPF category tension."
+    verify_action: "Confirm relevance; note advocacy bias."
+    notes: "Advocacy = motivated source. Signal only, never evidence."
+
+  - id: cand-026
+    platform: web
+    handle_or_name: "Examine-style IL evidence source (Hebrew)"
+    url: "DOES NOT CLEARLY EXIST — gap marker"
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: []
+    status: candidate
+    discovery_reason: "Explicit GAP: no clear Hebrew-language independent evidence aggregator (Examine analog) was found at D0."
+    verify_action: "Active search needed. If none exists, Bari fills a real Hebrew-market void."
+    notes: "GAP MARKER, not a real source. Surfaced for the report's gaps section."
+
+  - id: cand-027
+    platform: web
+    handle_or_name: "GLP-1 / weight-loss-drug nutrition discourse cluster"
+    url: "UNVERIFIED — distributed across creators, telehealth brands, media"
+    language: mixed
+    market: global
+    source_type: hype_watch
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, category_discovery]
+    topics: [GLP1, protein, weight_loss, satiety, high_protein_dairy]
+    status: candidate
+    discovery_reason: "GLP-1 drugs are reshaping food choices (protein/satiety focus) — a fast-moving, cross-market topic without a single owner source."
+    verify_action: "Pick concrete anchors (a telehealth brand blog + 1–2 RD voices) rather than a diffuse cluster."
+    notes: "Cross-cuts IL + global. High commercial bias. Needs concrete anchors before promotion."
+
+  # ==========================================================================
+  # D0b — Israeli creator / influencer candidates (added 2026-06-10)
+  # Plausible but NOT promotable: handle unresolved, relevance-as-source uncertain,
+  # or service/clinic site with no evident content stream. No guessed handles.
+  # ==========================================================================
+
+  - id: cand-028
+    platform: instagram
+    handle_or_name: "מתן הבר (Matan HaBar) — טכנולוג מזון, חושף תוויות מזון"
+    url: "UNVERIFIED handle — confirmed to exist (Haaretz 2025-12-09 profile; YouTube ep on preservatives; IG collab post) but exact @handle never resolved"
+    language: he
+    market: israel
+    source_type: food_label_reviewer
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [content_inspiration, category_discovery, consumer_signal, misinformation_watch]
+    topics: [ultra_processed, additives, preservatives, clean_label, emulsifiers]
+    status: candidate
+    discovery_reason: "Food technologist (MSc food science) turned influencer explaining label truths/additives/myths — the single closest IL creator to Bari's own mission."
+    verify_action: "TOP PRIORITY. Resolve exact IG handle, then promote to active. Cross-check his additive claims (food-industry insider POV can cut both ways)."
+    notes: "Highest-value IL creator candidate. Held ONLY because the exact handle never resolved to a live profile (Rule 2/no-guess). Existence is well-verified."
+
+  - id: cand-029
+    platform: web
+    handle_or_name: "ענת תבור (Anat Tavor) — דיאטנית קלינית, השמנת ילדים ומתבגרים"
+    url: https://tavoranat.com
+    language: he
+    market: israel
+    source_type: parenting_kids_food
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [kids_food, weight_loss]
+    status: candidate
+    discovery_reason: "Pediatric-obesity clinical dietitian; verified site."
+    verify_action: "Confirm an ongoing public content stream (blog/social) vs. a service-only site before promoting."
+    notes: "Site verified, but value as a DISCOURSE source (vs. clinic homepage) is the open question."
+
+  - id: cand-030
+    platform: web
+    handle_or_name: "חלי ממן (Heli Maman) — דיאטה לילדים ונוער"
+    url: https://heli-group.co.il
+    language: he
+    market: israel
+    source_type: parenting_kids_food
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [consumer_signal]
+    topics: [kids_food, weight_loss]
+    status: candidate
+    discovery_reason: "Kids/youth nutrition practice with public guide content."
+    verify_action: "Confirm credentials + content cadence."
+    notes: "Lower priority kids-cluster entry."
+
+  - id: cand-031
+    platform: instagram
+    handle_or_name: "תרצה שני (Tirtza Shani) — דיאטנית ילדים, בררנות אכילה"
+    url: "UNVERIFIED — name surfaced (ynet '5 dietitians on kids diets'); no confirmed handle/URL"
+    language: he
+    market: israel
+    source_type: parenting_kids_food
+    credibility_weight: medium
+    discourse_weight: low
+    bari_use: [consumer_signal, content_inspiration]
+    topics: [kids_food]
+    status: candidate
+    discovery_reason: "Picky-eating / childhood-feeding specialist — directly relevant to kids-food category."
+    verify_action: "Find verified public handle/URL."
+    notes: "Kids-food is mandatory but thin on real influencers; this is a promising lead if a public channel exists."
+
+  - id: cand-032
+    platform: web
+    handle_or_name: "רותי פינק — IG handle confirmation (podcast already active il-030)"
+    url: "search-surfaced @rutifink — NOT independently confirmed"
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal]
+    topics: [weight_loss, GLP1, gut_health]
+    status: candidate
+    discovery_reason: "Adds social monitoring on top of the already-active podcast (il-030)."
+    verify_action: "Confirm the @rutifink handle resolves to her profile, then attach to il-030."
+    notes: "Handle came from a search summary only — confirm-before-use."
+
+  - id: cand-033
+    platform: web
+    handle_or_name: "אורנה ברוז — 'תזונה נכונה עם אורנה' (Orna Baroz) — פודקאסט"
+    url: https://ornirwellness.podbean.com
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [consumer_signal]
+    topics: [weight_loss, gut_health]
+    status: candidate
+    discovery_reason: "IL nutrition podcast; verified Podbean URL."
+    verify_action: "Confirm host credentials + relevance breadth."
+    notes: "Audio format = manual-sweep only. Lower priority."
+
+  - id: cand-034
+    platform: web
+    handle_or_name: "פודקאסט 'אוכלים את הראש' — כל מה שבוער בתחום התזונה"
+    url: "https://podcasts.apple.com/il/podcast/id1541863644 (Apple listing verified; host/site TBD)"
+    language: he
+    market: israel
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration, category_discovery]
+    topics: [ultra_processed, sugar, protein, weight_loss]
+    status: candidate
+    discovery_reason: "Established Hebrew nutrition-discourse podcast — strong read on what's 'hot' in IL nutrition."
+    verify_action: "Identify host(s) + credibility; confirm a stable feed URL."
+    notes: "Promising discourse source. Audio = manual-sweep monitoring."
+
+  - id: cand-035
+    platform: instagram
+    handle_or_name: "עמית גנור (Amit Ganor) — @amitganornutrition"
+    url: "search-surfaced handle @amitganornutrition — NOT independently confirmed"
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal]
+    topics: [weight_loss, protein]
+    status: candidate
+    discovery_reason: "Surfaced as an active IL nutrition IG account."
+    verify_action: "Confirm handle resolves + credentials before any use (no guessed handles)."
+    notes: "Handle from a search summary only — confirm-before-use."
+
+  - id: cand-036
+    platform: instagram
+    handle_or_name: "נטע קיילר (Netta Kailler) — @netta_kailler_nutrition"
+    url: "search-surfaced handle @netta_kailler_nutrition — NOT independently confirmed"
+    language: he
+    market: israel
+    source_type: licensed_dietitian
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal]
+    topics: [weight_loss, sugar]
+    status: candidate
+    discovery_reason: "Surfaced as an active IL nutrition IG account."
+    verify_action: "Confirm handle resolves + credentials before any use."
+    notes: "Handle from a search summary only — confirm-before-use."
+
+  - id: cand-037
+    platform: web
+    handle_or_name: "קרניטוזיס / ketosis.co.il — פודקאסט תזונה קרניבורית/קטוגנית"
+    url: https://ketosis.co.il
+    language: he
+    market: israel
+    source_type: hype_watch
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [misinformation_watch, consumer_signal]
+    topics: [seed_oils, protein, sugar, weight_loss]
+    status: candidate
+    discovery_reason: "IL carnivore/keto advocacy podcast — a node of the restrictive-diet / anti-carb / seed-oil-panic discourse."
+    verify_action: "Confirm it is the right anchor for the IL carnivore/keto hype cluster."
+    notes: "misinformation_watch: track as a HYPE pattern, never evidence. Ideology-driven."
+
+  - id: cand-038
+    platform: web
+    handle_or_name: "carbfree.co.il (דל פחמימות / Dr. Bernstein method, IL)"
+    url: http://www.carbfree.co.il
+    language: he
+    market: israel
+    source_type: hype_watch
+    credibility_weight: low
+    discourse_weight: low
+    bari_use: [misinformation_watch]
+    topics: [sugar, weight_loss, GLP1]
+    status: candidate
+    discovery_reason: "IL low-carb advocacy site — restrictive-diet discourse node."
+    verify_action: "Decide if needed alongside cand-037 (likely redundant cluster)."
+    notes: "misinformation_watch / hype. Low priority; possibly folded into a single 'IL low-carb/keto' watch."
+
+  - id: cand-039
+    platform: instagram
+    handle_or_name: "עוז תלם (Oz Telem) — @oztelem — בישול ומדע המזון"
+    url: https://www.instagram.com/oztelem
+    language: he
+    market: israel
+    source_type: food_culture
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [content_inspiration, category_discovery]
+    topics: [clean_label]
+    status: candidate
+    discovery_reason: "Verified-handle IL cooking creator with a food-science/technique educational angle."
+    verify_action: "Decide relevance: culinary-with-food-science crossover, not nutrition per se."
+    notes: "Handle verified (mako list). Food culture, not nutrition — include only if food-science content recurs."
+
+  - id: cand-040
+    platform: instagram
+    handle_or_name: "דור ונגר (Dor Vanger) — @dor_vanger — עיתונאי אוכל"
+    url: https://www.instagram.com/dor_vanger
+    language: he
+    market: israel
+    source_type: food_culture
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [consumer_signal, category_discovery]
+    topics: [clean_label, plant_based]
+    status: candidate
+    discovery_reason: "Verified-handle IL food journalist — read on food-culture narrative."
+    verify_action: "Confirm nutrition/label relevance vs. pure culinary coverage."
+    notes: "Handle verified. Food culture / consumer signal. Relevance to scoring discourse is indirect."
+
+  - id: cand-041
+    platform: instagram
+    handle_or_name: "גולד ריטה (Gold Rita) — @goldrita — מבקרת מסעדות/אוכל"
+    url: https://www.instagram.com/goldrita
+    language: he
+    market: israel
+    source_type: food_culture
+    credibility_weight: low
+    discourse_weight: medium
+    bari_use: [category_discovery]
+    topics: []
+    status: candidate
+    discovery_reason: "Verified-handle IL food critic; broad food-culture reach."
+    verify_action: "Low relevance to nutrition scoring — likely keep dormant."
+    notes: "Handle verified but nutrition relevance is low. Logged for completeness, not for monitoring."
+
+  - id: cand-042
+    platform: web
+    handle_or_name: "החברה הישראלית לחקר וטיפול בהשמנת יתר (Israeli Assoc. for the Study of Obesity)"
+    url: https://obesity.doctorsonly.co.il
+    language: he
+    market: israel
+    source_type: doctor
+    credibility_weight: high
+    discourse_weight: low
+    bari_use: [evidence_reference]
+    topics: [weight_loss, GLP1, sugar]
+    status: candidate
+    discovery_reason: "Professional obesity-medicine body — the credible institutional proxy for IL doctors on metabolism/obesity, since no individual IL doctor-nutrition CREATOR was verified."
+    verify_action: "Confirm public content + decide if it belongs in the institutional set (like il-005) rather than the creator layer."
+    notes: "Fills the 'Israeli doctors discussing nutrition/metabolism/obesity' category at the INSTITUTION level. Individual doctor-creators remain an explicit gap."
+
+  - id: cand-043
+    platform: instagram
+    handle_or_name: "Israeli doctor-on-nutrition INDIVIDUAL creator — GAP marker"
+    url: "NONE VERIFIED — no individual IL physician nutrition-creator handle resolved at D0b"
+    language: he
+    market: israel
+    source_type: doctor
+    credibility_weight: medium
+    discourse_weight: high
+    bari_use: [evidence_reference, misinformation_watch]
+    topics: [GLP1, weight_loss, sugar, metabolism]
+    status: candidate
+    discovery_reason: "Explicit GAP: search surfaced institutions (cand-042) but no verifiable individual IL doctor running a public nutrition/metabolism feed."
+    verify_action: "Targeted manual search needed (endocrinology/obesity/lifestyle physicians on IG/podcast)."
+    notes: "GAP MARKER, not a source. Highest-priority discovery gap in the IL creator layer (see report §D0b)."
+
+  - id: cand-044
+    platform: instagram
+    handle_or_name: "Ilana Muhlstein, RD — @ilanamuhlsteinrd (IL-diaspora / US market)"
+    url: https://www.instagram.com/ilanamuhlsteinrd
+    language: en
+    market: us
+    source_type: licensed_dietitian
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [consumer_signal, misinformation_watch]
+    topics: [weight_loss, protein, sugar]
+    status: candidate
+    discovery_reason: "Israeli-connected, US-based weight-loss RD with ~1.9M reach; verified handle."
+    verify_action: "Decide relevance — she is a US-MARKET voice, not IL discourse. Likely belongs in global set if at all."
+    notes: "Verified handle. Diaspora crossover only; low relevance to Hebrew/IL monitoring. Logged, not prioritized."
+
+  # ==========================================================================
+  # D0c — US / European creator residuals & gaps (added 2026-06-10)
+  # ==========================================================================
+
+  - id: cand-045
+    platform: instagram
+    handle_or_name: "Residual evidence-based RD leads (Kate Regan 'Wholesome Chick', Shana Spence, etc.)"
+    url: "UNVERIFIED handles — confirm each (Wholesome Chick Nutrition / Kate Regan, RD)"
+    language: en
+    market: us
+    source_type: licensed_dietitian
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [content_inspiration, misinformation_watch]
+    topics: [ultra_processed, clean_label, weight_loss]
+    status: candidate
+    discovery_reason: "Additional evidence-based debunking RDs beyond the D0c promotions (Grasso/Knurick/Sharp/Tomlinson)."
+    verify_action: "Verify each handle resolves + credentials; promote individually, avoid registry bloat (Rule 6)."
+    notes: "Hold to a few highest-quality adds — the active set already has strong evidence-based coverage. Note Shana Spence already active as a Substack (gl-017)."
+
+  - id: cand-046
+    platform: instagram
+    handle_or_name: "Continental-Europe (non-English) nutrition creators — DE / FR / ES — GAP marker"
+    url: "NONE VERIFIED — D0c global creator coverage is anglophone (US/UK) only"
+    language: mixed
+    market: eu
+    source_type: nutrition_blog
+    credibility_weight: medium
+    discourse_weight: medium
+    bari_use: [consumer_signal, content_inspiration, category_discovery]
+    topics: [ultra_processed, additives, clean_label, plant_based]
+    status: exclude  # DEFERRED by owner 2026-06-10 — "English only for now"
+    discovery_reason: "GAP: verified European creators (Spector, Yeo) are UK/English. Continental-EU (DE/FR/ES) discourse unmapped."
+    verify_action: "DEFERRED. Do not pursue for the first run. Revisit only if owner expands scope beyond English."
+    notes: >
+      Owner decision 2026-06-10: English-only for now. Continental-Europe (non-English) creators are
+      OUT of scope for D1. Kept as a tombstone so the decision is explicit and the gap isn't silently
+      reopened. 'European' coverage = UK/English by design until scope changes."
+
+  - id: cand-047
+    platform: instagram
+    handle_or_name: "US biohacker / wellness-hype cluster (Gary Brecka, Bryan Johnson, Calley Means)"
+    url: "UNVERIFIED set — pick concrete anchors"
+    language: en
+    market: us
+    source_type: hype_watch
+    credibility_weight: low
+    discourse_weight: high
+    bari_use: [misinformation_watch, consumer_signal]
+    topics: [supplements, seed_oils, additives, GLP1, gut_health]
+    status: candidate
+    discovery_reason: "High-reach biohacker/MAHA-adjacent voices driving supplement / seed-oil / additive-fear narratives (overlaps cand-021 MAHA, gl-023 Hyman, gl-027 Huberman)."
+    verify_action: "Pick 1–2 concrete anchors; confirm not already covered by existing hype entries before adding."
+    notes: "misinformation_watch only. Avoid over-stacking the hype tier — it is well-represented already (Hyman, Huberman, Glucose Goddess)."

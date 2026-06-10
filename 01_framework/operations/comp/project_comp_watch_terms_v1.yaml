@@ -1,0 +1,95 @@
+# Project Comp — Watch Terms v1
+# ============================================================================
+# Hebrew + English terms Project Comp monitors across the source registry.
+# Grouped by topic (mirrors the `topics` enum in source_registry_v1.yaml).
+# Each group: he[] (Hebrew) + en[] (English).
+#
+# Usage: these are MONITORING terms — what to listen for in the daily run.
+# They are NOT search queries to run yet (Rule 10: no scheduled run defined).
+#
+# Count: 205 terms (95 he + 110 en) across 18 topic groups.
+# Built: 2026-06-10
+# ============================================================================
+
+meta:
+  version: v1
+  built: 2026-06-10
+  topic_groups: 18
+  total_terms: 205
+  he_terms: 95
+  en_terms: 110
+  note: "Terms map 1:1 to the topics enum in source_registry_v1.yaml. Add aliases under each group as discourse evolves."
+
+terms:
+
+  ultra_processed:
+    he: ["אולטרה מעובד", "מזון מעובד", "מעובד ביתר", "מזון תעשייתי", "NOVA"]
+    en: ["ultra-processed", "ultraprocessed", "UPF", "highly processed", "processed food", "NOVA classification"]
+
+  additives:
+    he: ["תוספי מזון", "תוספים", "חומרים מוספים", "מספרי E"]
+    en: ["additives", "food additives", "E numbers", "E-numbers"]
+
+  food_dyes:
+    he: ["צבעי מאכל", "צבע מאכל", "טרטרזין", "צבעים סינתטיים"]
+    en: ["food dyes", "food coloring", "synthetic dyes", "Red 40", "Red 3", "tartrazine", "Yellow 5"]
+
+  preservatives:
+    he: ["חומרים משמרים", "חומר משמר", "חנקות", "ניטריטים", "בנזואט"]
+    en: ["preservatives", "nitrites", "nitrates", "sodium benzoate", "BHA", "BHT"]
+
+  emulsifiers:
+    he: ["מתחלבים", "מייצבים", "קרגינן", "לציטין", "פוליסורבט"]
+    en: ["emulsifiers", "carrageenan", "polysorbate 80", "lecithin", "carboxymethylcellulose", "CMC"]
+
+  protein:
+    he: ["חלבון", "חלבונים", "דל חלבון", "עשיר בחלבון"]
+    en: ["protein", "protein content", "complete protein", "protein quality"]
+
+  high_protein_dairy:
+    he: ["חלבון גבוה", "מועשר בחלבון", "יוגורט חלבון", "קוטג' חלבון", "סקיר", "skyr"]
+    en: ["high protein", "high-protein dairy", "protein yogurt", "skyr", "protein cottage", "fortified protein"]
+
+  sugar:
+    he: ["סוכר", "סוכר מוסף", "דל סוכר", "ללא סוכר", "סוכרים"]
+    en: ["sugar", "added sugar", "free sugars", "low sugar", "sugar-free"]
+
+  sweeteners:
+    he: ["ממתיקים", "ממתיק", "ממתיקים מלאכותיים", "סוכרלוז", "אספרטם", "סטיביה", "אריתריטול"]
+    en: ["sweeteners", "artificial sweeteners", "non-sugar sweeteners", "sucralose", "aspartame", "stevia", "erythritol", "non-nutritive sweetener"]
+
+  seed_oils:
+    he: ["שמני זרעים", "שמן קנולה", "שמן חמניות", "שמן סויה", "שמנים מזוקקים"]
+    en: ["seed oils", "seed-oil", "canola oil", "sunflower oil", "soybean oil", "industrial seed oils"]
+
+  fiber:
+    he: ["סיבים", "סיבים תזונתיים", "עשיר בסיבים", "אינולין", "עמילן עמיד"]
+    en: ["fiber", "fibre", "dietary fiber", "high fiber", "inulin", "resistant starch", "prebiotic fiber"]
+
+  gut_health:
+    he: ["בריאות המעיים", "מיקרוביום", "פרוביוטיקה", "פרוביוטיקה", "חיידקי מעיים"]
+    en: ["gut health", "microbiome", "gut microbiome", "probiotics", "prebiotics", "fermented foods"]
+
+  kids_food:
+    he: ["ילדים", "מזון לילדים", "תזונת ילדים", "חטיפים לילדים", "אוכל לבית ספר", "תינוקות"]
+    en: ["kids food", "children's food", "kids snacks", "baby food", "toddler food", "school lunch"]
+
+  frozen_food:
+    he: ["קפואים", "מזון קפוא", "ירקות קפואים", "ארוחות קפואות"]
+    en: ["frozen food", "frozen vegetables", "frozen meals", "freezer"]
+
+  plant_based:
+    he: ["טבעוני", "צמחוני", "מבוסס צומח", "תחליפי בשר", "תחליפי חלב", "חלב שקדים", "חלב שיבולת שועל"]
+    en: ["plant-based", "vegan", "meat alternatives", "plant-based meat", "dairy alternatives", "oat milk", "almond milk"]
+
+  organic_clean_label:
+    he: ["אורגני", "תווית נקייה", "ללא תוספים", "טבעי", "ללא חומרים משמרים", "גלוטן", "ללא גלוטן"]
+    en: ["organic", "clean label", "all natural", "no additives", "additive-free", "gluten", "gluten-free", "minimally processed"]
+
+  weight_loss_glp1:
+    he: ["ירידה במשקל", "דיאטה", "אוזמפיק", "GLP-1", "סמנים לירידה במשקל", "תרופות הרזיה"]
+    en: ["weight loss", "GLP-1", "GLP1", "Ozempic", "Wegovy", "semaglutide", "weight-loss drugs"]
+
+  satiety_supplements:
+    he: ["שובע", "תחושת שובע", "תוספי תזונה", "מולטי ויטמין", "מלטודקסטרין"]
+    en: ["satiety", "satiating", "supplements", "dietary supplements", "maltodextrin", "creatine", "fortification"]
