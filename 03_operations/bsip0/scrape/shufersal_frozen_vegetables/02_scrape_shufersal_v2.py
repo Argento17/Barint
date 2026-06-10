@@ -12,6 +12,11 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 import requests
 from bs4 import BeautifulSoup
 
+# TASK-239: use the shared multi-table-aware parser (per-100g selection) — no inline
+# nutrition extraction. The same parser runs live and on any offline re-extraction.
+sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "_shared"))
+import bsip0_nutrition as bn  # noqa: E402
+
 # ── Paths ───────────────────────────────────────────────────────────────
 BASE = pathlib.Path(__file__).parent.parent.parent.parent.parent.resolve()  # → C:\Bari
 SCRAPE_DIR = BASE / "03_operations" / "bsip0" / "scrape" / "shufersal_frozen_vegetables"
@@ -222,29 +227,20 @@ for idx, (code, p) in enumerate(sorted(scope_in.items()), 1):
             except json.JSONDecodeError:
                 pass
 
-        # ── Nutrition panel ──
+        # ── Nutrition panel ── shared parser: per-100g selection, basis recorded,
+        # replay-ready raw source persisted. Never silently picks the first table.
+        nutr_raw_source = bn.extract_nutrition_raw(soup)
+        sel = nutr_raw_source["selection"]
+        p["nutrition_basis"] = sel
+        p["nutrition_raw_source"] = {"rows": nutr_raw_source["rows"], "tables": nutr_raw_source["tables"]}
         nutrition_raw = {}
-        first_nutrition_list = soup.find("div", class_="nutritionList")
-        nutr_items = first_nutrition_list.find_all("div", class_="nutritionItem") if first_nutrition_list else []
-        for item in nutr_items:
-            label_el = item.find(class_="name") or item.find(class_="text") or item.find("span", class_=lambda c: c and "name" in c if c else False)
-            value_el = item.find(class_="number") or item.find(class_="value") or item.find("span", class_=lambda c: c and ("number" in c or "value" in c) if c else False)
-            if label_el and value_el:
-                label = label_el.get_text(strip=True)
-                value = value_el.get_text(strip=True)
-                if label and value:
-                    nutrition_raw[label] = value
-
-        # Fallback: try table-based nutrition
-        if not nutrition_raw:
-            for table in soup.find_all("table"):
-                for row in table.find_all("tr"):
-                    cells = row.find_all(["td", "th"])
-                    if len(cells) >= 2:
-                        label = cells[0].get_text(strip=True)
-                        value = cells[-1].get_text(strip=True)
-                        if label and value:
-                            nutrition_raw[label] = value
+        if not sel.get("insufficient"):
+            for row in nutr_raw_source["rows"]:
+                label = row.get("label", "")
+                value = row.get("value", "")
+                unit = (row.get("unit") or "").strip()
+                if value and label:
+                    nutrition_raw[label] = f"{value} {unit}".strip() if unit else value
 
         if nutrition_raw:
             p["nutrition_raw"] = nutrition_raw

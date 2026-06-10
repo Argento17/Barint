@@ -6,6 +6,11 @@ import sys, io, json, pathlib, re, time
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 from bs4 import BeautifulSoup
 
+# TASK-239: offline re-extraction MUST use the SAME shared parser as live scraping,
+# so the per-100g-vs-per-cube basis selection is identical at scrape time and replay.
+sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "_shared"))
+import bsip0_nutrition as bn  # noqa: E402
+
 BASE = pathlib.Path(r"C:\Bari")
 SCRAPE_DIR = BASE / "03_operations" / "bsip0" / "scrape" / "shufersal_frozen_vegetables"
 PRODUCT_DIR = SCRAPE_DIR / "product_pages"
@@ -28,22 +33,23 @@ for p in d["products"]:
     html = full_path.read_text(encoding="utf-8", errors="replace")
     soup = BeautifulSoup(html, "lxml")
 
-    nutrition = {}
-    for item in soup.find_all("div", class_="nutritionItem"):
-        num_el = item.find(class_="number")
-        name_el = item.find(class_="name")
-        text_el = item.find(class_="text")
-        if num_el and text_el:
-            value = num_el.get_text(strip=True)
-            label_full = text_el.get_text(strip=True)
-            unit = name_el.get_text(strip=True) if name_el else ""
-            if value and label_full:
-                if unit:
-                    nutrition[label_full] = f"{value} {unit}"
-                else:
-                    nutrition[label_full] = value
+    # Shared parser: selects the per-100g table (never the per-cube table) and
+    # records the basis decision. raw["rows"] are the SELECTED panel's rows.
+    raw = bn.extract_nutrition_raw(soup)
+    sel = raw["selection"]
+    p["nutrition_basis"] = sel                  # selected_basis / index / header / count / insufficient
+    p["nutrition_raw_source"] = {"rows": raw["rows"], "tables": raw["tables"]}
 
-    if nutrition:
+    # Reconstruct the legacy {label: "value unit"} shape from the SELECTED rows only.
+    nutrition = {}
+    for row in raw["rows"]:
+        label_full = row.get("label", "")
+        value = row.get("value", "")
+        unit = (row.get("unit") or "").strip()
+        if value and label_full:
+            nutrition[label_full] = f"{value} {unit}".strip() if unit else value
+
+    if nutrition and not sel.get("insufficient"):
         had_before = bool(p.get("nutrition_raw"))
         p["nutrition_raw"] = nutrition
         if not had_before:

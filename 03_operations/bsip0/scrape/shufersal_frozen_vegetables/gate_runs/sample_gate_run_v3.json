@@ -1,0 +1,58 @@
+{
+  "gate": "bsip0_exit_gate_v1",
+  "task": "TASK-239",
+  "ran_at": "2026-06-10T16:38:07.124356+00:00",
+  "product_count": 164,
+  "overall_status": "FAIL",
+  "summary": {
+    "FAIL": 1,
+    "WARN": 2,
+    "PASS": 3
+  },
+  "checks": [
+    {
+      "check": "G1_off_contamination",
+      "status": "PASS",
+      "messages": [
+        "No Open Food Facts contamination found (all variants scanned)."
+      ],
+      "hits": []
+    },
+    {
+      "check": "G2_G3_nutrition_basis",
+      "status": "WARN",
+      "messages": [
+        "BASIS_WARN: 145 product(s) have unknown/missing basis metadata (legacy records pre-TASK-239 carry none): ['P_7290013366009', 'P_3643684', 'P_1990391', 'P_7296073733263', 'P_7296073733270', 'P_208114', 'P_7296073224891', 'P_104676']"
+      ]
+    },
+    {
+      "check": "G4_G5_identity",
+      "status": "PASS",
+      "messages": [
+        "No duplicate/conflicting barcodes across 164 keyed products."
+      ]
+    },
+    {
+      "check": "G6_numeric_sanity",
+      "status": "FAIL",
+      "messages": [
+        "NUMERIC_SANITY: 1 implausible panel(s): ['P_7290013994790: sat_gt_total_fat: saturated=1.0g > total_fat=0.5g (fat-overwrite signature)']"
+      ]
+    },
+    {
+      "check": "G7_G8_ingredients",
+      "status": "WARN",
+      "messages": [
+        "Ingredient coverage: 144/164 (88%).",
+        "RAW_SOURCE_WARN: 164 product(s) carry neither an ingredients_raw_source nor an absence reason (TASK-239 follow-up #6)."
+      ]
+    },
+    {
+      "check": "G9_run_summary",
+      "status": "PASS",
+      "messages": [
+        "Run-summary contract satisfied."
+      ]
+    }
+  ]
+}

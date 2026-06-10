@@ -158,6 +158,118 @@ def test_fixture_panels_flagged_by_guard():
     assert flagged >= 50
 
 
+# ── TASK-239: dual-table basis selection (frozen-veg Dorot ginger) ──────────────
+#
+# REAL fixtures, extracted from saved Shufersal product pages (not synthetic):
+#   dorot_ginger_dual_table.html — P_7290018989456 "ג'ינג'ר קצוץ מוקפא": TWO panels
+#       Table 0 (100 גרם / per 100g): energy 77 kcal, sodium 12 mg
+#       Table 1 (קוביה   / per cube): energy  6 kcal, sodium  1 mg
+#   garlic_single_table.html      — P_2253006  "שום כתוש דורות": ONE per-100g panel.
+# The bug these prove cannot recur: the per-cube table (6 kcal / 1 mg) being selected
+# or overwriting the per-100g table (the defect that was manually JSON-patched).
+
+_FIXTURE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
+_GINGER_DUAL = os.path.join(_FIXTURE_DIR, "dorot_ginger_dual_table.html")
+_GARLIC_SINGLE = os.path.join(_FIXTURE_DIR, "garlic_single_table.html")
+
+
+def _soup(path):
+    from bs4 import BeautifulSoup  # local import: bs4 only needed for these tests
+    with open(path, encoding="utf-8") as fh:
+        return BeautifulSoup(fh.read(), "lxml")
+
+
+def test_dual_table_selects_per_100g_not_per_cube():
+    """The core recurrence-proof: per-cube panel must NOT be selected when per-100g exists."""
+    sel = bn.extract_nutrition_selection(_soup(_GINGER_DUAL))
+    assert sel["competing_table_count"] == 2, "fixture must carry two competing tables"
+    assert sel["selected_basis"] == "per_100g"
+    assert sel["selected_table_index"] == 0
+    assert "100" in sel["selected_table_header"]
+    assert sel["insufficient"] is False
+
+
+def test_dual_table_values_match_per_100g_fixture():
+    """Selected values are the per-100g numbers (77 kcal / 12 mg), NOT per-cube (6 / 1)."""
+    sel = bn.extract_nutrition_selection(_soup(_GINGER_DUAL))
+    nutr = bn.parse_nutrition_rows(sel["rows"])
+    assert bn.parse_num(nutr["energy"]) == 77.0          # per-100g, not 6 (per cube)
+    assert bn.parse_sodium_mg(nutr["sodium"]) == 12.0    # per-100g, not 1 (per cube)
+    assert bn.parse_num(nutr["carbs"]) == 16.0           # not 1.3 (per cube)
+    assert bn.parse_num(nutr["protein"]) == 1.6          # not 0 (per cube)
+
+
+def test_dual_table_per_cube_never_wins():
+    """Explicit negative: none of the per-cube values may appear in the parsed panel."""
+    sel = bn.extract_nutrition_selection(_soup(_GINGER_DUAL))
+    nutr = bn.parse_nutrition_rows(sel["rows"])
+    assert bn.parse_num(nutr["energy"]) != 6.0
+    assert bn.parse_sodium_mg(nutr["sodium"]) != 1.0
+
+
+def test_single_table_still_parses():
+    """A normal single-table page selects its lone per-100g panel unchanged."""
+    sel = bn.extract_nutrition_selection(_soup(_GARLIC_SINGLE))
+    assert sel["competing_table_count"] == 1
+    assert sel["selected_basis"] == "per_100g"
+    assert sel["insufficient"] is False
+    nutr = bn.parse_nutrition_rows(sel["rows"])
+    assert bn.parse_num(nutr["energy"]) == 169.0
+    assert bn.parse_sodium_mg(nutr["sodium"]) == 400.0
+
+
+def test_label_is_nutrient_name_not_unit():
+    """Regression for the inline-scraper bug: the dict key must be the nutrient name
+    ('אנרגיה'/'נתרן'), never the unit ('קל'/'מג'/'גרם')."""
+    sel = bn.extract_nutrition_selection(_soup(_GINGER_DUAL))
+    nutr = bn.parse_nutrition_rows(sel["rows"])
+    assert "energy" in nutr and "sodium" in nutr
+    # the raw rows must carry the unit separately from the label
+    energy_row = next(r for r in sel["rows"] if bn.classify_nutr_label(r["label"]) == "energy")
+    assert energy_row["unit"] in ("קל", "קלוריות") and energy_row["label"] != energy_row["unit"]
+
+
+def test_multi_table_no_per_100g_is_insufficient():
+    """When >1 table exists and none is per-100g, selection is insufficient (gate-fail),
+    NOT a silent first-table pick."""
+    from bs4 import BeautifulSoup
+    synth = (
+        '<ul>'
+        '<li><div class="nutritionListTitle"><div class="subInfo">קוביה</div></div>'
+        '<div class="nutritionList"><div class="nutritionItem">'
+        '<div class="number">6</div><div class="name">קל</div><div class="text">אנרגיה</div>'
+        '</div></div></li>'
+        '<li><div class="nutritionListTitle"><div class="subInfo">מנה</div></div>'
+        '<div class="nutritionList"><div class="nutritionItem">'
+        '<div class="number">30</div><div class="name">קל</div><div class="text">אנרגיה</div>'
+        '</div></div></li>'
+        '</ul>'
+    )
+    sel = bn.select_nutrition_table(bn.extract_nutrition_tables(BeautifulSoup(synth, "lxml")))
+    assert sel["selected_basis"] == "unknown"
+    assert sel["insufficient"] is True
+    assert sel["rows"] == []
+
+
+def test_classify_basis_tokens():
+    assert bn.classify_basis("100 גרם") == "per_100g"
+    assert bn.classify_basis("ל-100 גרם") == "per_100g"
+    assert bn.classify_basis("per 100g") == "per_100g"
+    assert bn.classify_basis("קוביה") == "per_serving"
+    assert bn.classify_basis("מנה") == "per_serving"
+    assert bn.classify_basis("") == "unknown"
+
+
+def test_extract_nutrition_raw_carries_selection():
+    """extract_nutrition_raw persists every table + the basis decision for offline replay."""
+    raw = bn.extract_nutrition_raw(_soup(_GINGER_DUAL))
+    assert len(raw["tables"]) == 2
+    assert raw["selection"]["selected_basis"] == "per_100g"
+    assert raw["selection"]["competing_table_count"] == 2
+    # rows persisted are the per-100g rows → replay reproduces 77 kcal
+    assert bn.parse_num(bn.parse_nutrition_rows(raw["rows"])["energy"]) == 77.0
+
+
 # ── Bare runner (no pytest dependency) ─────────────────────────────────────────
 
 if __name__ == "__main__":

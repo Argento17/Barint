@@ -100,32 +100,81 @@ def classify_nutr_label(label: str) -> str | None:
     return None
 
 
-def extract_nutrition_rows(soup) -> list[dict[str, str]]:
-    """Extract the raw ``(value, unit, label)`` rows from ``div.nutritionList``.
+# ── Multi-table basis selection (TASK-239) ─────────────────────────────────────
+#
+# THE DUAL-TABLE BUG (frozen vegetables, fixed here structurally)
+# ---------------------------------------------------------------
+# A Shufersal product page can carry MORE THAN ONE ``div.nutritionList``. Frozen
+# Dorot-style products (e.g. ``ג'ינג'ר קצוץ מוקפא`` / chopped frozen ginger,
+# product P_7290018989456) declare TWO panels:
+#     Table 0 — basis "100 גרם"  (per 100 g):  energy 77 kcal, sodium 12 mg
+#     Table 1 — basis "קוביה"    (per cube):   energy  6 kcal, sodium  1 mg
+# The legacy inline scrapers either (a) read only ``soup.find("div","nutritionList")``
+# = the FIRST table with no per-100g check, or (b) iterated ``soup.find_all`` across
+# the whole page into a label-keyed dict, so the LAST (per-cube) table OVERWROTE the
+# per-100g values. Both produced 6 kcal / 1 mg — a 13× understatement — which then
+# had to be MANUALLY JSON-PATCHED back to 77/12 (scope_clean_v2_1.json). Manual
+# patching is not a fix: the parser path recreates the bug on the next run.
+#
+# THE FIX: every panel basis is read from the table's own ``div.subInfo`` header
+# ("100 גרם" / "קוביה" / "מנה"). ``select_nutrition_table`` EXPLICITLY prefers the
+# per-100g table. When >1 table exists and NO per-100g table can be identified, the
+# selection is marked ``insufficient`` (basis="unknown") so the BSIP0 gate fails the
+# product loudly — the parser NEVER silently selects the first table.
 
-    The Shufersal nutritionItem structure has three child divs:
-      - ``div.number`` → the numeric value (e.g. "7", "פחות מ 0.5", "414")
-      - ``div.name``   → the unit label (e.g. "גרם" = g, "מג" = mg, "קל" = kcal)
-      - ``div.text``   → the nutrient name (e.g. "נתרן", "שומנים")
+# subInfo tokens (final-form-normalised) that mark a panel as PER 100 G.
+_PER_100G_MARKERS = ("ל-100 גרמ", "ל 100 גרמ", "100 גרמ", "per 100g",
+                     "per 100 g", "100g", "100 g", "ל100 גרמ")
+# subInfo tokens that mark a panel as PER SERVING / per discrete unit (not 100 g).
+_PER_SERVING_MARKERS = ("קוביה", "קוביות", "מנה", "מנת", "יחידה", "יחידת",
+                        "פרוסה", "כוס", "כף", "כפית", "serving", "portion",
+                        "piece", "cube", "slice", "unit")
 
-    We now capture all three. The ``unit`` field is used by ``parse_sodium_mg`` to
-    distinguish a value already in mg (unit="מג") from a gram value that must be
-    converted (unit="גרם" or absent). Earlier versions captured only value+label,
-    losing the unit; for sodium values ≤ 10 the heuristic multiply-by-1000 rule
-    then over-converted them (e.g. sodium=7mg on the page → parsed as 7000 mg).
 
-    This is the source signal BEFORE any Hebrew-label classification — exactly the
-    pairs ``parse_nutrition_rows`` consumes. Persisting this list in the BSIP0 record
-    (see ``extract_nutrition_raw``) lets any future parser fix be replayed OFFLINE,
-    so an EV-029-class bug never again forces a fresh network re-scrape to recover
-    data the old parser discarded at scrape time.
+def classify_basis(subinfo: str) -> str:
+    """Classify a panel basis label → ``"per_100g"`` | ``"per_serving"`` | ``"unknown"``.
+
+    ``subinfo`` is the text of the table's ``div.subInfo`` header ("100 גרם",
+    "קוביה", "מנה" …). per-100g is checked first because "100 גרם" is the
+    unambiguous canonical basis the whole pipeline scores on.
     """
+    s = _norm((subinfo or "").strip())
+    low = s.lower()
+    if any(m in s or m in low for m in _PER_100G_MARKERS):
+        return "per_100g"
+    if any(m in s or m in low for m in _PER_SERVING_MARKERS):
+        return "per_serving"
+    return "unknown"
+
+
+def _table_subinfo(nutr_div) -> str:
+    """Read the basis header (``div.subInfo``) for a single ``div.nutritionList``.
+
+    The Shufersal structure nests the panel inside an ``<li>`` that also carries a
+    ``div.nutritionListTitle`` with a ``div.subInfo`` ("100 גרם" / "קוביה"). We look
+    up to the enclosing ``<li>`` (then any ancestor) for the nearest ``div.subInfo``.
+    Returns "" when no basis header is present (single legacy panels sometimes omit it).
+    """
+    container = nutr_div.find_parent("li") or nutr_div.parent
+    for _ in range(4):
+        if container is None:
+            break
+        sub = container.find("div", class_="subInfo")
+        if sub:
+            return sub.get_text(strip=True)
+        container = container.parent
+    return ""
+
+
+def _rows_from_div(nutr_div) -> list[dict[str, str]]:
+    """Extract ``(value, unit, label)`` rows from ONE ``div.nutritionList``."""
     rows: list[dict[str, str]] = []
-    nutr_div = soup.find("div", class_="nutritionList")
-    if not nutr_div:
-        return rows
     for item in nutr_div.find_all("div", class_="nutritionItem"):
-        # Use named div classes where available to avoid position-dependence
+        # Use named div classes where available to avoid position-dependence.
+        # CRITICAL (TASK-239): the LABEL is ``div.text`` (nutrient name, e.g. "נתרן"),
+        # NOT ``div.name`` (which is the UNIT, e.g. "מג"). The legacy inline scrapers
+        # used ``item.find(class_="name")`` first as the label and keyed the dict on
+        # the unit ("גרם"/"מג") — collapsing every gram-unit row onto one key.
         num_div   = item.find("div", class_="number")
         name_div  = item.find("div", class_="name")
         text_div  = item.find("div", class_="text")
@@ -143,6 +192,108 @@ def extract_nutrition_rows(soup) -> list[dict[str, str]]:
             continue
         rows.append({"value": parts[0], "unit": parts[1] if len(parts) >= 3 else "", "label": parts[-1]})
     return rows
+
+
+def extract_nutrition_tables(soup) -> list[dict]:
+    """Extract EVERY ``div.nutritionList`` on the page as a separate basis-tagged table.
+
+    Returns a list of ``{"table_index", "basis", "subInfo", "rows"}`` in document
+    order. This is the multi-table-aware layer that ``select_nutrition_table`` reads.
+    """
+    tables: list[dict] = []
+    for idx, nutr_div in enumerate(soup.find_all("div", class_="nutritionList")):
+        subinfo = _table_subinfo(nutr_div)
+        tables.append({
+            "table_index": idx,
+            "basis": classify_basis(subinfo),
+            "subInfo": subinfo,
+            "rows": _rows_from_div(nutr_div),
+        })
+    return tables
+
+
+def select_nutrition_table(tables: list[dict]) -> dict:
+    """Choose the per-100g panel from a list of basis-tagged tables.
+
+    Selection policy (TASK-239) — NEVER silently pick the first table:
+      * 0 tables                         → ``selected_basis="none"``, rows=[]
+      * exactly 1 table                  → select it; basis = its own classified basis
+                                           (a lone panel is the product's panel even if
+                                           its header is missing/unknown)
+      * >1 table, >=1 is per_100g        → select the (first) per_100g table
+      * >1 table, NONE is per_100g       → ``selected_basis="unknown"``,
+                                           ``insufficient=True`` (gate must FAIL — we
+                                           refuse to guess which non-100g table to use)
+
+    Returns a dict::
+
+        {
+          "rows": [...],                 # rows of the selected table ([] if insufficient)
+          "selected_basis": "per_100g"|"per_serving"|"unknown"|"none",
+          "selected_table_index": int|None,
+          "selected_table_header": str,  # the subInfo text of the selected table
+          "competing_table_count": int,  # total nutritionList tables on the page
+          "insufficient": bool,          # True -> BSIP0 gate fail (no per-100g identifiable)
+        }
+    """
+    n = len(tables)
+    if n == 0:
+        return {"rows": [], "selected_basis": "none", "selected_table_index": None,
+                "selected_table_header": "", "competing_table_count": 0,
+                "insufficient": False}
+
+    if n == 1:
+        t = tables[0]
+        return {"rows": t["rows"], "selected_basis": t["basis"],
+                "selected_table_index": t["table_index"],
+                "selected_table_header": t["subInfo"],
+                "competing_table_count": 1, "insufficient": False}
+
+    # Multiple tables: explicitly prefer per_100g.
+    per_100g = [t for t in tables if t["basis"] == "per_100g"]
+    if per_100g:
+        t = per_100g[0]
+        return {"rows": t["rows"], "selected_basis": "per_100g",
+                "selected_table_index": t["table_index"],
+                "selected_table_header": t["subInfo"],
+                "competing_table_count": n, "insufficient": False}
+
+    # >1 table and no identifiable per-100g panel -> refuse to guess.
+    return {"rows": [], "selected_basis": "unknown", "selected_table_index": None,
+            "selected_table_header": "; ".join(t["subInfo"] for t in tables),
+            "competing_table_count": n, "insufficient": True}
+
+
+def extract_nutrition_rows(soup) -> list[dict[str, str]]:
+    """Extract the raw ``(value, unit, label)`` rows from the PER-100G ``div.nutritionList``.
+
+    TASK-239: now multi-table-aware. Selects the per-100g table via
+    ``select_nutrition_table`` so a per-cube/per-serving panel can never overwrite or
+    masquerade as the per-100g panel. For a single-table page this is identical to the
+    legacy behaviour. When a multi-table page has no identifiable per-100g panel, returns
+    ``[]`` (the gate, reading ``extract_nutrition_selection``, fails the product).
+
+    The Shufersal nutritionItem structure has three child divs:
+      - ``div.number`` → the numeric value (e.g. "7", "פחות מ 0.5", "414")
+      - ``div.name``   → the unit label (e.g. "גרם" = g, "מג" = mg, "קל" = kcal)
+      - ``div.text``   → the nutrient name (e.g. "נתרן", "שומנים")
+
+    The ``unit`` field is used by ``parse_sodium_mg`` to distinguish a value already
+    in mg (unit="מג") from a gram value that must be converted (unit="גרם" or absent).
+    """
+    return select_nutrition_table(extract_nutrition_tables(soup))["rows"]
+
+
+def extract_nutrition_selection(soup) -> dict:
+    """Full multi-table selection result for a page (rows + basis metadata).
+
+    Thin wrapper exposing ``select_nutrition_table(extract_nutrition_tables(soup))``.
+    Scrapers persist the metadata (``selected_basis``, ``selected_table_index``,
+    ``selected_table_header``, ``competing_table_count``, ``insufficient``) in the BSIP0
+    record so the gate and any offline replay see the same basis decision the live
+    scrape made.
+    """
+    return select_nutrition_table(extract_nutrition_tables(soup))
 
 
 def parse_nutrition_rows(rows: list[dict[str, str]]) -> dict[str, str]:
@@ -195,16 +346,32 @@ def parse_nutrition_list(soup) -> dict[str, str]:
 def extract_nutrition_raw(soup) -> dict:
     """Capture the raw nutrition source for offline replay of future parser fixes.
 
-    Returns ``{"rows": [{value,label}…], "html": "<outer HTML of div.nutritionList>"}``.
-    Scrapers persist this under ``nutrition_raw_source`` in the BSIP0 record. ``rows``
-    is the compact, replay-ready signal (feed it back to ``parse_nutrition_rows``);
-    ``html`` is the defensive full copy for any future need the row pairs don't cover.
-    Empty/absent panel → ``{"rows": [], "html": ""}``.
+    TASK-239: now records EVERY table (with its basis) plus the basis-selection
+    decision, so an offline re-parse can replay the EXACT same selection the live
+    scrape made — and so a future fix to the basis logic can be replayed without a
+    network re-scrape. ``rows`` is the SELECTED (per-100g) table's rows for backward
+    compatibility; ``tables`` carries all panels; ``selection`` carries the metadata.
+
+    Returns::
+
+        {
+          "rows": [...],            # rows of the selected per-100g table (replay-ready)
+          "tables": [{table_index, basis, subInfo, rows}, ...],  # every panel
+          "selection": {selected_basis, selected_table_index, selected_table_header,
+                        competing_table_count, insufficient},
+          "html": "<outer HTML of every nutritionList div, concatenated>",
+        }
+
+    Empty/absent panel → all-empty structure.
     """
-    nutr_div = soup.find("div", class_="nutritionList")
+    tables = extract_nutrition_tables(soup)
+    selection = select_nutrition_table(tables)
+    nutr_divs = soup.find_all("div", class_="nutritionList")
     return {
-        "rows": extract_nutrition_rows(soup),
-        "html": str(nutr_div) if nutr_div else "",
+        "rows": selection["rows"],
+        "tables": tables,
+        "selection": {k: v for k, v in selection.items() if k != "rows"},
+        "html": "".join(str(d) for d in nutr_divs),
     }
 
 
@@ -379,17 +546,16 @@ def nutrition_implausible(nutr: dict) -> str | None:
     sat = g("saturated_fat", "saturated_fat_raw", "saturated_fat_g")
     protein = g("protein", "protein_raw", "protein_g")
     carbs = g("carbs", "carbs_raw", "carbs_g")
-    # sodium: accept raw string (mg or g heuristic) OR already-converted numeric sodium_mg
-    sodium_raw_val = g("sodium", "sodium_raw")
-    # Apply the same mg heuristic as parse_sodium_mg: >10 = already mg, else *1000
-    sodium_mg = None
-    if sodium_raw_val is not None:
-        sodium_raw_str = str(nutr.get("sodium") or nutr.get("sodium_raw") or "")
-        if "mg" in sodium_raw_str.lower() or sodium_raw_val > 10:
-            sodium_mg = sodium_raw_val
-        else:
-            sodium_mg = sodium_raw_val * 1000
-    # Also accept the already-numeric key from parse_nutrition_numeric output
+    # sodium: route the raw string through the CANONICAL parse_sodium_mg so the Hebrew
+    # "מג" milligram marker is honoured (TASK-239 fix — the old inline heuristic here
+    # checked only Latin "mg", so "10 מג" was treated as 10 g → 10000 mg, a false
+    # implausible flag). Accept a pre-converted sodium_mg numeric as a fallback.
+    sodium_raw = None
+    for k in ("sodium", "sodium_raw"):
+        if k in nutr and nutr[k] not in (None, ""):
+            sodium_raw = nutr[k]
+            break
+    sodium_mg = parse_sodium_mg(sodium_raw) if sodium_raw is not None else None
     if sodium_mg is None:
         sodium_mg = g("sodium_mg")
 

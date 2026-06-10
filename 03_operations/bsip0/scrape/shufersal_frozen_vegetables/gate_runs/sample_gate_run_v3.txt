@@ -1,0 +1,19 @@
+================================================================
+BSIP0 EXIT GATE — bsip0_shufersal_frozen_vegetables_v3.json
+================================================================
+[PASS] G1_off_contamination
+        - No Open Food Facts contamination found (all variants scanned).
+[WARN] G2_G3_nutrition_basis
+        - BASIS_WARN: 145 product(s) have unknown/missing basis metadata (legacy records pre-TASK-239 carry none): ['P_7290013366009', 'P_3643684', 'P_1990391', 'P_7296073733263', 'P_7296073733270', 'P_208114', 'P_7296073224891', 'P_104676']
+[PASS] G4_G5_identity
+        - No duplicate/conflicting barcodes across 164 keyed products.
+[FAIL] G6_numeric_sanity
+        - NUMERIC_SANITY: 1 implausible panel(s): ['P_7290013994790: sat_gt_total_fat: saturated=1.0g > total_fat=0.5g (fat-overwrite signature)']
+[WARN] G7_G8_ingredients
+        - Ingredient coverage: 144/164 (88%).
+        - RAW_SOURCE_WARN: 164 product(s) carry neither an ingredients_raw_source nor an absence reason (TASK-239 follow-up #6).
+[PASS] G9_run_summary
+        - Run-summary contract satisfied.
+----------------------------------------------------------------
+OVERALL: FAIL  (FAIL=1 WARN=2 PASS=3) over 164 products
+================================================================

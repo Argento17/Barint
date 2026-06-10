@@ -13,6 +13,11 @@ from datetime import datetime, timezone
 import requests
 from bs4 import BeautifulSoup
 
+# TASK-239: use the shared multi-table-aware parser (per-100g selection) — no inline
+# nutrition extraction. The same parser runs live and on any offline re-extraction.
+sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "_shared"))
+import bsip0_nutrition as bn  # noqa: E402
+
 # ── Configuration ───────────────────────────────────────────────────────
 BASE_DIR = pathlib.Path(__file__).parent.parent.parent.parent.parent.resolve()  # → C:\Bari
 SCRAPE_DIR = BASE_DIR / "03_operations" / "bsip0" / "scrape" / "shufersal_frozen_vegetables"
@@ -177,7 +182,15 @@ log("Scraping product pages for nutrition/ingredients...")
 
 scrape_stats = {"success": 0, "failed": 0, "blocked": 0, "skipped": 0}
 
-for code, p in list(scope_in.items())[:50]:  # limit to 50 for now
+# TASK-239: the old `[:50]  # limit to 50 for now` dev cap silently truncated the
+# corpus on every run. Now an explicit env cap defaulting to UNLIMITED (0 = no limit).
+_SCRAPE_LIMIT = int(os.environ.get("BSIP0_SCRAPE_LIMIT", "0") or "0")
+_scope_items = list(scope_in.items())
+if _SCRAPE_LIMIT > 0:
+    log(f"BSIP0_SCRAPE_LIMIT={_SCRAPE_LIMIT} — scraping first {_SCRAPE_LIMIT} of {len(_scope_items)} products")
+    _scope_items = _scope_items[:_SCRAPE_LIMIT]
+
+for code, p in _scope_items:
     url = SHUFERSAL_PRODUCT.format(code)
     log(f"  Fetching: {code} ({p.get('name_he', '?')[:30]})")
 
@@ -203,19 +216,20 @@ for code, p in list(scope_in.items())[:50]:  # limit to 50 for now
         # Parse product page
         soup = BeautifulSoup(r.text, "lxml")
 
-        # Nutrition
+        # Nutrition — shared parser: selects the per-100g table (never per-cube),
+        # records the basis decision, and persists the replay-ready raw source.
+        nutr_raw_source = bn.extract_nutrition_raw(soup)
+        sel = nutr_raw_source["selection"]
+        p["nutrition_basis"] = sel
+        p["nutrition_raw_source"] = {"rows": nutr_raw_source["rows"], "tables": nutr_raw_source["tables"]}
         nutrition_raw = {}
-        first_nutrition_list = soup.find("div", class_="nutritionList")
-        nutrition_list = first_nutrition_list.find_all("div", class_="nutritionItem") if first_nutrition_list else []
-        if not nutrition_list:
-            nutrition_list = soup.select("[class*='nutrition'] [class*='item'], [class*='nutritionRow']")
-        for item in nutrition_list:
-            label_el = item.find(class_="name") or item.find(class_="text")
-            value_el = item.find(class_="number") or item.find(class_="value")
-            if label_el and value_el:
-                label = label_el.get_text(strip=True)
-                value = value_el.get_text(strip=True)
-                nutrition_raw[label] = value
+        if not sel.get("insufficient"):
+            for row in nutr_raw_source["rows"]:
+                label = row.get("label", "")
+                value = row.get("value", "")
+                unit = (row.get("unit") or "").strip()
+                if value and label:
+                    nutrition_raw[label] = f"{value} {unit}".strip() if unit else value
         if nutrition_raw:
             p["nutrition_raw"] = nutrition_raw
 
