@@ -9,7 +9,6 @@ import { saltySnacksCategoryDefinition } from "./categories/salty-snacks";
 import { snacksCategoryDefinition } from "./categories/snacks";
 import { vegetableSpreadsCategoryDefinition } from "./categories/vegetable-spreads";
 import { yogurtsCategoryDefinition } from "./categories/yogurts";
-import { frozenVegetablesCategoryDefinition } from "./categories/frozen-vegetables";
 import type {
   ComparisonCategoryDefinition,
   ComparisonCategoryId,
@@ -28,7 +27,6 @@ const comparisonCategoryRegistry = {
   cheese: cheeseCategoryDefinition,
   "breakfast-cereals": cerealsCategoryDefinition,
   granola: granolaCategoryDefinition,
-  "frozen-vegetables": frozenVegetablesCategoryDefinition,
 } as const satisfies Record<ComparisonCategoryId, ComparisonCategoryDefinition>;
 
 export type { ComparisonCategoryDefinition, ComparisonCategoryId, ComparisonCategoryPageData };

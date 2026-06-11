@@ -66,6 +66,8 @@ export interface BariProductMetricsVM {
   base_pct?: number | null;
   /** Sugar g per 100g/ml — a real dairy signal (MILK_RECOMMENDATION §1). */
   sugar_g?: number | null;
+  /** Sodium mg per 100g — salty-snacks' second headline after fiber (TASK-227). Real per-label value. */
+  sodium_mg?: number | null;
 }
 
 // ─── Row reason (v2 — comparison_ui_reference_v2 §3.3) ───────────────────────────

@@ -1,14 +1,17 @@
-"""Open Food Facts client — product nutrition + ingredients by barcode.
+"""Open Food Facts client — DISABLED (PROJECT-WIDE BAN, TASK-238 / TASK-242).
 
-For: Data Agent (corpus enrichment) and Nutrition Agent (panel ground-truth).
-Pairs with il_prices: the price feed yields the barcode, OFF yields the panel.
+This client is permanently disabled. Per the owner hard rule (CLAUDE.md "Hard rules",
+reconfirmed 2026-06-10) Open Food Facts is BANNED as a Bari data source — nutrition,
+ingredients, names, barcodes, images, serving sizes, category, fallback, enrichment,
+validation, "temporary" fills, comparison JSON, frontend display, generated copy, scoring
+traces, and confidence — anywhere, any field, any category, forever. "Unknown is
+acceptable; OFF is not." Any OFF dependency is a launch blocker.
 
-OFF is a free, no-auth, community database. Coverage of Israeli branded products is
-partial — always treat a miss as "not found", never as "no such product". OFF data is
-crowd-sourced; for scoring, prefer it as a *candidate* panel to be QA-gated, not as a
-sealed source of truth.
+Every public entry point raises `OffDisabledError` on call. The implementation below is
+retained only so the disable is auditable and so re-enabling requires a deliberate, written
+owner policy change — NOT to be invoked. Do not remove the guard.
 
-Docs: https://openfoodfacts.github.io/openfoodfacts-server/api/
+Docs (historical): https://openfoodfacts.github.io/openfoodfacts-server/api/
 """
 from __future__ import annotations
 
@@ -18,8 +21,24 @@ from typing import Any
 from .http import HttpError, get_json
 from .provenance import Provenance, stamp
 
-CLIENT_VERSION = "1.0"
+CLIENT_VERSION = "1.0-disabled"
 API = "https://world.openfoodfacts.org/api/v2"
+
+# PROJECT-WIDE OFF BAN (TASK-238 / TASK-242). Flip ONLY via a written owner policy change.
+OFF_DISABLED = True
+
+
+class OffDisabledError(RuntimeError):
+    """Raised on any attempt to use the Open Food Facts client (banned data source)."""
+
+
+def _enforce_off_ban() -> None:
+    if OFF_DISABLED:
+        raise OffDisabledError(
+            "Open Food Facts is a banned Bari data source (CLAUDE.md hard rule, "
+            "TASK-238). This client is permanently disabled. Unknown is acceptable; "
+            "OFF is not."
+        )
 # Fields we actually consume — keeps payloads small and intent explicit.
 FIELDS = (
     "code,product_name,product_name_he,brands,quantity,nutriments,"
@@ -66,7 +85,8 @@ def _pick_ingredients(p: dict[str, Any]) -> str | None:
 
 
 def get_product(barcode: str, timeout: int = 25) -> OffProduct:
-    """Fetch one product by barcode. Never raises on 'not found' — returns found=False."""
+    """DISABLED — raises OffDisabledError. (Historically: fetch one product by barcode.)"""
+    _enforce_off_ban()
     barcode = str(barcode).strip()
     url = f"{API}/product/{barcode}.json"
     prov = stamp("open_food_facts", barcode, url, CLIENT_VERSION)
@@ -100,7 +120,8 @@ def get_product(barcode: str, timeout: int = 25) -> OffProduct:
 
 
 def get_products(barcodes: list[str], timeout: int = 25) -> dict[str, OffProduct]:
-    """Fetch many barcodes sequentially. Returns {barcode: OffProduct}."""
+    """DISABLED — raises OffDisabledError. (Historically: fetch many barcodes.)"""
+    _enforce_off_ban()
     return {bc: get_product(bc, timeout=timeout) for bc in barcodes}
 
 

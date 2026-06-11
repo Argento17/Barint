@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/salty_snacks_frontend_v3.json";
+import rawCorpus from "@/data/comparisons/salty_snacks_frontend_v4.json";
 
 import {
   formatComparisonMetadataLine,
@@ -36,6 +36,7 @@ const saltySnacksProducts: BariProductVM[] = _saltySnacksProductsRaw.map(
     metrics: {
       protein_g: p.expansion?.nutrition?.protein ?? null,
       fiber_g: p.expansion?.nutrition?.fiber ?? null,
+      sodium_mg: p.expansion?.nutrition?.sodium ?? null,
     },
     rowVerdict: p.insightLine,
   })
@@ -50,7 +51,7 @@ export const saltySnacksMetadataLine = formatComparisonMetadataLine(
 
 export const saltySnacksHero = {
   eyebrow: "חטיפים מלוחים",
-  title: "הבמבה מקבל C — חטיף עדשים של קרפור מקבל A.",
+  title: "הבמבה מקבל C — רק חטיף אורז מלא בלי מלח מגיע ל-A.",
 } as const;
 
 // TASK-226 COPY-LOCK: single shelf-investigator line. Removed the stat-dump prologue
@@ -65,7 +66,7 @@ export const saltySnacksCategoryNote =
   "הדירוג מבוסס על 100 גרם. חטיפים נמכרים בשקיות של 50–200 גרם — כדאי לבדוק כמה סידרת לאכול, לא רק מה הציון.";
 
 export const saltySnacksMethodologyLines = [
-  "בדקנו 54 חטיפים מלוחים משלוש רשתות — שופרסל, קרפור ויוחננוף — רכיבים, ערכי תזונה ורמת עיבוד.",
+  "בדקנו 29 חטיפים מלוחים ממדפי יוחננוף ושופרסל — רכיבים, ערכי תזונה ורמת עיבוד.",
   "הציונים יחסיים לקטגוריית חטיפים מלוחים בלבד; מוצר עם A בקטגוריה זו אינו בהכרח שקול ל-A בקטגוריה אחרת.",
   "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין על האריזה.",
   "מסד הנתונים עודכן ביוני 2026 — ייתכן שינויים בנוסחאות שאינם משתקפים עדיין בציון.",
@@ -74,7 +75,7 @@ export const saltySnacksMethodologyLines = [
 export const saltySnacksComparisonMetadata: Metadata = {
   title: "השוואת חטיפים מלוחים | Bari",
   description:
-    "השוואת 54 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 29 חטיפים מלוחים מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
 const saltySnacksShelfFilters = {

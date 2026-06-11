@@ -10,7 +10,6 @@ import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-c
 import { FeaturedHardCheesesIntelligenceCard } from "@/components/hashvaot/featured-hard-cheeses-intelligence-card";
 import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-hummus-intelligence-card";
 import { FeaturedJuicesIntelligenceCard } from "@/components/hashvaot/featured-juices-intelligence-card";
-import { FeaturedFrozenVegetablesIntelligenceCard } from "@/components/hashvaot/featured-frozen-vegetables-intelligence-card";
 import { FeaturedMaadanimIntelligenceCard } from "@/components/hashvaot/featured-maadanim-intelligence-card";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSaltySnacksIntelligenceCard } from "@/components/hashvaot/featured-salty-snacks-intelligence-card";
@@ -45,7 +44,6 @@ export const metadata: Metadata = {
 const BUTTER_COMPARISON_HREF = "/hashvaot/butter";
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
 const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
-const FROZEN_VEGETABLES_COMPARISON_HREF = "/hashvaot/frozen-vegetables";
 const HARD_CHEESES_COMPARISON_HREF = "/hashvaot/hard-cheeses";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
 const JUICES_COMPARISON_HREF = "/hashvaot/juices";
@@ -70,7 +68,6 @@ export default function HashvaotIndexPage() {
   const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
   const hardCheesesDescription = `בדקנו ${hardCheesesProducts.length} גבינות קשות וצהובות מיוחננוף: 18 קיבלו B, 11 קיבלו C ואחד קיבל D — אף גבינה לא הגיעה ל-A. גאודה ממרכיבים מינימליים מובילת המדף; גבינות 'לייט' עם מייצבים מקבלות ציון נמוך יותר.`;
-  const frozenVegetablesDescription = "35 מתוך 53 ירקות קפואים במדף מגיעים ל-A: ירקות וקטניות קפואים בלי תוספות, רכיב אחד, ציון מלא. תערובות עם פסטה, מייצבים או תבלינים נופלות ל-B ו-C. אף מוצר לא מגיע ל-S.";
   const saltySnacksDescription = `בדקנו ${saltySnacksProducts.length} חטיפים מלוחים מהמדף הישראלי: צ'יפס, פופקורן, פצפוצי אורז, פרצלים וחטיפי קטניות. 7 קיבלו A, 16 B — חטיפי קטניות אפויים ופצפוצי אורז פשוטים; 18 C ו-13 D או E. חטיפים 'אפויים' ו'ללא גלוטן' לא בהכרח מגיעים גבוה.`;
 
   return (
@@ -115,10 +112,6 @@ export default function HashvaotIndexPage() {
           <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
             ניתוח עדכני
           </h2>
-          <FeaturedFrozenVegetablesIntelligenceCard
-            href={FROZEN_VEGETABLES_COMPARISON_HREF}
-            description={frozenVegetablesDescription}
-          />
           <FeaturedBreakfastCerealsIntelligenceCard
             href={CEREALS_COMPARISON_HREF}
             description={cerealsDescription}

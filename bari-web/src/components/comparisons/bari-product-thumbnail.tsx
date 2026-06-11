@@ -9,12 +9,17 @@ export function BariProductThumbnail({
   product,
   size = "md",
   className,
+  eager = false,
 }: {
   product: BariProductVM;
   /** "fill" → the thumbnail fills its parent box (parent controls the size, e.g. a
    *  container-query-sized table cell). The presets are fixed pixel boxes. */
   size?: "sm" | "md" | "lg" | "fill";
   className?: string;
+  /** TASK-233E — above-the-fold rows load eagerly so the image is requested on first
+   *  paint instead of being deferred by `loading="lazy"` until a scroll/interaction
+   *  nudges layout (the reported "image missing until I re-trigger it" behavior). */
+  eager?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const dim =
@@ -47,7 +52,8 @@ export function BariProductThumbnail({
                   ? "96px"
                   : "64px"
           }
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : "auto"}
           decoding="async"
           onError={() => setFailed(true)}
         />
