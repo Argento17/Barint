@@ -53,7 +53,7 @@
 |---|---|---|
 | git diff = only release-scope files | **PASS** | 34 files, enumerated above |
 | `tsc --noEmit` | **PASS** | exit 0 (after closing sodium-metric dep chain) |
-| `next build` | **GATED** | Could not run in worktree — Turbopack rejects junctioned `node_modules` ("symlink out of filesystem root"). **Environment artifact, not a code error.** Must confirm green in a real checkout/CI. |
+| `next build` | **PASS** | 2026-06-11 orchestrator re-run in the worktree with a REAL `npm install` (972 pkgs, no junction): `tsc --noEmit` exit 0, `next build` exit 0, all routes prerendered — `/hashvaot/salty-snacks` present, `/hashvaot/frozen-vegetables` ABSENT from the route manifest. |
 | frontend JSON validator | **PASS** | every `comparisons/*.json` parses |
 | OFF grep across production data (`bari-web/src/data`) | **PASS** | **0** hits (was **39**) |
 | frozen-vegetables route removed | **PASS** | 0 files on disk, route dir GONE, 0 code refs, registry id removed, tsc clean |
@@ -66,7 +66,8 @@
 
 ## 3. Fixes required before / right after merge (why PASS WITH FIXES)
 
-1. **`next build` green in a real checkout** — re-run outside the junctioned worktree (CI or `npm ci` checkout). *frontend-agent.* Blocker for merge.
+1. ~~**`next build` green in a real checkout**~~ — **RESOLVED 2026-06-11**: real `npm install` + build in the worktree, exit 0 (see §2). Former merge blocker cleared.
+1b. **Orchestrator verification fixups landed as `243b9f8b`** (post-initial-report): (a) the branch had staged the STALE RETRACTED/CLOSED revision of `tasks/TASK-238.md`, contradicting §3.4 and scope item 3 — replaced with the reinstated project-wide-ban record (IN_PROGRESS) + a TASK-242 remediation-status block; (b) the CLAUDE.md OFF-ban Hard rule was MISSING from the branch (scope item 2 was only half-shipped: client stub yes, constitutional rule no) — added; (c) gate #8 re-worded to its honest salty-only scope. TASK-243 (image backfill) + TASK-244 (snacks confidence structural fix) are now REGISTERED in the live registry, not prose proposals.
 2. **Real-image backfill for the 39 nulled images** — de-OFF was done honestly by NULLing OFF images on hard_cheeses/granola/cereals/yogurts; those products now render the Bari placeholder card ("unknown is acceptable; OFF is not"). This is a **visual regression** to be closed by sourcing real retailer images. *data-agent — proposed follow-up TASK-243.* Not a merge blocker (placeholder is rule-compliant); ship-and-backfill.
 3. **Snacks confidence (item 6) — reviewer-gated.** Salty v4 confidence is clean. A schema-aware check flagged 4 candidate `snacks_v2` rows (snk-003/007/009/020); the branch fix (`b1e010bf`) touched only 2 and is entangled with copy edits. *data-agent must confirm the real inflation set and extract the clean fix* before it is staged. Not included in this branch.
 4. **TASK-238** stays `IN_PROGRESS`; orchestrator closes it after post-merge prod verification confirms 0 OFF live.
