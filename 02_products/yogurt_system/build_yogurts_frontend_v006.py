@@ -10,15 +10,15 @@ Changes vs build_yogurts_frontend_v4.py (run_005 builder):
     already excluded from run_006 BSIP1 corpus (excluded at BSIP1 build time), but the
     gate here ensures no corrupt record can reach the frontend even if somehow included.
 
-  TASK-250 Ruling 3 (grade-before-round): Grade is derived from the engine's raw
-    final_score_estimate BEFORE rounding, then the score is rounded for display.
-    The current run_005 builder applied round(raw) then grade_from_score(rounded).
-    This created grade promotion artifacts:
-      - RT-4: raw=34.8 → rounds to 35 → grade D (wrong: should be E)
-      - RT-13: raw=49.6 → rounds to 50 → grade C (wrong: should be D)
-    Fix: grade = grade_from_score(raw_before_rounding), score = round(raw).
-    Owner sign-off required before go-live (Ruling 3 is a grade correction on published
-    products, tripwire 2). Noted in return block.
+  Grade assignment (standard): grade = score_to_grade(round(raw_final_score_estimate)).
+    This is the site-wide invariant (corpus.ts normalizeGrade recomputes grade from the
+    ROUNDED score via frontendGradeFromScore). Grade must always be derived from the
+    rounded display score so JSON and UI are consistent.
+    Grade thresholds: A>=80 / B>=65 / C>=50 / D>=35 / E<35.
+    Result: barcode 7290114313070 → round(34.8)=35 → D; barcode 7290102399819 → round(49.6)=50 → C.
+    A builder assertion enforces this invariant: every product grade must equal
+    score_to_grade(rounded_score) or the build FAILS.
+    (TASK-250 Ruling 3 "grade-before-round" was REJECTED by orchestrator; reverted.)
 
   Copy template fixes:
     - Remove "NOVA 4" from insightLine/limitingFactors — use consumer phrasing
@@ -145,22 +145,23 @@ def confidence_from_trace(trace: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Grade (Ruling 3: grade from raw score, before rounding)
+# Grade (standard: from rounded display score — site-wide invariant)
 # ---------------------------------------------------------------------------
 
-def grade_from_raw(raw_score) -> str:
-    """Ruling 3: derive grade from the raw (unrounded) score.
+def grade_from_rounded(raw_score) -> str:
+    """Standard grade assignment: derive grade from round(raw_score).
 
-    TASK-250 Ruling 3 specifies: grade = grade_from_score(raw_final_score_estimate),
-    NOT grade_from_score(round(raw)). The score displayed to the consumer is still
-    round(raw), but the grade letter must reflect the raw value.
+    Site-wide invariant: corpus.ts normalizeGrade recomputes grade from the ROUNDED
+    score via frontendGradeFromScore (A>=80 / B>=65 / C>=50 / D>=35 / E<35).
+    JSON and UI must agree: grade = score_to_grade(round(raw)).
 
-    Owner sign-off required before go-live (tripwire 2: corrects grades on published
-    products — two products change: 35/E and 50/D).
+    Results:
+      barcode 7290114313070: raw=34.8 → round=35 → score_to_grade(35) = D
+      barcode 7290102399819: raw=49.6 → round=50 → score_to_grade(50) = C
     """
     if raw_score is None:
         return "insufficient_data"
-    return score_to_grade(raw_score)
+    return score_to_grade(round(raw_score))
 
 
 def round_score(raw_score) -> int | None:
@@ -201,7 +202,7 @@ def build_insight_line(trace: dict, bsip1: dict, raw_score) -> str:
     l1 = trace.get("L1_observed_signals", {})
     name = (trace.get("input_reference") or {}).get("canonical_name_he") or \
            (trace.get("input_reference") or {}).get("product_name_he") or ""
-    grade = grade_from_raw(raw_score)
+    grade = grade_from_rounded(raw_score)
     nova = trace.get("nova_proxy")
 
     protein = l1.get("protein_g")
@@ -440,14 +441,31 @@ def main():
             # ── Raw score ────────────────────────────────────────────────
             raw_score = trace.get("final_score_estimate")
 
-            # "No S grades" policy (TASK-169D, frozen): cap at 89.9.
+            # "No S grades" policy (TASK-169D, frozen): cap raw at 89.9.
+            # round(89.9) = 90, which would hit the S tier — also cap display
+            # score at 89 so the rounded score stays in A-tier (80–89).
             if raw_score is not None and raw_score > 89.9:
                 raw_score = 89.9
 
-            # ── Ruling 3: grade from raw score, before rounding ──────────
-            # Owner sign-off required before go-live.
-            grade = grade_from_raw(raw_score)
+            # ── Standard grade assignment (site-wide invariant) ──────────
+            # score = min(round(raw), 89) for capped products; grade derives
+            # from the display score, matching corpus.ts normalizeGrade.
             score = round_score(raw_score)
+            if score is not None and score > 89:
+                score = 89  # enforce A-ceiling: round(89.9)=90 → 89
+            grade = score_to_grade(score) if score is not None else "insufficient_data"
+
+            # ── Grade invariant assertion ─────────────────────────────────
+            # Every product must satisfy: grade == score_to_grade(display_score).
+            # This catches any future drift between grade assignment and the
+            # site-wide invariant enforced by corpus.ts normalizeGrade.
+            if score is not None and grade != "insufficient_data":
+                expected_grade = score_to_grade(score)
+                assert grade == expected_grade, (
+                    f"BUILD FAIL: grade invariant violated for barcode={barcode} "
+                    f"score={score} grade={grade!r} expected={expected_grade!r}. "
+                    f"Grade must equal score_to_grade(display_score)."
+                )
 
             # ── Confidence ───────────────────────────────────────────────
             conf_fields = confidence_from_trace(trace)
@@ -579,11 +597,13 @@ def main():
             "s_grade_cap_note": (
                 "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy."
             ),
-            "ruling3_note": (
-                "TASK-250 Ruling 3 (grade-before-round) implemented. Owner sign-off required "
-                "before go-live. Two products affected: barcode 7290114313070 (35/E) and "
-                "barcode 7290102399819 (50/D). Ruling 3 is a grade correction from run_005 "
-                "(35/D→35/E, 50/C→50/D)."
+            "grade_assignment_note": (
+                "Standard grade assignment: grade = score_to_grade(round(raw_score)). "
+                "Site-wide invariant — matches corpus.ts normalizeGrade. "
+                "TASK-250 Ruling 3 (grade-before-round) was REJECTED by orchestrator; "
+                "standard behavior restored. "
+                "barcode 7290114313070: raw=34.8 → round=35 → D; "
+                "barcode 7290102399819: raw=49.6 → round=50 → C."
             ),
             "retailer_breakdown": retailer_dist,
             "grade_distribution": grade_dist,
@@ -604,7 +624,7 @@ def main():
             "task250_rulings": [
                 "Ruling 1: null sugar → confidence -10 in score_engine",
                 "Ruling 2: null satFat → confidence -5 in score_engine",
-                "Ruling 3: grade-before-round (OWNER SIGN-OFF REQUIRED BEFORE GO-LIVE)",
+                "Ruling 3: REJECTED by orchestrator — standard grade assignment restored (grade from rounded score)",
                 "Ruling 4: sweetener gap resolved by RT-2/RT-10",
                 "Ruling 5: ceiling compression caveat — routes to Content Agent",
             ],
@@ -635,8 +655,8 @@ def main():
     print(f"Staging: {STAGING_OUT}")
     print(f"Web:     {WEB_OUT}")
     print()
-    print("NOTE: TASK-250 Ruling 3 grade corrections are live in this build.")
-    print("Owner sign-off required before deploying to production.")
+    print("NOTE: Standard grade assignment (grade from rounded score). TASK-250 Ruling 3 REJECTED.")
+    print("Grade invariant enforced: every product grade == score_to_grade(rounded_score).")
 
 
 if __name__ == "__main__":

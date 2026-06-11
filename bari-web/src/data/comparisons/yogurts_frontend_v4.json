@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-06-11T12:29:19.755162+00:00",
+    "generated": "2026-06-11T15:41:35.426170+00:00",
     "category": "yogurts",
     "product_count": 88,
     "scored_count": 88,
@@ -11,16 +11,15 @@
     "engine": "proto_v0 / 0.4.0 + BARI_RECAL_P0_YOGURT_TRIM (TASK-169D) + TASK144_FIXES + TASK-250",
     "s_grade_cap_applied": true,
     "s_grade_cap_note": "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy.",
-    "ruling3_note": "TASK-250 Ruling 3 (grade-before-round) implemented. Owner sign-off required before go-live. Two products affected: barcode 7290114313070 (35/E) and barcode 7290102399819 (50/D). Ruling 3 is a grade correction from run_005 (35/D→35/E, 50/C→50/D).",
+    "grade_assignment_note": "Standard grade assignment: grade = score_to_grade(round(raw_score)). Site-wide invariant — matches corpus.ts normalizeGrade. TASK-250 Ruling 3 (grade-before-round) was REJECTED by orchestrator; standard behavior restored. barcode 7290114313070: raw=34.8 → round=35 → D; barcode 7290102399819: raw=49.6 → round=50 → C.",
     "retailer_breakdown": {
       "shufersal": 88
     },
     "grade_distribution": {
-      "A": 14,
-      "B": 30,
-      "C": 20,
-      "D": 23,
-      "E": 1
+      "A": 15,
+      "B": 29,
+      "C": 21,
+      "D": 23
     },
     "ingredient_coverage": "86/88",
     "bsip0_gate": "PASS (96 products scraped, 92% nutrition, 92% ingredients)",
@@ -39,7 +38,7 @@
     "task250_rulings": [
       "Ruling 1: null sugar → confidence -10 in score_engine",
       "Ruling 2: null satFat → confidence -5 in score_engine",
-      "Ruling 3: grade-before-round (OWNER SIGN-OFF REQUIRED BEFORE GO-LIVE)",
+      "Ruling 3: REJECTED by orchestrator — standard grade assignment restored (grade from rounded score)",
       "Ruling 4: sweetener gap resolved by RT-2/RT-10",
       "Ruling 5: ceiling compression caveat — routes to Content Agent"
     ]
@@ -49,7 +48,7 @@
       "id": "bsip1_yogurt_7290110321031",
       "name": "יופלה GO מועשר בחלבון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WKE30_Z_P_7290110321031_1.png",
-      "score": 90,
+      "score": 89,
       "grade": "A",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
@@ -88,7 +87,7 @@
       "id": "bsip1_yogurt_7290110565527",
       "name": "דנונה פרו 20 גרם חלבון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UBW50_Z_P_7290110565527_1.png",
-      "score": 90,
+      "score": 89,
       "grade": "A",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
@@ -128,7 +127,7 @@
       "id": "bsip1_yogurt_7290112336712",
       "name": "דנונה פרו 21 חלבון 0%",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OEJ44_Z_P_7290112336712_1.png",
-      "score": 90,
+      "score": 89,
       "grade": "A",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
@@ -168,7 +167,7 @@
       "id": "bsip1_yogurt_7290116935614",
       "name": "יוגורט GO חלבון  25 גרם",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FHF54_Z_P_7290116935614_1.png",
-      "score": 90,
+      "score": 89,
       "grade": "A",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
@@ -518,7 +517,7 @@
       "name": "יוגורט דנונה ביו 3%",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EQX40_Z_P_5839078_1.png",
       "score": 80,
-      "grade": "B",
+      "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
@@ -2609,7 +2608,7 @@
       "name": "מולר פרוטאין יוגור.פירות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EQE60_Z_P_7290102399819_1.png",
       "score": 50,
-      "grade": "D",
+      "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
@@ -3480,7 +3479,7 @@
       "name": "יוגורט מוקצף אפרסק",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZUD38_Z_P_7290114313070_1.png",
       "score": 35,
-      "grade": "E",
+      "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
