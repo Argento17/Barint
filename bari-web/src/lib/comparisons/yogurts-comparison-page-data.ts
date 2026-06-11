@@ -18,11 +18,25 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type YogurtsCorpusMeta = ComparisonCorpusMeta;
 
-// `_cluster` (read off the raw JSON by yogurts-shelf-filters) is now stripped centrally
-// by loadComparisonCorpus' BariProductVM allowlist (TASK-233A) — no local strip needed.
+type YogurtsCorpusProduct = BariProductVM & {
+  _cluster?: string;
+};
+
+function stripYogurtsInternalFields(
+  products: YogurtsCorpusProduct[]
+): BariProductVM[] {
+  return products.map((product) => {
+    const { _cluster, ...rest } = product;
+    void _cluster;
+    return rest;
+  });
+}
+
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const yogurtsCorpusMeta = loaded.meta;
-const yogurtsProducts = enrichRowSurface(loaded.products);
+const yogurtsProducts = enrichRowSurface(
+  stripYogurtsInternalFields(loaded.products as YogurtsCorpusProduct[])
+);
 
 export { yogurtsCorpusMeta, yogurtsProducts };
 
