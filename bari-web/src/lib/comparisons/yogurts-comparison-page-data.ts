@@ -47,24 +47,25 @@ export const yogurtsHero = {
   title: 'יוגורט: לא כל "טבעי" נוצר שווה',
 } as const;
 
-// Re-authored for run_yogurt_006_recal_p0_trim (TASK-169D). Recal lifts the shelf: 6 reach A,
-// top 89/A. Numbers cite the rounded chip values (ScoreChip renders Math.round): top 89/A;
-// simple ביו/נטול-לקטוז cluster 80–81/A; עיזים 77/B; greek 78–79/B; flavored down to 40/D.
+// Re-authored for run_yogurt_006 corpus (TASK-249). Corpus: 87 products, 15 reach A,
+// top 90/A (four products tied at 90/A, all PARTIAL confidence). Numbers cite the rounded
+// chip values (ScoreChip renders Math.round): top cluster 90/A; simple ביו/נטול-לקטוז
+// cluster 80–81/A; עיזים 77/B; greek 78–79/B; flavored down to 40/D.
 export const yogurtsPrologueSentences = [
-  "בדקנו מחדש את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן כפי שהם מופיעים על המוצר עצמו. התמונה התהפכה מהבדיקה הקודמת: שישה יוגורטים על המדף מגיעים ל-A. הציון הגבוה הוא 89/A — יופלה GO מועשר בחלבון, על בסיס חלבון גבוה ותרביות חיות.",
+  "בדקנו את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן כפי שהם מופיעים על המוצר עצמו. מדובר בקטגוריה נקייה יחסית: 15 מתוך 87 מוצרים מגיעים ל-A. ארבעה מוצרים נפגשים בצמרת — 90/A — וההבדל ביניהם הוא כמות החלבון למנה, לא הציון.",
   "היוגורטים הפשוטים של תנובה — ביו 3% וביו 1.5% — וגם נטול הלקטוז מגיעים ל-80 עד 81, כולם A: בסיס חלבי, חיידקי ביפידוס, מעט מרכיבים. יוגורט עיזים נשאר ב-77/B, בעיקר כי החלבון בו נמוך יותר.",
   "מכאן זה יורד. ככל שמתווספים סוכר, חומרי טעם, מייצבים או פצפוצים — הציון נופל. גרסאות הטעם וה'קראנצ'' מגיעות עד C ו-D, גם כשכמות החלבון על האריזה זהה. ושומן גבוה לא מעלה ציון: יווני 8% עם 4.8 גרם שומן רווי עוצר ב-79/B, מתחת לבסיסים הרזים.",
   "במדף הזה 'הכי טוב' הוא A — אבל לא S. גם היוגורט המוביל נעצר ב-A: ציון החלבון והתרביות מרים אותו גבוה, אך לא הופך אותו ליוצא דופן. הכי טוב, לא מושלם.",
 ] as const;
 
 // Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
-// the run_yogurt_006_recal_p0_trim outcome (6 reach A, top 89/A, S withheld) and the live data:
+// the run_yogurt_006 corpus (15 of 87 reach A, top 90/A as a four-way tie, S withheld) and the live data:
 // the same "0%"/"protein" label sits at both ends — A-tier when the base is clean, but C–D
 // once a flavored version stacks on sugar + stabilizers at the same protein. The cap (top = A,
 // no S) is the new ceiling story: protein density alone does not earn the apex grade.
 export const yogurtsCategoryNote = [
   "הערת קטגוריה — אותה תווית, שני קצוות\n\nהציון משקלל את ההרכב כולו — חלבון, סוכר, מייצבים ורמת עיבוד — ולא תווית אחת. אותו 'עשיר בחלבון' יכול לשבת בראש המדף כשהבסיס פשוט, וליפול ל-C או D בגרסת טעמים שמוסיפה סוכר, חומרי טעם ופצפוצים על אותו חלבון בדיוק. מספר החלבון על החזית אינו מספיק כדי לקבוע את הציון.",
-  "הערת קטגוריה — 'הכי טוב' כאן הוא A, לא S\n\nשישה יוגורטים על המדף מגיעים ל-A, והגבוה הוא 89/A. אבל אף אחד לא מגיע ל-S, גם המוביל: חלבון גבוה ותרביות חיות מרימים את הציון, ואינם הופכים יוגורט ליוצא דופן. A כאן אומר יוגורט טוב באמת — לא מושלם, ולא מעבר לכך. המוצרים בראש הרשימה שקולים מבחינת איכות — ההבדל ביניהם הוא כמות החלבון למנה והטעם האישי שלך.",
+  "הערת קטגוריה — 'הכי טוב' כאן הוא A, לא S\n\n15 מתוך 87 יוגורטים על המדף מגיעים ל-A, והגבוה הוא 90/A. אבל אף אחד לא מגיע ל-S, גם המוביל: חלבון גבוה ותרביות חיות מרימים את הציון, ואינם הופכים יוגורט ליוצא דופן. A כאן אומר יוגורט טוב באמת — לא מושלם, ולא מעבר לכך. המוצרים בראש הרשימה שקולים מבחינת איכות — ההבדל ביניהם הוא כמות החלבון למנה והטעם האישי שלך.",
   "הערת קטגוריה — סיבים תזונתיים\n\nמוצרי חלב כמעט אינם מציינים סיבים תזונתיים על התווית, ולכן ערך זה אינו נכנס לניתוח בקטגוריה זו.",
 ]
   .join("\n\n");
