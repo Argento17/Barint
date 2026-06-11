@@ -2,7 +2,7 @@
   "registry_version": "v1",
   "task": "TASK-253",
   "created": "2026-06-11",
-  "purpose": "Project Shadow1 (tech leap 3) — declares every scored historical corpus, its class, its shipped engine-flag config, and its invariants. shadow_backtest.py consumes this. Flags are seeded from the authoritative batch runners per category; baseline and diff always run a corpus under identical flags, so the backtest detects ENGINE-CODE diffs.",
+  "purpose": "Project Shadow1 (tech leap 3) — declares the REGISTERED scored corpus: each corpus, its class, its shipped engine-flag config, and its invariants. NOT yet the full historical corpus — see `deferred` for what is missing and why. shadow_backtest.py consumes this. Flags are seeded from the authoritative batch runners per category; baseline and diff always run a corpus under identical flags, so the backtest detects ENGINE-CODE diffs.",
   "engine_default_flags": {
     "BARI_TASK144_FIXES": "off",
     "BARI_DAIRY_SAT_FAT_INFER": "off",
@@ -45,7 +45,7 @@
         "BARI_TASK250_CONF": "on"
       },
       "invariants": [],
-      "note": "run_yogurt_006 ship config (batch_run_yogurt_006.py, TASK-249 remediated corpus). Pre-go-live candidate."
+      "note": "run_yogurt_006 ship config (batch_run_yogurt_006.py, TASK-249 remediated corpus). Pre-go-live candidate. KNOWN COUPLING (Shadow finding 2026-06-11, runs/shadow_20260611T165734Z): BARI_RECAL_P0_YOGURT_TRIM gates more than the apex A-ceiling — with trim OFF, bio-naturel 7290102395231 loses its +8 fermentation bonus (R7 v1.1 Path B) and drops 80.8/A -> 72.8/B. The trim flag and the Path-B +8 eligibility are coupled in the engine. Splitting them into independent flags is a Nutrition-owned engine change (NOT done in Shadow1 — Shadow observes, never modifies); until then, treat any trim what-if as ALSO toggling Path-B fermentation eligibility."
     },
     {
       "name": "yogurt_yohananof",

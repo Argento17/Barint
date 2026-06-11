@@ -1,20 +1,33 @@
 """
-TASK-253 — Project Shadow1 (tech leap 3: Shadow Scoring).
+TASK-253 — Project Shadow1 (tech leap 3: Shadow Scoring) — FOUNDATION.
 
-Quant-fund-style backtest for the BSIP2 engine: re-scores every registered
-historical corpus under its shipped flag config and diffs against a stored
-baseline, with per-product ATTRIBUTION — which dimension / pipeline stage /
-mechanism moved which score, by how much. The frozen-impact table is generated
-on every diff, replacing "did this touch a frozen category?" as a manual check.
+Quant-fund-style backtest for the BSIP2 engine: re-scores the REGISTERED
+scored corpus (shadow_registry_v1.json; bespoke-loader corpora are deferred
+and listed there — this is not yet the full historical corpus) under each
+category's shipped flag config and diffs against a stored baseline, with
+per-product ATTRIBUTION — which dimension / pipeline stage / mechanism moved
+which score, by how much. The frozen-impact table is generated on every diff,
+replacing "did this touch a frozen category?" as a manual check.
 
 Read-only over all corpora and published artifacts; writes only under
 03_operations/shadow/. Never modifies the engine.
 
 Usage (from this src dir or anywhere):
   python shadow_backtest.py baseline [--note "..."] [--corpus NAME ...]
-  python shadow_backtest.py diff     [--baseline PATH] [--set FLAG=VAL ...]
+  python shadow_backtest.py diff     [--baseline PATH | --approved]
+                                     [--set FLAG=VAL ...]
                                      [--corpus NAME ...] [--note "..."]
+  python shadow_backtest.py promote  [--baseline PATH] [--note "..."]
   python shadow_backtest.py status
+
+Baseline tiers:
+  CURRENT  — last local capture (gitignored scratch state; self-referential by
+             design, used for the determinism check and local engine work).
+  APPROVED — a baseline deliberately promoted into baselines/approved/ (the only
+             git-COMMITTED baseline). CI must use `diff --approved`: it compares
+             HEAD against the last blessed engine state, never against a baseline
+             captured from the same code it is testing. Promotion happens only
+             after an engine change ships (a reviewed commit), rotating the law.
 
 Exit codes for `diff` (CI-ready):
   0 = clean (no movement anywhere)
@@ -38,6 +51,8 @@ REGISTRY_PATH = SHADOW_ROOT / "shadow_registry_v1.json"
 BASELINES_DIR = SHADOW_ROOT / "baselines"
 RUNS_DIR = SHADOW_ROOT / "runs"
 CURRENT_POINTER = BASELINES_DIR / "CURRENT.json"
+APPROVED_DIR = BASELINES_DIR / "approved"          # git-committed (gitignore exception)
+APPROVED_POINTER = APPROVED_DIR / "APPROVED.json"
 
 # Same engine-identity file set as the 169D/headpin run records.
 ENGINE_FILES = [
@@ -308,7 +323,14 @@ def _check_invariants(corpus_cfg: dict, snaps: dict) -> list[dict]:
 
 
 def cmd_diff(args) -> int:
-    if args.baseline:
+    if args.approved:
+        if not APPROVED_POINTER.exists():
+            print("No APPROVED baseline. Promote one first: "
+                  "`shadow_backtest.py promote` (after an engine state is blessed).")
+            return 3
+        ptr = json.loads(APPROVED_POINTER.read_text(encoding="utf-8"))
+        baseline_path = APPROVED_DIR / ptr["file"]
+    elif args.baseline:
         baseline_path = pathlib.Path(args.baseline)
     else:
         if not CURRENT_POINTER.exists():
@@ -333,6 +355,8 @@ def cmd_diff(args) -> int:
         "task": "TASK-253",
         "generated_at": ts,
         "baseline_id": baseline["baseline_id"],
+        "baseline_tier": ("approved" if args.approved
+                          else "explicit" if args.baseline else "current-local"),
         "baseline_engine_hash": baseline["engine_hash"],
         "head_engine_hash": head_hash,
         "engine_changed": head_hash != baseline["engine_hash"],
@@ -424,7 +448,13 @@ def render_md(report: dict) -> str:
     L.append(f"# Shadow Backtest — {report['run_id']}")
     L.append("")
     L.append(f"- **Verdict: {report['verdict']}** (exit {report['exit_code']})")
-    L.append(f"- Baseline: `{report['baseline_id']}` (engine `{report['baseline_engine_hash']}`)")
+    L.append(f"- Baseline: `{report['baseline_id']}` (engine `{report['baseline_engine_hash']}`, "
+             f"tier: {report.get('baseline_tier', 'current-local')})")
+    if report.get("baseline_tier") == "current-local":
+        L.append("  - _local scratch baseline — fine for engine work; CI verdicts "
+                 "require `diff --approved` against the committed approved baseline._")
+    L.append("- Scope: **registered scored corpus only** — deferred corpora "
+             "(bespoke loaders) listed in `shadow_registry_v1.json`.")
     L.append(f"- Head engine: `{report['head_engine_hash']}`"
              f"{' — **engine code changed**' if report['engine_changed'] else ' — engine code identical'}")
     g = report["git"]
@@ -520,18 +550,67 @@ def render_md(report: dict) -> str:
     return "\n".join(L)
 
 
+# ----------------------------------------------------------------- promote --
+
+def cmd_promote(args) -> int:
+    """Pin a baseline as APPROVED — the committed reference CI diffs against.
+    Run only after an engine state is blessed/shipped; the resulting files under
+    baselines/approved/ are meant to be committed (reviewed baseline rotation)."""
+    if args.baseline:
+        src = pathlib.Path(args.baseline)
+    else:
+        if not CURRENT_POINTER.exists():
+            print("No current baseline to promote. Run `baseline` first.")
+            return 3
+        src = pathlib.Path(
+            json.loads(CURRENT_POINTER.read_text(encoding="utf-8"))["path"])
+    baseline = json.loads(src.read_text(encoding="utf-8"))
+
+    head = engine_hash()
+    if baseline["engine_hash"] != head:
+        print(f"REFUSED: baseline engine `{baseline['engine_hash']}` != HEAD engine "
+              f"`{head}`. Promote only a baseline captured at the engine state being "
+              f"blessed (recapture with `baseline` first).")
+        return 3
+
+    APPROVED_DIR.mkdir(parents=True, exist_ok=True)
+    dest = APPROVED_DIR / f"{baseline['baseline_id']}.json"
+    dest.write_text(json.dumps(baseline, ensure_ascii=False, indent=1),
+                    encoding="utf-8")
+    APPROVED_POINTER.write_text(json.dumps({
+        "baseline_id": baseline["baseline_id"],
+        "file": dest.name,
+        "engine_hash": baseline["engine_hash"],
+        "promoted_at": datetime.datetime.now(
+            datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+        "git": git_state(),
+        "note": args.note or "",
+    }, indent=2), encoding="utf-8")
+    print(f"APPROVED baseline = {baseline['baseline_id']} (engine {baseline['engine_hash']})")
+    print(f"written: {dest}")
+    print("Commit baselines/approved/ — baseline rotation is a reviewed change.")
+    return 0
+
+
 # ------------------------------------------------------------------ status --
 
 def cmd_status(args) -> int:
+    head = engine_hash()
+    if APPROVED_POINTER.exists():
+        ap = json.loads(APPROVED_POINTER.read_text(encoding="utf-8"))
+        print(f"APPROVED baseline: {ap['baseline_id']}  engine {ap['engine_hash']}"
+              + ("  (HEAD matches)" if head == ap["engine_hash"]
+                 else "  (ENGINE CHANGED vs approved — CI would run `diff --approved`)"))
+    else:
+        print("APPROVED baseline: none promoted yet (CI gate inactive)")
     if not CURRENT_POINTER.exists():
-        print("No baseline captured yet.")
+        print("current baseline : none captured yet")
         return 0
     ptr = json.loads(CURRENT_POINTER.read_text(encoding="utf-8"))
     print(f"current baseline : {ptr['baseline_id']}")
     print(f"engine hash      : {ptr['engine_hash']}")
     print(f"captured at      : {ptr['generated_at']}")
     print(f"file             : {ptr['path']}")
-    head = engine_hash()
     print(f"HEAD engine hash : {head}"
           + ("  (UNCHANGED)" if head == ptr["engine_hash"]
              else "  (ENGINE CHANGED — run `diff`)"))
@@ -549,11 +628,18 @@ def main():
 
     d = sub.add_parser("diff", help="re-score at HEAD and diff vs baseline")
     d.add_argument("--baseline", help="baseline file (default: CURRENT)")
+    d.add_argument("--approved", action="store_true",
+                   help="diff against the committed APPROVED baseline (CI mode)")
     d.add_argument("--set", action="append", metavar="FLAG=VAL",
                    help="what-if flag override (repeatable)")
     d.add_argument("--corpus", action="append", help="limit to corpus name (repeatable)")
     d.add_argument("--note", default="")
     d.set_defaults(fn=cmd_diff)
+
+    p = sub.add_parser("promote", help="pin a baseline as APPROVED (committed CI reference)")
+    p.add_argument("--baseline", help="baseline file (default: CURRENT)")
+    p.add_argument("--note", default="")
+    p.set_defaults(fn=cmd_promote)
 
     s = sub.add_parser("status", help="show current baseline vs HEAD engine")
     s.set_defaults(fn=cmd_status)

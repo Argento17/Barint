@@ -1,6 +1,6 @@
 ---
 id: TASK-253
-title: "Project Shadow1 — shadow scoring: every engine change auto-backtests against the full historical corpus"
+title: "Project Shadow1 — shadow scoring: every engine change auto-backtests against the registered scored corpus"
 owner: orchestrator
 status: IN_PROGRESS
 priority: HIGH
@@ -12,8 +12,10 @@ summary: >
   Owner mandate 2026-06-11 ("full mandate to start Project Shadow1"). Tech-leap
   program from comparison_chain_tech_leaps_v1 (leap 3, "Data Trust" tier):
   quant-fund-style backtest for the scoring engine. Any engine diff re-scores
-  every registered historical corpus (~700 products, 12 corpora, per-category
-  shipped flag configs) and emits a per-product diff report with attribution —
+  the REGISTERED scored corpus (~700 products, 12 corpora, per-category shipped
+  flag configs) — NOT yet the full historical corpus: bread/butter/salty-snacks
+  need bespoke loaders (deferred, registry-listed) — and emits a per-product
+  diff report with attribution —
   which dimension/stage/mechanism moved which score, by how much — plus an
   always-generated frozen-impact table that replaces "did this touch a frozen
   category?" as a manual check. NON-GOALS: no score changes, no methodology
@@ -79,3 +81,61 @@ salty_snacks, bread_light synthesis; frozen_vegetables is score-free by design (
 4. Sensitivity proof: a flag what-if (`--set`) produces movement **with attribution**
    confined to the expected category, frozen table stays clean.
 5. Frozen-impact table present in every diff report; exit codes wired (0/1/2).
+
+## Merge gates (owner, 2026-06-11) — all three addressed in-branch
+
+Owner directive: PR merges as **Shadow1 foundation**, not as "complete full-corpus
+backtesting." Required fixes, disposition:
+
+1. **Corpus-scope wording** — DONE: all claims renamed from "full historical corpus" to
+   "registered scored corpus" (task title/summary, README + scope-honesty section,
+   harness docstring, registry purpose, and a scope line stamped into every generated
+   report). The "full corpus" claim is earned only when the registry's deferred list
+   is empty.
+2. **Yogurt trim/fermentation coupling** — DOCUMENTED: `BARI_RECAL_P0_YOGURT_TRIM` gates
+   both the apex A-ceiling AND the R7 v1.1 Path-B +8 eligibility (bio-naturel
+   7290102395231: trim off → loses +8 → 80.8/A → 72.8/B). Recorded in the registry
+   yogurt note + README "Known engine couplings". **Splitting the flags is an engine
+   change owned by Nutrition** (Shadow observes, never modifies) — open follow-up below.
+3. **CI vs stable baseline** — DEFINED + IMPLEMENTED: two baseline tiers. CURRENT =
+   gitignored local scratch (determinism checks, what-ifs). APPROVED = the only
+   committed baseline (`baselines/approved/`, gitignore exception), rotated solely via
+   `promote` (which refuses an engine-hash mismatch with HEAD) in a reviewed commit
+   after a ship. CI contract: `diff --approved` on any engine-file-touching PR — HEAD
+   vs the last blessed engine, **never a self-captured baseline**; exit 2 hard-blocks,
+   exit 1 requires Nutrition sign-off on the report, exit 0 passes. Full law in
+   README §"CI integration & baseline policy". No baseline is promoted in this PR —
+   the first promotion happens at the next blessed engine state.
+
+## Phase 1 Return Block (2026-06-11)
+
+**Status proposal:** RETURNED — Phase 1 (registry + harness + baseline + proofs) delivered.
+
+- **DoD 1 — registry:** `03_operations/shadow/shadow_registry_v1.json` — 12 active corpora
+  (2 frozen / 6 published / 4 candidate), per-category shipped flags seeded from the
+  authoritative batch runners (`batch_run_yogurt_006.py`, `batch_run_cereals_008.py`,
+  `batch_run_maadanim_001.py`, `batch_run_cheese_004.py`, `batch_run_hummus_003.py`,
+  `batch_run_hard_cheeses_001.py`, `run_snackbars_007_headpin.py`), snack-bars
+  no-A invariant, 5 deferred corpora with reasons.
+- **DoD 2 — harness:** `03_operations/bsip2/proto_v0/src/shadow_backtest.py`
+  (baseline/diff/status; stdlib-only). Baseline captured:
+  `baseline_20260611T165545Z`, engine `cd65ab5ef646b8b4`, **704 products / 12 corpora,
+  0 scoring errors** (engine state: task-244 working tree, git `02e647f2` + dirty
+  `score_engine.py`).
+- **DoD 3 — determinism proof PASS:** `runs/shadow_20260611T165604Z` — verdict CLEAN,
+  704/704 identical, exit 0.
+- **DoD 4 — sensitivity proof PASS:** `runs/shadow_20260611T165734Z`
+  (`--set BARI_RECAL_P0_YOGURT_TRIM=off`) — movement confined to yogurt (3) +
+  yogurt_yohananof (1), all 4 attributed (trim ceiling removal: apex products
+  89.9/A → 90.1–95.6/S at stage `weighted_dims`; bio-naturel 80.8/A → 72.8/B via
+  `ferm_bonus` mechanism change — the +8/trim interaction, surfaced by Shadow, worth a
+  Nutrition look). Frozen rows untouched; exit 1.
+- **DoD 5 — frozen-impact table** rendered in every `shadow_report.md`; exit codes
+  0/1/2 verified live (0 in determinism run, 1 in what-if run).
+- **Commit/PR:** branch `project-shadow1` (off master, via worktree — main tree
+  untouched), commit `f2db5928`, pushed to origin. PR creation:
+  https://github.com/Argento17/Barint/pull/new/project-shadow1 (gh CLI unavailable;
+  API call not permitted this session — one click to open).
+- **Open for Phase 2:** bespoke loaders (bread_retail_003, butter, salty_snacks),
+  published-anchor cross-check (baseline vs live frontend JSONs), CI hook so every
+  engine-touching PR runs `diff` automatically (converges with Spine/TASK-252 runner).
