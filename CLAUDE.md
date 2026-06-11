@@ -10,6 +10,15 @@ at `C:\bari\bari-web\` (the Next.js app, formerly the standalone `C:\bari-web` r
 - Scoring/BSIP/research/CE work happens at the root; frontend work happens in `C:\bari\bari-web`.
 - Do NOT change published scores or redesign scoring unless explicitly instructed.
 - Do NOT invent product, nutrition, or ingredient data.
+- **NEVER use Open Food Facts (OFF) as a data source — anywhere, any field, any category, forever.**
+  Banned for nutrition, ingredients, names, barcodes, images, serving sizes, category, fallback,
+  enrichment, validation, "temporary" fills, comparison JSON, frontend display, generated copy,
+  scoring traces, and confidence. The **only** source for ingredients + nutrition is the **direct
+  product scrape**: if it's parsed, use it; if not, the field is NULL and the page shows "data could
+  not be retrieved." Never substitute OFF or any other source. "Unknown is acceptable; OFF is not."
+  This is PROJECT-WIDE (owner reconfirmed 2026-06-10, overriding the earlier salty-snacks-only
+  localization). Any OFF dependency is a launch blocker. The OFF integration client stays disabled.
+  Removing only with a future explicit written owner policy. (Memory: `off_ban_hard_rule`; TASK-238.)
 
 ## Frozen invariants (CNO ruling, 2026-05-30)
 - Milk scores = `run_005_headpin` (frozen 2026-06-04, TASK-180A, engine tag `engine-baseline-2026-06-04` / `f075d9e`; supersedes `run_004_recalibrated`, retained as history). Top = 85/A (whole 3.4% / natural 4% / goat dairy). No reversion.

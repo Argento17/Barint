@@ -68,7 +68,10 @@ the evals / project-comp / governance backlog on `salty-snacks-v4`. These stay o
 - [ ] frozen-vegetables production route removed (no file, no registry id, no card, no dangling import)
 - [ ] salty-snacks page imports **v4**, not v3
 - [ ] no fake barcodes / dead image hosts in salty snacks (real EANs, single real retailer host)
-- [ ] no verified/full-data confidence where the nutrition panel is missing
+- [ ] no verified/full-data confidence where the nutrition panel is missing — **scoped to
+      salty-snacks v4 in this release.** The live snacks_frontend_v2 inflation (4 candidate rows,
+      DA-013 class) ships ONLY if data-agent confirms a copy-free extraction before merge;
+      otherwise it is the fast-follow TASK-244 and this gate passes salty-only by design.
 - [ ] **post-merge production URL verification** (the live site, not local)
 
 ## Deliverables
@@ -77,7 +80,11 @@ verification checklist · PASS / PASS WITH FIXES / FAIL verdict.
 
 ## Open items / reviewer sign-off required before merge
 - **data-agent**: confirm the snacks confidence fix (item 6) is isolated from copy-polish before it
-  is staged; re-affirm salty v4 panel provenance (Yochananof + 4 Shufersal rescues, zero OFF).
+  is staged (if not isolatable → TASK-244 fast-follow); re-affirm salty v4 panel provenance
+  (Yochananof + 4 Shufersal rescues, zero OFF).
+- **Registered fast-follows:** TASK-243 (retailer image backfill for the 39 nulled OFF images —
+  not a merge blocker; "unknown is acceptable, OFF is not") · TASK-244 (snacks confidence
+  structural fix, DA-013 class — merge blocker ONLY if data-agent lands it copy-free in time).
 - **frontend-agent**: confirm the pulled salty component does not depend on the EXCLUDED shared-
   component changes; confirm `tsc` + `next build` clean after frozen-veg removal.
 - **owner**: the **merge to production master** is the irreversible, consumer-facing step (decision
