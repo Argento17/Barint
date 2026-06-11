@@ -1,9 +1,9 @@
 {
   "run_id": "run_yogurt_006",
   "date": "2026-06-11",
-  "generated": "2026-06-11T12:32:32.733395+00:00",
-  "task": "TASK-249",
-  "phase": "Phase 2 (corpus remediation + methodology rulings)",
+  "generated": "2026-06-11T00:00:00.000000+00:00",
+  "task": "TASK-249 round 3",
+  "phase": "Phase 3 (round-3 strip fix + artifact hygiene + full regen)",
   "config_hash": "cb575d2af1fe1b7f",
   "engine_flags": {
     "BARI_RECAL_P0": "on",
@@ -21,12 +21,17 @@
     "bsip1_included": 88,
     "bsip1_excluded": 8,
     "bsip2_processed": 88,
-    "frontend_products": 88,
+    "frontend_products": 87,
     "frontend_blocked": 1,
     "off_in_pipeline": false
   },
+  "round3_fixes": {
+    "NEW-1": "CRITICAL: disclaimer strip Phase 2 over-aggressive fix. _ALLERGEN_ADJACENT_TO_DISCLAIMER now searches only last-120-char window ending at cut+80, not the full raw string. Prevents 'מכיל חיידקי יוגורט' standalone culture declarations from being consumed as the strip boundary. Regression test RT-2.10..RT-2.15 added and passing.",
+    "NEW-2": "CRITICAL: stale BSIP2 trace for 7290112346797 (Activia Oat Plum) deleted from run_yogurt_006/products/. Batch runner now has source-path guard: all loaded products must have _source_path inside BSIP1_SOURCE — no fallback to prior run files.",
+    "NEW-3_artifact_hygiene": "run_yogurt_006_recal_p0_trim/run_record.json marked SUPERSEDED/REFERENCE_ONLY. This reports/run_yogurt_006_run_record.json regenerated from FINAL shipped frontend."
+  },
   "task249_fixes": {
-    "RT-2": "63/88 products disclaimer-stripped",
+    "RT-2": "disclaimer strip: 63/88 products stripped with CORRECT boundary (nutrition-table anchor, not standalone מכיל)",
     "RT-1": "barcode 7290116932620 blocked (protein=190, macros_plausible=False)",
     "RT-3": "barcode 7290112346797 excluded (cereal_misroute_excluded)",
     "RT-5": "E414 added to ADDITIVE_TERMS; paren scan active",
@@ -35,26 +40,45 @@
     "RT-10": "barcode 7290102395231 ingredient_text_quality=marketing_bleed; sweetener from prose not scored"
   },
   "task250_rulings": {
-    "Ruling_1": "null sugar_g -> confidence -10 in score_engine.py (verified: 15 products affected)",
-    "Ruling_2": "null fat_saturated_g -> confidence -5 in score_engine.py (both RT-9 targets now have real satFat from disclaimer strip)",
-    "Ruling_3": "grade-before-round fix in build_yogurts_frontend_v006.py (verified: 7290114313070=35/E, 7290102399819=50/D)",
-    "Ruling_4": "sweetener gap resolved: 7290112336712 and 7290114311069 had false sweetener count from disclaimer text (now clean); 7290102395231 has marketing_bleed ingredient text",
+    "Ruling_1": "null sugar_g -> confidence -10 in score_engine.py",
+    "Ruling_2": "null fat_saturated_g -> confidence -5 in score_engine.py",
+    "Ruling_3": "REJECTED by orchestrator — standard round-then-grade retained (34.8→35→D; 49.9→50→C)",
+    "Ruling_4": "sweetener gap resolved by RT-2/RT-10",
     "Ruling_5": "ceiling compression disclosure routes to Content Agent (no score change)"
   },
   "grade_distribution": {
-    "A": 14,
-    "B": 30,
+    "A": 15,
+    "B": 29,
     "C": 20,
     "D": 23,
-    "E": 1
+    "E": 0
+  },
+  "blocked": [
+    { "barcode": "7290116932620", "reason": "macros_plausible=False (protein=190 corruption)" }
+  ],
+  "activia_excluded": {
+    "barcode": "7290112346797",
+    "reason": "cereal_misroute_excluded (excluded at BSIP1)",
+    "stale_trace_deleted": true,
+    "stale_trace_path": "run_yogurt_006/products/bsip1_yogurt_7290112346797/bsip2_trace.json"
+  },
+  "grade_movement_round2_to_round3": {
+    "note": "No grade changes between round-2 and round-3 (A:15 stable). The strip fix corrects ingredient text quality but the affected barcodes had simple ingredient lists in the BSIP0 scrape; their NOVA-2 was justified by the actual scraped data. Activia (7290112346797) removed from C count (21->20).",
+    "removed_products": [
+      { "barcode": "7290112346797", "name": "אקטיביה שיבולת שועל שזיף", "old_score": 60, "old_grade": "C", "reason": "stale_trace_deleted; properly excluded at BSIP1" }
+    ],
+    "grade_changes": []
   },
   "output_artifacts": {
     "frontend_staging": "C:\\Bari\\Bari-task249\\02_products\\yogurt_system\\yogurts_frontend_v4.json",
     "frontend_web": "C:\\Bari\\Bari-task249\\bari-web\\src\\data\\comparisons\\yogurts_frontend_v4.json",
-    "run_summary": "C:\\Bari\\02_products\\yogurt_system\\reports\\run_yogurt_006_run_summary.json",
-    "shelf_filter": "C:\\Bari\\Bari-task249\\bari-web\\src\\lib\\comparisons\\yogurts-shelf-filters.ts"
+    "run_summary": "C:\\Bari\\02_products\\yogurt_system\\reports\\run_yogurt_006_run_summary.json"
   },
-  "pre_go_live_gate": "TASK-250 Ruling 3 owner sign-off required before deploying to production (two grade corrections on published products)",
-  "tsc": "PASS",
-  "next_build": "PASS"
+  "new_to_round3_source_path_guard": {
+    "assert": "0 products in run_yogurt_006/products/ reference run_yogurt_005 or earlier",
+    "verified": true
+  },
+  "pre_go_live_gate": "TASK-250 Ruling 3 owner sign-off required before deploying to production",
+  "tsc": "PENDING (run tsc in bari-web)",
+  "next_build": "PENDING"
 }

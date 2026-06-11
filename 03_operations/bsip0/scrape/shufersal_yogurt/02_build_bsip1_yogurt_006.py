@@ -11,11 +11,32 @@ Fixes applied in this version (TASK-249 corpus remediation):
         followed by "ערכים תזונתיים" (nutrition values). The TASK-144 sanitizer
         previously marked these records as ingredient_text_quality="clean" —
         this was the blind spot.
-        Fix: strip everything from "מכיל" followed by a nutrition-value pattern,
-        or from "ערכים תזונתיים" directly, whichever comes first. Applied BEFORE
-        the ingredient list is split for BSIP1 and enrichment. The stripped portion
-        is stored in ingredients_disclaimer_stripped for audit. Disclaimer-stripped
-        records get ingredient_text_quality="disclaimer_stripped" (not "clean").
+        Fix: strip everything from the NUTRITION-TABLE ANCHOR ("ערכים תזונתיים",
+        "ל-100 גרם", nutrition keywords) forward — NOT from standalone "מכיל"
+        declarations that are part of the real ingredient list.
+
+        CRITICAL BUG FIXED IN ROUND-3 (TASK-249 NEW-1):
+        The prior Phase 2 logic extended the cut leftward to include any "מכיל"
+        occurrence found in the ENTIRE raw string, as long as mc.start() < cut.
+        Example of the bug:
+          Input: "חלב מפוסטר, מכיל חיידקי יוגורט. מכיל חלב ערכים תזונתיים..."
+          Phase 1 cuts at "ערכים תזונתיים"
+          Phase 2 found "מכיל חיידקי יוגורט" (the FIRST מכיל), which satisfied
+          mc.start() < cut, so the cut moved left to that position — stripping
+          all real ingredients after "חלב מפוסטר".
+          Correct behaviour: only the "מכיל" immediately adjacent to the
+          disclaimer boundary (the allergen line "מכיל חלב/ביצה/סויה" that is
+          a legal declaration, not a real ingredient) should be included in the
+          strip. A standalone culture/bacteria declaration like "מכיל חיידקי
+          יוגורט" in the middle of the ingredient list must NOT be consumed.
+        Fix: Phase 2 searches only `prefix` (raw[:cut]), and restricts the
+        leftward extension to the LAST (rightmost) match of the allergen
+        pattern within the final 120 characters before the Phase-1 cut.
+
+        Applied BEFORE the ingredient list is split for BSIP1 and enrichment.
+        The stripped portion is stored in ingredients_disclaimer_stripped for
+        audit. Disclaimer-stripped records get
+        ingredient_text_quality="disclaimer_stripped" (not "clean").
 
   RT-1  macros_plausible gate: any record with protein_g > 50 is physically
         impossible for a yogurt. Root cause: for barcode 7290116932620, the scraper
@@ -124,23 +145,28 @@ YOGURT_RE = re.compile(
 _CEREAL_MISROUTE_DROP = {"7290112346797"}
 
 # ── RT-2: Disclaimer boundary stripping ──────────────────────────────────────────
-# Contamination patterns that signal the start of the embedded disclaimer/nutrition
-# block inside the Shufersal ingredients text.  The contamination starts at the
-# first match of any of these patterns in the raw ingredient string.
+# Contamination patterns that signal the START of the embedded disclaimer/nutrition
+# block inside the Shufersal ingredients text.  The strip boundary is the NUTRITION
+# TABLE ANCHOR — NOT the "מכיל" allergen statement.
 #
-# The canonical boundary is "מכיל [allergen]" immediately followed by the nutrition
-# table introduction.  But some products have ONLY "ערכים תזונתיים" without a
-# preceding "מכיל".  We strip from the earliest match of either pattern.
+# "מכיל חיידקי יוגורט" (contains yogurt cultures) is a real ingredient declaration
+# that may appear mid-list.  Stripping from "מכיל" alone would eat real ingredients
+# that follow it.  The PRIMARY cut is at the nutrition-table header ("ערכים תזונתיים",
+# "הנתונים המדויקים", etc.).  A SECONDARY leftward extension strips the allergen
+# line ("מכיל חלב/ביצה/...") that sits IMMEDIATELY before the nutrition header —
+# but only if it appears in the last 120 chars before the cut point.
 #
-# Regression anchor (RT-2 test):
-#   Input:  "חלב, מייצב (E415) מכיל חלב ערכים תזונתיים 100 גרם 86 קל ..."
-#   Output: "חלב, מייצב (E415)"  (clean ingredient text, allergen removed)
+# Regression anchor (RT-2 test, ROUND-3 regression):
+#   Input:  "חלב מפוסטר, מכיל חיידקי יוגורט. מכיל חלב ערכים תזונתיים 100 גרם 86 קל ..."
+#   Phase 1 cuts at "ערכים תזונתיים"
+#   Phase 2 tail = "...מכיל חלב " → swallows "מכיל חלב" only
+#   Output: "חלב מפוסטר, מכיל חיידקי יוגורט"  ← culture phrase RETAINED
 #   quality: "disclaimer_stripped"
 #
-# Note on "מכיל": the allergen statement "מכיל חלב/ביצה/..." is NOT an ingredient.
-# It is a legal declaration required by Israeli labeling law.  The contamination
-# pattern starts at "מכיל" + optional allergen + "ערכים תזונתיים".  We strip
-# "מכיל ..." + anything that follows regardless of content.
+# For a product with NO culture phrase:
+#   Input:  "חלב, מייצב (E415). מכיל חלב ערכים תזונתיים 100 גרם 86 קל ..."
+#   Output: "חלב, מייצב (E415)"
+#   quality: "disclaimer_stripped"
 
 # Phase 1: patterns that mark the END of true ingredient content
 _DISCLAIMER_ANCHORS = [
@@ -195,13 +221,21 @@ def _is_marketing_prose(text: str) -> bool:
 
 
 # Phase 2: "מכיל" (allergen) preceding the nutrition block.
-# We also strip the "מכיל X" allergen statement itself IF it appears immediately
-# before a disclaimer anchor (it is not an ingredient).
-# A bare "מכיל" that appears mid-ingredient-list as part of a sub-ingredient
-# parenthetical ("מחית שקדים מכיל שקדים") must NOT be stripped — the phase 2 rule
-# only fires when "מכיל" is followed within 60 chars by a nutrition/disclaimer token.
-_CONTAINS_BEFORE_DISCLAIMER = re.compile(
-    r"\bמכיל\b.{0,60}(?:ערכים תזונתיים|הנתונים המדויקים|אין להסתמך|יש לקרוא|\d+\s+קל\s+אנרגיה)",
+# Only the allergen statement IMMEDIATELY before the disclaimer boundary
+# (e.g. "מכיל חלב" right before "ערכים תזונתיים") is consumed by the strip.
+# A standalone culture/bacteria declaration like "מכיל חיידקי יוגורט" that
+# appears EARLIER in the ingredient list and is NOT immediately adjacent to the
+# disclaimer boundary must NOT be stripped.
+#
+# ROUND-3 FIX: search `prefix` (raw[:cut]) only, and take the LAST (rightmost)
+# match within the final 120 chars before cut.  This prevents the regex from
+# reaching back to an earlier "מכיל" token mid-ingredient-list.
+#
+# The pattern matches "מכיל <allergen>" where the allergen phrase is followed
+# within 60 chars by a nutrition/disclaimer keyword — used to scan the tail of
+# the prefix (not the whole raw string).
+_ALLERGEN_ADJACENT_TO_DISCLAIMER = re.compile(
+    r"\bמכיל\b[^.!?\n]{0,60}(?:ערכים תזונתיים|הנתונים המדויקים|אין להסתמך|יש לקרוא|\d+\s+קל\s+אנרגיה)",
     re.DOTALL,
 )
 
@@ -216,9 +250,33 @@ def _strip_disclaimer(raw: str) -> tuple[str, str]:
 
     Algorithm:
       1. Find the earliest match of any _DISCLAIMER_ANCHOR in the raw text.
-      2. If a "מכיל ..." allergen statement immediately precedes that position
-         (within 100 chars), extend the cut point left to include it.
-      3. Strip trailing commas/spaces from the clean portion.
+         This is the primary cut point: the start of the nutrition-table header
+         or legal disclaimer (e.g. "ערכים תזונתיים").
+      2. Optionally extend the cut leftward to swallow an allergen statement
+         ("מכיל חלב/ביצה/...") that sits IMMEDIATELY before the disclaimer —
+         i.e. within the last 120 chars of the prefix, matched by
+         _ALLERGEN_ADJACENT_TO_DISCLAIMER against the TAIL of the prefix only.
+         This prevents reaching back to any earlier "מכיל" occurrence in the
+         real ingredient list (e.g. "מכיל חיידקי יוגורט" mid-list).
+      3. Strip trailing commas/spaces/dots from the clean portion.
+
+    ROUND-3 FIX (TASK-249 NEW-1):
+      The previous implementation searched `raw` (the full string) for the
+      _CONTAINS_BEFORE_DISCLAIMER pattern, then moved the cut left to the
+      FIRST match.  This consumed real ingredients when a standalone allergen
+      phrase (e.g. "מכיל חיידקי יוגורט") appeared before the nutrition block
+      in the ingredient list — the entire fragment between that phrase and the
+      end was stripped including real additives, sweeteners, and stabilizers.
+      The fix: search only `prefix[-120:]` (the tail of the pre-cut text) so
+      that only a "מכיל" immediately adjacent to the disclaimer boundary is
+      consumed.
+
+    Regression anchor:
+      Input:  "חלב מפוסטר, מכיל חיידקי יוגורט. עמילן טפיוקה (E1442). מכיל חלב ערכים תזונתיים 100 גרם..."
+      Phase 1 cuts at "ערכים תזונתיים"
+      Phase 2 tail = last 120 chars before cut = "...עמילן טפיוקה (E1442). מכיל חלב "
+      Phase 2 matches "מכיל חלב" (the allergen line adjacent to the disclaimer)
+      Final clean = "חלב מפוסטר, מכיל חיידקי יוגורט. עמילן טפיוקה (E1442)"  ← real ingredients preserved
 
     This is the RT-2 fix.  The TASK-144 sanitizer set ingredient_text_quality="clean"
     unconditionally whenever ingredients_raw was non-empty — that was the blind spot.
@@ -238,13 +296,35 @@ def _strip_disclaimer(raw: str) -> tuple[str, str]:
         # No disclaimer found
         return raw, ""
 
-    # Phase 2: extend cut leftward to swallow "מכיל <allergen>" prefix
+    # Phase 2: extend cut leftward to swallow the allergen statement that sits
+    # IMMEDIATELY before the disclaimer boundary.
+    # CRITICAL: search only a 120-char window ending AT cut (not the entire raw
+    # string).  The match must START in that window and is allowed to extend into
+    # the disclaimer portion that follows cut, since the nutrition keyword appears
+    # after cut.  We look for the LAST (rightmost) "מכיל" in the window that is
+    # followed within 60 chars by a nutrition anchor.
+    #
+    # Window: raw[max(0, cut-120) : cut+80]
+    #   - The left bound prevents reaching far-back occurrences.
+    #   - The right bound (+80) lets the regex see "ערכים תזונתיים" which starts
+    #     at/after position `cut`.
     prefix = raw[:cut]
-    mc = _CONTAINS_BEFORE_DISCLAIMER.search(raw)
-    if mc and mc.start() < cut:
-        cut = mc.start()
+    window_start = max(0, len(prefix) - 120)
+    search_window = raw[window_start: cut + 80]  # includes 80 chars past cut
+    window_base = window_start
 
-    clean = raw[:cut].rstrip(", \n\t")
+    mc = None
+    # Find all matches in the window; we want the LAST one (closest to cut).
+    for match in _ALLERGEN_ADJACENT_TO_DISCLAIMER.finditer(search_window):
+        mc = match
+
+    if mc:
+        new_cut = window_base + mc.start()
+        # Guard: only extend leftward if the match START is before the Phase-1 cut.
+        if new_cut < cut:
+            cut = new_cut
+
+    clean = raw[:cut].rstrip(", .\n\t")
     stripped = raw[cut:]
     return clean, stripped
 

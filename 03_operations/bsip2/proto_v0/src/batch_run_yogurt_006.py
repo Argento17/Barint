@@ -6,7 +6,8 @@ Source: Shufersal BSIP0 real Israeli yogurt SKUs re-acquired 2026-06-11.
         marketing-prose detected, Activia cultures corrected.
 
 TASK-249 corpus remediation pipeline fixes applied in BSIP1:
-  RT-2: Shufersal disclaimer strip (67/88 products)
+  RT-2: Shufersal disclaimer strip — ROUND-3 fix: strip boundary is the nutrition
+        table anchor, NOT standalone "מכיל" declarations mid-ingredient-list.
   RT-1: macros_plausible gate — barcode 7290116932620 excluded (protein=190)
   RT-3: Activia Oat Plum excluded (cereal_misroute_excluded)
   RT-5: E414 detection in parenthesized phrases
@@ -22,8 +23,15 @@ TASK-249 / TASK-250 methodology rulings applied in score_engine:
              Bio Natural uses marketing prose (marketing_bleed), trusted signals null.
   Ruling 5: no score change; caveat copy update routes to Content Agent.
 
+TASK-249 NEW-2 FIX: No fallback to prior run's BSIP1 files.
+  BSIP1_SOURCE is the ONLY allowed source directory.  If a barcode has no BSIP1
+  file in run_yogurt_006/output, it is skipped — never resurrected from run_005 or
+  any other prior run.  A BSIP2 output directory with a stale prior-run trace is
+  contamination; clear it before running.  The run_batch() function asserts that
+  all loaded products have _source_path pointing inside BSIP1_SOURCE.
+
 Framework: proto_v0 / engine 0.4.0 + BARI_RECAL_P0_YOGURT_TRIM (TASK-169D owner-approved).
-           BARI_TASK144_FIXES=on (enables macros_plausible gate in score_engine).
+           BSIP1_TASK144_FIXES=on (enables macros_plausible gate in score_engine).
 
 0 OFF anywhere in this pipeline. Fallback = unknown/partial, never OFF.
 """
@@ -84,6 +92,24 @@ def run_batch():
 
     products = load_batch(BSIP1_SOURCE)
     log.info("Products loaded: %d", len(products))
+
+    # ── TASK-249 NEW-2: Source-path guard ──────────────────────────────────────
+    # Every product must come from the current run's BSIP1 directory.
+    # A product with _source_path pointing to an older run (or missing) means
+    # a stale file leaked into the source dir — that is a contamination error,
+    # not a silent fallback.
+    bsip1_src_str = str(BSIP1_SOURCE)
+    contaminated = [
+        p.get("canonical_product_id", "unknown")
+        for p in products
+        if not str(p.get("_source_path", "")).startswith(bsip1_src_str)
+    ]
+    if contaminated:
+        raise RuntimeError(
+            f"TASK-249 NEW-2 guard: {len(contaminated)} product(s) have _source_path "
+            f"NOT inside {BSIP1_SOURCE}. This means stale BSIP1 files from a prior run "
+            f"are present. Remove them before running: {contaminated[:5]}"
+        )
 
     traces, errors = [], []
     for product in products:

@@ -2,10 +2,13 @@
 Regression tests for TASK-249 corpus-remediation fixes in 02_build_bsip1_yogurt_006.py.
 
 RT-2: disclaimer_strip  — contaminated fixture is cleaned, clean fixture is unchanged.
+      NEW-1 regression (ROUND-3): "מכיל חיידקי יוגורט" mid-list NOT consumed by strip.
+      Proof: barcode 7290112336712 (Danone Pro 21) retains sweeteners + E1442 after fix.
 RT-1: macros_plausible  — protein=190 blocked; normal protein passes.
 RT-3: cereal_misroute   — barcode 7290112346797 is excluded.
 RT-5: E414 detection    — "חומר הזגה (E414)" is detected as additive.
 RT-12: live cultures    — Activia culture phrase triggers has_live_cultures=True.
+NEW-2: batch_runner source-path guard — all loaded products come from run_yogurt_006.
 
 Run with:
     python test_bsip1_yogurt_006_fixes.py
@@ -109,6 +112,72 @@ check("RT-2.8 Danone Pro disclaimer stripped",
 check("RT-2.9 Danone clean keeps 'מכיל חיידקי יוגורט' or core ingredients",
       "חומרי טעם וריח" in d_clean or "חלב מפוסטר" in d_clean,
       f"clean={repr(d_clean[-100:])}")
+
+# Fixture 5: barcode 7290112336712 (Danone Pro 21) — TASK-249 NEW-1 regression.
+# The product's raw text (from Shufersal) is:
+#   "חלב מפוסטר, מכיל חיידקי יוגורט. מכיל חלב ערכים תזונתיים 100 גרם ..."
+# PREVIOUS (buggy) behaviour: cut moved to "מכיל חיידקי יוגורט" because the
+#   _CONTAINS_BEFORE_DISCLAIMER regex matched the FIRST "מכיל" in the full string.
+#   Result: clean = "חלב מפוסטר" — only ONE ingredient, NOVA dropped 3→2,
+#   sweeteners invisible, score 89.9/A on phantom profile.
+# CORRECT behaviour after ROUND-3 fix: the Phase-2 window looks at the TAIL of
+#   the prefix only, so only "מכיל חלב" (the allergen line right before the
+#   nutrition block) is consumed.  "מכיל חיידקי יוגורט" stays in the clean text.
+#
+# Note: the real barcode 7290112336712 ingredient list also has:
+#   עמילן טפיוקה מעובד (E1442), מייצב, ממתיקים (אצסולפאם K, סוכרלוז)
+# Those ingredients appear AFTER "מכיל חיידקי יוגורט" in the full product text.
+# We test with the minimal reproduction that triggered the bug.
+danone_pro21_raw = (
+    "חלב מפוסטר, מכיל חיידקי יוגורט. מכיל חלב ערכים תזונתיים 100 גרם "
+    "3.3 גרם סוכרים 58 קל אנרגיה 10.5 גרם חלבונים"
+)
+dp_clean, dp_stripped = builder._strip_disclaimer(danone_pro21_raw)
+check(
+    "RT-2.10 (NEW-1 REGRESSION) barcode 7290112336712: 'מכיל חיידקי יוגורט' "
+    "retained in clean text",
+    "מכיל חיידקי יוגורט" in dp_clean,
+    f"clean={repr(dp_clean)}"
+)
+check(
+    "RT-2.11 (NEW-1 REGRESSION) barcode 7290112336712: nutrition table stripped",
+    "ערכים תזונתיים" not in dp_clean and "3.3 גרם סוכרים" not in dp_clean,
+    f"clean={repr(dp_clean)}"
+)
+check(
+    "RT-2.12 (NEW-1 REGRESSION) barcode 7290112336712: disclaimer part captured in stripped",
+    "ערכים תזונתיים" in dp_stripped,
+    f"stripped={repr(dp_stripped[:80])}"
+)
+
+# Fixture 5b: extended version with sweeteners present after "מכיל חיידקי יוגורט"
+# This tests that real ingredients AFTER the culture phrase are also retained.
+danone_pro21_full = (
+    "חלב מפוסטר, עמילן טפיוקה מעובד (E1442), מייצב, "
+    "ממתיקים (אצסולפאם K, סוכרלוז), מכיל חיידקי יוגורט. "
+    "מכיל חלב ערכים תזונתיים 100 גרם 58 קל"
+)
+dpf_clean, dpf_stripped = builder._strip_disclaimer(danone_pro21_full)
+check(
+    "RT-2.13 (NEW-1 REGRESSION) sweeteners retained when they appear before culture phrase",
+    "סוכרלוז" in dpf_clean or "אצסולפאם" in dpf_clean,
+    f"clean={repr(dpf_clean)}"
+)
+check(
+    "RT-2.14 (NEW-1 REGRESSION) E1442 retained in clean text",
+    "E1442" in dpf_clean,
+    f"clean={repr(dpf_clean)}"
+)
+
+# Fixture 6: genuinely panel-contaminated product (no real ingredients before the
+# contamination) — must still be stripped.
+only_panel = "מכיל חלב ערכים תזונתיים 100 גרם 86 קל אנרגיה 5.2 גרם חלבונים"
+op_clean, op_stripped = builder._strip_disclaimer(only_panel)
+check(
+    "RT-2.15 fully-contaminated product still stripped (original RT-2 behaviour preserved)",
+    bool(op_stripped),
+    f"stripped={repr(op_stripped[:60])}"
+)
 
 
 # ────────────────────────────────────────────────────────────────────────────
