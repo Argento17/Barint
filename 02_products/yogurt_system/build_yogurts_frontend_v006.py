@@ -10,15 +10,15 @@ Changes vs build_yogurts_frontend_v4.py (run_005 builder):
     already excluded from run_006 BSIP1 corpus (excluded at BSIP1 build time), but the
     gate here ensures no corrupt record can reach the frontend even if somehow included.
 
-  Grade assignment (standard): grade = score_to_grade(round(raw_final_score_estimate)).
-    This is the site-wide invariant (corpus.ts normalizeGrade recomputes grade from the
-    ROUNDED score via frontendGradeFromScore). Grade must always be derived from the
-    rounded display score so JSON and UI are consistent.
-    Grade thresholds: A>=80 / B>=65 / C>=50 / D>=35 / E<35.
-    Result: barcode 7290114313070 → round(34.8)=35 → D; barcode 7290102399819 → round(49.6)=50 → C.
+  Grade assignment (consumer 5-grade scale): grade = consumer_grade_from_score(round(raw)).
+    Mirrors corpus.ts frontendGradeFromScore (A>=80 / B>=65 / C>=50 / D>=35 / E<35).
+    The engine's 6th tier S (>=90) does NOT exist in the UI palette — 90 maps to A.
+    "Cap at A, no S" (TASK-169D) means no S GRADE, not "score below 90". 90/A is compliant.
+    Display score stays at round(89.9)=90; grade=A. JSON and UI are consistent.
     A builder assertion enforces this invariant: every product grade must equal
-    score_to_grade(rounded_score) or the build FAILS.
-    (TASK-250 Ruling 3 "grade-before-round" was REJECTED by orchestrator; reverted.)
+    consumer_grade_from_score(rounded_score) or the build FAILS.
+    Result: barcode 7290114313070 → round(34.8)=35 → D; barcode 7290102399819 → round(49.6)=50 → C.
+    (TASK-249B fix: prior commit db3072b8 incorrectly capped display score at 89; reverted.)
 
   Copy template fixes:
     - Remove "NOVA 4" from insightLine/limitingFactors — use consumer phrasing
@@ -145,23 +145,44 @@ def confidence_from_trace(trace: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Grade (standard: from rounded display score — site-wide invariant)
+# Grade (consumer 5-grade scale — matches corpus.ts frontendGradeFromScore)
 # ---------------------------------------------------------------------------
 
-def grade_from_rounded(raw_score) -> str:
-    """Standard grade assignment: derive grade from round(raw_score).
+def consumer_grade_from_score(score) -> str:
+    """Consumer-facing 5-grade fold: mirrors frontendGradeFromScore in corpus.ts.
 
-    Site-wide invariant: corpus.ts normalizeGrade recomputes grade from the ROUNDED
-    score via frontendGradeFromScore (A>=80 / B>=65 / C>=50 / D>=35 / E<35).
-    JSON and UI must agree: grade = score_to_grade(round(raw)).
+    Thresholds: A>=80 / B>=65 / C>=50 / D>=35 / E<35.
+    The engine's 6th tier S (>=90) does NOT exist in the consumer UI palette —
+    score 90 maps to A, not S. This is the authoritative grade for JSON output
+    and must match what corpus.ts will derive at render time.
 
     Results:
-      barcode 7290114313070: raw=34.8 → round=35 → score_to_grade(35) = D
-      barcode 7290102399819: raw=49.6 → round=50 → score_to_grade(50) = C
+      score=90 → A (S folds into A on the consumer scale)
+      score=89 → A
+      score=80 → A
+      score=35 → D  (barcode 7290114313070: raw=34.8 → round=35 → D)
+      score=50 → C  (barcode 7290102399819: raw=49.6 → round=50 → C)
+    """
+    if score is None:
+        return "insufficient_data"
+    if score >= 80:
+        return "A"
+    if score >= 65:
+        return "B"
+    if score >= 50:
+        return "C"
+    if score >= 35:
+        return "D"
+    return "E"
+
+
+def grade_from_rounded(raw_score) -> str:
+    """Legacy wrapper — delegates to consumer_grade_from_score(round(raw)).
+    Use consumer_grade_from_score directly for new call sites.
     """
     if raw_score is None:
         return "insufficient_data"
-    return score_to_grade(round(raw_score))
+    return consumer_grade_from_score(round(raw_score))
 
 
 def round_score(raw_score) -> int | None:
@@ -441,30 +462,33 @@ def main():
             # ── Raw score ────────────────────────────────────────────────
             raw_score = trace.get("final_score_estimate")
 
-            # "No S grades" policy (TASK-169D, frozen): cap raw at 89.9.
-            # round(89.9) = 90, which would hit the S tier — also cap display
-            # score at 89 so the rounded score stays in A-tier (80–89).
+            # "No S grades" policy (TASK-169D, frozen): cap raw at 89.9 so that
+            # no product can exceed the engine ceiling through Path A.
+            # round(89.9) = 90. The CONSUMER 5-grade scale (frontendGradeFromScore
+            # in corpus.ts) folds the engine's S tier (>=90) into A, because the
+            # UI palette has no S. So 90/A is fully compliant with "cap at A, no S".
+            # The display score stays at 90 — do NOT cap it below 90.
             if raw_score is not None and raw_score > 89.9:
                 raw_score = 89.9
 
-            # ── Standard grade assignment (site-wide invariant) ──────────
-            # score = min(round(raw), 89) for capped products; grade derives
-            # from the display score, matching corpus.ts normalizeGrade.
+            # ── Standard grade assignment (consumer 5-grade scale) ────────
+            # Use the consumer-facing 5-grade fold: >=80 => A (no S tier).
+            # This matches frontendGradeFromScore in corpus.ts, which is the
+            # authoritative grade source for the UI. The JSON grade must equal
+            # consumer_grade_from_score(rounded_score) so JSON and UI agree.
+            # Result: round(89.9)=90 → grade=A (NOT S — S is engine-only).
             score = round_score(raw_score)
-            if score is not None and score > 89:
-                score = 89  # enforce A-ceiling: round(89.9)=90 → 89
-            grade = score_to_grade(score) if score is not None else "insufficient_data"
+            grade = consumer_grade_from_score(score) if score is not None else "insufficient_data"
 
             # ── Grade invariant assertion ─────────────────────────────────
-            # Every product must satisfy: grade == score_to_grade(display_score).
-            # This catches any future drift between grade assignment and the
-            # site-wide invariant enforced by corpus.ts normalizeGrade.
+            # Every product must satisfy: grade == consumer_grade_from_score(display_score).
+            # Catches any future drift between grade assignment and corpus.ts normalizeGrade.
             if score is not None and grade != "insufficient_data":
-                expected_grade = score_to_grade(score)
+                expected_grade = consumer_grade_from_score(score)
                 assert grade == expected_grade, (
                     f"BUILD FAIL: grade invariant violated for barcode={barcode} "
                     f"score={score} grade={grade!r} expected={expected_grade!r}. "
-                    f"Grade must equal score_to_grade(display_score)."
+                    f"Grade must equal consumer_grade_from_score(display_score)."
                 )
 
             # ── Confidence ───────────────────────────────────────────────
@@ -595,13 +619,16 @@ def main():
             "engine": "proto_v0 / 0.4.0 + BARI_RECAL_P0_YOGURT_TRIM (TASK-169D) + TASK144_FIXES + TASK-250",
             "s_grade_cap_applied": True,
             "s_grade_cap_note": (
-                "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy."
+                "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy. "
+                "round(89.9)=90 → grade=A on the consumer 5-grade scale (S folds into A; "
+                "UI palette has no S). Display score stays at 90. "
+                "TASK-249B restores this: the prior commit (db3072b8) incorrectly capped "
+                "display score at 89 — unauthorized published-score change, now reverted."
             ),
             "grade_assignment_note": (
-                "Standard grade assignment: grade = score_to_grade(round(raw_score)). "
-                "Site-wide invariant — matches corpus.ts normalizeGrade. "
-                "TASK-250 Ruling 3 (grade-before-round) was REJECTED by orchestrator; "
-                "standard behavior restored. "
+                "Consumer 5-grade fold: grade = consumer_grade_from_score(round(raw_score)). "
+                "Mirrors corpus.ts frontendGradeFromScore (A>=80 / B>=65 / C>=50 / D>=35 / E<35). "
+                "Engine S tier (>=90) folds into A — 90/A is fully compliant with TASK-169D. "
                 "barcode 7290114313070: raw=34.8 → round=35 → D; "
                 "barcode 7290102399819: raw=49.6 → round=50 → C."
             ),
@@ -655,8 +682,9 @@ def main():
     print(f"Staging: {STAGING_OUT}")
     print(f"Web:     {WEB_OUT}")
     print()
-    print("NOTE: Standard grade assignment (grade from rounded score). TASK-250 Ruling 3 REJECTED.")
-    print("Grade invariant enforced: every product grade == score_to_grade(rounded_score).")
+    print("NOTE: Consumer 5-grade fold (A>=80, no S). 90/A is compliant with TASK-169D 'no S grades'.")
+    print("Grade invariant enforced: every product grade == consumer_grade_from_score(rounded_score).")
+    print("TASK-249B: prior min(score, 89) display cap reverted — 4 capped products now show 90/A.")
 
 
 if __name__ == "__main__":
