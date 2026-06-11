@@ -14,6 +14,13 @@ import pathlib
 import sys
 from datetime import datetime, timezone
 
+# TASK-238: Open Food Facts is BANNED. This builder consumes OFF-candidate yogurt panels
+# (from the now-disabled 01_acquire_yohananof_yogurt.py) and stamps `source: open_food_facts`.
+raise RuntimeError(
+    "OFF is banned (TASK-238): 02_build_bsip1_yohananof_yogurt.py builds BSIP1 from Open "
+    "Food Facts yogurt panels and is disabled. Re-acquire nutrition from a direct scrape; never OFF."
+)
+
 sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip1\core")))
 sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\_shared")))
 

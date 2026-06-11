@@ -5,14 +5,13 @@ export const HASHVAOT_HREF = "/hashvaot";
 /**
  * Article content object for the yogurt deep-dive.
  *
- * Corpus: yogurts_frontend_v3.json — 19 scored products
- *   Shufersal: 11 products (yog-001 through yog-011)
- *   Yohananof: 8 products (bsip1_yogurt_* IDs)
- * Grade distribution: A×7, B×9, C×2, D×1
- * Score range: 40/D (יוגורט קראנצ תות קורנפלקס) → 96/A (דנונה PRO 20g — יוחננוף)
+ * Corpus: yogurts_frontend_v4.json — 89 scored products
+ *   Shufersal: 89 products (run_yogurt_005, 2026-06-11 scrape, real Hebrew ingredients)
+ * Grade distribution: A×9, B×30, C×27, D×23
+ * Score range: ~40/D → 90/A (high-protein Greek, 89.9 cap applied per TASK-169D)
  *
- * Corpus scope: two retailers (שופרסל + יוחננוף).
- * All quantitative claims are scoped to this 19-product corpus.
+ * Corpus scope: Shufersal only (Yohananof products de-listed — OFF contamination).
+ * All quantitative claims are scoped to this 89-product corpus.
  *
  * A-ceiling note: the highest score in this corpus is 96/A (partial-confidence product).
  * No yogurt in the corpus reaches the highest confidence tier at A — the top

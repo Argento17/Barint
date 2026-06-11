@@ -32,7 +32,7 @@ LIVE_FILES = [
     "cheese_frontend_v3.json", "granola_frontend_v1.json",
     "hard_cheeses_frontend_v2.json", "hummus_frontend_v5.json", "juices_frontend_v3.json",
     "maadanim_frontend_v3.json", "salty_snacks_frontend_v4.json",
-    "snacks_frontend_v2.json", "yogurts_frontend_v3.json",
+    "snacks_frontend_v2.json", "yogurts_frontend_v4.json",
 ]
 
 # The deployment boundary is the web copy under src/data/comparisons/ (CLAUDE.md hard rule:
