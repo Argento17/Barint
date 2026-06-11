@@ -18,6 +18,7 @@ Curation (final pass, on top of scrape-time name filtering):
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -303,4 +304,9 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="BSIP1 Builder — Yogurt (Shufersal)")
+    parser.add_argument("--gate-artifact",
+                        help="Path to BSIP0 gate result JSON. If provided, builder "
+                             "refuses to run unless the gate result is PASS.")
+    _args = parser.parse_args()
     main()

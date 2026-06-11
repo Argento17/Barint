@@ -22,6 +22,16 @@ from __future__ import annotations
 import json, time, pathlib, datetime
 import requests
 
+# TASK-238: Open Food Facts is BANNED as a Bari data source (owner hard rule 2026-06-10).
+# This scraper pulled the ENTIRE yogurt corpus directly from search.openfoodfacts.org and
+# is therefore DISABLED. The yogurt corpus must be re-acquired from a direct retailer scrape
+# or the category pulled. Never use OFF.
+raise RuntimeError(
+    "OFF is banned (TASK-238): 01_scrape_off_yogurt.py pulled the yogurt corpus from "
+    "search.openfoodfacts.org and is disabled. Re-acquire from a direct retailer scrape; "
+    "never use OFF."
+)
+
 BASE = pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\off_yogurt")
 RAW  = BASE / "raw"
 RAW.mkdir(parents=True, exist_ok=True)

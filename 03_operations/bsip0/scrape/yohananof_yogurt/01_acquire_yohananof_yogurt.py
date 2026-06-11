@@ -20,7 +20,13 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, r"C:\Bari")
 
 from integrations.clients import il_prices as ip
-from integrations.clients import open_food_facts as off
+# TASK-238: Open Food Facts is BANNED as a Bari data source (owner hard rule 2026-06-10).
+# This scraper paired barcodes with OFF panels and is therefore DISABLED.
+raise RuntimeError(
+    "OFF is banned (TASK-238): 01_acquire_yohananof_yogurt.py paired barcodes with Open "
+    "Food Facts panels and is disabled. Nutrition/ingredients come only from the direct "
+    "product scrape; NULL is the only fallback. Never use OFF."
+)
 
 OUT_DIR = Path(r"C:\Bari\02_products\yogurt_system\bsip0_outputs")
 OUT_DIR.mkdir(parents=True, exist_ok=True)

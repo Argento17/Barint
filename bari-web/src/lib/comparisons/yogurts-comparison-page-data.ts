@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/yogurts_frontend_v3.json";
+import rawCorpus from "@/data/comparisons/yogurts_frontend_v4.json";
 
 import {
   loadComparisonCorpus,
@@ -18,25 +18,11 @@ import type { BariProductVM } from "@/lib/view-models";
 
 export type YogurtsCorpusMeta = ComparisonCorpusMeta;
 
-type YogurtsCorpusProduct = BariProductVM & {
-  _cluster?: string;
-};
-
-function stripYogurtsInternalFields(
-  products: YogurtsCorpusProduct[]
-): BariProductVM[] {
-  return products.map((product) => {
-    const { _cluster, ...rest } = product;
-    void _cluster;
-    return rest;
-  });
-}
-
+// `_cluster` (read off the raw JSON by yogurts-shelf-filters) is now stripped centrally
+// by loadComparisonCorpus' BariProductVM allowlist (TASK-233A) — no local strip needed.
 const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 const yogurtsCorpusMeta = loaded.meta;
-const yogurtsProducts = enrichRowSurface(
-  stripYogurtsInternalFields(loaded.products as YogurtsCorpusProduct[])
-);
+const yogurtsProducts = enrichRowSurface(loaded.products);
 
 export { yogurtsCorpusMeta, yogurtsProducts };
 

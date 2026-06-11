@@ -17,6 +17,13 @@ Outputs:
 from __future__ import annotations
 import json, pathlib, datetime, re
 
+# TASK-238: Open Food Facts is BANNED. This curator processes raw OFF yogurt data from
+# the now-disabled 01_scrape_off_yogurt.py and is therefore DISABLED.
+raise RuntimeError(
+    "OFF is banned (TASK-238): 02_curate_and_bsip1.py curates Open Food Facts yogurt "
+    "records and is disabled. Re-acquire from a direct retailer scrape; never use OFF."
+)
+
 BASE   = pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\off_yogurt")
 RAW    = BASE / "raw"
 BSIP1  = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_yogurt_002\output")
