@@ -1,0 +1,133 @@
+{
+  "registry_version": "v1",
+  "task": "TASK-253",
+  "created": "2026-06-11",
+  "purpose": "Project Shadow1 (tech leap 3) — declares every scored historical corpus, its class, its shipped engine-flag config, and its invariants. shadow_backtest.py consumes this. Flags are seeded from the authoritative batch runners per category; baseline and diff always run a corpus under identical flags, so the backtest detects ENGINE-CODE diffs.",
+  "engine_default_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off"
+  },
+  "corpora": [
+    {
+      "name": "milk",
+      "class": "frozen",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+      "flags": {},
+      "invariants": [],
+      "note": "FROZEN INVARIANT (CNO 2026-05-30): scores = run_005_headpin, engine-baseline-2026-06-04. Headpin runner sets no flags -> engine defaults. Any shadow movement here is a frozen-invariant breach."
+    },
+    {
+      "name": "snack_bars",
+      "class": "frozen",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_001\\output",
+      "flags": {},
+      "invariants": [
+        { "type": "no_grade_at_or_above", "grade": "A", "why": "Frozen invariant: no snack bar reaches A; snk-001 = 70/B is the validated category ceiling." }
+      ],
+      "note": "FROZEN: run_snackbars_007_headpin config — BARI_RECAL_P0=off, W4=on (engine defaults)."
+    },
+    {
+      "name": "yogurt",
+      "class": "candidate",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_006\\output",
+      "flags": {
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "on",
+        "BARI_TASK250_CONF": "on"
+      },
+      "invariants": [],
+      "note": "run_yogurt_006 ship config (batch_run_yogurt_006.py, TASK-249 remediated corpus). Pre-go-live candidate."
+    },
+    {
+      "name": "yogurt_yohananof",
+      "class": "candidate",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_yohananof_001\\output",
+      "flags": {
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "on"
+      },
+      "invariants": [],
+      "note": "Yohananof yogurt expansion; runner sets no flags itself — seeded with the yogurt category ship config (pre-TASK250)."
+    },
+    {
+      "name": "cereals",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "run_cereals_008 live config (batch_run_cereals_008.py: BARI_RECAL_P0=on). TASK-189 sodium flag (BARI_SODIUM_CEREAL) NOT shipped — stays off."
+    },
+    {
+      "name": "cereals_multiretailer",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_multiretailer_001\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "Multi-retailer cereals promote set; same engine config as cereals_008."
+    },
+    {
+      "name": "maadanim",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_maadanim_001\\output",
+      "flags": { "BARI_TASK144_FIXES": "on" },
+      "invariants": [],
+      "note": "Canonical reference category. batch_run_maadanim_001.py: BARI_TASK144_FIXES=on."
+    },
+    {
+      "name": "cheese",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "batch_run_cheese_004.py config: BARI_RECAL_P0=on, TASK144=off."
+    },
+    {
+      "name": "cheese_yohananof",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cheese_yohananof_001\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "Yohananof cheese expansion; seeded with the cheese category config."
+    },
+    {
+      "name": "hummus",
+      "class": "published",
+      "source": "C:\\Bari\\02_products\\hummus\\canonical_bsip1",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "Canonical hummus corpus (run_hummus_002 lineage). batch_run_hummus_003.py: BARI_RECAL_P0=on."
+    },
+    {
+      "name": "juices",
+      "class": "candidate",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_juices_001\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "batch_run_juices_001/yohananof: BARI_RECAL_P0=on."
+    },
+    {
+      "name": "hard_cheeses",
+      "class": "candidate",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_hard_cheeses_001\\output",
+      "flags": { "BARI_RECAL_P0": "on" },
+      "invariants": [],
+      "note": "batch_run_hard_cheeses_001.py: BARI_RECAL_P0=on, TASK144=off. The red-label experimental config (BARI_REDLABEL_V1=on + BARI_DAIRY_SAT_FAT_INFER=on, TASK-REDLABEL-001) is NOT the registered config until it ships."
+    }
+  ],
+  "deferred": [
+    { "name": "bread_retail_003", "reason": "Bespoke loader (frozen provenance real_bread_retail_003_v1; curated 31-product set built by build_curated_003.py, not load_batch-compatible). Add via custom loader in Shadow v2." },
+    { "name": "butter", "reason": "Single merged JSON (02_products/butter/bsip1_outputs/butter_bsip1_merged.json), not a load_batch dir. Add via custom loader in Shadow v2." },
+    { "name": "salty_snacks", "reason": "Bespoke BSIP1 enrichment path (enrich_salty_snacks_bsip1.py); corpus rebuild in flight (TASK-228). Register once the real corpus lands." },
+    { "name": "bread_light", "reason": "Synthesis-calibration corpus, not a real retail shelf — out of backtest scope." },
+    { "name": "frozen_vegetables", "reason": "Score-free category by design (TASK-235) — no A–E scores to backtest." }
+  ]
+}
