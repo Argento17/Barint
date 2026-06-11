@@ -226,13 +226,25 @@ def annotate_from_trace(trace):
     return annotate(confidence, sub_reason)
 
 
-# --- Fallback for the 52 products whose live id-scheme does not join a trace ---
-# (bread/olive/crackers/cheese — verified in the threshold report §3 to all carry a
-#  full nutrition panel and to be already verified/partial, NEVER insufficient).
-# This path NEVER produces `insufficient`: it trusts the already-trace-derived
-# `confidence` enum that the original build script wrote into the JSON, and
-# assigns the residual partial sub-reason. It cannot suppress a displayed score.
-def annotate_fallback(existing_confidence):
-    c = existing_confidence if existing_confidence in ("verified", "partial") else "partial"
-    sub = None if c == "verified" else "partial_field"
+# --- Fallback for products whose live id-scheme does not join a trace ---
+# DA-013 structural fix: re-derives from the product's own data state instead of
+# trusting the generator-written `confidence` field. Key invariant:
+#   null expansion.nutrition panel ⇒ product was never scoreable on panel data
+#   ⇒ confidence can never be 'verified', regardless of what the build script wrote.
+# This path NEVER produces `insufficient` (invariant: only called for displayed prods).
+def annotate_fallback(product):
+    """Re-derives confidence from product display data. Null panel ⇒ never verified."""
+    exp = product.get("expansion") or {}
+    nutrition = exp.get("nutrition") or {}
+    panel_present = any(v is not None for v in nutrition.values())
+
+    if not panel_present:
+        # No nutrition panel in the display data — DA-013: generator-written 'verified'
+        # cannot stand without a panel. Always partial/missing_nutrition.
+        return annotate("partial", "missing_nutrition")
+
+    # Panel present: trust existing confidence (panel was reviewed at build time).
+    c = product.get("confidence")
+    c = c if c in ("verified", "partial") else "partial"
+    sub = None if c == "verified" else (product.get("confidence_sub_reason") or "partial_field")
     return annotate(c, sub)
