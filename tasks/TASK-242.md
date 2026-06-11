@@ -2,21 +2,53 @@
 id: TASK-242
 title: "Emergency Production Integrity Release — close the prod/local split (salty v4, OFF ban enforcement, frozen-veg removal, de-OFF, confidence)"
 owner: orchestrator
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-06-11
 priority: CRITICAL
 created_at: 2026-06-11
 depends_on: [TASK-228, TASK-237, TASK-241]
-blocks: [ALL]
+blocks: []
 roadmap_impact: true
 work_type: release
 release_branch: release/prod-integrity-242
 reviewers: [data-agent, frontend-agent]
 qa_owner: qa-agent
+close_reason: >
+  SUPERSEDED / NOT EXECUTED — owner ruling 2026-06-11. The release's core production assumption
+  was invalidated by the deploy-topology investigation: bari.digital deploys from
+  Argento17/bari@main (standalone app layout; production commit 10cc84fa via Vercel project
+  'bari'), NOT from Argento17/Barint, which has ZERO Vercel deployments in its entire history.
+  release/prod-integrity-242 (head ab3f0c94) exists only in Barint, so merging it could never
+  have updated production. NO production merge or deploy occurred; nothing shipped to consumers
+  under this task. Production baseline correction: the fabricated salty v3 was NEVER live (no
+  salty-snacks route exists in production) and frozen-vegetables was NEVER live — both defects
+  existed only on the never-deployed Barint master. The ACTUAL live issues are narrower: 21 OFF
+  imageUrls on /hashvaot/breakfast-cereals (9, cereals_frontend_v1.json) and /hashvaot/granola
+  (12, granola_frontend_v1.json); snacks confidence inflation on the PRODUCTION snacks JSON
+  (12 of 18 products 'verified' with null nutrition — worse than the monorepo copy's 4);
+  yogurts_frontend_v2 OFF-derived per reports/open_food_facts_contamination_audit_v1.md (no
+  literal OFF strings, silently contaminated); and the production repo being a stale fork
+  (diverged at 11c6ea4b) disconnected from all active Bari work. Disposition: do NOT port the
+  full tree; do NOT merge the branch; release/prod-integrity-242 in Barint is retained as
+  REFERENCE EVIDENCE ONLY (its content — salty v4, OFF client stub, CLAUDE.md hard rule,
+  reinstated TASK-238, de-OFF'd JSONs, snacks 4-row hotfix, all gates green incl. real
+  next build — remains valid work product for whatever ships next). Follow-up recommendation:
+  handle the real production issues (OFF images on 2 pages, prod snacks confidence, yogurts
+  ruling) as separate, narrowly-scoped actions against Argento17/bari@main, decoupled from any
+  future full-repo-sync decision; re-point TASK-243/TASK-244 baselines from the monorepo copy
+  to the production copy accordingly.
 ---
 
 # TASK-242 — Emergency Production Integrity Release
 
-> **This release blocks all other Bari work** until merged + verified on the production URL.
+> **CLOSED 2026-06-11 — SUPERSEDED / NOT EXECUTED.** See `close_reason`. The branch
+> `release/prod-integrity-242` (Barint, head `ab3f0c94`) is reference evidence only: do not
+> merge, do not deploy from it. Production was never served from Barint; the task's "prod/local
+> split" framing was based on the wrong production source. The validated work product on the
+> branch (and the §below scope/gates record) feeds the successor production-remediation work.
+
+> ~~**This release blocks all other Bari work** until merged + verified on the production URL.~~
+> (Block lifted at closure — the release was not executed.)
 
 ## Why
 The external **Full Cycle Health Audit** found a **production/local split**: production master still
