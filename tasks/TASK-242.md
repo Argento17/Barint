@@ -68,10 +68,10 @@ the evals / project-comp / governance backlog on `salty-snacks-v4`. These stay o
 - [ ] frozen-vegetables production route removed (no file, no registry id, no card, no dangling import)
 - [ ] salty-snacks page imports **v4**, not v3
 - [ ] no fake barcodes / dead image hosts in salty snacks (real EANs, single real retailer host)
-- [ ] no verified/full-data confidence where the nutrition panel is missing — **scoped to
-      salty-snacks v4 in this release.** The live snacks_frontend_v2 inflation (4 candidate rows,
-      DA-013 class) ships ONLY if data-agent confirms a copy-free extraction before merge;
-      otherwise it is the fast-follow TASK-244 and this gate passes salty-only by design.
+- [x] no verified/full-data confidence where the nutrition panel is missing — **PASS corpus-wide
+      for release scope.** Salty v4 clean by construction; snacks inflation (snk-003/007/009/020,
+      DA-013 class) confirmed by data-agent review and FIXED in-release via the copy-free 4-field
+      hotfix (2026-06-11). Structural fallback fix + LIVE_FILES staleness remain TASK-244.
 - [ ] **post-merge production URL verification** (the live site, not local)
 
 ## Deliverables
