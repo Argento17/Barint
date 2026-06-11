@@ -147,6 +147,13 @@ ADDITIVE_TERMS = _mk([
     ("גליסרין",                 "humectant"),
     ("E422",                    "humectant"),
     # Glazing agents
+    # E414 = acacia gum (Arabic gum) — stabilizer/glazing agent.
+    # RT-5 (TASK-249): previously missing from ADDITIVE_TERMS. Shufersal labels
+    # declare it as "חומר הזגה (E414)" — the E-number appears inside parentheses
+    # after the Hebrew function name. The substring "E414" is present in the ingredient
+    # item text, so the existing _extract_terms() substring scan will now find it.
+    ("חומר הזגה",               "glazing_agent"),   # Hebrew: "glazing agent" (generic)
+    ("E414",                    "glazing_agent"),   # acacia gum / Arabic gum
     ("חומר מציפה",              "glazing_agent"),
     ("שעווה קרנאובה",           "glazing_agent"),
     ("שעווה",                   "glazing_agent"),
@@ -370,6 +377,17 @@ FERMENTATION_TERMS = _mk([
     ("ביפידוס",                 "bifidobacterium"),   # Hebrew bifidus = same organism as ביפידובקטריום
     ("ביפדוס",                  "bifidobacterium"),   # spelling/OCR variant
     ("bifidus",                 "bifidobacterium"),   # Latin (case-insensitive → BIFIDUS/Bifidus)
+    # ── RT-12 (TASK-249): Activia canonical culture declaration ──────────────
+    # Activia (Danone) labels on Shufersal declare live cultures with the phrase:
+    #   "בתוספת החיידק הפרביוטי ביפידוס אקטירגוליס"
+    # The definite form "הפרביוטי" (rather than bare "פרוביוטי") and the proprietary
+    # strain name "אקטירגוליס" (Actiregulis) were not previously detected.
+    # The "ביפידוס" term above already matches, but after RT-2 disclaimer stripping
+    # the ingredient text is now clean — the enricher will correctly see "ביפידוס".
+    # These entries are added as a belt-and-suspenders guard for any edge case where
+    # the ביפידוס match fails (e.g. spelling variants, tokenisation).
+    ("החיידק הפרביוטי",         "live_cultures"),     # Activia definite form (RT-12)
+    ("אקטירגוליס",              "live_cultures"),     # Actiregulis — Activia proprietary strain
 ])
 
 ROASTING_TERMS = _mk([

@@ -864,6 +864,22 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
         if nn.get(field) is None:
             deduct(penalty, f"missing: {field}")
 
+    # TASK-249 / TASK-250 Rulings 1+2 — null sugar and null satFat confidence reductions.
+    # Ruling 1 (RT-6): null sugar_g → −10. Sugar absence prevents the HIGH_SUGAR cap from
+    #   ever firing. A product with genuinely low sugar and a null sugar field gets the same
+    #   score as one with high sugar that went undetected. The −10 moves confidence_band from
+    #   "high" (≥80) to "partial" (<80 but ≥60) for the typical null-sugar yogurt that
+    #   already carries −5 (fiber) + −10 (nova_confidence), making the unknown visible.
+    #   Grade is NOT capped. This is a transparency fix (D7 co-sign: Nutrition + Product
+    #   Agent ruling pack issued in yogurts_v4_methodology_rulings_v1.md).
+    if nn.get("sugars_g") is None:
+        deduct(10, "missing: sugars_g")
+    # Ruling 2 (RT-9): null fat_saturated_g → −5. Same epistemic principle; lighter
+    #   reduction because satFat is more predictable from total fat than sugar is from
+    #   carbs. D7 co-sign same as Ruling 1.
+    if nn.get("fat_saturated_g") is None:
+        deduct(5, "missing: fat_saturated_g")
+
     # Missing ingredients
     if not product.get("ingredients_list"):
         deduct(25, "missing: ingredient_list")

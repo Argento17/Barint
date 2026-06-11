@@ -1,0 +1,60 @@
+{
+  "run_id": "run_yogurt_006",
+  "date": "2026-06-11",
+  "generated": "2026-06-11T12:32:32.733395+00:00",
+  "task": "TASK-249",
+  "phase": "Phase 2 (corpus remediation + methodology rulings)",
+  "config_hash": "cb575d2af1fe1b7f",
+  "engine_flags": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK144_FIXES": "on",
+    "GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W4": "off"
+  },
+  "corpus": {
+    "source": "Shufersal direct scrape (run_yogurt_006)",
+    "bsip0_path": "C:\\Bari\\02_products\\yogurt_system\\bsip0\\yogurt_bsip0_raw_20260611T072535.json",
+    "bsip1_path": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_006\\output",
+    "bsip2_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006",
+    "raw_count": 96,
+    "bsip1_included": 88,
+    "bsip1_excluded": 8,
+    "bsip2_processed": 88,
+    "frontend_products": 88,
+    "frontend_blocked": 1,
+    "off_in_pipeline": false
+  },
+  "task249_fixes": {
+    "RT-2": "63/88 products disclaimer-stripped",
+    "RT-1": "barcode 7290116932620 blocked (protein=190, macros_plausible=False)",
+    "RT-3": "barcode 7290112346797 excluded (cereal_misroute_excluded)",
+    "RT-5": "E414 added to ADDITIVE_TERMS; paren scan active",
+    "RT-12": "FERMENTATION_TERMS updated; has_live_cultures corrected for bio/probiotic subtypes",
+    "RT-7": "serving_size_g populated from weight_g for single-serve containers",
+    "RT-10": "barcode 7290102395231 ingredient_text_quality=marketing_bleed; sweetener from prose not scored"
+  },
+  "task250_rulings": {
+    "Ruling_1": "null sugar_g -> confidence -10 in score_engine.py (verified: 15 products affected)",
+    "Ruling_2": "null fat_saturated_g -> confidence -5 in score_engine.py (both RT-9 targets now have real satFat from disclaimer strip)",
+    "Ruling_3": "grade-before-round fix in build_yogurts_frontend_v006.py (verified: 7290114313070=35/E, 7290102399819=50/D)",
+    "Ruling_4": "sweetener gap resolved: 7290112336712 and 7290114311069 had false sweetener count from disclaimer text (now clean); 7290102395231 has marketing_bleed ingredient text",
+    "Ruling_5": "ceiling compression disclosure routes to Content Agent (no score change)"
+  },
+  "grade_distribution": {
+    "A": 14,
+    "B": 30,
+    "C": 20,
+    "D": 23,
+    "E": 1
+  },
+  "output_artifacts": {
+    "frontend_staging": "C:\\Bari\\Bari-task249\\02_products\\yogurt_system\\yogurts_frontend_v4.json",
+    "frontend_web": "C:\\Bari\\Bari-task249\\bari-web\\src\\data\\comparisons\\yogurts_frontend_v4.json",
+    "run_summary": "C:\\Bari\\02_products\\yogurt_system\\reports\\run_yogurt_006_run_summary.json",
+    "shelf_filter": "C:\\Bari\\Bari-task249\\bari-web\\src\\lib\\comparisons\\yogurts-shelf-filters.ts"
+  },
+  "pre_go_live_gate": "TASK-250 Ruling 3 owner sign-off required before deploying to production (two grade corrections on published products)",
+  "tsc": "PASS",
+  "next_build": "PASS"
+}

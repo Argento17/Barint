@@ -5,11 +5,14 @@ import type { BariProductVM } from "@/lib/view-models";
 // "dairy-free" retired with the v2 swap (TASK-143): run_yogurt_004 contains zero plant-base
 // yogurts (soy/coconut deferred to a dedicated plant run per the 3a ruling), so the lens has
 // no members. Restore it when a plant pool ships.
+// "bio" added in TASK-249 (run_yogurt_006): Bio Natural and related bio/probiotic products
+// now have sufficient corpus representation to warrant a dedicated shelf lens.
 export type YogurtsShelfFilterId =
   | "plain"
   | "greek"
   | "high-protein"
-  | "flavored";
+  | "flavored"
+  | "bio";
 
 export const YOGURTS_SHELF_LENS_OPTIONS: Array<{
   id: YogurtsShelfFilterId;
@@ -19,6 +22,7 @@ export const YOGURTS_SHELF_LENS_OPTIONS: Array<{
   { id: "greek", label: "יווני/מסוי" },
   { id: "high-protein", label: "עתיר חלבון" },
   { id: "flavored", label: "בטעמים" },
+  { id: "bio", label: "ביו/פרוביוטי" },
 ];
 
 type YogurtsCorpusProduct = BariProductVM & { _cluster?: YogurtsShelfFilterId };
