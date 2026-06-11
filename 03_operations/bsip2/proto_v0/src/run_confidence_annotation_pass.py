@@ -23,12 +23,15 @@ WEB_DIR = pathlib.Path(r"C:\bari\bari-web\src\data\comparisons")
 PROD_BASE = pathlib.Path(r"C:\Bari\02_products")
 DRY = "--dry-run" in sys.argv
 
-# The 14 live category files (current versions). salty_snacks v2 is superseded by v3.
+# The live category files (current versions).
+# TASK-244 staleness correction: removed crackers_staged_v1 / frozen_vegetables_v1 /
+# olive_oil_v1 (deleted in TASK-242 release); removed salty_snacks_v3 (superseded);
+# added salty_snacks_frontend_v4 (live as of TASK-242 release).
 LIVE_FILES = [
     "bread_frontend_v2.json", "butter_frontend_v2.json", "cereals_frontend_v2.json",
-    "cheese_frontend_v3.json", "crackers_staged_v1.json", "granola_frontend_v1.json",
+    "cheese_frontend_v3.json", "granola_frontend_v1.json",
     "hard_cheeses_frontend_v2.json", "hummus_frontend_v5.json", "juices_frontend_v3.json",
-    "maadanim_frontend_v3.json", "olive_oil_frontend_v1.json", "salty_snacks_frontend_v3.json",
+    "maadanim_frontend_v3.json", "salty_snacks_frontend_v4.json",
     "snacks_frontend_v2.json", "yogurts_frontend_v3.json",
 ]
 
@@ -130,15 +133,30 @@ def main():
             if trace is not None:
                 f_matched += 1
                 fields = CA.annotate_from_trace(trace)
+                # DA-013 display-panel safety: a stale trace (score mismatch / old run)
+                # may report 'verified' while the display JSON has an all-null panel.
+                # expansion.nutrition is the DISPLAY panel (not redacted); if it is
+                # all-null the consumer sees no nutrition → confidence cannot be verified.
+                if fields["confidence"] == "verified":
+                    exp_n = (p.get("expansion") or {}).get("nutrition") or {}
+                    if exp_n and not any(v is not None for v in exp_n.values()):
+                        fields = CA.annotate(
+                            "partial", "missing_nutrition"
+                        )
             else:
                 f_unmatched += 1
-                fields = CA.annotate_fallback(old_conf)
+                fields = CA.annotate_fallback(p)  # DA-013: pass product, not bare confidence
 
             # INVARIANT: a currently-displayed product must not flip to insufficient.
             if old_conf in ("verified", "partial") and fields["confidence"] == "insufficient":
                 flips_to_insufficient.append((fn, pid, old_conf))
 
             p.update(fields)
+            # Sync expansion.confidenceLabel when present (keeps expansion view consistent
+            # with the canonical confidence_label_he written above).
+            exp = p.get("expansion")
+            if isinstance(exp, dict) and "confidenceLabel" in exp:
+                exp["confidenceLabel"] = fields["confidence_label_he"]
             fconf[fields["confidence"]] += 1
             global_conf[fields["confidence"]] += 1
             # state label for reporting
