@@ -73,8 +73,15 @@ the engine with itself. The CI contract is therefore:
    rotation is itself a reviewed change, never automatic. `promote` refuses a baseline
    whose engine hash differs from HEAD, so a stale capture can't be blessed by accident.
 
-The actual CI wiring (workflow file) is Phase 2 and converges with the Spine runner
-(TASK-252); the contract above is the law it must implement.
+**Wired 2026-06-12:** `.github/workflows/shadow_gate.yml` implements this contract —
+triggers on the 9 engine files + `03_operations/shadow/**`, runs `diff --approved` on
+ubuntu (the harness resolves the registry's recorded `C:\Bari` paths against the checkout
+root, and engine hashing is CRLF-normalized so engine identity agrees across platforms).
+Until the first `promote`, the gate reports itself INACTIVE as a warning. A frozen corpus
+whose source is missing from the checkout is treated as UNVERIFIABLE → exit 2 (a gate that
+cannot vouch must not pass). Note: `run_yogurt_006` BSIP1 corpus is not yet git-tracked —
+the yogurt corpus is skipped (loudly, class=candidate) in CI until TASK-249 commits it.
+Deeper runner integration converges with Spine (TASK-252).
 
 ## Known engine couplings (documented, not fixed here)
 
