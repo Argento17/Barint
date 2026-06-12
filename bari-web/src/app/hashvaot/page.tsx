@@ -10,7 +10,7 @@ import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-c
 import { FeaturedHardCheesesIntelligenceCard } from "@/components/hashvaot/featured-hard-cheeses-intelligence-card";
 import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-hummus-intelligence-card";
 import { FeaturedJuicesIntelligenceCard } from "@/components/hashvaot/featured-juices-intelligence-card";
-import { FeaturedMaadanimIntelligenceCard } from "@/components/hashvaot/featured-maadanim-intelligence-card";
+import { FeaturedYogurtsIntelligenceCard } from "@/components/hashvaot/featured-yogurts-intelligence-card";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSaltySnacksIntelligenceCard } from "@/components/hashvaot/featured-salty-snacks-intelligence-card";
 import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
@@ -22,7 +22,7 @@ import { breadProducts } from "@/lib/comparisons/bread-page-data";
 import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
-import { maadanimProducts } from "@/lib/comparisons/maadanim-page-data";
+import { yogurtsProducts, yogurtsPrologueSentences } from "@/lib/comparisons/yogurts-comparison-page-data";
 import { vegetableSpreadsProducts, vegetableSpreadsPrologueSentences } from "@/lib/comparisons/vegetable-spreads-comparison-page-data";
 import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-comparison-page-data";
 import { cerealsProducts } from "@/lib/comparisons/cereals-page-data";
@@ -47,7 +47,7 @@ const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
 const HARD_CHEESES_COMPARISON_HREF = "/hashvaot/hard-cheeses";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
 const JUICES_COMPARISON_HREF = "/hashvaot/juices";
-const MAADANIM_COMPARISON_HREF = "/hashvaot/maadanim";
+const YOGURTS_COMPARISON_HREF = "/hashvaot/yogurts";
 const VEGETABLE_SPREADS_COMPARISON_HREF = "/hashvaot/vegetable-spreads";
 const CHEESE_COMPARISON_HREF = "/hashvaot/cheese";
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
@@ -61,7 +61,7 @@ export default function HashvaotIndexPage() {
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
   const snacksDescription = `דוח השוואה לחטיפי המדף: ${SNACK_REPORT_STATS.scraped} נסרקו ב${SNACK_REPORT_STATS.retailer}, ${snacksProducts.length} מוצרים בדף ההשוואה.`;
   const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
-  const maadanimDescription = `מעדן נראה כמו פינוק חלבי פשוט — אבל המדף מתפצל לשניים: קינוחים שהמרקם שלהם בנוי על מייצבים ועמילן, ומוצרים מועשרי חלבון שמתפקדים כחטיף. החלבון נע מ-0 גרם (פודינג וג'לי שאינם חלב) ועד כ-10 גרם, וזה המדד שמפריד ביניהם. ${maadanimProducts.length} מוצרים בדף ההשוואה.`;
+  const yogurtsDescription = `${yogurtsPrologueSentences[0]} ${yogurtsProducts.length} מוצרים בדף ההשוואה.`;
   const vegetableSpreadsDescription = `${vegetableSpreadsPrologueSentences[0]} ${vegetableSpreadsProducts.length} מוצרים בדף ההשוואה.`;
   // TASK-152: reviewed & refined by Content Agent — 4 sub-pools; cream-cheese spreads fall
   // once real fat is counted (16–30%, EV-029).
@@ -124,9 +124,9 @@ export default function HashvaotIndexPage() {
             href={BUTTER_COMPARISON_HREF}
             description={butterDescription}
           />
-          <FeaturedMaadanimIntelligenceCard
-            href={MAADANIM_COMPARISON_HREF}
-            description={maadanimDescription}
+          <FeaturedYogurtsIntelligenceCard
+            href={YOGURTS_COMPARISON_HREF}
+            description={yogurtsDescription}
           />
           <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
           <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
