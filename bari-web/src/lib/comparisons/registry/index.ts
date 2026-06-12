@@ -4,7 +4,6 @@ import { cerealsCategoryDefinition } from "./categories/breakfast-cereals";
 import { granolaCategoryDefinition } from "./categories/granola";
 import { cheeseCategoryDefinition } from "./categories/cheese";
 import { hummusCategoryDefinition } from "./categories/hummus";
-import { maadanimCategoryDefinition } from "./categories/maadanim";
 import { saltySnacksCategoryDefinition } from "./categories/salty-snacks";
 import { snacksCategoryDefinition } from "./categories/snacks";
 import { vegetableSpreadsCategoryDefinition } from "./categories/vegetable-spreads";
@@ -16,7 +15,6 @@ import type {
 } from "./types";
 
 const comparisonCategoryRegistry = {
-  maadanim: maadanimCategoryDefinition,
   bread: breadCategoryDefinition,
   butter: butterCategoryDefinition,
   snacks: snacksCategoryDefinition,

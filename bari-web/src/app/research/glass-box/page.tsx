@@ -95,19 +95,12 @@ export default function GlassBoxMethodologyPage() {
         {/* Light register (#6A716E). Inline links — no buttons, no cards. */}
         <section className={`${SECTION_BORDER} px-4 pt-4 pb-3 sm:px-6`}>
           <p className="text-[13px] leading-[1.55] text-[#6A716E]">
-            חלק מהמוצרים ירדו בציון. לא כעונש — אלא מפני שהנחה שלא הייתה אמורה להיות שם הוסרה. הפירוט המלא נמצא בדפי{" "}
+            חלק מהמוצרים ירדו בציון. לא כעונש — אלא מפני שהנחה שלא הייתה אמורה להיות שם הוסרה. הפירוט המלא נמצא בדף{" "}
             <Link
               href="/hashvaot/hummus"
               className="text-[#1F8F6A] underline underline-offset-2"
             >
               החומוס
-            </Link>
-            {" "}וה
-            <Link
-              href="/hashvaot/maadanim"
-              className="text-[#1F8F6A] underline underline-offset-2"
-            >
-              מעדנים
             </Link>
             .
           </p>

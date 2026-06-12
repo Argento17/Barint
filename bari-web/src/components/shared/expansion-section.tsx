@@ -418,6 +418,7 @@ export function ExpansionSection({
   productId,
   category,
   rowVerdict,
+  sGradeExplanation,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -447,7 +448,7 @@ export function ExpansionSection({
   glassBox?: BariGlassBoxVM;
   /**
    * TASK-179T — Glass Box W2 D4 additive entries. Passed (flag-gated) only when
-   * GLASSBOX_D5D6_ON is true AND the category is a W2 pilot (hummus / maadanim).
+   * GLASSBOX_D5D6_ON is true AND the category is a W2 pilot (hummus).
    * Undefined → AdditivePanel not rendered. Empty array → panel renders empty state.
    * Presentation only — no score movement.
    */
@@ -471,6 +472,13 @@ export function ExpansionSection({
    * guard short-circuits).
    */
   rowVerdict?: string;
+  /**
+   * TASK-256 — Nutrition-approved Hebrew explanation of why this product earned S.
+   * Present only on S-grade products. Rendered verbatim before the positive/limiting
+   * signals in the canonical expansion surface. No new color encoding.
+   * // FLAG: Design review needed — S explanation placement
+   */
+  sGradeExplanation?: string;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
   // Score Confidence Indicators spec §6/§7: prefer the backend-prerendered label
@@ -537,6 +545,11 @@ export function ExpansionSection({
       onClick={(e) => e.stopPropagation()}
     >
       <div className="space-y-0 pt-0.5">
+        {sGradeExplanation?.trim() ? (
+          <div className="pb-2.5">
+            <p className="text-[13px] leading-[1.6] text-[#2F3531]">{sGradeExplanation}</p>
+          </div>
+        ) : null}
         {interpretive ? (
           <InterpretiveExpansion expansion={expansion} wide={wide} />
         ) : null}

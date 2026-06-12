@@ -20,14 +20,14 @@ import type { BariProductVM } from "@/lib/view-models";
 // Expansion remap (MILK_RECOMMENDATION §2, verbatim strings):
 //   whatToKnow + takeawayLine → rowVerdict      (the 2-sentence collapsed-row description —
 //                                                authored analysis + verdict, matching the
-//                                                maadanim row treatment, NOT terse +/− lines)
+//                                                authored row treatment, NOT terse +/− lines)
 //   raisesScore     → expansion.positiveSignals (מה עובד לטובת המוצר?)
 //   lowersScore     → expansion.limitingFactors (מה מגביל את הציון?)
 //   relativeToPeers → expansion.comparisonContext (הקשר במדף)
 //   tradeoffNote    → expansion.caveats         (הערות)
 // All 18 milk products are curated (milk-product-insights), so whatToKnow/takeawayLine are
 // per-product authored strings — composing them into a row verdict surfaces "what we saw in
-// the analysis" on the row, the way maadanim's authored rowVerdict does. No fabrication.
+// the analysis" on the row. No fabrication.
 //
 // GOVERNED OMISSION (flagged for Content/Nutrition re-approval): the bespoke "advanced —
 // פירוט לפי היבטים" pillars panel (BariInterpretationPanel) is NOT ported. It is a

@@ -16,7 +16,6 @@ const STATIC_PATHS = [
   "/hashvaot",
   "/hashvaot/butter",
   "/hashvaot/hummus",
-  "/hashvaot/maadanim",
   "/hashvaot/snacks",
   "/hashvaot/yogurts",
   "/hashvaot/bread",
