@@ -1,0 +1,59 @@
+# Shadow Gate (TASK-253) — engine backtest on every engine-touching PR.
+# Law: 03_operations/shadow/README.md §"CI integration & baseline policy".
+# Compares HEAD against the committed APPROVED baseline (baselines/approved/),
+# NEVER a self-captured baseline. Until the first `promote`, the gate reports
+# itself INACTIVE (warning, not failure).
+name: Shadow Gate — engine backtest
+
+on:
+  pull_request:
+    paths:
+      - "03_operations/bsip2/proto_v0/src/score_engine.py"
+      - "03_operations/bsip2/proto_v0/src/constants.py"
+      - "03_operations/bsip2/proto_v0/src/nova_proxy.py"
+      - "03_operations/bsip2/proto_v0/src/signal_extractor.py"
+      - "03_operations/bsip2/proto_v0/src/router_v2.py"
+      - "03_operations/bsip2/proto_v0/src/evaluation_scope.py"
+      - "03_operations/bsip2/proto_v0/src/input_loader.py"
+      - "03_operations/bsip2/proto_v0/src/structural_classifier.py"
+      - "03_operations/bsip2/proto_v0/src/trace_writer.py"
+      - "03_operations/shadow/**"
+      - ".github/workflows/shadow_gate.yml"
+  workflow_dispatch: {}
+
+jobs:
+  shadow-backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Shadow diff vs APPROVED baseline
+        run: |
+          set +e
+          python 03_operations/bsip2/proto_v0/src/shadow_backtest.py diff --approved \
+            --note "CI shadow gate @ ${GITHUB_SHA}"
+          code=$?
+          set -e
+          case "$code" in
+            0) echo "Shadow gate: CLEAN — no movement anywhere." ;;
+            1) echo "::error::Engine movement detected. Nutrition must sign off on the shadow report (artifact) before merge."
+               exit 1 ;;
+            2) echo "::error::FROZEN corpus touched, invariant violated, or frozen corpus unverifiable — hard block, no override."
+               exit 2 ;;
+            3) echo "::warning::Shadow gate INACTIVE — no APPROVED baseline promoted yet. Promote at the next blessed engine state (see 03_operations/shadow/README.md)."
+               ;;
+            *) echo "::error::Shadow harness failed unexpectedly (exit $code)."
+               exit "$code" ;;
+          esac
+
+      - name: Upload shadow report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadow-report
+          path: 03_operations/shadow/runs/
+          if-no-files-found: ignore

@@ -46,7 +46,10 @@ import sys
 SRC = pathlib.Path(__file__).parent.resolve()
 sys.path.insert(0, str(SRC))
 
-SHADOW_ROOT = pathlib.Path(r"C:\Bari\03_operations\shadow")
+# <repo>/03_operations/bsip2/proto_v0/src -> <repo>; keeps the harness runnable
+# from any checkout location (CI runs on ubuntu, not from C:\Bari).
+REPO_ROOT = SRC.parents[3]
+SHADOW_ROOT = REPO_ROOT / "03_operations" / "shadow"
 REGISTRY_PATH = SHADOW_ROOT / "shadow_registry_v1.json"
 BASELINES_DIR = SHADOW_ROOT / "baselines"
 RUNS_DIR = SHADOW_ROOT / "runs"
@@ -73,8 +76,27 @@ def engine_hash() -> str:
     h = hashlib.sha256()
     for f in sorted(ENGINE_FILES):
         h.update(f.encode())
-        h.update((SRC / f).read_bytes())
+        # CRLF-normalize so the hash is identical across autocrlf checkouts
+        # (Windows working tree vs CI's LF checkout must agree on engine identity).
+        h.update((SRC / f).read_bytes().replace(b"\r\n", b"\n"))
     return h.hexdigest()[:16]
+
+
+_LEGACY_ROOT = pathlib.PureWindowsPath(r"C:\Bari")
+
+
+def resolve_source(src: str) -> pathlib.Path:
+    """Resolve a corpus source recorded as a Windows-absolute path (registry and
+    baseline history use C:\\Bari\\...) against THIS checkout's repo root."""
+    p = pathlib.Path(src)
+    if p.exists():
+        return p
+    wp = pathlib.PureWindowsPath(src)
+    try:
+        rel = wp.relative_to(_LEGACY_ROOT)
+    except ValueError:
+        return p
+    return REPO_ROOT.joinpath(*rel.parts)
 
 
 def git_state() -> dict:
@@ -206,14 +228,14 @@ def cmd_baseline(args) -> int:
     }
     total = 0
     for c in configs:
-        src = c["source"]
-        if not pathlib.Path(src).exists():
-            print(f"  {c['name']:22s} MISSING SOURCE: {src}")
+        src = resolve_source(c["source"])
+        if not src.exists():
+            print(f"  {c['name']:22s} MISSING SOURCE: {c['source']}")
             continue
-        snaps = score_corpus(src, c["merged_flags"])
+        snaps = score_corpus(str(src), c["merged_flags"])
         errs = sum(1 for s in snaps.values() if "error" in s)
         baseline["corpora"][c["name"]] = {
-            "class": c["class"], "source": src,
+            "class": c["class"], "source": c["source"],
             "flags": c["merged_flags"], "n": len(snaps), "errors": errs,
             "products": snaps,
         }
@@ -378,7 +400,18 @@ def cmd_diff(args) -> int:
         # Apples-to-apples: replay the BASELINE's recorded flags (+ overrides).
         flags = dict(b["flags"])
         flags.update(overrides)
-        snaps = score_corpus(b["source"], flags)
+        src = resolve_source(b["source"])
+        if not src.exists():
+            # A frozen corpus the gate cannot re-score is UNVERIFIABLE — that is
+            # a gate failure, not a pass. Non-frozen: skip loudly, never silently.
+            print(f"  {name:22s} SKIPPED — source not in this checkout: {b['source']}")
+            report["corpora"][name] = {
+                "class": b["class"], "skipped_missing_source": b["source"],
+            }
+            if b["class"] == "frozen":
+                frozen_touched = True
+            continue
+        snaps = score_corpus(str(src), flags)
 
         old_pids, new_pids = set(b["products"]), set(snaps)
         moves = []
@@ -475,6 +508,10 @@ def render_md(report: dict) -> str:
     for name, c in report["corpora"].items():
         if c["class"] != "frozen":
             continue
+        if "skipped_missing_source" in c:
+            L.append(f"| {name} | frozen | — | — | — | — | "
+                     f"**UNVERIFIABLE — source missing from checkout** |")
+            continue
         inv = "VIOLATED" if c["invariant_violations"] else "ok"
         touched = c["moved"] or c["added_pids"] or c["removed_pids"] or c["invariant_violations"]
         status = "**TOUCHED — frozen-invariant breach**" if touched else "untouched"
@@ -487,6 +524,9 @@ def render_md(report: dict) -> str:
     L.append("| Corpus | Class | n | Moved | Grade changes | Added | Removed |")
     L.append("|---|---|---|---|---|---|---|")
     for name, c in report["corpora"].items():
+        if "skipped_missing_source" in c:
+            L.append(f"| {name} | {c['class']} | — | — | — | — | — |")
+            continue
         L.append(f"| {name} | {c['class']} | {c['n']} | {c['moved']} | "
                  f"{c['grade_changes']} | {len(c['added_pids'])} | {len(c['removed_pids'])} |")
     L.append("")
