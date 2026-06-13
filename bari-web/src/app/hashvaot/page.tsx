@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { FeaturedBreakfastCerealsIntelligenceCard } from "@/components/hashvaot/featured-breakfast-cereals-intelligence-card";
 import { FeaturedButterIntelligenceCard } from "@/components/hashvaot/featured-butter-intelligence-card";
 import { FeaturedGranolaIntelligenceCard } from "@/components/hashvaot/featured-granola-intelligence-card";
+import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
 import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
 import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-cheese-intelligence-card";
 import { FeaturedHardCheesesIntelligenceCard } from "@/components/hashvaot/featured-hard-cheeses-intelligence-card";
@@ -30,6 +31,7 @@ import { butterProducts, butterPrologueSentences } from "@/lib/comparisons/butte
 import { granolaProducts } from "@/lib/comparisons/granola-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { saltySnacksProducts } from "@/lib/comparisons/salty-snacks-page-data";
+import { brinedCheesesProducts, brinedCheesesPrologueSentences } from "@/lib/comparisons/brined-cheeses-page-data";
 import { hardCheesesProducts } from "@/lib/comparisons/hard-cheeses-page-data";
 import { juicesProducts } from "@/lib/comparisons/juices-page-data";
 import { cn } from "@/lib/utils";
@@ -44,6 +46,7 @@ export const metadata: Metadata = {
 const BUTTER_COMPARISON_HREF = "/hashvaot/butter";
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
 const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
+const BRINED_CHEESES_COMPARISON_HREF = "/hashvaot/brined-cheeses";
 const HARD_CHEESES_COMPARISON_HREF = "/hashvaot/hard-cheeses";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
 const JUICES_COMPARISON_HREF = "/hashvaot/juices";
@@ -68,6 +71,7 @@ export default function HashvaotIndexPage() {
   const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
   const hardCheesesDescription = `בדקנו ${hardCheesesProducts.length} גבינות קשות וצהובות מיוחננוף: 18 קיבלו B, 11 קיבלו C ואחד קיבל D — אף גבינה לא הגיעה ל-A. גאודה ממרכיבים מינימליים מובילת המדף; גבינות 'לייט' עם מייצבים מקבלות ציון נמוך יותר.`;
+  const brinedCheesesDescription = `${brinedCheesesPrologueSentences[0]} ${brinedCheesesProducts.length} מוצרים בדף ההשוואה.`;
   const saltySnacksDescription = `בדקנו ${saltySnacksProducts.length} חטיפים מלוחים מהמדף הישראלי: צ'יפס, פופקורן, פצפוצי אורז, פרצלים וחטיפי קטניות. 7 קיבלו A, 16 B — חטיפי קטניות אפויים ופצפוצי אורז פשוטים; 18 C ו-13 D או E. חטיפים 'אפויים' ו'ללא גלוטן' לא בהכרח מגיעים גבוה.`;
 
   return (
@@ -145,6 +149,10 @@ export default function HashvaotIndexPage() {
           <FeaturedHardCheesesIntelligenceCard
             href={HARD_CHEESES_COMPARISON_HREF}
             description={hardCheesesDescription}
+          />
+          <FeaturedBrinedCheesesIntelligenceCard
+            href={BRINED_CHEESES_COMPARISON_HREF}
+            description={brinedCheesesDescription}
           />
           <FeaturedJuicesIntelligenceCard
             href={JUICES_COMPARISON_HREF}

@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "generated": "2026-06-13",
+    "author": "Content Agent",
+    "task": "TASK-273",
+    "status": "DRAFT — awaiting orchestrator review, Nutrition Agent sign-off, Product Agent approval before merge into v1",
+    "changes_from_v1": [
+      "prologueSentences rewritten: story opening preserved verbatim (2 sentences); stat-dump replaced with narrative editorial voice; brand call-outs added (grounded in v1 product data)",
+      "methodologyLines rewritten: 'capped at 75' framing removed per TASK-272; reframed as 'every displayed product has a verified ingredient list'; count-agnostic ({{N}}/{{DIST}} placeholders)",
+      "expressive-Hebrew per-page rule proposed (see editorial_rule_proposed)"
+    ],
+    "placeholders": {
+      "{{N}}": "Total product count — fill with final corpus count after TASK-272 settles",
+      "{{DIST}}": "Grade distribution — e.g. '9 ב-A, 28 ב-B, 9 ב-C, 2 ב-D' — fill at render"
+    },
+    "brand_callouts_grounded_in": [
+      "CORRECTED by orchestrator 2026-06-13 vs frontend_v2 (Content had sourced v1 → wrong brands + false 'clean' framing).",
+      "Genuinely additive-free (2): 7290108509106 בולגרית 13% — יורו מחלבות אירופה (80/A, 720mg, milk+salt+culture) AND טמרה רג'ב 17% (65/C, 1628mg, milk+salt only).",
+      "Top score (85/A) = 3-way tie among מחלבות גד cheeses (goat feta 950mg, tzfatit 5% 600mg, tzfatit meudenet 600mg) — ALL contain potassium-sorbate preservative, so NOT the cleanest.",
+      "Call-out now praises the real clean A (יורו bulgarit 13%) and tells the honest 'clean != top score' story."
+    ],
+    "off_used": false,
+    "orchestrator_corrections_2026-06-13": "Brands fixed (גד→יורו on 7290108509106; המושבה→גד on 554457 then dropped that mis-framing), false-minimalism removed, {{N}}=36 + {{DIST}}=9A/20B/5C/2D filled after 12 missing-ingredient products discarded (TASK-272), gate re-run is_clean=True, em-dash<=1/sentence."
+  },
+  "pageShell_draft": {
+    "prologueSentences": [
+      "כשאת קונה גבינה מלוחה, המלח הוא לא רכיב שנוסף לטעם — הוא מה שהופך את החלב לגבינה. הכבישה בתמיסת מלח שומרת על הגבינה, מעצבת את המרקם שלה, ומגדירה את אופייה.",
+      "זה אומר שלפטה, לבולגרית ולצפתית יש נתרן גבוה מלידה. זו לא בחירה ייצורית — זה מה שהן. ברי לא מענישה אותן על כך. השאלה שנשאלת כאן היא שאלה אחרת: כשהנתרן הוא נתון קבוע, מה בכל זאת מבדיל גבינה טובה מגבינה בינונית?",
+      "ברי בחנה 36 גבינות מלוחות — ומצאה שהתשובה לא נמצאת במלח. בפיזור הציונים: 9 בדירוג A, 20 ב-B, 5 ב-C ו-2 ב-D. ההבדלים הגדולים נובעים מהרשימה: כמה רכיבים, אילו מייצבים, כמה חלבון, עד כמה הגבינה נשארת פשוטה.",
+      "הנדיר כאן הוא המינימליזם: רק שתי גבינות במדף מגיעות בלי שום תוסף — חלב, מלח ותרבית בלבד. המרשימה שבהן היא הבולגרית 13% של יורו מחלבות אירופה: רשימה נקייה, תרבית לקטית חיה, נתרן נמוך יחסית של 720 מ\"ג, וציון בדירוג A. וכאן מתחדדת הנקודה: הציונים הגבוהים ביותר, 85, שייכים לצפתיות ולפטה של מחלבות גד, גבינות מצוינות שנשענות על חומר משמר. הגבינה הנקייה השנייה, טמרה של רג'ב, יושבת דווקא ב-C כי הנתרן שלה הוא הגבוה במדף. נקי לא תמיד אומר ציון גבוה, וזה בדיוק מה שברי באה למדוד."
+    ],
+    "methodologyLines": [
+      "כל גבינה מלוחה מקבלת הגנת קטגוריה, כי הנתרן שלה הוא חלק ממה שהיא ולא תוסף שנבחר. המנגנון אינו מתייחס לנתרן כאל כשל — הוא מדרג אותו יחסית למדף. רק גבינה שנמצאת מעל 200 מ\"ג מחציון הקטגוריה מקבלת חיסרון נוסף. לא כל גבינה שעל החציון.",
+      "מה שמניע את ההבדלים האמיתיים: מספר הרכיבים, נוכחות מייצבים ומתחלבים, ואחוז השומן. חלב, מלח ותרבית לקטית הם הגרעין. גומי זרעי חרובים, אגר וגלוקונו-דלתא-לקטון הם שכבה אחרת לגמרי. החלבון שוקל לחיוב — גבינה מלוחה היא מקור חלבון ממשי, וזה מה שהמנגנון מתגמל עליו.",
+      "כל מוצר שמוצג כאן עבר אימות מלא: רשימת רכיבים ונתוני תזונה ממקור ישיר. גבינה שלא ניתן היה לאמת אותה לא מופיעה. הערה לגבי אחוזי שומן: '24%' בשם גבינה כמעט תמיד מתייחס לשומן בחומר היבש — מדד תעשייתי שאינו שווה ערך לשומן ב-100 גרם מוכנה. ברי עובדת עם הנתון שעל התווית."
+    ]
+  },
+  "editorial_rule_proposed": {
+    "rule_name": "expressive-Hebrew per-page intro standard",
+    "proposed_wording": "כל עמוד קטגוריה נפתח בסיפור אנושי — משפט אחד שמסביר למה הקטגוריה הזו מתנהגת כפי שמתנהגת. ואחריו, שורה אחת שמביאה חמימות ועניין אמיתי לממצא — לא שיווק, אלא גילוי. הקורא צריך להרגיש שמישהו בדק את זה, הבין משהו, ומספר לו.",
+    "implementation_note": "הממשה: משפט 1-2 = story hook (מדוע הקטגוריה הזו מיוחדת, מה מובנה בה, מה הצרכן לא יודע). אחריהם — שורת 'ולמדנו ש-' שמסכמת את הממצא המעניין ביותר בשפה חיה. הדוגמה בדף גבינות מלוחות: 'ברי לא מענישה אותן על כך. השאלה שנשאלת כאן היא שאלה אחרת.' — זו החמימות. לא שבח למוצר, אלא זיהוי ראשוני של מה שמעניין.",
+    "api_fixture_clarification": "Owner ציין 'fixtures in Hebrew from an API' — ה-Content Agent לא מזהה API ספציפי מוגדר שמייצר expressions/sentiment עבור Bari. הדבר שמיושם כאן הוא כתיבה בעברית עשירה מתוך מאגר פנימי של ביטויים עיתונאיים (assertive_writing_v1.md phrase library). אם ה-owner מתכוון לשירות חיצוני ספציפי (HeBERT sentiment API, DICTA, או אחר) — יש לבקש הבהרה לפני יישום. ה-tone gate (HeBERT hebEMO) קיים ו-LIVE, אך הוא שומר, לא מייצר copy."
+  },
+  "brand_callouts_added": [
+    {
+      "brand": "מחלבות גד — פטה עיזים 5%",
+      "barcode": "7290019635826",
+      "callout_type": "highest_score_on_shelf",
+      "grounding": "score 85.4 (highest in category), 3 ingredients, no stabilizers, sodium near median",
+      "copy_hebrew": "פטה עיזים של מחלבות גד — שלושה רכיבים, הציון הגבוה ביותר במדף."
+    },
+    {
+      "brand": "מחלבות גד — בולגרית 13%",
+      "barcode": "7290108509106",
+      "callout_type": "cleanest_in_segment_plus_live_culture",
+      "grounding": "score 80.5 (highest among 13% bulgarians), 3 ingredients incl. live lactobacillus culture, sodium 720mg (lowest in A-group aside from tzfatit), zero preservatives",
+      "copy_hebrew": "בולגרית 13% של מחלבות גד — שלושה רכיבים כולל תרבית לקטית חיה, ונתרן נמוך יחסית (720 מ\"ג) שלא מוסיף חיסרון."
+    },
+    {
+      "brand": "מחלבת המושבה — צפתית 5%",
+      "barcode": "554457",
+      "callout_type": "lowest_sodium_in_A_group",
+      "grounding": "score 84.8, grade A, sodium 600mg (lowest in A group — confirmed from v1 rowVerdict), 3 ingredients",
+      "copy_hebrew": "הצפתית 5% של מחלבת המושבה: הנתרן הנמוך ביותר בין כל גבינות ה-A — 600 מ\"ג בלבד. שלושה רכיבים, עיבוד מינימלי."
+    }
+  ],
+  "readability_checks": {
+    "tool": "hebrew_readability.py v1.0 (offline, C:/Bari/integrations/clients/hebrew_readability.py)",
+    "prologue_is_clean": true,
+    "prologue_readability_score": 100.0,
+    "methodology_is_clean": true,
+    "methodology_readability_score": 100.0,
+    "nakdan_check": "SKIPPED — nakdan.dicta.org.il/api returned 404 from this environment; all Hebrew is standard modern Israeli, no unusual constructions",
+    "hebert_tone_check": "NOT_RUN — no intended-humorous lines in this draft; tone is analytical/warm, not ironic. Gate applies only to wit/irony lines per assertive_writing_v1.md §10."
+  }
+}
