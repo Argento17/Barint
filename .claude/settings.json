@@ -1,6 +1,25 @@
 {
-  "enabledMcpjsonServers": ["firecrawl-mcp-server"],
+  "enabledMcpjsonServers": [],
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/inject-dispatch-signals.ps1"
+            ],
+            "timeout": 10,
+            "statusMessage": "Reading dispatch board signals..."
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Write|Edit",
@@ -13,10 +32,10 @@
               "-ExecutionPolicy",
               "Bypass",
               "-File",
-              "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard-roadmap-close.ps1"
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard-golive-close.ps1"
             ],
             "timeout": 15,
-            "statusMessage": "Checking roadmap-review gate..."
+            "statusMessage": "Checking go-live close gate..."
           }
         ]
       }
@@ -50,19 +69,6 @@
             ],
             "timeout": 10,
             "statusMessage": "Checking BSIP2 regression..."
-          },
-          {
-            "type": "command",
-            "command": "powershell.exe",
-            "args": [
-              "-NoProfile",
-              "-ExecutionPolicy",
-              "Bypass",
-              "-File",
-              "${CLAUDE_PROJECT_DIR}/.claude/hooks/regen-dashboard-on-task-change.ps1"
-            ],
-            "timeout": 30,
-            "statusMessage": "Refreshing Command Center..."
           }
         ]
       }
