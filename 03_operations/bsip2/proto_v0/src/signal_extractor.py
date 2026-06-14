@@ -410,6 +410,19 @@ PREBIOTIC_FIBER_PATTERNS = {
         "arabic gum", "E414", "E-414",
         "גומי ערבי", "גומי אקאציה", "גאם ערביק", "סיבי שיטה",
     ],
+    # EV-006 ext (2026-06-14): arabinoxylan and resistant starch added to prebiotic
+    # vocabulary. Both are high-fermentability fibers with documented SCFA-pathway
+    # effects (Faecalibacterium/Roseburia taxa for AX; well-established RS pathway).
+    # Presence-only detection — no new scoring magnitude; inherits existing +1 prebiotic
+    # bonus. Scoring upgrade to +2 (high_fermentability tier) requires Part 2 co-sign.
+    "arabinoxylan": [
+        "arabinoxylan", "wheat arabinoxylan", "oat arabinoxylan",
+        "ארביניקסילן", "ארבינוקסילן",
+    ],
+    "resistant_starch": [
+        "resistant starch", "hi-maize", "hi maize", "hylon",
+        "עמילן עמיד", "עמילן עמיד לעיכול",
+    ],
 }
 
 # Disambiguation guards for functional fiber detection
@@ -1248,7 +1261,7 @@ def extract_signals(product: dict) -> dict:
             "Additive count reflects distinct functional categories detected, not total additive instances",
             "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
             "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
-            "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
+            "EV-006 (FFV-v1, 2026-06-10 + vocab ext 2026-06-14): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia, arabinoxylan, resistant starch); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed; arabinoxylan+RS added 2026-06-14 (high-fermentability prebiotic, presence-only +1 bonus; +2 upgrade pending Part 2 co-sign)",
             "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups",
         ],
     }
