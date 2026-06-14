@@ -38,6 +38,11 @@ from constants import (
     VEG_SPREAD_WEIGHTS, VEG_SPREAD_IMMUNITY_CEILING,
     DAIRY_PROTEIN_WEIGHTS,
     SODIUM_FAMILY_BUDGET_BRINED, SODIUM_SHELF_STDEV_GUARD, SODIUM_SHELF_SURCHARGE_BANDS,
+    SUGAR_SHELF_REL_SCOPE, FATSAT_SHELF_REL_SCOPE,
+    SUGAR_SHELF_SURCHARGE_BANDS, SUGAR_SHELF_RELIEF_BANDS,
+    FATSAT_SHELF_SURCHARGE_BANDS, FATSAT_SHELF_RELIEF_BANDS,
+    SUGAR_SHELF_SCALE_GUARD, FATSAT_SHELF_SCALE_GUARD,
+    SUGAR_SHELF_SCALE_MIN, FATSAT_SHELF_SCALE_MIN,
     CULTURED_YOGURT_SUBTYPES, CULTURED_CHEESE_NAME_MARKERS_HE,
     FLUID_MILK_NAME_MARKERS_HE, DAIRY_SOLID_IDENTITY_MARKERS_HE,
     FLAVORED_VARIANT_MARKERS_HE,
@@ -149,6 +154,11 @@ BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
 #             Product Agent (graduated_sodium_d7_cosign_v1.md) — both 2026-06-13.
 BARI_GRAD_SODIUM_V1 = os.environ.get("BARI_GRAD_SODIUM_V1", "off").lower() == "on"  # EV-055
 
+# EV-006 ext Part 2 (2026-06-14): split prebiotic fiber bonus into high_fermentability (+2)
+# vs moderate_fermentability (+1). DEFAULT OFF → byte-identical to Part 1 baseline (all
+# prebiotic = +1). Activation requires Nutrition + Product D7 co-sign. Rollback: unset var.
+BARI_FIBER_FERMENT_V1 = os.environ.get("BARI_FIBER_FERMENT_V1", "off").lower() == "on"
+
 # TASK-266 / EV-056 — Shelf-relative sodium surcharge for endemic-sodium dairy.
 # DEFAULT OFF → engine byte-identical to baseline.
 # Activates ONLY when BARI_GRAD_SODIUM_V1 is ON AND this flag is ON.
@@ -163,17 +173,157 @@ BARI_SODIUM_SHELF_RELATIVE_V1 = os.environ.get("BARI_SODIUM_SHELF_RELATIVE_V1", 
 # sodium <= 400mg AND additive_marker_count == 0 (plain hard cheese, not HP stack).
 # D7 co-sign: owner approval 2026-06-13 (sodium_protein_design_v1.md).
 BARI_DAIRY_PROTEIN_REWEIGHT_V1 = os.environ.get("BARI_DAIRY_PROTEIN_REWEIGHT_V1", "off").lower() == "on"
+# TASK-278 / EV-084 — Category-agnostic shelf-relative differentiator.
+# DEFAULT OFF → engine byte-identical to baseline when off.
+BARI_SHELF_RELATIVE_V1 = os.environ.get("BARI_SHELF_RELATIVE_V1", "off").lower() == "on"
 
 # Run-level shelf sodium context (set by batch runner before scoring loop).
 _SHELF_SODIUM_MEDIAN_MG: float | None = None
 _SHELF_SODIUM_STDEV_MG: float | None = None
 
+# Generalized shelf context (BARI_SHELF_RELATIVE_V1 / EV-084).
+_SHELF_STATS: dict[str, dict] = {}
+
+
+def set_shelf_stats(
+    nutrient: str,
+    median: float | None,
+    scale: float | None,
+    scale_type: str = "stdev",
+    n: int | None = None,
+) -> None:
+    global _SHELF_STATS
+    if median is None or scale is None:
+        _SHELF_STATS.pop(nutrient, None)
+    else:
+        _SHELF_STATS[nutrient] = {
+            "median": float(median),
+            "scale": float(scale),
+            "scale_type": scale_type,
+            "n": n,
+        }
+
+
+def clear_shelf_stats(nutrient: str | None = None) -> None:
+    global _SHELF_STATS
+    if nutrient is None:
+        _SHELF_STATS.clear()
+    else:
+        _SHELF_STATS.pop(nutrient, None)
+
+
+def compute_shelf_stats(
+    products: list,
+    nutrient: str,
+    scale_type: str = "iqr",
+    nutrient_min_scale: float = 0.0,
+) -> tuple[float | None, float | None]:
+    """Compute median and IQR-primary robust scale (TASK-278 / EV-084).
+
+    Reads only normalized_nutrition_per_100g[nutrient] — label-panel field only.
+    OFF-BAN: no external source ever fed here.
+    """
+    values = [
+        float(prod.get("normalized_nutrition_per_100g", {}).get(nutrient))
+        for prod in products
+        if prod.get("normalized_nutrition_per_100g", {}).get(nutrient) is not None
+    ]
+    if not values:
+        return None, None
+    values.sort()
+    n = len(values)
+    median = values[n // 2] if n % 2 else (values[n // 2 - 1] + values[n // 2]) / 2.0
+    if scale_type == "mad":
+        deviations = sorted(abs(v - median) for v in values)
+        scale = deviations[n // 2] if n % 2 else (deviations[n // 2 - 1] + deviations[n // 2]) / 2.0
+    elif scale_type == "iqr":
+        q1 = values[n // 4]
+        q3 = values[(3 * n) // 4]
+        iqr_scale = (q3 - q1) / 1.349
+        deviations = sorted(abs(v - median) for v in values)
+        mad = deviations[n // 2] if n % 2 else (deviations[n // 2 - 1] + deviations[n // 2]) / 2.0
+        scale = max(iqr_scale, 1.4826 * mad, nutrient_min_scale)
+    else:
+        mean = sum(values) / n
+        scale = (sum((x - mean) ** 2 for x in values) / n) ** 0.5
+    return round(median, 2), round(scale, 2)
+
+
+def _band_lookup(distance: float, bands: list[tuple]) -> int:
+    for lo, hi, pen in bands:
+        if hi is None:
+            if distance >= lo:
+                return pen
+        elif lo <= distance <= hi:
+            return pen
+    return 0
+
+
+def shelf_relative_differentiator(
+    value: float,
+    nutrient: str,
+    scope_categories: frozenset[str],
+    category: str,
+    surcharge_bands: list[tuple],
+    low_variance_guard: float,
+    min_n: int = 20,
+    direction: str = "one_sided_high",
+    mapping: str = "banded",
+    relief_bands: list[tuple] | None = None,
+) -> tuple[int, str | None]:
+    if category not in scope_categories:
+        return 0, f"category={category} not in scope"
+    stats = _SHELF_STATS.get(nutrient)
+    if stats is None:
+        return 0, f"{nutrient}: shelf stats not set"
+    median = stats["median"]
+    scale = stats["scale"]
+    n_obs = stats.get("n")
+    if n_obs is None or n_obs < min_n:
+        return 0, f"{nutrient}: n={n_obs} < min_n={min_n} — suppressed"
+    if scale < low_variance_guard:
+        return 0, f"{nutrient}: scale={scale} < guard={low_variance_guard} — suppressed"
+
+    if direction == "one_sided_high":
+        if value <= median:
+            return 0, f"{nutrient}={value} at/below median={median:.2f} — no surcharge"
+        distance = value - median
+        penalty = _band_lookup(distance, surcharge_bands)
+    elif direction == "one_sided_low":
+        if value >= median:
+            return 0, f"{nutrient}={value} at/above median={median:.2f} — no surcharge"
+        distance = median - value
+        penalty = _band_lookup(distance, surcharge_bands)
+    elif direction == "asymmetric":
+        if value > median:
+            distance = value - median
+            penalty = _band_lookup(distance, surcharge_bands)
+        elif value < median:
+            distance_below = median - value
+            relief = _band_lookup(distance_below, relief_bands or ())
+            penalty = -relief
+        else:
+            penalty = 0
+    else:
+        distance = abs(value - median)
+        penalty = _band_lookup(distance, surcharge_bands)
+
+    if mapping in ("clamped_linear", "tanh") and direction != "asymmetric":
+        penalty = _band_lookup(distance, surcharge_bands)
+
+    note = f"{nutrient}={value} dist={value - median:.2f} band_penalty={penalty}"
+    return penalty, note
+
 
 def set_shelf_sodium_stats(median_mg: float | None, stdev_mg: float | None) -> None:
-    """Set corpus shelf sodium median/stdev for BARI_SODIUM_SHELF_RELATIVE_V1."""
+    """Set corpus shelf sodium median/stdev for BARI_SODIUM_SHELF_RELATIVE_V1 (EV-056)."""
     global _SHELF_SODIUM_MEDIAN_MG, _SHELF_SODIUM_STDEV_MG
     _SHELF_SODIUM_MEDIAN_MG = median_mg
     _SHELF_SODIUM_STDEV_MG = stdev_mg
+    if median_mg is not None and stdev_mg is not None:
+        set_shelf_stats("sodium_mg", median_mg, stdev_mg, "stdev")
+    else:
+        set_shelf_stats("sodium_mg", None, None)
 
 
 def clear_shelf_sodium_stats() -> None:
@@ -182,20 +332,7 @@ def clear_shelf_sodium_stats() -> None:
 
 def compute_shelf_sodium_stats(products: list) -> tuple[float | None, float | None]:
     """Median and population stdev of sodium_mg across products with a valid panel."""
-    values = []
-    for prod in products:
-        nn = prod.get("normalized_nutrition_per_100g") or {}
-        s = nn.get("sodium_mg")
-        if s is not None:
-            values.append(float(s))
-    if not values:
-        return None, None
-    values.sort()
-    n = len(values)
-    median = values[n // 2] if n % 2 else (values[n // 2 - 1] + values[n // 2]) / 2
-    mean = sum(values) / n
-    stdev = (sum((x - mean) ** 2 for x in values) / n) ** 0.5
-    return round(median, 2), round(stdev, 2)
+    return compute_shelf_stats(products, "sodium_mg", scale_type="stdev")
 
 
 # TASK-250 — Ruling 1 + Ruling 2: missing-field confidence reductions for null sugar_g
@@ -597,7 +734,7 @@ def _d4_normalize(s: str) -> str:
 def detect_additives_d4(ingredient_text: str) -> list:
     """TASK-179S — detect D4 additive tier findings from ingredient text.
 
-    Scans for each additive in GLASSBOX_W2_ADDITIVES (36 in the W3 tiered library) using:
+    Scans for each additive in GLASSBOX_W2_ADDITIVES (46 in the W4 tiered library) using:
       (a) E-number pattern: E{digits}, E-{digits}, or ה-{digits} (with optional space)
       (b) Hebrew name variants from match_patterns_he
 
@@ -608,6 +745,7 @@ def detect_additives_d4(ingredient_text: str) -> list:
                 "name_he": "חומצת לימון",
                 "tier": "functional",
                 "function_he": "...",
+                "cosmetic_mup": False,   # True = sensory-restoring per Siga/Codex (EV-059)
                 "match_source": "e_number" | "name_he" | "both",
             },
             ...
@@ -692,6 +830,7 @@ def detect_additives_d4(ingredient_text: str) -> list:
             "name_he": entry["name_he"],
             "tier": entry["tier"],
             "function_he": entry["function_he"],
+            "cosmetic_mup": entry.get("cosmetic_mup", False),  # EV-059
             "match_source": match_source,
             "_pos": first_pos,
         }
@@ -1328,7 +1467,13 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
         if ff_type in ("viscous", "both"):
             ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_glycemic_quality_bonus"]
         if ff_type in ("prebiotic", "both"):
-            ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_glycemic_quality_bonus"]
+            if BARI_FIBER_FERMENT_V1:
+                preb_tier = l3.get("prebiotic_fermentability_tier", "moderate")
+                _pb_key = ("high_fermentability_glycemic_quality_bonus" if preb_tier == "high"
+                           else "prebiotic_glycemic_quality_bonus")
+            else:
+                _pb_key = "prebiotic_glycemic_quality_bonus"
+            ff_bonus += FIBER_FUNCTIONAL_BONUS[_pb_key]
         ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
         score = round(min(100, score + ff_bonus), 1)
         ff_note = f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
@@ -1591,7 +1736,13 @@ def score_satiety_support(nn: dict, l3: dict | None = None) -> tuple[float, str]
             if ff_type in ("viscous", "both"):
                 ff_bonus += FIBER_FUNCTIONAL_BONUS["viscous_satiety_bonus"]
             if ff_type in ("prebiotic", "both"):
-                ff_bonus += FIBER_FUNCTIONAL_BONUS["prebiotic_satiety_bonus"]
+                if BARI_FIBER_FERMENT_V1:
+                    preb_tier = l3.get("prebiotic_fermentability_tier", "moderate")
+                    _pb_key = ("high_fermentability_satiety_bonus" if preb_tier == "high"
+                               else "prebiotic_satiety_bonus")
+                else:
+                    _pb_key = "prebiotic_satiety_bonus"
+                ff_bonus += FIBER_FUNCTIONAL_BONUS[_pb_key]
             ff_bonus = min(ff_bonus, FIBER_FUNCTIONAL_BONUS["presence_bonus_cap_per_dimension"])
             score = round(min(100, score + ff_bonus), 1)
             note += f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
@@ -1926,6 +2077,22 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         if _sugar_grad_pen > 0:
             check_penalty("SUGAR_GRADUATED_BAND", True, _sugar_grad_pen, sugar_pens_fired,
                           f"sugar={sugar:.1f}g band={_sugar_grad_band} (EV-REDLABEL-011)")
+
+    if BARI_SHELF_RELATIVE_V1:
+        _sugar_rel_pen, _sugar_rel_note = shelf_relative_differentiator(
+            value=sugar,
+            nutrient="sugars_g",
+            scope_categories=SUGAR_SHELF_REL_SCOPE,
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SUGAR_SHELF_SCALE_GUARD,
+            direction="one_sided_high",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+        )
+        if _sugar_rel_pen != 0:
+            check_penalty("SUGAR_SHELF_REL_V1", True, _sugar_rel_pen, sugar_pens_fired,
+                          _sugar_rel_note or "")
 
     sugar_cap, sugar_pen, sugar_detail = _coordinate_family(sugar_caps_fired, sugar_pens_fired, SUGAR_FAMILY_BUDGET)
 
@@ -2270,6 +2437,22 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         else:
             check_cap("ISRAELI_RED_LABEL_1_SAT_FAT", red_label_sat_fat, 55, fat_caps_fired)
     check_penalty("SEED_OIL_PRESENT", has_seed_oil, 3, fat_pens_fired)
+
+    if BARI_SHELF_RELATIVE_V1 and nn.get("fat_saturated_g") is not None:
+        _sat_rel_pen, _sat_rel_note = shelf_relative_differentiator(
+            value=float(nn.get("fat_saturated_g")),
+            nutrient="fat_saturated_g",
+            scope_categories=FATSAT_SHELF_REL_SCOPE,
+            category=category,
+            surcharge_bands=FATSAT_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=FATSAT_SHELF_SCALE_GUARD,
+            direction="one_sided_high",
+            mapping="banded",
+            relief_bands=FATSAT_SHELF_RELIEF_BANDS,
+        )
+        if _sat_rel_pen != 0:
+            check_penalty("FATSAT_SHELF_REL_V1", True, _sat_rel_pen, fat_pens_fired,
+                          _sat_rel_note or "")
 
     fat_cap, fat_pen, fat_detail = _coordinate_family(fat_caps_fired, fat_pens_fired, FAT_QUALITY_FAMILY_BUDGET)
 

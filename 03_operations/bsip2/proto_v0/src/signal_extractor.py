@@ -425,6 +425,13 @@ PREBIOTIC_FIBER_PATTERNS = {
     ],
 }
 
+# EV-006 ext Part 2 (2026-06-14): fermentability tier sets used by BARI_FIBER_FERMENT_V1.
+# High = rapid SCFA production via Faecalibacterium/Roseburia pathway (inulin/FOS/GOS/
+# chicory/arabinoxylan) or well-established resistant-starch pathway.
+# Moderate = slower or narrower fermentability profile.
+_HIGH_FERMENTABILITY_KEYS     = frozenset({"inulin", "fos", "gos", "chicory", "arabinoxylan", "resistant_starch"})
+_MODERATE_FERMENTABILITY_KEYS = frozenset({"phgg", "resistant_dextrin", "arabinogalactan", "acacia"})
+
 # Disambiguation guards for functional fiber detection
 # PHGG markers — if any fire, native_guar is suppressed from viscous class
 PHGG_MARKERS = [
@@ -548,12 +555,14 @@ def _detect_functional_fiber(text: str) -> dict:
                 break  # one match per key is enough
 
     # --- Detect prebiotic fibers ---
+    prebiotic_keys_matched = []  # track which keys fired (for fermentability tier)
     for key, patterns in PREBIOTIC_FIBER_PATTERNS.items():
         for p in patterns:
             if p.lower() in text_lower:
                 if key == "resistant_dextrin" and not has_resistant_dextrin:
                     continue  # bare maltodextrin/dextrin → excluded
                 prebiotic_matched.append(p)
+                prebiotic_keys_matched.append(key)
                 matched_terms.append(p)
                 break
 
@@ -570,12 +579,25 @@ def _detect_functional_fiber(text: str) -> dict:
     else:
         fiber_type = "none"
 
+    # --- EV-006 ext Part 2: fermentability tier (always computed; score_engine gates on flag) ---
+    if has_prebiotic:
+        matched_keys_set = set(prebiotic_keys_matched)
+        if matched_keys_set & _HIGH_FERMENTABILITY_KEYS:
+            prebiotic_fermentability_tier = "high"
+        elif matched_keys_set & _MODERATE_FERMENTABILITY_KEYS:
+            prebiotic_fermentability_tier = "moderate"
+        else:
+            prebiotic_fermentability_tier = "high"  # unknown key defaults to high (conservative credit)
+    else:
+        prebiotic_fermentability_tier = "none"
+
     return {
         "functional_fiber_detected": fiber_type != "none",
         "functional_fiber_type": fiber_type,
         "functional_fiber_terms_matched": sorted(set(matched_terms)),
         "functional_fiber_viscous_terms": sorted(set(viscous_matched)),
         "functional_fiber_prebiotic_terms": sorted(set(prebiotic_matched)),
+        "prebiotic_fermentability_tier": prebiotic_fermentability_tier,
     }
 
 

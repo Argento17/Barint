@@ -381,11 +381,14 @@ BHA_NAMED_PENALTY = 5   # points on additive_quality — confirmed, TASK-222C
 # Evidence: EV-006 (bsip2_evidence_registry_v1.md:177)
 # Vocabulary complete: 2026-06-10. SCORING WIRED: 2026-06-10.
 FIBER_FUNCTIONAL_BONUS = {
-    "viscous_glycemic_quality_bonus":   2,   # +2 to glycemic_quality for viscous fiber presence
-    "viscous_satiety_bonus":            2,   # +2 to satiety_support numerator equiv for viscous fiber
-    "prebiotic_glycemic_quality_bonus": 1,   # +1 to glycemic_quality for non-viscous prebiotic fiber
-    "prebiotic_satiety_bonus":          1,   # +1 to satiety_support numerator equiv for prebiotic fiber
-    "presence_bonus_cap_per_dimension": 2,   # max total bonus per dimension from functional fiber
+    "viscous_glycemic_quality_bonus":             2,   # +2 to glycemic_quality for viscous fiber presence
+    "viscous_satiety_bonus":                      2,   # +2 to satiety_support numerator equiv for viscous fiber
+    "prebiotic_glycemic_quality_bonus":           1,   # +1 for non-viscous prebiotic (Part 1, flag OFF, moderate tier)
+    "prebiotic_satiety_bonus":                    1,   # +1 for non-viscous prebiotic (Part 1, flag OFF, moderate tier)
+    # EV-006 ext Part 2 (BARI_FIBER_FERMENT_V1): high-fermentability tier gets +2 vs moderate +1
+    "high_fermentability_glycemic_quality_bonus": 2,   # +2 for high-fermentability prebiotic (inulin/FOS/GOS/chicory/AX/RS)
+    "high_fermentability_satiety_bonus":          2,   # +2 for high-fermentability prebiotic
+    "presence_bonus_cap_per_dimension":           2,   # max total bonus per dimension from functional fiber
 }
 
 # ---------------------------------------------------------------------------
@@ -462,6 +465,58 @@ VEG_SPREAD_WEIGHTS = {
     "whole_food_integrity": 0.06,
 }
 VEG_SPREAD_IMMUNITY_CEILING = 80.0   # EV-032 anti-immunity guard (bari_usecase_guardrails_v2)
+
+# ---------------------------------------------------------------------------
+# TASK-266 / EV-057 — dairy_protein archetype re-weighting (sums to 1.0).
+# Gated by BARI_DAIRY_PROTEIN_REWEIGHT_V1 (default OFF). Elevates protein_quality
+# (10%→14%) and lowers calorie_density (15%→11%) for protein-primary dairy cheeses.
+# Precedent: VEG_SPREAD_WEIGHTS / EV-032.
+# ---------------------------------------------------------------------------
+DAIRY_PROTEIN_WEIGHTS = {
+    "processing_quality":   0.15,
+    "nutrient_density":     0.15,
+    "calorie_density":      0.11,
+    "glycemic_quality":     0.12,
+    "protein_quality":      0.14,
+    "additive_quality":     0.10,
+    "satiety_support":      0.06,
+    "fat_quality":          0.08,
+    "regulatory_quality":   0.05,
+    "whole_food_integrity": 0.04,
+}
+
+# ---------------------------------------------------------------------------
+# TASK-266 / EV-056 — shelf-relative sodium surcharge for endemic-sodium dairy.
+# Gated by BARI_SODIUM_SHELF_RELATIVE_V1 (default OFF; requires BARI_GRAD_SODIUM_V1).
+# Bands keyed on distance_above_median = max(0, sodium - SHELF_SODIUM_MEDIAN_MG).
+# Combined with SODIUM_LOAD_GENERAL_GRAD inside SODIUM_FAMILY_BUDGET_BRINED.
+# ---------------------------------------------------------------------------
+SODIUM_FAMILY_BUDGET_BRINED = 16
+SODIUM_SHELF_STDEV_GUARD = 150   # mg — suppress surcharge when shelf stdev below this
+
+# (distance_lo, distance_hi_or_None, penalty_points); hi=None = unbounded above
+SODIUM_SHELF_SURCHARGE_BANDS = [
+    (600, None, 6),
+    (400, 599,  4),
+    (200, 399,  2),
+    (0,   199,  0),
+]
+
+# ---------------------------------------------------------------------------
+# TASK-278 / EV-084 — Category-agnostic shelf-relative differentiator (Phase-1).
+# Gated by BARI_SHELF_RELATIVE_V1 (default OFF). Empty scopes = no enrollment.
+# Band/guard placeholders — populated at Phase-2 per-category D7 enrollment.
+# ---------------------------------------------------------------------------
+SUGAR_SHELF_REL_SCOPE = frozenset()
+FATSAT_SHELF_REL_SCOPE = frozenset()
+SUGAR_SHELF_SURCHARGE_BANDS: list[tuple] = []
+SUGAR_SHELF_RELIEF_BANDS: list[tuple] = []
+FATSAT_SHELF_SURCHARGE_BANDS: list[tuple] = []
+FATSAT_SHELF_RELIEF_BANDS: list[tuple] = []
+SUGAR_SHELF_SCALE_GUARD = 1.0
+FATSAT_SHELF_SCALE_GUARD = 0.5
+SUGAR_SHELF_SCALE_MIN = 1.0
+FATSAT_SHELF_SCALE_MIN = 0.5
 
 # ---------------------------------------------------------------------------
 # R7 v1.1 (TASK-169A) — gate the live-culture +8 to GENUINELY cultured dairy only.
@@ -749,6 +804,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מווסת חומציות / מונע חמצון",
         "match_patterns_he": ["חומצת לימון", "חומצה ציטרית"],
+        "cosmetic_mup": False,
     },
     "E202": {
         "name_he": "פוטסיום סורבט",
@@ -756,6 +812,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "חומר משמר אנטי-מיקרוביאלי",
         "match_patterns_he": ["פוטסיום סורבט", "סורבט אשלגן", "סורבט פוטסיום"],
+        "cosmetic_mup": False,
     },
     "E300": {
         "name_he": "חומצה אסקורבית",
@@ -763,6 +820,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "נוגד חמצון / משפר בצק",
         "match_patterns_he": ["חומצה אסקורבית", "ויטמין C", "ויטמין c"],
+        "cosmetic_mup": False,
     },
     "E1422": {
         # TASK-181D: E1412 / E1414 (distarch phosphate / acetylated distarch
@@ -778,6 +836,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "עמילן מעובד", "עמילן שונה", "עמילן מוקשה", "עמילן משונה",
             "E1412", "e1412", "E1414", "e1414", "E1442", "e1442",
         ],
+        "cosmetic_mup": True,   # texture thickener/stabilizer — restores mouthfeel lost in processing
     },
     "E282": {
         "name_he": "פרופיונט סידן",
@@ -785,6 +844,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "חומר משמר נגד עובש בלחם",
         "match_patterns_he": ["פרופיונט סידן", "סידן פרופיונט", "קלציום פרופיונט"],
+        "cosmetic_mup": False,
     },
     "E481": {
         "name_he": "נתרן סטארויל לקטילט",
@@ -792,6 +852,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "מרכך בצק / משפר נפח לחם",
         "match_patterns_he": ["נתרן סטארויל לקטילט", "SSL", "נתרן סטיארויל לקטילאט"],
+        "cosmetic_mup": True,
     },
     "E407": {
         "name_he": "קרגינן",
@@ -799,6 +860,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "מייצב / חומר מסמיך ממקור אצות",
         "match_patterns_he": ["קרגינן", "קרגינאן", "קאראגינן"],
+        "cosmetic_mup": True,
     },
     "E471": {
         "name_he": "מונו ודיגליצרידים",
@@ -811,6 +873,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "מונוגליצרידים",
             "דיגליצרידים",
         ],
+        "cosmetic_mup": True,   # emulsifier — restores texture/mouthfeel lost in processing
     },
     "E472e": {
         "name_he": "DATEM",
@@ -818,6 +881,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "מרכך בצק / חומר תחליב לחם",
         "match_patterns_he": ["DATEM", "datem", "חומצה טרטרית מונו ודיגליצרידים"],
+        "cosmetic_mup": True,
     },
     "E415": {
         "name_he": "קסנטן",
@@ -825,6 +889,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
         "match_patterns_he": ["קסנטן", "קסנטאן", "קסנתן"],
+        "cosmetic_mup": True,
     },
     "E450": {
         "name_he": "פוספטים",
@@ -832,6 +897,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "מייצב חלבוני חלב / חומר תחליב",
         "match_patterns_he": ["פוספט", "פוספטים", "דיפוספט", "טריפוספט", "פוליפוספט"],
+        "cosmetic_mup": True,
     },
     "E440": {
         "name_he": "פקטין",
@@ -839,6 +905,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
         "match_patterns_he": ["פקטין"],
+        "cosmetic_mup": True,
     },
     "E410": {
         "name_he": "לוקוסט-בין גאם",
@@ -846,6 +913,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מייצב טבעי ממקור חרוב",
         "match_patterns_he": ["לוקוסט-בין גאם", "לוקוסט בין גאם", "קרוב בין גאם", "קרוב-בין גאם"],
+        "cosmetic_mup": True,
     },
     "E412": {
         "name_he": "גואר",
@@ -853,6 +921,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
         "match_patterns_he": ["גואר", "גואר גאם", "גואר גם"],
+        "cosmetic_mup": True,
     },
     "E955": {
         "name_he": "סוכרלוז",
@@ -860,6 +929,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
         "match_patterns_he": ["סוכרלוז", "sucralose"],
+        "cosmetic_mup": True,
     },
     "E950": {
         "name_he": "אצסולפאם K",
@@ -867,6 +937,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
         "match_patterns_he": ["אצסולפאם", "אצסולפם", "acesulfame", "אצסולפאם k", "אצסולפאם K"],
+        "cosmetic_mup": True,
     },
     "E466": {
         "name_he": "קרבוקסי מתיל צלולוז",
@@ -874,6 +945,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "מייצב / מסמיך על בסיס צלולוז",
         "match_patterns_he": ["קרבוקסי מתיל צלולוז", "קרבוקסימתיל צלולוז", "CMC", "cmc"],
+        "cosmetic_mup": True,
     },
     "E150": {
         "name_he": "צבע קרמל",
@@ -881,6 +953,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "disclosure-gap",
         "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
         "match_patterns_he": ["צבע קרמל", "קרמל"],
+        "cosmetic_mup": True,
     },
     "E211": {
         "name_he": "נתרן בנזואט",
@@ -888,6 +961,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "חומר משמר אנטי-מיקרוביאלי בסביבה חומצית",
         "match_patterns_he": ["נתרן בנזואט", "בנזואט נתרן"],
+        "cosmetic_mup": False,
     },
     "E320": {
         "name_he": "BHA",
@@ -895,6 +969,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "נוגד חמצון לשומנים — מסווג IARC 2B (בעלי חיים)",
         "match_patterns_he": ["BHA", "bha", "בוטילציאניזול", "בוטיל הידרוקסיאניזול"],
+        "cosmetic_mup": False,
     },
     # -----------------------------------------------------------------------
     # TASK-181D — 16 newly added additives (observed on the displayed shelf,
@@ -908,6 +983,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
         "match_patterns_he": ["בטא קרוטן", "בטא-קרוטן", "ביתא קרוטן", "ביתא-קרוטן"],
+        "cosmetic_mup": True,
     },
     "E163": {
         "name_he": "אנטוציאנינים",
@@ -915,6 +991,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
         "match_patterns_he": ["אנטוציאנין", "אנטוציאנינים", "רכז גזר שחור"],
+        "cosmetic_mup": True,
     },
     "E162": {
         "name_he": "אדום סלק",
@@ -922,6 +999,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל אדום ממקור סלק",
         "match_patterns_he": ["אדום סלק", "רכז סלק", "בטנין"],
+        "cosmetic_mup": True,
     },
     "E100": {
         "name_he": "כורכומין",
@@ -929,6 +1007,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל צהוב ממקור כורכום",
         "match_patterns_he": ["כורכומין", "כורכום"],
+        "cosmetic_mup": True,
     },
     "E141": {
         "name_he": "תרכובות נחושת של כלורופיל",
@@ -936,6 +1015,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "unclassified",
         "function_he": "צבע מאכל ירוק נושא נחושת",
         "match_patterns_he": ["תרכובות נחושת של כלורופיל", "כלורופיל נחושת", "נחושת כלורופיל"],
+        "cosmetic_mup": True,
     },
     "E333": {
         "name_he": "סידן ציטרט",
@@ -943,6 +1023,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח ציטרט — מקור סידן / מייצב",
         "match_patterns_he": ["טריקלציום ציטרט", "קלציום ציטרט", "סידן ציטרט", "סידן (טריקלציום ציטרט)"],
+        "cosmetic_mup": False,
     },
     "E331": {
         "name_he": "סודיום ציטרט",
@@ -950,6 +1031,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח ציטרט — מווסת חומציות / מלח מתחלב",
         "match_patterns_he": ["סודיום ציטרט", "טרי סודיום ציטרט", "נתרן ציטרט", "ציטרט נתרן"],
+        "cosmetic_mup": False,
     },
     "E327": {
         "name_he": "סידן לקטט",
@@ -957,6 +1039,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח לקטט — מקור סידן / מווסת חומציות",
         "match_patterns_he": ["סידן לקטט", "קלציום לקטט", "לקטט סידן"],
+        "cosmetic_mup": False,
     },
     "E296": {
         "name_he": "חומצה מאלית",
@@ -964,6 +1047,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
         "match_patterns_he": ["חומצה מאלית", "חומצת תפוח"],
+        "cosmetic_mup": False,
     },
     "E270": {
         "name_he": "חומצה לקטית",
@@ -971,6 +1055,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל / משמר — תוצר תסיסה טבעי",
         "match_patterns_he": ["חומצה לקטית", "חומצת חלב", "חומצה לקטטית"],
+        "cosmetic_mup": False,
     },
     "E401": {
         "name_he": "אלגינט נתרן",
@@ -978,6 +1063,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מסמיך / מייצב ממקור אצות חומות",
         "match_patterns_he": ["אלגינט נתרן", "נתרן אלגינט", "אלגינאט נתרן", "אלגינט"],
+        "cosmetic_mup": True,
     },
     "E516": {
         "name_he": "גופרת סידן",
@@ -985,6 +1071,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מקשה / מקור סידן (גבס)",
         "match_patterns_he": ["גופרת סידן", "סולפט סידן", "קלציום סולפט", "גופרית סידן"],
+        "cosmetic_mup": False,
     },
     "E500": {
         "name_he": "סודיום קרבונט",
@@ -992,6 +1079,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מווסת חומציות / חומר תפיחה",
         "match_patterns_he": ["סודיום קרבונט", "נתרן קרבונט", "סודה לשתייה", "ביקרבונט", "סודיום ביקרבונט", "סודה לאפייה"],
+        "cosmetic_mup": False,
     },
     "E575": {
         "name_he": "גלוקונו דלתא לקטון",
@@ -999,6 +1087,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל / מקריש — מתפרק לחומצה גלוקונית",
         "match_patterns_he": ["גלוקונו דלתא לקטון", "גלוקונו-דלתא-לקטון", "GDL", "gdl"],
+        "cosmetic_mup": False,
     },
     "E960": {
         "name_he": "סטיביול גליקוזידים",
@@ -1006,6 +1095,120 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות ממקור צמח הסטיביה",
         "match_patterns_he": ["סטיביול גליקוזידים", "סטיביול גליקוזיד", "סטיביה", "stevia"],
+        "cosmetic_mup": True,
+    },
+    # -----------------------------------------------------------------------
+    # EV-059 — Wave 4 library extension (2026-06-14).
+    # 11 additives identified as gaps via research review
+    # (Algorithmic Foundations of Consumer Food Scoring Engines, 2026).
+    # Tiers: additive_tiered_library_v1.md §2.C.
+    # cosmetic_mup per Siga/Codex functional-class model (same doc).
+    # ANNOTATE-ONLY — no score movement; D4 presentation-only boundary intact.
+    # -----------------------------------------------------------------------
+
+    # ── Emulsifier ──
+    "E433": {
+        "name_he": "פוליסורבאט 80",
+        "name_en": "Polysorbate 80 (P80)",
+        "tier": "contested",
+        "function_he": "חומר תחליב סינתטי — מייצב שמן-במים",
+        "match_patterns_he": ["פוליסורבאט 80", "פולי סורבאט 80", "Polysorbate 80", "polysorbate 80"],
+        "cosmetic_mup": True,   # emulsifier — restores texture lost in processing
+    },
+
+    # ── Non-sugar sweetener ──
+    "E951": {
+        "name_he": "אספרטם",
+        "name_en": "Aspartame",
+        "tier": "contested",
+        "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+        "match_patterns_he": ["אספרטם", "aspartame", "E951", "e951"],
+        "cosmetic_mup": True,   # non-sugar sweetener
+    },
+
+    # ── Colorant ──
+    "E171": {
+        "name_he": "טיטניום דיוקסיד",
+        "name_en": "Titanium dioxide",
+        "tier": "contested",
+        "function_he": "צבע מאכל לבן — אסור באיחוד האירופי (2022); מורשה בארה\"ב/קנדה/אוסטרליה",
+        "match_patterns_he": ["טיטניום דיוקסיד", "E171", "e171", "titanium dioxide"],
+        "cosmetic_mup": True,   # colorant — restores whiteness lost in processing
+    },
+
+    # ── Azo dyes (Southampton six; EU Article-24 warning-label mandate) ──
+    # Individual entries retained — Israeli labels declare by E-number or Hebrew name.
+    # tier: contested (EFSA AFC: "limited evidence of small effect"; EU warning required;
+    # US FDA: insufficient for ban; mixture effect cannot isolate per-dye contribution).
+    "E102": {
+        "name_he": "טרטראזין",
+        "name_en": "Tartrazine",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["טרטראזין", "E102", "e102", "tartrazine"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E110": {
+        "name_he": "צהוב שקיעה",
+        "name_en": "Sunset Yellow FCF",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב-כתום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["צהוב שקיעה", "Sunset Yellow", "sunset yellow", "E110", "e110"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E122": {
+        "name_he": "קרמואיזין",
+        "name_en": "Carmoisine",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["קרמואיזין", "E122", "e122", "carmoisine"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E124": {
+        "name_he": "פונסו 4R",
+        "name_en": "Ponceau 4R",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["פונסו 4R", "פונסו 4r", "פונסו", "E124", "e124", "ponceau"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E129": {
+        "name_he": "אדום אלורה",
+        "name_en": "Allura Red AC",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["אדום אלורה", "Allura Red", "allura red", "E129", "e129"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E104": {
+        "name_he": "צהוב קינולין",
+        "name_en": "Quinoline Yellow",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב-ירקרק סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["צהוב קינולין", "Quinoline Yellow", "quinoline yellow", "E104", "e104"],
+        "cosmetic_mup": True,   # colorant
+    },
+
+    # ── Curing preservatives — first confirmed-negative entries ──
+    # IARC 2A ("probably carcinogenic to humans") for nitrate/nitrite in processed meat;
+    # N-nitrosamine formation mechanism well-established. cosmetic_mup=False: primary
+    # function is preservation/curing, not sensory restoration.
+    # Relevant only when Bari scores processed meats — not on any live shelf today.
+    "E249": {
+        "name_he": "פוטסיום ניטריט",
+        "name_en": "Potassium nitrite",
+        "tier": "confirmed-negative",
+        "function_he": "חומר משמר / מייצב צבע בשר מעובד — IARC 2A (עם E250) בשר מעובד",
+        "match_patterns_he": ["פוטסיום ניטריט", "אשלגן ניטריט", "E249", "e249"],
+        "cosmetic_mup": False,  # preservative / curing agent — not a sensory restorer
+    },
+    "E250": {
+        "name_he": "נתרן ניטריט",
+        "name_en": "Sodium nitrite",
+        "tier": "confirmed-negative",
+        "function_he": "חומר משמר / מייצב צבע בשר מעובד — IARC 2A (עם E249) בשר מעובד",
+        "match_patterns_he": ["נתרן ניטריט", "E250", "e250"],
+        "cosmetic_mup": False,  # preservative / curing agent — not a sensory restorer
     },
 }
 
