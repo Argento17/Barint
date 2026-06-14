@@ -1,0 +1,107 @@
+{
+  "before_routing": {
+    "snack_bar_granola": 20,
+    "cracker": 27,
+    "whole_food_fat": 4,
+    "bread": 7,
+    "default": 1,
+    "cereal": 1,
+    "dairy_protein": 1
+  },
+  "after_routing": {
+    "snack_bar_granola": 17,
+    "cracker": 26,
+    "biscuit": 7,
+    "bread": 7,
+    "whole_food_fat": 2,
+    "cereal": 1,
+    "dairy_protein": 1
+  },
+  "before_grades": {
+    "E": 33,
+    "C": 13,
+    "D": 15
+  },
+  "after_grades": {
+    "E": 33,
+    "D": 16,
+    "C": 12
+  },
+  "grade_migrations": {
+    "C->D": 1,
+    "E->E": 4,
+    "D->D": 2
+  },
+  "movers": [
+    [
+      "311463",
+      "whole_food_fat",
+      "biscuit",
+      50.1,
+      44.9,
+      "C",
+      "D",
+      "עוגיות חמאה ללת\"ס"
+    ],
+    [
+      "5410126006049",
+      "snack_bar_granola",
+      "biscuit",
+      17.4,
+      18.1,
+      "E",
+      "E",
+      "ביסקוויט לוטוס טעם קרמל"
+    ],
+    [
+      "5410126726244",
+      "snack_bar_granola",
+      "biscuit",
+      17.4,
+      18.1,
+      "E",
+      "E",
+      "ביסקוויט קרמל"
+    ],
+    [
+      "5410126806250",
+      "cracker",
+      "biscuit",
+      19.6,
+      18.1,
+      "E",
+      "E",
+      "עוגיות לוטוס"
+    ],
+    [
+      "7290013453501",
+      "snack_bar_granola",
+      "biscuit",
+      42.9,
+      44.4,
+      "D",
+      "D",
+      "ביסקוטי כוסמין שוקולד"
+    ],
+    [
+      "7290017898506",
+      "default",
+      "biscuit",
+      47.7,
+      47.7,
+      "D",
+      "D",
+      "ביסקוטי"
+    ],
+    [
+      "8008698037171",
+      "whole_food_fat",
+      "biscuit",
+      29.0,
+      22.8,
+      "E",
+      "E",
+      "עוגיות חמאה ללא גלוטן"
+    ]
+  ]
+}

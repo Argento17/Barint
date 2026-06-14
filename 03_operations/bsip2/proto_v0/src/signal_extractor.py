@@ -1119,11 +1119,18 @@ def extract_signals(product: dict) -> dict:
     # "partially hydrogenated" (English label imports). The bare "מוקשה" (hardened/modified)
     # is NOT included — it appears in thickener context ("עמילן מוקשה") and is already
     # caught by ADDITIVE_MARKER_PATTERNS; adding it here would false-fire on starch.
+    # Fix-B (TASK-275): added שומנים מוקשים, שומן מוקשה (generic hardened fat, covers
+    # מחמאה-style ingredient declarations), מחמאה (margarine), מרגרינה (margarine).
+    # Bare "מוקשה" remains excluded — false-fires on עמילן מוקשה (modified starch).
     _PHVO_MARKERS = [
         "שומן צמחי מוקשה",    # hydrogenated vegetable fat
         "שמן צמחי מוקשה",     # hydrogenated vegetable oil
         "מוקשה חלקית",        # partially hydrogenated
         "partially hydrogenated",
+        "שומנים מוקשים",      # Fix-B: generic hardened fats (plural)
+        "שומן מוקשה",         # Fix-B: generic hardened fat (singular)
+        "מחמאה",              # Fix-B: margarine/shortening (Hebrew common form)
+        "מרגרינה",            # Fix-B: margarine (transliteration form)
     ]
     has_phvo = any(m in full_text for m in _PHVO_MARKERS)
 

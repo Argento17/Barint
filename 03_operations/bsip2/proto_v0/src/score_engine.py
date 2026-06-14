@@ -36,6 +36,8 @@ from constants import (
     PROTEIN_SCALE_TABLES, lookup_protein_scale,
     RECAL_P0_FIBER_NOT_APPLICABLE, NOVA_DEMOTE_BLOCKING_ADDITIVE_CATS,
     VEG_SPREAD_WEIGHTS, VEG_SPREAD_IMMUNITY_CEILING,
+    DAIRY_PROTEIN_WEIGHTS,
+    SODIUM_FAMILY_BUDGET_BRINED, SODIUM_SHELF_STDEV_GUARD, SODIUM_SHELF_SURCHARGE_BANDS,
     CULTURED_YOGURT_SUBTYPES, CULTURED_CHEESE_NAME_MARKERS_HE,
     FLUID_MILK_NAME_MARKERS_HE, DAIRY_SOLID_IDENTITY_MARKERS_HE,
     FLAVORED_VARIANT_MARKERS_HE,
@@ -133,6 +135,81 @@ BARI_SODIUM_CEREAL = os.environ.get("BARI_SODIUM_CEREAL", "off").lower() == "on"
 # DEFAULT OFF → engine byte-identical to baseline. D7 co-sign (Product Agent) required
 # before activation. Source: redlabel_v1_design_spec.md. EV-REDLABEL-001–012.
 BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
+
+# TASK-267 / EV-055 — Surgical graduated-sodium flag for endemic-sodium dairy categories.
+# DEFAULT OFF → engine byte-identical to baseline.
+# Controls ONLY the SODIUM_GENERAL_BANDS block (score_engine.py ~lines 2005-2044) for
+# categories in REDLABEL_ENDEMIC_SATFAT_CATEGORIES = {"dairy_protein","whole_food_fat"}.
+# DOES NOT activate: score_regulatory_quality() continuous formula, reformulable label
+# count changes, or graduated sugar penalty. Those remain gated by BARI_REDLABEL_V1 only.
+# When ON for an endemic category: the hard HIGH_SODIUM_700MG_PLUS cap is replaced by the
+# graduated SODIUM_GENERAL_BANDS penalty. Backward compatible: BARI_REDLABEL_V1 still
+# activates the full bundle (including this path) unchanged.
+# D7 co-sign: Nutrition Agent (graduated_sodium_d7_design_v1.md) +
+#             Product Agent (graduated_sodium_d7_cosign_v1.md) — both 2026-06-13.
+BARI_GRAD_SODIUM_V1 = os.environ.get("BARI_GRAD_SODIUM_V1", "off").lower() == "on"  # EV-055
+
+# TASK-266 / EV-056 — Shelf-relative sodium surcharge for endemic-sodium dairy.
+# DEFAULT OFF → engine byte-identical to baseline.
+# Activates ONLY when BARI_GRAD_SODIUM_V1 is ON AND this flag is ON.
+# Scope: dairy_protein + whole_food_fat (REDLABEL_ENDEMIC_SATFAT_CATEGORIES).
+# Median/stdev computed at batch-run start via set_shelf_sodium_stats().
+# D7 co-sign: owner approval 2026-06-13 (sodium_protein_design_v1.md).
+BARI_SODIUM_SHELF_RELATIVE_V1 = os.environ.get("BARI_SODIUM_SHELF_RELATIVE_V1", "off").lower() == "on"
+
+# TASK-266 / EV-057 — dairy_protein archetype re-weight + clean low-sodium HP suppression.
+# DEFAULT OFF → engine byte-identical to baseline.
+# Re-weights dimension scores for dairy_protein; suppresses HP_FAT_SODIUM_COMBO when
+# sodium <= 400mg AND additive_marker_count == 0 (plain hard cheese, not HP stack).
+# D7 co-sign: owner approval 2026-06-13 (sodium_protein_design_v1.md).
+BARI_DAIRY_PROTEIN_REWEIGHT_V1 = os.environ.get("BARI_DAIRY_PROTEIN_REWEIGHT_V1", "off").lower() == "on"
+
+# Run-level shelf sodium context (set by batch runner before scoring loop).
+_SHELF_SODIUM_MEDIAN_MG: float | None = None
+_SHELF_SODIUM_STDEV_MG: float | None = None
+
+
+def set_shelf_sodium_stats(median_mg: float | None, stdev_mg: float | None) -> None:
+    """Set corpus shelf sodium median/stdev for BARI_SODIUM_SHELF_RELATIVE_V1."""
+    global _SHELF_SODIUM_MEDIAN_MG, _SHELF_SODIUM_STDEV_MG
+    _SHELF_SODIUM_MEDIAN_MG = median_mg
+    _SHELF_SODIUM_STDEV_MG = stdev_mg
+
+
+def clear_shelf_sodium_stats() -> None:
+    set_shelf_sodium_stats(None, None)
+
+
+def compute_shelf_sodium_stats(products: list) -> tuple[float | None, float | None]:
+    """Median and population stdev of sodium_mg across products with a valid panel."""
+    values = []
+    for prod in products:
+        nn = prod.get("normalized_nutrition_per_100g") or {}
+        s = nn.get("sodium_mg")
+        if s is not None:
+            values.append(float(s))
+    if not values:
+        return None, None
+    values.sort()
+    n = len(values)
+    median = values[n // 2] if n % 2 else (values[n // 2 - 1] + values[n // 2]) / 2
+    mean = sum(values) / n
+    stdev = (sum((x - mean) ** 2 for x in values) / n) ** 0.5
+    return round(median, 2), round(stdev, 2)
+
+
+# TASK-250 — Ruling 1 + Ruling 2: missing-field confidence reductions for null sugar_g
+# and null fat_saturated_g. DEFAULT OFF → engine byte-identical to run_yogurt_005 baseline.
+# Activation scope: yogurt run_006 only (batch_run_yogurt_006.py sets BARI_TASK250_CONF=on).
+# Ruling 1 (RT-6): null sugar_g → −10 (matches nova_confidence=low magnitude; moves
+#   three null-sugar 90/A products from confidence_band=high to partial).
+# Ruling 2 (RT-9): null fat_saturated_g → −5 (lighter than sugar; satFat is more
+#   predictable from total fat for dairy; BARI_REDLABEL_V1 imputation path stays OFF).
+# Rollback: set BARI_TASK250_CONF=off → both reductions absent; confidence scores return
+#   to run_yogurt_005 baseline. Zero scoring impact (confidence only, not score/grade).
+# D7 co-sign: Nutrition Agent (Ruling 1, Ruling 2). Product Agent co-sign required before
+#   run_006 goes live (tracked in TASK-250 pre-conditions).
+BARI_TASK250_CONF = os.environ.get("BARI_TASK250_CONF", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
 # TASK-181G — Glass Box W4: D3 de-moralization helpers (EV-042 bound values).
@@ -864,6 +941,19 @@ def compute_confidence(product: dict, signals: dict, cat_result: dict, nova_resu
         if nn.get(field) is None:
             deduct(penalty, f"missing: {field}")
 
+    # TASK-250 Rulings 1 + 2 — missing sugar_g / fat_saturated_g confidence reductions.
+    # These fields are NOT in the legacy missing_map (which covers the "legacy six").
+    # Null sugar prevents the sugar cap from firing; null satFat prevents the Israeli
+    # red-label sat-fat penalty from firing. Both unknown fields reduce the confidence
+    # band so the consumer sees "partial" rather than "high" confidence on an otherwise
+    # clean product. Neither reduction moves the score or grade (confidence only).
+    # Gated by BARI_TASK250_CONF so frozen non-yogurt runs are byte-identical.
+    if BARI_TASK250_CONF:
+        if nn.get("sugars_g") is None:
+            deduct(10, "missing: sugars_g (TASK-250 Ruling 1 — null sugar prevents cap evaluation)")
+        if nn.get("fat_saturated_g") is None:
+            deduct(5, "missing: fat_saturated_g (TASK-250 Ruling 2 — null satFat prevents red-label evaluation)")
+
     # Missing ingredients
     if not product.get("ingredients_list"):
         deduct(25, "missing: ingredient_list")
@@ -1148,21 +1238,37 @@ def _red_satfat_penalty(sat_f):
 
 
 def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
-    """EV-012: ratio-based fat quality. Falls back to v1 when fat_g < guard."""
+    """EV-012: ratio-based fat quality. Falls back to v1 when fat_g < guard.
+    Fix-C (TASK-275): when has_phvo==True, fat_quality is ceilinged at 40.
+    This is a dimension ceiling (not a final-score cap). Fires on שומנים מוקשים /
+    מחמאה / מרגרינה markers detected in signal_extractor._PHVO_MARKERS (Fix-B).
+    Ceiling is applied after all other scoring so trans/seed penalties still fire.
+    """
     fat   = nn.get("fat_g") or 0
     sat_f = nn.get("fat_saturated_g")
     has_seed_oil = l3.get("has_seed_oil", False)
+    # Fix-C: PHVO ceiling — read once, applied to all score paths.
+    has_phvo = l3.get("has_phvo", False)
+    _PHVO_FAT_QUALITY_CEIL = 40  # dimension ceiling when hardened fat present (Fix-C)
+
+    def _apply_phvo_ceil(s: float, n: str) -> tuple:
+        """Apply the PHVO fat_quality ceiling if triggered; annotate note."""
+        if has_phvo and s > _PHVO_FAT_QUALITY_CEIL:
+            n = n + f" [Fix-C PHVO ceiling: {s}→{_PHVO_FAT_QUALITY_CEIL}]"
+            return float(_PHVO_FAT_QUALITY_CEIL), n
+        return s, n
+
     if fat < 0.5 or se_result.get("structurally_empty"):
         if RECAL_P0_ON and not se_result.get("structurally_empty"):
             # R3: genuinely lean (incl. stranded sat_fat=None) → treat sat as 0
             ls = _leanness_score(fat, sat_f)
-            return ls, f"R3 leanness: fat={fat}g (<0.5) sat={sat_f} → {ls}"
-        return 50.0, "SRC-04: fat < 0.5g or structurally empty → neutral 50"
+            return _apply_phvo_ceil(ls, f"R3 leanness: fat={fat}g (<0.5) sat={sat_f} → {ls}")
+        return _apply_phvo_ceil(50.0, "SRC-04: fat < 0.5g or structurally empty → neutral 50")
     if sat_f is None:
         if RECAL_P0_ON:
             ls = _leanness_score(fat, 0.0)
-            return ls, f"R3 leanness: fat={fat}g sat_fat absent (treated 0) → {ls}"
-        return 50.0, "sat_fat absent → neutral 50"
+            return _apply_phvo_ceil(ls, f"R3 leanness: fat={fat}g sat_fat absent (treated 0) → {ls}")
+        return _apply_phvo_ceil(50.0, "sat_fat absent → neutral 50")
     trans_status = l3.get("trans_fat_status", "not_detected")
     trans_pen = 20 if trans_status in ("veto","high_concern") else (10 if trans_status=="present" else 0)
     seed_pen  = 10 if has_seed_oil else 0
@@ -1187,12 +1293,11 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
                 note = (f"R3 leanness band: max(penalty_curve={score}, leanness={ls}) "
                         f"(fat={fat}g sat={sat_f}g)")
                 score = ls
-                return score, note
+                return _apply_phvo_ceil(score, note)
         note  = (f"fat_v1(fat={fat}g<{_FAT_RATIO_GUARD}): sat={sat_f}g"
                  f" base={base:.1f}-seed{seed_pen}-trans{trans_pen}"
                  f"{('-red%.1f' % red_pen) if red_pen else ''}={score}")
-    return score, note
-
+    return _apply_phvo_ceil(score, note)
 
 def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
     """EV-004: allulose-adjusted glycemic quality + EV-006: functional fiber bonus."""
@@ -1784,7 +1889,17 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         check_cap("REFORMULABLE_LABELS_2_PLUS", reformulable_rl_count >= 2,
                   REDLABEL_MULTI_CAP_VALUE, sugar_caps_fired)
     else:
-        check_cap("ISRAELI_RED_LABELS_2_PLUS", red_label_count >= 2, 45, sugar_caps_fired)
+        # EV-053 / TASK-266: brined_food context — sodium red label is brine-structural,
+        # not reformulation excess. Exclude it from the 2-label cap count when the
+        # brined_food flag is active. The sat-fat label continues to count unchanged.
+        # The standalone HIGH_SODIUM_700MG_PLUS cap remains active (softened to 72 via
+        # 0.7 sodium_weight per EV-052). Zero effect on any non-brined context.
+        _rl_count_for_2plus = red_label_count
+        if context_flag == "brined_food":  # EV-053
+            _sodium_in_labels = "sodium" in (l3.get("red_labels") or [])
+            if _sodium_in_labels:
+                _rl_count_for_2plus = max(0, red_label_count - 1)
+        check_cap("ISRAELI_RED_LABELS_2_PLUS", _rl_count_for_2plus >= 2, 45, sugar_caps_fired)
 
     # Sugar penalties
     check_penalty("MULTIPLE_ADDED_SUGAR_MARKERS", added_sugar_ct >= 2, 5, sugar_pens_fired,
@@ -1889,6 +2004,7 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     # and the cap hierarchy (HIGH_SODIUM_CEREAL_500 at 75, HIGH_SODIUM_700MG_PLUS at 60)
     # naturally handles any product that exceeds 700mg (extremely rare in this category).
     cereal_sodium_scope = BARI_SODIUM_CEREAL and (category in SODIUM_CEREAL_CATEGORIES)
+    _grad_sodium_active = False
 
     if cereal_sodium_scope:
         # --- MoH boundary fix: >=600 replaces >600 for this scope ---
@@ -1966,14 +2082,31 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                                      "condition": f"sodium={sodium}<700 (BARI_SODIUM_CEREAL scope)"})
     else:
         # --- Baseline (all non-cereal/granola categories or flag OFF) ---
-        if BARI_REDLABEL_V1:
+        # EV-055: BARI_GRAD_SODIUM_V1 activates graduated sodium ONLY for brined_food context
+        # within endemic categories. Scope: context_flag=="brined_food" AND category in endemic set.
+        # Rationale: the 72-pin problem is specific to high-sodium brined dairy (sodium >=700mg
+        # where brine-preservation is the sodium source). Non-brined dairy_protein (cheese-spreads,
+        # yogurt) uses the cliff unchanged — their sodium is not structural-brine and the cliff
+        # remains the appropriate deterrent. BARI_REDLABEL_V1 continues to activate the full
+        # endemic path for all dairy_protein/whole_food_fat products (backward-compatible).
+        _grad_sodium_active = (
+            BARI_REDLABEL_V1
+            or (BARI_GRAD_SODIUM_V1
+                and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
+                and context_flag == "brined_food")  # EV-055 — brined context only
+        )
+        if _grad_sodium_active:  # EV-055
             # BARI_REDLABEL_V1: scoped to dairy_protein/whole_food_fat until cross-category D7
+            # BARI_GRAD_SODIUM_V1 (EV-055): surgical flag — activates ONLY this graduated-sodium
+            # path for endemic categories; does not activate regulatory quality formula or other
+            # BARI_REDLABEL_V1 effects. Both flags produce the same sodium-path outcome here.
             if category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES:
                 # Replace hard 700mg cliff with graduated penalty bands for endemic categories.
                 # HIGH_SODIUM_700MG_PLUS cap is suppressed; SODIUM_GENERAL_BANDS penalty applied.
+                flag_note = "BARI_GRAD_SODIUM_V1 (EV-055, brined_food)" if (BARI_GRAD_SODIUM_V1 and not BARI_REDLABEL_V1) else "BARI_REDLABEL_V1"
                 caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
                                          "fired": False,
-                                         "note": "BARI_REDLABEL_V1: replaced by SODIUM_GENERAL_BANDS graduated penalty (EV-REDLABEL-009/010)"})
+                                         "note": f"{flag_note}: replaced by SODIUM_GENERAL_BANDS graduated penalty (EV-REDLABEL-009/010 / EV-055)"})
                 _sodium_grad_pen = 0
                 _sodium_grad_band = None
                 for _lo, _hi, _pen in SODIUM_GENERAL_BANDS:
@@ -1988,16 +2121,17 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                         break
                 if _sodium_grad_pen > 0:
                     sodium_pens_fired.append(("SODIUM_LOAD_GENERAL_GRAD", _sodium_grad_pen))
+                    _sodium_flag_tag = "BARI_GRAD_SODIUM_V1 / EV-055" if (BARI_GRAD_SODIUM_V1 and not BARI_REDLABEL_V1) else "BARI_REDLABEL_V1 / EV-REDLABEL-009/010"
                     penalties_considered.append({
                         "rule": "SODIUM_LOAD_GENERAL_GRAD",
                         "amount": _sodium_grad_pen,
-                        "condition": f"sodium={sodium}mg band={_sodium_grad_band} (EV-REDLABEL-009/010)",
+                        "condition": f"sodium={sodium}mg band={_sodium_grad_band} (EV-REDLABEL-009/010 / EV-055)",
                         "fired": True,
                     })
                     penalties_applied.append({
                         "rule": "SODIUM_LOAD_GENERAL_GRAD",
                         "amount": _sodium_grad_pen,
-                        "note": f"sodium={sodium}mg band={_sodium_grad_band} (BARI_REDLABEL_V1 / EV-REDLABEL-009/010)",
+                        "note": f"sodium={sodium}mg band={_sodium_grad_band} ({_sodium_flag_tag})",
                     })
                 else:
                     penalties_considered.append({
@@ -2032,9 +2166,75 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                 caps_considered.append({"rule": "HIGH_SODIUM_700MG_PLUS", "cap": 60,
                                          "fired": False, "condition": f"sodium={sodium}<700"})
 
-    sodium_cap, sodium_pen, sodium_detail = _coordinate_family(
-        sodium_caps_fired, sodium_pens_fired, SODIUM_FAMILY_BUDGET
+    _sodium_family_budget = SODIUM_FAMILY_BUDGET
+    _shelf_sodium_active = (
+        BARI_SODIUM_SHELF_RELATIVE_V1
+        and BARI_GRAD_SODIUM_V1
+        and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
+        and _grad_sodium_active
     )
+    if _shelf_sodium_active:
+        _sodium_family_budget = SODIUM_FAMILY_BUDGET_BRINED
+        _shelf_stdev_ok = (
+            _SHELF_SODIUM_STDEV_MG is not None
+            and _SHELF_SODIUM_STDEV_MG >= SODIUM_SHELF_STDEV_GUARD
+        )
+        if _shelf_stdev_ok and _SHELF_SODIUM_MEDIAN_MG is not None:
+            _dist_above = max(0.0, sodium - _SHELF_SODIUM_MEDIAN_MG)
+            _shelf_surcharge = 0
+            _shelf_band = None
+            for _lo, _hi, _pen in SODIUM_SHELF_SURCHARGE_BANDS:
+                if _hi is None:
+                    if _dist_above >= _lo:
+                        _shelf_surcharge = _pen
+                        _shelf_band = f">={_lo}"
+                        break
+                elif _lo <= _dist_above <= _hi:
+                    _shelf_surcharge = _pen
+                    _shelf_band = f"{_lo}–{_hi}"
+                    break
+            if _shelf_surcharge > 0:
+                sodium_pens_fired.append(("SODIUM_SHELF_SURCHARGE", _shelf_surcharge))
+                penalties_considered.append({
+                    "rule": "SODIUM_SHELF_SURCHARGE",
+                    "amount": _shelf_surcharge,
+                    "condition": (
+                        f"distance_above_median={_dist_above:.0f}mg band={_shelf_band} "
+                        f"(median={_SHELF_SODIUM_MEDIAN_MG}mg; EV-056 / BARI_SODIUM_SHELF_RELATIVE_V1)"
+                    ),
+                    "fired": True,
+                })
+                penalties_applied.append({
+                    "rule": "SODIUM_SHELF_SURCHARGE",
+                    "amount": _shelf_surcharge,
+                    "note": (
+                        f"distance={_dist_above:.0f}mg above shelf median {_SHELF_SODIUM_MEDIAN_MG}mg "
+                        f"band={_shelf_band} (EV-056)"
+                    ),
+                })
+            else:
+                penalties_considered.append({
+                    "rule": "SODIUM_SHELF_SURCHARGE",
+                    "amount": 0,
+                    "condition": (
+                        f"distance_above_median={_dist_above:.0f}mg band={_shelf_band or '<200'} — no surcharge"
+                    ),
+                    "fired": False,
+                })
+        else:
+            penalties_considered.append({
+                "rule": "SODIUM_SHELF_SURCHARGE",
+                "fired": False,
+                "note": (
+                    f"EV-056 low-variance guard: shelf stdev={_SHELF_SODIUM_STDEV_MG}mg "
+                    f"< {SODIUM_SHELF_STDEV_GUARD}mg — surcharge suppressed"
+                ),
+            })
+
+    sodium_cap, sodium_pen, sodium_detail = _coordinate_family(
+        sodium_caps_fired, sodium_pens_fired, _sodium_family_budget
+    )
+
 
     # -----------------------------------------------------------------------
     # FAT_QUALITY family
@@ -2105,13 +2305,28 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                                       "condition": f"fat_pct={l2_fat_pct:.1f}<{HP_FAT_SUGAR_FAT_PCT} or sugar={sugar}<{HP_FAT_SUGAR_SUGAR_G}"})
 
     if hp_fat_sodium:
-        effective_pen = round(HP_FAT_SODIUM_PENALTY * hp_nova_weight, 1)
-        if effective_pen > 0:
-            hp_pens_fired.append(("HP_FAT_SODIUM_COMBO", effective_pen))
-            penalties_applied.append({"rule": "HP_FAT_SODIUM_COMBO", "amount": effective_pen,
-                                      "note": f"raw_pen={HP_FAT_SODIUM_PENALTY} × nova_weight={hp_nova_weight}"})
-        penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": True,
-                                      "nova_weight": hp_nova_weight, "effective": effective_pen})
+        # EV-054 / TASK-266: brined_food context — structural dairy fat + brine-preservation
+        # sodium is not a hyper-palatability engineering stack. The HP_FAT_SODIUM_COMBO rule
+        # was designed for industrially co-engineered fat+sodium products (chips, crackers,
+        # processed snacks). It is NOT deleted — it remains fully active for every non-brined
+        # context. This is a conditional skip, not a rule removal.
+        if context_flag == "brined_food":  # EV-054
+            penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": False,
+                                          "note": "EV-054: brined_food context — structural dairy fat + brine sodium, not hyper-palatability stack; penalty suppressed"})
+        elif (BARI_DAIRY_PROTEIN_REWEIGHT_V1
+              and category == "dairy_protein"
+              and sodium <= 400
+              and l3.get("additive_marker_count", 0) == 0):  # EV-057
+            penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": False,
+                                          "note": "EV-057: clean low-sodium dairy_protein (sodium<=400mg, no additives) — not hyper-palatability stack; penalty suppressed"})
+        else:
+            effective_pen = round(HP_FAT_SODIUM_PENALTY * hp_nova_weight, 1)
+            if effective_pen > 0:
+                hp_pens_fired.append(("HP_FAT_SODIUM_COMBO", effective_pen))
+                penalties_applied.append({"rule": "HP_FAT_SODIUM_COMBO", "amount": effective_pen,
+                                          "note": f"raw_pen={HP_FAT_SODIUM_PENALTY} × nova_weight={hp_nova_weight}"})
+            penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": True,
+                                          "nova_weight": hp_nova_weight, "effective": effective_pen})
     else:
         penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": False})
 
@@ -2660,7 +2875,13 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         and prot_g < 3.0
     )
     veg_spread_immunity_clamped = False
-    if is_veg_spread:
+    is_dairy_protein_reweight = (
+        BARI_DAIRY_PROTEIN_REWEIGHT_V1
+        and category == "dairy_protein"
+    )
+    if is_dairy_protein_reweight:
+        active_weights = DAIRY_PROTEIN_WEIGHTS
+    elif is_veg_spread:
         active_weights = VEG_SPREAD_WEIGHTS
     else:
         active_weights = DIMENSION_WEIGHTS
