@@ -155,9 +155,9 @@ BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
 BARI_GRAD_SODIUM_V1 = os.environ.get("BARI_GRAD_SODIUM_V1", "off").lower() == "on"  # EV-055
 
 # EV-006 ext Part 2 (2026-06-14): split prebiotic fiber bonus into high_fermentability (+2)
-# vs moderate_fermentability (+1). DEFAULT OFF → byte-identical to Part 1 baseline (all
-# prebiotic = +1). Activation requires Nutrition + Product D7 co-sign. Rollback: unset var.
-BARI_FIBER_FERMENT_V1 = os.environ.get("BARI_FIBER_FERMENT_V1", "off").lower() == "on"
+# vs moderate_fermentability (+1). DEFAULT ON — owner-authorized 2026-06-14 (EV-060).
+# Rollback: set BARI_FIBER_FERMENT_V1=off in the batch runner.
+BARI_FIBER_FERMENT_V1 = os.environ.get("BARI_FIBER_FERMENT_V1", "on").lower() != "off"
 
 # TASK-266 / EV-056 — Shelf-relative sodium surcharge for endemic-sodium dairy.
 # DEFAULT OFF → engine byte-identical to baseline.
