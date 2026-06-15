@@ -61,7 +61,7 @@ sheet's entry id.
 | 5 | E282 | Calcium propionate | mould/rope inhibitor (bread) | **likely-neutral** | Endogenous SCFA; EFSA/JECFA "not limited"; Tirosh 2019 effect was pharmacological-dose, not confirmed at food exposure. **0 on displayed bread shelf.** | 181A §3.A #5 |
 | 6 | E481 | Sodium stearoyl-2-lactylate (SSL) | dough conditioner / emulsifier | **likely-neutral** | EFSA ADI 20 mg/kg; exposure < ADI; emulsifier class carries only class-level observational (NutriNet) signal, not E481-specific. **0 on displayed bread shelf.** | 181A §3.A #6 |
 | 7 | E407 | Carrageenan | thickener / gelling / stabilizer | **contested** | EFSA 2018 "no concern" / ADI "not specified", but independent peer-reviewed mechanistic research (Bhattacharyya; NF-κB / gut-barrier) at food-grade concentrations is in genuine, active disagreement (2026 review). | 181A §3.A #7 |
-| 8 | E471 | Mono-/diglycerides of fatty acids | emulsifier | **likely-neutral** | EFSA/JECFA ADI "not specified"; structurally identical to normal fat-digestion products; 2024 NutriNet-Santé emulsifier-cancer link is class-level, observational, could not isolate E471. | 181A §3.A #8 |
+| 8 | E471 | Mono-/diglycerides of fatty acids | emulsifier | **contested** | EFSA/JECFA ADI "not specified"; structurally identical to normal fat-digestion products. Sellem et al., *PLoS Medicine* 2024, PMID 38349899, n≈92,000 — E471 isolated specifically: overall cancer HR 1.15 (1.04–1.27), breast cancer HR 1.24 (1.03–1.51), prostate cancer HR 1.46 (1.09–1.97). Evidence Weak-to-Moderate (single cohort, zero independent replication, EFSA no post-2024 re-eval, residual UPF confounding, modest HRs) → `contested` per Bari definition, NOT confirmed-negative. D7 co-signed 2026-06-15. | 181A §3.A #8; EV-061 |
 | 9 | E472e | DATEM | dough conditioner / emulsifier | **likely-neutral** | EFSA/JECFA "not specified"; no DATEM-specific mechanistic concern; evidence base is primarily regulatory + metabolic-stability (sparse independent data, no positive harm signal). **0 on displayed bread shelf.** | 181A §3.A #9 |
 | 10 | E415 | Xanthan gum | thickener / stabilizer | **functional** | Fermentation-derived polysaccharide, fermented as fiber-equivalent; EFSA 2017 "not specified"; neutral-to-positive evidence. | 181A §3.A #10 |
 | 11 | E450/451/452 | Di-/tri-/polyphosphates | emulsifier / buffer | **dose-dependent** | EFSA 2019 group ADI 40 mg P/kg bw/d and explicit flag that cumulative phosphate intake may approach/exceed ADI in heavy consumers — a documented dose-response pathway. | 181A §3.A #11 |
@@ -70,7 +70,7 @@ sheet's entry id.
 | 14 | E412 | Guar gum | thickener / water binder | **functional** | Soluble fibre; EFSA/JECFA "not specified"; occupational (not dietary) respiratory history irrelevant to food exposure. | 181A §3.A #14 |
 | 15 | E955 | Sucralose | sweetener (NNS) | **dose-dependent** | EFSA 2026 tightened ADI to 5 mg/kg (body-weight critical effect); narrower exposure-to-ADI margin than "not specified" additives + live gut-microbiome / T2D observational discussion; genotoxicity unsubstantiated (so not contested). | 181A §3.A #15 |
 | 16 | E950 | Acesulfame-K | sweetener (NNS) | **dose-dependent** | EFSA ADI 9 mg/kg; high-consumer exposure (1–3) non-negligible vs ADI; animal insulin/microbiome signals at high dose + class-level NNS–T2D observational association cross the threshold beyond likely-neutral. | 181A §3.A #16 |
-| 17 | E466 | Carboxymethylcellulose (CMC) | thickener / stabilizer | **contested** | Chassaing 2021 pre-registered human RCT (n=16+16) showed gut-microbiome/SCFA changes at food-achievable ~15 g/d; EFSA "not specified" ADI predates it and has not been re-evaluated — substantive regulatory-science gap. **0 on displayed shelf.** | 181A §3.A #17 |
+| 17 | E466 | Carboxymethylcellulose (CMC) | thickener / stabilizer | **contested** | Chassaing 2021 pre-registered human RCT (n=16+16) showed gut-microbiome/SCFA changes at food-achievable ~15 g/d; EFSA "not specified" ADI predates it and has not been re-evaluated — substantive regulatory-science gap. **0 on displayed shelf.** Corroborated by a second independent evidence arm — NutriNet-Santé CVD (BMJ 2023, PMID 37673430, CVD HR 1.03 [1.01–1.05]); tier unchanged (EV-061, 2026-06-15). | 181A §3.A #17 |
 | 18 | E150 (a–d) | Caramel colour | colour | **disclosure-gap** | Israeli label declares "צבע קרמל"/E150 without class; Class I/II neutral, Class III/IV carry the 4-MEI (IARC 2B animal) concern — class is structurally unknowable from the label, so no meaningful tier can be assigned. | 181A §3.A #18 |
 | 19 | E210–E213 | Sodium benzoate | preservative | **dose-dependent** | EFSA ADI 5 mg/kg; cumulative exposure can approach ADI; benzene-formation reaction with ascorbic acid is a real (context-dependent) chemical concern, slower in solid/dairy matrices. **0 on displayed shelf.** | 181A §3.A #19 |
 | 20 | E320 | BHA (butylated hydroxyanisole) | antioxidant (fats) | **contested** | IARC Group 2B + NTP "reasonably anticipated" on rodent forestomach data (no human analogue); EFSA maintains ADI 0.5 mg/kg; regulatory-vs-classification tension at realistic exposure = contested, not confirmed-negative (no human harm evidence; exposure << ADI). **0 on displayed shelf.** | 181A §3.A #20 |
@@ -225,3 +225,125 @@ decision, frozen-invariant tripwire #1).
 
 **Proposed task status:** RETURNED for CC close-readiness verification. CC records CLOSED;
 Nutrition does not.
+
+---
+
+## 7. Wave 4 Extension — EV-059 (2026-06-14)
+
+**Source:** *Algorithmic Foundations of Consumer Food Scoring Engines* (research review, 2026-06-14).
+**Authored by:** Nutrition Agent. **Governance:** annotate-only; no D7 co-sign required (no score movement).
+**Evidence registry:** EV-059 (`03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md`).
+
+### 7.1 Library additions — 11 new entries (§2.C)
+
+| # | E-number | Name | Function | Tier | cosmetic_mup | Justification |
+|---|---|---|---|---|---|---|
+| 37 | E433 | Polysorbate 80 (P80) | emulsifier | **contested** | True | Chassaing 2021 pre-registered RCT (n=32) + animal models: microbiome dysbiosis, mucus-layer thinning, flagellin/TLR5 upregulation at food-achievable concentrations. EFSA "not specified" ADI predates this evidence; regulatory-science gap = contested. Named alongside CMC/E466 in the same mechanistic pathway. |
+| 38 | E951 | Aspartame | non-sugar sweetener | **contested** | True | IARC 2023 Group 2B ("possibly carcinogenic") vs JECFA 2023 "no convincing evidence" + reaffirmed ADI 40 mg/kg. Genuine split between hazard classification (IARC) and risk assessment (JECFA/FDA/EFSA). Metabolized to phenylalanine/aspartate/methanol — no intact absorption — but the IARC 2B signal and unresolved mechanistic discussion on oxidative stress cross the contested threshold. |
+| 39 | E171 | Titanium dioxide | colorant | **contested** | True | EFSA 2021 banned in EU (August 2022): genotoxicity could not be ruled out, no safe ADI establishable. FDA/Health Canada/FSANZ/UK COT maintained authorization, arguing EFSA's positive assays used sonicated nanoparticles unrepresentative of food-grade TiO₂ behaviour in vivo. Genuine regulatory schism with substantive scientific disagreement on both sides — contested, not confirmed-negative (no human harm evidence). |
+| 40 | E102 | Tartrazine | colorant | **contested** | True | Southampton Mix A (McCann 2007): statistically significant GHA score increase in general paediatric population. EU Art. 24 mandatory warning label ("May have an adverse effect on activity and attention in children"). EFSA AFC: "limited evidence of small effect"; mixture design prevents per-dye isolation; US FDA insufficient for action. Contested — regulatory precaution without regulatory ban. |
+| 41 | E110 | Sunset Yellow FCF | colorant | **contested** | True | Southampton Mixes A+B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
+| 42 | E122 | Carmoisine | colorant | **contested** | True | Southampton Mix A. EU Art. 24 warning. Same EFSA / FDA split as E102. |
+| 43 | E124 | Ponceau 4R | colorant | **contested** | True | Southampton Mixes A+B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
+| 44 | E129 | Allura Red AC | colorant | **contested** | True | Southampton Mix B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
+| 45 | E104 | Quinoline Yellow | colorant | **contested** | True | Southampton Mix B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
+| 46 | E249 | Potassium nitrite | preservative / curing | **confirmed-negative** | False | IARC 2A ("probably carcinogenic to humans") for nitrate/nitrite in processed meat. N-nitrosamine formation mechanism well-established. EFSA has ADIs (0.06 mg/kg) but also flags cumulative dietary exposure. First confirmed-negative entry in this library; relevant exclusively when Bari scores processed meats (no current live shelf exposure). |
+| 47 | E250 | Sodium nitrite | preservative / curing | **confirmed-negative** | False | Same evidence basis as E249. Standard processed-meat curing pair; same IARC 2A anchor. |
+
+**Note on dict count:** E1412/E1414 fold into E1422 (existing entry #4), so the Python `GLASSBOX_W2_ADDITIVES` dict has **46 keys** (35 existing + 11 new) while the logical library has 47 rows.
+
+### 7.2 cosmetic_mup field (new per EV-059)
+
+All 46 entries now carry `cosmetic_mup: bool`. Definition (Siga/Codex Alimentarius):
+
+> An additive is a **cosmetic MUP** (Marker of Ultra-Processing) if its **primary technological function is to restore, mimic, or enhance sensory properties — taste, aroma, color, or texture — that were lost during industrial processing**.
+
+Functional classes that qualify: colors, emulsifiers, emulsifying salts, thickeners, gelling agents, non-sugar sweeteners, flavor enhancers, humectants.
+Functional classes that do NOT qualify: preservatives, acidulants, antioxidants, raising agents, mineral firming agents (primary function is safety or matrix stabilization, not sensory restoration).
+
+| cosmetic_mup = True (30) | cosmetic_mup = False (16) |
+|---|---|
+| Colors: E150, E160a, E162, E163, E100, E141, E102, E110, E122, E124, E129, E104, E171 | Preservatives: E202, E282, E211, E249, E250 |
+| Emulsifiers: E471, E472e, E481, E433 | Acidulants: E330, E333, E331, E327, E296, E270 |
+| Emulsifying salts: E450 | Antioxidants: E300, E320 |
+| Thickeners / gelling / stabilizers: E407, E415, E440, E410, E412, E466, E1422, E401 | Mineral / raising agents: E516, E500 |
+| Non-sugar sweeteners: E955, E950, E960, E951 | Acidulant-coagulant: E575 |
+
+**Scoring implication (annotate-only in W4):** `cosmetic_mup` is available in the D4 finding output for display and future MUP-density analysis. It carries **no current score weight.** A cosmetic-MUP count signal (re-founding the existing `ADDITIVE_MARKERS_3_PLUS` / `5_PLUS` caps on principled MUP density rather than total additive count) requires a separate D6→D7 proposal.
+
+### 7.3 Updated tier distribution (all 47 logical entries)
+
+| Tier | W3 count | W4 additions | Total |
+|---|---|---|---|
+| functional | 19 | 0 | 19 |
+| likely-neutral | 7 | 0 | 7 |
+| dose-dependent | 5 | 0 | 5 |
+| contested | 3 | +9 | **12** |
+| disclosure-gap | 1 | 0 | 1 |
+| confirmed-negative | 0 | +2 | **2** |
+| unclassified | 1 | 0 | 1 |
+| **Total** | **36** | **+11** | **47** |
+
+### 7.4 Annotate-only boundary (W4)
+
+- **ANNOTATE-ONLY.** All 11 new entries and the `cosmetic_mup` field are detection/display additions only. No score formula, weight, cap, or penalty was changed. The D4 annotate-only invariant inherited from EV-041/EV-043 applies in full.
+- **No score moved. No JSON edited (website data layer untouched). Engine flag status unchanged.**
+- **Frozen invariants untouched:** milk run_005_headpin, snack 70/B, bread provenance.
+- **confirmed-negative entries (E249/E250)** are forward-looking for processed-meat categories only; they fire zero times on any current live shelf and carry no automatic cap until a D6→D7 cap rule is proposed and co-signed.
+
+---
+
+## 8. Wave 5 Extension — EV-061 (2026-06-15)
+
+**Source:** Sellem et al., *BMJ* 2023, PMID 37673430 (CVD); Sellem et al., *PLoS Medicine* 2024, PMID 38349899 (cancer) — NutriNet-Santé prospective cohort analyses.
+**Authored by:** Nutrition Agent. **Governance:** annotate-only; D7 co-sign COMPLETE (Product Agent, 2026-06-15).
+**Evidence registry:** EV-061 (`03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md`).
+
+### 8.1 Tier update — Row 8 (E471)
+
+E471 tier updated from `likely-neutral` to `contested` in §2.A row 8 above. D7 co-signed 2026-06-15. See updated row text for full justification and verified HRs.
+
+### 8.2 New library entries (§2.D)
+
+Two new entries introduced by EV-061. Both emulsifiers / cellulose sub-family. `cosmetic_mup` assignments consistent with §7.2 rules.
+
+| # | E-number | Name | Function | Tier | cosmetic_mup | Justification | Src |
+|---|---|---|---|---|---|---|---|
+| 48 | E472b / E472c | Lactic and citric acid esters of mono-/diglycerides (LACTEM / CITREM) | emulsifier / dough conditioner | **contested** | True | Lactic (E472b) and citric (E472c) acid esters of mono-/diglycerides. NutriNet-Santé CVD (Sellem et al., *BMJ* 2023, PMID 37673430): E472b CVD HR 1.06 (1.02–1.10), cerebrovascular 1.11 (1.06–1.16); E472c CVD 1.04 (1.02–1.07), CHD 1.06 (1.03–1.09). Weak-to-Moderate, single cohort, no replication. **Distinct from E472e/DATEM, which is NOT named in the paper and remains likely-neutral.** D7 co-signed 2026-06-15 (EV-061). | EV-061 |
+| 49 | E460 | Microcrystalline cellulose (MCC) | bulking agent / anti-caking | **contested** | False | Single CVD HR 1.05 (1.01–1.09) from NutriNet-Santé (BMJ 2023, PMID 37673430). No independent replication, no established mechanism, no regulatory signal — meets `contested` threshold at LOW confidence; **reverts to `likely-neutral` absent independent replication within 24 months (by 2028-06).** D7 co-signed with this condition 2026-06-15 (EV-061). | EV-061 |
+
+**Note on dict count:** EV-061 adds 2 logical rows (48–49), bringing the logical library to **49 rows** and the Python `GLASSBOX_W2_ADDITIVES` dict to **48 keys** (E472b/c treated as a single combined entry; E460 is a new key).
+
+### 8.3 E466 (CMC) corroboration note
+
+Row 17 (E466/CMC) tier UNCHANGED at `contested`. A second independent evidence arm — NutriNet-Santé CVD (BMJ 2023, PMID 37673430, CVD HR 1.03 [1.01–1.05]) — corroborates the existing contested tier assigned via EV-003 (Chassaing 2021 gut-barrier RCT). Annotated in the row itself; tier requires no move.
+
+### 8.4 EV-061 addition (2026-06-15) — tier-distribution deltas
+
+The EV-059 §7.3 table was accurate as of EV-059 (2026-06-14) and is NOT rewritten. Deltas applied by EV-061 on top of that baseline:
+
+| Change | Detail |
+|---|---|
+| likely-neutral −1 | E471 moved out → `contested` |
+| contested +3 | E471 (tier flip) + E472b/c (new entry #48) + E460 (new entry #49) |
+| E460 condition | Carries 24-month replication-revert condition: reverts to `likely-neutral` if no independent replication by 2028-06 |
+| All other tiers | Unchanged |
+
+**Running totals after EV-061 (49 logical entries):**
+
+| Tier | EV-059 total | EV-061 delta | New total |
+|---|---|---|---|
+| functional | 19 | 0 | 19 |
+| likely-neutral | 7 | −1 | **6** |
+| dose-dependent | 5 | 0 | 5 |
+| contested | 12 | +3 | **15** |
+| disclosure-gap | 1 | 0 | 1 |
+| confirmed-negative | 2 | 0 | 2 |
+| unclassified | 1 | 0 | 1 |
+| **Total** | **47** | **+2** | **49** |
+
+### 8.5 Annotate-only boundary (W5)
+
+- **ANNOTATE-ONLY.** The E471 tier flip, 2 new entries, and E466 corroboration are detection/display changes only. No score formula, weight, cap, or penalty changed. The D4 annotate-only invariant inherited from EV-041/EV-043 applies in full.
+- **No score moved. No JSON edited. No engine code touched.**
+- **Frozen invariants untouched:** milk run_005_headpin, snack 70/B, bread provenance.

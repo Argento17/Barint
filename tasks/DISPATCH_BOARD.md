@@ -3,7 +3,22 @@
 
 ---
 
-## 🧪 Emulsifier evidence verification (TASK-285) — 🟡 DISPATCHED (2026-06-15)
+## ✅ SR + Fat-Tech go-live QA + red-team (TASK-278 / TASK-284E, commit 4cf58ac0) — 🟡 DISPATCHED (2026-06-15)
+
+Owner asked: QA run + red-team the go-live, then git push. Scope = 6 rescored categories, 5 updated comp
+JSONs (cereals_v2, hard_cheeses_v2, juices_v3, hummus_v5, cakes_hard_cookies_v1), milk re-freeze
+run_006_shelfrel_refreeze, shadow registry, EV-087/090/091/093/094/096/097/098.
+- **P-QA → QA Agent (C1) — 🟡 IN FLIGHT (background).** Verify score==trace on all 5 comp JSONs, milk
+  frozen invariant (max 85/A, A:3/B:1/C:5/D:10/E:1), OFF=0, tsc clean, full distributions, shadow registry.
+- **P-RT → Red-Team Agent (C1) — 🟡 IN FLIGHT (background).** Adversarial: big swings (hard_cheeses 29/30,
+  hummus 60/64) defensible? Anti-Immunity / curve-grading / one-absolute-scale held? frozen invariants,
+  OFF ban, copy coherence vs new scores, silent side-effects. owner-ready only at ZERO CRITICAL.
+- **Then:** orchestrator verifies both returns against artifacts → git push (branch push to origin, NOT a
+  bari.digital deploy — reversible, in-lane). go-live close gate needs red_team_cleared (zero CRITICAL).
+
+---
+
+## 🧪 Emulsifier evidence verification (TASK-285) — ✅ CLOSED (2026-06-15)
 
 Origin: owner research-dump triage 2026-06-15 → Nutrition Agent ruling. 6 of 7 dump items need no engine
 work; the one live thread is a **flag-OFF, annotate-only** additive-library tier question. **0 published
@@ -22,10 +37,31 @@ score movement anywhere in this task.**
   proxy disclosure. **Orchestrator-verified:** registry 510-insert diff = 14 pre-existing EV-085…098 backlog + 1 new
   row; score_engine 2-line diff = pre-existing TASK-284E flag flip (NOT this task); signal_extractor diff = 0 TASK-285
   content. DOIs: Minekus 2014 + Gupta 2015 real; flax + Brazilian-fruits marked "source pending"; **0 fabricated.**
-- **P147 → Nutrition Agent — 🟡 IN FLIGHT (background, gate held).** Draft EV-061: register the verified emulsifier
-  evidence; **correct the factually-wrong row-8 note** but keep tier VALUE `likely-neutral` + "contested upgrade
-  PROPOSED, pending D7" marker (do NOT flip; do NOT touch E472e/DATEM; note E466 already contested via EV-003);
-  propose per-additive D7 deltas (E471 + E460 + scoped E472b/c → contested). 0 score movement, flag-OFF, no engine edits.
+- **P147 → Nutrition Agent — ✅ VERIFIED & ACCEPTED (orchestrator, 2026-06-15).** EV-061 registered (registry,
+  before footer): both DOIs/PMIDs, exact verified HRs, `exposure_granularity: ADDITIVE-SPECIFIC`, evidence
+  Weak-to-Moderate (4 caveats), should_affect_score_now=false, published_scores_moved=0, D7-gate language,
+  per-additive ruling. Row 8 (E471) [additive_tiered_library_v1.md L64]: tier VALUE still `likely-neutral` +
+  "contested upgrade PROPOSED in EV-061, pending D7" marker, factual note corrected w/ PMID+HRs. **Row 9
+  (E472e/DATEM) byte-identical; no rogue E460/E472b-c rows added (left as proposals); engine untouched; 0 score
+  movement.** ⚠️ HEAD moved mid-task 97a9213b→**4cf58ac0** = OWNER's own TASK-278/284E go-live commit (rescore 6
+  cats + comp JSONs + re-freeze milk, owner-authored 17:59) — separate owner-ratified workstream, NOT TASK-285,
+  no escalation. Swept P146's EV-060 row + EV backlog into HEAD; EV-061 + row-8 sit uncommitted on top, intact.
+- **P148 → Product Agent — ✅ VERIFIED & ACCEPTED (orchestrator, 2026-06-15): D7 CO-SIGN APPROVED.** Per-additive:
+  E471→contested APPROVED; E472b/c→**new combined contested row** APPROVED (keeps E472e/DATEM clean); E460→contested
+  APPROVED **WITH CONDITION** (justification must carry low-confidence + 24-month replication-revert caveat);
+  E472e/DATEM no-change CONFIRMED; E466 corroborated, unchanged. All 5 tripwires checked → **none fire** (annotate-only
+  display labels, 0 score weight per EV-043 §w3/EV-059 §7.4, no consumer-facing deploy) → in-lane Product call.
+- **P149 → Data Agent — ✅ VERIFIED & ACCEPTED (orchestrator, 2026-06-15).** E471 row 8→`contested` (L64, verified
+  HRs + D7 note); E472e/DATEM row 9 still `likely-neutral` (untouched); E466 row 17 contested +PMID 37673430; new
+  rows 48 (E472b/c) + 49 (E460 w/ 24-mo revert-by-2028-06 caveat); §8.4 delta note (EV-059 §7.3 not rewritten);
+  EV-061 governance "D7 co-sign COMPLETE". **Scope verified: only the 2 governance .md files; engine 0 emulsifier
+  content; comparison JSONs 0 TASK-285 content (6 dirty JSONs = unrelated granola/cookies-coffee#7/yogurts). 0
+  published-score movement.**
+- **✅ TASK-285 CLOSED (orchestrator-verified, 2026-06-15).** All deliverables done + artifact-verified. Outcome:
+  flag-free, annotate-only tier correction (E471 + E472b/c + E460 → contested, evidence-backed by orchestrator-
+  verified PMID 38349899/37673430) + EV-060 corroboration + KB-003. **Zero published-score movement.** Edits
+  uncommitted in working tree (no owner commit instruction); E460 revert is a 2028-06 maintenance item.
+  close_reason in `tasks/closed/TASK-285.md`. 6/7 dump items = no engine work.
 - **Already-shipped / no-action (Nutrition ruling):** #3 fiber-fermentation = EV-060 (done); #1 matrix-satiety &
   #7 UPF-index = covered by EV-008/009 + EV-001/003/045/051; #4/#5/#6 = not label-parseable / EDPG firewall →
   KB reference only. Lane split TASK-285: Research×1 · C1 Nutrition×1 (next: Nutrition×1 for EV-061 if gate holds).
