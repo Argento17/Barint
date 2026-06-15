@@ -505,18 +505,200 @@ SODIUM_SHELF_SURCHARGE_BANDS = [
 # ---------------------------------------------------------------------------
 # TASK-278 / EV-084 — Category-agnostic shelf-relative differentiator (Phase-1).
 # Gated by BARI_SHELF_RELATIVE_V1 (default OFF). Empty scopes = no enrollment.
-# Band/guard placeholders — populated at Phase-2 per-category D7 enrollment.
 # ---------------------------------------------------------------------------
-SUGAR_SHELF_REL_SCOPE = frozenset()
-FATSAT_SHELF_REL_SCOPE = frozenset()
-SUGAR_SHELF_SURCHARGE_BANDS: list[tuple] = []
-SUGAR_SHELF_RELIEF_BANDS: list[tuple] = []
+# TASK-278 Phase-2 / EV-085 — Biscuits × sugar enrollment (D7 co-signed 2026-06-14).
+# Scope: frozenset({"biscuit"}) only (Phase-2). Phase-5 (EV-087) adds "cereal".
+# Bands expressed in NORMALIZED r-units (r = (value − median) / robust_scale).
+# The shelf_relative_differentiator call site sets normalize_distance=True so
+# _band_lookup receives r, not raw g.
+# OFF-BAN: sugars_g from label only (L1_observed_signals / normalized_nutrition_per_100g).
+# Do NOT add categories or nutrients here — each future enrollment is a separate D7+EV.
+SUGAR_SHELF_REL_SCOPE: frozenset = frozenset({"biscuit", "cereal"})
+FATSAT_SHELF_REL_SCOPE: frozenset = frozenset()
+
+# Penalty bands (above-median direction): (r_lo, r_hi_or_None, penalty_pts).
+# r = (value − median) / robust_scale. Max penalty P = 6 pts (EV-085, D7 cond 4).
+SUGAR_SHELF_SURCHARGE_BANDS: list[tuple] = [
+    (0.0,  0.5,  0),
+    (0.5,  1.0,  1),
+    (1.0,  1.5,  2),
+    (1.5,  2.5,  4),
+    (2.5,  None, 6),
+]
+
+# Relief bands (below-median direction): (r_lo, r_hi_or_None, relief_pts).
+# r_below = (median − value) / robust_scale. Max relief B = 3 pts (EV-085, B < P).
+SUGAR_SHELF_RELIEF_BANDS: list[tuple] = [
+    (0.0,  0.5,  0),
+    (0.5,  1.5,  1),
+    (1.5,  3.0,  2),
+    (3.0,  None, 3),
+]
+
 FATSAT_SHELF_SURCHARGE_BANDS: list[tuple] = []
 FATSAT_SHELF_RELIEF_BANDS: list[tuple] = []
-SUGAR_SHELF_SCALE_GUARD = 1.0
+
+# Low-variance guard: suppress if robust_scale < SUGAR_SHELF_SCALE_GUARD.
+# EV-085: guard = 3.0 (g units; compared against robust_scale computed at run start).
+# Not binding for biscuit corpus (5.115 >> 3.0).
+SUGAR_SHELF_SCALE_GUARD = 3.0
 FATSAT_SHELF_SCALE_GUARD = 0.5
+
+# min_scale floors (passed to compute_shelf_stats as nutrient_min_scale).
 SUGAR_SHELF_SCALE_MIN = 1.0
 FATSAT_SHELF_SCALE_MIN = 0.5
+
+# EV-085 — formulation_absolute_floor for biscuit × sugar enrollment.
+# Applies when category=="biscuit" AND sugars_g >= HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G.
+# Clamps composite score to max 55 for high-sugar biscuits. Prevents Anti-Immunity
+# violation: grade B requires >=70; floor=55 + max_relief=3 = 58 < 70. Non-None per D7 cond 5.
+SUGAR_SHELF_REL_FORMULATION_FLOOR = 55       # max composite score for high-sugar biscuits
+HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G = 20.0  # g/100g — floor activates at this level
+
+# EV-085 — family budget raise for the biscuit sugar path (D7 cond 10).
+# Raise = max(P, B) = 6 points above the base SUGAR_FAMILY_BUDGET (10).
+# Applied only when BARI_SHELF_RELATIVE_V1=on AND category=="biscuit".
+SUGAR_SHELF_BISCUIT_BUDGET_RAISE = 6
+
+# EV-087: cereals × sugar shelf-relative floor (D7 co-signed 2026-06-14, TASK-278 Phase-5)
+# Anti-Immunity: high-sugar cereal cannot reach grade B (70). Floor is a CEILING (min).
+# No budget raise for cereal (D7 Option A). Scope already includes "cereal".
+SUGAR_SHELF_REL_CEREAL_FLOOR = 62          # max composite score for high-sugar cereals
+SUGAR_SHELF_REL_CEREAL_FLOOR_THRESHOLD_G = 25.0  # g/100g — floor activates at this level
+
+# EV-087 cereal corpus statistics — n=34 cereal-only (updated P111, 2026-06-14)
+# Prior n=45 stats (median=14.0, IQR=11.0, scale=8.896) were contaminated by 11 snack_bar_granola
+# products that are out of scope for SUGAR_SHELF_REL_SCOPE. Recomputed from pilot traces
+# (run_cereals_001_shelfrel_pilot) using only the 34 products where category=="cereal".
+# Formula: robust_scale = max(IQR/1.349, 1.4826*MAD, 1.4); scale_iqr=10.007, scale_mad=11.861
+# → MAD-primary wins. Low-variance guard: 11.861 >= 1.4 PASS. n=34 >= 20 PASS.
+SUGAR_SHELF_REL_CEREAL_MEDIAN = 13.0       # g/100g, n=34 cereal-only (prior n=45: 14.0)
+SUGAR_SHELF_REL_CEREAL_IQR = 13.5          # g/100g, n=34 cereal-only (prior n=45: 11.0)
+SUGAR_SHELF_REL_CEREAL_SCALE = 11.8608     # robust_scale, n=34 cereal-only (prior n=45: 8.896)
+
+# EV-088 yogurt×sugar shelf-relative (P115, 2026-06-14; n=74 cereal-only computed from run_yogurt_006)
+SUGAR_SHELF_REL_YOGURT_MEDIAN = 5.45
+SUGAR_SHELF_REL_YOGURT_IQR = 5.80
+SUGAR_SHELF_REL_YOGURT_SCALE = 4.299        # IQR-primary: IQR/1.349=4.299
+SUGAR_SHELF_REL_YOGURT_FLOOR = 62
+SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G = 12.0
+SUGAR_SHELF_REL_YOGURT_P_MAX = 6
+SUGAR_SHELF_REL_YOGURT_B_MAX = 3
+
+# EV-089 cheese_spreads×sat_fat shelf-relative (P119, 2026-06-14; n=24 cream_cheese from run_cheese_003)
+# Scope guard: category=="dairy_protein" AND category_subtype in CREAM_CHEESE_SPREAD_SUBTYPES.
+# Direction: penalize_high (above-median sat_fat → penalty; below-median → relief).
+# MAD-primary scale (tight cluster): robust_scale = 1.4826×MAD = 1.4826×1.40 = 2.0756.
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Double protection: sat_fat >= 16.5g products are above median → cannot receive B_max relief.
+FATSAT_SHELF_REL_CHEESESPREAD_MEDIAN = 16.05
+FATSAT_SHELF_REL_CHEESESPREAD_IQR = 2.60
+FATSAT_SHELF_REL_CHEESESPREAD_SCALE = 2.0756        # MAD-primary: 1.4826×1.40=2.0756
+FATSAT_SHELF_REL_CHEESESPREAD_FLOOR = 62
+FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G = 16.5
+FATSAT_SHELF_REL_CHEESESPREAD_P_MAX = 6
+FATSAT_SHELF_REL_CHEESESPREAD_B_MAX = 3
+
+CREAM_CHEESE_SPREAD_SUBTYPES: frozenset = frozenset({"cream_cheese", "cheese_spread"})
+
+# EV-090 hard_cheeses×sat_fat shelf-relative (P123, 2026-06-14; Scope A n=22 yellow+yellow_light+hard_grating)
+# Scope guard: category=="dairy_protein" AND nn.get("bsip_cheese_subpool") in HARD_CHEESE_YELLOW_SUBPOOLS.
+# Direction: penalize_high (asymmetric P>B).
+# Scale = IQR/1.349 = 1.11 < floor 1.40 → use floor value 1.40 (IQR-primary with floor).
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Floor protection: sat_fat >= 19.0g → absolute ceiling of 62.
+FATSAT_SHELF_REL_HARDCHEESE_MEDIAN = 18.0
+FATSAT_SHELF_REL_HARDCHEESE_IQR = 1.50
+FATSAT_SHELF_REL_HARDCHEESE_SCALE = 1.40          # at minimum floor (IQR/1.349=1.11 < floor=1.40)
+FATSAT_SHELF_REL_HARDCHEESE_FLOOR = 62
+FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G = 19.0
+FATSAT_SHELF_REL_HARDCHEESE_P_MAX = 6
+FATSAT_SHELF_REL_HARDCHEESE_B_MAX = 3
+
+HARD_CHEESE_YELLOW_SUBPOOLS: frozenset = frozenset({"yellow", "yellow_light", "hard_grating"})
+
+# EV-091 juices×sugar shelf-relative (P126, 2026-06-14; n=65 from run_juices_001).
+# Scope guard: product.get("juice_sub_pool") is not None (all juice subpool values included).
+# All 65 products have juice_sub_pool present (juice_100/nectar/fruit_drink/smoothie/cold_pressed).
+SUGAR_SHELF_REL_JUICES_MEDIAN = 9.50
+SUGAR_SHELF_REL_JUICES_IQR = 3.80
+SUGAR_SHELF_REL_JUICES_SCALE = 2.82           # IQR-primary: max(IQR/1.349=2.82, 1.4826×MAD=1.93, 1.40)
+SUGAR_SHELF_REL_JUICES_FLOOR = 62
+SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G = 12.2   # Q3-based; de-anchored from Israeli red-label 10g
+SUGAR_SHELF_REL_JUICES_P_MAX = 6
+SUGAR_SHELF_REL_JUICES_B_MAX = 3
+# Low-variance guard for the juice corpus: SUGAR_SHELF_SCALE_GUARD (3.0g) is too tight for
+# juice×sugar (IQR-based scale=2.82g). A category-specific guard of 2.0g maintains the
+# anti-degenerate-distribution protection while permitting the juice corpus scale through.
+SUGAR_SHELF_SCALE_GUARD_JUICES = 2.0
+
+# EV-092 maadanim×sugar shelf-relative (P129, 2026-06-14; n=146 with sugars_g from run_maadanim_001).
+# Scope guard: product.get("bsip_maadanim_subtype") is not None (200/200 BSIP1 files have field).
+# IQR-primary scale: max(IQR/1.349=8.73, 1.4826×MAD≈4.45, 1.40) = 8.75.
+# Standard SUGAR_SHELF_SCALE_GUARD (3.0g) applies — scale=8.75g is well above guard.
+SUGAR_SHELF_REL_MAADANIM_MEDIAN = 9.70
+SUGAR_SHELF_REL_MAADANIM_IQR = 11.78
+SUGAR_SHELF_REL_MAADANIM_SCALE = 8.75
+SUGAR_SHELF_REL_MAADANIM_FLOOR = 62
+SUGAR_SHELF_REL_MAADANIM_FLOOR_THRESHOLD_G = 16.08   # Q3-based; de-anchored from binary red-label cap
+SUGAR_SHELF_REL_MAADANIM_P_MAX = 6
+SUGAR_SHELF_REL_MAADANIM_B_MAX = 3
+
+# EV-093 salty_snacks×sodium shelf-relative (P135, 2026-06-14; n=54).
+# Scope guard: category == "salty_snack" (BSIP1 field; authoritative shelf boundary).
+# IQR-primary scale: IQR/1.349 = 190/1.349 = 140.85mg.
+# Low-variance guard: 100.0mg (category-specific; SODIUM_SHELF_STDEV_GUARD=150mg is too
+# tight for the salty_snack corpus where IQR-based scale=140.85mg < 150mg).
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Uses BARI_SHELF_RELATIVE_V1 (not BARI_SODIUM_SHELF_RELATIVE_V1 which is brined-only EV-056).
+SODIUM_SHELF_REL_SALTY_SNACK_MEDIAN = 560.0
+SODIUM_SHELF_REL_SALTY_SNACK_IQR = 190.0
+SODIUM_SHELF_REL_SALTY_SNACK_SCALE = 140.85
+SODIUM_SHELF_REL_SALTY_SNACK_FLOOR = 62
+SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG = 630.0
+SODIUM_SHELF_REL_SALTY_SNACK_P_MAX = 6
+SODIUM_SHELF_REL_SALTY_SNACK_B_MAX = 3
+SODIUM_SHELF_SCALE_GUARD_SALTY_SNACK = 100.0   # mg — category-specific guard (IQR-scale=140.85 > 100)
+
+# EV-094 hummus×sodium shelf-relative (P138, 2026-06-14; n=60 in-scope hummus).
+# Scope guard: bsip0_source.product_category in HUMMUS_PRODUCT_CATEGORIES.
+# IQR-primary scale: IQR/1.349 = 43/1.349 = 31.88mg.
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Q4: suppress SR when sodium >= 700mg (HIGH_SODIUM_700MG_PLUS already handles absolute harm signal).
+# Q5-B: skip SR for insufficient_data products (delta=0).
+# Uses BARI_SHELF_RELATIVE_V1 (not BARI_SODIUM_SHELF_RELATIVE_V1 which is brined-only EV-056).
+SODIUM_SHELF_REL_HUMMUS_MEDIAN = 390.0
+SODIUM_SHELF_REL_HUMMUS_IQR = 43.0
+SODIUM_SHELF_REL_HUMMUS_SCALE = 31.88
+SODIUM_SHELF_REL_HUMMUS_FLOOR = 62
+SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG = 395.0
+SODIUM_SHELF_REL_HUMMUS_P_MAX = 6
+SODIUM_SHELF_REL_HUMMUS_B_MAX = 3
+SODIUM_SHELF_SCALE_GUARD_HUMMUS = 10.0   # mg — hummus guard (IQR-scale=31.88 > 10); lower than salty_snack (100mg)
+HUMMUS_PRODUCT_CATEGORIES: frozenset = frozenset({"hummus_spread", "hummus_and_savory_dips"})
+
+# EV-098 cakes_hard_cookies×sugar shelf-relative (TASK-278 Phase-13; n=143 with sugars_g).
+# Scope guard: product.get("bsip1_canonical_id", "").startswith("bsip1_cakes_") AND
+#              product in in_scored corpus set (cross-referenced to exclude OOS products).
+# Note: BSIP1 category field = "cake_cookie" for both IN_SCORED and OOS products — the
+# primary guard "category == cakes_hard_cookies" is absent; the fallback bsip1_canonical_id
+# guard is used with an explicit in_scored cross-reference to prevent OOS bleed.
+# Corpus stats: n=143 IN_SCORED products with sugars_g present.
+# Direction: asymmetric (above-median → penalty P_max=6; below-median → relief B_max=3).
+# Q3=33.0g chosen as floor_threshold over median (D7 Q1 decision — cross-category consistency).
+# normalize_distance=True: bands in r-units (r = (value - median) / robust_scale).
+# IQR-primary robust_scale = max(IQR/1.349=8.895, 1.4826×MAD=9.044, 1.40) = 9.044.
+# Low-variance guard: SUGAR_SHELF_SCALE_GUARD (3.0g) — scale=9.044 >> 3.0, PASS.
+# Anti-Immunity: floor(52) + B_max(3) = 55 < 70 (grade B threshold) — PASS (D7 verified).
+# D7 co-sign: Product Agent, 2026-06-15 (cakes_sugar_d7_cosign_v1.md). EV-098 registered.
+# OFF-BAN: sugars_g sourced from label-panel only (normalized_nutrition_per_100g); OFF not used.
+SUGAR_SHELF_REL_CAKES_MEDIAN = 29.0          # g/100g
+SUGAR_SHELF_REL_CAKES_IQR = 12.0             # g/100g
+SUGAR_SHELF_REL_CAKES_SCALE = 9.044          # robust_scale = max(IQR/1.349=8.895, 1.4826×MAD=9.044, 1.40)
+SUGAR_SHELF_REL_CAKES_FLOOR = 52             # absolute floor: no cakes product below 52
+SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G = 33.0  # Q3 (D7 Q1 decision) — surcharge zone = top 25%
+SUGAR_SHELF_REL_CAKES_P_MAX = 6              # max surcharge penalty
+SUGAR_SHELF_REL_CAKES_B_MAX = 3              # max below-median relief
 
 # ---------------------------------------------------------------------------
 # R7 v1.1 (TASK-169A) — gate the live-culture +8 to GENUINELY cultured dairy only.

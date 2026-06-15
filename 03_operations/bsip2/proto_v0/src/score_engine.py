@@ -43,7 +43,45 @@ from constants import (
     FATSAT_SHELF_SURCHARGE_BANDS, FATSAT_SHELF_RELIEF_BANDS,
     SUGAR_SHELF_SCALE_GUARD, FATSAT_SHELF_SCALE_GUARD,
     SUGAR_SHELF_SCALE_MIN, FATSAT_SHELF_SCALE_MIN,
+    SUGAR_SHELF_REL_FORMULATION_FLOOR, HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G,
+    SUGAR_SHELF_BISCUIT_BUDGET_RAISE,
+    SUGAR_SHELF_REL_CEREAL_FLOOR, SUGAR_SHELF_REL_CEREAL_FLOOR_THRESHOLD_G,
+    SUGAR_SHELF_REL_YOGURT_FLOOR, SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G,
     CULTURED_YOGURT_SUBTYPES, CULTURED_CHEESE_NAME_MARKERS_HE,
+    FATSAT_SHELF_REL_CHEESESPREAD_MEDIAN, FATSAT_SHELF_REL_CHEESESPREAD_IQR,
+    FATSAT_SHELF_REL_CHEESESPREAD_SCALE, FATSAT_SHELF_REL_CHEESESPREAD_FLOOR,
+    FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G,
+    FATSAT_SHELF_REL_CHEESESPREAD_P_MAX, FATSAT_SHELF_REL_CHEESESPREAD_B_MAX,
+    CREAM_CHEESE_SPREAD_SUBTYPES,
+    FATSAT_SHELF_REL_HARDCHEESE_MEDIAN, FATSAT_SHELF_REL_HARDCHEESE_IQR,
+    FATSAT_SHELF_REL_HARDCHEESE_SCALE, FATSAT_SHELF_REL_HARDCHEESE_FLOOR,
+    FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G,
+    FATSAT_SHELF_REL_HARDCHEESE_P_MAX, FATSAT_SHELF_REL_HARDCHEESE_B_MAX,
+    HARD_CHEESE_YELLOW_SUBPOOLS,
+    SUGAR_SHELF_REL_JUICES_MEDIAN, SUGAR_SHELF_REL_JUICES_IQR,
+    SUGAR_SHELF_REL_JUICES_SCALE, SUGAR_SHELF_REL_JUICES_FLOOR,
+    SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G,
+    SUGAR_SHELF_REL_JUICES_P_MAX, SUGAR_SHELF_REL_JUICES_B_MAX,
+    SUGAR_SHELF_SCALE_GUARD_JUICES,
+    SUGAR_SHELF_REL_MAADANIM_MEDIAN, SUGAR_SHELF_REL_MAADANIM_IQR,
+    SUGAR_SHELF_REL_MAADANIM_SCALE, SUGAR_SHELF_REL_MAADANIM_FLOOR,
+    SUGAR_SHELF_REL_MAADANIM_FLOOR_THRESHOLD_G,
+    SUGAR_SHELF_REL_MAADANIM_P_MAX, SUGAR_SHELF_REL_MAADANIM_B_MAX,
+    SODIUM_SHELF_REL_SALTY_SNACK_MEDIAN, SODIUM_SHELF_REL_SALTY_SNACK_IQR,
+    SODIUM_SHELF_REL_SALTY_SNACK_SCALE, SODIUM_SHELF_REL_SALTY_SNACK_FLOOR,
+    SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG,
+    SODIUM_SHELF_REL_SALTY_SNACK_P_MAX, SODIUM_SHELF_REL_SALTY_SNACK_B_MAX,
+    SODIUM_SHELF_SCALE_GUARD_SALTY_SNACK,
+    SODIUM_SHELF_REL_HUMMUS_MEDIAN, SODIUM_SHELF_REL_HUMMUS_IQR,
+    SODIUM_SHELF_REL_HUMMUS_SCALE, SODIUM_SHELF_REL_HUMMUS_FLOOR,
+    SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG,
+    SODIUM_SHELF_REL_HUMMUS_P_MAX, SODIUM_SHELF_REL_HUMMUS_B_MAX,
+    SODIUM_SHELF_SCALE_GUARD_HUMMUS,
+    HUMMUS_PRODUCT_CATEGORIES,
+    SUGAR_SHELF_REL_CAKES_MEDIAN, SUGAR_SHELF_REL_CAKES_IQR,
+    SUGAR_SHELF_REL_CAKES_SCALE, SUGAR_SHELF_REL_CAKES_FLOOR,
+    SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G,
+    SUGAR_SHELF_REL_CAKES_P_MAX, SUGAR_SHELF_REL_CAKES_B_MAX,
     FLUID_MILK_NAME_MARKERS_HE, DAIRY_SOLID_IDENTITY_MARKERS_HE,
     FLAVORED_VARIANT_MARKERS_HE,
     SERVING_SUGGESTION_PROSE_MARKERS_HE,
@@ -174,8 +212,23 @@ BARI_SODIUM_SHELF_RELATIVE_V1 = os.environ.get("BARI_SODIUM_SHELF_RELATIVE_V1", 
 # D7 co-sign: owner approval 2026-06-13 (sodium_protein_design_v1.md).
 BARI_DAIRY_PROTEIN_REWEIGHT_V1 = os.environ.get("BARI_DAIRY_PROTEIN_REWEIGHT_V1", "off").lower() == "on"
 # TASK-278 / EV-084 — Category-agnostic shelf-relative differentiator.
-# DEFAULT OFF → engine byte-identical to baseline when off.
-BARI_SHELF_RELATIVE_V1 = os.environ.get("BARI_SHELF_RELATIVE_V1", "off").lower() == "on"
+# DEFAULT ON — owner-authorized 2026-06-15; all 9 enrollments (EV-087–EV-098) D6+D7+pilot-gated.
+# Scope guards per category ensure only enrolled nutrients fire; set_shelf_stats() required per batch.
+BARI_SHELF_RELATIVE_V1 = os.environ.get("BARI_SHELF_RELATIVE_V1", "on").lower() == "on"
+
+# TASK-284B — EV-096 (seed_pen 10→5) + EV-097 (two-tier PHVO ceiling: partial→40, generic→55).
+# DEFAULT ON — owner-authorized 2026-06-15 (EV-096 + EV-097, TASK-284E).
+# All gates cleared: D6 Nutrition + D7 Product co-sign + owner ratification (frozen-invariant
+# tripwire CLEARED: 29 frozen score nudges accepted, 0 frozen grade changes; re-freeze authorized).
+# Blast radius: 4 grade changes total (all upward), 0 frozen grade changes.
+# When ON (default):
+#   EV-096: seed_pen reduced from 10 to 5 (LA/inflammation meta-analyses kill inflammation framing;
+#           שמן צמחי remains a processing/ingredient-quality marker → 5-pt residual).
+#   EV-097: PHVO ceiling split: has_phvo_partial (מוקשה חלקית/partially hydrogenated) → 40;
+#           has_phvo_generic (מרגרינה/שומן מוקשה/שומן צמחי מוקשה/שומנים מוקשים) → 55.
+#           has_phvo (the legacy combined signal) maps: partial→40, generic→55, combined→min.
+# Rollback: set BARI_FAT_TECH_V1=off in the batch runner / env.
+BARI_FAT_TECH_V1 = os.environ.get("BARI_FAT_TECH_V1", "on").lower() != "off"  # EV-096 + EV-097
 
 # Run-level shelf sodium context (set by batch runner before scoring loop).
 _SHELF_SODIUM_MEDIAN_MG: float | None = None
@@ -270,7 +323,14 @@ def shelf_relative_differentiator(
     direction: str = "one_sided_high",
     mapping: str = "banded",
     relief_bands: list[tuple] | None = None,
+    normalize_distance: bool = False,
 ) -> tuple[int, str | None]:
+    """Shelf-relative differentiator (EV-084 / TASK-278).
+
+    normalize_distance=True: bands are in r = distance/scale units (EV-085 biscuit×sugar).
+    normalize_distance=False (default): bands are in raw nutrient units (EV-056 sodium).
+    All other callers are byte-identical with normalize_distance omitted.
+    """
     if category not in scope_categories:
         return 0, f"category={category} not in scope"
     stats = _SHELF_STATS.get(nutrient)
@@ -288,30 +348,40 @@ def shelf_relative_differentiator(
         if value <= median:
             return 0, f"{nutrient}={value} at/below median={median:.2f} — no surcharge"
         distance = value - median
+        if normalize_distance and scale > 0:
+            distance = distance / scale
         penalty = _band_lookup(distance, surcharge_bands)
     elif direction == "one_sided_low":
         if value >= median:
             return 0, f"{nutrient}={value} at/above median={median:.2f} — no surcharge"
         distance = median - value
+        if normalize_distance and scale > 0:
+            distance = distance / scale
         penalty = _band_lookup(distance, surcharge_bands)
     elif direction == "asymmetric":
         if value > median:
             distance = value - median
+            if normalize_distance and scale > 0:
+                distance = distance / scale
             penalty = _band_lookup(distance, surcharge_bands)
         elif value < median:
             distance_below = median - value
+            if normalize_distance and scale > 0:
+                distance_below = distance_below / scale
             relief = _band_lookup(distance_below, relief_bands or ())
             penalty = -relief
         else:
             penalty = 0
     else:
         distance = abs(value - median)
+        if normalize_distance and scale > 0:
+            distance = distance / scale
         penalty = _band_lookup(distance, surcharge_bands)
 
     if mapping in ("clamped_linear", "tanh") and direction != "asymmetric":
         penalty = _band_lookup(distance, surcharge_bands)
 
-    note = f"{nutrient}={value} dist={value - median:.2f} band_penalty={penalty}"
+    note = f"{nutrient}={value} dist={value - median:.2f} r={round((value - median) / scale, 3) if scale > 0 else 'N/A'} band_penalty={penalty}"
     return penalty, note
 
 
@@ -1382,20 +1452,47 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
     This is a dimension ceiling (not a final-score cap). Fires on שומנים מוקשים /
     מחמאה / מרגרינה markers detected in signal_extractor._PHVO_MARKERS (Fix-B).
     Ceiling is applied after all other scoring so trans/seed penalties still fire.
+    EV-096 (TASK-284B, BARI_FAT_TECH_V1): seed_pen 10→5 when flag ON.
+    EV-097 (TASK-284B, BARI_FAT_TECH_V1): two-tier PHVO ceiling — partial→40, generic→55.
     """
     fat   = nn.get("fat_g") or 0
     sat_f = nn.get("fat_saturated_g")
     has_seed_oil = l3.get("has_seed_oil", False)
     # Fix-C: PHVO ceiling — read once, applied to all score paths.
     has_phvo = l3.get("has_phvo", False)
-    _PHVO_FAT_QUALITY_CEIL = 40  # dimension ceiling when hardened fat present (Fix-C)
+
+    # EV-097 (TASK-284B): two-tier PHVO ceiling when BARI_FAT_TECH_V1 is ON.
+    # Partial (מוקשה חלקית/partially hydrogenated) → ceiling 40 (unchanged).
+    # Generic (מרגרינה/שומן מוקשה etc.)           → ceiling 55 (lifted).
+    # When flag is OFF: single ceiling 40 for any has_phvo=True (Fix-C baseline).
+    if BARI_FAT_TECH_V1:
+        has_phvo_partial = l3.get("has_phvo_partial", False)
+        has_phvo_generic = l3.get("has_phvo_generic", False)
+        # Derive ceiling: partial → 40, generic → 55; if BOTH fire (shouldn't in practice) → 40.
+        if has_phvo_partial:
+            _PHVO_FAT_QUALITY_CEIL = 40
+            _phvo_tier = "partial"
+        elif has_phvo_generic:
+            _PHVO_FAT_QUALITY_CEIL = 55
+            _phvo_tier = "generic"
+        else:
+            _PHVO_FAT_QUALITY_CEIL = 40  # has_phvo=True via legacy path (shouldn't occur with v1)
+            _phvo_tier = "legacy"
+    else:
+        _PHVO_FAT_QUALITY_CEIL = 40  # Fix-C baseline: single ceiling
+        _phvo_tier = "combined"
 
     def _apply_phvo_ceil(s: float, n: str) -> tuple:
         """Apply the PHVO fat_quality ceiling if triggered; annotate note."""
         if has_phvo and s > _PHVO_FAT_QUALITY_CEIL:
-            n = n + f" [Fix-C PHVO ceiling: {s}→{_PHVO_FAT_QUALITY_CEIL}]"
+            tag = (f"EV-097 PHVO-{_phvo_tier} ceiling" if BARI_FAT_TECH_V1
+                   else "Fix-C PHVO ceiling")
+            n = n + f" [{tag}: {s}→{_PHVO_FAT_QUALITY_CEIL}]"
             return float(_PHVO_FAT_QUALITY_CEIL), n
         return s, n
+
+    # EV-096 (TASK-284B): seed_pen 10→5 when BARI_FAT_TECH_V1 ON.
+    _seed_pen_base = 5 if BARI_FAT_TECH_V1 else 10
 
     if fat < 0.5 or se_result.get("structurally_empty"):
         if RECAL_P0_ON and not se_result.get("structurally_empty"):
@@ -1410,7 +1507,7 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
         return _apply_phvo_ceil(50.0, "sat_fat absent → neutral 50")
     trans_status = l3.get("trans_fat_status", "not_detected")
     trans_pen = 20 if trans_status in ("veto","high_concern") else (10 if trans_status=="present" else 0)
-    seed_pen  = 10 if has_seed_oil else 0
+    seed_pen  = _seed_pen_base if has_seed_oil else 0
     # R5 — graded red-label sat-fat penalty on the fat dimension (replaces the composite
     # cliff cap, which guardrails stops firing under RECAL_P0). 0 at/below 5.0g threshold.
     red_pen = _red_satfat_penalty(sat_f) if RECAL_P0_ON else 0.0
@@ -1870,7 +1967,14 @@ def score_whole_food_integrity(nova_level: int, ing_count: int, has_fermentation
 
 def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                          cat_confidence: float, eval_status: dict,
-                         w4_confidence: str = None, w4_materiality: str = None) -> dict:
+                         w4_confidence: str = None, w4_materiality: str = None,
+                         category_subtype: str | None = None,
+                         hard_cheese_subpool: str | None = None,
+                         juice_sub_pool: str | None = None,
+                         maadanim_subtype: str | None = None,
+                         bsip1_salty_snack: bool = False,
+                         bsip_hummus_product_category: str | None = None,
+                         bsip1_cakes_product: bool = False) -> dict:
     """
     Evaluate all guardrail rules. Returns dict with all fired caps and penalties
     per concern family, plus coordination outcomes.
@@ -1887,6 +1991,7 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     ingredients_count = len(l3.get("added_sugar_matches", []))  # not using this
     red_label_sugar   = "sugar" in l3.get("red_labels", [])
     red_label_sat_fat = "sat_fat" in l3.get("red_labels", [])
+    cat_subtype = category_subtype or ""
     red_label_count   = l3.get("red_label_count", 0)
 
     # BARI_REDLABEL_V1 — family-aware reformulable label count.
@@ -2079,6 +2184,10 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                           f"sugar={sugar:.1f}g band={_sugar_grad_band} (EV-REDLABEL-011)")
 
     if BARI_SHELF_RELATIVE_V1:
+        # EV-085 / TASK-278 Phase-2: asymmetric P>B enrollment for biscuit × sugars_g.
+        # normalize_distance=True: bands are in r = distance/scale units (EV-085).
+        # direction="asymmetric": above-median → penalty (P≤6); below-median → relief (B≤3).
+        # All non-biscuit categories return (0, "category=X not in scope") — no bleed.
         _sugar_rel_pen, _sugar_rel_note = shelf_relative_differentiator(
             value=sugar,
             nutrient="sugars_g",
@@ -2086,15 +2195,149 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
             category=category,
             surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
             low_variance_guard=SUGAR_SHELF_SCALE_GUARD,
-            direction="one_sided_high",
+            direction="asymmetric",
             mapping="banded",
             relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
         )
         if _sugar_rel_pen != 0:
             check_penalty("SUGAR_SHELF_REL_V1", True, _sugar_rel_pen, sugar_pens_fired,
                           _sugar_rel_note or "")
 
-    sugar_cap, sugar_pen, sugar_detail = _coordinate_family(sugar_caps_fired, sugar_pens_fired, SUGAR_FAMILY_BUDGET)
+    # EV-088 yogurt×sugar shelf-relative (P115, 2026-06-14) — parallel branch using subtype guard.
+    # Does NOT use SUGAR_SHELF_REL_SCOPE (intentionally left as {"biscuit","cereal"}).
+    # Fires only for cultured yogurt subtypes within dairy_protein; null sugars skipped (delta=0).
+    # Uses same bands + asymmetric + normalize as biscuit/cereal path; stats from pilot set (yogurt-only).
+    _yogurt_sugar = nn.get("sugars_g")
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and cat_subtype in CULTURED_YOGURT_SUBTYPES
+            and _yogurt_sugar is not None):
+        _yogurt_sr_pen, _yogurt_sr_note = shelf_relative_differentiator(
+            value=float(_yogurt_sugar),
+            nutrient="sugars_g",
+            scope_categories=frozenset({"dairy_protein"}),  # gate-only; global scope untouched
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SUGAR_SHELF_SCALE_GUARD,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _yogurt_sr_pen != 0:
+            check_penalty("SUGAR_SHELF_REL_V1", True, _yogurt_sr_pen, sugar_pens_fired,
+                          _yogurt_sr_note or "")
+
+    # EV-091: juices×sugar shelf-relative (P126, 2026-06-14).
+    # Scope guard: juice_sub_pool is not None — covers all juice subpool values.
+    # Uses SUGAR_SHELF_SURCHARGE_BANDS (P_max=6) and SUGAR_SHELF_RELIEF_BANDS (B_max=3).
+    # low_variance_guard=SUGAR_SHELF_SCALE_GUARD_JUICES (2.0g): SUGAR_SHELF_SCALE_GUARD (3.0g) is
+    # too tight for the juice corpus (IQR-based scale=2.82g). Juice-specific guard preserves the
+    # anti-degenerate-distribution protection at a calibrated level for this corpus.
+    _juice_sugars_g = nn.get("sugars_g")
+    _sr_juice_sugar = 0
+    _sr_juice_sugar_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and juice_sub_pool is not None
+            and _juice_sugars_g is not None):
+        _sr_juice_sugar, _sr_juice_sugar_note = shelf_relative_differentiator(
+            value=float(_juice_sugars_g),
+            nutrient="sugars_g",
+            scope_categories=frozenset({"beverage", "default"}),
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SUGAR_SHELF_SCALE_GUARD_JUICES,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_juice_sugar != 0:
+            check_penalty("SUGAR_JUICES_SHELF_REL_V1", True, _sr_juice_sugar, sugar_pens_fired,
+                          _sr_juice_sugar_note or "")
+
+    # EV-092: maadanim×sugar shelf-relative (P129, 2026-06-14).
+    # Scope guard: maadanim_subtype is not None — primary scope mechanism (BSIP1 field).
+    # scope_categories covers all 7 router categories maadanim products use — secondary safety net.
+    # Standard SUGAR_SHELF_SCALE_GUARD (3.0g) applies; maadanim scale=8.75g is well above guard.
+    # Maadanim products routed to biscuit/cereal (~13) may also receive EV-085 surcharge —
+    # the sugar family budget caps total penalty regardless.
+    _maadanim_sugars_g = nn.get("sugars_g")
+    _sr_maadanim_sugar = 0
+    _sr_maadanim_sugar_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and maadanim_subtype is not None
+            and _maadanim_sugars_g is not None):
+        _sr_maadanim_sugar, _sr_maadanim_sugar_note = shelf_relative_differentiator(
+            value=float(_maadanim_sugars_g),
+            nutrient="sugars_g",
+            scope_categories=frozenset({
+                "dessert", "default", "dairy_protein",
+                "snack_bar_granola", "cereal", "biscuit", "sauce_spread",
+            }),
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SUGAR_SHELF_SCALE_GUARD,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_maadanim_sugar != 0:
+            check_penalty("SUGAR_MAADANIM_SHELF_REL_V1", True, _sr_maadanim_sugar, sugar_pens_fired,
+                          _sr_maadanim_sugar_note or "")
+
+    # EV-098: cakes_hard_cookies×sugar shelf-relative (TASK-278 Phase-13; D7 co-signed 2026-06-15).
+    # Scope guard: bsip1_cakes_product=True (BSIP1 canonical_id starts with "bsip1_cakes_" AND
+    #              product is IN_SCORED per corpus cross-reference — caller computes this flag).
+    # Note: BSIP1 category field = "cake_cookie" for all products; primary guard
+    # "category==cakes_hard_cookies" is absent. Fallback bsip1_canonical_id guard is used
+    # with explicit in_scored cross-reference to prevent OOS bleed (C9 gate).
+    # Uses BARI_SHELF_RELATIVE_V1 (same gate as all prior SR enrollments).
+    # normalize_distance=True: bands in r-units (r = (value - median) / robust_scale).
+    # direction="asymmetric": above-median → penalty (P_max=6); below-median → relief (B_max=3).
+    # z_dead=0.30: products in dead zone (|z| <= 0.30, sugars_g ≈ 26.3g–31.7g) get delta=0.
+    # Standard SUGAR_SHELF_SCALE_GUARD (3.0g); scale=9.044 >> 3.0 — guard passes.
+    _cakes_sugars_g = nn.get("sugars_g")
+    _sr_cakes_sugar = 0
+    _sr_cakes_sugar_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip1_cakes_product
+            and _cakes_sugars_g is not None):
+        _sr_cakes_sugar, _sr_cakes_sugar_note = shelf_relative_differentiator(
+            value=float(_cakes_sugars_g),
+            nutrient="sugars_g",
+            # scope_categories: ALL router categories observed in run_cakes_001 BSIP2 traces
+            # (surveyed 2026-06-15): biscuit=60, snack_bar_granola=48, dessert=20,
+            # whole_food_fat=16, dairy_protein=10, default=7, sauce_spread=3, crispbread=1,
+            # beverage=1, cereal=1. Primary gate is bsip1_cakes_product=True; this frozenset
+            # is the inner safety net — if a new router category appears, SR is suppressed
+            # until this set is updated. Include all 10 observed categories.
+            scope_categories=frozenset({
+                "biscuit", "snack_bar_granola", "dessert", "whole_food_fat",
+                "dairy_protein", "default", "sauce_spread", "crispbread",
+                "beverage", "cereal",
+            }),
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SUGAR_SHELF_SCALE_GUARD,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_cakes_sugar != 0:
+            check_penalty("SUGAR_CAKES_SHELF_REL_V1", True, _sr_cakes_sugar, sugar_pens_fired,
+                          _sr_cakes_sugar_note or "")
+
+    # EV-085 — family budget raise for biscuit sugar path (D7 cond 10).
+    # Raise = max(P, B) = 6 pts to accommodate the relative surcharge without
+    # artificial budget-cap on above-median products.
+    _sugar_budget = (SUGAR_FAMILY_BUDGET + SUGAR_SHELF_BISCUIT_BUDGET_RAISE
+                     if (BARI_SHELF_RELATIVE_V1 and category == "biscuit")
+                     else SUGAR_FAMILY_BUDGET)
+    sugar_cap, sugar_pen, sugar_detail = _coordinate_family(sugar_caps_fired, sugar_pens_fired, _sugar_budget)
 
     # -----------------------------------------------------------------------
     # CALORIE_LOAD family
@@ -2159,6 +2402,82 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     sodium_caps_fired = []
     sodium_pens_fired = []
     sodium_weight = 0.7 if context_flag == "brined_food" else 1.0
+
+    # EV-093: salty_snacks×sodium shelf-relative (P135, 2026-06-14).
+    # Scope guard: bsip1_salty_snack=True (BSIP1 category field; authoritative shelf boundary).
+    # The router routes salty_snack products to whole_food_fat/default — use BSIP1 category
+    # field as the primary scope guard (same pattern as bsip_maadanim_subtype for EV-092).
+    # Uses BARI_SHELF_RELATIVE_V1 (not BARI_SODIUM_SHELF_RELATIVE_V1 which is brined-only EV-056).
+    # normalize_distance=True: bands are in r = distance/scale units (same as EV-085/091/092).
+    # direction="asymmetric": above-median → penalty (P≤6); below-median → relief (B≤3).
+    # sodium variable is defined as nn.get("sodium_mg") or 0 — used directly.
+    _sr_salty_snack_sodium = 0
+    _sr_salty_snack_sodium_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip1_salty_snack
+            and sodium is not None and sodium > 0):
+        _ss_sodium = float(sodium)
+        _sr_salty_snack_sodium, _sr_salty_snack_sodium_note = shelf_relative_differentiator(
+            value=_ss_sodium,
+            nutrient="sodium_mg",
+            # scope_categories: include all router categories salty_snack products can get.
+            # Primary guard is bsip1_salty_snack=True (BSIP1 field); this frozenset prevents
+            # unscoped products (e.g. true dairy_protein/brined) from passing the category check.
+            # Router uses whole_food_fat / snack_bar_granola / default for salty_snack BSIP1 products.
+            scope_categories=frozenset({
+                "whole_food_fat", "snack_bar_granola", "default", "salty_snack",
+            }),
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SODIUM_SHELF_SCALE_GUARD_SALTY_SNACK,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_salty_snack_sodium != 0:
+            check_penalty("SODIUM_SALTY_SNACK_SHELF_REL_V1", True, _sr_salty_snack_sodium,
+                          sodium_pens_fired, _sr_salty_snack_sodium_note or "")
+
+    # EV-094: hummus×sodium shelf-relative (P138, 2026-06-14).
+    # Scope guard: bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES (nested BSIP1 accessor).
+    # Q4: suppress SR when sodium >= 700mg (HIGH_SODIUM_700MG_PLUS already handles absolute harm signal).
+    # Q5-B: skip SR for insufficient_data products.
+    _sr_hummus_sodium = 0
+    _sr_hummus_sodium_note = None
+    _hummus_insufficient_data = (eval_status.get("evaluation_status") == "insufficient_data")
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES
+            and sodium is not None and sodium > 0
+            and sodium < 700  # Q4: suppress when HIGH_SODIUM_700MG_PLUS applies
+            and not _hummus_insufficient_data):  # Q5-B: skip for insufficient_data
+        _hummus_sodium = float(sodium)
+        _sr_hummus_sodium, _sr_hummus_sodium_note = shelf_relative_differentiator(
+            value=_hummus_sodium,
+            nutrient="sodium_mg",
+            # scope_categories: include all router categories hummus products can receive.
+            # Primary guard is bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES (BSIP1 field);
+            # this frozenset prevents unscoped products from passing the category check.
+            # Router emits sauce_spread for hummus; also include the BSIP1 categories as a safety net.
+            scope_categories=frozenset(
+                {"sauce_spread"} | set(HUMMUS_PRODUCT_CATEGORIES)
+            ),
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,
+            low_variance_guard=SODIUM_SHELF_SCALE_GUARD_HUMMUS,   # 10mg; hummus IQR-scale=31.88 > 10
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_hummus_sodium != 0:
+            check_penalty("SODIUM_HUMMUS_SHELF_REL_V1", True, _sr_hummus_sodium,
+                          sodium_pens_fired, _sr_hummus_sodium_note or "")
+    elif bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES:
+        if sodium is not None and sodium >= 700:
+            _sr_hummus_sodium_note = "suppressed: HIGH_SODIUM_700MG_PLUS applies"
+        elif _hummus_insufficient_data:
+            _sr_hummus_sodium_note = "skipped: insufficient_data"
 
     # TASK-189 / EV-049 — BARI_SODIUM_CEREAL: graduated sodium treatment.
     # Scoped to snack_bar_granola + cereal. Default OFF (byte-identical to baseline).
@@ -2453,6 +2772,66 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         if _sat_rel_pen != 0:
             check_penalty("FATSAT_SHELF_REL_V1", True, _sat_rel_pen, fat_pens_fired,
                           _sat_rel_note or "")
+
+    # EV-089: cheese_spread×sat_fat shelf-relative (P119, 2026-06-14).
+    # Parallel branch using subtype guard — does NOT use FATSAT_SHELF_REL_SCOPE (stays frozenset()).
+    # Fires only for cream_cheese/cheese_spread subtypes within dairy_protein.
+    # Null fat_saturated_g: no adjustment (skip SR per D7 null-treatment decision).
+    # direction="asymmetric": above-median → penalty (P<=6); below-median → relief (B<=3).
+    # Shelf stats (fat_saturated_g) must be set by pilot caller: median=16.05, scale=2.0756, n=24.
+    # Uses same normalized bands (P_max=6/B_max=3) as yogurt/cereal SR paths.
+    _cheese_satfat_g = nn.get("fat_saturated_g")
+    _sr_cheese_satfat = 0
+    _sr_cheese_satfat_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and cat_subtype in CREAM_CHEESE_SPREAD_SUBTYPES
+            and _cheese_satfat_g is not None):
+        _sr_cheese_satfat, _sr_cheese_satfat_note = shelf_relative_differentiator(
+            value=float(_cheese_satfat_g),
+            nutrient="fat_saturated_g",
+            scope_categories=frozenset({"dairy_protein"}),  # gate-only; FATSAT_SHELF_REL_SCOPE untouched
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,    # same P_max=6/B_max=3 bands as yogurt/cereal
+            low_variance_guard=FATSAT_SHELF_SCALE_GUARD,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_cheese_satfat != 0:
+            check_penalty("FATSAT_CHEESE_SPREAD_SHELF_REL_V1", True, _sr_cheese_satfat, fat_pens_fired,
+                          _sr_cheese_satfat_note or "")
+
+    # EV-090: hard_cheese×sat_fat shelf-relative (P123, 2026-06-14).
+    # Parallel branch using bsip_cheese_subpool guard — does NOT use FATSAT_SHELF_REL_SCOPE (stays frozenset()).
+    # Fires only for yellow/yellow_light/hard_grating subpools within dairy_protein.
+    # Null fat_saturated_g: no adjustment (skip SR per D7 null-treatment decision).
+    # direction="asymmetric": above-median → penalty (P<=6); below-median → relief (B<=3).
+    # Shelf stats (fat_saturated_g) must be set by pilot caller: median=18.0, scale=1.40, n=22.
+    # Uses same normalized bands (P_max=6/B_max=3) as yogurt/cereal/cheese_spread SR paths.
+    _hard_cheese_satfat_g = nn.get("fat_saturated_g")
+    _sr_hard_cheese_satfat = 0
+    _sr_hard_cheese_satfat_note = None
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and hard_cheese_subpool in HARD_CHEESE_YELLOW_SUBPOOLS
+            and _hard_cheese_satfat_g is not None):
+        _sr_hard_cheese_satfat, _sr_hard_cheese_satfat_note = shelf_relative_differentiator(
+            value=float(_hard_cheese_satfat_g),
+            nutrient="fat_saturated_g",
+            scope_categories=frozenset({"dairy_protein"}),  # gate-only; FATSAT_SHELF_REL_SCOPE untouched
+            category=category,
+            surcharge_bands=SUGAR_SHELF_SURCHARGE_BANDS,    # same P_max=6/B_max=3 bands as cheese_spread/yogurt/cereal
+            low_variance_guard=FATSAT_SHELF_SCALE_GUARD,
+            direction="asymmetric",
+            mapping="banded",
+            relief_bands=SUGAR_SHELF_RELIEF_BANDS,
+            normalize_distance=True,
+        )
+        if _sr_hard_cheese_satfat != 0:
+            check_penalty("FATSAT_HARDCHEESE_SHELF_REL_V1", True, _sr_hard_cheese_satfat, fat_pens_fired,
+                          _sr_hard_cheese_satfat_note or "")
 
     fat_cap, fat_pen, fat_detail = _coordinate_family(fat_caps_fired, fat_pens_fired, FAT_QUALITY_FAMILY_BUDGET)
 
@@ -3051,6 +3430,27 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     VEG_SPREAD_SUBTYPES = {"matbucha", "pepper_spread", "pepper_chuma", "eggplant_spread"}
     prot_g = nn.get("protein_g") or 0
     cat_subtype = cat_result.get("category_subtype")
+    bsip_cheese_subpool = product.get("bsip_cheese_subpool")
+    juice_sub_pool = product.get("juice_sub_pool")
+    bsip_maadanim_subtype = product.get("bsip_maadanim_subtype")
+    # EV-093: use BSIP1 category field as scope guard (router routes to whole_food_fat/default).
+    bsip1_salty_snack = (product.get("category") == "salty_snack")
+    # EV-094: hummus product_category from nested bsip0_source (BSIP1 accessor).
+    bsip_hummus_product_category = (
+        product.get("bsip0_source", {}).get("product_category")
+        if isinstance(product.get("bsip0_source"), dict)
+        else None
+    )
+    # EV-098: cakes_hard_cookies scope guard (TASK-278 Phase-13 / D7 co-signed 2026-06-15).
+    # BSIP1 category field = "cake_cookie" for all cakes products — the D7 primary guard
+    # "category=='cakes_hard_cookies'" is absent from the BSIP1 schema. The fallback
+    # guard uses the bsip1_canonical_id field (all cakes BSIP1 files start with "bsip1_cakes_").
+    # OOS contamination: the batch runner (batch_run_cakes_pilot.py) pre-filters to IN_SCORED
+    # products only before the scoring loop, so OOS products never reach this point.
+    # The bsip1_cakes_product flag is therefore safe without corpus_filter cross-reference.
+    bsip1_cakes_product = (
+        product.get("canonical_product_id", "").startswith("bsip1_cakes_")
+    )
     is_veg_spread = (
         RECAL_P0_ON
         and category == "sauce_spread"
@@ -3182,7 +3582,13 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     # confidence-scaled and HP penalties are de-amplified (flag OFF → w4_confidence
     # is None → byte-identical guardrail evaluation).
     gr = evaluate_guardrails(nn, l3, nova_level, category, cat_conf, eval_result,
-                             w4_confidence, w4_materiality)
+                             w4_confidence, w4_materiality, category_subtype=cat_subtype,
+                             hard_cheese_subpool=bsip_cheese_subpool,
+                             juice_sub_pool=juice_sub_pool,
+                             maadanim_subtype=bsip_maadanim_subtype,
+                             bsip1_salty_snack=bsip1_salty_snack,
+                             bsip_hummus_product_category=bsip_hummus_product_category,
+                             bsip1_cakes_product=bsip1_cakes_product)
 
     if gr.get("trans_fat_veto"):
         return {
@@ -3220,6 +3626,275 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     emul_comp_penalty, emul_comp_note, emul_comp_detail = _emulsifier_complexity(l3)
     score_after_penalty = round(score_after_cap - scaled_penalty - polyol_penalty - emul_comp_penalty, 2)
     score_after_penalty = max(ABSOLUTE_SCORE_FLOOR, score_after_penalty)  # absolute floor
+
+    # Stage 7b: EV-085 formulation_absolute_floor (biscuit × sugar, BARI_SHELF_RELATIVE_V1).
+    # Clamps composite score to max 55 for any biscuit with sugars_g >= 20g/100g.
+    # Anti-Immunity Rule: grade B requires >=70; floor=55 + max_relief=3 = 58 < 70.
+    # Only constrains UPWARD movement (below-floor products are untouched by min() here).
+    # Fires ONLY when flag=on AND category=="biscuit" AND sugars_g >= threshold.
+    # Variables initialized here to avoid NameError on flag-off paths (result dict references them).
+    _formulation_floor_applied = False
+    _formulation_floor_note = None
+    _sugar_for_floor = nn.get("sugars_g")  # read directly from nn (same source as guardrails)
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "biscuit"
+            and _sugar_for_floor is not None
+            and _sugar_for_floor >= HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G):
+        _pre_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_FORMULATION_FLOOR)
+        if score_after_penalty < _pre_floor_score:
+            _formulation_floor_applied = True
+            _formulation_floor_note = (
+                f"EV-085 formulation_absolute_floor={SUGAR_SHELF_REL_FORMULATION_FLOOR}: "
+                f"biscuit with sugars_g={_sugar_for_floor}≥{HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7c: EV-087 formulation_absolute_floor (cereal × sugar, BARI_SHELF_RELATIVE_V1).
+    # Clamps composite score to max 62 for any cereal with sugars_g >= 25g/100g.
+    # Anti-Immunity Rule: grade B requires >=70; floor=62 + max_relief=3 = 65 < 70.
+    # Only constrains UPWARD movement (below-floor products are untouched by min() here).
+    # Fires ONLY when flag=on AND category=="cereal" AND sugars_g >= threshold.
+    # Variables initialized here to avoid NameError on flag-off paths (result dict references them).
+    _cereal_floor_applied = False
+    _cereal_floor_note = None
+    _sugar_for_cereal_floor = nn.get("sugars_g")  # read directly from nn (same source as guardrails)
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "cereal"
+            and _sugar_for_cereal_floor is not None
+            and _sugar_for_cereal_floor >= SUGAR_SHELF_REL_CEREAL_FLOOR_THRESHOLD_G):
+        _pre_cereal_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_CEREAL_FLOOR)
+        if score_after_penalty < _pre_cereal_floor_score:
+            _cereal_floor_applied = True
+            _cereal_floor_note = (
+                f"EV-087 formulation_absolute_floor={SUGAR_SHELF_REL_CEREAL_FLOOR}: "
+                f"cereal with sugars_g={_sugar_for_cereal_floor}≥{SUGAR_SHELF_REL_CEREAL_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_cereal_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7d: EV-088 yogurt×sugar shelf-relative floor (P115, 2026-06-14).
+    # Clamps composite score to max 62 for any cultured-yogurt with sugars_g >= 12.0g.
+    # Anti-Immunity: grade B requires >=70; floor=62 + max_relief=3 = 65 < 70.
+    # Only constrains UPWARD movement. Fires ONLY when flag=on AND dairy_protein + yogurt subtype AND sugars >= thresh.
+    # Variables initialized here to avoid NameError on flag-off paths (result dict references them).
+    _yogurt_floor_applied = False
+    _yogurt_floor_note = None
+    _sugar_for_yogurt_floor = nn.get("sugars_g")  # read directly from nn (same source as guardrails)
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and cat_subtype in CULTURED_YOGURT_SUBTYPES
+            and _sugar_for_yogurt_floor is not None
+            and _sugar_for_yogurt_floor >= SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G):
+        _pre_yogurt_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_YOGURT_FLOOR)
+        if score_after_penalty < _pre_yogurt_floor_score:
+            _yogurt_floor_applied = True
+            _yogurt_floor_note = (
+                f"EV-088 formulation_absolute_floor={SUGAR_SHELF_REL_YOGURT_FLOOR}: "
+                f"yogurt with sugars_g={_sugar_for_yogurt_floor}≥{SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_yogurt_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7e: EV-089 cheese_spread×sat_fat shelf-relative floor (P119, 2026-06-14).
+    # Clamps composite score to max 62 for cream_cheese/cheese_spread with sat_fat >= 16.5g.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Double protection: sat_fat >= 16.5g is above median → products in surcharge zone, not relief zone.
+    # Fires ONLY when flag=on AND dairy_protein + cheese_spread subtype AND sat_fat >= threshold.
+    # Variables initialized here to avoid NameError on flag-off paths (result dict references them).
+    _cheese_spread_floor_applied = False
+    _cheese_spread_floor_note = None
+    _satfat_for_cheese_floor = nn.get("fat_saturated_g")
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and cat_subtype in CREAM_CHEESE_SPREAD_SUBTYPES
+            and _satfat_for_cheese_floor is not None
+            and _satfat_for_cheese_floor >= FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G):
+        _pre_cheese_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, FATSAT_SHELF_REL_CHEESESPREAD_FLOOR)
+        if score_after_penalty < _pre_cheese_floor_score:
+            _cheese_spread_floor_applied = True
+            _cheese_spread_floor_note = (
+                f"EV-089 formulation_absolute_floor={FATSAT_SHELF_REL_CHEESESPREAD_FLOOR}: "
+                f"cheese_spread with sat_fat={_satfat_for_cheese_floor}≥{FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_cheese_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7f: EV-090 hard_cheese×sat_fat shelf-relative floor (P123, 2026-06-14).
+    # Clamps composite score to max 62 for yellow/yellow_light/hard_grating hard cheeses with sat_fat >= 19.0g.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Double protection: sat_fat >= 19.0g is above median 18.0g → surcharge zone, not relief zone.
+    # Fires ONLY when flag=on AND dairy_protein AND bsip_cheese_subpool in HARD_CHEESE_YELLOW_SUBPOOLS AND sat_fat >= threshold.
+    # Variables initialized here to avoid NameError on flag-off paths (result dict references them).
+    _hard_cheese_floor_applied = False
+    _hard_cheese_floor_note = None
+    _satfat_for_hard_cheese_floor = nn.get("fat_saturated_g")
+    if (BARI_SHELF_RELATIVE_V1
+            and category == "dairy_protein"
+            and bsip_cheese_subpool in HARD_CHEESE_YELLOW_SUBPOOLS
+            and _satfat_for_hard_cheese_floor is not None
+            and _satfat_for_hard_cheese_floor >= FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G):
+        _pre_hard_cheese_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, FATSAT_SHELF_REL_HARDCHEESE_FLOOR)
+        if score_after_penalty < _pre_hard_cheese_floor_score:
+            _hard_cheese_floor_applied = True
+            _hard_cheese_floor_note = (
+                f"EV-090 formulation_absolute_floor={FATSAT_SHELF_REL_HARDCHEESE_FLOOR}: "
+                f"hard_cheese with sat_fat={_satfat_for_hard_cheese_floor}"
+                f"≥{FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_hard_cheese_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7g: EV-091 juices×sugar shelf-relative floor (P126, 2026-06-14).
+    # Clamps composite score to max 62 for any juice product with sugars_g >= 12.2g.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Fires ONLY when flag=on AND juice_sub_pool is not None AND sugars_g >= threshold.
+    _juice_floor_applied = False
+    _juice_floor_note = None
+    _sugar_for_juice_floor = nn.get("sugars_g")
+    if (BARI_SHELF_RELATIVE_V1
+            and juice_sub_pool is not None
+            and _sugar_for_juice_floor is not None
+            and _sugar_for_juice_floor >= SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G):
+        _pre_juice_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_JUICES_FLOOR)
+        if score_after_penalty < _pre_juice_floor_score:
+            _juice_floor_applied = True
+            _juice_floor_note = (
+                f"EV-091 formulation_absolute_floor={SUGAR_SHELF_REL_JUICES_FLOOR}: "
+                f"juice with sugars_g={_sugar_for_juice_floor}"
+                f">={SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_juice_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7h: EV-092 maadanim×sugar shelf-relative floor (P129, 2026-06-14).
+    # Clamps composite score to max 62 for any maadanim product with sugars_g >= 16.08g.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Fires ONLY when flag=on AND bsip_maadanim_subtype is not None AND sugars_g >= threshold.
+    _maadanim_floor_applied = False
+    _maadanim_floor_note = None
+    _sugar_for_maadanim_floor = nn.get("sugars_g")
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip_maadanim_subtype is not None
+            and _sugar_for_maadanim_floor is not None
+            and _sugar_for_maadanim_floor >= SUGAR_SHELF_REL_MAADANIM_FLOOR_THRESHOLD_G):
+        _pre_maadanim_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_MAADANIM_FLOOR)
+        if score_after_penalty < _pre_maadanim_floor_score:
+            _maadanim_floor_applied = True
+            _maadanim_floor_note = (
+                f"EV-092 formulation_absolute_floor={SUGAR_SHELF_REL_MAADANIM_FLOOR}: "
+                f"maadanim with sugars_g={_sugar_for_maadanim_floor}"
+                f">={SUGAR_SHELF_REL_MAADANIM_FLOOR_THRESHOLD_G}g "
+                f"clamped from {_pre_maadanim_floor_score} to {score_after_penalty}"
+            )
+
+    # Stage 7i: EV-093 salty_snacks×sodium shelf-relative floor (P135, 2026-06-14).
+    # Clamps composite score to max 62 for any salty_snack product with sodium >= 630mg.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Fires ONLY when flag=on AND bsip1_salty_snack=True AND sodium >= floor_threshold.
+    # Uses BSIP1 category field (bsip1_salty_snack) not router category (whole_food_fat/default).
+    _salty_snack_floor_applied = False
+    _salty_snack_floor_note = None
+    _sodium_for_salty_snack_floor = nn.get("sodium_mg")
+    _sodium_for_salty_snack_floor = float(_sodium_for_salty_snack_floor) if _sodium_for_salty_snack_floor is not None else None
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip1_salty_snack
+            and _sodium_for_salty_snack_floor is not None
+            and _sodium_for_salty_snack_floor >= SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG):
+        _pre_salty_snack_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SODIUM_SHELF_REL_SALTY_SNACK_FLOOR)
+        if score_after_penalty < _pre_salty_snack_floor_score:
+            _salty_snack_floor_applied = True
+            _salty_snack_floor_note = (
+                f"EV-093 formulation_absolute_floor={SODIUM_SHELF_REL_SALTY_SNACK_FLOOR}: "
+                f"salty_snack with sodium={_sodium_for_salty_snack_floor}mg"
+                f">={SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG}mg (Q3); "
+                f"clamped from {_pre_salty_snack_floor_score} to {score_after_penalty}"
+            )
+    else:
+        _salty_snack_floor_note = (
+            f"sodium={_sodium_for_salty_snack_floor}mg < {SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG}mg or scope miss"
+        )
+
+    # Stage 7j: EV-094 hummus×sodium shelf-relative floor (P138, 2026-06-14).
+    # Raises composite score to AT LEAST 62 for any hummus product with sodium >= 395mg.
+    # Purpose: guarantees high-sodium hummus products never fall below 62 (true floor).
+    # C8 gate: all products with sodium >= 395mg must score >= 62 at flag_on.
+    # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+    # Fires ONLY when flag=on AND bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES
+    # AND sodium >= floor_threshold.
+    _hummus_floor_applied = False
+    _hummus_floor_note = None
+    _sodium_for_hummus_floor = nn.get("sodium_mg")
+    _sodium_for_hummus_floor = float(_sodium_for_hummus_floor) if _sodium_for_hummus_floor is not None else None
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES
+            and _sodium_for_hummus_floor is not None
+            and _sodium_for_hummus_floor >= SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG
+            and _sodium_for_hummus_floor < 700):  # Q4: skip floor for Na>=700 (same as SR suppression)
+        _pre_hummus_floor_score = score_after_penalty
+        score_after_penalty = max(score_after_penalty, SODIUM_SHELF_REL_HUMMUS_FLOOR)
+        if score_after_penalty > _pre_hummus_floor_score:
+            _hummus_floor_applied = True
+            _hummus_floor_note = (
+                f"EV-094 absolute_floor={SODIUM_SHELF_REL_HUMMUS_FLOOR}: "
+                f"hummus with sodium={_sodium_for_hummus_floor}mg"
+                f">={SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg; "
+                f"raised from {_pre_hummus_floor_score} to {score_after_penalty}"
+            )
+        else:
+            _hummus_floor_note = (
+                f"sodium={_sodium_for_hummus_floor}mg >= {SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg "
+                f"but score={score_after_penalty} already >= floor={SODIUM_SHELF_REL_HUMMUS_FLOOR}"
+            )
+    else:
+        if _sodium_for_hummus_floor is not None and _sodium_for_hummus_floor >= 700:
+            _hummus_floor_note = (
+                f"sodium={_sodium_for_hummus_floor}mg >= 700mg: Q4 suppresses floor (consistent with SR suppression)"
+            )
+        else:
+            _hummus_floor_note = (
+                f"sodium={_sodium_for_hummus_floor}mg below threshold "
+                f"({SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg) or scope miss"
+            )
+
+    # Stage 7k: EV-098 cakes_hard_cookies×sugar shelf-relative floor (TASK-278 Phase-13).
+    # Clamps composite score to max SUGAR_SHELF_REL_CAKES_FLOOR (52) for any cakes product
+    # with sugars_g >= SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G (33.0g = Q3).
+    # Purpose: top-quartile sugar products cannot escape their SR surcharge via other
+    # dimension boosts — the ceiling is formulation-absolute.
+    # Anti-Immunity: floor(52) + B_max(3) = 55 < 70 (grade B threshold) — PASS (D7 verified).
+    # Direction: this is a MAX clamp (upper ceiling), not a MIN floor like EV-094.
+    # Fires ONLY when flag=on AND bsip1_cakes_product=True AND sugars_g >= 33.0g.
+    _cakes_floor_applied = False
+    _cakes_floor_note = None
+    _sugar_for_cakes_floor = nn.get("sugars_g")
+    _sugar_for_cakes_floor = float(_sugar_for_cakes_floor) if _sugar_for_cakes_floor is not None else None
+    if (BARI_SHELF_RELATIVE_V1
+            and bsip1_cakes_product
+            and _sugar_for_cakes_floor is not None
+            and _sugar_for_cakes_floor >= SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G):
+        _pre_cakes_floor_score = score_after_penalty
+        score_after_penalty = min(score_after_penalty, SUGAR_SHELF_REL_CAKES_FLOOR)
+        if score_after_penalty < _pre_cakes_floor_score:
+            _cakes_floor_applied = True
+            _cakes_floor_note = (
+                f"EV-098 formulation_absolute_ceiling={SUGAR_SHELF_REL_CAKES_FLOOR}: "
+                f"cakes product with sugars_g={_sugar_for_cakes_floor}"
+                f">={SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G}g (Q3); "
+                f"clamped from {_pre_cakes_floor_score} to {score_after_penalty}"
+            )
+        else:
+            _cakes_floor_note = (
+                f"sugars_g={_sugar_for_cakes_floor}g >= {SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G}g "
+                f"but score={score_after_penalty} already <= ceiling={SUGAR_SHELF_REL_CAKES_FLOOR}"
+            )
+    else:
+        _cakes_floor_note = (
+            f"sugars_g={_sugar_for_cakes_floor}g below threshold "
+            f"({SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G}g) or scope miss"
+        )
 
     # Stage 8: Floor application (SRC-01)
     # TASK-217 / BEV-084: pass ingredient text + has_fruit_concentrate for juice_100 gate.
@@ -3344,6 +4019,26 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "emulsifier_complexity_penalty_note": emul_comp_note if emul_comp_penalty > 0 else None,
         "emulsifier_complexity_detail":       emul_comp_detail if emul_comp_penalty > 0 else None,
         "score_after_penalty":  score_after_penalty,
+        "ev085_formulation_floor_applied":  _formulation_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev085_formulation_floor_note":     _formulation_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev087_cereal_floor_applied":  _cereal_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev087_cereal_floor_note":     _cereal_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev088_yogurt_floor_applied":  _yogurt_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev088_yogurt_floor_note":     _yogurt_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev089_cheese_spread_floor_applied": _cheese_spread_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev089_cheese_spread_floor_note":    _cheese_spread_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev090_hard_cheese_floor_applied": _hard_cheese_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev090_hard_cheese_floor_note":    _hard_cheese_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev091_juice_floor_applied": _juice_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev091_juice_floor_note":    _juice_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev092_maadanim_floor_applied": _maadanim_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev092_maadanim_floor_note":    _maadanim_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev093_salty_snack_floor_applied": _salty_snack_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev093_salty_snack_floor_note":    _salty_snack_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev094_hummus_floor_applied": _hummus_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev094_hummus_floor_note":    _hummus_floor_note if BARI_SHELF_RELATIVE_V1 else None,
+        "ev098_cakes_floor_applied": _cakes_floor_applied if BARI_SHELF_RELATIVE_V1 else None,
+        "ev098_cakes_floor_note":    _cakes_floor_note if BARI_SHELF_RELATIVE_V1 else None,
         "concern_family_coordination": gr.get("concern_family_coordination", {}),
         "floors_considered": floor_result.get("floors_considered", []),
         "floors_applied":    floor_result.get("floors_applied", []),
