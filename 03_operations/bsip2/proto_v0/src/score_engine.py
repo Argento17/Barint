@@ -228,7 +228,7 @@ BARI_SHELF_RELATIVE_V1 = os.environ.get("BARI_SHELF_RELATIVE_V1", "on").lower() 
 #           has_phvo_generic (מרגרינה/שומן מוקשה/שומן צמחי מוקשה/שומנים מוקשים) → 55.
 #           has_phvo (the legacy combined signal) maps: partial→40, generic→55, combined→min.
 # Rollback: set BARI_FAT_TECH_V1=off in the batch runner / env.
-BARI_FAT_TECH_V1 = os.environ.get("BARI_FAT_TECH_V1", "on").lower() != "off"  # EV-096 + EV-097
+BARI_FAT_TECH_V1 = os.environ.get("BARI_FAT_TECH_V1", "on").lower() == "on"  # EV-096 + EV-097 — default ON 2026-06-15 (TASK-284E clean re-run; owner ratified)
 
 # Run-level shelf sodium context (set by batch runner before scoring loop).
 _SHELF_SODIUM_MEDIAN_MG: float | None = None
@@ -3824,8 +3824,20 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     # Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
     # Fires ONLY when flag=on AND bsip_hummus_product_category in HUMMUS_PRODUCT_CATEGORIES
     # AND sodium >= floor_threshold.
+    #
+    # EV-099 amendments (D7 co-signed 2026-06-15):
+    # (a) CAP-BIND: floor is capped by binding_cap — the floor can never EXCEED a binding cap.
+    #     If a product has a binding cap of e.g. 45 (ISRAELI_RED_LABELS_2_PLUS), the effective
+    #     floor is min(62, 45) = 45, so the cap still dominates.
+    # (b) NOVA≤2 ONLY: floor applies ONLY when nova_level <= 2. NOVA-3 and NOVA-4 hummus
+    #     products get NO floor lift — their processing penalty is real and must not be masked.
+    #     Supersedes the earlier "NOVA-4-only exclusion" — now NOVA-3 is also excluded.
+    # (c) RT-10 LOGGING: EV-094 floor disposition is always written to _ev094_rt10_entries
+    #     (collected after apply_floors and injected into floor_result) so it appears in
+    #     floors_considered / floors_applied in the trace. Floor must never fire silently.
     _hummus_floor_applied = False
     _hummus_floor_note = None
+    _ev094_rt10_entries = []         # RT-10 trace entries injected into floor_result post-apply
     _sodium_for_hummus_floor = nn.get("sodium_mg")
     _sodium_for_hummus_floor = float(_sodium_for_hummus_floor) if _sodium_for_hummus_floor is not None else None
     if (BARI_SHELF_RELATIVE_V1
@@ -3833,21 +3845,69 @@ def score_product(product: dict, signals: dict, cat_result: dict,
             and _sodium_for_hummus_floor is not None
             and _sodium_for_hummus_floor >= SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG
             and _sodium_for_hummus_floor < 700):  # Q4: skip floor for Na>=700 (same as SR suppression)
-        _pre_hummus_floor_score = score_after_penalty
-        score_after_penalty = max(score_after_penalty, SODIUM_SHELF_REL_HUMMUS_FLOOR)
-        if score_after_penalty > _pre_hummus_floor_score:
-            _hummus_floor_applied = True
+        # (b) EV-099 NOVA≤2 gate: floor only fires for minimally/moderately processed hummus
+        if nova_level > 2:
             _hummus_floor_note = (
-                f"EV-094 absolute_floor={SODIUM_SHELF_REL_HUMMUS_FLOOR}: "
-                f"hummus with sodium={_sodium_for_hummus_floor}mg"
-                f">={SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg; "
-                f"raised from {_pre_hummus_floor_score} to {score_after_penalty}"
+                f"EV-094 floor eligible but blocked by NOVA-gate (EV-099): "
+                f"nova_level={nova_level} > 2; NOVA-3/4 hummus gets no floor lift"
             )
+            _ev094_rt10_entries.append({
+                "floor_type": "ev094_hummus_sodium",
+                "result": "eligible_not_applied",
+                "reason": f"EV-099 NOVA-gate: nova_level={nova_level} > 2 (NOVA-3/4 excluded from floor)",
+                "sodium_mg": _sodium_for_hummus_floor,
+                "nova_level": nova_level,
+                "floor_value": SODIUM_SHELF_REL_HUMMUS_FLOOR,
+                "binding_cap": binding_cap,
+            })
         else:
-            _hummus_floor_note = (
-                f"sodium={_sodium_for_hummus_floor}mg >= {SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg "
-                f"but score={score_after_penalty} already >= floor={SODIUM_SHELF_REL_HUMMUS_FLOOR}"
+            # (a) EV-099 CAP-BIND: effective floor cannot exceed the binding cap
+            _effective_hummus_floor = (
+                min(SODIUM_SHELF_REL_HUMMUS_FLOOR, binding_cap)
+                if binding_cap is not None
+                else SODIUM_SHELF_REL_HUMMUS_FLOOR
             )
+            _pre_hummus_floor_score = score_after_penalty
+            score_after_penalty = max(score_after_penalty, _effective_hummus_floor)
+            if score_after_penalty > _pre_hummus_floor_score:
+                _hummus_floor_applied = True
+                _hummus_floor_note = (
+                    f"EV-094 floor={_effective_hummus_floor} (nominal={SODIUM_SHELF_REL_HUMMUS_FLOOR}"
+                    + (f", capped by binding_cap={binding_cap}" if binding_cap is not None and binding_cap < SODIUM_SHELF_REL_HUMMUS_FLOOR else "")
+                    + f"): hummus sodium={_sodium_for_hummus_floor}mg"
+                    f">={SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg, nova={nova_level}<=2; "
+                    f"raised from {_pre_hummus_floor_score} to {score_after_penalty}"
+                )
+                # (c) RT-10: log as applied
+                _ev094_rt10_entries.append({
+                    "floor_type": "ev094_hummus_sodium",
+                    "result": "applied",
+                    "pre_floor_score": _pre_hummus_floor_score,
+                    "post_floor_score": score_after_penalty,
+                    "effective_floor": _effective_hummus_floor,
+                    "nominal_floor": SODIUM_SHELF_REL_HUMMUS_FLOOR,
+                    "binding_cap": binding_cap,
+                    "cap_bind_active": (binding_cap is not None and binding_cap < SODIUM_SHELF_REL_HUMMUS_FLOOR),
+                    "sodium_mg": _sodium_for_hummus_floor,
+                    "nova_level": nova_level,
+                })
+            else:
+                _hummus_floor_note = (
+                    f"sodium={_sodium_for_hummus_floor}mg >= {SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG}mg "
+                    f"nova={nova_level}<=2 but score={score_after_penalty} already >= "
+                    f"effective_floor={_effective_hummus_floor}"
+                )
+                # (c) RT-10: log as eligible_not_applied (score already above floor)
+                _ev094_rt10_entries.append({
+                    "floor_type": "ev094_hummus_sodium",
+                    "result": "eligible_not_applied",
+                    "reason": f"score={score_after_penalty} already >= effective_floor={_effective_hummus_floor}",
+                    "effective_floor": _effective_hummus_floor,
+                    "nominal_floor": SODIUM_SHELF_REL_HUMMUS_FLOOR,
+                    "binding_cap": binding_cap,
+                    "sodium_mg": _sodium_for_hummus_floor,
+                    "nova_level": nova_level,
+                })
     else:
         if _sodium_for_hummus_floor is not None and _sodium_for_hummus_floor >= 700:
             _hummus_floor_note = (
@@ -3925,6 +3985,25 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         ingredient_count=_ing_count_for_floor,
     )
     score_after_floors = floor_result["final_score_after_floors"]
+
+    # RT-10 (EV-099): inject EV-094 hummus floor disposition into floor_result so it
+    # appears in floors_considered / floors_applied trace fields.  The EV-094 floor fires
+    # at Stage 7j (before apply_floors) but its disposition was previously invisible to the
+    # trace.  We now append entries collected at Stage 7j here so the orchestrator can
+    # verify floor behavior from the committed trace without re-running the engine.
+    if _ev094_rt10_entries:
+        _fc = floor_result.get("floors_considered")
+        if isinstance(_fc, list):
+            # Remove the trailing "no_applicable_floor" placeholder if it's the only entry
+            # so the EV-094 entry doesn't pile on top of a redundant placeholder.
+            if _fc == ["no_applicable_floor"]:
+                _fc.clear()
+            _fc.extend(_ev094_rt10_entries)
+        _applied_entries = [e for e in _ev094_rt10_entries if e.get("result") == "applied"]
+        if _applied_entries:
+            _fa = floor_result.get("floors_applied")
+            if isinstance(_fa, list):
+                _fa.extend(_applied_entries)
 
     # Stage 9: Confidence ceiling
     ceiling = conf_result.get("confidence_ceiling")

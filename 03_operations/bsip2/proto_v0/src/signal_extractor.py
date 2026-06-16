@@ -28,7 +28,12 @@ TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 # ratio from compositional reference data). This eliminates the data-asymmetry where
 # products with declared sat_fat receive the Israeli red label but unlabelled products
 # escape it. Conservative: does not apply to processed-cheese sub_pool (different
-# fat profile). Gated so other category runs are unaffected. Default OFF.
+# fat profile). Additional guard (EV-099, D7 co-signed 2026-06-15): inference
+# requires a non-empty bsip_cheese_subpool — milk, yogurt, and other dairy categories
+# that lack a cheese subpool are EXCLUDED, preserving the milk frozen invariant.
+# This prevents the inference from moving non-cheese dairy products (milk fat_g is
+# measured but sat_fat may be absent; inferring 0.62x there is wrong).
+# Default OFF — batch runners for hard_cheeses/cheese_spreads set BARI_DAIRY_SAT_FAT_INFER=on.
 DAIRY_SAT_FAT_INFER_ON = os.environ.get("BARI_DAIRY_SAT_FAT_INFER", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
@@ -1046,7 +1051,12 @@ def extract_signals(product: dict) -> dict:
             (product.get("bsip_cheese_subpool") or product.get("sub_pool") or "")
             .lower().strip()
         )
-        if _sub_pool_for_infer != "processed":
+        # EV-099 guard: inference only fires for products with an explicit cheese subpool
+        # (non-empty string). Products without a subpool (milk, yogurt, hummus) are excluded
+        # — the 0.62x ratio is specific to hard/semi-hard cheese fat composition and is not
+        # valid for other dairy categories. This preserves the milk frozen invariant (C10).
+        _has_cheese_subpool = bool(_sub_pool_for_infer)
+        if _has_cheese_subpool and _sub_pool_for_infer != "processed":
             _sat_fat_inferred_value = round(fat * 0.62, 1)
             sat_f = _sat_fat_inferred_value
             _sat_fat_inferred = True
@@ -1154,20 +1164,48 @@ def extract_signals(product: dict) -> dict:
     # "partially hydrogenated" (English label imports). The bare "מוקשה" (hardened/modified)
     # is NOT included — it appears in thickener context ("עמילן מוקשה") and is already
     # caught by ADDITIVE_MARKER_PATTERNS; adding it here would false-fire on starch.
-    # Fix-B (TASK-275): added שומנים מוקשים, שומן מוקשה (generic hardened fat, covers
-    # מחמאה-style ingredient declarations), מחמאה (margarine), מרגרינה (margarine).
+    # Fix-B (TASK-275): added שומנים מוקשים, שומן מוקשה (generic hardened fat plural/singular),
+    # מרגרינה (margarine). מחמאה was also added by Fix-B but removed by D6 Q1 ruling (TASK-280/EV-086).
     # Bare "מוקשה" remains excluded — false-fires on עמילן מוקשה (modified starch).
-    _PHVO_MARKERS = [
+    #
+    # TASK-284B / EV-097: split into two sub-sets for two-tier ceiling (BARI_FAT_TECH_V1).
+    #   _PHVO_PARTIAL_MARKERS — true industrial-trans signal; ceiling stays at 40.
+    #   _PHVO_GENERIC_MARKERS — fully-hydrogenated / IE / margarine; ceiling relaxed to 55.
+    # The combined _PHVO_MARKERS list is preserved for has_phvo (legacy signal, always computed).
+    _PHVO_PARTIAL_MARKERS = [
+        "מוקשה חלקית",           # partially hydrogenated (Hebrew)
+        "partially hydrogenated",  # English label imports
+    ]
+    _PHVO_GENERIC_MARKERS = [
         "שומן צמחי מוקשה",    # hydrogenated vegetable fat
         "שמן צמחי מוקשה",     # hydrogenated vegetable oil
-        "מוקשה חלקית",        # partially hydrogenated
-        "partially hydrogenated",
         "שומנים מוקשים",      # Fix-B: generic hardened fats (plural)
         "שומן מוקשה",         # Fix-B: generic hardened fat (singular)
-        "מחמאה",              # Fix-B: margarine/shortening (Hebrew common form)
+        # "מחמאה" REMOVED — clarified butter (ghee), animal fat, not PHVO. D6 Q1 (TASK-280/EV-086).
         "מרגרינה",            # Fix-B: margarine (transliteration form)
     ]
-    has_phvo = any(m in full_text for m in _PHVO_MARKERS)
+    _PHVO_MARKERS = _PHVO_PARTIAL_MARKERS + _PHVO_GENERIC_MARKERS  # combined (legacy has_phvo)
+    # PHVO detection: only fire if marker appears in first 8 ingredient positions (1-indexed).
+    # Fallback to full-text search when ingredient_order is not available.
+    # D6 Q2 / D7 (TASK-280/EV-086): position gate prevents trace margarine from triggering.
+    _PHVO_MARKER_MAX_POSITION = 8
+    has_phvo = False
+    has_phvo_partial = False  # EV-097: true PHVO / industrial trans signal
+    has_phvo_generic = False  # EV-097: fully-hydrogenated / margarine / IE signal
+    if ingredient_order:
+        early_ingredients = " ".join(
+            item.get("text", "").lower()
+            for item in ingredient_order
+            if item.get("position", 999) <= _PHVO_MARKER_MAX_POSITION
+        )
+        has_phvo_partial = any(marker in early_ingredients for marker in _PHVO_PARTIAL_MARKERS)
+        has_phvo_generic = any(marker in early_ingredients for marker in _PHVO_GENERIC_MARKERS)
+        has_phvo = has_phvo_partial or has_phvo_generic
+    else:
+        phvo_text = (ing_text or full_text or "").lower()
+        has_phvo_partial = any(marker in phvo_text for marker in _PHVO_PARTIAL_MARKERS)
+        has_phvo_generic = any(marker in phvo_text for marker in _PHVO_GENERIC_MARKERS)
+        has_phvo = has_phvo_partial or has_phvo_generic
 
     # Fortification detection
     has_fortification_explicit = any(m in full_text for m in FORTIFICATION_EXPLICIT_HE)
@@ -1225,7 +1263,9 @@ def extract_signals(product: dict) -> dict:
         "fortification_evidence":   fortification_evidence,
         "trans_fat_status":         trans_fat_status,
         "trans_fat_threshold_declaration_possible": trans_fat_threshold_artifact,
-        "has_phvo":                 has_phvo,   # EV-050: partially-hydrogenated vegetable oil marker
+        "has_phvo":                 has_phvo,         # EV-050: partially-hydrogenated vegetable oil marker
+        "has_phvo_partial":         has_phvo_partial, # EV-097: מוקשה חלקית/partially hydrogenated (true PHO)
+        "has_phvo_generic":         has_phvo_generic, # EV-097: מרגרינה/שומן מוקשה etc. (FH/IE generic)
         "red_labels":               red_labels,
         "red_label_count":          len(red_labels),
         "hp_fat_sugar_pattern_raw": hp_fat_sugar_raw,
