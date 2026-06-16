@@ -1,0 +1,175 @@
+{
+  "sku_id": "SP-7290001186237",
+  "barcode": "7290001186237",
+  "name_he": "אלטמן ויטמין C 500 טבליות לעיסה 50",
+  "brand_bucket": "altman",
+  "engine_active": "vitamin_c",
+  "price_ils": 85.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון'",
+  "lossy": [
+    "actives[1].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/winter/vitamin-c/vitamin-c500-chewable-tablets/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן ויטמין C500 ללעיסה",
+    "barcode": "7290001186237",
+    "serving_size": "1 tablet",
+    "servings_per_container": "50",
+    "ingredient_list_raw": null,
+    "primary_claim": "ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ויטמין C (ascorbic acid and sodium ascorbate)",
+        "amount": 500.0,
+        "unit": "mg",
+        "form": "ascorbic acid",
+        "form_raw": "ascorbic acid",
+        "active_slug": "vitamin_c"
+      },
+      {
+        "ingredient": "Rosa Canina (Rose Hips) extract",
+        "amount": 25.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_c"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290001186237",
+      "source_url": "https://www.altman.co.il/shop/winter/vitamin-c/vitamin-c500-chewable-tablets/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן ויטמין C500 ללעיסה",
+    "primary_claim_fed": "ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון immune health",
+    "actives": [
+      {
+        "active_slug": "vitamin_c",
+        "display_name": "ויטמין C (ascorbic acid and sodium ascorbate)",
+        "quantity": 500.0,
+        "unit": "mg",
+        "form": "ascorbic acid",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "score": 77.5,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 92,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.343259Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290001186237",
+    "active": "vitamin C (ascorbic acid)",
+    "on_label_claim": "ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון immune health",
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29099763",
+        "PMID:23440782"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 77.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-007"
+      }
+    ],
+    "final": {
+      "score": 77.5,
+      "grade": "B"
+    }
+  }
+}

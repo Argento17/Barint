@@ -1,0 +1,196 @@
+{
+  "sku_id": "SP-7290001943212",
+  "barcode": "7290001943212",
+  "name_he": "תריאומגה סופר 180 קפליות",
+  "brand_bucket": "other",
+  "engine_active": "omega3",
+  "price_ils": 201.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "bella-natura.net",
+    "confidence": 1.0,
+    "reason": "barcode match via bella-natura.net"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'אומגה 3 ריכוז גבוה עם EPA ו-DHA בתוספת אומגה 9'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://bella-natura.net/products/%D7%90%D7%95%D7%9E%D7%92%D7%94-3-%D7%A1%D7%95%D7%A4%D7%A8",
+    "source": "bella-natura.net",
+    "brand": "other",
+    "product_name": "תרי-אומגה סופר 180 כמוסות תרימוורה",
+    "barcode": "7290001943212",
+    "serving_size": "1 capsule",
+    "servings_per_container": "180",
+    "ingredient_list_raw": null,
+    "primary_claim": "אומגה 3 ריכוז גבוה עם EPA ו-DHA בתוספת אומגה 9",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "EPA (eicosapentaenoic acid)",
+        "amount": 160.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "DHA (docosahexaenoic acid)",
+        "amount": 400.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "שמן דגים",
+        "amount": 560.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:bella-natura.net",
+      "source_id": "trimavera:7290001943212",
+      "source_url": "https://bella-natura.net/products/%D7%90%D7%95%D7%9E%D7%92%D7%94-3-%D7%A1%D7%95%D7%A4%D7%A8",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "תרי-אומגה סופר 180 כמוסות תרימוורה",
+    "primary_claim_fed": "אומגה 3 ריכוז גבוה עם EPA ו-DHA בתוספת אומגה 9 cognitive",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA (eicosapentaenoic acid)",
+        "quantity": 160.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.971603Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290001943212",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "אומגה 3 ריכוז גבוה עם EPA ו-DHA בתוספת אומגה 9 cognitive",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 49.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

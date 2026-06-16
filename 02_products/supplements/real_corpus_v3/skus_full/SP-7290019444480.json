@@ -1,0 +1,164 @@
+{
+  "sku_id": "SP-7290019444480",
+  "barcode": "7290019444480",
+  "name_he": "אלטמן מגנזיום ביסגליצינט 60 קפליות",
+  "brand_bucket": "altman",
+  "engine_active": "magnesium",
+  "price_ils": 134.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; לשינ'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/magnesium/magnesium-bisglycinate/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן מגנזיום ביסגליצינט 60 קפליות",
+    "barcode": "7290019444480",
+    "serving_size": "1 capsule",
+    "servings_per_container": "60",
+    "ingredient_list_raw": null,
+    "primary_claim": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; לשינה טובה",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (magnesium bisglycinate)",
+        "amount": 250.0,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "form_raw": "bisglycinate",
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290019444480",
+      "source_url": "https://www.altman.co.il/shop/magnesium/magnesium-bisglycinate/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן מגנזיום ביסגליצינט 60 קפליות",
+    "primary_claim_fed": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; לשינה טובה muscle health nerve health sleep",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (magnesium bisglycinate)",
+        "quantity": 250.0,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "sleep quality / insomnia",
+    "score": 72.7,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 72.7,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.762944Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290019444480",
+    "active": "magnesium",
+    "on_label_claim": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; לשינה טובה muscle health nerve health sleep",
+    "claim_matched": "sleep quality / insomnia",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "sleep quality / insomnia",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:33865376",
+        "PMID:35184264",
+        "PMID:40918053"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 72.7,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 72.7,
+    "dossier_facts_used": [
+      {
+        "field": "claims['sleep quality / insomnia'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 72.7,
+      "grade": "B"
+    }
+  }
+}

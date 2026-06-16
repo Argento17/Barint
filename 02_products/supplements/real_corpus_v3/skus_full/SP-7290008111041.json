@@ -1,0 +1,167 @@
+{
+  "sku_id": "SP-7290008111041",
+  "barcode": "7290008111041",
+  "name_he": "הדס חומצה פולית 400 מקג 200 טבליות",
+  "brand_bucket": "other",
+  "engine_active": "folic_acid",
+  "price_ils": 70.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "maxpharm.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via maxpharm.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'חומצה פולית 400 מק\"ג לתמיכה בהיריון ובריאות תאים'",
+  "lossy": [
+    "actives[0].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://maxpharm.co.il/products/%D7%97%D7%95%D7%9E%D7%A6%D7%94-%D7%A4%D7%95%D7%9C%D7%99%D7%AA-400-%D7%9E%D7%A7%D7%92-200-%D7%98%D7%91%D7%9C%D7%99%D7%95%D7%AA-%D7%94%D7%93%D7%A1",
+    "source": "maxpharm.co.il",
+    "brand": "other",
+    "product_name": "הדס חומצה פולית 400 מק\"ג 200 טבליות",
+    "barcode": "7290008111041",
+    "serving_size": "1 tablet",
+    "servings_per_container": "200",
+    "ingredient_list_raw": "Sorbitol, magnesium stearate, folic acid",
+    "primary_claim": "חומצה פולית 400 מק\"ג לתמיכה בהיריון ובריאות תאים",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "חומצה פולית (folic acid)",
+        "amount": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "folic_acid"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:maxpharm.co.il",
+      "source_id": "hadas:7290008111041",
+      "source_url": "https://maxpharm.co.il/products/%D7%97%D7%95%D7%9E%D7%A6%D7%94-%D7%A4%D7%95%D7%9C%D7%99%D7%AA-400-%D7%9E%D7%A7%D7%92-200-%D7%98%D7%91%D7%9C%D7%99%D7%95%D7%AA-%D7%94%D7%93%D7%A1",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "הדס חומצה פולית 400 מק\"ג 200 טבליות",
+    "primary_claim_fed": "neural tube defect risk reduction (periconceptional)",
+    "actives": [
+      {
+        "active_slug": "folic_acid",
+        "display_name": "חומצה פולית (folic acid)",
+        "quantity": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "periconceptional prevention of neural tube defects (NTDs)",
+    "score": 82.8,
+    "grade": "A",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:55.205972Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290008111041",
+    "active": "folic acid (vitamin B9)",
+    "on_label_claim": "neural tube defect risk reduction (periconceptional)",
+    "claim_matched": "periconceptional prevention of neural tube defects (NTDs)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "periconceptional prevention of neural tube defects (NTDs)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:26662928",
+        "PMID:1677062"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 82.8,
+    "dossier_facts_used": [
+      {
+        "field": "claims['periconceptional prevention of neural tube defects (NTDs)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-011"
+      }
+    ],
+    "final": {
+      "score": 82.8,
+      "grade": "A"
+    }
+  }
+}

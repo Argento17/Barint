@@ -1,0 +1,26 @@
+{
+  "url": "name_derived://super_pharm/7290118206101",
+  "source_id": "life:7290118206101",
+  "acquisition_method": "unscoreable",
+  "unscoreable_reason": "TASK-277 Item 3: omega3 active derived from product name only (name_derived guard). Amount 600 mg is total fish-oil mass (from name 'אומגה עילית זירו 600 מג'), NOT EPA+DHA. SIE engine active_basis = EPA+DHA only (see omega3_epa_dha.yaml active_basis_note). Total fish-oil dose is NOT scoreable — comparing it to EPA+DHA effective_dose would be structurally equivalent to the elemental-vs-compound trap. Classified unscoreable_incomplete pending a real panel scrape that discloses EPA+DHA amounts.",
+  "task_ref": "TASK-277",
+  "json": {
+    "brand": "life",
+    "product_name": "לייף אומגה עילית זירו 600 מג 120 כמוסות",
+    "barcode": "7290118206101",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": null,
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "omega3",
+        "amount": 600,
+        "unit": "mg",
+        "form": null,
+        "note": "600 mg = total fish-oil mass from product name; EPA+DHA undisclosed — NOT the scoreable active"
+      }
+    ]
+  }
+}

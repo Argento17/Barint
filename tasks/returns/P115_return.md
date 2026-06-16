@@ -1,0 +1,817 @@
+# Return: P115
+
+> ⚠️ **STATUS: RETURNED-UNVERIFIED.** Raw agent output captured by the router.
+> Nothing here is accepted, closed, or true until the ORCHESTRATOR verifies every
+> claim against artifacts (Return Contract v1). The router never closes.
+> (Law added after P35 was face-value-closed with contradictions inside it.)
+
+| Field | Value |
+|---|---|
+| Prompt file | `tasks\prompts\P115_c1cursor_yogurt_wire_pilot.md` |
+| Model | `grok/build-cli` |
+| Started | 2026-06-14T12:53:42.933912+00:00 |
+| Finished | 2026-06-14T13:01:24.429932+00:00 |
+| Exit code | 0 |
+
+---
+
+## Output
+
+```
+**P115 executed exactly per task body (below first --- in prompt file; all rules/D7 locked params/DoD followed; no OFF ever; MEASURED NOT PUBLISHED; no scope change to SUGAR_SHELF_REL_SCOPE; milk frozen invariant C10 held; engine_invariants 342 PASS pre-pilot).**
+
+**Files changed / created (to verify at exact locations):**
+- [03_operations/bsip2/proto_v0/src/constants.py](/C:/Bari/03_operations/bsip2/proto_v0/src/constants.py): 7 new SUGAR_SHELF_REL_YOGURT_* consts (MEDIAN/IQR/SCALE/FLOOR/THRESHOLD/P_MAX/B_MAX) inserted immediately after cereal block (EV-088/P115/2026-06-14 comment + exact locked values; no other consts touched; SUGAR_SHELF_REL_SCOPE untouched). Verify ~L578 block. 
+- [03_operations/bsip2/proto_v0/src/score_engine.py](/C:/Bari/03_operations/bsip2/proto_v0/src/score_engine.py): (a) yogurt SR call site added at sugar SR section (parallel if after biscuit/cereal scope branch; fires only on BARI_SHELF_RELATIVE_V1 + dairy_protein + subtype in CULTURED_YOGURT_SUBTYPES + sugars_g not None; calls shelf_relative_differentiator with dairy_protein temp scope + same bands/asymmetric/normalize=True + check_penalty("SUGAR_SHELF_REL_V1") path exactly as sr_sugar); (b) EV-088 floor branch added immediately after EV-087 (Stage 7d; identical init/applied/note/pre+min pattern + nn.get sugars + cat_subtype; uses min() ceiling); (c) evaluate_guardrails def+body+call site updated to pass/use category_subtype (for subtype gate inside guardrails); (d) result dict now emits ev088_yogurt_floor_* (like ev087); (e) yogurt floor consts imported (CULTURED already present). Verify SR ~L2127, floor ~L3339, imports ~L48, call ~L3216, result ~L3428. 
+- [03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py](/C:/Bari/03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py): new (adapted from cereals_002_clean_pilot.py + yogurt_shelfrel_pilot + run_yogurt_006 patterns); loads yogurt_005 bsip1 (88) + milk_002 bsip1 (20); sets yogurt-locked shelf stats; dual patch on/off (other flags = run_006: RECAL_P0+trim+TASK250 on); traces only on flag-on; run_record + console with exact gates/per-product/milk/C9-C11. Run: `python 03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py`.
+- [02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_v2/run_record.json](/C:/Bari/02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_v2/run_record.json) (sha256: f96d5620674a8076ddc2226faf290b41a6974a57a15ffad112bec2a06c507315) + /products/ (108 traces flag-on only). 
+- [tasks/returns/P115_return.md](/C:/Bari/tasks/returns/P115_return.md): full return contract (two JSON blocks per prompt spec; all 11 gates with exact pilot evidence; per-product 86 yogurt sorted + milk table; milk_byte_id/non_yogurt_dairy_bleed/inversion_1 populated; artifacts + sha).
+
+**Pilot facts (verbatim from run_record + console; data-driven n=86 yogurt/72 sugars vs prompt 87/74 due to 1 cereal outlier in 88-load + routing):**
+- movers=46, grade_changes=5, absorption=0.0 (0/46).
+- milk_byte_id: pass=true, checked=20, all deltas=0.0 (explicit list in record; C10 CRITICAL held).
+- non_yogurt_dairy_bleed: 5 products, nonzero=0 (C9 PASS).
+- inversion_1: 7290110321697 (9.8g, off=61.0, on=59.0); 7290102397600 (13.6g, off=62.4, on=58.4); gap_on=0.6, c3=false.
+- Gates (C1–C11): C1=false (4=4 pinned, n=72), C2=true (A:0 high@B; B:4 low@A/S; C:0.6861; D:0.4118), C3=false (0.6<2.0), C4=true(46), C5=true(5), C6=true(0/46), C7=true(0), C8=true(5/0), C9=true(0), C10=true(20/0), C11=n/a (53 mismatches, docs-only).
+- per_product_table: 86 rows (sugars asc; first ~2.8–14.0g + 1 null; deltas/grades); milk table 20 all 0.
+- engine_invariants="342 PASS" (pre-pilot); off_used=false; no OFF in wiring/pilot/loads (L1 only).
+
+**Return contract (machine-readable, per prompt):**
+```json
+{
+  "artifacts_claimed": [
+    {"path": "03_operations/bsip2/proto_v0/src/constants.py", "change": "7 SUGAR_SHELF_REL_YOGURT_* constants added"},
+    {"path": "03_operations/bsip2/proto_v0/src/score_engine.py", "change": "yogurt SR call site + EV-088 floor branch added"},
+    {"path": "03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py", "change": "new pilot script"},
+    {"path": "02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_v2/run_record.json", "sha256": "f96d5620674a8076ddc2226faf290b41a6974a57a15ffad112bec2a06c507315"}
+  ],
+  "claims_verified_by_agent": false,
+  "propose": "RETURNED"
+}
+```
+
+**To verify (orchestrator):** 
+1. `python 03_operations/shadow/engine_invariants.py` → 342 PASS.
+2. Re-run pilot (from root) → matches record (C10 all 0; C9 0 bleed; per-product sorted; gates evidence exact).
+3. Diff constants/score_engine (only the 3 additions + wiring; no scope edit, no other consts, no score logic outside EV-088).
+4. `cat tasks/returns/P115_return.md` (jsons match spec + actuals); sha of record; ls output dir (traces + record); grep "EV-088" + "CULTURED_YOGURT_SUBTYPES" + "BARI_SHELF_RELATIVE_V1" in edited files.
+5. Confirm no OFF (grep -r "Open Food Facts|OFF" in changed src/pilot/output = 0 relevant); no published changes.
+
+**RETURNED** (orchestrator verifies + closes if gates/DoD hold). No close by agent. All per P115 body + hard rules.
+```
+
+---
+
+## CHANGED-FILES (git status delta)
+
+### Before dispatch
+
+```
+M .claude/agents/content-agent.md
+ M .claude/agents/data-agent.md
+ M .claude/agents/design-agent.md
+ M .claude/agents/frontend-agent.md
+ M .claude/agents/marketing-agent.md
+ M .claude/agents/nutrition-agent.md
+ M .claude/agents/product-agent.md
+ M .claude/agents/qa-agent.md
+ M .claude/agents/red-team-agent.md
+ M .claude/agents/research-agent.md
+ M .claude/commands/orchestrate.md
+ M .claude/settings.json
+ M .claude/skills/bari-category-factory/SKILL.md
+ M 01_framework/glass_box/additive_tiered_library_v1.md
+ M 01_framework/operations/comp/source_registry_v1.yaml
+ M 01_framework/operations/orchestration_model_v1.md
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2107071/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2107798/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2133162/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2133889/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2385455/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511229/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511236/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511243/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_3075805/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_369617/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_48413/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861056/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861070/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861360/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_554457/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_554532/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_5992872/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499051/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499105/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499112/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499129/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499303/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499327/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499358/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499365/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290017065236/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290017065663/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019635222/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019635826/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790112/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790402/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790808/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290102393718/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290102397334/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290108509106/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290108509755/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114310550/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114312486/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114312707/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114314015/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641902/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641919/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641940/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641957/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641964/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073644996/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073730330/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_8606370/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/run_record.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188112709/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188124689/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188300328/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290000051352/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290014760141/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290019790259/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290102392094/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290107932134/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110324773/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110324926/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110325619/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290114313285/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290114313865/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290116936116/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290119385560/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376619939/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376620904/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376621451/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_8000215204219/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_8000215204554/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/run_record.json
+ M 02_products/yogurt_system/bsip2_outputs/run_yogurt_006_recal_p0_trim/run_record.json
+ M 03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md
+ M 03_operations/bsip2/proto_v0/src/constants.py
+ M 03_operations/bsip2/proto_v0/src/evaluation_scope.py
+ M 03_operations/bsip2/proto_v0/src/nova_proxy.py
+ M 03_operations/bsip2/proto_v0/src/router_v2.py
+ M 03_operations/bsip2/proto_v0/src/score_engine.py
+ M 03_operations/bsip2/proto_v0/src/signal_extractor.py
+ M 03_operations/reports/regression/regression_check_001.md
+ M 03_operations/supplement_engine/proto_v0/evidence_dossiers/folic_acid.yaml
+ M 03_operations/supplement_engine/proto_v0/evidence_dossiers/omega3_epa_dha.yaml
+ M 03_operations/supplement_engine/proto_v0/evidence_registry/supp_evidence_registry_v1.md
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-dangerous-d3-50k_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-noevidence-creatine-fatloss_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-wasted-creatine-1g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/DOSE-FAIL-creatine-1g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/DOSE-PASS-creatine-5g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/EV-FAIL-omega3-brain_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/EV-PASS-omega3-tg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/FORM-FAIL-mg-oxide_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/FORM-PASS-mg-glycinate_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/HON-FAIL-caffeine-blend_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/HON-PASS-caffeine-200_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R1-vague-evidenced-mg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R2-vague-snakeoil_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R3-overspecific-false-mg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-CTRL-d3-50k-weekly_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-FAIL-d3-50k_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-PASS-d3-2000_trace.json
+ M 03_operations/supplement_engine/proto_v0/src/score_engine.py
+ M 99_archive/command_center_retired_2026-06-13/cc-agent_AGENT_DEFINITION.md
+ M 99_archive/command_center_retired_2026-06-13/command_center.json
+ M 99_archive/command_center_retired_2026-06-13/command_center_archive.json
+ M 99_archive/command_center_retired_2026-06-13/command_center_live.json
+ M CLAUDE.md
+ M bari-web/src/app/hashvaot/bread/page.tsx
+ M bari-web/src/app/hashvaot/breakfast-cereals/page.tsx
+ M bari-web/src/app/hashvaot/brined-cheeses/page.tsx
+ M bari-web/src/app/hashvaot/butter/page.tsx
+ M bari-web/src/app/hashvaot/cheese/page.tsx
+ M bari-web/src/app/hashvaot/granola/page.tsx
+ M bari-web/src/app/hashvaot/hard-cheeses/page.tsx
+ M bari-web/src/app/hashvaot/hummus/page.tsx
+ M bari-web/src/app/hashvaot/juices/page.tsx
+ M bari-web/src/app/hashvaot/page.tsx
+ M bari-web/src/app/hashvaot/salty-snacks/page.tsx
+ M bari-web/src/app/hashvaot/snacks/page.tsx
+ M bari-web/src/app/hashvaot/vegetable-spreads/page.tsx
+ M bari-web/src/app/hashvaot/yogurts/page.tsx
+ M bari-web/src/app/robots.ts
+ M bari-web/src/data/comparisons/cereals_frontend_v2.json
+ M bari-web/src/data/comparisons/granola_frontend_v1.json
+ M integrations/clients/il_supplement_panels.py
+ D tasks/TASK-218.md
+ D tasks/TASK-221.md
+ D tasks/TASK-244.md
+ D tasks/TASK-249.md
+ M tasks/closed/TASK-226.md
+?? .github/
+?? 01_framework/bsip2_framework/docs/scoring/additive_cocktail_cluster_proposal_v1.md
+?? 01_framework/bsip2_framework/phvo_governance/
+?? 01_framework/bsip2_framework/project_rescore/
+?? 01_framework/governance/grade_boundary_policy_v1.json
+?? 01_framework/operations/bari_router_v4_2.md
+?? 01_framework/operations/brined_session_retrospective_v1.md
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.html
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.md
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.pdf
+?? 01_framework/operations/comparison_chain_tech_leaps_v1.html
+?? 01_framework/operations/comparison_page_production_map_v1.html
+?? 01_framework/operations/comparison_page_production_map_v1.md
+?? 01_framework/operations/comparison_page_production_map_v1.pdf
+?? 01_framework/operations/lane_routing_rules_v1.md
+?? 01_framework/operations/prod_repo_sync_decision_v1.md
+?? 01_framework/operations/return_contract_v1.md
+?? 01_framework/operations/task255_scrape_recon_v1.md
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_001_shelfrel_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_002_clean_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_003_corrected_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_008_reconstruction/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_multiretailer_001_reconstruction/
+?? 02_products/breakfast_cereals/cereals_copy_remediation_draft_v1.json
+?? 02_products/breakfast_cereals/cereals_copy_remediation_draft_v2.json
+?? 02_products/breakfast_cereals/cereals_qa_report_v1.md
+?? 02_products/breakfast_cereals/methodology/
+?? 02_products/cakes_hard_cookies/
+?? 02_products/cookies_coffee/bsip0_outputs/
+?? 02_products/cookies_coffee/bsip2_outputs/run_cookies_005_shelfrel_pilot/
+?? 02_products/cookies_coffee/cookies_coffee_copy_v1.json
+?? 02_products/cookies_coffee/factory_run_001/
+?? 02_products/cookies_coffee/gen_frontend_json.py
+?? 02_products/cookies_coffee/methodology/
+?? 02_products/cookies_coffee/reports/
+?? 02_products/frozen_vegetables/.usda_generic_cache_v1.json
+?? 02_products/frozen_vegetables/_build_copy_v2.py
+?? 02_products/frozen_vegetables/build_benefit_lookup.py
+?? 02_products/frozen_vegetables/frozen_vegetables_benefit_lookup_v1.json
+?? 02_products/frozen_vegetables/frozen_vegetables_copy_v2_draft.json
+?? 02_products/frozen_vegetables/frozen_vegetables_shell_copy_v2.json
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase1_spec_v1.md
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase2_seed_v1.json
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase3_copyinput_v1.json
+?? 02_products/supplements/real_corpus_v3/
+?? 02_products/yogurt_system/bsip0/yogurt_bsip0_log_20260611T072535.txt
+?? 02_products/yogurt_system/bsip0/yogurt_bsip0_raw_20260611T072535.json
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_005/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_006/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_006_shipcfg/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_pilot/
+?? 02_products/yogurt_system/build_yogurts_frontend_v006.py
+?? 02_products/yogurt_system/build_yogurts_frontend_v4.py
+?? 02_products/yogurt_system/methodology/
+?? 02_products/yogurt_system/reports/red_team_yogurts_v4.md
+?? 02_products/yogurt_system/reports/run_yogurt_005_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_run_record.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_vs_v3_comparison.json
+?? 02_products/yogurt_system/reports/yogurts_off_remediation_decision_brief_v1.md
+?? 02_products/yogurt_system/reports/yogurts_v4_methodology_rulings_v1.md
+?? 02_products/yogurt_system/s_grade_explanations_v1.md
+?? 02_products/yogurt_system/yogurt_relaunch_failure_audit_v1.md
+?? 02_products/yogurt_system/yogurts_copy_regen_draft_v1.json
+?? 02_products/yogurt_system/yogurts_frontend_v006_staging.json
+?? 02_products/yogurt_system/yogurts_frontend_v4.json
+?? 03_operations/bsip0/raw_store/
+?? 03_operations/bsip0/scrape/_shared/bsip0_gate.py
+?? 03_operations/bsip0/scrape/_shared/test_bsip0_gate.py
+?? 03_operations/bsip0/scrape/cakes_hard_cookies/
+?? 03_operations/bsip0/scrape/image_backfill_task243/
+?? 03_operations/bsip0/scrape/shufersal_brined_cheeses/
+?? 03_operations/bsip0/scrape/shufersal_cookies_coffee/
+?? 03_operations/bsip0/scrape/shufersal_yogurt/02_build_bsip1_yogurt_005.py
+?? 03_operations/bsip0/scrape_runner/
+?? 03_operations/bsip1/core/build_precondition.py
+?? 03_operations/bsip1/run_brined_cheeses_001/
+?? 03_operations/bsip1/run_brined_cheeses_002/
+?? 03_operations/bsip1/run_yogurt_005/
+?? 03_operations/bsip1/run_yogurt_006/
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_001.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_002.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_003.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_004.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_005.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cereals_001_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cereals_002_clean_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_001.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_002.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_003.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_004.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_005_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_005.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_006.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_006_shipcfg.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/p56_byte_identity.py
+?? 03_operations/bsip2/proto_v0/src/p75_no_regression.py
+?? 03_operations/bsip2/proto_v0/src/p75_no_regression_template_skip.py
+?? 03_operations/bsip2/proto_v0/src/p75b_gate.py
+?? 03_operations/bsip2/proto_v0/src/p99_shelf_relative_guards.py
+?? 03_operations/bsip2/proto_v0/src/run_p75b_bleed_sim.py
+?? 03_operations/bsip2/proto_v0/src/shadow_backtest.py
+?? 03_operations/bsip2/proto_v0/src/task238_off_remediation.py
+?? 03_operations/bsip2/proto_v0/tests/
+?? 03_operations/claim_entailment/
+?? 03_operations/off_sweep/
+?? 03_operations/page_generator/
+?? 03_operations/router/
+?? 03_operations/runs/
+?? 03_operations/seo/generate_faq_schema.py
+?? 03_operations/seo/run_all_faq_schemas.py
+?? 03_operations/shadow/
+?? 03_operations/spine/
+?? 99_archive/bread_retail_001_OFF_superseded_TASK238/
+?? AGENTS.md
+?? Bari-task243/
+?? "C\357\200\272Bari02_productsyogurt_systemreportsrt_a_grades_tmp.json"
+?? "C\357\200\272Bari02_productsyogurt_systemreportsrt_anomalies_tmp.json"
+?? __b64_bsip1_stub.txt
+?? __bsip1_b64.txt
+?? __check_ramiLevy.py
+?? __gen.py
+?? __gen_cookies_scripts.py
+?? __gen_part1.py
+?? _parse_traces.py
+?? bari-web/_start_c3.log
+?? bari-web/_start_cookies.log
+?? bari-web/_start_cookies2.log
+?? bari-web/_start_final.log
+?? bari-web/build_cookies.log
+?? bari-web/build_cookies2.log
+?? bari-web/build_cookies3.log
+?? bari-web/build_cookies4.log
+?? bari-web/build_cookies_verify.log
+?? bari-web/build_final.log
+?? bari-web/public/qa/brined/
+?? bari-web/public/qa/cookies/
+?? bari-web/scripts/shot-charts-mobile-full.mjs
+?? bari-web/scripts/shot-charts-parts.mjs
+?? bari-web/scripts/shot-charts-zoom.mjs
+?? bari-web/scripts/shot-cookies-page.mjs
+?? bari-web/src/app/hashvaot/cookies-coffee/
+?? bari-web/src/components/comparisons/cookies-coffee-comparison-page.tsx
+?? bari-web/src/components/comparisons/cookies-coffee-prologue-visualizations.tsx
+?? bari-web/src/components/hashvaot/featured-cookies-coffee-intelligence-card.tsx
+?? bari-web/src/data/comparisons/cookies_coffee_frontend_v1.json
+?? bari-web/src/data/comparisons/cookies_coffee_frontend_v1_gates_report.md
+?? bari-web/src/data/comparisons/granola_frontend_v1_gates_report.md
+?? bari-web/src/data/comparisons/yogurts_frontend_v4_gates_report.md
+?? bari-web/src/data/seo/
+?? bari-web/src/lib/comparisons/cookies-coffee-page-data.ts
+?? bari-web/src/lib/seo/
+?? err.txt
+?? err2.txt
+?? err3.txt
+?? git
+?? out.txt
+?? out2.txt
+?? out3.txt
+?? reports/
+?? "research/Algorithmic Foundations of Consumer Food Scoring Engines.pdf"
+?? tasks/DISPATCH_BOARD.md
+?? tasks/HANDOVER.md
+?? tasks/TASK-233F.md
+?? tasks/TASK-235.md
+?? tasks/TASK-236.md
+?? tasks/TASK-246.md
+?? tasks/TASK-250.md
+?? tasks/TASK-251.md
+?? tasks/TASK-252.md
+?? tasks/TASK-253.md
+?? tasks/TASK-254.md
+?? tasks/TASK-255.md
+?? tasks/TASK-256.md
+?? tasks/TASK-257.md
+?? tasks/TASK-258.md
+?? tasks/TASK-259.md
+?? tasks/TASK-260.md
+?? tasks/TASK-261.md
+?? tasks/TASK-262.md
+?? tasks/TASK-263.md
+?? tasks/TASK-264.md
+?? tasks/TASK-265.md
+?? tasks/TASK-266.md
+?? tasks/TASK-269.md
+?? tasks/TASK-270.md
+?? tasks/TASK-274.md
+?? tasks/TASK-275.md
+?? tasks/TASK-276.md
+?? tasks/TASK-277.md
+?? tasks/TASK-278.md
+?? tasks/TASK-279.md
+?? tasks/TASK-281.md
+?? tasks/TASK-282.md
+?? tasks/TASK-283.md
+?? tasks/_build.log
+?? tasks/_dev.log
+?? tasks/_p56_patch_score_engine.py
+?? tasks/archive/
+?? tasks/closed/TASK-218.md
+?? tasks/closed/TASK-221.md
+?? tasks/closed/TASK-242.md
+?? tasks/closed/TASK-243.md
+?? tasks/closed/TASK-244.md
+?? tasks/closed/TASK-245.md
+?? tasks/closed/TASK-245A.md
+?? tasks/closed/TASK-245B.md
+?? tasks/closed/TASK-247.md
+?? tasks/closed/TASK-248.md
+?? tasks/closed/TASK-249.md
+?? tasks/closed/TASK-267.md
+?? tasks/closed/TASK-271.md
+?? tasks/closed/TASK-277.md
+?? tasks/closed/TASK-279.md
+?? tasks/closed/TASK-280.md
+?? tasks/new_task.py
+?? tasks/prompts/
+?? tasks/returns/
+?? tasks/scripts/
+?? tmp/
+```
+
+### After dispatch
+
+```
+M .claude/agents/content-agent.md
+ M .claude/agents/data-agent.md
+ M .claude/agents/design-agent.md
+ M .claude/agents/frontend-agent.md
+ M .claude/agents/marketing-agent.md
+ M .claude/agents/nutrition-agent.md
+ M .claude/agents/product-agent.md
+ M .claude/agents/qa-agent.md
+ M .claude/agents/red-team-agent.md
+ M .claude/agents/research-agent.md
+ M .claude/commands/orchestrate.md
+ M .claude/settings.json
+ M .claude/skills/bari-category-factory/SKILL.md
+ M 01_framework/glass_box/additive_tiered_library_v1.md
+ M 01_framework/operations/comp/source_registry_v1.yaml
+ M 01_framework/operations/orchestration_model_v1.md
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2107071/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2107798/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2133162/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2133889/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2385455/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511229/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511236/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_2511243/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_3075805/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_369617/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_48413/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861056/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861070/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_4861360/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_554457/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_554532/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_5992872/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499051/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499105/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499112/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499129/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499303/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499327/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499358/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290011499365/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290017065236/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290017065663/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019635222/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019635826/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790112/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790402/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290019790808/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290102393718/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290102397334/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290108509106/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290108509755/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114310550/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114312486/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114312707/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7290114314015/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641902/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641919/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641940/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641957/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073641964/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073644996/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_7296073730330/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/products/bsip1_brinedcheese_8606370/bsip2_trace.json
+ M 02_products/brined_cheeses/bsip2_outputs/run_brined_005/run_record.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188112709/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188124689/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_5411188300328/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290000051352/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290014760141/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290019790259/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290102392094/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290107932134/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110324773/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110324926/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290110325619/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290114313285/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290114313865/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290116936116/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7290119385560/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376619939/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376620904/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_7394376621451/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_8000215204219/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/products/bsip1_8000215204554/bsip2_trace.json
+ M 02_products/milk_and_alternatives/intelligence_bsip2/run_005_headpin/run_record.json
+ M 02_products/yogurt_system/bsip2_outputs/run_yogurt_006_recal_p0_trim/run_record.json
+ M 03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md
+ M 03_operations/bsip2/proto_v0/src/constants.py
+ M 03_operations/bsip2/proto_v0/src/evaluation_scope.py
+ M 03_operations/bsip2/proto_v0/src/nova_proxy.py
+ M 03_operations/bsip2/proto_v0/src/router_v2.py
+ M 03_operations/bsip2/proto_v0/src/score_engine.py
+ M 03_operations/bsip2/proto_v0/src/signal_extractor.py
+ M 03_operations/reports/regression/regression_check_001.md
+ M 03_operations/supplement_engine/proto_v0/evidence_dossiers/folic_acid.yaml
+ M 03_operations/supplement_engine/proto_v0/evidence_dossiers/omega3_epa_dha.yaml
+ M 03_operations/supplement_engine/proto_v0/evidence_registry/supp_evidence_registry_v1.md
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-dangerous-d3-50k_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-noevidence-creatine-fatloss_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/ARCH-wasted-creatine-1g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/DOSE-FAIL-creatine-1g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/DOSE-PASS-creatine-5g_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/EV-FAIL-omega3-brain_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/EV-PASS-omega3-tg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/FORM-FAIL-mg-oxide_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/FORM-PASS-mg-glycinate_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/HON-FAIL-caffeine-blend_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/HON-PASS-caffeine-200_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R1-vague-evidenced-mg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R2-vague-snakeoil_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/R3-overspecific-false-mg_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-CTRL-d3-50k-weekly_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-FAIL-d3-50k_trace.json
+ M 03_operations/supplement_engine/proto_v0/golden_corpus/traces/SAFE-PASS-d3-2000_trace.json
+ M 03_operations/supplement_engine/proto_v0/src/score_engine.py
+ M 99_archive/command_center_retired_2026-06-13/cc-agent_AGENT_DEFINITION.md
+ M 99_archive/command_center_retired_2026-06-13/command_center.json
+ M 99_archive/command_center_retired_2026-06-13/command_center_archive.json
+ M 99_archive/command_center_retired_2026-06-13/command_center_live.json
+ M CLAUDE.md
+ M bari-web/src/app/hashvaot/bread/page.tsx
+ M bari-web/src/app/hashvaot/breakfast-cereals/page.tsx
+ M bari-web/src/app/hashvaot/brined-cheeses/page.tsx
+ M bari-web/src/app/hashvaot/butter/page.tsx
+ M bari-web/src/app/hashvaot/cheese/page.tsx
+ M bari-web/src/app/hashvaot/granola/page.tsx
+ M bari-web/src/app/hashvaot/hard-cheeses/page.tsx
+ M bari-web/src/app/hashvaot/hummus/page.tsx
+ M bari-web/src/app/hashvaot/juices/page.tsx
+ M bari-web/src/app/hashvaot/page.tsx
+ M bari-web/src/app/hashvaot/salty-snacks/page.tsx
+ M bari-web/src/app/hashvaot/snacks/page.tsx
+ M bari-web/src/app/hashvaot/vegetable-spreads/page.tsx
+ M bari-web/src/app/hashvaot/yogurts/page.tsx
+ M bari-web/src/app/robots.ts
+ M bari-web/src/data/comparisons/cereals_frontend_v2.json
+ M bari-web/src/data/comparisons/granola_frontend_v1.json
+ M integrations/clients/il_supplement_panels.py
+ D tasks/TASK-218.md
+ D tasks/TASK-221.md
+ D tasks/TASK-244.md
+ D tasks/TASK-249.md
+ M tasks/closed/TASK-226.md
+?? .github/
+?? 01_framework/bsip2_framework/docs/scoring/additive_cocktail_cluster_proposal_v1.md
+?? 01_framework/bsip2_framework/phvo_governance/
+?? 01_framework/bsip2_framework/project_rescore/
+?? 01_framework/governance/grade_boundary_policy_v1.json
+?? 01_framework/operations/bari_router_v4_2.md
+?? 01_framework/operations/brined_session_retrospective_v1.md
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.html
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.md
+?? 01_framework/operations/comparison_chain_gap_analysis_v1.pdf
+?? 01_framework/operations/comparison_chain_tech_leaps_v1.html
+?? 01_framework/operations/comparison_page_production_map_v1.html
+?? 01_framework/operations/comparison_page_production_map_v1.md
+?? 01_framework/operations/comparison_page_production_map_v1.pdf
+?? 01_framework/operations/lane_routing_rules_v1.md
+?? 01_framework/operations/prod_repo_sync_decision_v1.md
+?? 01_framework/operations/return_contract_v1.md
+?? 01_framework/operations/task255_scrape_recon_v1.md
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_001_shelfrel_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_002_clean_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_003_corrected_pilot/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_008_reconstruction/
+?? 02_products/breakfast_cereals/bsip2_outputs/run_cereals_multiretailer_001_reconstruction/
+?? 02_products/breakfast_cereals/cereals_copy_remediation_draft_v1.json
+?? 02_products/breakfast_cereals/cereals_copy_remediation_draft_v2.json
+?? 02_products/breakfast_cereals/cereals_qa_report_v1.md
+?? 02_products/breakfast_cereals/methodology/
+?? 02_products/cakes_hard_cookies/
+?? 02_products/cookies_coffee/bsip0_outputs/
+?? 02_products/cookies_coffee/bsip2_outputs/run_cookies_005_shelfrel_pilot/
+?? 02_products/cookies_coffee/cookies_coffee_copy_v1.json
+?? 02_products/cookies_coffee/factory_run_001/
+?? 02_products/cookies_coffee/gen_frontend_json.py
+?? 02_products/cookies_coffee/methodology/
+?? 02_products/cookies_coffee/reports/
+?? 02_products/frozen_vegetables/.usda_generic_cache_v1.json
+?? 02_products/frozen_vegetables/_build_copy_v2.py
+?? 02_products/frozen_vegetables/build_benefit_lookup.py
+?? 02_products/frozen_vegetables/frozen_vegetables_benefit_lookup_v1.json
+?? 02_products/frozen_vegetables/frozen_vegetables_copy_v2_draft.json
+?? 02_products/frozen_vegetables/frozen_vegetables_shell_copy_v2.json
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase1_spec_v1.md
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase2_seed_v1.json
+?? 02_products/frozen_vegetables/frozen_vegetables_v2_phase3_copyinput_v1.json
+?? 02_products/supplements/real_corpus_v3/
+?? 02_products/yogurt_system/bsip0/yogurt_bsip0_log_20260611T072535.txt
+?? 02_products/yogurt_system/bsip0/yogurt_bsip0_raw_20260611T072535.json
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_005/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_006/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_006_shipcfg/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_pilot/
+?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_v2/
+?? 02_products/yogurt_system/build_yogurts_frontend_v006.py
+?? 02_products/yogurt_system/build_yogurts_frontend_v4.py
+?? 02_products/yogurt_system/methodology/
+?? 02_products/yogurt_system/reports/red_team_yogurts_v4.md
+?? 02_products/yogurt_system/reports/run_yogurt_005_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_run_record.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_run_summary.json
+?? 02_products/yogurt_system/reports/run_yogurt_006_shipcfg_vs_v3_comparison.json
+?? 02_products/yogurt_system/reports/yogurts_off_remediation_decision_brief_v1.md
+?? 02_products/yogurt_system/reports/yogurts_v4_methodology_rulings_v1.md
+?? 02_products/yogurt_system/s_grade_explanations_v1.md
+?? 02_products/yogurt_system/yogurt_relaunch_failure_audit_v1.md
+?? 02_products/yogurt_system/yogurts_copy_regen_draft_v1.json
+?? 02_products/yogurt_system/yogurts_frontend_v006_staging.json
+?? 02_products/yogurt_system/yogurts_frontend_v4.json
+?? 03_operations/bsip0/raw_store/
+?? 03_operations/bsip0/scrape/_shared/bsip0_gate.py
+?? 03_operations/bsip0/scrape/_shared/test_bsip0_gate.py
+?? 03_operations/bsip0/scrape/cakes_hard_cookies/
+?? 03_operations/bsip0/scrape/image_backfill_task243/
+?? 03_operations/bsip0/scrape/shufersal_brined_cheeses/
+?? 03_operations/bsip0/scrape/shufersal_cookies_coffee/
+?? 03_operations/bsip0/scrape/shufersal_yogurt/02_build_bsip1_yogurt_005.py
+?? 03_operations/bsip0/scrape_runner/
+?? 03_operations/bsip1/core/build_precondition.py
+?? 03_operations/bsip1/run_brined_cheeses_001/
+?? 03_operations/bsip1/run_brined_cheeses_002/
+?? 03_operations/bsip1/run_cakes_001/
+?? 03_operations/bsip1/run_yogurt_005/
+?? 03_operations/bsip1/run_yogurt_006/
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_001.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_002.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_003.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_004.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_brined_cheeses_005.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cereals_001_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cereals_002_clean_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_001.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_002.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_003.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_004.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_cookies_005_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_005.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_006.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_006_shipcfg.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_pilot.py
+?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py
+?? 03_operations/bsip2/proto_v0/src/p56_byte_identity.py
+?? 03_operations/bsip2/proto_v0/src/p75_no_regression.py
+?? 03_operations/bsip2/proto_v0/src/p75_no_regression_template_skip.py
+?? 03_operations/bsip2/proto_v0/src/p75b_gate.py
+?? 03_operations/bsip2/proto_v0/src/p99_shelf_relative_guards.py
+?? 03_operations/bsip2/proto_v0/src/run_p75b_bleed_sim.py
+?? 03_operations/bsip2/proto_v0/src/shadow_backtest.py
+?? 03_operations/bsip2/proto_v0/src/task238_off_remediation.py
+?? 03_operations/bsip2/proto_v0/tests/
+?? 03_operations/claim_entailment/
+?? 03_operations/off_sweep/
+?? 03_operations/page_generator/
+?? 03_operations/router/
+?? 03_operations/runs/
+?? 03_operations/seo/generate_faq_schema.py
+?? 03_operations/seo/run_all_faq_schemas.py
+?? 03_operations/shadow/
+?? 03_operations/spine/
+?? 99_archive/bread_retail_001_OFF_superseded_TASK238/
+?? AGENTS.md
+?? Bari-task243/
+?? "C\357\200\272Bari02_productsyogurt_systemreportsrt_a_grades_tmp.json"
+?? "C\357\200\272Bari02_productsyogurt_systemreportsrt_anomalies_tmp.json"
+?? __b64_bsip1_stub.txt
+?? __bsip1_b64.txt
+?? __check_ramiLevy.py
+?? __gen.py
+?? __gen_cookies_scripts.py
+?? __gen_part1.py
+?? _parse_traces.py
+?? bari-web/_start_c3.log
+?? bari-web/_start_cookies.log
+?? bari-web/_start_cookies2.log
+?? bari-web/_start_final.log
+?? bari-web/build_cookies.log
+?? bari-web/build_cookies2.log
+?? bari-web/build_cookies3.log
+?? bari-web/build_cookies4.log
+?? bari-web/build_cookies_verify.log
+?? bari-web/build_final.log
+?? bari-web/public/qa/brined/
+?? bari-web/public/qa/cookies/
+?? bari-web/scripts/shot-charts-mobile-full.mjs
+?? bari-web/scripts/shot-charts-parts.mjs
+?? bari-web/scripts/shot-charts-zoom.mjs
+?? bari-web/scripts/shot-cookies-page.mjs
+?? bari-web/src/app/hashvaot/cookies-coffee/
+?? bari-web/src/components/comparisons/cookies-coffee-comparison-page.tsx
+?? bari-web/src/components/comparisons/cookies-coffee-prologue-visualizations.tsx
+?? bari-web/src/components/hashvaot/featured-cookies-coffee-intelligence-card.tsx
+?? bari-web/src/data/comparisons/cookies_coffee_frontend_v1.json
+?? bari-web/src/data/comparisons/cookies_coffee_frontend_v1_gates_report.md
+?? bari-web/src/data/comparisons/granola_frontend_v1_gates_report.md
+?? bari-web/src/data/comparisons/yogurts_frontend_v4_gates_report.md
+?? bari-web/src/data/seo/
+?? bari-web/src/lib/comparisons/cookies-coffee-page-data.ts
+?? bari-web/src/lib/seo/
+?? err.txt
+?? err2.txt
+?? err3.txt
+?? git
+?? out.txt
+?? out2.txt
+?? out3.txt
+?? reports/
+?? "research/Algorithmic Foundations of Consumer Food Scoring Engines.pdf"
+?? tasks/DISPATCH_BOARD.md
+?? tasks/HANDOVER.md
+?? tasks/TASK-233F.md
+?? tasks/TASK-235.md
+?? tasks/TASK-236.md
+?? tasks/TASK-246.md
+?? tasks/TASK-250.md
+?? tasks/TASK-251.md
+?? tasks/TASK-252.md
+?? tasks/TASK-253.md
+?? tasks/TASK-254.md
+?? tasks/TASK-255.md
+?? tasks/TASK-256.md
+?? tasks/TASK-257.md
+?? tasks/TASK-258.md
+?? tasks/TASK-259.md
+?? tasks/TASK-260.md
+?? tasks/TASK-261.md
+?? tasks/TASK-262.md
+?? tasks/TASK-263.md
+?? tasks/TASK-264.md
+?? tasks/TASK-265.md
+?? tasks/TASK-266.md
+?? tasks/TASK-269.md
+?? tasks/TASK-270.md
+?? tasks/TASK-274.md
+?? tasks/TASK-275.md
+?? tasks/TASK-276.md
+?? tasks/TASK-277.md
+?? tasks/TASK-278.md
+?? tasks/TASK-279.md
+?? tasks/TASK-281.md
+?? tasks/TASK-282.md
+?? tasks/TASK-283.md
+?? tasks/_build.log
+?? tasks/_dev.log
+?? tasks/_p56_patch_score_engine.py
+?? tasks/archive/
+?? tasks/closed/TASK-218.md
+?? tasks/closed/TASK-221.md
+?? tasks/closed/TASK-242.md
+?? tasks/closed/TASK-243.md
+?? tasks/closed/TASK-244.md
+?? tasks/closed/TASK-245.md
+?? tasks/closed/TASK-245A.md
+?? tasks/closed/TASK-245B.md
+?? tasks/closed/TASK-247.md
+?? tasks/closed/TASK-248.md
+?? tasks/closed/TASK-249.md
+?? tasks/closed/TASK-267.md
+?? tasks/closed/TASK-271.md
+?? tasks/closed/TASK-277.md
+?? tasks/closed/TASK-279.md
+?? tasks/closed/TASK-280.md
+?? tasks/new_task.py
+?? tasks/prompts/
+?? tasks/returns/
+?? tasks/scripts/
+?? tmp/
+```
+
+### Delta
+
+### New / modified since dispatch
+  ?? 02_products/yogurt_system/bsip2_outputs/run_yogurt_shelfrel_v2/
+  ?? 03_operations/bsip1/run_cakes_001/
+  ?? 03_operations/bsip2/proto_v0/src/batch_run_yogurt_shelfrel_v2.py

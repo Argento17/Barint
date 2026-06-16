@@ -1,0 +1,196 @@
+{
+  "sku_id": "SP-7290012760204",
+  "barcode": "7290012760204",
+  "name_he": "סופהרב אומגה 3 בד\"צ 90 כמוסות",
+  "brand_bucket": "supherb",
+  "engine_active": "omega3",
+  "price_ils": 82.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "tevazol.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via tevazol.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "S/F umbrella from HE: 'אומגה 3 לתמיכה בבריאות הלב וכלי הדם'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.tevazol.co.il/items/1348673",
+    "source": "tevazol.co.il",
+    "brand": "supherb",
+    "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+    "barcode": "7290012760204",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "אומגה 3 לתמיכה בבריאות הלב וכלי הדם",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "EPA",
+        "amount": 180.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "DHA",
+        "amount": 120.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "שמן דגים",
+        "amount": 1000.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:tevazol.co.il",
+      "source_id": "supherb:7290012760204",
+      "source_url": "https://www.tevazol.co.il/items/1348673",
+      "fetched_at": "2026-06-13T17:08:03Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+    "primary_claim_fed": "heart health",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA",
+        "quantity": 180.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-13T17:08:04.035119Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290012760204",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "heart health",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 49.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

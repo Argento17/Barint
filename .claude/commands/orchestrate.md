@@ -14,6 +14,22 @@ Focus for this run (blank = work the board in THE ROAD order):
 
 $ARGUMENTS
 
+## Owner override & hard STOP — above everything else in this skill
+
+- **A live owner instruction overrides this skill.** If anything here conflicts with what the owner just
+  told you, follow the owner and say so in one line. Never cite the skill to justify continuing past an
+  owner instruction.
+- **When the owner says "stop" / "halt" / "don't do X" (any phrasing or CAPS): FULL STOP on that turn.**
+  Issue NO further tool calls of the named kind, take no more autonomous actions, **state plainly that you
+  have stopped, and wait for the owner to restart you.** Do NOT append "but here's what I still need" or
+  keep re-surfacing the decision — that reads as steering past the stop. A stop is a full stop.
+- **Scope of YOUR OWN `Edit`/`Write` (the orchestrator's hands):** legitimate and expected for **durable-state
+  bookkeeping only** — `DISPATCH_BOARD.md`, TASK `status`/`close_reason`/`blocker`, and prompt/return file
+  moves. That IS your job; do it directly. **Everything else that writes a file — engine code, frontend JSON,
+  copy, scripts, configs, reports — is a C1/C2 lane's job, never yours.** Hand-doing lane-work on the Opus
+  orchestrator is drift; route it. (If the owner says even bookkeeping should be routed, route it — owner
+  override wins.)
+
 ## The loop — repeat until a wall
 
 **1. Read state (lean).** Read `tasks\DISPATCH_BOARD.md` (~7 KB — the live view) and only the specific
@@ -36,21 +52,42 @@ launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If
   (`01_framework\operations\return_contract_v1.md`).
 - Registry Work without an id → register first: `python C:\Bari\tasks\new_task.py …` (writes the TASK
   file; then add the move to `DISPATCH_BOARD.md`).
-- **Lane** (title line carries `(route: C1|C2|C1-CURSOR)`; full law
-  `01_framework\operations\lane_routing_rules_v1.md`). Decision order: mechanical / zero-judgment (probes,
-  counts, grep, format-from-spec, running existing scripts) → **C2**; spec-complete implementation (the
-  prompt file alone produces the right result — code with crisp DoD, tests, refactors, build fixes) →
-  **C1-CURSOR**; Bari-judgment (personas / skills / memory / governance, copy, scoring, governed data) →
-  **C1**. Unsure → C1. Escalation: one in-lane retry, then one lane up. Before a big orchestrator decision,
-  consider a **C3 consult** (owner-pasted ChatGPT prompt — advice only, never execution).
+- **Lane** (title line carries `(route: C1|C2|C3|C1-GROK|C1-GEMINI)`; full law
+  `01_framework\operations\bari_router_v4_2.md` — band-per-function; v1 is the wire appendix). Bands:
+  **C5** Owner · **C4** Orchestrator · **C3** ChatGPT (challenge, never closes) · **C2.1 Audit = DeepSeek**
+  (cheap validation, nothing complex) · **C2.2 Research = Gemini** (web-grounded) · **C2.3 Design = Grok**
+  (image_gen/edit concepts) · **C1 Build = THREE executors, Sonnet + Gemini + Grok, in PARALLEL** (decompose into independent
+  pieces, pick per piece — **NO default builder; "C1" is NOT the Claude `Agent` tool**) · **C2 also = audit/QA
+  + GRUNT** (mechanical/bookkeeping → DeepSeek; route it, never hand-do it on the Opus orchestrator) ·
+  **C0** validators. **C3 consult mandatory** before
+  honest-vs-artifact / precedent / tripwire forks. **Never auto-route a delegated/not-wired lane** (Gemini
+  Deep Research API, NotebookLM, Jules). **No launch without C0** (`validate_comparison_page.py` / Shadow /
+  score==trace / OFF=0 / build-exit) — C0 beats every model. Escalation: one in-lane retry, then one lane up.
 
-**4. Dispatch — in the background.**
-- **C2 / C1-CURSOR** → `python 03_operations\router\dispatch.py PNN` (run_in_background). The router reads
-  the route tag, runs opencode→DeepSeek (C2) or the Cursor headless agent (C1-CURSOR), writes
-  `tasks\returns\PNN_return.md`, records the git delta, ticks the board.
-- **C1** → spawn the owning domain subagent via the **Agent** tool with the full prompt (run_in_background).
-- Parallelize C1 and C1-CURSOR on **independent workstreams only** — never two writers in the same files.
-- Mark the move dispatched on the board. Respect the **per-owner WIP limit (2)**.
+**4. Dispatch — in the background. C1 BUILD HAS THREE EXECUTORS — Sonnet + Gemini + Grok. You MUST
+decompose the move into independent pieces and pick the best-fit executor per piece. There is NO default
+builder. Sending every piece to the Claude `Agent` tool is the Sonnet-default drift the owner rejected
+(2026-06-14) — if you catch yourself doing it, STOP and re-decompose.**
+
+Reaching each lane (all dispatches run_in_background):
+- **C1-GROK** — `(route: C1-GROK)` → `python 03_operations\router\dispatch.py PNN`. xAI Grok Build CLI;
+  spec-complete build/data work with repo access.
+- **C1-GEMINI** — `(route: C1-GEMINI)` → `python 03_operations\router\dispatch.py PNN`. Gemini CLI;
+  C1-grade build/judgment work; writes files + runs shell.
+- **C1 (Claude / Sonnet)** — spawn the owning domain subagent via the **`Agent`** tool (`model: sonnet`).
+  This is **one of the three** C1 options, **not** the default. (Hebrew editorial copy is the exception that
+  is *always* Sonnet — see `content_lane_sonnet_not_gemini`.)
+- **C2 (audit / QA / GRUNT)** — `(route: C2)` → `dispatch.py PNN`. DeepSeek; mechanical, zero-judgment work:
+  count/file/grep checks, regen, and the bookkeeping you are NOT doing by hand. Cheap — use it liberally.
+- **C3 (challenge / consult)** — `(route: C3)` → `dispatch.py PNN`. ChatGPT; advice only, never closes,
+  never builds. **Mandatory before any honest-vs-artifact / precedent / tripwire fork.**
+- `C1-CURSOR` is **RETIRED** → the tag still transparently aliases to C1-GROK; author no new Cursor work.
+
+The router reads the route tag from the **first line of `tasks\prompts\PNN_*.md`** (format
+`# PNN / title (route: C1-GROK)`), runs the lane, writes `tasks\returns\PNN_return.md`, records the git
+delta, and ticks the board — so for any router lane you must first **author the `PNN_*.md` prompt file**
+(5-part spec + route tag + return contract). Parallelize across executors on **independent workstreams
+only — never two writers in the same files.** Mark the move dispatched on the board. WIP limit per owner = 2.
 
 **5. On return — VERIFY before anything closes (this is your job, undivided).** Router/subagent output is
 **RETURNED-UNVERIFIED** until you check it. A return block is a **claim, not proof**.
@@ -81,10 +118,16 @@ record — never leave state only in this chat. There is no dashboard to regener
   irreversible + consumer-facing; start/kill a major program; external commitment/spend/legal; redefine
   strategy/target user/what Bari is) → stop, present a crisp **go / no-go** with the tradeoff.
 - A move needs a **consumer-facing deploy** (commit/push to bari.digital) → stop, hand to the owner.
+- The **owner issues a stop/halt** → cease immediately, confirm you've stopped, wait (see *Owner override
+  & hard STOP*). This beats every other rule in this file.
 - **No ready moves remain.**
 - A return **fails verification twice**, or dispatch repeatedly errors.
 
 ## Guardrails (always on)
+- **Owner override is absolute** — a live owner instruction beats this skill; on "stop", fully halt and
+  confirm before any further action.
+- **C1 is three executors (Sonnet + Gemini + Grok), reached three ways — never default everything to the
+  Claude `Agent` tool.** Decompose and pick per piece (see step 4). Grunt/bookkeeping → C2, not your hands.
 - **Never write CLOSED without artifact verification.** The router never closes; you do, on evidence.
 - **OFF ban** is absolute (TASK-238): any OFF finding is a launch blocker; every data-adjacent prompt
   carries the guard.

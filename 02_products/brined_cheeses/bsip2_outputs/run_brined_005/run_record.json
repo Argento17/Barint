@@ -3,7 +3,7 @@
   "task": "brined-sodium-protein-run005",
   "category_slug": "brined-cheeses",
   "category_context": "dairy_protein",
-  "generated": "2026-06-13T12:27:23.175081+00:00",
+  "generated": "2026-06-15T06:11:26.750441+00:00",
   "engine": "proto_v0 / score_engine.py — EV-052addendum + EV-053 + EV-054 + EV-055 + EV-056 + EV-057",
   "ev_applied": [
     "EV-052_addendum",
@@ -32,7 +32,7 @@
     "BSIP1 source: run_brined_cheeses_002 (hygiene-cleaned — marketing copy nulled for bc-035/bc-045; scrape artifacts stripped; typos fixed; bc-001 name corrected)",
     "evaluation_scope.py: brined_food keyword list extended with construct forms 'גבינת מלוחה', 'גבינת עזים', 'גבינת כבשים' (EV-052 addendum, RT-1 vocabulary fix)"
   ],
-  "evaluation_scope_sha256": "2d2acad2fce699892be98224f9caa9b12c65e91b6408db689723e18f85dc1082",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
   "off_used": false,
   "corpus_source": "C:\\Bari\\02_products\\brined_cheeses\\factory_run_001\\corpus_filter.json",
   "bsip0_source": "C:\\Bari\\02_products\\brined_cheeses\\bsip0_outputs\\brined_cheese_bsip0_raw_20260613T065721.json",
@@ -51,7 +51,7 @@
     "min": 46.0,
     "max": 85.4,
     "median": 72.9,
-    "stdev": 9.36,
+    "stdev": 9.34,
     "range": 39.4,
     "histogram": {
       "50-59": 5,
@@ -215,7 +215,7 @@
         "barcode": "369617",
         "name": "כדורי פטה בשמן מתובל",
         "sodium_mg": 800.0,
-        "score": 48.1,
+        "score": 48.5,
         "grade": "D",
         "penalty": 8,
         "note": "sodium=800.0mg band=700–899 (BARI_GRAD_SODIUM_V1 / EV-055)"
@@ -245,11 +245,11 @@
         "clean_grade": "A",
         "clean_nova": 1,
         "processed_bc": "369617",
-        "processed_score": 48.1,
+        "processed_score": 48.5,
         "processed_grade": "D",
         "processed_nova": 3,
         "nova1_above_nova3": true,
-        "delta": 32.4
+        "delta": 32.0
       },
       {
         "label": "NOVA3_5pct_bulgarian_vs_NOVA3_24pct_bulgarian_sodium_effect",
@@ -515,6 +515,19 @@
       "delta": -3.6
     },
     {
+      "barcode": "369617",
+      "name": "כדורי פטה בשמן מתובל",
+      "nova": 3,
+      "fat_g": 31.0,
+      "sodium_mg": 800.0,
+      "context_flag": "brined_food",
+      "run003_score": 45.0,
+      "run003_grade": "D",
+      "run004_score": 48.5,
+      "run004_grade": "D",
+      "delta": 3.5
+    },
+    {
       "barcode": "7296073641964",
       "name": "בולגרית מעודנת 5%",
       "nova": 2,
@@ -591,19 +604,6 @@
       "run004_score": 69.1,
       "run004_grade": "B",
       "delta": -3.2
-    },
-    {
-      "barcode": "369617",
-      "name": "כדורי פטה בשמן מתובל",
-      "nova": 3,
-      "fat_g": 31.0,
-      "sodium_mg": 800.0,
-      "context_flag": "brined_food",
-      "run003_score": 45.0,
-      "run003_grade": "D",
-      "run004_score": 48.1,
-      "run004_grade": "D",
-      "delta": 3.1
     },
     {
       "barcode": "7290019790402",
@@ -921,7 +921,7 @@
     {
       "barcode": "369617",
       "name": "כדורי פטה בשמן מתובל",
-      "score": 48.1,
+      "score": 48.5,
       "grade": "D",
       "nova": 3,
       "context_flag": "brined_food",

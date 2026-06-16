@@ -1,0 +1,180 @@
+{
+  "sku_id": "SP-7290017243368",
+  "barcode": "7290017243368",
+  "name_he": "סופהרב CAL D K ULTIMATE סידן 60 טבליות",
+  "brand_bucket": "supherb",
+  "engine_active": "calcium",
+  "price_ils": 103.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "biogaya",
+    "confidence": 1.0,
+    "reason": "barcode match via biogaya"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'סידן עם ויטמין D3 וויטמין K2 לבריאות העצם'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.biogaya.co.il/calcium-d-k2-supherb",
+    "source": "biogaya",
+    "brand": "supherb",
+    "product_name": "סופהרב CAL D K ULTIMATE סידן+D+K2 60 כמוסות",
+    "barcode": "7290017243368",
+    "serving_size": "1 capsule",
+    "servings_per_container": "60",
+    "ingredient_list_raw": null,
+    "primary_claim": "סידן עם ויטמין D3 וויטמין K2 לבריאות העצם",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "סידן (calcium citrate)",
+        "amount": 300.0,
+        "unit": "mg",
+        "form": "citrate",
+        "form_raw": "citrate",
+        "active_slug": "calcium"
+      },
+      {
+        "ingredient": "ויטמין D3 (cholecalciferol)",
+        "amount": 400.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": null,
+        "active_slug": "vitamin_d3"
+      },
+      {
+        "ingredient": "ויטמין K2 (MK-7)",
+        "amount": 45.0,
+        "unit": "mcg",
+        "form": "MK-7",
+        "form_raw": "MK-7",
+        "active_slug": "calcium"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:biogaya",
+      "source_id": "supherb:7290017243368",
+      "source_url": "https://www.biogaya.co.il/calcium-d-k2-supherb",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב CAL D K ULTIMATE סידן+D+K2 60 כמוסות",
+    "primary_claim_fed": "סידן עם ויטמין D3 וויטמין K2 לבריאות העצם bone health heart health",
+    "actives": [
+      {
+        "active_slug": "calcium",
+        "display_name": "סידן (calcium citrate)",
+        "quantity": 300.0,
+        "unit": "mg",
+        "form": "citrate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+    "score": 76.2,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 72.0,
+      "dose": 56.8,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.661821Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290017243368",
+    "active": "calcium",
+    "on_label_claim": "סידן עם ויטמין D3 וויטמין K2 לבריאות העצם bone health heart health",
+    "claim_matched": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+      "resolved_phrase": null,
+      "resolved_tier": "Moderate",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29279934",
+        "PMID:26510847",
+        "PMID:26420598"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 72.0,
+        "tier": "Moderate"
+      },
+      "dose": {
+        "value": 56.8,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 76.2,
+    "dossier_facts_used": [
+      {
+        "field": "claims['bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)'].evidence_tier",
+        "value": "Moderate",
+        "supp_ev": "SUPP-EV-010"
+      }
+    ],
+    "final": {
+      "score": 76.2,
+      "grade": "B"
+    }
+  }
+}

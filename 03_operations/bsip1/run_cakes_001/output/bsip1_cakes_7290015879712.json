@@ -1,0 +1,188 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_cakes_7290015879712",
+  "barcode": "7290015879712",
+  "canonical_name_he": "תערובת אפיית לעוגות ומאפינס לל\"ג מולינו ורוד 500 גרם 500 גרם",
+  "brand": "",
+  "weight_g": 500.0,
+  "category": "cake_cookie",
+  "source_retailers": [
+    "yohananof"
+  ],
+  "image_url": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F729001587971212-22-2024_12-09-10.jpg&w=256&q=75",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 345.0,
+    "fat_g": 0.7,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 12.0,
+    "carbohydrates_g": 79.0,
+    "sugars_g": 0.2,
+    "dietary_fiber_g": 1.6,
+    "protein_g": 5.0
+  },
+  "energy_kcal": 345.0,
+  "fat_g": 0.7,
+  "fat_saturated_g": null,
+  "fat_trans_g": null,
+  "protein_g": 5.0,
+  "carbohydrates_g": 79.0,
+  "sugars_g": 0.2,
+  "sodium_mg": 12.0,
+  "dietary_fiber_g": 1.6,
+  "cholesterol_mg": null,
+  "ingredients_text_he": "עמילן תירס, קמח אורז, עמילן תפוח-אדמה, קמח כוסמת, קמח אורז מלא, קמח אורז מחומם, מסמיך (E412), סיבים תזונתיים (פסיליום).",
+  "ingredients_list": [
+    "עמילן תירס",
+    "קמח אורז",
+    "עמילן תפוח-אדמה",
+    "קמח כוסמת",
+    "קמח אורז מלא",
+    "קמח אורז מחומם",
+    "מסמיך (E412)",
+    "סיבים תזונתיים (פסיליום)"
+  ],
+  "ingredient_count": 8,
+  "ingredient_text_quality": "good",
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "off_source_used": false,
+  "nova_proxy": null,
+  "nova_confidence": null,
+  "nova_notes": [],
+  "detected_additives": [],
+  "additive_count": 0,
+  "confidence": 0.72,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "single_source"
+  ],
+  "missing_fields": [],
+  "inferred_fields": [],
+  "data_sufficiency": "sufficient",
+  "provenance": {
+    "source": "yohananof_direct_scrape",
+    "fetched_at": "2026-06-14T13:02:55.502995",
+    "source_url": "https://yochananof.co.il/category?search=%D7%A2%D7%95%D7%92%D7%AA%20%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93",
+    "panel_source": "storefront",
+    "verification_status": "candidate",
+    "off_used": false
+  },
+  "enrichment_timestamp": "2026-06-14T13:13:57.869463+00:00",
+  "run_id": "run_cakes_001",
+  "ingredients_raw": "עמילן תירס, קמח אורז, עמילן תפוח-אדמה, קמח כוסמת, קמח אורז מלא, קמח אורז מחומם, מסמיך (E412), סיבים תזונתיים (פסיליום).",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "עמילן תירס",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "קמח אורז",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "עמילן תפוח-אדמה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "קמח כוסמת",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "קמח אורז מלא",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "קמח אורז מחומם",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "מסמיך (E412)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 8,
+      "text": "סיבים תזונתיים (פסיליום).",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
+  ],
+  "extracted_additives": [
+    {
+      "term": "מסמיך",
+      "category": "thickener",
+      "position": 7
+    },
+    {
+      "term": "E412",
+      "category": "stabilizer_thickener",
+      "position": 7
+    }
+  ],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [
+    {
+      "term": "עמילן תירס",
+      "category": "corn_starch",
+      "position": 1
+    },
+    {
+      "term": "קמח אורז",
+      "category": "rice_flour",
+      "position": 2
+    },
+    {
+      "term": "עמילן",
+      "category": "starch_generic",
+      "position": 1
+    },
+    {
+      "term": "קמח",
+      "category": "flour_generic",
+      "position": 2
+    }
+  ],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 8,
+    "additive_count": 2,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 4,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

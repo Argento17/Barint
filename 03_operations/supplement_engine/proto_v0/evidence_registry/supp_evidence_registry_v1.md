@@ -462,6 +462,53 @@ Preserved so the KSM-66 insight is not lost (it vacated SUPP-EV-005 in the v1.1 
 
 ---
 
+## SUPP-EV-020 — TASK-277 SIE calibration: cap_3 bug fix, detector guards, folic_acid/omega3 Hebrew umbrella additions
+
+| Field | Value |
+|---|---|
+| concept | Four calibration fixes applied to the SIE engine and dossiers to make corpus grades trustworthy. (1) **cap_3 word-boundary bug fix** (engine): `detect_over_promise()` used `.strip()` on trailing-space markers ("treat ", "cure ", "reverse ") which collapsed them to bare substrings that matched INSIDE ordinary words ("treatment"→"treat", "treating"→"treat") — false cap_3_honesty_core on 7 products with compliance-default studied-endpoint phrases. Fixed by word-boundary regex (`\b...\b`) for single-token markers; multi-word exact-phrase markers unchanged. Golden R3 (`"clinically proven to cure insomnia"`) still fires correctly. (2) **Detector noise fixes** (`detect_active_slug`): (a) Decaf products ("נטול קפאין") false-positive mapped to caffeine slug; fixed with a `_decaf_guard` that skips the caffeine slug when "נטול" + "קפאין" appear together. (b) Omega-5/plant-ALA products (pomegranate punicic acid "גרנאגארד ננו-אומגה 5", clary sage ALA "פיור אומגה 3 מרווה מרושתת") false-mapped to omega3 slug via "אומגה" keyword; fixed with `_omega5_or_ala_guard` blocking omega3 when omega-5/punicic/pomegranate/chia/clary-sage tokens present. (3) **Folic acid umbrella additions**: `היריון` (alt spelling of הריון), `בהיריון` (prefixed "in pregnancy"), `צינור העצבי` (neural tube anatomical reference) — all map to the existing NTD-prevention Strong tier, citing EFSA Q-2008-1213 + PMID:26662928/1677062. Also expanded `_STUDIED_HINT` in `run_full.py` folic_acid triggers to include these variants. (4) **Omega-3 DHA-pregnancy umbrella addition**: `הריון` maps to the existing broad brain/mood Weak tier via EFSA Q-2008-1207 (DHA contributes to normal brain and eye development of foetus/infants at 200 mg/day maternal DHA) — NOT TG=Strong, NOT CV-events (contested/deferred). (5) **Claim-mapping fix** (Item 1): `curate_claim()` in `run_full.py` now passes raw Hebrew claim text directly as `primary_claim` to the engine, allowing Hebrew umbrella `key_tokens` to match without the translation-loss from the English keyword intermediary (English "heart health" → "health" stripped as generic token → umbrella miss; raw Hebrew "לב" → matches directly). (6) **3 omega-3 Life SKUs reclassified** to `unscoreable_incomplete`: barcodes 7290118206118 (900 mg), 7290118206101 (600 mg), 7290119911011 (300 mg) — name-derived amounts are total fish-oil mass, NOT EPA+DHA; engine active_basis = EPA+DHA only; comparing total-oil dose to EPA+DHA `effective_dose` is structurally equivalent to the elemental-vs-compound trap. |
+| dimension | All five dimensions (engine + dossier authoring); claim-resolution path (§2.1); over-promise detection (§2.4); active detection (pre-engine ingestion) |
+| evidence_tier | (a) cap_3 bug fix: not a tier change, an engine correctness fix. (b) Detector guards: not a tier change. (c) Folic acid בהיריון/היריון/צינור: **Strong** (same basis as existing הריון key — EFSA Q-2008-1213 maternal tissue growth / NTD prevention; Cochrane PMID:26662928; MRC trial PMID:1677062). (d) Omega3 הריון: **Weak** (EFSA Q-2008-1207 DHA brain/eye development 200 mg — same broad brain/DHA tier already tiered Weak; population condition = reader context per Invariant 1). (e) claim-mapping raw-HE pass-through: not a tier change; a claim-resolution path fix enabling existing cited Hebrew keys to match. |
+| citations | (folic acid pregnancy variants) EFSA Q-2008-1213 (maternal tissue growth during pregnancy, periconceptional folic acid); PMID:26662928 (Cochrane RCT folic acid NTD prevention); PMID:1677062 (MRC RCT neural tube defect prevention); (omega3 pregnancy DHA) EFSA Q-2008-1207 (DHA normal brain and eye development of foetus/breastfed infant, 200 mg/day); PMID:38468309 (broad brain/DHA base — reused pointer from SUPP-EV-005) |
+| source | Evidence already in SUPP-EV-005 (omega3 DHA brain) and SUPP-EV-011 (folic acid NTD); this entry records the additional Hebrew tokens and corpus-calibration fixes |
+| should_affect_score_now | **false** — candidate; all dossier entries carry `should_affect_score_now: false`; engine changes are corrections not methodology shifts; corpus re-score is an internal candidate run |
+| risk_of_misuse | (a) Treating `הריון` on omega3 as a TG=Strong pathway — it is explicitly Weak via brain/DHA EFSA route; Strong is only reachable via explicit `מוריד טריגליצרידים` studied-claim path. (b) Treating `בהיריון` folic acid as unlocking a lower-evidence tier — it maps to the same Strong NTD endpoint as `הריון`. (c) Treating the raw-HE pass-through as license to add any Hebrew token to any dossier without citation — the umbrella keys themselves remain pre-authored and cited; the fix only changes how the claim text reaches them. |
+| d7_status | **Nutrition self-sign (D6 umbrella additions + engine-correctness fixes). Product D7 co-sign required before any of these changes can move a published score (standard Phase-2 gate).** Golden 17/17 confirmed post-fix. Cross-corpus food invariants confirmed byte-identical (SIE is a separate tree). |
+| before_grades | 7S / 13B / 1C / 15D / 49E (85 scored, TASK-276 v1 — 72% yield) |
+| after_grades | 18S / 4B / 0C / 11D / 39E (82 scored, TASK-277 v2 — 69.5% yield) |
+| net_movement | +11S / -9B / -1C / -4D / -10E; 3 omega3 Life SKUs → unscoreable_incomplete (off the scored count) |
+
+```yaml
+study_objects:
+  - fix: "cap_3 word-boundary bug (engine)"
+    scope: "detect_over_promise() in score_engine.py"
+    before: "m.strip() on markers + substring match → 'treat' ⊂ 'treatment'"
+    after: "re.compile(r'\\b' + re.escape(m) + r'\\b') for single-token markers"
+    golden_R3_still_fires: true
+  - fix: "detector noise (il_supplement_panels.py)"
+    scope: "detect_active_slug()"
+    guards_added: ["_decaf_guard (נטול קפאין → skip caffeine slug)", "_omega5_or_ala_guard (omega-5/punicic/pomegranate/chia/clary-sage → skip omega3 slug)"]
+  - dossier_addition: "folic_acid.yaml"
+    new_keys: ["היריון", "בהיריון", "צינור העצבי"]
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+  - dossier_addition: "omega3_epa_dha.yaml"
+    new_keys: ["הריון"]
+    resolved_tier: "Weak"
+    anti_loophole: "NOT TG=Strong; NOT CV-events; population=reader context (Invariant 1)"
+    efsa_ref: "EFSA Q-2008-1207"
+  - code_fix: "run_full.py curate_claim()"
+    before: "translate Hebrew → English keywords (lost Hebrew token info)"
+    after: "pass raw Hebrew directly; _STUDIED_HINT unchanged (studied-endpoint keys)"
+    folic_acid_trigger_expansion: ["הריון", "היריון", "בהיריון", "עובר", "נטית", "neural", "צינור"]
+  - reclassification: "3 Life omega3 SKUs"
+    barcodes: ["7290118206118", "7290118206101", "7290119911011"]
+    reason: "total fish-oil mass, not EPA+DHA; name_derived guard; elemental-vs-compound trap"
+    new_outcome: "unscoreable_incomplete"
+```
+
+---
+
 ## Registry status
 
 - Entries 001–005 promoted from §8 seeds to reflect the **built + Nutrition-co-signed** dossiers (TASK-171B).
@@ -471,3 +518,21 @@ Preserved so the KSM-66 insight is not lost (it vacated SUPP-EV-005 in the v1.1 
 - Product D7 co-sign of the SIE methodology (v1.1) stands; per-number Product co-sign is a **Phase-2 calibration gate** before any value can move a published score.
 - **Entries 017–019 added (TASK-195, 2026-06-06 — banked amendments):** speciation tier (Mg/folate/B12 form grading, §2.3), EFSA TUL named primary Safety ceiling (§2.5), probiotics strain-resolved dossier rules (§7, Phase 3+). Nutrition self-sign; `roadmap_impact: false`; `should_affect_score_now: false` on all. No engine code, no corpus, no score touched.
 - **TASK-171K (2026-06-03):** Hebrew + EFSA Art.13 claim-vocab expansion across SUPP-EV-001…016 (addendum above). Dossier-authoring only (no engine/methodology edit); cited pointers to existing tiers; all `should_affect_score_now: false`. `load_all` clean + golden 17/17. Magnesium 'עייפות'→Moderate verified. **Gating dependency surfaced:** Hebrew keys are inert until `score_engine._PUNCT` is made Hebrew-aware (one-line Data change, its own governance). Three dossiers got a *first* umbrella (vitamin D3, creatine, omega-3 — score-path-creating like SUPP-EV-006 → Product D7 + golden re-validation before ship); caffeine deliberately left without one.
+- **SUPP-EV-020 added (TASK-277, 2026-06-13 — SIE calibration):** Four calibration fixes: (1) cap_3 word-boundary engine bug fixed; (2) detector noise guards for decaf→caffeine and omega-5/plant-ALA→omega3; (3) folic_acid umbrella expanded with היריון/בהיריון/צינור העצבי (Strong, PMID:26662928/1677062); (4) omega3 umbrella expanded with הריון (Weak, EFSA Q-2008-1207 DHA brain development). curate_claim() fixed to pass raw Hebrew directly. 3 Life omega3 SKUs reclassified unscoreable_incomplete. Corpus re-scored: 7S/13B/1C/15D/49E → 18S/4B/0C/11D/39E (82 scored). Golden 17/17 confirmed. Cross-corpus food invariants byte-identical. Nutrition D6 self-sign; Product D7 required before any value moves a published score.
+
+
+---
+
+## SUPP-EV-021 -- TASK-277 CHANGES_REQUESTED retry: primary-claim tier discipline fix
+
+| Field | Value |
+|---|---|
+| concept | **Primary-claim discipline fix** in _match_studied_claim() (score_engine.py). The prior token-overlap step returned the FIRST matching dossier claim, so an identity token like "c" (vitamin C abbreviation) or "zinc" (active name present in ALL zinc claims) falsely resolved to the deficiency/Strong endpoint before a more specific marketing token could be considered. Result: Altman Vit C 500 "immune support/antioxidant" scored S/91.2 via the scurvy/deficiency Strong tier; Zinc Picolinate "immune support" scored S/91.2 via the zinc-deficiency Strong tier. Both violated SIE claim-specificity: score the claim the product makes, not the active best-ever possible endpoint (the creatine-for-fat-loss principle). |
+| dimension | Evidence (ss2.1) -- claim resolution path in _match_studied_claim() |
+| fix | Three-part fix (primary-claim discipline): (a) filter single-letter tokens from overlap computation (e.g. "c" for vitamin C -- identity abbreviations are not endpoint-specific discriminators); (b) select match with MOST overlapping tokens (highest specificity); (c) on ties, prefer LOWEST tier (most conservative -- prevents tie from defaulting to highest-tier entry by dict iteration order). |
+| rationale | ss2.1 claim-specificity principle: a product marketed for "immune support" scores on the immune endpoint tier, not on a deficiency endpoint that matches only because both contain the active name or a single-letter abbreviation. Generalizable: specificity measured by count of meaningful (multi-character) overlapping tokens. |
+| golden_regression | R3 ("clinically proven to cure insomnia" -> sleep/Weak via token "insomnia") still fires correctly. All 17/17 golden fixtures pass. |
+| scope | SIE engine only. No food category files touched. EDPG firewall intact. |
+| should_affect_score_now | false |
+| d7_status | Nutrition D6 self-sign (TASK-277 retry, 2026-06-14). Product D7 co-sign required before any grade is consumer-facing. |
+| grade_distribution_change | v2: S=18, A=8, B=10, C=1, D=12, E=33 (26 S/A). v3: S=15, A=5, B=16, C=1, D=12, E=33 (20 S/A). 6 products moved S/A->B (vitamin C immune x5, zinc picolinate immune x1). All remaining S/A have primary claims directly matching Strong or Moderate studied endpoints. |

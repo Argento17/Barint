@@ -6,6 +6,8 @@ import { FeaturedBreakfastCerealsIntelligenceCard } from "@/components/hashvaot/
 import { FeaturedButterIntelligenceCard } from "@/components/hashvaot/featured-butter-intelligence-card";
 import { FeaturedGranolaIntelligenceCard } from "@/components/hashvaot/featured-granola-intelligence-card";
 import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
+import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
+import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedBreadIntelligenceCardLite } from "@/components/hashvaot/featured-bread-intelligence-card-lite";
 import { FeaturedCheeseIntelligenceCard } from "@/components/hashvaot/featured-cheese-intelligence-card";
 import { FeaturedHardCheesesIntelligenceCard } from "@/components/hashvaot/featured-hard-cheeses-intelligence-card";
@@ -32,6 +34,8 @@ import { granolaProducts } from "@/lib/comparisons/granola-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
 import { saltySnacksProducts } from "@/lib/comparisons/salty-snacks-page-data";
 import { brinedCheesesProducts, brinedCheesesPrologueSentences } from "@/lib/comparisons/brined-cheeses-page-data";
+import { cookiesCoffeeProducts } from "@/lib/comparisons/cookies-coffee-page-data";
+import { cakesHardCookiesProducts } from "@/lib/comparisons/cakes-hard-cookies-page-data";
 import { hardCheesesProducts } from "@/lib/comparisons/hard-cheeses-page-data";
 import { juicesProducts } from "@/lib/comparisons/juices-page-data";
 import { cn } from "@/lib/utils";
@@ -47,6 +51,8 @@ const BUTTER_COMPARISON_HREF = "/hashvaot/butter";
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
 const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
 const BRINED_CHEESES_COMPARISON_HREF = "/hashvaot/brined-cheeses";
+const COOKIES_COFFEE_COMPARISON_HREF = "/hashvaot/cookies-coffee";
+const CAKES_HARD_COOKIES_COMPARISON_HREF = "/hashvaot/cakes";
 const HARD_CHEESES_COMPARISON_HREF = "/hashvaot/hard-cheeses";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
 const JUICES_COMPARISON_HREF = "/hashvaot/juices";
@@ -72,7 +78,13 @@ export default function HashvaotIndexPage() {
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
   const hardCheesesDescription = `בדקנו ${hardCheesesProducts.length} גבינות קשות וצהובות מיוחננוף: 18 קיבלו B, 11 קיבלו C ואחד קיבל D — אף גבינה לא הגיעה ל-A. גאודה ממרכיבים מינימליים מובילת המדף; גבינות 'לייט' עם מייצבים מקבלות ציון נמוך יותר.`;
   const brinedCheesesDescription = `${brinedCheesesPrologueSentences[0]} ${brinedCheesesProducts.length} מוצרים בדף ההשוואה.`;
+  const cookiesCoffeeDescription = `ביסקוויטים מתוקים מעובדים, מלווי הקפה של המדף הישראלי. ${cookiesCoffeeProducts.length} מוצרים נבדקו — ציון C הוא תקרת הקטגוריה. ההבדלים: סוג השומן, כמות הסוכר, מורכבות רשימת הרכיבים.`;
   const saltySnacksDescription = `בדקנו ${saltySnacksProducts.length} חטיפים מלוחים מהמדף הישראלי: צ'יפס, פופקורן, פצפוצי אורז, פרצלים וחטיפי קטניות. 7 קיבלו A, 16 B — חטיפי קטניות אפויים ופצפוצי אורז פשוטים; 18 C ו-13 D או E. חטיפים 'אפויים' ו'ללא גלוטן' לא בהכרח מגיעים גבוה.`;
+  const cCount = cakesHardCookiesProducts.filter((p) => p.grade === "C").length;
+  const dCount = cakesHardCookiesProducts.filter((p) => p.grade === "D").length;
+  const eCount = cakesHardCookiesProducts.filter((p) => p.grade === "E").length;
+  const cakesTopScore = Math.max(...cakesHardCookiesProducts.map((p) => p.score ?? 0)).toFixed(1);
+  const cakesHardCookiesDescription = `בדקנו ${cakesHardCookiesProducts.length} עוגות מהמדף הישראלי — אף מוצר לא הגיע ל-A או ל-B. ${cCount} קיבלו C (הציון הגבוה ביותר הוא ${cakesTopScore}), ${dCount} קיבלו D ו-${eCount} קיבלו E. ציון C הוא תקרת הקטגוריה, לא הישג.`;
 
   return (
     <main
@@ -161,6 +173,14 @@ export default function HashvaotIndexPage() {
           <FeaturedSaltySnacksIntelligenceCard
             href="/hashvaot/salty-snacks"
             description={saltySnacksDescription}
+          />
+          <FeaturedCookiesCoffeeIntelligenceCard
+            href={COOKIES_COFFEE_COMPARISON_HREF}
+            description={cookiesCoffeeDescription}
+          />
+          <FeaturedCakesHardCookiesIntelligenceCard
+            href={CAKES_HARD_COOKIES_COMPARISON_HREF}
+            description={cakesHardCookiesDescription}
           />
         </div>
 

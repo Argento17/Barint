@@ -1,0 +1,172 @@
+{
+  "sku_id": "SP-7290012760891",
+  "barcode": "7290012760891",
+  "name_he": "סופהרב סידן 600 בדץ 60 טבליות",
+  "brand_bucket": "supherb",
+  "engine_active": "calcium",
+  "price_ils": 16.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "pharmaplus.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via pharmaplus.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "raw HE claim -> umbrella will resolve: 'Calcium carbonate 600mg + Vitamin D3 200IU; mehadr'",
+  "lossy": [],
+  "panel": {
+    "url": "https://pharmaplus.co.il/supherb-calcium-600-d.html",
+    "source": "pharmaplus.co.il",
+    "brand": "supherb",
+    "product_name": "SupHerb Calcium 600+D Badatz 60 tablets",
+    "barcode": "7290012760891",
+    "serving_size": "1 tablet",
+    "servings_per_container": "60",
+    "ingredient_list_raw": null,
+    "primary_claim": "Calcium carbonate 600mg + Vitamin D3 200IU; mehadrin kosher",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "calcium (calcium carbonate)",
+        "amount": 600.0,
+        "unit": "mg",
+        "form": "carbonate",
+        "form_raw": "carbonate",
+        "active_slug": "calcium"
+      },
+      {
+        "ingredient": "vitamin D3 (cholecalciferol)",
+        "amount": 200.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": null,
+        "active_slug": "vitamin_d3"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:pharmaplus.co.il",
+      "source_id": "supherb:7290012760891",
+      "source_url": "https://pharmaplus.co.il/supherb-calcium-600-d.html",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "SupHerb Calcium 600+D Badatz 60 tablets",
+    "primary_claim_fed": "Calcium carbonate 600mg + Vitamin D3 200IU; mehadrin kosher",
+    "actives": [
+      {
+        "active_slug": "calcium",
+        "display_name": "calcium (calcium carbonate)",
+        "quantity": 600.0,
+        "unit": "mg",
+        "form": "carbonate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+    "score": 81.0,
+    "grade": "A",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 72.0,
+      "dose": 92,
+      "form": 72,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.025324Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290012760891",
+    "active": "calcium",
+    "on_label_claim": "Calcium carbonate 600mg + Vitamin D3 200IU; mehadrin kosher",
+    "claim_matched": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)",
+      "resolved_phrase": null,
+      "resolved_tier": "Moderate",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29279934",
+        "PMID:26510847",
+        "PMID:26420598"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 72.0,
+        "tier": "Moderate"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 72
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 81.0,
+    "dossier_facts_used": [
+      {
+        "field": "claims['bone health / osteoporotic fracture risk reduction (with vitamin D, in older/deficient adults)'].evidence_tier",
+        "value": "Moderate",
+        "supp_ev": "SUPP-EV-010"
+      }
+    ],
+    "final": {
+      "score": 81.0,
+      "grade": "A"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "bsip1_v0.1",
+  "file_type": "product",
+  "canonical_product_id": "e2e_raw_9990000000002",
+  "barcode": "9990000000002",
+  "canonical_name_he": "עוגיית שוקולד בדיקה סינטטי",
+  "brand": null,
+  "source_retailers": [
+    "shufersal"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 520.0,
+    "fat_g": 28.0,
+    "fat_saturated_g": 16.0,
+    "sodium_mg": 80.0,
+    "carbohydrates_g": 60.0,
+    "sugars_g": 38.0,
+    "dietary_fiber_g": 2.0,
+    "protein_g": 6.0
+  },
+  "ingredients_list": [
+    "קמח",
+    "סוכר",
+    "שוקולד",
+    "חמאה",
+    "שמן דקלים",
+    "מצק פרה",
+    "גליצרין",
+    "חומצת לימון"
+  ],
+  "ingredients_text_he": "קמח, סוכר, שוקולד, חמאה, שמן דקלים, מצק פרה, גליצרין, חומצת לימון",
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "confidence": "high",
+  "conflicts_summary": [],
+  "missing_fields": [],
+  "inferred_fields": [],
+  "audit_ref": "e2e_p41_raw_pipeline",
+  "image_url": "https://example.invalid/e2e_002.png",
+  "canonical_trust_level": "high",
+  "nutrition_consistency_status": "ok",
+  "_bsip0_source": {
+    "retailer_id": "shufersal",
+    "source_url": "file://C:\\Bari\\03_operations\\spine\\_fixtures_e2e\\raw\\raw_e2e_002.html",
+    "scraped_at": "2026-06-12T17:32:03.524468+00:00",
+    "extraction_method": "replay_parse",
+    "extraction_confidence": "high",
+    "integrity_flags": []
+  },
+  "_builder": "bsip0_to_bsip1_builder (inline, pipeline_e2e.py, TASK-259/P41)",
+  "_off_data_used": false,
+  "bsip1_converted_at": "2026-06-12T17:32:03+00:00"
+}

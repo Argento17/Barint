@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-07T05:11:14.113573Z",
+  "trace_generated_at": "2026-06-15T06:10:32.370166Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_cereal_8445291638839",
@@ -130,6 +130,8 @@
     ],
     "has_flavor_enhancer": true,
     "has_artificial_color": false,
+    "has_natural_color": false,
+    "natural_color_hits": [],
     "has_seed_oil": true,
     "seed_oil_matches": [
       "שמן צמחי"
@@ -167,6 +169,8 @@
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [
       "sugar"
     ],
@@ -188,8 +192,15 @@
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
+    "functional_fiber_detected": false,
+    "functional_fiber_type": "none",
+    "functional_fiber_terms_matched": [],
+    "functional_fiber_viscous_terms": [],
+    "functional_fiber_prebiotic_terms": [],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
+    "tax_emulsifier_medium": [],
+    "tax_emulsifier_low": [],
     "tax_named_concern_additives": [],
     "tax_native_starch": false,
     "tax_modified_starch": false,
@@ -199,11 +210,16 @@
     "protein_matrix_form": null,
     "sanitized_ingredient_count": 21,
     "primary_fragmentation": "fractional",
+    "sat_fat_inferred": false,
+    "sat_fat_inferred_value": null,
+    "sat_fat_inferred_basis": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
-      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 8.98,
@@ -294,7 +310,7 @@
     "protein_quality": 41.5,
     "additive_quality": 64.0,
     "satiety_support": 77.5,
-    "fat_quality": 83.2,
+    "fat_quality": 88.2,
     "regulatory_quality": 60.0,
     "whole_food_integrity": 4
   },
@@ -306,7 +322,7 @@
     "protein_quality": "protein=8.3g base=41.5, source=whole_food(×1.0) → 41.5",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.3×3 + 9.4×5) / 371.0 × 400 = 77.5",
-    "fat_quality": "fat_v1(fat=3.7g<8.0): sat=0.7g base=93.2-seed10-trans0=83.2",
+    "fat_quality": "fat_v1(fat=3.7g<8.0): sat=0.7g base=93.2-seed5-trans0=88.2",
     "regulatory_quality": "1 red label: ['sugar']",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=21 complexity_pen=26 → 4"
   },
@@ -322,7 +338,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 54.09,
+  "weighted_dimension_score": 54.49,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -426,7 +442,7 @@
     }
   ],
   "binding_cap": 55,
-  "score_after_cap": 54.09,
+  "score_after_cap": 54.49,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -493,7 +509,7 @@
   "total_penalty_before_scaling": 12.0,
   "total_penalty_after_scaling": 12.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.09,
+  "score_after_penalty": 42.49,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": 55,
@@ -566,11 +582,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.09,
+  "score_after_floors": 42.49,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 42.1,
+  "final_score_estimate": 42.5,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

@@ -1,0 +1,163 @@
+{
+  "sku_id": "SP-7290006437563",
+  "barcode": "7290006437563",
+  "name_he": "אבץ פיקולינט 100 טבליות",
+  "brand_bucket": "other",
+  "engine_active": "zinc",
+  "price_ils": 80.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "pharmaplus.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via pharmaplus.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "raw HE claim -> umbrella will resolve: 'Zinc picolinate 25mg immune support'",
+  "lossy": [],
+  "panel": {
+    "url": "https://pharmaplus.co.il/zinc-picolinate-100-tablets-altman.html",
+    "source": "pharmaplus.co.il",
+    "brand": "altman",
+    "product_name": "Altman Zinc Picolinate 25mg 100 tablets",
+    "barcode": "7290006437563",
+    "serving_size": "1 tablet",
+    "servings_per_container": "100",
+    "ingredient_list_raw": null,
+    "primary_claim": "Zinc picolinate 25mg immune support",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "zinc (zinc picolinate)",
+        "amount": 25.0,
+        "unit": "mg",
+        "form": "picolinate",
+        "form_raw": "picolinate",
+        "active_slug": "zinc"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:pharmaplus.co.il",
+      "source_id": "altman:7290006437563",
+      "source_url": "https://pharmaplus.co.il/zinc-picolinate-100-tablets-altman.html",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "Altman Zinc Picolinate 25mg 100 tablets",
+    "primary_claim_fed": "Zinc picolinate 25mg immune support",
+    "actives": [
+      {
+        "active_slug": "zinc",
+        "display_name": "zinc (zinc picolinate)",
+        "quantity": 25.0,
+        "unit": "mg",
+        "form": "picolinate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "broad 'immune system support' (daily oral zinc, general wellness)",
+    "score": 77.5,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 92,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.728290Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290006437563",
+    "active": "zinc",
+    "on_label_claim": "Zinc picolinate 25mg immune support",
+    "claim_matched": "broad 'immune system support' (daily oral zinc, general wellness)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "broad 'immune system support' (daily oral zinc, general wellness)",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29186856",
+        "PMID:23775705"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 77.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['broad 'immune system support' (daily oral zinc, general wellness)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-008"
+      }
+    ],
+    "final": {
+      "score": 77.5,
+      "grade": "B"
+    }
+  }
+}

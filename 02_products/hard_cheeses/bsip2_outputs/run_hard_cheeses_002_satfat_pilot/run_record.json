@@ -1,0 +1,2122 @@
+{
+  "run_id": "run_hard_cheeses_002_satfat_pilot",
+  "task": "TASK-278 Phase-8 hard_cheeses×sat_fat wire + pilot (P123)",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T14:46:16.002558+00:00",
+  "engine": "proto_v0 + EV-090 hard_cheese sat_fat SR call site + EV-090 floor (bsip_cheese_subpool guard, FATSAT_SHELF_REL_SCOPE untouched)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "dual (on/off patch)",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK250_CONF": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "other_flags": "off (grad_sodium, sodium_shelf_relative, redlabel, sodium_cereal, task144)"
+  },
+  "dual_run_method": "module patch on score_engine.BARI_SHELF_RELATIVE_V1 (same process, hard_cheese-locked shelf_stats for fat_saturated_g)",
+  "off_used": false,
+  "corpus": {
+    "hardcheese_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_hard_cheeses_001\\output",
+    "milk_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+    "yogurt_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_006\\output",
+    "cheese_spread_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+    "n_hardcheese_loaded": 37,
+    "n_milk_loaded": 20,
+    "n_yogurt_loaded": 88,
+    "n_cheese_spread_loaded": 59
+  },
+  "shelf_stats_used": {
+    "nutrient": "fat_saturated_g",
+    "median": 18.0,
+    "scale": 1.4,
+    "n": 22,
+    "source": "locked D7/P123 from yellow+yellow_light+hard_grating n=22 in run_hard_cheeses_001"
+  },
+  "scope_guard_used": "category == dairy_protein AND bsip_cheese_subpool in HARD_CHEESE_YELLOW_SUBPOOLS {yellow, yellow_light, hard_grating}",
+  "constants_used": {
+    "FATSAT_SHELF_REL_HARDCHEESE_MEDIAN": 18.0,
+    "FATSAT_SHELF_REL_HARDCHEESE_SCALE": 1.4,
+    "FATSAT_SHELF_REL_HARDCHEESE_FLOOR": 62,
+    "FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G": 19.0,
+    "HARD_CHEESE_YELLOW_SUBPOOLS": [
+      "hard_grating",
+      "yellow",
+      "yellow_light"
+    ]
+  },
+  "milk_byte_id": {
+    "pass": true,
+    "milk_products_checked": 20,
+    "any_nonzero_delta": false,
+    "milk_deltas": [
+      {
+        "barcode": "5411188112709",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188124689",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188300328",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290000051352",
+        "delta": 0
+      },
+      {
+        "barcode": "7290014760141",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290019790259",
+        "delta": 0
+      },
+      {
+        "barcode": "7290102392094",
+        "delta": 0
+      },
+      {
+        "barcode": "7290107932134",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324773",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324926",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110325619",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313285",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313865",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290116936116",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290119385560",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376619939",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376620904",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376621451",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204219",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204554",
+        "delta": 0.0
+      }
+    ]
+  },
+  "cheese_spread_byte_id": {
+    "pass": true,
+    "cheese_spread_products_checked": 59,
+    "ev090_fired_on_cheese_spread": 0,
+    "cheese_spread_hc_fired_list": []
+  },
+  "yogurt_byte_id": {
+    "pass": true,
+    "yogurt_products_checked": 88,
+    "ev090_fired_on_yogurt": 0,
+    "yogurt_hc_fired_list": []
+  },
+  "named_pairs": {
+    "inv1_a": {
+      "barcode": "7290000062426",
+      "sat_fat_g": 5.5,
+      "flag_off": 63.0,
+      "flag_on": 66.0,
+      "note": "yellow_light/5.5g below-median -> relief expected"
+    },
+    "inv1_b": {
+      "barcode": "7290000062433",
+      "sat_fat_g": 17.5,
+      "flag_off": 77.6,
+      "flag_on": 77.6,
+      "note": "yellow/17.5g below-median -> slight relief expected"
+    },
+    "inv1_gap_off": 14.6,
+    "inv1_gap_on": 11.6,
+    "inv1_narrows": true,
+    "inv2_a": {
+      "barcode": "7290000062426",
+      "sat_fat_g": 5.5,
+      "flag_off": 63.0,
+      "flag_on": 66.0,
+      "note": "yellow_light/5.5g below-median -> relief expected"
+    },
+    "inv2_b": {
+      "barcode": "8866972",
+      "sat_fat_g": 19.5,
+      "flag_off": 69.9,
+      "flag_on": 62,
+      "note": "yellow/19.5g above-median >= 19g floor -> floor+penalty expected"
+    },
+    "inv2_gap_off": 6.9,
+    "inv2_gap_on": 4.0,
+    "inv2_narrows": true
+  },
+  "gate_criteria": [
+    {
+      "criterion": "C1",
+      "name": "directional_distribution",
+      "pass": true,
+      "evidence": "above_median n=6 mean_delta=-8.4 (<=0? True); below_median n=9 mean_delta=1.3333 (>=0? True)"
+    },
+    {
+      "criterion": "C2",
+      "name": "grade_dist_and_magnitude",
+      "pass": true,
+      "evidence": "(A) high_sat>=19g@B=0==0?True; (B) low_sat<=10g@C+=2>=1?True; (C) mean|d|=6.24>=0.5?True"
+    },
+    {
+      "criterion": "C3",
+      "name": "gap_narrows_inversion",
+      "pass": true,
+      "evidence": "INV-1: gap_on=11.6 < gap_off=14.6? True; INV-2: gap_on=4.0 < gap_off=6.9? True"
+    },
+    {
+      "criterion": "C4",
+      "name": "min_movers",
+      "pass": true,
+      "evidence": "n=10 (need >=5)"
+    },
+    {
+      "criterion": "C5",
+      "name": "min_grade_changes",
+      "pass": true,
+      "evidence": "n=6 (need >=1)"
+    },
+    {
+      "criterion": "C6",
+      "name": "max_absorption",
+      "pass": true,
+      "evidence": "0/10=0.0 (need <=0.40)"
+    },
+    {
+      "criterion": "C7",
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "sat_fat>=19g @B flag-on: 0 (need=0)"
+    },
+    {
+      "criterion": "C8",
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "6 checked (sat_fat>=19.0g), 0 >62 (need=0)"
+    },
+    {
+      "criterion": "C9",
+      "name": "no_scope_bleed",
+      "pass": true,
+      "evidence": "non-HC dairy_protein with EV-090 term: 0 (need=0)"
+    },
+    {
+      "criterion": "C10",
+      "name": "frozen_byte_id_milk",
+      "pass": true,
+      "evidence": "CRITICAL: milk products=20 all delta=0: True; nonzero=0"
+    },
+    {
+      "criterion": "C10b",
+      "name": "cheese_spread_byte_id",
+      "pass": true,
+      "evidence": "CRITICAL: cheese_spread products=59 EV-090 fired on: 0 (need=0)"
+    },
+    {
+      "criterion": "C10c",
+      "name": "yogurt_byte_id",
+      "pass": true,
+      "evidence": "CRITICAL: yogurt products=88 EV-090 fired on: 0 (need=0)"
+    },
+    {
+      "criterion": "C11",
+      "name": "flag_off_drift",
+      "pass": "n/a-docs-only",
+      "evidence": "1 mismatches >5pts vs run_hard_cheeses_001 (non-blocking)"
+    }
+  ],
+  "gate_summary": {
+    "all_hard_pass": true,
+    "pass": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "C10",
+      "C10b",
+      "C10c"
+    ],
+    "fail": []
+  },
+  "aggregate_stats": {
+    "hc_yellow_subpool_n": 22,
+    "hc_yellow_movers": 10,
+    "hc_yellow_grade_changes": 6,
+    "hc_yellow_sr_term_fired": 10,
+    "hc_yellow_absorbed": 0,
+    "hc_yellow_absorption_rate": 0.0,
+    "above_median_n": 6,
+    "below_median_n": 9,
+    "mean_delta_above_median": -8.4,
+    "mean_delta_below_median": 1.3333,
+    "mean_abs_delta_sr_products": 6.24
+  },
+  "grade_changes": [
+    {
+      "barcode": "7290000062426",
+      "from": "C",
+      "to": "B",
+      "flag_off": 63.0,
+      "flag_on": 66.0,
+      "delta": 3.0,
+      "bsip_cheese_subpool": "yellow_light",
+      "sat_fat_g": 5.5
+    },
+    {
+      "barcode": "7290000062440",
+      "from": "B",
+      "to": "C",
+      "flag_off": 77.2,
+      "flag_on": 62,
+      "delta": -15.2,
+      "bsip_cheese_subpool": "yellow",
+      "sat_fat_g": 19.0
+    },
+    {
+      "barcode": "7290000062495",
+      "from": "E",
+      "to": "D",
+      "flag_off": 33.0,
+      "flag_on": 36.0,
+      "delta": 3.0,
+      "bsip_cheese_subpool": "yellow_light",
+      "sat_fat_g": 10.0
+    },
+    {
+      "barcode": "7290000062532",
+      "from": "B",
+      "to": "C",
+      "flag_off": 77.1,
+      "flag_on": 62,
+      "delta": -15.1,
+      "bsip_cheese_subpool": "yellow",
+      "sat_fat_g": 19.0
+    },
+    {
+      "barcode": "7290000062594",
+      "from": "B",
+      "to": "C",
+      "flag_off": 69.2,
+      "flag_on": 62,
+      "delta": -7.2,
+      "bsip_cheese_subpool": "yellow",
+      "sat_fat_g": 19.0
+    },
+    {
+      "barcode": "8866972",
+      "from": "B",
+      "to": "C",
+      "flag_off": 69.9,
+      "flag_on": 62,
+      "delta": -7.9,
+      "bsip_cheese_subpool": "yellow",
+      "sat_fat_g": 19.5
+    }
+  ],
+  "drift_vs_baseline": {
+    "baseline_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hard_cheeses_001\\products",
+    "n_loaded": 37,
+    "n_exceeding_5pts": 1,
+    "mismatches": [
+      {
+        "barcode": "7290000062495",
+        "flag_off": 33.0,
+        "baseline_run_hard_cheeses_001": 39.0,
+        "diff": -6.0
+      }
+    ]
+  },
+  "engine_artifacts": {
+    "score_engine.py": "faad6f55cf245dab5f090fbefdcba0023343572382350ac15cf215636629950b",
+    "constants.py": "93f792e73299a539eeddfa8adbdbb70cd8616fe0637f39909c16e291ff96bd02",
+    "evaluation_scope.py": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f"
+  },
+  "score_errors": [],
+  "per_product_hardcheese_yellow": [
+    {
+      "barcode": "7290000062556",
+      "name": "גבינה צהובה מופחת 9% תנובה פרוסות",
+      "sat_fat_g": 5.0,
+      "bsip_cheese_subpool": "yellow_light",
+      "flag_off_score": 65.7,
+      "flag_on_score": 68.7,
+      "clean_delta": 3.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 66.4
+    },
+    {
+      "barcode": "7290000062426",
+      "name": "עמק צהוב 9% מופחת שומן",
+      "sat_fat_g": 5.5,
+      "bsip_cheese_subpool": "yellow_light",
+      "flag_off_score": 63.0,
+      "flag_on_score": 66.0,
+      "clean_delta": 3.0,
+      "grade_off": "C",
+      "grade_on": "B",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 64.3
+    },
+    {
+      "barcode": "7290110178918",
+      "name": "פרוסות מופחת שומן עמק 9%",
+      "sat_fat_g": 5.5,
+      "bsip_cheese_subpool": "yellow_light",
+      "flag_off_score": 35.0,
+      "flag_on_score": 38.0,
+      "clean_delta": 3.0,
+      "grade_off": "D",
+      "grade_on": "D",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 39.0
+    },
+    {
+      "barcode": "7290000062495",
+      "name": "גבינה צהובה מופחת שומן 16%",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "yellow_light",
+      "flag_off_score": 33.0,
+      "flag_on_score": 36.0,
+      "clean_delta": 3.0,
+      "grade_off": "E",
+      "grade_on": "D",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 39.0
+    },
+    {
+      "barcode": "7290000062433",
+      "name": "עמק גאודה שנה 28%",
+      "sat_fat_g": 17.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 77.6,
+      "flag_on_score": 77.6,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 77.6
+    },
+    {
+      "barcode": "7290000062457",
+      "name": "אמנטל 29% גד",
+      "sat_fat_g": 17.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 78.3,
+      "flag_on_score": 78.3,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 78.3
+    },
+    {
+      "barcode": "7290000062501",
+      "name": "עמק בלוק 28% שטראוס",
+      "sat_fat_g": 17.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 69.4,
+      "flag_on_score": 69.4,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 72.2
+    },
+    {
+      "barcode": "7290000062618",
+      "name": "גאודה 28% ארוז מהדרין",
+      "sat_fat_g": 17.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 77.4,
+      "flag_on_score": 77.4,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 77.4
+    },
+    {
+      "barcode": "7290019866105",
+      "name": "עמק פרוסות מיוחדות גאודה",
+      "sat_fat_g": 17.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 75.6,
+      "flag_on_score": 75.6,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 75.6
+    },
+    {
+      "barcode": "3256228310201",
+      "name": "אמנטל מיובא צרפת 28%",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 78.6,
+      "flag_on_score": 78.6,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 78.6
+    },
+    {
+      "barcode": "7290000062419",
+      "name": "עמק צהוב 28% בלוק",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 67.5,
+      "flag_on_score": 67.5,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 70.3
+    },
+    {
+      "barcode": "7290000062525",
+      "name": "עמק 28% מיני עגול",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 69.3,
+      "flag_on_score": 69.3,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 72.2
+    },
+    {
+      "barcode": "7290000062549",
+      "name": "גאודה פרוסות 28% שטראוס",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 77.3,
+      "flag_on_score": 77.3,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 77.3
+    },
+    {
+      "barcode": "7290000062601",
+      "name": "קולבי גד 28%",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 69.3,
+      "flag_on_score": 69.3,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 72.1
+    },
+    {
+      "barcode": "7290010644781",
+      "name": "פרמזן מגורד דינה",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "hard_grating",
+      "flag_off_score": 39.0,
+      "flag_on_score": 39.0,
+      "clean_delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 39.0
+    },
+    {
+      "barcode": "7290110178901",
+      "name": "פרוסות צהובות עמק 28%",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 67.5,
+      "flag_on_score": 67.5,
+      "clean_delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "hc_term_fired": false,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 70.3
+    },
+    {
+      "barcode": "7290000062440",
+      "name": "גאודה גרנד פרמייר 30%",
+      "sat_fat_g": 19.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 77.2,
+      "flag_on_score": 62,
+      "clean_delta": -15.2,
+      "grade_off": "B",
+      "grade_on": "C",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 77.2
+    },
+    {
+      "barcode": "7290000062464",
+      "name": "פרמזן מגורר תנובה",
+      "sat_fat_g": 19.0,
+      "bsip_cheese_subpool": "hard_grating",
+      "flag_off_score": 39.0,
+      "flag_on_score": 38.0,
+      "clean_delta": -1.0,
+      "grade_off": "D",
+      "grade_on": "D",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 39.0
+    },
+    {
+      "barcode": "7290000062532",
+      "name": "גאודה אדום 30% שטראוס",
+      "sat_fat_g": 19.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 77.1,
+      "flag_on_score": 62,
+      "clean_delta": -15.1,
+      "grade_off": "B",
+      "grade_on": "C",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 77.1
+    },
+    {
+      "barcode": "7290000062594",
+      "name": "מונסטר צהוב 30% גד",
+      "sat_fat_g": 19.0,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 69.2,
+      "flag_on_score": 62,
+      "clean_delta": -7.2,
+      "grade_off": "B",
+      "grade_on": "C",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 69.8
+    },
+    {
+      "barcode": "8866972",
+      "name": "גבינה גרוויר 31%",
+      "sat_fat_g": 19.5,
+      "bsip_cheese_subpool": "yellow",
+      "flag_off_score": 69.9,
+      "flag_on_score": 62,
+      "clean_delta": -7.9,
+      "grade_off": "B",
+      "grade_on": "C",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 69.9
+    },
+    {
+      "barcode": "7290000062471",
+      "name": "פרמזן אמיתי 32% מיובא",
+      "sat_fat_g": 21.0,
+      "bsip_cheese_subpool": "hard_grating",
+      "flag_off_score": 39.0,
+      "flag_on_score": 35.0,
+      "clean_delta": -4.0,
+      "grade_off": "D",
+      "grade_on": "D",
+      "hc_term_fired": true,
+      "ev090_hard_cheese_floor_applied": false,
+      "baseline_run001": 39.0
+    }
+  ],
+  "per_product_hardcheese_other_subpool": [
+    {
+      "barcode": "7290000062488",
+      "name": "גבינה בולגרית 16% גד",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000062518",
+      "name": "גבינה צפתית מסורתית 20%",
+      "sat_fat_g": 13.0,
+      "bsip_cheese_subpool": "tzfatit",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000062563",
+      "name": "גבינה בולגרית 16% שטראוס בלוק",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000062570",
+      "name": "גבינה בולגרית 5% שטראוס",
+      "sat_fat_g": 2.5,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 68.0,
+      "flag_on_score": 68.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000062587",
+      "name": "גבינה מעובדת סנדוויץ פרוסות דינה",
+      "sat_fat_g": 12.0,
+      "bsip_cheese_subpool": "processed",
+      "flag_off_score": 32.0,
+      "flag_on_score": 32.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000425009",
+      "name": "גבינה צפתית 5%",
+      "sat_fat_g": 3.0,
+      "bsip_cheese_subpool": "tzfatit",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000425016",
+      "name": "גבינה צפתית 16%",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "tzfatit",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000425023",
+      "name": "גבינה צפתית 28% שמן מלא",
+      "sat_fat_g": 18.0,
+      "bsip_cheese_subpool": "tzfatit",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000900018",
+      "name": "גבינה אמריקאית מעובדת לסנדוויץ",
+      "sat_fat_g": 14.0,
+      "bsip_cheese_subpool": "processed",
+      "flag_off_score": 29.0,
+      "flag_on_score": 29.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000900025",
+      "name": "פרוסות גבינה מעובדת 20%",
+      "sat_fat_g": 12.5,
+      "bsip_cheese_subpool": "processed",
+      "flag_off_score": 32.0,
+      "flag_on_score": 32.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000900032",
+      "name": "פרוסות גבינה מעובדת לייט 12%",
+      "sat_fat_g": 7.0,
+      "bsip_cheese_subpool": "processed",
+      "flag_off_score": 32.0,
+      "flag_on_score": 32.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290010644743",
+      "name": "גבינה בולגרית 16%",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290010644750",
+      "name": "גבינה בולגרית 5% מופחת שומן",
+      "sat_fat_g": 2.5,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 69.0,
+      "flag_on_score": 69.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290010644767",
+      "name": "גבינה בולגרית 16% ארוז",
+      "sat_fat_g": 10.5,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290010644774",
+      "name": "גבינה בולגרית עיזים 16%",
+      "sat_fat_g": 10.0,
+      "bsip_cheese_subpool": "bulgarian",
+      "flag_off_score": 72.0,
+      "flag_on_score": 72.0,
+      "clean_delta": 0.0
+    }
+  ],
+  "per_product_milk": [
+    {
+      "barcode": "5411188112709",
+      "flag_off": 49.0,
+      "flag_on": 49.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "5411188124689",
+      "flag_off": 52.3,
+      "flag_on": 52.3,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "5411188300328",
+      "flag_off": 36.0,
+      "flag_on": 36.0,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290000051352",
+      "flag_off": 85,
+      "flag_on": 85,
+      "clean_delta": 0
+    },
+    {
+      "barcode": "7290014760141",
+      "flag_off": 51.5,
+      "flag_on": 51.5,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290019790259",
+      "flag_off": 85,
+      "flag_on": 85,
+      "clean_delta": 0
+    },
+    {
+      "barcode": "7290102392094",
+      "flag_off": 85,
+      "flag_on": 85,
+      "clean_delta": 0
+    },
+    {
+      "barcode": "7290107932134",
+      "flag_off": 60.8,
+      "flag_on": 60.8,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290110324773",
+      "flag_off": 39.5,
+      "flag_on": 39.5,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290110324926",
+      "flag_off": 56.7,
+      "flag_on": 56.7,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290110325619",
+      "flag_off": 47.2,
+      "flag_on": 47.2,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290114313285",
+      "flag_off": 49.6,
+      "flag_on": 49.6,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290114313865",
+      "flag_off": 76.1,
+      "flag_on": 76.1,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290116936116",
+      "flag_off": 63.9,
+      "flag_on": 63.9,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7290119385560",
+      "flag_off": 49.9,
+      "flag_on": 49.9,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7394376619939",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7394376620904",
+      "flag_off": 53.2,
+      "flag_on": 53.2,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "7394376621451",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "8000215204219",
+      "flag_off": 49.2,
+      "flag_on": 49.2,
+      "clean_delta": 0.0
+    },
+    {
+      "barcode": "8000215204554",
+      "flag_off": 47.8,
+      "flag_on": 47.8,
+      "clean_delta": 0.0
+    }
+  ],
+  "per_product_yogurt": [
+    {
+      "barcode": "2824466",
+      "flag_off": 82.3,
+      "flag_on": 82.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "3126712",
+      "flag_off": 71.1,
+      "flag_on": 71.1,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "408316",
+      "flag_off": 79.3,
+      "flag_on": 79.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "408354",
+      "flag_off": 45.6,
+      "flag_on": 45.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "4119133",
+      "flag_off": 72.4,
+      "flag_on": 72.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "43944",
+      "flag_off": 74.7,
+      "flag_on": 74.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "45771",
+      "flag_off": 74.5,
+      "flag_on": 74.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "4584528",
+      "flag_off": 81.5,
+      "flag_on": 81.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5416262",
+      "flag_off": 51.7,
+      "flag_on": 51.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5416415",
+      "flag_off": 77.6,
+      "flag_on": 77.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "57132",
+      "flag_off": 80.6,
+      "flag_on": 80.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "57149",
+      "flag_off": 79.7,
+      "flag_on": 79.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5839078",
+      "flag_off": 79.6,
+      "flag_on": 79.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "bio_yogurt"
+    },
+    {
+      "barcode": "6664990",
+      "flag_off": 80.8,
+      "flag_on": 80.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "bio_yogurt"
+    },
+    {
+      "barcode": "7290010471669",
+      "flag_off": 36.3,
+      "flag_on": 36.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290012645297",
+      "flag_off": 75.3,
+      "flag_on": 75.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014758100",
+      "flag_off": 79.7,
+      "flag_on": 79.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014758117",
+      "flag_off": 78.4,
+      "flag_on": 78.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014890572",
+      "flag_off": 74.6,
+      "flag_on": 74.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014890589",
+      "flag_off": 75.5,
+      "flag_on": 75.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290016606522",
+      "flag_off": 76.4,
+      "flag_on": 76.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290017065588",
+      "flag_off": 72.3,
+      "flag_on": 72.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290019635819",
+      "flag_off": 54.3,
+      "flag_on": 54.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102390427",
+      "flag_off": 38.0,
+      "flag_on": 38.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102390465",
+      "flag_off": 37.5,
+      "flag_on": 37.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "froop_yogurt"
+    },
+    {
+      "barcode": "7290102390489",
+      "flag_off": 37.6,
+      "flag_on": 37.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102391844",
+      "flag_off": 37.1,
+      "flag_on": 37.1,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102393039",
+      "flag_off": 45.2,
+      "flag_on": 45.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt_mixin"
+    },
+    {
+      "barcode": "7290102393060",
+      "flag_off": 43.5,
+      "flag_on": 43.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt_mixin"
+    },
+    {
+      "barcode": "7290102393169",
+      "flag_off": 42.3,
+      "flag_on": 42.3,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102393176",
+      "flag_off": 42.5,
+      "flag_on": 42.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102393190",
+      "flag_off": 38.2,
+      "flag_on": 38.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102393947",
+      "flag_off": 42.5,
+      "flag_on": 42.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102394081",
+      "flag_off": 55.0,
+      "flag_on": 55.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt_mixin"
+    },
+    {
+      "barcode": "7290102395231",
+      "flag_off": 80.8,
+      "flag_on": 80.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102396740",
+      "flag_off": 36.4,
+      "flag_on": 36.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102397600",
+      "flag_off": 62.4,
+      "flag_on": 62,
+      "clean_delta": -0.4,
+      "hc_term_fired": false,
+      "subtype": "yogurt_mixin"
+    },
+    {
+      "barcode": "7290102397617",
+      "flag_off": 57.5,
+      "flag_on": 57.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt_mixin"
+    },
+    {
+      "barcode": "7290102399635",
+      "flag_off": 37.0,
+      "flag_on": 37.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290102399802",
+      "flag_off": 52.0,
+      "flag_on": 52.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290102399819",
+      "flag_off": 49.9,
+      "flag_on": 49.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290107936309",
+      "flag_off": 76.6,
+      "flag_on": 76.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110321031",
+      "flag_off": 89.9,
+      "flag_on": 89.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110321680",
+      "flag_off": 57.7,
+      "flag_on": 57.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110321697",
+      "flag_off": 61.2,
+      "flag_on": 61.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110321703",
+      "flag_off": 59.5,
+      "flag_on": 59.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110323585",
+      "flag_off": 58.0,
+      "flag_on": 58.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110323592",
+      "flag_off": 65.0,
+      "flag_on": 65.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110328221",
+      "flag_off": 77.8,
+      "flag_on": 77.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110328627",
+      "flag_off": 62.0,
+      "flag_on": 62.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110328764",
+      "flag_off": 62.0,
+      "flag_on": 62.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110328788",
+      "flag_off": 65.0,
+      "flag_on": 65.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110329952",
+      "flag_off": 64.0,
+      "flag_on": 64.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290110558284",
+      "flag_off": 80.4,
+      "flag_on": 80.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "bio_yogurt"
+    },
+    {
+      "barcode": "7290110558314",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110565527",
+      "flag_off": 90.6,
+      "flag_on": 90.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110566975",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290110578053",
+      "flag_off": 39.7,
+      "flag_on": 39.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290112330352",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290112330390",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290112336712",
+      "flag_off": 92.6,
+      "flag_on": 92.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290112346629",
+      "flag_off": 47.4,
+      "flag_on": 47.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114310406",
+      "flag_off": 35.0,
+      "flag_on": 35.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114311069",
+      "flag_off": 84.8,
+      "flag_on": 84.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290114311359",
+      "flag_off": 37.9,
+      "flag_on": 37.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114312424",
+      "flag_off": 37.9,
+      "flag_on": 37.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114312431",
+      "flag_off": 37.8,
+      "flag_on": 37.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114313070",
+      "flag_off": 34.8,
+      "flag_on": 34.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114313377",
+      "flag_off": 78.5,
+      "flag_on": 78.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114314053",
+      "flag_off": 41.6,
+      "flag_on": 41.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114314060",
+      "flag_off": 41.5,
+      "flag_on": 41.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290114314596",
+      "flag_off": 68.8,
+      "flag_on": 68.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290115678222",
+      "flag_off": 76.9,
+      "flag_on": 76.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "greek_yogurt"
+    },
+    {
+      "barcode": "7290116932484",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116932620",
+      "flag_off": 66.2,
+      "flag_on": 66.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116934402",
+      "flag_off": 64.0,
+      "flag_on": 64.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116935614",
+      "flag_off": 89.9,
+      "flag_on": 89.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116935621",
+      "flag_off": 64.0,
+      "flag_on": 64.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116936123",
+      "flag_off": 62.0,
+      "flag_on": 62.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116936215",
+      "flag_off": 54.2,
+      "flag_on": 54.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290116936222",
+      "flag_off": 53.4,
+      "flag_on": 53.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290119370177",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290119370955",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290119372997",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290119377404",
+      "flag_off": 67.1,
+      "flag_on": 67.1,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290119377411",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "protein_yogurt"
+    },
+    {
+      "barcode": "7290119377480",
+      "flag_off": 82.0,
+      "flag_on": 82.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290119380916",
+      "flag_off": 54.2,
+      "flag_on": 54.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "yogurt"
+    }
+  ],
+  "per_product_cheese_spread": [
+    {
+      "barcode": "2824183",
+      "flag_off": 71.6,
+      "flag_on": 71.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "2824640",
+      "flag_off": 71.6,
+      "flag_on": 71.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "2868996",
+      "flag_off": 74.5,
+      "flag_on": 74.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "3075850",
+      "flag_off": 63.7,
+      "flag_on": 63.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "3523230065467",
+      "flag_off": 63.8,
+      "flag_on": 63.8,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "4127077",
+      "flag_off": 79.7,
+      "flag_on": 79.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "4127329",
+      "flag_off": 77.9,
+      "flag_on": 77.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "4127336",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "4127800",
+      "flag_off": 78.9,
+      "flag_on": 78.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "4127817",
+      "flag_off": 72.2,
+      "flag_on": 72.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "4127862",
+      "flag_off": 78.9,
+      "flag_on": 78.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "4129101",
+      "flag_off": 43.1,
+      "flag_on": 45.1,
+      "clean_delta": 2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "4129118",
+      "flag_off": 43.8,
+      "flag_on": 45.8,
+      "clean_delta": 2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "4129156",
+      "flag_off": 42.9,
+      "flag_on": 43.9,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "41445",
+      "flag_off": 77.9,
+      "flag_on": 77.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "41452",
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "474502",
+      "flag_off": 75.7,
+      "flag_on": 75.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "47942",
+      "flag_off": 72.2,
+      "flag_on": 72.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "48185",
+      "flag_off": 78.9,
+      "flag_on": 78.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "554969",
+      "flag_off": 46.1,
+      "flag_on": 44.1,
+      "clean_delta": -2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "554976",
+      "flag_off": 46.1,
+      "flag_on": 46.1,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "554983",
+      "flag_off": 50,
+      "flag_on": 50,
+      "clean_delta": 0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "56272",
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "5992889",
+      "flag_off": 46.1,
+      "flag_on": 44.1,
+      "clean_delta": -2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "6040619",
+      "flag_off": 81.2,
+      "flag_on": 81.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "6492852",
+      "flag_off": 55.7,
+      "flag_on": 55.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290010945481",
+      "flag_off": 75.7,
+      "flag_on": 75.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290011194246",
+      "flag_off": 66.9,
+      "flag_on": 66.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "7290011499624",
+      "flag_off": 33.6,
+      "flag_on": 31.6,
+      "clean_delta": -2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290014217492",
+      "flag_off": 60.0,
+      "flag_on": 60.0,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290014758681",
+      "flag_off": 86.6,
+      "flag_on": 86.6,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290014759084",
+      "flag_off": 53.9,
+      "flag_on": 56.9,
+      "clean_delta": 3.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290014762831",
+      "flag_off": 44.8,
+      "flag_on": 46.8,
+      "clean_delta": 2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290019635116",
+      "flag_off": 44.3,
+      "flag_on": 47.3,
+      "clean_delta": 3.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290019635369",
+      "flag_off": 54.7,
+      "flag_on": 54.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290019635376",
+      "flag_off": 51.2,
+      "flag_on": 52.2,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290019635383",
+      "flag_off": 23.2,
+      "flag_on": 25.2,
+      "clean_delta": 2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290019635581",
+      "flag_off": 32.4,
+      "flag_on": 33.2,
+      "clean_delta": 0.8,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290102393268",
+      "flag_off": 75.7,
+      "flag_on": 75.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290108502541",
+      "flag_off": 47.6,
+      "flag_on": 49.6,
+      "clean_delta": 2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290108504378",
+      "flag_off": 55.4,
+      "flag_on": 55.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290108506624",
+      "flag_off": 70.4,
+      "flag_on": 70.4,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290110321277",
+      "flag_off": 77.9,
+      "flag_on": 77.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "7290112342102",
+      "flag_off": 44.2,
+      "flag_on": 44.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290114310918",
+      "flag_off": 72.5,
+      "flag_on": 72.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "7290114311472",
+      "flag_off": 73.5,
+      "flag_on": 73.5,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290116931241",
+      "flag_off": 67.2,
+      "flag_on": 67.2,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": "cottage"
+    },
+    {
+      "barcode": "7290116931982",
+      "flag_off": 42.8,
+      "flag_on": 43.8,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290116932644",
+      "flag_off": 41.7,
+      "flag_on": 42.7,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290116933078",
+      "flag_off": 42.7,
+      "flag_on": 43.7,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290116934280",
+      "flag_off": 74.7,
+      "flag_on": 74.7,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7290116934365",
+      "flag_off": 62.0,
+      "flag_on": 65.0,
+      "clean_delta": 3.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290116935409",
+      "flag_off": 45.0,
+      "flag_on": 46.0,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290116936604",
+      "flag_off": 44.5,
+      "flag_on": 45.5,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7290119375219",
+      "flag_off": 50.9,
+      "flag_on": 50.9,
+      "clean_delta": 0.0,
+      "hc_term_fired": false,
+      "subtype": ""
+    },
+    {
+      "barcode": "7296073453123",
+      "flag_off": 46.1,
+      "flag_on": 44.1,
+      "clean_delta": -2.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7622201139278",
+      "flag_off": 45.5,
+      "flag_on": 46.5,
+      "clean_delta": 1.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7622201521493",
+      "flag_off": 47.3,
+      "flag_on": 50.3,
+      "clean_delta": 3.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    },
+    {
+      "barcode": "7622201798154",
+      "flag_off": 60.6,
+      "flag_on": 63.6,
+      "clean_delta": 3.0,
+      "hc_term_fired": false,
+      "subtype": "cream_cheese"
+    }
+  ]
+}

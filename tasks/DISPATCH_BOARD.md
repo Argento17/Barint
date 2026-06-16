@@ -3,18 +3,112 @@
 
 ---
 
-## ✅ SR + Fat-Tech go-live QA + red-team (TASK-278 / TASK-284E, commit 4cf58ac0) — 🟡 DISPATCHED (2026-06-15)
+## 🏗️ Scoring Release Platform — Phase 0 (owner-approved 2026-06-16, assessment in chat)
+
+Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + shared packaging core
+(TASK-233F) into a release platform. Phase 0 = activate machine gates + promote a Shadow APPROVED baseline.
+- **P-CI → TASK-287 → Frontend Agent (C1) — ✅ CLOSED + orchestrator-verified (2026-06-16, commit 006bfef6).**
+  3 workflows committed (.github/ only, 0 engine paths, 189 insertions); OFF-sweep job present in committed
+  barint_ci.yml (L79-92); both YAMLs parse valid; engine diff untouched (' M'). Not pushed. shadow_gate stays
+  INACTIVE until P-BASE promotes an APPROVED baseline.
+- **OWNER RULING 2026-06-16: "smallest patch, indifferent — drop hummus, clear the pipeline for the real work."**
+- **P-ENG → TASK-288 → ✅ CLOSED (orchestrator, 2026-06-16, commit f1d1275e).** Blessed engine (EV-086/096/097/099,
+  5 files) committed. Milk frozen 20/20 + invariants 342 PASS. Brined NOT re-run (deferred corpus, live
+  run_brined_005 page unchanged → no consumer-facing move). Integrity gap closed; HEAD reproduces live go-live pages.
+- **P-HUM → TASK-289 → ✅ CLOSED / DROPPED per owner (2026-06-16).** Regen was verified-correct but REVERTED
+  (hummus_v5.json back to committed v5-glassbox_w4); Content copy pass abandoned (output not committed). Owner: too
+  insignificant to ship. Untracked regen scratch left harmless.
+- **P-BASE → ✅ DONE (orchestrator, 2026-06-16, commit 89555a47).** Shadow APPROVED baseline
+  baseline_20260616T052730Z promoted on engine f1d1275e (12 corpora / 704 products / 0 errors). **shadow_gate.yml
+  now ACTIVE** — engine-touching PRs diff against this baseline. ⚠️ Branch task-275-engine-fixes-abc still ahead of
+  master; branch→master reconciliation deferred (Phase-1 item). bari.digital deploy stays owner-gated.
+- **✅ PHASE 0 COMPLETE:** CI gates committed (006bfef6) + blessed engine committed (f1d1275e) + Shadow regression
+  gate live (89555a47). Next: Phase 1 (Spine merge + live-state manifest + post-deploy smoke test).
+
+---
+
+## 🔴 SR + Fat-Tech go-live QA + red-team (TASK-278 / TASK-284E, commit 4cf58ac0) — ⛔ WALL: NO-GO, PUSH HELD (2026-06-15)
 
 Owner asked: QA run + red-team the go-live, then git push. Scope = 6 rescored categories, 5 updated comp
 JSONs (cereals_v2, hard_cheeses_v2, juices_v3, hummus_v5, cakes_hard_cookies_v1), milk re-freeze
 run_006_shelfrel_refreeze, shadow registry, EV-087/090/091/093/094/096/097/098.
-- **P-QA → QA Agent (C1) — 🟡 IN FLIGHT (background).** Verify score==trace on all 5 comp JSONs, milk
-  frozen invariant (max 85/A, A:3/B:1/C:5/D:10/E:1), OFF=0, tsc clean, full distributions, shadow registry.
-- **P-RT → Red-Team Agent (C1) — 🟡 IN FLIGHT (background).** Adversarial: big swings (hard_cheeses 29/30,
-  hummus 60/64) defensible? Anti-Immunity / curve-grading / one-absolute-scale held? frozen invariants,
-  OFF ban, copy coherence vs new scores, silent side-effects. owner-ready only at ZERO CRITICAL.
-- **Then:** orchestrator verifies both returns against artifacts → git push (branch push to origin, NOT a
-  bari.digital deploy — reversible, in-lane). go-live close gate needs red_team_cleared (zero CRITICAL).
+**VERDICT: NOT owner-ready. go-live close gate red_team_cleared = FAIL (4 CRITICAL). git push HELD —
+pushing known-broken go-live work would misrepresent state; surfaced to owner.**
+- **P-QA → QA Agent (C1) — 🔴 RETURNED + orchestrator-verified: CHANGES_REQUESTED.** PASS: score==trace
+  199/199 across all 5 comp JSONs (delta=0); tsc 0 errors + `npm run build` exit 0; OFF=0 in displayed
+  product fields; 8/8 EV ACTIVATED; engine flags both default ON. **F1 CRITICAL — orchestrator-CONFIRMED:**
+  `run_006_shelfrel_refreeze` (committed in 4cf58ac0) traces are ALL 20 `context_limited/no_nutrition_data/
+  50/insufficient_data` — re-freeze produced ZERO valid scores. Real dist A:3/B:1/C:5/D:10/E:1 max=85 lives
+  in `run_005_headpin` (verified), NOT run_006. **Mitigant (verified): does NOT reach consumer milk page**
+  (legacy hand-built, 0 run_006 ref, 0 insufficient_data in frontend). BUT shadow registry `baseline_run`
+  now points at corrupt traces → invalid frozen baseline + re-freeze deliverable non-reproducible.
+- **P-RT → Red-Team Agent (C1) — 🔴 RETURNED + orchestrator-verified: FAIL (4 CRITICAL).** owner-ready: NO.
+  **RT-1 (verified):** `hard_cheeses_frontend_v2.json` `_meta.run_id`=`run_hard_cheeses_yohananof_001` +
+  `grade_distribution {B:9,D:21}` are STALE — real source is run_hard_cheeses_003_shelfrel, real dist
+  {A:2,B:23,C:3,D:2}; false audit trail. **RT-2 (verified):** `hummus_frontend_v5.json` `_meta.grade_distribution`
+  ={A:6,B:24,C:28,D:6}, actual={A:2,B:7,C:44,D:11} (run_id None); blog `hummus-article-content.ts` hardcodes
+  the old counts → **live /blog/hummus shows false stats off 3–6×.** **RT-3 (verified score=62):** EV-094
+  hummus floor lifts NOVA-4 / 13-ingredient / seed-oil bc 7290106577480 from pre-floor ~33 to 62/C →
+  Anti-Immunity violation; floor not recorded in `floors_applied`. **RT-4 (verified):** that product shows
+  grade C/62 while insightLine says "יורד ל-D" — contradictory copy on a live card. HIGH: RT-5 unregistered
+  NOVA-reclass rule BSIP2-HC-002 (no EV-###, removed sat_fat inference → 19 HC red-label caps dropped, 2→A);
+  RT-6 run_hard_cheeses_003_shelfrel has NO run_summary.json; RT-7 cross-category A/80 cheese w/ sodium red
+  label vs milk A/85 (Owner Fork-1 absolute-vs-relative unresolved); RT-8 cakes _meta mismatch. MED: RT-9
+  default-on flag vs design default-off; RT-10 floor not self-auditing; RT-11 juices _meta mismatch.
+  **Both agents independently converged on stale `_meta` + floor-not-in-trace → high confidence.**
+- **Frozen invariants:** milk max 85/A HOLDS (page untouched), no snack-bar A HOLDS, OFF ban CLEAR for this
+  go-live. **Tripwire-1 tripped** (milk re-freeze broken) + **go-live gate FAIL** → HELD for owner.
+
+**OWNER DECISION 2026-06-15: "Hold push, fix CRITICALs first."** Remediation sequenced so scoring rulings
+settle before dependent _meta/copy regen (no rework).
+- **Wave 1 (parallel, background):**
+  - **P-RM1 → Nutrition Agent (C1) — 🔵 RETURNED + orchestrator-verified (rulings sound; ONE impact figure
+    corrected).** RT-3: fix = bound floor `min(floor, binding_cap)` + exclude NOVA-4 + RT-10 always-log floor
+    — DIRECTION ACCEPTED. **But orchestrator re-derived from arithmetic: ALL 19/64 hummus @62 are floor-LIFTED
+    (pre-floor 32.79–58.03), NOT 0** — Nutrition misread empty `floors_applied` (=the RT-10 bug, not "floor
+    didn't fire"); 45.79−13=32.79→62 proves the lift. Fix drops only the 1 NOVA-4 (62/C→~33/E); 18 NOVA-3 stay
+    floored to flat 62 → **floor-homogenization is an open philosophy call → Product/owner.** RT-5: **REVERT
+    BSIP2-HC-002 + restore 0.62×fat_g sat_fat inference (USDA FDC SR Legacy)** — rule confirmed unregistered;
+    revert drops **8 HC ~40pts back to 39/D** (A→D×2, B→D×4, C→D×2), guts the HC go-live B/A headline. EV-099
+    registered (orchestrator-verified UNIQUE, next-free id, no collision). 0 published movement (HC/hummus not
+    live). Engine edits NOT yet made (await D7).
+  - **P-RM3 → Product Agent (C1) — 🔵 RETURNED + orchestrator-verified (rulings ACCEPTED; ONE impact premise
+    CORRECTED).** EV-094: 3 amendments co-signed; **floor NARROWED to NOVA≤2** (cap-bind + RT-10 logging).
+    EV-099: **REVERT BSIP2-HC-002 + restore sat_fat inference — co-signed.** **hard_cheeses PULLED from this
+    wave** (clusters at D post-revert; park → governed BARI_HC_NOVA1_V1 EV+D7+owner). **⚠️ Orchestrator
+    correction:** Product (inherited Nutrition's misread) claims floor narrowing = "0 score impact / 19@62 are
+    penalty-convergence." FALSE — orchestrator arithmetic proved all 19 are floor-LIFTED (pre 32.79–58.03 → exactly
+    62); narrowing to NOVA≤2 **drops all 19 off the floor** = a real hummus re-spread (18 NOVA-3 → 32.79–58.03,
+    1 NOVA-4 → ~33/E). Decision still correct (de-homogenizes shelf), but it's a multi-product re-score, not a
+    no-op. Product blocker noted: EV-094 needs the pending n=60 hummus sodium stat re-run before constants wire.
+  - **P-RM2 → Data Agent (C1) — ✅ VERIFIED & ACCEPTED (orchestrator, 2026-06-15).** F1 root cause: the
+    run_006 runner never called `load_batch()` (fed empty stub dicts → all null nutrition → context_limited).
+    New `batch_run_milk_006_shelfrel_refreeze.py` loads BSIP1 properly; **orchestrator re-verified: 20/20
+    traces now `standard`, dist A:3/B:1/C:5/D:10/E:1, max=85 — frozen invariant REPRODUCED.** RT-6 HC
+    run_summary.json created (grade_dist A:2/B:23/C:3/D:2, off_used=false). RT-8 cakes `_meta` {C:1,D:4,E:60}
+    == actual ✓; RT-11 juices `_meta` {A:8,D:7,E:5} == actual, run_id→run_juices_shelfrel_001 ✓. 0 score
+    changes. (Note: cakes `_meta.run_id` still run_cakes_001 — cosmetic, out of this dispatch's scope.)
+**OWNER DECISION 2026-06-15 #2: "Proceed — pull HC, re-score hummus, re-QA/red-team."** Wave dropped 5→4
+categories (cereals/juices/cakes/hummus + milk re-freeze); hard_cheeses parked → **TASK-286 (BLOCKED)**.
+- **Wave 2 (engine + re-score):**
+  - **P-RM4 → Data Agent (C1) — ⛔ DIED AT SESSION LIMIT mid-task; orchestrator inspected actual state.**
+    DONE + verified-good: EV-094 floor amendments (cap-bind + NOVA≤2 + RT-10) wired; BSIP2-HC-002 revert
+    behind NEW default-off flag `BARI_DAIRY_SAT_FAT_INFER` (cheese runners set on; **milk invariant HELD**
+    A:3/B:1/C:5/D:10/E:1 max=85 — orchestrator re-ran under edited engine); **hummus re-scored →
+    run_hummus_shelfrel_002** (de-homogenized: 0@62, NOVA-4 7290106577480 62/C→31.8/E, dist B:11/C:42/D:12/
+    E:1/A:3); engine_invariants **342 PASS**; files parse. **❌ BLOCKERS (orchestrator-found):** (1) hummus
+    re-score NOT propagated — `hummus_frontend_v5.json` still has OLD flat-62 scores → **score≠trace for
+    hummus**; (2) **brined byte-id FAIL 15/48** (~2pt drift, grades hold) — cause = an **ungoverned, uncommitted
+    PHVO "first-8-ingredient-positions" edit in signal_extractor.py** (NOT in HEAD, NOT requested, = TASK-280
+    territory, no D6/D7) breaking the **brined golden-page** baseline; (3) HC sanity-revert not run (HC pulled,
+    non-blocking). Engine working tree = approved edits MIXED with the ungoverned PHVO change.
+  - **⛔ WALL (2026-06-15): cannot proceed/commit/push.** Need: strip the out-of-scope PHVO edit (route to
+    TASK-280, own D6/D7), restore brined 48/48 byte-id, finish hummus comp JSON regen from run_002, then
+    Content (RT-2/4) → re-QA + re-red-team → owner go-live. Subagents out of session capacity (reset ~22:20
+    CEST). Push HELD. (Prior context: working tree already carried 1015 uncommitted files at session start.)
+- **Wave 3 (after P-RM4 finished + brined byte-id restored):** Content Agent (Sonnet) — regenerate hummus insightLines/verdicts for the
+  ~19 moved products (RT-4) + blog `hummus-article-content.ts` grade counts (RT-2) against the new scores.
+- **Wave 4:** re-QA + re-red-team the 4-category wave + milk re-freeze → owner go-live + git push.
 
 ---
 

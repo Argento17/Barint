@@ -2,7 +2,7 @@
   "run_id": "run_cookies_005",
   "task": "TASK-275",
   "category_slug": "cookies-coffee",
-  "generated": "2026-06-14T05:35:58.017152+00:00",
+  "generated": "2026-06-15T06:13:29.836436+00:00",
   "engine": "proto_v0 / score_engine.py (Fix-B+Fix-C applied)",
   "engine_fixes": {
     "fix_a": "build_bsip1_cookies_001.py: _rfind_outside_parens replaces rfind for allergen-strip",
@@ -33,11 +33,11 @@
   },
   "score_distribution": {
     "min": 10,
-    "max": 59.4,
-    "median": 29.0,
-    "stdev": 12.57,
-    "range": 49.4,
-    "most_common_score": 18.1,
+    "max": 59.8,
+    "median": 29.25,
+    "stdev": 12.58,
+    "range": 49.8,
+    "most_common_score": 18.4,
     "most_common_count": 4,
     "histogram": {
       "30-39": 12,
@@ -52,7 +52,7 @@
       "C": 5
     }
   },
-  "anti_collapse_verdict": "SPREAD_HONEST: range=49.4 pts (10-59.4), 3 grade bands",
+  "anti_collapse_verdict": "SPREAD_HONEST: range=49.8 pts (10-59.8), 3 grade bands",
   "routing_distribution": {
     "biscuit": 58
   },
@@ -61,15 +61,15 @@
     "guard_pass": true,
     "fired_products": []
   },
-  "evaluation_scope_sha256": "2d2acad2fce699892be98224f9caa9b12c65e91b6408db689723e18f85dc1082",
-  "signal_extractor_sha256": "bf96aadf96351db3772dae328e24f990f13eda48533a2b4f69b45d7c93254516",
-  "score_engine_sha256": "84df5a991b856573bb47ac716cb3b22793ef6404b5fba2706542595acee0425e",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "signal_extractor_sha256": "5b0f46b823ef6e2edeedaf987233afc7990d88b05d2cd30e522db25816044f5f",
+  "score_engine_sha256": "8a29bf906f72ccf44066ff663962db4dee2d9caf485cc58ad345509cae25d15d",
   "verification_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_005\\verification_table.csv",
   "top3": [
     {
       "barcode": "7290013453693",
       "name": "עוגיות גרידת לימון ללת\"ס",
-      "score": 59.4,
+      "score": 59.8,
       "grade": "C",
       "nova": 3,
       "context_flag": null,
@@ -83,7 +83,7 @@
     {
       "barcode": "7290017962139",
       "name": "עוגיות פירות יער כשל\"פ",
-      "score": 54.5,
+      "score": 54.9,
       "grade": "C",
       "nova": 3,
       "context_flag": null,
@@ -114,7 +114,7 @@
     {
       "barcode": "7290119040179",
       "name": "עוגיות פרח עם ריבת תות",
-      "score": 11.8,
+      "score": 12.5,
       "grade": "E",
       "nova": 4,
       "context_flag": null,
@@ -130,7 +130,7 @@
     {
       "barcode": "7290109354996",
       "name": "פתי בר ללא גלוטן שוקו",
-      "score": 10.5,
+      "score": 10.7,
       "grade": "E",
       "nova": 4,
       "context_flag": null,

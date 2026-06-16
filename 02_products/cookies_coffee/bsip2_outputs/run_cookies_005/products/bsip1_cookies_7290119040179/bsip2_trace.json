@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-14T05:35:58.291168Z",
+  "trace_generated_at": "2026-06-15T06:13:30.046968Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_cookies_7290119040179",
@@ -158,6 +158,8 @@
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": true,
+    "has_phvo_partial": false,
+    "has_phvo_generic": true,
     "red_labels": [
       "sugar",
       "sat_fat"
@@ -213,7 +215,7 @@
       "Additive count reflects distinct functional categories detected, not total additive instances",
       "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
       "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
-      "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 44.13,
@@ -306,7 +308,7 @@
     "protein_quality": 29.0,
     "additive_quality": 0,
     "satiety_support": 15.4,
-    "fat_quality": 40.0,
+    "fat_quality": 55.0,
     "regulatory_quality": 25.0,
     "whole_food_integrity": 8
   },
@@ -318,7 +320,7 @@
     "protein_quality": "protein=5.8g base=29.0, source=whole_food(×1.0) → 29.0",
     "additive_quality": "sprint1_additives=6 base=0 sw_pen=0→0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.8×3 + 0×5) / 520.0 × 400 = 13.4 + EV-006 viscous-fiber bonus(2)",
-    "fat_quality": "EV-012 fat_ratio: fat=25.5g ratio=1.143 base=57.1-seed0-trans0=57.1 [Fix-C PHVO ceiling: 57.1→40]",
+    "fat_quality": "EV-012 fat_ratio: fat=25.5g ratio=1.143 base=57.1-seed0-trans0=57.1 [EV-097 PHVO-generic ceiling: 57.1→55]",
     "regulatory_quality": "2 red labels: ['sugar', 'sat_fat']",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=19 complexity_pen=22 → 8"
   },
@@ -334,7 +336,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 23.37,
+  "weighted_dimension_score": 24.57,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -466,7 +468,7 @@
     }
   ],
   "binding_cap": 45,
-  "score_after_cap": 23.37,
+  "score_after_cap": 24.57,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -538,9 +540,9 @@
     }
   ],
   "total_penalty_before_scaling": 23.0,
-  "total_penalty_after_scaling": 10.52,
-  "penalty_scaling_note": "SRC-05: penalty 23.0 exceeds 45% of pre-penalty score 23.4 → scaled to 10.52",
-  "score_after_penalty": 11.85,
+  "total_penalty_after_scaling": 11.06,
+  "penalty_scaling_note": "SRC-05: penalty 23.0 exceeds 45% of pre-penalty score 24.6 → scaled to 11.06",
+  "score_after_penalty": 12.51,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": 45,
@@ -617,11 +619,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 11.85,
+  "score_after_floors": 12.51,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 11.8,
+  "final_score_estimate": 12.5,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

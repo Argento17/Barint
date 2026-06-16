@@ -9,6 +9,8 @@ import {
   butterProducts,
   butterCategoryNote,
 } from "@/lib/comparisons/butter-page-data";
+import { buildFaqScript } from "@/lib/seo/faq-schema";
+import rawFaqSchema from "@/data/seo/butter_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת חמאה | Bari",
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
 
 export default function ButterComparisonRoute() {
   return (
-    <ButterComparisonPage
-      products={butterProducts}
-      metadataLine={butterMetadataLine}
-      hero={butterHero}
-      prologueSentences={butterPrologueSentences}
-      methodologyLines={butterMethodologyLines}
-      categoryNote={butterCategoryNote}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
+      <ButterComparisonPage
+        products={butterProducts}
+        metadataLine={butterMetadataLine}
+        hero={butterHero}
+        prologueSentences={butterPrologueSentences}
+        methodologyLines={butterMethodologyLines}
+        categoryNote={butterCategoryNote}
+      />
+    </>
   );
 }

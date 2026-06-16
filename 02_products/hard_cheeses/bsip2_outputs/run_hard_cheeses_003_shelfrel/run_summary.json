@@ -1,0 +1,31 @@
+{
+  "run_id": "run_hard_cheeses_003_shelfrel",
+  "label": "hard_cheeses",
+  "nutrient": "fat_saturated_g",
+  "scored": 30,
+  "errors": 0,
+  "grade_dist": {
+    "A": 2,
+    "B": 23,
+    "C": 3,
+    "D": 2
+  },
+  "score_min": 39.0,
+  "score_max": 80.8,
+  "score_mean": 69.1,
+  "score_stdev": 9.6,
+  "shelf_stats": {
+    "median": 18.0,
+    "scale": 1.4,
+    "scale_type": "iqr"
+  },
+  "c10_milk_pass": true,
+  "off_used": false,
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+  },
+  "source_corpus": "Yohananof hard-cheeses BSIP1 (run_hard_cheeses_yohananof_001 lineage, 30 scored products)",
+  "note": "FIX-2 (TASK-275 RT-6): run_summary.json was absent from the go-live commit 4cf58ac0. Grade distribution and score stats derived from the 30 committed bsip2_trace.json files in products/. Shelf stats match the hard_cheeses locked params (FATSAT_SHELF_REL_HARDCHEESE_MEDIAN=18.0, SCALE=1.40). Traces were generated at 2026-06-15T15:47:19Z.",
+  "generated_at": "2026-06-15T15:47:19.543208Z"
+}

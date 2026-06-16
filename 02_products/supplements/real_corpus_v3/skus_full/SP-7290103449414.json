@@ -1,0 +1,176 @@
+{
+  "sku_id": "SP-7290103449414",
+  "barcode": "7290103449414",
+  "name_he": "לייף ויטמין D-400 טיפות 20 מל",
+  "brand_bucket": "life",
+  "engine_active": "vitamin_d3",
+  "price_ils": 19.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "",
+    "confidence": 1.0,
+    "reason": "barcode match via "
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "name_derived",
+  "outcome": "scored",
+  "claim_note": "no on-label claim -> Insufficient",
+  "lossy": [
+    "primary_claim"
+  ],
+  "panel": {
+    "url": "name_derived://super_pharm/7290103449414",
+    "source": "",
+    "brand": "life",
+    "product_name": "לייף ויטמין D-400 טיפות 20 מל",
+    "barcode": "7290103449414",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": null,
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "vitamin_d3",
+        "amount": 400.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": null,
+        "active_slug": "vitamin_d3"
+      }
+    ],
+    "missing_fields": [
+      "primary_claim"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:",
+      "source_id": "life:7290103449414",
+      "source_url": "name_derived://super_pharm/7290103449414",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "לייף ויטמין D-400 טיפות 20 מל",
+    "primary_claim_fed": "__unmapped__",
+    "actives": [
+      {
+        "active_slug": "vitamin_d3",
+        "display_name": "vitamin_d3",
+        "quantity": 400.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.121950Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290103449414",
+    "active": "vitamin D3 (cholecalciferol)",
+    "on_label_claim": "__unmapped__",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 60.7,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-003"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

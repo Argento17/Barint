@@ -9,6 +9,8 @@ import {
   granolaProducts,
   granolaCategoryNote,
 } from "@/lib/comparisons/granola-page-data";
+import { buildFaqScript } from "@/lib/seo/faq-schema";
+import rawFaqSchema from "@/data/seo/granola_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת גרנולה ומוזלי | Bari",
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
 
 export default function GranolaComparisonRoute() {
   return (
-    <GranolaComparisonPage
-      products={granolaProducts}
-      metadataLine={granolaMetadataLine}
-      hero={granolaHero}
-      prologueSentences={granolaPrologueSentences}
-      methodologyLines={granolaMethodologyLines}
-      categoryNote={granolaCategoryNote}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
+      <GranolaComparisonPage
+        products={granolaProducts}
+        metadataLine={granolaMetadataLine}
+        hero={granolaHero}
+        prologueSentences={granolaPrologueSentences}
+        methodologyLines={granolaMethodologyLines}
+        categoryNote={granolaCategoryNote}
+      />
+    </>
   );
 }

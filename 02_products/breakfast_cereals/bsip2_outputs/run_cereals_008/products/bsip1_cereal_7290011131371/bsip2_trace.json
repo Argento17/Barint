@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-07T05:11:13.875605Z",
+  "trace_generated_at": "2026-06-15T06:10:32.090259Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_cereal_7290011131371",
@@ -119,6 +119,8 @@
     ],
     "has_flavor_enhancer": false,
     "has_artificial_color": false,
+    "has_natural_color": false,
+    "natural_color_hits": [],
     "has_seed_oil": true,
     "seed_oil_matches": [
       "שמן צמחי"
@@ -148,6 +150,8 @@
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
@@ -161,21 +165,26 @@
     ],
     "sprint1_prebiotic_gum_detected": false,
     "sprint1_prebiotic_gum_found": [],
-    "sprint1_additive_count": 0,
-    "sprint1_additive_correction": -1,
-    "sprint1_additive_correction_notes": [
-      "EV-003/019: lecithin-only emulsifier removed (-1)"
-    ],
+    "sprint1_additive_count": 1,
+    "sprint1_additive_correction": 0,
+    "sprint1_additive_correction_notes": [],
     "sprint1_allulose_detected": false,
     "sprint1_polyol_count": 0,
     "sprint1_detected_polyols": [],
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
+    "functional_fiber_detected": false,
+    "functional_fiber_type": "none",
+    "functional_fiber_terms_matched": [],
+    "functional_fiber_viscous_terms": [],
+    "functional_fiber_prebiotic_terms": [],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [
       "soy_lecithin"
     ],
+    "tax_emulsifier_medium": [],
+    "tax_emulsifier_low": [],
     "tax_named_concern_additives": [
       "soy_lecithin"
     ],
@@ -187,11 +196,16 @@
     "protein_matrix_form": null,
     "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
+    "sat_fat_inferred": false,
+    "sat_fat_inferred_value": null,
+    "sat_fat_inferred_basis": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
-      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 30.39,
@@ -269,9 +283,9 @@
     "calorie_density": 70.0,
     "glycemic_quality": 56.6,
     "protein_quality": 46.5,
-    "additive_quality": 100,
+    "additive_quality": 84.0,
     "satiety_support": 56.0,
-    "fat_quality": 76.7,
+    "fat_quality": 81.7,
     "regulatory_quality": 95.0,
     "whole_food_integrity": 48
   },
@@ -281,9 +295,9 @@
     "calorie_density": "kcal=385.0, category=cereal (conf 0.69, relaxed by 1.05x) → 70",
     "glycemic_quality": "90 - sugar_penalty(43.8) + fiber(10.4) + wg(0) = 56.6",
     "protein_quality": "protein=9.3g base=46.5, source=whole_food(×1.0) → 46.5",
-    "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100 [EV-003/019: v1=1→sprint1=0 (Δ=-1)]",
+    "additive_quality": "sprint1_additives=1 base=82 sw_pen=0 id_delta=+2→84.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (9.3×3 + 5.2×5) / 385.0 × 400 = 56.0",
-    "fat_quality": "EV-012 fat_ratio: fat=13.0g ratio=4.417 base=86.7-seed10-trans0=76.7",
+    "fat_quality": "EV-012 fat_ratio: fat=13.0g ratio=4.417 base=86.7-seed5-trans0=81.7",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 3 base=60, ing_count=14 complexity_pen=12 → 48"
   },
@@ -299,7 +313,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 63.62,
+  "weighted_dimension_score": 62.42,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -399,7 +413,7 @@
     }
   ],
   "binding_cap": 94.8,
-  "score_after_cap": 63.62,
+  "score_after_cap": 62.42,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -473,7 +487,7 @@
   "total_penalty_before_scaling": 18.0,
   "total_penalty_after_scaling": 18.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 45.62,
+  "score_after_penalty": 44.42,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -550,11 +564,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 45.62,
+  "score_after_floors": 44.42,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 45.6,
+  "final_score_estimate": 44.4,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -567,22 +581,21 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.349,
+    "primary_confidence": 0.359,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.25,
+    "secondary_confidence": 0.257,
     "class_weights": {
-      "A": 0.192,
-      "B": 0.105,
-      "C": 0.105,
-      "D": 0.349,
-      "E": 0.25,
+      "A": 0.048,
+      "B": 0.168,
+      "C": 0.168,
+      "D": 0.359,
+      "E": 0.257,
       "F": 0.0
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_3_signal",
-      "no_additives_detected",
       "moderate_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"

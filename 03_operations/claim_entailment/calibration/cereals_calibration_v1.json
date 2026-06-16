@@ -1,0 +1,1773 @@
+{
+  "category": "cereals",
+  "calibration_run": "v1",
+  "generated_at": "2026-06-12T12:30:00.000000+03:00",
+  "note": "Phase 1c calibration. Orchestrator rulings applied: score/grade vs trace_summary; drift products cited but not HARD-FAIL'd on drift alone; T4 zero tolerance. SYSTEMIC FINDING: 11 products have inflated grade claims in copy vs trace.",
+  "strings": [
+    {
+      "product_id": "page",
+      "string_key": "hero_eyebrow",
+      "string_text": "דגני בוקר",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "דגני בוקר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Category label. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "hero_title",
+      "string_text": "דגני בוקר: 34 מוצרים, אף אחד לא מגיע ל-A",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "34 מוצרים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "34 products in input. PASS."
+        },
+        {
+          "text": "אף אחד לא מגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Highest trace_summary grade=B (max 74.7/B). No product has grade=A. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_1",
+      "string_text": "בדקנו 34 מוצרי דגני בוקר מהמדף הישראלי — משופרסל וקרפור.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "34 מוצרי דגני בוקר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "34 products. PASS."
+        },
+        {
+          "text": "משופרסל וקרפור",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Source runs: run_cereals_008 (Shufersal) and run_cereals_multiretailer_001 (Carrefour). PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_2",
+      "string_text": "אף מוצר לא הגיע ל-A — הציון הגבוה ביותר עוצר ב-75/B.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "אף מוצר לא הגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Confirmed: no trace_summary grade=A. PASS."
+        },
+        {
+          "text": "הציון הגבוה ביותר עוצר ב-75/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Highest=74.7/B (bsip1_cereal_5010029000061). Math.round(74.7)=75. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_3",
+      "string_text": "החלוקה: שישה מוצרים ב-B, 11 ב-C, 16 ב-D ואחד ב-E.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "שישה מוצרים ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "6 products with trace_summary grade=B. PASS."
+        },
+        {
+          "text": "11 ב-C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Trace_summary count: 10 grade=C. Live had 11 (bsip1_cereal_7290107647854 live=53/C but recon=D). Drift artifact reduces C count by 1. HARD-FAIL per trace verification."
+        },
+        {
+          "text": "16 ב-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Trace_summary count: 16 grade=D. PASS."
+        },
+        {
+          "text": "אחד ב-E",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Trace_summary count: 2 grade=E (bsip1_cereal_884912126115 recon=E, bsip1_cereal_7613030979647=E). Live had 1 (great grains live=D). Drift artifact. HARD-FAIL."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_4",
+      "string_text": "חמישה מוצרים מיועדים לילדים; הפער בין הגבוה לנמוך הוא 43 נקודות.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "חמישה מוצרים מיועדים לילדים",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "No children's product field in trace_summary. Not verifiable from trace alone. REVIEW."
+        },
+        {
+          "text": "הפער בין הגבוה לנמוך הוא 43 נקודות",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Max=74.7, min=31.9. Delta=42.8 rounds to 43. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_5",
+      "string_text": "גרנולה ומוזלי מוצגים בעמוד נפרד — משפחת מוצרים אחרת.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "גרנולה ומוזלי מוצגים בעמוד נפרד",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "Site structure claim. Not verifiable from product trace. REVIEW."
+        },
+        {
+          "text": "משפחת מוצרים אחרת",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Editorial categorization. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "category_note",
+      "string_text": "הערת קטגוריה — העשרה בוויטמינים ... טענת 'דגנים מלאים' נקראת מהרשימה, לא מהמיתוג",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "רוב דגני הבוקר מועשרים בוויטמינים ומינרלים סינתטיים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Many traces show has_fortification=true. PASS."
+        },
+        {
+          "text": "ציון Bari מבוסס על מבנה המזון... אינו מחשב תרומת מיקרו-רכיבים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology docs. PASS."
+        },
+        {
+          "text": "טענת 'דגנים מלאים' נקראת מהרשימה, לא מהמיתוג",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "has_whole_grain derived from ingredient list in trace, not package claims. PASS."
+        },
+        {
+          "text": "טענת 'דגנים מלאים' מופיעה על 20 מוצרים",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "Not verifiable from trace. No 'package_claim' field. REVIEW."
+        },
+        {
+          "text": "לעיתים קמח לבן מופיע לפני הדגן המלא",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "Qualitative observation requires corpus ingredient-order scan. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_1",
+      "string_text": "בדקנו 34 מוצרי דגני בוקר משתי רשתות — שופרסל וקרפור — רכיבים, ערכי תזונה ורמת עיבוד, לא רק קלוריות.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "34 מוצרי דגני בוקר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "34 products. PASS."
+        },
+        {
+          "text": "שופרסל וקרפור",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Consistent with source runs. PASS."
+        },
+        {
+          "text": "רכיבים, ערכי תזונה ורמת עיבוד, לא רק קלוריות",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology: trace includes ingredient_list, nutrition, NOVA. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_2",
+      "string_text": "הציונים יחסיים לקטגוריה; בסקירה זו אף מוצר לא הגיע ל-A.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "הציונים יחסיים לקטגוריה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology docs. PASS."
+        },
+        {
+          "text": "אף מוצר לא הגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Confirmed: no grade=A in any trace_summary. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_3",
+      "string_text": "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "confidenceLabel='חסרים נתוני רכיבים' exists for several products. PASS."
+        },
+        {
+          "text": "הציון מבוסס על מה שזמין",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology and confidence ceiling mechanism. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5010029000061",
+      "string_key": "insightLine",
+      "string_text": "95% חיטה, 12 גרם חלבון, 10 גרם סיבים — הכי גבוה בקטגוריה על שני הממדים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "95% חיטה, 12 גרם חלבון, 10 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "No positiveSignals/limitingFactors in trace_summary for these values. UNVERIFIABLE."
+        },
+        {
+          "text": "הכי גבוה בקטגוריה על שני הממדים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Superlative requiring full corpus scan for protein AND fiber. Score=74.7 (highest). REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5010029000061",
+      "string_key": "rowVerdict",
+      "string_text": "95% חיטה, הרכב פשוט, 12 גרם חלבון ו-10 גרם סיבים ל-100 גרם — הגבוהים בקטגוריה. ליון עמד על 78/B בגרסה הקודמת עקב תקלת נתונים; הציון המתוקן הוא 55/C. הפער האמיתי מ-ויטביקס הוא 20 נקודות. עוצר ב-B כי מועשר בוויטמינים (לא ספונטני) ו-342 קלוריות ל-100 גרם.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "95% חיטה, 12 גרם חלבון, 10 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הגבוהים בקטגוריה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Superlative. Score=74.7 is highest. REVIEW."
+        },
+        {
+          "text": "ליון עמד על 78/B בגרסה הקודמת עקב תקלת נתונים",
+          "type": "T4",
+          "verdict": "HARD-FAIL",
+          "evidence": "Provenance claim about prior run's score and cause. No provenance field in trace. T4 zero tolerance. HARD-FAIL."
+        },
+        {
+          "text": "הציון המתוקן הוא 55/C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "bsip1_cereal_5900020036407 trace=55.0/C. Math.round(55.0)=55. PASS."
+        },
+        {
+          "text": "הפער האמיתי מ-ויטביקס הוא 20 נקודות",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "74.7 - 55.0 = 19.7, rounds to 20. PASS."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "Weetabix trace_summary grade=B. PASS."
+        },
+        {
+          "text": "כי מועשר בוויטמינים (לא ספונטני)",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT driver: Binding cap=94.8 from NOVA_PROXY_3_PROCESSED. Vitamin enrichment NOT a named cap or penalty. Fabricated causal attribution. HARD-FAIL."
+        },
+        {
+          "text": "342 קלוריות ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7613037686906",
+      "string_key": "insightLine",
+      "string_text": "תווית 'פיטנס' — 10 גרם סוכר ל-100 גרם.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "10 גרם סוכר ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7613037686906",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס פיטנס בטעם שקדים ודבש — 10 גרם חלבון, 7.7 גרם סיבים ושומן נמוך, אבל גם 10 גרם סוכר ל-100 גרם. עוצר ב-B כי הפרופיל סביר, אך הסוכר המוסף בולט לצד שם ה'פיטנס'.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "10 גרם חלבון, 7.7 גרם סיבים, 10 גרם סוכר ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=B (70.0). Dominant: Confidence ceiling at 75. PASS."
+        },
+        {
+          "text": "כי הפרופיל סביר, אך הסוכר המוסף בולט",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant driver is confidence ceiling, not sugar profile. No sugar caps fired. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017325910",
+      "string_key": "insightLine",
+      "string_text": "קמח תירס אורגני 94%, 600 מ\"ג נתרן — גבוה משמעותית.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "94% קמח תירס אורגני, 600 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "גבוה משמעותית",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Interpretation of sodium level. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017325910",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס אורגני עם שתי שורות רכיבים — 94% קמח תירס אורגני, בלי תוספים. יורד ל-C כי 600 מ\"ג נתרן ל-100 גרם — הסף האדום של משרד הבריאות — גבוה לקטגוריה שבה רוב המוצרים מתחת ל-200 מ\"ג.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "94% קמח תירס אורגני",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "יורד ל-C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=B (69.2/B). Copy says C, trace says B. HARD-FAIL."
+        },
+        {
+          "text": "600 מ\"ג נתרן ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הסף האדום של משרד הבריאות",
+          "type": "T4",
+          "verdict": "HARD-FAIL",
+          "evidence": "No ISRAELI_RED_LABEL_* sodium rule fired (caps_applied=[]). T4 zero tolerance. HARD-FAIL."
+        },
+        {
+          "text": "רוב המוצרים מתחת ל-200 מ\"ג",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Corpus-wide sodium claim. Requires corpus scan. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7613033548192",
+      "string_key": "insightLine",
+      "string_text": "תווית 'פיטנס' עם שוקולד — 14 גרם סוכר, 10.3 גרם סיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "14 גרם סוכר, 10.3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7613033548192",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס פיטנס בטעם שוקולד מריר — 10.3 גרם סיבים מרשימים, אבל 14 גרם סוכר ל-100 גרם. עוצר ב-B כי הסיבים גבוהים, אבל השוקולד והסוכר המוסף מושכים מטה לצד שם ה'פיטנס'.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "10.3 גרם סיבים, 14 גרם סוכר",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=B (68.2). Dominant: Confidence ceiling. PASS."
+        },
+        {
+          "text": "כי הסיבים גבוהים, אבל השוקולד והסוכר המוסף מושכים מטה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant driver is confidence ceiling, not fiber/sugar. No caps fired. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7297488098688",
+      "string_key": "insightLine",
+      "string_text": "100% אורז מלא, אפס סוכר ואפס מלח — 71 מ\"ג נתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "100% אורז מלא, אפס סוכר, אפס מלח, 71 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7297488098688",
+      "string_key": "rowVerdict",
+      "string_text": "פצפוצי אורז מלא ללא תוספת סוכר ומלח — 100% אורז מלא, 3 גרם סיבים, 71 מ\"ג נתרן בלבד. עוצר ב-B ולא מעלה כי 3 גרם סיבים נמוך יחסית למיטב הקטגוריה, ואין רשימת רכיבים מורחבת.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "100% אורז מלא, 3 גרם סיבים, 71 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=B (67.3). PASS."
+        },
+        {
+          "text": "כי 3 גרם סיבים נמוך יחסית למיטב הקטגוריה, ואין רשימת רכיבים מורחבת",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant: NOVA_PROXY_3_PROCESSED cap. Causal attribution to fiber is editorial. 'No extended ingredient list' not a trace driver. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020041142",
+      "string_key": "insightLine",
+      "string_text": "קורנפלקס — 3 גרם סוכר, אבל 1.3 גרם סיבים בלבד.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "3 גרם סוכר, 1.3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020041142",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס פיטנס עם סוכר נמוך של 3 גרם ושומן נמוך מאוד — אבל גם 1.3 גרם סיבים בלבד ל-100 גרם. עוצר ב-B כי הסוכר מתון, אך מבנה התירס המעובד כמעט נטול סיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "3 גרם סוכר, 1.3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=B (65.3). Dominant: Confidence ceiling. PASS."
+        },
+        {
+          "text": "כי הסוכר מתון, אך מבנה התירס המעובד כמעט נטול סיבים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant driver is confidence ceiling, not fiber. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290116535371",
+      "string_key": "insightLine",
+      "string_text": "תווית \"עשיר בדגנים מלאים\" — 92% קמח תירס, 3 גרם סיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "92% קמח תירס, 3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290116535371",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס עם תווית דגנים מלאים — אבל 92% קמח תירס ו-3 גרם סיבים בלבד. C כי ההצהרה על הקופסה אינה מתיישבת עם פרופיל הסיבים הנמוך.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "92% קמח תירס, 3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (62.5). PASS."
+        },
+        {
+          "text": "כי ההצהרה על הקופסה אינה מתיישבת עם פרופיל הסיבים הנמוך",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant: NOVA_PROXY_3_PROCESSED cap. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7297488199590",
+      "string_key": "insightLine",
+      "string_text": "95% אורז לבן, 0.8 גרם סיבים — מהנמוכים בקטגוריה.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "95% אורז לבן, 0.8 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "מהנמוכים בקטגוריה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Comparative. Requires corpus scan. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7297488199590",
+      "string_key": "rowVerdict",
+      "string_text": "פצפוצי אורז קלאסיים — 95% אורז לבן, 7 גרם חלבון, אבל 0.8 גרם סיבים בלבד ו-390 מ\"ג נתרן. C; פשוט אך חסר ממשק תזונתי מלא.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "95% אורז לבן, 7 גרם חלבון, 0.8 גרם סיבים, 390 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (61.8). PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642046",
+      "string_key": "insightLine",
+      "string_text": "89% גריסי תירס, 390 מ\"ג נתרן, ללא גלוטן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "89% גריסי תירס, 390 מ\"ג נתרן, ללא גלוטן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642046",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס ללא גלוטן — 89% גריסי תירס, 8 גרם חלבון, אבל 390 מ\"ג נתרן ו-2.2 גרם סיבים בלבד. C; האפשרות לנמנעי הגלוטן, אך הפרופיל פשוט.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "89% גריסי תירס, 8 גרם חלבון, 390 מ\"ג נתרן, 2.2 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (58.2). Live=61/C recon=58/C (3pt drift within C). Direction unchanged. PASS. Drift cited."
+        }
+      ],
+      "drift_note": "live=61/C recon=58/C. Grade unchanged (C). 3pt drift cited."
+    },
+    {
+      "product_id": "bsip1_cereal_3560071016074",
+      "string_key": "insightLine",
+      "string_text": "תירס 92%, סוכר ומלח — 320 מ\"ג נתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "תירס 92%, 320 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_3560071016074",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס פשוט — 92% תירס, ואחריו סוכר, מלח ותמצית לתת. נשאר ב-C כי הרשימה קצרה אבל מבנה התירס המעובד מותיר רק 2.5 גרם סיבים, ו-320 מ\"ג הנתרן בולטים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "92% תירס, 2.5 גרם סיבים, 320 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "נשאר ב-C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (60.8). PASS."
+        },
+        {
+          "text": "כי הרשימה קצרה אבל מבנה התירס המעובד מותיר רק 2.5 גרם סיבים, ו-320 מ\"ג הנתרן בולטים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant: NOVA_PROXY_3_PROCESSED cap. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112494351",
+      "string_key": "insightLine",
+      "string_text": "89% קמח תירס, 7 גרם חלבון, 3 גרם סיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "89% קמח תירס, 7 גרם חלבון, 3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112494351",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס מועשר בוויטמינים — 89% קמח תירס, 3 גרם סיבים, 375 מ\"ג נתרן. C על פרופיל בינוני; ההעשרה לא מפצה על נמיכות הסיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "89% קמח תירס, 3 גרם סיבים, 375 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (57.1). Live=60/C recon=57/C (3pt drift within C). Direction unchanged. PASS. Drift cited."
+        },
+        {
+          "text": "קורנפלקס מועשר בוויטמינים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "has_fortification=true. PASS."
+        },
+        {
+          "text": "ההעשרה לא מפצה על נמיכות הסיבים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology: fortification does not affect score. PASS."
+        }
+      ],
+      "drift_note": "live=60/C recon=57/C. 3pt drift within grade C."
+    },
+    {
+      "product_id": "bsip1_cereal_5900020036407",
+      "string_key": "insightLine",
+      "string_text": "24.7 גרם סוכר ל-100 גרם, שומן רווי 2.5 גרם. הציון הקודם היה שגוי — נתוני שומן וסוכר לא הועברו למנוע.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "24.7 גרם סוכר, שומן רווי 2.5 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הציון הקודם היה שגוי — נתוני שומן וסוכר לא הועברו למנוע",
+          "type": "T4",
+          "verdict": "REVIEW",
+          "evidence": "Softer T4 about internal pipeline error. No provenance field in trace. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020036407",
+      "string_key": "rowVerdict",
+      "string_text": "ליון: דגני שוקולד וקרמל עם 24.7 גרם סוכר ו-6.2 גרם שומן ל-100 גרם — ערכים שלא הועברו לגרסה הקודמת. הציון הנכון הוא 55/C. 8.5 גרם חלבון ו-6.5 גרם סיבים, אך גלוקוז גבוה וארכיטקטורת שומן בינונית מורידים את הציון.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "24.7 גרם סוכר, 6.2 גרם שומן, 8.5 גרם חלבון, 6.5 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הציון הנכון הוא 55/C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary final_score=55.0, grade=C. Math.round=55. PASS."
+        },
+        {
+          "text": "ערכים שלא הועברו לגרסה הקודמת",
+          "type": "T4",
+          "verdict": "REVIEW",
+          "evidence": "Softer T4 about prior pipeline. REVIEW."
+        },
+        {
+          "text": "גלוקוז גבוה וארכיטקטורת שומן בינונית מורידים את הציון",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: Binding cap=55 from ISRAELI_RED_LABEL_1_SUGAR+NOVA_PROXY_3_PROCESSED. Glucose/fat not named trace drivers. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020012814",
+      "string_key": "insightLine",
+      "string_text": "מוצר ילדים שהציון הקודם שלו היה מנופח. 24.7 גרם סוכר ל-100 גרם — גבוה לקטגוריה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "מוצר ילדים",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "No children's product field in trace. REVIEW."
+        },
+        {
+          "text": "הציון הקודם שלו היה מנופח",
+          "type": "T4",
+          "verdict": "REVIEW",
+          "evidence": "Softer T4 about prior run. REVIEW."
+        },
+        {
+          "text": "24.7 גרם סוכר ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "גבוה לקטגוריה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Comparative requiring corpus scan. ISRAELI_RED_LABEL_1_SUGAR fired (high sugar confirmed). REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020012814",
+      "string_key": "rowVerdict",
+      "string_text": "נסקוויק: חיטה מלאה ראשונה ברשימה, 8.9 גרם חלבון ו-8 גרם סיבים — אבל 24.7 גרם סוכר ל-100 גרם. הציון הקודם (78/B) לא כלל נתוני סוכר ושומן מלאים. הציון הנכון 55/C.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "8.9 גרם חלבון, 8 גרם סיבים, 24.7 גרם סוכר",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הציון הקודם (78/B) לא כלל נתוני סוכר ושומן מלאים",
+          "type": "T4",
+          "verdict": "REVIEW",
+          "evidence": "Softer T4 about prior pipeline. REVIEW."
+        },
+        {
+          "text": "הציון הנכון 55/C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary 55.0/C. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_72968",
+      "string_key": "insightLine",
+      "string_text": "חיטה מלאה ראשונה, 338 מ\"ג נתרן — גבוה לקטגוריה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "חיטה מלאה ראשונה",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "has_whole_grain=true, but 'first ingredient' requires ingredient order verification from trace. REVIEW."
+        },
+        {
+          "text": "338 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "גבוה לקטגוריה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Comparative requiring corpus scan. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_72968",
+      "string_key": "rowVerdict",
+      "string_text": "חיטה מלאה ראשונה ברשימה ו-5.7 גרם סיבים, אבל 338 מ\"ג נתרן ל-100 גרם — גבוה מהמדיאן בקטגוריה. B על בסיס הדגן המלא; הנתרן מושך כלפי מטה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "5.7 גרם סיבים, 338 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "B על בסיס הדגן המלא",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=C (55.0/C). Both live and trace show C. Copy says B. Grade fabrication. HARD-FAIL."
+        },
+        {
+          "text": "הנתרן מושך כלפי מטה",
+          "type": "T3",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT driver: Binding cap=55 from HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. No sodium cap fired. Sodium not the grade driver. Fabricated causal attribution. HARD-FAIL."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647731",
+      "string_key": "insightLine",
+      "string_text": "תווית \"חום\" — סוכר הרכיב השני, 382 מ\"ג נתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "סוכר הרכיב השני, 382 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647731",
+      "string_key": "rowVerdict",
+      "string_text": "קוקומן עם תיוג ילדים ותווית שנשמעת דגנים מלאים — סוכר הרכיב השני, 382 מ\"ג נתרן. עוצר ב-B תחתון כי הדגנים המלאים נוכחים (71%), אבל פרופיל הסוכר והנתרן אינם לטובת ילדים.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "382 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "עוצר ב-B תחתון",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=C (55.0/C). Live and trace show C. Copy says B. Grade fabrication. HARD-FAIL."
+        },
+        {
+          "text": "פרופיל הסוכר והנתרן אינם לטובת ילדים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. Sugar IS binding; sodium not a driver. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647854",
+      "string_key": "insightLine",
+      "string_text": "82% קמח תירס, 12% סוכר, 435 מ\"ג נתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "82% קמח תירס, 12% סוכר, 435 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647854",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס קלאסי — 82% קמח תירס, סוכר 12%, נתרן 435 מ\"ג. C; פרופיל ישיר ולא מורכב, אך גבוה בנתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "82% קמח תירס, סוכר 12%, 435 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "trace_summary grade=D (49.7/D). Live=53/C recon=50/D (3pt drift, grade changes C→D). Copy 'C' matches live but trace=D. Drift grade change. REVIEW citing drift."
+        }
+      ],
+      "drift_note": "live=53/C recon=50/D. Grade changed C→D from drift."
+    },
+    {
+      "product_id": "bsip1_cereal_7290116537351",
+      "string_key": "insightLine",
+      "string_text": "מוצר ילדים — 16.3 גרם שומן, 5.7 גרם חלבון.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "מוצר ילדים",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "No children's product field in trace. REVIEW."
+        },
+        {
+          "text": "16.3 גרם שומן, 5.7 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290116537351",
+      "string_key": "rowVerdict",
+      "string_text": "כריות נוגט מקטגוריית הילדים — 16.3 גרם שומן ל-100 גרם, 217 מ\"ג נתרן ורק 5.7 גרם חלבון. נשאר ב-C כי המילוי המתוק מגדיר את המוצר, ונתוני הסוכר והסיבים אינם זמינים.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "16.3 גרם שומן, 217 מ\"ג נתרן, 5.7 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "נשאר ב-C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=C (52.3). PASS."
+        },
+        {
+          "text": "כי המילוי המתוק מגדיר את המוצר, ונתוני הסוכר והסיבים אינם זמינים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Dominant: Confidence ceiling + HIGH_CAL_LOW_SATIETY_SOFT. Missing data consistent. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_4005528115218",
+      "string_key": "insightLine",
+      "string_text": "30 גרם סוכר ל-100 גרם — כמעט שליש מהמשקל.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "30 גרם סוכר ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        },
+        {
+          "text": "כמעט שליש מהמשקל",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "30/100≈30%. Consistent arithmetic. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_4005528115218",
+      "string_key": "rowVerdict",
+      "string_text": "דגני חיטה ואורז בטעם — 30 גרם סוכר ל-100 גרם, כמעט שליש מהמשקל, ו-2.3 גרם סיבים בלבד. נשאר ב-D כי הסוכר הוא הגורם המגביל ומבנה הדגן המעובד דל בסיבים.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "30 גרם סוכר, 2.3 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. Missing ingredient data. UNVERIFIABLE."
+        },
+        {
+          "text": "נשאר ב-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (48.3). PASS."
+        },
+        {
+          "text": "כי הסוכר הוא הגורם המגביל ומבנה הדגן המעובד דל בסיבים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "DOMINANT: Binding cap=63 from ISRAELI_RED_LABEL_1_SUGAR. Sugar IS the binding cap. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495433",
+      "string_key": "insightLine",
+      "string_text": "13% אגוזי פקאן מקורמלים, 9.9 גרם חלבון.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "13% אגוזי פקאן מקורמלים, 9.9 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495433",
+      "string_key": "rowVerdict",
+      "string_text": "דגני בוקר עם פקאן ושקדים — 9.9 גרם חלבון ו-7.4 גרם סיבים, אגוזי פקאן 8.5% ומקורמלים. C; האגוזים אמיתיים, אבל הסוכר לקירמל ורמת העיבוד מושכים כלפי מטה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "9.9 גרם חלבון, 7.4 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (43.0/D). Live=D recon=D. No drift on grade. Copy says C but all sources show D. HARD-FAIL."
+        },
+        {
+          "text": "האגוזים אמיתיים, אבל הסוכר לקירמל ורמת העיבוד מושכים כלפי מטה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. Sugar + NOVA consistent. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705550",
+      "string_key": "insightLine",
+      "string_text": "תווית \"דגנים מלאים\" — סוכר הרכיב הרביעי, גלוקוז-פרוקטוז ברשימה.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "סוכר הרכיב הרביעי, גלוקוז-פרוקטוז ברשימה",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705550",
+      "string_key": "rowVerdict",
+      "string_text": "כדורי דגנים עם תווית דגנים מלאים — 25% חיטה מלאה, אבל סוכר וסירופ גלוקוז-פרוקטוז ברשימה המוקדמת. C; הדגנים המלאים נוכחים, אבל לא הרכיב הדומיננטי.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "25% חיטה מלאה",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (46.0/D). Live=D. No drift on grade. Copy says C. HARD-FAIL."
+        },
+        {
+          "text": "הדגנים המלאים נוכחים, אבל לא הרכיב הדומיננטי",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "has_whole_grain=true. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705567",
+      "string_key": "insightLine",
+      "string_text": "36% חיטה מלאה, 26% שיבולת שועל, דבש 2%.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "36% חיטה מלאה, 26% שיבולת שועל, דבש 2%",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705567",
+      "string_key": "rowVerdict",
+      "string_text": "טבעות דגנים עם 36% חיטה מלאה ו-26% שיבולת שועל — 8 גרם חלבון, 6 גרם סיבים. C; הדגנים המלאים נוכחים, אבל סוכר, סירופ גלוקוז-פרוקטוז ומולסה מגבילים.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "36% חיטה מלאה, 26% שיבולת שועל, 8 גרם חלבון, 6 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (46.0/D). Live=D. Copy says C. HARD-FAIL."
+        },
+        {
+          "text": "אבל סוכר, סירופ גלוקוז-פרוקטוז ומולסה מגבילים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. Sugar IS binding. T3 consistent. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894911",
+      "string_key": "insightLine",
+      "string_text": "54% שיבולת שועל מלאה, 7 גרם סיבים — 8.9 גרם חלבון.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "54% שיבולת שועל מלאה, 7 גרם סיבים, 8.9 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894911",
+      "string_key": "rowVerdict",
+      "string_text": "טבעות עם 54% שיבולת שועל מלאה — 8.9 גרם חלבון ו-7 גרם סיבים. C כי סולת תירס, סירופ גלוקוז ואגבה ברשימה; רמת העיבוד גבוהה משיבולת שועל עבה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "54% שיבולת שועל מלאה, 8.9 גרם חלבון, 7 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (46.0/D). Live=D. Copy says C. HARD-FAIL."
+        },
+        {
+          "text": "כי סולת תירס, סירופ גלוקוז ואגבה ברשימה; רמת העיבוד גבוהה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_4_ULTRA_PROCESSED. Sugar + NOVA4 consistent. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_42400108153",
+      "string_key": "insightLine",
+      "string_text": "סוכר הרכיב הראשון — 42.9 גרם ל-100 גרם.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "42.9 גרם ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_42400108153",
+      "string_key": "rowVerdict",
+      "string_text": "דגני בוקר שהסוכר הוא הרכיב הראשון בהם — 42.9 גרם ל-100 גרם, כמעט מחצית המשקל, עם צבעי מאכל ברשימה. יורד ל-D כי הסוכר שולט וחלבון של 3.6 גרם בלבד; הדגן המלא שולי.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "42.9 גרם ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "3.6 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "יורד ל-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (44.4). PASS."
+        },
+        {
+          "text": "כי הסוכר שולט וחלבון של 3.6 גרם בלבד; הדגן המלא שולי",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. Sugar IS binding. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020046833",
+      "string_key": "insightLine",
+      "string_text": "שיבולת שועל מלאה 92%, אבל סוכר הרכיב השני.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "שיבולת שועל מלאה 92%",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "סוכר הרכיב השני",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_5900020046833",
+      "string_key": "rowVerdict",
+      "string_text": "צ'יריוס עם 92% קמח שיבולת שועל מלא ו-10.7 גרם חלבון — אבל סוכר הרכיב השני וסירופ סוכר אינברטי אחריו. נשאר ב-D כי הדגן המלא חזק אך הסוכר המוסף מוקדם, ונתוני הסיבים חסרים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "92% קמח שיבולת שועל, 10.7 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "נשאר ב-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (43.7). PASS."
+        },
+        {
+          "text": "כי הדגן המלא חזק אך הסוכר המוסף מוקדם, ונתוני הסיבים חסרים",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: NOVA_PROXY_3_PROCESSED + penalties. Sugar added-sugar markers fired. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894928",
+      "string_key": "insightLine",
+      "string_text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894928",
+      "string_key": "rowVerdict",
+      "string_text": "שיבולת שועל מלאה 57% בצורת צדף — 9.6 גרם חלבון ו-8.5 גרם סיבים. C; סירופ אגבה וסוכר קנים ברשימה, ורמת העיבוד הגבוהה מגבילה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (43.0/D). Live=D. Copy says C. HARD-FAIL."
+        },
+        {
+          "text": "כי סירופ אגבה וסוכר קנים ברשימה, ורמת העיבוד הגבוהה מגבילה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. Sugar+NOVA binding. T3 consistent. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894904",
+      "string_key": "insightLine",
+      "string_text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון — גרסת כדורים.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894904",
+      "string_key": "rowVerdict",
+      "string_text": "כדורי קציר עם אותו הרכב כמו הצדפים — 57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים. C; שיתוף פרופיל עם גרסת הצדף, רמת עיבוד זהה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (43.0/D). Live=D. Copy says C. HARD-FAIL."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642022",
+      "string_key": "insightLine",
+      "string_text": "65% גריסי תירס, 1.8 גרם סיבים — הנמוך בין הטבעות.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "65% גריסי תירס, 1.8 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "הנמוך בין הטבעות",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Subset-superlative requiring ring-products corpus check. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642022",
+      "string_key": "rowVerdict",
+      "string_text": "טבעות ללא גלוטן — 65% גריסי תירס, 4% דבש, 1.8 גרם סיבים בלבד. C; הגרסה ללא גלוטן, אבל הסיבים מהנמוכים בקטגוריה.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "65% גריסי תירס, 4% דבש, 1.8 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (41.8/D). Live=43/D recon=42/D (1pt drift, same grade D). Copy says C, trace=D. No drift on grade. HARD-FAIL."
+        },
+        {
+          "text": "הסיבים מהנמוכים בקטגוריה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Corpus comparison required. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_8445291638839",
+      "string_key": "insightLine",
+      "string_text": "81.9% דגנים, 92% מהם מלאים — אבל סוכר רכיב שלישי.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "81.9% דגנים, 92% מהם מלאים, סוכר רכיב שלישי",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_8445291638839",
+      "string_key": "rowVerdict",
+      "string_text": "צ'יריוס עם פרופיל מרשים על הנייר — 81.9% דגנים, 91.9% מהם מלאים, 9.4 גרם סיבים. D כי סוכר הרכיב השלישי, ואריזת הדגנים המלאים לא מציגה פרופיל חלבון מספק (8.3 גרם).",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "81.9% דגנים, 91.9% מלאים, 9.4 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (42.1). PASS."
+        },
+        {
+          "text": "כי סוכר הרכיב השלישי, ואריזת הדגנים המלאים לא מציגה פרופיל חלבון מספק (8.3 גרם)",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_4_ULTRA_PROCESSED. Sugar IS binding. Protein claim is editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495228",
+      "string_key": "insightLine",
+      "string_text": "79% קמח תירס, דבש 0.7% בלבד — שאר המתיקות מסוכר.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "79% קמח תירס, דבש 0.7%",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495228",
+      "string_key": "rowVerdict",
+      "string_text": "קורנפלקס דבש עם 0.7% דבש בפועל — 79% קמח תירס, 6.7 גרם חלבון, 368 מ\"ג נתרן. C; הדבש בשם לא מייצג את הממתיק האמיתי שהוא סוכר.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "0.7% דבש, 79% קמח תירס, 6.7 גרם חלבון, 368 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (37.4/D). Live=40/D recon=37/D (3pt drift within D). Copy says C. No drift on grade. HARD-FAIL."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_8445290964595",
+      "string_key": "insightLine",
+      "string_text": "31.4% חיטה מלאה, שוקולד חלב 2%, 6 רמות סוכר שונות.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "31.4% חיטה מלאה, שוקולד חלב 2%, 6 רמות סוכר שונות",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_8445290964595",
+      "string_key": "rowVerdict",
+      "string_text": "קיטקט כדגני בוקר — 31.4% חיטה מלאה אבל גם סוכר, דקסטרוז, גלוקוז וסירופ כמרכיבים שונים. D; הדגן המלא נוכח אבל מוקף ממתיקים ועיבוד גבוה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "31.4% חיטה מלאה",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (37.3). PASS."
+        },
+        {
+          "text": "הדגן המלא נוכח אבל מוקף ממתיקים ועיבוד גבוה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED + penalties. Multiple sugar markers consistent. T3 editorial. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_3387390525960",
+      "string_key": "insightLine",
+      "string_text": "31.5% חיטה מלאה, 12.6% שוקולד, 7.4 גרם חלבון.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "31.5% חיטה מלאה, 12.6% שוקולד, 7.4 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_3387390525960",
+      "string_key": "rowVerdict",
+      "string_text": "נסטלה קראנץ' עם 12.6% שוקולד מריר — 31.5% חיטה מלאה, 7.4 גרם חלבון ו-7.2 גרם סיבים. D; השוקולד והעיבוד הגבוה מורידים משמעותית למרות הדגן המלא.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "12.6% שוקולד, 31.5% חיטה מלאה, 7.4 גרם חלבון, 7.2 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace_summary grade=D (35.1/D). Live=37/D recon=35/D (2pt drift within D). Direction unchanged. PASS. Drift cited."
+        },
+        {
+          "text": "השוקולד והעיבוד הגבוה מורידים משמעותית למרות הדגן המלא",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_4_ULTRA_PROCESSED. Choc not a named driver. T3 editorial. REVIEW."
+        }
+      ],
+      "drift_note": "live=37/D recon=35/D. 2pt drift within grade D."
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705574",
+      "string_key": "insightLine",
+      "string_text": "42% חיטה מלאה, 0.6% קינמון, 320 מ\"ג נתרן.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "42% חיטה מלאה, 0.6% קינמון, 320 מ\"ג נתרן",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705574",
+      "string_key": "rowVerdict",
+      "string_text": "42% חיטה מלאה וקינמון אמיתי — אבל סוכר, פרוקטוז ושמן חמניות אחרי הדגן המלא. יורד ל-C כי 320 מ\"ג נתרן ל-100 גרם — גבוה לדגני בוקר, שרוב מוצריו מתחת ל-100 מ\"ג.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "42% חיטה מלאה",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "יורד ל-C",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=D (36.4/D). Live=D recon=D. Copy says C. No drift. HARD-FAIL."
+        },
+        {
+          "text": "320 מ\"ג נתרן ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "כי 320 מ\"ג נתרן ל-100 גרם — גבוה לדגני בוקר",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT: Binding cap=55 from HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_3_PROCESSED. No sodium cap fired (sodium=320<700). Fabricated causal attribution to sodium. HARD-FAIL."
+        },
+        {
+          "text": "שרוב מוצריו מתחת ל-100 מ\"ג",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "Corpus claim. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_884912126115",
+      "string_key": "insightLine",
+      "string_text": "65.7% קמח דגנים מלאים, BHT כנוגד חמצון ברשימה.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "65.7% קמח דגנים מלאים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "BHT כנוגד חמצון ברשימה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "tax_bht_present=true. Ingredient list contains BHT. PASS."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_884912126115",
+      "string_key": "rowVerdict",
+      "string_text": "תערובת דגנים מלאים עם תמרים ופקאן — 65.7% קמח, 7.4 גרם סיבים. D כי BHT (E321) ברשימה — נוגד חמצון שנוי במחלוקת; הציון מגביל בקטגוריה הישראלית.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "65.7% קמח, 7.4 גרם סיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "D",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "trace_summary grade=E (34.7/E). Live=35/D recon=35/E. Grade change due to drift (D→E). Copy 'D' matches live. REVIEW citing drift."
+        },
+        {
+          "text": "כי BHT (E321) ברשימה — נוגד חמצון שנוי במחלוקת",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Real drivers: HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR + NOVA_PROXY_4_ULTRA_PROCESSED. BHT NOT a named BSIP2 rule — not in caps_applied, penalties_applied, or explanation_drivers. Fabricated causal attribution. HARD-FAIL."
+        },
+        {
+          "text": "הציון מגביל בקטגוריה הישראלית",
+          "type": "T4",
+          "verdict": "REVIEW",
+          "evidence": "Vague authority reference. REVIEW."
+        }
+      ],
+      "drift_note": "live=35/D recon=35/E. Grade changes D→E from drift."
+    },
+    {
+      "product_id": "bsip1_cereal_7613030979647",
+      "string_key": "insightLine",
+      "string_text": "תווית ילדים ו\"דגנים מלאים\" — 5 גרם חלבון, צבעי מאכל ברשימה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "5 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "צבעי מאכל ברשימה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "has_artificial_color=true. PASS."
+        },
+        {
+          "text": "תווית ילדים",
+          "type": "T1",
+          "verdict": "REVIEW",
+          "evidence": "Not verifiable from trace. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_cereal_7613030979647",
+      "string_key": "rowVerdict",
+      "string_text": "טריקס: מוצר ילדים עם תווית דגנים מלאים — אבל צבעי מאכל סינתטיים, סירופ גלוקוז ו-5 גרם חלבון בלבד. D כי הצבעים הסינתטיים והרמת העיבוד הגבוהה בולטים לרעה בקטגוריית ילדים.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "צבעי מאכל סינתטיים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "has_artificial_color=true. PASS."
+        },
+        {
+          "text": "5 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "D",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace_summary grade=E (31.9/E). Live=E recon=E (match). Copy says D, trace=E. No drift on grade. HARD-FAIL."
+        },
+        {
+          "text": "כי הצבעים הסינתטיים והרמת העיבוד הגבוהה בולטים לרעה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "DOMINANT: ADDITIVE_MARKERS_3_PLUS + NOVA_PROXY_4_ULTRA_PROCESSED + HIGH_SUGAR_25G_PLUS + ISRAELI_RED_LABEL_1_SUGAR. Color additives and high processing ARE trace drivers. T3 consistent. REVIEW."
+        }
+      ]
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import {
   saltySnacksProducts,
   saltySnacksCategoryNote,
 } from "@/lib/comparisons/salty-snacks-page-data";
+import { buildFaqScript } from "@/lib/seo/faq-schema";
+import rawFaqSchema from "@/data/seo/salty_snacks_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת חטיפים מלוחים | Bari",
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
 
 export default function SaltySnacksComparisonRoute() {
   return (
-    <SaltySnacksComparisonPage
-      products={saltySnacksProducts}
-      metadataLine={saltySnacksMetadataLine}
-      hero={saltySnacksHero}
-      prologueSentences={saltySnacksPrologueSentences}
-      methodologyLines={saltySnacksMethodologyLines}
-      categoryNote={saltySnacksCategoryNote}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
+      <SaltySnacksComparisonPage
+        products={saltySnacksProducts}
+        metadataLine={saltySnacksMetadataLine}
+        hero={saltySnacksHero}
+        prologueSentences={saltySnacksPrologueSentences}
+        methodologyLines={saltySnacksMethodologyLines}
+        categoryNote={saltySnacksCategoryNote}
+      />
+    </>
   );
 }

@@ -1,0 +1,18 @@
+{
+  "_comment": "Hummus category config for run_hummus_shelfrel_002 (shelf-relative scoring, EV-094 + EV-099, 2026-06-15). Corpus: 02_products/hummus/canonical_bsip1 (69 products). Run: 69 traces with BARI_SHELF_RELATIVE_V1=on, BARI_FAT_TECH_V1=on, BARI_RECAL_P0=on, BARI_HC002_NOVA1=off (reverted), BARI_DAIRY_SAT_FAT_INFER=on. Supersedes run_hummus_003 / glassbox_w4 (hummus_frontend_v5.json was at 2026-06-05). OFF ban (TASK-238) hard rule applied at corpus scan. Grade boundary policy: floor (grade_boundary_policy_v1.json).",
+  "category": "hummus",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\hummus\\canonical_bsip1"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\hummus\\intelligence_bsip2\\run_hummus_shelfrel_002\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hummus_frontend_v5.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "exclusions": [],
+  "extension_fields": ["_product_type"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

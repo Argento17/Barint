@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-09T15:31:34.928393Z",
+  "trace_generated_at": "2026-06-15T06:11:04.339494Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290107646147",
@@ -142,6 +142,8 @@
     "trans_fat_status": "threshold_declaration",
     "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [
       "sugar",
       "sat_fat"
@@ -167,10 +169,23 @@
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
+    "functional_fiber_detected": true,
+    "functional_fiber_type": "prebiotic",
+    "functional_fiber_terms_matched": [
+      "אינולין"
+    ],
+    "functional_fiber_viscous_terms": [],
+    "functional_fiber_prebiotic_terms": [
+      "אינולין"
+    ],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [
       "soy_lecithin"
     ],
+    "tax_emulsifier_medium": [
+      "mono_diglyceride"
+    ],
+    "tax_emulsifier_low": [],
     "tax_named_concern_additives": [
       "soy_lecithin"
     ],
@@ -190,6 +205,8 @@
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
       "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 42.09,
@@ -265,11 +282,11 @@
     "processing_quality": 35.0,
     "nutrient_density": 31.9,
     "calorie_density": 25.0,
-    "glycemic_quality": 21.0,
+    "glycemic_quality": 22.0,
     "protein_quality": 28.1,
     "additive_quality": 66.0,
-    "satiety_support": 29.1,
-    "fat_quality": 18.1,
+    "satiety_support": 30.1,
+    "fat_quality": 23.1,
     "regulatory_quality": 25.0,
     "whole_food_integrity": 26
   },
@@ -277,11 +294,11 @@
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=6.6g→33.0, fiber=3.0g→30.0, weighted 65/35=31.9",
     "calorie_density": "kcal=479.0, category=snack_bar_granola → 25",
-    "glycemic_quality": "90 - sugar_penalty(75.0) + fiber(6.0) + wg(0) = 21.0",
+    "glycemic_quality": "90 - sugar_penalty(75.0) + fiber(6.0) + wg(0) = 21.0 + EV-006 prebiotic-fiber bonus(1)",
     "protein_quality": "protein=6.6g base=33.0, source=mixed(×0.85) → 28.1",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0 id_delta=+2→66.0 [F1 lecithin relief +2]",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (6.6×3 + 3.0×5) / 479.0 × 400 = 29.1",
-    "fat_quality": "EV-012 fat_ratio: fat=22.4g ratio=0.302 base=28.1-seed10-trans0=18.1",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (6.6×3 + 3.0×5) / 479.0 × 400 = 29.1 + EV-006 prebiotic-fiber bonus(1)",
+    "fat_quality": "EV-012 fat_ratio: fat=22.4g ratio=0.302 base=28.1-seed5-trans0=23.1",
     "regulatory_quality": "2 red labels: ['sugar', 'sat_fat']",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=10 complexity_pen=4 → 26"
   },
@@ -297,7 +314,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 31.2,
+  "weighted_dimension_score": 31.78,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -429,7 +446,7 @@
     }
   ],
   "binding_cap": 45,
-  "score_after_cap": 31.2,
+  "score_after_cap": 31.78,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -508,9 +525,9 @@
     }
   ],
   "total_penalty_before_scaling": 24.4,
-  "total_penalty_after_scaling": 15.6,
-  "penalty_scaling_note": "SRC-05: penalty 24.4 exceeds 50% of pre-penalty score 31.2 → scaled to 15.6",
-  "score_after_penalty": 15.6,
+  "total_penalty_after_scaling": 15.89,
+  "penalty_scaling_note": "SRC-05: penalty 24.4 exceeds 50% of pre-penalty score 31.8 → scaled to 15.89",
+  "score_after_penalty": 12.89,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": 45,
@@ -592,11 +609,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 15.6,
+  "score_after_floors": 12.89,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 15.6,
+  "final_score_estimate": 12.9,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

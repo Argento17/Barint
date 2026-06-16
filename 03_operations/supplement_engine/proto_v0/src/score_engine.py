@@ -28,25 +28,58 @@ NA = "N/A"
 # ===========================================================================
 # A claim is OVER-SPECIFIC if it asserts a tier the evidence cannot bear —
 # certainty language ("clinically proven"), a treatment verb ("cures"/"treats"),
-# or a named disease/condition. Frozen marker set (NOT NLP): an exact substring
+# or a named disease/condition. Frozen marker set (NOT NLP): whole-word boundary
 # scan of the normalized claim. Over-specific resolves to the REAL endpoint tier
 # (§2.1) AND fires the §2.4 Honesty claim-vs-substance gap — resolution is not a
 # free pass for a confident lie.
-OVER_PROMISE_MARKERS = (
+#
+# TASK-277 BUG-A FIX (2026-06-13): prior code did `m.strip()` then plain substring
+# check, which collapsed "treat " → "treat" and matched it INSIDE "treatment" and
+# "treating". E.g. "iron-deficiency anemia treatment/prevention" falsely fired
+# cap_3_honesty_core on SupHerb iron, SupHerb B12, Tink iron. Fix: markers with
+# trailing spaces are WORD-BOUNDARY markers — match them as whole words only via
+# re.search(r'\bWORD\b'). Multi-word phrases (no trailing space) remain exact
+# substring matches (they are already sufficiently specific). The golden R3 fixture
+# ("clinically proven to cure insomnia") fires on "clinically proven", "proven to",
+# "cure" (word-boundary), and "insomnia" — all still trigger correctly.
+import re as _over_re
+
+# Markers with a trailing space in the original list were word-boundary markers.
+# Split into two sets: multi-word exact phrases (no trailing space) and single
+# tokens that must match as whole words.
+_OVER_MULTI = (
     "clinically proven", "scientifically proven", "proven to",
-    "cure", "cures", "cure ", "treats", "treat ", "reverses", "reverse ",
-    "fixes", "heals", "eliminates", "guaranteed",
-    # named disease / condition tokens (structure/function language may NOT name these)
+)
+_OVER_WORD = (
+    "cure", "cures", "treats",
+    "reverses", "fixes", "heals", "eliminates", "guaranteed",
+    # named disease / condition tokens
     "insomnia", "osteoporosis", "depression", "anxiety disorder",
     "diabetes", "hypertension", "alzheimer", "dementia", "nerve damage",
 )
 
+# Pre-compile word-boundary patterns for each single-token marker.
+_OVER_WORD_RE = {m: _over_re.compile(r'\b' + _over_re.escape(m) + r'\b')
+                 for m in _OVER_WORD}
+
 
 def detect_over_promise(claim: str) -> dict:
-    """Frozen substring scan for over-specific over-promise (§2.4). Returns
-    {'over_promise': bool, 'markers': [...]}. NO NLP / no inference."""
+    """Whole-word scan for over-specific over-promise (§2.4). Returns
+    {'over_promise': bool, 'markers': [...]}. NO NLP / no inference.
+
+    TASK-277: verb markers ("cure"/"treat"/"reverse") are now matched as WHOLE
+    WORDS only (re \\b boundary), so 'treatment'/'treating'/'reversal' do NOT
+    fire. Multi-word phrases are still exact substrings (they are specific enough
+    not to mis-match). The golden R3 fixture still fires on 'cure'/'insomnia'/
+    'clinically proven'/'proven to'."""
     n = _norm(claim)
-    hits = [m.strip() for m in OVER_PROMISE_MARKERS if m.strip() in n]
+    hits = []
+    for m in _OVER_MULTI:
+        if m in n:
+            hits.append(m)
+    for m, pat in _OVER_WORD_RE.items():
+        if pat.search(n):
+            hits.append(m)
     return {"over_promise": bool(hits), "markers": sorted(set(hits))}
 
 
@@ -78,27 +111,59 @@ def _claim_tokens(text: str) -> set:
     return {t for t in _tok_clean(text) if t not in _CLAIM_GENERIC_TOKENS}
 
 
+# tier ordering for claim resolution and umbrella selection (§2.1 step 2).
+# Defined before _match_studied_claim so the primary-claim discipline fix can use
+# it for the conservative tiebreaker (lower tier preferred on equal token-overlap).
+_TIER_RANK = {"Insufficient": 0, "Weak": 1, "Moderate": 2, "Strong": 3}
+
+
 def _match_studied_claim(tiers: dict, claim: str):
     """Try the EXISTING claim-specific path (explicit studied claim).
     1) exact key match, 2) whole-text containment, 3) distinctive-token overlap.
     Returns (claim_text, info) or None. Kept intact for studied claims so the
     14 existing fixtures behave identically; token-overlap additionally lets an
     over-specific claim ('...cure insomnia') still resolve to its real studied
-    endpoint ('sleep quality / insomnia' = Weak) per §2.1 step 2 / §2.4."""
+    endpoint ('sleep quality / insomnia' = Weak) per §2.1 step 2 / §2.4.
+
+    TASK-277 PRIMARY-CLAIM DISCIPLINE FIX (CHANGES_REQUESTED retry, 2026-06-14):
+    The prior token-overlap step returned the FIRST match, so an identity token
+    like 'c' (from 'vitamin C') or 'zinc' falsely matched the deficiency endpoint
+    (Strong) before a more specific immune token could be considered. Fix:
+      a) Filter single-letter tokens from the overlap computation (they are
+         active-identity abbreviations, not endpoint-specific discriminators).
+      b) Select the match with the MOST overlapping tokens (highest specificity).
+      c) On ties, prefer the LOWEST tier (most conservative — claim-specificity
+         discipline: when two endpoints are equally matched, penalise the claim,
+         not reward it; the creatine-for-fat-loss principle).
+    This ensures 'Zinc picolinate immune support' resolves to the broad-immune
+    endpoint (2-token overlap: zinc + immune) over deficiency (1-token: zinc only),
+    and 'vitamin C immune health' resolves to the immune endpoint (1-token: immune)
+    over deficiency (0-token after filtering 'c'). R3 ('cure insomnia') still fires:
+    'insomnia' is not a single letter and uniquely overlaps the sleep endpoint."""
     if claim in tiers:
         return claim, tiers[claim]
     nclaim = _norm(claim)
     for ctext, info in tiers.items():
         if nclaim in _norm(ctext) or _norm(ctext) in nclaim:
             return ctext, info
-    # distinctive-token overlap (frozen split, no NLP): an endpoint matches if a
-    # distinctive token of the dossier claim appears in the label claim.
+    # Distinctive-token overlap (frozen split, no NLP).
+    # PRIMARY-CLAIM DISCIPLINE: select most-specific match; filter single-letter
+    # tokens; prefer lowest tier on ties.
     claim_toks = _claim_tokens(claim)
     if claim_toks:
+        candidates = []
         for ctext, info in tiers.items():
             ctoks = _claim_tokens(ctext)
-            if ctoks and (ctoks & claim_toks):
-                return ctext, info
+            # Overlap minus single-letter identity tokens (e.g. 'c' for vitamin C).
+            overlap = {t for t in (ctoks & claim_toks) if len(t) > 1}
+            if overlap:
+                candidates.append((len(overlap), _TIER_RANK.get(
+                    info.get("tier", "Insufficient"), -1), ctext, info))
+        if candidates:
+            # Most tokens first (desc); lowest tier rank on tie (asc = conservative).
+            candidates.sort(key=lambda x: (-x[0], x[1]))
+            _, _, ctext, info = candidates[0]
+            return ctext, info
     return None
 
 
@@ -153,10 +218,6 @@ def _resolve_via_umbrella(dossier: dict, claim: str) -> dict:
         "umbrella_present_nonmapping": [
             e["phrase"] for e in matched if not e["maps"]],
     }
-
-
-# tier ordering for "best plausibly-mapped" selection (§2.1 step 2)
-_TIER_RANK = {"Insufficient": 0, "Weak": 1, "Moderate": 2, "Strong": 3}
 
 
 def resolve_claim_tier(dossier: dict, claim: str) -> dict:

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-14T05:35:58.296563Z",
+  "trace_generated_at": "2026-06-15T06:13:30.051753Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_cookies_7290119040803",
@@ -143,6 +143,8 @@
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
     "has_phvo": true,
+    "has_phvo_partial": false,
+    "has_phvo_generic": true,
     "red_labels": [
       "sugar",
       "sat_fat"
@@ -199,7 +201,7 @@
       "Additive count reflects distinct functional categories detected, not total additive instances",
       "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
       "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
-      "EV-006 (FFV-v1, 2026-06-10): functional fiber detection — viscous (beta-glucan, psyllium, native guar, pectin) vs non-viscous prebiotic (inulin, FOS, GOS, PHGG, resistant dextrin, chicory, arabinogalactan, acacia); PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan (yeast/mushroom) suppressed",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 39.77,
@@ -275,7 +277,7 @@
     "protein_quality": 30.0,
     "additive_quality": 30.0,
     "satiety_support": 25.1,
-    "fat_quality": 40.0,
+    "fat_quality": 50.0,
     "regulatory_quality": 25.0,
     "whole_food_integrity": 30
   },
@@ -287,7 +289,7 @@
     "protein_quality": "protein=6.0g base=30.0, source=whole_food(×1.0) → 30.0",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0 id_delta=+2→30.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (6.0×3 + 1.8×5) / 430.0 × 400 = 25.1",
-    "fat_quality": "EV-012 fat_ratio: fat=19.0g ratio=1.000 base=55.0-seed10-trans0=45.0 [Fix-C PHVO ceiling: 45.0→40]",
+    "fat_quality": "EV-012 fat_ratio: fat=19.0g ratio=1.000 base=55.0-seed5-trans0=50.0",
     "regulatory_quality": "2 red labels: ['sugar', 'sat_fat']",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=6 complexity_pen=0 → 30"
   },
@@ -303,7 +305,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 35.01,
+  "weighted_dimension_score": 35.81,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -419,7 +421,7 @@
     }
   ],
   "binding_cap": 45,
-  "score_after_cap": 35.01,
+  "score_after_cap": 35.81,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -488,7 +490,7 @@
   "total_penalty_before_scaling": 16.0,
   "total_penalty_after_scaling": 16.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 19.01,
+  "score_after_penalty": 19.81,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": 45,
@@ -561,11 +563,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 19.01,
+  "score_after_floors": 19.81,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 19.0,
+  "final_score_estimate": 19.8,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

@@ -1,0 +1,211 @@
+{
+  "sku_id": "SP-7290017847122",
+  "barcode": "7290017847122",
+  "name_he": "מגנוקס B6 כמוסות מגנזיום 60 יחידות",
+  "brand_bucket": "other",
+  "engine_active": "magnesium",
+  "price_ils": 109.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "amazon.com",
+    "confidence": 1.0,
+    "reason": "barcode match via amazon.com"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'מגנזיום אלמנטלי עם ויטמין B6 לתפקוד תקין של שרירים'",
+  "lossy": [
+    "actives[1].amount",
+    "actives[1].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.amazon.com/Magnox-B6-Magnesium-Supplement",
+    "source": "amazon.com",
+    "brand": "magnox",
+    "product_name": "מגנוקס B6 מגנזיום עם ויטמין B6",
+    "barcode": "7290017847122",
+    "serving_size": "1 capsule",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "מגנזיום אלמנטלי עם ויטמין B6 לתפקוד תקין של שרירים ומערכת עצבים",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (elemental)",
+        "amount": 432.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "oxide",
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין B6",
+        "amount": null,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].amount",
+      "actives[1].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:amazon.com",
+      "source_id": "magnox:7290017847122",
+      "source_url": "https://www.amazon.com/Magnox-B6-Magnesium-Supplement",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "מגנוקס B6 מגנזיום עם ויטמין B6",
+    "primary_claim_fed": "מגנזיום אלמנטלי עם ויטמין B6 לתפקוד תקין של שרירים ומערכת עצבים muscle health nerve health",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (elemental)",
+        "quantity": 432.0,
+        "unit": "mg",
+        "form": "oxide",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "score": 20.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 72,
+      "form": 45,
+      "honesty": 100,
+      "safety": "veto"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.697293Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290017847122",
+    "active": "magnesium",
+    "on_label_claim": "מגנזיום אלמנטלי עם ויטמין B6 לתפקוד תקין של שרירים ומערכת עצבים muscle health nerve health",
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+      "resolved_phrase": "muscle health",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-006",
+      "resolution_citations": [
+        "PMID:37355247",
+        "PMID:28711425",
+        "PMID:32956536"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "muscle health",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        },
+        {
+          "phrase": "שרירים",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        },
+        {
+          "phrase": "תפקוד שרירים",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        }
+      ],
+      "umbrella_present_nonmapping": [
+        "nerve health"
+      ],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 45
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "veto",
+        "reason": "exceeds_UL"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "also_fired": [],
+    "blend": 63.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 20.0,
+      "grade": "E"
+    }
+  }
+}

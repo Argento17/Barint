@@ -1,0 +1,186 @@
+{
+  "sku_id": "SP-7290013464248",
+  "barcode": "7290013464248",
+  "name_he": "סופהרב מגנזיום ציטראט+B6 בדץ 60 טבליות",
+  "brand_bucket": "supherb",
+  "engine_active": "magnesium",
+  "price_ils": 75.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "biogaya",
+    "confidence": 1.0,
+    "reason": "barcode match via biogaya"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; ויטמ'",
+  "lossy": [
+    "actives[1].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.biogaya.co.il/magnesium-b6-supherb",
+    "source": "biogaya",
+    "brand": "supherb",
+    "product_name": "סופהרב מגנזיום ציטראט+B6 בדץ 60 טבליות",
+    "barcode": "7290013464248",
+    "serving_size": "1-2 tablets",
+    "servings_per_container": "60",
+    "ingredient_list_raw": null,
+    "primary_claim": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; ויטמין B6 לייעול פעילות המגנזיום",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (magnesium citrate)",
+        "amount": 250.0,
+        "unit": "mg",
+        "form": "citrate",
+        "form_raw": "citrate",
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין B6",
+        "amount": 8.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:biogaya",
+      "source_id": "supherb:7290013464248",
+      "source_url": "https://www.biogaya.co.il/magnesium-b6-supherb",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב מגנזיום ציטראט+B6 בדץ 60 טבליות",
+    "primary_claim_fed": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; ויטמין B6 לייעול פעילות המגנזיום muscle health nerve health",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (magnesium citrate)",
+        "quantity": 250.0,
+        "unit": "mg",
+        "form": "citrate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "score": 72.7,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 72.7,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.193658Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290013464248",
+    "active": "magnesium",
+    "on_label_claim": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים; ויטמין B6 לייעול פעילות המגנזיום muscle health nerve health",
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+      "resolved_phrase": "muscle health",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-006",
+      "resolution_citations": [
+        "PMID:37355247",
+        "PMID:28711425",
+        "PMID:32956536"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "muscle health",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        }
+      ],
+      "umbrella_present_nonmapping": [
+        "nerve health",
+        "מערכת העצבים"
+      ],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 72.7,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 72.7,
+    "dossier_facts_used": [
+      {
+        "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 72.7,
+      "grade": "B"
+    }
+  }
+}

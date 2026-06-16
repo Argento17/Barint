@@ -1,0 +1,3111 @@
+{
+  "task": "TASK-171 (revival, v3 sprint)",
+  "generated_at": "2026-06-13T17:08:04.130667Z",
+  "verification_status": "candidate",
+  "edpg_note": "All records candidate; no published score; nothing ships.",
+  "sample_n": 25,
+  "counts": {
+    "attempted": 25,
+    "scored": 16,
+    "unscoreable_no_panel": 9
+  },
+  "scoreable_yield_pct": 64.0,
+  "per_acquisition_method": {
+    "brand_panel": 4,
+    "search_panel": 8,
+    "name_derived": 4
+  },
+  "grade_distribution": {
+    "E": 6,
+    "B": 4,
+    "C": 1,
+    "D": 5
+  },
+  "results": [
+    {
+      "sku_id": "SP-7290017218526",
+      "barcode": "7290017218526",
+      "name_he": "אלטמן ביוטין 1000 מקג 50 טבליות",
+      "brand_bucket": "altman",
+      "engine_active": "biotin",
+      "price_ils": 93.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "altman",
+        "confidence": 1.0,
+        "reason": "barcode match via altman"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "brand_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'תומך בבריאות השיער; מחסור עלול להתבטא בנשירת שיער'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.altman.co.il/shop/beauty/hair-care/biotin/",
+        "source": "altman",
+        "brand": "altman",
+        "product_name": "אלטמן ביוטין 1000 מקג",
+        "barcode": "7290017218526",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "תומך בבריאות השיער; מחסור עלול להתבטא בנשירת שיער",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ביוטין (Biotin)",
+            "amount": 1000.0,
+            "unit": "mcg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "biotin"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:altman",
+          "source_id": "altman:7290017218526",
+          "source_url": "https://www.altman.co.il/shop/beauty/hair-care/biotin/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "אלטמן ביוטין 1000 מקג",
+        "primary_claim_fed": "hair health",
+        "actives": [
+          {
+            "active_slug": "biotin",
+            "display_name": "ביוטין (Biotin)",
+            "quantity": 1000.0,
+            "unit": "mcg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+        "score": 34.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "sub_scores": {
+          "evidence": 17.0,
+          "dose": "N/A",
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.723250Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290017218526",
+        "active": "biotin (vitamin B7)",
+        "on_label_claim": "hair health",
+        "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "hair / skin / nails improvement in NON-deficient (replete) adults",
+          "resolved_phrase": null,
+          "resolved_tier": "Insufficient",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:28879195",
+            "PMID:22116691"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 17.0,
+            "tier": "Insufficient"
+          },
+          "dose": {
+            "value": "N/A",
+            "reason": "evidence_insufficient_dose_short_circuit"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "no_ul_or_no_dose"
+          }
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "also_fired": [],
+        "blend": 49.5,
+        "dossier_facts_used": [
+          {
+            "field": "claims['hair / skin / nails improvement in NON-deficient (replete) adults'].evidence_tier",
+            "value": "Insufficient",
+            "supp_ev": "SUPP-EV-014"
+          }
+        ],
+        "final": {
+          "score": 34.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290019444206",
+      "barcode": "7290019444206",
+      "name_he": "אלטמן מגנזיום באלאנס 60 כמוסות",
+      "brand_bucket": "altman",
+      "engine_active": "magnesium",
+      "price_ils": 110.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "altman",
+        "confidence": 1.0,
+        "reason": "barcode match via altman"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "brand_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השר'",
+      "lossy": [
+        "actives[1].form (not on panel)",
+        "actives[2].form (not on panel)",
+        "actives[3].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+        "source": "altman",
+        "brand": "altman",
+        "product_name": "אלטמן מגנזיום Balance",
+        "barcode": "7290019444206",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השרירים ומערכת העצבים",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "מגנזיום (from oxide)",
+            "amount": 450.0,
+            "unit": "mg",
+            "form": "oxide",
+            "form_raw": "oxide",
+            "active_slug": "magnesium"
+          },
+          {
+            "ingredient": "אשווגנדה KSM-66",
+            "amount": 50.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "magnesium"
+          },
+          {
+            "ingredient": "ולריאן",
+            "amount": 50.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "magnesium"
+          },
+          {
+            "ingredient": "ויטמין B6",
+            "amount": 30.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "magnesium"
+          }
+        ],
+        "missing_fields": [
+          "actives[1].form (not on panel)",
+          "actives[2].form (not on panel)",
+          "actives[3].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:altman",
+          "source_id": "altman:7290019444206",
+          "source_url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "אלטמן מגנזיום Balance",
+        "primary_claim_fed": "muscle health nerve health",
+        "actives": [
+          {
+            "active_slug": "magnesium",
+            "display_name": "מגנזיום (from oxide)",
+            "quantity": 450.0,
+            "unit": "mg",
+            "form": "oxide",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+        "score": 20.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "veto_safety",
+          "machine_reason": "dose_exceeds_safe_ceiling"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 72,
+          "form": 45,
+          "honesty": 100,
+          "safety": "veto"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "VETO"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "veto_safety",
+            "kind": "floor",
+            "ceiling_or_floor": 20
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.756898Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290019444206",
+        "active": "magnesium",
+        "on_label_claim": "muscle health nerve health",
+        "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+        "claim_resolution": {
+          "via_umbrella": true,
+          "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_phrase": "muscle health",
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": "SUPP-EV-006",
+          "resolution_citations": [
+            "PMID:37355247",
+            "PMID:28711425",
+            "PMID:32956536"
+          ],
+          "umbrella_mapped": [
+            {
+              "phrase": "muscle health",
+              "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+              "resolved_tier": "Weak",
+              "supp_ev": "SUPP-EV-006"
+            }
+          ],
+          "umbrella_present_nonmapping": [
+            "nerve health"
+          ],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 72,
+            "reason": "over_studied_no_bonus"
+          },
+          "form": {
+            "value": 45
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "veto",
+            "reason": "exceeds_UL"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "VETO"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "veto_safety",
+            "kind": "floor",
+            "ceiling_or_floor": 20
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "veto_safety",
+          "machine_reason": "dose_exceeds_safe_ceiling"
+        },
+        "also_fired": [],
+        "blend": 63.1,
+        "dossier_facts_used": [
+          {
+            "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-002"
+          }
+        ],
+        "final": {
+          "score": 20.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290011899127",
+      "barcode": "7290011899127",
+      "name_he": "אלטמן אומגה 9-3 חודשים 60 טבליות",
+      "brand_bucket": "altman",
+      "engine_active": "omega3",
+      "price_ils": 201.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "altman",
+        "confidence": 1.0,
+        "reason": "barcode match via altman"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "brand_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות ה'",
+      "lossy": [
+        "actives[0].form (not on panel)",
+        "actives[1].form (not on panel)",
+        "actives[2].form (not on panel)",
+        "actives[3].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.altman.co.il/shop/pregnancy/prenatal/omega-3-9-months/",
+        "source": "altman",
+        "brand": "altman",
+        "product_name": "אלטמן אומגה 3 - 9 חודשים",
+        "barcode": "7290011899127",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות האיגוד למיילדות וגינקולוגיה",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "DHA",
+            "amount": 300.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          },
+          {
+            "ingredient": "EPA",
+            "amount": 100.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          },
+          {
+            "ingredient": "שמן דגים",
+            "amount": 704.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          },
+          {
+            "ingredient": "חומצה פולית",
+            "amount": 400.0,
+            "unit": "mcg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "folic_acid"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)",
+          "actives[1].form (not on panel)",
+          "actives[2].form (not on panel)",
+          "actives[3].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:altman",
+          "source_id": "altman:7290011899127",
+          "source_url": "https://www.altman.co.il/shop/pregnancy/prenatal/omega-3-9-months/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "אלטמן אומגה 3 - 9 חודשים",
+        "primary_claim_fed": "pregnancy",
+        "actives": [
+          {
+            "active_slug": "omega3",
+            "display_name": "DHA",
+            "quantity": 300.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": null,
+        "score": 34.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "sub_scores": {
+          "evidence": 17.0,
+          "dose": "N/A",
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.782954Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290011899127",
+        "active": "omega-3 (EPA/DHA)",
+        "on_label_claim": "pregnancy",
+        "claim_matched": null,
+        "claim_resolution": {
+          "via_umbrella": true,
+          "resolved_endpoint": null,
+          "resolved_phrase": null,
+          "resolved_tier": "Insufficient",
+          "resolution_supp_ev": null,
+          "resolution_citations": [],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 17.0,
+            "tier": "Insufficient"
+          },
+          "dose": {
+            "value": "N/A",
+            "reason": "evidence_insufficient_dose_short_circuit"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "also_fired": [],
+        "blend": 49.5,
+        "dossier_facts_used": [
+          {
+            "field": "claims['None'].evidence_tier",
+            "value": "Insufficient",
+            "supp_ev": "SUPP-EV-005"
+          }
+        ],
+        "final": {
+          "score": 34.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290019444183",
+      "barcode": "7290019444183",
+      "name_he": "אלטמן ויטמין C ליפוזומלי 60 כמוסות",
+      "brand_bucket": "altman",
+      "engine_active": "vitamin_c",
+      "price_ils": 126.0,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "altman",
+        "confidence": 1.0,
+        "reason": "barcode match via altman"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "brand_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון'",
+      "lossy": [],
+      "panel": {
+        "url": "https://www.altman.co.il/shop/winter/vitamin-c/liposomal-vitamin-c500/",
+        "source": "altman",
+        "brand": "altman",
+        "product_name": "אלטמן ויטמין C500 ליפוזומלי",
+        "barcode": "7290019444183",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין C כנוגד חמצון; חשוב לתפקוד מערכת החיסון",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין C (ascorbic acid)",
+            "amount": 500.0,
+            "unit": "mg",
+            "form": "ascorbic acid",
+            "form_raw": "ascorbic acid",
+            "active_slug": "vitamin_c"
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "il_supplement_panels:altman",
+          "source_id": "altman:7290019444183",
+          "source_url": "https://www.altman.co.il/shop/winter/vitamin-c/liposomal-vitamin-c500/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "אלטמן ויטמין C500 ליפוזומלי",
+        "primary_claim_fed": "immune health",
+        "actives": [
+          {
+            "active_slug": "vitamin_c",
+            "display_name": "ויטמין C (ascorbic acid)",
+            "quantity": 500.0,
+            "unit": "mg",
+            "form": "ascorbic acid",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "score": 77.5,
+        "grade": "B",
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 92,
+          "form": 92,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": []
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.809230Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290019444183",
+        "active": "vitamin C (ascorbic acid)",
+        "on_label_claim": "immune health",
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+          "resolved_phrase": null,
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:29099763",
+            "PMID:23440782"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 92
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [],
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "also_fired": [],
+        "blend": 77.5,
+        "dossier_facts_used": [
+          {
+            "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-007"
+          }
+        ],
+        "final": {
+          "score": 77.5,
+          "grade": "B"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290019964018",
+      "barcode": "7290019964018",
+      "name_he": "ארומה מארז 10 קפסולות קפה - נטול קפאין",
+      "brand_bucket": "other",
+      "engine_active": "caffeine",
+      "price_ils": 22.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290017490342",
+      "barcode": "7290017490342",
+      "name_he": "נוטריקר ברזל ליפוזופר 90 כמוסות",
+      "brand_bucket": "other",
+      "engine_active": "iron",
+      "price_ils": 134.0,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290015429245",
+      "barcode": "7290015429245",
+      "name_he": "אמורפיקיור PH מגנזיום 60 קפסולות",
+      "brand_bucket": "other",
+      "engine_active": "magnesium",
+      "price_ils": 181.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "tevagil.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via tevagil.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'מגנזיום לתפקוד תקין של השרירים ומערכת העצבים'",
+      "lossy": [],
+      "panel": {
+        "url": "https://www.tevagil.co.il/items/7144413",
+        "source": "tevagil.co.il",
+        "brand": "amorphicure",
+        "product_name": "אמורפיקיור pH מגנזיום קרבונט אמורפי 160",
+        "barcode": "7290015429245",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "מגנזיום לתפקוד תקין של השרירים ומערכת העצבים",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "מגנזיום (carbonate)",
+            "amount": 160.0,
+            "unit": "mg",
+            "form": "carbonate",
+            "form_raw": "carbonate",
+            "active_slug": "magnesium"
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "il_supplement_panels:tevagil.co.il",
+          "source_id": "amorphicure:7290015429245",
+          "source_url": "https://www.tevagil.co.il/items/7144413",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "אמורפיקיור pH מגנזיום קרבונט אמורפי 160",
+        "primary_claim_fed": "muscle health nerve health",
+        "actives": [
+          {
+            "active_slug": "magnesium",
+            "display_name": "מגנזיום (carbonate)",
+            "quantity": 160.0,
+            "unit": "mg",
+            "form": "carbonate",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+        "score": 59.2,
+        "grade": "C",
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 52.3,
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "MID",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": []
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.844983Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290015429245",
+        "active": "magnesium",
+        "on_label_claim": "muscle health nerve health",
+        "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+        "claim_resolution": {
+          "via_umbrella": true,
+          "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_phrase": "muscle health",
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": "SUPP-EV-006",
+          "resolution_citations": [
+            "PMID:37355247",
+            "PMID:28711425",
+            "PMID:32956536"
+          ],
+          "umbrella_mapped": [
+            {
+              "phrase": "muscle health",
+              "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+              "resolved_tier": "Weak",
+              "supp_ev": "SUPP-EV-006"
+            }
+          ],
+          "umbrella_present_nonmapping": [
+            "nerve health"
+          ],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 52.3,
+            "reason": "sub_therapeutic"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "MID",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [],
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "also_fired": [],
+        "blend": 59.2,
+        "dossier_facts_used": [
+          {
+            "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-002"
+          }
+        ],
+        "final": {
+          "score": 59.2,
+          "grade": "C"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290001943700",
+      "barcode": "7290001943700",
+      "name_he": "הדס פול-מאג 600 מגנזיום 60 כמוסות",
+      "brand_bucket": "other",
+      "engine_active": "magnesium",
+      "price_ils": 100.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "",
+        "confidence": 1.0,
+        "reason": "barcode match via "
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "name_derived",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'מגנזיום להפחתת עייפות ותשישות'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "name_derived://super_pharm/7290001943700",
+        "source": "",
+        "brand": "other",
+        "product_name": "הדס פול-מאג 600 מגנזיום",
+        "barcode": "7290001943700",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "מגנזיום להפחתת עייפות ותשישות",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "מגנזיום",
+            "amount": 600.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "magnesium"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:",
+          "source_id": "other:7290001943700",
+          "source_url": "name_derived://super_pharm/7290001943700",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "הדס פול-מאג 600 מגנזיום",
+        "primary_claim_fed": "fatigue",
+        "actives": [
+          {
+            "active_slug": "magnesium",
+            "display_name": "מגנזיום",
+            "quantity": 600.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "blood pressure reduction",
+        "score": 20.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "veto_safety",
+          "machine_reason": "dose_exceeds_safe_ceiling"
+        },
+        "sub_scores": {
+          "evidence": 72.0,
+          "dose": 72,
+          "form": 50,
+          "honesty": 100,
+          "safety": "veto"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "VETO"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "veto_safety",
+            "kind": "floor",
+            "ceiling_or_floor": 20
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.883747Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290001943700",
+        "active": "magnesium",
+        "on_label_claim": "fatigue",
+        "claim_matched": "blood pressure reduction",
+        "claim_resolution": {
+          "via_umbrella": true,
+          "resolved_endpoint": "blood pressure reduction",
+          "resolved_phrase": "fatigue",
+          "resolved_tier": "Moderate",
+          "resolution_supp_ev": "SUPP-EV-006",
+          "resolution_citations": [
+            "PMID:27402922",
+            "PMID:41000008",
+            "PMID:39519450"
+          ],
+          "umbrella_mapped": [
+            {
+              "phrase": "fatigue",
+              "resolves_to": "blood pressure reduction",
+              "resolved_tier": "Moderate",
+              "supp_ev": "SUPP-EV-006"
+            }
+          ],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 72.0,
+            "tier": "Moderate"
+          },
+          "dose": {
+            "value": 72,
+            "reason": "over_studied_no_bonus"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "veto",
+            "reason": "exceeds_UL"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "VETO"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "veto_safety",
+            "kind": "floor",
+            "ceiling_or_floor": 20
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "veto_safety",
+          "machine_reason": "dose_exceeds_safe_ceiling"
+        },
+        "also_fired": [],
+        "blend": 71.6,
+        "dossier_facts_used": [
+          {
+            "field": "claims['blood pressure reduction'].evidence_tier",
+            "value": "Moderate",
+            "supp_ev": "SUPP-EV-002"
+          }
+        ],
+        "final": {
+          "score": 20.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290019918004",
+      "barcode": "7290019918004",
+      "name_he": "גרנאגארד ננו-אומגה 5 טיפות 40 מל",
+      "brand_bucket": "other",
+      "engine_active": "omega3",
+      "price_ils": 191.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290014546523",
+      "barcode": "7290014546523",
+      "name_he": "גרנאגארד ננו-אומגה 5 60 כמוסות",
+      "brand_bucket": "other",
+      "engine_active": "omega3",
+      "price_ils": 154.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290012497643",
+      "barcode": "7290012497643",
+      "name_he": "ויטמין C500 לבליעה 100 טבליות",
+      "brand_bucket": "other",
+      "engine_active": "vitamin_c",
+      "price_ils": 85.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "",
+        "confidence": 1.0,
+        "reason": "barcode match via "
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "name_derived",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'ויטמין C לתפקוד מערכת החיסון'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "name_derived://super_pharm/7290012497643",
+        "source": "",
+        "brand": "other",
+        "product_name": "ויטמין C500 לבליעה",
+        "barcode": "7290012497643",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין C לתפקוד מערכת החיסון",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין C",
+            "amount": 500.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_c"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:",
+          "source_id": "other:7290012497643",
+          "source_url": "name_derived://super_pharm/7290012497643",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "ויטמין C500 לבליעה",
+        "primary_claim_fed": "immune health",
+        "actives": [
+          {
+            "active_slug": "vitamin_c",
+            "display_name": "ויטמין C",
+            "quantity": 500.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "score": 69.1,
+        "grade": "B",
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 92,
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": []
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.918700Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290012497643",
+        "active": "vitamin C (ascorbic acid)",
+        "on_label_claim": "immune health",
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+          "resolved_phrase": null,
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:29099763",
+            "PMID:23440782"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [],
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "also_fired": [],
+        "blend": 69.1,
+        "dossier_facts_used": [
+          {
+            "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-007"
+          }
+        ],
+        "final": {
+          "score": 69.1,
+          "grade": "B"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290103436841",
+      "barcode": "7290103436841",
+      "name_he": "לייף סידן ציטראט 60 קפליות",
+      "brand_bucket": "life",
+      "engine_active": "calcium",
+      "price_ils": 52.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290120937925",
+      "barcode": "7290120937925",
+      "name_he": "לייף מגנזיום ציטראט 60 טבליות",
+      "brand_bucket": "life",
+      "engine_active": "magnesium",
+      "price_ils": 54.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290118206101",
+      "barcode": "7290118206101",
+      "name_he": "לייף אומגה עילית זירו 600 מג 120 כמוסות",
+      "brand_bucket": "life",
+      "engine_active": "omega3",
+      "price_ils": 149.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290113828728",
+      "barcode": "7290113828728",
+      "name_he": "לייף ויטמין סי 500 לבליעה 100 כמוסות",
+      "brand_bucket": "life",
+      "engine_active": "vitamin_c",
+      "price_ils": 45.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "",
+        "confidence": 1.0,
+        "reason": "barcode match via "
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "name_derived",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'ויטמין C לתפקוד מערכת החיסון'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "name_derived://super_pharm/7290113828728",
+        "source": "",
+        "brand": "life",
+        "product_name": "לייף ויטמין סי 500 לבליעה",
+        "barcode": "7290113828728",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין C לתפקוד מערכת החיסון",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין C",
+            "amount": 500.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_c"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:",
+          "source_id": "life:7290113828728",
+          "source_url": "name_derived://super_pharm/7290113828728",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "לייף ויטמין סי 500 לבליעה",
+        "primary_claim_fed": "immune health",
+        "actives": [
+          {
+            "active_slug": "vitamin_c",
+            "display_name": "ויטמין C",
+            "quantity": 500.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "score": 69.1,
+        "grade": "B",
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 92,
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": []
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.945527Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290113828728",
+        "active": "vitamin C (ascorbic acid)",
+        "on_label_claim": "immune health",
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+          "resolved_phrase": null,
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:29099763",
+            "PMID:23440782"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [],
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "also_fired": [],
+        "blend": 69.1,
+        "dossier_facts_used": [
+          {
+            "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-007"
+          }
+        ],
+        "final": {
+          "score": 69.1,
+          "grade": "B"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290103449421",
+      "barcode": "7290103449421",
+      "name_he": "לייף ויטמין D-400 כמוסות רכות 120 יח",
+      "brand_bucket": "life",
+      "engine_active": "vitamin_d3",
+      "price_ils": 25.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "",
+        "confidence": 1.0,
+        "reason": "barcode match via "
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "name_derived",
+      "outcome": "scored",
+      "claim_note": "studied endpoint from HE: 'ויטמין D לספיגת סידן ולשמירה על בריאות העצם'",
+      "lossy": [],
+      "panel": {
+        "url": "name_derived://super_pharm/7290103449421",
+        "source": "",
+        "brand": "life",
+        "product_name": "לייף ויטמין D-400 כמוסות רכות",
+        "barcode": "7290103449421",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין D לספיגת סידן ולשמירה על בריאות העצם",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין D3",
+            "amount": 400.0,
+            "unit": "IU",
+            "form": "cholecalciferol",
+            "form_raw": null,
+            "active_slug": "vitamin_d3"
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "il_supplement_panels:",
+          "source_id": "life:7290103449421",
+          "source_url": "name_derived://super_pharm/7290103449421",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "לייף ויטמין D-400 כמוסות רכות",
+        "primary_claim_fed": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+        "actives": [
+          {
+            "active_slug": "vitamin_d3",
+            "display_name": "ויטמין D3",
+            "quantity": 400.0,
+            "unit": "IU",
+            "form": "cholecalciferol",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+        "score": 49.0,
+        "grade": "D",
+        "binding_constraint": {
+          "mechanism": "cap_2_fairy_dust_hidden_dose",
+          "machine_reason": "underdosed_or_unverifiable_dose"
+        },
+        "sub_scores": {
+          "evidence": 92.5,
+          "dose": 20,
+          "form": 92,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "LOW",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_2_fairy_dust_hidden_dose",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.970753Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290103449421",
+        "active": "vitamin D3 (cholecalciferol)",
+        "on_label_claim": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+        "claim_matched": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "correcting/maintaining vitamin D status (raising serum 25(OH)D)",
+          "resolved_phrase": null,
+          "resolved_tier": "Strong",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:24414552",
+            "PMID:39385006"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 92.5,
+            "tier": "Strong"
+          },
+          "dose": {
+            "value": 20,
+            "reason": "fairy_dust"
+          },
+          "form": {
+            "value": 92
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "LOW",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_2_fairy_dust_hidden_dose",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_2_fairy_dust_hidden_dose",
+          "machine_reason": "underdosed_or_unverifiable_dose"
+        },
+        "also_fired": [],
+        "blend": 73.2,
+        "dossier_facts_used": [
+          {
+            "field": "claims['correcting/maintaining vitamin D status (raising serum 25(OH)D)'].evidence_tier",
+            "value": "Strong",
+            "supp_ev": "SUPP-EV-003"
+          }
+        ],
+        "final": {
+          "score": 49.0,
+          "grade": "D"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290013465535",
+      "barcode": "7290013465535",
+      "name_he": "סופהרב קפאין 90 טבליות כשר בדץ",
+      "brand_bucket": "supherb",
+      "engine_active": "caffeine",
+      "price_ils": 146.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "supherb.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via supherb.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'קפאין לערנות ולפני פעילות גופנית אירובית'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.supherb.co.il/product/קפאין/",
+        "source": "supherb.co.il",
+        "brand": "supherb",
+        "product_name": "סופהרב קפאין 200 מ\"ג",
+        "barcode": "7290013465535",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "קפאין לערנות ולפני פעילות גופנית אירובית",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "קפאין (Caffeine)",
+            "amount": 200.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "caffeine"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:supherb.co.il",
+          "source_id": "supherb:7290013465535",
+          "source_url": "https://www.supherb.co.il/product/קפאין/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "סופהרב קפאין 200 מ\"ג",
+        "primary_claim_fed": "alertness",
+        "actives": [
+          {
+            "active_slug": "caffeine",
+            "display_name": "קפאין (Caffeine)",
+            "quantity": 200.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+        "score": 71.6,
+        "grade": "B",
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "sub_scores": {
+          "evidence": 72.0,
+          "dose": 72,
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": []
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:03.985736Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290013465535",
+        "active": "caffeine",
+        "on_label_claim": "alertness",
+        "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "alertness / vigilance / cognitive performance (acute)",
+          "resolved_phrase": null,
+          "resolved_tier": "Moderate",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:20464765",
+            "PMID:33800853"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 72.0,
+            "tier": "Moderate"
+          },
+          "dose": {
+            "value": 72,
+            "reason": "over_studied_no_bonus"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [],
+        "binding_constraint": {
+          "mechanism": "blend_dominant_limit",
+          "machine_reason": "limited_by_weakest_applicable_dimension"
+        },
+        "also_fired": [],
+        "blend": 71.6,
+        "dossier_facts_used": [
+          {
+            "field": "claims['alertness / vigilance / cognitive performance (acute)'].evidence_tier",
+            "value": "Moderate",
+            "supp_ev": "SUPP-EV-004"
+          }
+        ],
+        "final": {
+          "score": 71.6,
+          "grade": "B"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290118814061",
+      "barcode": "7290118814061",
+      "name_he": "סופהרב ברזל 9 חודשים 60 כמוסות",
+      "brand_bucket": "supherb",
+      "engine_active": "iron",
+      "price_ils": 71.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "supherb.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via supherb.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "studied endpoint from HE: 'ברזל לתמיכה בהריון ולמניעת עייפות ותשישות (חוסר בר'",
+      "lossy": [],
+      "panel": {
+        "url": "https://www.supherb.co.il/product/ברזל-9-חודשים-בדץ/",
+        "source": "supherb.co.il",
+        "brand": "supherb",
+        "product_name": "סופהרב ברזל 9 חודשים 30 מ\"ג",
+        "barcode": "7290118814061",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ברזל לתמיכה בהריון ולמניעת עייפות ותשישות (חוסר ברזל)",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ברזל (iron bisglycinate / Ferrochel)",
+            "amount": 30.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "form_raw": "bisglycinate",
+            "active_slug": "iron"
+          }
+        ],
+        "missing_fields": [],
+        "provenance": {
+          "source": "il_supplement_panels:supherb.co.il",
+          "source_id": "supherb:7290118814061",
+          "source_url": "https://www.supherb.co.il/product/ברזל-9-חודשים-בדץ/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "סופהרב ברזל 9 חודשים 30 מ\"ג",
+        "primary_claim_fed": "iron-deficiency anemia treatment/prevention",
+        "actives": [
+          {
+            "active_slug": "iron",
+            "display_name": "ברזל (iron bisglycinate / Ferrochel)",
+            "quantity": 30.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+        "score": 49.0,
+        "grade": "D",
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "sub_scores": {
+          "evidence": 92.5,
+          "dose": 92,
+          "form": 92,
+          "honesty": 65,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.007380Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290118814061",
+        "active": "iron",
+        "on_label_claim": "iron-deficiency anemia treatment/prevention",
+        "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+          "resolved_phrase": null,
+          "resolved_tier": "Strong",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:23252877",
+            "PMID:26314490"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": true,
+          "over_promise_markers": [
+            "treat"
+          ]
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 92.5,
+            "tier": "Strong"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 92
+          },
+          "honesty": {
+            "value": 65
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "also_fired": [],
+        "blend": 85.9,
+        "dossier_facts_used": [
+          {
+            "field": "claims['correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)'].evidence_tier",
+            "value": "Strong",
+            "supp_ev": "SUPP-EV-009"
+          }
+        ],
+        "final": {
+          "score": 49.0,
+          "grade": "D"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290012760204",
+      "barcode": "7290012760204",
+      "name_he": "סופהרב אומגה 3 בד\"צ 90 כמוסות",
+      "brand_bucket": "supherb",
+      "engine_active": "omega3",
+      "price_ils": 82.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "tevazol.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via tevazol.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'אומגה 3 לתמיכה בבריאות הלב וכלי הדם'",
+      "lossy": [
+        "actives[0].form (not on panel)",
+        "actives[1].form (not on panel)",
+        "actives[2].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.tevazol.co.il/items/1348673",
+        "source": "tevazol.co.il",
+        "brand": "supherb",
+        "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+        "barcode": "7290012760204",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "אומגה 3 לתמיכה בבריאות הלב וכלי הדם",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "EPA",
+            "amount": 180.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          },
+          {
+            "ingredient": "DHA",
+            "amount": 120.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          },
+          {
+            "ingredient": "שמן דגים",
+            "amount": 1000.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "omega3"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)",
+          "actives[1].form (not on panel)",
+          "actives[2].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:tevazol.co.il",
+          "source_id": "supherb:7290012760204",
+          "source_url": "https://www.tevazol.co.il/items/1348673",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+        "primary_claim_fed": "heart health",
+        "actives": [
+          {
+            "active_slug": "omega3",
+            "display_name": "EPA",
+            "quantity": 180.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": null,
+        "score": 34.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "sub_scores": {
+          "evidence": 17.0,
+          "dose": "N/A",
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.035119Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290012760204",
+        "active": "omega-3 (EPA/DHA)",
+        "on_label_claim": "heart health",
+        "claim_matched": null,
+        "claim_resolution": {
+          "via_umbrella": true,
+          "resolved_endpoint": null,
+          "resolved_phrase": null,
+          "resolved_tier": "Insufficient",
+          "resolution_supp_ev": null,
+          "resolution_citations": [],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 17.0,
+            "tier": "Insufficient"
+          },
+          "dose": {
+            "value": "N/A",
+            "reason": "evidence_insufficient_dose_short_circuit"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "also_fired": [],
+        "blend": 49.5,
+        "dossier_facts_used": [
+          {
+            "field": "claims['None'].evidence_tier",
+            "value": "Insufficient",
+            "supp_ev": "SUPP-EV-005"
+          }
+        ],
+        "final": {
+          "score": 34.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290017243450",
+      "barcode": "7290017243450",
+      "name_he": "סופהרב ויטמין B12+חומצה פולית 100 טבליות",
+      "brand_bucket": "supherb",
+      "engine_active": "vitamin_b12",
+      "price_ils": 98.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "supherb.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via supherb.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "studied endpoint from HE: 'ויטמין B12 וחומצה פולית ליצירת תאי דם אדומים ולהפח'",
+      "lossy": [
+        "actives[1].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.supherb.co.il/product/ויטמין-b12-חומצה-פולית-למציצה/",
+        "source": "supherb.co.il",
+        "brand": "supherb",
+        "product_name": "סופהרב ויטמין B12 + חומצה פולית 1000 מק\"ג",
+        "barcode": "7290017243450",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין B12 וחומצה פולית ליצירת תאי דם אדומים ולהפחתת עייפות",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין B12 (methylcobalamin)",
+            "amount": 1000.0,
+            "unit": "mcg",
+            "form": "methylcobalamin",
+            "form_raw": "methylcobalamin",
+            "active_slug": "vitamin_b12"
+          },
+          {
+            "ingredient": "חומצה פולית (methylfolate)",
+            "amount": 400.0,
+            "unit": "mcg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_b12"
+          }
+        ],
+        "missing_fields": [
+          "actives[1].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:supherb.co.il",
+          "source_id": "supherb:7290017243450",
+          "source_url": "https://www.supherb.co.il/product/ויטמין-b12-חומצה-פולית-למציצה/",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "סופהרב ויטמין B12 + חומצה פולית 1000 מק\"ג",
+        "primary_claim_fed": "treating/preventing B12 deficiency",
+        "actives": [
+          {
+            "active_slug": "vitamin_b12",
+            "display_name": "ויטמין B12 (methylcobalamin)",
+            "quantity": 1000.0,
+            "unit": "mcg",
+            "form": "methylcobalamin",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+        "score": 49.0,
+        "grade": "D",
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "sub_scores": {
+          "evidence": 92.5,
+          "dose": 92,
+          "form": 92,
+          "honesty": 65,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.058028Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290017243450",
+        "active": "vitamin B12 (cobalamin)",
+        "on_label_claim": "treating/preventing B12 deficiency",
+        "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+          "resolved_phrase": null,
+          "resolved_tier": "Strong",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:28925645",
+            "PMID:38231320"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": true,
+          "over_promise_markers": [
+            "treat"
+          ]
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 92.5,
+            "tier": "Strong"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 92
+          },
+          "honesty": {
+            "value": 65
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "no_ul_or_no_dose"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "also_fired": [],
+        "blend": 85.9,
+        "dossier_facts_used": [
+          {
+            "field": "claims['correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)'].evidence_tier",
+            "value": "Strong",
+            "supp_ev": "SUPP-EV-012"
+          }
+        ],
+        "final": {
+          "score": 49.0,
+          "grade": "D"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290019193241",
+      "barcode": "7290019193241",
+      "name_he": "סקויה Lipo folat+B12 סירופ 125 מל",
+      "brand_bucket": "sequoia",
+      "engine_active": "vitamin_b12",
+      "price_ils": 209.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-7290012056741",
+      "barcode": "7290012056741",
+      "name_he": "טינק ברזל נוח 90 כמוסות",
+      "brand_bucket": "tink",
+      "engine_active": "iron",
+      "price_ils": 80.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "tinc.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via tinc.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "studied endpoint from HE: 'ברזל ביסגליצינאט לספיגה גבוהה; להפחתת עייפות (חוסר'",
+      "lossy": [
+        "actives[1].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.tinc.co.il/web/?pagetype=9&itemid=237171",
+        "source": "tinc.co.il",
+        "brand": "tink",
+        "product_name": "טינק ברזל נוח 36 מ\"ג",
+        "barcode": "7290012056741",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ברזל ביסגליצינאט לספיגה גבוהה; להפחתת עייפות (חוסר ברזל)",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ברזל (iron bisglycinate)",
+            "amount": 36.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "form_raw": "bisglycinate",
+            "active_slug": "iron"
+          },
+          {
+            "ingredient": "ויטמין C",
+            "amount": 100.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_c"
+          }
+        ],
+        "missing_fields": [
+          "actives[1].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:tinc.co.il",
+          "source_id": "tink:7290012056741",
+          "source_url": "https://www.tinc.co.il/web/?pagetype=9&itemid=237171",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "טינק ברזל נוח 36 מ\"ג",
+        "primary_claim_fed": "iron-deficiency anemia treatment/prevention",
+        "actives": [
+          {
+            "active_slug": "iron",
+            "display_name": "ברזל (iron bisglycinate)",
+            "quantity": 36.0,
+            "unit": "mg",
+            "form": "bisglycinate",
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+        "score": 49.0,
+        "grade": "D",
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "sub_scores": {
+          "evidence": 92.5,
+          "dose": 92,
+          "form": 92,
+          "honesty": 65,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.080513Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290012056741",
+        "active": "iron",
+        "on_label_claim": "iron-deficiency anemia treatment/prevention",
+        "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+          "resolved_phrase": null,
+          "resolved_tier": "Strong",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:23252877",
+            "PMID:26314490"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": true,
+          "over_promise_markers": [
+            "treat"
+          ]
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 92.5,
+            "tier": "Strong"
+          },
+          "dose": {
+            "value": 92,
+            "reason": "in_range"
+          },
+          "form": {
+            "value": 92
+          },
+          "honesty": {
+            "value": 65
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "HIGH",
+          "dose": "HIGH",
+          "form": "HIGH",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_3_honesty_core",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_3_honesty_core",
+          "machine_reason": "core_active_dose_hidden_in_blend"
+        },
+        "also_fired": [],
+        "blend": 85.9,
+        "dossier_facts_used": [
+          {
+            "field": "claims['correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)'].evidence_tier",
+            "value": "Strong",
+            "supp_ev": "SUPP-EV-009"
+          }
+        ],
+        "final": {
+          "score": 49.0,
+          "grade": "D"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290020031280",
+      "barcode": "7290020031280",
+      "name_he": "מגנזיה FOCUS - מגנזיום פוקוס 60 כמוסות",
+      "brand_bucket": "magnesia",
+      "engine_active": "magnesium",
+      "price_ils": 119.9,
+      "resolution": {
+        "matched": false,
+        "method": "none",
+        "source": null,
+        "confidence": 0.0,
+        "reason": "no trustworthy panel (no barcode hit; no brand+active+dose match)"
+      },
+      "verification_status": "candidate",
+      "outcome": "unscoreable_no_panel"
+    },
+    {
+      "sku_id": "SP-0033984003101",
+      "barcode": "0033984003101",
+      "name_he": "סולגר ביוטין 1000 מק\"ג 50 כמוסות",
+      "brand_bucket": "solgar",
+      "engine_active": "biotin",
+      "price_ils": 86.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "vitaminglobal.com",
+        "confidence": 1.0,
+        "reason": "barcode match via vitaminglobal.com"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'תומך בבריאות העור, השיער והציפורניים'",
+      "lossy": [
+        "actives[0].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://www.vitaminglobal.com/biotin-1000-mcg-50-vegetable-capsules-solgar-p-4733-c-7_21_26.html",
+        "source": "vitaminglobal.com",
+        "brand": "solgar",
+        "product_name": "סולגר ביוטין 1000 מק\"ג",
+        "barcode": "0033984003101",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "תומך בבריאות העור, השיער והציפורניים",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ביוטין (Biotin)",
+            "amount": 1000.0,
+            "unit": "mcg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "biotin"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:vitaminglobal.com",
+          "source_id": "solgar:0033984003101",
+          "source_url": "https://www.vitaminglobal.com/biotin-1000-mcg-50-vegetable-capsules-solgar-p-4733-c-7_21_26.html",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "סולגר ביוטין 1000 מק\"ג",
+        "primary_claim_fed": "hair health nail health skin health",
+        "actives": [
+          {
+            "active_slug": "biotin",
+            "display_name": "ביוטין (Biotin)",
+            "quantity": 1000.0,
+            "unit": "mcg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+        "score": 34.0,
+        "grade": "E",
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "sub_scores": {
+          "evidence": 17.0,
+          "dose": "N/A",
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.102552Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-0033984003101",
+        "active": "biotin (vitamin B7)",
+        "on_label_claim": "hair health nail health skin health",
+        "claim_matched": "hair / skin / nails improvement in NON-deficient (replete) adults",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "hair / skin / nails improvement in NON-deficient (replete) adults",
+          "resolved_phrase": null,
+          "resolved_tier": "Insufficient",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:28879195",
+            "PMID:22116691"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 17.0,
+            "tier": "Insufficient"
+          },
+          "dose": {
+            "value": "N/A",
+            "reason": "evidence_insufficient_dose_short_circuit"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "no_ul_or_no_dose"
+          }
+        },
+        "signature": {
+          "evidence": "LOW",
+          "dose": "N/A",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_1_insufficient_evidence",
+            "kind": "ceiling",
+            "ceiling_or_floor": 34
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_1_insufficient_evidence",
+          "machine_reason": "no_reliable_evidence_for_claim"
+        },
+        "also_fired": [],
+        "blend": 49.5,
+        "dossier_facts_used": [
+          {
+            "field": "claims['hair / skin / nails improvement in NON-deficient (replete) adults'].evidence_tier",
+            "value": "Insufficient",
+            "supp_ev": "SUPP-EV-014"
+          }
+        ],
+        "final": {
+          "score": 34.0,
+          "grade": "E"
+        }
+      }
+    },
+    {
+      "sku_id": "SP-7290017399638",
+      "barcode": "7290017399638",
+      "name_he": "פלוריש ויטמין סי טריו 60 טבליות לעיסה",
+      "brand_bucket": "floris",
+      "engine_active": "vitamin_c",
+      "price_ils": 50.9,
+      "resolution": {
+        "matched": true,
+        "method": "barcode",
+        "source": "medi-pharm.co.il",
+        "confidence": 1.0,
+        "reason": "barcode match via medi-pharm.co.il"
+      },
+      "verification_status": "candidate",
+      "acquisition_method": "search_panel",
+      "outcome": "scored",
+      "claim_note": "S/F umbrella from HE: 'ויטמין C לתפקוד מערכת החיסון'",
+      "lossy": [
+        "actives[0].form (not on panel)",
+        "actives[1].amount",
+        "actives[1].form (not on panel)",
+        "actives[2].form (not on panel)"
+      ],
+      "panel": {
+        "url": "https://medi-pharm.co.il/catalog.asp?prodid=2003719",
+        "source": "medi-pharm.co.il",
+        "brand": "floris",
+        "product_name": "פלוריש ויטמין C טריו 50 מ\"ג לעיסה",
+        "barcode": "7290017399638",
+        "serving_size": "1 unit",
+        "servings_per_container": null,
+        "ingredient_list_raw": null,
+        "primary_claim": "ויטמין C לתפקוד מערכת החיסון",
+        "proprietary_blend": false,
+        "actives": [
+          {
+            "ingredient": "ויטמין C",
+            "amount": 50.0,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_c"
+          },
+          {
+            "ingredient": "ויטמין D",
+            "amount": null,
+            "unit": "IU",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_d3"
+          },
+          {
+            "ingredient": "אבץ (zinc)",
+            "amount": 3.5,
+            "unit": "mg",
+            "form": null,
+            "form_raw": null,
+            "active_slug": "vitamin_c"
+          }
+        ],
+        "missing_fields": [
+          "actives[0].form (not on panel)",
+          "actives[1].amount",
+          "actives[1].form (not on panel)",
+          "actives[2].form (not on panel)"
+        ],
+        "provenance": {
+          "source": "il_supplement_panels:medi-pharm.co.il",
+          "source_id": "floris:7290017399638",
+          "source_url": "https://medi-pharm.co.il/catalog.asp?prodid=2003719",
+          "fetched_at": "2026-06-13T17:08:03Z",
+          "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+          "verification_status": "candidate"
+        }
+      },
+      "bsip0s_label": {
+        "product_name": "פלוריש ויטמין C טריו 50 מ\"ג לעיסה",
+        "primary_claim_fed": "immune health",
+        "actives": [
+          {
+            "active_slug": "vitamin_c",
+            "display_name": "ויטמין C",
+            "quantity": 50.0,
+            "unit": "mg",
+            "form": null,
+            "is_core": true,
+            "in_proprietary_blend": false,
+            "quantity_basis": "per_serving"
+          }
+        ]
+      },
+      "engine_output": {
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "score": 49.0,
+        "grade": "D",
+        "binding_constraint": {
+          "mechanism": "cap_2_fairy_dust_hidden_dose",
+          "machine_reason": "underdosed_or_unverifiable_dose"
+        },
+        "sub_scores": {
+          "evidence": 47.0,
+          "dose": 20,
+          "form": 50,
+          "honesty": 100,
+          "safety": "neutral"
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "LOW",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_2_fairy_dust_hidden_dose",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ]
+      },
+      "trace": {
+        "sie_engine_version": "proto_v0",
+        "sie_algorithm_version": "0.2.0",
+        "methodology_version": "methodology_v1.md v1.3",
+        "trace_generated_at": "2026-06-13T17:08:04.128994Z",
+        "verification_status": "candidate",
+        "calibration_pending": true,
+        "sku_id": "SP-7290017399638",
+        "active": "vitamin C (ascorbic acid)",
+        "on_label_claim": "immune health",
+        "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+        "claim_resolution": {
+          "via_umbrella": false,
+          "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+          "resolved_phrase": null,
+          "resolved_tier": "Weak",
+          "resolution_supp_ev": null,
+          "resolution_citations": [
+            "PMID:29099763",
+            "PMID:23440782"
+          ],
+          "umbrella_mapped": [],
+          "umbrella_present_nonmapping": [],
+          "over_promise": false,
+          "over_promise_markers": []
+        },
+        "sub_scores": {
+          "evidence": {
+            "value": 47.0,
+            "tier": "Weak"
+          },
+          "dose": {
+            "value": 20,
+            "reason": "fairy_dust"
+          },
+          "form": {
+            "value": 50
+          },
+          "honesty": {
+            "value": 100
+          },
+          "safety": {
+            "value": "neutral",
+            "reason": "within_ul"
+          }
+        },
+        "signature": {
+          "evidence": "MID",
+          "dose": "LOW",
+          "form": "MID",
+          "honesty": "HIGH",
+          "safety": "NEUTRAL"
+        },
+        "caps_vetoes_fired": [
+          {
+            "mechanism": "cap_2_fairy_dust_hidden_dose",
+            "kind": "ceiling",
+            "ceiling_or_floor": 49
+          }
+        ],
+        "binding_constraint": {
+          "mechanism": "cap_2_fairy_dust_hidden_dose",
+          "machine_reason": "underdosed_or_unverifiable_dose"
+        },
+        "also_fired": [],
+        "blend": 51.1,
+        "dossier_facts_used": [
+          {
+            "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+            "value": "Weak",
+            "supp_ev": "SUPP-EV-007"
+          }
+        ],
+        "final": {
+          "score": 49.0,
+          "grade": "D"
+        }
+      }
+    }
+  ]
+}

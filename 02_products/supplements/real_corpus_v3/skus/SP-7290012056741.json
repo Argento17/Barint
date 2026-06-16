@@ -1,0 +1,189 @@
+{
+  "sku_id": "SP-7290012056741",
+  "barcode": "7290012056741",
+  "name_he": "טינק ברזל נוח 90 כמוסות",
+  "brand_bucket": "tink",
+  "engine_active": "iron",
+  "price_ils": 80.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "tinc.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via tinc.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'ברזל ביסגליצינאט לספיגה גבוהה; להפחתת עייפות (חוסר'",
+  "lossy": [
+    "actives[1].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.tinc.co.il/web/?pagetype=9&itemid=237171",
+    "source": "tinc.co.il",
+    "brand": "tink",
+    "product_name": "טינק ברזל נוח 36 מ\"ג",
+    "barcode": "7290012056741",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "ברזל ביסגליצינאט לספיגה גבוהה; להפחתת עייפות (חוסר ברזל)",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ברזל (iron bisglycinate)",
+        "amount": 36.0,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "form_raw": "bisglycinate",
+        "active_slug": "iron"
+      },
+      {
+        "ingredient": "ויטמין C",
+        "amount": 100.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_c"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:tinc.co.il",
+      "source_id": "tink:7290012056741",
+      "source_url": "https://www.tinc.co.il/web/?pagetype=9&itemid=237171",
+      "fetched_at": "2026-06-13T17:08:03Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "טינק ברזל נוח 36 מ\"ג",
+    "primary_claim_fed": "iron-deficiency anemia treatment/prevention",
+    "actives": [
+      {
+        "active_slug": "iron",
+        "display_name": "ברזל (iron bisglycinate)",
+        "quantity": 36.0,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+    "score": 49.0,
+    "grade": "D",
+    "binding_constraint": {
+      "mechanism": "cap_3_honesty_core",
+      "machine_reason": "core_active_dose_hidden_in_blend"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 92,
+      "honesty": 65,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_3_honesty_core",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-13T17:08:04.080513Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290012056741",
+    "active": "iron",
+    "on_label_claim": "iron-deficiency anemia treatment/prevention",
+    "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:23252877",
+        "PMID:26314490"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": true,
+      "over_promise_markers": [
+        "treat"
+      ]
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 65
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_3_honesty_core",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_3_honesty_core",
+      "machine_reason": "core_active_dose_hidden_in_blend"
+    },
+    "also_fired": [],
+    "blend": 85.9,
+    "dossier_facts_used": [
+      {
+        "field": "claims['correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-009"
+      }
+    ],
+    "final": {
+      "score": 49.0,
+      "grade": "D"
+    }
+  }
+}

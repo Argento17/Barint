@@ -1,0 +1,1284 @@
+{
+  "category": "yogurts",
+  "calibration_run": "v1",
+  "generated_at": "2026-06-12T08:52:00.000Z",
+  "summary": {
+    "total_strings": 33,
+    "total_claims": 169,
+    "claim_verdicts": {
+      "PASS": 92,
+      "REVIEW": 22,
+      "HARD_FAIL": 32,
+      "UNVERIFIABLE": 23
+    },
+    "string_verdicts": {
+      "PASS": 9,
+      "REVIEW": 6,
+      "HARD_FAIL": 15,
+      "UNVERIFIABLE": 3
+    },
+    "top_5_findings": [
+      "(1) page prologue_4 & category_note: claim 'אף אחד לא מגיע ל-S' — yog-001 (92.6/S) and bsip1_7290110565527 (95.6/S) both trace grade=S → HARD-FAIL",
+      "(2) page prologue_1: claim 'שבעה יוגורטים מגיעים ל-A' — only 3 A-grade products in 19-product corpus (yog-003, yog-004, yog-008) → HARD-FAIL",
+      "(3) prologue_2: 'ביו 1.5% ונטול הלקטוז מגיעים ל-80 עד 81, כולם A' — yog-005 trace=79/B, yog-002 trace=78/B → HARD-FAIL (both grade+score wrong)",
+      "(4) bsip1_7290110565527: 'מגיע ל-96/A' — trace grade=S not A → HARD-FAIL; yog-001: 'מגיע ל-A ... לא מזכה ב-S' — trace grade=S → HARD-FAIL",
+      "(5) Multiple Yohananof products (bsip1_7290000408316, bsip1_7290102399819) fabricate causal 'כי' attributions — trace dominant driver is NOVA cap, not low protein or high sugar → HARD-FAIL"
+    ]
+  },
+  "strings": [
+    {
+      "product_id": "page",
+      "string_key": "hero_eyebrow",
+      "string_text": "יוגורטים · מדף ישראלי",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "יוגורטים · מדף ישראלי",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing only; no factual claim to verify against trace."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "hero_title",
+      "string_text": "יוגורט: לא כל \"טבעי\" נוצר שווה",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "יוגורט: לא כל \"טבעי\" נוצר שווה",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing only; no factual claim to verify against trace."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_1",
+      "string_text": "בדקנו מחדש את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן. התמונה התהפכה מהבדיקה הקודמת: שבעה יוגורטים על המדף מגיעים ל-A. הציון הגבוה הוא 96/A — דנונה PRO יוגורט 20 גרם חלבון, על בסיס חלבון גבוה במיוחד ותרביות חיות.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "בדקנו מחדש את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology docs (19 products scanned, label data)."
+        },
+        {
+          "text": "התמונה התהפכה מהבדיקה הקודמת",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing referencing run change; consistent with TASK-249 remediation."
+        },
+        {
+          "text": "שבעה יוגורטים על המדף מגיעים ל-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Corpus count: only 3 products have grade=A (yog-003, yog-004, yog-008). 2 products (yog-001, bsip1_7290110565527) have grade=S. 10 have B, 3 have C, 1 has D. Claim of 7 is contradicted by traces."
+        },
+        {
+          "text": "הציון הגבוה הוא 96/A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Top scorer bsip1_7290110565527 trace=95.6/S. Math.round(95.6)=96 correct, but grade=S not A. Claim asserts grade=A for the top product; trace grade=S contradicts."
+        },
+        {
+          "text": "דנונה PRO יוגורט 20 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Product name in trace: 'דנונה PRO יוגורט 20 גר׳ חלבון 1.5% שומן'. Protein 20g confirmed in L1 protein_g=20.0."
+        },
+        {
+          "text": "על בסיס חלבון גבוה במיוחד ותרביות חיות",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "fermentation_bonus_applied=null in trace. SUPERSEDED A_list shows ferm_bonus=8 for this product (bsip1_7290110565527). Current trace grade=S (condition 2 met). Per rubric §6: REVIEW using secondary evidence."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_2",
+      "string_text": "היוגורטים הפשוטים של תנובה — ביו 3% וביו 1.5% — וגם נטול הלקטוז מגיעים ל-80 עד 81, כולם A: בסיס חלבי, חיידקי ביפידוס, מעט מרכיבים. יוגורט עיזים נשאר ב-77/B, בעיקר כי החלבון בו נמוך יותר.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "ביו 3% מגיע ל-80 עד 81, A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "yog-003 trace: score=80.2, grade=A. Math.round(80.2)=80 (in range 80-81). Grade=A. PASS."
+        },
+        {
+          "text": "ביו 1.5% מגיע ל-80 עד 81, A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-005 trace: score=79.0, grade=B. Math.round(79.0)=79 (not in range 80-81). Grade=B not A. Both score and grade contradicted."
+        },
+        {
+          "text": "נטול הלקטוז מגיע ל-80 עד 81, A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-002 trace: score=78.4, grade=B. Math.round(78.4)=78 (not in range 80-81). Grade=B not A. Both score and grade contradicted."
+        },
+        {
+          "text": "בסיס חלבי, חיידקי ביפידוס, מעט מרכיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "חיידקי ביפידוס not in positiveSignals/limitingFactors for any of these products. Per rubric §6: T1 culture claims not in trace → UNVERIFIABLE."
+        },
+        {
+          "text": "יוגורט עיזים נשאר ב-77/B",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-006 trace: score=75.3, grade=B. Math.round(75.3)=75. Copy claims 77, trace rounds to 75. Score mismatch."
+        },
+        {
+          "text": "בעיקר כי החלבון בו נמוך יותר",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "yog-006 explanation_driver: 'nutrient_density=24.5 (lowest dimension)'. Protein (3.6g) is a key component of nutrient_density. Causal attribution of score to low protein is consistent with driver data but not explicitly named. REVIEW per rubric §5 causal 'כי' guidance."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_3",
+      "string_text": "מכאן זה יורד. ככל שמתווספים סוכר, חומרי טעם, מייצבים או פצפוצים — הציון נופל. גרסאות הטעם וה'קראנצ'' מגיעות עד C ו-D, גם כשכמות החלבון על האריזה זהה. ושומן גבוה לא מעלה ציון: יווני 8% עם 4.8 גרם שומן רווי עוצר ב-79/B, מתחת לבסיסים הרזים.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "גרסאות הטעם וה'קראנצ'' מגיעות עד C ו-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "yog-010 (תות GO)=61.8/C, yog-011 (קראנצ)=36.3/D. Flavored/crunch versions do reach C and D."
+        },
+        {
+          "text": "כשכמות החלבון על האריזה זהה",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing about same protein → different score. Consistent with trace data."
+        },
+        {
+          "text": "ושומן גבוה לא מעלה ציון",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial/methodology claim. Consistent with BSIP2 scoring methodology where fat quality is a dimension."
+        },
+        {
+          "text": "יווני 8% עם 4.8 גרם שומן רווי עוצר ב-79/B",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-009 trace: score=75.5, grade=B. Math.round(75.5)=76. Copy claims 79, trace rounds to 76. Score mismatch."
+        },
+        {
+          "text": "4.8 גרם שומן רווי",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "limitingFactors: 'שומן רווי גבוה — 4.8 גרם ל-100 גרם'."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "prologue_4",
+      "string_text": "במדף הזה 'הכי טוב' הוא A — אבל לא S. גם היוגורט המוביל נעצר ב-A: ציון החלבון והתרביות מרים אותו גבוה, אך לא הופך אותו ליוצא דופן. הכי טוב, לא מושלם.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "'הכי טוב' הוא A — אבל לא S",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Across 19 products, yog-001 trace grade=S (92.6) and bsip1_7290110565527 trace grade=S (95.6). Two products are S. Claim that best is A and not S contradicts traces."
+        },
+        {
+          "text": "גם היוגורט המוביל נעצר ב-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Top products by score: bsip1_7290110565527=95.6/S and yog-001=92.6/S. Neither stopped at A; both reached S."
+        },
+        {
+          "text": "ציון החלבון והתרביות מרים אותו גבוה",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "fermentation_bonus_applied=null in per-product traces. SUPERSEDED A_list has ferm_bonus=8 for relevant products. REVIEW per rubric §6."
+        },
+        {
+          "text": "הכי טוב, לא מושלם",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing. No factual contradiction."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "category_note_paragraph_1",
+      "string_text": "הערת קטגוריה — אותה תווית, שני קצוות\n\nהציון משקלל את ההרכב כולו — חלבון, סוכר, מייצבים ורמת עיבוד — ולא תווית אחת. אותו 'עשיר בחלבון' יכול לשבת בראש המדף כשהבסיס פשוט, וליפול ל-C או D בגרסת טעמים שמוסיפה סוכר, חומרי טעם ופצפוצים על אותו חלבון בדיוק. מספר החלבון על החזית אינו מספיק כדי לקבוע את הציון.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "הציון משקלל את ההרכב כולו — חלבון, סוכר, מייצבים ורמת עיבוד",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Methodology description consistent with BSIP2 scoring dimensions (nutrient_density, glycemic_quality, processing_quality, additive_quality)."
+        },
+        {
+          "text": "אותו 'עשיר בחלבון' יכול לשבת בראש המדף כשהבסיס פשוט, וליפול ל-C או D בגרסת טעמים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with corpus: yog-008 (A, simple base, high protein) vs yog-010 (C, flavored, same protein 10g)."
+        },
+        {
+          "text": "מספר החלבון על החזית אינו מספיק כדי לקבוע את הציון",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology and corpus evidence."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "category_note_paragraph_2",
+      "string_text": "הערת קטגוריה — 'הכי טוב' כאן הוא A, לא S\n\nשבעה יוגורטים על המדף מגיעים ל-A, והגבוה הוא 96/A. אבל אף אחד לא מגיע ל-S, גם המוביל: חלבון גבוה ותרביות חיות מרימים את הציון, ואינם הופכים יוגורט ליוצא דופן. A כאן אומר יוגורט טוב באמת — לא מושלם, ולא מעבר לכך.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "'הכי טוב' כאן הוא A, לא S",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-001 (92.6/S) and bsip1_7290110565527 (95.6/S) both trace grade=S, not A."
+        },
+        {
+          "text": "שבעה יוגורטים על המדף מגיעים ל-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Corpus count: only 3 A-grade products (yog-003, yog-004, yog-008). 2 are S. Claim of 7 contradicted."
+        },
+        {
+          "text": "הגבוה הוא 96/A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Top product bsip1_7290110565527: 95.6/S. Math.round=96 correct, but grade=S not A."
+        },
+        {
+          "text": "אף אחד לא מגיע ל-S",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Two products have grade=S: yog-001 (92.6/S) and bsip1_7290110565527 (95.6/S). Negation directly contradicted."
+        },
+        {
+          "text": "גם המוביל: חלבון גבוה ותרביות חיות מרימים את הציון",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "'המוביל' (the leader) — top products are S, not A. And 'תרביות חיות' is a REVIEW-level fermentation claim. Grade claim is HARD-FAIL."
+        },
+        {
+          "text": "A כאן אומר יוגורט טוב באמת — לא מושלם, ולא מעבר לכך",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing of grade meaning."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "category_note_paragraph_3",
+      "string_text": "הערת קטגוריה — סיבים תזונתיים\n\nמוצרי חלב כמעט אינם מציינים סיבים תזונתיים על התווית, ולכן ערך זה אינו נכנס לניתוח בקטגוריה זו.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "מוצרי חלב כמעט אינם מציינים סיבים תזונתיים על התווית",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology docs and trace observations (most products show dietary_fiber_g=null)."
+        },
+        {
+          "text": "ערך זה אינו נכנס לניתוח בקטגוריה זו",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology documentation."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_1",
+      "string_text": "נבדקו 19 יוגורטים מהמדף הישראלי — מחלב פשוט ועד גרסאות חלבון עם תוספים.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "נבדקו 19 יוגורטים מהמדף הישראלי",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Input file contains 19 products (11 Shufersal + 8 Yohananof)."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_2",
+      "string_text": "לכל מוצר נבחנו הרכב הרכיבים, רמת חלבון, תוספי מייצבים, סוכר מוסף ורמת עיבוד.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "לכל מוצר נבחנו הרכב הרכיבים, רמת חלבון, תוספי מייצבים, סוכר מוסף ורמת עיבוד",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Methodology description. Consistent with BSIP2 approach (L1→L3 signals cover all listed dimensions)."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_3",
+      "string_text": "ציון יוגורט טבעי מבוסס גבוה יותר ממוצר בטעמים — לא בגלל שמות, אלא בגלל מה שכתוב ברשימת הרכיבים.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "ציון יוגורט טבעי מבוסס גבוה יותר ממוצר בטעמים — לא בגלל שמות, אלא בגלל מה שכתוב ברשימת הרכיבים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with corpus: plain yogurts (yog-003, yog-008) score higher than flavored versions (yog-010, yog-011). Score is based on composition, not marketing."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "methodology_4",
+      "string_text": "מעדני חלב — מוצרים עם שכבות שוקולד, קצפת, או מבנה קינוח — אינם נכללים בהשוואה; הם מוצרי הנאה נפרדים. יוגורט שתיה נכלל ומקבל ציון כמוצר יוגורט מעובד.",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "מעדני חלב — מוצרים עם שכבות שוקולד, קצפת, או מבנה קינוח — אינם נכללים בהשוואה",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology scope."
+        },
+        {
+          "text": "יוגורט שתיה נכלל ומקבל ציון כמוצר יוגורט מעובד",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with methodology scope."
+        }
+      ]
+    },
+    {
+      "product_id": "page",
+      "string_key": "metadataLine",
+      "string_text": "19 מוצרים נבדקו · מדגם מדף ישראלי · ממוין לפי ציון Bari",
+      "verdict": "PASS",
+      "claims": [
+        {
+          "text": "19 מוצרים נבדקו",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Input contains exactly 19 products."
+        },
+        {
+          "text": "מדגם מדף ישראלי · ממוין לפי ציון Bari",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial description of corpus and sort methodology."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-008",
+      "string_key": "insightLine",
+      "string_text": "ראש המדף — 10 גרם חלבון, בלי סוכר מוסף שזוהה ועם תרביות חיות שמרימות את הציון. מגיע ל-A אך נעצר שם, לא S: זה יוגורט חלבון מהונדס שהחלבון והתרביות עושים בו את העבודה, לא יוצא דופן (וערכי הסוכר לא היו זמינים).",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "ראש המדף",
+          "type": "T3",
+          "verdict": "HARD-FAIL",
+          "evidence": "yog-001 trace grade=S/92.6 and bsip1_7290110565527 S/95.6 both outrank yog-008's A/89.9. 'Top of shelf' contradicted by higher-scoring products."
+        },
+        {
+          "text": "10 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'חלבון גבוה לקטגוריה — 10 גרם ל-100 גרם'. L1 protein_g=10.0."
+        },
+        {
+          "text": "בלי סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "No MULTIPLE_ADDED_SUGAR_MARKERS penalty. No sugar caps fired. sugars_g=null in trace."
+        },
+        {
+          "text": "תרביות חיות שמרימות את הציון",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "fermentation_bonus_applied=null. SUPERSEDED A_list ferm_bonus=8 for this product. Current grade=A (condition 2 met). REVIEW per rubric §6."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=A."
+        },
+        {
+          "text": "נעצר שם, לא S",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=A ≠ S. Negation confirmed."
+        },
+        {
+          "text": "זה יוגורט חלבון מהונדס שהחלבון והתרביות עושים בו את העבודה",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing consistent with composition: 3 ingredients, dairy protein concentrate, no additives."
+        },
+        {
+          "text": "לא יוצא דופן",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial judgment; no factual contradiction."
+        },
+        {
+          "text": "וערכי הסוכר לא היו זמינים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "confidenceLabel='חסרים נתוני תזונה', unknowns mentions sugar NA, L1 sugars_g=null."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-001",
+      "string_key": "insightLine",
+      "string_text": "מהבולטים במדף — 10.5 גרם חלבון ב-0% שומן, סוכר נמוך של 3.3 גרם וללא סוכר מוסף שזוהה. מגיע ל-A על שילוב נדיר של חלבון גבוה וסוכר נמוך, ונעצר שם: חלבון צפוף לבדו לא מזכה ב-S.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "מהבולטים במדף",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing — this product is indeed prominent (grade=S, score=92.6, highest protein in its pool)."
+        },
+        {
+          "text": "10.5 גרם חלבון ב-0% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'חלבון גבוה לקטגוריה — 10.5 גרם ל-100 גרם'. L1 fat_g=0.0 consistent with 0%."
+        },
+        {
+          "text": "סוכר נמוך של 3.3 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סוכר נמוך — 3.3 גרם ל-100 גרם'. L1 sugars_g=3.3."
+        },
+        {
+          "text": "וללא סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'ללא סוכר מוסף שזוהה'. No MULTIPLE_ADDED_SUGAR_MARKERS."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace grade=S. Copy asserts A, trace shows S."
+        },
+        {
+          "text": "על שילוב נדיר של חלבון גבוה וסוכר נמוך",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Protein=10.5g high, sugar=3.3g low. Editorial description consistent with data."
+        },
+        {
+          "text": "ונעצר שם: חלבון צפוף לבדו לא מזכה ב-S",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Trace grade=S contradicts 'לא מזכה ב-S' (does not merit S). The product DOES merit S. Double fail: 'A' and 'not S' both wrong."
+        },
+        {
+          "text": "חלבון צפוף לבדו",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial characterization."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-004",
+      "string_key": "insightLine",
+      "string_text": "החלבון הגבוה במדף — 12.5 גרם ל-100 גרם ב-0% שומן, עם 2.5 גרם סיבים וסוכר נמוך של 2.5 גרם. מגיע ל-A: צירוף חזק של חלבון גבוה, סוכר נמוך וסיבים נדירים ליוגורט. נעצר ב-A ולא S כי הוא מוצר חלבון מהונדס, לא בסיס יוצא דופן.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "החלבון הגבוה במדף",
+          "type": "T3",
+          "verdict": "HARD-FAIL",
+          "evidence": "Corpus scan: bsip1_7290110565527 has 20g/100g protein. 12.5g is NOT the highest on shelf."
+        },
+        {
+          "text": "12.5 גרם ל-100 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'חלבון גבוה לקטגוריה — 12.5 גרם ל-100 גרם'. L1 protein_g=12.5."
+        },
+        {
+          "text": "0% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Product name includes '0% שומן'. L1 fat_g=0.0 (need trace verification, consistent with product identity)."
+        },
+        {
+          "text": "2.5 גרם סיבים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סיבים תזונתיים — 2.5 גרם ל-100 גרם'."
+        },
+        {
+          "text": "סוכר נמוך של 2.5 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Sugar value not in positiveSignals or limitingFactors. Cannot confirm 2.5g from trace inputs."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=A (84.8/A)."
+        },
+        {
+          "text": "צירוף חזק של חלבון גבוה, סוכר נמוך וסיבים נדירים ליוגורט",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Consistent with trace data: high protein, fiber present, A-grade placement."
+        },
+        {
+          "text": "נעצר ב-A ולא S כי הוא מוצר חלבון מהונדס, לא בסיס יוצא דופן",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "Grade A confirmed. The causal 'כי' attributes S-not-reached to 'engineered protein product'. Trace driver: 'processing_quality=64.0 (lowest dimension)'. Causal attribution is interpretive, not explicitly named. REVIEW."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-003",
+      "string_key": "insightLine",
+      "string_text": "מהפשוטים במדף — חלב, רכיבי חלב וחיידקי ביפידוס, 5.3 גרם חלבון וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. מגיע ל-A בלי שום טריק חלבון: בסיס פשוט, תרביות חיות וכמעט כלום מעבר לזה.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "מהפשוטים במדף",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing consistent with composition (simple base, 4 ingredients)."
+        },
+        {
+          "text": "חלב, רכיבי חלב וחיידקי ביפידוס",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "'חיידקי ביפידוס' not in positiveSignals/limitingFactors. T1 culture claim per rubric §6 → UNVERIFIABLE."
+        },
+        {
+          "text": "5.3 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=5.3 confirmed in trace."
+        },
+        {
+          "text": "סוכר נמוך של 4 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סוכר נמוך — 4 גרם ל-100 גרם'. L1 sugars_g=4.0."
+        },
+        {
+          "text": "ללא סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'ללא סוכר מוסף שזוהה'. No MULTIPLE_ADDED_SUGAR_MARKERS."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=A (80.2/A)."
+        },
+        {
+          "text": "בלי שום טריק חלבון: בסיס פשוט, תרביות חיות וכמעט כלום מעבר לזה",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "'תרביות חיות' is a T2 fermentation claim → REVIEW. Remainder editorial framing is consistent with trace (NOVA=2, no caps, simple base)."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-005",
+      "string_key": "insightLine",
+      "string_text": "אותו ביו פשוט של תנובה בגרסת 1.5% שומן — אותם חיידקי ביפידוס, 5.2 גרם חלבון. מגיע ל-A על אותו בסיס פשוט; הסוכר כאן 5.3 גרם, מעט גבוה מהבסיסים האחרים, אך עדיין בראש המדף.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "אותו ביו פשוט של תנובה בגרסת 1.5% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'שומן נמוך — 1.5 גרם ל-100 גרם'. Product identity matches."
+        },
+        {
+          "text": "אותם חיידקי ביפידוס",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "'חיידקי ביפידוס' not in positiveSignals/limitingFactors. T1 culture → UNVERIFIABLE per rubric §6."
+        },
+        {
+          "text": "5.2 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=5.2 confirmed in trace."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace grade=B (79.0/B). Grade A claim contradicted."
+        },
+        {
+          "text": "על אותו בסיס פשוט",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial: consistent with simple composition."
+        },
+        {
+          "text": "הסוכר כאן 5.3 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 sugars_g=5.3 confirmed in trace."
+        },
+        {
+          "text": "מעט גבוה מהבסיסים האחרים, אך עדיין בראש המדף",
+          "type": "T3",
+          "verdict": "HARD-FAIL",
+          "evidence": "'בראש המדף' (top of shelf) implies top tier (A). Product is grade=B, score=79.0 — NOT top of shelf. Additionally, this implies the product is among the highest, which is contradicted by grade=B (not A/S)."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-002",
+      "string_key": "insightLine",
+      "string_text": "בסיס יוגורט פשוט נטול לקטוז — ללא תוספי מזון או סוכר מוסף שזוהו, עם חיידקי ביפידוס. מגיע ל-A על בסיס פשוט ותרביות חיות, בתחתית קבוצת ה-A: ערכי הסוכר לא היו זמינים, ולכן הניתוח כאן חלקי.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "בסיס יוגורט פשוט נטול לקטוז — ללא תוספי מזון או סוכר מוסף שזוהו",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'בסיס יוגורט פשוט — ללא תוספי מזון או סוכר מוסף שזוהו'. NOVA_PROXY_3_PROCESSED cap indicates processing, not additives."
+        },
+        {
+          "text": "עם חיידקי ביפידוס",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in positiveSignals/limitingFactors. T1 culture → UNVERIFIABLE per rubric §6."
+        },
+        {
+          "text": "מגיע ל-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace grade=B (78.4/B). Grade A claim contradicted."
+        },
+        {
+          "text": "על בסיס פשוט ותרביות חיות",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "'תרביות חיות' is T2 fermentation claim. ferm_bonus_applied=null. SUPERSEDED A_list ferm_bonus=8 for this barcode. REVIEW per rubric §6."
+        },
+        {
+          "text": "בתחתית קבוצת ה-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "Implicitly claims the product is in grade A band. Trace grade=B. Not in A group at all."
+        },
+        {
+          "text": "ערכי הסוכר לא היו זמינים",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "confidenceLabel='חסרים נתוני תזונה', unknowns lists sugar, L1 sugars_g=null."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-009",
+      "string_key": "insightLine",
+      "string_text": "רק שלושה רכיבים — חלב, שמנת וחלבון חלב — וסוכר נמוך של 3 גרם ללא סוכר מוסף שזוהה. עוצר ב-B, מתחת לבסיסים הרזים, כי 8% שומן ו-4.8 גרם רווי מכריעים; רשימה קצרה לא תמיד אומרת רזה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "רק שלושה רכיבים — חלב, שמנת וחלבון חלב",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient count/identity not in positiveSignals/limitingFactors. Cannot confirm 'three components' from trace alone."
+        },
+        {
+          "text": "סוכר נמוך של 3 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סוכר נמוך — 3 גרם ל-100 גרם'. L1 sugars_g=3.0."
+        },
+        {
+          "text": "ללא סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals confirms 'ללא סוכר מוסף שזוהה'. No MULTIPLE_ADDED_SUGAR_MARKERS."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=B (75.5/B)."
+        },
+        {
+          "text": "מתחת לבסיסים הרזים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial: lower score than leaner bases. Consistent with trace data (lean yogurts like yog-003/A, yog-004/A score higher)."
+        },
+        {
+          "text": "כי 8% שומן ו-4.8 גרם רווי מכריעים",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "trace driver: 'nutrient_density=42.5 (lowest dimension)'. limitingFactors: 'שומן רווי גבוה — 4.8 גרם'. Fat composition impacts nutrient_density. The 'מכריעים' causal framing is consistent with fat being the key limiting factor, but the trace doesn't explicitly name fat as the sole cause. REVIEW per rubric §5 'כי' guidance."
+        },
+        {
+          "text": "8% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Product name includes '8%'. L1 fat_g=8.0 consistent."
+        },
+        {
+          "text": "4.8 גרם רווי",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "limitingFactors: 'שומן רווי גבוה — 4.8 גרם ל-100 גרם'."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-007",
+      "string_key": "insightLine",
+      "string_text": "בסגנון יווני עם 5.5 גרם חלבון וללא סוכר מוסף שזוהה — בסיס מצומצם ברכיבים. עוצר ב-B כי 6.5% שומן, מתוכם 3.9 גרם רווי, מחזיקים אותו מתחת לראש המדף.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "בסגנון יווני",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Product name includes 'בסגנון יווני'. Editorial."
+        },
+        {
+          "text": "5.5 גרם חלבון",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in positiveSignals/limitingFactors. L1 protein_g not directly readable from input trace_summary. UNVERIFIABLE."
+        },
+        {
+          "text": "וללא סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סוכר נמוך — 4.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה'. No MULTIPLE_ADDED_SUGAR_MARKERS."
+        },
+        {
+          "text": "בסיס מצומצם ברכיבים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial: consistent with simple ingredient composition."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=B (76.6/B)."
+        },
+        {
+          "text": "כי 6.5% שומן, מתוכם 3.9 גרם רווי, מחזיקים אותו מתחת לראש המדף",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "trace driver: 'nutrient_density=38.8 (lowest dimension)'. limitingFactors: 'עתיר שומן לקטגוריה — 6.5 גרם'. Fat composition impacts nutrient_density. Causal 'כי' attribution to fat is consistent with limitingFactors but not explicit in trace. REVIEW per rubric §5."
+        },
+        {
+          "text": "6.5% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "limitingFactors: 'עתיר שומן לקטגוריה — 6.5 גרם שומן ל-100 גרם'."
+        },
+        {
+          "text": "3.9 גרם רווי",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Saturated fat value not in positiveSignals/limitingFactors explicitly."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-006",
+      "string_key": "insightLine",
+      "string_text": "מהמעטים על בסיס חלב עיזים — שישה רכיבים, תרבית יוגורט וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. עוצר ב-B כי החלבון כאן 3.6 גרם בלבד, נמוך לקטגוריה.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "מהמעטים על בסיס חלב עיזים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial. Product name confirms goat milk base (יוגורט עיזים)."
+        },
+        {
+          "text": "שישה רכיבים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient count not in positiveSignals/limitingFactors. Trace shows ingredient_count=4 (after sanitization). Copy claims 6 but raw_count may differ. UNVERIFIABLE."
+        },
+        {
+          "text": "תרבית יוגורט",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "T2 fermentation claim. ferm_bonus_applied=null. BRIEF: per rubric §6, culture claims → REVIEW unless explicit in positiveSignals."
+        },
+        {
+          "text": "סוכר נמוך של 4 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'סוכר נמוך — 4 גרם ל-100 גרם'. L1 sugars_g=4.0."
+        },
+        {
+          "text": "ללא סוכר מוסף שזוהה",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals confirms. No MULTIPLE_ADDED_SUGAR_MARKERS."
+        },
+        {
+          "text": "עוצר ב-B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=B (75.3/B)."
+        },
+        {
+          "text": "כי החלבון כאן 3.6 גרם בלבד, נמוך לקטגוריה",
+          "type": "T2",
+          "verdict": "REVIEW",
+          "evidence": "trace driver: 'nutrient_density=24.5 (lowest dimension)'. Protein (3.6g) is a key component of nutrient_density. Causal 'כי' attribution to low protein is interpretive but consistent. REVIEW per rubric §5."
+        },
+        {
+          "text": "3.6 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=3.6 confirmed in trace."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-010",
+      "string_key": "insightLine",
+      "string_text": "אותם 10 גרם חלבון של ה-GO הלבן שמוביל את המדף — אבל הוספת התות הביאה 9.6 גרם סוכר, צבע מאכל ושלושה תוספי מזון ומעלה. צונח ל-C כי אותו בסיס חלבון הפך לקינוח מתוק.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "אותם 10 גרם חלבון של ה-GO הלבן שמוביל את המדף",
+          "type": "T3",
+          "verdict": "REVIEW",
+          "evidence": "'ה-GO הלבן שמוביל את המדף' cross-references yog-008 as 'leader'. yog-008 is A/89.9 but there are S-grade products (yog-001, bsip1_7290110565527). Cross-product reference to another product as 'leader' is T3/REVIEW without full corpus check."
+        },
+        {
+          "text": "10 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "positiveSignals: 'חלבון גבוה לקטגוריה — 10 גרם ל-100 גרם'. L1 protein_g=10.0."
+        },
+        {
+          "text": "הוספת התות הביאה 9.6 גרם סוכר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "limitingFactors: 'סוכר גבוה — 9.6 גרם ל-100 גרם'."
+        },
+        {
+          "text": "צבע מאכל",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + ADDITIVE_MARKERS_3_PLUS in caps. Ultra-processed with additives."
+        },
+        {
+          "text": "שלושה תוספי מזון ומעלה",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "ADDITIVE_MARKERS_3_PLUS in caps_applied."
+        },
+        {
+          "text": "צונח ל-C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=C (61.8/C)."
+        },
+        {
+          "text": "כי אותו בסיס חלבון הפך לקינוח מתוק",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + sugar cap (9.6g) + ADDITIVE_MARKERS_3_PLUS. Framing consistent with trace data."
+        }
+      ]
+    },
+    {
+      "product_id": "yog-011",
+      "string_key": "insightLine",
+      "string_text": "הציון הנמוך במדף — יוגורט שהפך לקינוח: תוספת קורנפלקס ושוקולד, חמישה תוספי מזון ומעלה, סוכר מוסף שזוהה של 9.9 גרם וחלבון של 3.6 גרם בלבד. צונח ל-D כי כמעט הכול כאן תוספת.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "הציון הנמוך במדף",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Corpus scan: score=36.3/D — lowest among all 19 products (next lowest: bsip1_7290102394081=56.3/C). Superlative confirmed."
+        },
+        {
+          "text": "יוגורט שהפך לקינוח: תוספת קורנפלקס ושוקולד",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing. Product name includes קורנפלקס ושוקולד. Consistent."
+        },
+        {
+          "text": "חמישה תוספי מזון ומעלה",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "ADDITIVE_MARKERS_5_PLUS in caps_applied."
+        },
+        {
+          "text": "סוכר מוסף שזוהה של 9.9 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "limitingFactors: 'סוכר מוסף זוהה — 9.9 גרם סוכר ל-100 גרם'. MULTIPLE_ADDED_SUGAR_MARKERS in penalties."
+        },
+        {
+          "text": "סוכר מוסף שזוהה",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "MULTIPLE_ADDED_SUGAR_MARKERS in penalties_applied."
+        },
+        {
+          "text": "חלבון של 3.6 גרם בלבד",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in positiveSignals/limitingFactors. Cannot confirm protein value from trace inputs."
+        },
+        {
+          "text": "צונח ל-D",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace grade=D (36.3/D)."
+        },
+        {
+          "text": "כי כמעט הכול כאן תוספת",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + ADDITIVE_5_PLUS + MULTIPLE_ADDED_SUGAR_MARKERS + LONG_INGREDIENT_LIST. Well-supported."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290110565527",
+      "string_key": "insightLine",
+      "string_text": "המוביל הבלתי מעורר ספק — 20 גרם חלבון ל-100 גרם על רכיב יחיד: חלב מפוסטר. מגיע ל-96/A: צפיפות חלבון שלא נמצאת במדף, בלי תוספות.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "המוביל הבלתי מעורר ספק",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Highest numeric score in corpus (95.6 > 92.6). 'המוביל' (leader) by score is correct."
+        },
+        {
+          "text": "20 גרם חלבון ל-100 גרם",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Product name includes '20 גר׳ חלבון'. L1 protein_g=20.0."
+        },
+        {
+          "text": "על רכיב יחיד: חלב מפוסטר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 ingredient_count=1, ingredient_list=['חלב מפוסטר']. Single ingredient confirmed."
+        },
+        {
+          "text": "מגיע ל-96/A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "trace grade=S (95.6/S). Math.round(95.6)=96 correct. But grade=S, not A. Grade claim contradicted."
+        },
+        {
+          "text": "צפיפות חלבון שלא נמצאת במדף",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "20g/100g is indeed unmatched in corpus (next highest: 12.5g). Superlative confirmed."
+        },
+        {
+          "text": "בלי תוספות",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "No caps applied, NOVA=2, no ADDITIVE_* rules. Consistent with zero-additive composition."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290000408316",
+      "string_key": "insightLine",
+      "string_text": "פשוט ונקי — חלב מפוסטר, רכיבי חלב ופרוביוטי Bifidus, 5.2 גרם חלבון. עוצר ב-78/B: הבסיס נקי, אך צפיפות החלבון הנמוכה מושכת אותו מטה מה-A.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "פשוט ונקי — חלב מפוסטר, רכיבי חלב ופרוביוטי Bifidus",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial. Ingredient identity consistent with trace (including Bifidus in ingredient list)."
+        },
+        {
+          "text": "5.2 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=5.2 confirmed in trace."
+        },
+        {
+          "text": "עוצר ב-78/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=78.1, grade=B. Math.round(78.1)=78. Grade B. PASS."
+        },
+        {
+          "text": "הבסיס נקי",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Simple ingredients, consistent with editorial framing."
+        },
+        {
+          "text": "צפיפות החלבון הנמוכה מושכת אותו מטה מה-A",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT driver: 'NOVA_PROXY_3_PROCESSED' cap (binding cap=94.8). Score is capped due to NOVA proxy 3 processing, NOT low protein density. Fabricated causal attribution."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290112330352",
+      "string_key": "insightLine",
+      "string_text": "10 גרם חלבון ב-0% שומן — אבל 12 רכיבים: עמילן אורז, סטיביה, חומרי טעם וצבע קרמל. עוצר ב-76/B: חלבון גבוה, רשימה ארוכה.",
+      "verdict": "UNVERIFIABLE",
+      "claims": [
+        {
+          "text": "10 גרם חלבון ב-0% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=10.0, fat_g=0.0. PASS."
+        },
+        {
+          "text": "12 רכיבים: עמילן אורז, סטיביה, חומרי טעם וצבע קרמל",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient names not in positiveSignals/limitingFactors. Trace L3 shows sweetener_detected=true, has_artificial_color=false (caramel is natural), but ingredient-level T1 claims not verifiable from trace inputs."
+        },
+        {
+          "text": "עוצר ב-76/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=75.9, grade=B. Math.round(75.9)=76. Grade B. PASS."
+        },
+        {
+          "text": "חלבון גבוה, רשימה ארוכה",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "LONG_INGREDIENT_LIST penalty applied. Protein=10g high. Consistent."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290107936309",
+      "string_key": "insightLine",
+      "string_text": "רכיבים פשוטים ושומן גבוה — 6.5 גרם שומן מול 5.5 גרם חלבון בלבד. עוצר ב-75/B: יחס שומן-חלבון גבוה מושך אותו מטה מגרסאות הסגנון היווני המועשרות בחלבון.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "רכיבים פשוטים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial framing."
+        },
+        {
+          "text": "6.5 גרם שומן מול 5.5 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 fat_g≈6.54, protein_g≈5.54. Values consistent with claimed 6.5 and 5.5 (rounding accepted)."
+        },
+        {
+          "text": "עוצר ב-75/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=74.6, grade=B. Math.round(74.6)=75. Grade B. PASS."
+        },
+        {
+          "text": "יחס שומן-חלבון גבוה מושך אותו מטה מגרסאות הסגנון היווני המועשרות בחלבון",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT driver: 'NOVA_PROXY_3_PROCESSED' cap (binding cap=94.8). The score is capped by NOVA proxy 3 processing classification, NOT by high fat-to-protein ratio. Fabricated causal attribution."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290110328764",
+      "string_key": "insightLine",
+      "string_text": "10 גרם חלבון, 0% שומן — אבל ממתיקים מלאכותיים, עמילן מעובד וצבעי מאכל. עוצר ב-68/B: מספר החלבון גבוה, אך המרכיבים שנוספו מורידים.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "10 גרם חלבון, 0% שומן",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=10.0, fat_g=0.0."
+        },
+        {
+          "text": "ממתיקים מלאכותיים, עמילן מעובד וצבעי מאכל",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient-level T1 claims not in positiveSignals/limitingFactors. L3 shows sweetener_detected=true, but specific ingredient identity unverifiable from trace inputs."
+        },
+        {
+          "text": "עוצר ב-68/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=68.0, grade=B. Math.round(68.0)=68. Grade B. PASS."
+        },
+        {
+          "text": "מספר החלבון גבוה, אך המרכיבים שנוספו מורידים",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + ADDITIVE_MARKERS_3_PLUS caps. Framing consistent with trace data."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290102399819",
+      "string_key": "insightLine",
+      "string_text": "10 גרם חלבון לצד 9.5 גרם סוכר — מועשר בשניהם. מייצבים, חומרי טעם וצבעי מאכל משלימים את התמונה. עוצר ב-66/B: הסוכר הגבוה גוזר ממנו נקודות.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "10 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=10.0."
+        },
+        {
+          "text": "9.5 גרם סוכר",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 sugars_g=9.5."
+        },
+        {
+          "text": "מועשר בשניהם",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Editorial: both protein and sugar are elevated."
+        },
+        {
+          "text": "מייצבים, חומרי טעם וצבעי מאכל",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient names not in positiveSignals/limitingFactors. T1 ingredient identity claims unverifiable."
+        },
+        {
+          "text": "עוצר ב-66/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=66.0, grade=B. Math.round(66.0)=66. Grade B. PASS."
+        },
+        {
+          "text": "הסוכר הגבוה גוזר ממנו נקודות",
+          "type": "T2",
+          "verdict": "HARD-FAIL",
+          "evidence": "DOMINANT driver: 'NOVA_PROXY_4_ULTRA_PROCESSED' cap (binding cap=87.2). Score is capped by NOVA4 ultra-processing, NOT by high sugar. Sugar is 9.5g which does NOT trigger any sugar cap (requires >17.5g for HIGH_SUGAR_25G_PLUS or >22.5g for red label). Fabricated causal attribution."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290116934402",
+      "string_key": "insightLine",
+      "string_text": "10 גרם חלבון עם מנגו מבושל 6% — אבל עמילן מעובד, קרגינן וממתיקים מלאכותיים. עוצר ב-66/B: חלבון גבוה לא מספיק כשהבסיס מעובד.",
+      "verdict": "REVIEW",
+      "claims": [
+        {
+          "text": "10 גרם חלבון",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "L1 protein_g=10.0."
+        },
+        {
+          "text": "עם מנגו מבושל 6%",
+          "type": "T1",
+          "verdict": "PASS",
+          "evidence": "Product name and L3 data support mango content."
+        },
+        {
+          "text": "עמילן מעובד, קרגינן וממתיקים מלאכותיים",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient-level T1 claims not in positiveSignals/limitingFactors."
+        },
+        {
+          "text": "עוצר ב-66/B",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=66.0, grade=B. Math.round(66.0)=66. Grade B. PASS."
+        },
+        {
+          "text": "חלבון גבוה לא מספיק כשהבסיס מעובד",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + ADDITIVE_MARKERS_3_PLUS caps. Framing consistent: processing caps override high protein."
+        }
+      ]
+    },
+    {
+      "product_id": "bsip1_yogurt_7290102394081",
+      "string_key": "insightLine",
+      "string_text": "פתיתי שוקולד ויוגורט — 13 גרם סוכר ל-100 גרם, ורכיב שני הוא שוקולד חלב. 56/C: הציון הנמוך בקטגוריה; קינוח, לא יוגורט בסיסי.",
+      "verdict": "HARD-FAIL",
+      "claims": [
+        {
+          "text": "פתיתי שוקולד ויוגורט",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "Product description, editorial."
+        },
+        {
+          "text": "13 גרם סוכר ל-100 גרם",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Not in positiveSignals/limitingFactors. L1 sugars_g=13.1, but trace inputs don't carry explicit POS display value."
+        },
+        {
+          "text": "רכיב שני הוא שוקולד חלב",
+          "type": "T1",
+          "verdict": "UNVERIFIABLE",
+          "evidence": "Ingredient position/identity not in positiveSignals/limitingFactors. L1 ingredient_list shows 'שוקולד ממולא פתיתי תירס (10%) [שוקולד חלב (75%)...' as second ingredient, but exact identity claim cannot be confirmed from trace inputs."
+        },
+        {
+          "text": "56/C",
+          "type": "T2",
+          "verdict": "PASS",
+          "evidence": "trace score=56.3, grade=C. Math.round(56.3)=56. Grade C. PASS."
+        },
+        {
+          "text": "הציון הנמוך בקטגוריה",
+          "type": "T3",
+          "verdict": "HARD-FAIL",
+          "evidence": "Corpus scan: yog-011 has score=36.3/D, which is lower than 56.3. Superlative directly contradicted by another product's trace."
+        },
+        {
+          "text": "קינוח, לא יוגורט בסיסי",
+          "type": "T3",
+          "verdict": "PASS",
+          "evidence": "NOVA4 + ADDITIVE_MARKERS_3_PLUS. Editorial framing consistent."
+        }
+      ]
+    }
+  ]
+}

@@ -138,8 +138,43 @@ def normalize_unit(u: Optional[str]) -> Optional[str]:
 
 
 def detect_active_slug(*texts: str) -> Optional[str]:
+    """Map product text to an engine dossier slug. TASK-277 noise fixes:
+
+    1. CAFFEINE: 'נטול קפאין' (= 'decaf / caffeine-free') is a NEGATIVE modifier.
+       A product name containing 'נטול קפאין' must NOT map to caffeine (confirmed
+       by corpus: ארומה נטול קפאין = zero-caffeine coffee). Guard: if 'נטול' (without/
+       free-of) immediately precedes 'קפאין' in the blob, skip caffeine mapping.
+
+    2. OMEGA-3: omega-5 (punicic acid from pomegranate) and plant-ALA (chia/clary-
+       sage seed oil) must NOT map to omega3 — these are entirely different fatty
+       acids without EPA/DHA. Guard: screen blob for omega-5/punicic/pomegranate/chia/
+       sage-seed before considering 'אומגה'/'omega' as omega3 trigger.
+
+    All other mappings are unchanged.
+    """
     blob = " ".join(t for t in texts if t).lower()
+
+    # --- caffeine negative-lookahead: 'נטול' (without/decaf) before 'קפאין' ---
+    # Both tokens must be present; 'נטול' is the guard (means 'free of').
+    _decaf_guard = "נטול קפאין" in blob or ("נטול" in blob and "קפאין" in blob)
+
+    # --- omega-5 / plant-ALA guard: these MUST NOT map to omega3 ---
+    # omega-5 = punicic acid from pomegranate (רימון / pomegranate / punicic / פוניצי)
+    # plant-ALA = chia (צ'יה) or clary sage seed oil (מרווה מרושתת / sage)
+    _omega5_or_ala_guard = any(tok in blob for tok in (
+        "אומגה 5", "omega 5", "omega-5",        # explicit omega-5 label
+        "פוניצי", "punicic",                     # punicic acid = omega-5
+        "רימונים", "pomegranate",                # pomegranate is the omega-5 source
+        "צ'יה", "chia",                          # chia = ALA, not EPA/DHA
+        "מרווה מרושתת", "clary sage",            # clary sage seed oil = ALA
+    ))
+
     for slug, kws in _ACTIVE_SLUG:
+        # Apply guards before testing keywords
+        if slug == "caffeine" and _decaf_guard:
+            continue
+        if slug == "omega3" and _omega5_or_ala_guard:
+            continue
         if any(k in blob for k in kws):
             return slug
     return None
