@@ -1,0 +1,27 @@
+{
+  "_comment": "Juices category config. Corpus: run_juices_yohananof_001 (Yohananof storefront scrape) at 02_products/juices/bsip1_outputs. Run: run_juices_yohananof_002 (28 traces). Live page juices_frontend_v3.json displays a curated 20-product subset. Eight products removed from display (lemon_juice ×5, tirosh ×3) are excluded explicitly. Four out-of-scope barcodes (tomato juice, soy/oat drinks, coffee-milk) were excluded at BSIP2 batch level and have no traces in run_002. Subpool filter is null because the live 20-product set spans juice_100, fruit_drink, and nectar subpools with no single positive equality filter.",
+  "category": "juices",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\juices\\bsip1_outputs"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\juices\\bsip2_outputs\\run_juices_yohananof_002\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\juices_frontend_v3.json",
+  "retailer_scope": ["yohananof"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "exclusions": [
+    {"barcode": "7290000272696", "reason": "removed_from_display: lemon_juice subpool"},
+    {"barcode": "7290004030148", "reason": "removed_from_display: lemon_juice subpool"},
+    {"barcode": "7290018940761", "reason": "removed_from_display: tirosh subpool"},
+    {"barcode": "7290019398516", "reason": "removed_from_display: tirosh subpool"},
+    {"barcode": "7290106668577", "reason": "removed_from_display: lemon_juice subpool"},
+    {"barcode": "7290117034774", "reason": "removed_from_display: lemon_juice subpool"},
+    {"barcode": "7290117765630", "reason": "removed_from_display: tirosh subpool"},
+    {"barcode": "7290119385034", "reason": "removed_from_display: lemon_juice subpool"}
+  ],
+  "extension_fields": [],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

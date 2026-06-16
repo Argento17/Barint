@@ -37,7 +37,33 @@ Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + s
   Round-1 caught a barcode-presence-vs-score-provenance bug; lesson logged (memory c2_grunt_only_no_inference
   + skill C2 line sharpened — C2 = zero-inference grunt, always verify vs artifacts).
 - **✅ WAVE 1 COMPLETE** (P150 smoke test + P151 run_id traceability). → Wave 2.
-- **Next (Wave 2):** TASK-233F shared packaging core — the Phase-2 structural fix, decomposed across Grok+Gemini+Sonnet.
+### Phase 2 — Wave 2: TASK-233F shared packaging core (started 2026-06-16)
+- **RECONCILE DECISION (orchestrator):** consolidate onto `generate_page.py` (deterministic, self-gating,
+  Spine-integrated). `frontend_core.py` is a PHANTOM (absent; only importer = dangling yogurts-v4 builder).
+  TASK-233F mechanics redefined: config-per-category on generate_page, not frontend_core. Owner-approved.
+- **P153 → TASK-292 → C1-GEMINI — ✅ CLOSED + orchestrator-verified (2026-06-16).** Pattern-setter PROVEN:
+  generated cereals == live 20/20 barcodes, 0 score/grade mismatch, live untouched, gate PASS. configs/cereals.json
+  captures curation (43 excl: 25 granola/6 OFF/12 OOS). generate_page.py confirmed as THE 233F core.
+- **PARALLEL WAVE (3 C1 lanes, dispatched 2026-06-16):**
+  - **P154 → TASK-293 → C1-GROK — ✅ CLOSED + verified.** juices: config valid (reproduces current engine
+    20/20); cheese: STOPPED = bespoke multi-retailer loader (needs custom loader → backlog). 🔎 FINDINGS:
+    (1) juices live page STALE — re-gen drifts 5 scores/1 grade (E→D) vs current engine (owner-gated republish);
+    (2) cheese custom-loader needed for generate_page. Live pages untouched.
+  - **P155 → TASK-294 → C1-GEMINI — ✅ CLOSED + verified.** cakes_hard_cookies: clean migration (configs/cakes.json,
+    65/65 score+grade vs live). hard_cheeses: CARVED OUT — agent used the UNSHIPPED redlabel run (0/28 vs live);
+    live page is a multiretailer MERGE (like cheese) → bespoke custom-loader backlog; wrong config removed.
+  - **bucket C → TASK-295 → C1-Sonnet/Agent — ✅ CLOSED + verified.** cookies_coffee: clean migration (118/118
+    barcodes+grades vs live v2; 17 score-drift, 0 grade impact). salty_snacks: CARVED OUT — bespoke (TASK-237/241
+    hand-built, 0/29 trace overlap) → backlog.
+
+**✅ WAVE 2 COMPLETE (2026-06-16).** generate_page.py validated as THE 233F core across all 3 C1 lanes.
+- **Clean configs landed + verified vs live (7 total on the core):** cereals, juices, cakes_hard_cookies(cakes.json),
+  cookies_coffee [this wave] + granola, snacks, hummus [pre-existing].
+- **🔧 Bespoke/merge-loader backlog (need a generate_page custom loader):** cheese, hard_cheeses (multiretailer
+  merge); salty_snacks (hand-built, no traces); bread, butter, brined (bespoke). → propose TASK-296.
+- **🔎 Stale-page drift (config reproduces CURRENT engine; live is behind — republish is owner-gated tripwire-1):**
+  juices (5 scores/1 grade E→D), cookies_coffee (17 scores/0 grade), + hard_cheeses/brined/hummus seen earlier.
+- **VERIFICATION CAUGHT 3 confident-but-wrong lane returns** (DeepSeek barcode-presence; Grok+Gemini wrong/experimental run).
 
 ---
 
