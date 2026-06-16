@@ -22,8 +22,22 @@ Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + s
   baseline_20260616T052730Z promoted on engine f1d1275e (12 corpora / 704 products / 0 errors). **shadow_gate.yml
   now ACTIVE** — engine-touching PRs diff against this baseline. ⚠️ Branch task-275-engine-fixes-abc still ahead of
   master; branch→master reconciliation deferred (Phase-1 item). bari.digital deploy stays owner-gated.
-- **✅ PHASE 0 COMPLETE:** CI gates committed (006bfef6) + blessed engine committed (f1d1275e) + Shadow regression
-  gate live (89555a47). Next: Phase 1 (Spine merge + live-state manifest + post-deploy smoke test).
+- **✅ PHASE 0 COMPLETE:** CI gates (006bfef6) + blessed engine (f1d1275e) + Shadow gate live (89555a47).
+- **✅ MASTER RECONCILED (1e8f3365, 2026-06-16):** canonical Spine landed (7e6eafbd) + all outstanding work
+  committed (4,739 files); working tree clean; stale Bari-task243/ gitignored. Not pushed (deploy gated).
+  Spine ingest verified: 77 runs / 1,272 products / 4,269 scores / 2,838 lineage / live_state=17 pages.
+
+### Phase 1 — Wave 1 (dispatched 2026-06-16, decomposed across lanes, NOT Sonnet-default)
+- **P150 → TASK-290 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-16).** smoke_test.py manifest-driven
+  (ran dry-run myself: exit 0, 15 routes, 0 OFF, PASS); OFF markers L37-41; prod_smoke.yml daily cron + dispatch;
+  barint_ci dry-run step; scope clean (engine/JSON untouched). Drift = non-fatal finding. Not pushed.
+- **P151 → TASK-291 → C2/DeepSeek — ✅ CLOSED + orchestrator-verified (round 2, 2026-06-16).** Backfilled
+  run_id only where the run reproduces page scores: cereals_v2 + granola_v1 = run_cereals_008 (kept).
+  snacks_v2 + yogurts_v3 reverted to run_id:None (no score-matching run → honest ambiguous, not fabricated).
+  Round-1 caught a barcode-presence-vs-score-provenance bug; lesson logged (memory c2_grunt_only_no_inference
+  + skill C2 line sharpened — C2 = zero-inference grunt, always verify vs artifacts).
+- **✅ WAVE 1 COMPLETE** (P150 smoke test + P151 run_id traceability). → Wave 2.
+- **Next (Wave 2):** TASK-233F shared packaging core — the Phase-2 structural fix, decomposed across Grok+Gemini+Sonnet.
 
 ---
 

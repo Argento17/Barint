@@ -76,6 +76,9 @@ jobs:
       - name: BSIP0 exit gate — live corpus check
         run: python 03_operations/bsip0/scrape/_shared/bsip0_gate.py 02_products/breakfast_cereals/bsip0_outputs/cereals_bsip0_raw_20260601T152207.json || true
 
+      - name: Spine smoke manifest dry-run (TASK-290)
+        run: python 03_operations/spine/smoke_test.py --dry-run
+
   off-sweep:
     # TASK-238 — OFF is BANNED project-wide. Fail if any Open-Food-Facts marker
     # appears in the frontend data directory (bari-web/src/data/).

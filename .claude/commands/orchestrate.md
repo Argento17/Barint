@@ -77,8 +77,12 @@ Reaching each lane (all dispatches run_in_background):
 - **C1 (Claude / Sonnet)** — spawn the owning domain subagent via the **`Agent`** tool (`model: sonnet`).
   This is **one of the three** C1 options, **not** the default. (Hebrew editorial copy is the exception that
   is *always* Sonnet — see `content_lane_sonnet_not_gemini`.)
-- **C2 (audit / QA / GRUNT)** — `(route: C2)` → `dispatch.py PNN`. DeepSeek; mechanical, zero-judgment work:
-  count/file/grep checks, regen, and the bookkeeping you are NOT doing by hand. Cheap — use it liberally.
+- **C2 (audit / QA / GRUNT)** — `(route: C2)` → `dispatch.py PNN`. DeepSeek; mechanical, **zero-INFERENCE**
+  work only: count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
+  bookkeeping. Route to C2 ONLY when the output is 100% determined by a stated rule — if the task needs
+  *deciding/identifying* anything ("which run is authoritative", "is this the right source"), it is C1, not
+  C2. **Always re-verify C2 output against the artifact** — it returns confidently even when wrong (P151:
+  C2 matched run_id by barcode-presence, not score-provenance → wrong provenance on 2/4 files). Cheap, not trusted.
 - **C3 (challenge / consult)** — `(route: C3)` → `dispatch.py PNN`. ChatGPT; advice only, never closes,
   never builds. **Mandatory before any honest-vs-artifact / precedent / tripwire fork.**
 - `C1-CURSOR` is **RETIRED** → the tag still transparently aliases to C1-GROK; author no new Cursor work.
