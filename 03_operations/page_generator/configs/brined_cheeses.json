@@ -1,0 +1,31 @@
+{
+  "_comment": "Brined cheeses category config. Corpus: run_brined_cheeses_002 (hygiene-cleaned, per live _meta.provenance). Run: run_brined_005 (48 traces). Live brined_cheeses_frontend_v2.json displays 36 products (12 v1 products dropped in v2 editorial pass); _meta.product_count=48 is stale. Score-provenance: run_brined_005 final_score_estimate matches all 36 live barcodes on rounded comparison; grades match floor policy. Exclusions = 12 run-universe barcodes present in v1 but absent from v2.",
+  "category": "brined_cheeses",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\brined_cheeses\\bsip2_outputs\\run_brined_005\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\brined_cheeses_frontend_v2.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "exclusions": [
+    {"barcode": "2107071", "reason": "out_of_scope: v2_curation_drop_goat_feta_variant"},
+    {"barcode": "2385455", "reason": "out_of_scope: v2_curation_drop_bulgarit_24_variant"},
+    {"barcode": "2511229", "reason": "out_of_scope: v2_curation_drop_bulgarit_16_variant"},
+    {"barcode": "2511236", "reason": "out_of_scope: v2_curation_drop_bulgarit_5_variant"},
+    {"barcode": "2511243", "reason": "out_of_scope: v2_curation_drop_bulgarit_16_traditional"},
+    {"barcode": "4861056", "reason": "out_of_scope: v2_curation_drop_tsfatit_5_duplicate"},
+    {"barcode": "4861070", "reason": "out_of_scope: v2_curation_drop_tsfatit_hard_24"},
+    {"barcode": "5992872", "reason": "out_of_scope: v2_curation_drop_tsfatit_in_water"},
+    {"barcode": "7290114310550", "reason": "out_of_scope: v2_curation_drop_goat_feta_5"},
+    {"barcode": "7296073644996", "reason": "out_of_scope: v2_curation_drop_tsfatit_grated_24"},
+    {"barcode": "7296073730330", "reason": "out_of_scope: v2_curation_drop_fetina_style"},
+    {"barcode": "8606370", "reason": "out_of_scope: v2_curation_drop_fetina_style"}
+  ],
+  "extension_fields": [],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

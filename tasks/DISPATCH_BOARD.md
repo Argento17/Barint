@@ -65,6 +65,74 @@ Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + s
   juices (5 scores/1 grade E→D), cookies_coffee (17 scores/0 grade), + hard_cheeses/brined/hummus seen earlier.
 - **VERIFICATION CAUGHT 3 confident-but-wrong lane returns** (DeepSeek barcode-presence; Grok+Gemini wrong/experimental run).
 
+### Phase 2 — Wave 3: TASK-296 single-path migration of the remaining categories (owner: "no segments, clean baseline", 2026-06-16)
+**Reframe (owner-directed):** NOT bespoke per-category loaders. The generator ALREADY accepts list-valued
+`run_products_dir` + `corpus_dirs` (generate_page.py:631-632/173-201, first-occurrence-wins) → a multi-source
+"merge" is just a config list, no loader. So every remaining REAL-TRACE category goes onto the SAME
+generate_page path via a config pointing at the run that actually produced the live scores (matched by
+SCORE-PROVENANCE, not stale `_meta.run_id` — the Wave-2 failure mode). **salty_snacks EXCLUDED from scope:**
+it has NO BSIP2 traces (hand-built fabricated identity, blocked on TASK-228) → not a loader problem, not
+eligible until real data exists; building a fake-data segment would violate no-segments + OFF/no-fabrication.
+- **P156 → TASK-296 Piece A → C1-GROK — ✅ RETURNED + orchestrator-verified (2026-06-16).** Independently re-ran parity:
+  - **brined → PARITY.** configs/brined_cheeses.json reproduces the GOLDEN page: barcode set 36/36, ROUNDED-score
+    mismatch 0/36, grade 0/36 (the 33/36 "strict" mismatch = float-vs-int display only, e.g. live 72 vs gen 72.5).
+    Bonus finding (verified): live `_meta.product_count=48` is STALE — actual products[]=36; generator emits 36. ✅ ACCEPT config.
+  - **butter → ⛔ OFF-BAN LAUNCH BLOCKER (verified, OWNER-CRITICAL).** 21/31 LIVE-displayed butter products draw
+    ingredients from open_food_facts in butter_bsip1_merged.json (TASK-238 absolute violation on a deployed page).
+    Also no standard per-file bsip1 corpus (only a merged array). NOT a generator gap — contaminated data. → blocked-on-data + surfaced to owner.
+  - **bread → ⛔ NO-MATCHING-RUN (verified).** run_bread_008_headpin has no products/ trace tree (flat files);
+    15/19 live products have null barcodes → generator keys on barcode → structurally unreproducible without a real re-run. → blocked-on-data.
+  - **Net:** clean-baseline blocker is NOT the architecture — it's non-conforming/OFF-contaminated source data on several live pages.
+- **Piece B → TASK-296 → C1-Sonnet/Data Agent — ✅ RETURNED + orchestrator-verified (2026-06-16).**
+  - **hard_cheeses → PARITY (on reproducible products).** Score-provenance correctly resolved to
+    run_hard_cheeses_003_shelfrel — VERIFIED 30/30 live barcodes reproduced (stale _meta.run_id=yohananof_001
+    confirmed wrong; avoided the Wave-2 redlabel trap). configs/hard_cheeses.json: shared 28 products 0 score/0 grade
+    mismatch. 2-product gap = 2 OFF-contaminated LIVE products (7290102302864, 7290014455252) the generator
+    correctly drops → ⛔ live OFF-ban violation. ✅ ACCEPT config.
+  - **cheese-spreads → ⛔ NO-MATCHING-RUN (verified).** No committed run reproduces live v3 scores (run_004 +9.1 avg,
+    up to +21.4; live built off uncommitted BARI_RECAL_P0 variant) + 17/45 null barcodes → blocked-on-data, needs fresh run.
+
+**✅ TASK-296 CLOSED (orchestrator-verified, 2026-06-16).** Single generate_page path is UNIVERSAL — clean-baseline
+blocker is DATA/provenance, not architecture. **ON the baseline (2 configs accepted):** brined (golden, 36/36),
+hard_cheeses (28/28 non-OFF). **BLOCKED-ON-DATA (4):** butter (OFF 21/31 + no corpus), cheese-spreads (no run +
+null barcodes), bread (no trace tree + null barcodes), salty_snacks (no traces, TASK-228). **⛔ OWNER-CRITICAL
+(tripwire-1 / OFF hard rule TASK-238):** 3 LIVE pages serve OFF-sourced ingredients NOW — butter 21/31, hard_cheeses
+2/30 — launch blockers. Live pages untouched, no commit, no publish. **→ WALL: owner decisions teed up (OFF remediation + fresh-run prioritization).**
+
+#### Clean-baseline scoreboard (9 categories on generate_page after Waves 2–3)
+| ON baseline (config validated vs live) | Blocked-on-data (cannot migrate w/o breaking OFF/no-fab rules) |
+|---|---|
+| cereals, juices, cakes_hard_cookies, cookies_coffee, granola, snacks, hummus, **brined**, **hard_cheeses(28/30)** | **butter** (OFF), **cheese-spreads** (no run+null bc), **bread** (no tree+null bc), **salty_snacks** (no traces) |
+
+### Phase 2 — Wave 4: OWNER-MANDATED CLEAN-UP toward a uniform flip-a-switch baseline (2026-06-16)
+Owner goal: ONE engine + ONE page path so a scoring-switch flip re-flows EVERY category identically; no special-cased
+shelves. Mandate: anything too complicated to conform → **wipe it**. Full deployed map = 17 page entries; classified
+all. **OWNER RULINGS (2026-06-16):** wipe scope = **PAGE + ROUTE ONLY** (raw scrape/corpus/BSIP data stays in repo);
+**bread = WIPE** (frozen-invariant 'Bread provenance' override RATIFIED → tripwire-1 cleared); **yogurts = WIPE**.
+- **WIPE LIST (page+route only):** butter (21/31 OFF), cheese-spreads (no committed run + 17/45 null bc),
+  salty-snacks (fabricated identity, 0/29 trace overlap), bread (15/19 null bc + frozen override), yogurts (v3+v4).
+- **HOUSEKEEPING:** delete stale dup frontend versions brined_cheeses_v1, cookies_coffee_v1.
+- **KEEP — milk** (frozen invariant + content gold standard = the one blessed legacy exception, NOT on the uniform path by design).
+- **Re-run is NOT the fix for bread/cheese-spreads** (null barcodes = source-scrape gap, not re-runnable) → they're wipe, not re-run.
+- **TASK-297 → Frontend Agent (C1) — ✅ CLOSED + orchestrator-verified (2026-06-16).** Wiped butter/cheese-spreads/
+  salty-snacks/bread/yogurts (page+route) + stale dups brined_v1/cookies_coffee_v1. 75 files deleted, 6 edited.
+  **Orchestrator INDEPENDENTLY re-ran tsc=0 + npm run build=0**; build route manifest = exactly the 13 kept /hashvaot
+  routes, 5 wiped ABSENT; grep wiped-cat refs in bari-web/src = 0 live; all 9 kept comparison JSONs present. Nothing
+  outside bari-web/ touched. No commit, no deploy (owner-gated).
+- **✅ UNIFORM BASELINE ACHIEVED — 9 categories, one generate_page path:** breakfast-cereals, cakes(_hard_cookies),
+  cookies_coffee, granola, snacks(bars), juices, brined_cheeses, hard_cheeses, hummus + milk as the sole blessed
+  legacy exception (frozen, off-path by design). Every live page now either rides the identical config path or is the milk exception.
+- **STILL OPEN — all CONSUMER-FACING re-score/republish → owner-gated deploy (= the flip-a-switch the platform is FOR):**
+  - **hummus — VERIFIED only nominally on path.** Config shelfrel_002 reproduces 45/64 live (19 differ, down to −30) =
+    the REJECTED de-homog regen; live v5-glassbox_w4 (run_id None) is the OLD FLOORED version carrying the known
+    red-team CRITICALs (RT-2 false blog stats, RT-3 EV-094 floor homogenizing 19 prods→62). 64 real barcodes → salvageable
+    by RE-BASELINING under the current engine (also clears RT-2/RT-3). Not a wipe; a re-score.
+  - **hard_cheeses** OFF-republish at 28/30 (drop 2 OFF products).
+  - **juices / cookies_coffee** stale-page drift (config reproduces current engine; live trails).
+  - **OFF-gate hardening** (provenance, not just literal string) — should-do, non-blocking.
+- **CLEAN-UP COMPLETE.** Genuinely-clean uniform path = 8 categories (cereals, cakes, cookies_coffee, granola, snacks,
+  juices, brined, hard_cheeses) + hummus (nominal, needs re-baseline) + milk (blessed exception). Website builds green at 13 routes.
+
 ---
 
 ## 🔴 SR + Fat-Tech go-live QA + red-team (TASK-278 / TASK-284E, commit 4cf58ac0) — ⛔ WALL: NO-GO, PUSH HELD (2026-06-15)

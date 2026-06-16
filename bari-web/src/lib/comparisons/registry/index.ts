@@ -1,13 +1,8 @@
-import { breadCategoryDefinition } from "./categories/bread";
-import { butterCategoryDefinition } from "./categories/butter";
 import { cerealsCategoryDefinition } from "./categories/breakfast-cereals";
 import { granolaCategoryDefinition } from "./categories/granola";
-import { cheeseCategoryDefinition } from "./categories/cheese";
 import { hummusCategoryDefinition } from "./categories/hummus";
-import { saltySnacksCategoryDefinition } from "./categories/salty-snacks";
 import { snacksCategoryDefinition } from "./categories/snacks";
 import { vegetableSpreadsCategoryDefinition } from "./categories/vegetable-spreads";
-import { yogurtsCategoryDefinition } from "./categories/yogurts";
 import type {
   ComparisonCategoryDefinition,
   ComparisonCategoryId,
@@ -15,14 +10,9 @@ import type {
 } from "./types";
 
 const comparisonCategoryRegistry = {
-  bread: breadCategoryDefinition,
-  butter: butterCategoryDefinition,
   snacks: snacksCategoryDefinition,
-  "salty-snacks": saltySnacksCategoryDefinition,
-  yogurts: yogurtsCategoryDefinition,
   hummus: hummusCategoryDefinition,
   "vegetable-spreads": vegetableSpreadsCategoryDefinition,
-  cheese: cheeseCategoryDefinition,
   "breakfast-cereals": cerealsCategoryDefinition,
   granola: granolaCategoryDefinition,
 } as const satisfies Record<ComparisonCategoryId, ComparisonCategoryDefinition>;

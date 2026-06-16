@@ -1,0 +1,38 @@
+{
+  "_comment": "Hard cheeses category config. Score provenance PROVEN: run_hard_cheeses_003_shelfrel matches all 30 live barcodes with 0 score mismatches (verified 2026-06-16 by barcode-level comparison vs hard_cheeses_frontend_v2.json). The live page _meta.run_id='run_hard_cheeses_yohananof_001' is STALE (red-team RT-1 confirmed; run_summary.json in run_003_shelfrel confirms grade dist A:2/B:23/C:3/D:2 matching the actual live products). Corpus: bsip1_outputs (68 records, all 30 live barcodes covered). OFF BLOCKER: barcodes 7290102302864 (Gouda Pesto) and 7290014455252 (Grana Padano) carry open_food_facts_fallback as provenance.source — both are displayed live products. Generator will auto-exclude them (TASK-238 hard rule), producing 28 products vs 30 live. These two products are a launch blocker and must be re-scraped from a direct source before this config can achieve full parity. Run universe = 30 (no additional exclusions: run_003_shelfrel contains exactly the 30 live products). EXCLUDE run_hardcheese_redlabel_v1_001 (UNSHIPPED experimental, 0/28 bogus scores).",
+  "category": "hard-cheeses",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hard_cheeses_003_shelfrel\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v2.json",
+  "retailer_scope": ["yohananof"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "exclusions": [],
+  "extension_fields": ["_subPool", "_novaGroup"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
+  "_off_blocker": {
+    "status": "LAUNCH_BLOCKER",
+    "affected_barcodes": [
+      {
+        "barcode": "7290102302864",
+        "name": "Gouda Pesto Vert 200g",
+        "off_source": "open_food_facts_fallback",
+        "live_score": 62.0,
+        "live_grade": "C"
+      },
+      {
+        "barcode": "7290014455252",
+        "name": "Grana Padano Gratinato 29% 100g",
+        "off_source": "open_food_facts_fallback",
+        "live_score": 66.1,
+        "live_grade": "B"
+      }
+    ],
+    "action_required": "Re-scrape both products from direct source (yohananof storefront / label scan) and regenerate BSIP1 corpus records. Until resolved, generator produces 28 products; live page has 30."
+  }
+}
