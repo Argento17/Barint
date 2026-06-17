@@ -368,10 +368,13 @@ TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gat
 - **P167 → TASK-317 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-17, commit 31d6da6fe). STEP 2 DONE.** affected_set.py:
   flag what-if → affected_set.json (affected corpora + frozen_breaches + affected_shelves to re-run + affected_no_config). Verified:
   frozen sample → frozen_touched+exit 2; exit matrix 2/1/0; real --set BARI_GLASSBOX_W4=on resolved in 3.1s. Read-only. Feeds step 4.
-- **P168 → TASK-318 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg). STEP 3:** automated copy stage — generalize the TASK-305
-  copy_carryover + TASK-307 schema_strip one-offs into a config-driven `copy_stage.py` (carry grade-unchanged copy, author-set for
-  grade-changed/new, schema-match); leaves step-1 render fields intact; OFF-ban. Feeds step 4.
-- **NEXT — STEP 4:** orchestration command chaining 1+2+3 (flip → shadow/gate → affected-set → trigger → copy → gates → deploy-ready PR), after 2+3 verify.
+- **P168 → TASK-318 → Data Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-17, commit 9c690b58b). STEP 3 DONE.**
+  copy_stage.py: config-driven (schema derived from live, no per-shelf tables); cereals 20/20 carried + schema-match + scores unchanged;
+  synthetic grade-flip → correctly emitted GRADE_CHNG into author_set (19 carried/1 authored). Keeps step-1 render fields. OFF=0.
+- **P169 → TASK-319 → C1-GROK — 🔵 DISPATCHED (bg). STEP 4 (crown):** spine_flip.py — chains affected_set → rescore_all → copy_stage →
+  run_gates → spine_run_report + DEPLOY-READY bundle. FROZEN GATE = hard stop (exit 2). Orchestration only; NO push/PR/deploy (owner merges).
+  e2e on BARI_GLASSBOX_W4=on (affects cereals+hummus).
+- **NEXT — STEP 5:** wire the chain into the Spine DAG runner (TASK-252 Stage/run_pipeline — hashed/incremental/lineage-recorded).
 - **Deploy of the spine's own output stays owner-gated** (same Barint topology as TASK-314); merges = owner.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +

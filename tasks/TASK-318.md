@@ -2,12 +2,20 @@
 id: TASK-318
 title: Spine step 3 — automated copy stage (generalize copy-carryover + schema-strip + author-set detection into a reusable pipeline step)
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-17
+closed_at: 2026-06-17
 depends_on: [TASK-316]
 blocks: [TASK-319]
 category_id: null
+close_reason: >
+  Data Agent built 03_operations/page_generator/copy_stage.py (commit 9c690b58b). Orchestrator-verified: genuinely config-driven
+  (_derive_live_schema reads the live page schema, no SHELVES/barcode tables); carry grade-unchanged copy + schema-match + keep
+  step-1 render fields proven on cereals (20/20 carried, 0 PENDING on carried, v3-only fields stripped, scores unchanged, copy
+  byte-identical to live). Author-set path independently exercised via a synthetic grade-flip → correctly emitted GRADE_CHNG into
+  author_set (19 carried / 1 authored_needed with old→new grade). NEW-product + score-moved≥3 branches present in code. OFF=0,
+  no engine/scoring/bari-web edits. Feeds step-4 orchestration.
 summary: >
   This week's publish carried copy + detected the author-set via TWO one-off scripts (_rescore_staging/copy_carryover.py TASK-305 +
   _rescore_staging/schema_strip.py TASK-307) hand-listed per shelf. Generalize them into ONE reusable, config-driven module so the
