@@ -350,8 +350,19 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   index reconciliation; post-merge; stock-theme-image rule applies. Plus: confirm origin/master IS the Vercel prod branch.
 - **🧹 Cleanup done:** deleted the mistaken `task-275-engine-fixes-abc` branch from the WRONG repo (Argento17/bari, old standalone).
 - **Fix-forward (non-blocking):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-7 tomato-juice image (RT-6 folded into TASK-315).
-- **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
-- **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).
+## 🦴 SCORE-SWITCH SPINE — STARTED 2026-06-17 (owner: "tackle the spine now; leave the merges for me")
+Goal: flip a scoring flag → every affected page re-flows to a deploy-ready PR. Pieces exist (TASK-252 Spine datastore+DAG,
+TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gates). Build sequence:
+1. **Render-contract gap** (keystone) — generate_page emits the FULL render contract → drop-in output (no overlay-merge).
+2. Affected-set from a flag (wrap Shadow `diff --set` movers/frozen table → category list, Spine-lineage-backed).
+3. Automated copy stage (generalize copy-carryover + author-set detection).
+4. Orchestration command (flip → shadow/gate → affected-set → trigger → copy → gates → deploy-ready PR).
+5. Wire into the Spine DAG runner (hashed/incremental/lineage).
+- **P166 → TASK-316 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** STEP 1: port render-field logic (glassBox/_product_type/
+  nova/sugar-kcal-per-100ml/_has_phvo/confidence/d3/d4) from the bespoke builders into generate_page's config-driven extension
+  mechanism; additive OUTPUT only (ZERO score change); OFF-ban absolute; scope = the 7 re-baselined categories. Acceptance =
+  DROP-IN parity vs live render schema per category + score==trace regression check. Staging-only. ([[generator_render_contract_gap]])
+- **Deploy of the spine's own output stays owner-gated** (same Barint topology as TASK-314); merges = owner.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
   batch_run_brined_cheeses_005.py + batch_run_cookies_005_shelfrel_pilot.py + constants.py); rescore_all reads it, sets flags +
