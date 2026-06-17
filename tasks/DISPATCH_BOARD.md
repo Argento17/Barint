@@ -371,10 +371,14 @@ TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gat
 - **P168 → TASK-318 → Data Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-17, commit 9c690b58b). STEP 3 DONE.**
   copy_stage.py: config-driven (schema derived from live, no per-shelf tables); cereals 20/20 carried + schema-match + scores unchanged;
   synthetic grade-flip → correctly emitted GRADE_CHNG into author_set (19 carried/1 authored). Keeps step-1 render fields. OFF=0.
-- **P169 → TASK-319 → C1-GROK — 🔵 DISPATCHED (bg). STEP 4 (crown):** spine_flip.py — chains affected_set → rescore_all → copy_stage →
-  run_gates → spine_run_report + DEPLOY-READY bundle. FROZEN GATE = hard stop (exit 2). Orchestration only; NO push/PR/deploy (owner merges).
-  e2e on BARI_GLASSBOX_W4=on (affects cereals+hummus).
-- **NEXT — STEP 5:** wire the chain into the Spine DAG runner (TASK-252 Stage/run_pipeline — hashed/incremental/lineage-recorded).
+- **P169 → TASK-319 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-17, commit abc275e00). STEP 4 (crown) DONE.** spine_flip.py
+  chains affected_set → rescore_all → copy_stage → run_gates → spine_run_report + DEPLOY-READY bundle. **Orchestrator RAN both paths:**
+  BARI_GLASSBOX_W4=on → 2 shelves re-scored/copied/gated, bundle+report+author_set, "DEPLOY-READY... No push performed", exit 1, 6.1s;
+  BARI_RECAL_P0=on → FROZEN BREACH [milk,snack_bars] HARD BLOCK exit 2, 0 shelves, 2.8s. Exit codes confirmed (1/2). No push/PR.
+  **🎉 SPINE CORE COMPLETE (steps 1-4): a scoring-flag change → gated, copy-applied, deploy-ready bundle via ONE command.**
+- **P170 → TASK-320 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg). STEP 5 (enhancement):** wire the chain through the Spine DAG runner
+  (Stage/run_pipeline) → incremental skip-unchanged + lineage into spine.db. Acceptance: ran→skipped + lineage query + force-invalidation
+  + frozen-stop re-confirm. Uses existing runner/spine_db; no engine/page edits; no push.
 - **Deploy of the spine's own output stays owner-gated** (same Barint topology as TASK-314); merges = owner.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
