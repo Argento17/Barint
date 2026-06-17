@@ -365,7 +365,12 @@ TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gat
   on all → fully SCORE-NEUTRAL (engine untouched). Hummus _product_type lens types match live EXACTLY (matbucha10/eggplant7/pepper5/
   masabacha2 → /vegetable-spreads safe); glassBox 57/57. **Generator output is now DROP-IN — overlay-merge obsolete for future flips.**
   Residuals (out of scope, engine/editorial): d3_processing_signal=null, glassBox demote on 1 hummus product, _product_type 2/57 editorial.
-- **NEXT — STEP 2:** affected-set from a flag (wrap Shadow `diff --set BARI_X=on` movers/frozen table → category list, Spine-lineage-backed).
+- **P167 → TASK-317 → C1-GROK — 🔵 DISPATCHED (bg). STEP 2:** affected-set resolver — wrap Shadow `diff --set` → affected_set.json
+  (which corpora moved + frozen-breach flag + the rescore_all shelves to re-run); read-only over shadow/registry/configs. Feeds step 4.
+- **P168 → TASK-318 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg). STEP 3:** automated copy stage — generalize the TASK-305
+  copy_carryover + TASK-307 schema_strip one-offs into a config-driven `copy_stage.py` (carry grade-unchanged copy, author-set for
+  grade-changed/new, schema-match); leaves step-1 render fields intact; OFF-ban. Feeds step 4.
+- **NEXT — STEP 4:** orchestration command chaining 1+2+3 (flip → shadow/gate → affected-set → trigger → copy → gates → deploy-ready PR), after 2+3 verify.
 - **Deploy of the spine's own output stays owner-gated** (same Barint topology as TASK-314); merges = owner.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
