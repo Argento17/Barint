@@ -339,8 +339,13 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
 - **✅ PR #7 on Argento17/Barint (the REAL deploy repo), 2026-06-17:** https://github.com/Argento17/Barint/pull/7 — base master ←
   publish/rebaseline-4pages — data-only overlay of the **4 route-ready pages** (cereals_v2, granola_v1, juices_v3, hummus_v5). Vercel
   preview = build check; **merge = go-live (owner-gated)**. The other **3 (cakes, cookies-coffee, brined) have NO routes on Barint
-  master → need a frontend port** (route+loader+components) before they can land = remaining TASK-314 work + confirm prod branch.
-- **Fix-forward (non-blocking, post-push):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-6 cakes _meta.schema, RT-7 tomato-juice image.
+  master → need a frontend port** (route+loader+components) before they can land.
+- **TASK-315 → Frontend Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Port the bounded dependency closure (3 routes + 3 loaders + 3
+  components + faq-schema + 3 verified data JSONs; shared deps corpus/registry/view-models already on master & near-identical) onto a
+  Barint-master worktree; build (tsc+npm run build); open PR (base master) on origin/Barint. Vercel preview = build check; NEVER merge/deploy.
+  Also fixes RT-6 (cakes _meta.schema). If the closure cascades into the 112-file divergence → STOP + report blockers (don't force).
+- **🧹 Cleanup done:** deleted the mistaken `task-275-engine-fixes-abc` branch from the WRONG repo (Argento17/bari, old standalone).
+- **Fix-forward (non-blocking):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-7 tomato-juice image (RT-6 folded into TASK-315).
 - **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
 - **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).
 - **[P158 spec] Fix: encode each shelf's shelf-relative
