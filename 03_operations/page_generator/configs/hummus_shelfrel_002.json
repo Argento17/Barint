@@ -34,7 +34,20 @@
     "corpus_filter": null,
     "_source": "batch_run_hummus_shelfrel_002.py + constants.py SODIUM_SHELF_REL_HUMMUS_*"
   },
-  "exclusions": [],
+  "exclusions": [
+    {"barcode": "3643820", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073005889", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073006015", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073705505", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073733324", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073733331", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "208428", "reason": "out_of_scope: whole chickpeas, not a prepared dip"},
+    {"barcode": "7290018359686", "reason": "out_of_scope: whole chickpeas, not a prepared dip"},
+    {"barcode": "7296073733317", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "7296073733348", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "1990261", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "3643714", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"}
+  ],
   "extension_fields": ["_product_type"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }

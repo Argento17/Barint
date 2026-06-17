@@ -6,7 +6,9 @@
   ],
   "run_products_dir": "C:\\Bari\\02_products\\juices\\bsip2_outputs\\run_juices_yohananof_002\\products",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\juices_frontend_v3.json",
-  "retailer_scope": ["yohananof"],
+  "retailer_scope": [
+    "yohananof"
+  ],
   "subpool_filter": null,
   "dedup": {
     "rule": "one_card_per_barcode",
@@ -35,14 +37,50 @@
     "_source": "batch_run_shelfrel_golive_001.py + constants.py SUGAR_SHELF_REL_JUICES_*; live run_juices_shelfrel_001"
   },
   "exclusions": [
-    {"barcode": "7290000272696", "reason": "removed_from_display: lemon_juice subpool"},
-    {"barcode": "7290004030148", "reason": "removed_from_display: lemon_juice subpool"},
-    {"barcode": "7290018940761", "reason": "removed_from_display: tirosh subpool"},
-    {"barcode": "7290019398516", "reason": "removed_from_display: tirosh subpool"},
-    {"barcode": "7290106668577", "reason": "removed_from_display: lemon_juice subpool"},
-    {"barcode": "7290117034774", "reason": "removed_from_display: lemon_juice subpool"},
-    {"barcode": "7290117765630", "reason": "removed_from_display: tirosh subpool"},
-    {"barcode": "7290119385034", "reason": "removed_from_display: lemon_juice subpool"}
+    {
+      "barcode": "7290000272696",
+      "reason": "removed_from_display: lemon_juice subpool"
+    },
+    {
+      "barcode": "7290004030148",
+      "reason": "removed_from_display: lemon_juice subpool"
+    },
+    {
+      "barcode": "7290018940761",
+      "reason": "removed_from_display: tirosh subpool"
+    },
+    {
+      "barcode": "7290019398516",
+      "reason": "removed_from_display: tirosh subpool"
+    },
+    {
+      "barcode": "7290106668577",
+      "reason": "removed_from_display: lemon_juice subpool"
+    },
+    {
+      "barcode": "7290117034774",
+      "reason": "removed_from_display: lemon_juice subpool"
+    },
+    {
+      "barcode": "7290117765630",
+      "reason": "removed_from_display: tirosh subpool"
+    },
+    {
+      "barcode": "7290119385034",
+      "reason": "removed_from_display: lemon_juice subpool"
+    },
+    {
+      "barcode": "5411188115434",
+      "reason": "out_of_scope: plant-milk/coffee drink, not a juice"
+    },
+    {
+      "barcode": "7290110325893",
+      "reason": "out_of_scope: plant-milk/coffee drink, not a juice"
+    },
+    {
+      "barcode": "7290110558420",
+      "reason": "out_of_scope: plant-milk/coffee drink, not a juice"
+    }
   ],
   "extension_fields": [],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
