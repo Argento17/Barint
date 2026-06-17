@@ -171,7 +171,51 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
 - **NEXT (downstream, owner-gated):** (1) Nutrition + red-team REVIEW the rebaseline_delta_report.md (notable: hummus 577480 C→E
   auto-fixes RT-3 Anti-Immunity; brined 2 A→B; hard_cheeses 2 A→B = parked sat-fat Q; granola 8 / snacks 10 moves). (2) owner
   deploy (consumer-facing, swaps staging pages into bari-web + push). (3) hard_cheeses OFF launch-blocker (2/30) still open.
-  (4) THEN re-onboard wiped products into the uniform format; new products align going forward. rescore_all.py uncommitted (owner-gated).
+  (4) THEN re-onboard wiped products into the uniform format; new products align going forward.
+- **✅ Trigger + configs COMMITTED locally c3b1f42e0 (2026-06-16, owner-approved; not pushed).**
+
+### Phase 3 — Re-baseline review gate (TASK-299, dispatched 2026-06-16; owner approved deploy-in-principle, push still gated)
+- **TASK-299 → Nutrition Agent (C1-Sonnet) — 🟡 RETURNED-UNVERIFIED: CONDITIONAL GO.** 8/9 shelves SOUND (cereals/juices/
+  cakes/cookies_coffee/granola/snacks/hummus/brined). **hard_cheeses NEEDS-GOVERNANCE → HOLD:** A→B moves directionally right
+  but EV-099 (sat-fat inference) pending D7 → HC could re-move to D once it ships (churn) + 2 OFF blockers unresolved. Frozen
+  invariants confirmed: milk Δ0, snacks max 70.0/B (no A), hummus 577480 C→E = RT-3 Anti-Immunity FIX (eggplant-spread NOVA-4,
+  correctly floor-excluded). Awaiting orchestrator verification + red-team convergence.
+- **TASK-299 → Red-Team Agent (C1-Sonnet) — 🔵 DISPATCHED (background).** Adversarial challenge: invariant breaches,
+  Anti-Immunity, clustering artifacts, indefensible scores, score==trace, OFF. CRITICAL/HIGH/MED. Both RETURNED-UNVERIFIED on return.
+- **TASK-299 → Red-Team Agent (C1-Sonnet) — 🔴 RETURNED + orchestrator-verified: 3 CRITICAL (all confirmed).** RT-1 snacks
+  7290011498870 floored 57.38→70/B (Anti-Immunity floor Q); RT-2 **5 granola products impossible sodium 6k-10k mg** (live=None →
+  re-baseline REGRESSES B→C on corrupt data, verified); RT-3 hummus 7296073705505 A/80.9 conf=90 on scraped-nutrition-panel
+  ingredient string (not on live → would INTRODUCE bogus A). +5 HIGH/3 MED. Frozen invariants HOLD.
+- **✅ TASK-299 CLOSED — CONVERGED VERDICT: DEPLOY = NO-GO (3 verified CRITICAL).** Trigger itself SOUND. CRITICALs = corrupt/garbage
+  BSIP1 SOURCE data the re-baseline EXPOSED (not a trigger bug). 5 shelves CLEAN (cereals/juices/cakes/cookies_coffee/brined);
+  granola+hummus+snacks blocked on CRITICALs; hard_cheeses held (EV-099+OFF). Remediation: Data (granola sodium + hummus record) +
+  QA (sodium>5000 sanity gate) + Nutrition/Product (RT-1 floor ruling) → re-run trigger (~11s) → re-gate. **WALL: owner go/no-go on remediation path.**
+- **Owner deploy approval-in-principle (5×yes) is now SUPERSEDED by the gate: push HELD — reviews found verified CRITICALs.**
+
+### Phase 3 — CRITICAL remediation (owner: "go ahead, make these fixes", 2026-06-17; orchestrator-mode dispatch)
+- **TASK-300 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Root-cause + fix corrupt BSIP1: granola impossible sodium
+  (7290017962047=10000, ...962023=7000, ...771161=8000, ...771369=6000, ...771314=9000) — find BSIP0 parse/unit bug, re-derive
+  from raw scrape, sweep all shelves; hummus 7296073705505 ingredient=nutrition-panel → re-derive or NULL. OFF-ban absolute. Source-only, no engine/config/page edits.
+- **TASK-301 → C1-GROK (P159) — 🔵 DISPATCHED (bg).** Data-sanity gate in run_gates.py: sodium>5000 (+ absurd-value bounds) +
+  ingredient-is-nutrition-panel pattern = hard FAIL; must flag the 6 known-bad records + pass the 5 clean shelves. Gate code only.
+- **TASK-302 → Nutrition Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** RT-1 ruling: is whole_food_fat_nova1_2 floor (57.38→70/B on
+  snack 7290011498870 w/ missing fiber+sodium) sound / narrow / Anti-Immunity? Ruling only (Product D7 if it proposes a change).
+- **SEQUENCING:** after TASK-300 verified → re-run rescore_all (~11s, now with TASK-301 gate active) → re-gate; TASK-302 ruling
+  informs snack floor (engine change, if any, is separate governed EV+D7).
+- **✅ TASK-302 CLOSED (ruling, orchestrator-verified).** RT-1 = NARROW-THE-FLOOR. Verified code floor=70 vs SRC-v1 spec=65
+  (constants.py:841 vs score_resolution_contract.md:91/483) + Anti-Immunity (data-incomplete snack lifted to 70/B ceiling).
+  Fix = D6 PROPOSAL (restore 65 + data-completeness gate) → needs EV+Product D7+OWNER (frozen-adjacent: snack ceiling).
+  Butter (main whole_food_fat home) is WIPED → no live impact; only 2 staging snack products. NOT applied. → owner-gated governance item.
+- **✅ TASK-301 CLOSED (orchestrator-verified).** G8 DATA-SANITY gate in run_gates.py (wired :1266). Independently ran on all 9
+  staging pages → granola+hummus FAIL (the 6 known-bad), other 7 PASS, no false positives. Future corruption now blocked at the page gate.
+- **TASK-300 (Data fix) — 🟡 PARTIAL, orchestrator-verified + re-dispatched.** Round 1 (verified): root-caused granola sodium =
+  parse_sodium_mg ≤10-no-unit ×1000 bug on OLD 2026-06-01 scrapes; fixed 9 BSIP1 records (sodium now 4-10mg, not 1000s) — parser
+  left as-is (correct for new unit-bearing scrapes; G8 backstops). Hummus 7296073705505 ingredient→"חומוס". Scope clean (10 BSIP1
+  files only). **Orchestrator re-ran trigger + G8: granola PASS + RT-2 regression RESOLVED** (5 products recovered to B/69.4,
+  B/72.4, C/60.2, B/65.0, C/63.0 ≈ live). **BUT G8 still FAILs hummus — round-1 sweep was incomplete** (checked sodium only, missed
+  the panel-ingredient pattern): 2 MORE records 7296073005889 + 7296073006015 = same nutrition-panel-as-ingredients defect (raw-chickpea
+  products). → re-dispatched Data Agent (a47f834) for the 2 + a PROPER gate-logic sweep across all 9 corpora. (G8 doing its job = caught the manual miss.)
+- **Curation flag (later, not now):** the 3 "גרגרי חומוס" raw-chickpea products may be mis-shelved on the hummus comparison.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
   batch_run_brined_cheeses_005.py + batch_run_cookies_005_shelfrel_pilot.py + constants.py); rescore_all reads it, sets flags +

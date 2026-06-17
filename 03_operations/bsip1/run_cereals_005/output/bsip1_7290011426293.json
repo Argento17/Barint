@@ -28,7 +28,7 @@
     "fat_saturated_g": null,
     "fat_trans_g": null,
     "cholesterol_mg": null,
-    "sodium_mg": 4000.0,
+    "sodium_mg": 4.0,
     "carbohydrates_g": 50.8,
     "sugars_g": null,
     "dietary_fiber_g": 15.4,
@@ -167,5 +167,14 @@
       "fortified": false,
       "evidence_ref": "cereals_gap_resolution_v1 Sec 6.4 (Resolution 2, DISTORTION-004)"
     }
+  },
+  "_data_remediation": {
+    "task": "TASK-300",
+    "applied_at": "2026-06-17",
+    "defect": "sodium_unit_heuristic_overcorrection",
+    "root_cause": "parse_sodium_mg() val<=10 and no mg token -> val*1000. Raw scrape cereals_bsip0_raw_20260601T152207.json stored sodium in mg as a bare integer without unit token (no nutrition_raw_source). Value was already in milligrams; heuristic incorrectly treated as grams.",
+    "before_sodium_mg": 4000.0,
+    "after_sodium_mg": 4.0,
+    "raw_source_value": "sodium_raw=4 (mg, captured without unit token)"
   }
 }

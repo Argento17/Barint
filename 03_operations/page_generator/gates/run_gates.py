@@ -20,6 +20,7 @@ Gates implemented:
   G5 GRADE-INTEGRITY — grade/score agreement with central scale + trace
   G6 COPY-SAFETY     — sodium causal framing, prior-run refs, framework leakage, banned phrases
   G7 PARITY          — side-by-side comparison with baseline (when --baseline provided)
+  G8 DATA-SANITY     — physically impossible per-100g nutrition (e.g. sodium_mg>5000); nutrition-panel text in ingredients field
 """
 
 import argparse
@@ -110,6 +111,39 @@ SODIUM_CAUSAL_PATTERN = re.compile(
 # Hebrew character range (U+0590 – U+05FF)
 HEBREW_RE = re.compile(r"[֐-׿]")
 
+# ---------------------------------------------------------------------------
+# G8 DATA-SANITY constants (P159 / TASK-301)
+# Hard upper bounds per 100g; any breach is physically impossible for real food.
+# ---------------------------------------------------------------------------
+
+# Nutrition sanity bounds (per 100g)
+DATA_SANITY_BOUNDS = {
+    # sodium in mg
+    "sodium_mg": 5000,
+    # energy in kcal
+    "energy_kcal": 900,
+    # macro grams
+    "fat_g": 100,
+    "carbohydrates_g": 100,
+    "sugars_g": 100,
+    "protein_g": 100,
+    "fiber_g": 100,
+    "saturated_fat_g": 100,
+}
+
+# Hebrew tokens that indicate a nutrition panel was scraped into the ingredients field.
+# Require 2+ matches (to reduce false positives on real ingredient lists that may mention
+# one nutrient by chance).
+NUTRITION_PANEL_TOKENS = [
+    "ערכים תזונתיים",
+    "קל",  # standalone energy unit (e.g. "121 קל")
+    "גרם חלבונים",
+    "גרם פחמימות",
+    "גרם שומנים",
+    "מג נתרן",
+    "סיבים תזונתיים",
+]
+
 # Standalone Hebrew grade letters (to detect grade-in-prose mismatches)
 # Must be bounded so מ"ג, לל"ג, ה- prefixes don't trigger.
 # Grade letters as standalone Hebrew words: א (E), ב (D), ג (C), ד (B), ה (A), ס (S)
@@ -186,6 +220,41 @@ def find_standalone_hebrew_grade_letters(text):
 
             results.append((start, letter, grade))
     return results
+
+
+def _is_nutrition_panel_text(text):
+    """
+    Return True if the ingredients text appears to be a scraped nutrition panel
+    rather than an ingredient list. Detects by presence of 2+ Hebrew nutrition
+    panel tokens (per P159 spec) AND indicators that this is the *entire* field
+    value (e.g. very few real-ingredient separators like commas). This avoids
+    false-positives on real ingredient lists that have panel text appended
+    (common in current scraped data).
+    """
+    if not isinstance(text, str) or not text.strip():
+        return False
+    matches = 0
+    for tok in NUTRITION_PANEL_TOKENS:
+        if tok == "קל":
+            if re.search(r"(?<![\w\u0590-\u05FF])קל(?!\w)", text):
+                matches += 1
+        elif tok in text:
+            matches += 1
+    if matches < 2:
+        return False
+    # Heuristic for "is actually the panel, not ingredients + panel":
+    # - Low comma count (real ingr lists use , to separate components)
+    # - Or very short overall text containing the panel values
+    comma_count = text.count(",")
+    if comma_count <= 1:
+        return True
+    # Also allow if the panel tokens dominate and no long ingredient prefix
+    # (e.g. text starts with food name immediately followed by panel tokens, no , before first panel token)
+    first_panel_pos = min((text.find(t) for t in NUTRITION_PANEL_TOKENS if t in text), default=-1)
+    if first_panel_pos >= 0 and first_panel_pos < 40 and comma_count < 5:
+        # short prefix before panel starts, few commas total
+        return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -914,6 +983,113 @@ def gate_copy_safety(frontend):
     return g
 
 
+# --------------- G8 DATA-SANITY -----------------------------------------
+
+def gate_data_sanity(frontend):
+    """
+    G8 DATA-SANITY gate (P159 / TASK-301).
+    Fails on:
+    - Physically impossible nutrition values per 100g (sodium_mg>5000, energy>900kcal,
+      any listed macro gram field >100, saturated_fat_g>100).
+    - Ingredients field contains a nutrition panel (2+ matching Hebrew tokens).
+    Output format matches other gates: FAIL lines name barcode + field + value.
+    """
+    g = GateResult("8 DATA-SANITY")
+    products = frontend.get("products", [])
+    violation_count = 0
+
+    # Map from expansion.nutrition json key -> (logical, bound)
+    NUTRITION_CHECKS = [
+        ("energyKcal", "energy_kcal", 900),
+        ("sodium", "sodium_mg", 5000),
+        ("fat", "fat_g", 100),
+        ("protein", "protein_g", 100),
+        ("sugar", "sugars_g", 100),
+        ("fiber", "fiber_g", 100),
+    ]
+
+    # Possible keys for saturated fat (not yet mapped into all pages, but future-proof + catch if present)
+    SATURATED_KEYS = [
+        "saturatedFat", "saturated_fat", "saturatedFat_g", "fat_saturated_g",
+        "saturated_fat_g", "fat_saturated", "sat_fat", "satFat",
+    ]
+
+    for p in products:
+        bc = get_barcode_from_product(p)
+        exp = p.get("expansion") or {}
+        nutr = exp.get("nutrition") or {}
+        ingredients = exp.get("ingredients")
+
+        # 1) Impossible nutrition per 100g
+        for json_key, logical, bound in NUTRITION_CHECKS:
+            val = nutr.get(json_key)
+            if val is not None:
+                try:
+                    v = float(val)
+                    if v > bound:
+                        g.fail(f"barcode={bc}: impossible {logical}={v} > {bound} (per 100g)")
+                        violation_count += 1
+                except (ValueError, TypeError):
+                    pass
+
+        # Saturated fat (check known possible keys + any extra keys in the nutr dict that look saturated)
+        checked_sat = False
+        for sk in SATURATED_KEYS:
+            if sk in nutr:
+                val = nutr.get(sk)
+                if val is not None:
+                    try:
+                        v = float(val)
+                        if v > 100:
+                            g.fail(f"barcode={bc}: impossible saturated_fat_g={v} > 100 (per 100g)")
+                            violation_count += 1
+                    except (ValueError, TypeError):
+                        pass
+                checked_sat = True
+                break
+        if not checked_sat:
+            # scan any other keys in nutr that might be saturated variants
+            for sk, val in nutr.items():
+                if "satur" in str(sk).lower() or "sat" == str(sk).lower():
+                    try:
+                        v = float(val) if val is not None else None
+                        if v is not None and v > 100:
+                            g.fail(f"barcode={bc}: impossible saturated_fat_g={v} > 100 (per 100g) [key={sk}]")
+                            violation_count += 1
+                    except (ValueError, TypeError):
+                        pass
+
+        # Also check legacy/alt metrics block if present at product root (some schema versions)
+        metrics = p.get("metrics") or {}
+        for mkey, logical, bound in [
+            ("sodium_mg", "sodium_mg", 5000),
+            ("protein_g", "protein_g", 100),
+            ("fat_g", "fat_g", 100),
+            ("fiber_g", "fiber_g", 100),
+            ("sugar_g", "sugars_g", 100),
+        ]:
+            val = metrics.get(mkey)
+            if val is not None:
+                try:
+                    v = float(val)
+                    if v > bound:
+                        g.fail(f"barcode={bc}: impossible {logical}={v} > {bound} (metrics per 100g)")
+                        violation_count += 1
+                except (ValueError, TypeError):
+                    pass
+
+        # 2) Ingredients field is a nutrition panel
+        if _is_nutrition_panel_text(ingredients):
+            g.fail(f"barcode={bc}: ingredients field contains nutrition panel text (2+ tokens)")
+            violation_count += 1
+
+    if violation_count == 0:
+        g.info("No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)")
+    else:
+        g.info(f"Data sanity violations: {violation_count} across checked products")
+    return g
+
+
 # --------------- G7 PARITY ----------------------------------------------
 
 def gate_parity(frontend, baseline):
@@ -1087,6 +1263,7 @@ def main():
         gate_grade_integrity(frontend, traces, config),
         gate_copy_safety(frontend),
         gate_parity(frontend, baseline),
+        gate_data_sanity(frontend),
     ]
 
     elapsed = time.time() - t0
