@@ -1,6 +1,6 @@
 // TASK-179N — Glass Box D5/D6 code→Hebrew copy map (Content-owned strings).
 //
-// The pilot JSONs (hummus_frontend_v4 / maadanim_frontend_v2) emit the engine's D5/D6
+// The pilot JSONs (hummus_frontend_v4) emit the engine's D5/D6
 // gate output in CODED form only — a `disclosureCodes: string[]` vocabulary plus the
 // gate state. They carry NO prose. This module is the single place that maps each code
 // to its calm, factual Hebrew line, and holds the shared labels (the `ניתוח חלקי` flag +
