@@ -329,9 +329,13 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   DIFFERENT LAYOUT (main has no bari-web/; 4 of 7 pages — cakes/cookies_coffee/juices_v3/brined — don't exist on main; main carries older
   cereals_v1/hummus_v3-4 + wiped cats). PR attempt → HTTP 422 (base `master` not on remote; remote default = `main`). A clean 7-page PR is
   impossible across mismatched structures. UNKNOWN: where bari.digital actually deploys from (no in-repo vercel.json). → **this is a REPO
-  MIGRATION, not a publish.** **OWNER RULING 2026-06-17: HOLD + track as migration → TASK-314 (BLOCKED on deploy-source confirmation).**
-  Branch stays safely pushed (Argento17/bari); nothing deployed; nothing lost. Publish work (TASK-308/309/310/312/313) is DONE + verified +
-  committed; only the topological delivery is blocked.
+  MIGRATION, not a publish.** **OWNER RULING 2026-06-17: HOLD + track as migration → TASK-314.**
+  **🔎 DEPLOY SOURCE FOUND (strong lead):** local repo has TWO remotes — `bari`=Argento17/**bari** (OLD standalone, WRONG target I pushed to)
+  + `origin`=Argento17/**Barint** (the MONOREPO). **origin/Barint `master` HAS bari-web/ + 4 of the 7 pages** → almost certainly the real
+  bari.digital source (Vercel root=bari-web). NOT 100% confirmed (owner unsure, no dashboard). To land: task-275 is 27 ahead / 18 behind
+  origin/master (DIVERGENT) + 3 pages missing there (cakes/cookies_coffee/brined) → a reconciliation + add-3, not a fast-forward; push to
+  origin/master = live deploy (owner-gated). **OWNER 2026-06-17: "leave it and move on"** → TASK-314 stays BLOCKED on Vercel-prod-branch
+  confirmation; publish work DONE+verified+committed; nothing lost. [[deploy_topology_main_vs_monorepo]]
 - **Fix-forward (non-blocking, post-push):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-6 cakes _meta.schema, RT-7 tomato-juice image.
 - **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
 - **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).

@@ -8,7 +8,17 @@ created_at: 2026-06-17
 depends_on: [TASK-310, TASK-312, TASK-313]
 blocks: []
 category_id: null
-blocked_on: owner confirmation of the true bari.digital deploy source (Vercel project / branch / root dir)
+blocked_on: final confirmation that origin/master (Argento17/Barint) is the Vercel production branch (owner doesn't know offhand; strong evidence points to it)
+deploy_source_finding: >
+  STRONG LEAD (2026-06-17): the local repo has TWO remotes — `bari` (Argento17/bari = OLD standalone, root layout,
+  the WRONG target I pushed to earlier) and `origin` (Argento17/Barint = the monorepo). origin/Barint `master` HAS
+  `bari-web/` and already carries 4 of the 7 pages (cereals_v2, granola_v1, juices_v3, hummus_v5) → almost certainly
+  the real bari.digital deploy source (Vercel root=bari-web, prod branch likely origin/master). Could not 100% confirm
+  the Vercel production branch (no dashboard access; owner unsure). Relationship: task-275 is 27 ahead / 18 behind
+  origin/master (DIVERGENT); local master 21 ahead / 18 behind. 3 publish pages MISSING on origin/master
+  (cakes_hard_cookies, cookies_coffee, brined_cheeses) = new categories to add. So landing = a reconciliation of the
+  18-commit divergence + add 3 new pages + overlay the 4 existing — NOT a fast-forward. ⚠️ Pushing to origin/master
+  triggers the live deploy (irreversible) → owner-gated.
 summary: >
   The 7-page re-baseline publish is verified, committed (ecc515d30 + 0edac53c9), and pushed on branch
   task-275-engine-fixes-abc — but it CANNOT cleanly reach the live site. Discovered 2026-06-17 at the push/PR step:
