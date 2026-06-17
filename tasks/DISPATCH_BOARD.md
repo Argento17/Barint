@@ -216,6 +216,115 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   the panel-ingredient pattern): 2 MORE records 7296073005889 + 7296073006015 = same nutrition-panel-as-ingredients defect (raw-chickpea
   products). → re-dispatched Data Agent (a47f834) for the 2 + a PROPER gate-logic sweep across all 9 corpora. (G8 doing its job = caught the manual miss.)
 - **Curation flag (later, not now):** the 3 "גרגרי חומוס" raw-chickpea products may be mis-shelved on the hummus comparison.
+- **✅ TASK-300 + TASK-301 CLOSED + COMMITTED (3b1d5bc2c, 2026-06-17).** Round-2 gate-logic sweep (722 records) fixed 8 barcodes
+  (sodium + panel-ingredients). Orchestrator re-ran trigger: **G8 PASS all 9, C10 milk Δ0 all 9, OFF=0, score==trace ok, snacks max 70/B.**
+
+### ✅ REMEDIATION COMPLETE — converged deploy status (owner go/no-go)
+- **2 of 3 red-team CRITICALs RESOLVED at data level:** RT-2 granola sodium (fixed, scores recovered ≈ live), RT-3 hummus
+  garbage-ingredient (fixed, ingredients now real). **RT-1 (snack whole_food_fat floor 57→70/B) remains = owner-gated governance**
+  (TASK-302 ruling: narrow the floor → EV + Product D7 + owner; low stakes, butter wiped).
+- **DEPLOY-READY (clean, no open blocker):** cereals, cakes, cookies_coffee, granola, juices, brined (6 shelves).
+- **HELD:** snacks (RT-1 floor governance), hard_cheeses (EV-099 D7 + 2 OFF re-scrape), hummus (data-clean; Product curation call on 3 raw-chickpea products).
+- **⚠️ Note for deploy:** post-fix deltas SHIFTED from the Nutrition/Red-Team-reviewed set (data correction moved cereals 0→1 grade, granola 8→5) — changed shelves (cereals/granola/hummus) warrant a light re-confirm before publish; the rest stand.
+- **Residual non-blocking:** hummus chickpea curation (Product), granola fat_g EV-029 overwrite (needs re-scrape, flagged).
+- **OWNER 2026-06-17: "go with your recommendation"** → (a) light re-confirm 3 changed shelves → (b) copy stage → (c) deploy clean set; RT-1 + EV-099 carried as separate governed steps.
+- **TASK-303 → Nutrition Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Light methodology re-confirm of post-fix deltas on cereals/granola/hummus only (other 6 stand). Read-only.
+- **⚠️ DEPLOY IS NOT A RAW SWAP:** staging pages are score-complete but COPY-incomplete (PENDING_COPY on new/changed products). After re-confirm → run COPY stage (Hebrew authoring, Content Agent) on the clean set → swap into bari-web (repo-side, reversible) → **owner push (gated)**.
+- **✅ TASK-303 CLOSED (re-confirm, orchestrator-verified).** cereals+granola CONFIRM-GO (moves sound on corrected data).
+  **CAUGHT: hummus NOT clean — top-5 A-grades are all RAW/DRIED CHICKPEAS** (733324/733331/005889/006015/705505), real dips
+  start B/76.8 → hummus HELD ON CURATION (exclude raw-chickpea class → re-run → re-gate). granola fat_g=0.5 on 7290106773714 = pre-existing scrape error → separate re-scrape ticket (non-blocking).
+- **CONVERGED CLEAN DEPLOY SET = 6 shelves:** cereals, cakes, cookies_coffee, granola, juices, brined. HELD: hummus (curation),
+  snacks (RT-1 floor), hard_cheeses (EV-099+OFF).
+- **⚠️ DEPLOY = a CONTENT phase, not a swap:** staging pages are PENDING_COPY (fresh generation). Making the 6 live needs the COPY
+  stage (carry over live copy for unchanged products + re-author for score-changed/new ones, editorial gold-standard bar) →
+  then swap into bari-web → owner push. Scope/sequencing of the copy phase = owner steer.
+- **OWNER 2026-06-17: "go ahead" (publish phase) + confirmed score-switch SPINE is the next program after publish.** Copy phase sized:
+  289 products on 6 clean shelves, only **25 need fresh copy** (grade-changed/new), **264 reuse live copy**.
+
+### Phase 4 — Publish (TASK-304 + TASK-305 dispatched 2026-06-17)
+- **P160 → TASK-304 → C1-GROK — ✅ CLOSED + orchestrator-verified.** Excluded 6 raw-chickpea products → hummus 63 products,
+  **0 grade-A** (was 5 bags), G8 PASS / C10 Δ0 / OFF=0. Egregious fix done. **OWNER SCOPE FLAG (carried):** new top still =
+  canned whole chickpeas (B) + 3 EMPTY-ingredient products (B/75) → is the shelf "prepared dips only" or all chickpea products?
+  + empty-ingredient-at-B data-completeness Q. Owner/Product decides before hummus deploys (hummus stays held pending that).
+- **TASK-305 → Frontend Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Carry over live copy for 264 grade-unchanged products into staging;
+  isolate the ~25 PENDING_COPY (grade-changed + ~12 new) for Content; flag any grade-same-but-score-moved copy. Staging-only.
+- **✅ TASK-304 (hummus curation) + TASK-305 (copy carry-over) CLOSED + verified.** 264 carried, 25 to author; hummus raw-chickpeas dropped (0 A).
+- **OWNER 2026-06-17 rulings:** (1) MINIMAL publish (match live schema); (2) HUMMUS = prepared dips only.
+- **P161 → TASK-306 → C1-GROK — ✅ CLOSED + orchestrator-verified.** Hummus now PREPARED-DIPS-ONLY: 12 excluded (6 chickpea bags +
+  2 canned-whole + 4 empty-ingredient), 57 kept, 0 grade-A, 0 empty-ingredient, top-3 all tahini dips (new #1 7296073725404 B/70.6),
+  G8/C10/OFF/score==trace PASS. Only 2 need copy (577480 C→E, 577572 C→D). **Hummus joins the clean set (7 shelves).**
+- **TASK-307 → Frontend Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Schema-match strip: align 6 staging pages to each shelf's live copy field set (remove orphan v3 PENDING placeholders) → final precise author-list (PENDING only on changed/new).
+- **✅ TASK-307 (schema strip) CLOSED + verified.** 6 pages aligned to live field sets; FINAL author-list = 25 + hummus 2 = **27**;
+  0 new PENDING on unchanged; cookies_coffee 392 PENDING confirmed INHERITED from live (frontend handles gracefully → minimal publish renders fine).
+- **TASK-308 → Content Agent (C1-Sonnet, Hebrew=Sonnet-only) — ✅ CLOSED + orchestrator-verified (2026-06-17).** 27/27
+  PENDING authored across 7 staging files; 0 remaining PENDING on the 6 clean shelves' targets. Quality spot-checked on ALL
+  grade-changed products (_rescore_staging/_qa_authored_dump.txt) = milk-grade: rowVerdicts open with calorie density,
+  sodium fact-only, grades as letters, no framework leakage, NEW-grade-honest (cakes E margarine-base, brined B/B/C brine-Na,
+  hummus 577480 C→E eggplant-spread = RT-3 fix, 577572 C→D matbucha). **6 shelves publish-ready.**
+- **⚠️ ORCHESTRATOR-CAUGHT defect (verification, not face-value):** hummus staging still had **55 grade-unchanged products at
+  PENDING_COPY** — hummus was EXCLUDED from TASK-305 copy_carryover + TASK-307 schema_strip (it was being re-curated in
+  parallel via P160/P161). The other 6 shelves carried live copy + got schema-stripped; hummus never did. NOT a TASK-308 miss
+  (TASK-308 authored its 2 hummus targets correctly).
+- **P162 → TASK-309 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-17).** Hummus copy parity: PENDING 1041→0;
+  57 products; rich v3 fields stripped 57/57; 55/55 grade-unchanged insightLine == live v5 (carried); 2 grade-changed dips
+  PRESERVED with authored E/D copy (not v5 grade-C); 0 grade moves, scores frozen. Integrity gates PASS (G4 OFF=0,
+  G5 score==trace 0, G7 parity, G8 data-sanity). **G1/G2/G6 FAILs = v3-schema-vs-match-live artifact** — PROVEN by running
+  the identical gate on cakes (publish-ready) → fails G1/G2/G6 identically; live v5 has float scores + _product_type + no
+  comparisonContext (= what v3 flags); G6 sodium-framing strings verified VERBATIM in live v5 (pre-existing/already-live).
+  Stray bari-web gate-report write reverted → bari-web clean. **Hummus now in the identical accepted state as the other 6.**
+- **✅ ALL 7 SHELVES PUBLISH-READY (staging):** cereals, cakes, cookies_coffee, granola, juices, brined, hummus — 0 real
+  PENDING (cookies_coffee 392 = true live parity), match-live schema, scores frozen, OFF=0, score==trace, milk Δ0 invariant held.
+- **NON-BLOCKING copy-clean backlog:** pre-existing sodium-causal framing in ~2+ live hummus insightLines + ~14 decimal-flag
+  false-positives across carried copy (already live; out of this publish's match-live scope).
+- **⚠️ ASSEMBLE-READINESS finding (orchestrator, pre-swap verification):** staging pages are score+copy complete but the generic
+  generator does NOT emit the frontend RENDER contract — live-only display fields (juices sugarPer100ml/kcalPer100ml/novaGroup;
+  cakes/cookies novaGroup/_has_phvo; hummus glassBox/_product_type/d3_processing_signal; cereals/granola confidence_level). Fields
+  are OPTIONAL in VM types (pages degrade, don't crash) but a file-swap = real regression (hummus loses ALL glass-box panels; the
+  **/vegetable-spreads page shares hummus_frontend_v5.json + filters on _product_type** → loses matbucha/eggplant/pepper lenses).
+  → assemble must be an OVERLAY-MERGE (keep live render fields, overlay score/grade/copy). **Generator render-contract gap = #1 SPINE
+  prerequisite** (true "flip a switch" needs generate_page to emit the full render contract; today display fields come from bespoke builders).
+- **Lineup divergence found:** 12 net-new (juices +4, granola muesli→granola 7/7, cookies +1) + 14 dropped. Net-new are INTENTIONAL
+  (real granolas / oat cookie / plant-milks) but lack render fields.
+- **OWNER RULING 2026-06-17 — CLEAN CATEGORY SCOPE:** keep granola muesli→granola swap + hummus dips-only; **DROP the 3 plant-milk/
+  iced-coffee from juices** (Alpro soy/oat, Tnuva iced coffee — keep tomato juice) + add them to juices config exclusions. → 9 genuine net-new.
+- **P163 → TASK-310 → Frontend Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-17).** Overlay-merged the 7 staging pages
+  into bari-web live JSONs. Orchestrator UPGRADED the agent's spot-checks to FULL: page-score==staging-score AND grade across ALL 7 pages,
+  every product, 0 mismatches, 0 not-in-staging. Clean-category-scope applied (granola muesli→granola 7/7, hummus dips-only −7, cookies +1,
+  juices +tomato & 3 plant-milk/coffee dropped + added to juices config exclusions=11). Render fields PRESERVED via overlay (hummus glassBox
+  57/57 + _product_type lenses intact matbucha10/eggplant7/pepper5 → /vegetable-spreads safe; cakes nova 65/65; juices kcal 21/21). OFF=0 in
+  ALL product data (token hits = _meta text documenting the exclusion). PENDING only cookies 392 (live-parity). Sorted desc; _meta counts match.
+  Build exit 0, tsc 0, 33/33 routes incl /vegetable-spreads. Milk untouched; no snack-bar A. Agent's "out-of-spec hummus config +12" = MISREPORT
+  (file byte-identical to P161's 12-exclusion state). Repo-side/reversible; NOT pushed.
+- **P164 → TASK-311 → Red-Team Agent — ✅ CLOSED + orchestrator-verified (2026-06-17). VERDICT: CONDITIONAL PASS, 0 CRITICAL,
+  2 HIGH, 4 MED, 2 LOW.** Independently re-confirmed: build exit 0 (19 routes), 343/343 score==staging, OFF=0, /vegetable-spreads lenses
+  intact (matbucha10/eggplant7/pepper5). Orchestrator VERIFIED + WIDENED the findings:
+  - **RT-1 (red-team found 3 granola) → orchestrator full-scan = 10 TRUE self-grade contradictions** (granola 4 rowVerdict + hummus 6
+    insightLine: card grade B/D but text says "stays/drops to C"). All grade-UNCHANGED live→staging = PRE-EXISTING LIVE bug (stale copy
+    vs own grade, never regenerated; carry faithfully propagated it — gate NOT buggy). Verified the 5 other raw-regex hits (cookies 4 +
+    cereals 1) are LEGITIMATE comparative phrasing, not contradictions. → **must fix before push.**
+  - **RT-3 (juices nova=3 on 5 fresh-squeezed grade-A OJ) VERIFIED real** — definitionally wrong (single-ingredient squeezed=NOVA1) +
+    internally inconsistent (peer squeezed juices already nova=1); stale inherited, not recomputed in shelf-relative. → **fix before push.**
+  - **RT-2 (cereals confidence FE=partial vs staging=full, 14/20) = CORRECT honest behavior** — all 14 have sugar=null+carbs=null →
+    "data under review" is the honest label (missing-data/OFF-ban honesty). NOT a contradiction; DOCUMENT the rule, no fix.
+  - **RT-4 (hummus _meta stale stats) / RT-6 (cakes _meta.schema) = non-consumer (meta not rendered) → fix-forward.** RT-5 (E-number
+    render, pre-existing in live overlay) + RT-7 (tomato-juice null image, LOW) + RT-8 (rowVerdict absent = non-issue) → fix-forward.
+- **P165 → TASK-313 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-17).** RT-3 fixed: 5 fresh-squeezed grade-A juices nova=3→1
+  (single-ingredient 100% juice, BSIP1 additive_count=0, matches peer); 0 grade-A nova=3 remaining; scores/grades vs staging 0 mismatch
+  (only novaGroup changed on the 5; count 21). No OFF.
+- **TASK-312 → Content Agent (C1-Sonnet, Hebrew) — ✅ CLOSED + orchestrator-verified (2026-06-17).** All 10 self-grade contradictions removed
+  (granola 4 rowVerdict + hummus 6 insightLine); stale "ל/ב-C" clause stripped, restarted with the substantive reason; milk-quality kept, scores
+  unchanged. FULL re-scan across all 7 pages = 0 contradictions.
+- **✅ CONSOLIDATED DATA RE-GATE PASS (orchestrator, post-fix, all 343 products / 7 pages):** JSON valid, score==staging 0 mismatch, grade 0 mismatch,
+  OFF=0 in product data, 0 self-grade contradictions. Final build (tsc + npm run build) re-running with the post-fix JSONs (granola/hummus/juices changed
+  after the red-team's build) — last result was exit 0 / 33 routes; awaiting re-confirm.
+- **✅ OWNER-READY (2026-06-17).** Final gate fully GREEN with post-fix JSONs: tsc 0 errors + `npm run build` exit 0 (all routes incl /hummus +
+  /vegetable-spreads + /granola + /juices); 0 self-grade contradictions; 343/343 score==staging + 0 grade mismatch; OFF=0 in product data; JSON valid.
+  All red-team HIGHs resolved (RT-1 ×10 copy, RT-3 ×5 nova); RT-2 = correct honest behavior (documented). **Staged for push (uncommitted, reversible):**
+  7 comparison JSONs (cereals_v2, cakes_hard_cookies_v1, cookies_coffee_v2, granola_v1, juices_v3, brined_v2, hummus_v5) + 2 configs (hummus_shelfrel_002,
+  juices exclusions). **AWAITING OWNER: commit + push to bari.digital (gated).**
+- **Fix-forward (non-blocking, post-push):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-6 cakes _meta.schema, RT-7 tomato-juice image.
+- **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
+- **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
   batch_run_brined_cheeses_005.py + batch_run_cookies_005_shelfrel_pilot.py + constants.py); rescore_all reads it, sets flags +
