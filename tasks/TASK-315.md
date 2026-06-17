@@ -2,12 +2,23 @@
 id: TASK-315
 title: Port frontend for cakes / cookies-coffee / brined onto Barint deploy repo → PR (the 3 pages PR #7 couldn't carry)
 owner: frontend-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-17
+closed_at: 2026-06-17
 depends_on: [TASK-314]
 blocks: []
 category_id: null
+close_reason: >
+  Frontend Agent ported the 3 pages onto Barint → PR #8 (https://github.com/Argento17/Barint/pull/8). Orchestrator-verified
+  against the pushed branch: exactly 17 files, ALL ADDITIONS (no collateral changes to origin/master's frontend → bounded port,
+  shared deps corpus/registry/view-models reused). cakes RT-6 fix confirmed _meta-ONLY (schema cookies-coffee-v1→cakes-hard-cookies-v1,
+  version v2→v1; products/scores untouched). The 3 data JSONs = the TASK-310-verified set (cookies/brined sha256 byte-identical;
+  cakes = verified + meta-only fix) → score==data + OFF=0 carry over. Agent reported tsc 0 + npm run build 0 (51 pages, all 4 routes
+  in output); Vercel preview on PR #8 is the authoritative build gate. NOT merged/deployed (owner-gated).
+  REMAINING (escalated to TASK-314, NOT a quick add): the /hashvaot INDEX is hand-built with a bespoke FeaturedXIntelligenceCard per
+  category + still lists monorepo-wiped categories (butter/maadanim/cheese/bread) → linking the 3 new pages = bespoke card work
+  entangled with the broader index/divergence reconciliation; sequences after merge; governed by the stock-theme-image rule.
 summary: >
   PR #7 (Argento17/Barint) landed the 4 route-ready re-baseline pages. The other 3 (cakes, cookies-coffee, brined-cheeses)
   have NO routes/loaders/components on Barint `master`, so their verified pages can't render there. Port the bounded

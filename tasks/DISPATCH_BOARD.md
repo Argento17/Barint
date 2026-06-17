@@ -340,10 +340,14 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   publish/rebaseline-4pages — data-only overlay of the **4 route-ready pages** (cereals_v2, granola_v1, juices_v3, hummus_v5). Vercel
   preview = build check; **merge = go-live (owner-gated)**. The other **3 (cakes, cookies-coffee, brined) have NO routes on Barint
   master → need a frontend port** (route+loader+components) before they can land.
-- **TASK-315 → Frontend Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** Port the bounded dependency closure (3 routes + 3 loaders + 3
-  components + faq-schema + 3 verified data JSONs; shared deps corpus/registry/view-models already on master & near-identical) onto a
-  Barint-master worktree; build (tsc+npm run build); open PR (base master) on origin/Barint. Vercel preview = build check; NEVER merge/deploy.
-  Also fixes RT-6 (cakes _meta.schema). If the closure cascades into the 112-file divergence → STOP + report blockers (don't force).
+- **TASK-315 → Frontend Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-17). → PR #8** https://github.com/Argento17/Barint/pull/8.
+  Ported cakes/cookies-coffee/brined frontend onto Barint: verified 17 files ALL ADDITIONS (no collateral changes); cakes RT-6 fix is
+  _meta-ONLY (scores untouched); 3 data JSONs = TASK-310-verified set (cookies/brined byte-identical sha, cakes +meta-fix) → score==data +
+  OFF=0 carry over. tsc 0 + build 0 (51 pages, 4 routes); Vercel preview = build gate. NOT merged/deployed. **ALL 7 PAGES NOW LANDABLE on
+  Barint across PR #7 (4) + PR #8 (3).**
+- **⚠️ Remaining (→ TASK-314, NOT a quick fix):** /hashvaot INDEX is hand-built (bespoke FeaturedXIntelligenceCard per category) + still
+  lists monorepo-WIPED categories (butter/maadanim/cheese/bread) → linking the 3 new pages = bespoke card work entangled with the broader
+  index reconciliation; post-merge; stock-theme-image rule applies. Plus: confirm origin/master IS the Vercel prod branch.
 - **🧹 Cleanup done:** deleted the mistaken `task-275-engine-fixes-abc` branch from the WRONG repo (Argento17/bari, old standalone).
 - **Fix-forward (non-blocking):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-7 tomato-juice image (RT-6 folded into TASK-315).
 - **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
