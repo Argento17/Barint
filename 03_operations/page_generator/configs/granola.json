@@ -37,5 +37,7 @@
   },
   "exclusions": [],
   "extension_fields": ["_subpool", "_isChildrens", "_wholeGrainClaim"],
+  "render_fields": ["confidence_level", "d4_additives"],
+  "_render_fields_note": "TASK-316: confidence_level from trace.data_sufficiency; d4_additives from detect_additives_d4+w2 lookup. Live schema: granola_frontend_v1.json.",
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }

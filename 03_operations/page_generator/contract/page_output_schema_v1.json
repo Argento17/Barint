@@ -79,8 +79,8 @@
             "description": "Product image URL; null when unavailable"
           },
           "score": {
-            "type": ["integer", "null"],
-            "description": "Bari score 0-100; null for INSUFFICIENT products"
+            "type": ["number", "null"],
+            "description": "Bari score 0-100; null for INSUFFICIENT products (float accepted)"
           },
           "grade": {
             "type": ["string", "null"],
@@ -151,6 +151,9 @@
               "comparisonContext": {
                 "type": "string",
                 "description": "Shelf-relative context without algorithm vocabulary (Hebrew)"
+              },
+              "consumerExplanation": {
+                "description": "Extension field: structured consumer explanation (pre-copy or object)."
               }
             },
             "additionalProperties": false
@@ -219,6 +222,77 @@
           "confidence_sub_reason": {
             "type": ["string", "null"],
             "description": "Metadata-only sub-reason enum. Non-rendering."
+          },
+          "novaGroup": {
+            "type": ["integer", "null"],
+            "description": "NOVA group 1–4; null when not assessed. (TASK-316 render field)"
+          },
+          "sugarPer100ml": {
+            "type": ["number", "null"],
+            "description": "Sugars per 100ml for liquid categories (juices). (TASK-316 render field)"
+          },
+          "kcalPer100ml": {
+            "type": ["number", "null"],
+            "description": "Calories per 100ml for liquid categories (juices). (TASK-316 render field)"
+          },
+          "retailers": {
+            "type": ["array", "null"],
+            "items": { "type": "string" },
+            "description": "Retailer availability list (juices). (TASK-316 render field)"
+          },
+          "_source_retailers": {
+            "type": ["array", "null"],
+            "items": { "type": "string" },
+            "description": "Source retailer list (cakes schema alias). (TASK-316 render field)"
+          },
+          "subPool": {
+            "type": ["string", "null"],
+            "description": "Juice sub-pool classification. (TASK-316 render field)"
+          },
+          "_category_routed": {
+            "type": ["string", "null"],
+            "description": "Cakes category routing decision from trace.category. (TASK-316 render field)"
+          },
+          "_product_type": {
+            "type": ["string", "null"],
+            "description": "Hummus product sub-type (e.g. hummus_spread, matbucha). (TASK-316 render field)"
+          },
+          "_has_phvo": {
+            "type": ["boolean", "null"],
+            "description": "True if PHVO/PHCS detected in L3 inferred classifications. (TASK-316 render field)"
+          },
+          "confidence_level": {
+            "type": ["string", "null"],
+            "description": "Data sufficiency label (sufficient/partial/insufficient). (TASK-316 render field)"
+          },
+          "d3_processing_signal": {
+            "type": "null",
+            "description": "Residual null: not in trace_writer output; requires engine edit out of scope for TASK-316."
+          },
+          "_isChildrens": {
+            "type": ["boolean", "null"],
+            "description": "Extension field: children's product classification."
+          },
+          "_subpool": {
+            "type": ["string", "null"],
+            "description": "Extension field: granola/cereal sub-pool."
+          },
+          "_wholeGrainClaim": {
+            "type": ["boolean", "null"],
+            "description": "Extension field: whole-grain claim present."
+          },
+          "bariInterpretation": {
+            "type": ["array", "null"],
+            "description": "Extension field: per-dimension interpretation entries (pre-copy)."
+          },
+          "bestUseCases": {
+            "type": ["array", "null"],
+            "items": { "type": "string" },
+            "description": "Extension field: recommended use-case tags."
+          },
+          "consumerTakeaway": {
+            "type": ["string", "null"],
+            "description": "Extension field: consumer takeaway (pre-copy placeholder)."
           }
         },
         "additionalProperties": false

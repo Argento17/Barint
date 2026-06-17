@@ -83,5 +83,7 @@
     }
   ],
   "extension_fields": [],
+  "render_fields": ["novaGroup", "sugarPer100ml", "kcalPer100ml", "retailers", "subPool", "d4_additives"],
+  "_render_fields_note": "TASK-316: novaGroup from trace.nova_proxy; sugarPer100ml/kcalPer100ml from normalized_nutrition_per_100g; retailers from source_retailers (array); subPool from corpus.juice_subpool; d4_additives from detect_additives_d4+w2. Live schema: juices_frontend_v3.json.",
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }

@@ -48,6 +48,8 @@
     {"barcode": "1990261", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
     {"barcode": "3643714", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"}
   ],
-  "extension_fields": ["_product_type"],
+  "extension_fields": [],
+  "render_fields": ["_product_type", "glassBox", "d3_processing_signal", "d4_additives"],
+  "_render_fields_note": "TASK-316: _product_type keyword classifier; glassBox emits gateState=unconstrained (D5/D6 demote pass is residual — bc=7290104721533 had gateState=demote in v5); d3_processing_signal=null (residual: not in trace_writer output, requires engine edit out of scope); d4_additives from detect_additives_d4+w2. Live schema: hummus_frontend_v5.json.",
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }

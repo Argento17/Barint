@@ -376,5 +376,7 @@
     }
   ],
   "extension_fields": [],
+  "render_fields": ["novaGroup", "_has_phvo", "_category_routed", "_source_retailers", "d4_additives"],
+  "_render_fields_note": "TASK-316: novaGroup from trace.nova_proxy; _has_phvo from L3.has_phvo; _category_routed from trace.category; _source_retailers from corpus.source_retailers; d4_additives from detect_additives_d4+w2. Live schema: cakes_hard_cookies_frontend_v1.json.",
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }

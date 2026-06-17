@@ -37,7 +37,27 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-GENERATOR_VERSION = "1.1.0"
+# Render fields helper — TASK-316 render-contract gap closure
+# Import lazily to avoid breaking existing callers that don't need it
+_render_fields_mod = None
+
+
+def _get_render_fields():
+    global _render_fields_mod
+    if _render_fields_mod is None:
+        try:
+            # Same directory as this script
+            _dir = os.path.dirname(os.path.abspath(__file__))
+            if _dir not in sys.path:
+                sys.path.insert(0, _dir)
+            import render_fields as _rf
+            _render_fields_mod = _rf
+        except Exception as e:
+            print(f"WARNING: render_fields import failed: {e}", file=sys.stderr)
+            _render_fields_mod = None
+    return _render_fields_mod
+
+GENERATOR_VERSION = "1.2.0"
 SCHEMA_VERSION = "v3"
 
 # ---------------------------------------------------------------------------
@@ -565,11 +585,22 @@ def build_product(barcode, trace, corpus_rec, config, boundary_policy):
         "expansion": expansion,
     }
 
-    # Extension fields per config
+    # Extension fields per config (legacy mechanism — cereals/granola)
     extension_fields = config.get("extension_fields") or []
     for field_name in extension_fields:
         val = get_extension_field_value(corpus_rec, trace, field_name)
         product[field_name] = val
+
+    # Render fields per config (TASK-316: full frontend render contract).
+    # Each category config declares the render fields its live page carries.
+    # Derivation is in render_fields.py; no category-special-cased code paths here.
+    render_fields_list = config.get("render_fields") or []
+    if render_fields_list:
+        rf_mod = _get_render_fields()
+        if rf_mod is not None:
+            for field_name in render_fields_list:
+                val = rf_mod.get_render_field_value(corpus_rec, trace, field_name)
+                product[field_name] = val
 
     # rowVerdict — PENDING if category uses it (granola does)
     # We emit it always; copy engine fills it in Phase 2
