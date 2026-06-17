@@ -19,6 +19,22 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": null,
+    "corpus_filter": null,
+    "_source": "batch_run_cereals_008.py + batch_run_cereals_multiretailer_001.py (granola subpool, no shelf-rel enrollment)"
+  },
   "exclusions": [],
   "extension_fields": ["_subpool", "_isChildrens", "_wholeGrainClaim"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"

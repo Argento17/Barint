@@ -130,8 +130,56 @@ all. **OWNER RULINGS (2026-06-16):** wipe scope = **PAGE + ROUTE ONLY** (raw scr
   - **hard_cheeses** OFF-republish at 28/30 (drop 2 OFF products).
   - **juices / cookies_coffee** stale-page drift (config reproduces current engine; live trails).
   - **OFF-gate hardening** (provenance, not just literal string) — should-do, non-blocking.
-- **CLEAN-UP COMPLETE.** Genuinely-clean uniform path = 8 categories (cereals, cakes, cookies_coffee, granola, snacks,
-  juices, brined, hard_cheeses) + hummus (nominal, needs re-baseline) + milk (blessed exception). Website builds green at 13 routes.
+- **CLEAN-UP COMPLETE** (committed 7b2dedc31). Genuinely-clean uniform path = 8 categories (cereals, cakes, cookies_coffee,
+  granola, snacks, juices, brined, hard_cheeses) + hummus (nominal, needs re-baseline) + milk (blessed exception). Builds green, 13 routes.
+
+### Phase 3 — Quick re-score trigger (owner: "trigger the Quick re-score program — re-score all shelves in one go", 2026-06-16)
+Owner challenge resolved: hand-picked per-category republish (hard_cheeses/juices/cookies) is NOT critical — those shelves
+have configs → a universal trigger covers them automatically; skipped. FINDING: the trigger does NOT exist yet as a runnable
+program — pipeline_e2e.py PROVES the full chain (raw→bsip0→bsip1→SCORE→generate_page→gate→copy) but is THROWAWAY (synthetic
+fixtures only). So "trigger it" = build the generic real-shelf wrapper.
+- **P157 → TASK-298 → C1-GROK — 🔴 CHANGES_REQUESTED (orchestrator-verified, 2026-06-16).** rescore_all.py built + runs
+  (9/9 gate PASS, OFF=0, 10.4s) BUT **re-scores WRONG**: it omits per-shelf shelf-relative setup (`set_shelf_stats` +
+  frozen median/scale + flags) that the canonical `batch_run_shelfrel_golive_001.py` applies. PROOF: re-scored brined
+  differs from committed run_brined_005 (the traces that reproduce the live GOLDEN page) on **46/48 products, up to −17.9**
+  (shelf-relative sodium credit dropped). `score==trace` passed only b/c the page mirrors its own wrong traces.
+  Had this deployed it would have corrupted the golden brined page + every shelf-relative shelf. **Correct acceptance test
+  = IDEMPOTENCY: under today's engine the trigger MUST reproduce the current live pages (~0 moves); movement now = trigger bug.**
+- **P158 → TASK-298 (retry 1) → C1-GROK — 🔴 RETURNED, orchestrator-verified: WALL (not engine drift; strategic fork).**
+  Progress: brined moves 36/24→14/3; cereals+juices reproduce live 0/0. BUT 2/9 reproduce; agent blamed "engine drift" —
+  **DISPROVEN by orchestrator:** `git diff f1d1275e..HEAD` = core engine modules UNCHANGED (diff is all added batch/temp
+  scripts); milk 20/20 verified at f1d1275e still holds. C10 "milk Δ2.8" = trigger scoring milk under a non-milk shelf's
+  flags (brined DAIRY_PROTEIN_REWEIGHT_V1=on) + a milk-path bug (1 vs 20 checked). ROOT CAUSE = trigger doesn't byte-replicate
+  each shelf's BESPOKE historical run (brined computes sodium stats over its own record set via set_shelf_sodium_stats; trigger
+  computes over a different set → ~2pt). **STRATEGIC FORK surfaced to owner: (A) painstakingly replay each historical bespoke
+  run, vs (B) define ONE canonical Nutrition-blessed scoring config per shelf + let the trigger's first run RE-BASELINE to it
+  (matches the uniform doctrine; moves some published scores once = owner-gated).** Retry limit reached → owner decision.
+- **OWNER RULING 2026-06-16: CANONICAL RE-BASELINE (option B).** Goal flips from "reproduce live" to "freeze each shelf's
+  AUTHORITATIVE D7-blessed setup + let the trigger establish the clean baseline." Score moves = expected reviewable output, not
+  failures. New gates: determinism/idempotency (frozen stats in config, no runtime recompute) + MILK INVARIANT Δ0 (hard, C10) +
+  OFF=0 + no engine edits. The score deltas then go to Nutrition + red-team review, then owner deploy.
+- **TASK-298 (lane-up, escalated from Grok) → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (background, 2026-06-16).** Freeze each
+  shelf's authoritative frozen stats (from the go-live/brined/cookies runners' run_summary.json) into config; rewrite rescore_all
+  to apply them deterministically; correct C10 milk gate (fix the "1 vs 20" path bug, milk Δ0 hard-required, surface any flag that
+  perturbs frozen milk as CRITICAL); emit per-shelf rebaseline_delta_report.md. Staging-only, no deploy. RETURNED-UNVERIFIED on return.
+- **✅ TASK-298 CLOSED + orchestrator-verified (2026-06-16).** Trigger WORKS. Independently confirmed: determinism (cereals
+  digest 4302bc65 stable across re-runs), MILK Δ0 C10 9/9 (20/20 each, genuine gate, milk page untouched), OFF=0 all 9,
+  engine+bari-web diff EMPTY, staging-only. Frozen invariants hold (milk Δ0; snacks max 70.0/B no A; cereals+juices 0/0).
+  P158 "engine drift" DISPROVEN; P158 milk-Δ artifact root-caused+fixed (C10 now isolated under milk-canonical flags).
+  Deliverable `rescore_all.py` + 9 frozen config scoring blocks + `_rescore_staging/rebaseline_delta_report.md` (128 score /
+  29 grade moves). **The release-platform CORE now exists: one command re-scores all 9 shelves under the current engine in ~11s.**
+- **NEXT (downstream, owner-gated):** (1) Nutrition + red-team REVIEW the rebaseline_delta_report.md (notable: hummus 577480 C→E
+  auto-fixes RT-3 Anti-Immunity; brined 2 A→B; hard_cheeses 2 A→B = parked sat-fat Q; granola 8 / snacks 10 moves). (2) owner
+  deploy (consumer-facing, swaps staging pages into bari-web + push). (3) hard_cheeses OFF launch-blocker (2/30) still open.
+  (4) THEN re-onboard wiped products into the uniform format; new products align going forward. rescore_all.py uncommitted (owner-gated).
+- **[P158 spec] Fix: encode each shelf's shelf-relative
+  scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +
+  batch_run_brined_cheeses_005.py + batch_run_cookies_005_shelfrel_pilot.py + constants.py); rescore_all reads it, sets flags +
+  set_shelf_stats + C10 milk guard per shelf. ACCEPTANCE = reproduce current live pages (0 grade moves). [original P157 spec below]
+- **[P157 orig] Build `rescore_all.py`: ONE generic command,**
+  for each of the 9 configs → read BSIP1 corpus → re-run CURRENT engine (the proven pipeline_e2e score chain) → fresh traces →
+  generate_page → verify score==trace + OFF=0 + gate → diff vs live. NO re-scrape (quick). Output to STAGING only, never
+  overwrite live, no deploy. Auto-fixes hummus(nominal→real)/juices/cookies drift as ordinary output. milk excluded (no config = frozen). RETURNED-UNVERIFIED on return.
 
 ---
 

@@ -15,6 +15,28 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off"
+    },
+    "shelf_rel": {
+      "nutrient": "sugars_g",
+      "median": 29.0,
+      "scale": 9.044,
+      "scale_type": "iqr"
+    },
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output",
+    "corpus_filter": "C:\\Bari\\02_products\\cakes_hard_cookies\\factory_run_001\\corpus_filter.json",
+    "bsip1_glob": "bsip1_cakes_*.json",
+    "_source": "batch_run_shelfrel_golive_001.py + constants.py SUGAR_SHELF_REL_CAKES_*; live run_cakes_shelfrel_001"
+  },
   "exclusions": [
     {
       "barcode": "313184",

@@ -12,6 +12,36 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_RECAL_P0_YOGURT_TRIM": "off",
+      "BARI_GRAD_SODIUM_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_TASK144_FIXES": "off",
+      "BARI_TASK250_CONF": "off",
+      "BARI_GLASSBOX_D5D6": "off",
+      "BARI_GLASSBOX_W15": "off",
+      "BARI_GLASSBOX_W2": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on"
+    },
+    "shelf_rel": {
+      "nutrient": "sodium_mg",
+      "median": 1000.0,
+      "scale": 266.25,
+      "scale_type": "stdev",
+      "api": "sodium_ev056",
+      "_frozen_source": "run_brined_005/run_record.json SHELF_SODIUM_MEDIAN_MG=1000.0 SHELF_SODIUM_STDEV_MG=266.25 (2026-06-15)"
+    },
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output",
+    "corpus_filter": "C:\\Bari\\02_products\\brined_cheeses\\factory_run_001\\corpus_filter.json",
+    "bsip1_glob": "bsip1_brinedcheese_*.json",
+    "_source": "batch_run_brined_cheeses_005.py"
+  },
   "exclusions": [
     {"barcode": "2107071", "reason": "out_of_scope: v2_curation_drop_goat_feta_variant"},
     {"barcode": "2385455", "reason": "out_of_scope: v2_curation_drop_bulgarit_24_variant"},

@@ -19,6 +19,22 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": null,
+    "corpus_filter": null,
+    "_source": "batch_run_cookies_005.py + batch_run_cakes_001.py (live run_cookies_005+run_cakes_001, no shelf-rel)"
+  },
   "exclusions": [
     {
       "barcode": "7290013453631",

@@ -12,6 +12,28 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_TASK144_FIXES": "off"
+    },
+    "shelf_rel": {
+      "nutrient": "sodium_mg",
+      "median": 390.0,
+      "scale": 31.88,
+      "scale_type": "iqr"
+    },
+    "bsip1_dir": "C:\\Bari\\02_products\\hummus\\canonical_bsip1",
+    "corpus_filter": null,
+    "_source": "batch_run_hummus_shelfrel_002.py + constants.py SODIUM_SHELF_REL_HUMMUS_*"
+  },
   "exclusions": [],
   "extension_fields": ["_product_type"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"

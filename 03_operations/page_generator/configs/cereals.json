@@ -12,6 +12,22 @@
     "rule": "one_card_per_barcode",
     "keep": "highest_priority_corpus"
   },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+    "corpus_filter": null,
+    "_source": "batch_run_cereals_008.py (live run_cereals_008, no shelf-rel)"
+  },
   "exclusions": [
     {"barcode": "1164266", "reason": "granola_subpool"},
     {"barcode": "1164273", "reason": "granola_subpool"},
