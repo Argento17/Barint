@@ -231,6 +231,25 @@ def main() -> int:
         default=None,
         help="explicit output dir for the deploy bundle (default: _rescore_staging/_spine_runs/<utc-ts>)",
     )
+    parser.add_argument(
+        "--via-spine",
+        action="store_true",
+        default=False,
+        help=(
+            "Route the per-shelf rescore->copy->gate chain through the Spine DAG "
+            "runner (spine_pipeline.py) for incremental execution and lineage "
+            "recording in spine.db. Skips shelves whose inputs are unchanged."
+        ),
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        default=False,
+        help=(
+            "When combined with --via-spine: force re-run of all stages even when "
+            "inputs are unchanged (bypasses skip logic)."
+        ),
+    )
     args = parser.parse_args()
 
     t_start = time.perf_counter()
@@ -341,129 +360,152 @@ def main() -> int:
 
     print(f"Affected shelves ({len(affected_shelves)}): {', '.join(affected_shelves)}")
 
-    # --- Process each shelf ---
-    per_shelf: list[dict[str, Any]] = []
-    per_shelf_authors: list[dict[str, Any]] = []
-    all_commands: list[dict[str, Any]] = list(commands_run)
+    # --- Route: --via-spine (DAG runner + lineage) vs classic sequential ---
+    if args.via_spine:
+        # Import spine_pipeline module (adds spine dir to sys.path internally)
+        import importlib.util as _ilu
+        _spine_pipeline_path = PAGE_GEN / "spine_pipeline.py"
+        _spec = _ilu.spec_from_file_location("spine_pipeline", str(_spine_pipeline_path))
+        _sp = _ilu.module_from_spec(_spec)
+        _spec.loader.exec_module(_sp)
 
-    for shelf in affected_shelves:
-        print(f"\n========== SHELF: {shelf} ==========")
-        shelf_rec: dict[str, Any] = {
-            "shelf": shelf,
-            "rescore_exit": None,
-            "copy_exit": None,
-            "gate_exit": None,
-            "score_moves": 0,
-            "grade_moves": 0,
-            "carried": 0,
-            "author_needed": 0,
-            "off_count": 0,
-            "gate_overall": "UNKNOWN",
-            "gate_report": None,
-            "error": None,
-            "staged_page_in_bundle": None,
-        }
-        try:
-            cfg_path, cfg = get_shelf_config(shelf)
-            baseline_path = get_baseline(cfg)
+        pipeline_results, per_shelf, per_shelf_authors = _sp.run_via_spine(
+            affected_shelves=affected_shelves,
+            overrides=overrides,
+            force=args.force,
+        )
+        all_commands = list(commands_run)
+        all_commands.append({
+            "cmd": f"run_via_spine(shelves={affected_shelves}, force={args.force})",
+            "pipeline_results": pipeline_results,
+            "exit_code": 0,
+        })
+    else:
+        # Classic sequential per-shelf processing (original spine_flip step-4 path)
+        per_shelf = []
+        per_shelf_authors = []
+        all_commands = list(commands_run)
 
-            # 2. RESCORE (with flag overrides in env)
-            run_env = os.environ.copy()
-            for k, v in overrides.items():
-                run_env[k] = v
-            rescore_cmd = [sys.executable, str(RESCORE_PY), "--shelf", shelf]
-            rexit, rout, rerr = run_subprocess(
-                rescore_cmd, cwd=REPO, env=run_env, description=f"rescore_all.py --shelf {shelf} (flags={flag_str})"
-            )
-            all_commands.append({"cmd": " ".join(rescore_cmd), "exit_code": rexit})
-            shelf_rec["rescore_exit"] = rexit
+    # --- Per-shelf sequential loop (classic mode only; --via-spine populates above) ---
+    if not args.via_spine:
+        for shelf in affected_shelves:
+            print(f"\n========== SHELF: {shelf} ==========")
+            shelf_rec: dict[str, Any] = {
+                "shelf": shelf,
+                "rescore_exit": None,
+                "copy_exit": None,
+                "gate_exit": None,
+                "score_moves": 0,
+                "grade_moves": 0,
+                "carried": 0,
+                "author_needed": 0,
+                "off_count": 0,
+                "gate_overall": "UNKNOWN",
+                "gate_report": None,
+                "error": None,
+                "staged_page_in_bundle": None,
+            }
+            try:
+                cfg_path, cfg = get_shelf_config(shelf)
+                baseline_path = get_baseline(cfg)
 
-            staged = STAGING_ROOT / shelf / f"{shelf}_rescored.json"
-            if not staged.is_file():
-                shelf_rec["error"] = "rescore did not produce _rescored.json"
-                per_shelf.append(shelf_rec)
-                continue
+                # 2. RESCORE (with flag overrides in env)
+                run_env = os.environ.copy()
+                for k, v in overrides.items():
+                    run_env[k] = v
+                rescore_cmd = [sys.executable, str(RESCORE_PY), "--shelf", shelf]
+                rexit, rout, rerr = run_subprocess(
+                    rescore_cmd, cwd=REPO, env=run_env, description=f"rescore_all.py --shelf {shelf} (flags={flag_str})"
+                )
+                all_commands.append({"cmd": " ".join(rescore_cmd), "exit_code": rexit})
+                shelf_rec["rescore_exit"] = rexit
 
-            # Capture moves/off from the single-shelf run_summary (rescore_all writes it)
-            moves = {"score_moves": 0, "grade_moves": 0, "off_count": 0}
-            rsumm = STAGING_ROOT / "run_summary.json"
-            if rsumm.is_file():
+                staged = STAGING_ROOT / shelf / f"{shelf}_rescored.json"
+                if not staged.is_file():
+                    shelf_rec["error"] = "rescore did not produce _rescored.json"
+                    per_shelf.append(shelf_rec)
+                    continue
+
+                # Capture moves/off from the single-shelf run_summary (rescore_all writes it)
+                moves = {"score_moves": 0, "grade_moves": 0, "off_count": 0}
+                rsumm = STAGING_ROOT / "run_summary.json"
+                if rsumm.is_file():
+                    try:
+                        summ = load_json(rsumm)
+                        for ent in summ.get("shelves", []):
+                            if ent.get("shelf") == shelf:
+                                moves["score_moves"] = int(ent.get("score_moves") or 0)
+                                moves["grade_moves"] = int(ent.get("grade_moves") or 0)
+                                moves["off_count"] = int(ent.get("off_count") or 0)
+                                break
+                    except Exception:
+                        pass
+                shelf_rec["score_moves"] = moves["score_moves"]
+                shelf_rec["grade_moves"] = moves["grade_moves"]
+                shelf_rec["off_count"] = moves["off_count"]
+
+                # 3. COPY STAGE
+                copy_cmd = [
+                    sys.executable, str(COPY_PY),
+                    "--staging", str(staged),
+                    "--live", str(baseline_path),
+                    "--shelf", shelf,
+                ]
+                cexit, cout, cerr = run_subprocess(
+                    copy_cmd, cwd=REPO, description=f"copy_stage.py for {shelf}"
+                )
+                all_commands.append({"cmd": " ".join(copy_cmd), "exit_code": cexit})
+                shelf_rec["copy_exit"] = cexit
+
+                author_p = STAGING_ROOT / shelf / "author_set.json"
+                if author_p.is_file():
+                    try:
+                        adata = load_json(author_p)
+                        shelf_rec["carried"] = int(adata.get("carried", 0))
+                        shelf_rec["author_needed"] = len(adata.get("authored_needed", []))
+                        per_shelf_authors.append({"shelf": shelf, "author_set": adata})
+                    except Exception as e:
+                        shelf_rec["error"] = (shelf_rec.get("error") or "") + f"; author_set load: {e}"
+
+                # 4. GATES (post-copy; pass config+baseline per spec; add corpus/run/schema for integrity gates)
+                corpus_arg, run_arg = derive_corpus_run_for_gates(cfg, shelf)
+                gate_cmd = [
+                    sys.executable, str(GATES_PY),
+                    str(staged),
+                    "--config", str(cfg_path),
+                    "--baseline", str(baseline_path),
+                ]
+                if SCHEMA_V3.is_file():
+                    gate_cmd += ["--schema", str(SCHEMA_V3)]
+                if corpus_arg:
+                    gate_cmd += ["--corpus", corpus_arg]
+                if run_arg:
+                    gate_cmd += ["--run", run_arg]
+
+                gexit, gout, gerr = run_subprocess(
+                    gate_cmd, cwd=REPO, description=f"run_gates.py for {shelf} (post-copy)"
+                )
+                all_commands.append({"cmd": " ".join(gate_cmd), "exit_code": gexit})
+                shelf_rec["gate_exit"] = gexit
+                shelf_rec["gate_overall"] = "PASS" if gexit == 0 else "FAIL"
+
+                gate_rp = STAGING_ROOT / shelf / f"{shelf}_rescored_gates_report.md"
+                if gate_rp.is_file():
+                    shelf_rec["gate_report"] = str(gate_rp)
+
+                # Note OFF count: prefer the one captured at rescore time (pre-copy; copy does not touch OFF)
+                # If copy somehow affected, re-count but OFF ban means we expect 0 anyway.
                 try:
-                    summ = load_json(rsumm)
-                    for ent in summ.get("shelves", []):
-                        if ent.get("shelf") == shelf:
-                            moves["score_moves"] = int(ent.get("score_moves") or 0)
-                            moves["grade_moves"] = int(ent.get("grade_moves") or 0)
-                            moves["off_count"] = int(ent.get("off_count") or 0)
-                            break
+                    page_now = load_json(staged)
+                    shelf_rec["off_count"] = count_off_in_page(page_now)
                 except Exception:
                     pass
-            shelf_rec["score_moves"] = moves["score_moves"]
-            shelf_rec["grade_moves"] = moves["grade_moves"]
-            shelf_rec["off_count"] = moves["off_count"]
 
-            # 3. COPY STAGE
-            copy_cmd = [
-                sys.executable, str(COPY_PY),
-                "--staging", str(staged),
-                "--live", str(baseline_path),
-                "--shelf", shelf,
-            ]
-            cexit, cout, cerr = run_subprocess(
-                copy_cmd, cwd=REPO, description=f"copy_stage.py for {shelf}"
-            )
-            all_commands.append({"cmd": " ".join(copy_cmd), "exit_code": cexit})
-            shelf_rec["copy_exit"] = cexit
+            except Exception as exc:
+                shelf_rec["error"] = str(exc)
+                print(f"  SHELF ERROR [{shelf}]: {exc}", file=sys.stderr)
 
-            author_p = STAGING_ROOT / shelf / "author_set.json"
-            if author_p.is_file():
-                try:
-                    adata = load_json(author_p)
-                    shelf_rec["carried"] = int(adata.get("carried", 0))
-                    shelf_rec["author_needed"] = len(adata.get("authored_needed", []))
-                    per_shelf_authors.append({"shelf": shelf, "author_set": adata})
-                except Exception as e:
-                    shelf_rec["error"] = (shelf_rec.get("error") or "") + f"; author_set load: {e}"
-
-            # 4. GATES (post-copy; pass config+baseline per spec; add corpus/run/schema for integrity gates)
-            corpus_arg, run_arg = derive_corpus_run_for_gates(cfg, shelf)
-            gate_cmd = [
-                sys.executable, str(GATES_PY),
-                str(staged),
-                "--config", str(cfg_path),
-                "--baseline", str(baseline_path),
-            ]
-            if SCHEMA_V3.is_file():
-                gate_cmd += ["--schema", str(SCHEMA_V3)]
-            if corpus_arg:
-                gate_cmd += ["--corpus", corpus_arg]
-            if run_arg:
-                gate_cmd += ["--run", run_arg]
-
-            gexit, gout, gerr = run_subprocess(
-                gate_cmd, cwd=REPO, description=f"run_gates.py for {shelf} (post-copy)"
-            )
-            all_commands.append({"cmd": " ".join(gate_cmd), "exit_code": gexit})
-            shelf_rec["gate_exit"] = gexit
-            shelf_rec["gate_overall"] = "PASS" if gexit == 0 else "FAIL"
-
-            gate_rp = STAGING_ROOT / shelf / f"{shelf}_rescored_gates_report.md"
-            if gate_rp.is_file():
-                shelf_rec["gate_report"] = str(gate_rp)
-
-            # Note OFF count: prefer the one captured at rescore time (pre-copy; copy does not touch OFF)
-            # If copy somehow affected, re-count but OFF ban means we expect 0 anyway.
-            try:
-                page_now = load_json(staged)
-                shelf_rec["off_count"] = count_off_in_page(page_now)
-            except Exception:
-                pass
-
-        except Exception as exc:
-            shelf_rec["error"] = str(exc)
-            print(f"  SHELF ERROR [{shelf}]: {exc}", file=sys.stderr)
-
-        per_shelf.append(shelf_rec)
+            per_shelf.append(shelf_rec)
 
     # --- Aggregate report + bundle ---
     consolidated = build_consolidated_author(per_shelf_authors)
