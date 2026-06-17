@@ -321,7 +321,17 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   /vegetable-spreads + /granola + /juices); 0 self-grade contradictions; 343/343 score==staging + 0 grade mismatch; OFF=0 in product data; JSON valid.
   All red-team HIGHs resolved (RT-1 ×10 copy, RT-3 ×5 nova); RT-2 = correct honest behavior (documented). **Staged for push (uncommitted, reversible):**
   7 comparison JSONs (cereals_v2, cakes_hard_cookies_v1, cookies_coffee_v2, granola_v1, juices_v3, brined_v2, hummus_v5) + 2 configs (hummus_shelfrel_002,
-  juices exclusions). **AWAITING OWNER: commit + push to bari.digital (gated).**
+  juices exclusions). **✅ COMMITTED + PUSHED (owner go-ahead 2026-06-17):** 2 commits (ecc515d30 publish + 0edac53c9 registry) on
+  branch task-275-engine-fixes-abc, pushed to remote bari (Argento17/bari). **PRODUCTION DEPLOY to bari.digital STILL PENDING** —
+  branch is 5 commits / 159 files ahead of LOCAL master. **⛔ PRODUCTION DEPLOY BLOCKED — repo topology (discovered 2026-06-17 at PR step):**
+  the GitHub remote default `main` is the OLD STANDALONE website (Next.js at repo ROOT, JSONs at `src/data/comparisons/`); ALL work is in
+  the NEWER MONOREPO (`bari-web/` subtree). Divergent history (task-275 is 98 commits ahead of bari/main; main has 22 not in our line) +
+  DIFFERENT LAYOUT (main has no bari-web/; 4 of 7 pages — cakes/cookies_coffee/juices_v3/brined — don't exist on main; main carries older
+  cereals_v1/hummus_v3-4 + wiped cats). PR attempt → HTTP 422 (base `master` not on remote; remote default = `main`). A clean 7-page PR is
+  impossible across mismatched structures. UNKNOWN: where bari.digital actually deploys from (no in-repo vercel.json). → **this is a REPO
+  MIGRATION, not a publish.** **OWNER RULING 2026-06-17: HOLD + track as migration → TASK-314 (BLOCKED on deploy-source confirmation).**
+  Branch stays safely pushed (Argento17/bari); nothing deployed; nothing lost. Publish work (TASK-308/309/310/312/313) is DONE + verified +
+  committed; only the topological delivery is blocked.
 - **Fix-forward (non-blocking, post-push):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-6 cakes _meta.schema, RT-7 tomato-juice image.
 - **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
 - **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).
