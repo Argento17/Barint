@@ -358,10 +358,14 @@ TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gat
 3. Automated copy stage (generalize copy-carryover + author-set detection).
 4. Orchestration command (flip → shadow/gate → affected-set → trigger → copy → gates → deploy-ready PR).
 5. Wire into the Spine DAG runner (hashed/incremental/lineage).
-- **P166 → TASK-316 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg).** STEP 1: port render-field logic (glassBox/_product_type/
-  nova/sugar-kcal-per-100ml/_has_phvo/confidence/d3/d4) from the bespoke builders into generate_page's config-driven extension
-  mechanism; additive OUTPUT only (ZERO score change); OFF-ban absolute; scope = the 7 re-baselined categories. Acceptance =
-  DROP-IN parity vs live render schema per category + score==trace regression check. Staging-only. ([[generator_render_contract_gap]])
+- **P166 → TASK-316 → Data Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-17, commit 9389f32a0). KEYSTONE DONE.**
+  New render_fields.py (config-driven) + generate_page `render_fields` key + 7 config declarations → generator emits the full render
+  contract. **Orchestrator re-verified via the REAL trigger (rescore_all), not the agent's direct-generate_page path (which gave
+  misleading grade-dist artifacts — caught):** ALL 7 categories 0 score / 0 grade change vs verified re-baseline + render fields present
+  on all → fully SCORE-NEUTRAL (engine untouched). Hummus _product_type lens types match live EXACTLY (matbucha10/eggplant7/pepper5/
+  masabacha2 → /vegetable-spreads safe); glassBox 57/57. **Generator output is now DROP-IN — overlay-merge obsolete for future flips.**
+  Residuals (out of scope, engine/editorial): d3_processing_signal=null, glassBox demote on 1 hummus product, _product_type 2/57 editorial.
+- **NEXT — STEP 2:** affected-set from a flag (wrap Shadow `diff --set BARI_X=on` movers/frozen table → category list, Spine-lineage-backed).
 - **Deploy of the spine's own output stays owner-gated** (same Barint topology as TASK-314); merges = owner.
 - **[P158 spec] Fix: encode each shelf's shelf-relative
   scoring metadata declaratively (nutrient/frozen median/scale/flags/corpus_filter; source = batch_run_shelfrel_golive_001.py +

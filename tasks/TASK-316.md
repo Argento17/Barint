@@ -2,12 +2,24 @@
 id: TASK-316
 title: Spine step 1 — close the generator render-contract gap (generate_page emits the FULL frontend render contract → drop-in output)
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-06-17
+returned_at: 2026-06-17
+closed_at: 2026-06-17
 depends_on: []
 blocks: [TASK-317]
 category_id: null
+close_reason: >
+  Data Agent built render_fields.py (config-driven derivation) + generate_page render_fields key + 7 config declarations +
+  schema. Committed 9389f32a0. Orchestrator-verified via the REAL trigger path (rescore_all), NOT the agent's direct-generate_page
+  path (which produced misleading grade-dist artifacts — caught + corrected): across ALL 7 categories, 0 score mismatch + 0 grade
+  mismatch vs the verified re-baseline, and all declared render fields present on all products → render-contract change is fully
+  SCORE-NEUTRAL (engine modules untouched). Hummus _product_type lens types match live EXACTLY (matbucha10/eggplant7/pepper5/
+  masabacha2 → /vegetable-spreads safe), glassBox 57/57. Generator output is now DROP-IN (overlay-merge no longer needed for future
+  flips). Honest residuals (engine/editorial, out of scope, do not block the keystone): d3_processing_signal=null (needs trace_writer
+  edit), glassBox demote-state on 1 hummus product (needs D5/D6 pass), _product_type 2/57 editorial (not derivable from name alone).
+  Keystone for the spine ACHIEVED.
 summary: >
   The #1 prerequisite for the score-switch spine. Today generate_page.py emits scoring + copy fields but NOT the full
   frontend RENDER contract — the display fields (glassBox, _product_type, novaGroup, sugarPer100ml/kcalPer100ml, _has_phvo,
