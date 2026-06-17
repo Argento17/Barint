@@ -45,3 +45,13 @@ summary: >
 The publish work is done and verified (TASK-308/309/310/312/313, red-team 0 CRITICAL). The blocker is purely topological:
 the live GitHub branch is a structurally different (older, standalone) tree than the monorepo where the work lives.
 Resolve the true deploy source first, then choose the migration/reconciliation path. See DISPATCH_BOARD for the full trail.
+
+## Progress 2026-06-17 (owner: "if you found it, might as well fix it")
+- Deploy repo identified = **Argento17/Barint** (`origin`); `master` has `bari-web/`. It already has routes for 4 of the 7
+  pages (cereals/granola/juices/hummus + /vegetable-spreads) but NOT for cakes/cookies-coffee/brined.
+- **✅ PR #7 opened on Argento17/Barint** (https://github.com/Argento17/Barint/pull/7), base `master` ← `publish/rebaseline-4pages`:
+  data-only overlay of the 4 verified route-ready pages (cereals_v2, granola_v1, juices_v3, hummus_v5). Vercel preview = build check.
+  **Merge = go-live for those 4 (owner-gated).** Nothing merged/deployed.
+- **REMAINING (task stays open):** (1) confirm origin/master IS the Vercel production branch; (2) port FRONTEND (route +
+  page-data loader + components) for cakes / cookies-coffee / brined onto Barint so their re-baselined pages can land; (3) reconcile
+  the broader 18/27-commit divergence. Mistaken push to Argento17/bari (old standalone) is harmless; clean up later.

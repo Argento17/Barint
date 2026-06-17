@@ -336,6 +336,10 @@ fixtures only). So "trigger it" = build the generic real-shelf wrapper.
   origin/master (DIVERGENT) + 3 pages missing there (cakes/cookies_coffee/brined) → a reconciliation + add-3, not a fast-forward; push to
   origin/master = live deploy (owner-gated). **OWNER 2026-06-17: "leave it and move on"** → TASK-314 stays BLOCKED on Vercel-prod-branch
   confirmation; publish work DONE+verified+committed; nothing lost. [[deploy_topology_main_vs_monorepo]]
+- **✅ PR #7 on Argento17/Barint (the REAL deploy repo), 2026-06-17:** https://github.com/Argento17/Barint/pull/7 — base master ←
+  publish/rebaseline-4pages — data-only overlay of the **4 route-ready pages** (cereals_v2, granola_v1, juices_v3, hummus_v5). Vercel
+  preview = build check; **merge = go-live (owner-gated)**. The other **3 (cakes, cookies-coffee, brined) have NO routes on Barint
+  master → need a frontend port** (route+loader+components) before they can land = remaining TASK-314 work + confirm prod branch.
 - **Fix-forward (non-blocking, post-push):** RT-4 hummus _meta stats, RT-5 E-number render review (pre-existing), RT-6 cakes _meta.schema, RT-7 tomato-juice image.
 - **THEN next program: score-switch SPINE** — gen render-contract gap = #1 prereq ([[generator_render_contract_gap]]).
 - **THEN (next program): score-switch SPINE** — automate flip-flag → lineage affected-set → Shadow → trigger → copy → gate → deploy-ready PR (pieces all exist: TASK-252 Spine, TASK-253 Shadow, TASK-298 trigger, gates).
