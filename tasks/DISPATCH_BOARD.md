@@ -365,8 +365,9 @@ TASK-253 Shadow `diff --set` flag what-if, TASK-298 trigger rescore_all, run_gat
   on all → fully SCORE-NEUTRAL (engine untouched). Hummus _product_type lens types match live EXACTLY (matbucha10/eggplant7/pepper5/
   masabacha2 → /vegetable-spreads safe); glassBox 57/57. **Generator output is now DROP-IN — overlay-merge obsolete for future flips.**
   Residuals (out of scope, engine/editorial): d3_processing_signal=null, glassBox demote on 1 hummus product, _product_type 2/57 editorial.
-- **P167 → TASK-317 → C1-GROK — 🔵 DISPATCHED (bg). STEP 2:** affected-set resolver — wrap Shadow `diff --set` → affected_set.json
-  (which corpora moved + frozen-breach flag + the rescore_all shelves to re-run); read-only over shadow/registry/configs. Feeds step 4.
+- **P167 → TASK-317 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-17, commit 31d6da6fe). STEP 2 DONE.** affected_set.py:
+  flag what-if → affected_set.json (affected corpora + frozen_breaches + affected_shelves to re-run + affected_no_config). Verified:
+  frozen sample → frozen_touched+exit 2; exit matrix 2/1/0; real --set BARI_GLASSBOX_W4=on resolved in 3.1s. Read-only. Feeds step 4.
 - **P168 → TASK-318 → Data Agent (C1-Sonnet) — 🔵 DISPATCHED (bg). STEP 3:** automated copy stage — generalize the TASK-305
   copy_carryover + TASK-307 schema_strip one-offs into a config-driven `copy_stage.py` (carry grade-unchanged copy, author-set for
   grade-changed/new, schema-match); leaves step-1 render fields intact; OFF-ban. Feeds step 4.
