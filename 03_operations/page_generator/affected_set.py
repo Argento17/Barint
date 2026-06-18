@@ -78,9 +78,16 @@ def _discover_shelf_configs() -> dict[str, dict[str, Any]]:
     return shelves
 
 
-def _registry_sources() -> dict[str, str]:
+def _registry_sources() -> dict[str, str | list[str]]:
     reg = _load_json(SHADOW_REGISTRY)
-    return {c["name"]: _norm_path(c.get("source")) for c in reg.get("corpora", [])}
+    out: dict[str, str | list[str]] = {}
+    for c in reg.get("corpora", []):
+        src = c.get("source")
+        if isinstance(src, list):
+            out[c["name"]] = [_norm_path(s) for s in src]
+        else:
+            out[c["name"]] = _norm_path(src)
+    return out
 
 
 def build_corpus_to_shelves_map() -> dict[str, list[str]]:
@@ -111,14 +118,13 @@ def build_corpus_to_shelves_map() -> dict[str, list[str]]:
                 add_mapping(corpus, stem)
 
         src = reg_sources.get(corpus, "")
-        if src:
+        srcs = src if isinstance(src, list) else ([src] if src else [])
+        for reg_src in srcs:
+            if not reg_src:
+                continue
             for stem, meta in shelves.items():
-                if src in meta["sources"]:
+                if reg_src in meta["sources"]:
                     add_mapping(corpus, stem)
-                else:
-                    for shelf_src in meta["sources"]:
-                        if shelf_src and src == shelf_src:
-                            add_mapping(corpus, stem)
 
     return corpus_to_shelves
 

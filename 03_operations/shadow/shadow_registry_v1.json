@@ -131,22 +131,22 @@
     {
       "name": "juices",
       "class": "candidate",
-      "source": "C:\\Bari\\03_operations\\bsip1\\run_juices_001\\output",
+      "source": "C:\\Bari\\02_products\\juices\\bsip1_outputs",
       "flags": {
         "BARI_RECAL_P0": "on"
       },
       "invariants": [],
-      "note": "batch_run_juices_001/yohananof: BARI_RECAL_P0=on."
+      "note": "P232 RT-6: registry source aligned to configs/juices.json corpus_dirs."
     },
     {
       "name": "hard_cheeses",
       "class": "candidate",
-      "source": "C:\\Bari\\03_operations\\bsip1\\run_hard_cheeses_001\\output",
+      "source": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
       "flags": {
         "BARI_RECAL_P0": "on"
       },
       "invariants": [],
-      "note": "batch_run_hard_cheeses_001.py: BARI_RECAL_P0=on, TASK144=off. The red-label experimental config (BARI_REDLABEL_V1=on + BARI_DAIRY_SAT_FAT_INFER=on, TASK-REDLABEL-001) is NOT the registered config until it ships."
+      "note": "P232 RT-6: registry source aligned to configs/hard_cheeses.json corpus_dirs."
     },
     {
       "name": "cakes",
@@ -168,7 +168,10 @@
     {
       "name": "cookies_coffee",
       "class": "published",
-      "source": "C:\\Bari\\03_operations\\bsip1\\run_cookies_001\\output",
+      "source": [
+        "C:\\Bari\\03_operations\\bsip1\\run_cookies_001\\output",
+        "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output"
+      ],
       "flags": {
         "BARI_RECAL_P0": "off",
         "BARI_GRAD_SODIUM_V1": "off",
@@ -180,7 +183,7 @@
         "BARI_FAT_TECH_V1": "on"
       },
       "invariants": [],
-      "note": "Registered for spine re-flow (2026-06-18). Flags verbatim from configs/cookies_coffee.json (_source batch_run_cookies_005 + batch_run_cakes_001). SHADOW-V1 SINGLE-SOURCE LIMITATION: config corpus spans TWO dirs (run_cookies_001 + run_cakes_001); registered source is the primary run_cookies_001 (61). Live rescore uses BOTH dirs via the config. No shelf-rel."
+      "note": "P232 RT-6: registry source aligned to configs/cookies_coffee.json BOTH corpus_dirs."
     },
     {
       "name": "brined_cheeses",

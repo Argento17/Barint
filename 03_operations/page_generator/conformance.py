@@ -273,8 +273,40 @@ def config_corpus_source_paths(cfg: dict) -> set[str]:
     return paths
 
 
-def registry_source_map(registry: dict) -> dict[str, str]:
-    return {c.get("name", ""): norm_path(c.get("source")) for c in registry.get("corpora", [])}
+def count_corpus_products(cfg: dict) -> int | None:
+    scoring = cfg.get('scoring') or {}
+    glob_pat = scoring.get('bsip1_glob', 'bsip1_*.json')
+    dirs = []
+    for key in ('corpus_dirs', 'run_products_dir'):
+        val = cfg.get(key)
+        items = val if isinstance(val, list) else ([val] if val else [])
+        dirs.extend(str(item) for item in items if item)
+    bsip1 = scoring.get('bsip1_dir')
+    if isinstance(bsip1, str) and bsip1:
+        dirs.append(bsip1)
+    if not dirs:
+        return None
+    count = 0
+    for d in dirs:
+        pdir = Path(d)
+        if not pdir.is_dir():
+            continue
+        count += len([f for f in pdir.glob(glob_pat) if 'audit' not in f.name])
+    return count if count > 0 else None
+
+
+def registry_source_map(registry: dict) -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {}
+    for c in registry.get('corpora', []):
+        src = c.get('source')
+        name = c.get('name', '')
+        if isinstance(src, list):
+            out[name] = [norm_path(s) for s in src if s]
+        elif src:
+            out[name] = [norm_path(src)]
+        else:
+            out[name] = []
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -282,7 +314,8 @@ def registry_source_map(registry: dict) -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
-             stem_corpora: dict[str, list[str]]) -> dict:
+             stem_corpora: dict[str, list[str]],
+             all_config_sources: set[str] | None = None) -> dict:
     checks: list[dict] = []
 
     def add(check_id: str, hard: bool, ok: bool, detail: str) -> None:
@@ -390,11 +423,19 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
     # SOFT-9 (RT-8): registry shadow source not referenced by config corpus dirs
     reg_sources = registry_source_map(registry)
     cfg_sources = config_corpus_source_paths(cfg)
+    # A registry source counts as "drifted" only if NO config anywhere references it
+    # (a true orphan). Checking against THIS stem's config alone false-alarms on corpora
+    # that legitimately SHARE a dir with another category — e.g. the cookies_coffee corpus
+    # shares run_cakes_001 with the cakes stem, so when --all evaluates the cakes stem,
+    # cookies' OTHER source (run_cookies_001) is not in cakes' config but IS valid. Use the
+    # repo-wide union of all config sources to avoid that (this is why --slug and --all
+    # disagreed before the fix).
+    known_sources = all_config_sources if all_config_sources is not None else cfg_sources
     shadow_hits: list[str] = []
     for corpus_name in corpora:
-        src = reg_sources.get(corpus_name, "")
-        if src and src not in cfg_sources:
-            shadow_hits.append(f"{corpus_name}:{src}")
+        for src in reg_sources.get(corpus_name, []):
+            if src and src not in known_sources:
+                shadow_hits.append(f"{corpus_name}:{src}")
     add(
         "SOFT-9-registry_source",
         False,
@@ -447,7 +488,23 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
                 manifest_count_detail = f"product_count matches ({file_count})"
         except Exception as exc:  # noqa: BLE001
             manifest_count_detail = f"manifest product_count check skipped: {exc}"
-    add("SOFT-11-manifest_count", False, manifest_count_ok, manifest_count_detail)
+    add('SOFT-11-manifest_count', False, manifest_count_ok, manifest_count_detail)
+
+    cal_ok = True
+    cal_detail = 'calibration_n not set — drift check skipped'
+    if isinstance(shelf_rel, dict):
+        cal_n = shelf_rel.get('calibration_n')
+        if cal_n is not None:
+            current_n = count_corpus_products(cfg)
+            if current_n is None:
+                cal_detail = f'calibration_n={cal_n} but corpus dirs unreadable'
+            elif cal_n <= 0:
+                cal_detail = f'calibration_n={cal_n} invalid — drift check skipped'
+            else:
+                drift = abs(current_n - cal_n) / cal_n
+                cal_ok = drift <= 0.25
+                cal_detail = f'calibration_n={cal_n}, current_corpus={current_n}, drift={drift:.1%}' + (' — within 25% threshold' if cal_ok else ' — exceeds 25% threshold')
+    add('SOFT-12-calibration_drift', False, cal_ok, cal_detail)
 
     return _finalize(stem, cat, checks, deferred=deferred)
 
@@ -545,9 +602,14 @@ def main() -> int:
             return 3
         stems = [stem]
 
+    # Repo-wide union of every config's declared source paths (for SOFT-9 orphan check).
+    all_config_sources: set[str] = set()
+    for c in configs.values():
+        all_config_sources |= config_corpus_source_paths(c)
+
     results = [
         evaluate(stem, configs[stem], entries=entries, registry=registry,
-                 stem_corpora=stem_corpora)
+                 stem_corpora=stem_corpora, all_config_sources=all_config_sources)
         for stem in stems
     ]
 

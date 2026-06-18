@@ -50,6 +50,7 @@ sys.path.insert(0, str(SRC))
 # from any checkout location (CI runs on ubuntu, not from C:\Bari).
 REPO_ROOT = SRC.parents[3]
 SHADOW_ROOT = REPO_ROOT / "03_operations" / "shadow"
+CONFIGS_DIR = REPO_ROOT / "03_operations" / "page_generator" / "configs"
 REGISTRY_PATH = SHADOW_ROOT / "shadow_registry_v1.json"
 BASELINES_DIR = SHADOW_ROOT / "baselines"
 RUNS_DIR = SHADOW_ROOT / "runs"
@@ -85,6 +86,17 @@ def engine_hash() -> str:
 _LEGACY_ROOT = pathlib.PureWindowsPath(r"C:\Bari")
 
 
+
+def _norm_path(p: str | None) -> str:
+    if not p:
+        return ""
+    return str(pathlib.Path(p)).lower().replace("\\", "/").rstrip("/")
+
+
+def _norm_name(s: str | None) -> str:
+    return (s or "").strip().lower().replace("-", "_")
+
+
 def resolve_source(src: str) -> pathlib.Path:
     """Resolve a corpus source recorded as a Windows-absolute path (registry and
     baseline history use C:\\Bari\\...) against THIS checkout's repo root."""
@@ -97,6 +109,65 @@ def resolve_source(src: str) -> pathlib.Path:
     except ValueError:
         return p
     return REPO_ROOT.joinpath(*rel.parts)
+
+
+def resolve_sources(src: str | list) -> list[pathlib.Path]:
+    """Resolve one registry source or a list of sources."""
+    items = src if isinstance(src, list) else [src]
+    return [resolve_source(s) for s in items]
+
+
+def _config_corpus_paths(cfg: dict) -> set[str]:
+    paths: set[str] = set()
+    for key in ("corpus_dirs", "run_products_dir"):
+        val = cfg.get(key)
+        items = val if isinstance(val, list) else ([val] if val else [])
+        for item in items:
+            if item:
+                paths.add(_norm_path(item))
+    scoring = cfg.get("scoring") or {}
+    bsip1 = scoring.get("bsip1_dir")
+    if isinstance(bsip1, str) and bsip1:
+        paths.add(_norm_path(bsip1))
+    return paths
+
+
+def lookup_shelf_rel(corpus_name: str, source: str | list) -> dict | None:
+    """Map a registry corpus to its page_generator config shelf_rel block."""
+    src_paths = {_norm_path(s) for s in (source if isinstance(source, list) else [source])}
+    matched: dict | None = None
+    for cfg_path in sorted(CONFIGS_DIR.glob("*.json")):
+        if cfg_path.name.startswith("_generated_"):
+            continue
+        try:
+            cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        cfg_paths = _config_corpus_paths(cfg)
+        if src_paths & cfg_paths:
+            matched = cfg
+            break
+        if _norm_name(cfg.get("category")) == _norm_name(corpus_name):
+            matched = cfg
+    if not matched:
+        return None
+    shelf_rel = (matched.get("scoring") or {}).get("shelf_rel")
+    return shelf_rel if isinstance(shelf_rel, dict) else None
+
+
+def _inject_shelf_stats(shelf_rel: dict) -> None:
+    """Apply pinned shelf stats exactly like rescore_all.setup_shelf_stats."""
+    from score_engine import set_shelf_sodium_stats, set_shelf_stats
+
+    if shelf_rel.get("api") == "sodium_ev056":
+        set_shelf_sodium_stats(shelf_rel["median"], shelf_rel["scale"])
+    else:
+        set_shelf_stats(
+            shelf_rel["nutrient"],
+            shelf_rel["median"],
+            shelf_rel["scale"],
+            shelf_rel.get("scale_type", "iqr"),
+        )
 
 
 def git_state() -> dict:
@@ -165,8 +236,9 @@ def _snapshot(product: dict, cat: dict, nova: dict, r: dict) -> dict:
     }
 
 
-def score_corpus(source: str, flags: dict) -> dict:
-    """Score one corpus dir under one pinned flag config. Returns {pid: snapshot}."""
+def score_corpus(source: str | list, flags: dict,
+                 shelf_rel: dict | None = None) -> dict:
+    """Score one or more corpus dirs under one pinned flag config. Returns {pid: snapshot}."""
     _set_flags(flags)
     _purge_engine_modules()
     from input_loader import load_batch
@@ -176,19 +248,25 @@ def score_corpus(source: str, flags: dict) -> dict:
     from evaluation_scope import assign_evaluation_scope
     from score_engine import score_product
 
+    if shelf_rel:
+        _inject_shelf_stats(shelf_rel)
+
     out = {}
-    for product in load_batch(pathlib.Path(source)):
-        pid = product.get("canonical_product_id", "?")
-        try:
-            sig = extract_signals(product)
-            cat = classify_category(product)
-            nova = infer_nova(product, sig["L3_inferred_classifications"])
-            ev = assign_evaluation_scope(product, cat["category"])
-            r = score_product(product, sig, cat, nova, ev)
-            out[pid] = _snapshot(product, cat, nova, r)
-        except Exception as e:  # an engine crash IS a finding, not an abort
-            out[pid] = {"name": product.get("canonical_name_he", ""),
-                        "error": f"{type(e).__name__}: {e}"}
+    for src_path in resolve_sources(source):
+        for product in load_batch(src_path):
+            pid = product.get("canonical_product_id", "?")
+            if pid in out:
+                continue
+            try:
+                sig = extract_signals(product)
+                cat = classify_category(product)
+                nova = infer_nova(product, sig["L3_inferred_classifications"])
+                ev = assign_evaluation_scope(product, cat["category"])
+                r = score_product(product, sig, cat, nova, ev)
+                out[pid] = _snapshot(product, cat, nova, r)
+            except Exception as e:  # an engine crash IS a finding, not an abort
+                out[pid] = {"name": product.get("canonical_name_he", ""),
+                            "error": f"{type(e).__name__}: {e}"}
     return out
 
 
@@ -228,11 +306,12 @@ def cmd_baseline(args) -> int:
     }
     total = 0
     for c in configs:
-        src = resolve_source(c["source"])
-        if not src.exists():
+        srcs = resolve_sources(c["source"])
+        if not srcs or not all(s.exists() for s in srcs):
             print(f"  {c['name']:22s} MISSING SOURCE: {c['source']}")
             continue
-        snaps = score_corpus(str(src), c["merged_flags"])
+        shelf_rel = lookup_shelf_rel(c["name"], c["source"])
+        snaps = score_corpus(c["source"], c["merged_flags"], shelf_rel=shelf_rel)
         errs = sum(1 for s in snaps.values() if "error" in s)
         baseline["corpora"][c["name"]] = {
             "class": c["class"], "source": c["source"],
@@ -399,15 +478,16 @@ def cmd_diff(args) -> int:
         # Apples-to-apples: replay the BASELINE's recorded flags (+ overrides).
         flags = dict(b["flags"])
         flags.update(overrides)
-        src = resolve_source(b["source"])
-        if not src.exists():
+        srcs = resolve_sources(b["source"])
+        if not srcs or not all(s.exists() for s in srcs):
             # Source not in this checkout — skip loudly, never silently.
             print(f"  {name:22s} SKIPPED — source not in this checkout: {b['source']}")
             report["corpora"][name] = {
                 "class": b["class"], "skipped_missing_source": b["source"],
             }
             continue
-        snaps = score_corpus(str(src), flags)
+        shelf_rel = lookup_shelf_rel(name, b["source"])
+        snaps = score_corpus(b["source"], flags, shelf_rel=shelf_rel)
 
         old_pids, new_pids = set(b["products"]), set(snaps)
         moves = []

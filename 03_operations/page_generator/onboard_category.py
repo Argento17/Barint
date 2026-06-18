@@ -31,10 +31,15 @@ Exit code: 0 = conforms, live-ready (subject to copy/build, which it reminds abo
 from __future__ import annotations
 
 import argparse
+import json
+import subprocess
 import sys
 from pathlib import Path
 
 THIS_DIR = Path(__file__).resolve().parent
+REPO = THIS_DIR.parents[1]
+SHADOW_BACKTEST = REPO / "03_operations" / "bsip2" / "proto_v0" / "src" / "shadow_backtest.py"
+CURRENT_BASELINE = REPO / "03_operations" / "shadow" / "baselines" / "CURRENT.json"
 if str(THIS_DIR) not in sys.path:
     sys.path.insert(0, str(THIS_DIR))
 
@@ -42,6 +47,36 @@ from conformance import (  # noqa: E402
     evaluate, load_configs, load_manifest_entries, load_registry,
     manifest_for_category, norm, real_stem_to_corpora, resolve_stem,
 )
+
+
+
+def run_shadow_reproduce(corpus_name: str) -> tuple[bool, str, int]:
+    if not CURRENT_BASELINE.is_file():
+        return False, 'INFO: shadow reproduce-check skipped — no baseline captured yet (run shadow_backtest.py baseline first).', 0
+    ptr = json.loads(CURRENT_BASELINE.read_text(encoding='utf-8'))
+    baseline_path = Path(ptr['path'])
+    if not baseline_path.is_file():
+        return False, 'INFO: shadow reproduce-check skipped — CURRENT baseline file missing.', 0
+    baseline = json.loads(baseline_path.read_text(encoding='utf-8'))
+    if corpus_name not in baseline.get('corpora', {}):
+        return False, f"INFO: shadow reproduce-check skipped — corpus '{corpus_name}' not in CURRENT baseline (capture baseline first).", 0
+    result = subprocess.run([sys.executable, str(SHADOW_BACKTEST), 'diff', '--corpus', corpus_name], cwd=str(SHADOW_BACKTEST.parent), capture_output=True, text=True, encoding='utf-8', errors='replace')
+    output = (result.stdout or '') + (result.stderr or '')
+    move_count = 0
+    for line in output.splitlines():
+        if line.strip().startswith(corpus_name):
+            parts = line.split('moved=')
+            if len(parts) > 1:
+                try:
+                    move_count = int(parts[1].split()[0])
+                except ValueError:
+                    pass
+            break
+    if move_count > 0 or result.returncode == 1:
+        return True, f"NOT LIVE-READY: registered flags do not reproduce live scores ({move_count} moves on corpus '{corpus_name}')", move_count
+    if result.returncode not in (0, 1):
+        return True, f'shadow reproduce-check failed (exit {result.returncode}): {output.strip()}', move_count
+    return False, f"shadow reproduce-check: 0 score moves on corpus '{corpus_name}'", 0
 
 
 def remediation(stem: str, cfg: dict, result: dict, entries: list[dict]) -> list[str]:
@@ -128,6 +163,12 @@ def main() -> int:
         print(f"  {mark:4s} {c['id']:24s} {c['detail']}")
 
     if result["conforms"]:
+        corpora = stem_corpora.get(stem, [])
+        if corpora:
+            hard_fail, repro_msg, _moves = run_shadow_reproduce(corpora[0])
+            print(chr(10) + repro_msg)
+            if hard_fail:
+                return 1
         print("\nCONFORMS: this category will re-flow correctly on a score-flip.")
         print("Before calling it LIVE-READY, confirm the non-scoring steps:")
         print("  - frontend scaffolded (route + registry + union + sitemap) — scaffold_category.py")
