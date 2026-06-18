@@ -1,0 +1,534 @@
+{
+  "run_id": "run_brined_002",
+  "task": "TASK-266",
+  "category_slug": "brined-cheeses",
+  "category_context": "dairy_protein",
+  "generated": "2026-06-13T08:11:29.886385+00:00",
+  "engine": "proto_v0 / score_engine.py — EV-053 + EV-054 applied",
+  "ev_applied": [
+    "EV-053",
+    "EV-054"
+  ],
+  "flag_config": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on (default)"
+  },
+  "ev053_note": "brined_food context: sodium red label excluded from ISRAELI_RED_LABELS_2_PLUS count",
+  "ev054_note": "brined_food context: HP_FAT_SODIUM_COMBO suppressed (conditional skip, not deletion)",
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\02_products\\brined_cheeses\\factory_run_001\\corpus_filter.json",
+  "bsip0_source": "C:\\Bari\\02_products\\brined_cheeses\\bsip0_outputs\\brined_cheese_bsip0_raw_20260613T065721.json",
+  "in_scored_count": 48,
+  "bsip1_reused_from": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_001\\output",
+  "bsip1": {
+    "records_loaded": 48,
+    "note": "reused from run_brined_001 — enrichment unchanged"
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\brined_cheeses\\bsip2_outputs\\run_brined_002",
+    "scored": 48,
+    "errors": 0
+  },
+  "score_distribution": {
+    "min": 39.0,
+    "max": 88.4,
+    "median": 72.0,
+    "range": 49.400000000000006,
+    "histogram": {
+      "60-69": 8,
+      "70-79": 35,
+      "30-39": 1,
+      "50-59": 2,
+      "80-89": 2
+    },
+    "grade_dist": {
+      "C": 4,
+      "B": 41,
+      "D": 1,
+      "A": 2
+    }
+  },
+  "anti_collapse_verdict": "SPREAD_HONEST: range=49.4 pts (39.0–88.4), 4 grade bands",
+  "brined_flag": {
+    "fired_count": 45,
+    "not_fired_count": 3,
+    "not_fired_list": [
+      {
+        "barcode": "3075805",
+        "name": "גבינת טמרה מלוחה בקר 17%",
+        "sodium_mg": 1628.0,
+        "ctx_flag": null,
+        "score": 39.0,
+        "grade": "D",
+        "note": "sodium<=500 or name not matched"
+      },
+      {
+        "barcode": "4861070",
+        "name": "גבינה צפתית קשה 24%",
+        "sodium_mg": 300.0,
+        "ctx_flag": null,
+        "score": 70.9,
+        "grade": "B",
+        "note": "sodium<=500 or name not matched"
+      },
+      {
+        "barcode": "7296073644996",
+        "name": "גבינה צפתית קשה24% מגורד",
+        "sodium_mg": 300.0,
+        "ctx_flag": null,
+        "score": 70.9,
+        "grade": "B",
+        "note": "sodium<=500 or name not matched"
+      }
+    ]
+  },
+  "hp_fat_sodium": {
+    "fired_count": 3,
+    "suppressed_count": 45,
+    "fired_list": [
+      {
+        "barcode": "3075805",
+        "name": "גבינת טמרה מלוחה בקר 17%",
+        "fat_g": 17.0,
+        "sodium_mg": 1628.0,
+        "score": 39.0,
+        "grade": "D",
+        "note": "HP_FAT_SODIUM fired (non-brined context or brined without suppression)"
+      },
+      {
+        "barcode": "4861070",
+        "name": "גבינה צפתית קשה 24%",
+        "fat_g": 24.0,
+        "sodium_mg": 300.0,
+        "score": 70.9,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM fired (non-brined context or brined without suppression)"
+      },
+      {
+        "barcode": "7296073644996",
+        "name": "גבינה צפתית קשה24% מגורד",
+        "fat_g": 24.0,
+        "sodium_mg": 300.0,
+        "score": 70.9,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM fired (non-brined context or brined without suppression)"
+      }
+    ],
+    "suppressed_list": [
+      {
+        "barcode": "2107071",
+        "name": "פטה עיזים מעודנת 16%",
+        "fat_g": 16.0,
+        "sodium_mg": 840.0,
+        "score": 63.4,
+        "grade": "C",
+        "note": "HP_FAT_SODIUM suppressed by EV-054 (brined_food context)"
+      },
+      {
+        "barcode": "2107798",
+        "name": "בולגרית מעודנת 5%",
+        "fat_g": 5.0,
+        "sodium_mg": 1000.0,
+        "score": 71.0,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM suppressed by EV-054 (brined_food context)"
+      },
+      {
+        "barcode": "2133162",
+        "name": "גבינה בולגרית 5% שומן",
+        "fat_g": 5.0,
+        "sodium_mg": 1300.0,
+        "score": 72.0,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM suppressed by EV-054 (brined_food context)"
+      },
+      {
+        "barcode": "2133889",
+        "name": "בולגרית מעודנת 5% שומן",
+        "fat_g": 5.0,
+        "sodium_mg": 1200.0,
+        "score": 72.0,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM suppressed by EV-054 (brined_food context)"
+      },
+      {
+        "barcode": "2385455",
+        "name": "בולגרית מעודנת 24%",
+        "fat_g": 24.0,
+        "sodium_mg": 1010.0,
+        "score": 68.8,
+        "grade": "B",
+        "note": "HP_FAT_SODIUM suppressed by EV-054 (brined_food context)"
+      }
+    ]
+  },
+  "acceptance_test": {
+    "all_pass": true,
+    "pairs": [
+      {
+        "label": "13%_bulgarian_NOVA1_vs_16%_feta_NOVA3",
+        "clean_bc": "7290108509106",
+        "clean_score": 72.0,
+        "clean_grade": "B",
+        "clean_nova": 1,
+        "processed_bc": "2107071",
+        "processed_score": 63.4,
+        "processed_grade": "C",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 8.600000000000001
+      },
+      {
+        "label": "13%_bulgarian_NOVA1_vs_16%_bulgarian_NOVA3",
+        "clean_bc": "7290108509106",
+        "clean_score": 72.0,
+        "clean_grade": "B",
+        "clean_nova": 1,
+        "processed_bc": "7290114312707",
+        "processed_score": 67.5,
+        "processed_grade": "B",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 4.5
+      },
+      {
+        "label": "5%_tzfatit_NOVA1_A_vs_16%_bulgarian_NOVA3",
+        "clean_bc": "554457",
+        "clean_score": 88.4,
+        "clean_grade": "A",
+        "clean_nova": 1,
+        "processed_bc": "7290114312707",
+        "processed_score": 67.5,
+        "processed_grade": "B",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 20.900000000000006
+      },
+      {
+        "label": "13%_bulgarian_NOVA1_vs_NOVA3_feta_in_oil",
+        "clean_bc": "7290108509106",
+        "clean_score": 72.0,
+        "clean_grade": "B",
+        "clean_nova": 1,
+        "processed_bc": "369617",
+        "processed_score": 55.5,
+        "processed_grade": "C",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 16.5
+      }
+    ]
+  },
+  "before_after_run001": [
+    {
+      "barcode": "2511229",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "2511243",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "48413",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290011499051",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290011499112",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290011499358",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290017065236",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290017065663",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290019635222",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290019790112",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290019790402",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290019790808",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290102393718",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290108509106",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290108509755",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7290114314015",
+      "name": "",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7296073641902",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7296073641957",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 72.0,
+      "run002_grade": "B",
+      "delta": 33.0
+    },
+    {
+      "barcode": "7296073641919",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 69.7,
+      "run002_grade": "B",
+      "delta": 30.700000000000003
+    },
+    {
+      "barcode": "2385455",
+      "name": "",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "run001_score": 39.0,
+      "run001_grade": "D",
+      "run002_score": 68.8,
+      "run002_grade": "B",
+      "delta": 29.799999999999997
+    }
+  ],
+  "top3": [
+    {
+      "barcode": "554457",
+      "name": null,
+      "score": 88.4,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "(no drivers in trace)"
+      ]
+    },
+    {
+      "barcode": "554532",
+      "name": null,
+      "score": 88.4,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "(no drivers in trace)"
+      ]
+    },
+    {
+      "barcode": "5992872",
+      "name": null,
+      "score": 75,
+      "grade": "B",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "(no drivers in trace)"
+      ]
+    }
+  ],
+  "bottom3": [
+    {
+      "barcode": "7290114312486",
+      "name": null,
+      "score": 58.9,
+      "grade": "C",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 72,
+      "drivers": [
+        "cap=87.0 NOVA_PROXY_3_PROCESSED",
+        "cap=72 HIGH_SODIUM_700MG_PLUS"
+      ]
+    },
+    {
+      "barcode": "369617",
+      "name": null,
+      "score": 55.5,
+      "grade": "C",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 72,
+      "drivers": [
+        "-3 SEED_OIL_PRESENT",
+        "cap=87.0 NOVA_PROXY_3_PROCESSED",
+        "cap=72 HIGH_SODIUM_700MG_PLUS"
+      ]
+    },
+    {
+      "barcode": "3075805",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45,
+      "drivers": [
+        "-6.0 HP_FAT_SODIUM_COMBO",
+        "cap=45 ISRAELI_RED_LABELS_2_PLUS",
+        "cap=60 HIGH_SODIUM_700MG_PLUS"
+      ]
+    }
+  ],
+  "errors": []
+}

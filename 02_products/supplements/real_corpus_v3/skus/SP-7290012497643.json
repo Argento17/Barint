@@ -1,0 +1,167 @@
+{
+  "sku_id": "SP-7290012497643",
+  "barcode": "7290012497643",
+  "name_he": "ויטמין C500 לבליעה 100 טבליות",
+  "brand_bucket": "other",
+  "engine_active": "vitamin_c",
+  "price_ils": 85.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "",
+    "confidence": 1.0,
+    "reason": "barcode match via "
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "name_derived",
+  "outcome": "scored",
+  "claim_note": "S/F umbrella from HE: 'ויטמין C לתפקוד מערכת החיסון'",
+  "lossy": [
+    "actives[0].form (not on panel)"
+  ],
+  "panel": {
+    "url": "name_derived://super_pharm/7290012497643",
+    "source": "",
+    "brand": "other",
+    "product_name": "ויטמין C500 לבליעה",
+    "barcode": "7290012497643",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "ויטמין C לתפקוד מערכת החיסון",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ויטמין C",
+        "amount": 500.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_c"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:",
+      "source_id": "other:7290012497643",
+      "source_url": "name_derived://super_pharm/7290012497643",
+      "fetched_at": "2026-06-13T17:08:03Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "ויטמין C500 לבליעה",
+    "primary_claim_fed": "immune health",
+    "actives": [
+      {
+        "active_slug": "vitamin_c",
+        "display_name": "ויטמין C",
+        "quantity": 500.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "score": 69.1,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 92,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-13T17:08:03.918700Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290012497643",
+    "active": "vitamin C (ascorbic acid)",
+    "on_label_claim": "immune health",
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29099763",
+        "PMID:23440782"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 69.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-007"
+      }
+    ],
+    "final": {
+      "score": 69.1,
+      "grade": "B"
+    }
+  }
+}

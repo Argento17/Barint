@@ -381,11 +381,14 @@ BHA_NAMED_PENALTY = 5   # points on additive_quality — confirmed, TASK-222C
 # Evidence: EV-006 (bsip2_evidence_registry_v1.md:177)
 # Vocabulary complete: 2026-06-10. SCORING WIRED: 2026-06-10.
 FIBER_FUNCTIONAL_BONUS = {
-    "viscous_glycemic_quality_bonus":   2,   # +2 to glycemic_quality for viscous fiber presence
-    "viscous_satiety_bonus":            2,   # +2 to satiety_support numerator equiv for viscous fiber
-    "prebiotic_glycemic_quality_bonus": 1,   # +1 to glycemic_quality for non-viscous prebiotic fiber
-    "prebiotic_satiety_bonus":          1,   # +1 to satiety_support numerator equiv for prebiotic fiber
-    "presence_bonus_cap_per_dimension": 2,   # max total bonus per dimension from functional fiber
+    "viscous_glycemic_quality_bonus":             2,   # +2 to glycemic_quality for viscous fiber presence
+    "viscous_satiety_bonus":                      2,   # +2 to satiety_support numerator equiv for viscous fiber
+    "prebiotic_glycemic_quality_bonus":           1,   # +1 for non-viscous prebiotic (Part 1, flag OFF, moderate tier)
+    "prebiotic_satiety_bonus":                    1,   # +1 for non-viscous prebiotic (Part 1, flag OFF, moderate tier)
+    # EV-006 ext Part 2 (BARI_FIBER_FERMENT_V1): high-fermentability tier gets +2 vs moderate +1
+    "high_fermentability_glycemic_quality_bonus": 2,   # +2 for high-fermentability prebiotic (inulin/FOS/GOS/chicory/AX/RS)
+    "high_fermentability_satiety_bonus":          2,   # +2 for high-fermentability prebiotic
+    "presence_bonus_cap_per_dimension":           2,   # max total bonus per dimension from functional fiber
 }
 
 # ---------------------------------------------------------------------------
@@ -462,6 +465,240 @@ VEG_SPREAD_WEIGHTS = {
     "whole_food_integrity": 0.06,
 }
 VEG_SPREAD_IMMUNITY_CEILING = 80.0   # EV-032 anti-immunity guard (bari_usecase_guardrails_v2)
+
+# ---------------------------------------------------------------------------
+# TASK-266 / EV-057 — dairy_protein archetype re-weighting (sums to 1.0).
+# Gated by BARI_DAIRY_PROTEIN_REWEIGHT_V1 (default OFF). Elevates protein_quality
+# (10%→14%) and lowers calorie_density (15%→11%) for protein-primary dairy cheeses.
+# Precedent: VEG_SPREAD_WEIGHTS / EV-032.
+# ---------------------------------------------------------------------------
+DAIRY_PROTEIN_WEIGHTS = {
+    "processing_quality":   0.15,
+    "nutrient_density":     0.15,
+    "calorie_density":      0.11,
+    "glycemic_quality":     0.12,
+    "protein_quality":      0.14,
+    "additive_quality":     0.10,
+    "satiety_support":      0.06,
+    "fat_quality":          0.08,
+    "regulatory_quality":   0.05,
+    "whole_food_integrity": 0.04,
+}
+
+# ---------------------------------------------------------------------------
+# TASK-266 / EV-056 — shelf-relative sodium surcharge for endemic-sodium dairy.
+# Gated by BARI_SODIUM_SHELF_RELATIVE_V1 (default OFF; requires BARI_GRAD_SODIUM_V1).
+# Bands keyed on distance_above_median = max(0, sodium - SHELF_SODIUM_MEDIAN_MG).
+# Combined with SODIUM_LOAD_GENERAL_GRAD inside SODIUM_FAMILY_BUDGET_BRINED.
+# ---------------------------------------------------------------------------
+SODIUM_FAMILY_BUDGET_BRINED = 16
+SODIUM_SHELF_STDEV_GUARD = 150   # mg — suppress surcharge when shelf stdev below this
+
+# (distance_lo, distance_hi_or_None, penalty_points); hi=None = unbounded above
+SODIUM_SHELF_SURCHARGE_BANDS = [
+    (600, None, 6),
+    (400, 599,  4),
+    (200, 399,  2),
+    (0,   199,  0),
+]
+
+# ---------------------------------------------------------------------------
+# TASK-278 / EV-084 — Category-agnostic shelf-relative differentiator (Phase-1).
+# Gated by BARI_SHELF_RELATIVE_V1 (default OFF). Empty scopes = no enrollment.
+# ---------------------------------------------------------------------------
+# TASK-278 Phase-2 / EV-085 — Biscuits × sugar enrollment (D7 co-signed 2026-06-14).
+# Scope: frozenset({"biscuit"}) only (Phase-2). Phase-5 (EV-087) adds "cereal".
+# Bands expressed in NORMALIZED r-units (r = (value − median) / robust_scale).
+# The shelf_relative_differentiator call site sets normalize_distance=True so
+# _band_lookup receives r, not raw g.
+# OFF-BAN: sugars_g from label only (L1_observed_signals / normalized_nutrition_per_100g).
+# Do NOT add categories or nutrients here — each future enrollment is a separate D7+EV.
+SUGAR_SHELF_REL_SCOPE: frozenset = frozenset({"biscuit", "cereal"})
+FATSAT_SHELF_REL_SCOPE: frozenset = frozenset()
+
+# Penalty bands (above-median direction): (r_lo, r_hi_or_None, penalty_pts).
+# r = (value − median) / robust_scale. Max penalty P = 6 pts (EV-085, D7 cond 4).
+SUGAR_SHELF_SURCHARGE_BANDS: list[tuple] = [
+    (0.0,  0.5,  0),
+    (0.5,  1.0,  1),
+    (1.0,  1.5,  2),
+    (1.5,  2.5,  4),
+    (2.5,  None, 6),
+]
+
+# Relief bands (below-median direction): (r_lo, r_hi_or_None, relief_pts).
+# r_below = (median − value) / robust_scale. Max relief B = 3 pts (EV-085, B < P).
+SUGAR_SHELF_RELIEF_BANDS: list[tuple] = [
+    (0.0,  0.5,  0),
+    (0.5,  1.5,  1),
+    (1.5,  3.0,  2),
+    (3.0,  None, 3),
+]
+
+FATSAT_SHELF_SURCHARGE_BANDS: list[tuple] = []
+FATSAT_SHELF_RELIEF_BANDS: list[tuple] = []
+
+# Low-variance guard: suppress if robust_scale < SUGAR_SHELF_SCALE_GUARD.
+# EV-085: guard = 3.0 (g units; compared against robust_scale computed at run start).
+# Not binding for biscuit corpus (5.115 >> 3.0).
+SUGAR_SHELF_SCALE_GUARD = 3.0
+FATSAT_SHELF_SCALE_GUARD = 0.5
+
+# min_scale floors (passed to compute_shelf_stats as nutrient_min_scale).
+SUGAR_SHELF_SCALE_MIN = 1.0
+FATSAT_SHELF_SCALE_MIN = 0.5
+
+# EV-085 — formulation_absolute_floor for biscuit × sugar enrollment.
+# Applies when category=="biscuit" AND sugars_g >= HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G.
+# Clamps composite score to max 55 for high-sugar biscuits. Prevents Anti-Immunity
+# violation: grade B requires >=70; floor=55 + max_relief=3 = 58 < 70. Non-None per D7 cond 5.
+SUGAR_SHELF_REL_FORMULATION_FLOOR = 55       # max composite score for high-sugar biscuits
+HIGH_SUGAR_BISCUIT_FLOOR_THRESHOLD_G = 20.0  # g/100g — floor activates at this level
+
+# EV-085 — family budget raise for the biscuit sugar path (D7 cond 10).
+# Raise = max(P, B) = 6 points above the base SUGAR_FAMILY_BUDGET (10).
+# Applied only when BARI_SHELF_RELATIVE_V1=on AND category=="biscuit".
+SUGAR_SHELF_BISCUIT_BUDGET_RAISE = 6
+
+# EV-087: cereals × sugar shelf-relative floor (D7 co-signed 2026-06-14, TASK-278 Phase-5)
+# Anti-Immunity: high-sugar cereal cannot reach grade B (70). Floor is a CEILING (min).
+# No budget raise for cereal (D7 Option A). Scope already includes "cereal".
+SUGAR_SHELF_REL_CEREAL_FLOOR = 62          # max composite score for high-sugar cereals
+SUGAR_SHELF_REL_CEREAL_FLOOR_THRESHOLD_G = 25.0  # g/100g — floor activates at this level
+
+# EV-087 cereal corpus statistics — n=34 cereal-only (updated P111, 2026-06-14)
+# Prior n=45 stats (median=14.0, IQR=11.0, scale=8.896) were contaminated by 11 snack_bar_granola
+# products that are out of scope for SUGAR_SHELF_REL_SCOPE. Recomputed from pilot traces
+# (run_cereals_001_shelfrel_pilot) using only the 34 products where category=="cereal".
+# Formula: robust_scale = max(IQR/1.349, 1.4826*MAD, 1.4); scale_iqr=10.007, scale_mad=11.861
+# → MAD-primary wins. Low-variance guard: 11.861 >= 1.4 PASS. n=34 >= 20 PASS.
+SUGAR_SHELF_REL_CEREAL_MEDIAN = 13.0       # g/100g, n=34 cereal-only (prior n=45: 14.0)
+SUGAR_SHELF_REL_CEREAL_IQR = 13.5          # g/100g, n=34 cereal-only (prior n=45: 11.0)
+SUGAR_SHELF_REL_CEREAL_SCALE = 11.8608     # robust_scale, n=34 cereal-only (prior n=45: 8.896)
+
+# EV-088 yogurt×sugar shelf-relative (P115, 2026-06-14; n=74 cereal-only computed from run_yogurt_006)
+SUGAR_SHELF_REL_YOGURT_MEDIAN = 5.45
+SUGAR_SHELF_REL_YOGURT_IQR = 5.80
+SUGAR_SHELF_REL_YOGURT_SCALE = 4.299        # IQR-primary: IQR/1.349=4.299
+SUGAR_SHELF_REL_YOGURT_FLOOR = 62
+SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G = 12.0
+SUGAR_SHELF_REL_YOGURT_P_MAX = 6
+SUGAR_SHELF_REL_YOGURT_B_MAX = 3
+
+# EV-089 cheese_spreads×sat_fat shelf-relative (P119, 2026-06-14; n=24 cream_cheese from run_cheese_003)
+# Scope guard: category=="dairy_protein" AND category_subtype in CREAM_CHEESE_SPREAD_SUBTYPES.
+# Direction: penalize_high (above-median sat_fat → penalty; below-median → relief).
+# MAD-primary scale (tight cluster): robust_scale = 1.4826×MAD = 1.4826×1.40 = 2.0756.
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Double protection: sat_fat >= 16.5g products are above median → cannot receive B_max relief.
+FATSAT_SHELF_REL_CHEESESPREAD_MEDIAN = 16.05
+FATSAT_SHELF_REL_CHEESESPREAD_IQR = 2.60
+FATSAT_SHELF_REL_CHEESESPREAD_SCALE = 2.0756        # MAD-primary: 1.4826×1.40=2.0756
+FATSAT_SHELF_REL_CHEESESPREAD_FLOOR = 62
+FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G = 16.5
+FATSAT_SHELF_REL_CHEESESPREAD_P_MAX = 6
+FATSAT_SHELF_REL_CHEESESPREAD_B_MAX = 3
+
+CREAM_CHEESE_SPREAD_SUBTYPES: frozenset = frozenset({"cream_cheese", "cheese_spread"})
+
+# EV-090 hard_cheeses×sat_fat shelf-relative (P123, 2026-06-14; Scope A n=22 yellow+yellow_light+hard_grating)
+# Scope guard: category=="dairy_protein" AND nn.get("bsip_cheese_subpool") in HARD_CHEESE_YELLOW_SUBPOOLS.
+# Direction: penalize_high (asymmetric P>B).
+# Scale = IQR/1.349 = 1.11 < floor 1.40 → use floor value 1.40 (IQR-primary with floor).
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Floor protection: sat_fat >= 19.0g → absolute ceiling of 62.
+FATSAT_SHELF_REL_HARDCHEESE_MEDIAN = 18.0
+FATSAT_SHELF_REL_HARDCHEESE_IQR = 1.50
+FATSAT_SHELF_REL_HARDCHEESE_SCALE = 1.40          # at minimum floor (IQR/1.349=1.11 < floor=1.40)
+FATSAT_SHELF_REL_HARDCHEESE_FLOOR = 62
+FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G = 19.0
+FATSAT_SHELF_REL_HARDCHEESE_P_MAX = 6
+FATSAT_SHELF_REL_HARDCHEESE_B_MAX = 3
+
+HARD_CHEESE_YELLOW_SUBPOOLS: frozenset = frozenset({"yellow", "yellow_light", "hard_grating"})
+
+# EV-091 juices×sugar shelf-relative (P126, 2026-06-14; n=65 from run_juices_001).
+# Scope guard: product.get("juice_sub_pool") is not None (all juice subpool values included).
+# All 65 products have juice_sub_pool present (juice_100/nectar/fruit_drink/smoothie/cold_pressed).
+SUGAR_SHELF_REL_JUICES_MEDIAN = 9.50
+SUGAR_SHELF_REL_JUICES_IQR = 3.80
+SUGAR_SHELF_REL_JUICES_SCALE = 2.82           # IQR-primary: max(IQR/1.349=2.82, 1.4826×MAD=1.93, 1.40)
+SUGAR_SHELF_REL_JUICES_FLOOR = 62
+SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G = 12.2   # Q3-based; de-anchored from Israeli red-label 10g
+SUGAR_SHELF_REL_JUICES_P_MAX = 6
+SUGAR_SHELF_REL_JUICES_B_MAX = 3
+# Low-variance guard for the juice corpus: SUGAR_SHELF_SCALE_GUARD (3.0g) is too tight for
+# juice×sugar (IQR-based scale=2.82g). A category-specific guard of 2.0g maintains the
+# anti-degenerate-distribution protection while permitting the juice corpus scale through.
+SUGAR_SHELF_SCALE_GUARD_JUICES = 2.0
+
+# EV-092 maadanim×sugar shelf-relative (P129, 2026-06-14; n=146 with sugars_g from run_maadanim_001).
+# Scope guard: product.get("bsip_maadanim_subtype") is not None (200/200 BSIP1 files have field).
+# IQR-primary scale: max(IQR/1.349=8.73, 1.4826×MAD≈4.45, 1.40) = 8.75.
+# Standard SUGAR_SHELF_SCALE_GUARD (3.0g) applies — scale=8.75g is well above guard.
+SUGAR_SHELF_REL_MAADANIM_MEDIAN = 9.70
+SUGAR_SHELF_REL_MAADANIM_IQR = 11.78
+SUGAR_SHELF_REL_MAADANIM_SCALE = 8.75
+SUGAR_SHELF_REL_MAADANIM_FLOOR = 62
+SUGAR_SHELF_REL_MAADANIM_FLOOR_THRESHOLD_G = 16.08   # Q3-based; de-anchored from binary red-label cap
+SUGAR_SHELF_REL_MAADANIM_P_MAX = 6
+SUGAR_SHELF_REL_MAADANIM_B_MAX = 3
+
+# EV-093 salty_snacks×sodium shelf-relative (P135, 2026-06-14; n=54).
+# Scope guard: category == "salty_snack" (BSIP1 field; authoritative shelf boundary).
+# IQR-primary scale: IQR/1.349 = 190/1.349 = 140.85mg.
+# Low-variance guard: 100.0mg (category-specific; SODIUM_SHELF_STDEV_GUARD=150mg is too
+# tight for the salty_snack corpus where IQR-based scale=140.85mg < 150mg).
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Uses BARI_SHELF_RELATIVE_V1 (not BARI_SODIUM_SHELF_RELATIVE_V1 which is brined-only EV-056).
+SODIUM_SHELF_REL_SALTY_SNACK_MEDIAN = 560.0
+SODIUM_SHELF_REL_SALTY_SNACK_IQR = 190.0
+SODIUM_SHELF_REL_SALTY_SNACK_SCALE = 140.85
+SODIUM_SHELF_REL_SALTY_SNACK_FLOOR = 62
+SODIUM_SHELF_REL_SALTY_SNACK_FLOOR_THRESHOLD_MG = 630.0
+SODIUM_SHELF_REL_SALTY_SNACK_P_MAX = 6
+SODIUM_SHELF_REL_SALTY_SNACK_B_MAX = 3
+SODIUM_SHELF_SCALE_GUARD_SALTY_SNACK = 100.0   # mg — category-specific guard (IQR-scale=140.85 > 100)
+
+# EV-094 hummus×sodium shelf-relative (P138, 2026-06-14; n=60 in-scope hummus).
+# Scope guard: bsip0_source.product_category in HUMMUS_PRODUCT_CATEGORIES.
+# IQR-primary scale: IQR/1.349 = 43/1.349 = 31.88mg.
+# Anti-Immunity: floor(62) + B_max(3) = 65 < 70 (grade B threshold) — PASS.
+# Q4: suppress SR when sodium >= 700mg (HIGH_SODIUM_700MG_PLUS already handles absolute harm signal).
+# Q5-B: skip SR for insufficient_data products (delta=0).
+# Uses BARI_SHELF_RELATIVE_V1 (not BARI_SODIUM_SHELF_RELATIVE_V1 which is brined-only EV-056).
+SODIUM_SHELF_REL_HUMMUS_MEDIAN = 390.0
+SODIUM_SHELF_REL_HUMMUS_IQR = 43.0
+SODIUM_SHELF_REL_HUMMUS_SCALE = 31.88
+SODIUM_SHELF_REL_HUMMUS_FLOOR = 62
+SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG = 395.0
+SODIUM_SHELF_REL_HUMMUS_P_MAX = 6
+SODIUM_SHELF_REL_HUMMUS_B_MAX = 3
+SODIUM_SHELF_SCALE_GUARD_HUMMUS = 10.0   # mg — hummus guard (IQR-scale=31.88 > 10); lower than salty_snack (100mg)
+HUMMUS_PRODUCT_CATEGORIES: frozenset = frozenset({"hummus_spread", "hummus_and_savory_dips"})
+
+# EV-098 cakes_hard_cookies×sugar shelf-relative (TASK-278 Phase-13; n=143 with sugars_g).
+# Scope guard: product.get("bsip1_canonical_id", "").startswith("bsip1_cakes_") AND
+#              product in in_scored corpus set (cross-referenced to exclude OOS products).
+# Note: BSIP1 category field = "cake_cookie" for both IN_SCORED and OOS products — the
+# primary guard "category == cakes_hard_cookies" is absent; the fallback bsip1_canonical_id
+# guard is used with an explicit in_scored cross-reference to prevent OOS bleed.
+# Corpus stats: n=143 IN_SCORED products with sugars_g present.
+# Direction: asymmetric (above-median → penalty P_max=6; below-median → relief B_max=3).
+# Q3=33.0g chosen as floor_threshold over median (D7 Q1 decision — cross-category consistency).
+# normalize_distance=True: bands in r-units (r = (value - median) / robust_scale).
+# IQR-primary robust_scale = max(IQR/1.349=8.895, 1.4826×MAD=9.044, 1.40) = 9.044.
+# Low-variance guard: SUGAR_SHELF_SCALE_GUARD (3.0g) — scale=9.044 >> 3.0, PASS.
+# Anti-Immunity: floor(52) + B_max(3) = 55 < 70 (grade B threshold) — PASS (D7 verified).
+# D7 co-sign: Product Agent, 2026-06-15 (cakes_sugar_d7_cosign_v1.md). EV-098 registered.
+# OFF-BAN: sugars_g sourced from label-panel only (normalized_nutrition_per_100g); OFF not used.
+SUGAR_SHELF_REL_CAKES_MEDIAN = 29.0          # g/100g
+SUGAR_SHELF_REL_CAKES_IQR = 12.0             # g/100g
+SUGAR_SHELF_REL_CAKES_SCALE = 9.044          # robust_scale = max(IQR/1.349=8.895, 1.4826×MAD=9.044, 1.40)
+SUGAR_SHELF_REL_CAKES_FLOOR = 52             # absolute floor: no cakes product below 52
+SUGAR_SHELF_REL_CAKES_FLOOR_THRESHOLD_G = 33.0  # Q3 (D7 Q1 decision) — surcharge zone = top 25%
+SUGAR_SHELF_REL_CAKES_P_MAX = 6              # max surcharge penalty
+SUGAR_SHELF_REL_CAKES_B_MAX = 3              # max below-median relief
 
 # ---------------------------------------------------------------------------
 # R7 v1.1 (TASK-169A) — gate the live-culture +8 to GENUINELY cultured dairy only.
@@ -749,6 +986,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מווסת חומציות / מונע חמצון",
         "match_patterns_he": ["חומצת לימון", "חומצה ציטרית"],
+        "cosmetic_mup": False,
     },
     "E202": {
         "name_he": "פוטסיום סורבט",
@@ -756,6 +994,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "חומר משמר אנטי-מיקרוביאלי",
         "match_patterns_he": ["פוטסיום סורבט", "סורבט אשלגן", "סורבט פוטסיום"],
+        "cosmetic_mup": False,
     },
     "E300": {
         "name_he": "חומצה אסקורבית",
@@ -763,6 +1002,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "נוגד חמצון / משפר בצק",
         "match_patterns_he": ["חומצה אסקורבית", "ויטמין C", "ויטמין c"],
+        "cosmetic_mup": False,
     },
     "E1422": {
         # TASK-181D: E1412 / E1414 (distarch phosphate / acetylated distarch
@@ -778,6 +1018,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "עמילן מעובד", "עמילן שונה", "עמילן מוקשה", "עמילן משונה",
             "E1412", "e1412", "E1414", "e1414", "E1442", "e1442",
         ],
+        "cosmetic_mup": True,   # texture thickener/stabilizer — restores mouthfeel lost in processing
     },
     "E282": {
         "name_he": "פרופיונט סידן",
@@ -785,6 +1026,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "חומר משמר נגד עובש בלחם",
         "match_patterns_he": ["פרופיונט סידן", "סידן פרופיונט", "קלציום פרופיונט"],
+        "cosmetic_mup": False,
     },
     "E481": {
         "name_he": "נתרן סטארויל לקטילט",
@@ -792,6 +1034,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "מרכך בצק / משפר נפח לחם",
         "match_patterns_he": ["נתרן סטארויל לקטילט", "SSL", "נתרן סטיארויל לקטילאט"],
+        "cosmetic_mup": True,
     },
     "E407": {
         "name_he": "קרגינן",
@@ -799,6 +1042,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "מייצב / חומר מסמיך ממקור אצות",
         "match_patterns_he": ["קרגינן", "קרגינאן", "קאראגינן"],
+        "cosmetic_mup": True,
     },
     "E471": {
         "name_he": "מונו ודיגליצרידים",
@@ -811,6 +1055,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "מונוגליצרידים",
             "דיגליצרידים",
         ],
+        "cosmetic_mup": True,   # emulsifier — restores texture/mouthfeel lost in processing
     },
     "E472e": {
         "name_he": "DATEM",
@@ -818,6 +1063,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "likely-neutral",
         "function_he": "מרכך בצק / חומר תחליב לחם",
         "match_patterns_he": ["DATEM", "datem", "חומצה טרטרית מונו ודיגליצרידים"],
+        "cosmetic_mup": True,
     },
     "E415": {
         "name_he": "קסנטן",
@@ -825,6 +1071,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
         "match_patterns_he": ["קסנטן", "קסנטאן", "קסנתן"],
+        "cosmetic_mup": True,
     },
     "E450": {
         "name_he": "פוספטים",
@@ -832,6 +1079,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "מייצב חלבוני חלב / חומר תחליב",
         "match_patterns_he": ["פוספט", "פוספטים", "דיפוספט", "טריפוספט", "פוליפוספט"],
+        "cosmetic_mup": True,
     },
     "E440": {
         "name_he": "פקטין",
@@ -839,6 +1087,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
         "match_patterns_he": ["פקטין"],
+        "cosmetic_mup": True,
     },
     "E410": {
         "name_he": "לוקוסט-בין גאם",
@@ -846,6 +1095,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מייצב טבעי ממקור חרוב",
         "match_patterns_he": ["לוקוסט-בין גאם", "לוקוסט בין גאם", "קרוב בין גאם", "קרוב-בין גאם"],
+        "cosmetic_mup": True,
     },
     "E412": {
         "name_he": "גואר",
@@ -853,6 +1103,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
         "match_patterns_he": ["גואר", "גואר גאם", "גואר גם"],
+        "cosmetic_mup": True,
     },
     "E955": {
         "name_he": "סוכרלוז",
@@ -860,6 +1111,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
         "match_patterns_he": ["סוכרלוז", "sucralose"],
+        "cosmetic_mup": True,
     },
     "E950": {
         "name_he": "אצסולפאם K",
@@ -867,6 +1119,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
         "match_patterns_he": ["אצסולפאם", "אצסולפם", "acesulfame", "אצסולפאם k", "אצסולפאם K"],
+        "cosmetic_mup": True,
     },
     "E466": {
         "name_he": "קרבוקסי מתיל צלולוז",
@@ -874,6 +1127,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "מייצב / מסמיך על בסיס צלולוז",
         "match_patterns_he": ["קרבוקסי מתיל צלולוז", "קרבוקסימתיל צלולוז", "CMC", "cmc"],
+        "cosmetic_mup": True,
     },
     "E150": {
         "name_he": "צבע קרמל",
@@ -881,6 +1135,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "disclosure-gap",
         "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
         "match_patterns_he": ["צבע קרמל", "קרמל"],
+        "cosmetic_mup": True,
     },
     "E211": {
         "name_he": "נתרן בנזואט",
@@ -888,6 +1143,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "חומר משמר אנטי-מיקרוביאלי בסביבה חומצית",
         "match_patterns_he": ["נתרן בנזואט", "בנזואט נתרן"],
+        "cosmetic_mup": False,
     },
     "E320": {
         "name_he": "BHA",
@@ -895,6 +1151,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "contested",
         "function_he": "נוגד חמצון לשומנים — מסווג IARC 2B (בעלי חיים)",
         "match_patterns_he": ["BHA", "bha", "בוטילציאניזול", "בוטיל הידרוקסיאניזול"],
+        "cosmetic_mup": False,
     },
     # -----------------------------------------------------------------------
     # TASK-181D — 16 newly added additives (observed on the displayed shelf,
@@ -908,6 +1165,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
         "match_patterns_he": ["בטא קרוטן", "בטא-קרוטן", "ביתא קרוטן", "ביתא-קרוטן"],
+        "cosmetic_mup": True,
     },
     "E163": {
         "name_he": "אנטוציאנינים",
@@ -915,6 +1173,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
         "match_patterns_he": ["אנטוציאנין", "אנטוציאנינים", "רכז גזר שחור"],
+        "cosmetic_mup": True,
     },
     "E162": {
         "name_he": "אדום סלק",
@@ -922,6 +1181,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל אדום ממקור סלק",
         "match_patterns_he": ["אדום סלק", "רכז סלק", "בטנין"],
+        "cosmetic_mup": True,
     },
     "E100": {
         "name_he": "כורכומין",
@@ -929,6 +1189,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "צבע מאכל צהוב ממקור כורכום",
         "match_patterns_he": ["כורכומין", "כורכום"],
+        "cosmetic_mup": True,
     },
     "E141": {
         "name_he": "תרכובות נחושת של כלורופיל",
@@ -936,6 +1197,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "unclassified",
         "function_he": "צבע מאכל ירוק נושא נחושת",
         "match_patterns_he": ["תרכובות נחושת של כלורופיל", "כלורופיל נחושת", "נחושת כלורופיל"],
+        "cosmetic_mup": True,
     },
     "E333": {
         "name_he": "סידן ציטרט",
@@ -943,6 +1205,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח ציטרט — מקור סידן / מייצב",
         "match_patterns_he": ["טריקלציום ציטרט", "קלציום ציטרט", "סידן ציטרט", "סידן (טריקלציום ציטרט)"],
+        "cosmetic_mup": False,
     },
     "E331": {
         "name_he": "סודיום ציטרט",
@@ -950,6 +1213,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח ציטרט — מווסת חומציות / מלח מתחלב",
         "match_patterns_he": ["סודיום ציטרט", "טרי סודיום ציטרט", "נתרן ציטרט", "ציטרט נתרן"],
+        "cosmetic_mup": False,
     },
     "E327": {
         "name_he": "סידן לקטט",
@@ -957,6 +1221,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מלח לקטט — מקור סידן / מווסת חומציות",
         "match_patterns_he": ["סידן לקטט", "קלציום לקטט", "לקטט סידן"],
+        "cosmetic_mup": False,
     },
     "E296": {
         "name_he": "חומצה מאלית",
@@ -964,6 +1229,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
         "match_patterns_he": ["חומצה מאלית", "חומצת תפוח"],
+        "cosmetic_mup": False,
     },
     "E270": {
         "name_he": "חומצה לקטית",
@@ -971,6 +1237,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל / משמר — תוצר תסיסה טבעי",
         "match_patterns_he": ["חומצה לקטית", "חומצת חלב", "חומצה לקטטית"],
+        "cosmetic_mup": False,
     },
     "E401": {
         "name_he": "אלגינט נתרן",
@@ -978,6 +1245,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מסמיך / מייצב ממקור אצות חומות",
         "match_patterns_he": ["אלגינט נתרן", "נתרן אלגינט", "אלגינאט נתרן", "אלגינט"],
+        "cosmetic_mup": True,
     },
     "E516": {
         "name_he": "גופרת סידן",
@@ -985,6 +1253,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומר מקשה / מקור סידן (גבס)",
         "match_patterns_he": ["גופרת סידן", "סולפט סידן", "קלציום סולפט", "גופרית סידן"],
+        "cosmetic_mup": False,
     },
     "E500": {
         "name_he": "סודיום קרבונט",
@@ -992,6 +1261,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "מווסת חומציות / חומר תפיחה",
         "match_patterns_he": ["סודיום קרבונט", "נתרן קרבונט", "סודה לשתייה", "ביקרבונט", "סודיום ביקרבונט", "סודה לאפייה"],
+        "cosmetic_mup": False,
     },
     "E575": {
         "name_he": "גלוקונו דלתא לקטון",
@@ -999,6 +1269,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "functional",
         "function_he": "חומצת מאכל / מקריש — מתפרק לחומצה גלוקונית",
         "match_patterns_he": ["גלוקונו דלתא לקטון", "גלוקונו-דלתא-לקטון", "GDL", "gdl"],
+        "cosmetic_mup": False,
     },
     "E960": {
         "name_he": "סטיביול גליקוזידים",
@@ -1006,6 +1277,120 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות ממקור צמח הסטיביה",
         "match_patterns_he": ["סטיביול גליקוזידים", "סטיביול גליקוזיד", "סטיביה", "stevia"],
+        "cosmetic_mup": True,
+    },
+    # -----------------------------------------------------------------------
+    # EV-059 — Wave 4 library extension (2026-06-14).
+    # 11 additives identified as gaps via research review
+    # (Algorithmic Foundations of Consumer Food Scoring Engines, 2026).
+    # Tiers: additive_tiered_library_v1.md §2.C.
+    # cosmetic_mup per Siga/Codex functional-class model (same doc).
+    # ANNOTATE-ONLY — no score movement; D4 presentation-only boundary intact.
+    # -----------------------------------------------------------------------
+
+    # ── Emulsifier ──
+    "E433": {
+        "name_he": "פוליסורבאט 80",
+        "name_en": "Polysorbate 80 (P80)",
+        "tier": "contested",
+        "function_he": "חומר תחליב סינתטי — מייצב שמן-במים",
+        "match_patterns_he": ["פוליסורבאט 80", "פולי סורבאט 80", "Polysorbate 80", "polysorbate 80"],
+        "cosmetic_mup": True,   # emulsifier — restores texture lost in processing
+    },
+
+    # ── Non-sugar sweetener ──
+    "E951": {
+        "name_he": "אספרטם",
+        "name_en": "Aspartame",
+        "tier": "contested",
+        "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+        "match_patterns_he": ["אספרטם", "aspartame", "E951", "e951"],
+        "cosmetic_mup": True,   # non-sugar sweetener
+    },
+
+    # ── Colorant ──
+    "E171": {
+        "name_he": "טיטניום דיוקסיד",
+        "name_en": "Titanium dioxide",
+        "tier": "contested",
+        "function_he": "צבע מאכל לבן — אסור באיחוד האירופי (2022); מורשה בארה\"ב/קנדה/אוסטרליה",
+        "match_patterns_he": ["טיטניום דיוקסיד", "E171", "e171", "titanium dioxide"],
+        "cosmetic_mup": True,   # colorant — restores whiteness lost in processing
+    },
+
+    # ── Azo dyes (Southampton six; EU Article-24 warning-label mandate) ──
+    # Individual entries retained — Israeli labels declare by E-number or Hebrew name.
+    # tier: contested (EFSA AFC: "limited evidence of small effect"; EU warning required;
+    # US FDA: insufficient for ban; mixture effect cannot isolate per-dye contribution).
+    "E102": {
+        "name_he": "טרטראזין",
+        "name_en": "Tartrazine",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["טרטראזין", "E102", "e102", "tartrazine"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E110": {
+        "name_he": "צהוב שקיעה",
+        "name_en": "Sunset Yellow FCF",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב-כתום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["צהוב שקיעה", "Sunset Yellow", "sunset yellow", "E110", "e110"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E122": {
+        "name_he": "קרמואיזין",
+        "name_en": "Carmoisine",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["קרמואיזין", "E122", "e122", "carmoisine"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E124": {
+        "name_he": "פונסו 4R",
+        "name_en": "Ponceau 4R",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["פונסו 4R", "פונסו 4r", "פונסו", "E124", "e124", "ponceau"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E129": {
+        "name_he": "אדום אלורה",
+        "name_en": "Allura Red AC",
+        "tier": "contested",
+        "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["אדום אלורה", "Allura Red", "allura red", "E129", "e129"],
+        "cosmetic_mup": True,   # colorant
+    },
+    "E104": {
+        "name_he": "צהוב קינולין",
+        "name_en": "Quinoline Yellow",
+        "tier": "contested",
+        "function_he": "צבע מאכל צהוב-ירקרק סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
+        "match_patterns_he": ["צהוב קינולין", "Quinoline Yellow", "quinoline yellow", "E104", "e104"],
+        "cosmetic_mup": True,   # colorant
+    },
+
+    # ── Curing preservatives — first confirmed-negative entries ──
+    # IARC 2A ("probably carcinogenic to humans") for nitrate/nitrite in processed meat;
+    # N-nitrosamine formation mechanism well-established. cosmetic_mup=False: primary
+    # function is preservation/curing, not sensory restoration.
+    # Relevant only when Bari scores processed meats — not on any live shelf today.
+    "E249": {
+        "name_he": "פוטסיום ניטריט",
+        "name_en": "Potassium nitrite",
+        "tier": "confirmed-negative",
+        "function_he": "חומר משמר / מייצב צבע בשר מעובד — IARC 2A (עם E250) בשר מעובד",
+        "match_patterns_he": ["פוטסיום ניטריט", "אשלגן ניטריט", "E249", "e249"],
+        "cosmetic_mup": False,  # preservative / curing agent — not a sensory restorer
+    },
+    "E250": {
+        "name_he": "נתרן ניטריט",
+        "name_en": "Sodium nitrite",
+        "tier": "confirmed-negative",
+        "function_he": "חומר משמר / מייצב צבע בשר מעובד — IARC 2A (עם E249) בשר מעובד",
+        "match_patterns_he": ["נתרן ניטריט", "E250", "e250"],
+        "cosmetic_mup": False,  # preservative / curing agent — not a sensory restorer
     },
 }
 

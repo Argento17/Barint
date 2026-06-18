@@ -9,6 +9,8 @@ import {
   juicesPrologueSentences,
   juicesProducts,
 } from "@/lib/comparisons/juices-page-data";
+import { buildFaqScript } from "@/lib/seo/faq-schema";
+import rawFaqSchema from "@/data/seo/juices_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת מיצים ומשקאות פירות | Bari",
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
 
 export default function JuicesComparisonRoute() {
   return (
-    <JuicesComparisonPage
-      products={juicesProducts}
-      metadataLine={juicesMetadataLine}
-      hero={juicesHero}
-      prologueSentences={juicesPrologueSentences}
-      methodologyLines={juicesMethodologyLines}
-      categoryNote={juicesCategoryNote}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
+      <JuicesComparisonPage
+        products={juicesProducts}
+        metadataLine={juicesMetadataLine}
+        hero={juicesHero}
+        prologueSentences={juicesPrologueSentences}
+        methodologyLines={juicesMethodologyLines}
+        categoryNote={juicesCategoryNote}
+      />
+    </>
   );
 }

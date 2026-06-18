@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-09T15:31:34.885602Z",
+  "trace_generated_at": "2026-06-15T06:11:04.248707Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_5900020039590",
@@ -165,6 +165,8 @@
     "trans_fat_status": "threshold_declaration",
     "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [],
     "red_label_count": 0,
     "hp_fat_sugar_pattern_raw": false,
@@ -186,10 +188,21 @@
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
+    "functional_fiber_detected": true,
+    "functional_fiber_type": "prebiotic",
+    "functional_fiber_terms_matched": [
+      "פרוקטו-אוליגוסכרידים"
+    ],
+    "functional_fiber_viscous_terms": [],
+    "functional_fiber_prebiotic_terms": [
+      "פרוקטו-אוליגוסכרידים"
+    ],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [
       "soy_lecithin"
     ],
+    "tax_emulsifier_medium": [],
+    "tax_emulsifier_low": [],
     "tax_named_concern_additives": [
       "soy_lecithin"
     ],
@@ -209,6 +222,8 @@
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
       "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 11.54,
@@ -298,10 +313,10 @@
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=1.5g→7.5, fiber=5.5g→51.2, weighted 65/35=22.8 × 0.80 fortification_discount → 18.2",
     "calorie_density": "kcal=78.0, category=snack_bar_granola (conf 0.76, relaxed by 1.05x) → 90",
-    "glycemic_quality": "90 - sugar_penalty(3.5) + fiber(11.0) + wg(5) = 102.5",
+    "glycemic_quality": "90 - sugar_penalty(3.5) + fiber(11.0) + wg(5) = 102.5 + EV-006 prebiotic-fiber bonus(1)",
     "protein_quality": "protein=1.5g base=7.5, source=whole_food(×1.0) → 7.5",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0 id_delta=+2→30.0 [F1 lecithin relief +2]",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (1.5×3 + 5.5×5) / 78.0 × 400 = 100",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (1.5×3 + 5.5×5) / 78.0 × 400 = 100 + EV-006 prebiotic-fiber bonus(1)",
     "fat_quality": "fat_v1(fat=1.0g<8.0): sat=0.7g base=80.4-seed0-trans0=80.4",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=16 complexity_pen=16 → 14"

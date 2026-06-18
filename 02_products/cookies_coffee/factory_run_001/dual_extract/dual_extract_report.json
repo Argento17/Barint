@@ -1,0 +1,3833 @@
+{
+  "generated_at": "2026-06-13T18:08:48.164331+00:00",
+  "fixtures_dir": "C:\\Bari\\03_operations\\spine\\_fixtures_e2e\\raw",
+  "bsip0_dir": "C:\\Bari\\03_operations\\spine\\_e2e_out\\bsip0",
+  "run_meta": {
+    "mode": "raw_store",
+    "raw_store_dir": "C:\\Bari\\03_operations\\bsip0\\raw_store\\shufersal\\cookies_coffee",
+    "bsip0_path": "C:\\Bari\\02_products\\cookies_coffee\\bsip0_outputs\\cookies_coffee_bsip0_raw_20260613T163431.json",
+    "corpus_path": "C:\\Bari\\02_products\\cookies_coffee\\factory_run_001\\corpus_filter.json",
+    "in_scored_filter": true,
+    "limit": null,
+    "html_discovered": 129,
+    "products_selected": 61
+  },
+  "fields_compared": [
+    "energy_kcal",
+    "protein_g",
+    "fat_g",
+    "fat_saturated_g",
+    "carbohydrates_g",
+    "sugars_g",
+    "dietary_fiber_g",
+    "sodium_mg",
+    "ingredients"
+  ],
+  "tolerance": {
+    "absolute": 0.1,
+    "relative_pct": 1.0
+  },
+  "fabrication_guard": "Gemini prompt explicitly forbids: (1) inferring/estimating values, (2) using outside world knowledge, (3) using Open Food Facts or any external source (TASK-238). Disagreements with the rule-based parser are the consensus check — if Gemini invents a value it disagrees with Extractor A and is FLAGGED, never silently accepted.",
+  "factory_wiring": "dual_extract.py runs at the extraction stage (post-scrape, pre-BSIP1). Fields with DISAGREE or FLAG verdict block auto-publish and route to human review. Only AGREE fields are promoted to the scored pipeline. B-side 'unavailable' (Gemini timeout/error) triggers manual review of the affected product — it does not crash the pipeline.",
+  "products": [
+    {
+      "barcode": "2986058",
+      "name": "פתי בר וניל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 440.0,
+          "extractor_b": 440.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.2,
+          "extractor_b": 7.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 13.0,
+          "extractor_b": 13.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.4,
+          "extractor_b": 3.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.8,
+          "extractor_b": 72.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 21.4,
+          "extractor_b": 21.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.9,
+          "extractor_b": 1.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 208.0,
+          "extractor_b": 208.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמן סויה מזוכך, שומן דקל, חומרי תפיחה (E500ii, E503ii), מלח, מתחלב (לציטין סויה), חומרי טעם וריח. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמן סויה מזוכך, שומן דקל, חומרי תפיחה (E500ii, E503ii), מלח, מתחלב (לציטין סויה), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "2986065",
+      "name": "פתי בר בטעם שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 443.0,
+          "extractor_b": 443.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.2,
+          "extractor_b": 7.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 13.8,
+          "extractor_b": 13.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.6,
+          "extractor_b": 3.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 71.2,
+          "extractor_b": 71.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 21.7,
+          "extractor_b": 21.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.4,
+          "extractor_b": 2.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 212.0,
+          "extractor_b": 212.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמן סויה מזוכך, שומן דקל, אבקת קקאו, חומרי תפיחה (E500ii, E503ii), מלח, מתחלב (לציטין סויה), חומרי טעם וריח. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמן סויה מזוכך, שומן דקל, אבקת קקאו, חומרי תפיחה (E500ii, E503ii), מלח, מתחלב (לציטין סויה), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "311128",
+      "name": "עוגיות בטעם חמאה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 478.0,
+          "extractor_b": 478.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.4,
+          "extractor_b": 6.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.4,
+          "extractor_b": 19.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 69.1,
+          "extractor_b": 69.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 23.3,
+          "extractor_b": 23.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 220.0,
+          "extractor_b": 220.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה רך (מכיל גלוטן), סוכר לבן, שמן צמחי, (שמן דקלים), סירופ גלוקוז, מלח שולחן, חומרי תפיחה: סודיום ביקרבונט E-500, אמוניום ביקר בונט E-503, חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח חיטה רך (מכיל גלוטן), סוכר לבן, שמן צמחי, (שמן דקלים), סירופ גלוקוז, מלח שולחן, חומרי תפיחה: סודיום ביקרבונט E-500, אמוניום ביקר בונט E-503, חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "311463",
+      "name": "עוגיות חמאה ללת\"ס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 419.0,
+          "extractor_b": 419.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.8,
+          "extractor_b": 8.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 16.1,
+          "extractor_b": 16.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.8,
+          "extractor_b": 1.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 71.0,
+          "extractor_b": 71.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 0.9,
+          "extractor_b": 0.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 13.1,
+          "extractor_b": 13.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 254.0,
+          "extractor_b": 254.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה מלאה (גלוטן) (49%), שמן חמניות, סיבים תזונתיים (אינולין, פולידקסטרוז E953), ממתיקים (מלטיטול E965) , סוכרלוז , Splendal , E 955), סובין חיטה, קמח סויה , מייצב עמילן אורז E1422) , מתחלב (לציטין סויה E322) , חומרי תפיחה (סודיום ביקרבונט E500, אמוניום ביקרבונ ט E503), מלח שולחן , חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח חיטה מלאה (גלוטן) (49%), שמן חמניות, סיבים תזונתיים (אינולין, פולידקסטרוז E953), ממתיקים (מלטיטול E965) , סוכרלוז , Splendal , E 955), סובין חיטה, קמח סויה , מייצב עמילן אורז E1422) , מתחלב (לציטין סויה E322) , חומרי תפיחה (סודיום ביקרבונט E500, אמוניום ביקרבונ ט E503), מלח שולחן , חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "311708",
+      "name": "עוגיות מחיטה מלאה מן",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 478.0,
+          "extractor_b": 478.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 22.6,
+          "extractor_b": 22.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 10.8,
+          "extractor_b": 10.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 67.9,
+          "extractor_b": 67.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 21.5,
+          "extractor_b": 21.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 8.1,
+          "extractor_b": 8.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 238.0,
+          "extractor_b": 238.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה מלאה 55% (מכיל גלוטן), שמן צמחי, סוכר לבן, סירופ גלוקוז, מלח שולחן, חומרי תפיחה: סודיום ביקרבונט E-500, אמוניום ביקרבונט E- 503, חומרי טעם וריח. מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח חיטה מלאה 55% (מכיל גלוטן), שמן צמחי, סוכר לבן, סירופ גלוקוז, מלח שולחן, חומרי תפיחה: סודיום ביקרבונט E-500, אמוניום ביקרבונט E- 503, חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "313160",
+      "name": "עוגיות שוקולד זהבה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 470.0,
+          "extractor_b": 470.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.0,
+          "extractor_b": 7.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 17.0,
+          "extractor_b": 17.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.5,
+          "extractor_b": 3.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.2,
+          "extractor_b": 72.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 250.0,
+          "extractor_b": 250.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים, אבקת קקאו (3.3%), סוכר אינברטי, חומרי תפיחה (E500, E503), מלח, מתחלב (לציטין סויה), חומרי  טעם וריח, מעכב חימצון (מיצוי רוזמרין). מכיל סויה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים, אבקת קקאו (3.3%), סוכר אינברטי, חומרי תפיחה (E500, E503), מלח, מתחלב (לציטין סויה), חומרי  טעם וריח, מעכב חימצון (מיצוי רוזמרין).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "4820180816552",
+      "name": "עוגיות עם ש.שועל קוקוס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 477.0,
+          "extractor_b": 477.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.1,
+          "extractor_b": 5.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 20.8,
+          "extractor_b": 20.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 7.5,
+          "extractor_b": 7.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 67.4,
+          "extractor_b": 67.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 36.6,
+          "extractor_b": 36.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 24.0,
+          "extractor_b": 24.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), פתיתי שיבולת שועל (מכיל גלוטן) 10.6%, סירופ  סוכר (מים, סוכר, חומר מווסת חומציות חומצה ציטרית, סודיום ביקרבונט), שבבי קוקוס 4%, חומר תפיחה סודיום ביקרבונט, משפרי אפיה (קמח חיטה  (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול), חומר טעם וריח), חומר טעם וריח דבש. ערכים תזונתיים 100 גרם 36.6 גרם סוכרים מתוך פחמימות 477 קל אנרגיה 5.1 גרם חלבונים 67.4 גרם פחמימות 20.8 גרם שומנים 24 מג נתרן 7.5 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 9.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), פתיתי שיבולת שועל (מכיל גלוטן) 10.6%, סירופ סוכר (מים, סוכר, חומר מווסת חומציות חומצה ציטרית, סודיום ביקרבונט), שבבי קוקוס 4%, חומר תפיחה סודיום ביקרבונט, משפרי אפיה (קמח חיטה (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול), חומר טעם וריח), חומר טעם וריח דבש.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "4820180816576",
+      "name": "עוגיות עם שבבי קוקוס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 507.0,
+          "extractor_b": 507.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.3,
+          "extractor_b": 6.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 25.6,
+          "extractor_b": 25.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 10.3,
+          "extractor_b": 10.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.9,
+          "extractor_b": 62.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.1,
+          "extractor_b": 22.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 36.0,
+          "extractor_b": 36.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), סוכר 4.9%, שבבי קוקוס 2.2%, חומר מווסת חומצ יות חומצה לקטית, משפרי אפייה (קמח חיטה (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול) חומר טעם וריח), חומר טעם וריח קוקוס. ערכים תזונתיים 100 גרם 22.1 גרם סוכרים מתוך פחמימות 507 קל אנרגיה 6.3 גרם חלבונים 62.9 גרם פחמימות 25.6 גרם שומנים 36 מג נתרן 10.3 גרם מתוכם שומן רווי 0.6 גרם חומצות שומן טרנס 5.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), סוכר 4.9%, שבבי קוקוס 2.2%, חומר מווסת חומצ יות חומצה לקטית, משפרי אפייה (קמח חיטה (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול) חומר טעם וריח), חומר טעם וריח קוקוס.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "4820180816590",
+      "name": "עוגיות עם גרעיני חמנייה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 504.0,
+          "extractor_b": 504.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.2,
+          "extractor_b": 7.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 25.8,
+          "extractor_b": 25.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.4,
+          "extractor_b": 9.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 61.0,
+          "extractor_b": 61.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 26.2,
+          "extractor_b": 26.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 108.0,
+          "extractor_b": 108.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), תערובת חומרים יבשים (קמח סויה, עמילן חיטה ( מכיל גלוטן), חומרי תפיחה (סודיום פירופוספט, סודיום ביקרבונט), אבקת מי גבינה, דקסטרוז, מלח, חומר טעם וריח וניל), גרעיני חמניות 2.4%, שומשום 2.4%, זרעי פשתן 2.4%, משפרי אפיה (קמח חיטה (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול), חומר טעם וריח), חומר מווסת  חומציות חומצה לקטית, חומר טעם וריח וניל. ערכים תזונתיים 100 גרם 26.2 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 7.2 גרם חלבונים 61 גרם פחמימות 25.8 גרם שומנים 108 מג נתרן 9.4 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 6.5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, מרגרינה (מכיל חומר משמר פוטסיום סורבט, צבע מאכל בטא קרוטן), תערובת חומרים יבשים (קמח סויה, עמילן חיטה ( מכיל גלוטן), חומרי תפיחה (סודיום פירופוספט, סודיום ביקרבונט), אבקת מי גבינה, דקסטרוז, מלח, חומר טעם וריח וניל), גרעיני חמניות 2.4%, שומשום 2.4%, זרעי פשתן 2.4%, משפרי אפיה (קמח חיטה (מכיל גלוטן), חומרים מעכבי חמצון (גאם ארביק, טוקופרול), חומר טעם וריח), חומר מווסת  חומציות חומצה לקטית, חומר טעם וריח וניל.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "4823077614675",
+      "name": "ביסקוויט לקפה בטעם חלב",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 452.0,
+          "extractor_b": 452.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.1,
+          "extractor_b": 7.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 17.2,
+          "extractor_b": 17.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 7.7,
+          "extractor_b": 7.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 65.9,
+          "extractor_b": 65.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.7,
+          "extractor_b": 20.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.0,
+          "extractor_b": 3.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 309.0,
+          "extractor_b": 309.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "רכיבים: קמח חיטה (מכיל גלוטן), סוכר, שמן צמחי (שמן דקלים לא מוקשה), מתחלב: לציטין סויה, חומרי תפיחה: E500ii, E503ii, מלח, חומרי טעם וריח \"חלב אפוי\", מווסת חומציות E270, אבקת חלב כחוש, בוטנים, אגוזי לוז ושקדים מגוררים , מלאנז ביצים. מכיל אגוזי לוז,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמן צמחי (שמן דקלים לא מוקשה), מתחלב: לציטין סויה, חומרי תפיחה: E500ii, E503ii, מלח, חומרי טעם וריח \"חלב אפוי\", מווסת חומציות E270, אבקת חלב כחוש, בוטנים, אגוזי לוז ושקדים מגוררים , מלאנז ביצים.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "4823077614699",
+      "name": "ביסקוויט לקפה בטעם חמאה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 453.0,
+          "extractor_b": 453.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.1,
+          "extractor_b": 7.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 17.3,
+          "extractor_b": 17.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 65.9,
+          "extractor_b": 65.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.7,
+          "extractor_b": 20.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.0,
+          "extractor_b": 3.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 282.0,
+          "extractor_b": 282.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "רכיבים: קמח חיטה (מכיל גלוטן), סוכר, שמן דקלים לא מוקשה, חומר מתחלב לציטין סויה, חומרי תפיחה (סודיום הידרוגן קרבונט, אמוניום הידרוגן  קרבונט), מלח, חומר טעם וריח \"חמאה-וניל\", מווסת חומציות חומצה לקטית. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמן דקלים לא מוקשה, חומר מתחלב לציטין סויה, חומרי תפיחה (סודיום הידרוגן קרבונט, אמוניום הידרוגן קרבונט), מלח, חומר טעם וריח \"חמאה-וניל\", מווסת חומציות חומצה לקטית.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "5317194",
+      "name": "ביסקוויט בטעם וניל הדר",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 434.0,
+          "extractor_b": 434.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.8,
+          "extractor_b": 6.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 11.0,
+          "extractor_b": 11.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.8,
+          "extractor_b": 4.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 75.5,
+          "extractor_b": 75.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.9,
+          "extractor_b": 2.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 256.0,
+          "extractor_b": 256.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכרים (סוכר לבן, סוכר אינוורטי), שומן צמחי, עמילן תירס, מתפיחים (אמוניום ביקרבונט, סודיום ביקרבונט, סודיום ד יפוספט), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, מטפל קמח (סודיום מטאביסולפיט), מעכב חמצון טבעי (תמצית רוזמרין) מכיל סויה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכרים (סוכר לבן, סוכר אינוורטי), שומן צמחי, עמילן תירס, מתפיחים (אמוניום ביקרבונט, סודיום ביקרבונט, סודיום ד יפוספט), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, מטפל קמח (סודיום מטאביסולפיט), מעכב חמצון טבעי (תמצית רוזמרין)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "540160",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 392.0,
+          "extractor_b": 392.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.0,
+          "extractor_b": 7.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 12.0,
+          "extractor_b": 12.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.6,
+          "extractor_b": 1.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 64.0,
+          "extractor_b": 64.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 0.0,
+          "extractor_b": 0.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 0.8,
+          "extractor_b": 0.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 120.0,
+          "extractor_b": 120.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה מלאה 47% (מכיל גלוטן) , שמן חמניות, מלטיטול (ממתיק) - רב כהלים, עמילני תפו\"א מעובדים, שומשום (2%), חלבון סויה, סיבי מאכל . מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח חיטה מלאה 47% (מכיל גלוטן) , שמן חמניות, מלטיטול (ממתיק) - רב כהלים, עמילני תפו\"א מעובדים, שומשום (2%), חלבון סויה, סיבי מאכל .",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "5410126006049",
+      "name": "ביסקוויט לוטוס טעם קרמל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 484.0,
+          "extractor_b": 484.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.9,
+          "extractor_b": 4.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.6,
+          "extractor_b": 72.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 38.1,
+          "extractor_b": 38.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 370.0,
+          "extractor_b": 370.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטו), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתיח), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון.  *שמן דקל בר קיימא מאושר מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטו), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתיח), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון.  *שמן דקל בר קיימא מאושר",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "5410126116168",
+      "name": "ביסקוויט בטעם קרמל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 484.0,
+          "extractor_b": 484.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.9,
+          "extractor_b": 4.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.6,
+          "extractor_b": 72.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 38.1,
+          "extractor_b": 38.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 370.0,
+          "extractor_b": 370.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "5410126726244",
+      "name": "ביסקוויט קרמל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 484.0,
+          "extractor_b": 484.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.9,
+          "extractor_b": 4.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.6,
+          "extractor_b": 72.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 38.1,
+          "extractor_b": 38.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 370.0,
+          "extractor_b": 370.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "5410126806250",
+      "name": "עוגיות לוטוס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 484.0,
+          "extractor_b": 484.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.9,
+          "extractor_b": 4.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 72.6,
+          "extractor_b": 72.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 38.1,
+          "extractor_b": 38.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 370.0,
+          "extractor_b": 370.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה, סוכר, שמנים צמחיים (שמן דקל, שמן קנולה), סירופ סוכר, חומר התפחה (E500), קמח סויה, מלח, קינמון. *שמן דקל בר קיימא מאושר מכיל סויה,",
+          "extractor_b": "קמח חיטה, סוכר, שמנים צמחיים (שמן דקל, שמן קנולה), סירופ סוכר, חומר התפחה (E500), קמח סויה, מלח, קינמון. *שמן דקל בר קיימא מאושר",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "61245",
+      "name": "עוגיות שוקוציפס+שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 527.0,
+          "extractor_b": 527.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.4,
+          "extractor_b": 6.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 28.2,
+          "extractor_b": 28.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 11.9,
+          "extractor_b": 11.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 34.0,
+          "extractor_b": 34.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 170.0,
+          "extractor_b": 170.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "סוכר, קמח חיטה (מכיל גלוטן), שמנים צמחיים, נטיפי שוקולד מריר (8%) (מכיל סויה), עמילנים, אגוזים (לוז, מלך), קמח סויה, סיבים תזונתיים (סיבי במבוק), אבקת קקאו (1.3%), חומרי תפיחה (E500 ,E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, אבקת ביצים, חומצת מאכל(חומצת לימ ון). מוצקי קקאו בשוקולד לפחות 44%. העוגיות מכילות 36% מילוי. מכיל אגוזי לוז,",
+          "extractor_b": "סוכר, קמח חיטה (מכיל גלוטן), שמנים צמחיים, נטיפי שוקולד מריר (8%) (מכיל סויה), עמילנים, אגוזים (לוז, מלך), קמח סויה, סיבים תזונתיים (סיבי במבוק), אבקת קקאו (1.3%), חומרי תפיחה (E500 ,E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, אבקת ביצים, חומצת מאכל(חומצת לימ ון). מוצקי קקאו בשוקולד לפחות 44%. העוגיות מכילות 36% מילוי.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290011489625",
+      "name": "ביסקוויט בטעם שוקו",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 434.0,
+          "extractor_b": 434.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.8,
+          "extractor_b": 6.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 11.0,
+          "extractor_b": 11.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.8,
+          "extractor_b": 4.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 75.5,
+          "extractor_b": 75.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.9,
+          "extractor_b": 2.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 256.0,
+          "extractor_b": 256.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכרים (סוכר לבן, סוכר אינוורטי), שומן צמחי, עמילן תירס, אבקת קקאו (2%), מתפיחים (אמוניום ביקרבונט, דיסודיום ביקרבונט), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, מטפל קמח (סודיום מטאביסולפיט), מעכב חמצון טבעי (תמצית רוזמרין). מאפיינים נוספים צמחוני מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכרים (סוכר לבן, סוכר אינוורטי), שומן צמחי, עמילן תירס, אבקת קקאו (2%), מתפיחים (אמוניום ביקרבונט, דיסודיום ביקרבונט), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, מטפל קמח (סודיום מטאביסולפיט), מעכב חמצון טבעי (תמצית רוזמרין).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013453501",
+      "name": "ביסקוטי כוסמין שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 324.0,
+          "extractor_b": 324.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.6,
+          "extractor_b": 6.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 10.5,
+          "extractor_b": 10.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 47.7,
+          "extractor_b": 47.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 23.4,
+          "extractor_b": 23.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 263.0,
+          "extractor_b": 263.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח כוסמין מלא (גלוטן), סוכר קנים אורגני, אגוזי לוז (6%), שוקולד מריר (6%), פירות מיובשים (8%):מישמשים וצימוקים, ממתיק: אגבה, גרעיני  פשתן, שמן קנולה, חומר תפיחה: סודה ביקרבונט, מלח שולחן. מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח כוסמין מלא (גלוטן), סוכר קנים אורגני, אגוזי לוז (6%), שוקולד מריר (6%), פירות מיובשים (8%):מישמשים וצימוקים, ממתיק: אגבה, גרעיני פשתן, שמן קנולה, חומר תפיחה: סודה ביקרבונט, מלח שולחן.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013453631",
+      "name": "עוגיות חמאת בוטנים כשל\"פ",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 485.0,
+          "extractor_b": 485.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 15.5,
+          "extractor_b": 15.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 24.3,
+          "extractor_b": 24.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 6.4,
+          "extractor_b": 6.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 50.4,
+          "extractor_b": 50.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 24.8,
+          "extractor_b": 24.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 0.9,
+          "extractor_b": 0.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 130.0,
+          "extractor_b": 130.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "חיטה . אנחנו מאמינים שאפשר לאכול אוכל בריא ומזין שהוא גם טעים ומפנק! כדי לעמוד באתגר, חומרי הגלם הקלאסיים של קונדיטוריה: קמח לבן, מרגרינה, חמאה, ביצים ושמנת - יצאו לחלוטין מתהליך האפייה. בכדי לתת עושר תזונתי למוצרינו, יש שימוש בקמח שקדים, קמח אורז מלא, ממתיקים טבעיים (מייפל,אגבה, רכז תפוחים ועוד), ושומנים חיוניים. • כדורי חמאת בוטנים ושוקולד - עוגיות ללא אפיה על בסיס של חמאת בוטנים טבעית, שוקולד מריר איכותי ופצפוצי אורז מלא עם אזהרת התמכרות חמורה:) • ללא ביצים וללא חלב, מתאימות לטבעונים ומסומנות בתו של veganfriendly • העוגיות מיוצרות במאפייה נפרדת שכל חומרי הגלם והציוד ללא גלוטן.",
+          "extractor_b": "חמאת בוטנים (29%), שוקולד מריר (21%), ממתיק: אגבה, פצפוצי אורז מלא, חלבון אפונה, אגוזי לוז.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013453693",
+      "name": "עוגיות גרידת לימון ללת\"ס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 446.0,
+          "extractor_b": 446.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.3,
+          "extractor_b": 7.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 31.0,
+          "extractor_b": 31.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.0,
+          "extractor_b": 4.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 33.8,
+          "extractor_b": 33.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 3.8,
+          "extractor_b": 3.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 8.1,
+          "extractor_b": 8.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 251.0,
+          "extractor_b": 251.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "שקדים, קמח אורז מלא, ממתיק: אגבה, שמן קנולה, רסק תפוחים, סיבים תזונתיים (עולש), קוקוס (5%), עמילן טפיוקה, אגוזי לוז (2%), חומרי תפיח ה:אבקת אפיה וסודה לשתיה (סודיום ביקרבונט ופירופוספט). מאפיינים נוספים נטול גלוטן,",
+          "extractor_b": "שקדים, קמח אורז מלא, ממתיק: אגבה, שמן קנולה, רסק תפוחים, סיבים תזונתיים (עולש), קוקוס (5%), עמילן טפיוקה, אגוזי לוז (2%), חומרי תפיח ה:אבקת אפיה וסודה לשתיה (סודיום ביקרבונט ופירופוספט).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740052",
+      "name": "עוגיות פרחי ריבה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 443.0,
+          "extractor_b": 443.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.0,
+          "extractor_b": 5.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 23.2,
+          "extractor_b": 23.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 10.3,
+          "extractor_b": 10.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 52.9,
+          "extractor_b": 52.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 13.3,
+          "extractor_b": 13.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.1,
+          "extractor_b": 1.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 49.0,
+          "extractor_b": 49.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), שומנים מן הצומח, ריבה בטעם תות, סוכר, ביצים, מלח, תמצית טעם.n מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 1.1 גרם סיבים תזונתיים 13.3 גרם סוכרים מתוך פחמימות 443 קל אנרגיה 5 גרם חלבונים 52.9 גרם פחמימות 23.2 גרם שומנים 22 מג כולסטרול 49 מג נתרן 10.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן), שומנים מן הצומח, ריבה בטעם תות, סוכר, ביצים, מלח, תמצית טעם.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740113",
+      "name": "עוגיות מרוקאיות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 389.0,
+          "extractor_b": 389.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.7,
+          "extractor_b": 5.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 17.9,
+          "extractor_b": 17.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 5.1,
+          "extractor_b": 5.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 50.1,
+          "extractor_b": 50.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 13.3,
+          "extractor_b": 13.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.2,
+          "extractor_b": 2.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 184.0,
+          "extractor_b": 184.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן) (49%), מים, סוכר לבן, שמנים מן הצומח, קוקוס (2.5%), שומשום (2.5%), חומר תפיחה (אבקת אפיה (סודיום ביקרבונט, סודיו ם פירופוספט)), סוכר וניל, מלח שולחן, חומר טעם וריח: תמציות טעם. n מאפיינים נוספים ללא כולסטרול,",
+          "extractor_b": "קמח חיטה (גלוטן) (49%), מים, סוכר לבן, שמנים מן הצומח, קוקוס (2.5%), שומשום (2.5%), חומר תפיחה (אבקת אפיה (סודיום ביקרבונט, סודיו ם פירופוספט)), סוכר וניל, מלח שולחן, חומר טעם וריח: תמציות טעם. n",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740137",
+      "name": "עוגיות אוזן פיל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 379.0,
+          "extractor_b": 379.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.5,
+          "extractor_b": 4.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 21.4,
+          "extractor_b": 21.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.2,
+          "extractor_b": 9.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 41.3,
+          "extractor_b": 41.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 10.6,
+          "extractor_b": 10.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.3,
+          "extractor_b": 1.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 214.0,
+          "extractor_b": 214.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), שומנים מן הצומח, סוכר, ביצים, חומץ, מלח, קינמון.n מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 1.3 גרם סיבים תזונתיים 10.6 גרם סוכרים מתוך פחמימות 379 קל אנרגיה 4.5 גרם חלבונים 41.3 גרם פחמימות 21.4 גרם שומנים 5 מג כולסטרול 214 מג נתרן 9.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 2.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן), שומנים מן הצומח, סוכר, ביצים, חומץ, מלח, קינמון.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740229",
+      "name": "עוגיות פרסות שקדים",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 503.0,
+          "extractor_b": 503.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.5,
+          "extractor_b": 7.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 33.2,
+          "extractor_b": 33.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 12.3,
+          "extractor_b": 12.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 42.3,
+          "extractor_b": 42.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 12.5,
+          "extractor_b": 12.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.3,
+          "extractor_b": 2.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 42.0,
+          "extractor_b": 42.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), שומנים מן הצומח, שקדים, סוכר, ביצים, מלח, תמצית טעם.n מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 2.3 גרם סיבים תזונתיים 12.5 גרם סוכרים מתוך פחמימות 503 קל אנרגיה 7.5 גרם חלבונים 42.3 גרם פחמימות 33.2 גרם שומנים 22 מג כולסטרול 42 מג נתרן 12.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 3 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן), שומנים מן הצומח, שקדים, סוכר, ביצים, מלח, תמצית טעם.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740342",
+      "name": "עוגיות פרחי ריבה ללת\"ס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 394.0,
+          "extractor_b": 394.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.6,
+          "extractor_b": 4.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 21.3,
+          "extractor_b": 21.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.4,
+          "extractor_b": 9.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 54.9,
+          "extractor_b": 54.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 0.0,
+          "extractor_b": 0.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.1,
+          "extractor_b": 1.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 41.0,
+          "extractor_b": 41.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), שומן צמחי, ריבה בטעם תות ללא סוכר, ממתיק:מלטיטול, ביצים, מלח, תמצית טעם.n מאפיינים נוספים ללא צבעי מאכל,",
+          "extractor_b": "קמח חיטה (גלוטן), שומן צמחי, ריבה בטעם תות ללא סוכר, ממתיק:מלטיטול, ביצים, מלח, תמצית טעם.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740465",
+      "name": "עוגיות שושנים",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 394.0,
+          "extractor_b": 394.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.9,
+          "extractor_b": 5.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 18.3,
+          "extractor_b": 18.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.1,
+          "extractor_b": 9.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 51.1,
+          "extractor_b": 51.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 17.3,
+          "extractor_b": 17.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.0,
+          "extractor_b": 1.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 452.0,
+          "extractor_b": 452.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), שומן צמחי, סוכר, ביצה, פודינג ווניל, אבקת אפיה. n מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 1 גרם סיבים תזונתיים 17.3 גרם סוכרים מתוך פחמימות 394 קל אנרגיה 5.9 גרם חלבונים 51.1 גרם פחמימות 18.3 גרם שומנים 70 מג כולסטרול 452 מג נתרן 9.1 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 4.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן), שומן צמחי, סוכר, ביצה, פודינג ווניל, אבקת אפיה.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740472",
+      "name": "עוגיות מושלגות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 372.0,
+          "extractor_b": 372.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.0,
+          "extractor_b": 7.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 11.1,
+          "extractor_b": 11.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.9,
+          "extractor_b": 1.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 59.8,
+          "extractor_b": 59.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 31.6,
+          "extractor_b": 31.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.6,
+          "extractor_b": 2.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 141.0,
+          "extractor_b": 141.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), סוכר לבן, ביצים, שמן קנולה, קקאו, חומר תפיחה: אבקת אפיה (סודיום ביקרבונט, סודיום פירופוספט), מווסת חומציות: חומצת לימון, חומר משמר: סולפיט. מכיל ביצים,",
+          "extractor_b": "קמח חיטה (גלוטן), סוכר לבן, ביצים, שמן קנולה, קקאו, חומר תפיחה: אבקת אפיה (סודיום ביקרבונט, סודיום פירופוספט), מווסת חומציות: חומצת לימון, חומר משמר: סולפיט.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740540",
+      "name": "עוגיות אוזן פיל ללת\"ס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 361.0,
+          "extractor_b": 361.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 4.5,
+          "extractor_b": 4.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 21.4,
+          "extractor_b": 21.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.2,
+          "extractor_b": 9.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 40.9,
+          "extractor_b": 40.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 0.0,
+          "extractor_b": 0.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.3,
+          "extractor_b": 1.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 213.0,
+          "extractor_b": 213.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן) (42%), מרגרינה,מים, ממתיק: מלטיטול, שמן קנולה מזוכך, ביצים (1.2%), חומץ, מלח שולחן, קינמון (0.3%).n מאפיינים נוספים ללא תוספת סוכר,",
+          "extractor_b": "קמח חיטה (גלוטן) (42%), מרגרינה,מים, ממתיק: מלטיטול, שמן קנולה מזוכך, ביצים (1.2%), חומץ, מלח שולחן, קינמון (0.3%).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740557",
+      "name": "עוגיות רייפעת",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 467.0,
+          "extractor_b": 467.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.8,
+          "extractor_b": 8.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 16.8,
+          "extractor_b": 16.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.5,
+          "extractor_b": 1.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 68.6,
+          "extractor_b": 68.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 17.1,
+          "extractor_b": 17.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.0,
+          "extractor_b": 3.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 145.0,
+          "extractor_b": 145.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן) (60%), סוכר לבן (17%), שמן קנולה מזוכך, אניס (3.5%), שומשום (3%), מים, ביצים, חומר תפיחה (אבקת אפיה (סודיום ביק רבונט, סודיום פירופוספט)), מלח שולחן. מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 3 גרם סיבים תזונתיים 17.1 גרם סוכרים מתוך פחמימות 467 קל אנרגיה 8.8 גרם חלבונים 68.6 גרם פחמימות 16.8 גרם שומנים 189 מג כולסטרול 145 מג נתרן 1.5 גרם מתוכם שומן רווי 2.7 מג ברזל פחות מ 0.5 גרם חומצות שומן טרנס 4.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן) (60%), סוכר לבן (17%), שמן קנולה מזוכך, אניס (3.5%), שומשום (3%), מים, ביצים, חומר תפיחה (אבקת אפיה (סודיום ביק רבונט, סודיום פירופוספט)), מלח שולחן.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290013740694",
+      "name": "עוגיות אלפחורס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 416.0,
+          "extractor_b": 416.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.1,
+          "extractor_b": 6.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 18.5,
+          "extractor_b": 18.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.8,
+          "extractor_b": 8.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 55.4,
+          "extractor_b": 55.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 21.0,
+          "extractor_b": 21.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.3,
+          "extractor_b": 1.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 160.0,
+          "extractor_b": 160.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן) (34%), ריבת חלב (חלב,סוכר, גלוקוז, מלח E-202,E-406,E-500, מרגרינה, סוכר  לבן (10%), עמילן תירס (8.5%), חלמון ביצ ה, קוקוס (1.7%), חומר תפיחה (אבקת אפיה, סודיום פירופוספט), חומרי טעם וריח (תמצית וניל, תמצית חמאה).n מאפיינים נוספים ללא צבעי מאכל ערכים תזונתיים 100 גרם 1.3 גרם סיבים תזונתיים 21 גרם סוכרים מתוך פחמימות 416 קל אנרגיה 6.1 גרם חלבונים 55.4 גרם פחמימות 18.5 גרם שומנים 76 מג כולסטרול 160 מג נתרן 8.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 81.3 מג סידן 5.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (גלוטן) (34%), ריבת חלב (חלב,סוכר, גלוקוז, מלח E-202,E-406,E-500, מרגרינה, סוכר  לבן (10%), עמילן תירס (8.5%), חלמון ביצ ה, קוקוס (1.7%), חומר תפיחה (אבקת אפיה, סודיום פירופוספט), חומרי טעם וריח (תמצית וניל, תמצית חמאה).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290017894317",
+      "name": "עוגיות כוסמין מלא שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 465.0,
+          "extractor_b": 465.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.4,
+          "extractor_b": 8.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.9,
+          "extractor_b": 3.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 24.0,
+          "extractor_b": 24.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 4.9,
+          "extractor_b": 4.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 100.0,
+          "extractor_b": 100.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח כוסמין מלא ( 57 % ) ( מכיל גלוטן ) שמן חמניות , סוכר קנים , נטיפי שוקולד ( 10 % ) , סירופ תירס , ממרח אגוזי לוז , סודיום ואמוני ום ביקרבונט ( להתפחה ) , תמצית שמן זית , מלח . עלול להכיל אגוזים,",
+          "extractor_b": "קמח כוסמין מלא ( 57 % ) ( מכיל גלוטן ) שמן חמניות , סוכר קנים , נטיפי שוקולד ( 10 % ) , סירופ תירס , ממרח אגוזי לוז , סודיום ואמוני ום ביקרבונט ( להתפחה ) , תמצית שמן זית , מלח .",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290017898506",
+      "name": "ביסקוטי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 415.0,
+          "extractor_b": 415.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 9.0,
+          "extractor_b": 9.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.0,
+          "extractor_b": 4.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 48.0,
+          "extractor_b": 48.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.0,
+          "extractor_b": 20.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 170.0,
+          "extractor_b": 170.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), קשיו 20%, סוכר, מחמאה (שומנים מוקשים מן הצומח), נוזל ביצים (ביצים, מלח, מסמיך E415), חומר תפיחה (אבקת אפיה - סודיום ביו קרבונט, סודיום פירופוספט), מלח. מכיל אגוזי קשיו,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), קשיו 20%, סוכר, מחמאה (שומנים מוקשים מן הצומח), נוזל ביצים (ביצים, מלח, מסמיך E415), חומר תפיחה (אבקת אפיה - סודיום ביו קרבונט, סודיום פירופוספט), מלח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290017962108",
+      "name": "עוגיות וניל פקאן כשל\"פ",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 523.0,
+          "extractor_b": 523.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.1,
+          "extractor_b": 8.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 33.5,
+          "extractor_b": 33.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.0,
+          "extractor_b": 4.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 44.9,
+          "extractor_b": 44.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 17.7,
+          "extractor_b": 17.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 4.5,
+          "extractor_b": 4.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 373.0,
+          "extractor_b": 373.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "שקדים (18%), קמח אורז מלא, סוכר קנים אורגני, רסק תפוחים, שמן קנולה, טפיוקה, חמוציות ברכז תפוחים (8%), סיבים תזונתיים (עולש), חומר תפ יחה: אבקת אפיה (סודיום ביקרבונט, פירופוספט), קינמון. מאפיינים נוספים דל לקטוז,",
+          "extractor_b": "שקדים (18%), קמח אורז מלא, סוכר קנים אורגני, רסק תפוחים, שמן קנולה, טפיוקה, חמוציות ברכז תפוחים (8%), סיבים תזונתיים (עולש), חומר תפ יחה: אבקת אפיה (סודיום ביקרבונט, פירופוספט), קינמון.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290017962139",
+      "name": "עוגיות פירות יער כשל\"פ",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 420.0,
+          "extractor_b": 420.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.3,
+          "extractor_b": 5.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 21.5,
+          "extractor_b": 21.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 48.1,
+          "extractor_b": 48.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 6.3,
+          "extractor_b": 6.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 264.0,
+          "extractor_b": 264.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "שקדים (18%), קמח אורז מלא, סוכר קנים אורגני, רסק תפוחים, שמן קנולה, טפיוקה, חמוציות ברכז תפוחים (8%), סיבים תזונתיים (עולש), חומר תפ יחה: אבקת אפיה (סודיום ביקרבונט, פירופוספט), קינמון. מאפיינים נוספים 100% טבעי,",
+          "extractor_b": "שקדים (18%), קמח אורז מלא, סוכר קנים אורגני, רסק תפוחים, שמן קנולה, טפיוקה, חמוציות ברכז תפוחים (8%), סיבים תזונתיים (עולש), חומר תפ יחה: אבקת אפיה (סודיום ביקרבונט, פירופוספט), קינמון.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290018371923",
+      "name": "פתי בר קמח מלא אורגני",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 428.0,
+          "extractor_b": 428.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.8,
+          "extractor_b": 6.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 14.5,
+          "extractor_b": 14.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 6.7,
+          "extractor_b": 6.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 63.0,
+          "extractor_b": 63.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.5,
+          "extractor_b": 20.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 9.2,
+          "extractor_b": 9.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 235.0,
+          "extractor_b": 235.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה מלא אורגני 66%, סוכר קנים חום אורגני, שמן צמחי אורגני,חומרי תפיחה (אמוניום ביקרבונט ,סודיום ביקרבונט), מלח, חומר מתחלב (לצי טין סויה), תמצית טבעית בטעם חמאה, מאפיינים נוספים אורגני,",
+          "extractor_b": "קמח חיטה מלא אורגני 66%, סוכר קנים חום אורגני, שמן צמחי אורגני,חומרי תפיחה (אמוניום ביקרבונט ,סודיום ביקרבונט), מלח, חומר מתחלב (לצי טין סויה), תמצית טבעית בטעם חמאה,",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290018371930",
+      "name": "פתי בר קמח כוסמין אורגני",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 428.0,
+          "extractor_b": 428.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 10.0,
+          "extractor_b": 10.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 14.7,
+          "extractor_b": 14.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 6.6,
+          "extractor_b": 6.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 59.8,
+          "extractor_b": 59.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 24.4,
+          "extractor_b": 24.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 8.1,
+          "extractor_b": 8.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 231.0,
+          "extractor_b": 231.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח כוסמין מלא אורגני 65% (מכיל גלוטן), סוכר קנים חום אורגני, שמן צמחי אורגני, אבקת חרובים אורגנית 1.8%, חומרי תפיחה (אמוניום ביקרבו נט ,סודיום ביקרבונט), מלח, מתחלה (לציטין סויה) מאפיינים נוספים אורגני,",
+          "extractor_b": "קמח כוסמין מלא אורגני 65% (מכיל גלוטן), סוכר קנים חום אורגני, שמן צמחי אורגני, אבקת חרובים אורגנית 1.8%, חומרי תפיחה (אמוניום ביקרבו נט ,סודיום ביקרבונט), מלח, מתחלה (לציטין סויה)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290018371947",
+      "name": "פתי בר כוסמין",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 432.0,
+          "extractor_b": 432.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 10.1,
+          "extractor_b": 10.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 14.7,
+          "extractor_b": 14.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 6.6,
+          "extractor_b": 6.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 61.1,
+          "extractor_b": 61.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 24.4,
+          "extractor_b": 24.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 7.4,
+          "extractor_b": 7.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 236.0,
+          "extractor_b": 236.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח כוסמין מלא אורגני 66% (מכיל גלוטן), סוכר קנים חום אורגני, שמן צמחי אורגני, חומרי תפיחה (אמוניום ביקרבונט ,סודיום ביקרבונט), מלח,  מתחלב (לציטין סויה), חומצה טבעית בטעם חמאה מאפיינים נוספים אורגני,",
+          "extractor_b": "קמח כוסמין מלא אורגני 66% (מכיל גלוטן), סוכר קנים חום אורגני, שמן צמחי אורגני, חומרי תפיחה (אמוניום ביקרבונט ,סודיום ביקרבונט), מלח,  מתחלב (לציטין סויה), חומצה טבעית בטעם חמאה",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290018893845",
+      "name": "פתי בר בטעם חמאה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 431.0,
+          "extractor_b": 431.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.3,
+          "extractor_b": 7.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 9.2,
+          "extractor_b": 9.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 0.9,
+          "extractor_b": 0.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 78.0,
+          "extractor_b": 78.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 21.0,
+          "extractor_b": 21.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.3,
+          "extractor_b": 3.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 392.0,
+          "extractor_b": 392.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמן חמניות, סירופ גלוקוז- פרוקטוז, מתפיחים (סודיום קרבונט, אמוניום קרבונט, דיסודיום  דיפוספט), סיבי אפו נה, מלח שולחן, חומרי טעם וריח, מתחלב (לציטין חמניות), מעכב חמצון (סולפיט ) ערכים תזונתיים 100 גרם 3.3 גרם סיבים תזונתיים 21 גרם סוכרים מתוך פחמימות 431 קל אנרגיה 7.3 גרם חלבונים 78 גרם פחמימות 9.2 גרם שומנים 0 מג כולסטרול 392 מג נתרן 0.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 5.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמן חמניות, סירופ גלוקוז- פרוקטוז, מתפיחים (סודיום קרבונט, אמוניום קרבונט, דיסודיום  דיפוספט), סיבי אפו נה, מלח שולחן, חומרי טעם וריח, מתחלב (לציטין חמניות), מעכב חמצון (סולפיט )",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290106656727",
+      "name": "עוגיות חיוכים שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 497.0,
+          "extractor_b": 497.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 21.0,
+          "extractor_b": 21.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 10.7,
+          "extractor_b": 10.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 71.0,
+          "extractor_b": 71.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 40.0,
+          "extractor_b": 40.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 170.0,
+          "extractor_b": 170.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (גלוטן), סוכרים (סוכר לבן,דקסטרוזה, סוכר אינברטי), שמנים ושומנים מהצומח, אבקת קקאו 2.4%, מייצב (צלולוזה), עמילן תירס, מתחלב  (לציטין סויה), מלח, מתפיחים (E500ii, E503ii), חומרי טעם וריח. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה (גלוטן), סוכרים (סוכר לבן,דקסטרוזה, סוכר אינברטי), שמנים ושומנים מהצומח, אבקת קקאו 2.4%, מייצב (צלולוזה), עמילן תירס, מתחלב (לציטין סויה), מלח, מתפיחים (E500ii, E503ii), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290109354972",
+      "name": "פתי בר ללא גלוטן קלאסי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 454.0,
+          "extractor_b": 454.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 0.6,
+          "extractor_b": 0.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 12.3,
+          "extractor_b": 12.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.9,
+          "extractor_b": 3.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 85.2,
+          "extractor_b": 85.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 220.0,
+          "extractor_b": 220.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "עמילן, סוכר, שמן דקל, שמן קנולה, שמן חמניות, חומר מייצב (E466), מתחלב (לציטין סויה), nחומרי תפיחה (E500 ,E450 ,E503), מלח, סוכר קרמ ל, חומרי טעם וריח, מווסת חומציות (חומצת לימון). מכיל סויה עלול להכיל שומשום,",
+          "extractor_b": "עמילן, סוכר, שמן דקל, שמן קנולה, שמן חמניות, חומר מייצב (E466), מתחלב (לציטין סויה), nחומרי תפיחה (E500 ,E450 ,E503), מלח, סוכר קרמ ל, חומרי טעם וריח, מווסת חומציות (חומצת לימון).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290109354996",
+      "name": "פתי בר ללא גלוטן שוקו",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 450.0,
+          "extractor_b": 450.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 12.0,
+          "extractor_b": 12.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.9,
+          "extractor_b": 3.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 83.8,
+          "extractor_b": 83.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.0,
+          "extractor_b": 20.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 200.0,
+          "extractor_b": 200.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "עמילן, סוכר, שמן דקל, אבקת קקאו מופחתת שומן, שמן קנולה, שמן חמניות, חומר מייצב (E466), מתחלב (לציטין סויה), חומרי תפיחה (E500 ,E450 ,E503), מלח, סוכר קרמל, חומרי טעם וריח, מווסת חומציות (חומצת לימון). מכיל סויה עלול להכיל שומשום,",
+          "extractor_b": "עמילן, סוכר, שמן דקל, אבקת קקאו מופחתת שומן, שמן קנולה, שמן חמניות, חומר מייצב (E466), מתחלב (לציטין סויה), חומרי תפיחה (E500 ,E450 ,E503), מלח, סוכר קרמל, חומרי טעם וריח, מווסת חומציות (חומצת לימון).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119040179",
+      "name": "עוגיות פרח עם ריבת תות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 520.0,
+          "extractor_b": 520.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.8,
+          "extractor_b": 5.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 25.5,
+          "extractor_b": 25.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 11.9,
+          "extractor_b": 11.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 66.7,
+          "extractor_b": 66.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 44.3,
+          "extractor_b": 44.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 58.0,
+          "extractor_b": 58.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן(מכיל גלוטן), מרגרינה{חומר משמר (E200), צבע מאכל(E160aii)}(מכיל סויה), ממרח בטעם תות שדה { סוכר(68%), תפוח עץ(20%), מים,  חומצת מאכל (E330), מייצב (E440), חומרי טעם וריח, חומר משמר(E220  SO2 סולפיט <100 ppm , E202), צבע מאכל (E124,E150d).}, אבקת סוכר{סו כר, עמילן תירס (לא מעובד)}, עמילן תירס, ביצים מפוסטרות, חלמון ביצים מפוסטרות, אבקת אפייה{חומרי התפחה (E450i, E500ii), עמילן תירס (לא  מעובד).}, חומרי טעם וריח. מכיל ביצים,",
+          "extractor_b": "קמח חיטה לבן(מכיל גלוטן), מרגרינה{חומר משמר (E200), צבע מאכל(E160aii)}(מכיל סויה), ממרח בטעם תות שדה { סוכר(68%), תפוח עץ(20%), מים,  חומצת מאכל (E330), מייצב (E440), חומרי טעם וריח, חומר משמר(E220  SO2 סולפיט <100 ppm , E202), צבע מאכל (E124,E150d).}, אבקת סוכר{סו כר, עמילן תירס (לא מעובד)}, עמילן תירס, ביצים מפוסטרות, חלמון ביצים מפוסטרות, אבקת אפייה{חומרי התפחה (E450i, E500ii), עמילן תירס (לא  מעובד).}, חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119040803",
+      "name": "עוגיות קינמון מסוכרות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 430.0,
+          "extractor_b": 430.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.0,
+          "extractor_b": 19.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.5,
+          "extractor_b": 9.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 58.0,
+          "extractor_b": 58.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.0,
+          "extractor_b": 20.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.8,
+          "extractor_b": 1.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 230.0,
+          "extractor_b": 230.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (51%)(מכיל גלוטן), מרגרינה (צבע מאכל (E160ALL), חומר משמר (חומצה סורביט)), סוכר, שמן סויה (1.6%), אבקת קקאו(0.7%), ממרח  בטעם שוקולד (0.7%) (סוכר, שומן דקלים, שמן סויה, אבקת קקאו, קמח סויה, סיבי צלולוז, לציטין סויה , חומרי טעם וריח)), מלח, קינמון (0.25 %), חומרי טעם וריח, חומר משמר (0.1%)(E202). מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (51%)(מכיל גלוטן), מרגרינה (צבע מאכל (E160ALL), חומר משמר (חומצה סורביט)), סוכר, שמן סויה (1.6%), אבקת קקאו(0.7%), ממרח  בטעם שוקולד (0.7%) (סוכר, שומן דקלים, שמן סויה, אבקת קקאו, קמח סויה, סיבי צלולוז, לציטין סויה , חומרי טעם וריח)), מלח, קינמון (0.25 %), חומרי טעם וריח, חומר משמר (0.1%)(E202).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119041053",
+      "name": "עוגיות סגנון מרוקאי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 429.0,
+          "extractor_b": 429.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.5,
+          "extractor_b": 8.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 16.0,
+          "extractor_b": 16.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 7.4,
+          "extractor_b": 7.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 13.5,
+          "extractor_b": 13.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 168.0,
+          "extractor_b": 168.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%) מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119041107",
+      "name": "עוגיות מרוקאיות עגול",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 429.0,
+          "extractor_b": 429.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.5,
+          "extractor_b": 8.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 16.0,
+          "extractor_b": 16.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 7.4,
+          "extractor_b": 7.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 13.5,
+          "extractor_b": 13.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 168.0,
+          "extractor_b": 168.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%) מכיל סויה,",
+          "extractor_b": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119041152",
+      "name": "עוגיות ריפ'את",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 429.0,
+          "extractor_b": 429.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.5,
+          "extractor_b": 8.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 16.0,
+          "extractor_b": 16.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 7.4,
+          "extractor_b": 7.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 13.5,
+          "extractor_b": 13.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.7,
+          "extractor_b": 1.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 168.0,
+          "extractor_b": 168.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%) מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (60%) (מכיל גלוטן), סוכר, מרגרינה (חומר משמר (חומצה סורביט), צבע מאכל (E160AII)), אבקה תחליף ביצים (3.6%) (עמילן לא מעו בד (E1414), חלבון צמחי, מלטודקסטרין, שמן צמחי, מייצב (E415), מתחלבים (לציטין סויה, E471)), קוקוס (3.6%), שומשום (3%), חומרי טעם וריח , אבקת אפיה (0.6%) (חומרים מתפיחים (E500II, E450I)), מלח (0.06%)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119041206",
+      "name": "עוגיות קוואקר",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 444.0,
+          "extractor_b": 444.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.9,
+          "extractor_b": 5.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 20.5,
+          "extractor_b": 20.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.6,
+          "extractor_b": 9.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 57.9,
+          "extractor_b": 57.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 23.2,
+          "extractor_b": 23.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.2,
+          "extractor_b": 2.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 373.0,
+          "extractor_b": 373.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119041350",
+      "name": "עוגיות קוואקר ללת\"ס",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 444.0,
+          "extractor_b": 444.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.9,
+          "extractor_b": 5.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 20.5,
+          "extractor_b": 20.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.6,
+          "extractor_b": 9.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 57.9,
+          "extractor_b": 57.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 23.2,
+          "extractor_b": 23.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.2,
+          "extractor_b": 2.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 373.0,
+          "extractor_b": 373.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח. מכיל גלוטן שיבולת שועל,",
+          "extractor_b": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119043095",
+      "name": "עוגיות שיבולת שועל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 444.0,
+          "extractor_b": 444.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.9,
+          "extractor_b": 5.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 20.5,
+          "extractor_b": 20.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.6,
+          "extractor_b": 9.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 57.9,
+          "extractor_b": 57.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 23.2,
+          "extractor_b": 23.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.2,
+          "extractor_b": 2.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 373.0,
+          "extractor_b": 373.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח. מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119043149",
+      "name": "עוגיות בטעם חמאה",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 416.0,
+          "extractor_b": 416.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.0,
+          "extractor_b": 5.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 15.0,
+          "extractor_b": 15.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 60.0,
+          "extractor_b": 60.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.2,
+          "extractor_b": 2.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 155.0,
+          "extractor_b": 155.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (מכיל גלוטן), סוכר לבן, מים, שמנים ושומנים מהצומח (חלקם מוקשים), גלוקוזה, חומרי תפיחה (E450, E500), מלח, חומרי טעם וריח . מכיל גלוטן חיטה עלול להכיל עקבות מזעריים של שומשום,",
+          "extractor_b": "קמח חיטה לבן (מכיל גלוטן), סוכר לבן, מים, שמנים ושומנים מהצומח (חלקם מוקשים), גלוקוזה, חומרי תפיחה (E450, E500), מלח, חומרי טעם וריח .",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119043743",
+      "name": "עוגיות מרוקאיות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 414.0,
+          "extractor_b": 414.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 14.0,
+          "extractor_b": 14.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 6.8,
+          "extractor_b": 6.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 63.0,
+          "extractor_b": 63.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 14.6,
+          "extractor_b": 14.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.0,
+          "extractor_b": 2.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 258.0,
+          "extractor_b": 258.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן (48%)(מכיל גלוטן), סוכר, שומן צמחי מדקלים, מים, קוקוס (0.8%), שומשום(0.8%), חומרי טעם וריח, חומר תפיחה (סודיום קרבונט)( 0.2%), מלח (0.08%) מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן (48%)(מכיל גלוטן), סוכר, שומן צמחי מדקלים, מים, קוקוס (0.8%), שומשום(0.8%), חומרי טעם וריח, חומר תפיחה (סודיום קרבונט)( 0.2%), מלח (0.08%)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290119043798",
+      "name": "עוגיות אוזניות",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 435.0,
+          "extractor_b": 435.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.5,
+          "extractor_b": 5.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 19.8,
+          "extractor_b": 19.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 9.5,
+          "extractor_b": 9.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 58.0,
+          "extractor_b": 58.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 19.6,
+          "extractor_b": 19.6,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.3,
+          "extractor_b": 1.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 238.0,
+          "extractor_b": 238.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה לבן(51%) (מכיל גלוטן), מרגרינה (צבע מאכל (E16AII), חומר משמר (חומצה סורבית), סוכר, מים, שמן סויה (1.8%), קורנפלור, מלח (0.4 %), חומרי טעם וריח, חומר משמר (0.1%)(E202), אבקת אפייה (0.07%)(חומרים מתפיחים (E500II, E450I) מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה לבן(51%) (מכיל גלוטן), מרגרינה (צבע מאכל (E16AII), חומר משמר (חומצה סורבית), סוכר, מים, שמן סויה (1.8%), קורנפלור, מלח (0.4 %), חומרי טעם וריח, חומר משמר (0.1%)(E202), אבקת אפייה (0.07%)(חומרים מתפיחים (E500II, E450I)",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "7290123330488",
+      "name": "עוגיות בוטנים כשל\"פ",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 468.0,
+          "extractor_b": 468.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 15.4,
+          "extractor_b": 15.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 28.4,
+          "extractor_b": 28.4,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.1,
+          "extractor_b": 4.1,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 37.8,
+          "extractor_b": 37.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 30.5,
+          "extractor_b": 30.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 25.0,
+          "extractor_b": 25.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "בוטנים ) 58% (, סוכר, מים, חלבון ביצים מפוסטרות, קוקוס טחון,nסירופ ]סוכר, גלוקוזה )סולפיט(, מים, מווסת חומציות ) E330 (, צבעnמאכל קרמל ) E150d , סולפיט (, חומרי טעם וריח[, ממרח תמריםn]תמרים ) 65% (, סוכר, חומר מווסת חומציות ) E330 (, חומרי טעםnוריח, חומר משמר ) E202 ([, חומר הלחה ) E422 (, חומרי טעם וריח,nמווסת חומציות ) E330 מכיל ביצים,",
+          "extractor_b": "בוטנים ) 58% (, סוכר, מים, חלבון ביצים מפוסטרות, קוקוס טחון,nסירופ ]סוכר, גלוקוזה )סולפיט(, מים, מווסת חומציות ) E330 (, צבעnמאכל קרמל ) E150d , סולפיט (, חומרי טעם וריח[, ממרח תמריםn]תמרים ) 65% (, סוכר, חומר מווסת חומציות ) E330 (, חומרי טעםnוריח, חומר משמר ) E202 ([, חומר הלחה ) E422 (, חומרי טעם וריח,nמווסת חומציות ) E330",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "74184",
+      "name": "פתי בר קלאסי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 460.0,
+          "extractor_b": 460.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.0,
+          "extractor_b": 7.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 14.0,
+          "extractor_b": 14.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 4.0,
+          "extractor_b": 4.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 76.5,
+          "extractor_b": 76.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 22.0,
+          "extractor_b": 22.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 290.0,
+          "extractor_b": 290.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים,חומרי תפיחה (E500, E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, חומר לטיפול בקמח  (סול פיט), מווסת חומציות (חומצת לימון). מכיל סויה,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים,חומרי תפיחה (E500, E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, חומר לטיפול בקמח  (סול פיט), מווסת חומציות (חומצת לימון).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "80083665",
+      "name": "עוגיות אורגניות+שוקולד",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 491.0,
+          "extractor_b": 491.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 7.3,
+          "extractor_b": 7.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 23.0,
+          "extractor_b": 23.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 5.0,
+          "extractor_b": 5.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 24.0,
+          "extractor_b": 24.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.5,
+          "extractor_b": 3.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 180.0,
+          "extractor_b": 180.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכר קנים, שמן חמניות, שוקולד ציפס, (12%) אבקת קקאו, סודיום ואמוניום ביקרבונט (לתפיחה), מלח. עלול להכיל אגוזים,",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכר קנים, שמן חמניות, שוקולד ציפס, (12%) אבקת קקאו, סודיום ואמוניום ביקרבונט (לתפיחה), מלח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "80083764",
+      "name": "עוגיות דגנים עם ש.שועל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 471.0,
+          "extractor_b": 471.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.7,
+          "extractor_b": 8.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 20.0,
+          "extractor_b": 20.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 2.3,
+          "extractor_b": 2.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 61.0,
+          "extractor_b": 61.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 17.0,
+          "extractor_b": 17.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 220.0,
+          "extractor_b": 220.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "שיבולת שועל 35%, קמח חיטה מלאה (מכיל גלוטן), סוכר קנים, שמן חמניות, סירופ תירס, סודיום ואמוניום ביקרבונט (לתפיחה), מלח. עלול להכיל אגוזים,",
+          "extractor_b": "שיבולת שועל 35%, קמח חיטה מלאה (מכיל גלוטן), סוכר קנים, שמן חמניות, סירופ תירס, סודיום ואמוניום ביקרבונט (לתפיחה), מלח.",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "8008698037171",
+      "name": "עוגיות חמאה ללא גלוטן",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 517.0,
+          "extractor_b": 517.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.2,
+          "extractor_b": 6.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 28.0,
+          "extractor_b": 28.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 16.0,
+          "extractor_b": 16.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 59.0,
+          "extractor_b": 59.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 20.0,
+          "extractor_b": 20.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 1.9,
+          "extractor_b": 1.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 220.0,
+          "extractor_b": 220.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח תירס (31%), חמאה (30%) (חלב), סוכר לבן, קמח סויה, עמילן מעובד (E1422), מלחn מאפיינים נוספים נטול גלוטן ערכים תזונתיים 100 גרם 1.9 גרם סיבים תזונתיים 20 גרם סוכרים מתוך פחמימות 517 קל אנרגיה 6.2 גרם חלבונים 59 גרם פחמימות 28 גרם שומנים 72 מג כולסטרול 220 מג נתרן 16 גרם מתוכם שומן רווי 0.9 גרם חומצות שומן טרנס 5 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח תירס (31%), חמאה (30%) (חלב), סוכר לבן, קמח סויה, עמילן מעובד (E1422), מלח",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "960860015432",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 384.0,
+          "extractor_b": 384.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 9.0,
+          "extractor_b": 9.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 8.7,
+          "extractor_b": 8.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 0.7,
+          "extractor_b": 0.7,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 67.0,
+          "extractor_b": 67.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 0.0,
+          "extractor_b": 0.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 17.0,
+          "extractor_b": 17.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 199.0,
+          "extractor_b": 199.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה מלא (63%)(גלוטן),ממתיק(מלטיטול), מים, שמן קנולה מזוכך, סיבים תזונתיים(עולש), ממתיק:(איזומלט), מסמיך(פולידקסטרוז), עמילן מעו בד(E1414ׂ), חומרי תפיחה(אמוניום ביקרבונט, סודה ביקרבונט), קינמון, מתחלב:(לציטין סויה), חומרי טעם וריח: תמצית וניל, מווסת חומציות:(חו מצת לימון), מלח שולחן, ממתיק(סוכרלוז). מכיל גלוטן חיטה,",
+          "extractor_b": "קמח חיטה מלא (63%)(גלוטן),ממתיק(מלטיטול), מים, שמן קנולה מזוכך, סיבים תזונתיים(עולש), ממתיק:(איזומלט), מסמיך(פולידקסטרוז), עמילן מעו בד(E1414ׂ), חומרי תפיחה(אמוניום ביקרבונט, סודה ביקרבונט), קינמון, מתחלב:(לציטין סויה), חומרי טעם וריח: תמצית וניל, מווסת חומציות:(חו מצת לימון), מלח שולחן, ממתיק(סוכרלוז).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "99804",
+      "name": "עוגיות שוקולד לבן חלבי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 496.0,
+          "extractor_b": 496.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 5.9,
+          "extractor_b": 5.9,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 24.2,
+          "extractor_b": 24.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 13.8,
+          "extractor_b": 13.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.8,
+          "extractor_b": 62.8,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 37.3,
+          "extractor_b": 37.3,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": null,
+          "extractor_b": null,
+          "verdict": "BOTH_NULL"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 383.0,
+          "extractor_b": 383.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה (מכיל גלוטן), סוכרים, שברי שוקולד לבן (חלב)(19.9%), חמטה, מרגרינה (סויה)(חומרים משמרים (E202, E200)), מים, ביצים מיובשות, ח ומר טעם וריח, מלח, אבקת סודה לשתייה (חומר תפיחה (E500ii), מונע התגיישות (E470b)). ערכים תזונתיים 100 גרם 37.3 גרם סוכרים מתוך פחמימות 496 קל אנרגיה 5.9 גרם חלבונים 62.8 גרם פחמימות 24.2 גרם שומנים 65.8 מג כולסטרול 383 מג נתרן 13.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 13.8 גרם חומצות שומן רווי 9.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+          "extractor_b": "קמח חיטה (מכיל גלוטן), סוכרים, שברי שוקולד לבן (חלב)(19.9%), חמטה, מרגרינה (סויה)(חומרים משמרים (E202, E200)), מים, ביצים מיובשות, ח ומר טעם וריח, מלח, אבקת סודה לשתייה (חומר תפיחה (E500ii), מונע התגיישות (E470b)).",
+          "verdict": "DISAGREE"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "products_cross_checked": 61,
+    "gemini_calls_ok": 61,
+    "gemini_calls_unavailable": 0,
+    "fields_compared_total": 549,
+    "fields_with_both_extractors": 549,
+    "fields_agree": 488,
+    "fields_disagree": 61,
+    "fields_flag": 0,
+    "fields_both_null": 20,
+    "agreement_rate_pct": 88.9,
+    "per_field_verdicts": {
+      "energy_kcal": {
+        "AGREE": 61,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "protein_g": {
+        "AGREE": 61,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "fat_g": {
+        "AGREE": 61,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "fat_saturated_g": {
+        "AGREE": 60,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 1
+      },
+      "carbohydrates_g": {
+        "AGREE": 61,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "sugars_g": {
+        "AGREE": 59,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 2
+      },
+      "dietary_fiber_g": {
+        "AGREE": 44,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 17
+      },
+      "sodium_mg": {
+        "AGREE": 61,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "ingredients": {
+        "AGREE": 0,
+        "DISAGREE": 61,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      }
+    },
+    "nutrition_disagreements": []
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "sku_id": "SP-7290015429177",
+  "barcode": "7290015429177",
+  "name_he": "דנסיטי סידן קרבונט ננו אמורפי 60 קפליות",
+  "brand_bucket": "other",
+  "engine_active": "calcium",
+  "price_ils": 200.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "amorphical.com",
+    "confidence": 1.0,
+    "reason": "barcode match via amorphical.com"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "raw HE claim -> umbrella will resolve: 'סידן אמורפי נאנו-חלקיקי לספיגה כפולה ביחס לסידן גב'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.amorphical.com/products/density/",
+    "source": "amorphical.com",
+    "brand": "other",
+    "product_name": "דנסיטי סידן אמורפי נאנו 60 כמוסות Amorphical",
+    "barcode": "7290015429177",
+    "serving_size": "2 caplets",
+    "servings_per_container": "30",
+    "ingredient_list_raw": null,
+    "primary_claim": "סידן אמורפי נאנו-חלקיקי לספיגה כפולה ביחס לסידן גבישי",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "סידן (amorphous calcium carbonate, ACC)",
+        "amount": 250.0,
+        "unit": "mg",
+        "form": "carbonate",
+        "form_raw": "amorphous carbonate",
+        "active_slug": "calcium"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:amorphical.com",
+      "source_id": "amorphical:7290015429177",
+      "source_url": "https://www.amorphical.com/products/density/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "דנסיטי סידן אמורפי נאנו 60 כמוסות Amorphical",
+    "primary_claim_fed": "סידן אמורפי נאנו-חלקיקי לספיגה כפולה ביחס לסידן גבישי",
+    "actives": [
+      {
+        "active_slug": "calcium",
+        "display_name": "סידן (amorphous calcium carbonate, ACC)",
+        "quantity": 250.0,
+        "unit": "mg",
+        "form": "carbonate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 72,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.552847Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290015429177",
+    "active": "calcium",
+    "on_label_claim": "סידן אמורפי נאנו-חלקיקי לספיגה כפולה ביחס לסידן גבישי",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 72
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 55.3,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-010"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "sku_id": "SP-7290019444312",
+  "barcode": "7290019444312",
+  "name_he": "אלטמן חומצה פולית פלוס 400 מקג 90 טבליות",
+  "brand_bucket": "altman",
+  "engine_active": "folic_acid",
+  "price_ils": 94.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'חומצה פולית להפחתת הסיכון למומים בצינור העצבי; תוס'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[5].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/pregnancy/preconception/folic-acid-plus/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן חומצה פולית פלוס 400 מקג 90 טבליות",
+    "barcode": "7290019444312",
+    "serving_size": "1 tablet",
+    "servings_per_container": "90",
+    "ingredient_list_raw": null,
+    "primary_claim": "חומצה פולית להפחתת הסיכון למומים בצינור העצבי; תוספת אבץ, ברזל, ויטמין D ויוד",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "חומצה פולית (folic acid)",
+        "amount": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "folic_acid"
+      },
+      {
+        "ingredient": "ויטמין B12 (cyanocobalamin)",
+        "amount": 10.0,
+        "unit": "mcg",
+        "form": "cyanocobalamin",
+        "form_raw": "cyanocobalamin",
+        "active_slug": "vitamin_b12"
+      },
+      {
+        "ingredient": "ויטמין D3 (cholecalciferol)",
+        "amount": 600.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": null,
+        "active_slug": "folic_acid"
+      },
+      {
+        "ingredient": "ברזל (iron bisglycinate)",
+        "amount": 18.0,
+        "unit": "mg",
+        "form": "bisglycinate",
+        "form_raw": "bisglycinate",
+        "active_slug": "folic_acid"
+      },
+      {
+        "ingredient": "אבץ (zinc picolinate)",
+        "amount": 4.0,
+        "unit": "mg",
+        "form": "picolinate",
+        "form_raw": "picolinate",
+        "active_slug": "folic_acid"
+      },
+      {
+        "ingredient": "יוד (potassium iodide)",
+        "amount": 150.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "folic_acid"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[5].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290019444312",
+      "source_url": "https://www.altman.co.il/shop/pregnancy/preconception/folic-acid-plus/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן חומצה פולית פלוס 400 מקג 90 טבליות",
+    "primary_claim_fed": "neural tube defect risk reduction (periconceptional)",
+    "actives": [
+      {
+        "active_slug": "folic_acid",
+        "display_name": "חומצה פולית (folic acid)",
+        "quantity": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "periconceptional prevention of neural tube defects (NTDs)",
+    "score": 82.8,
+    "grade": "A",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.833251Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290019444312",
+    "active": "folic acid (vitamin B9)",
+    "on_label_claim": "neural tube defect risk reduction (periconceptional)",
+    "claim_matched": "periconceptional prevention of neural tube defects (NTDs)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "periconceptional prevention of neural tube defects (NTDs)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:26662928",
+        "PMID:1677062"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 82.8,
+    "dossier_facts_used": [
+      {
+        "field": "claims['periconceptional prevention of neural tube defects (NTDs)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-011"
+      }
+    ],
+    "final": {
+      "score": 82.8,
+      "grade": "A"
+    }
+  }
+}

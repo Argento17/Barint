@@ -263,6 +263,7 @@ export const ComparisonRow = memo(function ComparisonRow({
                 productId={product.id}
                 category={category}
                 rowVerdict={product.rowVerdict}
+                sGradeExplanation={product.s_grade_explanation}
               />
             ) : null}
           </div>

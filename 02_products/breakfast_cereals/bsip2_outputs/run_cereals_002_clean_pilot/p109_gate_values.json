@@ -1,0 +1,103 @@
+{
+  "cereal_barcodes_n": 34,
+  "granola_barcodes_n": 11,
+  "pilot_run_dir": "02_products/breakfast_cereals/bsip2_outputs/run_cereals_002_clean_pilot",
+  "clean_delta_method": "flag_on_score - flag_off_score (same engine, same run)",
+  "inversion_b": {
+    "7290100000042": {
+      "flag_off": 73.5,
+      "flag_on": 74.5,
+      "delta": 1.0
+    },
+    "5054568100022": {
+      "flag_off": 69.5,
+      "flag_on": 69.5,
+      "delta": 0.0
+    },
+    "gap_flag_off": 4.0,
+    "gap_flag_on": 5.0,
+    "gap_widened_by": 1.0,
+    "criterion_pass": false
+  },
+  "cereal_movers_clean": 26,
+  "cereal_grade_changes_clean": 6,
+  "absorption_cereal_clean": 0.0,
+  "anti_immunity_pass": true,
+  "floor_compliance_pass": true,
+  "flag_off_vs_synthesis_001_mismatches": 25,
+  "granola_delta_non_zero": 0,
+  "brined_byte_id": {
+    "pass": true,
+    "mismatches": 0
+  },
+  "engine_invariants": "342 PASS",
+  "off_used": false,
+  "gate_results": [
+    {
+      "criterion": 1,
+      "name": "resolution_restored",
+      "pass": true,
+      "evidence": "on_max_pinned=2, off_max_pinned=3 (fewer identical in on = restored resolution)"
+    },
+    {
+      "criterion": 2,
+      "name": "inversion_a",
+      "pass": null,
+      "evidence": "n/a — D6 corpus correction (7290100000029 routes to snack_bar_granola); P110 provides revised gate"
+    },
+    {
+      "criterion": 3,
+      "name": "inversion_b_gap",
+      "pass": false,
+      "evidence": "gap_flag_off=4.0, gap_flag_on=5.0, widened_by=1.0 (need >=5.5)"
+    },
+    {
+      "criterion": 4,
+      "name": "min_movers_cereal",
+      "pass": true,
+      "evidence": "n_cereal_movers=26 (need >=15)"
+    },
+    {
+      "criterion": 5,
+      "name": "min_grade_changes_cereal",
+      "pass": true,
+      "evidence": "n_cereal_grade_changes=6 (need >=1)"
+    },
+    {
+      "criterion": 6,
+      "name": "max_absorption_cereal",
+      "pass": true,
+      "evidence": "absorbed_zero_net_cereal=0/fired=26 rate=0.0 (need <=0.40)"
+    },
+    {
+      "criterion": 7,
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "high_sugar (>=25g) cereal at B(>=70) flag-on: 0 (need=0)"
+    },
+    {
+      "criterion": 8,
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "7 cereal sugar>=25g checked, 0 >62 violations (need=0); floor=62"
+    },
+    {
+      "criterion": 9,
+      "name": "no_granola_bleed",
+      "pass": true,
+      "evidence": "granola products with non-zero delta: 0 (need=0)"
+    },
+    {
+      "criterion": 10,
+      "name": "brined_byte_id",
+      "pass": true,
+      "evidence": "48/48 scores byte-identical (pre vs post re-run of brined_005 with BARI_SHELF_RELATIVE_V1=on explicit)"
+    },
+    {
+      "criterion": 11,
+      "name": "flag_off_drift_check",
+      "pass": false,
+      "evidence": "25 cereal mismatches vs synthesis_001 (need=0)"
+    }
+  ]
+}

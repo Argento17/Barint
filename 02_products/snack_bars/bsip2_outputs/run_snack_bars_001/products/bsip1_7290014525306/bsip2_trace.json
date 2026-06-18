@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-09T15:31:34.916673Z",
+  "trace_generated_at": "2026-06-15T06:11:04.321541Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290014525306",
@@ -148,6 +148,8 @@
     "trans_fat_status": "threshold_declaration",
     "trans_fat_threshold_declaration_possible": true,
     "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [
       "sugar"
     ],
@@ -169,8 +171,21 @@
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
+    "functional_fiber_detected": true,
+    "functional_fiber_type": "viscous",
+    "functional_fiber_terms_matched": [
+      "פקטין"
+    ],
+    "functional_fiber_viscous_terms": [
+      "פקטין"
+    ],
+    "functional_fiber_prebiotic_terms": [],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
+    "tax_emulsifier_medium": [],
+    "tax_emulsifier_low": [
+      "pectin"
+    ],
     "tax_named_concern_additives": [],
     "tax_native_starch": false,
     "tax_modified_starch": false,
@@ -188,6 +203,8 @@
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
       "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 16.79,
@@ -274,10 +291,10 @@
     "processing_quality": 56.0,
     "nutrient_density": 16.2,
     "calorie_density": 50.0,
-    "glycemic_quality": 10.0,
+    "glycemic_quality": 12.0,
     "protein_quality": 25.0,
     "additive_quality": 64.0,
-    "satiety_support": 14.9,
+    "satiety_support": 16.9,
     "fat_quality": 81.0,
     "regulatory_quality": 60.0,
     "whole_food_integrity": 50
@@ -286,10 +303,10 @@
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=5.0g→25.0, fiber=0g→0.0, weighted 65/35=16.2",
     "calorie_density": "kcal=402.0, category=crispbread (conf 0.68, relaxed by 1.05x) → 50",
-    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0",
+    "glycemic_quality": "90 - sugar_penalty(80.0) + fiber(0.0) + wg(0) = 10.0 + EV-006 viscous-fiber bonus(2)",
     "protein_quality": "protein=5.0g base=25.0, source=whole_food(×1.0) → 25.0",
     "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.0×3 + 0×5) / 402.0 × 400 = 14.9",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.0×3 + 0×5) / 402.0 × 400 = 14.9 + EV-006 viscous-fiber bonus(2)",
     "fat_quality": "fat_v1(fat=7.5g<8.0): sat=3.0g base=81.0-seed0-trans0=81.0",
     "regulatory_quality": "1 red label: ['sugar']",
     "whole_food_integrity": "NOVA 3 base=60, ing_count=13 complexity_pen=10 → 50"
@@ -306,7 +323,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 40.8,
+  "weighted_dimension_score": 41.16,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -414,7 +431,7 @@
     }
   ],
   "binding_cap": 55,
-  "score_after_cap": 40.8,
+  "score_after_cap": 41.16,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -476,7 +493,7 @@
   "total_penalty_before_scaling": 9.0,
   "total_penalty_after_scaling": 9.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 31.8,
+  "score_after_penalty": 31.16,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": 55,
@@ -545,11 +562,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 31.8,
+  "score_after_floors": 31.16,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 31.8,
+  "final_score_estimate": 31.2,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

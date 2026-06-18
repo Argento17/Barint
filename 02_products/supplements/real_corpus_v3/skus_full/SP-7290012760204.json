@@ -1,0 +1,207 @@
+{
+  "sku_id": "SP-7290012760204",
+  "barcode": "7290012760204",
+  "name_he": "סופהרב אומגה 3 בד\"צ 90 כמוסות",
+  "brand_bucket": "supherb",
+  "engine_active": "omega3",
+  "price_ils": 82.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "tevazol.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via tevazol.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'אומגה 3 לתמיכה בבריאות הלב וכלי הדם'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.tevazol.co.il/items/1348673",
+    "source": "tevazol.co.il",
+    "brand": "supherb",
+    "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+    "barcode": "7290012760204",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "אומגה 3 לתמיכה בבריאות הלב וכלי הדם",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "EPA",
+        "amount": 180.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "DHA",
+        "amount": 120.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "שמן דגים",
+        "amount": 1000.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:tevazol.co.il",
+      "source_id": "supherb:7290012760204",
+      "source_url": "https://www.tevazol.co.il/items/1348673",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב אומגה 3 בד\"ץ 1000 מ\"ג",
+    "primary_claim_fed": "אומגה 3 לתמיכה בבריאות הלב וכלי הדם heart health",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "EPA",
+        "quantity": 180.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "brain & mood / general cognition (BROAD consumer claim)",
+    "score": 49.0,
+    "grade": "D",
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 20,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.639570Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290012760204",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "אומגה 3 לתמיכה בבריאות הלב וכלי הדם heart health",
+    "claim_matched": "brain & mood / general cognition (BROAD consumer claim)",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "brain & mood / general cognition (BROAD consumer claim)",
+      "resolved_phrase": "בריאות הלב",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-005",
+      "resolution_citations": [
+        "PMID:38468309",
+        "PMID:29540267",
+        "PMID:38281596"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "בריאות הלב",
+          "resolves_to": "brain & mood / general cognition (BROAD consumer claim)",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-005"
+        }
+      ],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 20,
+        "reason": "fairy_dust"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "also_fired": [],
+    "blend": 51.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['brain & mood / general cognition (BROAD consumer claim)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 49.0,
+      "grade": "D"
+    }
+  }
+}

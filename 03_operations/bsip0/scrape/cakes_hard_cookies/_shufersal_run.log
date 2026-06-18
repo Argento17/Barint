@@ -1,0 +1,54 @@
+=== Phase 1: Search queries (cakes + hard cookies) ===
+  'עוגה' p0: 15 items, 15 new (total 15)
+  'עוגה' p1: 15 items, 0 new (total 15)
+  'עוגת שוקולד' p0: 18 items, 18 new (total 33)
+  'עוגת שוקולד' p1: 18 items, 0 new (total 33)
+  'עוגת שמרים' p0: 18 items, 18 new (total 51)
+  'עוגת שמרים' p1: 18 items, 0 new (total 51)
+  'עוגת מאפין' p0: 20 items, 16 new (total 67)
+  'עוגת מאפין' p1: 20 items, 0 new (total 67)
+  'עוגת גבינה' p0: 15 items, 9 new (total 76)
+  'עוגת גבינה' p1: 15 items, 0 new (total 76)
+  'קוקיס' p0: 8 items, 8 new (total 84)
+  'קוקיס' p1: 8 items, 0 new (total 84)
+  'עוגיות שוקולד צ'יפס' p0: 18 items, 3 new (total 87)
+  'עוגיות שוקולד צ'יפס' p1: 18 items, 0 new (total 87)
+  'עוגיות' p0: 16 items, 5 new (total 92)
+  'עוגיות' p1: 16 items, 0 new (total 92)
+  'עוגת סבתא' p0: 17 items, 3 new (total 95)
+  'עוגת סבתא' p1: 17 items, 0 new (total 95)
+  'עוגת דבש' p0: 16 items, 10 new (total 105)
+  'עוגת דבש' p1: 16 items, 0 new (total 105)
+  'עוגת פס' p0: 20 items, 12 new (total 117)
+  'עוגת פס' p1: 20 items, 0 new (total 117)
+  'עוגת היער השחור' p0: 7 items, 4 new (total 121)
+  'עוגת היער השחור' p1: 7 items, 0 new (total 121)
+  'קראנץ' p0: 16 items, 12 new (total 133)
+  'קראנץ' p1: 16 items, 0 new (total 133)
+  'שטרודל' p0: 14 items, 4 new (total 137)
+  'שטרודל' p1: 14 items, 0 new (total 137)
+  'לה פוזואלוס' page 0: no results — stop
+  'שלונסקי עוגה' p0: 17 items, 3 new (total 140)
+  'שלונסקי עוגה' p1: 17 items, 0 new (total 140)
+  'עוגיות שבבי שוקולד' p0: 19 items, 10 new (total 150)
+  'עוגיות שבבי שוקולד' p1: 19 items, 0 new (total 150)
+  'ביסקוויט' p0: 10 items, 10 new (total 160)
+  'ביסקוויט' p1: 10 items, 0 new (total 160)
+
+Unique codes: 160
+=== Phase 3: Product pages ===
+C:\Bari\03_operations\bsip0\scrape\cakes_hard_cookies\01_scrape_shufersal.py:237: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "source_url": product_url, "scraped_at": datetime.utcnow().isoformat(),
+  [25] 26 OK
+  [50] 51 OK
+  [75] 76 OK
+  [100] 101 OK
+  [125] 126 OK
+  [150] 151 OK
+
+Product pages: 160 OK, 0 failed
+Coverage: 144/160 nutrition, 153/160 ingredients, 160/160 images
+C:\Bari\03_operations\bsip0\scrape\cakes_hard_cookies\01_scrape_shufersal.py:313: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  ts = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+
+WROTE C:\Bari\02_products\cakes_hard_cookies\bsip0_outputs\cakes_shufersal_bsip0_raw_20260614T125027.json  (160 products)

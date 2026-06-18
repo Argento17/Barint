@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bari — Comparison Chain Gap Analysis v1</title>
+<style>
+  @page { size: A4; margin: 14mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", -apple-system, Arial, sans-serif;
+    color: #1a2330; margin: 0; font-size: 10.5pt; line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h2 { font-size: 15pt; margin: 26px 0 10px; padding-bottom: 5px; border-bottom: 2.5px solid #1a2330; }
+  p { margin: 6px 0; }
+  code { font-family: Consolas, monospace; font-size: 9pt; background: #eef1f6; padding: 1px 4px; border-radius: 3px; }
+  .pagebreak { break-before: page; }
+
+  .cover {
+    background: linear-gradient(135deg, #33100e 0%, #6e1d33 55%, #a33b2a 100%);
+    color: #fff; border-radius: 14px; padding: 28px 30px 24px; margin-bottom: 20px;
+  }
+  .cover .kicker { font-size: 9pt; letter-spacing: 2.5px; text-transform: uppercase; color: #f3b8a0; font-weight: 600; }
+  .cover h1 { font-size: 21pt; margin: 6px 0 4px; color: #fff; line-height: 1.25; }
+  .cover .sub { font-size: 11pt; color: #f5d9cd; max-width: 94%; }
+  .cover .meta { margin-top: 14px; font-size: 8.5pt; color: #e0b3a4; }
+  .cover .meta b { color: #f8e3d9; }
+
+  .context {
+    background: #eef7ef; border: 1px solid #bfdcc3; border-left: 6px solid #2e7d44;
+    border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-size: 10pt;
+  }
+  .context b { color: #1d5a2e; }
+
+  .badge {
+    display: inline-block; font-size: 7.6pt; font-weight: 700; letter-spacing: .4px;
+    padding: 2px 8px; border-radius: 999px; color: #fff; vertical-align: middle;
+    margin: 1px 2px 1px 0; white-space: nowrap;
+  }
+  .p0 { background: #bb2d3b; } .p1 { background: #c07c10; } .p2 { background: #6b7785; }
+  .b-own { background: #1a2330; border: 1.5px solid #d4a017; color: #ffd863; }
+  .b-data { background: #1273b8; } .b-qa { background: #c07c10; } .b-cont { background: #1d8a6b; }
+  .b-orch { background: #6d4bbf; } .b-nutr { background: #527a26; } .b-prod { background: #344fa3; }
+  .b-fe { background: #0f8b96; }
+  .phase-ref { display:inline-block; font-size: 7.4pt; font-weight: 700; color: #45536b; background:#e8edf5; border-radius: 4px; padding: 1px 6px; vertical-align: middle; }
+
+  .item {
+    border: 1px solid #dde4ee; border-left: 6px solid #888; border-radius: 10px;
+    padding: 11px 15px 9px; margin: 11px 0; break-inside: avoid; background: #fff;
+  }
+  .item h3 { margin: 0 0 4px; font-size: 11.5pt; color: #1a2330; }
+  .item ul { margin: 5px 0 4px 18px; padding: 0; }
+  .item li { margin: 3px 0; font-size: 9.7pt; }
+  .item p { font-size: 9.7pt; }
+  .fix { border-left-color: #bb2d3b; }
+  .enh { border-left-color: #1d8a6b; }
+  .eff { border-left-color: #1273b8; }
+  .add { border-left-color: #6d4bbf; }
+
+  .act {
+    font-size: 9.2pt; background: #fff7e8; border: 1px solid #efd9a8; border-radius: 6px;
+    padding: 5px 10px; margin-top: 7px; color: #6e4e0a;
+  }
+  .act b { color: #4d3605; }
+  .ev {
+    font-size: 8.8pt; background: #eef4fb; border-radius: 6px; padding: 5px 10px; margin-top: 7px; color: #28415f;
+  }
+
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9pt; }
+  th { background: #1a2330; color: #fff; text-align: left; padding: 6px 8px; font-size: 8.6pt; }
+  td { border-bottom: 1px solid #e3e8f0; padding: 5px 8px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+
+  .top5 {
+    background: #1a2330; color: #fff; border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+  }
+  .top5 h2 { color: #ffd863; border-bottom: 2px solid #ffd863; margin-top: 0; }
+  .top5 table { font-size: 9.2pt; }
+  .top5 th { background: #2b3a52; color: #ffd863; }
+  .top5 td { color: #e8edf5; border-bottom: 1px solid #2b3a52; background: transparent !important; }
+  .top5 .n { font-weight: 800; color: #ffd863; font-size: 11pt; }
+
+  .footer { margin-top: 24px; font-size: 8pt; color: #8a94a6; border-top: 1px solid #e0e6ef; padding-top: 8px; }
+  .sec-intro { font-size: 9.6pt; color: #45536b; margin: 4px 0 8px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">Bari · Agent OS · Owner Deliverable</div>
+  <h1>Comparison-Page Chain — Gap Analysis</h1>
+  <div class="sub">Fixes (what's broken) · Enhancements (what could be better) · Efficiency (same quality, less cost) · Additions (what's missing). Every finding pinned to a repo artifact, task record, or live-verified fact.</div>
+  <div class="meta"><b>Version:</b> v1 · <b>Date:</b> 2026-06-11 · <b>Companion to:</b> Production Map v1 (phase letters 0, A–K refer to it) · <b>Verified today:</b> registry · TASK-245 close record · OFF remediation brief · prod-sync brief · drafted CI · factory artifact coverage</div>
+</div>
+
+<div class="context">
+  <b>Context that frames everything:</b> the biggest structural defect — production serving from a repo <b>81 commits behind</b> where all work happened — was found and <b>fixed today</b> (TASK-245: bari.digital now deploys from Barint master; 9/9 routes live-verified, 0 OFF refs). This analysis covers what that fix exposed and what remains.
+</div>
+
+<!-- ================= FIXES ================= -->
+<h2>1 · Fixes — What Is Broken Right Now</h2>
+<p class="sec-intro"><span class="badge p0">P0</span> consumers see it today &nbsp; <span class="badge p1">P1</span> wrong but not yet visible &nbsp; <span class="badge p2">P2</span> hygiene</p>
+
+<div class="item fix">
+  <h3>FIX-1 · Live yogurts = the thin interim shelf; the replacement is ready, parked behind 3 gates <span class="badge p0">P0</span> <span class="phase-ref">Phase J</span> <span class="badge b-own">OWNER = CRITICAL PATH</span></h3>
+  <ul>
+    <li><b>Consumers today:</b> v3 — 11 products, <b>0 of 11 with ingredient data</b>, all confidence "partial/under review," high-protein shelf bias (plain/bio/Greek/flavored shelf absent). Plus <b>"NOVA" 9× in live consumer prose</b> (banned jargon, logged at TASK-245 close).</li>
+    <li><b>The fix exists:</b> run_yogurt_006 / v4 — 88 products, 0 errors, all red-team findings resolved (TASK-249/250 RETURNED).</li>
+    <li><b>Held by exactly 3 gates:</b> ① <b>your Ruling-3 sign-off</b> (two published grades change: 35/D→35/E, 50/C→50/D — tripwire) · ② Content's ceiling-compression caveat copy · ③ QA baseline freeze on run_006.</li>
+  </ul>
+  <div class="act"><b>Action:</b> highest-leverage consumer-facing move available — work done, gates only. Your ruling is the critical path.</div>
+</div>
+
+<div class="item fix">
+  <h3>FIX-2 · QA passed a corpus red-team demolished — the QA gate tests traceability, not truth <span class="badge p1">P1</span> <span class="phase-ref">Phases B–E</span> <span class="badge b-qa">QA</span><span class="badge b-data">DATA</span></h3>
+  <ul>
+    <li>run_005 cleared QA; red-team then found ingredient text corrupted on <b>67 of 89 products</b> + a protein=190 value no gate blocked. The QA protocol checks coverage/traceability/versions — nothing checks whether parsed values are <i>plausible</i> or parsed text is <i>ingredients at all</i>.</li>
+    <li>Truth-checking happens only at Phase F — the most expensive place (after scoring, copy, packaging → full regen; yogurt took 6 runs).</li>
+    <li>The fix is half-built and stuck: <b>TASK-218</b> (scrape QA standard) sits RETURNED; the run_006 machinery (<code>macros_plausible</code>, <code>ingredient_text_quality</code>, disclaimer-strip) protects <b>one category only</b>.</li>
+  </ul>
+  <div class="act"><b>Action:</b> close TASK-218 → blocking Stage-B/C gate; lift run_006 checks into shared BSIP1 core.</div>
+</div>
+
+<div class="item fix">
+  <h3>FIX-3 · Five RETURNED tasks queued at the close gate — verification is the single-threaded bottleneck <span class="badge p1">P1</span> <span class="phase-ref">Phase K</span> <span class="badge b-orch">ORCHESTRATOR / CC</span></h3>
+  <ul>
+    <li><b>Queue:</b> TASK-217 (juice NOVA-1 gate) · 218 (scrape QA standard) · 241 (salty 12-rescue) · 249 + 250 (yogurt v4). Finished work, invisible to the roadmap until closed; whatever they <code>block</code> stays shut.</li>
+  </ul>
+  <div class="act"><b>Action:</b> batch close-readiness session now; route mechanical verification (file-exists / counts / grep-zero) to the cheap-LLM lane (CC v4.1) — CC spends judgment only on judgment.</div>
+</div>
+
+<div class="item fix">
+  <h3>FIX-4 · Known engine defects — all registered, none landed <span class="badge p1">P1</span> <span class="phase-ref">Phase D</span> <span class="badge b-nutr">NUTRITION</span></h3>
+  <table>
+    <tr><th style="width:44%">Defect</th><th style="width:14%">Task</th><th style="width:14%">State</th><th>Risk</th></tr>
+    <tr><td>Fermentation keyword bonus <b>uncapped</b> (TRIM Path A)</td><td>TASK-246</td><td>IN_PROGRESS</td><td>Keyword stuffing can ride toward A/S</td></tr>
+    <tr><td><b>Absence-as-zero</b> — missing nutrient scores as 0, cross-category</td><td>TASK-236</td><td><b>BLOCKED</b></td><td>Punishes honest missing data — contradicts "unknown is acceptable"</td></tr>
+    <tr><td>Juice NOVA-1 floor fires for reconstituted-from-concentrate</td><td>TASK-217</td><td>RETURNED</td><td>Unearned whole-food floor</td></tr>
+    <tr><td>Router v2: no bread/cracker archetype; seed-topped bread → WFF</td><td>—</td><td>unowned</td><td>Misroute → wrong calorie table → wrong score</td></tr>
+  </table>
+  <div class="act"><b>Action:</b> prioritize TASK-236 — a <i>philosophical</i> defect (the engine violates its own data-honesty principle) touching every category's confidence story.</div>
+</div>
+
+<div class="item fix">
+  <h3>FIX-5 · Registry / reality drift <span class="badge p2">P2</span> <span class="phase-ref">Phase K</span> <span class="badge b-orch">CC</span></h3>
+  <ul>
+    <li>TASK-237 (salty OFF re-source) IN_PROGRESS on paper — but salty v4 with 29 real products <b>shipped to production today</b>.</li>
+    <li>Memory index says "TASK-189 open (granola sodium)" — it <b>closed 2026-06-05</b> with <code>BARI_SODIUM_CEREAL</code> implemented.</li>
+    <li>Four blog tasks (203–206) parked IN_PROGRESS indefinitely — dispatch or park explicitly.</li>
+  </ul>
+  <div class="act"><b>Action:</b> one CC drift sweep ≈ one hour.</div>
+</div>
+
+<div class="item fix">
+  <h3>FIX-6 · "NOVA" jargon ruling pending on two more live pages <span class="badge p2">P2</span> <span class="phase-ref">Phase G</span> <span class="badge b-cont">CONTENT</span></h3>
+  <p>Maadanim (86 hits) and hummus (70 hits) show "NOVA" in metric cells — designed column or leak? Routed at TASK-245 close; not yet ruled. Designed = keep + register exception; leak = template fix.</p>
+</div>
+
+<!-- ================= ENHANCEMENTS ================= -->
+<div class="pagebreak"></div>
+<h2>2 · Enhancements — Works, but Could Be Better</h2>
+
+<div class="item enh">
+  <h3>ENH-1 · Generalize the yogurt honesty gates to every category <span class="phase-ref">Phases B–C</span> <span class="badge b-data">DATA</span></h3>
+  <p>Disclaimer-strip + <code>macros_plausible</code> + <code>ingredient_text_quality</code> is the best data-quality work in the pipeline — protecting exactly one category. Lift into <code>03_operations/bsip1/core/</code>; the shared <code>bsip0_gate.py</code> + 30 tests already exist (untracked) — finish, commit, wire.</p>
+</div>
+
+<div class="item enh">
+  <h3>ENH-2 · Finish the verdict-copy rollout — 8 legacy categories pending <span class="phase-ref">Phase G</span> <span class="badge b-cont">CONTENT</span></h3>
+  <p>The ruled standard (verdicts name calorie density + the real fired driver; sodium = displayed fact only) is live in new categories only. One Content pass per legacy page; zero data changes.</p>
+</div>
+
+<div class="item enh">
+  <h3>ENH-3 · Image story after de-OFF <span class="phase-ref">Phases B·J</span> <span class="badge b-qa">QA</span><span class="badge b-data">DATA</span></h3>
+  <p>The OFF purge correctly nulled contaminated images → live placeholders in several categories. Backfills ran (TASK-208/243 closed). Needed: one sweep — % real scrape-sourced images per live category + a stated SLA ("no launch under X%; placeholders acceptable, OFF never").</p>
+</div>
+
+<div class="item enh">
+  <h3>ENH-4 · Wire the two finished-but-idle quality frameworks into the chain <span class="phase-ref">Phases G·D</span> <span class="badge b-orch">ORCH</span><span class="badge b-cont">CONTENT</span></h3>
+  <ul>
+    <li><b>Hebrew Golden Eval</b> (TASK-220, built) → automatic Phase-G gate on every copy batch; mechanizes read-every-string.</li>
+    <li><b>Observability event schema</b> (TASK-219, built) → pipeline runs emit events; "what ran, when, which config hash" stops living only in per-run report files.</li>
+  </ul>
+</div>
+
+<div class="item enh">
+  <h3>ENH-5 · Red-team earlier <i>and</i> at the end <span class="phase-ref">Phases C·F</span> <span class="badge p1" style="background:#bb2d3b;">RED-TEAM</span></h3>
+  <p>Keep Phase F as the full adversarial audit; add a <b>30-minute "data sanity" pass right after BSIP1</b> (sample 10 products: raw text vs parsed output, macro plausibility). Run_005's disaster would have cost one agent-hour instead of a full regeneration cycle.</p>
+</div>
+
+<!-- ================= EFFICIENCY ================= -->
+<h2>3 · Efficiency — Same Quality, Less Time &amp; Cost</h2>
+
+<div class="item eff">
+  <h3>EFF-1 · Shift truth checks left — the 6-run lesson</h3>
+  <p>Yogurt's cost structure: errors injected at B/C, discovered at F → B-to-F reruns. Every plausibility assertion moved from F to C converts a multi-session regen into a minutes-level parse fix. <b>The same checks, earlier, are ~10× cheaper.</b></p>
+</div>
+
+<div class="item eff">
+  <h3>EFF-2 · Commit the drafted CI — it's written and has never run <span class="badge b-data">DATA</span><span class="badge b-fe">FRONTEND</span></h3>
+  <p><code>.github/workflows/barint_ci.yml</code> already defines the right gates (next build · lint · corpus validation · BSIP0 nutrition tests · 64 enricher tests · router + golden-corpus regressions · BSIP0 gate tests) — but the folder is <b>untracked; no PR has ever been CI-checked</b>. One commit makes the frozen-invariant and build gates automatic.</p>
+  <div class="act"><b>Add one missing job:</b> the OFF-string sweep (<code>openfoodfacts|off_api</code> over <code>bari-web/src/data/</code>) — today that Phase-J check is manual.</div>
+</div>
+
+<div class="item eff">
+  <h3>EFF-3 · Finish the shared packaging core — TASK-233F, 10 generators pending <span class="badge b-data">DATA</span></h3>
+  <p>Each category has a bespoke builder (<code>build_yogurts_frontend_v4.py</code>, <code>_v006.py</code>…) — every honesty gate and format change re-implemented per category. That is exactly how single-category safeguards happen. One core = write once, all categories inherit.</p>
+</div>
+
+<div class="item eff">
+  <h3>EFF-4 · Reconcile the factory skill with practice</h3>
+  <p>The skill mandates per-stage artifacts; only 4 categories have them (cereals, cheese_spreads, juices, hard_cheeses) — yogurt, the newest and most scrutinized run, produced none. Either the shared runner <b>emits them automatically</b> (preferred; free once EFF-3 lands) or the skill trims to artifacts that earn their keep. A spec the flagship run ignores trains agents to ignore the spec.</p>
+</div>
+
+<div class="item eff">
+  <h3>EFF-5 · Unblock the close gate — cheap-LLM verification lane <span class="badge b-orch">CC</span></h3>
+  <p>Mechanical claim-verification (file exists, counts match, grep clean, build green) is zero-judgment work → Stupid-LLM lane with idiot-proofed prompts; CC reviews the evidence table. Target: RETURNED→CLOSED in hours, not days.</p>
+</div>
+
+<div class="item eff">
+  <h3>EFF-6 · Parallelize copy (G) and packaging (H) after score freeze</h3>
+  <p>They share one dependency: frozen scores + traces. After QA freeze, dispatch Content and Data in parallel; H consumes G's strings at the end. ≈ one session saved per category.</p>
+</div>
+
+<div class="item eff">
+  <h3>EFF-7 · Name the Shufersal-VPN dependency as an operational gate</h3>
+  <p>Yogurt re-acquisition waited on Israeli-IP VPN availability — an undocumented bottleneck for every future scrape. Cheap fix: a scrape-window runbook (when VPN is up, which scrapes queue, who flips it) so Phase B never silently stalls.</p>
+</div>
+
+<!-- ================= ADDITIONS ================= -->
+<div class="pagebreak"></div>
+<h2>4 · Additions — What Doesn't Exist Yet</h2>
+
+<div class="item add">
+  <h3>ADD-1 · Post-deploy production smoke test (automated) — <b>must-have</b></h3>
+  <p>The prod/local split survived for months because <b>nothing watched the live site</b>. TASK-245 fixed the topology; CC verified the flip manually — but no recurring check exists. Minimum: a scheduled job hitting every <code>/hashvaot/*</code> route asserting HTTP 200, 0 OFF refs, expected data-version marker. <b>The regression alarm for the whole "what's actually live?" failure class.</b></p>
+</div>
+
+<div class="item add">
+  <h3>ADD-2 · Live-state manifest: route → data version → run ID → baseline — <b>must-have</b></h3>
+  <p>Gap 2 of the prod-sync brief was exactly this absence — enumerating the re-point payload required hand-diffing repos. A small machine-readable manifest, written by packaging and asserted by the smoke test, makes "what is live?" a lookup instead of an investigation.</p>
+</div>
+
+<div class="item add">
+  <h3>ADD-3 · BSIP0 scrape QA standard as a blocking gate — <b>must-have</b></h3>
+  <p>TASK-218's deliverable, closed and wired into Phase B for every future scrape (institutional form of FIX-2). The weakest link in the chain is between retailer HTML and BSIP1 — it deserves a standing gate, not per-category heroics.</p>
+</div>
+
+<div class="item add">
+  <h3>ADD-4 · Data-freshness policy per category — <b>must-have</b></h3>
+  <p>No policy says when a category must re-verify (reformulations, recalls, price moves). Even coarse — "re-scrape + re-verify every N months; show the date; stale categories get a banner" — converts an unbounded liability into a scheduled cost.</p>
+</div>
+
+<div class="item add">
+  <h3>ADD-5 → ADD-9 · Nice-to-have</h3>
+  <table>
+    <tr><th style="width:30%">Addition</th><th>Value</th></tr>
+    <tr><td><b>ADD-5</b> Consumer analytics loop</td><td>The 15–20s comprehension metric is unmeasured in prod; traffic/scroll/filter data lets Product sequence the roadmap on demand, not intuition.</td></tr>
+    <tr><td><b>ADD-6</b> Editorial regression suite</td><td>Banned-phrase + jargon linter (9 banned phrases, "NOVA", score-presentation rules) at build time — FIX-6 becomes impossible to ship.</td></tr>
+    <tr><td><b>ADD-7</b> Price display</td><td><code>il_prices</code> client exists (TASK-170). Price-per-100g next to scores = major consumer value; needs its own freshness rule. Product-gated.</td></tr>
+    <tr><td><b>ADD-8</b> Category health dashboard</td><td>Per category: corpus age, last run, gates passed, live version, open findings. Command center tracks <i>tasks</i>; nothing tracks <i>categories</i> as first-class objects.</td></tr>
+    <tr><td><b>ADD-9</b> Cross-market disclosure</td><td>Wave 3 backlog, already scoped (D5 annotate-only, never a score move). Parked correctly; listed so it isn't lost.</td></tr>
+  </table>
+</div>
+
+<!-- ================= TOP 5 ================= -->
+<div class="top5">
+  <h2>5 · If You Only Do Five Things</h2>
+  <table>
+    <tr><th style="width:5%">#</th><th style="width:48%">Action</th><th style="width:17%">Type</th><th>Why first</th></tr>
+    <tr><td class="n">1</td><td><b>Rule on yogurt Ruling 3</b> → ship v4 (88 products) over the thin 11-product live shelf</td><td>FIX-1</td><td>Biggest consumer win; work done; <b>you</b> are the critical path</td></tr>
+    <tr><td class="n">2</td><td><b>Batch-close the RETURNED queue</b> (217/218/241/249/250) via the cheap-verification lane</td><td>FIX-3 + EFF-5</td><td>Unlocks everything queued behind finished work</td></tr>
+    <tr><td class="n">3</td><td><b>Commit the CI workflows</b> + add the OFF-sweep job</td><td>EFF-2</td><td>One commit; 5 manual gates become automatic forever</td></tr>
+    <tr><td class="n">4</td><td><b>Post-deploy smoke test + live-state manifest</b></td><td>ADD-1 + ADD-2</td><td>Closes the failure class behind the worst defect in project history</td></tr>
+    <tr><td class="n">5</td><td><b>Generalize yogurt honesty gates into shared BSIP1</b> + adopt TASK-218</td><td>ENH-1 + ADD-3</td><td>Makes the 6-run lesson permanent for every future category</td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  Bari Agent OS · Comparison Chain Gap Analysis v1 · 2026-06-11 · Source: <code>01_framework/operations/comparison_chain_gap_analysis_v1.md</code> · Companion: Production Map v1 · All task states verified against <code>C:\Bari\tasks\</code> today.
+</div>
+
+</body>
+</html>

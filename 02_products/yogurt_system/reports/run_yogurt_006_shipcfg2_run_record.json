@@ -1,0 +1,1202 @@
+{
+  "run_id": "run_yogurt_006_shipcfg2",
+  "generated": "2026-06-12T08:07:52.173254+00:00",
+  "status": "SHIP_CANDIDATE",
+  "task": "TASK-249 P16",
+  "flags": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "on"
+  },
+  "corpus": {
+    "shufersal": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_006\\output",
+    "yohananof": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_yohananof_001\\output"
+  },
+  "corpus_n": {
+    "shufersal_scored": 87,
+    "yohananof_scored": 0,
+    "merged_total": 87,
+    "off_excluded_total": 8,
+    "dedup_dropped": 0
+  },
+  "trim_config": {
+    "enabled": true,
+    "ceiling": 89.9
+  },
+  "engine": "proto_v0 / RECAL_P0=on + YOGURT_TRIM=on + TASK250_CONF=on",
+  "exclusion_policy": {
+    "rt1_excluded": [
+      {
+        "pid": "bsip1_yogurt_7290116932620",
+        "barcode": "7290116932620",
+        "reason": "RT-1: protein-corruption exclusion",
+        "corpus": "Shufersal"
+      }
+    ],
+    "excluded_off_contaminated": [
+      {
+        "pid": "bsip1_yogurt_7290000408316",
+        "barcode": "7290000408316",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290102394081",
+        "barcode": "7290102394081",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290102399819",
+        "barcode": "7290102399819",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290107936309",
+        "barcode": "7290107936309",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290110328764",
+        "barcode": "7290110328764",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290110565527",
+        "barcode": "7290110565527",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290112330352",
+        "barcode": "7290112330352",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      },
+      {
+        "pid": "bsip1_yogurt_7290116934402",
+        "barcode": "7290116934402",
+        "reason": "off_candidate_panel in canonical_risk_flags — OFF contamination, TASK-238 ban",
+        "corpus": "Yohananof",
+        "risk_flags": [
+          "single_source_only",
+          "off_candidate_panel"
+        ],
+        "provenance_source": "open_food_facts"
+      }
+    ]
+  },
+  "dedup_events": [],
+  "grade_distribution": {
+    "A": 10,
+    "B": 32,
+    "D": 23,
+    "C": 19,
+    "S": 2,
+    "E": 1
+  },
+  "s_count": 2,
+  "a_count": 10,
+  "S_list": [
+    {
+      "pid": "bsip1_yogurt_7290110565527",
+      "barcode": "7290110565527",
+      "name": "דנונה פרו 20 גרם חלבון",
+      "score": 90.6,
+      "grade": "S",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290112336712",
+      "barcode": "7290112336712",
+      "name": "דנונה פרו 21 חלבון 0%",
+      "score": 92.6,
+      "grade": "S",
+      "corpus": "shufersal"
+    }
+  ],
+  "A_list": [
+    {
+      "pid": "bsip1_yogurt_2824466",
+      "barcode": "2824466",
+      "name": "יוגורט ביו 0% שומן דנונה",
+      "score": 82.3,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_4584528",
+      "barcode": "4584528",
+      "name": "יוגורט ביו 1.7% דנונה",
+      "score": 81.5,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_57132",
+      "barcode": "57132",
+      "name": "יוגורט ביו 1.5%",
+      "score": 80.6,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_6664990",
+      "barcode": "6664990",
+      "name": "יוגורט דנונה ביו 1.7%",
+      "score": 80.8,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102395231",
+      "barcode": "7290102395231",
+      "name": "יוגורט ביו נטורל 2.8%",
+      "score": 80.8,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110321031",
+      "barcode": "7290110321031",
+      "name": "יופלה GO מועשר בחלבון",
+      "score": 89.9,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110558284",
+      "barcode": "7290110558284",
+      "name": "דנונה ביו מולטי",
+      "score": 80.4,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114311069",
+      "barcode": "7290114311069",
+      "name": "מולר אקטיב לבן0% 25חלבון",
+      "score": 84.8,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116935614",
+      "barcode": "7290116935614",
+      "name": "יוגורט GO חלבון  25 גרם",
+      "score": 89.9,
+      "grade": "A",
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119377480",
+      "barcode": "7290119377480",
+      "name": "יוגורט פרו עם שוקולד",
+      "score": 82.0,
+      "grade": "A",
+      "corpus": "shufersal"
+    }
+  ],
+  "score_range": [
+    34.8,
+    92.6
+  ],
+  "products": [
+    {
+      "pid": "bsip1_yogurt_2824466",
+      "barcode": "2824466",
+      "name": "יוגורט ביו 0% שומן דנונה",
+      "score": 82.3,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_3126712",
+      "barcode": "3126712",
+      "name": "יוגורט עיזים ביו 3%",
+      "score": 71.1,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_408316",
+      "barcode": "408316",
+      "name": "יוגורט ביו 3% שומן דנונה",
+      "score": 79.3,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_408354",
+      "barcode": "408354",
+      "name": "יוגורט קראנצ פצפוצים",
+      "score": 45.6,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_4119133",
+      "barcode": "4119133",
+      "name": "יוגורט בכד6.5% שומן",
+      "score": 72.4,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_43944",
+      "barcode": "43944",
+      "name": "יוגורט בכד 4% שומן",
+      "score": 74.7,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_45771",
+      "barcode": "45771",
+      "name": "יוגורט בכד 4% שומן",
+      "score": 74.5,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_4584528",
+      "barcode": "4584528",
+      "name": "יוגורט ביו 1.7% דנונה",
+      "score": 81.5,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_5416262",
+      "barcode": "5416262",
+      "name": "יוגורט עיזים עם תות",
+      "score": 51.7,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_5416415",
+      "barcode": "5416415",
+      "name": "יוגורט עזים טבעי 3%",
+      "score": 75,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_57132",
+      "barcode": "57132",
+      "name": "יוגורט ביו 1.5%",
+      "score": 80.6,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_57149",
+      "barcode": "57149",
+      "name": "יוגורט ביו 3%",
+      "score": 79.7,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_5839078",
+      "barcode": "5839078",
+      "name": "יוגורט דנונה ביו 3%",
+      "score": 79.6,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_6664990",
+      "barcode": "6664990",
+      "name": "יוגורט דנונה ביו 1.7%",
+      "score": 80.8,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290010471669",
+      "barcode": "7290010471669",
+      "name": "יוגורט קראנצ תות קורנפלק",
+      "score": 36.3,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290012645297",
+      "barcode": "7290012645297",
+      "name": "יוגורט עיזים ביו",
+      "score": 75.3,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290014758100",
+      "barcode": "7290014758100",
+      "name": "יוגורט ביו 3%",
+      "score": 79.7,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290014758117",
+      "barcode": "7290014758117",
+      "name": "יוגורט ביו 1.5% שומן",
+      "score": 78.4,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290014890572",
+      "barcode": "7290014890572",
+      "name": "יוגורט עיזים 3.5% ביו",
+      "score": 74.6,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290014890589",
+      "barcode": "7290014890589",
+      "name": "יוגורט יווני 8%",
+      "score": 75.5,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290016606522",
+      "barcode": "7290016606522",
+      "name": "יוגורט טבעי מחלב עיזים",
+      "score": 76.4,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290017065588",
+      "barcode": "7290017065588",
+      "name": "יוגורט יווני 10%",
+      "score": 72.3,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290019635819",
+      "barcode": "7290019635819",
+      "name": "יוגורט יווני צזיקי 10%",
+      "score": 54.3,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102390427",
+      "barcode": "7290102390427",
+      "name": "יוגורט פרופ קציפת תות",
+      "score": 38.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102390465",
+      "barcode": "7290102390465",
+      "name": "מולר פרופ אפרסק פסיפלורה",
+      "score": 37.5,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102390489",
+      "barcode": "7290102390489",
+      "name": "יוגורט פרופ קציפת לימון",
+      "score": 37.6,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102391844",
+      "barcode": "7290102391844",
+      "name": "יוגורט פרופ פירות יער",
+      "score": 37.1,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393039",
+      "barcode": "7290102393039",
+      "name": "יוגורט מולר מיקס פצפוצים",
+      "score": 45.2,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393060",
+      "barcode": "7290102393060",
+      "name": "יוגורט מולר מיקס גליליות",
+      "score": 43.5,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393169",
+      "barcode": "7290102393169",
+      "name": "יוגורט תות 3% שומן",
+      "score": 42.3,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393176",
+      "barcode": "7290102393176",
+      "name": "יוגורט אפרסק 3% שומן",
+      "score": 42.5,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393190",
+      "barcode": "7290102393190",
+      "name": "יוגורט פירות יער 3% שומן",
+      "score": 38.2,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102393947",
+      "barcode": "7290102393947",
+      "name": "יוגורט קיווי 3% שומן",
+      "score": 42.5,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102394081",
+      "barcode": "7290102394081",
+      "name": "מולר מיקס קורנפלקס מצופה",
+      "score": 55.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102395231",
+      "barcode": "7290102395231",
+      "name": "יוגורט ביו נטורל 2.8%",
+      "score": 80.8,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102396740",
+      "barcode": "7290102396740",
+      "name": "יוגורט אפרסק+תות 0%",
+      "score": 36.4,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102397600",
+      "barcode": "7290102397600",
+      "name": "מולר מיקס שקדים ובוטנים",
+      "score": 62.4,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 87.2,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102397617",
+      "barcode": "7290102397617",
+      "name": "מולר מיקס כדורי דגנים",
+      "score": 57.5,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 87.2,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102399635",
+      "barcode": "7290102399635",
+      "name": "יוגורט פרופ קוקוס ואננס",
+      "score": 37.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102399802",
+      "barcode": "7290102399802",
+      "name": "מולר פרוטאין יוגורט תות",
+      "score": 52.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290102399819",
+      "barcode": "7290102399819",
+      "name": "מולר פרוטאין יוגור.פירות",
+      "score": 49.9,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290107936309",
+      "barcode": "7290107936309",
+      "name": "יוגורט בסגנון יווני 6.5%",
+      "score": 76.6,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110321031",
+      "barcode": "7290110321031",
+      "name": "יופלה GO מועשר בחלבון",
+      "score": 89.9,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110321680",
+      "barcode": "7290110321680",
+      "name": "יופלה GO תות",
+      "score": 57.7,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110321697",
+      "barcode": "7290110321697",
+      "name": "יופלה GO אפרסק",
+      "score": 61.2,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110321703",
+      "barcode": "7290110321703",
+      "name": "יופלה GO פירות יער",
+      "score": 59.5,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110323585",
+      "barcode": "7290110323585",
+      "name": "יופלה GO דובדבן 0.7%",
+      "score": 58.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110323592",
+      "barcode": "7290110323592",
+      "name": "יופלה GO אפרסק 0.7%",
+      "score": 65.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110328221",
+      "barcode": "7290110328221",
+      "name": "יוגורט נטול לקטוז 3%שומן",
+      "score": 77.8,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110328627",
+      "barcode": "7290110328627",
+      "name": "יוגורט GO קרמי בננה קרמל",
+      "score": 62.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110328764",
+      "barcode": "7290110328764",
+      "name": "יוגורט GO קרמי תות",
+      "score": 62.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110328788",
+      "barcode": "7290110328788",
+      "name": "יוגורט GO קרמי אפרסק",
+      "score": 65.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110329952",
+      "barcode": "7290110329952",
+      "name": "יוגורט GO סמיך טעם קוקוס",
+      "score": 64.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110558284",
+      "barcode": "7290110558284",
+      "name": "דנונה ביו מולטי",
+      "score": 80.4,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110558314",
+      "barcode": "7290110558314",
+      "name": "דנונ.פרו ללא סוכר פיסטוק",
+      "score": 68.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110565527",
+      "barcode": "7290110565527",
+      "name": "דנונה פרו 20 גרם חלבון",
+      "score": 90.6,
+      "grade": "S",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110566975",
+      "barcode": "7290110566975",
+      "name": "דנונה פרו 20ג חלבון תות",
+      "score": 72.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 72,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290110578053",
+      "barcode": "7290110578053",
+      "name": "יוגורט קרנצ' כדורי דגנים",
+      "score": 39.7,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290112330352",
+      "barcode": "7290112330352",
+      "name": "דנונה פרו 20 גר וניל 0%",
+      "score": 72.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 72,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290112330390",
+      "barcode": "7290112330390",
+      "name": "דנונה פרו 20 פירות יער0%",
+      "score": 72.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 72,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290112336712",
+      "barcode": "7290112336712",
+      "name": "דנונה פרו 21 חלבון 0%",
+      "score": 92.6,
+      "grade": "S",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290112346629",
+      "barcode": "7290112346629",
+      "name": "יוגורט קראנצ קורנפלקס",
+      "score": 47.4,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114310406",
+      "barcode": "7290114310406",
+      "name": "יוגורט מוקצף תות",
+      "score": 35.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114311069",
+      "barcode": "7290114311069",
+      "name": "מולר אקטיב לבן0% 25חלבון",
+      "score": 84.8,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114311359",
+      "barcode": "7290114311359",
+      "name": "יוגורט פרופ קציפת מנגו",
+      "score": 37.9,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114312424",
+      "barcode": "7290114312424",
+      "name": "יוגורט פרופ פסיפלורה",
+      "score": 37.9,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114312431",
+      "barcode": "7290114312431",
+      "name": "יוגורט פרופ מלונענע",
+      "score": 37.8,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114313070",
+      "barcode": "7290114313070",
+      "name": "יוגורט מוקצף אפרסק",
+      "score": 34.8,
+      "grade": "E",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114313377",
+      "barcode": "7290114313377",
+      "name": "יוגורט בסגנון יווני 6.5%",
+      "score": 78.5,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114314053",
+      "barcode": "7290114314053",
+      "name": "יוגורט מנגו 3% שומן",
+      "score": 41.6,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114314060",
+      "barcode": "7290114314060",
+      "name": "יוגורט סימפלי אננס 3%",
+      "score": 41.5,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 60,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290114314596",
+      "barcode": "7290114314596",
+      "name": "מולר פרוטאין טופ בוטנים",
+      "score": 68.8,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 87.2,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290115678222",
+      "barcode": "7290115678222",
+      "name": "דנונה יווני מארז",
+      "score": 76.9,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116932484",
+      "barcode": "7290116932484",
+      "name": "יוגורט GO אוורירי וניל",
+      "score": 68.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116934402",
+      "barcode": "7290116934402",
+      "name": "יוגורט אוורירי GO מנגו",
+      "score": 64.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116935614",
+      "barcode": "7290116935614",
+      "name": "יוגורט GO חלבון  25 גרם",
+      "score": 89.9,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 2,
+      "binding_cap": null,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116935621",
+      "barcode": "7290116935621",
+      "name": "יוגורט חלבון קרמיGO וניל",
+      "score": 64.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116936123",
+      "barcode": "7290116936123",
+      "name": "יוגורט GO אוורירי דובדבן",
+      "score": 62.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116936215",
+      "barcode": "7290116936215",
+      "name": "יוגורט GO עוגת תפוחים",
+      "score": 54.2,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290116936222",
+      "barcode": "7290116936222",
+      "name": "יוגורט GO אננס מקורמל",
+      "score": 53.4,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119370177",
+      "barcode": "7290119370177",
+      "name": "דנונה פרו לת\"ס בננה טופי",
+      "score": 68.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119370955",
+      "barcode": "7290119370955",
+      "name": "דנונה פרו לל\"ס וניל עוג.",
+      "score": 68.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119372997",
+      "barcode": "7290119372997",
+      "name": "דנונה פרו 20 רול קינמון",
+      "score": 68.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119377404",
+      "barcode": "7290119377404",
+      "name": "דנונה פרו 25  לל\"ס וניל",
+      "score": 67.1,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 4,
+      "binding_cap": 68.0,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119377411",
+      "barcode": "7290119377411",
+      "name": "דנונה פרו 25 גרם חלבון",
+      "score": 72.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 72,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119377480",
+      "barcode": "7290119377480",
+      "name": "יוגורט פרו עם שוקולד",
+      "score": 82.0,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    },
+    {
+      "pid": "bsip1_yogurt_7290119380916",
+      "barcode": "7290119380916",
+      "name": "יוגורט פרוביוטי בטעם תות",
+      "score": 54.2,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 3,
+      "binding_cap": 94.8,
+      "corpus": "shufersal"
+    }
+  ]
+}

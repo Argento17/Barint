@@ -1,0 +1,22 @@
+name: Post-deploy smoke (bari.digital)
+
+# TASK-290 / P150 — manifest-driven /hashvaot/* smoke against production.
+# Scheduled daily + manual dispatch after deploys. Read-only HTTP GET only.
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  prod-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Manifest-driven smoke test (bari.digital)
+        run: python 03_operations/spine/smoke_test.py

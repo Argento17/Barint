@@ -1,0 +1,175 @@
+{
+  "sku_id": "SP-7290013464859",
+  "barcode": "7290013464859",
+  "name_he": "סופהרב טיפות ברזל לילדים 20 מל בדץ",
+  "brand_bucket": "supherb",
+  "engine_active": "iron",
+  "price_ils": 34.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "vitaminglobal.com",
+    "confidence": 1.0,
+    "reason": "barcode match via vitaminglobal.com"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'ברזל לטיפול במחסור בברזל בתינוקות וילדים'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.vitaminglobal.com/iron-drops-for-kids-kosher-badatz-certified-20-ml-supherb-p-282-c-7_30.html",
+    "source": "vitaminglobal.com",
+    "brand": "supherb",
+    "product_name": "סופהרב טיפות ברזל לילדים 20 מל בדץ",
+    "barcode": "7290013464859",
+    "serving_size": "variable by age (1 drop = 2.5mg iron)",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "ברזל לטיפול במחסור בברזל בתינוקות וילדים",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ברזל (iron polymaltose IPC)",
+        "amount": 2.5,
+        "unit": "mg",
+        "form": "polymaltose",
+        "form_raw": "polymaltose",
+        "active_slug": "iron"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:vitaminglobal.com",
+      "source_id": "supherb:7290013464859",
+      "source_url": "https://www.vitaminglobal.com/iron-drops-for-kids-kosher-badatz-certified-20-ml-supherb-p-282-c-7_30.html",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב טיפות ברזל לילדים 20 מל בדץ",
+    "primary_claim_fed": "iron-deficiency anemia treatment/prevention",
+    "actives": [
+      {
+        "active_slug": "iron",
+        "display_name": "ברזל (iron polymaltose IPC)",
+        "quantity": 2.5,
+        "unit": "mg",
+        "form": "polymaltose",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+    "score": 49.0,
+    "grade": "D",
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 20,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.462877Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290013464859",
+    "active": "iron",
+    "on_label_claim": "iron-deficiency anemia treatment/prevention",
+    "claim_matched": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:23252877",
+        "PMID:26314490"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 20,
+        "reason": "fairy_dust"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "also_fired": [],
+    "blend": 64.8,
+    "dossier_facts_used": [
+      {
+        "field": "claims['correcting/preventing iron-deficiency anaemia (in iron-deficient individuals)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-009"
+      }
+    ],
+    "final": {
+      "score": 49.0,
+      "grade": "D"
+    }
+  }
+}

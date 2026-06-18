@@ -1,0 +1,51 @@
+Product ID                          Name                                     Live     Recon    Match   Source Run
+----------------------------------------------------------------------------------------------------------------------------------
+bsip1_cereal_5010029000061          דגני בוקר ויטביקס                        75/B     75/B     True    run_cereals_008
+bsip1_cereal_7613037686906          Fitness almond honey                     70/B     70/B     True    run_cereals_multiretailer_001
+bsip1_cereal_7290017325910          קורנפלקס אורגני הרדוף                    69/B     69/B     True    run_cereals_008
+bsip1_cereal_7613033548192          Nestle Fitness Dark Chocolate            68/B     68/B     True    run_cereals_multiretailer_001
+bsip1_cereal_7297488098688          פצפוצי אורז ללת"ס                        67/B     67/B     True    run_cereals_008
+bsip1_cereal_5900020041142          קורנפלקס פיטנס                           65/B     65/B     True    run_cereals_multiretailer_001
+bsip1_cereal_7290116535371          קורנפלקס לל"ג כשל"פ                      62/C     62/C     True    run_cereals_008
+bsip1_cereal_7297488199590          פצפוצי אורז תפוח                         62/C     62/C     True    run_cereals_008
+bsip1_cereal_7296073642046          קורנפלקס ללא גלוטן                       61/C     58/C     False   run_cereals_008
+bsip1_cereal_3560071016074          Corn flakes                              61/C     61/C     True    run_cereals_multiretailer_001
+bsip1_cereal_7290112494351          קורנפלקס של אלופים בד"ץ                  60/C     57/C     False   run_cereals_008
+bsip1_cereal_5900020036407          ליון דגני שוקולד וקרמל                   55/C     55/C     True    run_cereals_008
+bsip1_cereal_5900020012814          דגני בוקר נסקוויק                        55/C     55/C     True    run_cereals_008
+bsip1_cereal_72968                  דגני בוקר סיני מיניס                     55/C     55/C     True    run_cereals_008
+bsip1_cereal_7290107647731          דגני בוקר קוקומן חום לבן                 55/C     55/C     True    run_cereals_008
+bsip1_cereal_7290107647854          דגני בוקר שוגי                           53/C     50/D     False   run_cereals_008
+bsip1_cereal_7290116537351          כריות נוגט                               52/C     52/C     True    run_cereals_multiretailer_001
+bsip1_cereal_4005528115218          דגני חיטה ואורז בטעם                     48/D     48/D     True    run_cereals_multiretailer_001
+bsip1_cereal_7290112495433          דגני בוקר דליפקאן                        46/D     43/D     False   run_cereals_008
+bsip1_cereal_7296073705550          כדורי דגנים טעם שוקו                     46/D     46/D     True    run_cereals_008
+bsip1_cereal_7296073705567          טבעות דגנים בטעם דבש                     46/D     46/D     True    run_cereals_008
+bsip1_cereal_7290017894911          טבעות דגנים שיבולת שועל                  46/D     46/D     True    run_cereals_008
+bsip1_cereal_42400108153            Cereal                                   44/D     44/D     True    run_cereals_multiretailer_001
+bsip1_cereal_5900020046833          Cheerios                                 44/D     44/D     True    run_cereals_multiretailer_001
+bsip1_cereal_7290017894928          צדפי דגנים טעם שוקולד                    43/D     43/D     True    run_cereals_008
+bsip1_cereal_7290017894904          כדורי דגנים טעם שוקולד                   43/D     43/D     True    run_cereals_008
+bsip1_cereal_7296073642022          דגני בוקר טבעות דבש לל"ג                 43/D     42/D     False   run_cereals_008
+bsip1_cereal_8445291638839          צ'יריוס טעם דבש ושקדים                   42/D     42/D     True    run_cereals_008
+bsip1_cereal_7290112495228          קורנפלקס דבש                             40/D     37/D     False   run_cereals_008
+bsip1_cereal_8445290964595          דגני בוקר קיטקט                          39/D     37/D     False   run_cereals_008
+bsip1_cereal_3387390525960          דגני בוקר קראנץ'                         37/D     35/D     False   run_cereals_008
+bsip1_cereal_7296073705574          ריבועי דגנים עם קינמון                   36/D     36/D     True    run_cereals_008
+bsip1_cereal_884912126115           דגני גרייט גריינס דייטס                  35/D     35/E     False   run_cereals_008
+bsip1_cereal_7613030979647          טריקס דגנים בטעם פירות                   32/E     32/E     True    run_cereals_008
+
+================================================================================
+MATCH:     25/34
+MISMATCH:  9/34
+NO TRACE:  0/34
+WORST:     bsip1_cereal_7296073642046 (קורנפלקס ללא גלוטן) live=61/C recon=58/C diff=3pts
+
+--- Original run_cereals_008 product count check ---
+Original run_cereals_008 products/: 63 dirs
+Reconstructed run_cereals_008 products/: 63 dirs
+
+--- Engine version ---
+bsip2_version: proto_v0
+algorithm_version: 0.4.1
+trace_generated_at: 2026-06-12T05:28:48.799352Z

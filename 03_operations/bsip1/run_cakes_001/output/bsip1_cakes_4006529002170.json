@@ -1,0 +1,165 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_cakes_4006529002170",
+  "barcode": "4006529002170",
+  "canonical_name_he": "עוגיות גולד רינג 400 גרם ללא מיתוג | 400 גרם ‏10.90 ‏₪ ‏2.73",
+  "brand": "ללא מיתוג",
+  "weight_g": 400.0,
+  "category": "cake_cookie",
+  "source_retailers": [
+    "yohananof"
+  ],
+  "image_url": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F4%2F0%2F4006529002170_s1_1505-22-2024_19-10-43.jpg&w=256&q=75",
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 541.0,
+    "fat_g": 30.0,
+    "fat_saturated_g": 15.0,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 192.0,
+    "carbohydrates_g": 62.0,
+    "sugars_g": 23.0,
+    "dietary_fiber_g": null,
+    "protein_g": 4.6
+  },
+  "energy_kcal": 541.0,
+  "fat_g": 30.0,
+  "fat_saturated_g": 15.0,
+  "fat_trans_g": null,
+  "protein_g": 4.6,
+  "carbohydrates_g": 62.0,
+  "sugars_g": 23.0,
+  "sodium_mg": 192.0,
+  "dietary_fiber_g": null,
+  "cholesterol_mg": null,
+  "ingredients_text_he": "קמח חיטה, שומן צמחי (דקלים), סוכר, ביצים, מלח, חומרי טעם.",
+  "ingredients_list": [
+    "קמח חיטה",
+    "שומן צמחי (דקלים)",
+    "סוכר",
+    "ביצים",
+    "מלח",
+    "חומרי טעם"
+  ],
+  "ingredient_count": 6,
+  "ingredient_text_quality": "good",
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "off_source_used": false,
+  "nova_proxy": null,
+  "nova_confidence": null,
+  "nova_notes": [],
+  "detected_additives": [],
+  "additive_count": 0,
+  "confidence": 0.72,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "single_source"
+  ],
+  "missing_fields": [],
+  "inferred_fields": [],
+  "data_sufficiency": "sufficient",
+  "provenance": {
+    "source": "yohananof_direct_scrape",
+    "fetched_at": "2026-06-14T13:00:29.506442",
+    "source_url": "https://yochananof.co.il/category?search=%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA",
+    "panel_source": "storefront",
+    "verification_status": "candidate",
+    "off_used": false
+  },
+  "enrichment_timestamp": "2026-06-14T13:13:57.869463+00:00",
+  "run_id": "run_cakes_001",
+  "ingredients_raw": "קמח חיטה, שומן צמחי (דקלים), סוכר, ביצים, מלח, חומרי טעם.",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "קמח חיטה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "שומן צמחי (דקלים)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "ביצים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "חומרי טעם.",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [
+    {
+      "term": "חומרי טעם",
+      "category": "flavor_generic",
+      "position": 6
+    }
+  ],
+  "extracted_sweeteners": [
+    {
+      "term": "סוכר",
+      "category": "added_sugar",
+      "position": 3
+    }
+  ],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [
+    {
+      "term": "קמח חיטה",
+      "category": "wheat_flour",
+      "position": 1
+    },
+    {
+      "term": "קמח",
+      "category": "flour_generic",
+      "position": 1
+    }
+  ],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 6,
+    "additive_count": 0,
+    "flavor_marker_count": 1,
+    "sweetener_count": 1,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 2,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": []
+}

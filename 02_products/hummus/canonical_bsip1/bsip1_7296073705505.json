@@ -25,9 +25,9 @@
     "sodium_mg": 6.0
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "חומוס ערכים תזונתיים 100 גרם 5.1 גרם סיבים תזונתיים 121 קל אנרגיה 8.4 גרם חלבונים 18.2 גרם פחמימות 2.1 גרם שומנים 6 מג נתרן",
+  "ingredients_text_he": "חומוס",
   "ingredients_list": [
-    "חומוס ערכים תזונתיים 100 גרם 5.1 גרם סיבים תזונתיים 121 קל אנרגיה 8.4 גרם חלבונים 18.2 גרם פחמימות 2.1 גרם שומנים 6 מג נתרן"
+    "חומוס"
   ],
   "allergens_contains": [],
   "allergens_may_contain": [],
@@ -103,5 +103,15 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "enrichment_warnings": [],
+  "_data_remediation": {
+    "task": "TASK-300",
+    "applied_at": "2026-06-17",
+    "defect": "ingredient_field_contains_nutrition_panel_text",
+    "root_cause": "Shufersal HTML scraper (shufersal_frozen_vegetables) captured ingredients as the text block starting at the \"רכיבים\" header. The actual ingredient is \"חומוס\" (line 182 of P_7296073705505.html) but the scraper continued parsing and appended the full nutrition panel text (lines 183-202: ערכים תזונתיים + macros + נתרן) as part of the ingredient string. Evidence: P_7296073705505.html, shufersal_frozen_vegetables/product_pages/.",
+    "before_ingredients_text_he": "חומוס ערכים תזונתיים 100 גרם 5.1 גרם סיבים תזונתיים 121 קל אנרגיה 8.4 גרם חלבונים 18.2 גרם פחמימות 2.1 גרם שומנים 6 מג נתרן",
+    "after_ingredients_text_he": "חומוס",
+    "source": "direct_product_scrape",
+    "evidence_file": "03_operations/bsip0/scrape/shufersal_frozen_vegetables/product_pages/P_7296073705505.html"
+  }
 }

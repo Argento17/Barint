@@ -1,0 +1,68 @@
+{
+  "run_id": "run_hummus_shelfrel_002",
+  "generated_at": "2026-06-15T17:01:04.689107+00:00Z",
+  "label": "hummus",
+  "nutrient": "sodium_mg",
+  "engine_amendments": [
+    "EV-094(a) CAP-BIND: floor min(62, binding_cap)",
+    "EV-094(b) NOVA<=2 gate: NOVA-3/4 get no floor lift",
+    "EV-094(c) RT-10 logging: floors_considered/floors_applied always populated",
+    "EV-099 HC-002 revert: BARI_HC002_NOVA1 default=off",
+    "EV-099 DAIRY_SAT_FAT_INFER default=on"
+  ],
+  "governance": "EV-099, D7 co-signed 2026-06-15",
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_HC002_NOVA1": "off (reverted, default)",
+    "BARI_DAIRY_SAT_FAT_INFER": "on (default, changed from off)"
+  },
+  "shelf_stats": {
+    "nutrient": "sodium_mg",
+    "median": 390.0,
+    "iqr": 43.0,
+    "robust_scale": 31.88,
+    "floor_threshold_mg": 395.0,
+    "floor_value": 62,
+    "n": 60,
+    "recomputed_stats_match": true,
+    "note": "Stats re-run 2026-06-15 on canonical_bsip1 (n=60 in-scope) — identical to EV-094 constants"
+  },
+  "scored": 69,
+  "total": 69,
+  "errors": 0,
+  "grade_distribution": {
+    "A": 3,
+    "B": 11,
+    "C": 42,
+    "D": 12,
+    "E": 1
+  },
+  "score_statistics": {
+    "count": 69,
+    "min": 31.8,
+    "max": 82.7,
+    "mean": 57.07,
+    "median": 55.2,
+    "stdev": 11.01
+  },
+  "ev094_floor_checks": {
+    "floors_applied_count": 0,
+    "nova_ge3_at_floor_count": 0,
+    "nova_ge3_at_floor_barcodes": [],
+    "rt10_floors_considered_populated": 20
+  },
+  "c10_milk_invariant": {
+    "pass": true,
+    "checked_n": 0
+  },
+  "off_used": false,
+  "engine_hashes": {
+    "score_engine.py": "42d3c150e84738a477a1dcc2fa5ce3fdcb0854dd2d0356ede18df7596e337518",
+    "signal_extractor.py": "ce3e80927df02a09601cecc38525525856260f64b6595441f479e1f65855c546",
+    "nova_proxy.py": "8f8d07207deab26c93bf369be346a1d4db4a8f00ad3b5a15b19bf9d7b68f6018",
+    "constants.py": "00f1c9f3f224f8686599b63f7f51cbcc4a2b35bd7f45d6104c2c03063a7c44fb"
+  },
+  "error_detail": []
+}

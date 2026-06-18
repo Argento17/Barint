@@ -157,10 +157,52 @@ structure_function_umbrella:    # v1.3 (§2.1) — pre-authored + cited, NEVER i
       benefit in replete adults thin → Weak.
     verification_status: "candidate"
     should_affect_score_now: false
+  # === TASK-277: Hebrew prefix/variant spellings + neural-tube keyword (SUPP-EV-020) ===
+  # Corpus run found 2 folic_acid SKUs still Insufficient because their claims use:
+  # (a) 'בהיריון' (= 'during pregnancy', prefixed form of 'הריון') — prefix 'ב' attached
+  # (b) 'היריון' (alternative spelling of 'הריון') — both are legitimate Hebrew
+  # (c) 'צינור העצבי' (= 'neural tube') — the direct anatomical correlate of the NTD claim
+  # These are recognized physiological correlates of the SAME NTD/pregnancy endpoint.
+  - phrase: "היריון"                    # "pregnancy" (alternative Hebrew spelling, also common)
+    resolves_to: "periconceptional prevention of neural tube defects (NTDs)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    supp_ev: "SUPP-EV-020"
+    rationale: >
+      MAPS at STRONG. 'היריון' is an alternative (non-definite) spelling of 'הריון' (pregnancy) — same word,
+      same referent, same EFSA Art.13 'maternal tissue growth during pregnancy' authorization (EFSA Q-2008-1213).
+      Hebrew spelling variant of the existing 'הריון' key; routes to the NTD-prevention Strong tier.
+      Population condition = reader context only (Invariant 1).
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "בהיריון"                   # "during pregnancy" (Hebrew, with prefix 'ב-')
+    resolves_to: "periconceptional prevention of neural tube defects (NTDs)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    supp_ev: "SUPP-EV-020"
+    rationale: >
+      MAPS at STRONG. 'בהיריון' = 'during pregnancy' (prefix ב- = during/in + הריון). Same EFSA Art.13
+      maternal tissue growth basis as 'הריון'. The prefixed form is common on Israeli prenatal folic acid
+      labels ("לתמיכה בהיריון") — a recognized + cited NTD-prevention correlate; Strong tier.
+    verification_status: "candidate"
+    should_affect_score_now: false
+  - phrase: "צינור העצבי"               # "neural tube" (Hebrew) — the anatomical target of the NTD claim
+    resolves_to: "periconceptional prevention of neural tube defects (NTDs)"
+    resolved_tier: "Strong"
+    citations: ["PMID:26662928", "PMID:1677062"]
+    supp_ev: "SUPP-EV-020"
+    rationale: >
+      MAPS at STRONG (BEST). 'צינור העצבי' = 'neural tube' — the anatomical structure at risk in NTDs.
+      A folic acid label mentioning the neural tube is making a direct reference to the NTD-prevention studied
+      endpoint (PMID:26662928 Cochrane, PMID:1677062 MRC trial). This is the strongest and most specific possible
+      reference to the claim; maps at Strong. The periconceptional population condition = reader context (Invariant 1).
+    verification_status: "candidate"
+    should_affect_score_now: false
   umbrella_resolution_summary: >
     Folic acid label "for pregnancy, blood & heart health, energy" resolves: pregnancy->NTD=Strong (maps, BEST),
     blood->megaloblastic=Strong (maps), heart->homocysteine=Weak (maps), energy->null (does NOT map). Best mapped tier
-    = STRONG. A vague prenatal/blood folic acid is NOT Insufficient.
+    = STRONG. A vague prenatal/blood folic acid is NOT Insufficient. TASK-277 additions: היריון/בהיריון/צינור
+    העצבי all map Strong (spelling variants + neural-tube anatomical reference, SUPP-EV-020).
 
 label_claims_common: ["pregnancy", "prenatal", "blood health", "heart health", "homocysteine", "energy"]
 necessity_context: "Periconceptional need is well-established (women planning/early pregnancy); general necessity varies with diet/fortification. Necessity for an individual is reader context only — never a score input (SIE Invariant 1)."

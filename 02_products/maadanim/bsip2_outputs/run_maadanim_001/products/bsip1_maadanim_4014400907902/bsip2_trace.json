@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-02T06:05:51.704752Z",
+  "trace_generated_at": "2026-06-15T15:44:39.741951Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_maadanim_4014400907902",
@@ -32,8 +32,8 @@
     "dessert:ללא סוכר(name×2)"
   ],
   "nova_proxy": 4,
-  "nova_confidence": 0.8,
-  "nova_confidence_band": "high",
+  "nova_confidence": 0.55,
+  "nova_confidence_band": "medium",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "artificial_color_detected (צבע מאכל)",
@@ -41,6 +41,8 @@
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
+    "EV-030: ingredient_data_degraded (quality=clean, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
+    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -120,6 +122,8 @@
     ],
     "has_flavor_enhancer": true,
     "has_artificial_color": true,
+    "has_natural_color": false,
+    "natural_color_hits": [],
     "has_seed_oil": false,
     "seed_oil_matches": [],
     "has_palm_oil": false,
@@ -139,6 +143,9 @@
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
     "trans_fat_threshold_declaration_possible": false,
+    "has_phvo": false,
+    "has_phvo_partial": false,
+    "has_phvo_generic": false,
     "red_labels": [
       "sat_fat"
     ],
@@ -154,11 +161,9 @@
     ],
     "sprint1_prebiotic_gum_detected": false,
     "sprint1_prebiotic_gum_found": [],
-    "sprint1_additive_count": 2,
-    "sprint1_additive_correction": -1,
-    "sprint1_additive_correction_notes": [
-      "EV-003/019: lecithin-only emulsifier removed (-1)"
-    ],
+    "sprint1_additive_count": 3,
+    "sprint1_additive_correction": 0,
+    "sprint1_additive_correction_notes": [],
     "sprint1_allulose_detected": false,
     "sprint1_polyol_count": 1,
     "sprint1_detected_polyols": [
@@ -169,10 +174,17 @@
     "sprint1_penalty_polyols": [
       "isomalt"
     ],
+    "functional_fiber_detected": false,
+    "functional_fiber_type": "none",
+    "functional_fiber_terms_matched": [],
+    "functional_fiber_viscous_terms": [],
+    "functional_fiber_prebiotic_terms": [],
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [
       "soy_lecithin"
     ],
+    "tax_emulsifier_medium": [],
+    "tax_emulsifier_low": [],
     "tax_named_concern_additives": [
       "soy_lecithin"
     ],
@@ -184,11 +196,16 @@
     "protein_matrix_form": null,
     "sanitized_ingredient_count": 8,
     "primary_fragmentation": null,
+    "sat_fat_inferred": false,
+    "sat_fat_inferred_value": null,
+    "sat_fat_inferred_basis": null,
     "inference_confidence_notes": [
       "Ingredient analysis uses keyword matching on Hebrew text — may miss transliterations or abbreviations",
       "Sweetener detection relies on known Hebrew/E-number terms; novel sweeteners not in dictionary will be missed",
       "Additive count reflects distinct functional categories detected, not total additive instances",
-      "Sprint 1: EV-003/019/004/005 signals active; sprint1_additive_count is the scoring-ready count",
+      "TASK-222A (2026-06-09): sprint1 +2/−1 corrections retired; F1 identity deltas active on additive_quality; sprint1_additive_count = raw additive_marker_count (no correction)",
+      "ECS-v1 (EV-045, 2026-06-10): tax_emulsifier_medium/tax_emulsifier_low signals for emulsifier complexity score; modified starch counted when position>=4 or light/diet signal",
+      "EV-006 + EV-060 (FFV-v1 2026-06-10, vocab ext + fermentability tier 2026-06-14): viscous (beta-glucan, psyllium, native guar, pectin) → +2; high-fermentability prebiotic (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) → +2; moderate-fermentability prebiotic (PHGG, resistant dextrin, arabinogalactan, acacia) → +1; PHGG suppresses native guar; bare maltodextrin/dextrin excluded; non-cereal beta-glucan suppressed; BARI_FIBER_FERMENT_V1 default ON (owner-auth 2026-06-14)",
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 27.4,
@@ -242,37 +259,45 @@
     },
     "se_note": null
   },
-  "confidence_score": 87,
-  "confidence_band": "high",
+  "confidence_score": 77,
+  "confidence_band": "medium",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
       "reduction": -5
     },
     {
+      "factor": "nova_confidence=medium",
+      "reduction": -5
+    },
+    {
       "factor": "category_confidence=medium (0.55)",
       "reduction": -8
+    },
+    {
+      "factor": "d3_nonmaterial_gap (peripheral unresolved term; processing read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; max-combined with D5)",
+      "reduction": -5
     }
   ],
   "dimension_scores": {
-    "processing_quality": 35,
+    "processing_quality": 35.0,
     "nutrient_density": 0.0,
     "calorie_density": 55.0,
     "glycemic_quality": 90.0,
     "protein_quality": 0.0,
-    "additive_quality": 49.0,
+    "additive_quality": 33.0,
     "satiety_support": 0,
     "fat_quality": 41.3,
     "regulatory_quality": 60.0,
     "whole_food_integrity": 30
   },
   "dimension_notes": {
-    "processing_quality": "NOVA 4 → processing_quality=35 (NOVA_PROCESSING_SCORES table)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=0g→0.0; fiber not-applicable for category 'dessert' (EV-027: protein-only, 65/35→100/0) → 0.0",
     "calorie_density": "kcal=289.0, category=dessert (conf 0.55, relaxed by 1.05x) → 55",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0 (sweetener tier-C)",
     "protein_quality": "protein=0g base=0.0, source=unknown(×0.8) → 0.0",
-    "additive_quality": "sprint1_additives=2 base=64 sw tier-C_pen=15→49.0 [EV-003/019: v1=3→sprint1=2 (Δ=-1)]",
+    "additive_quality": "sprint1_additives=3 base=46 sw tier-C_pen=15 id_delta=+2→33.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (0×3 + 0×5) / 289.0 × 400 = 0",
     "fat_quality": "EV-012 fat_ratio: fat=8.8g ratio=0.544 base=41.3-seed0-trans0=41.3",
     "regulatory_quality": "1 red label: ['sat_fat']",
@@ -290,7 +315,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 36.7,
+  "weighted_dimension_score": 35.1,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -348,7 +373,7 @@
     },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 68,
+      "cap": 68.0,
       "condition": true,
       "fired": true
     },
@@ -366,7 +391,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 87,
+      "cap": 87.0,
       "condition": false,
       "fired": false
     },
@@ -386,7 +411,7 @@
   "caps_applied": [
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 68
+      "cap": 68.0
     },
     {
       "rule": "ADDITIVE_MARKERS_3_PLUS",
@@ -398,7 +423,7 @@
     }
   ],
   "binding_cap": 55,
-  "score_after_cap": 36.7,
+  "score_after_cap": 35.1,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -457,7 +482,7 @@
   "total_penalty_before_scaling": 6.0,
   "total_penalty_after_scaling": 6.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 26.7,
+  "score_after_penalty": 25.1,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -478,7 +503,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 68,
+      "binding_cap": 68.0,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -522,11 +547,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 26.7,
+  "score_after_floors": 25.1,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 26.7,
+  "final_score_estimate": 25.1,
   "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -537,21 +562,22 @@
   "structural_class": {
     "primary": "F",
     "primary_label": "Structurally Void System",
-    "primary_confidence": 0.399,
+    "primary_confidence": 0.469,
     "secondary": "E",
     "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.319,
+    "secondary_confidence": 0.352,
     "class_weights": {
       "A": 0.0,
       "B": 0.0,
-      "C": 0.027,
-      "D": 0.255,
-      "E": 0.319,
-      "F": 0.399
+      "C": 0.023,
+      "D": 0.155,
+      "E": 0.352,
+      "F": 0.469
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
+      "high_additive_load",
       "whole_food_integrity_low",
       "sweetener_detected"
     ],

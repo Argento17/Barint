@@ -1,0 +1,173 @@
+{
+  "run_id": "run_cookies_004",
+  "task": "TASK-275_P89",
+  "category_slug": "cookies-coffee",
+  "generated": "2026-06-13T20:43:40.897857+00:00",
+  "engine": "proto_v0 / score_engine.py (unmodified)",
+  "p89_changes": {
+    "corpus_drops": [
+      "ck-7290106656727 (children Elite, RT-4/P88)",
+      "ck-7290119043149 (לה פזואלוס butter, extraction failure)"
+    ],
+    "router_change": "EV-058: added 'עוגיות שיבולת שועל' anchor (conf=0.86) to route oat biscuits to biscuit category",
+    "rt6_fix": "gen_frontend_json.py: E-number regex fix (strip scraper suffix) + E200/E160A added to ADDITIVE_DB"
+  },
+  "flag_config": {
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GLASSBOX_W4": "engine_default(on)"
+  },
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\02_products\\cookies_coffee\\factory_run_001\\corpus_filter.json",
+  "bsip0_source": "C:\\Bari\\02_products\\cookies_coffee\\bsip0_outputs\\cookies_coffee_bsip0_raw_20260613T163431.json",
+  "in_scored_count": 58,
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_cookies_001\\output",
+  "bsip1": {
+    "records_loaded": 58
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_004",
+    "scored": 58,
+    "errors": 0
+  },
+  "score_distribution": {
+    "min": 10,
+    "max": 63.1,
+    "median": 34.7,
+    "stdev": 12.94,
+    "range": 53.1,
+    "most_common_score": 18.1,
+    "most_common_count": 4,
+    "histogram": {
+      "30-39": 13,
+      "20-29": 16,
+      "40-49": 14,
+      "10-19": 8,
+      "60-69": 1,
+      "50-59": 6
+    },
+    "grade_dist": {
+      "D": 22,
+      "E": 29,
+      "C": 7
+    }
+  },
+  "anti_collapse_verdict": "SPREAD_HONEST: range=53.1 pts (10-63.1), 3 grade bands",
+  "routing_distribution": {
+    "biscuit": 58
+  },
+  "brined_flag": {
+    "fired_count": 0,
+    "guard_pass": true,
+    "fired_products": []
+  },
+  "oat_product_ev058": null,
+  "router_ev": "EV-058",
+  "evaluation_scope_sha256": "2d2acad2fce699892be98224f9caa9b12c65e91b6408db689723e18f85dc1082",
+  "verification_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_004\\verification_table.csv",
+  "top3": [
+    {
+      "barcode": "540160",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "score": 63.1,
+      "grade": "C",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": null,
+      "category": "biscuit",
+      "drivers": [
+        "(no drivers)"
+      ]
+    },
+    {
+      "barcode": "7290013453693",
+      "name": "עוגיות גרידת לימון ללת\"ס",
+      "score": 59.4,
+      "grade": "C",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 70,
+      "category": "biscuit",
+      "drivers": [
+        "-3 SEED_OIL_PRESENT",
+        "cap=94.8 NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290119041107",
+      "name": "עוגיות מרוקאיות עגול",
+      "score": 55.0,
+      "grade": "C",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 55,
+      "category": "biscuit",
+      "drivers": [
+        "cap=55 ISRAELI_RED_LABEL_1_SAT_FAT"
+      ]
+    }
+  ],
+  "bottom3": [
+    {
+      "barcode": "4820180816552",
+      "name": "עוגיות עם ש.שועל קוקוס",
+      "score": 18.0,
+      "grade": "E",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45,
+      "category": "biscuit",
+      "drivers": [
+        "-5 MULTIPLE_ADDED_SUGAR_MARKERS",
+        "-5 HIGH_CAL_HIGH_SUGAR_SOFT",
+        "cap=60 HIGH_CAL_HIGH_SUGAR_MODERATE",
+        "cap=60 HIGH_SUGAR_25G_PLUS"
+      ]
+    },
+    {
+      "barcode": "7290109354996",
+      "name": "פתי בר ללא גלוטן שוקו",
+      "score": 10.5,
+      "grade": "E",
+      "nova": 4,
+      "context_flag": null,
+      "binding_cap": 55,
+      "category": "biscuit",
+      "drivers": [
+        "-5 HIGH_CAL_HIGH_SUGAR_SOFT",
+        "-6 HIGH_CAL_LOW_SATIETY_SOFT",
+        "cap=55 ISRAELI_RED_LABEL_1_SUGAR",
+        "cap=68.0 NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290109354972",
+      "name": "פתי בר ללא גלוטן קלאסי",
+      "score": 10,
+      "grade": "E",
+      "nova": 4,
+      "context_flag": null,
+      "binding_cap": 55,
+      "category": "biscuit",
+      "drivers": [
+        "-5 HIGH_CAL_HIGH_SUGAR_SOFT",
+        "-6 HIGH_CAL_LOW_SATIETY_SOFT",
+        "cap=55 ISRAELI_RED_LABEL_1_SUGAR",
+        "cap=68.0 NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    }
+  ],
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "brined_food_fired": 0,
+    "brined_food_guard_pass": true,
+    "scored_count": 58,
+    "expected_count": 58,
+    "count_match": true
+  }
+}

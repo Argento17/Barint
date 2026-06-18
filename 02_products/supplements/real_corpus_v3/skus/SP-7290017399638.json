@@ -1,0 +1,201 @@
+{
+  "sku_id": "SP-7290017399638",
+  "barcode": "7290017399638",
+  "name_he": "פלוריש ויטמין סי טריו 60 טבליות לעיסה",
+  "brand_bucket": "floris",
+  "engine_active": "vitamin_c",
+  "price_ils": 50.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "medi-pharm.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via medi-pharm.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "S/F umbrella from HE: 'ויטמין C לתפקוד מערכת החיסון'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[1].amount",
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://medi-pharm.co.il/catalog.asp?prodid=2003719",
+    "source": "medi-pharm.co.il",
+    "brand": "floris",
+    "product_name": "פלוריש ויטמין C טריו 50 מ\"ג לעיסה",
+    "barcode": "7290017399638",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "ויטמין C לתפקוד מערכת החיסון",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ויטמין C",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_c"
+      },
+      {
+        "ingredient": "ויטמין D",
+        "amount": null,
+        "unit": "IU",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_d3"
+      },
+      {
+        "ingredient": "אבץ (zinc)",
+        "amount": 3.5,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_c"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[1].amount",
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:medi-pharm.co.il",
+      "source_id": "floris:7290017399638",
+      "source_url": "https://medi-pharm.co.il/catalog.asp?prodid=2003719",
+      "fetched_at": "2026-06-13T17:08:03Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "פלוריש ויטמין C טריו 50 מ\"ג לעיסה",
+    "primary_claim_fed": "immune health",
+    "actives": [
+      {
+        "active_slug": "vitamin_c",
+        "display_name": "ויטמין C",
+        "quantity": 50.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "score": 49.0,
+    "grade": "D",
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 20,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-13T17:08:04.128994Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290017399638",
+    "active": "vitamin C (ascorbic acid)",
+    "on_label_claim": "immune health",
+    "claim_matched": "broad 'immune system support' (general wellness immune claim)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "broad 'immune system support' (general wellness immune claim)",
+      "resolved_phrase": null,
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:29099763",
+        "PMID:23440782"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 20,
+        "reason": "fairy_dust"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "LOW",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_2_fairy_dust_hidden_dose",
+        "kind": "ceiling",
+        "ceiling_or_floor": 49
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_2_fairy_dust_hidden_dose",
+      "machine_reason": "underdosed_or_unverifiable_dose"
+    },
+    "also_fired": [],
+    "blend": 51.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['broad 'immune system support' (general wellness immune claim)'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-007"
+      }
+    ],
+    "final": {
+      "score": 49.0,
+      "grade": "D"
+    }
+  }
+}

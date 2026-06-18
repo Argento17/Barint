@@ -1,0 +1,592 @@
+{
+  "task": "TASK-284D",
+  "date": "2026-06-15",
+  "measurement_only": true,
+  "flag_off_meaning": "BARI_FAT_TECH_V1=off = current published/committed behavior",
+  "flag_on_meaning": "BARI_FAT_TECH_V1=on = EV-096 (seed_pen=5) + EV-097 (two-tier PHVO ceiling)",
+  "engine_sha256": "8e4c7db688e4d66d5908c57f94a8fab1257f6660cb1da18c8f62f7c2a5c3f8ed",
+  "signal_extractor_sha256": "5b0f46b823ef6e2edeedaf987233afc7990d88b05d2cd30e522db25816044f5f",
+  "aggregate": {
+    "total_scored_off": 261,
+    "total_movers": 141,
+    "total_grade_changers": 2,
+    "ev097_phvo_generic_total": 55,
+    "ev097_movers": 44,
+    "ev097_inert": 11,
+    "ev096_grade_crossers": 2,
+    "invariant_breaches_potential": 0
+  },
+  "categories": {
+    "cakes_hard_cookies": {
+      "category": "cakes_hard_cookies",
+      "expected_total": 149,
+      "scored_off": 149,
+      "scored_on": 149,
+      "errors_off": [],
+      "errors_on": [],
+      "subprocess_rc_off": 0,
+      "subprocess_rc_on": 0,
+      "grade_dist_off": {
+        "C": 5,
+        "D": 12,
+        "E": 132
+      },
+      "grade_dist_on": {
+        "C": 5,
+        "D": 13,
+        "E": 131
+      },
+      "score_off_min": 10,
+      "score_off_max": 54.5,
+      "score_off_stdev": 10.59,
+      "score_off_most_common": 10,
+      "score_on_min": 10,
+      "score_on_max": 54.9,
+      "score_on_stdev": 10.67,
+      "score_on_most_common": 10,
+      "n_movers": 86,
+      "n_grade_changers": 1,
+      "grade_transitions": {
+        "E->D": 1
+      },
+      "ev097_phvo_generic_total": 41,
+      "ev097_movers": 33,
+      "ev097_inert": 8,
+      "ev097_mover_details": [
+        {
+          "barcode": "1361207",
+          "name": "עוגת פס אוכמניות",
+          "score_off": 23.0,
+          "grade_off": "E",
+          "score_on": 23.8,
+          "grade_on": "E",
+          "delta": 0.8
+        },
+        {
+          "barcode": "2472223",
+          "name": "עוגת מאפין תפוז",
+          "score_off": 11.2,
+          "grade_off": "E",
+          "score_on": 12.2,
+          "grade_on": "E",
+          "delta": 1.0
+        },
+        {
+          "barcode": "2472841",
+          "name": "עוגת סבתא בטעם שוקולד",
+          "score_off": 10.6,
+          "grade_off": "E",
+          "score_on": 11.2,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "4170097",
+          "name": "עוגת קרנץ' בטעם שוקולד",
+          "score_off": 11.1,
+          "grade_off": "E",
+          "score_on": 11.7,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "4170103",
+          "name": "עוגת קרנץ אגוזים וקינמון",
+          "score_off": 13.5,
+          "grade_off": "E",
+          "score_on": 14.1,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "4504649",
+          "name": "מיני שטרודל קרם פטיסייר",
+          "score_off": 20.1,
+          "grade_off": "E",
+          "score_on": 20.5,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "4504656",
+          "name": "מיני שטרודל תפוח עץ",
+          "score_off": 19.9,
+          "grade_off": "E",
+          "score_on": 20.5,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "4504670",
+          "name": "מיני שטרודל במילוי שקדים",
+          "score_off": 25.9,
+          "grade_off": "E",
+          "score_on": 26.4,
+          "grade_on": "E",
+          "delta": 0.5
+        },
+        {
+          "barcode": "4504687",
+          "name": "מיני שטרודל חלבה שוקולד",
+          "score_off": 18.2,
+          "grade_off": "E",
+          "score_on": 18.6,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "4820180816552",
+          "name": "עוגיות עם ש.שועל קוקוס",
+          "score_off": 16.0,
+          "grade_off": "E",
+          "score_on": 16.6,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "5718021",
+          "name": "עוגת שטרודל גבינה",
+          "score_off": 31.8,
+          "grade_off": "E",
+          "score_on": 32.2,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "5718038",
+          "name": "עוגת שטרודל תפוחי עץ",
+          "score_off": 22.5,
+          "grade_off": "E",
+          "score_on": 22.9,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "7290013156006",
+          "name": "עוגיות מיני מרוקאיות 350 גרם בבקה | 350 גרם ‏16.90 ‏₪ ‏4.83",
+          "score_off": 35.0,
+          "grade_off": "D",
+          "score_on": 36.2,
+          "grade_on": "D",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290013156921",
+          "name": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם ג'ייקוב אנד אס",
+          "score_off": 38.8,
+          "grade_off": "D",
+          "score_on": 40.0,
+          "grade_on": "D",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290017724171",
+          "name": "מארז עוגיות אקלר סנדוויץ ריבה ללא סוכר הללס | 250 גרם ‏23.90",
+          "score_off": 23.0,
+          "grade_off": "E",
+          "score_on": 24.2,
+          "grade_on": "E",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290119040513",
+          "name": "עוגת קראנץ שוקולד",
+          "score_off": 27.1,
+          "grade_off": "E",
+          "score_on": 27.5,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "7290119040568",
+          "name": "עוגת קראנץ אגוזים",
+          "score_off": 33.8,
+          "grade_off": "E",
+          "score_on": 34.0,
+          "grade_on": "E",
+          "delta": 0.2
+        },
+        {
+          "barcode": "7290119040612",
+          "name": "עוגת קראנץ קינמון",
+          "score_off": 27.1,
+          "grade_off": "E",
+          "score_on": 27.5,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "7290119040667",
+          "name": "עוגת קראנץ פרג",
+          "score_off": 27.1,
+          "grade_off": "E",
+          "score_on": 27.5,
+          "grade_on": "E",
+          "delta": 0.4
+        },
+        {
+          "barcode": "7290119040803",
+          "name": "עוגיות קינמון מסוכרות",
+          "score_off": 19.0,
+          "grade_off": "E",
+          "score_on": 19.8,
+          "grade_on": "E",
+          "delta": 0.8
+        },
+        {
+          "barcode": "7290119040858",
+          "name": "עוגיות מקלות עלים",
+          "score_off": 19.0,
+          "grade_off": "E",
+          "score_on": 19.8,
+          "grade_on": "E",
+          "delta": 0.8
+        },
+        {
+          "barcode": "7290119041053",
+          "name": "עוגיות סגנון מרוקאי",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119041107",
+          "name": "עוגיות מרוקאיות עגול",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119041152",
+          "name": "עוגיות ריפ'את",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119043897",
+          "name": "עוגיות רולדה תמרים",
+          "score_off": 16.2,
+          "grade_off": "E",
+          "score_on": 17.4,
+          "grade_on": "E",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7296073431817",
+          "name": "עוגת קרנץ' שוקולד",
+          "score_off": 12.1,
+          "grade_off": "E",
+          "score_on": 11.4,
+          "grade_on": "E",
+          "delta": -0.7
+        },
+        {
+          "barcode": "7296073431879",
+          "name": "עוגת מאפין שוקו צ'יפס",
+          "score_off": 11.4,
+          "grade_off": "E",
+          "score_on": 12.0,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "7296073431916",
+          "name": "עוגת מאפין בטעם תפוז",
+          "score_off": 10.7,
+          "grade_off": "E",
+          "score_on": 11.4,
+          "grade_on": "E",
+          "delta": 0.7
+        },
+        {
+          "barcode": "7296073453840",
+          "name": "קוקיס שבבי שוקולד חלבי",
+          "score_off": 32.5,
+          "grade_off": "E",
+          "score_on": 33.1,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "7296073453857",
+          "name": "קוקיס שוקולד לבן חלבי",
+          "score_off": 31.5,
+          "grade_off": "E",
+          "score_on": 32.7,
+          "grade_on": "E",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7296073529019",
+          "name": "קוקיס שוקולד מריר חלבי",
+          "score_off": 16.4,
+          "grade_off": "E",
+          "score_on": 16.7,
+          "grade_on": "E",
+          "delta": 0.3
+        },
+        {
+          "barcode": "7296073529026",
+          "name": "קוקיס שוקו+שבבי שוקולד",
+          "score_off": 16.4,
+          "grade_off": "E",
+          "score_on": 16.7,
+          "grade_on": "E",
+          "delta": 0.3
+        },
+        {
+          "barcode": "9399288",
+          "name": "עוגת פס גבינה אפויה",
+          "score_off": 23.9,
+          "grade_off": "E",
+          "score_on": 25.1,
+          "grade_on": "E",
+          "delta": 1.2
+        }
+      ],
+      "ev096_grade_crossers": 1,
+      "ev096_crosser_details": [
+        {
+          "barcode": "313184",
+          "name": "עוגיות גן חיות טעם וניל",
+          "score_off": 34.9,
+          "grade_off": "E",
+          "score_on": 35.3,
+          "grade_on": "D",
+          "delta": 0.4
+        }
+      ],
+      "grade_changers_table": [
+        {
+          "barcode": "313184",
+          "name": "עוגיות גן חיות טעם וניל",
+          "score_off": 34.9,
+          "grade_off": "E",
+          "score_on": 35.3,
+          "grade_on": "D",
+          "delta": 0.4,
+          "has_phvo": false,
+          "has_phvo_partial": false,
+          "has_phvo_generic": false,
+          "has_seed_oil": true
+        }
+      ],
+      "invariant_breaches": []
+    },
+    "cookies_coffee": {
+      "category": "cookies_coffee",
+      "expected_total": 58,
+      "scored_off": 58,
+      "scored_on": 58,
+      "errors_off": [],
+      "errors_on": [],
+      "subprocess_rc_off": 0,
+      "subprocess_rc_on": 0,
+      "grade_dist_off": {
+        "C": 5,
+        "D": 22,
+        "E": 31
+      },
+      "grade_dist_on": {
+        "C": 5,
+        "D": 22,
+        "E": 31
+      },
+      "score_off_min": 10,
+      "score_off_max": 59.4,
+      "score_off_stdev": 12.68,
+      "score_off_most_common": 18.1,
+      "score_on_min": 10,
+      "score_on_max": 59.8,
+      "score_on_stdev": 12.69,
+      "score_on_most_common": 18.4,
+      "n_movers": 37,
+      "n_grade_changers": 0,
+      "grade_transitions": {},
+      "ev097_phvo_generic_total": 14,
+      "ev097_movers": 11,
+      "ev097_inert": 3,
+      "ev097_mover_details": [
+        {
+          "barcode": "4820180816552",
+          "name": "עוגיות עם ש.שועל קוקוס",
+          "score_off": 16.0,
+          "grade_off": "E",
+          "score_on": 16.6,
+          "grade_on": "E",
+          "delta": 0.6
+        },
+        {
+          "barcode": "7290013740540",
+          "name": "עוגיות אוזן פיל ללת\"ס",
+          "score_off": 43.5,
+          "grade_off": "D",
+          "score_on": 44.7,
+          "grade_on": "D",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290013740694",
+          "name": "עוגיות אלפחורס",
+          "score_off": 28.3,
+          "grade_off": "E",
+          "score_on": 29.5,
+          "grade_on": "E",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290017898506",
+          "name": "ביסקוטי",
+          "score_off": 37.1,
+          "grade_off": "D",
+          "score_on": 38.3,
+          "grade_on": "D",
+          "delta": 1.2
+        },
+        {
+          "barcode": "7290119040179",
+          "name": "עוגיות פרח עם ריבת תות",
+          "score_off": 11.8,
+          "grade_off": "E",
+          "score_on": 12.5,
+          "grade_on": "E",
+          "delta": 0.7
+        },
+        {
+          "barcode": "7290119040803",
+          "name": "עוגיות קינמון מסוכרות",
+          "score_off": 19.0,
+          "grade_off": "E",
+          "score_on": 19.8,
+          "grade_on": "E",
+          "delta": 0.8
+        },
+        {
+          "barcode": "7290119041053",
+          "name": "עוגיות סגנון מרוקאי",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119041107",
+          "name": "עוגיות מרוקאיות עגול",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119041152",
+          "name": "עוגיות ריפ'את",
+          "score_off": 36.6,
+          "grade_off": "D",
+          "score_on": 37.6,
+          "grade_on": "D",
+          "delta": 1.0
+        },
+        {
+          "barcode": "7290119043798",
+          "name": "עוגיות אוזניות",
+          "score_off": 25.8,
+          "grade_off": "E",
+          "score_on": 26.7,
+          "grade_on": "E",
+          "delta": 0.9
+        },
+        {
+          "barcode": "99804",
+          "name": "עוגיות שוקולד לבן חלבי",
+          "score_off": 17.3,
+          "grade_off": "E",
+          "score_on": 17.6,
+          "grade_on": "E",
+          "delta": 0.3
+        }
+      ],
+      "ev096_grade_crossers": 0,
+      "ev096_crosser_details": [],
+      "grade_changers_table": [],
+      "invariant_breaches": []
+    },
+    "salty_snacks": {
+      "category": "salty_snacks",
+      "expected_total": 54,
+      "scored_off": 54,
+      "scored_on": 54,
+      "errors_off": [],
+      "errors_on": [],
+      "subprocess_rc_off": 0,
+      "subprocess_rc_on": 0,
+      "grade_dist_off": {
+        "A": 7,
+        "B": 16,
+        "C": 18,
+        "D": 9,
+        "E": 4
+      },
+      "grade_dist_on": {
+        "A": 7,
+        "B": 16,
+        "C": 19,
+        "D": 8,
+        "E": 4
+      },
+      "score_off_min": 19.8,
+      "score_off_max": 87.5,
+      "score_off_stdev": 16.74,
+      "score_off_most_common": 70,
+      "score_on_min": 19.8,
+      "score_on_max": 87.9,
+      "score_on_stdev": 16.79,
+      "score_on_most_common": 57.0,
+      "n_movers": 18,
+      "n_grade_changers": 1,
+      "grade_transitions": {
+        "D->C": 1
+      },
+      "ev097_phvo_generic_total": 0,
+      "ev097_movers": 0,
+      "ev097_inert": 0,
+      "ev097_mover_details": [],
+      "ev096_grade_crossers": 1,
+      "ev096_crosser_details": [
+        {
+          "barcode": "8710908800018",
+          "name": "דורטוס קול ראנץ'",
+          "score_off": 49.6,
+          "grade_off": "D",
+          "score_on": 50.0,
+          "grade_on": "C",
+          "delta": 0.4
+        }
+      ],
+      "grade_changers_table": [
+        {
+          "barcode": "8710908800018",
+          "name": "דורטוס קול ראנץ'",
+          "score_off": 49.6,
+          "grade_off": "D",
+          "score_on": 50.0,
+          "grade_on": "C",
+          "delta": 0.4,
+          "has_phvo": false,
+          "has_phvo_partial": false,
+          "has_phvo_generic": false,
+          "has_seed_oil": true
+        }
+      ],
+      "invariant_breaches": []
+    }
+  }
+}

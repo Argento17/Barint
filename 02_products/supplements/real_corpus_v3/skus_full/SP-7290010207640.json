@@ -1,0 +1,217 @@
+{
+  "sku_id": "SP-7290010207640",
+  "barcode": "7290010207640",
+  "name_he": "NT L.C. כמוסות מגנזיום וויטמינים",
+  "brand_bucket": "other",
+  "engine_active": "magnesium",
+  "price_ils": 74.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "pharmaplus.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via pharmaplus.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'מגנזיום עם ויטמין E וB6 למניעת התכווצויות שרירים'",
+  "lossy": [
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://pharmaplus.co.il/anti-leg-cramps-magnesium-navehpharma.html",
+    "source": "pharmaplus.co.il",
+    "brand": "other",
+    "product_name": "NT L.C. Anti Leg Cramps מגנזיום וויטמינים 50 כמוסות נוה פארמה",
+    "barcode": "7290010207640",
+    "serving_size": "1 capsule",
+    "servings_per_container": "50",
+    "ingredient_list_raw": null,
+    "primary_claim": "מגנזיום עם ויטמין E וB6 למניעת התכווצויות שרירים",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (magnesium hydroxide, Dead Sea source)",
+        "amount": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "hydroxide",
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין E",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין B6",
+        "amount": 10.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:pharmaplus.co.il",
+      "source_id": "ntlc:7290010207640",
+      "source_url": "https://pharmaplus.co.il/anti-leg-cramps-magnesium-navehpharma.html",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "NT L.C. Anti Leg Cramps מגנזיום וויטמינים 50 כמוסות נוה פארמה",
+    "primary_claim_fed": "מגנזיום עם ויטמין E וB6 למניעת התכווצויות שרירים muscle health",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (magnesium hydroxide, Dead Sea source)",
+        "quantity": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "score": 20.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 72,
+      "form": 45,
+      "honesty": 100,
+      "safety": "veto"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.095875Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290010207640",
+    "active": "magnesium",
+    "on_label_claim": "מגנזיום עם ויטמין E וB6 למניעת התכווצויות שרירים muscle health",
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+      "resolved_phrase": "muscle health",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-006",
+      "resolution_citations": [
+        "PMID:37355247",
+        "PMID:28711425",
+        "PMID:32956536"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "muscle health",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        },
+        {
+          "phrase": "שרירים",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        },
+        {
+          "phrase": "תפקוד שרירים",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        }
+      ],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 45
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "veto",
+        "reason": "exceeds_UL"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "also_fired": [],
+    "blend": 63.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 20.0,
+      "grade": "E"
+    }
+  }
+}

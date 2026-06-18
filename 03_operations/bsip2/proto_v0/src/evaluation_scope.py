@@ -40,6 +40,22 @@ CONTEXT_LIMITED_SIGNALS = {
         "name_keywords": [
             "זיתים", "זיתים כבושים", "חמוצים", "כרוב כבוש",
             "ירקות כבושים", "קיפר",
+            # EV-052 / TASK-266: brined/salty soft cheeses — brine sodium is
+            # preservation architecture, not engineered excess. Same 0.7 weight
+            # already D7-approved for this flag applies.
+            "בולגרית", "פטה", "צפתית", "חלומי", "גבינה מלוחה",
+        ],
+        # EV-052 addendum (run_brined_004 / RT-1 fix): compound keyword pairs.
+        # A compound_keyword fires when ALL tokens in the tuple appear in the name.
+        # This is the surgical fix for bc-048 ("גבינת טמרה מלוחה") where neither
+        # "גבינת" alone (bleed: hard_cheeses) nor "מלוחה" alone (bleed: butter)
+        # is safe. The compound ("גבינת", "מלוחה") requires both tokens, which
+        # is true for bc-048 but false for all hard_cheeses and salted butters.
+        # Vocabulary-only extension; no new scoring rule; no D7 required.
+        "name_compound_keywords": [
+            ("גבינת", "מלוחה"),   # "גבינת X מלוחה" pattern — construct cheese + salty
+            ("גבינת", "עזים"),    # goat cheese construct forms
+            ("גבינת", "כבשים"),   # sheep cheese construct forms
         ],
         "nutrition_validator": lambda nn: (nn.get("sodium_mg") or 0) > 500,
     },
@@ -121,6 +137,7 @@ def assign_evaluation_scope(product: dict, category: str) -> dict:
 
     for flag, spec in CONTEXT_LIMITED_SIGNALS.items():
         keywords = spec.get("name_keywords", [])
+        compound_keywords = spec.get("name_compound_keywords", [])
         validator = spec.get("nutrition_validator", lambda nn: True)
         for keyword in keywords:
             if keyword in name_only and validator(nn):
@@ -129,6 +146,18 @@ def assign_evaluation_scope(product: dict, category: str) -> dict:
                     "context_flag": flag,
                     "context_note": CONTEXT_NOTE_TEMPLATES.get(flag),
                     "scope_basis": [f"product name signal: '{keyword}' (nutrition validator passed)"],
+                }
+        # Compound keyword check: ALL tokens in the tuple must appear in name_only.
+        # Used for EV-052 addendum: ("גבינת", "מלוחה") matches "גבינת טמרה מלוחה"
+        # but NOT "חמאה מלוחה" or "גבינת עמק" in other corpora.
+        for compound in compound_keywords:
+            if all(token in name_only for token in compound) and validator(nn):
+                compound_str = " + ".join(f"'{t}'" for t in compound)
+                return {
+                    "evaluation_status": "context_limited",
+                    "context_flag": flag,
+                    "context_note": CONTEXT_NOTE_TEMPLATES.get(flag),
+                    "scope_basis": [f"product name compound signal: {compound_str} (nutrition validator passed)"],
                 }
 
     # Category-based context limitation: whole_food_fat with extreme nutritional profile

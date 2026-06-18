@@ -38,3 +38,15 @@ Thumbs.db
 # Only archive/README.md is tracked, as a committed pointer to what's here.
 /archive/*
 !/archive/README.md
+
+# stale duplicate worktree (TASK-243) — never commit
+Bari-task243/
+
+# page_generator verification scratch (reproducible)
+03_operations/page_generator/configs/_generated_*
+
+# rescore_all staging output (TASK-298 / P157) — never commit
+_rescore_staging/
+
+# Spine/page-generator scratch verification outputs (regenerable)
+03_operations/page_generator/outputs/

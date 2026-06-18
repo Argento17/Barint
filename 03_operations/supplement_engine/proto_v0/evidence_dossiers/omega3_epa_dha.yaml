@@ -198,11 +198,38 @@ structure_function_umbrella:    # v1.3 (§2.1) — AUTHORED this task (TASK-171K
     rationale: "MAPS at WEAK. Hebrew 'מצב רוח/mood' → the broad brain/mood consumer endpoint (Weak). FENCED from clinical-MDD (conflation firewall). A 'מרפא דיכאון/treats depression' escalation is a §2.4 over-promise + out-of-scope clinical claim."
     verification_status: "candidate"
     should_affect_score_now: false
+  # === TASK-277: DHA-pregnancy Hebrew key (SUPP-EV-020) ===
+  # Corpus run found omega3 SKUs with 'להריון' / 'הריון' on label that resolve UNMAPPED→Insufficient
+  # (DHA-pregnancy claim). EFSA Art.13 authorizes "DHA contributes to normal brain and eye development
+  # of the foetus and breastfed infants" (200 mg/day maternal DHA; EFSA Q-2008-1207). This is a
+  # recognized correlate of the same brain/DHA endpoint already tiered Weak here — NOT a new tier.
+  # Anti-loophole: this still maps to Weak (broad brain/DHA). NOT to TG=Strong. NOT to the contested
+  # CV-events tier. A DHA-pregnancy claim earns Weak (brain-development correlate, recognized EFSA
+  # endpoint) — same as a general brain claim. The population condition (pregnancy) = reader context only.
+  - phrase: "הריון"                    # "pregnancy" (Hebrew) — DHA maternal/fetal brain development claim
+    resolves_to: "brain & mood / general cognition (BROAD consumer claim)"
+    resolved_tier: "Weak"
+    citations: ["PMID:38468309"]
+    efsa_ref: "EFSA Q-2008-1207 (DHA contributes to normal brain function; 200 mg/day maternal DHA for fetal/infant brain + eye development)"
+    supp_ev: "SUPP-EV-020"
+    rationale: >
+      MAPS at WEAK. EFSA Art.13 authorizes "DHA contributes to normal brain and eye development of the
+      foetus and breastfed infants" at 200 mg/day maternal DHA (EFSA Q-2008-1207). A label saying
+      "for pregnancy" on a DHA/fish-oil SKU is invoking this recognized fetal-brain-development
+      correlate — it is a compliance-default claim mapping to an EFSA-authorized endpoint. Routes to the
+      broad brain/cognition Weak tier (same base endpoint, different population context). This does NOT
+      inherit TG=Strong (high-dose 2-4 g pharmacological endpoint) and does NOT map to the contested
+      CV-events tier. Population condition (pregnancy) = reader context only (SIE Invariant 1). A vague
+      'for pregnant women' omega-3 label is NOT Insufficient — it maps via EFSA DHA brain-development.
+    verification_status: "candidate"
+    should_affect_score_now: false
   umbrella_resolution_summary: >
-    Omega-3 (umbrella AUTHORED TASK-171K): בריאות הלב/לב→broad-consumer Weak (maps via EFSA normal-heart-function 250 mg;
-    DELIBERATELY NOT TG=Strong — anti-loophole, high-dose TG endpoint unreachable from a vague heart claim); מוח/זיכרון/
-    מצב רוח→broad brain/cognition Weak (EFSA DHA brain-function; FENCED from clinical-MDD). CV-events stays contested/
-    deferred (not a mappable target). An EXPLICIT TG claim still reaches Strong via the studied-claim matcher, Dose-gated.
+    Omega-3 (umbrella AUTHORED TASK-171K; TASK-277 addition): בריאות הלב/לב→broad-consumer Weak (maps via EFSA
+    normal-heart-function 250 mg; DELIBERATELY NOT TG=Strong — anti-loophole, high-dose TG endpoint unreachable from a
+    vague heart claim); מוח/זיכרון/מצב רוח→broad brain/cognition Weak (EFSA DHA brain-function; FENCED from clinical-MDD);
+    הריון→broad brain Weak (EFSA Q-2008-1207 DHA maternal fetal-brain-development, 200 mg/day — NOT TG, NOT CV-events,
+    population=reader context per Invariant 1). CV-events stays contested/deferred (not a mappable target). An EXPLICIT
+    TG claim still reaches Strong via the studied-claim matcher, Dose-gated.
     Best mapped tier from vague Hebrew = WEAK (correctly — a wellness-dose fish-oil is not a TG drug). Candidate / no ship.
 
 label_claims_common: ["heart health", "brain health", "mood", "joint", "triglycerides", "1000 mg fish oil", "triple strength"]

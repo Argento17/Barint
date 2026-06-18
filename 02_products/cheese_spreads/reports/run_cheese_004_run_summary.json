@@ -1,6 +1,6 @@
 {
   "run_id": "run_cheese_004",
-  "generated": "2026-06-02 16:45 UTC",
+  "generated": "2026-06-15 06:11 UTC",
   "engine": "proto_v0 / 0.4.1 + BARI_RECAL_P0=on (TASK-169B)",
   "recal_p0": "on",
   "source": "Shufersal real scrape -> BSIP1 run_cheese_003 (same corpus as run_cheese_003)",
@@ -11,16 +11,16 @@
   "insufficient_pct_of_displayable": 8.5,
   "errors": 0,
   "grade_distribution": {
-    "B": 17,
-    "A": 13,
-    "C": 19,
-    "D": 4,
-    "E": 1
+    "B": 24,
+    "C": 11,
+    "D": 14,
+    "A": 2,
+    "E": 3
   },
-  "score_median": 72.0,
+  "score_median": 63.8,
   "score_range": [
-    27.0,
-    89.8
+    23.2,
+    86.6
   ],
   "grade_thresholds_engine": {
     "S": 90,
@@ -34,171 +34,61 @@
     "white_cheese_quark": {
       "count": 18,
       "grades": {
-        "B": 10,
-        "A": 5,
-        "C": 3
+        "B": 13,
+        "C": 3,
+        "A": 1,
+        "D": 1
       },
-      "score_median": 75.3,
+      "score_median": 73.5,
       "score_range": [
-        57.9,
-        87.0
+        44.6,
+        81.2
       ]
     },
     "cottage": {
       "count": 11,
       "grades": {
-        "A": 8,
-        "B": 3
+        "B": 10,
+        "A": 1
       },
-      "score_median": 83.6,
+      "score_median": 74.5,
       "score_range": [
-        75.3,
-        89.8
+        66.9,
+        86.6
       ]
     },
     "labaneh": {
       "count": 1,
       "grades": {
-        "B": 1
+        "C": 1
       },
-      "score_median": 76.2,
+      "score_median": 63.7,
       "score_range": [
-        76.2,
-        76.2
+        63.7,
+        63.7
       ]
     },
     "cream_cheese_spread": {
       "count": 24,
       "grades": {
-        "C": 16,
-        "B": 3,
-        "D": 4,
-        "E": 1
+        "D": 13,
+        "E": 3,
+        "C": 7,
+        "B": 1
       },
-      "score_median": 55.7,
+      "score_median": 45.0,
       "score_range": [
-        27.0,
-        74.5
+        23.2,
+        70.4
       ]
     }
   },
   "grade_A_S_landed": [
     {
-      "pid": "bsip1_cheese_2868996",
-      "name": "קוטג' 5% שומן",
-      "pool": "cottage",
-      "score": 83.6,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_4127077",
-      "name": "קוטג' 3% שומן",
-      "pool": "cottage",
-      "score": 88.8,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_4127329",
-      "name": "קוטג' 5% שומן",
-      "pool": "cottage",
-      "score": 87.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_4127336",
-      "name": "קוטג' 9% שומן",
-      "pool": "cottage",
-      "score": 81.1,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_4127800",
-      "name": "גבינה לבנה 5% שומן",
-      "pool": "white_cheese_quark",
-      "score": 82.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C3_no_culture_credit"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_4127862",
-      "name": "גבינה לבנה 5% שומן",
-      "pool": "white_cheese_quark",
-      "score": 82.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C3_no_culture_credit"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_41445",
-      "name": "קוטג' תנובה 5%",
-      "pool": "cottage",
-      "score": 87.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_41452",
-      "name": "קוטג' מהדרין 9% שומן",
-      "pool": "cottage",
-      "score": 81.1,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_48185",
-      "name": "גבינה לבנה 5% שומן",
-      "pool": "white_cheese_quark",
-      "score": 82.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C3_no_culture_credit"
-      ]
-    },
-    {
       "pid": "bsip1_cheese_6040619",
       "name": "גבינה טבורוג 5%",
       "pool": "white_cheese_quark",
-      "score": 87.0,
+      "score": 81.2,
       "routed_to": "dairy_protein",
       "a_eligible_pre_routing": false,
       "a_ceiling_fails": [
@@ -212,33 +102,7 @@
       "pid": "bsip1_cheese_7290014758681",
       "name": "קוטג 1% שומן",
       "pool": "cottage",
-      "score": 89.8,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_7290110321277",
-      "name": "קוטג' בקטנה 5%",
-      "pool": "cottage",
-      "score": 87.0,
-      "routed_to": "dairy_protein",
-      "a_eligible_pre_routing": false,
-      "a_ceiling_fails": [
-        "C2_engineered_additives",
-        "C3_no_culture_credit",
-        "C4_non_intact_matrix"
-      ]
-    },
-    {
-      "pid": "bsip1_cheese_7290116934280",
-      "name": "גבינה לבנה 5%+שמיר ושום",
-      "pool": "white_cheese_quark",
-      "score": 84.3,
+      "score": 86.6,
       "routed_to": "dairy_protein",
       "a_eligible_pre_routing": false,
       "a_ceiling_fails": [
@@ -248,22 +112,9 @@
       ]
     }
   ],
-  "misroute_count": 2,
-  "misroute_pct": 3.4,
+  "misroute_count": 0,
+  "misroute_pct": 0.0,
   "misroute_exit_gate_lt5pct": true,
-  "misroutes": [
-    {
-      "pid": "bsip1_cheese_7290014217492",
-      "name": "תערובת תיבול פילדלפיה",
-      "subpool": "cream_cheese_spread",
-      "routed_to": "default"
-    },
-    {
-      "pid": "bsip1_cheese_7290108506624",
-      "name": "גבינת עזים 32% שומן",
-      "subpool": "cream_cheese_spread",
-      "routed_to": "snack_bar_granola"
-    }
-  ],
+  "misroutes": [],
   "error_detail": []
 }

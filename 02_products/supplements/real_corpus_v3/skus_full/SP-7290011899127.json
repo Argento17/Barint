@@ -1,0 +1,206 @@
+{
+  "sku_id": "SP-7290011899127",
+  "barcode": "7290011899127",
+  "name_he": "אלטמן אומגה 9-3 חודשים 60 טבליות",
+  "brand_bucket": "altman",
+  "engine_active": "omega3",
+  "price_ils": 201.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות ה'",
+  "lossy": [
+    "actives[0].form (not on panel)",
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)",
+    "actives[3].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/pregnancy/prenatal/omega-3-9-months/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן אומגה 3 - 9 חודשים",
+    "barcode": "7290011899127",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות האיגוד למיילדות וגינקולוגיה",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "DHA",
+        "amount": 300.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "EPA",
+        "amount": 100.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "שמן דגים",
+        "amount": 704.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "omega3"
+      },
+      {
+        "ingredient": "חומצה פולית",
+        "amount": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "folic_acid"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)",
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)",
+      "actives[3].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290011899127",
+      "source_url": "https://www.altman.co.il/shop/pregnancy/prenatal/omega-3-9-months/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן אומגה 3 - 9 חודשים",
+    "primary_claim_fed": "אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות האיגוד למיילדות וגינקולוגיה pregnancy",
+    "actives": [
+      {
+        "active_slug": "omega3",
+        "display_name": "DHA",
+        "quantity": 300.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": null,
+    "score": 34.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "sub_scores": {
+      "evidence": 17.0,
+      "dose": "N/A",
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:53.805419Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290011899127",
+    "active": "omega-3 (EPA/DHA)",
+    "on_label_claim": "אומגה 3 עם EPA ו-DHA לתמיכה בהריון בהתאם להמלצות האיגוד למיילדות וגינקולוגיה pregnancy",
+    "claim_matched": null,
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": null,
+      "resolved_phrase": null,
+      "resolved_tier": "Insufficient",
+      "resolution_supp_ev": null,
+      "resolution_citations": [],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 17.0,
+        "tier": "Insufficient"
+      },
+      "dose": {
+        "value": "N/A",
+        "reason": "evidence_insufficient_dose_short_circuit"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "LOW",
+      "dose": "N/A",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "cap_1_insufficient_evidence",
+        "kind": "ceiling",
+        "ceiling_or_floor": 34
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "cap_1_insufficient_evidence",
+      "machine_reason": "no_reliable_evidence_for_claim"
+    },
+    "also_fired": [],
+    "blend": 49.5,
+    "dossier_facts_used": [
+      {
+        "field": "claims['None'].evidence_tier",
+        "value": "Insufficient",
+        "supp_ev": "SUPP-EV-005"
+      }
+    ],
+    "final": {
+      "score": 34.0,
+      "grade": "E"
+    }
+  }
+}

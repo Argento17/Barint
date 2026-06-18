@@ -1,0 +1,939 @@
+{
+  "run_id": "run_cheese_005_satfat_pilot",
+  "task": "TASK-278 Phase-7 cheese_spreads×sat_fat wire + pilot (P119)",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T13:54:02.698858+00:00",
+  "engine": "proto_v0 + EV-089 cheese_spread sat_fat SR call site + EV-089 floor (subtype guard, FATSAT_SHELF_REL_SCOPE untouched)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "dual (on/off patch)",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK250_CONF": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "other_flags": "off (grad_sodium, sodium_shelf_relative, redlabel, sodium_cereal)"
+  },
+  "dual_run_method": "module patch on score_engine.BARI_SHELF_RELATIVE_V1 (same process, cheese-locked shelf_stats for fat_saturated_g)",
+  "off_used": false,
+  "corpus": {
+    "cheese_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+    "milk_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+    "yogurt_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_005\\output",
+    "n_cheese_loaded": 59,
+    "n_milk_loaded": 20,
+    "n_yogurt_loaded": 89
+  },
+  "shelf_stats_used": {
+    "nutrient": "fat_saturated_g",
+    "median": 16.05,
+    "scale": 2.0756,
+    "n": 24,
+    "source": "locked D7/P119 from cream_cheese-only n=24 in run_cheese_003"
+  },
+  "scope_guard_used": "category == dairy_protein AND category_subtype in CREAM_CHEESE_SPREAD_SUBTYPES",
+  "constants_used": {
+    "FATSAT_SHELF_REL_CHEESESPREAD_MEDIAN": 16.05,
+    "FATSAT_SHELF_REL_CHEESESPREAD_SCALE": 2.0756,
+    "FATSAT_SHELF_REL_CHEESESPREAD_FLOOR": 62,
+    "FATSAT_SHELF_REL_CHEESESPREAD_FLOOR_THRESHOLD_G": 16.5,
+    "CREAM_CHEESE_SPREAD_SUBTYPES": [
+      "cheese_spread",
+      "cream_cheese"
+    ]
+  },
+  "milk_byte_id": {
+    "pass": true,
+    "milk_products_checked": 20,
+    "any_nonzero_delta": false,
+    "milk_deltas": [
+      {
+        "barcode": "5411188112709",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188124689",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188300328",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290000051352",
+        "delta": 0
+      },
+      {
+        "barcode": "7290014760141",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290019790259",
+        "delta": 0
+      },
+      {
+        "barcode": "7290102392094",
+        "delta": 0
+      },
+      {
+        "barcode": "7290107932134",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324773",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324926",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110325619",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313285",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313865",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290116936116",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290119385560",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376619939",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376620904",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376621451",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204219",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204554",
+        "delta": 0.0
+      }
+    ]
+  },
+  "yogurt_byte_id": {
+    "pass": false,
+    "yogurt_products_checked": 89,
+    "any_nonzero_delta": true,
+    "yogurt_deltas_nonzero": [
+      {
+        "barcode": "7290102397600",
+        "delta": -0.4,
+        "subtype": "yogurt_mixin"
+      }
+    ]
+  },
+  "named_pairs": {
+    "inv1_a": {
+      "barcode": "4129118",
+      "sat_fat_g": 14.0,
+      "flag_off": 43.8,
+      "flag_on": 44.8
+    },
+    "inv1_b": {
+      "barcode": "7290116935409",
+      "sat_fat_g": 16.2,
+      "flag_off": 45.0,
+      "flag_on": 45.0
+    },
+    "inv1_gap_off": 1.2,
+    "inv1_gap_on": 0.2,
+    "inv1_narrows": true,
+    "inv2_a": {
+      "barcode": "7622201521493",
+      "sat_fat_g": 7.8,
+      "flag_off": 47.3,
+      "flag_on": 50.3
+    },
+    "inv2_b": {
+      "barcode": "4129101",
+      "sat_fat_g": 15.0,
+      "flag_off": 43.1,
+      "flag_on": 44.1
+    },
+    "inv2_gap_off": 4.2,
+    "inv2_gap_on": 6.2,
+    "inv2_narrows": false
+  },
+  "cream_cheese_movers": 15,
+  "cream_cheese_grade_changes": 2,
+  "grade_change_details": [
+    {
+      "barcode": "7290116934365",
+      "from": "C",
+      "to": "B",
+      "flag_off": 62.0,
+      "flag_on": 65.0,
+      "delta": 3.0
+    },
+    {
+      "barcode": "7622201521493",
+      "from": "D",
+      "to": "C",
+      "flag_off": 47.3,
+      "flag_on": 50.3,
+      "delta": 3.0
+    }
+  ],
+  "absorption": 0.0,
+  "fired_cc": 15,
+  "absorbed_cc": 0,
+  "gate_results": [
+    {
+      "criterion": "C1",
+      "name": "directional_distribution",
+      "pass": true,
+      "evidence": "above_median n=12 mean_delta=-1.5 (<=0? True); below_median n=12 mean_delta=1.6167 (>=0? True)"
+    },
+    {
+      "criterion": "C2",
+      "name": "grade_dist_and_magnitude",
+      "pass": true,
+      "evidence": "(A) high_sat>=18@B=0==0?True; (B) low_sat<=10@C+=3>=1?True; (C) mean|d|=2.4933>=0.5?True"
+    },
+    {
+      "criterion": "C3",
+      "name": "gap_narrows_inversion",
+      "pass": false,
+      "evidence": "Inv-1: gap_on=0.2 < gap_off=1.2? True; Inv-2: gap_on=6.2 < gap_off=4.2? False"
+    },
+    {
+      "criterion": "C4",
+      "name": "min_movers",
+      "pass": true,
+      "evidence": "n=15 (need >=5)"
+    },
+    {
+      "criterion": "C5",
+      "name": "min_grade_changes",
+      "pass": true,
+      "evidence": "n=2 (need >=1)"
+    },
+    {
+      "criterion": "C6",
+      "name": "max_absorption",
+      "pass": true,
+      "evidence": "0/15=0.0 (need <=0.40)"
+    },
+    {
+      "criterion": "C7",
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "sat_fat>=18g @B flag-on: 0 (need=0)"
+    },
+    {
+      "criterion": "C8",
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "7 checked (sat_fat>=16.5g), 0 >62 (need=0)"
+    },
+    {
+      "criterion": "C9",
+      "name": "no_scope_bleed",
+      "pass": false,
+      "evidence": "non-cream_cheese dairy_protein with nonzero delta: 1 (need=0)"
+    },
+    {
+      "criterion": "C10",
+      "name": "frozen_byte_id_milk",
+      "pass": true,
+      "evidence": "CRITICAL: milk products=20 all delta=0: True; nonzero=0"
+    },
+    {
+      "criterion": "C10b",
+      "name": "yogurt_byte_id",
+      "pass": false,
+      "evidence": "CRITICAL: yogurt products=89 with nonzero delta from cheese_spread SR: 1 (need=0)"
+    },
+    {
+      "criterion": "C11",
+      "name": "flag_off_drift",
+      "pass": "n/a-docs-only",
+      "evidence": "26 mismatches vs run_cheese_004 (non-blocking)"
+    }
+  ],
+  "per_product_table_cream_cheese": [
+    {
+      "barcode": "7290019635116",
+      "name": "גבינת שמנת זיתים 5%",
+      "sat_fat_g": 3.0,
+      "flag_off": 44.3,
+      "flag_on": 47.3,
+      "delta": 3.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116934365",
+      "name": "נפוליאון 16% שום שמיר",
+      "sat_fat_g": 3.8,
+      "flag_off": 62.0,
+      "flag_on": 65.0,
+      "delta": 3.0,
+      "grade_off": "C",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7622201798154",
+      "name": "גבינת פילדלפיה לייט 13%",
+      "sat_fat_g": 7.1,
+      "flag_off": 60.6,
+      "flag_on": 63.6,
+      "delta": 3.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7622201521493",
+      "name": "פילדלפיה שום+ע.תיבול 12%",
+      "sat_fat_g": 7.8,
+      "flag_off": 47.3,
+      "flag_on": 50.3,
+      "delta": 3.0,
+      "grade_off": "D",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290014759084",
+      "name": "גבינת שמנת בטעם טבעי16%",
+      "sat_fat_g": 9.6,
+      "flag_off": 53.9,
+      "flag_on": 56.9,
+      "delta": 3.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "4129118",
+      "name": "גבינת שמנת 24% עם זיתים",
+      "sat_fat_g": 14.0,
+      "flag_off": 43.8,
+      "flag_on": 44.8,
+      "delta": 1.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290108502541",
+      "name": "גבינת שמנת טבעי 18%",
+      "sat_fat_g": 14.3,
+      "flag_off": 47.6,
+      "flag_on": 48.6,
+      "delta": 1.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "4129101",
+      "name": "גבינת נפוליאון בטעם טבעי",
+      "sat_fat_g": 15.0,
+      "flag_off": 43.1,
+      "flag_on": 44.1,
+      "delta": 1.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290019635383",
+      "name": "גבינת שמנת ריבת בצל 24%",
+      "sat_fat_g": 15.0,
+      "flag_off": 23.2,
+      "flag_on": 24.2,
+      "delta": 1.0,
+      "grade_off": "E",
+      "grade_on": "E"
+    },
+    {
+      "barcode": "7290019635581",
+      "name": "גבינת שמנת סלסה 24%",
+      "sat_fat_g": 15.0,
+      "flag_off": 32.4,
+      "flag_on": 32.8,
+      "delta": 0.4,
+      "grade_off": "E",
+      "grade_on": "E"
+    },
+    {
+      "barcode": "7290014762831",
+      "name": "גבינת שמנת+פלפל חלפיניו",
+      "sat_fat_g": 15.8,
+      "flag_off": 44.8,
+      "flag_on": 44.8,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7622201139278",
+      "name": "גבינת שמנת 25% פילדלפיה",
+      "sat_fat_g": 16.0,
+      "flag_off": 45.5,
+      "flag_on": 45.5,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116933078",
+      "name": "גבינת שמנת+פלפל פיקנטי",
+      "sat_fat_g": 16.1,
+      "flag_off": 42.7,
+      "flag_on": 42.7,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116936604",
+      "name": "גבינת שמנת עשבי תיבול25%",
+      "sat_fat_g": 16.1,
+      "flag_off": 44.5,
+      "flag_on": 44.5,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116931982",
+      "name": "גבינת שמנת עם עירית 25%",
+      "sat_fat_g": 16.2,
+      "flag_off": 42.8,
+      "flag_on": 42.8,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116932644",
+      "name": "גבינת שמנת 25% עם זעתר",
+      "sat_fat_g": 16.2,
+      "flag_off": 41.7,
+      "flag_on": 41.7,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290116935409",
+      "name": "גבינת שמנת מוקצפת 25%",
+      "sat_fat_g": 16.2,
+      "flag_off": 45.0,
+      "flag_on": 45.0,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "4129156",
+      "name": "גבינת נפוליאון שום שמיר",
+      "sat_fat_g": 16.5,
+      "flag_off": 42.9,
+      "flag_on": 42.9,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290019635376",
+      "name": "גבינת שמנת גורגונזולה24%",
+      "sat_fat_g": 17.0,
+      "flag_off": 51.2,
+      "flag_on": 51.2,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "554976",
+      "name": "גבינת שמנת 30% עם זיתים",
+      "sat_fat_g": 18.6,
+      "flag_off": 46.1,
+      "flag_on": 44.1,
+      "delta": -2.0,
+      "grade_off": "insufficient_data",
+      "grade_on": "insufficient_data"
+    },
+    {
+      "barcode": "5992889",
+      "name": "גבינת שמנת שום שמיר 30%",
+      "sat_fat_g": 19.6,
+      "flag_off": 46.1,
+      "flag_on": 42.1,
+      "delta": -4.0,
+      "grade_off": "insufficient_data",
+      "grade_on": "insufficient_data"
+    },
+    {
+      "barcode": "554969",
+      "name": "גבינת שמנת 30%",
+      "sat_fat_g": 20.0,
+      "flag_off": 46.1,
+      "flag_on": 42.1,
+      "delta": -4.0,
+      "grade_off": "insufficient_data",
+      "grade_on": "insufficient_data"
+    },
+    {
+      "barcode": "7290011499624",
+      "name": "גבינת שמנת טעם טבעי 30%",
+      "sat_fat_g": 20.0,
+      "flag_off": 33.6,
+      "flag_on": 29.6,
+      "delta": -4.0,
+      "grade_off": "E",
+      "grade_on": "E"
+    },
+    {
+      "barcode": "7296073453123",
+      "name": "גבינת שמנת 30% שומן",
+      "sat_fat_g": 20.0,
+      "flag_off": 46.1,
+      "flag_on": 42.1,
+      "delta": -4.0,
+      "grade_off": "insufficient_data",
+      "grade_on": "insufficient_data"
+    },
+    {
+      "barcode": "7290019635369",
+      "name": "גבינת שמנת 16% שומן",
+      "sat_fat_g": null,
+      "flag_off": 54.7,
+      "flag_on": 54.7,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290108504378",
+      "name": "גבינת שמנת עם זיתים 20%",
+      "sat_fat_g": null,
+      "flag_off": 55.4,
+      "flag_on": 55.4,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    }
+  ],
+  "milk_table": [
+    {
+      "barcode": "5411188112709",
+      "flag_off": 49.0,
+      "flag_on": 49.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5411188124689",
+      "flag_off": 52.3,
+      "flag_on": 52.3,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5411188300328",
+      "flag_off": 36.0,
+      "flag_on": 36.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290000051352",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290014760141",
+      "flag_off": 51.5,
+      "flag_on": 51.5,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290019790259",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290102392094",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290107932134",
+      "flag_off": 60.8,
+      "flag_on": 60.8,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110324773",
+      "flag_off": 39.5,
+      "flag_on": 39.5,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110324926",
+      "flag_off": 56.7,
+      "flag_on": 56.7,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110325619",
+      "flag_off": 47.2,
+      "flag_on": 47.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290114313285",
+      "flag_off": 49.6,
+      "flag_on": 49.6,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290114313865",
+      "flag_off": 76.1,
+      "flag_on": 76.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290116936116",
+      "flag_off": 63.9,
+      "flag_on": 63.9,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119385560",
+      "flag_off": 49.9,
+      "flag_on": 49.9,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376619939",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376620904",
+      "flag_off": 53.2,
+      "flag_on": 53.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376621451",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "8000215204219",
+      "flag_off": 49.2,
+      "flag_on": 49.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "8000215204554",
+      "flag_off": 47.8,
+      "flag_on": 47.8,
+      "delta": 0.0
+    }
+  ],
+  "yogurt_table_first_20": [
+    {
+      "barcode": "2824466",
+      "flag_off": 80.1,
+      "flag_on": 80.1,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "3126712",
+      "flag_off": 71.1,
+      "flag_on": 71.1,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "408316",
+      "flag_off": 77.1,
+      "flag_on": 77.1,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "408354",
+      "flag_off": 45.6,
+      "flag_on": 45.6,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "4119133",
+      "flag_off": 70.2,
+      "flag_on": 70.2,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "43944",
+      "flag_off": 74.7,
+      "flag_on": 74.7,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "45771",
+      "flag_off": 74.5,
+      "flag_on": 74.5,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "4584528",
+      "flag_off": 79.3,
+      "flag_on": 79.3,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5416262",
+      "flag_off": 51.6,
+      "flag_on": 51.6,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5416415",
+      "flag_off": 77.6,
+      "flag_on": 77.6,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "57132",
+      "flag_off": 78.4,
+      "flag_on": 78.4,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "57149",
+      "flag_off": 77.5,
+      "flag_on": 77.5,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "5839078",
+      "flag_off": 77.4,
+      "flag_on": 77.4,
+      "delta": 0.0,
+      "subtype": "bio_yogurt"
+    },
+    {
+      "barcode": "6664990",
+      "flag_off": 78.5,
+      "flag_on": 78.5,
+      "delta": 0.0,
+      "subtype": "bio_yogurt"
+    },
+    {
+      "barcode": "7290010471669",
+      "flag_off": 36.3,
+      "flag_on": 36.3,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290012645297",
+      "flag_off": 73.2,
+      "flag_on": 73.2,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014758100",
+      "flag_off": 77.5,
+      "flag_on": 77.5,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014758117",
+      "flag_off": 78.4,
+      "flag_on": 78.4,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014890572",
+      "flag_off": 72.4,
+      "flag_on": 72.4,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    },
+    {
+      "barcode": "7290014890589",
+      "flag_off": 73.3,
+      "flag_on": 73.3,
+      "delta": 0.0,
+      "subtype": "yogurt"
+    }
+  ],
+  "yogurt_all_zero_delta": false,
+  "flag_off_drift_cheese": {
+    "mismatches": 26,
+    "details": [
+      {
+        "barcode": "4129101",
+        "flag_off": 43.1,
+        "baseline_run_cheese_004": 55.6,
+        "diff": -12.5
+      },
+      {
+        "barcode": "4129118",
+        "flag_off": 43.8,
+        "baseline_run_cheese_004": 56.4,
+        "diff": -12.6
+      },
+      {
+        "barcode": "4129156",
+        "flag_off": 42.9,
+        "baseline_run_cheese_004": 55.5,
+        "diff": -12.6
+      },
+      {
+        "barcode": "554969",
+        "flag_off": 46.1,
+        "baseline_run_cheese_004": 49.2,
+        "diff": -3.1
+      },
+      {
+        "barcode": "554976",
+        "flag_off": 46.1,
+        "baseline_run_cheese_004": 49.2,
+        "diff": -3.1
+      },
+      {
+        "barcode": "5992889",
+        "flag_off": 46.1,
+        "baseline_run_cheese_004": 49.2,
+        "diff": -3.1
+      },
+      {
+        "barcode": "7290011499624",
+        "flag_off": 33.6,
+        "baseline_run_cheese_004": 54.8,
+        "diff": -21.2
+      },
+      {
+        "barcode": "7290014759084",
+        "flag_off": 53.9,
+        "baseline_run_cheese_004": 66.4,
+        "diff": -12.5
+      },
+      {
+        "barcode": "7290014762831",
+        "flag_off": 44.8,
+        "baseline_run_cheese_004": 57.4,
+        "diff": -12.6
+      },
+      {
+        "barcode": "7290019635116",
+        "flag_off": 44.3,
+        "baseline_run_cheese_004": 48.5,
+        "diff": -4.2
+      },
+      {
+        "barcode": "7290019635369",
+        "flag_off": 54.7,
+        "baseline_run_cheese_004": 67.2,
+        "diff": -12.5
+      },
+      {
+        "barcode": "7290019635376",
+        "flag_off": 51.2,
+        "baseline_run_cheese_004": 55.7,
+        "diff": -4.5
+      },
+      {
+        "barcode": "7290019635383",
+        "flag_off": 23.2,
+        "baseline_run_cheese_004": 27.0,
+        "diff": -3.8
+      },
+      {
+        "barcode": "7290019635581",
+        "flag_off": 32.4,
+        "baseline_run_cheese_004": 47.9,
+        "diff": -15.5
+      },
+      {
+        "barcode": "7290108502541",
+        "flag_off": 47.6,
+        "baseline_run_cheese_004": 57.0,
+        "diff": -9.4
+      },
+      {
+        "barcode": "7290108504378",
+        "flag_off": 55.4,
+        "baseline_run_cheese_004": 60.4,
+        "diff": -5.0
+      },
+      {
+        "barcode": "7290116931982",
+        "flag_off": 42.8,
+        "baseline_run_cheese_004": 55.3,
+        "diff": -12.5
+      },
+      {
+        "barcode": "7290116932644",
+        "flag_off": 41.7,
+        "baseline_run_cheese_004": 54.3,
+        "diff": -12.6
+      },
+      {
+        "barcode": "7290116933078",
+        "flag_off": 42.7,
+        "baseline_run_cheese_004": 55.2,
+        "diff": -12.5
+      },
+      {
+        "barcode": "7290116934365",
+        "flag_off": 62.0,
+        "baseline_run_cheese_004": 74.5,
+        "diff": -12.5
+      }
+    ]
+  },
+  "engine_invariants": "342 PASS (run before pilot)",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "score_engine_sha256": "822406b95e3e554dbaf828b6499f50651feb6f605c3276eb52bd5507918c0b7d",
+  "constants_sha256": "edf7d8c4231bb2d0caf388b80ae90b2b9000cefbbace48530a55f5eb2a4b91fd",
+  "output_dir": "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_005_satfat_pilot",
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "cheese_spread_only_gates": true,
+    "milk_included_for_c10": true,
+    "yogurt_included_for_c10b": true,
+    "C10_milk_critical": true,
+    "C10b_yogurt_critical": false,
+    "C9_no_bleed": false,
+    "FATSAT_SHELF_REL_SCOPE_unchanged": true
+  }
+}

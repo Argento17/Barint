@@ -1,0 +1,32 @@
+{
+  "run_id": "run_TASK238_off_removal_20260610",
+  "task": "TASK-238",
+  "created_utc": "2026-06-10T00:00:00Z",
+  "type": "data-governance / contamination-remediation",
+  "owner_rule": "Ingredients and nutritional value come ONLY directly from the scrape of the product. If not parsed = 'data could not be retrieved'. Never use other sources. NULL/unknown is the only fallback.",
+  "engine_baseline_tag": "engine-baseline-2026-06-04",
+  "engine_methodology_changed": false,
+  "note": "No scoring methodology / cap / veto change. Score VALUE changes are a CONSEQUENCE of removing OFF nutrition input only. Every OFF-nutrition product had its ENTIRE panel from one OFF source, so removing OFF leaves no panel -> product is insufficient (score null). Deterministic; engine cannot score a null panel.",
+  "config_hash_inputs": "OFF client disabled (CLIENT_VERSION=DISABLED-TASK-238); per-product OFF map verified against BSIP1/BSIP0 nutrition-provenance fields + shipped imageUrl host",
+  "artifacts": {
+    "off_client_disabled": "C:\\Bari\\integrations\\clients\\open_food_facts.py",
+    "edpg_admission_revoked": "C:\\Bari\\integrations\\README.md",
+    "remediation_script": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src\\task238_off_remediation.py",
+    "archived_off_bread_run": "C:\\Bari\\99_archive\\bread_retail_001_OFF_superseded_TASK238",
+    "deleted_dead_off_json": [
+      "C:\\Bari\\bari-web\\src\\data\\comparisons\\olive_oil_frontend_v1.json",
+      "C:\\Bari\\bari-web\\src\\data\\comparisons\\crackers_staged_v1.json"
+    ]
+  },
+  "shipped_jsons_remediated": {
+    "cereals_frontend_v2.json":      {"off_images_nulled": 8,  "off_nutrition_nulled": 8,  "now_insufficient": 8},
+    "granola_frontend_v1.json":      {"off_images_nulled": 9,  "off_nutrition_nulled": 9,  "now_insufficient": 9},
+    "hard_cheeses_frontend_v2.json": {"off_images_nulled": 15, "off_nutrition_nulled": 3,  "now_insufficient": 3},
+    "butter_frontend_v2.json":       {"off_images_nulled": 0,  "off_nutrition_nulled": 2,  "now_insufficient": 2},
+    "juices_frontend_v3.json":       {"off_images_nulled": 0,  "off_nutrition_nulled": 3,  "now_insufficient": 3},
+    "salty_snacks_frontend_v4.json": {"off_images_nulled": 0,  "off_nutrition_nulled": 38, "now_insufficient": 38, "note": "ENTIRE scored shelf nutrition was OFF panels -> all 38 insufficient"},
+    "yogurts_frontend_v3.json":      {"off_images_nulled": 6,  "delisted_off_only": 7, "surviving_direct_scrape": 11, "note": "7 Yohananof = il_prices identity + OFF panel/image only -> de-listed; 11 Shufersal direct survive"},
+    "cheese_frontend_v3.json":       {"off_images_nulled": 0,  "off_nutrition_nulled": 0, "verdict": "CLEAN — shipped run_cheese_004 predates yohananof OFF acquisition; no change"}
+  },
+  "qa_handoff": "Artifacts ready for QA OFF launch-gate per category (5 conditions). Frontend Agent renders insufficient/de-list states; this run only changed data."
+}

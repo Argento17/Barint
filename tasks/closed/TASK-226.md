@@ -1,6 +1,6 @@
 ---
 id: TASK-226
-title: Shared comparison-page cleanup — strip dashboard furniture + align confidence layer to D12 spec
+title: "Shared comparison-page cleanup — strip dashboard furniture + align confidence layer to D12 spec"
 status: CLOSED
 owner: Frontend Agent
 renumber_note: >
@@ -48,7 +48,7 @@ commit_topology: >
   scope is committed; the salty-snacks prologue (scope 4) remains uncommitted, deferred to a
   dedicated TASK-227 commit per owner decision (salty-snacks rebuild; renumbered from 222 —
   see TASK-227 renumber_note).
-source: Combined Review — Salty-Snacks Comparison Page (verdict: FAIL before launch)
+source: "Combined Review — Salty-Snacks Comparison Page (verdict: FAIL before launch)"
 blocks_launch: salty-snacks
 depends_on: TASK-227   # salty-snacks rebuild (renumbered from 222 to resolve id collision)
 governance:

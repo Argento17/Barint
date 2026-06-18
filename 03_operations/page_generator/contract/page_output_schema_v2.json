@@ -1,0 +1,393 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "bari-page-output-v2",
+  "title": "Bari Category Page Output v2",
+  "description": "JSON Schema v2 — reconciled against actual live canonical JSONs (granola_frontend_v1.json and snacks_frontend_v2.json). v1 remains unchanged. Fixes: score is number (not integer), comparisonContext added to required, extension fields documented as CATEGORY-CONFIG-DRIVEN optionals. Every field present in the live product objects is either in the schema or in x-deviations.",
+  "x-deviations": [
+    {
+      "field": "_subpool",
+      "in_live": "granola (all 42 products)",
+      "status": "CATEGORY-CONFIG-DRIVEN optional — present when extension_fields includes '_subpool'",
+      "type": "string"
+    },
+    {
+      "field": "_isChildrens",
+      "in_live": "granola (all 42 products)",
+      "status": "CATEGORY-CONFIG-DRIVEN optional — present when extension_fields includes '_isChildrens'",
+      "type": "boolean"
+    },
+    {
+      "field": "_wholeGrainClaim",
+      "in_live": "granola (all 42 products)",
+      "status": "CATEGORY-CONFIG-DRIVEN optional — present when extension_fields includes '_wholeGrainClaim'",
+      "type": "boolean"
+    },
+    {
+      "field": "_internal_cluster",
+      "in_live": "snacks (all 18 products)",
+      "status": "CATEGORY-CONFIG-DRIVEN optional — present when extension_fields includes '_internal_cluster'. Stripped by page-data layer before UI display.",
+      "type": "string"
+    },
+    {
+      "field": "confidence_level",
+      "in_live": "granola (33/42 products — absent in 9)",
+      "status": "OPTIONAL — present on some products only; not emitted by generator in Phase 1",
+      "type": "string"
+    },
+    {
+      "field": "expansion.unknowns",
+      "in_live": "snacks (all 18 products)",
+      "status": "OPTIONAL — present when category invariant applies; snacks category-level unknown",
+      "type": "array of strings"
+    },
+    {
+      "field": "expansion.bottomLine",
+      "in_live": "snacks (all 18 products)",
+      "status": "OPTIONAL — category-level string, present in snacks only",
+      "type": "string"
+    },
+    {
+      "field": "score type drift",
+      "v1_said": "integer",
+      "actual": "number (float in both live JSONs, e.g. 76.0 displayed as 76, 82.3). Schema v1 was wrong.",
+      "v2_fix": "score type changed to ['number', 'null']"
+    },
+    {
+      "field": "comparisonContext drift",
+      "v1_said": "present in expansion.required — but not listed as required in v1 product.required",
+      "actual": "present in all 42 granola and all 18 snacks products; REQUIRED in practice",
+      "v2_fix": "comparisonContext explicitly listed in expansion.required"
+    }
+  ],
+  "type": "object",
+  "required": ["_meta", "products"],
+  "additionalProperties": false,
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "required": ["generated", "category", "product_count"],
+      "additionalProperties": true,
+      "properties": {
+        "generated": {
+          "type": "string",
+          "description": "ISO-8601 generation timestamp"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category slug matching the registry"
+        },
+        "product_count": {
+          "type": "integer",
+          "description": "Number of product objects in the products array"
+        },
+        "scored_count": {
+          "type": "integer",
+          "description": "Number of products with a non-null score (= run universe size)"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Schema version string, e.g. 'v2'"
+        },
+        "generator_version": {
+          "type": "string",
+          "description": "Generator script version string"
+        },
+        "config_sha256": {
+          "type": "string",
+          "description": "SHA256 of the category config JSON used to produce this file"
+        },
+        "exclusions": {
+          "type": "array",
+          "description": "Full list of barcodes excluded from display with reasons",
+          "items": {
+            "type": "object",
+            "required": ["barcode", "reason"],
+            "properties": {
+              "barcode": { "type": "string" },
+              "reason": { "type": "string" },
+              "product_id": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "retailer_breakdown": {
+          "type": "object",
+          "description": "Map of retailer slug to product count",
+          "additionalProperties": { "type": "integer" }
+        },
+        "source_paths": {
+          "type": "object",
+          "description": "Source directory paths used",
+          "additionalProperties": { "type": "string" }
+        },
+        "subpool_filter": {
+          "type": ["object", "null"],
+          "description": "Subpool filter applied (field + value), or null if not used"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Schema identifier, e.g. 'BariProductVM[]'"
+        },
+        "version": {
+          "type": "string",
+          "description": "Export version string"
+        },
+        "expansion": {
+          "type": "string",
+          "description": "Expansion system identifier"
+        },
+        "source_run_id": {
+          "type": "string",
+          "description": "Source scrape/run identifier"
+        },
+        "scope_note": {
+          "type": "string",
+          "description": "Hebrew scope/editorial note"
+        },
+        "editorial_note": {
+          "type": "string",
+          "description": "Editorial curation note"
+        },
+        "provenance": {
+          "type": "string",
+          "description": "Score/corpus provenance changelog"
+        },
+        "production_pass": {
+          "type": "string",
+          "description": "Production pipeline changelog"
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "score", "grade", "insightLine", "confidence", "expansion", "retailer", "barcode", "source_traceability_status", "d4_additives", "confidence_label_he", "confidence_tooltip_he", "confidence_sub_reason"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique product identifier (bsip1_<type>_<barcode> or snk-NNN format)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Hebrew product display name (must contain at least one Hebrew character)"
+          },
+          "imageUrl": {
+            "type": ["string", "null"],
+            "description": "Product image URL; null when unavailable"
+          },
+          "score": {
+            "type": ["number", "null"],
+            "description": "Bari score 0-100 as float (e.g. 76.0 or 82.3); null for INSUFFICIENT products. v1 incorrectly typed this as integer.",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "grade": {
+            "type": ["string", "null"],
+            "enum": ["S", "A", "B", "C", "D", "E", null],
+            "description": "Letter grade derived from score via boundary policy (floor default)"
+          },
+          "insightLine": {
+            "type": "string",
+            "description": "One-line consumer insight. PENDING_COPY in Phase 1 generator output."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["full", "partial", "insufficient", "verified"],
+            "description": "Data confidence level (3-state v2 + verified for milk)"
+          },
+          "retailer": {
+            "type": "string",
+            "description": "Source retailer slug (e.g. 'shufersal', 'yohananof', 'carrefour')"
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Product barcode"
+          },
+          "source_traceability_status": {
+            "type": "string",
+            "description": "Traceability of source product data (e.g. 'resolved')"
+          },
+          "d4_additives": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/AdditiveEntry" },
+            "description": "D4 additive tier entries. Empty array when not gated."
+          },
+          "confidence_label_he": {
+            "type": "string",
+            "description": "Backend-prerendered Hebrew confidence label"
+          },
+          "confidence_tooltip_he": {
+            "type": "string",
+            "description": "Backend-prerendered Hebrew confidence tooltip"
+          },
+          "confidence_sub_reason": {
+            "type": ["string", "null"],
+            "description": "Metadata-only sub-reason enum. Non-rendering. e.g. 'low_extraction', 'missing_ingredients', 'missing_nutrition'"
+          },
+          "expansion": {
+            "type": "object",
+            "required": ["nutrition", "ingredients", "confidenceLabel", "servingNote", "positiveSignals", "comparisonContext"],
+            "additionalProperties": true,
+            "properties": {
+              "nutrition": {
+                "type": ["object", "null"],
+                "description": "Per-100g nutrition values. All sub-fields nullable: null = data unavailable. Present on every product (may be all-null).",
+                "properties": {
+                  "energyKcal": { "type": ["number", "null"] },
+                  "protein": { "type": ["number", "null"] },
+                  "sugar": { "type": ["number", "null"] },
+                  "fat": { "type": ["number", "null"] },
+                  "fiber": { "type": ["number", "null"] },
+                  "sodium": { "type": ["number", "null"] }
+                },
+                "additionalProperties": false
+              },
+              "ingredients": {
+                "type": ["string", "null"],
+                "description": "Full ingredients text. Null when unavailable. NEVER sourced from OFF."
+              },
+              "confidenceLabel": {
+                "type": "string",
+                "description": "Pre-rendered Hebrew confidence label in expansion (mirrors confidence_label_he)"
+              },
+              "servingNote": {
+                "type": "string",
+                "description": "Serving size annotation, e.g. 'ל-100 גרם'"
+              },
+              "positiveSignals": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "1-3 observable strengths (Hebrew strings). PENDING in Phase 1."
+              },
+              "limitingFactors": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "0-2 compositional limits (Hebrew strings). Absent when no limits identified. PENDING in Phase 1."
+              },
+              "unknowns": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Data gaps Bari could not verify (Hebrew). Category-level invariant (present in snacks)."
+              },
+              "caveats": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Product-level caveats (Hebrew). Not yet present in any corpus."
+              },
+              "bottomLine": {
+                "type": "string",
+                "description": "Editorial synthesis (Hebrew). Present in snacks only. PENDING in Phase 1."
+              },
+              "comparisonContext": {
+                "type": "string",
+                "description": "Shelf-relative context without algorithm vocabulary (Hebrew). v1 listed in required but not product.required — now both. PENDING in Phase 1."
+              }
+            }
+          },
+          "rowVerdict": {
+            "type": "string",
+            "description": "2-3 sentence editorial verdict on the collapsed row. Category-level invariant (present in granola). PENDING in Phase 1."
+          },
+          "rowReason": {
+            "type": "object",
+            "description": "Short strongest +/- for collapsed row. Synthesized by page-data layer.",
+            "properties": {
+              "positive": { "type": ["string", "null"] },
+              "limiting": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          },
+          "metrics": {
+            "type": "object",
+            "description": "Display-only metric block. Synthesized by page-data layer.",
+            "properties": {
+              "protein_g": { "type": ["number", "null"] },
+              "fiber_g": { "type": ["number", "null"] },
+              "sugar_g": { "type": ["number", "null"] },
+              "sodium_mg": { "type": ["number", "null"] }
+            },
+            "additionalProperties": false
+          },
+          "d3_processing": {
+            "$ref": "#/definitions/BariProcessingSignalVM",
+            "description": "D3 processing signal. Absent when not gated."
+          },
+          "glassBox": {
+            "$ref": "#/definitions/BariGlassBoxVM",
+            "description": "Glass Box D5/D6 presentation state. Absent when not gated."
+          },
+          "s_grade_explanation": {
+            "type": "string",
+            "description": "Pre-authored Hebrew explanation for S-grade products. Absent on non-S grades."
+          },
+          "_subpool": {
+            "type": "string",
+            "description": "CATEGORY-CONFIG-DRIVEN. Subpool identifier (e.g. 'granola'). Present when extension_fields includes '_subpool'."
+          },
+          "_isChildrens": {
+            "type": "boolean",
+            "description": "CATEGORY-CONFIG-DRIVEN. Children's product flag. Present when extension_fields includes '_isChildrens'."
+          },
+          "_wholeGrainClaim": {
+            "type": "boolean",
+            "description": "CATEGORY-CONFIG-DRIVEN. Whole grain claim flag. Present when extension_fields includes '_wholeGrainClaim'."
+          },
+          "_internal_cluster": {
+            "type": ["string", "null"],
+            "description": "CATEGORY-CONFIG-DRIVEN. Internal editorial cluster label (e.g. 'date-simple'). Stripped by page-data layer before UI display. Present when extension_fields includes '_internal_cluster'. Null when not yet assigned (Phase 1 generator — copy engine fills in Phase 2)."
+          },
+          "confidence_level": {
+            "type": "string",
+            "description": "Optional confidence level string (e.g. 'sufficient'). Present in some granola products only."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AdditiveEntry": {
+      "type": "object",
+      "required": ["e_number", "name_he", "tier", "function_he", "explanation_he"],
+      "properties": {
+        "e_number": { "type": "string" },
+        "name_he": { "type": "string" },
+        "tier": { "type": "string", "enum": ["functional", "likely-neutral", "dose-dependent", "contested", "disclosure-gap", "unclassified"] },
+        "function_he": { "type": "string" },
+        "explanation_he": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "BariGlassBoxVM": {
+      "type": "object",
+      "required": ["gateState"],
+      "properties": {
+        "gateState": { "type": "string", "enum": ["unconstrained", "demote", "withhold"] },
+        "disclosureCodes": { "type": "array", "items": { "type": "string" } },
+        "withheld": { "type": "boolean" },
+        "gatedScore": { "type": "number" },
+        "gatedGrade": { "type": "string", "enum": ["S", "A", "B", "C", "D", "E"] },
+        "partialNote": { "type": ["string", "null"] },
+        "withholdReason": { "type": ["string", "null"] },
+        "disclosureNotes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "BariProcessingSignalVM": {
+      "type": "object",
+      "required": ["confidence", "note_he"],
+      "properties": {
+        "nova_class": { "type": "integer" },
+        "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+        "population_correlation": { "type": "number" },
+        "modifier": { "type": "number" },
+        "modifier_note": { "type": "string" },
+        "note_he": { "type": ["string", "null"] },
+        "note_he_mobile": { "type": ["string", "null"] },
+        "confidence_note": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}
