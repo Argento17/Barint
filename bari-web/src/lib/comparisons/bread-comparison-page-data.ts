@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/bread_frontend_v2.json";
+import rawCorpus from "@/data/comparisons/bread_frontend_v3.json";
 
 import {
+  formatComparisonMetadataLine,
   loadComparisonCorpus,
   type ComparisonCorpusMeta,
   type ComparisonCorpusRaw,
 } from "@/lib/comparisons/corpus";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
-import { enrichRowSurface } from "@/lib/comparisons/row-surface";
 import {
   filterBreadProducts,
   BREAD_SHELF_LENS_OPTIONS,
@@ -17,48 +17,43 @@ import {
 import { breadComparisonMeta } from "@/lib/blog/bread-analysis-content";
 import type { BariProductVM } from "@/lib/view-models";
 
+// TASK-322: Bread conformed to uniform spine. enrichRowSurface removed.
+// loadComparisonCorpus is the single path — same as cereals/cheese/brined.
+// The extension field _website_cluster (for shelf filters) is carried through
+// by loadComparisonCorpus and accessible at runtime on the product objects.
+//
+// Fiber metric: bread displays fiber_g as its row metric (TASK-162).
+// expansion.nutrition.fiber is the canonical source (per-100g, from BSIP1 panel).
+// We map it into metrics.fiber_g here — display-only, no score logic, never fabricated.
+
 export type BreadCorpusMeta = ComparisonCorpusMeta;
 
-type BreadCorpusProduct = BariProductVM & {
-  _website_cluster?: string;
-};
+const _loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
+const breadCorpusMeta = _loaded.meta;
 
-function stripBreadInternalFields(products: BreadCorpusProduct[]): BariProductVM[] {
-  return products.map((product) => {
-    const { _website_cluster, ...rest } = product;
-    void _website_cluster;
-    return rest;
-  });
-}
-
-const loaded = loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
-const breadCorpusMeta = loaded.meta;
-
-// TASK-162: bread's headline row metric is fiber, not protein. The shared enrichRowSurface
-// (used by hummus/cheese/yogurts/spreads) only populates protein_g, so we additively layer
-// fiber_g on top here — bread-only — reading the real per-100g value straight off
-// expansion.nutrition.fiber. null passes through untouched (metric column renders "—"); never
-// fabricated. protein_g is left intact, so no shared/other-category behavior changes.
-const breadProducts = enrichRowSurface(
-  stripBreadInternalFields(loaded.products as BreadCorpusProduct[])
-)
-  .map((product) => ({
-    ...product,
-    metrics: {
-      // protein_g is always set by enrichRowSurface; keep it intact alongside the new fiber_g.
-      protein_g: product.metrics?.protein_g ?? null,
-      fiber_g: product.expansion.nutrition?.fiber ?? null,
-    },
-  }))
-  // Unlike the other v2 exports, the bread JSON ships in cluster order, not score order,
-  // so the shelf rendered out of rank (a 73 above an 80). The shared ComparisonPage
-  // preserves corpus order by design, so sort highest-score-first here; INSUFFICIENT
-  // products (score null) sink to the bottom. Shelf-lens filters still apply on top.
-  .sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+// Populate metrics.fiber_g from expansion.nutrition.fiber for the ComparisonPage metric column.
+// This is the only data transformation bread needs beyond loadComparisonCorpus.
+const breadProducts = _loaded.products.map((product) => ({
+  ...product,
+  metrics: {
+    protein_g: product.metrics?.protein_g ?? null,
+    fiber_g: product.expansion?.nutrition?.fiber ?? null,
+  },
+}));
 
 export { breadCorpusMeta, breadProducts };
 
-export const breadMetadataLine = `${breadCorpusMeta.product_count} מוצרים נבדקו · מדגם שופרסל · ממוין לפי ציון Bari`;
+export function formatBreadMetadataLine(
+  productCount: number,
+  generatedIso: string
+): string {
+  return formatComparisonMetadataLine(productCount, generatedIso);
+}
+
+export const breadMetadataLine = formatBreadMetadataLine(
+  breadProducts.length,
+  breadCorpusMeta.generated
+);
 
 /** Shelf copy — bread MVP handoff v1 (2026-05-30). */
 export const breadHero = {
