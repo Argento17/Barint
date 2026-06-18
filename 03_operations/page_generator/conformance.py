@@ -18,18 +18,22 @@ WHY THESE CHECKS (verified against source, reviewed by C3 / P215):
   `affected_set.build_corpus_to_shelves_map()`, which maps a corpus to a shelf ONLY
   if the corpus is registered in shadow_registry_v1.json AND resolves to a config.
 
-  So three things must ALL be true for a real flip to re-flow + serve a category:
+  UPDATE 2026-06-18 (spine re-flow fix, parallel-chat finding): spine_flip.py now
+  rescores EVERY live config unconditionally — it NO LONGER gates the rescore on the
+  shadow diff / registry mapping (that gate keyed off a stored baseline which drifted
+  from the live shelves and silently skipped live categories). So re-flow is guaranteed
+  by HARD-1 + HARD-3 alone; registry reachability is demoted to SOFT-2 (advisory, governs
+  only the shadow-diff PREVIEW). Two things must be true for a real flip to re-flow + serve:
 
   HARD-1  config exists and its corpus dirs resolve (the shelf can be scored at all).
-  HARD-2  the category's shelf stem is REACHABLE by the real flip path — i.e. some
-          registered corpus maps to it via the actual `build_corpus_to_shelves_map()`
-          (NOT a re-implementation; we import and call the real function). Fail =
-          the flip never includes this shelf -> it keeps old scores. (C3: load-bearing.)
   HARD-3  config.baseline_json is set AND equals the frontend JSON the live route
           serves (per live_manifest.json). Fail = the flip may rescore correctly but
           `copy_stage` writes nowhere / to a stale file -> the page still serves old
           data. (C3 P215: "rescored but frontend kept serving old JSON" is the worst,
           days-later drift — false confidence is the bigger danger than false alarms.)
+  SOFT-2  ADVISORY: whether a registered corpus maps to this shelf (shadow-diff PREVIEW
+          visibility only). No longer a re-flow blocker — the flip rescores every live
+          config regardless.
 
   SOFT (deploy/live hygiene, reported but do NOT block — C3 classified these as
   non-re-flow):
@@ -357,21 +361,20 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
         "all corpus dirs exist" if dirs_ok
         else f"missing/empty corpus dirs: {missing or '(none declared)'}")
 
-    # HARD-2: stem reachable by the real flip mapper.
-    # If the category is in the registry's DEFERRED list, non-reachability is a
-    # documented, accepted Shadow-v1 limitation (bespoke loader / Shadow v2), not a
-    # fixable bug -> report it but do NOT hard-fail (would be a perpetual false alarm).
+    # SOFT-2: shadow-diff PREVIEW visibility (ADVISORY since the 2026-06-18 spine re-flow
+    # fix). spine_flip.py now rescores EVERY live config unconditionally — it no longer
+    # gates the rescore on the shadow diff / registry mapping. So a live config re-flows
+    # because it IS a live config (guaranteed by HARD-1 corpus + HARD-3 baseline_served),
+    # NOT because a registered corpus maps to it. Registry mapping now only governs whether
+    # the (advisory) shadow-diff PREVIEW shows this shelf. We report it for that diagnostic
+    # value but it is NOT a re-flow blocker. (Was HARD-2; demoted after the parallel-chat
+    # finding that the shadow baseline drifts from the live shelves.)
     corpora = stem_corpora.get(stem, [])
-    if not corpora and deferred:
-        add("HARD-2-flip_reachable", False, False,
-            "NOT reachable, but category is in shadow_registry DEFERRED list "
-            "(bespoke loader / out of Shadow-v1 scope) -> accepted; needs a Shadow-v2 "
-            "custom loader to re-flow on a switch")
-    else:
-        add("HARD-2-flip_reachable", True, bool(corpora),
-            f"reachable via registered corpus/corpora: {corpora}" if corpora
-            else "NO registered corpus maps to this shelf -> a score-flip will SKIP it "
-                 "(not in shadow_registry_v1.json or mapping unresolved)")
+    add("SOFT-2-shadow_preview", False, True,
+        f"shadow-diff preview will show this shelf (registered corpus/corpora: {corpora})"
+        if corpora
+        else "re-flows via unconditional live-config rescore; shadow-diff preview is BLIND "
+             "to it (no registered corpus maps -> not a blocker, just advisory drift)")
 
     # HARD-3: baseline_json set + equals served frontend JSON
     baseline = cfg.get("baseline_json")

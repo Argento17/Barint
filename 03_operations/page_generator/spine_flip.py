@@ -136,6 +136,21 @@ def get_shelf_config(shelf: str) -> tuple[Path, dict[str, Any]]:
     return cfg_path, cfg
 
 
+def list_live_shelves() -> list[str]:
+    """Every live page_generator config stem (the authoritative set of live shelves).
+
+    This is what a flip MUST re-flow — NOT the shadow-diff's affected set. The shadow
+    diff gates on a stored baseline that drifts from the live shelves (verified 2026-06-18:
+    the 06-16 baseline was missing cakes/cookies_coffee/bread/brined_cheeses/granola and
+    never scanned the only shelf carrying palm markers), so using it to decide what
+    rescores means a flip silently SKIPS live categories — contradicting the re-flow
+    doctrine. The live configs/*.json set is the source of truth; '_generated_*' are
+    scaffold artifacts, not live shelves.
+    """
+    return [p.stem for p in sorted(CONFIGS_DIR.glob("*.json"))
+            if not p.name.startswith("_generated_")]
+
+
 def get_baseline(cfg: dict[str, Any]) -> Path:
     b = cfg.get("baseline_json")
     if not b:
@@ -281,7 +296,15 @@ def main() -> int:
         print("ERROR: affected_set.py did not produce output", file=sys.stderr)
         return 3
     affected = load_json(affected_path)
-    affected_shelves: list[str] = list(affected.get("affected_shelves") or [])
+    # ADVISORY ONLY (2026-06-18 spine re-flow fix): the shadow diff's affected set is a
+    # drift-prone PREVIEW of what the backtest thinks moved — it is NOT the gate for what
+    # rescores. The authoritative rescore set is every live config.
+    shadow_preview_shelves: list[str] = list(affected.get("affected_shelves") or [])
+    rescore_shelves: list[str] = list_live_shelves()
+    # Drift diagnostics: shelves the shadow diff was BLIND to (rescored anyway) and shelves
+    # it flagged that aren't even live configs (stale/phantom).
+    blind_shelves = [s for s in rescore_shelves if s not in shadow_preview_shelves]
+    phantom_preview = [s for s in shadow_preview_shelves if s not in rescore_shelves]
 
     # Prepare out_dir early so block reports still land somewhere
     if args.out_dir:
@@ -295,29 +318,17 @@ def main() -> int:
     bundle_affected = out_dir / "affected_set.json"
     shutil.copy2(affected_path, bundle_affected)
 
-    if not affected_shelves:
-        # No movement — clean exit 0, still emit minimal report + affected
-        empty_report = {
-            "spine": "flip",
-            "flag_overrides": overrides,
-            "note": args.note,
-            "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "affected_shelves": [],
-            "verdict": "NO_MOVEMENT",
-            "affected_set_sha": sha256_path(bundle_affected),
-        }
-        write_json(out_dir / "spine_run_report.json", empty_report)
-        (out_dir / "spine_run_report.md").write_text(
-            "# Spine Flip — NO MOVEMENT\n\n" + json.dumps(overrides) + "\n\nNo shelves required re-score.",
-            encoding="utf-8",
-        )
-        print("\n=== NO MOVEMENT (exit 0) ===")
-        print(f"DEPLOY-READY: 0 shelves, 0 products need copy authoring, gates N/A. No push performed.")
-        elapsed = time.perf_counter() - t_start
-        print(f"Total wall time: {elapsed:.1f}s")
-        return 0
+    if not rescore_shelves:
+        # No live configs at all — genuine error, not "no movement".
+        print("ERROR: no live page_generator configs found to rescore", file=sys.stderr)
+        return 3
 
-    print(f"Affected shelves ({len(affected_shelves)}): {', '.join(affected_shelves)}")
+    print(f"Live shelves to re-flow ({len(rescore_shelves)}): {', '.join(rescore_shelves)}")
+    print(f"Shadow-diff preview (advisory): {', '.join(shadow_preview_shelves) or 'none'}")
+    if blind_shelves:
+        print(f"  NOTE: shadow diff was BLIND to (rescoring anyway): {', '.join(blind_shelves)}")
+    if phantom_preview:
+        print(f"  NOTE: shadow diff flagged non-live/stale shelves (ignored): {', '.join(phantom_preview)}")
 
     # --- Route: --via-spine (DAG runner + lineage) vs classic sequential ---
     if args.via_spine:
@@ -329,13 +340,13 @@ def main() -> int:
         _spec.loader.exec_module(_sp)
 
         pipeline_results, per_shelf, per_shelf_authors = _sp.run_via_spine(
-            affected_shelves=affected_shelves,
+            affected_shelves=rescore_shelves,
             overrides=overrides,
             force=args.force,
         )
         all_commands = list(commands_run)
         all_commands.append({
-            "cmd": f"run_via_spine(shelves={affected_shelves}, force={args.force})",
+            "cmd": f"run_via_spine(shelves={rescore_shelves}, force={args.force})",
             "pipeline_results": pipeline_results,
             "exit_code": 0,
         })
@@ -347,7 +358,7 @@ def main() -> int:
 
     # --- Per-shelf sequential loop (classic mode only; --via-spine populates above) ---
     if not args.via_spine:
-        for shelf in affected_shelves:
+        for shelf in rescore_shelves:
             print(f"\n========== SHELF: {shelf} ==========")
             shelf_rec: dict[str, Any] = {
                 "shelf": shelf,
@@ -522,7 +533,11 @@ def main() -> int:
         "flag_overrides": overrides,
         "note": args.note,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "affected_shelves": affected_shelves,
+        "rescored_shelves": rescore_shelves,
+        "affected_shelves": rescore_shelves,  # back-compat alias (now = all live shelves)
+        "shadow_preview_shelves": shadow_preview_shelves,
+        "shadow_preview_blind_to": blind_shelves,
+        "shadow_preview_phantom": phantom_preview,
         "per_shelf": per_shelf,
         "consolidated_author": {
             "total_author_needed": total_author,
@@ -547,7 +562,9 @@ def main() -> int:
         f"**verdict:** {overall_verdict}",
         "",
         "## Summary",
-        f"- Shelves processed: {len(affected_shelves)}",
+        f"- Live shelves re-flowed: {len(rescore_shelves)} (every live config — not gated by the shadow diff)",
+        f"- Shadow-diff preview (advisory): {', '.join(shadow_preview_shelves) or 'none'}",
+        f"- Shadow diff was blind to (rescored anyway): {', '.join(blind_shelves) or 'none'}",
         f"- Products needing copy authoring (consolidated): {total_author}",
         f"- Gates: {gates_summary}",
         "",
@@ -608,7 +625,7 @@ def main() -> int:
     elapsed = time.perf_counter() - t_start
 
     # Final DEPLOY-READY line (exact per spec)
-    n_shelves = len(affected_shelves)
+    n_shelves = len(rescore_shelves)
     print("\n" + "=" * 70)
     print(
         f"DEPLOY-READY: {n_shelves} shelves, {total_author} products need copy authoring, "
