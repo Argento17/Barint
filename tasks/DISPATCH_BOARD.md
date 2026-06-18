@@ -16,6 +16,45 @@ Owner-opened program from a 2-dump horizon-scan (Food Compass / Fazzino HPF / ma
 ### Evidence Horizon-Scan salvage (owner: "use the orchestrator skill", 2026-06-18)
 - **TASK-326 → Nutrition Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-18).** No-score-change corroboration addendum landed at **EV-059** (registry lines 1990-1998) on the contested Southampton-6 azo-dye tier. **Verified:** git diff --stat HEAD = +26 insertions / 0 deletions / 1 file (purely additive); NO score_engine/constants/render_fields/config/page-JSON touched. FDA facts FDA.gov/HHS.gov-sourced — Red 3 revocation (2025-01-15; E127 erythrosine correctly flagged xanthene-not-azo, NOT one of the six) + 6-dye phase-out (2025-04-22; 3/6 overlap E102/E110/E129). Contested tier confirmed-not-promoted; azo-dye-cap future-action left gated; no D6/D7 opened (firewall + tripwire-1 held). Not committed/pushed.
 
+### 🧪 SPINE FIRST-RUN — Hebrew-cake-label gap closure (owner: "start WS0-2, orchestrator, 3×C1+1×C2, C3 mandatory", 2026-06-18)
+Coordinated from the chocolate-cake label audit + `research/16.08/` evidence eval (3 chats folded to one plan). All
+score-moving changes deliver THROUGH THE SPINE (`spine_flip.py`) — its first live use, doubling as the spine's
+acceptance test. Staging-only; every merge owner-gated (published-score move = tripwire 1). WS0 git items resolved
+to no-ops (addenda not in tree; commit 8553158d absent). **DISPATCHED 2026-06-18 (5 lanes, disjoint files):**
+- **P206 → TASK-327 → C3 — ✅ RETURNED + verdict recorded.** Plan VALIDATED: hardened-palm→generic tier (not
+  trans) defensible (PMIDs 3362176 Bonanome-Grundy, 17224066 Sundram; "no source makes מוקשה alone PHO-severe");
+  cakes = right first flip. Sharpened: (1) #1 risk = shared-parser spillover → spine drill MUST read FULL
+  cross-corpus affected-set + frozen gate (butter/cheese/bread), not just cakes; (2) plain שמן דקל / עמילן מוקשה
+  must not fire; (3) don't double-count SFA; research/16.08 = directional, label-verify before movement.
+- **P210 → C2 — ✅ RETURNED + verified.** Overlap set = {E466,E433,E407} (independent of P209); scoring path git
+  diff EMPTY. Cross-check for 327/329.
+- **P209 → TASK-329 → C1-CURSOR — ✅ CLOSED + orchestrator-verified (2026-06-18).** Ran module --single on live
+  cakes 2472148: index 13.0→9.0, deduped_against_ev002=2 (E466+E407 excluded from EV-003, EV-002 ×3 kept). Scope
+  = method_additive_burden.py ONLY (+50/-3); scoring path diff EMPTY; OFF-null preserved. (821-vs-898 denominator
+  = pre-existing calibration-scope, not the dedupe.) → tasks/closed/.
+- **P207 → TASK-327 → C1-GEMINI — 🔵 DISPATCHED.** `signal_extractor.py` only: palm-hydro aliases
+  (`שמן דקל מוקשה`) into EXISTING EV-097 generic tier behind new flag `BARI_PALM_HYDRO_V1` (default OFF =
+  byte-identical). Score-neutral when off; spine flips it as what-if. Then orchestrator runs the spine drill.
+- **P208 → TASK-328 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-18).** 6 identities → ingredient_taxonomy.py
+  ONLY (+72): E903/E492/E553b/E525/E327/E326, all resolve, E327≠E326 distinct. ZERO scoring delta PROVEN: 0 refs to
+  the 5 new class strings in score_engine/constants/signal_extractor + consumer matches additive_class by exact ==
+  (so emulsifier_low_structural ≠ emulsifier_low → no F1/ECS path). Selftest ALL PASS exit 0. No flag/spine/deploy.
+  → tasks/closed/.
+- **P207 → TASK-327 → C1-GEMINI — ✅ RETURNED + orchestrator-verified (artifact, not prose — Gemini hung on
+  return emission but the edit was complete + correct).** `signal_extractor.py` only (+22/-4): new flag
+  `BARI_PALM_HYDRO_V1` default-OFF; base list renamed `_PHVO_GENERIC_MARKERS_BASE`, `_effective_phvo_generic` =
+  base + 3 palm aliases only when ON. Functional test (mine): OFF → all False (byte-identical); ON → target
+  `שמן דקל מוקשה` fires has_phvo_generic=True, plain `שמן דקל` + `עמילן מוקשה` stay False (C3 traps clear).
+- **🧪 SPINE FIRST-RUN EXECUTED (orchestrator drill, 2026-06-18, bundle `_spine_runs/20260618T111432Z`):**
+  `spine_flip --set BARI_PALM_HYDRO_V1=on` → **DEPLOY-READY: 2 shelves, gates REVIEW, frozen breach NONE, 6.1s.**
+  **Spine machinery PASSES** (all stages ran; frozen gate correctly clean; gates returned REVIEW not PASS = guard
+  working). **BUT flag is a NO-OP on live corpus:** 0 score_moves / 0 grade_moves; **0 products carry `שמן דקל מוקשה`
+  anywhere** (exact+flexible grep). Image cake was a one-off, not in corpus. Findings: (a) signal correct but no
+  live target → nothing to merge; (b) affected_set over-includes (flagged cereals+hummus @0-move, not cakes — can't
+  separate flag-delta from baseline drift); (c) gate REVIEW = PRE-EXISTING render-contract gap (missing
+  comparisonContext) + copy-safety (חלבון נמוך, sodium causal) on cereals/hummus, NOT the flip. **WALL → owner
+  decision (TASK-327 disposition + discovered pre-existing gate failures). Not closed.**
+
 ---
 
 ## 🏗️ Scoring Release Platform — Phase 0 (owner-approved 2026-06-16, assessment in chat)
