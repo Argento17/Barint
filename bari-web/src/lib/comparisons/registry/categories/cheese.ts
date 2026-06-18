@@ -3,7 +3,7 @@ import {
   getCheeseCorpusPayload,
   getCheesePageData,
   cheeseComparisonMetadata,
-} from "../../cheese-comparison-page-data";
+} from "../../cheese-page-data";
 
 export const cheeseCategoryDefinition: ComparisonCategoryDefinition = {
   id: "cheese",

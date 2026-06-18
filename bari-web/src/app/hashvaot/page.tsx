@@ -21,7 +21,7 @@ import { breadProducts } from "@/lib/comparisons/bread-page-data";
 import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
-import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-comparison-page-data";
+import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-page-data";
 import { cerealsProducts } from "@/lib/comparisons/cereals-page-data";
 import { granolaProducts } from "@/lib/comparisons/granola-page-data";
 import { milkProducts } from "@/lib/comparisons/milk-page-data";
