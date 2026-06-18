@@ -3,7 +3,7 @@
 spine_flip.py — Spine step 4: orchestration command (P169 / TASK-319).
 
 Chains the existing verified pieces (orchestration ONLY):
-  affected_set.py --set ...  → affected shelves + FROZEN GATE (exit 2 on breach, never proceed)
+  affected_set.py --set ...  → affected shelves (NO freeze gate — nothing is frozen, owner 2026-06-18)
   rescore_all.py --shelf <s> (with flag overrides via env for the what-if)
   copy_stage.py --staging <rescored> --live <config.baseline_json> --shelf <s>
   gates/run_gates.py <post-copy page> --config <shelf.json> --baseline <live> [--schema ... --corpus ... --run ...]
@@ -16,12 +16,11 @@ CLI:
   python spine_flip.py --set BARI_X=on [--set BARI_Y=off ...] [--note "..."] [--out-dir _rescore_staging/_spine_runs/<ts>]
 
 Exit:
-  2 = frozen breach (hard block)
   1 = movement processed (with per-shelf errors recorded)
   0 = no movement
 
 Final line (always):
-  "DEPLOY-READY: N shelves, M products need copy authoring, gates <PASS/REVIEW>, frozen breach <none|...>. No push performed."
+  "DEPLOY-READY: N shelves, M products need copy authoring, gates <PASS/REVIEW>. No push performed."
 
 Produces in --out-dir:
   - spine_run_report.json + .md (full aggregate + per-shelf)
@@ -217,7 +216,7 @@ def main() -> int:
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(
-        description="Spine orchestrator: flag what-if → affected + frozen gate → rescore + copy + gate → deploy-ready bundle (staging only)."
+        description="Spine orchestrator: flag what-if → affected → rescore + copy + gate → deploy-ready bundle (staging only)."
     )
     parser.add_argument(
         "--set",
@@ -263,7 +262,7 @@ def main() -> int:
     flag_str = " ".join(f"{k}={v}" for k, v in overrides.items())
     print(f"SPINE FLIP start  flags={flag_str}  note={args.note or '(none)'}")
 
-    # --- 1. Affected set + FROZEN GATE ---
+    # --- 1. Affected set (no freeze gate — nothing is frozen, owner ruling 2026-06-18) ---
     affected_path = REPO / "affected_set_spine.json"  # temp working name; will be copied to bundle
     affected_cmd = [
         sys.executable,
@@ -274,7 +273,7 @@ def main() -> int:
     affected_cmd.extend(["--out", str(affected_path)])
 
     exit_a, out_a, err_a = run_subprocess(
-        affected_cmd, cwd=REPO, description="affected_set.py (shadow diff + shelf map + frozen gate)"
+        affected_cmd, cwd=REPO, description="affected_set.py (shadow diff + shelf map)"
     )
     commands_run.append({"cmd": " ".join(affected_cmd), "exit_code": exit_a})
 
@@ -282,9 +281,7 @@ def main() -> int:
         print("ERROR: affected_set.py did not produce output", file=sys.stderr)
         return 3
     affected = load_json(affected_path)
-    frozen_touched = bool(affected.get("frozen_touched"))
     affected_shelves: list[str] = list(affected.get("affected_shelves") or [])
-    frozen_breaches: list[str] = list(affected.get("frozen_breaches") or [])
 
     # Prepare out_dir early so block reports still land somewhere
     if args.out_dir:
@@ -298,42 +295,6 @@ def main() -> int:
     bundle_affected = out_dir / "affected_set.json"
     shutil.copy2(affected_path, bundle_affected)
 
-    if frozen_touched:
-        # HARD BLOCK — write report, exit 2, no further scoring/copy/gates
-        block_report = {
-            "spine": "flip",
-            "flag_overrides": overrides,
-            "note": args.note,
-            "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "frozen_touched": True,
-            "frozen_breaches": frozen_breaches,
-            "affected_shelves": affected_shelves,
-            "verdict": "FROZEN_BREACH_BLOCK",
-            "affected_set_sha": sha256_path(bundle_affected),
-        }
-        write_json(out_dir / "spine_run_report.json", block_report)
-        md = [
-            f"# Spine Flip — FROZEN BREACH BLOCK",
-            "",
-            f"flags: {flag_str}",
-            f"note: {args.note}",
-            f"generated: {block_report['generated_at']}",
-            "",
-            f"**FROZEN BREACH** — {', '.join(frozen_breaches) or 'unknown'}",
-            "This is a hard stop. No rescore, no copy, no gates, no bundle of staged pages.",
-            "Owner must resolve the invariant violation before any further spine action on these flags.",
-            "",
-            "See affected_set.json for full shadow details.",
-        ]
-        (out_dir / "spine_run_report.md").write_text("\n".join(md), encoding="utf-8")
-        print("\n=== FROZEN BREACH — HARD BLOCK (exit 2) ===")
-        print(f"frozen_breaches: {', '.join(frozen_breaches)}")
-        print(f"Report bundle: {out_dir}")
-        print(f"DEPLOY-READY: 0 shelves, 0 products need copy authoring, gates N/A, frozen breach {','.join(frozen_breaches) or 'yes'}. No push performed.")
-        elapsed = time.perf_counter() - t_start
-        print(f"Total wall time: {elapsed:.1f}s")
-        return 2
-
     if not affected_shelves:
         # No movement — clean exit 0, still emit minimal report + affected
         empty_report = {
@@ -341,8 +302,6 @@ def main() -> int:
             "flag_overrides": overrides,
             "note": args.note,
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "frozen_touched": False,
-            "frozen_breaches": [],
             "affected_shelves": [],
             "verdict": "NO_MOVEMENT",
             "affected_set_sha": sha256_path(bundle_affected),
@@ -353,7 +312,7 @@ def main() -> int:
             encoding="utf-8",
         )
         print("\n=== NO MOVEMENT (exit 0) ===")
-        print(f"DEPLOY-READY: 0 shelves, 0 products need copy authoring, gates N/A, frozen breach none. No push performed.")
+        print(f"DEPLOY-READY: 0 shelves, 0 products need copy authoring, gates N/A. No push performed.")
         elapsed = time.perf_counter() - t_start
         print(f"Total wall time: {elapsed:.1f}s")
         return 0
@@ -551,8 +510,6 @@ def main() -> int:
         "flag_overrides": overrides,
         "note": args.note,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "frozen_touched": False,
-        "frozen_breaches": [],
         "affected_shelves": affected_shelves,
         "per_shelf": per_shelf,
         "consolidated_author": {
@@ -580,7 +537,6 @@ def main() -> int:
         f"- Shelves processed: {len(affected_shelves)}",
         f"- Products needing copy authoring (consolidated): {total_author}",
         f"- Gates: {gates_summary}",
-        f"- Frozen breach: none",
         "",
         "## Per-shelf",
     ]
@@ -643,7 +599,7 @@ def main() -> int:
     print("\n" + "=" * 70)
     print(
         f"DEPLOY-READY: {n_shelves} shelves, {total_author} products need copy authoring, "
-        f"gates {gates_summary}, frozen breach none. No push performed."
+        f"gates {gates_summary}. No push performed."
     )
     print(f"Bundle: {out_dir}")
     print(f"Report: {out_dir / 'spine_run_report.json'} + .md")

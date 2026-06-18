@@ -389,7 +389,6 @@ def cmd_diff(args) -> int:
     }
 
     names = args.corpus or list(baseline["corpora"].keys())
-    frozen_touched = False
     any_movement = False
 
     for name in names:
@@ -402,14 +401,11 @@ def cmd_diff(args) -> int:
         flags.update(overrides)
         src = resolve_source(b["source"])
         if not src.exists():
-            # A frozen corpus the gate cannot re-score is UNVERIFIABLE — that is
-            # a gate failure, not a pass. Non-frozen: skip loudly, never silently.
+            # Source not in this checkout — skip loudly, never silently.
             print(f"  {name:22s} SKIPPED — source not in this checkout: {b['source']}")
             report["corpora"][name] = {
                 "class": b["class"], "skipped_missing_source": b["source"],
             }
-            if b["class"] == "frozen":
-                frozen_touched = True
             continue
         snaps = score_corpus(str(src), flags)
 
@@ -428,8 +424,6 @@ def cmd_diff(args) -> int:
         corpus_moved = bool(moves or (old_pids - new_pids) or (new_pids - old_pids))
         if corpus_moved:
             any_movement = True
-        if b["class"] == "frozen" and (corpus_moved or violations):
-            frozen_touched = True
         if violations:
             any_movement = True
 
@@ -449,9 +443,8 @@ def cmd_diff(args) -> int:
               f"{report['corpora'][name]['grade_changes']:3d}"
               f"{'  INVARIANT VIOLATION' if violations else ''}")
 
-    if frozen_touched:
-        verdict, exit_code = "FROZEN_TOUCHED", 2
-    elif any_movement:
+    # No freeze gate (owner 2026-06-18: nothing is frozen). MOVEMENT=1, CLEAN=0.
+    if any_movement:
         verdict, exit_code = "MOVEMENT", 1
     else:
         verdict, exit_code = "CLEAN", 0

@@ -3,8 +3,9 @@
 affected_set.py — Spine step 2: resolve shadow what-if into an affected-set manifest.
 
 Given flag overrides (or an existing shadow_report.json), determine which corpora
-moved, whether frozen invariants were touched, and which rescore_all shelf configs
-must re-run. Read-only over shadow/registry/configs — no scoring re-implementation.
+moved and which rescore_all shelf configs must re-run. No freeze gate (owner ruling
+2026-06-18: nothing is frozen). Read-only over shadow/registry/configs — no scoring
+re-implementation.
 """
 
 from __future__ import annotations
@@ -168,7 +169,6 @@ def build_affected_set(report: dict[str, Any]) -> dict[str, Any]:
 
     affected: list[dict[str, Any]] = []
     affected_shelves: list[str] = []
-    frozen_breaches: list[str] = []
     affected_no_config: list[dict[str, str]] = []
 
     for corpus, entry in sorted(corpora.items()):
@@ -188,9 +188,6 @@ def build_affected_set(report: dict[str, Any]) -> dict[str, Any]:
             "shelf": shelf,
         })
 
-        if cls == "frozen":
-            frozen_breaches.append(corpus)
-
         if shelf:
             for s in corpus_to_shelves.get(corpus, [shelf]):
                 if s not in affected_shelves:
@@ -198,27 +195,18 @@ def build_affected_set(report: dict[str, Any]) -> dict[str, Any]:
         else:
             affected_no_config.append({"corpus": corpus, "reason": no_config_reason or "unmapped"})
 
-    frozen_touched = bool(frozen_breaches) or any(
-        entry.get("invariant_violations")
-        for entry in corpora.values()
-        if entry.get("class") == "frozen" and _is_affected(entry)
-    )
-
     return {
         "flag_overrides": report.get("flag_overrides") or {},
         "shadow_verdict": report.get("verdict", ""),
         "shadow_exit_code": int(report.get("exit_code", 0)),
-        "frozen_touched": frozen_touched,
         "affected": affected,
         "affected_shelves": sorted(affected_shelves),
-        "frozen_breaches": sorted(frozen_breaches),
         "affected_no_config": affected_no_config,
     }
 
 
 def compute_exit_code(manifest: dict[str, Any]) -> int:
-    if manifest["frozen_touched"]:
-        return 2
+    # No freeze gate (owner 2026-06-18: nothing is frozen). 1 = movement, 0 = none.
     if manifest["affected"]:
         return 1
     return 0
@@ -227,9 +215,6 @@ def compute_exit_code(manifest: dict[str, Any]) -> int:
 def print_summary(manifest: dict[str, Any], report_path: Path) -> None:
     print(f"shadow report: {report_path}")
     print(f"verdict: {manifest['shadow_verdict']}  exit_code: {manifest['shadow_exit_code']}")
-    print(f"frozen_touched: {manifest['frozen_touched']}")
-    if manifest["frozen_breaches"]:
-        print(f"frozen_breaches: {', '.join(manifest['frozen_breaches'])}")
     print(f"affected corpora: {len(manifest['affected'])}")
     for row in manifest["affected"]:
         print(
