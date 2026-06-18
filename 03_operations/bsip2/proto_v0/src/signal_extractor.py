@@ -36,6 +36,12 @@ TASK144_FIXES_ON = os.environ.get("BARI_TASK144_FIXES", "off").lower() == "on"
 # Default OFF — batch runners for hard_cheeses/cheese_spreads set BARI_DAIRY_SAT_FAT_INFER=on.
 DAIRY_SAT_FAT_INFER_ON = os.environ.get("BARI_DAIRY_SAT_FAT_INFER", "off").lower() == "on"
 
+# BARI_PALM_HYDRO_V1 — (TASK-327 / EV-097) when ON, hardened palm oil
+# (שמן דקל מוקשה, שמן דקלים מוקשה, שומן דקל מוקשה) is detectable as a
+# generic hardened fat (ceiling 55, not trans-tier 40).
+# Default OFF — behaviour is byte-identical to baseline when unset.
+PALM_HYDRO_V1_ON = os.environ.get("BARI_PALM_HYDRO_V1", "off").lower() == "on"
+
 # ---------------------------------------------------------------------------
 # Hebrew ingredient keyword lists
 # ---------------------------------------------------------------------------
@@ -1176,7 +1182,7 @@ def extract_signals(product: dict) -> dict:
         "מוקשה חלקית",           # partially hydrogenated (Hebrew)
         "partially hydrogenated",  # English label imports
     ]
-    _PHVO_GENERIC_MARKERS = [
+    _PHVO_GENERIC_MARKERS_BASE = [
         "שומן צמחי מוקשה",    # hydrogenated vegetable fat
         "שמן צמחי מוקשה",     # hydrogenated vegetable oil
         "שומנים מוקשים",      # Fix-B: generic hardened fats (plural)
@@ -1184,7 +1190,19 @@ def extract_signals(product: dict) -> dict:
         # "מחמאה" REMOVED — clarified butter (ghee), animal fat, not PHVO. D6 Q1 (TASK-280/EV-086).
         "מרגרינה",            # Fix-B: margarine (transliteration form)
     ]
-    _PHVO_MARKERS = _PHVO_PARTIAL_MARKERS + _PHVO_GENERIC_MARKERS  # combined (legacy has_phvo)
+    
+    _effective_phvo_generic = list(_PHVO_GENERIC_MARKERS_BASE)
+    if PALM_HYDRO_V1_ON:
+        # EV-097 lineage + research/16.08 (FDA 2015 PHO non-GRAS; Bonanome-Grundy NEJM
+        # 1988 stearic acid -> fully-hydrogenated != trans severity). Note this resolves
+        # the open "generic hardened-fat ceiling" delta conservatively.
+        _effective_phvo_generic.extend([
+            "שמן דקל מוקשה",
+            "שמן דקלים מוקשה",
+            "שומן דקל מוקשה",
+        ])
+
+    _PHVO_MARKERS = _PHVO_PARTIAL_MARKERS + _effective_phvo_generic  # combined (legacy has_phvo)
     # PHVO detection: only fire if marker appears in first 8 ingredient positions (1-indexed).
     # Fallback to full-text search when ingredient_order is not available.
     # D6 Q2 / D7 (TASK-280/EV-086): position gate prevents trace margarine from triggering.
@@ -1199,12 +1217,12 @@ def extract_signals(product: dict) -> dict:
             if item.get("position", 999) <= _PHVO_MARKER_MAX_POSITION
         )
         has_phvo_partial = any(marker in early_ingredients for marker in _PHVO_PARTIAL_MARKERS)
-        has_phvo_generic = any(marker in early_ingredients for marker in _PHVO_GENERIC_MARKERS)
+        has_phvo_generic = any(marker in early_ingredients for marker in _effective_phvo_generic)
         has_phvo = has_phvo_partial or has_phvo_generic
     else:
         phvo_text = (ing_text or full_text or "").lower()
         has_phvo_partial = any(marker in phvo_text for marker in _PHVO_PARTIAL_MARKERS)
-        has_phvo_generic = any(marker in phvo_text for marker in _PHVO_GENERIC_MARKERS)
+        has_phvo_generic = any(marker in phvo_text for marker in _effective_phvo_generic)
         has_phvo = has_phvo_partial or has_phvo_generic
 
     # Fortification detection
