@@ -295,6 +295,28 @@ def count_corpus_products(cfg: dict) -> int | None:
     return count if count > 0 else None
 
 
+def unmapped_registered_corpora(registry: dict,
+                                stem_corpora: dict[str, list[str]]) -> list[dict]:
+    """Registered scored corpora that map to NO config stem (no live page).
+
+    These are correctly NOT conformance-checked (there is no page to go stale), but
+    leaving them implicit means "is this category covered?" has no visible answer.
+    This surfaces them explicitly so the silent gap can't recur (red-team MEDIUM
+    2026-06-18). Returns [{name, class, note_head}] for each unmapped corpus.
+    """
+    mapped: set[str] = set()
+    for corpora in stem_corpora.values():
+        mapped.update(corpora)
+    out: list[dict] = []
+    for c in registry.get("corpora", []):
+        name = c.get("name", "")
+        if name and name not in mapped:
+            note = (c.get("note") or "").strip()
+            head = note.split(".")[0][:90] if note else ""
+            out.append({"name": name, "class": c.get("class"), "note_head": head})
+    return out
+
+
 def registry_source_map(registry: dict) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for c in registry.get('corpora', []):
@@ -538,7 +560,7 @@ def resolve_stem(slug: str, configs: dict[str, dict]) -> str | None:
     return None
 
 
-def print_report(results: list[dict]) -> None:
+def print_report(results: list[dict], registry_unmapped: list[dict] | None = None) -> None:
     for r in results:
         if not r["conforms"]:
             status = "NON-CONFORMING"
@@ -571,6 +593,17 @@ def print_report(results: list[dict]) -> None:
               "at OLD scores. Fix before the next score switch.")
     else:
         print("\nAll non-deferred categories will re-flow correctly on a score-flip.")
+
+    if registry_unmapped:
+        print("\n" + "-" * 72)
+        print("REGISTERED CORPORA WITH NO LIVE PAGE (not conformance-checked, by design):")
+        print("  These are scored in the shadow backtest but map to NO config/route, so")
+        print("  there is no live page to go stale. Listed for visibility — if one SHOULD")
+        print("  be live it needs a config + route; if it is a retired/expansion corpus the")
+        print("  note says so.")
+        for u in registry_unmapped:
+            head = f" — {u['note_head']}" if u.get("note_head") else ""
+            print(f"  - {u['name']:24s} [class={u.get('class')}]{head}")
 
 
 def main() -> int:
@@ -613,10 +646,16 @@ def main() -> int:
         for stem in stems
     ]
 
+    # In --all mode, surface registered corpora that map to no config (no live page).
+    registry_unmapped = unmapped_registered_corpora(registry, stem_corpora) if args.all else None
+
     if args.json:
-        print(json.dumps(results, ensure_ascii=False, indent=2))
+        out = {"results": results}
+        if registry_unmapped is not None:
+            out["registry_unmapped"] = registry_unmapped
+        print(json.dumps(out, ensure_ascii=False, indent=2))
     else:
-        print_report(results)
+        print_report(results, registry_unmapped)
 
     return 0 if all(r["conforms"] for r in results) else 1
 

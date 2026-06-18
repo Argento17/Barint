@@ -565,25 +565,53 @@ def gate_coverage(frontend, corpus):
     else:
         g.info("name: all products have Hebrew characters in name")
 
-    # --- Schema-agnostic PENDING_COPY check (insightLine, rowVerdict) ---
+    # --- Schema-agnostic unauthored-copy check (insightLine / rowVerdict) ---
+    # Two distinct failures, both checked only AFTER the copy stage has run:
+    #   (1) the literal PENDING_COPY placeholder leaked into a served field; and
+    #   (2) a row that would render NO verdict at all — insightLine AND rowVerdict both
+    #       unauthored (PENDING / null / empty / missing).
+    # We deliberately do NOT fault a single empty field on its own: per the view model
+    # (src/lib/view-models/index.ts) insightLine="" means "no insight slot rendered", and
+    # rowVerdict is DERIVED from insightLine at render for several pages
+    # (hummus-comparison-page-data.ts, row-surface.ts) — so a lone null/empty field is
+    # legitimate (milk renders via rowVerdict; hummus via insightLine). Only a row with
+    # NEITHER authored is genuinely verdict-less. (Red-team MEDIUM 2026-06-18: the prior
+    # check caught only the literal PENDING string and missed a fully-nulled row.)
     pending = "PENDING_COPY"
+
+    def _authored(v):
+        return isinstance(v, str) and v.strip() != "" and v != pending
+
     copy_stage_ran = any(
-        (il := p.get("insightLine")) is not None and il != "" and il != pending
+        _authored(p.get("insightLine")) or _authored(p.get("rowVerdict"))
         for p in products
     )
     if not copy_stage_ran:
-        g.info("PENDING_COPY base check: SKIP (pre-copy generator output)")
+        g.info("Unauthored-copy check: SKIP (pre-copy generator output)")
     else:
-        for field in ["insightLine", "rowVerdict"]:
-            pending_count = sum(
-                1 for p in products
-                if p.get(field) is not None and p.get(field) != "" and p.get(field) == pending
-            )
+        # (1) literal PENDING_COPY placeholder must never reach a served field
+        for field in ("insightLine", "rowVerdict"):
+            pending_count = sum(1 for p in products if p.get(field) == pending)
             if pending_count > 0:
                 g.fail(
                     f"{field}: {pending_count}/{n} products still PENDING_COPY "
                     f"(page authored but incomplete)"
                 )
+        # (2) verdict-less rows: NEITHER insightLine NOR rowVerdict authored
+        verdictless = [
+            get_barcode_from_product(p) for p in products
+            if not _authored(p.get("insightLine")) and not _authored(p.get("rowVerdict"))
+        ]
+        if verdictless:
+            shown = ", ".join(verdictless[:8])
+            g.fail(
+                f"{len(verdictless)}/{n} products render NO verdict — both insightLine "
+                f"and rowVerdict are unauthored (PENDING/null/empty/missing) after the "
+                f"copy stage ran — barcodes: {shown}"
+                + (" ..." if len(verdictless) > 8 else "")
+            )
+        else:
+            g.info("verdict coverage: every product has an authored insightLine or rowVerdict")
 
     # --- v3 COVERAGE: milk-depth authored fields non-PENDING check ---
     # Only check when the fields are present (v3 pages) AND the copy stage has run.
