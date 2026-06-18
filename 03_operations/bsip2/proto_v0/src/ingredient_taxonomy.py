@@ -90,6 +90,8 @@ class Identity:
 #   emulsifier_benign   — soy/sunflower lecithin (EV-003 toward neutral)
 #   antioxidant_named   — BHA (named concern, F4); BHT (explicitly NOT a concern)
 #   thickener_concern   — carrageenan also acts as thickener/stabilizer
+#   glazing_benign, anti_caking_benign, acidity_regulator_benign, humectant_benign,
+#   emulsifier_low_structural — TASK-328 (identity/explanation only; zero scoring delta)
 # `is_named_concern` marks additives F1/F4 single out by name.
 # Additives carry no fragmentation_level (they are not a structural food matrix).
 _ADDITIVES: list[Identity] = [
@@ -204,6 +206,43 @@ _ADDITIVES: list[Identity] = [
         # NOT a named concern — F4 explicitly differentiates BHT from BHA.
         additive_class="antioxidant_named", is_named_concern=False,
         synonyms_he=("בוטילהידרוקסיטולואן", "בוטילטד הידרוקסיטולואן", "BHT", "E321", "E-321", "E 321"),
+    ),
+    # ── Named benign additives — TASK-328 (identity / resolution / explanation only;
+    #     NO effect on additive_marker_count, tax_* lists, additive_quality, or ECS.
+    #     Evidence: EFSA re-evals / JECFA / FDA 21 CFR via research/16.08. All is_named_concern=False.
+    #     Classes deliberately avoid the F1/ECS branch strings (emulsifier_concern/b enign/medium/low).
+    # ──
+    Identity(
+        canonical="carnauba_wax", e_number="E903",
+        additive_class="glazing_benign", is_named_concern=False,
+        synonyms_he=("חומרי הזגה", "חומר הזגה", "שעוות קרנובה", "קרנובה", "E903", "E-903"),
+    ),
+    Identity(
+        canonical="sorbitan_tristearate", e_number="E492",
+        # low/structural-concern emulsifier (per prompt); class avoids ECS low tier so zero delta.
+        additive_class="emulsifier_low_structural", is_named_concern=False,
+        synonyms_he=("סורביטן טריסטארט", "סורביטן טרי-סטארט", "E492", "E-492"),
+    ),
+    Identity(
+        canonical="talc", e_number="E553b",
+        additive_class="anti_caking_benign", is_named_concern=False,
+        synonyms_he=("טלק", "טלקום", "E553b", "E-553b"),
+    ),
+    Identity(
+        canonical="potassium_hydroxide", e_number="E525",
+        additive_class="acidity_regulator_benign", is_named_concern=False,
+        synonyms_he=("אשלגן הידרוקסיד", "אשלגן הידרוקסידי", "E525", "E-525"),
+    ),
+    Identity(
+        canonical="calcium_lactate", e_number="E327",
+        additive_class="acidity_regulator_benign", is_named_concern=False,
+        synonyms_he=("לקטט סידן", "סידן לקטט", "E327", "E-327"),
+    ),
+    Identity(
+        canonical="potassium_lactate", e_number="E326",
+        # Explicit so E327 (calcium) ≠ E326 (potassium) never collide on lookup.
+        additive_class="humectant_benign", is_named_concern=False,
+        synonyms_he=("לקטט אשלגן", "אשלגן לקטט", "E326", "E-326"),
     ),
 ]
 
@@ -502,6 +541,39 @@ def _selftest() -> None:
     bht = resolve_additive("BHT")
     check(bht is not None and bht.e_number == "E321" and bht.is_named_concern is False,
           "BHT -> E321, is_named_concern=False (explicitly differentiated)")
+
+    # ── TASK-328 named benign identities (zero-score; resolve + display only) ──
+    e903 = resolve_additive("E903")
+    check(e903 is not None and e903.e_number == "E903"
+          and e903.additive_class == "glazing_benign" and e903.is_named_concern is False,
+          "E903 carnauba -> E903, glazing_benign, is_named_concern=False")
+    e903_he = resolve_additive("שעוות קרנובה")
+    check(e903_he is not None and e903_he.canonical == "carnauba_wax",
+          "שעוות קרנובה -> carnauba_wax")
+    e492 = resolve_additive("סורביטן טריסטארט")
+    check(e492 is not None and e492.e_number == "E492"
+          and e492.additive_class == "emulsifier_low_structural" and e492.is_named_concern is False,
+          "E492 sorbitan tristearate -> E492, emulsifier_low_structural (score-neutral)")
+    e553b = resolve_additive("E-553b")
+    check(e553b is not None and e553b.e_number == "E553b"
+          and e553b.additive_class == "anti_caking_benign",
+          "E553b talc -> E553b, anti_caking_benign")
+    e525 = resolve_additive("אשלגן הידרוקסיד")
+    check(e525 is not None and e525.e_number == "E525"
+          and e525.additive_class == "acidity_regulator_benign" and e525.is_named_concern is False,
+          "E525 potassium hydroxide -> E525, acidity_regulator_benign (no K-nutrient inference)")
+    e327 = resolve_additive("E327")
+    check(e327 is not None and e327.e_number == "E327"
+          and e327.canonical == "calcium_lactate" and e327.additive_class == "acidity_regulator_benign",
+          "E327 calcium lactate (distinct from E326)")
+    e326 = resolve_additive("E326")
+    check(e326 is not None and e326.e_number == "E326"
+          and e326.canonical == "potassium_lactate" and e326.additive_class == "humectant_benign",
+          "E326 potassium lactate (E327≠E326 collision guard)")
+    # substring / qualifier form still resolves (e.g. from (E-492) in parens)
+    e492_paren = resolve_additive("סורביטן טרי-סטארט (E492)")
+    check(e492_paren is not None and e492_paren.e_number == "E492",
+          "E492 with qualifier/paren still resolves via substring")
 
     # ── Native vs modified starch (133C) ──
     native = resolve_structural("עמילן תירס", None)
