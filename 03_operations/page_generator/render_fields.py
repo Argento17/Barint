@@ -196,12 +196,18 @@ derive_source_retailers = derive_retailers
 # ---------------------------------------------------------------------------
 # Field: subPool
 # For juices: corpus.juice_subpool.
+# For hard cheeses: corpus.bsip_cheese_subpool.
+# Checks both keys so the same derivation function handles multiple categories.
 # ---------------------------------------------------------------------------
 
 def derive_sub_pool(corpus_rec: dict, trace: dict) -> Any:
     if not corpus_rec:
         return None
-    return corpus_rec.get("juice_subpool", None)
+    # Juice category uses juice_subpool; hard-cheese category uses bsip_cheese_subpool.
+    val = corpus_rec.get("juice_subpool")
+    if val is not None:
+        return val
+    return corpus_rec.get("bsip_cheese_subpool", None)
 
 
 # ---------------------------------------------------------------------------

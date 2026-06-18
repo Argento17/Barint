@@ -37,7 +37,7 @@
     {"barcode": "7290102302864", "reason": "OFF-CONTAMINATED: nutrition from open_food_facts_fallback (TASK-238 hard rule). Removed from live page; re-add only after direct re-scrape."},
     {"barcode": "7290014455252", "reason": "OFF-CONTAMINATED: nutrition from open_food_facts_fallback (TASK-238 hard rule). Removed from live page; re-add only after direct re-scrape."}
   ],
-  "extension_fields": ["_subPool", "_novaGroup"],
+  "render_fields": ["subPool", "novaGroup"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
   "_off_blocker": {
     "status": "RESOLVED_BY_EXCLUSION (2026-06-18): both barcodes added to exclusions[] and removed from the live hard_cheeses_frontend_v2.json (30 -> 28). Re-add only after a direct (non-OFF) re-scrape supplies their nutrition.",

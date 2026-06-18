@@ -296,6 +296,14 @@
           },
           "_website_cluster": {
             "description": "Internal website-clustering hint (consumed by frontend page-data; not consumer-rendered scoring data). Whitelisted 2026-06-18 — was a stray-property G1 failure."
+          },
+          "_novaGroup": {
+            "type": ["integer", "null"],
+            "description": "Extension field: NOVA group (underscore-prefixed variant used by hard_cheeses + milk extension_fields config). Whitelisted 2026-06-18 — was a stray-property G1 failure."
+          },
+          "_subPool": {
+            "type": ["string", "null"],
+            "description": "Extension field: sub-pool classification (underscore-prefixed variant used by hard_cheeses + milk extension_fields config). Whitelisted 2026-06-18 — was a stray-property G1 failure."
           }
         },
         "additionalProperties": false
