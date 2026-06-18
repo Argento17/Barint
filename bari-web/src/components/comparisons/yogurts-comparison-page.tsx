@@ -2,11 +2,6 @@
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import { DAIRY_PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
-import {
-  filterYogurtsProducts,
-  YOGURTS_SHELF_LENS_OPTIONS,
-  type YogurtsShelfFilterId,
-} from "@/lib/comparisons/yogurts-shelf-filters";
 import type { BariProductVM } from "@/lib/view-models";
 
 export interface YogurtsComparisonPageProps {
@@ -18,19 +13,16 @@ export interface YogurtsComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
-  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
   categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
 const yogurtsShelfFilters = {
-  lensOptions: YOGURTS_SHELF_LENS_OPTIONS,
-  filterProducts: filterYogurtsProducts,
-} as const;
+  lensOptions: [] as Array<{ id: string; label: string }>,
+  filterProducts: (products: BariProductVM[]) => products,
+};
 
-// Protein is the yogurt row metric (TASK-161A). Dairy-tuned scale (scaleMax 8) rather than
-// hummus's 0–20 — dairy protein tops ~12g, so the hummus scale would flatten bars
-// (Nutrition note 161A #1).
+// Protein is the yogurt row metric.
 const YOGURTS_METRIC_SPECS = [DAIRY_PROTEIN_METRIC] as const;
 
 export function YogurtsComparisonPage({
@@ -43,7 +35,7 @@ export function YogurtsComparisonPage({
   initialExpandedProductId = null,
 }: YogurtsComparisonPageProps) {
   return (
-    <ComparisonPage<YogurtsShelfFilterId>
+    <ComparisonPage
       products={products}
       metadataLine={metadataLine}
       hero={hero}
