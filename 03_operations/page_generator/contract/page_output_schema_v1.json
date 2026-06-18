@@ -293,10 +293,16 @@
           "consumerTakeaway": {
             "type": ["string", "null"],
             "description": "Extension field: consumer takeaway (pre-copy placeholder)."
+          },
+          "_website_cluster": {
+            "description": "Internal website-clustering hint (consumed by frontend page-data; not consumer-rendered scoring data). Whitelisted 2026-06-18 — was a stray-property G1 failure."
           }
         },
         "additionalProperties": false
       }
+    },
+    "page_copy": {
+      "description": "Page-level authored copy block (consumed by frontend page-data; not a per-product scoring field). Whitelisted 2026-06-18 — was a stray-property G1 failure."
     }
   },
   "additionalProperties": false,
