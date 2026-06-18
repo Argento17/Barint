@@ -1,0 +1,1866 @@
+{
+  "stage": "2_corpus_filter",
+  "category_slug": "cakes-hard-cookies",
+  "run_id": "factory_run_001",
+  "generated": "2026-06-14",
+  "owner": "Data Agent (autonomous run #8)",
+  "off_used": false,
+  "off_note": "OFF ban absolute (TASK-238). Nutrition+ingredients are direct storefront scrape only; NULL stays NULL.",
+  "retailers": [
+    "shufersal",
+    "yohananof"
+  ],
+  "sufficiency_gate": "energy_kcal AND fat AND (carbs OR protein) present AND ingredient_list>=3 -> IN_SCORED; else TRANSPARENCY_NULL (discard).",
+  "counts": {
+    "merged": 204,
+    "in_scored": 149,
+    "transparency_null": 37,
+    "out_of_scope": 18
+  },
+  "products": [
+    {
+      "barcode": "46214930207",
+      "name_he": "עוגיות שוקולד צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290106578821",
+      "name_he": "עוגת שמרים שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119030095",
+      "name_he": "עוגת גבינה אפויה ללת\"ס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073592891",
+      "name_he": "לבבות חסה קראנץ הידרו",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "436203",
+      "name_he": "עוגיות בטעם שוקוצ'יפס",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290119043842",
+      "name_he": "עוגיות מעמול תמר",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "4820180816590",
+      "name_he": "עוגיות עם גרעיני חמנייה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290012244056",
+      "name_he": "עוגת מוס גבינה פרורים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4504670",
+      "name_he": "מיני שטרודל במילוי שקדים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290123331034",
+      "name_he": "עוגה בטעם שוקולד כשל\"פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290123330334",
+      "name_he": "עוגת שמרים בריוש שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019293804",
+      "name_he": "קראנץ אגוזי לוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073431817",
+      "name_he": "עוגת קרנץ' שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073453840",
+      "name_he": "קוקיס שבבי שוקולד חלבי",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5431913",
+      "name_he": "עוגת גבינה פירורים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290105692498",
+      "name_he": "עוגת בראוניס כשל\"פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290011489625",
+      "name_he": "ביסקוויט בטעם שוקו",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013683595",
+      "name_he": "עוגת פס שביל החלב",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290016416961",
+      "name_he": "עוגת מוס גבינה+תות שדה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073346333",
+      "name_he": "עוגות אישיות קרם חלב",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119042302",
+      "name_he": "עוגת דבש",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040858",
+      "name_he": "עוגיות מקלות עלים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073095910",
+      "name_he": "דבש טבעי בבקבוק לחיץ",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7296073473688",
+      "name_he": "עוגת שוקוציפס ללא גלוטן",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290118426615",
+      "name_he": "עוגיות מיני שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472841",
+      "name_he": "עוגת סבתא בטעם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472186",
+      "name_he": "עוגת מאפין וניל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5410126116168",
+      "name_he": "ביסקוויט בטעם קרמל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7613038451954",
+      "name_he": "קראנץ שוקולד מופחת סוכר",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "breakfast_cereal_not_cake_cookie — Shufersal placement: קורנפלקס ודגני בוקר לילדים; ingredient data = marketing text (bsip1_text_fallback), not a label (Nutrition ruling TASK-283-RT2)"
+    },
+    {
+      "barcode": "5317194",
+      "name_he": "ביסקוויט בטעם וניל הדר",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472148",
+      "name_he": "עוגת פס היער השחור",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073431909",
+      "name_he": "עוגת מאפין תפוח עץ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8710502064814",
+      "name_he": "עוגיות שוקוצ'יפס מרקם רך",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040612",
+      "name_he": "עוגת קראנץ קינמון",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472087",
+      "name_he": "עוגת פס שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073529019",
+      "name_he": "קוקיס שוקולד מריר חלבי",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119043798",
+      "name_he": "עוגיות אוזניות",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290123330884",
+      "name_he": "עוגה בטעם שוקולד כשל\"פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290112495228",
+      "name_he": "קורנפלקס דבש",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "breakfast_cereal_or_grain_snack_not_cake_cookie (query-term leakage; Nutrition RT-2 scope principle: retail shelf = scope signal) TASK-283"
+    },
+    {
+      "barcode": "4820180816552",
+      "name_he": "עוגיות עם ש.שועל קוקוס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040575",
+      "name_he": "עוגיות מלבני שקדים",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "2472193",
+      "name_he": "עוגת מאפין שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290101111986",
+      "name_he": "עינוגים קוקיס עוגיות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472223",
+      "name_he": "עוגת מאפין תפוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290017962139",
+      "name_he": "עוגיות פירות יער כשל\"פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119039692",
+      "name_he": "עוגת פס דובוש שוקולד",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "5410126806250",
+      "name_he": "עוגיות לוטוס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073431879",
+      "name_he": "עוגת מאפין שוקו צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040513",
+      "name_he": "עוגת קראנץ שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290016162264",
+      "name_he": "עוגת גבינה רנסנס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119043743",
+      "name_he": "עוגיות מרוקאיות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8000500366073",
+      "name_he": "ביסקוויט נוטלה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073179863",
+      "name_he": "דבש טבעי לחיץ",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7296073722861",
+      "name_he": "קראנץ בטעם שוקולד חלבה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290111534010",
+      "name_he": "עוגת גבינה שמנת ופירורים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8410376075915",
+      "name_he": "עוגיות+שבבי שוקולד לל\"ג",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073453857",
+      "name_he": "קוקיס שוקולד לבן חלבי",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4823077633317",
+      "name_he": "עוגיות LOVITA שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073346340",
+      "name_he": "עוגות אישיות קרם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290012244278",
+      "name_he": "עוגת היער השחור-פרווה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290119040674",
+      "name_he": "עוגיות צ'יפ שוקולד",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290119040803",
+      "name_he": "עוגיות קינמון מסוכרות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073162001",
+      "name_he": "עוגיות במילוי קרם אגוזים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119039937",
+      "name_he": "עוגת פס נפוליאון",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290119043149",
+      "name_he": "עוגיות בטעם חמאה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013453624",
+      "name_he": "עוגיות שוקולד צ'יפס כשלפ",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_real_ingredient_label — ingredients field = brand marketing copy, not a declaration; real label never retrieved (missing_data_discard_rule) TASK-283"
+    },
+    {
+      "barcode": "5900020047915",
+      "name_he": "קראנץ טריפל",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "breakfast_cereal_or_grain_snack_not_cake_cookie (query-term leakage; Nutrition RT-2 scope principle: retail shelf = scope signal) TASK-283"
+    },
+    {
+      "barcode": "7290017898926",
+      "name_he": "עוגיות שוקולד צ'יפס",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290119045013",
+      "name_he": "עוגת גבינה אפויה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290123330488",
+      "name_he": "עוגיות בוטנים כשל\"פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472117",
+      "name_he": "עוגת פס קפוצ'ינו",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073132936",
+      "name_he": "עוגת מאפין שיש",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5410126726244",
+      "name_he": "ביסקוויט קרמל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472261",
+      "name_he": "עוגת מאפין תפוחי עץ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290015726535",
+      "name_he": "עוגת פס מוס בלגי פרווה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073722878",
+      "name_he": "קראנץ בטעם קינמון",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290112961754",
+      "name_he": "עוגיות שוקוציפס קרם אגוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013453068",
+      "name_he": "עוגיות כוסמין פירות יער",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "6983794",
+      "name_he": "עוגת הבית תפוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119041107",
+      "name_he": "עוגיות מרוקאיות עגול",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019816058",
+      "name_he": "קראנץ מיני אלפחורס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "9399288",
+      "name_he": "עוגת פס גבינה אפויה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290123330280",
+      "name_he": "עוגת שמרים בטעם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "2472254",
+      "name_he": "עוגת מאפין אגוזים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7613035622623",
+      "name_he": "גרנולה דבש",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "breakfast_cereal_or_grain_snack_not_cake_cookie (query-term leakage; Nutrition RT-2 scope principle: retail shelf = scope signal) TASK-283"
+    },
+    {
+      "barcode": "7296073132943",
+      "name_he": "עוגת מאפין בטעם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119041152",
+      "name_he": "עוגיות ריפ'את",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040605",
+      "name_he": "עוגיות נסיכה בטעם תות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119043897",
+      "name_he": "עוגיות רולדה תמרים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119040629",
+      "name_he": "עוגיות שוקולד ואגוז לוז",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "4820180816576",
+      "name_he": "עוגיות עם שבבי קוקוס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8000500411278",
+      "name_he": "שוק.עוגיות מיני פרנדז",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "6983770",
+      "name_he": "עוגת הבית שיש אסם",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073722816",
+      "name_he": "קראנץ בטעם שוקולד",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7622300356767",
+      "name_he": "עוגיות שוקולד צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "9397697",
+      "name_he": "חמישיית מאפין שוקו צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "6983787",
+      "name_he": "עוגת שוקולד צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8710502470028",
+      "name_he": "עוגיות שוקוצ'יפס נוגטלי",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073745372",
+      "name_he": "עוגיות ממולאות שוקולד",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "4170097",
+      "name_he": "עוגת קרנץ' בטעם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "1361177",
+      "name_he": "עוגת פס דובדבנים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4504687",
+      "name_he": "מיני שטרודל חלבה שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5718021",
+      "name_he": "עוגת שטרודל גבינה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4504649",
+      "name_he": "מיני שטרודל קרם פטיסייר",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290115206333",
+      "name_he": "עוגיות מיני שוקוצ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073567905",
+      "name_he": "עוגת סבתא שוקולד",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290119039982",
+      "name_he": "עוגת פס שוקולטה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7290119040650",
+      "name_he": "עוגיות נסיכה מיקס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119043095",
+      "name_he": "עוגיות שיבולת שועל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019816034",
+      "name_he": "מאגדת מיני קראנץ עוגיות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5718038",
+      "name_he": "עוגת שטרודל תפוחי עץ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5410126006049",
+      "name_he": "ביסקוויט לוטוס טעם קרמל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073529026",
+      "name_he": "קוקיס שוקו+שבבי שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073161981",
+      "name_he": "עוגיות במילוי קרם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073431848",
+      "name_he": "עוגת שטרודל גבינה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290119040667",
+      "name_he": "עוגת קראנץ פרג",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073132950",
+      "name_he": "עוגת מאפין שוקולד צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290109581156",
+      "name_he": "קציצות של סבתא פרז",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "savory_not_cake_cookie"
+    },
+    {
+      "barcode": "7296073173045",
+      "name_he": "דבש טבעי בבקבוק לחיץ",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290019816232",
+      "name_he": "קראנץ סנדויץ שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290111564239",
+      "name_he": "מאגדת מיני קראנץ",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290119041053",
+      "name_he": "עוגיות סגנון מרוקאי",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119041305",
+      "name_he": "עוגיות מרוקאיות ללת\"ס",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7296073431855",
+      "name_he": "עוגת שטרודל תפוחי עץ",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7296073431916",
+      "name_he": "עוגת מאפין בטעם תפוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013740014",
+      "name_he": "עוגיות שוקוצ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4504656",
+      "name_he": "מיני שטרודל תפוח עץ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622201809188",
+      "name_he": "ביסקוויט מילקה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290119039746",
+      "name_he": "עוגת פס דובוש דולצ'ה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073140184",
+      "name_he": "עוגת מאפין תפוז",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073078579",
+      "name_he": "דבש טבעי מפרחי שדה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290011570798",
+      "name_he": "כרגיל תערובת עוגת שוקולד",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "baking_ingredient_not_finished_product (Nutrition ruling TASK-283: dry mix panel != finished food)"
+    },
+    {
+      "barcode": "7290119040568",
+      "name_he": "עוגת קראנץ אגוזים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290012244032",
+      "name_he": "עוגת מוס היער השחור",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5900020034991",
+      "name_he": "קראנץ צדפים בטעם שוקולד",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "breakfast_cereal_or_grain_snack_not_cake_cookie (query-term leakage; Nutrition RT-2 scope principle: retail shelf = scope signal) TASK-283"
+    },
+    {
+      "barcode": "7290119040223",
+      "name_he": "עוגיות אוזניים",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "4170103",
+      "name_he": "עוגת קרנץ אגוזים וקינמון",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073567912",
+      "name_he": "עוגת קרנץ' אגוזים",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "3495139",
+      "name_he": "פס דבש עם תפו\"ע ואגוז",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "313184",
+      "name_he": "עוגיות גן חיות טעם וניל",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8710502279010",
+      "name_he": "עוג. שוקולד צ'יפס מצופות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073078586",
+      "name_he": "דבש טבעי מפרחי שדה",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "7296073431893",
+      "name_he": "עוגת מאפין אגוזים",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073078609",
+      "name_he": "דבש טבעי בצנצנת",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290015726528",
+      "name_he": "עוגת פס מוס טירמיסו",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290018893036",
+      "name_he": "עוגיות סנדוויץ' שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073473664",
+      "name_he": "עוגת שוקולד ללא גלוטן",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7296073659969",
+      "name_he": "עוגיות חיות שוקו",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290106656727",
+      "name_he": "עוגיות חיוכים שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "46214731552",
+      "name_he": "עוגיות שוקולד צ'יפס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal",
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "9397642",
+      "name_he": "5עוגות מאפין בטעם שוקולד",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5431920",
+      "name_he": "עוגת גבינה פירורים לייט",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "1361207",
+      "name_he": "עוגת פס אוכמניות",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "shufersal"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290000075143",
+      "name_he": "עוגיות שוקוצ'יפס קלאסי 200 גרם אסם | 200 גרם 2 יח' ב- ‏16 ₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290000061245",
+      "name_he": "עוגיות שוקוצ'יפס ממולאות 220 גרם אסם | 220 גרם 2 יח' ב- ‏16",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290006983787",
+      "name_he": "עוגת הבית שוקולד צ'יפס 400 גרם עוגות הבית | 400 גרם ‏12.90 ‏",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8710502139017",
+      "name_he": "מרבה עוגיות טריפל שוקולד ציפס מרבה | 180 גרם במבצע ‏7.90 ₪ ‏",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622201401900",
+      "name_he": "עוגיות מילקה סנסיישן אוראו 156 גרם מילקה | 156 גרם 2 יח' ב-",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8710502405204",
+      "name_he": "מרבה עוגיות ממולאות קרם שוקולד מרבה | 225 גרם במבצע ‏7.90 ₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622210453327",
+      "name_he": "עוגיות מילקה סנסיישן 156 גרם מילקה | 156 גרם 2 יח' ב- ‏28 ₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013145406",
+      "name_he": "שוקולד צ'יפס לבן (צימקאו) 250 גרם כשל\"פ מימונס | 250 גרם ‏12",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019870463",
+      "name_he": "עוגיות סנדוויץ עם קרם בטעם וניל צ'וקטה 176 גרם צ'וקטה | 176",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290118423904",
+      "name_he": "קרמוגית קראנץ שוקו וניל עוגיות 200 גרם קרמוגית | 200 גרם 2 י",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4006529002170",
+      "name_he": "עוגיות גולד רינג 400 גרם ללא מיתוג | 400 גרם ‏10.90 ‏₪ ‏2.73",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "5901414200411",
+      "name_he": "עוגיות היט מיניס עם שוקולד 130 גרם בלזן | 130 גרם ‏8.90 ‏₪ ‏",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622210413147",
+      "name_he": "מילקה עוגיות צ'וק & צ'וק 150 גרם מילקה | 150 גרם 2 יח' ב- ‏2",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290013156006",
+      "name_he": "עוגיות מיני מרוקאיות 350 גרם בבקה | 350 גרם ‏16.90 ‏₪ ‏4.83",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290112340276",
+      "name_he": "עוגיות קרם קפה נמס 200 גרם עלית | 200 גרם ‏13.50 ‏₪ ‏6.75 ‏₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013156921",
+      "name_he": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם ג'ייקוב אנד אס",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019870470",
+      "name_he": "עוגיות סנדוויץ עם קרם בטעם שוקו צ'וקטה 176 גרם צ'וקטה | 176",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290106571945",
+      "name_he": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס 180 גרם פ",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290106571921",
+      "name_he": "עוגיות פיטנס חמוציות 180 גרם פיטנס | 180 גרם ‏12.90 ‏₪ ‏7.17",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290020030184",
+      "name_he": "עוגיות מזרחיות עם זעתר 400 גרם אחוה | 400 גרם 2 יח' ב- ‏18 ₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4823077646294",
+      "name_he": "עוגיות LOVITA BLONDIE BROWNIE קקאו עם נטיפי קקאו רושן 152 גר",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290122781359",
+      "name_he": "מיני עוגיות קלאסי פיטנס 80 גרם פיטנס | 80 גרם ‏5.90 ‏₪ ‏7.38",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290018893487",
+      "name_he": "עוגות אישיות קוקוס צ'וקטה צ'וקטה | 350 גרם במבצע ‏9.90 ₪ ‏14",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290013927996",
+      "name_he": "עוגת שמרים קרנאץ' בטעם שוקולד 400 גרם אחוה | 400 גרם ‏10.90",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290118421924",
+      "name_he": "תערובת לעוגה ללא גלוטן אסם | 350 גרם ‏12.90 ‏₪ ‏3.69 ‏₪ / 10",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "baking_ingredient_not_finished_product (Nutrition ruling TASK-283: dry mix panel != finished food)"
+    },
+    {
+      "barcode": "7290015879712",
+      "name_he": "תערובת אפיית לעוגות ומאפינס לל\"ג מולינו ורוד 500 גרם 500 גרם",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "baking_ingredient_not_finished_product (Nutrition ruling TASK-283: dry mix panel != finished food)"
+    },
+    {
+      "barcode": "8001585010103",
+      "name_he": "עוגות אישיות מגולגלות חלב בלקוני 6 יח *37 גרם צ'וקטה | 222 ג",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290006775023",
+      "name_he": "עוגה אנגלית 450 גרם אחוה | 450 גרם 2 יח' ב- ‏18 ₪ ‏10.90 ‏₪",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290006775337",
+      "name_he": "עוגת שמרים פרג 400 גרם אחוה | 400 גרם ‏10.90 ‏₪ ‏2.73 ‏₪ / 1",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290000453330",
+      "name_he": "תערובת להכנת עוגת וניל ללא גלוטן תמי | 500 גרם ‏19.90 ‏₪ ‏3.",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "7290017724171",
+      "name_he": "מארז עוגיות אקלר סנדוויץ ריבה ללא סוכר הללס | 250 גרם ‏23.90",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622210137234",
+      "name_he": "עוגיות אוראו דאבל קרם וניל אוראו | 170 גרם 2 יח' ב- ‏18 ₪ ‏1",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622300489427",
+      "name_he": "עוגיות אוראו בציפוי שוקולד לבן 246 גרם אוראו | 246 גרם במבצע",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7622300489434",
+      "name_he": "עוגיות אוראו בציפוי שוקולד חלב 246 גרם אוראו | 246 גרם במבצע",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290117384572",
+      "name_he": "חטיף חלבון בטעם קרם עוגיות TODAY | 65 גרם 2 יח' ב- ‏22 ₪ ‏12",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "protein_snack_bar_not_cake_cookie (sports-nutrition shelf; flavor-name leakage \"בטעם עוגיות\") TASK-283"
+    },
+    {
+      "barcode": "7290019766018",
+      "name_he": "חטיף חלבון בטעם קרם עוגיות אול אין | 55 גרם ‏14.90 ‏₪ ‏27.09",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "protein_snack_bar_not_cake_cookie (sports-nutrition shelf; flavor-name leakage \"בטעם עוגיות\") TASK-283"
+    },
+    {
+      "barcode": "7290018893661",
+      "name_he": "עוגות ספוג אישיות מצופות שוקולד מריר במילוי קרם קקאו צ'וקטה",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290006775085",
+      "name_he": "עוגת שמרים במילוי קרם בטעם שוקולד 400 גרם אחוה | 400 גרם ‏10",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290018043134",
+      "name_he": "חטיף חלבון בטעם שוקולד לבן עוגיות אול אין | 60 גרם ‏14.90 ‏₪",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "protein_snack_bar_not_cake_cookie (sports-nutrition shelf; flavor-name leakage \"בטעם עוגיות\") TASK-283"
+    },
+    {
+      "barcode": "8410376044959",
+      "name_he": "שרקיז ביסקוויט קקאו ללא גלוטן גולון | 250 גרם ‏19.90 ‏₪ ‏7.9",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "ingredient_list_too_short"
+    },
+    {
+      "barcode": "4017100198151",
+      "name_he": "עוגיות היט בטעם וניל 220 גרם בלזן | 220 גרם ‏10.90 ‏₪ ‏4.95",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290105364784",
+      "name_he": "פרה קראנץ' שוקולד לבן פרה | 100 גרם ‏8.50 ‏₪ ‏8.50 ‏₪ / 100",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "4017100364112",
+      "name_he": "עוגיות היט בטעם שוקולד 220 גרם בלזן | 220 גרם ‏10.90 ‏₪ ‏4.9",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "8410376037784",
+      "name_he": "עוגיות סנדוויץ' שוקולד גולון | 250 גרם ‏13.00 ‏₪ ‏5.20 ‏₪ /",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290118422617",
+      "name_he": "קרמוגית קראנץ קרם וניל עוגיות 200 גרם קרמוגית | 200 גרם 2 יח",
+      "decision": "IN_SCORED",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": ""
+    },
+    {
+      "barcode": "7290019205135",
+      "name_he": "שניצל עוף קראנץ פנקו 600 גרם עוף טוב עוף טוב | 600 גרם 2 יח'",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "savory_not_cake_cookie"
+    },
+    {
+      "barcode": "7290002026440",
+      "name_he": "פרצלס בראנץ' 70 גרם בראנץ אנד קראנץ | 280 גרם ‏13.00 ‏₪ ‏4.6",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "savory_pretzel_snack_not_cake_cookie TASK-283"
+    },
+    {
+      "barcode": "7290002026402",
+      "name_he": "בלינצ'ס גבינה בראנץ' בראנץ אנד קראנץ | 350 גרם ‏13.00 ‏₪ ‏3.",
+      "decision": "TRANSPARENCY_NULL",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "no_full_nutrition"
+    },
+    {
+      "barcode": "5900020020710",
+      "name_he": "חטיף דגנים שוקו וניל נסטלה שישייה קראנץ | 150 גרם 2 יח' ב- ‏",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "breakfast_cereal_or_grain_snack_not_cake_cookie (query-term leakage; Nutrition RT-2 scope principle: retail shelf = scope signal) TASK-283"
+    },
+    {
+      "barcode": "7290019204800",
+      "name_he": "עוף טוב צ'ונגו רצועות שניצל סופר קראנץ 600 גרם. עוף טוב | 60",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "savory_not_cake_cookie"
+    },
+    {
+      "barcode": "7290019204701",
+      "name_he": "עוף טוב צ'ונגו רצועות שניצל סופר קראנץ ספייסי 600 גרם. עוף ט",
+      "decision": "OUT_OF_SCOPE",
+      "retailers": [
+        "yohananof"
+      ],
+      "reason": "savory_not_cake_cookie"
+    }
+  ]
+}

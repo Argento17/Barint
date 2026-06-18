@@ -1,0 +1,382 @@
+{
+  "_comment": "Cakes category config. Source: run_cakes_shelfrel_001. Live page has 65 curated products out of 149 scored. Wave 1 cakes-only subset. Exclusions added to match live curation.",
+  "category": "cakes",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\cakes_hard_cookies\\bsip2_outputs\\run_cakes_shelfrel_001\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cakes_hard_cookies_frontend_v1.json",
+  "retailer_scope": [
+    "shufersal",
+    "yohananof"
+  ],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off"
+    },
+    "shelf_rel": {
+      "nutrient": "sugars_g",
+      "median": 29.0,
+      "scale": 9.044,
+      "scale_type": "iqr"
+    },
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output",
+    "corpus_filter": "C:\\Bari\\02_products\\cakes_hard_cookies\\factory_run_001\\corpus_filter.json",
+    "bsip1_glob": "bsip1_cakes_*.json",
+    "_source": "batch_run_shelfrel_golive_001.py + constants.py SUGAR_SHELF_REL_CAKES_*; live run_cakes_shelfrel_001"
+  },
+  "exclusions": [
+    {
+      "barcode": "313184",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4006529002170",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4017100198151",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4017100364112",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "46214731552",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "46214930207",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4820180816552",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4820180816576",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4820180816590",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "4823077633317",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5317194",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5410126006049",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5410126116168",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5410126726244",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5410126806250",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "5901414200411",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290000061245",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290000075143",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290011489625",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290013145406",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290013156006",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290013156921",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290013453068",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290013740014",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290017724171",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290017962139",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290018893036",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019293804",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019816034",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019816058",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019816232",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019870463",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290019870470",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290020030184",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290101111986",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290105364784",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290106571921",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290106571945",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290106656727",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290112340276",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290112961754",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290115206333",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290118422617",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290118423904",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290118426615",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040513",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040568",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040605",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040612",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040650",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040667",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040803",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119040858",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119041053",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119041107",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119041152",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119043095",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119043149",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119043743",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290119043897",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290122781359",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7290123330488",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073161981",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073162001",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073453840",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073453857",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073529019",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073529026",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7296073659969",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622201401900",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622201809188",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622210137234",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622210453327",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622300356767",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622300489427",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "7622300489434",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8000500366073",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8410376037784",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8410376075915",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8710502064814",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8710502139017",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8710502279010",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8710502405204",
+      "reason": "not_in_live_curation"
+    },
+    {
+      "barcode": "8710502470028",
+      "reason": "not_in_live_curation"
+    }
+  ],
+  "extension_fields": [],
+  "render_fields": ["novaGroup", "_has_phvo", "_category_routed", "_source_retailers", "d4_additives"],
+  "_render_fields_note": "TASK-316: novaGroup from trace.nova_proxy; _has_phvo from L3.has_phvo; _category_routed from trace.category; _source_retailers from corpus.source_retailers; d4_additives from detect_additives_d4+w2. Live schema: cakes_hard_cookies_frontend_v1.json.",
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

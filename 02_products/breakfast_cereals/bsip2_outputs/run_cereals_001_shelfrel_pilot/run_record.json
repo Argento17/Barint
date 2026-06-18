@@ -1,0 +1,715 @@
+{
+  "run_id": "run_cereals_001_shelfrel_pilot",
+  "task": "TASK-278 Phase-5 / EV-087",
+  "category_slug": "breakfast_cereals",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T11:40:48.874553+00:00",
+  "engine": "proto_v0 / score_engine.py (BARI_SHELF_RELATIVE_V1=on, asymmetric P=6/B=3, cereal floor)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GLASSBOX_W4": "engine_default(on)"
+  },
+  "engine_flag": true,
+  "scope": [
+    "cereal"
+  ],
+  "stats_used": {
+    "median": 14.0,
+    "scale": 8.896
+  },
+  "bands": {
+    "surcharge": [
+      [
+        0.0,
+        0.5,
+        0
+      ],
+      [
+        0.5,
+        1.0,
+        1
+      ],
+      [
+        1.0,
+        1.5,
+        2
+      ],
+      [
+        1.5,
+        2.5,
+        4
+      ],
+      [
+        2.5,
+        null,
+        6
+      ]
+    ],
+    "relief": [
+      [
+        0.0,
+        0.5,
+        0
+      ],
+      [
+        0.5,
+        1.5,
+        1
+      ],
+      [
+        1.5,
+        3.0,
+        2
+      ],
+      [
+        3.0,
+        null,
+        3
+      ]
+    ]
+  },
+  "floor": {
+    "value": 62,
+    "threshold_g": 25.0
+  },
+  "calibration": {
+    "proposal_median_g": 14.0,
+    "proposal_scale_g": 8.896,
+    "engine_median_g": 14.0,
+    "engine_scale_g": 8.9,
+    "scale_divergence": 0.0039999999999995595,
+    "tolerance": 0.5,
+    "result": "PASS: |8.900 - 8.896| = 0.004 <= 0.5"
+  },
+  "shelf_stats_set": {
+    "nutrient": "sugars_g",
+    "median": 14.0,
+    "scale": 8.9,
+    "scale_type": "iqr"
+  },
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_001\\output",
+  "bsip1": {
+    "records_loaded": 45
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_001_shelfrel_pilot",
+    "scored": 45,
+    "errors": 0
+  },
+  "n_total": 45,
+  "n_movers": 43,
+  "n_grade_changes": 9,
+  "absorption_summary": {
+    "absorbed": 0,
+    "fired": 26,
+    "absorption_rate": 0.0
+  },
+  "grade_changes": [
+    {
+      "barcode": "4013228100001",
+      "from_grade": "A",
+      "to_grade": "B",
+      "score_before": 85,
+      "score_after": 79.7
+    },
+    {
+      "barcode": "5000159100001",
+      "from_grade": "C",
+      "to_grade": "D",
+      "score_before": 52.0,
+      "score_after": 49.8
+    },
+    {
+      "barcode": "5054568100011",
+      "from_grade": "D",
+      "to_grade": "E",
+      "score_before": 35.0,
+      "score_after": 30.3
+    },
+    {
+      "barcode": "5054568100030",
+      "from_grade": "C",
+      "to_grade": "D",
+      "score_before": 51.2,
+      "score_after": 49.8
+    },
+    {
+      "barcode": "7290100000004",
+      "from_grade": "S",
+      "to_grade": "A",
+      "score_before": 90.7,
+      "score_after": 86.9
+    },
+    {
+      "barcode": "7290100000008",
+      "from_grade": "A",
+      "to_grade": "B",
+      "score_before": 81.1,
+      "score_after": 78.5
+    },
+    {
+      "barcode": "7290100000038",
+      "from_grade": "B",
+      "to_grade": "C",
+      "score_before": 66.4,
+      "score_after": 64.8
+    },
+    {
+      "barcode": "7613031100011",
+      "from_grade": "C",
+      "to_grade": "D",
+      "score_before": 51.7,
+      "score_after": 48.4
+    },
+    {
+      "barcode": "8437014100001",
+      "from_grade": "A",
+      "to_grade": "B",
+      "score_before": 85,
+      "score_after": 69.3
+    }
+  ],
+  "flag_off_vs_committed_mismatches": 0,
+  "safety": {
+    "dairy_bleed": true,
+    "brined_byte_identical": null
+  },
+  "score_distribution": {
+    "min": 25.1,
+    "max": 86.9,
+    "median": 62.9,
+    "stdev": 16.65,
+    "range": 61.8,
+    "most_common_score": 49.8,
+    "most_common_count": 2,
+    "histogram": {
+      "70-79": 6,
+      "60-69": 15,
+      "40-49": 5,
+      "30-39": 3,
+      "20-29": 4,
+      "50-59": 7,
+      "80-89": 5
+    },
+    "grade_dist": {
+      "B": 12,
+      "D": 5,
+      "C": 16,
+      "E": 7,
+      "A": 5
+    }
+  },
+  "baseline_grade_dist": {
+    "A": 7,
+    "B": 10,
+    "C": 18,
+    "E": 6,
+    "D": 3,
+    "S": 1
+  },
+  "baseline_dist_cde": {
+    "C": 18,
+    "D": 3,
+    "E": 6
+  },
+  "pilot_dist": {
+    "A": 5,
+    "B": 12,
+    "C": 16,
+    "D": 5,
+    "E": 7,
+    "S": 0
+  },
+  "routing_distribution": {
+    "cereal": 34,
+    "snack_bar_granola": 11
+  },
+  "avg_score_delta_baseline_to_pilot": -2.2133,
+  "per_product_deltas": [
+    {
+      "barcode": "4013228100001",
+      "baseline": 85,
+      "pilot": 79.7,
+      "delta": -5.3
+    },
+    {
+      "barcode": "4016249100001",
+      "baseline": 68.5,
+      "pilot": 67.2,
+      "delta": -1.3
+    },
+    {
+      "barcode": "4016249100002",
+      "baseline": 74.3,
+      "pilot": 71.1,
+      "delta": -3.2
+    },
+    {
+      "barcode": "5000159100001",
+      "baseline": 52.0,
+      "pilot": 49.8,
+      "delta": -2.2
+    },
+    {
+      "barcode": "5011145100001",
+      "baseline": 75.6,
+      "pilot": 75.2,
+      "delta": -0.4
+    },
+    {
+      "barcode": "5054568100001",
+      "baseline": 64.8,
+      "pilot": 63.4,
+      "delta": -1.4
+    },
+    {
+      "barcode": "5054568100002",
+      "baseline": 62.5,
+      "pilot": 62.2,
+      "delta": -0.3
+    },
+    {
+      "barcode": "5054568100010",
+      "baseline": 31.8,
+      "pilot": 30.2,
+      "delta": -1.6
+    },
+    {
+      "barcode": "5054568100011",
+      "baseline": 35.0,
+      "pilot": 30.3,
+      "delta": -4.7
+    },
+    {
+      "barcode": "5054568100012",
+      "baseline": 31.1,
+      "pilot": 25.1,
+      "delta": -6.0
+    },
+    {
+      "barcode": "5054568100020",
+      "baseline": 62.5,
+      "pilot": 61.2,
+      "delta": -1.3
+    },
+    {
+      "barcode": "5054568100021",
+      "baseline": 52.0,
+      "pilot": 51.0,
+      "delta": -1.0
+    },
+    {
+      "barcode": "5054568100022",
+      "baseline": 70.4,
+      "pilot": 69.5,
+      "delta": -0.9
+    },
+    {
+      "barcode": "5054568100030",
+      "baseline": 51.2,
+      "pilot": 49.8,
+      "delta": -1.4
+    },
+    {
+      "barcode": "5054568100040",
+      "baseline": 68.8,
+      "pilot": 68.0,
+      "delta": -0.8
+    },
+    {
+      "barcode": "5054568100050",
+      "baseline": 61.6,
+      "pilot": 62.9,
+      "delta": 1.3
+    },
+    {
+      "barcode": "5900100000003",
+      "baseline": 85.0,
+      "pilot": 80.8,
+      "delta": -4.2
+    },
+    {
+      "barcode": "5900100000005",
+      "baseline": 85.0,
+      "pilot": 81.8,
+      "delta": -3.2
+    },
+    {
+      "barcode": "5900100000006",
+      "baseline": 55.0,
+      "pilot": 54.0,
+      "delta": -1.0
+    },
+    {
+      "barcode": "5900100000007",
+      "baseline": 69.0,
+      "pilot": 67.7,
+      "delta": -1.3
+    },
+    {
+      "barcode": "7290100000001",
+      "baseline": 85.4,
+      "pilot": 81.2,
+      "delta": -4.2
+    },
+    {
+      "barcode": "7290100000002",
+      "baseline": 85,
+      "pilot": 80.4,
+      "delta": -4.6
+    },
+    {
+      "barcode": "7290100000004",
+      "baseline": 90.7,
+      "pilot": 86.9,
+      "delta": -3.8
+    },
+    {
+      "barcode": "7290100000008",
+      "baseline": 81.1,
+      "pilot": 78.5,
+      "delta": -2.6
+    },
+    {
+      "barcode": "7290100000011",
+      "baseline": 63.9,
+      "pilot": 63.5,
+      "delta": -0.4
+    },
+    {
+      "barcode": "7290100000020",
+      "baseline": 34.3,
+      "pilot": 30.3,
+      "delta": -4.0
+    },
+    {
+      "barcode": "7290100000028",
+      "baseline": 47.0,
+      "pilot": 46.7,
+      "delta": -0.3
+    },
+    {
+      "barcode": "7290100000029",
+      "baseline": 33.0,
+      "pilot": 29.0,
+      "delta": -4.0
+    },
+    {
+      "barcode": "7290100000030",
+      "baseline": 60.3,
+      "pilot": 58.8,
+      "delta": -1.5
+    },
+    {
+      "barcode": "7290100000031",
+      "baseline": 62.4,
+      "pilot": 61.1,
+      "delta": -1.3
+    },
+    {
+      "barcode": "7290100000032",
+      "baseline": 44.0,
+      "pilot": 42.7,
+      "delta": -1.3
+    },
+    {
+      "barcode": "7290100000033",
+      "baseline": 52.0,
+      "pilot": 52.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290100000034",
+      "baseline": 66.8,
+      "pilot": 65.8,
+      "delta": -1.0
+    },
+    {
+      "barcode": "7290100000038",
+      "baseline": 66.4,
+      "pilot": 64.8,
+      "delta": -1.6
+    },
+    {
+      "barcode": "7290100000041",
+      "baseline": 73.0,
+      "pilot": 72.7,
+      "delta": -0.3
+    },
+    {
+      "barcode": "7290100000042",
+      "baseline": 74.9,
+      "pilot": 74.5,
+      "delta": -0.4
+    },
+    {
+      "barcode": "7290100000045",
+      "baseline": 64.1,
+      "pilot": 64.3,
+      "delta": 0.2
+    },
+    {
+      "barcode": "7613031100001",
+      "baseline": 60.4,
+      "pilot": 59.0,
+      "delta": -1.4
+    },
+    {
+      "barcode": "7613031100010",
+      "baseline": 30.5,
+      "pilot": 28.9,
+      "delta": -1.6
+    },
+    {
+      "barcode": "7613031100011",
+      "baseline": 51.7,
+      "pilot": 48.4,
+      "delta": -3.3
+    },
+    {
+      "barcode": "7613031100012",
+      "baseline": 30.0,
+      "pilot": 26.0,
+      "delta": -4.0
+    },
+    {
+      "barcode": "7613031100020",
+      "baseline": 53.4,
+      "pilot": 52.1,
+      "delta": -1.3
+    },
+    {
+      "barcode": "7613031100021",
+      "baseline": 52.0,
+      "pilot": 51.0,
+      "delta": -1.0
+    },
+    {
+      "barcode": "7613031100050",
+      "baseline": 63.0,
+      "pilot": 63.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "8437014100001",
+      "baseline": 85,
+      "pilot": 69.3,
+      "delta": -15.7
+    }
+  ],
+  "named_inversions": {
+    "inversion_A": {
+      "description": "7290100000029 (24g) vs 5054568100011 (38g) — higher sugar scores higher in baseline",
+      "low_sugar_barcode": "7290100000029",
+      "high_sugar_barcode": "5054568100011",
+      "gap_baseline_pts": 2.0,
+      "gap_pilot_pts": -1.3,
+      "low_sugar_trace": {
+        "barcode": "7290100000029",
+        "name": "גרנולה עם שבבי שוקולד 400 גרם",
+        "score": 29.0,
+        "grade": "E",
+        "sugars_g": 24.0,
+        "shelf_rel_pen": null,
+        "floor_applied": null
+      },
+      "high_sugar_trace": {
+        "barcode": "5054568100011",
+        "name": "דגני בוקר סמאקס דבש קלוגס 330 גרם",
+        "score": 30.3,
+        "grade": "E",
+        "sugars_g": 38.0,
+        "shelf_rel_pen": 6,
+        "floor_applied": null
+      },
+      "pass_condition": "7290100000029 score > 5054568100011 score post-SR",
+      "pass": false
+    },
+    "inversion_B": {
+      "description": "7290100000042 (5g) vs 5054568100022 (16g) — gap widens",
+      "low_sugar_barcode": "7290100000042",
+      "high_sugar_barcode": "5054568100022",
+      "gap_baseline_pts": 4.5,
+      "gap_pilot_pts": -5.0,
+      "low_sugar_trace": {
+        "barcode": "7290100000042",
+        "name": "דגני בוקר פצפוצי חיטה מלאה 375 גרם",
+        "score": 74.5,
+        "grade": "B",
+        "sugars_g": 5.0,
+        "shelf_rel_pen": -1,
+        "floor_applied": null
+      },
+      "high_sugar_trace": {
+        "barcode": "5054568100022",
+        "name": "דגני בוקר אול-בראן פתיתי סובין קלוגס 375 גרם",
+        "score": 69.5,
+        "grade": "B",
+        "sugars_g": 16.0,
+        "shelf_rel_pen": null,
+        "floor_applied": null
+      },
+      "pass_condition": "gap >= 5.5 pts",
+      "pass": false
+    }
+  },
+  "floor_compliance": {
+    "high_sugar_threshold_g": 25.0,
+    "floor_value": 62,
+    "products_checked": 7,
+    "violations": 0,
+    "violation_list": [],
+    "full_list": [
+      {
+        "barcode": "5054568100010",
+        "sugars_g": 35.0,
+        "score": 30.2,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "5054568100011",
+        "sugars_g": 38.0,
+        "score": 30.3,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "5054568100012",
+        "sugars_g": 39.0,
+        "score": 25.1,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "7290100000020",
+        "sugars_g": 30.0,
+        "score": 30.3,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "7613031100010",
+        "sugars_g": 36.0,
+        "score": 28.9,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "7613031100011",
+        "sugars_g": 26.0,
+        "score": 48.4,
+        "compliant": true,
+        "category": "cereal"
+      },
+      {
+        "barcode": "7613031100012",
+        "sugars_g": 28.0,
+        "score": 26.0,
+        "compliant": true,
+        "category": "cereal"
+      }
+    ],
+    "anti_immunity_violations": 0
+  },
+  "gate_results": [
+    {
+      "criterion": 1,
+      "name": "resolution_restored",
+      "pass": true,
+      "evidence": "baseline max_pinned=5, pilot max_pinned=2 (fewer ties = restored resolution)"
+    },
+    {
+      "criterion": 2,
+      "name": "inversion_a_corrected",
+      "pass": false,
+      "evidence": "7290100000029 (low-sugar 24g) score=29.0 vs 5054568100011 (38g) score=30.3 (NOT above — inversion corrected)"
+    },
+    {
+      "criterion": 3,
+      "name": "inversion_b_gap_widened",
+      "pass": false,
+      "evidence": "gap_after=-5.0 (baseline gap 4.5; need >=5.5) FAIL"
+    },
+    {
+      "criterion": 4,
+      "name": "min_movers",
+      "pass": true,
+      "evidence": "n_movers=43 (need >=15)"
+    },
+    {
+      "criterion": 5,
+      "name": "min_grade_changes",
+      "pass": true,
+      "evidence": "n_grade_changes=9 (need >=1)"
+    },
+    {
+      "criterion": 6,
+      "name": "max_absorption",
+      "pass": true,
+      "evidence": "absorbed_zero_net=0/45 (0.0%) despite firing; fired=26 (need <=40% i.e. <=18)"
+    },
+    {
+      "criterion": 7,
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "high_sugar (>=25g) products at B(>=70): 0 (need=0)"
+    },
+    {
+      "criterion": 8,
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "7 products with sugar>=25g checked, 0 violations (need=0); floor=62"
+    },
+    {
+      "criterion": 9,
+      "name": "no_dairy_bleed",
+      "pass": false,
+      "evidence": "non-cereal products with movement in this run: 10 (need=0; full cross-bleed check in no-regression Step)"
+    },
+    {
+      "criterion": 10,
+      "name": "brined_byte_id",
+      "pass": null,
+      "evidence": "Requires separate run: python batch_run_brined_cheeses_004.py (or 005) with BARI_SHELF_RELATIVE_V1=on; expect byte-identical vs its committed baseline (no movement)"
+    },
+    {
+      "criterion": 11,
+      "name": "flag_off_byte_id",
+      "pass": null,
+      "evidence": "Requires separate verification: re-run synthesis or this corpus with BARI_SHELF_RELATIVE_V1=off; expect 0 movement vs run_cereals_synthesis_001 (use p56_byte_identity or delta count=0)"
+    }
+  ],
+  "gate_overall": "REPORTED (orchestrator judges; some criteria require separate no-regression runs)",
+  "brined_flag": {
+    "fired_count": 0,
+    "guard_pass": true,
+    "fired_products": []
+  },
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "score_engine_sha256": "e643a192573f37a0be09024d1369e711e4e8ff9e5e59865706c70b41490bfafa",
+  "constants_sha256": "0d6a350e09d4217b69378093c48d05b462c78b0bff82ee1b2827158b7e8b62b9",
+  "verification_table": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_001_shelfrel_pilot\\verification_table.csv",
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "flag_on": true,
+    "calibration_pass": true,
+    "brined_food_fired": 0,
+    "brined_food_guard_pass": true,
+    "scored_count": 45,
+    "expected_count": 45,
+    "count_match": true,
+    "floor_violations": 0,
+    "floor_compliance_pass": true,
+    "anti_immunity_violations": 0,
+    "non_cereal_moved_in_corpus": 10
+  }
+}

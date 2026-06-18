@@ -1,0 +1,167 @@
+{
+  "sku_id": "SP-7290013465535",
+  "barcode": "7290013465535",
+  "name_he": "סופהרב קפאין 90 טבליות כשר בדץ",
+  "brand_bucket": "supherb",
+  "engine_active": "caffeine",
+  "price_ils": 146.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "supherb.co.il",
+    "confidence": 1.0,
+    "reason": "barcode match via supherb.co.il"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "search_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'קפאין לערנות ולפני פעילות גופנית אירובית'",
+  "lossy": [
+    "actives[0].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.supherb.co.il/product/קפאין/",
+    "source": "supherb.co.il",
+    "brand": "supherb",
+    "product_name": "סופהרב קפאין 200 מ\"ג",
+    "barcode": "7290013465535",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "קפאין לערנות ולפני פעילות גופנית אירובית",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "קפאין (Caffeine)",
+        "amount": 200.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "caffeine"
+      }
+    ],
+    "missing_fields": [
+      "actives[0].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:supherb.co.il",
+      "source_id": "supherb:7290013465535",
+      "source_url": "https://www.supherb.co.il/product/קפאין/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "סופהרב קפאין 200 מ\"ג",
+    "primary_claim_fed": "קפאין לערנות ולפני פעילות גופנית אירובית alertness",
+    "actives": [
+      {
+        "active_slug": "caffeine",
+        "display_name": "קפאין (Caffeine)",
+        "quantity": 200.0,
+        "unit": "mg",
+        "form": null,
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+    "score": 71.6,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 72.0,
+      "dose": 72,
+      "form": 50,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.965300Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290013465535",
+    "active": "caffeine",
+    "on_label_claim": "קפאין לערנות ולפני פעילות גופנית אירובית alertness",
+    "claim_matched": "alertness / vigilance / cognitive performance (acute)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "alertness / vigilance / cognitive performance (acute)",
+      "resolved_phrase": null,
+      "resolved_tier": "Moderate",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:20464765",
+        "PMID:33800853"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 72.0,
+        "tier": "Moderate"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 50
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 71.6,
+    "dossier_facts_used": [
+      {
+        "field": "claims['alertness / vigilance / cognitive performance (acute)'].evidence_tier",
+        "value": "Moderate",
+        "supp_ev": "SUPP-EV-004"
+      }
+    ],
+    "final": {
+      "score": 71.6,
+      "grade": "B"
+    }
+  }
+}

@@ -1,0 +1,945 @@
+{
+  "category": "yogurts",
+  "role": "pilot",
+  "version": 2,
+  "source_frontend": "bari-web/src/lib/comparisons/yogurts-comparison-page-data.ts",
+  "source_frontend_data": "bari-web/src/data/comparisons/yogurts_frontend_v3.json",
+  "source_bsip1": {
+    "shufersal": "03_operations/bsip1/run_yogurt_006/output",
+    "yohananof": "03_operations/bsip1/run_yogurt_yohananof_001/output"
+  },
+  "source_trace_run": {
+    "shufersal_11_products": "02_products/yogurt_system/bsip2_outputs/run_yogurt_006",
+    "yohananof_8_products": "02_products/yogurt_system/bsip2_outputs/run_yogurt_yohananof_001",
+    "evidence": "TASK-254/F2: added display_values per rubric §9. display_score/grade from yogurts_frontend_v3.json; nutrition + ingredient fields from run_yogurt_006 BSIP1 corpus."
+  },
+  "generated_at": "2026-06-12T11:15:32.382482+00:00",
+  "page_strings": {
+    "hero_eyebrow": "יוגורטים · מדף ישראלי",
+    "hero_title": "יוגורט: לא כל \"טבעי\" נוצר שווה",
+    "prologue_1": "בדקנו מחדש את מדף היוגורט על נתוני אריזה אמיתיים — רכיבים, חלבון, סוכר ושומן. התמונה התהפכה מהבדיקה הקודמת: שבעה יוגורטים על המדף מגיעים ל-A. הציון הגבוה הוא 96/A — דנונה PRO יוגורט 20 גרם חלבון, על בסיס חלבון גבוה במיוחד ותרביות חיות.",
+    "prologue_2": "היוגורטים הפשוטים של תנובה — ביו 3% וביו 1.5% — וגם נטול הלקטוז מגיעים ל-80 עד 81, כולם A: בסיס חלבי, חיידקי ביפידוס, מעט מרכיבים. יוגורט עיזים נשאר ב-77/B, בעיקר כי החלבון בו נמוך יותר.",
+    "prologue_3": "מכאן זה יורד. ככל שמתווספים סוכר, חומרי טעם, מייצבים או פצפוצים — הציון נופל. גרסאות הטעם וה'קראנצ' מגיעות עד C ו-D, גם כשכמות החלבון על האריזה זהה. ושומן גבוה לא מעלה ציון: יווני 8% עם 4.8 גרם שומן רווי עוצר ב-79/B, מתחת לבסיסים הרזים.",
+    "prologue_4": "במדף הזה 'הכי טוב' הוא A — אבל לא S. גם היוגורט המוביל נעצר ב-A: ציון החלבון והתרביות מרים אותו גבוה, אך לא הופך אותו ליוצא דופן. הכי טוב, לא מושלם.",
+    "category_note": "הערת קטגוריה — אותה תווית, שני קצוות\n\nהציון משקלל את ההרכב כולו — חלבון, סוכר, מייצבים ורמת עיבוד — ולא תווית אחת. אותו 'עשיר בחלבון' יכול לשבת בראש המדף כשהבסיס פשוט, וליפול ל-C או D בגרסת טעמים שמוסיפה סוכר, חומרי טעם ופצפוצים על אותו חלבון בדיוק. מספר החלבון על החזית אינו מספיק כדי לקבוע את הציון.\n\nהערת קטגוריה — 'הכי טוב' כאן הוא A, לא S\n\nשבעה יוגורטים על המדף מגיעים ל-A, והגבוה הוא 96/A. אבל אף אחד לא מגיע ל-S, גם המוביל: חלבון גבוה ותרביות חיות מרימים את הציון, ואינם הופכים יוגורט ליוצא דופן. A כאן אומר יוגורט טוב באמת — לא מושלם, ולא מעבר לכך.\n\nהערת קטגוריה — סיבים תזונתיים\n\nמוצרי חלב כמעט אינם מציינים סיבים תזונתיים על התווית, ולכן ערך זה אינו נכנס לניתוח בקטגוריה זו.",
+    "methodology_1": "נבדקו 19 יוגורטים מהמדף הישראלי — מחלב פשוט ועד גרסאות חלבון עם תוספים.",
+    "methodology_2": "לכל מוצר נבחנו הרכב הרכיבים, רמת חלבון, תוספי מייצבים, סוכר מוסף ורמת עיבוד.",
+    "methodology_3": "ציון יוגורט טבעי מבוסס גבוה יותר ממוצר בטעמים — לא בגלל שמות, אלא בגלל מה שכתוב ברשימת הרכיבים.",
+    "methodology_4": "מעדני חלב — מוצרים עם שכבות שוקולד, קצפת, או מבנה קינוח — אינם נכללים בהשוואה; הם מוצרי הנאה נפרדים. יוגורט שתיה נכלל ומקבל ציון כמוצר יוגורט מעובד.",
+    "metadataLine": "19 מוצרים נבדקו · מדגם מדף ישראלי · ממוין לפי ציון Bari"
+  },
+  "products": [
+    {
+      "product_id": "yog-008",
+      "barcode": "7290110321031",
+      "name_he": "יופלה GO מועשר בחלבון",
+      "strings": {
+        "insightLine": "ראש המדף — 10 גרם חלבון, בלי סוכר מוסף שזוהה ועם תרביות חיות שמרימות את הציון. מגיע ל-A אך נעצר שם, לא S: זה יוגורט חלבון מהונדס שהחלבון והתרביות עושים בו את העבודה, לא יוצא דופן (וערכי הסוכר לא היו זמינים).",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "unknowns": [
+          "ערכי הסוכר לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 10 גרם ל-100 גרם"
+        ],
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 89,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 72,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 2.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 3.8,
+        "sugar_g_per_100g": null,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 69,
+        "ingredient_count": 5,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {
+          "חלבוני חלב": 7.4
+        },
+        "ingredient_list_sha256": "20758fd7a821eb2e7080029f81af0103c3d263e3ea4a3573880c32275baa178a"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290110321031\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 89.9,
+        "grade": "A",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-001",
+      "barcode": "7290112336712",
+      "name_he": "דנונה פרו 21 חלבון 0%",
+      "strings": {
+        "insightLine": "מהבולטים במדף — 10.5 גרם חלבון ב-0% שומן, סוכר נמוך של 3.3 גרם וללא סוכר מוסף שזוהה. מגיע ל-A על שילוב נדיר של חלבון גבוה וסוכר נמוך, ונעצר שם: חלבון צפוף לבדו לא מזכה ב-S.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 10.5 גרם ל-100 גרם",
+          "סוכר נמוך — 3.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 87,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 58,
+        "protein_g_per_100g": 10.5,
+        "fat_g_per_100g": 0.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 3.3,
+        "sugar_g_per_100g": 3.3,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 35,
+        "ingredient_count": 2,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "e4d28d6085537f647a517eec5949db61bed107c033ea0c0997e0105c1cd4eaba"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290112336712\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 92.6,
+        "grade": "S",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-004",
+      "barcode": "7290114311069",
+      "name_he": "מולר אקטיב לבן 0% 25 חלבון",
+      "strings": {
+        "insightLine": "החלבון הגבוה במדף — 12.5 גרם ל-100 גרם ב-0% שומן, עם 2.5 גרם סיבים וסוכר נמוך של 2.5 גרם. מגיע ל-A: צירוף חזק של חלבון גבוה, סוכר נמוך וסיבים נדירים ליוגורט. נעצר ב-A ולא S כי הוא מוצר חלבון מהונדס, לא בסיס יוצא דופן.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 12.5 גרם ל-100 גרם",
+          "סיבים תזונתיים — 2.5 גרם ל-100 גרם"
+        ],
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 85,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 65,
+        "protein_g_per_100g": 12.5,
+        "fat_g_per_100g": 0.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 2.5,
+        "sugar_g_per_100g": 2.5,
+        "fiber_g_per_100g": 2.5,
+        "sodium_mg_per_100g": 45,
+        "ingredient_count": 3,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "a7a2f5dee63cc12796b4e1373e246f58bf7fe88454015eb1ec18fab8fcce5c39"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290114311069\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 84.8,
+        "grade": "A",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-003",
+      "barcode": "7290014758100",
+      "name_he": "יוגורט ביו תנובה 3%",
+      "strings": {
+        "insightLine": "מהפשוטים במדף — חלב, רכיבי חלב וחיידקי ביפידוס, 5.3 גרם חלבון וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. מגיע ל-A בלי שום טריק חלבון: בסיס פשוט, תרביות חיות וכמעט כלום מעבר לזה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "positiveSignals": [
+          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 81,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 64,
+        "protein_g_per_100g": 5.3,
+        "fat_g_per_100g": 3.0,
+        "saturated_fat_g_per_100g": 1.9,
+        "carbohydrate_g_per_100g": 4.0,
+        "sugar_g_per_100g": 4.0,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 50,
+        "ingredient_count": 4,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "7c94105268ba538a110216c17f743a05e5566f7aff36a895678a606003707f41"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290014758100\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 80.2,
+        "grade": "A",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: nutrient_density=37.2 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-005",
+      "barcode": "7290014758117",
+      "name_he": "יוגורט ביו תנובה 1.5%",
+      "strings": {
+        "insightLine": "אותו ביו פשוט של תנובה בגרסת 1.5% שומן — אותם חיידקי ביפידוס, 5.2 גרם חלבון. מגיע ל-A על אותו בסיס פשוט; הסוכר כאן 5.3 גרם, מעט גבוה מהבסיסים האחרים, אך עדיין בראש המדף.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "positiveSignals": [
+          "שומן נמוך — 1.5 גרם ל-100 גרם"
+        ],
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 81,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 56,
+        "protein_g_per_100g": 5.2,
+        "fat_g_per_100g": 1.5,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 5.3,
+        "sugar_g_per_100g": 5.3,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 65,
+        "ingredient_count": 4,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "8a1d851406e17708201a099a61f24760197674c4ef2316866f6a605baa1483b9"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290014758117\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 79.0,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-002",
+      "barcode": "7290110328221",
+      "name_he": "יוגורט נטול לקטוז 3% שומן",
+      "strings": {
+        "insightLine": "בסיס יוגורט פשוט נטול לקטוז — ללא תוספי מזון או סוכר מוסף שזוהו, עם חיידקי ביפידוס. מגיע ל-A על בסיס פשוט ותרביות חיות, בתחתית קבוצת ה-A: ערכי הסוכר לא היו זמינים, ולכן הניתוח כאן חלקי.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "unknowns": [
+          "ערכי הסוכר לא היו זמינים במקור הנתונים — מדד זה לא נכלל בניתוח."
+        ],
+        "positiveSignals": [
+          "בסיס יוגורט פשוט — ללא תוספי מזון או סוכר מוסף שזוהו"
+        ],
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 80,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 64,
+        "protein_g_per_100g": 5.0,
+        "fat_g_per_100g": 3.0,
+        "saturated_fat_g_per_100g": 1.9,
+        "carbohydrate_g_per_100g": 4.2,
+        "sugar_g_per_100g": null,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 60,
+        "ingredient_count": 4,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "45ab1b235791ae2170f271a8dddf6dccdb2791f644c6ab1cb4057814b8416c9f"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290110328221\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 78.4,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-009",
+      "barcode": "7290014890589",
+      "name_he": "יוגורט יווני 8%",
+      "strings": {
+        "insightLine": "רק שלושה רכיבים — חלב, שמנת וחלבון חלב — וסוכר נמוך של 3 גרם ללא סוכר מוסף שזוהה. עוצר ב-B, מתחת לבסיסים הרזים, כי 8% שומן ו-4.8 גרם רווי מכריעים; רשימה קצרה לא תמיד אומרת רזה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "positiveSignals": [
+          "סוכר נמוך — 3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": [
+          "שומן רווי גבוה — 4.8 גרם ל-100 גרם"
+        ],
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 79,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 109,
+        "protein_g_per_100g": 6.0,
+        "fat_g_per_100g": 8.0,
+        "saturated_fat_g_per_100g": 4.8,
+        "carbohydrate_g_per_100g": 3.3,
+        "sugar_g_per_100g": 3.0,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 44,
+        "ingredient_count": 3,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "4a02d6ee7be45e1e21391e1b32e891b9355263f9900ca9d7b0b6adbf3678563c"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290014890589\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 75.5,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: nutrient_density=42.5 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-007",
+      "barcode": "7290107936309",
+      "name_he": "יוגורט בסגנון יווני 6.5%",
+      "strings": {
+        "insightLine": "בסגנון יווני עם 5.5 גרם חלבון וללא סוכר מוסף שזוהה — בסיס מצומצם ברכיבים. עוצר ב-B כי 6.5% שומן, מתוכם 3.9 גרם רווי, מחזיקים אותו מתחת לראש המדף.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "positiveSignals": [
+          "סוכר נמוך — 4.3 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "limitingFactors": [
+          "עתיר שומן לקטגוריה — 6.5 גרם שומן ל-100 גרם"
+        ],
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 78,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 101,
+        "protein_g_per_100g": 5.5,
+        "fat_g_per_100g": 6.5,
+        "saturated_fat_g_per_100g": 3.9,
+        "carbohydrate_g_per_100g": 4.3,
+        "sugar_g_per_100g": 4.3,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 47,
+        "ingredient_count": 3,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "f610959441294fc451d8da20c830a19470d6fbf4903a8c26e8a60a07de08b6b7"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290107936309\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 76.6,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: nutrient_density=38.8 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-006",
+      "barcode": "7290012645297",
+      "name_he": "יוגורט עיזים ביו",
+      "strings": {
+        "insightLine": "מהמעטים על בסיס חלב עיזים — שישה רכיבים, תרבית יוגורט וסוכר נמוך של 4 גרם ללא סוכר מוסף שזוהה. עוצר ב-B כי החלבון כאן 3.6 גרם בלבד, נמוך לקטגוריה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "positiveSignals": [
+          "סוכר נמוך — 4 גרם ל-100 גרם, ללא סוכר מוסף שזוהה"
+        ],
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 77,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 62,
+        "protein_g_per_100g": 3.6,
+        "fat_g_per_100g": 3.5,
+        "saturated_fat_g_per_100g": 2.1,
+        "carbohydrate_g_per_100g": 4.0,
+        "sugar_g_per_100g": 4.0,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 50,
+        "ingredient_count": 3,
+        "ingredient_first": "חלב עיזים מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "bc79f1c6290648e6a94263d6ee9e74d257fc743278ad5cf1059cca06334dedc6"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290012645297\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 75.3,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: nutrient_density=24.5 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "yog-010",
+      "barcode": "7290110321680",
+      "name_he": "יופלה GO תות",
+      "strings": {
+        "insightLine": "אותם 10 גרם חלבון של ה-GO הלבן שמוביל את המדף — אבל הוספת התות הביאה 9.6 גרם סוכר, צבע מאכל ושלושה תוספי מזון ומעלה. צונח ל-C כי אותו בסיס חלבון הפך לקינוח מתוק.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "positiveSignals": [
+          "חלבון גבוה לקטגוריה — 10 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "שלושה תוספי מזון ומעלה ברשימה — מעבר לבסיס היוגורט",
+          "סוכר גבוה — 9.6 גרם ל-100 גרם"
+        ],
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 63,
+        "display_grade": "C",
+        "energy_kcal_per_100g": 98,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 2.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 9.9,
+        "sugar_g_per_100g": 9.6,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 60,
+        "ingredient_count": 13,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {
+          "חלבוני חלב": 7.8,
+          "תות מבושל": 6.0
+        },
+        "ingredient_list_sha256": "8c447e3eb75073297c297f8e23c721c1da9e697c46325bdf20787d7bdc07b1cf"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290110321680\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 61.8,
+        "grade": "C",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "yog-011",
+      "barcode": "7290010471669",
+      "name_he": "יוגורט קראנצ תות קורנפלק",
+      "strings": {
+        "insightLine": "הציון הנמוך במדף — יוגורט שהפך לקינוח: תוספת קורנפלקס ושוקולד, חמישה תוספי מזון ומעלה, סוכר מוסף שזוהה של 9.9 גרם וחלבון של 3.6 גרם בלבד. צונח ל-D כי כמעט הכול כאן תוספת.",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
+        "limitingFactors": [
+          "חמישה תוספי מזון ומעלה ברשימה — מעבר לבסיס היוגורט",
+          "סוכר מוסף זוהה — 9.9 גרם סוכר ל-100 גרם"
+        ],
+        "confidence_label_he": "מבוסס על נתונים חלקיים",
+        "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים."
+      },
+      "display_values": {
+        "display_score": 40,
+        "display_grade": "D",
+        "energy_kcal_per_100g": 104,
+        "protein_g_per_100g": 3.6,
+        "fat_g_per_100g": 3.8,
+        "saturated_fat_g_per_100g": 2.3,
+        "carbohydrate_g_per_100g": 13.1,
+        "sugar_g_per_100g": 9.9,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 55,
+        "ingredient_count": 19,
+        "ingredient_first": "יוגורט: חלב מפוסטר",
+        "ingredient_percentages": {
+          "מחית תות": 0.4,
+          "בתוספת חיידק פרוביוטי Bifidus. תוסף (9.9%): שוקולד חלב": 7.1
+        },
+        "ingredient_list_sha256": "fc1b881dd561e901cccf42dd14e6cd1d5ab3195609c00e6626f32c463a682cf6"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products\\bsip1_yogurt_7290010471669\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 36.3,
+        "grade": "D",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_5_PLUS"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290110565527",
+      "barcode": "7290110565527",
+      "name_he": "דנונה PRO יוגורט 20 גר׳ חלבון 1.5% שומן",
+      "strings": {
+        "insightLine": "המוביל הבלתי מעורר ספק — 20 גרם חלבון ל-100 גרם על רכיב יחיד: חלב מפוסטר. מגיע ל-96/A: צפיפות חלבון שלא נמצאת במדף, בלי תוספות.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 96,
+        "display_grade": "A",
+        "energy_kcal_per_100g": 70,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 1.5,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 3.4,
+        "sugar_g_per_100g": 3.4,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 35,
+        "ingredient_count": 2,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "e4d28d6085537f647a517eec5949db61bed107c033ea0c0997e0105c1cd4eaba"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290110565527\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 95.6,
+        "grade": "S",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290000408316",
+      "barcode": "7290000408316",
+      "name_he": "יוגורט ביו שטראוס 3 אחו",
+      "strings": {
+        "insightLine": "פשוט ונקי — חלב מפוסטר, רכיבי חלב ופרוביוטי Bifidus, 5.2 גרם חלבון. עוצר ב-78/B: הבסיס נקי, אך צפיפות החלבון הנמוכה מושכת אותו מטה מה-A.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 78,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 70,
+        "protein_g_per_100g": 5.2,
+        "fat_g_per_100g": 3.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 4.5,
+        "sugar_g_per_100g": null,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": null,
+        "ingredient_count": 5,
+        "ingredient_first": "פרוביוטי As»J\\ »_D3 3% • Ujy Bifidus \\¥\\\\ רכיבים: חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "4568adc9c7729ce85f3b5bc8eb5fe592eff95623388f9d5b78cc36ca4f035b89"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290000408316\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 78.1,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290112330352",
+      "barcode": "7290112330352",
+      "name_he": "Yogurt Pro 20",
+      "strings": {
+        "insightLine": "10 גרם חלבון ב-0% שומן — אבל 12 רכיבים: עמילן אורז, סטיביה, חומרי טעם וצבע קרמל. עוצר ב-76/B: חלבון גבוה, רשימה ארוכה.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 76,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 65,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 0.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 5.6,
+        "sugar_g_per_100g": 5.6,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 33,
+        "ingredient_count": 6,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "21dc6e19f026390d9833778e802f4089f53bf8cc6415de6fefd96f3aeea87f22"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290112330352\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 75.9,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290107936309",
+      "barcode": "7290107936309",
+      "name_he": "Greek yogurt",
+      "strings": {
+        "insightLine": "רכיבים פשוטים ושומן גבוה — 6.5 גרם שומן מול 5.5 גרם חלבון בלבד. עוצר ב-75/B: יחס שומן-חלבון גבוה מושך אותו מטה מגרסאות הסגנון היווני המועשרות בחלבון.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 75,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 101,
+        "protein_g_per_100g": 5.5,
+        "fat_g_per_100g": 6.5,
+        "saturated_fat_g_per_100g": 3.9,
+        "carbohydrate_g_per_100g": 4.3,
+        "sugar_g_per_100g": 4.3,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 47,
+        "ingredient_count": 3,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "f610959441294fc451d8da20c830a19470d6fbf4903a8c26e8a60a07de08b6b7"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290107936309\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 74.6,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290110328764",
+      "barcode": "7290110328764",
+      "name_he": "יוגורט גו במרקם סמיך תות",
+      "strings": {
+        "insightLine": "10 גרם חלבון, 0% שומן — אבל ממתיקים מלאכותיים, עמילן מעובד וצבעי מאכל. עוצר ב-68/B: מספר החלבון גבוה, אך המרכיבים שנוספו מורידים.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 68,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 54,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 0.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 3.4,
+        "sugar_g_per_100g": 3.1,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 30,
+        "ingredient_count": 12,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {
+          "תות מבושל": 7.0
+        },
+        "ingredient_list_sha256": "848605cd73c3be44ee49af086b02a0b9c17c4d440db29fac36c4039f2c4024eb"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290110328764\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 68.0,
+        "grade": "B",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290102399819",
+      "barcode": "7290102399819",
+      "name_he": "יוגורט מועשר בחלבון עם פירות יער",
+      "strings": {
+        "insightLine": "10 גרם חלבון לצד 9.5 גרם סוכר — מועשר בשניהם. מייצבים, חומרי טעם וצבעי מאכל משלימים את התמונה. עוצר ב-66/B: הסוכר הגבוה גוזר ממנו נקודות.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 66,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 101,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 1.6,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 10.6,
+        "sugar_g_per_100g": 9.5,
+        "fiber_g_per_100g": 2.3,
+        "sodium_mg_per_100g": 40,
+        "ingredient_count": 14,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {},
+        "ingredient_list_sha256": "822bc0f19393bc5f41fba6a054c97e84b1fd6cc4ca90071eade73550046099d1"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290102399819\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 66.0,
+        "grade": "B",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=87.2 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290116934402",
+      "barcode": "7290116934402",
+      "name_he": "Go Yogurt, Mango",
+      "strings": {
+        "insightLine": "10 גרם חלבון עם מנגו מבושל 6% — אבל עמילן מעובד, קרגינן וממתיקים מלאכותיים. עוצר ב-66/B: חלבון גבוה לא מספיק כשהבסיס מעובד.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "display_values": {
+        "display_score": 66,
+        "display_grade": "B",
+        "energy_kcal_per_100g": 64,
+        "protein_g_per_100g": 10.0,
+        "fat_g_per_100g": 1.0,
+        "saturated_fat_g_per_100g": null,
+        "carbohydrate_g_per_100g": 3.7,
+        "sugar_g_per_100g": null,
+        "fiber_g_per_100g": null,
+        "sodium_mg_per_100g": 30,
+        "ingredient_count": 9,
+        "ingredient_first": "חלב",
+        "ingredient_percentages": {
+          "מנגו מבושל": 6.0
+        },
+        "ingredient_list_sha256": "b945cc855846b6b737144093deb41952521c6fba5bca092cfbefb8bc4b1e0081"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290116934402\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 66.0,
+        "grade": "B",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_yogurt_7290102394081",
+      "barcode": "7290102394081",
+      "name_he": "מולר Mix קונרפלקס",
+      "strings": {
+        "insightLine": "פתיתי שוקולד ויוגורט — 13 גרם סוכר ל-100 גרם, ורכיב שני הוא שוקולד חלב. 56/C: הציון הנמוך בקטגוריה; קינוח, לא יוגורט בסיסי.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "display_values": {
+        "display_score": 56,
+        "display_grade": "C",
+        "energy_kcal_per_100g": 125,
+        "protein_g_per_100g": 5.6,
+        "fat_g_per_100g": 3.9,
+        "saturated_fat_g_per_100g": 2.2,
+        "carbohydrate_g_per_100g": 15.8,
+        "sugar_g_per_100g": 13.1,
+        "fiber_g_per_100g": 1.9,
+        "sodium_mg_per_100g": 55,
+        "ingredient_count": 12,
+        "ingredient_first": "חלב מפוסטר",
+        "ingredient_percentages": {
+          "שוקולד ממולא פתיתי תירס (10%) [שוקולד חלב": 75.0
+        },
+        "ingredient_list_sha256": "bf3de3b31d70fe9bed64d78fd4d2cca4a8ef4545f701fced51d3c2278d849523"
+      },
+      "trace_path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_yohananof_001\\products\\bsip1_yogurt_7290102394081\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 56.3,
+        "grade": "C",
+        "nova_level": 4,
+        "caps_applied": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=72 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
+        ]
+      }
+    }
+  ],
+  "integrity_anomalies": [
+    "INFO: run_yogurt_006 has 88 products; page Shufersal pool has 11; 77 in run not on page (corpus is larger, expected)"
+  ]
+}

@@ -23,9 +23,9 @@
 meta:
   version: v1
   built: 2026-06-10
-  last_updated: 2026-06-10  # D0b — IL creators (il-023..031); D0c — Yaniv Salman (il-032) + global creators (gl-027..034)
-  verification_method: "web search confirmation of public URL + relevance, 2026-06-10"
-  active_count_israel: 32   # 22 at D0; +9 at D0b; +1 at D0c (Yaniv Salman)
+  last_updated: 2026-06-13  # D0b — IL creators (il-023..031); D0c — Yaniv Salman (il-032) + global creators (gl-027..034); D1 — Kaspenu (il-033, direct IL competitor)
+  verification_method: "web search confirmation of public URL + relevance, 2026-06-10; il-033 Kaspenu verified 2026-06-13"
+  active_count_israel: 33   # 22 at D0; +9 at D0b; +1 at D0c (Yaniv Salman); +1 at D1 (Kaspenu)
   active_count_global: 34   # 26 at D0/D0b; +8 verified creators at D0c
   principle: "credibility != virality; influencers are signal not evidence; small high-quality > large noisy"
   promotion_standard_d0b: >
@@ -540,6 +540,36 @@ israel:
       post on proper fruit-washing + consistent cross-platform presence). @yan_sal_ is a same-name profile
       left UNUSED (content unverified); a separate Yaniv Salman MUSICIAN exists — do NOT monitor that one.
       credibility:LOW until credentials confirmed (fitness influencer ≠ clinician) → treat as SIGNAL.
+
+  # --- D1 addition: DIRECT Israeli competitor (added 2026-06-13, TASK comp brief) ---
+  - id: il-033
+    platform: web
+    handle_or_name: "כספנו (Kaspenu) — 'הסריקה החכמה' / smart food scan"
+    url: https://www.kaspenu.org
+    language: he   # app supports he/en/fr; Israeli-market consumer-facing in Hebrew
+    market: israel
+    source_type: competitor
+    credibility_weight: low      # consumer tool, NOT an evidence source; scores derive from Nutri-Score/NOVA, not original analysis
+    discourse_weight: medium     # press coverage (JPost) + growing, but adoption still early
+    bari_use: [competitor_signal, category_discovery]
+    topics: [ultra_processed, additives, sugar, clean_label, price_transparency]
+    status: active
+    discovery_reason: >
+      The MOST DIRECT Bari competitor found to date: an Israeli barcode scanner that fuses a 0–100 health
+      score WITH price-transparency + healthier/cheaper alternatives, in Hebrew, on the same Israeli shelf
+      Bari scores. Israeli analog of Yuka (gl-001) but with an economic/price layer Yuka lacks. Launched
+      Apr 2025 by Yaelle Ifrah (French immigrant, ex-TV producer) + CTO Jeremy Atia.
+    notes: >
+      Scope (verified 2026-06-13): ~40,000 products in DB, 15,000–18,000 live in app; data = Nutri-Score +
+      NOVA + Israeli MoH labeling + user feedback + Ministry-of-Economy price-transparency data; AI-recommended
+      healthier/cheaper alternatives; price petition feature (flag overpriced → retailer + publish). NONPROFIT
+      (amuta), donor-funded (one French foundation), no salaries, no ads, no commercial collaborations —
+      independence is its sharpest claim. Adoption (early but real): Google Play 10K+ installs / 74 reviews /
+      4.0★; Apple 34 ratings / 4.9★; current v2.1.16 (21/10/2025); founder target 200K users in 5 yrs.
+      COMPETITOR_SIGNAL ONLY — like Yuka it relies on Nutri-Score/NOVA, NEVER an evidence source for Bari
+      (Rule 4). NOTE: Kaspenu reportedly uses Israeli MoH / public price data, NOT OFF as far as verified —
+      but do not inherit ANY Kaspenu data into Bari regardless (OFF ban + no-inherit). Threat brief:
+      reports/comp_brief_kaspenu_yuka_v1.md.
 
 # ============================================================================
 # B. ENGLISH / GLOBAL SOURCES

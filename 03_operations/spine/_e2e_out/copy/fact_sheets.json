@@ -1,0 +1,376 @@
+{
+  "_meta": {
+    "category": "e2e_throwaway",
+    "page_source": "C:\\Bari\\03_operations\\spine\\_e2e_out\\page\\e2e_page_throwaway.json",
+    "config_source": "C:\\Bari\\03_operations\\spine\\_e2e_out\\copy\\copy_config.json",
+    "product_count": 3,
+    "corpus_stats": {
+      "protein": {
+        "n": 3,
+        "min": 6.0,
+        "max": 14.0,
+        "median": 8.0
+      },
+      "sugar": {
+        "n": 3,
+        "min": 4.0,
+        "max": 38.0,
+        "median": 12.0
+      },
+      "energyKcal": {
+        "n": 3,
+        "min": 370.0,
+        "max": 520.0,
+        "median": 450.0
+      },
+      "fat": {
+        "n": 3,
+        "min": 7.0,
+        "max": 28.0,
+        "median": 18.0
+      },
+      "sodium": {
+        "n": 3,
+        "min": 80.0,
+        "max": 420.0,
+        "median": 150.0
+      },
+      "fiber": {
+        "n": 3,
+        "min": 2.0,
+        "max": 8.0,
+        "median": 3.5
+      }
+    },
+    "ambiguous_drivers": [],
+    "s_products": [
+      "7290112336712",
+      "7290110565527"
+    ],
+    "note": "FACT SHEETS — the only material the author may use. null stays null."
+  },
+  "sheets": [
+    {
+      "barcode": "9990000000003",
+      "id": "e2e_raw_9990000000003",
+      "name": "חטיף בדיקה סינטטי שיבולת שועל",
+      "retailer": "shufersal",
+      "score": 80.4,
+      "grade": "A",
+      "driver": {
+        "type": "dimension",
+        "story": "protein_modest_or_fortified",
+        "detail": {
+          "lowest_dimension": "protein_quality",
+          "lowest_dimension_value": 66.0,
+          "binding_cap_anomaly": null,
+          "penalties": []
+        }
+      },
+      "cap_misclaim_risk": false,
+      "nutrition": {
+        "protein": 14.0,
+        "sugar": 12.0,
+        "fat": 7.0,
+        "kcal": 370.0,
+        "sodium": 150.0,
+        "fiber": 8.0
+      },
+      "ingredients_head": [
+        "שיבולת שועל מלאה",
+        "דבש",
+        "צימוקי פירות"
+      ],
+      "additive_count": 0,
+      "superlatives_allowed": [
+        "highest_protein",
+        "lowest_kcal"
+      ],
+      "bari_interpretation_inputs": [
+        {
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 66.7,
+          "strength": "בינוני"
+        },
+        {
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 81.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 92.1,
+          "strength": "חזק"
+        },
+        {
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 88.6,
+          "strength": "חזק"
+        },
+        {
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "best_use_cases_pending": false,
+      "best_use_cases_deterministic": [
+        "רכיבים פשוטים"
+      ]
+    },
+    {
+      "barcode": "9990000000001",
+      "id": "e2e_raw_9990000000001",
+      "name": "קרקר בדיקה סינטטי",
+      "retailer": "shufersal",
+      "score": 62.6,
+      "grade": "C",
+      "driver": {
+        "type": "dimension",
+        "story": "low_satiety",
+        "detail": {
+          "lowest_dimension": "satiety_support",
+          "lowest_dimension_value": 36.9,
+          "binding_cap_anomaly": null,
+          "penalties": [
+            "HP_FAT_SODIUM_COMBO"
+          ]
+        }
+      },
+      "cap_misclaim_risk": false,
+      "nutrition": {
+        "protein": 8.0,
+        "sugar": 4.0,
+        "fat": 18.0,
+        "kcal": 450.0,
+        "sodium": 420.0,
+        "fiber": 3.5
+      },
+      "ingredients_head": [
+        "קמח חיטה",
+        "שמן דקלים",
+        "מלח"
+      ],
+      "additive_count": 0,
+      "superlatives_allowed": [
+        "lowest_sugar"
+      ],
+      "bari_interpretation_inputs": [
+        {
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 38.2,
+          "strength": "נמוך"
+        },
+        {
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 87.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 89.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 36.9,
+          "strength": "נמוך"
+        },
+        {
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "best_use_cases_pending": false,
+      "best_use_cases_deterministic": [
+        "רכיבים פשוטים"
+      ]
+    },
+    {
+      "barcode": "9990000000002",
+      "id": "e2e_raw_9990000000002",
+      "name": "עוגיית שוקולד בדיקה סינטטי",
+      "retailer": "shufersal",
+      "score": 18.6,
+      "grade": "E",
+      "driver": {
+        "type": "cap_plus_penalty",
+        "story": "calorie_and_sugar_load",
+        "detail": {
+          "binding_cap": 45,
+          "cap_rules": [
+            "HIGH_CAL_HIGH_SUGAR_SEVERE",
+            "HIGH_CAL_HIGH_SUGAR_MODERATE",
+            "HIGH_SUGAR_25G_PLUS",
+            "SNACK_BAR_HIGH_CAL_SUGAR",
+            "SNACK_BAR_RED_SUGAR_LABEL",
+            "ISRAELI_RED_LABEL_1_SUGAR",
+            "ISRAELI_RED_LABELS_2_PLUS",
+            "SNACK_BAR_HIGH_CAL",
+            "NOVA_PROXY_3_PROCESSED",
+            "ISRAELI_RED_LABEL_1_SAT_FAT"
+          ],
+          "penalties": [
+            "HIGH_CAL_HIGH_SUGAR_SOFT",
+            "HIGH_CAL_LOW_SATIETY_SOFT",
+            "HP_FAT_SUGAR_COMBO"
+          ],
+          "gap_below_cap": 26.4,
+          "lowest_dimension": "glycemic_quality",
+          "lowest_dimension_value": 14.0
+        }
+      },
+      "cap_misclaim_risk": true,
+      "nutrition": {
+        "protein": 6.0,
+        "sugar": 38.0,
+        "fat": 28.0,
+        "kcal": 520.0,
+        "sodium": 80.0,
+        "fiber": 2.0
+      },
+      "ingredients_head": [
+        "קמח",
+        "סוכר",
+        "שוקולד"
+      ],
+      "additive_count": 0,
+      "superlatives_allowed": [],
+      "bari_interpretation_inputs": [
+        {
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 65.0,
+          "strength": "בינוני"
+        },
+        {
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 26.5,
+          "strength": "נמוך"
+        },
+        {
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 14.0,
+          "strength": "נמוך"
+        },
+        {
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 47.5,
+          "strength": "נמוך"
+        },
+        {
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 21.5,
+          "strength": "נמוך"
+        },
+        {
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "best_use_cases_pending": true,
+      "best_use_cases_deterministic": []
+    }
+  ]
+}

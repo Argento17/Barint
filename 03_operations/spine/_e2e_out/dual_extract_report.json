@@ -1,0 +1,288 @@
+{
+  "generated_at": "2026-06-13T17:17:42.762067+00:00",
+  "fixtures_dir": "C:\\Bari\\03_operations\\spine\\_fixtures_e2e\\raw",
+  "bsip0_dir": "C:\\Bari\\03_operations\\spine\\_e2e_out\\bsip0",
+  "run_meta": {
+    "mode": "e2e_fixtures"
+  },
+  "fields_compared": [
+    "energy_kcal",
+    "protein_g",
+    "fat_g",
+    "fat_saturated_g",
+    "carbohydrates_g",
+    "sugars_g",
+    "dietary_fiber_g",
+    "sodium_mg",
+    "ingredients"
+  ],
+  "tolerance": {
+    "absolute": 0.1,
+    "relative_pct": 1.0
+  },
+  "fabrication_guard": "Gemini prompt explicitly forbids: (1) inferring/estimating values, (2) using outside world knowledge, (3) using Open Food Facts or any external source (TASK-238). Disagreements with the rule-based parser are the consensus check — if Gemini invents a value it disagrees with Extractor A and is FLAGGED, never silently accepted.",
+  "factory_wiring": "dual_extract.py runs at the extraction stage (post-scrape, pre-BSIP1). Fields with DISAGREE or FLAG verdict block auto-publish and route to human review. Only AGREE fields are promoted to the scored pipeline. B-side 'unavailable' (Gemini timeout/error) triggers manual review of the affected product — it does not crash the pipeline.",
+  "products": [
+    {
+      "barcode": "9990000000001",
+      "name": "קרקר בדיקה סינטטי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 450.0,
+          "extractor_b": 450.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 18.0,
+          "extractor_b": 18.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 3.0,
+          "extractor_b": 3.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 62.0,
+          "extractor_b": 62.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 4.0,
+          "extractor_b": 4.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 3.5,
+          "extractor_b": 3.5,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 420.0,
+          "extractor_b": 420.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח חיטה, שמן דקלים, מלח, שמשום",
+          "extractor_b": "קמח חיטה, שמן דקלים, מלח, שמשום",
+          "verdict": "AGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "9990000000002",
+      "name": "עוגיית שוקולד בדיקה סינטטי",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 520.0,
+          "extractor_b": 520.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 6.0,
+          "extractor_b": 6.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 28.0,
+          "extractor_b": 28.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 16.0,
+          "extractor_b": 16.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 60.0,
+          "extractor_b": 60.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 38.0,
+          "extractor_b": 38.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 2.0,
+          "extractor_b": 2.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 80.0,
+          "extractor_b": 80.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "קמח, סוכר, שוקולד, חמאה, שמן דקלים, מצק פרה, גליצרין, חומצת לימון",
+          "extractor_b": "קמח, סוכר, שוקולד, חמאה, שמן דקלים, מצק פרה, גליצרין, חומצת לימון",
+          "verdict": "AGREE"
+        }
+      ]
+    },
+    {
+      "barcode": "9990000000003",
+      "name": "חטיף בדיקה סינטטי שיבולת שועל",
+      "gemini_available": true,
+      "fields": [
+        {
+          "field": "energy_kcal",
+          "extractor_a": 370.0,
+          "extractor_b": 370.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "protein_g",
+          "extractor_a": 14.0,
+          "extractor_b": 14.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_g",
+          "extractor_a": 7.0,
+          "extractor_b": 7.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "fat_saturated_g",
+          "extractor_a": 1.2,
+          "extractor_b": 1.2,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "carbohydrates_g",
+          "extractor_a": 66.0,
+          "extractor_b": 66.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sugars_g",
+          "extractor_a": 12.0,
+          "extractor_b": 12.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "dietary_fiber_g",
+          "extractor_a": 8.0,
+          "extractor_b": 8.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "sodium_mg",
+          "extractor_a": 150.0,
+          "extractor_b": 150.0,
+          "verdict": "AGREE"
+        },
+        {
+          "field": "ingredients",
+          "extractor_a": "שיבולת שועל מלאה, דבש, צימוקי פירות, קינמון",
+          "extractor_b": "שיבולת שועל מלאה, דבש, צימוקי פירות, קינמון",
+          "verdict": "AGREE"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "products_cross_checked": 3,
+    "gemini_calls_ok": 3,
+    "gemini_calls_unavailable": 0,
+    "fields_compared_total": 27,
+    "fields_with_both_extractors": 27,
+    "fields_agree": 27,
+    "fields_disagree": 0,
+    "fields_flag": 0,
+    "fields_both_null": 0,
+    "agreement_rate_pct": 100.0,
+    "per_field_verdicts": {
+      "energy_kcal": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "protein_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "fat_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "fat_saturated_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "carbohydrates_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "sugars_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "dietary_fiber_g": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "sodium_mg": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      },
+      "ingredients": {
+        "AGREE": 3,
+        "DISAGREE": 0,
+        "FLAG": 0,
+        "B_UNAVAILABLE": 0,
+        "BOTH_NULL": 0
+      }
+    },
+    "nutrition_disagreements": []
+  }
+}

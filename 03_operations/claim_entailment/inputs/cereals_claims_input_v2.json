@@ -1,0 +1,1141 @@
+{
+  "category": "breakfast-cereals",
+  "role": "control",
+  "version": 2,
+  "source_frontend": "bari-web/src/lib/comparisons/cereals-page-data.ts",
+  "source_frontend_data": "bari-web/src/data/comparisons/cereals_frontend_v2.json",
+  "source_trace_run": {
+    "run_008_reconstruction": "02_products/breakfast_cereals/bsip2_outputs/run_cereals_008_reconstruction",
+    "run_multiretailer_001_reconstruction": "02_products/breakfast_cereals/bsip2_outputs/run_cereals_multiretailer_001_reconstruction",
+    "note": "TASK-254/F1: Reconstructed traces for run_cereals_008 and run_cereals_multiretailer_001. v1 pointed to run_cereals_006 (BEST AVAILABLE) but 8 products had NO_TRACE. v2 resolves all 8 via reconstruction. Original run_cereals_008/run_cereals_multiretailer_001 directories do not exist in repo — reconstruction is the best available."
+  },
+  "generated_at": "2026-06-12T05:33:05.445738+00:00",
+  "page_strings": {
+    "hero_eyebrow": "דגני בוקר",
+    "hero_title": "דגני בוקר: 34 מוצרים, אף אחד לא מגיע ל-A",
+    "prologue_1": "בדקנו 34 מוצרי דגני בוקר מהמדף הישראלי — משופרסל וקרפור.",
+    "prologue_2": "אף מוצר לא הגיע ל-A — הציון הגבוה ביותר עוצר ב-75/B.",
+    "prologue_3": "החלוקה: שישה מוצרים ב-B, 11 ב-C, 16 ב-D ואחד ב-E.",
+    "prologue_4": "חמישה מוצרים מיועדים לילדים; הפער בין הגבוה לנמוך הוא 43 נקודות.",
+    "prologue_5": "גרנולה ומוזלי מוצגים בעמוד נפרד — משפחת מוצרים אחרת.",
+    "category_note": "הערת קטגוריה — העשרה בוויטמינים ומינרלים\n\nרוב דגני הבוקר מועשרים בוויטמינים ומינרלים סינתטיים — ברזל, ויטמיני B, חומצה פולית, ויטמין D. ההעשרה נגזרת מתהליך הייצור: הדגן המעובד מאבד חלק ממיקרו-הרכיבים שלו, והיצרן מחזיר אותם מבחוץ. ציון Bari מבוסס על מבנה המזון — כמות החלבון, הסיבים, רמת העיבוד ושלמות רשימת הרכיבים. הוא אינו מחשב תרומת מיקרו-רכיבים, בין אם מועשרים ובין אם מקוריים. מוצר מועשר עשוי לספק ברזל או ויטמין D שאינם משתקפים בציון.\n\nהערת קטגוריה — טענת 'דגנים מלאים' נקראת מהרשימה, לא מהמיתוג\n\nטענת 'דגנים מלאים' מופיעה על 20 מוצרים בעמוד זה, אך לא בכולם סדר הרכיבים תומך בה — לעיתים קמח לבן מופיע לפני הדגן המלא. הציון מבוסס על ההרכב בפועל, לא על הטענה שעל האריזה.",
+    "methodology_1": "בדקנו 34 מוצרי דגני בוקר משתי רשתות — שופרסל וקרפור — רכיבים, ערכי תזונה ורמת עיבוד, לא רק קלוריות.",
+    "methodology_2": "הציונים יחסיים לקטגוריה; בסקירה זו אף מוצר לא הגיע ל-A.",
+    "methodology_3": "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין."
+  },
+  "products": [
+    {
+      "product_id": "bsip1_cereal_5010029000061",
+      "barcode": "5010029000061",
+      "name_he": "דגני בוקר ויטביקס",
+      "strings": {
+        "insightLine": "95% חיטה, 12 גרם חלבון, 10 גרם סיבים — הכי גבוה בקטגוריה על שני הממדים.",
+        "rowVerdict": "95% חיטה, הרכב פשוט, 12 גרם חלבון ו-10 גרם סיבים ל-100 גרם — הגבוהים בקטגוריה. ליון עמד על 78/B בגרסה הקודמת עקב תקלת נתונים; הציון המתוקן הוא 55/C. הפער האמיתי מ-ויטביקס הוא 20 נקודות. עוצר ב-B כי מועשר בוויטמינים (לא ספונטני) ו-342 קלוריות ל-100 גרם.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_5010029000061\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 74.7,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7613037686906",
+      "barcode": "7613037686906",
+      "name_he": "Fitness almond honey",
+      "strings": {
+        "insightLine": "תווית 'פיטנס' — 10 גרם סוכר ל-100 גרם.",
+        "rowVerdict": "קורנפלקס פיטנס בטעם שקדים ודבש — 10 גרם חלבון, 7.7 גרם סיבים ושומן נמוך, אבל גם 10 גרם סוכר ל-100 גרם. עוצר ב-B כי הפרופיל סביר, אך הסוכר המוסף בולט לצד שם ה'פיטנס'.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "confidence_label_he": "חסרים נתוני רכיבים",
+        "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_7613037686906\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 70.0,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Confidence ceiling active at 75 (data quality limitation)"
+        ],
+        "unresolved_flags": [
+          "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3",
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290017325910",
+      "barcode": "7290017325910",
+      "name_he": "קורנפלקס אורגני הרדוף",
+      "strings": {
+        "insightLine": "קמח תירס אורגני 94%, 600 מ\"ג נתרן — גבוה משמעותית.",
+        "rowVerdict": "קורנפלקס אורגני עם שתי שורות רכיבים — 94% קמח תירס אורגני, בלי תוספים. יורד ל-C כי 600 מ\"ג נתרן ל-100 גרם — הסף האדום של משרד הבריאות — גבוה לקטגוריה שבה רוב המוצרים מתחת ל-200 מ\"ג.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290017325910\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 69.2,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "PRIMARY SIGNAL: nutrient_density=40.0 (lowest dimension)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7613033548192",
+      "barcode": "7613033548192",
+      "name_he": "Nestle Fitness Dark Chocolate",
+      "strings": {
+        "insightLine": "תווית 'פיטנס' עם שוקולד — 14 גרם סוכר, 10.3 גרם סיבים.",
+        "rowVerdict": "קורנפלקס פיטנס בטעם שוקולד מריר — 10.3 גרם סיבים מרשימים, אבל 14 גרם סוכר ל-100 גרם. עוצר ב-B כי הסיבים גבוהים, אבל השוקולד והסוכר המוסף מושכים מטה לצד שם ה'פיטנס'.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "confidence_label_he": "חסרים נתוני רכיבים",
+        "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_7613033548192\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 68.2,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Confidence ceiling active at 75 (data quality limitation)"
+        ],
+        "unresolved_flags": [
+          "CATEGORY_INSTABILITY: primary=default secondary=default, confidence=0.3",
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7297488098688",
+      "barcode": "7297488098688",
+      "name_he": "פצפוצי אורז ללת\"ס",
+      "strings": {
+        "insightLine": "100% אורז מלא, אפס סוכר ואפס מלח — 71 מ\"ג נתרן.",
+        "rowVerdict": "פצפוצי אורז מלא ללא תוספת סוכר ומלח — 100% אורז מלא, 3 גרם סיבים, 71 מ\"ג נתרן בלבד. עוצר ב-B ולא מעלה כי 3 גרם סיבים נמוך יחסית למיטב הקטגוריה, ואין רשימת רכיבים מורחבת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7297488098688\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 67.3,
+        "grade": "B",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_5900020041142",
+      "barcode": "5900020041142",
+      "name_he": "קורנפלקס פיטנס",
+      "strings": {
+        "insightLine": "קורנפלקס — 3 גרם סוכר, אבל 1.3 גרם סיבים בלבד.",
+        "rowVerdict": "קורנפלקס פיטנס עם סוכר נמוך של 3 גרם ושומן נמוך מאוד — אבל גם 1.3 גרם סיבים בלבד ל-100 גרם. עוצר ב-B כי הסוכר מתון, אך מבנה התירס המעובד כמעט נטול סיבים.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "confidence_label_he": "חסרים נתוני רכיבים",
+        "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_5900020041142\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 65.3,
+        "grade": "B",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Confidence ceiling active at 75 (data quality limitation)"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290116535371",
+      "barcode": "7290116535371",
+      "name_he": "קורנפלקס לל\"ג כשל\"פ",
+      "strings": {
+        "insightLine": "תווית \"עשיר בדגנים מלאים\" — 92% קמח תירס, 3 גרם סיבים.",
+        "rowVerdict": "קורנפלקס עם תווית דגנים מלאים — אבל 92% קמח תירס ו-3 גרם סיבים בלבד. C כי ההצהרה על הקופסה אינה מתיישבת עם פרופיל הסיבים הנמוך.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290116535371\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 62.5,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7297488199590",
+      "barcode": "7297488199590",
+      "name_he": "פצפוצי אורז תפוח",
+      "strings": {
+        "insightLine": "95% אורז לבן, 0.8 גרם סיבים — מהנמוכים בקטגוריה.",
+        "rowVerdict": "פצפוצי אורז קלאסיים — 95% אורז לבן, 7 גרם חלבון, אבל 0.8 גרם סיבים בלבד ו-390 מ\"ג נתרן. C; פשוט אך חסר ממשק תזונתי מלא.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7297488199590\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 61.8,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642046",
+      "barcode": "7296073642046",
+      "name_he": "קורנפלקס ללא גלוטן",
+      "strings": {
+        "insightLine": "89% גריסי תירס, 390 מ\"ג נתרן, ללא גלוטן.",
+        "rowVerdict": "קורנפלקס ללא גלוטן — 89% גריסי תירס, 8 גרם חלבון, אבל 390 מ\"ג נתרן ו-2.2 גרם סיבים בלבד. C; האפשרות לנמנעי הגלוטן, אך הפרופיל פשוט.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7296073642046\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 58.2,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_3560071016074",
+      "barcode": "3560071016074",
+      "name_he": "Corn flakes",
+      "strings": {
+        "insightLine": "תירס 92%, סוכר ומלח — 320 מ\"ג נתרן.",
+        "rowVerdict": "קורנפלקס פשוט — 92% תירס, ואחריו סוכר, מלח ותמצית לתת. נשאר ב-C כי הרשימה קצרה אבל מבנה התירס המעובד מותיר רק 2.5 גרם סיבים, ו-320 מ\"ג הנתרן בולטים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_3560071016074\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 60.8,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290112494351",
+      "barcode": "7290112494351",
+      "name_he": "קורנפלקס של אלופים בד\"ץ",
+      "strings": {
+        "insightLine": "89% קמח תירס, 7 גרם חלבון, 3 גרם סיבים.",
+        "rowVerdict": "קורנפלקס מועשר בוויטמינים — 89% קמח תירס, 3 גרם סיבים, 375 מ\"ג נתרן. C על פרופיל בינוני; ההעשרה לא מפצה על נמיכות הסיבים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290112494351\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 57.1,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_5900020036407",
+      "barcode": "5900020036407",
+      "name_he": "ליון דגני שוקולד וקרמל",
+      "strings": {
+        "insightLine": "24.7 גרם סוכר ל-100 גרם, שומן רווי 2.5 גרם. הציון הקודם היה שגוי — נתוני שומן וסוכר לא הועברו למנוע.",
+        "rowVerdict": "ליון: דגני שוקולד וקרמל עם 24.7 גרם סוכר ו-6.2 גרם שומן ל-100 גרם — ערכים שלא הועברו לגרסה הקודמת. הציון הנכון הוא 55/C. 8.5 גרם חלבון ו-6.5 גרם סיבים, אך גלוקוז גבוה וארכיטקטורת שומן בינונית מורידים את הציון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_5900020036407\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 55.0,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "CATEGORY_INSTABILITY: primary=cereal secondary=snack_bar_granola, confidence=0.6",
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_5900020012814",
+      "barcode": "5900020012814",
+      "name_he": "דגני בוקר נסקוויק",
+      "strings": {
+        "insightLine": "מוצר ילדים שהציון הקודם שלו היה מנופח. 24.7 גרם סוכר ל-100 גרם — גבוה לקטגוריה.",
+        "rowVerdict": "נסקוויק: חיטה מלאה ראשונה ברשימה, 8.9 גרם חלבון ו-8 גרם סיבים — אבל 24.7 גרם סוכר ל-100 גרם. הציון הקודם (78/B) לא כלל נתוני סוכר ושומן מלאים. הציון הנכון 55/C.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_5900020012814\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 55.0,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_72968",
+      "barcode": "72968",
+      "name_he": "דגני בוקר סיני מיניס",
+      "strings": {
+        "insightLine": "חיטה מלאה ראשונה, 338 מ\"ג נתרן — גבוה לקטגוריה.",
+        "rowVerdict": "חיטה מלאה ראשונה ברשימה ו-5.7 גרם סיבים, אבל 338 מ\"ג נתרן ל-100 גרם — גבוה מהמדיאן בקטגוריה. B על בסיס הדגן המלא; הנתרן מושך כלפי מטה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_72968\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 55.0,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647731",
+      "barcode": "7290107647731",
+      "name_he": "דגני בוקר קוקומן חום לבן",
+      "strings": {
+        "insightLine": "תווית \"חום\" — סוכר הרכיב השני, 382 מ\"ג נתרן.",
+        "rowVerdict": "קוקומן עם תיוג ילדים ותווית שנשמעת דגנים מלאים — סוכר הרכיב השני, 382 מ\"ג נתרן. עוצר ב-B תחתון כי הדגנים המלאים נוכחים (71%), אבל פרופיל הסוכר והנתרן אינם לטובת ילדים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290107647731\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 55.0,
+        "grade": "C",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290107647854",
+      "barcode": "7290107647854",
+      "name_he": "דגני בוקר שוגי",
+      "strings": {
+        "insightLine": "82% קמח תירס, 12% סוכר, 435 מ\"ג נתרן.",
+        "rowVerdict": "קורנפלקס קלאסי — 82% קמח תירס, סוכר 12%, נתרן 435 מ\"ג. C; פרופיל ישיר ולא מורכב, אך גבוה בנתרן.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290107647854\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 49.7,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290116537351",
+      "barcode": "7290116537351",
+      "name_he": "כריות נוגט",
+      "strings": {
+        "insightLine": "מוצר ילדים — 16.3 גרם שומן, 5.7 גרם חלבון.",
+        "rowVerdict": "כריות נוגט מקטגוריית הילדים — 16.3 גרם שומן ל-100 גרם, 217 מ\"ג נתרן ורק 5.7 גרם חלבון. נשאר ב-C כי המילוי המתוק מגדיר את המוצר, ונתוני הסוכר והסיבים אינם זמינים.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "confidence_label_he": "חסרים נתוני רכיבים",
+        "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_7290116537351\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 52.3,
+        "grade": "C",
+        "nova_level": 2,
+        "caps_applied": [],
+        "penalties_applied": [
+          "HIGH_CAL_LOW_SATIETY_SOFT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Confidence ceiling active at 75 (data quality limitation)",
+          "PENALTIES: ['HIGH_CAL_LOW_SATIETY_SOFT']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_4005528115218",
+      "barcode": "4005528115218",
+      "name_he": "דגני חיטה ואורז בטעם",
+      "strings": {
+        "insightLine": "30 גרם סוכר ל-100 גרם — כמעט שליש מהמשקל.",
+        "rowVerdict": "דגני חיטה ואורז בטעם — 30 גרם סוכר ל-100 גרם, כמעט שליש מהמשקל, ו-2.3 גרם סיבים בלבד. נשאר ב-D כי הסוכר הוא הגורם המגביל ומבנה הדגן המעובד דל בסיבים.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "confidence_label_he": "חסרים נתוני רכיבים",
+        "confidence_tooltip_he": "רשימת הרכיבים לא הייתה זמינה — הציון מבוסס על נתוני התזונה בלבד."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_4005528115218\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 48.3,
+        "grade": "D",
+        "nova_level": 2,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR"
+        ],
+        "penalties_applied": [],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=63 from rules: ['ISRAELI_RED_LABEL_1_SUGAR']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495433",
+      "barcode": "7290112495433",
+      "name_he": "דגני בוקר דליפקאן",
+      "strings": {
+        "insightLine": "13% אגוזי פקאן מקורמלים, 9.9 גרם חלבון.",
+        "rowVerdict": "דגני בוקר עם פקאן ושקדים — 9.9 גרם חלבון ו-7.4 גרם סיבים, אגוזי פקאן 8.5% ומקורמלים. C; האגוזים אמיתיים, אבל הסוכר לקירמל ורמת העיבוד מושכים כלפי מטה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290112495433\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 43.0,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705550",
+      "barcode": "7296073705550",
+      "name_he": "כדורי דגנים טעם שוקו",
+      "strings": {
+        "insightLine": "תווית \"דגנים מלאים\" — סוכר הרכיב הרביעי, גלוקוז-פרוקטוז ברשימה.",
+        "rowVerdict": "כדורי דגנים עם תווית דגנים מלאים — 25% חיטה מלאה, אבל סוכר וסירופ גלוקוז-פרוקטוז ברשימה המוקדמת. C; הדגנים המלאים נוכחים, אבל לא הרכיב הדומיננטי.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7296073705550\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 46.0,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705567",
+      "barcode": "7296073705567",
+      "name_he": "טבעות דגנים בטעם דבש",
+      "strings": {
+        "insightLine": "36% חיטה מלאה, 26% שיבולת שועל, דבש 2%.",
+        "rowVerdict": "טבעות דגנים עם 36% חיטה מלאה ו-26% שיבולת שועל — 8 גרם חלבון, 6 גרם סיבים. C; הדגנים המלאים נוכחים, אבל סוכר, סירופ גלוקוז-פרוקטוז ומולסה מגבילים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7296073705567\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 46.0,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894911",
+      "barcode": "7290017894911",
+      "name_he": "טבעות דגנים שיבולת שועל",
+      "strings": {
+        "insightLine": "54% שיבולת שועל מלאה, 7 גרם סיבים — 8.9 גרם חלבון.",
+        "rowVerdict": "טבעות עם 54% שיבולת שועל מלאה — 8.9 גרם חלבון ו-7 גרם סיבים. C כי סולת תירס, סירופ גלוקוז ואגבה ברשימה; רמת העיבוד גבוהה משיבולת שועל עבה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290017894911\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 46.0,
+        "grade": "D",
+        "nova_level": 4,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_42400108153",
+      "barcode": "42400108153",
+      "name_he": "Cereal",
+      "strings": {
+        "insightLine": "סוכר הרכיב הראשון — 42.9 גרם ל-100 גרם.",
+        "rowVerdict": "דגני בוקר שהסוכר הוא הרכיב הראשון בהם — 42.9 גרם ל-100 גרם, כמעט מחצית המשקל, עם צבעי מאכל ברשימה. יורד ל-D כי הסוכר שולט וחלבון של 3.6 גרם בלבד; הדגן המלא שולי.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_42400108153\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 44.4,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "LONG_INGREDIENT_LIST"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['LONG_INGREDIENT_LIST']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_5900020046833",
+      "barcode": "5900020046833",
+      "name_he": "Cheerios",
+      "strings": {
+        "insightLine": "שיבולת שועל מלאה 92%, אבל סוכר הרכיב השני.",
+        "rowVerdict": "צ'יריוס עם 92% קמח שיבולת שועל מלא ו-10.7 גרם חלבון — אבל סוכר הרכיב השני וסירופ סוכר אינברטי אחריו. נשאר ב-D כי הדגן המלא חזק אך הסוכר המוסף מוקדם, ונתוני הסיבים חסרים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001_reconstruction\\products\\bsip1_cereal_5900020046833\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 43.7,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894928",
+      "barcode": "7290017894928",
+      "name_he": "צדפי דגנים טעם שוקולד",
+      "strings": {
+        "insightLine": "57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים.",
+        "rowVerdict": "שיבולת שועל מלאה 57% בצורת צדף — 9.6 גרם חלבון ו-8.5 גרם סיבים. C; סירופ אגבה וסוכר קנים ברשימה, ורמת העיבוד הגבוהה מגבילה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290017894928\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 43.0,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": [
+          "CATEGORY_INSTABILITY: primary=cereal secondary=snack_bar_granola, confidence=0.59",
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290017894904",
+      "barcode": "7290017894904",
+      "name_he": "כדורי דגנים טעם שוקולד",
+      "strings": {
+        "insightLine": "57% שיבולת שועל מלאה, 9.6 גרם חלבון — גרסת כדורים.",
+        "rowVerdict": "כדורי קציר עם אותו הרכב כמו הצדפים — 57% שיבולת שועל מלאה, 9.6 גרם חלבון, 8.5 גרם סיבים. C; שיתוף פרופיל עם גרסת הצדף, רמת עיבוד זהה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290017894904\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 43.0,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": [
+          "CATEGORY_INSTABILITY: primary=cereal secondary=snack_bar_granola, confidence=0.59",
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7296073642022",
+      "barcode": "7296073642022",
+      "name_he": "דגני בוקר טבעות דבש לל\"ג",
+      "strings": {
+        "insightLine": "65% גריסי תירס, 1.8 גרם סיבים — הנמוך בין הטבעות.",
+        "rowVerdict": "טבעות ללא גלוטן — 65% גריסי תירס, 4% דבש, 1.8 גרם סיבים בלבד. C; הגרסה ללא גלוטן, אבל הסיבים מהנמוכים בקטגוריה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7296073642022\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 41.8,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_8445291638839",
+      "barcode": "8445291638839",
+      "name_he": "צ'יריוס טעם דבש ושקדים",
+      "strings": {
+        "insightLine": "81.9% דגנים, 92% מהם מלאים — אבל סוכר רכיב שלישי.",
+        "rowVerdict": "צ'יריוס עם פרופיל מרשים על הנייר — 81.9% דגנים, 91.9% מהם מלאים, 9.4 גרם סיבים. D כי סוכר הרכיב השלישי, ואריזת הדגנים המלאים לא מציגה פרופיל חלבון מספק (8.3 גרם).",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidence_label_he": "מבוסס על נתונים מלאים",
+        "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_8445291638839\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 42.1,
+        "grade": "D",
+        "nova_level": 4,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7290112495228",
+      "barcode": "7290112495228",
+      "name_he": "קורנפלקס דבש",
+      "strings": {
+        "insightLine": "79% קמח תירס, דבש 0.7% בלבד — שאר המתיקות מסוכר.",
+        "rowVerdict": "קורנפלקס דבש עם 0.7% דבש בפועל — 79% קמח תירס, 6.7 גרם חלבון, 368 מ\"ג נתרן. C; הדבש בשם לא מייצג את הממתיק האמיתי שהוא סוכר.",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "confidence_label_he": "חסרים נתוני תזונה",
+        "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7290112495228\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 37.4,
+        "grade": "D",
+        "nova_level": 4,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_8445290964595",
+      "barcode": "8445290964595",
+      "name_he": "דגני בוקר קיטקט",
+      "strings": {
+        "insightLine": "31.4% חיטה מלאה, שוקולד חלב 2%, 6 רמות סוכר שונות.",
+        "rowVerdict": "קיטקט כדגני בוקר — 31.4% חיטה מלאה אבל גם סוכר, דקסטרוז, גלוקוז וסירופ כמרכיבים שונים. D; הדגן המלא נוכח אבל מוקף ממתיקים ועיבוד גבוה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_8445290964595\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 37.3,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_3387390525960",
+      "barcode": "3387390525960",
+      "name_he": "דגני בוקר קראנץ'",
+      "strings": {
+        "insightLine": "31.5% חיטה מלאה, 12.6% שוקולד, 7.4 גרם חלבון.",
+        "rowVerdict": "נסטלה קראנץ' עם 12.6% שוקולד מריר — 31.5% חיטה מלאה, 7.4 גרם חלבון ו-7.2 גרם סיבים. D; השוקולד והעיבוד הגבוה מורידים משמעותית למרות הדגן המלא.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidence_label_he": "מבוסס על נתונים מלאים",
+        "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_3387390525960\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 35.1,
+        "grade": "D",
+        "nova_level": 4,
+        "caps_applied": [
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7296073705574",
+      "barcode": "7296073705574",
+      "name_he": "ריבועי דגנים עם קינמון",
+      "strings": {
+        "insightLine": "42% חיטה מלאה, 0.6% קינמון, 320 מ\"ג נתרן.",
+        "rowVerdict": "42% חיטה מלאה וקינמון אמיתי — אבל סוכר, פרוקטוז ושמן חמניות אחרי הדגן המלא. יורד ל-C כי 320 מ\"ג נתרן ל-100 גרם — גבוה לדגני בוקר, שרוב מוצריו מתחת ל-100 מ\"ג.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7296073705574\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 36.4,
+        "grade": "D",
+        "nova_level": 3,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "HIGH_CAL_HIGH_SUGAR_SOFT",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT",
+          "HP_FAT_SODIUM_COMBO"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_3_PROCESSED']",
+          "PENALTIES: ['HIGH_CAL_HIGH_SUGAR_SOFT', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT', 'HP_FAT_SODIUM_COMBO']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
+        ]
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_884912126115",
+      "barcode": "884912126115",
+      "name_he": "דגני גרייט גריינס דייטס",
+      "strings": {
+        "insightLine": "65.7% קמח דגנים מלאים, BHT כנוגד חמצון ברשימה.",
+        "rowVerdict": "תערובת דגנים מלאים עם תמרים ופקאן — 65.7% קמח, 7.4 גרם סיבים. D כי BHT (E321) ברשימה — נוגד חמצון שנוי במחלוקת; הציון מגביל בקטגוריה הישראלית.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidence_label_he": "מבוסס על נתונים מלאים",
+        "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_884912126115\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 34.7,
+        "grade": "E",
+        "nova_level": 4,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": []
+      }
+    },
+    {
+      "product_id": "bsip1_cereal_7613030979647",
+      "barcode": "7613030979647",
+      "name_he": "טריקס דגנים בטעם פירות",
+      "strings": {
+        "insightLine": "תווית ילדים ו\"דגנים מלאים\" — 5 גרם חלבון, צבעי מאכל ברשימה.",
+        "rowVerdict": "טריקס: מוצר ילדים עם תווית דגנים מלאים — אבל צבעי מאכל סינתטיים, סירופ גלוקוז ו-5 גרם חלבון בלבד. D כי הצבעים הסינתטיים והרמת העיבוד הגבוהה בולטים לרעה בקטגוריית ילדים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "confidence_label_he": "נתונים בבדיקה",
+        "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים."
+      },
+      "trace_path": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008_reconstruction\\products\\bsip1_cereal_7613030979647\\bsip2_trace.json",
+      "trace_found": true,
+      "trace_summary": {
+        "final_score": 31.9,
+        "grade": "E",
+        "nova_level": 4,
+        "caps_applied": [
+          "HIGH_SUGAR_25G_PLUS",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "penalties_applied": [
+          "MULTIPLE_ADDED_SUGAR_MARKERS",
+          "LONG_INGREDIENT_LIST",
+          "SEED_OIL_PRESENT"
+        ],
+        "fermentation_bonus_applied": null,
+        "explanation_drivers": [
+          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
+          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
+        ],
+        "unresolved_flags": [
+          "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
+        ]
+      }
+    }
+  ],
+  "integrity_anomalies": [
+    "INFO: reconstruction has 100 products total; page has 34 products; 66 in recon not on page (corpus is larger, expected)"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "sku_id": "SP-7290001471845",
+  "barcode": "7290001471845",
+  "name_he": "אלטמן ויטמין B12 פלוס 120 טבליות",
+  "brand_bucket": "altman",
+  "engine_active": "vitamin_b12",
+  "price_ils": 90.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'ויטמין B12 וחומצה פולית ליצירת תאי דם אדומים ולהפח'",
+  "lossy": [
+    "actives[1].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/vms/vitamin-b/vitamin-b12-plus-120/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן ויטמין B12 פלוס 120 טבליות",
+    "barcode": "7290001471845",
+    "serving_size": "1 tablet (sublingual)",
+    "servings_per_container": "120",
+    "ingredient_list_raw": null,
+    "primary_claim": "ויטמין B12 וחומצה פולית ליצירת תאי דם אדומים ולהפחתת עייפות",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ויטמין B12 (cyanocobalamin)",
+        "amount": 1200.0,
+        "unit": "mcg",
+        "form": "cyanocobalamin",
+        "form_raw": "cyanocobalamin",
+        "active_slug": "vitamin_b12"
+      },
+      {
+        "ingredient": "חומצה פולית",
+        "amount": 400.0,
+        "unit": "mcg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "vitamin_b12"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290001471845",
+      "source_url": "https://www.altman.co.il/shop/vms/vitamin-b/vitamin-b12-plus-120/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן ויטמין B12 פלוס 120 טבליות",
+    "primary_claim_fed": "treating/preventing B12 deficiency",
+    "actives": [
+      {
+        "active_slug": "vitamin_b12",
+        "display_name": "ויטמין B12 (cyanocobalamin)",
+        "quantity": 1200.0,
+        "unit": "mcg",
+        "form": "cyanocobalamin",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+    "score": 86.2,
+    "grade": "A",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 72,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:55.595128Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290001471845",
+    "active": "vitamin B12 (cobalamin)",
+    "on_label_claim": "treating/preventing B12 deficiency",
+    "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:28925645",
+        "PMID:38231320"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "no_ul_or_no_dose"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 86.2,
+    "dossier_facts_used": [
+      {
+        "field": "claims['correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-012"
+      }
+    ],
+    "final": {
+      "score": 86.2,
+      "grade": "A"
+    }
+  }
+}

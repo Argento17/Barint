@@ -35,7 +35,7 @@
     "protein_g": 17.7
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 17.7 גרם חלבונים 27 גרם פחמימות 34.2 גרם שומנים 0 מג כולסטרול 394 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+  "ingredients_text_he": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח",
   "ingredients_list": [
     "שיבולת שועל מלאה (גלוטן)",
     "גרעיני חמנייה",
@@ -46,19 +46,15 @@
     "סיבים תזונתיים (עולש)",
     "טחינה (שומשום)",
     "סילאן טבעי",
-    "תבל ינים",
-    "מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 17.7 גרם חלבונים 27 גרם פחמימות 34.2 גרם שומנים 0 מג כולסטרול 394 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-    "אין להסתמך על הפירוט המופיע באתר",
-    "יתכנו טעויות או אי התאמות",
-    "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם"
+    "תבל ינים"
   ],
-  "ingredients_raw": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 17.7 גרם חלבונים 27 גרם פחמימות 34.2 גרם שומנים 0 מג כולסטרול 394 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+  "ingredients_raw": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
     "populated_at": "bsip1_enrichment_v1",
     "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he. TASK-300 remediation: nutrition panel text and retailer boilerplate stripped from ingredient field at the ערכים תזונתיים marker."
   },
   "allergens_contains": [],
   "allergens_may_contain": [],
@@ -164,30 +160,6 @@
       "text": "תבל ינים",
       "percentage_declared": null,
       "has_subgroup": false
-    },
-    {
-      "position": 11,
-      "text": "מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 504 קל אנרגיה 17.7 גרם חלבונים 27 גרם פחמימות 34.2 גרם שומנים 0 מג כולסטרול 394 מג נתרן 3.9 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 1.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 12,
-      "text": "אין להסתמך על הפירוט המופיע באתר",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 13,
-      "text": "יתכנו טעויות או אי התאמות",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 14,
-      "text": "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
-      "percentage_declared": null,
-      "has_subgroup": false
     }
   ],
   "extracted_additives": [],
@@ -204,7 +176,7 @@
   "extracted_fermentation_markers": [],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
-    "ingredient_count_parsed": 14,
+    "ingredient_count_parsed": 10,
     "additive_count": 0,
     "flavor_marker_count": 0,
     "sweetener_count": 1,
@@ -262,5 +234,16 @@
       "fortified": false,
       "evidence_ref": "cereals_gap_resolution_v1 Sec 6.4 (Resolution 2, DISTORTION-004)"
     }
+  },
+  "_data_remediation": {
+    "task": "TASK-300",
+    "applied_at": "2026-06-17",
+    "defect": "ingredient_field_contains_nutrition_panel_text_and_boilerplate",
+    "root_cause": "Shufersal HTML scraper concatenated the nutrition panel text and retailer disclaimer boilerplate ('הנתונים המדויקים מופיעים על גבי המוצר...') onto the ingredient block. The scraper did not detect the section boundary between the ingredient list and the nutrition panel on the product page. No BSIP0 HTML file exists (bsip0_file_not_found); fix applied by truncating at the ערכים תזונתיים panel marker and removing boilerplate items from ingredients_list and ingredient_order.",
+    "before_ingredients_text_he_first200": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח. ערכים תזונתיים 100 גרם 11.7 גרם סיבים תזונתיים 4.8 גרם ס",
+    "after_ingredients_text_he": "שיבולת שועל מלאה (גלוטן), גרעיני חמנייה, גרעיני דלעת, שקדים, קשיו, אגוזי לוז, סיבים תזונתיים (עולש), טחינה (שומשום), סילאן טבעי, תבל ינים, מלח",
+    "source": "direct_product_scrape_text_truncation",
+    "evidence": "Panel marker 'ערכים תזונתיים' found in ingredients_text_he; real ingredients are the content preceding the marker.",
+    "prior_sodium_remediation": null
   }
 }

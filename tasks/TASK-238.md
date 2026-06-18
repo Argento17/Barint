@@ -64,6 +64,27 @@ categories. Audit (read-only): `reports/open_food_facts_contamination_audit_v1.m
    TASK-242.** Archive of `bread_retail_001` still **OPEN**.
 7. Re-run QA OFF launch gate per category (5 conditions) before any go-live — **OPEN**.
 
+## Contamination record — run_yogurt_yohananof_001 (2026-06-12, TASK-249 P16)
+
+**Date:** 2026-06-12
+**Run:** `03_operations/bsip1/run_yogurt_yohananof_001/output` (8 products)
+**Source:** Built post-ban via the il_prices + Open Food Facts pipeline. The BSIP1 enrichment
+  runner acquired identity from `il_prices:7290455000004` and nutrition panel from
+  `open_food_facts` (panel_source="open_food_facts", verification_status="candidate").
+  All 8 products carry `off_candidate_panel` in `canonical_risk_flags`.
+**Contamination rate:** 8/8 records (100%)
+**Duplicate:** Barcode 7290110565527 duplicated a Shufersal barcode — the Yohananof OFF record
+  carried protein_g=20.0 (OFF fiction) vs the Shufersal direct-scrape protein_g=10.0.
+  In the prior shipcfg run, the Yohananof overwrite hid the Shufersal trace.
+**Disposition:** All 8 records excluded from scoring as of run_yogurt_006_shipcfg2
+  (2026-06-12). BSIP1 files are preserved as evidence — not deleted.
+  Contaminated records listed in:
+  `02_products/yogurt_system/reports/run_yogurt_006_shipcfg2_run_record.json`
+  under `exclusion_policy.excluded_off_contaminated`.
+**Re-entry path:** BSIP0.5 storefront fetcher (P6) — no OFF, no price-feed nutrition.
+  Barcode 7290000408316 (Yohananof-only, not in Shufersal corpus) requires clean
+  re-acquisition before it can be scored.
+
 ## DoD
 - [ ] 0 OFF references in any shipped category's source chain
 - [x] 0 OFF images in any shipped frontend JSON (TASK-242; grep over `bari-web/src/data` = 0)

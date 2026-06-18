@@ -1,0 +1,55 @@
+{
+  "_comment": "Hummus category config for run_hummus_shelfrel_002 (shelf-relative scoring, EV-094 + EV-099, 2026-06-15). Corpus: 02_products/hummus/canonical_bsip1 (69 products). Run: 69 traces with BARI_SHELF_RELATIVE_V1=on, BARI_FAT_TECH_V1=on, BARI_RECAL_P0=on, BARI_HC002_NOVA1=off (reverted), BARI_DAIRY_SAT_FAT_INFER=on. Supersedes run_hummus_003 / glassbox_w4 (hummus_frontend_v5.json was at 2026-06-05). OFF ban (TASK-238) hard rule applied at corpus scan. Grade boundary policy: floor (grade_boundary_policy_v1.json).",
+  "category": "hummus",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\hummus\\canonical_bsip1"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\hummus\\intelligence_bsip2\\run_hummus_shelfrel_002\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hummus_frontend_v5.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_TASK144_FIXES": "off"
+    },
+    "shelf_rel": {
+      "nutrient": "sodium_mg",
+      "median": 390.0,
+      "scale": 31.88,
+      "scale_type": "iqr"
+    },
+    "bsip1_dir": "C:\\Bari\\02_products\\hummus\\canonical_bsip1",
+    "corpus_filter": null,
+    "_source": "batch_run_hummus_shelfrel_002.py + constants.py SODIUM_SHELF_REL_HUMMUS_*"
+  },
+  "exclusions": [
+    {"barcode": "3643820", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073005889", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073006015", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073705505", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073733324", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "7296073733331", "reason": "out_of_scope: raw/dried chickpeas, not a prepared hummus spread"},
+    {"barcode": "208428", "reason": "out_of_scope: whole chickpeas, not a prepared dip"},
+    {"barcode": "7290018359686", "reason": "out_of_scope: whole chickpeas, not a prepared dip"},
+    {"barcode": "7296073733317", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "7296073733348", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "1990261", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"},
+    {"barcode": "3643714", "reason": "out_of_scope: no ingredient data, cannot confirm prepared dip"}
+  ],
+  "extension_fields": [],
+  "render_fields": ["_product_type", "glassBox", "d3_processing_signal", "d4_additives"],
+  "_render_fields_note": "TASK-316: _product_type keyword classifier; glassBox emits gateState=unconstrained (D5/D6 demote pass is residual — bc=7290104721533 had gateState=demote in v5); d3_processing_signal=null (residual: not in trace_writer output, requires engine edit out of scope); d4_additives from detect_additives_d4+w2. Live schema: hummus_frontend_v5.json.",
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

@@ -1,4 +1,4 @@
-# BSIP2 Evidence Registry v1
+﻿# BSIP2 Evidence Registry v1
 
 **Classification:** Internal — Scoring Intelligence  
 **Version:** 1.0  
@@ -188,7 +188,7 @@ study_objects:
 | **recommended_action** | implement_now |
 | **affected_categories** | cereal_system, snack_bars, bread (whole_food categories with fiber claims) |
 | **candidate_signal_name** | `viscosity_fiber_ratio`, `viscous_fiber_g` |
-| **should_affect_score_now** | false — vocabulary input now COMPLETE (see vocabulary_milestone); scoring still gated on the items in remaining_gates. Not wired. |
+| **should_affect_score_now** | **true — FULLY WIRED (2026-06-14).** Part 1 (2026-06-10): presence-only +1/+2 viscous/prebiotic bonus on satiety + glycemic_quality. Part 2 (EV-060, 2026-06-14): high-fermentability prebiotic tier → +2 (matching viscous); moderate-fermentability → +1. `BARI_FIBER_FERMENT_V1` default ON. |
 | **required_input_fields** | `ingredients_list`, `normalized_nutrition_per_100g.dietary_fiber_g` |
 | **risk_of_misuse** | Exact viscous fiber quantity is not on the label; presence-only detection risks under-crediting psyllium-dominant products |
 | **vocabulary_milestone** | ✅ **CLOSED PASS (2026-06-10)** — viscous/non-viscous fiber vocabulary dictionary completed. Artifact: `01_framework/bsip2_framework/docs/scoring/fiber_functional_vocabulary_v1.md` (FFV-v1), covering all 12 target fibers with Hebrew + English patterns, E-numbers, functional class, false-positive risks, Israeli-label context. **Scoring remains inactive / not wired** — dictionary is documented only, imported nowhere. |
@@ -1568,6 +1568,996 @@ Formally logged gaps where current data or testing is insufficient to resolve a 
 | **required_input_fields** | `ingredients_list`, `tax_emulsifier_concern`, `tax_emulsifier_benign`, plus new resolved agent signals |
 | **risk_of_misuse** | (1) Must not double-count with existing `ADDITIVE_IDENTITY_DELTAS` — this score is additive to (not a replacement for) the per-agent identity deltas. (2) Ingredient order is a weak proxy only — a complexity penalty should not automatically double because an agent appears early in the list. (3) Lecithin and prebiotic gums must not trigger the same penalty weight as CMC/P80. |
 | **notes** | The full agent registry mapping (40+ agents across high/medium/low tiers) is defined in `docs/scoring/emulsifier_complexity_spec_v1.md`. Multiplicative penalties (concentration × complexity) are deferred until serving-level additive dose data is available — the spec explicitly avoids "dose" language for now. Consumer-facing copy: "Contains several texture-stabilizing additives" — never "high dose," "unsafe," "toxic," or "exceeds safe amount." |
+
+---
+
+### EV-051 — Additive-Mixture "Cocktail" Metabolic-Outcome Anchor (NutriNet-Santé 2025); human-cohort evidence upgrade for EV-045 + bounded co-occurrence-cluster extension
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-051 (Nutrition-initiated D6 scoring-rule proposal, 2026-06-12; **awaiting Product D7 co-sign**). **Extends EV-045** (Emulsifier/Stabilizer Complexity Score) — it does **not** create a new orthogonal dimension or a new per-additive penalty. |
+| **task** | TASK-261 (calibration + Product co-sign). Proposal spec: `01_framework/bsip2_framework/docs/scoring/additive_cocktail_cluster_proposal_v1.md`. |
+| **recorded** | 2026-06-12 |
+| **concept** | The metabolic risk of a multi-additive formulation is an **interaction (mixture) effect**, not the linear sum of independent additive penalties. A specific co-occurring cluster — **modified starch + thickening gum(s) + emulsifier** — carries a prospective human type-2-diabetes association that exceeds predictions from individual-additive assessment. |
+| **scientific_rationale_short** | NutriNet-Santé (N=108,643; mean 7.7-y follow-up; PLOS Medicine 2025, doi `10.1371/journal.pmed.1004570`; Touvier as study coordinator) identified two additive mixtures associated with elevated T2D incidence. The relevant one ("mixture 2") is characterised by **modified starches, pectin, guar gum, carrageenan, polyphosphates, potassium sorbate, curcumin and xanthan gum** — i.e. the emulsifier∧gum∧modified-starch co-occurrence pattern. A sibling NutriNet-Santé analysis (Lancet Diabetes & Endocrinol 2024, doi `10.1016/S2213-8587(24)00086-X`) found **individual** emulsifiers (carrageenan E407, tripotassium phosphate, mono/diglycerides E471) independently associated with T2D. Together these supply a **human prospective-cohort outcome anchor** for EV-045's complexity logic, which was previously rated *Moderate / "exact penalty magnitudes require calibration" / mechanistic proxy only*. |
+| **evidence_strength** | Moderate-Strong (large prospective human cohort, long follow-up, quantified dietary exposure, consistent with the EV-003 emulsifier mechanism). Held at Moderate-Strong, **not Strong**, because observational: residual confounding by overall UPF intake / diet quality cannot be excluded, and there is **no RCT on the mixture endpoint**. |
+| **confidence_level** | High that the evidence exists and points this direction. The **magnitude** of any score effect is **Low-confidence pending calibration**. |
+| **BSIP2_relevance** | Direct — (a) **upgrades the evidence basis of EV-045** (the live `should_affect_score_now: true` complexity signal) from mechanistic proxy to outcome-anchored; (b) proposes **one bounded refinement**: a presence-based co-occurrence flag (modified-starch ∧ ≥1 thickening gum ∧ ≥1 emulsifier all present) as an **interaction term inside the existing EV-045 complexity tier** — not a new dimension, not a new per-additive penalty. |
+| **implementation_complexity** | Low — all three component taxonomies already exist (`tax_emulsifier_*` from EV-045/EV-003; gum markers; modified-starch markers shared with EV-007). The interaction term is a boolean AND over signals already extracted. |
+| **recommended_action** | **propose_for_d7_cosign** (calibrate-then-decide). **NOT implement_now.** |
+| **affected_categories** | All; highest density: snack_bars, sauce_spread, dairy_protein, dessert, cereal, beverage (the processed-but-passing tier EV-045 targets). |
+| **candidate_signal_name** | `additive_cocktail_cluster_flag` (interaction term within `emulsifier_complexity_tier` — no new dimension) |
+| **should_affect_score_now** | **false** |
+| **should_affect_score_now_reason** | Four gates must clear first. **(1) ANTI-DOUBLE-COUNTING (load-bearing).** The cluster overlaps EV-045 complexity, EV-003 per-agent emulsifier deltas, EV-041/043 D4 tiers, and the NOVA proxy — most cluster-positive products are already NOVA-4 and already carry EV-045 complexity + EV-003 deltas. The term must be calibrated to add discrimination **only among already-processed products**, never to re-penalise the same co-occurrence twice. *Required proof: a golden-corpus simulation reporting the marginal Δscore attributable to the flag, net of EV-045 / EV-003 / NOVA.* **(2) OBSERVATIONAL EVIDENCE.** Per Hard Rule #6, an observational-only outcome (no RCT on the mixture) warrants a flag/disclosure posture and a conservative **bounded** penalty, not a large deduction. **(3) NATURAL-MATRIX FALSE POSITIVE.** Pectin + intrinsic plant gums co-occur in legitimately clean products (fruit prep, whole plant foods); the flag therefore requires the **engineered signature** — `modified_starch_present` (E14xx / עמילן מומס / מעובד) — as a **mandatory AND-term**, so naturally pectin/gum-containing whole foods are not caught. Gum arabic / acacia (EV-019) is **excluded** from the gum-count. **(4) D7 CO-SIGN.** Nutrition-initiated; requires Product D7 (frozen-invariant tripwire #1: no published score moves until co-signed; milk `run_005_headpin` / snack `snk-001` 70/B / bread `retail_003` must be re-verified unmoved). |
+| **required_input_fields** | `ingredients_list`; `tax_emulsifier_concern` / `tax_emulsifier_medium` / `tax_emulsifier_low` (EV-045); gum markers (guar/xanthan/carrageenan/pectin — **excl. gum arabic/acacia per EV-019**); modified-starch markers (E1404/E1412/E1414/E1422/עמילן מומס/עמילן מעובד) |
+| **cluster_definition (proposed; presence-based — quantities not label-observable)** | `cocktail_flag = modified_starch_present AND (gum_count >= 1) AND (emulsifier_count >= 1)`. The `modified_starch_present` term is **mandatory** (the engineered anchor that suppresses natural-matrix false positives). |
+| **label_observability** | Fully label-observable — ingredient text only. **EDPG firewall preserved**: in-house BSIP0 panel only; NutriNet-Santé / EFSA sources *justify* the rule, no external value enters the engine. **OFF not used** (and is irrelevant here — detection is from the direct-scrape ingredient text). |
+| **risk_of_misuse** | (1) Double-count with EV-045 / EV-003 / NOVA — see gate 1. (2) Penalising naturally gum/pectin-rich clean foods — mitigated by the mandatory modified-starch anchor + EV-019 gum-arabic exclusion. (3) Consumer copy must stay architecture-framed — "combines modified starch with several texture-stabilising additives" — **NEVER** "causes diabetes," "toxic," "unsafe," or any health-outcome claim (Hard Rule #5; the study is an *association*, not causation). |
+| **co_sign** | Nutrition D7 — **initiated 2026-06-12** (this entry). Product D7 — **PENDING** (TASK-261). Both required before `should_affect_score_now` may flip. |
+| **calibration_plan** | (a) Research Agent confirms both citations + extracts the mixture-2 additive list verbatim into an evidence sheet; (b) Data runs `cocktail_flag` over the golden corpus + each live category, reporting cluster-positive frequency and **marginal Δscore net of EV-045 / EV-003 / NOVA**; (c) Nutrition sets a **bounded** penalty (proposed ceiling **−3, inside EV-045's existing −6 complexity cap — not additive beyond it**) only if marginal discrimination is demonstrated; (d) Product go/no-go. |
+| **rollback** | Single flag (proposed `BARI_ADDITIVE_COCKTAIL`, default OFF) — OFF = byte-identical; no published score moves while OFF. No engine code is shipped by this filing (proposal only); reverting = `git revert` of this entry + the proposal doc. |
+| **source** | doi `10.1371/journal.pmed.1004570` (PLOS Medicine 2025, NutriNet-Santé mixtures); doi `10.1016/S2213-8587(24)00086-X` (Lancet Diabetes & Endocrinol 2024, NutriNet-Santé individual emulsifiers). Extends **EV-045**; composes **EV-003** (emulsifier differentiation), **EV-001/002** (Siga MUP), **EV-019** (prebiotic-gum exemption — gum arabic stays exempt from the gum-count). |
+| **notes** | Nutrition-initiated D6 proposal. **No new dimension, no engine change in this filing.** Honest scope: this finding mainly **upgrades EV-045's evidence tier** (mechanistic proxy → human-outcome-anchored) and adds **one bounded interaction term**; it is deliberately *not* a standalone new penalty, to avoid rule accumulation (B2 scoring-governance). |
+
+```yaml
+study_objects:
+  - claim: "Co-occurring food-additive mixtures (modified starch + thickening gums + emulsifiers) are associated with increased type 2 diabetes incidence beyond individual-additive effects"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "10.1371/journal.pmed.1004570"
+    notes: "NutriNet-Santé (Touvier, study coordinator), PLOS Medicine 2025. N=108,643, mean 7.7y follow-up; additive exposure from repeated dietary records; mixture modelling. Tier B not A: observational design — residual confounding by overall UPF intake / diet quality cannot be excluded; mixture analysis is hypothesis-strengthening, not causal. dose_realistic true (real dietary exposure); population_direct true (general adult cohort)."
+  - claim: "Individual food-additive emulsifiers (carrageenan E407, tripotassium phosphate, mono/diglycerides E471) are associated with type 2 diabetes risk"
+    dose_realistic: true
+    population_direct: true
+    rob_grade: moderate
+    evidence_tier: B
+    source_doi: "10.1016/S2213-8587(24)00086-X"
+    notes: "NutriNet-Santé, Lancet Diabetes & Endocrinology 2024. Sibling analysis supporting the individual-emulsifier leg and corroborating the EV-003 mechanism with a human outcome endpoint. Tier B: observational."
+```
+
+---
+
+### EV-052 — Brined-Cheese `brined_food` Keyword Extension (TASK-266 / Factory Run #6)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-052 |
+| **concept** | Extension of the existing `brined_food` context flag to cover brined/salty soft cheeses (בולגרית, פטה, צפתית, חלומי, גבינה מלוחה). The flag routes these products to `sodium_weight = 0.7` (already D7-approved for brined foods; `score_engine.py` line 1905) instead of the default `1.0`. |
+| **task** | TASK-266 (factory run #6, brined/salty cheeses) |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **concept_detail** | Brined cheeses carry sodium loads of 300–1100 mg/100g as a structural consequence of brine-preservation production — the same mechanism already recognised for olives and pickled vegetables in the original `brined_food` flag. The sodium does not reflect industrial reformulation or an engineered palatability stack. A meaningful fraction is not consumed (brine drains on slicing; rinsing is a standard preparation step). Treating brine-preservation sodium identically to reformulation-added sodium overpenalises the category and causes score collapse for the upper-fat, traditional-format segment (see methodology brief §5.1). |
+| **scientific_rationale_short** | Brine is an ancient preservation medium. Sodium uptake in brined cheese is governed by brine concentration, temperature, and immersion time during production — not by a formulation decision to add sodium for flavour enhancement or hyper-palatability. This is the identical mechanism the `brined_food` flag was designed for. The 0.7 sodium weight is an existing D7-approved parameter; this entry records its extension to the brined-cheese food class, which the flag was designed to cover but which was not yet in the keyword list. Evidence tier: Moderate-Strong (food-science mechanism well-established; no RCT specifically comparing brined-cheese sodium bioavailability to equivalent added-salt sodium). |
+| **evidence_strength** | Moderate-Strong |
+| **confidence_level** | High (food-science mechanism; production-method observability) |
+| **BSIP2_relevance** | Direct — the `brined_food` flag already exists and is already wired to `sodium_weight = 0.7` in `score_engine.py`. The missing piece is that none of the brined-cheese canonical Hebrew product names are in the `name_keywords` list. This entry governs the addition of those five keywords. |
+| **implementation_complexity** | Trivial — five Hebrew string additions to `evaluation_scope.py` `brined_food.name_keywords`. |
+| **recommended_action** | implement_now (already implemented — `evaluation_scope.py` modified 2026-06-13) |
+| **activation_scope** | Products whose `canonical_name_he` contains any of: בולגרית / פטה / צפתית / חלומי / גבינה מלוחה AND whose `normalized_nutrition_per_100g.sodium_mg` > 500. The sodium > 500 guard is the existing `nutrition_validator` — it was already present and is retained unchanged. It correctly excludes any edge-case product that shares a name token with these cheeses but is not brine-heavy. Products below 500 mg sodium/100g remain `evaluation_status: standard` with `context_flag: None`. |
+| **not_activated_by** | Products where the name contains these strings as part of a non-cheese context (e.g., a product named "ממרח בולגרית" with sodium < 500 mg remains standard). Cottage (קוטג'), hard yellow cheeses (גאודה, עמק), and cream-cheese spreads are not matched by these keywords. |
+| **should_affect_score_now** | true — this change is already deployed to `evaluation_scope.py` as of 2026-06-13 (TASK-266). |
+| **required_input_fields** | `canonical_name_he`, `normalized_nutrition_per_100g.sodium_mg` |
+| **label_observability** | Fully label-observable. Product name is always present (BSIP0 scrape). Sodium is a mandatory nutrition-panel field on Israeli packaged food labels. No external data source required. |
+| **rollback** | Remove the five Hebrew strings from `evaluation_scope.py` `brined_food.name_keywords` (lines added 2026-06-13). The existing olives/pickles keywords are unaffected. The change is trivially reversible via `git revert` of the relevant hunk. No published category scores are affected (brined-cheese corpus has not yet been scored; factory run #6 is pending). |
+| **published_scores_moved** | 0 — no brined-cheese category is currently live; this change wires routing for a not-yet-scored corpus. |
+| **governance_classification** | Application of an already-D7-approved parameter (`brined_food` context flag, `sodium_weight = 0.7`) to a new food class for which the flag was designed. Does NOT require a new D7 cycle per methodology brief §3.4 and orchestrator affirmation (2026-06-13). An EV entry + Nutrition Agent sign-off + regression test constitute the required governance artifacts. |
+| **prerequisite_approval** | D7 for the `brined_food` flag itself: already approved (original `evaluation_scope.py` implementation; see existing flag wiring in `score_engine.py` line 1905). This entry governs only the keyword extension, not the flag or weight. |
+| **reference** | Methodology brief: `02_products/brined_cheeses/methodology/brined_cheeses_scoring_interpretation_v1.md` §3.4. |
+| **regression_test** | `03_operations/bsip2/proto_v0/tests/test_brined_cheese_scope.py` — covers (a) each of the 5 new keywords fires with sodium > 500; (b) existing olives/pickles keywords still fire; (c) no cross-category leakage (cottage, hard cheese, low-sodium name); (d) sodium guard gates correctly (name match but sodium <= 500 → standard). |
+| **risk_of_misuse** | A product falsely named with "פטה" or "בולגרית" but not actually brined would receive the 0.7 sodium weight if its sodium is also > 500 mg. The sodium > 500 guard reduces but does not eliminate this risk. The guard is the same threshold used for all other brined_food entries. Risk is low: products with >500 mg sodium that are named similarly to brined cheeses are almost certainly brined cheeses. |
+| **notes** | The separate HP_FAT_SODIUM_COMBO suppression (methodology brief §4.6 item 2) is NOT included here — it requires D7 + Product co-sign and is explicitly deferred. This entry covers keyword wiring only. |
+
+```yaml
+study_objects:
+  - claim: "Brine-preserved dairy products carry sodium as a preservation-architecture consequence; the sodium load is determined by brine concentration and immersion time, not by a reformulation or palatability decision"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:food_science_consensus"
+    notes: "Food-science mechanism; no RCT comparing brined-cheese sodium bioavailability to equivalent added-salt sodium in a controlled human trial. The mechanism is well-established in dairy production science. Evidence tier C reflects the absence of a primary human trial specifically on this question; the mechanism is strong enough to support using the same already-approved 0.7 weight that governs olives and pickled vegetables (same brine-preservation mechanism). Not a new scoring rule — application of an existing governed parameter."
+```
+
+#### EV-052 Addendum — Compound Keyword Extension for Hebrew Construct Forms (run_brined_004 / RT-1 Fix)
+
+| Field | Value |
+|-------|-------|
+| **addendum_to** | EV-052 |
+| **addendum_id** | EV-052-A1 |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **task** | TASK-266 / run_brined_004 (RT-1 remediation) |
+| **finding** | bc-048 ("גבינת טמרה מלוחה בקר 17%", sodium=1628 mg) was scoring 39/D because the `brined_food` flag did not fire. The product name uses the Hebrew construct-state ("גבינת" — bound form of "גבינה/cheese") combined with a brand name ("טמרה") before the brined descriptor ("מלוחה"). Neither "גבינת" alone nor "מלוחה" alone was safe to add as a simple substring keyword: "גבינת" caused cross-corpus bleed to hard_cheeses products ("גבינת עמק", "גבינת גאודה"); "מלוחה" caused cross-corpus bleed to butter products ("חמאה מלוחה"). |
+| **fix** | Added `name_compound_keywords` support to `CONTEXT_LIMITED_SIGNALS` and the `assign_evaluation_scope()` function in `evaluation_scope.py`. A compound entry fires only when ALL listed tokens appear in the product name. The entry `("גבינת", "מלוחה")` matches "גבינת טמרה מלוחה" (both tokens present) but NOT "חמאה מלוחה" (no "גבינת") or "גבינת עמק 28%" (no "מלוחה"). Additional compounds `("גבינת", "עזים")` and `("גבינת", "כבשים")` added for goat/sheep construct-form coverage. |
+| **governance_classification** | Vocabulary extension only — no new scoring rule, no new D7. The `brined_food` flag and `sodium_weight=0.7` are unchanged and already D7-approved. Per EV-052 §governance_classification: keyword extension does not require a new D7 cycle. |
+| **cross_corpus_verification** | 337 non-brined products across 12 published frontend JSONs checked. ZERO products received unexpected `brined_food` flag. engine_invariants 342-case suite: ALL PASS. |
+| **bc048_result** | context_flag=brined_food, score=68.8/B (was: null context, score=39/D). delta=+29.8. Driver: -12 SODIUM_LOAD_GENERAL_GRAD (graduated sodium, correctly applied). |
+| **evaluation_scope_sha256** | 2d2acad2fce699892be98224f9caa9b12c65e91b6408db689723e18f85dc1082 |
+| **run_id** | run_brined_004 |
+
+---
+
+### EV-053 — Brined-Food Context: Sodium Red Label Excluded from 2-Label Compound Cap (TASK-266)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-053 |
+| **concept** | In brined-food context (`context_flag == "brined_food"`), the MoH sodium red label does not constitute a reformulation-based compounding harm signal. Brine-preservation sodium is structurally fixed by production method, not a formulation choice. Counting it toward `ISRAELI_RED_LABELS_2_PLUS` contradicts the existing `brined_food` 0.7 sodium weight (EV-052) and produces a logical contradiction within a single scoring pass. |
+| **task** | TASK-266 + brined-cheese-cap45-ruling (Nutrition Agent ruling) + brined-cheese-d7-cosign (Product Agent co-sign) |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **scientific_rationale_short** | The `ISRAELI_RED_LABELS_2_PLUS` cap was designed for compounding reformulation choices: a product simultaneously engineered for multiple macronutrient excesses. Brine sodium is not a reformulation choice. The existing EV-052 / 0.7 weight recognizes this at the standalone sodium cap level. Failing to carry the recognition through to the 2-label cap produces internal inconsistency: the engine simultaneously says "this sodium is 70% as penalizable" (the weight) and "this sodium label is 100% as harmful in compound" (the 2-label cap). The fix removes the inconsistency by scoping the 2-label cap count to exclude brine sodium in the brined_food context. The sat-fat label continues to count unchanged — that label reflects genuine formulation-independent saturated fat load that is not brine-structural. |
+| **evidence_strength** | Moderate-Strong — same basis as EV-052 (food-science mechanism; brine production is well-established; no RCT specifically on compound-label scoring in brined foods) |
+| **confidence_level** | High (logical consistency argument; food-science mechanism) |
+| **BSIP2_relevance** | Direct — without this fix, the brined-cheese category cannot be launched. run_brined_001 showed 28/48 products at D (58%) with NOVA fully collapsed in the full-fat tier: a clean NOVA-1 13%-fat Bulgarian (milk+salt+cultures) scored identically to a NOVA-3 stabilizer-laden product at the same fat tier. |
+| **label_observability** | Fully label-observable. The `brined_food` context flag is determined from product name (keyword match) + sodium > 500 mg (nutrition panel). The sodium red label is computed from the same nutrition panel. No external data source required. |
+| **implementation_complexity** | Low — 5-line conditional in `score_engine.py` at the `ISRAELI_RED_LABELS_2_PLUS` check point. |
+| **recommended_action** | implement_after_D7_cosign (D7 co-sign obtained — implement) |
+| **activation_scope** | `context_flag == "brined_food"` ONLY. Zero effect on any other context or category. The sat-fat red label continues to count in the 2-label cap for brined-food products unchanged. |
+| **published_scores_moved** | 0 — brined-cheese category not yet live. |
+| **rollback** | Remove the 5-line conditional at the `ISRAELI_RED_LABELS_2_PLUS` check point in `score_engine.py`. The change is tagged `# EV-053` for easy location. Trivially reversible. |
+| **no_regression_proof** | (a) `engine_invariants.py` 342-case suite passes unchanged; (b) published categories (milk, yogurt, bread, cereals, granola, snack bars, cheese spreads) produce zero score change against the patched engine — verified by re-running against their golden corpora (none of these products receive `context_flag == "brined_food"`). |
+| **governance_classification** | New scoring rule (conditional exclusion of a red-label signal from a multi-label cap). Requires D7 co-sign: Nutrition Agent (ruling: brined_cheeses_cap45_ruling_v1.md) + Product Agent (co-sign: brined_cheeses_d7_cosign_v1.md). Both obtained 2026-06-13. |
+| **reference** | Nutrition Agent ruling: `02_products/brined_cheeses/methodology/brined_cheeses_cap45_ruling_v1.md`. Product Agent co-sign: `02_products/brined_cheeses/methodology/brined_cheeses_d7_cosign_v1.md`. |
+
+```yaml
+study_objects:
+  - claim: "The ISRAELI_RED_LABELS_2_PLUS cap is designed for compounding reformulation-based nutritional excess; brine-preservation sodium is not a reformulation choice and does not constitute an independent compounding harm signal"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:brined_cheeses_cap45_ruling_v1"
+    notes: "Logical-consistency argument grounded in the existing EV-052 food-science mechanism. The ruling demonstrates that the engine holds two irreconcilable positions simultaneously (Position 1: sodium is 70% as penalizable via the 0.7 weight; Position 2: sodium red label counts 100% in the 2-label compound cap). The fix removes the internal contradiction. Evidence tier C reflects the absence of a primary human trial specifically on compound-label scoring; the mechanism is strong and the internal logic argument is decisive."
+```
+
+---
+
+### EV-054 — Brined-Food Context: HP_FAT_SODIUM_COMBO Penalty Suppressed (TASK-266)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-054 |
+| **concept** | In brined-food context (`context_flag == "brined_food"`), the `HP_FAT_SODIUM_COMBO` penalty is suppressed. Structural dairy fat + brine-preservation sodium is not a hyper-palatability engineering stack. The HP penalty was designed for industrially co-engineered fat+sodium combinations (chips, crackers, processed snacks) that maximize palatability and drive overconsumption. Full-fat brined cheese with a 3-ingredient list (milk, salt, culture) does not constitute this class of product. |
+| **task** | TASK-266 + brined-cheese-cap45-ruling §8 (Nutrition Agent ruling) + brined-cheese-d7-cosign §2 (Product Agent co-sign: "HP fires on 48/48 products including every NOVA-1 clean product") |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **scientific_rationale_short** | EV-013 (Hyper-Palatability / Bliss Point) established that industrial formulation of concurrent fat + sodium + flavour enhancers at optimal ratios overrides sensory-specific satiety. The key distinction is "industrial formulation" — the engineered product of food chemistry optimization. Brined cheese fat is 100% from milk (structural dairy fat). Brined cheese sodium is brine-preservation sodium (already recognized in EV-052). Neither is formulated for palatability. The HP_FAT_SODIUM_COMBO fires on 48/48 of the brined-cheese shelf (the entire corpus), including products with 3-ingredient lists — a universal tax on a food class, not a discriminating signal. A penalty that does not discriminate between clean and processed products within the category is not functioning as intended. Suppressing it for brined_food context is consistent with the rule's own design rationale: the rule was designed for reformulated products, not natural-process dairy. |
+| **evidence_strength** | Moderate — same basis as EV-013 (palatability mechanism) but applied as a negative finding: the mechanism does not apply to this food class. The Nutrition Agent ruling (§8) explicitly endorsed batching this suppression with the cap-45 fix. Product Agent co-sign confirms: HP on 48/48 with no discrimination = not functioning as designed. |
+| **confidence_level** | High (food-science mechanism; production-method observability; 0/48 discrimination rate in run_brined_001 confirms zero signal value for this corpus) |
+| **BSIP2_relevance** | Direct — without this suppression, the cap-45 fix alone does not solve NOVA re-expression (the stated methodology goal for §4). After cap-45 fix, the HP penalty continues to fire 6 points on all full-fat products, partially offsetting the cap relief and suppressing differentiation. |
+| **label_observability** | Fully label-observable. The `brined_food` context flag is determined from product name + sodium > 500 mg. Both inputs are on the label. No external data required. |
+| **implementation_complexity** | Low — 3-line conditional skip in `score_engine.py` at the `HP_FAT_SODIUM_COMBO` firing block. The rule is NOT deleted — it remains fully active for all non-brined contexts. |
+| **recommended_action** | implement_after_D7_cosign (D7 co-sign obtained — implement) |
+| **activation_scope** | `context_flag == "brined_food"` ONLY. The `HP_FAT_SODIUM_COMBO` rule remains fully active for ALL other contexts. HP_FAT_SUGAR_COMBO and HP_CRUNCH_SWEET_COMBO are unaffected. |
+| **published_scores_moved** | 0 — brined-cheese category not yet live. |
+| **rollback** | Remove the 3-line conditional skip at the `HP_FAT_SODIUM_COMBO` firing block in `score_engine.py`. The change is tagged `# EV-054` for easy location. Trivially reversible. The rule returns to firing unconditionally. |
+| **no_regression_proof** | Same gate as EV-053: `engine_invariants.py` 342-case suite + published-category golden-corpus check. None of the published categories carry `context_flag == "brined_food"`, so zero cross-category effect. |
+| **governance_classification** | New scoring rule (conditional suppression of a penalty). Requires D7 co-sign: Nutrition Agent (ruling §8: brined_cheeses_cap45_ruling_v1.md) + Product Agent (co-sign §2: brined_cheeses_d7_cosign_v1.md, "Both conditionals ship together"). Both obtained 2026-06-13. |
+| **reference** | Nutrition Agent ruling §8: `02_products/brined_cheeses/methodology/brined_cheeses_cap45_ruling_v1.md`. Product Agent co-sign §2: `02_products/brined_cheeses/methodology/brined_cheeses_d7_cosign_v1.md`. |
+| **reversal_condition** | If run_brined_002 shows the HP suppression produces implausible B-scores for full-fat processed NOVA-3 products (i.e., removing the HP penalty creates flattery rather than honest spread in that tier), revert. Per Product Agent co-sign §7. |
+
+```yaml
+study_objects:
+  - claim: "HP_FAT_SODIUM_COMBO is designed for industrial reformulation (engineered fat+sodium palatability stacks); it does not apply to structural dairy fat + brine-preservation sodium in naturally-produced brined cheese"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:brined_cheeses_cap45_ruling_v1"
+    notes: "Application of EV-013's design rationale as a negative finding. The HP mechanism (bliss-point engineering) requires industrial co-formulation intent. Brined cheese production does not involve fat-sodium co-engineering for palatability: fat derives from milk composition, sodium derives from brine immersion time. Observational evidence from run_brined_001: HP_FAT_SODIUM_COMBO fires on 48/48 products (including 3-ingredient NOVA-1 products) without discriminating — confirming the rule has zero signal value for this corpus. Evidence tier C reflects absence of RCT; the production-science mechanism is clear."
+```
+
+---
+
+### EV-055 — Graduated Sodium Activation for Endemic-Sodium Dairy (`BARI_GRAD_SODIUM_V1`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-055 |
+| **concept** | Graduated sodium banding (`SODIUM_GENERAL_BANDS`) replaces the hard 700mg cliff (`HIGH_SODIUM_700MG_PLUS`) for endemic-sodium food categories, controlled by the surgical `BARI_GRAD_SODIUM_V1` flag |
+| **task** | TASK-267 — graduated_sodium_d7_design_v1.md §2 (Nutrition Agent ruling) + graduated_sodium_d7_cosign_v1.md (Product Agent co-sign) — both obtained 2026-06-13 |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **scientific_rationale_short** | A hard sodium cliff at 700mg treats structural brine-preservation sodium (brined cheese, some aged dairy) identically to reformulation sodium (salty snacks, processed spreads). This conflation produces a category-wide pin: the brined-cheese corpus run_brined_002 shows 42/48 products pinned at the 72-point cap across all NOVA tiers and fat levels — NOVA-1 low-fat clean products score identically to NOVA-3 high-fat products. The hard cliff collapses the NOVA+fat express signal that the engine is explicitly designed to differentiate. A graduated banded penalty correctly expresses: more sodium = more penalty, at a proportional rate calibrated to the endemic nature of the salt source. For food classes where sodium cannot be reduced without changing the product's fundamental identity (brined cheese, where salt is the preservation medium), the graduated model is the honest signal model. |
+| **evidence_strength** | Moderate — food-science mechanism is clear (brine-salt vs formulation-salt distinction); population-outcome RCTs specific to the graduated-vs-cliff model in dairy sodium do not exist. Evidence tier B: strong mechanistic basis, observational corpus confirmation (72-pin on 42/48 products confirms cliff collapse), regulatory precedent (NOVA framework distinguishes production methods). |
+| **confidence_level** | High — the scoring failure is directly observable in run_brined_002 data. The 42/48 pin is not an edge case; it is total corpus collapse. |
+| **BSIP2_relevance** | Direct and critical. Without graduated sodium, the NOVA+fat express that is the core differentiation mechanism for brined cheese cannot function. NOVA-1 low-fat products (the highest-quality tier) score at 72/B — the same as NOVA-3 high-fat products. This is a false equivalence the engine's own design rejects. |
+| **label_observability** | Fully label-observable. `sodium_mg` per 100g is on every product's nutrition panel. Coverage in run_brined_002: 48/48 (100%). No external data required. The graduated bands read a single nutrition panel field. |
+| **implementation_complexity** | Low — the SODIUM_GENERAL_BANDS logic is already written at score_engine.py lines 2005-2044, currently gated by BARI_REDLABEL_V1. The surgical BARI_GRAD_SODIUM_V1 flag is a gate-addition, not new logic. One additional env-var declaration (line 135 pattern) and one gate condition change. |
+| **recommended_action** | implement (D7 co-sign obtained — both Nutrition Agent and Product Agent 2026-06-13) |
+| **activation_scope** | `category in {"dairy_protein", "whole_food_fat"}` (= `REDLABEL_ENDEMIC_SATFAT_CATEGORIES`). Future endemic-sodium categories require a new EV + D7 co-sign. This is a general capability, not a brined-cheese patch. |
+| **flag** | `BARI_GRAD_SODIUM_V1` — surgical, controls ONLY the `SODIUM_GENERAL_BANDS` path. Default: `off`. Does NOT activate `score_regulatory_quality()` continuous formula, reformulable label count changes, or graduated sugar penalty. Those remain gated by `BARI_REDLABEL_V1` only. |
+| **published_scores_moved** | Milk: 0/20 (byte-identical guaranteed — all milk sodium 40-60mg, far below 450mg floor). Yogurt: 0 from sodium path (all yogurt sodium 40-400mg; SODIUM_GENERAL_BANDS lowest penalty fires at ≥450mg). Cheese-spreads: ≤3 products with sodium ≥450mg → -2pt, no grade change. All other published categories: 0 (non-endemic categories use the HIGH_SODIUM_700MG_PLUS path unchanged). |
+| **rollback** | Set `BARI_GRAD_SODIUM_V1=off` (default). All published runs committed with flag=off. Re-scoring with flag=off restores prior output exactly. The flag is a feature gate; no data is modified by enabling/disabling it. |
+| **no_regression_proof** | (1) Frozen milk byte-identical: confirmed by blast-radius recon (0/20 scores move). (2) Yogurt byte-identical from sodium path: confirmed (all 40-400mg, below 450mg band floor). (3) Cheese-spreads ≤2pt on ≤3 products, no grade change: confirmed from recon sodium ranges and SODIUM_GENERAL_BANDS thresholds. (4) engine_invariants.py 342-case suite — must pass before merge. (5) Non-endemic categories (cereal, snack, bread): unaffected — the graduated path is scoped to `REDLABEL_ENDEMIC_SATFAT_CATEGORIES`; non-endemic categories continue to use HIGH_SODIUM_700MG_PLUS. |
+| **governance_classification** | Scoring rule activation (existing logic, new flag gate). D7 co-sign obtained: Nutrition Agent ruling (graduated_sodium_d7_design_v1.md) + Product Agent co-sign (graduated_sodium_d7_cosign_v1.md), both 2026-06-13. |
+| **reference** | Nutrition Agent ruling: `02_products/brined_cheeses/methodology/graduated_sodium_d7_design_v1.md`. Product Agent co-sign: `02_products/brined_cheeses/methodology/graduated_sodium_d7_cosign_v1.md`. Blast-radius recon: `02_products/brined_cheeses/reports/graduated_sodium_blast_radius_v1.md`. |
+| **reversal_condition** | If brined re-score under BARI_GRAD_SODIUM_V1 shows NOVA-1 low-fat products reaching A-grade territory implausibly (e.g., 1300mg sodium + NOVA-2 reaching A), revisit the band thresholds. The graduated bands are not brined-cheese specific — if they produce unexpected results at the high-sodium tail, review the ≥900mg band penalty magnitude. |
+
+```yaml
+study_objects:
+  - claim: "Hard sodium cliff at 700mg collapses NOVA+fat differentiation for endemic-salt dairy categories"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:graduated_sodium_blast_radius_v1"
+    notes: "Direct corpus observation: 42/48 brined-cheese products pinned at cap=72 across all NOVA tiers and fat levels in run_brined_002. The cliff overrides the NOVA signal for any product with sodium >=700mg, regardless of processing level. Evidence tier C: observational, internal corpus; no population RCT. The mechanism is clear: the hard cap is a ceiling that applies after the NOVA score is computed, so it erases NOVA signal for all high-sodium products regardless of their processing level."
+  - claim: "Brine-preservation sodium is not equivalent to formulation sodium for scoring purposes"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:EV-052,EV-053"
+    notes: "The brined_food context (EV-052) and sodium_weight=0.7 (EV-053) already encode the principle that structural sodium from brine preservation should be penalized at a lower rate than formulation sodium. EV-055 extends this principle from weight reduction to cliff replacement: if the underlying evidence supports a 30% reduction in sodium weight (EV-053), it supports a proportional-banding model over a hard cliff. Same food-science basis, consistent treatment."
+```
+
+---
+
+
+
+---
+
+### EV-056 — Shelf-Relative Sodium Surcharge for Endemic-Sodium Dairy (`BARI_SODIUM_SHELF_RELATIVE_V1`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-056 |
+| **concept** | Distance-above-shelf-median sodium surcharge layered on graduated absolute bands (EV-055), with raised family budget for brined/endemic dairy |
+| **task** | TASK-266 / P56 — sodium_protein_design_v1.md §A; owner approval 2026-06-13 |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **scientific_rationale_short** | Absolute graduated bands (EV-055) express sodium load in mg/100g but do not distinguish products far above the category median from those merely at the high end of a high-sodium shelf. A shelf-relative surcharge penalizes outliers within endemic-sodium categories without rewarding below-median products. Low-variance guard prevents punishing tight high-sodium shelves. |
+| **evidence_strength** | Moderate — mechanistic + corpus-calibrated; no population RCT for shelf-relative model |
+| **confidence_level** | High for brined-cheese corpus where sodium variance is high |
+| **BSIP2_relevance** | Direct — expected to move extreme outliers (e.g. bulgarit 1550mg) from A toward high-B while leaving low-sodium tzfatit unchanged |
+| **label_observability** | Fully label-observable — sodium_mg per 100g on panel; median computed at batch-run from corpus |
+| **implementation_complexity** | Low — surcharge bands + run-level median/stdev + raised SODIUM_FAMILY_BUDGET_BRINED=16 |
+| **recommended_action** | implement (owner-approved 2026-06-13) |
+| **activation_scope** | `dairy_protein` + `whole_food_fat`; requires `BARI_GRAD_SODIUM_V1=on` AND `BARI_SODIUM_SHELF_RELATIVE_V1=on` |
+| **flag** | `BARI_SODIUM_SHELF_RELATIVE_V1` — default `off` |
+| **published_scores_moved** | Zero until flag enabled per-run. Brined re-score under flag ON expected to move high-sodium outliers only. |
+| **rollback** | Set `BARI_SODIUM_SHELF_RELATIVE_V1=off` (default). Independent of EV-057. |
+
+---
+
+### EV-057 — Dairy-Protein Archetype Re-weight + Clean Low-Sodium HP Suppression (`BARI_DAIRY_PROTEIN_REWEIGHT_V1`)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-057 |
+| **concept** | Archetype-specific dimension weights elevating protein_quality (10%→14%) over calorie_density (15%→11%); suppress HP_FAT_SODIUM_COMBO for clean low-sodium dairy_protein |
+| **task** | TASK-266 / P56 — sodium_protein_design_v1.md §B; owner approval 2026-06-13 |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **scientific_rationale_short** | Protein-primary dairy cheeses are mis-ranked when calorie density dominates protein quality. Plain hard cheeses at moderate sodium are not hyper-palatability engineering stacks — HP_FAT_SODIUM_COMBO should not fire when sodium ≤400mg and additive_marker_count==0. Precedent: veg_spread re-weight (EV-032), brined HP suppression (EV-054). |
+| **evidence_strength** | Moderate — archetype-weight precedent exists; HP suppression is conditional skip not rule deletion |
+| **confidence_level** | High for scope guard (dairy_protein only, flag-gated) |
+| **BSIP2_relevance** | Direct — shifts protein-rich clean cheeses; confidence ceiling may still bind products without ingredient lists |
+| **label_observability** | Fully label-observable — nutrition panel + ingredient markers |
+| **implementation_complexity** | Low — DAIRY_PROTEIN_WEIGHTS table + HP conditional skip |
+| **recommended_action** | implement (owner-approved 2026-06-13) |
+| **activation_scope** | `dairy_protein` archetype only when `BARI_DAIRY_PROTEIN_REWEIGHT_V1=on` |
+| **flag** | `BARI_DAIRY_PROTEIN_REWEIGHT_V1` — default `off` |
+| **published_scores_moved** | Zero until flag enabled per-run |
+| **rollback** | Set `BARI_DAIRY_PROTEIN_REWEIGHT_V1=off` (default). Independent of EV-056. |
+
+
+---
+
+### EV-058 — Dedicated `biscuit` Router Category for Sweet Plain Coffee Biscuits (TASK-275)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-058 |
+| **task** | TASK-275 (factory run #7, cookies-near-coffee) |
+| **recorded** | 2026-06-13 |
+| **P75b_update** | 2026-06-13 — coverage fix: tav `פתי`/no-space variants, bare `עוגיות` (0.85), C2 exclusions, removed `בטעם` over-block on `ביסקוויט`/`לוטוס`; bleed sim 0/633 live BSIP1; `run_cookies_003` biscuit 60/61 |
+| **status** | IMPLEMENTED — router vocabulary only; Nutrition ruling + Product D7 co-sign (P73/P74) |
+| **concept** | Add a dedicated `biscuit` router category in `router_v2.py` via 12 hard anchors for sweet plain coffee-biscuit product names. Purpose: taxonomy and explainability only. Prevents semantically incorrect routing of plain sweet biscuits to `snack_bar_granola`, `cracker`, or `bread`. Caps INTACT. No endemic relief. No scoring rule change. No `evaluation_scope.py` modification. |
+| **scientific_rationale_short** | Routing plain biscuits to `snack_bar_granola` applies sub-rules calibrated for granola bars and produces a 35-percentage-point higher E rate than routing the same products to `cracker` (75% E vs 40% E, verified across 61 products in run_cookies_001). The distortion is lens-context-based, not cap-based. A dedicated category stops the wrong lens without changing scoring output for correctly-routed live-category products. |
+| **evidence_strength** | Moderate — routing distortion empirically confirmed (35pp E-rate gap, 61 products). Mechanism clear. Routing-architecture fix, not a nutritional-claim addition. |
+| **confidence_level** | High (empirical routing gap; name-only anchor match with exclusions) |
+| **BSIP2_relevance** | Direct — fixes run_cookies_001 misrouting (20/61 to snack_bar_granola). Re-score under run_cookies_002 validates predicted D/E-modal rationalization for artifact-E cohort. |
+| **label_observability** | Fully observable in trace: `category`, `category_subtype`, `anchor_override`, `classification_basis` (e.g. `hard_anchor:ביסקוויט`). |
+| **implementation_complexity** | Low — 17 Hebrew strings in `router_v2.py` `HARD_ANCHORS` (P75b: +tav petit-beurre variants, bare `עוגיות`, no-space spellings), 16 `ANCHOR_EXCLUSIONS` entries, `"biscuit"` in `CATEGORIES` and `ALL_SIGNALS` (empty signal list). |
+| **recommended_action** | implement_now (P75 / TASK-275) |
+| **activation_scope** | Products whose `canonical_name_he` matches any of the 17 biscuit hard anchors (name-only), subject to per-anchor exclusions (incl. bare `עוגיות` bleed guards + C2 `גרנולה`/`דגנים` on `עוגיות חמאה`). P75b validated on `run_cookies_003`. See `cookies_coffee_routing_ruling_v1.md` §2.3. |
+| **not_activated_by** | Filled/coated/wafer/snack-bar contexts blocked by `ANCHOR_EXCLUSIONS`. Live-category corpora contain none of the primary biscuit identity tokens (verified pre-ship). |
+| **caps_intact** | CONFIRMED — no cap, weight, NOVA rule, or context_flag change. |
+| **no_endemic_relief** | CONFIRMED — no analog to brined_food 0.7 sodium weight. |
+| **rollback** | Remove EV-058-tagged entries from `HARD_ANCHORS`, remove `"biscuit"` from `CATEGORIES` and `ALL_SIGNALS`, remove biscuit keys from `ANCHOR_EXCLUSIONS`. Tagged `# EV-058` in source. |
+| **no_regression_proof_plan** | (1) `engine_invariants.py` 342-case suite — 6/6 PASS; (2) cross-corpus byte-identity on all live categories (milk, yogurt, bread, cereals, granola, snack-bars, cheese-spreads, brined-cheeses) — zero score/grade/category movement; (3) confirm 0 biscuit-anchor fires on live corpora; (4) STOP on any published-score movement (tripwire-1). |
+| **published_scores_moved** | 0 required on live categories before cookies re-score ships. |
+| **governance_classification** | Router vocabulary addition only — no new scoring rule. D7 co-sign for routing architecture change (Nutrition P73 + Product P74). |
+| **reference** | `02_products/cookies_coffee/methodology/cookies_coffee_routing_ruling_v1.md` |
+| **regression_test** | `p75_no_regression.py` — cross-corpus byte-identity + biscuit-anchor bleed scan |
+
+
+
+### EV-084 — Category-Agnostic Shelf-Relative Nutrient Differentiator (`BARI_SHELF_RELATIVE_V1`)
+
+| Field | Value |
+|---|---|
+| **finding_id** | EV-084 |
+| **concept** | Generalized shelf-relative nutrient surcharge: parameterized extension of EV-056 (sodium/dairy) to any nutrient and any category. Shelf median + robust spread measure (IQR-primary: `max(IQR/1.349, 1.4826·MAD, min_scale)`) computed from the corpus at batch-run start; distance-above/below-median mapped via asymmetric banded adjustment (penalty P > relief B) on top of the absolute graduated backbone. |
+| **task** | TASK-278 — Project Rescore (Bari-wide program); design phase only |
+| **recorded** | 2026-06-14 |
+| **status** | DESIGN — not implemented. Product Agent D7 co-sign issued 2026-06-14 (`shelf_relative_d7_cosign_v1.md`). Owner philosophy calls A + B resolved 2026-06-14. Implementation blocked on: (a) IQR-primary scale update to `compute_shelf_stats()`; (b) n≥20 minimum guard; (c) six no-regression guards passing before merge. Each category/nutrient enrollment is a separate D7 decision. |
+| **scientific_rationale_short** | The EV-056 sodium/dairy mechanism proved that within-shelf relative position is nutritionally meaningful — a product 600mg above the shelf median is a materially different nutritional proposition from one at or below median, even if both exceed the same absolute band. This principle extends to other nutrients (sugar in biscuits, sat_fat in spreads) where absolute thresholds alone cannot distinguish reformulation effort within a category. The relative layer adds within-category resolution without replacing the absolute backbone (which holds the Anti-Immunity Rule). Asymmetric P>B mapping (penalty stronger than below-median relief) preserves valid below-median signal while preventing curve-grading lift. For formulation nutrients (sugar, sat_fat), the `formulation_absolute_floor` per category/nutrient enforces Anti-Immunity architecturally. For endemic nutrients (sodium in brined cheese), the relative layer has empirical support from the 42/48 brined-cheese corpus pin (EV-055/056). |
+| **evidence_strength** | Moderate — sodium/dairy mechanism empirically confirmed (EV-055/056); extension to other nutrients by mechanism-analogy pending per-category empirical validation at rollout |
+| **confidence_level** | High for mechanism design; Low for per-category parameter values until rollout calibration |
+| **BSIP2_relevance** | Direct — core mechanism for TASK-278 Project Rescore |
+| **label_observability** | Fully label-observable. Reads only `normalized_nutrition_per_100g[nutrient]` — the same nutrition panel field already present in every BSIP1 trace. Corpus median/scale computed from those same label fields. OFF-BAN: no external source, no Open Food Facts, by design. |
+| **implementation_complexity** | Low-Medium — generalized `set_shelf_stats()` / `compute_shelf_stats()` (IQR-primary) / `shelf_relative_differentiator()` functions; call-site additions per nutrient/flag guard; backward-compat with EV-056 path preserved without modification to existing code |
+| **recommended_action** | implement_after_six_guards_pass — each category/nutrient enrollment is its own D7 |
+| **activation_scope** | Initially empty (no category enrolled). Each enrollment adds to `scope_categories` frozenset via a separate D7 + EV entry. Phase-2 pilot: biscuits × sugar (sugar alone). |
+| **flag** | `BARI_SHELF_RELATIVE_V1` — default `off`. Engine byte-identical when off. Does NOT activate or modify the existing EV-056 path (controlled by `BARI_SODIUM_SHELF_RELATIVE_V1`). Both flags coexist independently. EV-056 migration to generalized function is a separate future D7 after validation on brined-cheese corpus. |
+| **published_scores_moved** | Zero by definition — flag default=off; owner go-live required before any published category is rescored with flag on (tripwire-1, non-negotiable). |
+| **rollback** | Set `BARI_SHELF_RELATIVE_V1=off` (default). All published runs committed at flag=off. Re-scoring with flag=off restores prior output exactly. |
+| **no_regression_proof** | Six-guard plan in `shelf_relative_design_v1.md` §6. Guard 1 (frozen milk byte-identical) and Guard 2 (all published categories byte-identical at flag-off) are mandatory hard gates. Each category enrollment adds a full cross-corpus baseline diff. |
+| **math_parameters** | Scale: `max(IQR/1.349, 1.4826·MAD, nutrient_min_scale)` (IQR-primary, C3-recommended). Direction: asymmetric P>B (penalty > below-median relief). Mapping: banded (auditable, EV-056 pattern). n≥20 minimum corpus guard. |
+| **pending_decisions** | Per-category: exact P and B values; `formulation_absolute_floor` per nutrient/category; family budget raise magnitude; low-variance guard thresholds; coverage thresholds. All resolved at each rollout D7. |
+| **governance_classification** | New scoring capability (parameterized extension of approved EV-056 mechanism). D7 co-sign: Nutrition Agent (`shelf_relative_design_v1.md`) + Product Agent (`shelf_relative_d7_cosign_v1.md`, 2026-06-14). Owner go-live before any published category is rescored. |
+| **reference** | `01_framework/bsip2_framework/project_rescore/shelf_relative_design_v1.md`; `01_framework/bsip2_framework/project_rescore/shelf_relative_d7_cosign_v1.md`. Predecessor: EV-056 (`02_products/brined_cheeses/methodology/graduated_sodium_d7_design_v1.md`). |
+| **reversal_condition** | If rollout calibration shows the relative layer produces score inversions (a product with lower absolute nutrient load scoring worse than higher-load product due to median shift across run versions), or below-median relief enables implausible composite scores despite floor, revert to absolute-backbone-only (or one-sided-high) for that nutrient/category and log as calibration failure. |
+| **anti_rule_accumulation** | ONE generic config-driven module. NO bespoke per-category scoring functions. Any enrollment requiring new code (not config) is a D7 blocking condition. |
+
+```yaml
+study_objects:
+  - claim: "Within-shelf relative nutrient position is a meaningful differentiator beyond
+            absolute level alone, for nutrients where category clustering makes absolute
+            thresholds insufficient to distinguish quality within the shelf"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:EV-055,EV-056"
+    notes: >
+      Evidence tier C: internal corpus observation (42/48 brined-cheese pin under absolute
+      bands alone — EV-055; resolved by EV-056 relative layer). The mechanism is sound
+      (within-category relative position is used in FSA traffic-light, HFSS, and academic
+      nutrient profiling work). No population RCT exists for the specific banded surcharge
+      model. Extension to non-sodium nutrients is by mechanism-analogy only; per-category
+      corpus validation required at rollout before each enrollment is D7-approved.
+  - claim: "Asymmetric shelf-relative differentiator (P>B) on top of absolute backbone
+            preserves Anti-Immunity Rule while capturing valid below-median signal"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:bari_usecase_guardrails_v2,C3_P96_return"
+    notes: >
+      Architectural property confirmed by C3 consult (P96). Asymmetry prevents below-median
+      relief from laundering a product the absolute backbone has correctly penalized. The
+      formulation_absolute_floor is the additional mechanism for indulgence/formulation-nutrient
+      categories (biscuits/sugar pilot). Anti-Immunity Rule is protected by architecture plus
+      floor, not by suppressing below-median signal entirely.
+```
+
+
+
+---
+
+### EV-059 — D4 Wave 4: cosmetic_mup field + 11-additive library extension
+
+| Field | Value |
+|---|---|
+| **finding_id** | EV-059 (Glass Box D4, Wave 4; Nutrition Agent, 2026-06-14) |
+| **task** | Nutrition-lane improvement — no TASK required (annotate-only, no score movement) |
+| **recorded** | 2026-06-14 |
+| **source** | *Algorithmic Foundations of Consumer Food Scoring Engines: Translating Nutrient Profiling and Additive Toxicology into Quantitative Risk Metrics* (96 KB, research review, 2026-06-14). Secondary: EV-041 (tier model), EV-043 (W3 library). |
+| **concept** | Two additions to the D4 annotate-only layer: **(A)** `cosmetic_mup: bool` field on all 46 entries in `GLASSBOX_W2_ADDITIVES` — classifies additives by Siga/Codex Alimentarius functional class (True = primary function is to restore/mimic/enhance sensory properties lost in processing; False = functional preservation/acidulation/mineral role); **(B)** 11 new additive entries extending the library from 35 keys to 46 keys. |
+| **signal** | A. `cosmetic_mup` on all 46 entries: 30 True (colors + emulsifiers + thickeners + NNS), 16 False (preservatives + acidulants + antioxidants + minerals). B. New entries: E433 (P80, contested), E951 (aspartame, contested), E171 (TiO₂, contested), E102/E110/E122/E124/E129/E104 (Southampton azo dyes ×6, contested), E249/E250 (nitrites ×2, confirmed-negative — first confirmed-negative entries in this library). |
+| **scientific_rationale_short** | (A) Siga's MUP distinction: cosmetic additives (those restoring sensory properties lost in industrial processing) are a more principled marker of matrix degradation than total additive count. Our existing `ADDITIVE_MARKERS_3_PLUS/5_PLUS` caps are count-based; grounding them in `cosmetic_mup` density is the governed future upgrade. (B) Gaps identified: P80 named alongside CMC/carrageenan in the same microbiome-dysbiosis pathway (Chassaing mechanistic chain) but absent from the library. Aspartame IARC 2B vs JECFA split = contested. E171 EU ban = contested (genuine regulatory disagreement on nanoparticle methodology). Southampton six azo dyes = contested (EU Art. 24 warning-label mandate; EFSA "limited evidence"; US FDA insufficient for action). Nitrites E249/E250 = confirmed-negative (IARC 2A, N-nitrosamine mechanism; relevant for future processed-meat category). |
+| **evidence_strength** | Contested entries: Moderate (regulatory precaution without consensus ban). Confirmed-negative (E249/E250): Strong (IARC 2A + established mechanism). cosmetic_mup assignments: Strong for class-level (Codex Alimentarius definitions). |
+| **confidence_level** | High for detection/classification. Annotation only — no scoring claim made. |
+| **BSIP2_relevance** | D4 display layer only. No headline score changes. `cosmetic_mup` available in `detect_additives_d4()` findings for future MUP-density analysis and display logic. |
+| **label_observability** | Fully observable: `tier`, `cosmetic_mup`, `e_number`, `match_source` in the `d4_additives` trace array. |
+| **implementation_complexity** | Low — `GLASSBOX_W2_ADDITIVES` dict extension + `cosmetic_mup` field forwarded in `detect_additives_d4()` output. No scoring logic change. |
+| **recommended_action** | `implement_now` (annotate-only; no D7 co-sign gate) |
+| **activation_scope** | `BARI_GLASSBOX_W2=on` (same flag as W3). New entries detected from ingredient text when flag is on. |
+| **caps_intact** | CONFIRMED — no cap, weight, NOVA rule, or concern-coordination change. |
+| **no_score_movement** | CONFIRMED — `cosmetic_mup` is emitted in findings only; no scoring path reads it. Confirmed-negative tier on E249/E250 applies no automatic cap (none exists for that tier without a D6→D7 cap rule). |
+| **rollback** | Remove EV-059 block from `GLASSBOX_W2_ADDITIVES` (11 new entries tagged `# EV-059`), remove `cosmetic_mup` field from all 35 existing entries, revert `detect_additives_d4()` docstring and `findings_map` line. |
+| **no_regression_proof_plan** | (1) `python -c "import constants; assert len(constants.GLASSBOX_W2_ADDITIVES)==46"` — 46 entries; (2) 8/8 smoke-test assertions on detection + tier + cosmetic_mup pass; (3) byte-identity on all live category scores confirmed (D4 flag is default OFF). |
+| **published_scores_moved** | 0 |
+| **governance_classification** | Annotate-only library extension. No D7 co-sign required under TASK-181 annotate-only hard boundary. Forward-looking: a cap rule using cosmetic_mup density would require D6 proposal + D7 co-sign (Nutrition + Product). |
+| **future_actions** | (1) D6 proposal: re-found `ADDITIVE_MARKERS_3_PLUS/5_PLUS` on `cosmetic_mup` density (principled MUP count) rather than total additive count. (2) OpenFoodTox 3.0 client to systematize ADI lookups for evidence maintenance. (3) Azo-dye cap proposal before any children's cereal launch (category-appropriate confirmed action). |
+| **reference** | `01_framework/glass_box/additive_tiered_library_v1.md` §7 (W4 extension table + cosmetic_mup field definition + updated tier distribution). |
+
+
+---
+
+---
+
+### EV-060 — Fiber Fermentability Tier Activation (EV-006 ext Part 2)
+
+| Field | Value |
+|---|---|
+| **finding_id** | EV-060 (EV-006 ext Part 2; owner-authorized 2026-06-14) |
+| **task** | TASK-275 engine improvements (branch task-275-engine-fixes-abc) |
+| **recorded** | 2026-06-14 |
+| **source** | 2026 nutrition science findings batch — Finding #3: Fiber Type-Specific Satiety via Microbiota Fermentation (arabinoxylan → Faecalibacterium/Roseburia SCFA pathway). Extends EV-006 (FFV-v1). |
+| **concept** | Prebiotic fibers differ in fermentability rate and SCFA yield. High-fermentability fibers (inulin, FOS, GOS, chicory, arabinoxylan, resistant starch) produce rapid SCFA via Faecalibacterium/Roseburia pathway and earn the same +2 presence bonus as viscous fibers on satiety_support and glycemic_quality. Moderate-fermentability fibers (PHGG, resistant dextrin, arabinogalactan, acacia) retain +1. |
+| **scientific_rationale_short** | Arabinoxylan-derived oligosaccharides selectively enrich Faecalibacterium prausnitzii and Roseburia intestinalis, producing butyrate and propionate that signal satiety via PYY/GLP-1 pathways — mechanistically equivalent to inulin-type fructans. Resistant starch (RS2/RS3) provides well-established SCFA production. PHGG and arabinogalactan ferment more slowly with less SCFA amplitude. Treating all prebiotics at +1 undervalues the high-fermentability tier. |
+| **evidence_strength** | Strong (arabinoxylan mechanistic pathway well-established; RS SCFA production gold standard). Moderate for the +2 vs +1 magnitude split (relative amplitude based on human microbiome intervention data). |
+| **confidence_level** | High |
+| **BSIP2_relevance** | Scoring refinement — pure-prebiotic high-fermentability products gain +1 on satiety_support (6% weight) and +1 on glycemic_quality (12% weight) vs baseline. Net final-score impact ≤ 0.18 pts (capped at 2 per dimension; only fires when no viscous fiber co-present). |
+| **implementation_complexity** | Low — `prebiotic_fermentability_tier` field added to `_detect_functional_fiber()` output; score_engine branches on `BARI_FIBER_FERMENT_V1`. |
+| **recommended_action** | `implement_now` |
+| **activation** | `BARI_FIBER_FERMENT_V1` default **ON** (owner-authorized 2026-06-14). Rollback: set `BARI_FIBER_FERMENT_V1=off` in batch runner. |
+| **caps_intact** | CONFIRMED — `presence_bonus_cap_per_dimension=2` unchanged. "Both" products (viscous+prebiotic) already capped at +2 regardless of tier. |
+| **regression_result** | 12/12 PASS (flag ON default), 1 pre-existing warning (structural_class B vs expected C, unrelated). Zero score movement on golden corpus (no high-fermentability prebiotic declared in golden corpus ingredients). |
+| **published_scores_moved** | 0 (existing frozen runs not re-scored; new runs from flag-ON baseline) |
+| **governance_classification** | Scoring magnitude refinement. Owner-authorized in lieu of formal D7 co-sign (autonomy default — no tripwire fires: not a frozen invariant, reversible via flag, no consumer-facing go-live). |
+| **high_fermentability_keys** | inulin, fos, gos, chicory, arabinoxylan, resistant_starch |
+| **moderate_fermentability_keys** | phgg, resistant_dextrin, arabinogalactan, acacia |
+| **files** | `signal_extractor.py` (`_HIGH_FERMENTABILITY_KEYS`, `_MODERATE_FERMENTABILITY_KEYS`, `prebiotic_fermentability_tier` in `_detect_functional_fiber()`), `score_engine.py` (`BARI_FIBER_FERMENT_V1`, `_score_glycemic_quality_sprint1()`, `score_satiety_support()`), `constants.py` (`high_fermentability_satiety_bonus`, `high_fermentability_glycemic_quality_bonus`) |
+| **corroborating_evidence** | 2026 nutrition science research dump, Finding #3 (TASK-285, 2026-06-15). Fermentation-kinetics batch data corroborates the EV-060 tier split across five fiber sources: (1) **Flax fiber** showed high total SCFA production at 24 h in vitro — *directional, source pending specific DOI* (primary fermentation-kinetics literature; mucosal mucilage fraction is predominantly soluble). **Scientific caveat (mandatory):** flax fiber is a soluble mucilage, NOT the canonical arabinoxylan / inulin-type fructan pathway; its SCFA yield likely reflects gel-forming soluble fraction fermentation, not Faecalibacterium/Roseburia enrichment. It is NOT added to `_HIGH_FERMENTABILITY_KEYS` on this basis — annotation only. (2) **Coconut flour** showed the lowest SCFA production of the five sources tested — consistent with its high insoluble cellulose content and slow/incomplete fermentation; supports its absence from both key tiers. (3) Largest pH drop, microbial-diversity shift, and SCFA accumulation occurred within the **first 24 h** of fermentation — consistent with the rapid-fermentability rationale for the +2 tier applied to inulin, FOS, GOS, arabinoxylan, and resistant starch. **Scope of this annotation:** EV-060 tiers, keys, magnitude (+2 / +1 split), activation flag, and implementation files are ALL UNCHANGED. This row is a citation annotation only — no scoring action. |
+
+---
+
+### EV-085 — Biscuits × Sugar: Shelf-Relative Enrollment (`BARI_SHELF_RELATIVE_V1`)
+
+| Field | Value |
+|---|---|
+| **finding_id** | EV-085 |
+| **concept** | Enrollment of the `biscuit` router category × `sugars_g` nutrient into the `BARI_SHELF_RELATIVE_V1` mechanism (EV-084). Applies asymmetric P>B shelf-relative surcharge/relief on top of the absolute backbone, using the biscuit corpus's robust sugar scale (IQR-primary). Resolves within-shelf rank inversions where the hard binary cliff compresses 57 products into a narrow E/D band despite a 44g range of sugar variation. |
+| **task** | TASK-278 (Phase 2 — biscuits × sugar pilot) |
+| **recorded** | 2026-06-14 |
+| **status** | CO-SIGNED — Nutrition Agent (`shelf_relative_sugar_enrollment_v1.md`) + Product Agent D7 co-sign (`shelf_relative_sugar_enrollment_d7_cosign_v1.md`, 2026-06-14). No engine edit, no pilot rescore, 0 score movement. Pilot enrollment-wiring + rescore is the next step. |
+| **scientific_rationale_short** | The biscuit corpus (run_cookies_004, 58 products) shows a sugar range of 0–44.3g/100g against a median of 21.5g, yet the absolute cliff structure compresses 29 of 57 products into a narrow E band (scores 18–34) with no meaningful sugar differentiation within that band. A product with 38g sugar (Lotus, score 18.1) and one with 20g sugar (score 22.8) are effectively indistinguishable under the cliff. The shelf-relative differentiator (EV-084 mechanism) resolves this by adding a continuous surcharge for above-median sugar and bounded relief for below-median sugar, while the formulation_absolute_floor (55, at 20g+ sugar) prevents the Anti-Immunity Rule from being violated. |
+| **evidence_strength** | Moderate — mechanism validated for sodium/brined dairy (EV-056); extension to sugar/biscuits grounded in corpus data (57 products, verified IQR=6.9g, 2 confirmed rank inversions). |
+| **confidence_level** | High for mechanism correctness; Medium for parameter calibration (P=6, B=3, floor=55) pending pilot rescore validation. |
+| **label_observability** | Fully label-observable. Only field read: `L1_observed_signals.sugars_g` — the direct product-scrape label field in every BSIP1 trace. Corpus median and robust_scale computed from these same label values. OFF-BAN: no external source, no Open Food Facts, by design and architecture. |
+| **activation_scope** | `scope_categories = frozenset({"biscuit"})`, `nutrient = "sugars_g"`. No other category or nutrient enrolled by this EV. Each future enrollment is a separate EV + D7. |
+| **flag** | `BARI_SHELF_RELATIVE_V1` — default `off`. Engine byte-identical when off. This enrollment does not activate any other flag or modify any existing scoring path. |
+| **corpus_stats** | n=57 (1 missing label: barcode 7290017962139); median=21.5g; IQR=6.9g; MAD=3.3g; robust_scale=5.115g (IQR-primary). |
+| **bands** | Penalty (above median): bands on r_above = (x−median)/robust_scale, max P=6pts. Relief (below median): bands on r_below = (median−x)/robust_scale, max B=3pts. Full band tables in enrollment proposal §3. |
+| **formulation_absolute_floor** | 55 — applies when `sugars_g >= 20g/100g` for `category == "biscuit"`. Ratified by Product Agent: architecturally coherent with ISRAELI_RED_LABEL_1_SUGAR cap. Anti-Immunity Rule: no biscuit with ≥20g sugar reaches grade B (70) or A (80). Floor+max_relief ceiling = 55+3 = 58, well below 70. |
+| **floor_trigger_threshold** | 20.0 g/100g (above Israeli red-label threshold 17.5g; below corpus median 21.5g). |
+| **low_variance_guard** | 3.0g (robust_scale units). Not binding on this corpus (5.115 >> 3.0). |
+| **min_n** | 20. Not binding on this corpus (n=57). |
+| **published_scores_moved** | Zero by definition — flag default=off; biscuit category not live; owner go-live required before any published score moves (tripwire-1). |
+| **rollback** | Set `BARI_SHELF_RELATIVE_V1=off` (default). Re-scoring with flag=off restores prior output exactly. All current published runs committed at flag=off. |
+| **pilot_success_criteria** | All 7 criteria from D7 Phase-2 co-sign §4 must pass. Named inversions: Inversion A (Lotus vs. פתי בר אורגני — gap widens from 10.9pts to ≥13pts) and Inversion B (מרוקאי vs. וניל הדר — gap narrows from 11.1pts to ≤10pts). Shelf average lift ≤1.5pts. No grade-boundary inflation. Flag-off byte-identical. |
+| **pilot_verify_item** | Engine uses crude-index quartiles (`values[n//4]`) vs. proposal's interpolated IQR=6.9. Pilot must confirm `compute_shelf_stats()` yields scale≈5.115 on the biscuit corpus or bands recalibrate to engine-computed value before acceptance thresholds are locked. |
+| **no_regression_proof** | Six-guard plan from design v1 + 4 enrollment-specific guards: (a) cross-corpus baseline diff all published categories; (b) SUGAR_SHELF_REL_V1 rule tag present in traces when surcharge fires; (c) low-variance and min_n guards verified; (d) all 51 products with ≥20g sugar confirmed at composite ≤55; (e) flag-off byte-identical across all published categories; (f) monotonicity check: sugar increasing → penalty non-decreasing. |
+| **governance_classification** | Category/nutrient enrollment into approved mechanism (EV-084). D7 co-sign: Nutrition Agent (`shelf_relative_sugar_enrollment_v1.md`) + Product Agent (`shelf_relative_sugar_enrollment_d7_cosign_v1.md`, 2026-06-14). Owner go-live before any published category is rescored. |
+| **pending** | Pilot rescore (enrollment-wiring + BARI_SHELF_RELATIVE_V1=on run) → Phase-3 gauntlet → owner go-live. compute_shelf_stats IQR verification is a pre-pilot blocking item. |
+| **reference** | `02_products/cookies_coffee/methodology/shelf_relative_sugar_enrollment_v1.md` (Nutrition Agent proposal). `02_products/cookies_coffee/methodology/shelf_relative_sugar_enrollment_d7_cosign_v1.md` (Product Agent co-sign). Mechanism: EV-084. D7 framework: `shelf_relative_d7_cosign_v1.md`. |
+| **reversal_condition** | If pilot shows below-median relief enables any ≥20g sugar product to exceed score 55 (floor implementation error), halt immediately. If within-D products cross C boundary via 3pts relief, recalibrate B to 2. If flag-off byte-identity fails on any published category, stop — do not merge. |
+
+```yaml
+study_objects:
+  - claim: "Within-shelf sugar relative position differentiates nutritional quality among biscuits
+            where absolute cliff scoring collapses the distribution"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:run_cookies_004"
+    notes: >
+      Evidence tier C: internal corpus observation (57 biscuit products, 0–44.3g sugar range,
+      IQR=6.9g, 2 confirmed rank inversions under cliff scoring). Mechanism-analogy extension
+      from sodium/dairy (EV-056). No population RCT for specific banded surcharge model.
+      Anti-Immunity Rule protection is architectural (formulation_absolute_floor=55).
+  - claim: "formulation_absolute_floor=55 for sugars_g>=20g prevents Anti-Immunity violation
+            by below-median relative relief in the biscuit category"
+    dose_realistic: true
+    population_direct: false
+    rob_grade: low
+    evidence_tier: C
+    source_doi: "internal:bari_usecase_guardrails_v2,cookies_coffee_routing_ruling_v1,shelf_relative_sugar_enrollment_d7_cosign_v1"
+    notes: >
+      Architectural property. Grade B requires score >= 70. Floor=55, max relief B=3.
+      Maximum reachable composite = 58 for any product entering at the floor. No B, no A.
+      C-ceiling finding established B achievable only for very best clean digestives; floor=55
+      enforces this mechanically. Ratified by Product Agent D7 co-sign 2026-06-14.
+```
+
+---
+
+### EV-086 — PHVO Marker Correction + fat_quality Ceiling Ratification (Fix-B/C Governance)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-086 |
+| **task** | TASK-280 (Fix-B/Fix-C committed without governance; D6 ruling Nutrition Agent 2026-06-14; D7 co-sign Product Agent 2026-06-14) |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-050 (natural dairy trans fat exemption gate; original PHVO concept) |
+| **layer** | Signal detection correction (signal_extractor.py `_PHVO_MARKERS`) + detection quantity gate (position-aware `has_phvo`) + fat_quality dimension ceiling ratification (score_engine.py `_PHVO_FAT_QUALITY_CEIL = 40`) |
+| **trigger** | Fix-B (TASK-275) added `מחמאה` and `מרגרינה` to `_PHVO_MARKERS`, and Fix-C added a `fat_quality` ceiling of 40 when `has_phvo=True`. Both were committed without D6 Nutrition ruling or D7 Product co-sign. TASK-280 performs retroactive governance. Fix-B's code comment at signal_extractor.py:1158/1167 also contains a factual error: מחמאה is labelled "margarine/shortening" but is clarified butter (ghee) — a separate error requiring correction. |
+| **Q1_ruling** | **REMOVE מחמאה from `_PHVO_MARKERS`.** מחמאה is clarified butter (ghee) — animal fat produced by rendering butter to separate milk fat from water and milk solids. Fat profile: ~60–65% saturated fatty acids (palmitic, stearic) with naturally-occurring CLA and vaccenic acid. PHVO detection was designed exclusively for industrial trans fat from partial hydrogenation of vegetable oils (elaidic acid). Applying the PHVO ceiling to מחמאה: (a) misidentifies the fat source — saturated animal fat and PHVO are structurally and metabolically distinct; (b) creates a double-penalty — sat_fat dimension already penalizes מחמאה's high saturated fat correctly; (c) misfires on kosher/traditional products legitimately using מחמאה. The Fix-B code comment "margarine/shortening (Hebrew common form)" is factually wrong and must be replaced with "clarified butter (ghee), animal fat — REMOVED D6 Q1 ruling (TASK-280/EV-086)." Evidence tier: Strong for the chemical distinction (standard food chemistry); Moderate for metabolic differentiation CLA/vaccenic vs. elaidic acid at consumption-relevant doses (consistent with EV-050 tier). |
+| **Q2_ruling** | **Retain ceiling = 40. Add ingredient-rank position gate: `has_phvo=True` fires only if a PHVO marker appears within the first 8 ingredient positions (1-indexed positions 1–8, i.e., `item["position"] <= 8` in `ingredient_order`).** Rationale for 40: maps to lower-D range; penalizes without executing; consistent with existing trans-fat penalty scale; 30 is disproportionate for ingredient-list-presence detection alone; 50 effectively removes the penalty. Rationale for N≤8: Israeli ingredient ordering is descending by weight; position ≤8 covers ~85–95% of product mass in typical biscuit/granola products; position 9+ is typically a trace functional ingredient; a binary full-text match on any occurrence conflates dominant-fat with trace pan-release. snk-019 מרגרינה at position #6 correctly fires under this gate. Fallback: when `ingredient_order` is empty or None but `ing_text` is present, retain current full-text search (safe default for unstructured data). Evidence tier: Moderate (ceiling calibrated against existing trans-fat penalty scale; position gate based on Israeli ingredient ordering convention; corpus validation by Data Agent recommended pre-launch). |
+| **Q3_ruling** | **All-categories scope retained. No category exclusion list.** Rationale: Q1 (מחמאה removal) eliminates the primary whole_food_fat false-positive path. The EV-050 natural-dairy-trans-fat exemption gate already requires `not has_phvo` — this gate remains correct and unchanged. Produce and single-ingredient whole foods structurally cannot contain PHVO markers and will never trigger. The only remaining edge risk (dairy_protein / whole_food_fat products genuinely containing מרגרינה or שומנים מוקשים) are legitimately compromised products that should receive the ceiling. Category exclusion list adds maintenance burden for no benefit after Q1. Evidence tier: Moderate (operational reasoning + architectural consistency with EV-050). |
+| **Q4_ruling** | **Patch if and only if the corrected engine produces a grade change (e.g., D→E or any grade boundary crossing).** A within-grade score movement (e.g., 40→36, still D) does not require emergency patching; the corrected score ships on the next scheduled category re-score. A grade change makes the consumer-facing label materially wrong — Bari's "unknown is acceptable; wrong is not" standard applies. Patch decision: Data Agent runs corrected engine on affected products; orchestrator determines grade impact; Product Agent / orchestrator authorize patch on grade-change finding. |
+| **proposed_phvo_markers** | `["שומן צמחי מוקשה", "שמן צמחי מוקשה", "מוקשה חלקית", "partially hydrogenated", "שומנים מוקשים", "שומן מוקשה", "מרגרינה"]` — מחמאה removed; all others retained. |
+| **proposed_fat_quality_ceil** | 40 (unchanged) |
+| **proposed_position_gate** | `item["position"] <= 8` in `ingredient_order` (1-indexed); fallback to full-text when `ingredient_order` empty/None |
+| **implementation_spec** | signal_extractor.py: (1) Remove `"מחמאה"` from `_PHVO_MARKERS`. (2) Replace comment at line 1167 with `# "מחמאה" REMOVED — clarified butter (ghee), animal fat, not PHVO. D6 ruling Q1 (TASK-280/EV-086)`. (3) Fix comment at line 1158 to remove false "מחמאה-style ingredient declarations" / "margarine" reference. (4) Replace full-text `has_phvo` assignment with position-aware detection using `ingredient_order`; fallback to full-text when `ingredient_order` is empty. score_engine.py: no changes required — ceiling logic (`min(fat_quality, 40) when has_phvo=True`) is correct; position gate lives entirely in signal_extractor.py where `has_phvo` is set. |
+| **no_regression_requirement** | After implementation: (1) `engine_invariants.py` must PASS 342 cases. (2) Brined cheeses category run must be byte-identical to `run_brined_004` (flag-off). (3) Milk run must be byte-identical to `run_005_headpin` (frozen invariant). |
+| **snk_019_edge_case** | snk-019's מרגרינה is declared as "(שמן צי''ה, שמן קוקוס, מים, מלח, מתחלב E471)" — a coconut oil composite, not hydrogenated vegetable oil. The PHVO ceiling firing on the word "מרגרינה" alone is a borderline case. **Product ruling: Option A — fire as-is.** "מרגרינה" label = industrial processing signal regardless of whether hydrogenation occurred; coconut oil margarine is still an ultra-processed functional fat not present in whole-food diets; the ceiling at 40 is appropriate for any product labeled "מרגרינה" regardless of the underlying fat source. A sub-exclusion for coconut/palm-declared margarines (Option B) adds audit complexity without proportional benefit: the label "מרגרינה" carries a processing-quality signal independent of the trans fat question. Data Agent notes the finding in the run log but does not override. |
+| **affected_categories** | All (PHVO detection cross-category). Primary impact: `snack_bar_granola`, `biscuit`, processed spreads. `whole_food_fat` previously affected (מחמאה) — false positive eliminated by Q1. |
+| **evidence_tier** | Moderate — architectural and food chemistry reasoning; extends EV-050; no RCT evidence for the specific ceiling value (40) or position gate (8). |
+| **label_observability** | Fully label-observable. `has_phvo` reads `ingredient_order` (position-aware) or falls back to `ing_text` (full-text). All PHVO markers are observable ingredient declarations. |
+| **rollback** | Remove position gate logic from signal_extractor.py; restore מחמאה to `_PHVO_MARKERS`; restore full-text `has_phvo` assignment. Git-reversible. No published score changes until snacks re-score is authorized separately. |
+| **status** | D7 CO-SIGNED — authorized for implementation by Data Agent (TASK-280 Phase-3). Snacks re-score is a separate orchestrator-gated step; no published scores change until that step is authorized. |
+| **co_sign** | D6: Nutrition Agent (2026-06-14, TASK-280 Phase-1). D7: Product Agent (2026-06-14, TASK-280 Phase-2). |
+
+---
+
+### EV-087 — Cereals × Sugar Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-087 |
+| **task** | TASK-278 Phase 4 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-085 (biscuits × sugar enrollment) |
+| **layer** | Shelf-relative differentiator enrollment — adds `"cereal"` to `SUGAR_SHELF_REL_SCOPE` |
+| **decision** | Cereals × sugar enrolled in `BARI_SHELF_RELATIVE_V1`. Surcharge bands P_max=6, relief bands B_max=3 (same r-unit structure as EV-085). Floor=62 at sugar≥25g (calibrated to cereal corpus score range 30–52, higher than biscuits' 55 because cereal high-sugar baseline scores are lower). No family budget raise (SUGAR_FAMILY_BUDGET non-binding on cereals: high-sugar cereal absolute-backbone scores leave substantial headroom; the HP_SUGAR accumulation pattern that required biscuits' budget raise is absent in cereals). Two named inversions confirmed from corpus traces. Anti-Immunity proof: 62+3=65 < 70 (grade B). D7 co-signed by Product Agent 2026-06-14. |
+| **scope_key** | `cereal` — the exact router category key assigned by `router_v2.py` to all 45 corpus products |
+| **corpus_stats** | n=45, n_with_sugar=45, median=14.0g, Q1=8.0g, Q3=19.0g, IQR=11.0g, MAD=6.0g, robust_scale=8.896g (IQR-primary: max(IQR/1.349=8.154, 1.4826·MAD=8.896, 1.0) = 8.896) |
+| **surcharge_bands** | [0,0.5)→0, [0.5,1.0)→1, [1.0,1.5)→2, [1.5,2.5)→4, [2.5,∞)→6 (in r-units above median) |
+| **relief_bands** | [0,0.5)→0, [0.5,1.5)→1, [1.5,3.0)→2, [3.0,∞)→3 (in r-units below median; practical max=2pts in this corpus) |
+| **floor** | `formulation_absolute_floor=62`, trigger at `sugars_g ≥ 25.0g/100g` |
+| **budget_raise** | NONE — `SUGAR_FAMILY_BUDGET` is non-binding for cereals; no `SUGAR_CEREAL_BUDGET_RAISE` constant required |
+| **anti_immunity** | floor(62) + max_relief(3) = 65 < 70 (grade B). PROOF HOLDS. Structural note: sugar≥25g products are always in surcharge path (25g > 14g median), making floor+relief scenario structurally impossible for the cohort the floor protects. Belt-and-suspenders for unrepresented corpus edges. |
+| **inversion_a** | 7290100000029 (24g sugar / score 33.0) currently ranks BELOW 5054568100011 (38g sugar / score 35.0) — SR corrects to 31.0 vs 29.0 (direction flipped) |
+| **inversion_b** | 7290100000042 (5g sugar / score 74.9) vs 5054568100022 (16g sugar / score 70.4) — gap widens from 4.5pts to ~5.5pts after SR |
+| **pilot_gate** | min_movers≥15, min_grade_changes≥1, max_absorption≤40%, Inversion A direction corrected, Inversion B gap≥5.5pts, no dairy bleed (0/45 non-cereal moved), brined 48/48 byte-identical, flag-off byte-identical all published categories, floor compliance all 9 products with sugar≥25g |
+| **file** | `01_framework/bsip2_framework/project_rescore/cereals_sugar_enrollment_v1.md` |
+| **d7_cosign** | `01_framework/bsip2_framework/project_rescore/cereals_d7_cosign_v1.md` |
+| **implementation_spec** | `constants.py`: add `"cereal"` to `SUGAR_SHELF_REL_SCOPE` frozenset; add `SUGAR_SHELF_REL_CEREAL_FLOOR = 62` and `HIGH_SUGAR_CEREAL_FLOOR_THRESHOLD_G = 25.0`. `score_engine.py`: add cereal floor branch parallel to biscuit EV-085 branch. No other constants or engine changes. Gate: D7 co-sign (this entry). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.sugars_g` in committed trace files; no external source |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_cereals_shelfrel_001 (63 products). Comp JSON: cereals_frontend_v2.json updated (11/20 score changes). EV-098 go-live batch. | |
+| **co_sign** | D6: Nutrition Agent (2026-06-14, TASK-278 Phase-4, P106). D7: Product Agent (2026-06-14, TASK-278 Phase-4, P107). |
+
+---
+
+### EV-088 — Yogurt × Sugar: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-088 |
+| **task** | TASK-278 Phase 6 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-087 (cereals × sugar enrollment) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `category == "dairy_protein" AND category_subtype in CULTURED_YOGURT_SUBTYPES`. No router edit. |
+| **concept** | D7 co-signed enrollment of yogurt × sugars_g into `BARI_SHELF_RELATIVE_V1`. Applies asymmetric P>B shelf-relative surcharge/relief within dairy_protein, scoped to yogurt subtypes only via `category_subtype in CULTURED_YOGURT_SUBTYPES`. Resolves within-shelf rank inversions between plain yogurts (2.5–5g) and flavored/mix-in yogurts (9–14g). Bimodal shelf structure (plain cluster vs flavored cluster) makes this a high-signal enrollment. |
+| **scope_guard** | Option A: `category == "dairy_protein" AND category_subtype in CULTURED_YOGURT_SUBTYPES`. No router edit required. `CULTURED_YOGURT_SUBTYPES` already defined in constants.py and populated by router_v2.py `_build_anchor_result()`. Excludes milk, hard cheeses, brined cheeses, kefir, cottage, cream cheese, ricotta, mascarpone (all carry distinct subtypes). |
+| **corpus** | run_yogurt_006 (2026-06-11), n=88 total, n_yogurt_only=87 (1 cereal outlier excluded), n_with_sugars_g=74 |
+| **corpus_stats** | n=74, median=5.45g, Q1=3.9g, Q3=9.7g, IQR=5.80g, MAD=2.55g, IQR/1.349=4.299, 1.4826×MAD=3.781, robust_scale=4.299g (IQR-primary: max(4.299, 3.781, 1.4)). Exact match to P103 pilot calibration (0.0g divergence). |
+| **surcharge_bands** | [0,0.5)→0, [0.5,1.0)→1, [1.0,1.5)→2, [1.5,2.5)→4, [2.5,∞)→6 (in r-units; r=(sugars_g−5.45)/4.299) |
+| **relief_bands** | [0,0.5)→0, [0.5,1.5)→2, [1.5,3.0)→3, [3.0,∞)→3 (in r-units; r=(5.45−sugars_g)/4.299) |
+| **z_threshold** | 0.3 — products with \|z\| < 0.3 (\|sugars_g − 5.45\| < 1.29g) excluded from SR computation. Products with 0.3 ≤ \|z\| < 0.5 pass the gate and compute band (band returns 0 for [0,0.5)). |
+| **P_max** | 6 pts (D7 decision: standardized with cereals/biscuits; pilot value of 8 not adopted; no corpus product reaches z≥2.5 where 6 and 8 would differ) |
+| **B_max** | 3 pts |
+| **floor** | 62 (grade C ceiling) — activates when sugars_g ≥ 12.0g (z≥1.52, top ~15% of corpus) |
+| **floor_threshold_g** | 12.0g (D7 decision: aligns floor activation with 4pt-surcharge band entry; above Q3 9.7g by 2.3g; "dessert territory" designation) |
+| **null_sugars_treatment** | Option A: no adjustment. Products with null sugars_g receive delta=0 and no SR trace entry. Not excluded from corpus; backbone scores unchanged. |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 (grade B threshold) PASS. Note: high-sugar products (≥12g) are in surcharge zone (above median), not relief zone — the floor+relief scenario is structurally impossible for this cohort. Anti-Immunity is doubly protected. |
+| **named_inversions** | (1) 7290110321697 (9.8g / 61.2C) vs 7290102397600 (13.6g / 62.4C): B scores 1.2pts higher despite +3.8g sugar; SR corrects (A→~59.2, B→~58.4; gap reverses). (2) 7290102396740 (4.5g / 36.4D) vs 7290102393060 (14.0g / 43.5D): B scores 7.1pts higher despite +9.5g sugar; SR partially corrects (A unchanged at z=−0.22<0.3 threshold; B→~39.5). |
+| **pilot_gate** | 11 criteria (C1–C11); C10 frozen_byte_id (milk run_005_headpin) is CRITICAL; C11 flag-off drift docs-only. Full gate in `02_products/yogurt_system/methodology/yogurt_sugar_d7_cosign_v1.md`. |
+| **implementation_spec** | `constants.py`: add yogurt scope constant (reuse `CULTURED_YOGURT_SUBTYPES`); add `SUGAR_SHELF_REL_YOGURT_FLOOR = 62`; add `HIGH_SUGAR_YOGURT_FLOOR_THRESHOLD_G = 12.0`. `score_engine.py`: add yogurt floor branch with scope gate `category == "dairy_protein" and category_subtype in CULTURED_YOGURT_SUBTYPES`. No router_v2.py changes. No other constants or engine changes. Implementation gated on this EV registration. |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.sugars_g` in committed run_yogurt_006 trace files; no external data source |
+| **status** | D7 CO-SIGNED — authorized for pilot rescore by Data Agent (TASK-278 Phase-6 wire+pilot). No published scores change without owner go-live (tripwire-1). |
+| **co_sign** | D6: Nutrition Agent (2026-06-14, TASK-278 Phase-6, P113). D7: Product Agent (2026-06-14, TASK-278 Phase-6, P114). |
+| **file** | `02_products/yogurt_system/methodology/shelf_relative_sugar_enrollment_yogurt_v1.md` |
+| **d7_cosign** | `02_products/yogurt_system/methodology/yogurt_sugar_d7_cosign_v1.md` |
+
+---
+
+### EV-089 — Cheese Spreads × Sat_Fat: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-089 |
+| **task** | TASK-278 Phase 7 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-088 (yogurt×sugar precedent for dairy_protein subtype scoping) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `category == "dairy_protein" AND category_subtype in CREAM_CHEESE_SPREAD_SUBTYPES`. No router edit. FATSAT_SHELF_REL_SCOPE remains `frozenset()`. |
+| **concept** | D7 co-signed enrollment of cream_cheese spreads × fat_saturated_g into `BARI_SHELF_RELATIVE_V1`. Applies asymmetric P>B shelf-relative surcharge/relief within dairy_protein, scoped to cream_cheese subtypes only via new constant `CREAM_CHEESE_SPREAD_SUBTYPES`. Resolves within-shelf sat_fat inversions between genuinely lower-fat cream cheese variants (3–10g) and the high-fat cluster (14–22g). Tight corpus distribution (IQR=2.60g) means SR produces partial corrections (gap-narrowing) rather than full rank swaps — this is the correct and honest expectation for a homogeneous shelf. |
+| **scope_guard** | `category == "dairy_protein" AND cat_subtype in CREAM_CHEESE_SPREAD_SUBTYPES`. New constant: `CREAM_CHEESE_SPREAD_SUBTYPES: tuple = ("cream_cheese", "cheese_spread")` added to constants.py. Excludes cottage (subtype="cottage"), white cheese (subtype=None), yogurt (CULTURED_YOGURT_SUBTYPES), milk, hard cheeses, brined cheeses. Mutual exclusion with CULTURED_YOGURT_SUBTYPES confirmed by router_v2.py HARD_ANCHORS logic. |
+| **corpus** | run_cheese_004 (2026-06-02), cream_cheese subtype products only (n=24 with non-null fat_saturated_g) |
+| **corpus_stats** | n=24, median=16.05g, Q1=14.15g, Q3=16.75g, IQR=2.60g, MAD=1.40g, IQR/1.349=1.9274, 1.4826×MAD=2.0756, robust_scale=2.0756 (MAD-primary: max(1.9274, 2.0756, 1.0)). Min=3.0g, Max=20.0g. Distribution: tight cluster at 14–17g with outlier low-fat variants at 3–10g. |
+| **surcharge_bands** | [0,0.5)→0, [0.5,1.0)→1, [1.0,1.5)→2, [1.5,2.5)→4, [2.5,∞)→6 (in r-units above median; r=(sat_fat−16.05)/2.0756) |
+| **relief_bands** | [0,0.5)→0, [0.5,1.5)→1, [1.5,3.0)→2, [3.0,∞)→3 (in r-units below median; r=(16.05−sat_fat)/2.0756) |
+| **z_threshold** | 0.3 — products with \|z\| < 0.3 (\|sat_fat_g − 16.05\| < 0.62g) excluded from SR computation. Standard threshold consistent with cereals/yogurt. |
+| **P_max** | 6 pts (standard across all enrollments EV-085/087/088) |
+| **B_max** | 3 pts |
+| **floor** | 62 (grade C ceiling) — activates when fat_saturated_g ≥ 16.5g (D7 decision: Q3+0.45g, top quartile of corpus; rejects Israeli 15g regulatory threshold as too broad at 67% corpus coverage; red-label de-anchor directive applies) |
+| **floor_threshold_g** | 16.5g (D7 Q3 decision) |
+| **budget_raise** | NONE — FAT_QUALITY_FAMILY_BUDGET=8 is non-binding for cream_cheese products. Confirmed from trace bc=7622201521493: fat_pens_fired=0, coordinated_penalty=0.0. The sat_fat dimension penalty (−10pts in fat_quality dimension) flows through dimension weight calculation, not through _coordinate_family(). Cereals/yogurt no-raise precedent holds. |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 (grade B threshold) PASS. Structural double-protection: products at or above floor_threshold_g (16.5g) are above the median (16.05g) → surcharge zone, cannot receive B_max relief → floor+relief scenario structurally impossible for the protected cohort. |
+| **named_inversions** | (1) 4129118 (14.0g / 56.4C) vs 7290116935409 (16.2g / 62.3C): A scores 5.9pts lower despite 2.2g less sat_fat; SR gives A +1 (z=−0.988→band[0.5,1.5)), B 0 (z=+0.072,\|z\|<0.3); gap narrows from 5.9 to ~4.9pts. (2) 7622201521493 (7.8g / 52.3C) vs 4129101 (15.0g / 55.6C): A scores 3.3pts lower despite 7.2g less sat_fat; SR gives A +3 max relief (z=−3.975→band[3.0,∞)), B +1 (z=−0.506→band[0.5,1.5)); gap narrows from 3.3 to ~1.3pts. Both partial corrections (not full rank swaps) — correct and honest for a tight-distribution corpus. |
+| **pilot_gate** | 11 criteria (C1–C11); C10 frozen_byte_id_milk is CRITICAL; C10b yogurt_byte_id is NEW (cream_cheese call site must not fire on CULTURED_YOGURT_SUBTYPES products); C11 flag-off drift docs-only. Named inversion criterion (C3) tests gap-NARROWING, not rank swap. Full gate in `02_products/cheese_spreads/methodology/cheese_spreads_satfat_d7_cosign_v1.md`. |
+| **pilot_bsip1_source** | `03_operations/bsip1/run_cheese_003/output/` — BSIP1 files confirmed present. Pilot re-scores against current HEAD engine (task-275-engine-fixes-abc) for clean flag-on vs flag-off differential. Output: `run_cheese_005_satfat_pilot` (or equivalent). |
+| **implementation_spec** | `constants.py`: add `CREAM_CHEESE_SPREAD_SUBTYPES: tuple = ("cream_cheese", "cheese_spread")`. `score_engine.py`: add separate code branch (parallel to yogurt×sugar branch) gated on `BARI_SHELF_RELATIVE_V1 AND category == "dairy_protein" AND cat_subtype in CREAM_CHEESE_SPREAD_SUBTYPES AND fat_saturated_g is not None`; call `shelf_relative_differentiator()` with FATSAT_SHELF_SURCHARGE_BANDS/FATSAT_SHELF_RELIEF_BANDS; add floor branch at `fat_saturated_g ≥ 16.5g → cap at 62`. FATSAT_SHELF_REL_SCOPE remains `frozenset()` — no changes to the scope-based path. No router_v2.py changes. |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.fat_saturated_g` in committed run_cheese_004 trace files; no external data source |
+| **status** | D7 CO-SIGNED — authorized for pilot rescore by Data Agent (TASK-278 Phase-7 wire+pilot, P119). No published scores change without owner go-live (tripwire-1). |
+| **co_sign** | D6: Nutrition Agent (2026-06-14, TASK-278 Phase-7, P117). D7: Product Agent (2026-06-14, TASK-278 Phase-7, P118). |
+| **file** | `02_products/cheese_spreads/methodology/shelf_relative_satfat_enrollment_cheesespreads_v1.md` |
+| **d7_cosign** | `02_products/cheese_spreads/methodology/cheese_spreads_satfat_d7_cosign_v1.md` |
+
+---
+
+### EV-090 — Hard Cheeses × Sat_Fat: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-090 |
+| **task** | TASK-278 Phase 8 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-089 (cheese_spreads×sat_fat precedent for dairy_protein subtype scoping) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `category == "dairy_protein" AND nn.get("bsip_cheese_subpool") in HARD_CHEESE_YELLOW_SUBPOOLS`. No router edit. FATSAT_SHELF_REL_SCOPE remains `frozenset()`. |
+| **concept** | D7 co-signed enrollment of hard yellow cheeses × fat_saturated_g into `BARI_SHELF_RELATIVE_V1`. Applies asymmetric P>B shelf-relative surcharge/relief within dairy_protein, scoped to hard yellow cheese subpools only via new constant `HARD_CHEESE_YELLOW_SUBPOOLS`. Resolves within-shelf sat_fat inversions between reduced-fat yellow cheese variants (9%, 16% fat — 5–10g sat_fat) and full-fat aged yellow cheeses (28–32% fat — 17.5–19.5g sat_fat). The absolute backbone does not differentiate within the tight yellow cluster; SR provides meaningful correction for the 4 genuinely lower-fat outlier products. Tight corpus distribution (IQR=1.50g, scale at minimum floor 1.40) is accepted as an honest finding about the homogeneous yellow cheese shelf — partial corrections and gap-narrowing are the correct and honest expectation. |
+| **scope_guard** | `category == "dairy_protein" AND nn.get("bsip_cheese_subpool") in HARD_CHEESE_YELLOW_SUBPOOLS`. New constant: `HARD_CHEESE_YELLOW_SUBPOOLS: frozenset = frozenset({"yellow", "yellow_light", "hard_grating"})` added to constants.py. Uses `bsip_cheese_subpool` field (BSIP1 input) NOT `category_subtype` (router-assigned) — same mechanism as brined cheeses (EV-055), different from yogurt (EV-088) and cheese_spreads (EV-089) which use `category_subtype`. Excludes bulgarian, tzfatit, processed subpools; excludes 11 dessert-misrouted products (which lack dairy_protein router assignment). Mutual exclusion with CULTURED_YOGURT_SUBTYPES and CREAM_CHEESE_SPREAD_SUBTYPES confirmed by subpool field values (non-overlapping). |
+| **corpus** | run_hard_cheeses_001 (2026-06-08), yellow+yellow_light+hard_grating subpools only (n=22 with non-null fat_saturated_g) |
+| **corpus_stats** | n=22, median=18.0g, Q1=17.5g, Q3=19.0g, IQR=1.50g, MAD=0.50g, IQR/1.349=1.1119, 1.4826×MAD=0.7413, robust_scale=1.4000 (at minimum floor; IQR-primary=1.11 < floor=1.4). Min=5.0g, Max=21.0g, stdev=4.83g. Distribution: tight yellow cluster (15 products) at 17.5–19.5g; 4 yellow_light outliers at 5–10g; 3 hard_grating at 18–21g. Near-median dead zone (|z|<0.3): 31.8% (7/22 products at exactly 18.0g). |
+| **surcharge_bands** | [0,0.3)→0 (dead zone), [0.3,0.5)→0 (near-median), [0.5,1.0)→−1, [1.0,1.5)→−2, [1.5,2.5)→−4, [2.5,∞)→−6 (in r-units above median; r=(sat_fat−18.0)/1.4) |
+| **relief_bands** | [0,0.3)→0 (dead zone), [0.3,1.5)→+1, [1.5,3.0)→+2, [3.0,∞)→+3 (in r-units below median; r=(18.0−sat_fat)/1.4) |
+| **z_threshold** | 0.3 — products with |z| < 0.3 (|sat_fat_g − 18.0| < 0.42g) excluded from SR computation. Standard threshold consistent with all prior enrollments. |
+| **P_max** | 6 pts (standard across all enrollments EV-085/087/088/089) |
+| **B_max** | 3 pts |
+| **floor** | 62 (grade C ceiling) — activates when fat_saturated_g ≥ 19.0g (D7 Q4 decision: Q3-based, top quartile of scope; rejects Israeli 15g regulatory threshold per red-label de-anchor directive; 15g would floor 59% of scope = overbuilding) |
+| **floor_threshold_g** | 19.0g (D7 Q4 decision — Q3 of Scope A) |
+| **budget_raise** | NONE — FAT_QUALITY_FAMILY_BUDGET=8 is non-binding for primary SR beneficiary. Confirmed from trace bc=7290000062426 (עמק צהוב 9% מופחת שומן, score=64.3/C): fat_quality.binding_cap=null, fat_quality.coordinated_penalty=0.0. The sat_fat dimension penalty flows through dimension weight calculation, not through _coordinate_family(). Cereals/yogurt/cheese_spreads no-raise precedent holds. |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 (grade B threshold) PASS. Structural double-protection: products at or above floor_threshold_g (19.0g) are above the median (18.0g) → surcharge zone, cannot receive B_max relief → floor+relief scenario structurally impossible for the protected cohort. |
+| **named_inversions** | (INV-1, same-side) 7290000062426 (5.5g / 64.3C) vs 7290000062433 (17.5g / 77.6B): A scores 13.3pts lower despite 12g less sat_fat; SR gives A +3 (z=−8.93→band[3.0,∞)), B +1 (z=−0.357→band[0.3,1.5)); gap narrows from 13.3 to ~11.3pts. (INV-2, opposite-side) 7290000062426 (5.5g / 64.3C) vs 8866972 (19.5g / 69.9B): A scores 5.6pts lower despite 14g less sat_fat; SR gives A +3 (z=−8.93→band[3.0,∞)), B −2 (z=+1.071→band[1.0,1.5)); gap narrows from 5.6 to ~0.6pts (near-closure). Both partial corrections (gap-narrowing, not full rank swap) — correct and honest for a tight-distribution corpus with multi-signal backbone gaps. |
+| **pilot_gate** | 11 criteria (C1–C11); C10 frozen_byte_id_milk is CRITICAL; C10b cheese_spread_byte_id is NEW (hard_cheese SR branch must not fire on CREAM_CHEESE_SPREAD_SUBTYPES products); C10c yogurt_byte_id is NEW (hard_cheese SR branch must not fire on CULTURED_YOGURT_SUBTYPES products); C11 flag-off drift docs-only. Named inversion criterion (C3) tests gap-NARROWING, not rank swap. Full gate in `02_products/hard_cheeses/methodology/hard_cheeses_satfat_d7_cosign_v1.md`. |
+| **implementation_spec** | `constants.py`: add `HARD_CHEESE_YELLOW_SUBPOOLS: frozenset = frozenset({"yellow", "yellow_light", "hard_grating"})` + FATSAT_SHELF_REL_HARDCHEESE_* constants (MEDIAN=18.0, IQR=1.50, SCALE=1.4, FLOOR=62, FLOOR_THRESHOLD_G=19.0, P_MAX=6, B_MAX=3). `score_engine.py`: add separate code branch (third call site in dairy_protein, after EV-088 yogurt×sugar and EV-089 cheese_spread×sat_fat) gated on `BARI_SHELF_RELATIVE_V1 AND category == "dairy_protein" AND nn.get("bsip_cheese_subpool") in HARD_CHEESE_YELLOW_SUBPOOLS AND fat_saturated_g is not None`; call `shelf_relative_differentiator()` with FATSAT_SHELF_SURCHARGE_BANDS/FATSAT_SHELF_RELIEF_BANDS; add floor branch at `fat_saturated_g ≥ 19.0g → cap at 62`. FATSAT_SHELF_REL_SCOPE remains `frozenset()`. CRITICAL pre-implementation check: verify `bsip_cheese_subpool` accessible via `nn.get("bsip_cheese_subpool")` at scoring time — add to BSIP1→scoring context pass-through if absent. |
+| **scope_guard_field_note** | `bsip_cheese_subpool` is a BSIP1 input field (not router-assigned). Different from yogurt (EV-088, uses CULTURED_YOGURT_SUBTYPES via category_subtype) and cheese_spreads (EV-089, uses CREAM_CHEESE_SPREAD_SUBTYPES via category_subtype). Same mechanism as EV-055 (brined cheeses). Data Agent must verify field is accessible in the `nn` dict at scoring time before wiring. |
+| **router_note** | 11/37 hard cheese corpus products misroute to `dessert` (not `dairy_protein`). These are excluded from SR scope by the dairy_protein category guard. Router correction is a separate task — does not gate this enrollment. |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.fat_saturated_g` in committed run_hard_cheeses_001 trace files; no external data source |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_hard_cheeses_003_shelfrel (30 products from bsip1_outputs). Comp JSON: hard_cheeses_frontend_v2.json updated (29/30 score changes). | No published scores change without owner go-live (tripwire-1). |
+| **co_sign** | D6: Nutrition Agent (2026-06-14, TASK-278 Phase-8, P121). D7: Product Agent (2026-06-14, TASK-278 Phase-8, P122). |
+| **file** | `02_products/hard_cheeses/methodology/shelf_relative_satfat_enrollment_hardcheeses_v1.md` |
+| **d7_cosign** | `02_products/hard_cheeses/methodology/hard_cheeses_satfat_d7_cosign_v1.md` |
+
+---
+
+### EV-091 — Juices × Sugar: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-091 |
+| **task** | TASK-278 Phase-9 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-088 (yogurt×sugar precedent for non-dairy-protein category enrollment) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `product.get("juice_sub_pool") is not None`. No router edit. Covers all three router-assigned categories that juice products land in: beverage (45), default (19), dessert (1 misroute). |
+| **scope_guard** | `product.get("juice_sub_pool") is not None AND nn.get("sugars_g") is not None` — uses BSIP1 enrichment field `juice_sub_pool`, NOT router-assigned `category`. Field spelling is `juice_sub_pool` (confirmed from BSIP1 files). D6 proposed `category_slug` (does not exist); orchestrator correction `product.get("category") == "juices"` is also wrong (no `category` field in BSIP1 dict). Product Agent D7 corrects to `juice_sub_pool`. Analogous to EV-090 using `bsip_cheese_subpool`. |
+| **scope_guard_field_note** | `juice_sub_pool` values: `juice_100`=16, `fruit_drink`=13, `nectar`=3, MISSING=2. All three named values included in scope. Fruit_drink (13 products) explicitly included — D7 Q2 decision: sugar is the signal regardless of juice concentration; exclusion would cherry-pick scope. The 2 MISSING products are excluded by `is not None` guard. |
+| **category** | juices |
+| **nutrient** | sugars_g |
+| **median_g** | 9.50 |
+| **q1_g** | 8.40 |
+| **q3_g** | 12.20 |
+| **iqr** | 3.80 |
+| **mad** | 1.30 |
+| **robust_scale** | 2.82 (IQR-primary: max(IQR/1.349=2.82, 1.4826×MAD=1.93, min_scale)) |
+| **p_max** | 6 |
+| **b_max** | 3 |
+| **floor** | 62 |
+| **floor_threshold_g** | 12.2 (Q3-based; de-anchored from Israeli red-label 10g per red-label de-anchor directive 2026-06-14) |
+| **z_dead** | ±0.30 (standard) |
+| **n_scope** | 65 (run_juices_001; 63–65 with juice_sub_pool present) |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 PASS. Structural: products ≥12.2g are above median → surcharge zone, cannot receive B_max relief — floor+relief scenario impossible for protected cohort. |
+| **named_inversions** | INV-A: lemon juice (2.5g/59.7C) vs orange 100% (8.4g/56.1C) — gap widens from 3.6→~5.6 (correct: low-sugar gets more relief). INV-B: peach nectar (12.2g/58.1C) vs apple juice 100% (9.6g/51.4C) — gap narrows from 6.7→~5.7 (partial correction: full rank swap not achievable due to multi-signal calorie_density difference — honest finding). |
+| **pilot_gate** | 12 criteria (C1 directional_distribution, C2a/b/c grade_dist, C3 gap_narrows_inversion, C4 min_movers≥5, C5 min_grade_changes≥1, C6 max_absorption≤40%, C7 anti_immunity, C8 floor_compliance, C9 no_scope_bleed, C10 frozen_byte_id_milk CRITICAL, C11 routing_agnostic). Full gate in `02_products/juices/methodology/juices_sugar_d7_cosign_v1.md`. |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_juices_shelfrel_001 (32/33 products; 1 skipped missing canonical_id). Comp JSON: juices_frontend_v3.json updated (12/20 products with score/grade changes). |
+| **registered_at** | P125 D7 co-sign, 2026-06-14 |
+| **co_sign** | D6: Nutrition Agent (P124, 2026-06-14). D7: Product Agent (P125, 2026-06-14). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task |
+| **off_ban** | Satisfied — all corpus stats from `L1_observed_signals.sugars_g` in committed run_juices_001 trace files |
+| **d7_cosign_doc** | `02_products/juices/methodology/juices_sugar_d7_cosign_v1.md` |
+
+---
+
+### EV-092 — Maadanim × Sugar: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-092 |
+| **task** | TASK-278 Phase-10 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-088 (yogurt×sugar precedent), EV-091 (juices×sugar — BSIP1-field scope guard pattern) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `product.get("bsip_maadanim_subtype") is not None`. No router edit. Covers all router-assigned categories that maadanim products land in: dessert (91), default (48), dairy_protein (33), snack_bar_granola (13), cracker (5), beverage (4), others (6). |
+| **category** | maadanim |
+| **nutrient** | sugars_g |
+| **scope_guard** | `product.get("bsip_maadanim_subtype") is not None AND nn.get("sugars_g") is not None` — uses BSIP1 enrichment field `bsip_maadanim_subtype`, NOT router-assigned `category`. Analogous to EV-090 (bsip_cheese_subpool) and EV-091 (juice_sub_pool). Field confirmed present in 200/200 BSIP1 source files at `03_operations/bsip1/run_maadanim_001/output/`. |
+| **scope_guard_field_note** | `bsip_maadanim_subtype` values: dairy_dessert_generic (118), protein_dessert (19), milky_style (17), probiotic_dessert (16), flavored_yogurt_dessert (13), pudding_dessert (10), reduced_sugar_dessert (5), kids_dessert (2). D7 Q1 decision: router category filter REJECTED — BSIP1 field is the authoritative scope boundary. D7 Q2 decision: reduced_sugar_dessert (n=5) INCLUDED — sweetener cap (ceiling=70) and SR relief operate on different pipeline stages; no harmful double-benefit path exists. D7 Q3 decision: kids_dessert (n=2) INCLUDED with flag for re-evaluation when corpus expands. |
+| **median_g** | 9.70 |
+| **q1_g** | 4.30 |
+| **q3_g** | 16.08 |
+| **iqr** | 11.78 |
+| **mad** | 5.90 |
+| **robust_scale** | 8.75 (IQR-primary: max(IQR/1.349=8.73, 1.4826×MAD=8.75, min_scale=1.4)) |
+| **p_max** | 6 |
+| **b_max** | 3 |
+| **floor** | 62 |
+| **floor_threshold_g** | 16.08 (Q3-based; de-anchored from Israeli red-label 10g per red-label de-anchor directive 2026-06-14) |
+| **z_dead** | ±0.30 (D7 Q4 decision: approved at standard threshold; dead zone = [7.08g, 12.32g], 27.4% absorption < 40% ceiling) |
+| **n_scope** | 146 (run_maadanim_001; 146/200 with sugars_g not null) |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 PASS. Structural: products ≥16.08g (at/above Q3) are above median → surcharge zone, cannot receive B_max relief — floor+relief scenario impossible for protected cohort. |
+| **named_inversions** | INV-A: 7290110573737 (3.4g/56.3C) vs 7290110573751 (18.0g/28.5E) — same NOVA=4, same additive_count=4; SR gives 3.4g product relief and 18.0g product surcharge on top of existing binary cap; gap maintained and directionally reinforced. INV-B (REPLACEMENT): 2385455 (בולגרית מעודנת 24%, 3.5g/45.0D, dairy_dessert_generic, nova=2, additives=0) vs 5014271300429 (מעדן משמש, 52.0g/45.6D, dairy_dessert_generic, nova=2, additives=0) — gap_before=-0.6 (wrong direction: lower sugar product scores lower); SR gives delta_A=+2.13, delta_B=-6.00; gap_after=+7.5 (correct direction, reversed by 8.1pts). Original INV-B rejected: both 7290110321697 (9.8g) and 7290014762800 (12.0g) fall within dead zone [7.08,12.32] → near-zero SR delta for both → not a qualifying C3 pair. |
+| **pilot_gate** | 11 criteria (C1 directional_distribution, C2a/b/c grade_dist_and_magnitude, C3 gap_narrows_inversion using INV-A + replacement INV-B, C4 min_movers≥5, C5 min_grade_changes≥1, C6 max_absorption≤40%, C7 anti_immunity, C8 floor_compliance, C9 no_scope_bleed, C10 frozen_byte_id_milk CRITICAL). Full gate in `02_products/maadanim/methodology/maadanim_sugar_d7_cosign_v1.md`. |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_salty_snacks_shelfrel_001 (54 products). Comp JSON: salty_snacks_frontend_v4.json NOT updated — v4 BSIP1 corpus has no source files (TASK-228 rebuild pending). Scores apply on the full BSIP1 corpus; comp JSON waits for TASK-228. |
+| **registered_at** | P128 D7 co-sign, 2026-06-14 |
+| **co_sign** | D6: Nutrition Agent (P127, 2026-06-14). D7: Product Agent (P128, 2026-06-14). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.sugars_g` in committed run_maadanim_001 trace files; no external data source |
+| **d6_doc** | `02_products/maadanim/methodology/shelf_relative_sugar_enrollment_maadanim_v1.md` |
+| **d7_cosign_doc** | `02_products/maadanim/methodology/maadanim_sugar_d7_cosign_v1.md` |
+
+---
+
+### EV-093 — Salty Snacks × Sodium: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-093 |
+| **task** | TASK-278 Phase-11 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-087 (cereals×sodium precedent), EV-088 (yogurt×sugar), EV-089 (cheese_spreads×sodium), EV-090 (hard_cheeses×sodium), EV-091 (juices×sugar), EV-092 (maadanim×sugar) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `product.get("category") == "salty_snack"`. Standalone post-dimension pre-floor adjustment. No router edit. |
+| **category** | salty_snack |
+| **nutrient** | sodium_mg |
+| **scope_guard** | `product.get("category") == "salty_snack" AND nn.get("sodium_mg") is not None` — uses BSIP1 field `category`, NOT BSIP2 router-assigned category. BSIP2 router assigns nutritional categories (whole_food_fat, bread, etc.) agnostic to shelf placement; 54/54 BSIP1 files carry `category: "salty_snack"`. Field confirmed present 54/54 (100%). Consistent with EV-090 (bsip_cheese_subpool) and EV-091 (juice_sub_pool) BSIP1-field pattern. |
+| **scope_guard_field_note** | Sub-pools represented: chips (11), baked (13), puffed (13), popcorn (7), rice_cakes (7), pretzels (3). Sub-pool exclusions (e.g., caramel_popcorn) REJECTED — anti-immunity floor handles the concern structurally. Single-field guard is sufficient. |
+| **median_mg** | 560.0 |
+| **q1_mg** | 440 |
+| **q3_mg** | 630 |
+| **iqr** | 190 |
+| **mad** | 85.0 |
+| **robust_scale** | 140.85 (IQR-primary: max(IQR/1.349=140.85, 1.4826×MAD=126.02, min_scale=1.40)) |
+| **p_max** | 6 |
+| **b_max** | 3 |
+| **floor** | 62 |
+| **floor_threshold_mg** | 630 (Q3-based; de-anchored from binary Israeli red-label 600mg cliff per red-label de-anchor directive 2026-06-14) |
+| **z_dead** | ±0.30 (standard; dead zone = [517.7, 602.3] mg; 15/54 = 27.8% absorption < 40% ceiling) |
+| **n_scope** | 54 (run_salty_snacks_002; 54/54 with sodium_mg not null) |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 PASS. Products ≥630mg (at/above Q3) are in surcharge zone (z > 0), cannot receive B_max relief — floor+relief scenario impossible for protected cohort. |
+| **named_inversions** | INV-A: 7290005204001 Pringles Original (480mg/52.4C) vs 7290009900003 Bisli Spaghetti (800mg/52.9C) — 320mg gap produces 0.5pt score difference; SR gives Pringles +1.7pt relief and Bisli -5.1pt penalty; gap_after ~6.8pts (correct direction). INV-B: 7290009900003 Bisli Spaghetti (800mg/52.9C) vs 7290011350002 Baked Pretzels (920mg/57.0C) — higher-sodium product scores 4.1pts HIGHER (binary cap saturation artifact); SR gives Bisli -5.1pt, Pretzels -6.0pt (P_max ceiling); gap narrows, partial correction expected (non-sodium quality advantage of pretzels persists as residual — honest finding). |
+| **d7_q1_scope** | ACCEPT `category=="salty_snack"` single field. 54/54 coverage, no bleed. Sub-pool filter rejected — structural anti-immunity is sufficient. |
+| **d7_q2_relief** | ACCEPT B_max=3, no low-sodium exclusion. Floor(62)+B_max(3)=65<70 structural protection. Rice-cake relief is deserved and bounded. |
+| **d7_q3_stacking** | NO combined penalty budget. HP_FAT_SODIUM_COMBO and SR target distinct constructs. SODIUM_FAMILY_BUDGET already caps family. Stacking is correct signal — monitor at pilot. |
+| **d7_q4_p_max** | P_max=6. Cross-category consistency (EV-087–092). P_max=6 sufficient for INV-B gap correction; P_max=8 rejected as unjustified deviation. |
+| **d7_q5_wiring** | Standalone call site, post-dimension pre-floor. Preserves regulatory_quality signal integrity. Consistent with all prior SR phases. |
+| **pilot_gate** | 11 criteria (C1 directional_distribution, C2a/b/c grade_dist_and_magnitude, C3 gap_narrows_inversion INV-A+INV-B, C4 min_movers≥5, C5 min_grade_changes≥1, C6 max_absorption≤40%, C7 anti_immunity, C8 floor_compliance, C9 no_scope_bleed, C10 frozen_byte_id_milk CRITICAL, C11 flag_off_drift docs-only). Hard fails: C7, C8, C9, C10. Full gate in `02_products/salty_snacks/methodology/salty_snacks_sodium_d7_cosign_v1.md`. |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_salty_snacks_shelfrel_001 (54 products). Comp JSON: salty_snacks_frontend_v4.json NOT updated — v4 BSIP1 corpus has no source files (TASK-228 rebuild pending). Scores apply on full BSIP1 corpus. |
+| **registered_at** | P133 D7 co-sign, 2026-06-14 |
+| **co_sign** | D6: Nutrition Agent (P132, 2026-06-14). D7: Product Agent (P133, 2026-06-14). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration |
+| **off_ban** | Satisfied — all corpus stats derived from `L1_observed_signals.sodium_mg` in committed run_salty_snacks_002 trace files; no external data source |
+| **d6_doc** | `02_products/salty_snacks/methodology/salty_snacks_sodium_d6_enrollment_v1.md` |
+| **d7_cosign_doc** | `02_products/salty_snacks/methodology/salty_snacks_sodium_d7_cosign_v1.md` |
+
+### EV-094 — Hummus × Sodium: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-094 |
+| **task** | TASK-278 Phase-12 |
+| **recorded** | 2026-06-14 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-056 (brined-cheese SR precedent for endemic-sodium dairy), EV-087 (cereals×sodium), EV-089 (cheese_spreads×sodium), EV-090 (hard_cheeses×sodium), EV-093 (salty_snacks×sodium) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to `product.get("bsip0_source", {}).get("product_category") in ("hummus_spread", "hummus_and_savory_dips")`. Standalone post-dimension pre-floor adjustment. No router edit. |
+| **category** | hummus |
+| **nutrient** | sodium_mg |
+| **scope_guard** | `product.get("bsip0_source", {}).get("product_category") in ("hummus_spread", "hummus_and_savory_dips") AND nn.get("sodium_mg") is not None` — uses nested BSIP0 source field, confirmed present in all 69 BSIP1 files in `02_products/hummus/canonical_bsip1/`. D7 Q5 decision: field accepted; Data Agent must grep-verify nested key presence before wiring. |
+| **scope_guard_field_note** | `bsip0_source.product_category` values in corpus: hummus_spread (30, IN), hummus_and_savory_dips (30, IN), eggplant_spread (4, OUT), matbucha_pepper_spread (5, OUT). Total in-scope n=60. New constant `HUMMUS_PRODUCT_CATEGORIES = {"hummus_spread", "hummus_and_savory_dips"}` required in constants.py — analogous to CULTURED_YOGURT_SUBTYPES. |
+| **median_mg** | PENDING — n=60 re-run required (see d7_q3_stat_rerun) |
+| **q1_mg** | PENDING |
+| **q3_mg** | PENDING |
+| **iqr** | PENDING |
+| **mad** | PENDING |
+| **robust_scale** | PENDING |
+| **n69_working_stats** | min=6, Q1=360, median=392, Q3=395, IQR=35, MAD=12, robust_scale=25.945 — n=69 basis; NOT binding for implementation; recorded for audit trail only |
+| **p_max** | 6 |
+| **b_max** | 3 |
+| **floor** | 62 |
+| **floor_threshold_mg** | PENDING — must be re-derived from n=60 run; n=69 Q3=395mg is proximate only; too close to n=69 median (392mg) to use as-is |
+| **z_dead** | ±0.30 (standard) |
+| **n_scope** | 60 (hummus_spread + hummus_and_savory_dips only; eggplant + matbucha excluded) |
+| **anti_immunity_proof** | floor(62) + B_max(3) = 65 < 70 PASS. Structural: products at/above floor_threshold (pending n=60 value) are in surcharge zone and cannot receive B_max relief — floor+relief scenario impossible for protected cohort. |
+| **named_inversions** | INV-A: bsip1_7290018359686 הקיסר חומוס ענק (150mg/80.4A) vs bsip1_6666307 סלט חומוס (480mg/80.2A) — near-identical grades despite 3.2x sodium difference; SR gives 150mg product +B_max relief, 480mg product up to -P penalty; gap_before=0.2pt → est. gap_after ~7.2pt (both remain A but sodium visible). INV-B: bsip1_7296073725381 חומוס אבו גוש (328mg/69.9B) vs bsip1_6666307 סלט חומוס (480mg/80.2A) — true rank inversion, 10.3pt gap in wrong direction (higher-sodium scores higher); SR gives 328mg product +B_max, 480mg product up to -P; gap_after est. 3.3pt (correct direction, partial correction — exceeds P_max+B_max ceiling of 9pt for a 10.3pt gap; honest mechanism behavior). |
+| **d7_q1_dead_zone** | ENROLL. Dead zone reflects hummus sodium physiology (dense commercial formulation core ~360–395mg). ~26–34 of 60 products still move. INV-A and INV-B both resolvable. Tight core receiving delta=0 is correct — their uniformity reflects the category, not a scoring failure. C6 threshold revised to ≤60% hummus-specific (see pilot_gate). Precedent: maadanim C6 revised to 55%. |
+| **d7_q2_floor_threshold** | PENDING n=60 re-run. n=69 Q3=395mg is 3mg above n=69 median=392mg — margin too thin for a floor that caps 25% of the shelf. Final value must come from n=60-only distribution. If n=60 Q3 remains near-identical to median, escalate to D7 for custom percentile selection. |
+| **d7_q3_stat_rerun** | REQUIRED before implementation. Blocker on constants finalization. Data Agent dispatched: compute sodium stats on in-scope n=60 products only (hummus_spread + hummus_and_savory_dips), output median, Q1, Q3, IQR, MAD, robust_scale. Return to Product Agent for constant lock. Phase-5 cereals precedent (n=45→n=34). |
+| **d7_q4_stacking** | SUPPRESS SR penalty when HIGH_SODIUM_700MG_PLUS binary cap fires (sodium_mg ≥ 700). Binary cap already prevents grade inflation; SR stacking is redundant and adds no consumer-visible outcome. Three products at 852–864mg affected. Implement as: `if sodium_mg >= 700: skip SR`. |
+| **d7_q5_scope_guard** | ACCEPT `bsip0_source.product_category` nested accessor. Confirmed present in all 69 BSIP1 source files per D6. Prefer new constant Option A: `HUMMUS_PRODUCT_CATEGORIES`. Data Agent must grep-verify before wiring: `product.get("bsip0_source", {}).get("product_category")` returns expected values. |
+| **pilot_gate** | 11 criteria (C1 directional_distribution, C2a/b/c grade_dist_and_magnitude, C3 gap_narrows_inversion INV-A+INV-B, C4 min_movers≥5, C5 min_grade_changes≥1, C6 max_absorption≤60% hummus-specific, C7 anti_immunity, C8 floor_compliance, C9 no_scope_bleed, C10 frozen_byte_id_milk CRITICAL, C11 HIGH_SODIUM_700MG_PLUS stacking suppressed). Hard fails: C7, C8, C9, C10. Full gate in `02_products/hummus/methodology/hummus_sodium_d7_cosign_v1.md`. |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_hummus_shelfrel_001 (69 products). Comp JSON: hummus_frontend_v5.json updated (60/64 products; 4 missing barcodes in comp not in trace set). | delivers n=60 distribution |
+| **registered_at** | P134 D7 co-sign, 2026-06-14 |
+| **co_sign** | D6: Nutrition Agent (P134, 2026-06-14). D7: Product Agent (P134, 2026-06-14). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration AND n=60 stat re-run |
+| **off_ban** | Satisfied — all corpus stats derived from `normalized_nutrition_per_100g.sodium_mg` in canonical BSIP1 files; source = direct Shufersal HTML scrape; OFF not consulted |
+| **d6_doc** | `02_products/hummus/methodology/hummus_sodium_d6_enrollment_v1.md` |
+| **d7_cosign_doc** | `02_products/hummus/methodology/hummus_sodium_d7_cosign_v1.md` |
+
+---
+
+### EV-095 — Margarine/Shortening Fat-Technology Research Registration (D6 Evidence Anchor)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-095 |
+| **task** | TASK-284 |
+| **recorded** | 2026-06-15 |
+| **extends** | EV-012 (ratio-based fat quality), EV-050 (PHVO detection), EV-086 (PHVO marker governance), EV-031 (graded sat-fat penalty) |
+| **layer** | Evidence registration only — no engine change. Anchors EV-096 (seed-oil penalty delta) and EV-097 (FH/IE vs PHO ceiling delta). |
+| **source** | "Margarine and Shortening Effects in Bari Scoring" (research/Margarine and Shortening Effects in Bari Scoring.pdf), 2026-06-15, 17pp. ChatGPT-authored research synthesis, 58 citations. |
+| **primary_dois** | WHO trans-fat fact-sheet: https://www.who.int/news-room/fact-sheets/detail/trans-fat; BMJ 2015 meta-analysis: https://pubmed.ncbi.nlm.nih.gov/26268692/; BMJ 2024 umbrella: https://www.bmj.com/content/384/bmj-2023-077310; EFSA trans-fat opinion: https://www.efsa.europa.eu/en/news/trans-fatty-acids-efsa-panel-reviews-dietary-intakes-and-health-effects; EU Reg 2019/649 (PHO limit 2g/100g fat): https://eur-lex.europa.eu/eli/reg/2019/649/oj/eng; Public Health Nutrition 2021 (post-PHO marketplace analysis): https://pubmed.ncbi.nlm.nih.gov/21427742/; LA/inflammation meta-analysis: https://pubmed.ncbi.nlm.nih.gov/22889633/; EFSA plant sterols/stanols: https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2012.2693; Palm oil LDL meta-analysis: https://pubmed.ncbi.nlm.nih.gov/25995283/; Interesterification review (UKHSA): https://researchportal.ukhsa.gov.uk/en/publications/interesterified-fats-what-are-they-and-why-are-they-used-a-briefi/ |
+| **validation_finding** | The research validates the existing fat-technology-first engine architecture. EV-012 (unsat/sat ratio), Fix-C (PHVO ceiling 40), Fix-B (Hebrew markers), EV-031/R5 (graded sat-fat), EV-048 (whole-food-fat cap gate), EV-086 (מחמאה de-listed) all reflect the evidence correctly. The research confirms: (1) PHO/partial hydrogenation is the strongest adverse signal, correctly captured by `has_phvo` → ceiling 40; (2) butter correctly loses on sat-fat, not industrial trans; (3) modern soft spreads score better on fat quality — correctly reflected by the unsat/sat ratio (EV-012); (4) the fat-technology-first split model is the right architecture. No rebuild is warranted. |
+| **two_open_deltas** | (1) `seed_pen=10` conflicts with meta-analytic evidence on linoleic acid / inflammation — adjudicated EV-096. (2) Generic `שומן מוקשה / שומנים מוקשים` currently fires the PHO ceiling (40) despite likely being fully hydrogenated / trans-free in the current Israeli market — adjudicated EV-097. |
+| **section_b_guardrail** | **Do not penalize seed oils as inherently inflammatory.** The PDF (p.3) states: "the claim that omega-6-rich plant oils are intrinsically pro-inflammatory is not supported by randomized-trial meta-analyses. Systematic reviews and meta-analyses do not support that claim. Increasing dietary linoleic acid does not significantly raise inflammatory markers in healthy people." Sources: Willett 1997 (PMID 9771853), Ramsden 2012 (PMID 22889633). This guardrail is registered here and referenced by EV-096. Evidence tier: **Strong** for the LA/inflammation question specifically; the "seed oils are bad" claim is misinformation per the meta-analytic record. |
+| **edpg_firewall** | US marketplace composition bands in the PDF (Table pp.4–5) are directional evidence only. Engine reads in-house BSIP0 labels; no US-market composition value is a value of record or calibration anchor. |
+| **sat_fat_threshold_flag** | Side-flag only, DO NOT act in TASK-284: engine `_RED_LABEL_THRESHOLDS["sat_fat"]=5.0` g/100g; Israeli regulatory threshold per EU-aligned labeling (from 1 Jan 2025) appears to be 4.0 g/100g for solid foods. Verify and correct in a separate task. The israel_margarine_label_research_v1.md (unverified) and the source_registry_v1.yaml (il-002) both point toward 4.0. Out of scope here. |
+| **status** | REGISTERED — evidence anchor for EV-096 and EV-097 |
+| **co_sign** | D6: Nutrition Agent (2026-06-15, TASK-284). D7 not required for evidence registration — required at EV-096 and EV-097 before any engine change. |
+
+---
+
+### EV-096 — Seed-Oil Penalty: Reduce seed_pen from 10 to 5 (D6 Proposal, Gated)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-096 |
+| **task** | TASK-284 |
+| **recorded** | 2026-06-15 |
+| **extends** | EV-012 (ratio-based fat quality), EV-095 (margarine research anchor) |
+| **layer** | fat_quality dimension — `seed_pen` constant in `_score_fat_quality_sprint1` (score_engine.py ~line 1464) |
+| **current_value** | `seed_pen = 10 if has_seed_oil else 0` |
+| **proposed_value** | `seed_pen = 5 if has_seed_oil else 0` (reduce by 5 points) |
+| **evidence_basis** | (1) Meta-analytic finding: linoleic acid (LA, the dominant omega-6 in sunflower, canola, corn, soy oil) does not raise inflammatory markers in healthy people. Source: Ramsden et al. 2012, BMJ (PMID 22889633); Willett 1997 (PMID 9771853). Evidence tier: **Strong** for the specific LA/inflammation question. (2) Replacing saturated fat with PUFA (including LA) consistently improves LDL-related cardiovascular risk markers in RCT meta-analyses. Source: WHO guidance; AHA advisory (https://www.ahajournals.org/doi/10.1161/cir.0000000000000510). (3) The PDF (EV-095 source) explicitly states: "Bari should therefore not penalize soybean, sunflower, canola, or corn oil merely because they are 'seed oils.'" (4) Bari's own `misinformation_watch` stance on seed-oil panic is consistent with this evidence. The current 10-point penalty signals to consumers that seed oils are inherently harmful — a claim the evidence does not support. |
+| **rationale_for_5_not_0** | A non-zero residual penalty is justified at 5 points for two reasons: (a) **Refined-oil processing signal.** Seed oils listed as "שמן צמחי" (generic vegetable oil) or "שמנים צמחיים" (plural) are frequently industrial blends of unknown composition — the processing signal is real even if the inflammation claim is not. (b) **Whole-food contrast.** Even canola oil is a refined ingredient, not a whole food. The penalty should be small enough not to penalize neutral fat sources disproportionately (canola/sunflower in bread, hummus, cereals are architecturally neutral compared to butter), but non-zero to reflect the processing dimension the fat_quality signal is partly detecting. A penalty of 5 achieves this: at fat_quality weight=0.08, it adds only +0.4 points to the final score — small, fair, and honest about the difference between whole-food fats and refined oils without making a fabricated health claim. |
+| **blast_radius_corpus** | Backtest run 2026-06-15 across all committed bsip2_trace.json files (n=4255 total traces). Results: has_seed_oil=True: **1008 products** across 16 categories. seed_pen confirmed in fat_note (EV-012 or fat_v1 path): **719 products** (remaining 289 are on neutral-50 or SRC-04 path where fat_quality was 50 regardless — seed_pen does not reach final score for those). At fat_quality weight=0.08, reducing seed_pen from 10 to 5 = **+0.4 delta to final score** (not +0.8 as for full removal). Grade boundaries are A≥80, B≥65, C≥50, D≥35. A +0.4 delta would shift a grade only for products at score [79.6–80), [64.6–65), [49.6–50), [34.6–35). From the confirmed-path analysis: products within 0.4 of a boundary are a strict subset of those within 0.8 — approximately **10–14 products** depending on rounding. All shifts would be single-grade upward (D→C, C→B, or E→D). No product currently at A would be affected. Category distribution of confirmed seed-oil products: breakfast_cereals 353, cookies_coffee 176, hummus 129, cakes_hard_cookies 96, salty_snacks 52, snack_bars 52, bread_light 42, milk_and_alternatives 29, yogurt_system 25, cheese_spreads 19, maadanim 17, brined_cheeses 5, frozen_vegetables 4, hard_cheeses 4, butter 3, juices 2. |
+| **published_grade_impact** | **Yes — this proposal touches published scores.** Frozen-invariant tripwire applies (milk run_005_headpin, bread real_bread_retail_003_v1). Both categories have seed-oil products. Milk: 3 products with has_seed_oil=True (likely plant-based alternatives using canola/sunflower). Bread: 42 products. This REQUIRES D7 co-sign (Product Agent) AND a full Shadow backtest run AND owner ratification before implementation. This EV is a D6 proposal only. |
+| **recommendation** | **REDUCE to seed_pen=5.** Do not remove entirely (processing signal is real). Do not keep at 10 (penalizes a neutral/beneficial ingredient class based on a claim the evidence does not support). Reduce is the evidence-consistent, architecturally honest position. |
+| **exact_diff** | `score_engine.py` line ~1464: change `seed_pen = 10 if has_seed_oil else 0` to `seed_pen = 5 if has_seed_oil else 0`. One-line change. |
+| **evidence_tier** | **Strong** for the proposition that LA/seed oils are not inherently inflammatory. **Moderate** for the specific calibration to 5 (principled but not derived from a direct empirical target). |
+| **label_observability** | Fully label-observable. `has_seed_oil` reads `SEED_OIL_MARKERS_HE` from ingredient text — all direct ingredient declarations. |
+| **rollback** | Revert the single constant change. Git-reversible. |
+| **gate_requirements** | D7 co-sign: Product Agent. Shadow backtest: full cross-corpus re-score with seed_pen=5, diff against committed baselines for all published categories. Owner ratification: required (published scores may move; milk is frozen). |
+| **status** | ACTIVATED 2026-06-15 (BARI_FAT_TECH_V1 default ON, TASK-284E). seed_pen reduced 10→5. Blast radius (full, verified TASK-284E): 4 grade changes total, all UPWARD — cereals 884912126115 E→D, cakes 313184 E→D, maadanim 7290112497123 D→C, salty 8710908800018 D→C; 0 frozen grade changes; 0 downward; 0 new A/S. 342/342 invariants PASS. Shadow baseline baseline_20260615T155332Z promoted. |
+| **co_sign** | D6: Nutrition Agent (2026-06-15, TASK-284). D7: Product Agent — **CO-SIGNED 2026-06-15 (TASK-284C).** Rationale: (1) Scoring identity — penalty reduction is *evidence-led correction*, not a weakening of Bari's food-quality stance. The 5-point residual preserves the processing signal; removing the fabricated inflammation claim is exactly what Bari's misinformation_watch stance requires. (2) Comparison governance — the +0.4 final-score delta is below the ≤2pt noise threshold for individual products, but the 2 registered grade crossers (both upward, 0 frozen) are real. Acceptable: grade moves are honest corrections, not distortions. (3) Consumer impact — 0 downward moves; the 2 upward grade crossers are in non-frozen categories (cereals, maadanim) and move upward under a correction, not a favor. (4) Activation scope — global, per owner ratification; re-freeze milk + snack_bars baselines at new values per deployment runway. Deployment conditions: implement under BARI_FAT_TECH_V1=on → re-score all published categories → re-freeze milk (run_005_headpin +BARI_FAT_TECH_V1) + snack_bars frozen baselines → QA propagation check → red-team gate → owner go-live. |
+
+---
+
+### EV-097 — FH/IE vs PHO Ceiling: Reserve Full Ceiling for מוקשה חלקית (D6 Proposal, Gated)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-097 |
+| **task** | TASK-284 |
+| **recorded** | 2026-06-15 |
+| **extends** | EV-050 (PHVO detection concept), EV-086 (PHVO marker governance, D7 co-signed), EV-095 (margarine research anchor) |
+| **layer** | Signal detection — `_PHVO_MARKERS` in `signal_extractor.py` (~line 1160); and potentially a new lighter penalty path for FH/IE products |
+| **question** | Should generic `שומן מוקשה` / `שומנים מוקשים` (hardened fat, no partial qualifier) trigger the same PHO ceiling (fat_quality=40) as `מוקשה חלקית` (partially hydrogenated, confirmed trans signal)? |
+| **israel_label_research_status** | The israel_margarine_label_research_v1.md claim ("generic מוקשה now usually = fully hydrogenated/trans-free in current IL market") was NOT INDEPENDENTLY VERIFIED. That document is explicitly labeled DIRECTIONAL ONLY, and URLs appear fabricated. **Per task guardrail: when the Hebrew-term claims do not verify against real BSIP0 scrapes, recommend NO parser change.** |
+| **corpus_verification** | BSIP0 raw files searched (n=37 files, ~4,255 products). Ingredient text was empty in all 70 bsip2_trace.json files with has_phvo=True — the signal fires from BSIP1 enrichment data, not from L1 ingredient text stored in traces. However, direct search of bsip0 raw files yielded **13 products with any מוקש marker** across all categories. Key verified examples from real Israeli retail scrapes: (1) `שמן צמחי מוקשה` (hydrogenated vegetable oil) — breakfast_cereals barcode 884912129512 and 7290116537351: appears as minority ingredient in a component (nugat cream); (2) `שמנים ושומנים מהצומח (חלקם מוקשים)` — cookies barcode 7290119043149: "vegetable oils and fats (some hydrogenated)" — generic, NO חלקית qualifier; (3) `שומן מוקשה מדקלים` — cheese_spreads barcode 7290119039937: "hardened palm fat" — generic, likely interesterified/fully hydrogenated palm; (4) `שומן צמחי (מוקשה)` — cookies barcode 34256: parenthetical, generic; (5) `שומנים מוקשים מן הצומח` — cookies barcode 7290017898506: "hardened fats from plants"; (6) **CONFIRMED PARTIAL**: `שמן צמחי מוקשה חלקית (קוקוס, דקל)` — cheese_spreads barcodes 7290101114116 and 7290101114109: true partially hydrogenated signal. VERIFIED: 2 products with `חלקית`, 11 with generic muksha without חלקית. |
+| **key_finding** | The verified corpus shows that **generic muksha markers do appear on current Israeli retail products WITHOUT the חלקית qualifier**, and they span two distinct product types: (a) products using fully-hydrogenated hardstock blended with liquid oil (trans-free by chemistry) and (b) products whose actual trans status is ambiguous from the label alone (no panel value, no חלקית). The israel_margarine_label_research_v1.md claim that "generic מוקשה ≈ fully hydrogenated/trans-free" cannot be confirmed from 13 corpus examples alone. The PDF (EV-095) confirms: "full hydrogenation largely removes trans fat but creates a very hard saturated fat"; interesterification is "trans-free, but still an engineered solid-fat system." Both are meaningfully different from PHO. |
+| **proposed_change** | **Two-tier PHVO signal within `_PHVO_MARKERS`** (D6 proposal, requires D7 + Shadow): (A) `has_phvo_partial` — fires on `מוקשה חלקית` / `partially hydrogenated` / `שמן צמחי מוקשה חלקית` / `שמן [X] מוקשה חלקית` → triggers current PHO ceiling (fat_quality=40). (B) `has_phvo_generic` — fires on `שומן צמחי מוקשה` / `שמן צמחי מוקשה` (without חלקית) / `שומן מוקשה` / `שומנים מוקשים` / `מרגרינה` → triggers a lighter FH/IE-class ceiling of **fat_quality=55** (moderate penalty, not PHO-severity). Rationale for 55: fully hydrogenated fat is saturated but trans-free (correctly captured by graded sat-fat penalty R5/EV-031); interesterified fat has moderate/emerging evidence (PDF p.9: "Moderate" evidence tier); the ceiling at 55 imposes a meaningful penalty for engineered solid fat without conflating it with confirmed industrial-trans products. A ceiling of 55 still penalizes relative to a clean seed-oil score (80–93 range) but stops short of the trans-fat-quality floor (40). |
+| **existing_marker_שומן_צמחי_מוקשה** | Note: `שומן צמחי מוקשה` (hydrogenated vegetable FAT — without חלקית) is already in `_PHVO_MARKERS` as the original EV-050 addition ("hydrogenated vegetable fat"). This would move from has_phvo (ceiling 40) to has_phvo_generic (ceiling 55) under the proposal. The string `שמן צמחי מוקשה` (hydrogenated vegetable OIL — שמן vs שומן) also currently fires has_phvo. Both move to the lighter tier under this proposal unless חלקית follows them. |
+| **מרגרינה_treatment** | `מרגרינה` is currently in `_PHVO_MARKERS` (EV-086 Q4 ruling: fire as-is regardless of underlying fat source). Under this proposal, מרגרינה moves to `has_phvo_generic` (ceiling 55) rather than has_phvo_partial (ceiling 40). The EV-086 snk-019 ruling ("מרגרינה carries a processing-quality signal independent of the trans fat question") remains consistent — the lighter ceiling still reflects this; only a product with confirmed `חלקית` gets the full ceiling. |
+| **blast_radius** | 70 products currently have has_phvo=True. Ingredient text was empty in all traces (BSIP0 not stored in trace L1 for these categories at time of analysis), so the split between has_phvo_partial and has_phvo_generic requires a dedicated Data Agent pass using the source BSIP1 files. From the 13 verified bsip0 examples: 2 have חלקית (confirmed partial), 11 do not. Extrapolating (directional only): majority of current 70 phvo products would move from ceiling 40 to ceiling 55 — a +15 point fat_quality improvement. At fat_quality weight=0.08: +1.2 points to final score per affected product. 56 of the 70 phvo products have the PHVO ceiling confirmed firing in the fat_note. Grade-shift risk: products near boundaries (65, 50, 35) that gained from this change would need Product Agent review. cakes_hard_cookies (42 phvo products) and cookies_coffee (28 phvo products) are the primary affected categories. |
+| **recommendation** | **CONDITIONAL PROPOSE: Implement two-tier PHVO with confirmation gate.** Before implementation, Data Agent must run a targeted ingredient-text search across all 70 PHVO-flagged BSIP1 products to confirm the חלקית/generic split. If verification finds that >50% of generic-muksha products are confirmed-FH (not PHO) via panel trans_fat_g=0 or trans_fat_g≤0.5, proceed with the two-tier proposal. If panel data is systematically absent (trans not declared under EU-style labels), treat the generic markers as unresolved and maintain the current conservative ceiling=40 until better data is available. The EDPG firewall applies: the israel_margarine_label_research_v1.md claims are directional only and do not constitute verification. |
+| **exact_diff** | `signal_extractor.py`: (1) Split `_PHVO_MARKERS` into `_PHVO_MARKERS_PARTIAL` (חלקית / partially hydrogenated) and `_PHVO_MARKERS_GENERIC` (all others). (2) Set `has_phvo_partial = any(m in text for m in _PHVO_MARKERS_PARTIAL)` and `has_phvo_generic = any(m in text for m in _PHVO_MARKERS_GENERIC) and not has_phvo_partial`. (3) Return both signals; combine as `has_phvo = has_phvo_partial or has_phvo_generic`. `score_engine.py`: (4) In `_apply_phvo_ceil`: use ceiling 40 when `has_phvo_partial`, ceiling 55 when `has_phvo_generic and not has_phvo_partial`. |
+| **evidence_tier** | **Strong** for partial hydrogenation = industrial trans signal. **Moderate** for full hydrogenation being trans-free (established chemistry) but still raising LDL via very-long-chain saturated fats. **Weak** for the specific ceiling-55 calibration (principled but not empirically derived from the Israeli corpus). |
+| **label_observability** | Fully label-observable when ingredient text is present. Gap: 70 current PHVO products have empty ingredient text in traces — requires Data Agent pass to access source BSIP1 files. |
+| **rollback** | Revert the `_PHVO_MARKERS` split; restore single ceiling=40 path. Git-reversible. |
+| **gate_requirements** | (1) Data Agent ingredient-text verification pass on all 70 phvo products (חלקית vs generic split count required before implementation). (2) D7 co-sign: Product Agent. (3) Shadow backtest: full cross-corpus re-score, diff against committed baselines. (4) Owner ratification if any published grade changes (touching cookies_coffee, cakes_hard_cookies — both published). |
+| **status** | ACTIVATED 2026-06-15 (BARI_FAT_TECH_V1 default ON, TASK-284E). PHVO ceiling split: מוקשה חלקית→40 (retained), generic מרגרינה/שומן מוקשה→55. Blast radius: 0 grade changes; 49 PHVO-generic products score-moved within grade only. Shadow baseline baseline_20260615T155332Z promoted. |
+| **co_sign** | D6: Nutrition Agent (2026-06-15, TASK-284). D7: Product Agent — **CO-SIGNED 2026-06-15 (TASK-284C).** Rationale: (1) Scoring identity — the two-tier split is structurally sound: it stops conflating confirmed industrial-trans (מוקשה חלקית → ceiling 40, appropriate severity) with trans-free engineered fats (generic מוקשה/מרגרינה → ceiling 55, moderate penalty reflecting processing quality without the trans signal). Bari's de-anchor directive explicitly favors graded continuous penalties over blanket ceilings. (2) Comparison governance — EV-097's actual grade blast radius is 0 (TASK-284B verified: 45/49 inert under sat-fat; 4 movers, 0 grade changes). No page comparisons are distorted. (3) Consumer impact — margarine products that move receive a marginally better fat_quality score, but the sat-fat pathway already limits them; the consumer-facing grade is unchanged. No misleading outcome on any category page. (4) EV-086 consistency — the מרגרינה treatment is consistent with EV-086's original ruling (processing signal retained); this only corrects the severity tier, not the signal's existence. Deployment conditions: implement under BARI_FAT_TECH_V1=on (bundled with EV-096) → confirm BSIP1 ingredient-text search confirms 0 partial in the 49 PHVO products before wiring (Data Agent deployment check) → re-score → QA → red-team → owner go-live. |
+
+---
+
+### EV-098 — Cakes × Hard Cookies × Sugar: Shelf-Relative Enrollment (D7 Co-Sign)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-098 |
+| **task** | TASK-278 Phase-13 |
+| **recorded** | 2026-06-15 |
+| **extends** | EV-084 (shelf-relative differentiator design), EV-087 (cereals×sugar precedent), EV-088 (yogurt×sugar), EV-092 (maadanim×sugar) |
+| **layer** | Shelf-relative differentiator enrollment — scopes to cakes_hard_cookies corpus via BSIP1 category field. Standalone post-dimension pre-floor adjustment. No router edit. |
+| **category** | cakes_hard_cookies |
+| **nutrient** | sugars_g |
+| **scope_guard** | `product.get("category") == "cakes_hard_cookies" AND nn.get("sugars_g") is not None`. Fallback: `product.get("bsip1_canonical_id","").startswith("bsip1_cakes_")`. Data Agent must grep-verify exact BSIP1 field name before wiring. |
+| **n_scope** | 143 (IN_SCORED with sugars_g; 17 OOS products excluded per corpus_filter.json) |
+| **median_g** | 29.0 |
+| **q1_g** | 21.0 |
+| **q3_g** | 33.0 |
+| **iqr** | 12.0 |
+| **mad** | 6.1 |
+| **robust_scale** | 9.044 (MAD-driven: max(IQR/1.349=8.895, 1.4826×MAD=9.044, 1.40)) |
+| **p_max** | 6 |
+| **b_max** | 3 |
+| **floor** | 52 |
+| **floor_threshold_g** | 33.0 g (Q3 — D7 decision; surcharge zone = top 25% of corpus; median rejected for cross-category consistency with EV-087–094) |
+| **z_dead** | ±0.30 (standard) |
+| **anti_immunity_proof** | floor(52) + B_max(3) = 55 < 70. PASS. Category ceiling from run_cakes_001 is 54.5/C — B-grade structurally unreachable. |
+| **named_inversions** | INV-A: bc=4504687 מיני שטרודל חלבה שוקולד (2.0g/18.2E) vs bc=7290105364784 פרה קראנץ' שוקולד לבן (47.0g/18.4E); sugar_diff=45g; score_diff=0.2 wrong direction; strudel z=−2.985, krantz z=+1.987; both |z|>0.30 confirmed. INV-B: bc=1361177 עוגת פס דובדבנים (11.0g/13.6E) vs bc=7622300489427 עוגיות אוראו בציפוי שוקולד לבן (49.0g/16.5E); sugar_diff=38g; score_diff=2.9 wrong direction; cherry z=−1.989, Oreo z=+2.209; both |z|>0.30 confirmed. |
+| **d7_q1_floor_threshold** | Q3=33.0g. Median (29.0g) rejected: the argument for median (high-sugar tail already floor-compressed) applies equally to all indulgent categories and is not cakes-specific. Modal range 30–35g (35/143 products) is the shelf norm; penalizing the 29–33g band would treat typical cakes as outliers. Cross-category consistency with EV-087–094 is binding. |
+| **d7_q2_floor_bonus** | ACCEPT — floor is minimum guarantee, SR bonus is additive. Products at score < 52 with low sugar receive up to +B_max, consistent with all prior SR enrollments. Anti-immunity holds regardless of path (floor+B_max=55<70). |
+| **d7_q3_scope_guard** | D8 requirement: Data Agent must grep-verify BSIP1 category field presence in all 149 IN_SCORED files before wiring. Primary guard preferred; fallback available. D8 is blocked until verification completes. |
+| **d7_q4_oos_contamination** | D8 requirement: 17 OOS products must be confirmed excluded. Data Agent must verify OOS products either lack the category field or carry a different value; if same value, scope guard must cross-reference corpus_filter.json. |
+| **pilot_gate** | 11 criteria (C1 directional_distribution, C2a/b/c grade_dist_and_magnitude, C3 gap_narrows_inversion INV-A+INV-B, C4 min_movers≥5, C5 min_grade_changes≥1, C6 max_absorption≤40%, C7 anti_immunity, C8 floor_compliance/bonus_cap, C9 no_scope_bleed, C10 frozen_milk_headpin CRITICAL, C11 flag_off_drift docs-only). Hard fails: C7, C8, C9, C10. Full gate in `02_products/cakes_hard_cookies/methodology/cakes_sugar_d7_cosign_v1.md`. |
+| **status** | ACTIVATED — 2026-06-15. Engine default ON (commit 97a9213b). Traces: run_cakes_shelfrel_001 (149 products). Comp JSON: cakes_hard_cookies_frontend_v1.json updated (46/65 score changes). |
+| **registered_at** | P143 D7 co-sign, 2026-06-15 |
+| **co_sign** | D6: Nutrition Agent (TASK-278 Phase-13, 2026-06-15). D7: Product Agent (P143, 2026-06-15). |
+| **engine_files_modified** | NONE in D7 phase — implementation is Data Agent's task, gated on this EV registration + D8 field verification |
+| **off_ban** | Satisfied — all corpus stats derived from BSIP2 traces sourced from direct Shufersal + Yohananof scrape via BSIP0 HTML parse; OFF not consulted |
+| **ev_numbering_note** | EV-095 through EV-097 were registered 2026-06-15 for TASK-284 (margarine research). This enrollment is EV-098, the next available number. The D6 doc (cakes_sugar_d6_enrollment_v1.md) drafted this as EV-095 before those registrations occurred. |
+| **d6_doc** | `02_products/cakes_hard_cookies/methodology/cakes_sugar_d6_enrollment_v1.md` |
+| **d7_cosign_doc** | `02_products/cakes_hard_cookies/methodology/cakes_sugar_d7_cosign_v1.md` |
+| **d8_pilot_date** | 2026-06-15 |
+| **d8_pilot_record** | `02_products/cakes_hard_cookies/bsip2_outputs/run_cakes_pilot_ev098/pilot_record.json` sha256=707575794f5da3e1c08fd25e0358ba1628d52afc738a31fb5e637b79d1b14e59 |
+| **d8_scope_guard_used** | FALLBACK: canonical_product_id.startswith(bsip1_cakes_) — primary guard absent (BSIP1 category=cake_cookie, not cakes_hard_cookies); batch runner pre-filters to IN_SCORED so OOS products never reach score_product |
+| **d8_pilot_gate** | C1 PASS, C2a PASS, C2b SOFT-FAIL (46.2% movers to E >40% threshold), C2c PASS (mean_abs_delta=2.4), C3 SOFT-FAIL (INV-A PASS gap -0.2 to +1.8; INV-B FAIL cherry 14.3 < Oreo 16.5 absolute floor prevents reversal), C4 PASS (26 movers), C5 PASS (4 grade changes), C6 PASS (28.2% dead zone), C7 PASS (0 above-Q3 reach A), C8 PASS (0 EV-098 ceiling violations above 52; 2 biscuit-routed products exceed 55 from double-SR EV-085+EV-098 combined — EV-098 amount within B_max=3 each; documented design limitation), C9 PASS (0 scope bleed), C10 PASS (EV-098 isolation: 0 milk products with SUGAR_CAKES_SHELF_REL_V1 in penalties, 0 with ev098_floor applied), C11 INFO |
+| **d8_double_sr_note** | 60/149 cakes products router-assigned to category=biscuit. Flag=on activates both EV-085 (biscuit SR) AND EV-098 (cakes SR) for these. EV-098 amount within B_max=3; combined SR bleed is pilot-test artifact from shared _SHELF_STATS key; isolated in production where each category runner is independent |
+| **d8_revert_confirmed** | BARI_SHELF_RELATIVE_V1 env var removed from process after pilot; engine default (False/off) stands; no score file, comparison JSON, or frontend file modified |
+
+---
+
+### EV-099 — BSIP2-HC-002 Governance Registration + Sat_Fat Inference Reversion for Hard Cheeses (D6 Proposal, Gated)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-099 |
+| **task** | TASK-275 (RT-5 red-team finding) |
+| **recorded** | 2026-06-15 |
+| **proposed_status** | D6 PROPOSAL — requires D7 co-sign (Nutrition + Product) before any engine change. Gated behind BARI_HC_NOVA1_V1 (default OFF). |
+| **problem_statement** | Rule "BSIP2-HC-002" appeared in traces for run_hard_cheeses_003_shelfrel (9/30 products) with zero governance trail: no EV-### in the evidence registry, no D7 co-sign recorded, no BARI_RECAL_P0 entry verified. The rule reclassified short-ingredient (≤6) dairy products as NOVA 1 AND simultaneously removed the sat_fat inference (`sat_fat_inferred=False` in run_003 vs `sat_fat_inferred=True` in run_yohananof_001). These two changes together removed the `ISRAELI_RED_LABELS_2_PLUS` cap (cap=45, fires on sat_fat+sodium combination), allowing 8/9 affected products to jump D/39 → B/76–A/80. Two products (bc:7290108502725 @640mg sodium, bc:7290019635192 @659mg sodium) reached A with a confirmed regulatory sodium red label. |
+| **red_team_finding** | RT-5 (TASK-275): BSIP2-HC-002 unregistered rule reclassified 19 hard cheeses from D→B/A. Correct number per trace audit: 9/30 products carry BSIP2-HC-002 note in run_003_shelfrel; 8 of these moved grade upward (+34 to +42 points); 1 (bc:3073781199918) was unchanged (scored 39/D in both runs, has explicit sat_fat panel value so inference was never the driver). |
+| **ruling_a_nova1_classification** | **DEFENSIBLE IN PRINCIPLE, NOT IN IMPLEMENTATION.** The NOVA framework (Monteiro et al., 2019, Public Health Nutrition, DOI 10.1017/S1368980019001307; PMID 31122155) classifies traditional aged cheese made from milk + salt + cultures/rennet as NOVA 1–2 (minimally processed). A 2–6 ingredient hard cheese with no industrial additives, no sweeteners, and no emulsifiers is genuinely NOVA 1–2 by the framework's own criteria. The underlying nutrition science supports treating these products differently from NOVA 3–4 items: the processing quality dimension should reflect minimal processing for genuine fermented/aged dairy. **However,** the rule as implemented was: (a) unregistered — no EV-### entry; (b) unilaterally activated without D7 co-sign; (c) bundled two separate changes (NOVA reclassification + sat_fat inference removal) in a single undocumented trace note. Each change independently requires EV-### + D7. Defensible science does not substitute for missing governance. |
+| **ruling_b_sat_fat_inference_removal** | **PARTIALLY CORRECT, INCORRECTLY IMPLEMENTED.** The sat_fat inference (`sat_fat_inferred = 0.62 × fat_g` for dairy) was introduced as an evidence-proxy when no label sat_fat value is declared. For hard cheeses without a declared sat_fat panel value (all 30 products in run_003), fat_g=22–34g → inferred sat_fat=13.6–21g → fires ISRAELI_RED_LABEL_1_SAT_FAT or ISRAELI_RED_LABELS_2_PLUS. The inference is *directionally correct* for most hard cheeses: the typical dairy sat_fat fraction for hard cheeses is 60–70% of total fat (USDA FDC cheese database, avg across aged varieties; FDC SR Legacy). However, removing the inference entirely is NOT the correct fix. The correct fix is either: (A) obtain declared sat_fat from direct product scrape (preferred, OFF ban compliant); (B) retain the inference with a calibration note that the 0.62 coefficient may need adjustment for hard-cheese varieties; or (C) apply the inference with a downward flag in the confidence layer, not suppress it. Removing it without a replacement means these products have no fat_quality penalty for a confirmed-high-sat-fat food matrix. **Result of current removal: bc:7290108502725 fat_quality=50.0 (R3 leanness path, sat_fat absent → treated 0). This is factually wrong for a 28% fat hard cheese.** |
+| **ruling_c_sodium_red_label_at_a** | **A-GRADE WITH REGULATORY SODIUM RED LABEL IS PERMISSIBLE IF GENUINELY JUSTIFIED BY THE FULL NUTRITIONAL ARCHITECTURE, BUT IS A STRONG CONSUMER-COHERENCE WARNING.** The Anti-Immunity Rule (bari_usecase_guardrails_v2) prohibits escaping absolute penalties by being best-in-a-bad-category. A sodium red label fires a single-red-label cap (ISRAELI_RED_LABEL_1_SODIUM → cap=63, category-adjusted for dairy). A product can score above 63 only if its other dimensions are strong enough AND no second cap fires. For a 2-ingredient aged cheese (milk + salt), sodium is endemic to the product form and the fat/protein/additive profile is genuinely excellent. This is not Anti-Immunity: the product is not evading a legitimate penalty; the sodium red label IS already penalizing it via the cap. The grade reflects that a high-quality cheese has one structural concern (sodium) well-acknowledged. However, this conclusion is CONDITIONAL on the sat_fat inference being properly resolved. If sat_fat_inferred correctly fires (≥5g/100g sat_fat → red label → ISRAELI_RED_LABELS_2_PLUS cap=45), then A is impossible. The current A grades for these two products depend on sat_fat being absent — which is wrong given their fat_g=28–30g. Cross-category coherence concern (RT-7): a product with a sodium red label scoring A is challenging but not architecturally incoherent IF its non-sodium architecture is genuinely excellent. bc:7290019635192 (2-ingredient goat milk + salt, 22g protein, 0 additives) is a genuine whole-food. The concern is whether the grade holds once sat_fat is correctly handled. |
+| **correct_sat_fat_for_these_products** | USDA FDC SR Legacy data for aged hard cheeses: Gouda cheese (FDC ID 1008065): total fat 27.4g/100g, sat_fat 17.6g/100g → fraction 64.2%. Emmental/Swiss (FDC ID 1008066): total fat 27.8g/100g, sat_fat 17.8g/100g → fraction 64.0%. Parmesan (FDC ID 1008032): total fat 28.6g/100g, sat_fat 18.4g/100g → fraction 64.3%. The existing inference coefficient of 0.62 is directionally consistent (actual range 0.62–0.66 for hard cheeses). At fat_g=28g: inferred_sat_fat=0.62×28=17.36g → well above Israeli red-label threshold of 5g/100g. Two red labels (sodium + sat_fat) → ISRAELI_RED_LABELS_2_PLUS → cap=45. **At cap=45 with full penalty structure, these products cannot reach A.** Grade estimate with inference restored: bc:7290108502725 weighted_dim=86.84, cap=45, after HP_FAT_SODIUM penalty=6 → 39/D (identical to run_yohananof_001). Source: USDA FDC SR Legacy, cited above. |
+| **scope_guard** | Hard cheeses category, confirmed by bsip1 `canonical_product_id.startswith("bsip1_hardcheese_")`. n=30 in run_003_shelfrel. HC-002 active: 9/30. |
+| **proposed_ev099_changes** | **Two gated changes, each requiring D7 before activation:** (1) **BARI_HC_NOVA1_V1** (new flag, default OFF): activates NOVA 1 reclassification for ≤6-ingredient dairy with no additive markers, no sweetener, product_type_dairy=True. Requires: EV-### registration + D7 BEFORE engine edit. Evidence basis: Monteiro et al. 2019 (PMID 31122155) + NOVA 1 criteria for minimally processed foods. (2) **Sat_fat inference retention**: retain 0.62×fat_g inference for hard cheeses when sat_fat panel value is absent (current behavior before BSIP2-HC-002). The inference is evidence-grounded (USDA FDC SR Legacy, above). **Do NOT remove the inference without a confirmed label sat_fat value from direct scrape.** A separate D6/D7 process is required if the coefficient needs calibration for hard-cheese varieties. |
+| **immediate_action_required** | **REVERT BSIP2-HC-002 in the engine** (score_engine.py or signal_extractor.py — wherever the NOVA override fires). Restore sat_fat inference for hard cheeses. Re-run run_hard_cheeses. Affected published grades: 8/30 products (run_hard_cheeses_003_shelfrel is pre-publish; not yet live on bari.digital). No published consumer-facing score is moved — this is a pre-publish correction inside TASK-278/284. **This does NOT require owner tripwire**: no published score moves, category is not yet live, fix restores a governed state. Requires orchestrator dispatch to Data Agent for revert + re-run. |
+| **grade_impact_if_reverted** | bc:7290108502725 A→D; bc:7290019635192 A→D; bc:7290102394845 B→D; bc:7290102396672 B→D; bc:7290102397204 B→D; bc:7290102394463 B→D; bc:7290017065434 C→D; bc:8711528211138 C→D; bc:3073781199918 no change (D). All 8 moving products return to D/39 — the state in run_yohananof_001. bc:3073781199918 had explicit sat_fat panel value so was already at D/39 in both runs. |
+| **path_forward_for_hc_nova1** | After revert, the NOVA 1 reclassification can be re-proposed properly: (a) Register as a new EV-### (EV-100 or next available after this chain); (b) evidence: Monteiro et al. 2019 PMID 31122155; NOVA classification guidance for fermented dairy; (c) scope: ≤N ingredients, product_type_dairy=True, additive_marker_count=0, no sweetener; (d) impact analysis: confirm sat_fat inference is handled correctly before NOVA upgrade — if inferred sat_fat fires a cap, the NOVA 1 upgrade may not change the final grade anyway (whole-food floor 75 is overridden by cap=45 when two red labels fire); (e) D7 co-sign by both Nutrition Agent and Product Agent; (f) flag-gate, re-score, red-team, owner go-live. |
+| **rt10_floor_record_fix** | Per RT-10, EV-094 floor must record to `floors_applied` when it fires. The run_hummus_shelfrel_001 trace for bc:7290106577480 shows `floors_applied: []` and `floors_considered: ["no_applicable_floor"]`. **Investigation result:** The floor did NOT fire for this product. The score_after_penalty=62 was reached through dimension scoring + caps (binding_cap=60) + penalties (−13), where max(45.79−13, 60_cap+floor_lift) converges to 62 via the penalty-on-cap mechanism, NOT via the EV-094 floor function. The `floors_applied: []` for ALL 19 products at score=62 confirms: the 19-product cluster at 62 is a penalty-convergence artifact, not floor-applied. 0 products were floor-lifted in run_hummus_shelfrel_001. However, the RT-10 finding stands: the floor mechanism at score_engine.py L3838–3845 only records to `floors_applied` when `score_after_floors > _pre_hummus_floor_score`. When the EV-094 floor fires but score is already ≥62, the `floors_applied` list remains empty and no record is written. The fix: always write the floor consideration result to `floors_considered` with `result="eligible_not_applied"` or `"applied"`. This is a trace transparency fix, not a score change. Dispatch to Data Agent. |
+| **evidence_tier** | Governance: Hard (no EV-### = block, no exceptions). Science (NOVA 1 for short-ingredient dairy): Strong (Monteiro et al. 2019). Science (sat_fat fraction for hard cheese): Strong (USDA FDC SR Legacy, multiple entries). |
+| **status** | REGISTERED — D6 Nutrition Agent ruling, 2026-06-15. D7 NOT yet co-signed — pending Product Agent review. Immediate revert action dispatched to orchestrator (pre-publish, no published score movement). |
+| **co_sign** | D6: Nutrition Agent (2026-06-15, TASK-275). D7: Product Agent — REQUIRED before any re-implementation of BSIP2-HC-002 as a governed rule. |
+
+---
+
+## EV-061 — Emulsifier-Specific Cancer and CVD Associations: NutriNet-Santé 2023-2024 (D4 annotation proposal)
+
+| Field | Value |
+|---|---|
+| **finding_id** | EV-061 (D4 additive-library tier upgrade PROPOSAL; Nutrition Agent, 2026-06-15) |
+| **task** | TASK-285 (NutriNet-Santé emulsifier evidence verification → EV-061 proposal + EV-060 annotation) |
+| **recorded** | 2026-06-15 |
+| **source** | (1) Sellem L, Srour B, et al. "Food additive emulsifiers and cancer risk: results from the NutriNet-Santé prospective cohort." *PLoS Medicine* 2024;21(2):e1004149. DOI 10.1371/journal.pmed.1004149, PMID 38349899. n≈92,000 adults, median follow-up 6.7 years, 2,604 incident cancer cases. (2) Sellem L, et al. "Food additive emulsifiers and risk of cardiovascular disease in the NutriNet-Santé cohort: prospective cohort study." *BMJ* 2023;382:e076058. DOI 10.1136/bmj-2023-076058, PMID 37673430. n≈95,442 adults, 1,995 incident CVD events. DOIs verified by orchestrator against PubMed abstracts; HRs below are exact matches to published abstracts. |
+| **concept** | Two large NutriNet-Santé prospective-cohort analyses isolate specific emulsifiers — not the class as a whole — in association with cancer and CVD outcomes. E471 (mono-/diglycerides of fatty acids) is named specifically in the cancer paper. E472b and E472c are named specifically in the CVD paper. Celluloses as a group (E460-E468) are named in the CVD paper, with E460 and E466/CMC individually identified. This supersedes the prior row-8 note in additive_tiered_library_v1.md that characterized the cancer evidence as "class-level, could not isolate E471" — that characterization was factually incorrect. |
+| **verified_HRs** | **E471 (PLoS Med 2024, cancer):** overall cancer HR 1.15 (95% CI 1.04–1.27, p-trend 0.01); breast cancer HR 1.24 (1.03–1.51, p=0.04); prostate cancer HR 1.46 (1.09–1.97, p=0.02). **E472b (BMJ 2023, CVD):** CVD HR 1.06 (1.02–1.10); cerebrovascular HR 1.11 (1.06–1.16). **E472c (BMJ 2023, CVD):** CVD HR 1.04 (1.02–1.07); CHD HR 1.06 (1.03–1.09). **Celluloses E460-E468 group (BMJ 2023, CVD):** CVD HR 1.05 (1.02–1.09). **E460 individually (BMJ 2023, CVD):** HR 1.05 (1.01–1.09). **E466/CMC individually (BMJ 2023, CVD):** CVD HR 1.03 (1.01–1.05). All HRs orchestrator-verified against PubMed abstracts PMID 38349899 and PMID 37673430 — exact match confirmed. |
+| **exposure_granularity** | ADDITIVE-SPECIFIC — this is the key finding. The cancer paper (PMID 38349899) isolates E471 by name with per-emulsifier models. The CVD paper (PMID 37673430) isolates E472b, E472c, and individual celluloses. This is not class-level attribution. |
+| **scientific_rationale_short** | E471 structurally resembles normal fat-digestion products (monoacylglycerols and diacylglycerols); its mechanism of potential harm is not established. E472b (lactic acid esters of MAG) and E472c (citric acid esters of MAG) are structurally distinct variants of the E472 sub-family. The CMC/E466 CVD signal corroborates the existing contested tier assigned via EV-003 (gut-barrier RCT mechanism), now with a separate CVD-outcomes signal from a distinct methodological approach. E460 (microcrystalline cellulose) had no prior safety concern and is a new contested candidate based solely on this BMJ data. |
+| **evidence_strength** | **Weak-to-Moderate.** Critical caveats: (a) Single cohort — all associations come from one research group (NutriNet-Santé, France) with zero independent replication in UK Biobank, EPIC, NHS Cohorts, or any other large prospective study as of 2026-06-15. (b) Residual confounding by ultra-processing — E471 and E472 products are overwhelmingly ultra-processed foods; isolating the additive signal from the matrix, dietary pattern, and other UPF co-exposures is methodologically very difficult. (c) EFSA has NOT re-evaluated E471 post-publication of PMID 38349899 (ADI still "not specified" as of 2026-06-15). (d) Modest HRs — all below 1.5 overall; sub-analyses are smaller subgroups with wider CIs. These caveats are why the proposed tier is `contested` (active disagreement), not `confirmed-negative`. |
+| **confidence_level** | Low-to-Moderate (observation grounded in a large well-characterised cohort; confidence limited by non-replication and confounding) |
+| **BSIP2_relevance** | D4 annotate-only layer. No headline score change proposed or permitted. Evidence justifies upgrading the tier label for E471 from `likely-neutral` to `contested`, and introducing E460 as a new `contested` candidate. Tier flips are display-copy changes only (no score formula, weight, cap, or penalty). |
+| **label_observability** | Fully observable: E471, E472b, E472c, E460 are each declared as E-numbers on Israeli product labels. |
+| **recommended_action** | `annotate-only` — (1) correct factual error in additive_tiered_library_v1.md row 8 justification text; (2) add proposed-upgrade marker pending Product D7; (3) propose new E460 row as contested candidate. No score movement. No engine edit. No JSON edit. Requires Product D7 co-sign before tier values are changed. |
+| **should_affect_score_now** | false |
+| **published_scores_moved** | 0 |
+| **governance** | Annotate-only W5. **D7 co-sign COMPLETE (Product Agent, 2026-06-15)** — E471→contested, E472b/c→new contested row (entry #48), E460→new contested row (entry #49, 24-month replication-revert condition), E472e/DATEM unchanged (remains likely-neutral), E466 corroborated (tier unchanged). Applied to additive_tiered_library_v1.md §2.A row 8, §8.2 (new entries 48–49), §8.3 (E466 annotation), §8.4 (distribution delta). Flag: none activated. |
+| **per_additive_ruling** | **E471:** `likely-neutral` → `contested` APPLIED. Isolated by name in PMID 38349899 with specific cancer HRs verified above. Tier = `contested` per Bari definition: genuine, active disagreement (credible cohort signal, no regulatory re-evaluation yet, no independent replication, mechanism unestablished). NOT `confirmed-negative`. D7 co-signed 2026-06-15. **E472b / E472c:** New combined sub-family entry #48, tier `contested`. CVD associations isolated in PMID 37673430 (E472b CVD HR 1.06, E472c CVD HR 1.04). Distinct from E472e/DATEM, which the BMJ paper does NOT name. E472e tier unchanged. D7 co-signed 2026-06-15. **E460:** New entry #49, tier `contested` at LOW confidence, with mandatory 24-month replication-revert condition (reverts to `likely-neutral` if no independent replication by 2028-06). Single-cohort CVD HR 1.05 (1.01–1.09) from PMID 37673430. D7 co-signed with this condition 2026-06-15. **E466 / CMC:** Tier UNCHANGED at `contested`. NutriNet-Santé CVD (BMJ 2023, PMID 37673430, CVD HR 1.03 [1.01–1.05]) corroborates existing EV-003 tier; row annotation added. **E472e / DATEM:** NO CHANGE — the BMJ paper does not name DATEM. Tier remains `likely-neutral`. |
+| **ev003_cross_reference** | E466 (CMC): contested tier assigned via EV-003 (Chassaing 2021 pre-registered RCT; gut-barrier mechanism, n=16+16). PMID 37673430 (BMJ 2023) now provides a second evidence arm (CVD outcomes signal, HR 1.03 [1.01–1.05], observational). The two arms are independent. Contested tier is corroborated; no tier change required. |
+| **files_proposed** | `01_framework/glass_box/additive_tiered_library_v1.md` — row 8 (E471) justification text correction + proposed-upgrade marker; optional new rows for E460 and E472b/c. Evidence registry (this entry). No engine files, no score files, no JSON data files. |
 
 ---
 

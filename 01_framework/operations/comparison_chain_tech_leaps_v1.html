@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bari — 10 Technology Leaps: 6/10 → 10/10</title>
+<style>
+  @page { size: A4; margin: 14mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", -apple-system, Arial, sans-serif;
+    color: #1a2330; margin: 0; font-size: 10.5pt; line-height: 1.55;
+    background: #f2f4f8;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page { max-width: 880px; margin: 0 auto; padding: 28px 22px 40px; }
+  h2 { font-size: 15pt; margin: 30px 0 12px; padding-bottom: 5px; border-bottom: 2.5px solid #1a2330; }
+  p { margin: 6px 0; }
+  code { font-family: Consolas, monospace; font-size: 9pt; background: #e8edf5; padding: 1px 4px; border-radius: 3px; }
+
+  /* ===== Cover ===== */
+  .cover {
+    background: linear-gradient(135deg, #0b1f2e 0%, #14424f 55%, #1d6e62 100%);
+    color: #fff; border-radius: 14px; padding: 30px 32px 26px; margin-bottom: 8px;
+    box-shadow: 0 10px 30px rgba(11,31,46,.25);
+  }
+  .cover .kicker { font-size: 9pt; letter-spacing: 2.5px; text-transform: uppercase; color: #7fe0c3; font-weight: 600; }
+  .cover h1 { font-size: 22pt; margin: 8px 0 6px; color: #fff; line-height: 1.22; }
+  .cover .sub { font-size: 11pt; color: #c8e8de; max-width: 95%; }
+  .cover .meta { margin-top: 16px; font-size: 8.5pt; color: #8fc3b4; }
+  .cover .meta b { color: #d4f0e6; }
+  .score-jump {
+    display: flex; align-items: center; gap: 14px; margin-top: 18px;
+  }
+  .score-pill {
+    font-size: 16pt; font-weight: 800; border-radius: 12px; padding: 6px 18px;
+  }
+  .score-from { background: rgba(255,255,255,.12); color: #ffb3a0; border: 1.5px solid rgba(255,179,160,.45); }
+  .score-to   { background: #7fe0c3; color: #0b1f2e; }
+  .score-arrow { font-size: 18pt; color: #7fe0c3; font-weight: 800; }
+  .score-note { font-size: 9pt; color: #c8e8de; max-width: 330px; }
+
+  /* ===== Tier strip ===== */
+  .tiers { display: flex; gap: 10px; margin: 18px 0 6px; flex-wrap: wrap; }
+  .tier {
+    flex: 1 1 150px; border-radius: 10px; padding: 10px 14px; color: #fff; font-size: 8.8pt;
+  }
+  .tier b { display: block; font-size: 9.6pt; margin-bottom: 2px; }
+  .t1 { background: #1273b8; } .t2 { background: #1d8a6b; } .t3 { background: #b3582a; }
+  .t4 { background: #4a4f8f; } .t5 { background: #9b2f6e; }
+
+  /* ===== Leap cards ===== */
+  .leap {
+    background: #fff; border: 1px solid #dde4ee; border-radius: 12px;
+    padding: 16px 20px 14px 18px; margin: 14px 0; break-inside: avoid;
+    display: flex; gap: 16px; align-items: flex-start;
+    box-shadow: 0 2px 8px rgba(26,35,48,.05);
+  }
+  .leap .num {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 13px; color: #fff;
+    font-weight: 800; font-size: 19pt; display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .leap .body { flex-grow: 1; }
+  .leap h3 { margin: 0 0 5px; font-size: 12pt; line-height: 1.3; }
+  .leap .what { font-size: 9.8pt; color: #2b3a52; margin: 0 0 7px; }
+  .leap .kills {
+    font-size: 8.9pt; background: #fdf0f1; border: 1px solid #ecc4c9; border-radius: 7px;
+    padding: 5px 11px; color: #7c1f2b; margin-top: 4px;
+  }
+  .leap .kills b { color: #5e131e; }
+  .leap .moat {
+    font-size: 8.9pt; background: #eef7ef; border: 1px solid #bfdcc3; border-radius: 7px;
+    padding: 5px 11px; color: #1d5a2e; margin-top: 4px;
+  }
+  .leap .moat b { color: #133f1f; }
+  .tag {
+    display: inline-block; font-size: 7.4pt; font-weight: 700; letter-spacing: .4px;
+    padding: 2px 9px; border-radius: 999px; color: #fff; margin: 0 3px 6px 0; vertical-align: middle;
+  }
+
+  /* colors per tier */
+  .cT1 { background: #1273b8; } .cT2 { background: #1d8a6b; } .cT3 { background: #b3582a; }
+  .cT4 { background: #4a4f8f; } .cT5 { background: #9b2f6e; }
+
+  /* ===== Stack section ===== */
+  .stack {
+    background: #1a2330; color: #e8edf5; border-radius: 14px; padding: 20px 24px; margin: 22px 0;
+  }
+  .stack h2 { color: #7fe0c3; border-bottom: 2px solid #7fe0c3; margin-top: 0; font-size: 14pt; }
+  .stack-row { display: flex; gap: 12px; margin: 9px 0; align-items: baseline; }
+  .stack-row .label {
+    flex-shrink: 0; width: 90px; font-weight: 800; color: #7fe0c3; font-size: 9.5pt; text-align: right;
+  }
+  .stack-row .desc { font-size: 9.6pt; }
+  .stack-row .desc b { color: #fff; }
+
+  .build-order {
+    background: #fff; border: 1px solid #dde4ee; border-left: 6px solid #d4a017;
+    border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: 10pt;
+  }
+  .build-order b { color: #6e4e0a; }
+  .build-chain { display: flex; gap: 8px; align-items: center; margin: 10px 0 4px; flex-wrap: wrap; }
+  .build-step {
+    background: #1a2330; color: #ffd863; font-weight: 800; border-radius: 9px;
+    padding: 6px 14px; font-size: 10.5pt;
+  }
+  .build-step small { display: block; color: #aeb8c8; font-weight: 600; font-size: 7.4pt; letter-spacing: .3px; }
+  .build-arrow { color: #b3582a; font-size: 14pt; font-weight: 800; }
+
+  .footer { margin-top: 26px; font-size: 8pt; color: #8a94a6; border-top: 1px solid #d5dce6; padding-top: 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="kicker">Bari · Agent OS · Owner Deliverable</div>
+  <h1>10 Technology Leaps for the Comparison-Page Chain</h1>
+  <div class="sub">Not procedural fixes — technology, sophistication, automation. Each leap is matched to a real failure or limitation the chain has already exhibited.</div>
+  <div class="score-jump">
+    <span class="score-pill score-from">6 / 10</span>
+    <span class="score-arrow">→</span>
+    <span class="score-pill score-to">10 / 10</span>
+    <span class="score-note">From a pipeline that works because agents are careful, to a pipeline that is trustworthy by construction.</span>
+  </div>
+  <div class="meta"><b>Version:</b> v1 · <b>Date:</b> 2026-06-11 · <b>Companions:</b> Production Map v1 · Gap Analysis v1</div>
+</div>
+
+<div class="tiers">
+  <div class="tier t1"><b>Data trust</b>Leaps 1 · 2 · 3 — data and engine trustworthy by construction</div>
+  <div class="tier t2"><b>Self-maintaining corpus</b>Leaps 4 · 5 — the shelf updates itself</div>
+  <div class="tier t3"><b>Machine gates</b>Leaps 6 · 9 — human gates become compiler guarantees</div>
+  <div class="tier t4"><b>The spine</b>Leaps 7 · 8 — a real factory with a real backbone</div>
+  <div class="tier t5"><b>The moat</b>Leap 10 — the one consumers actually see</div>
+</div>
+
+<!-- ============ LEAPS ============ -->
+
+<div class="leap">
+  <div class="num cT1">1</div>
+  <div class="body">
+    <span class="tag cT1">DATA TRUST</span>
+    <h3>Dual-Extractor Consensus — vision-LLM reads every label, parser reads every page, disagreement = automatic flag</h3>
+    <p class="what">Today one brittle HTML parser is the single source of truth — which is how website disclaimer text became “ingredients” on 67 products and nothing noticed. Run every product through <b>two independent extractors</b>: the parser, plus a vision model reading the label image with structured output and per-field confidence. Diff them. Agreement = high confidence; disagreement = quarantined before BSIP1 ever sees it.</p>
+    <div class="kills"><b>Kills:</b> the entire “parse corruption discovered at red-team” failure class — at the source.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT1">2</div>
+  <div class="body">
+    <span class="tag cT1">DATA TRUST</span>
+    <h3>Property-Based Testing for the Scoring Engine — invariants, not golden products</h3>
+    <p class="what">The regression suite is 12 hand-picked products. Instead, generate <b>thousands of synthetic products</b> (Hypothesis-style) and assert <i>monotonicity invariants</i>: adding sugar never raises a score · adding an additive never raises a score · removing a data field never raises a score · keyword repetition never raises a score.</p>
+    <div class="kills"><b>Kills:</b> the uncapped fermentation bonus and absence-as-zero would both have been caught <i>mechanically</i> — they are invariant violations, not edge cases. This is how you trust an engine you keep changing.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT1">3</div>
+  <div class="body">
+    <span class="tag cT1">DATA TRUST</span>
+    <h3>Shadow Scoring — every engine change auto-backtests against the full historical corpus</h3>
+    <p class="what">Like a quant-fund backtest: any engine diff runs all ~400 scored products across all categories in shadow and emits a per-product diff report with <b>attribution</b> — which rule moved which score, by how much. Nutrition signs off on a complete impact picture instead of a 12-product sample.</p>
+    <div class="kills"><b>Kills:</b> “did this touch a frozen category?” as a manual check — it becomes a generated table on every change.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT2">4</div>
+  <div class="body">
+    <span class="tag cT2">SELF-MAINTAINING CORPUS</span>
+    <h3>Continuous Scrape with Change Detection — data freshness becomes event-driven</h3>
+    <p class="what">Replace one-shot scrape campaigns (gated on someone flipping a VPN) with a scheduled crawler that <b>content-hashes every product page</b>. A hash change — reformulation, new label, delisting — triggers re-extraction and re-score <i>of that product only</i>.</p>
+    <div class="moat"><b>Bonus:</b> “Bari detects a reformulation before the consumer does” is itself a marketable claim. Freshness stops being a policy and becomes a property of the system.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT2">5</div>
+  <div class="body">
+    <span class="tag cT2">SELF-MAINTAINING CORPUS</span>
+    <h3>Embedding-Based Product Identity Graph — misroutes and duplicates caught by geometry</h3>
+    <p class="what">Embed every product (name + ingredients) and maintain per-category centroids. The granola that sat in the yogurt corpus was an <b>outlier in embedding space</b> — detectable in milliseconds, no human review. The same layer gives cross-retailer product matching, duplicate detection, and “this product doesn’t belong on this shelf” alerts at ingestion.</p>
+    <div class="kills"><b>Kills:</b> category misroutes (the cereal-in-yogurt class) and silent corpus duplication.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT3">6</div>
+  <div class="body">
+    <span class="tag cT3">MACHINE GATES</span>
+    <h3>Claim-Entailment Verification — copy can’t say what the trace didn’t fire, enforced by machine</h3>
+    <p class="what">The deepest copy risk isn’t style, it’s fabrication (“official food source” shipped live once). Build an NLI-style check into the build: <b>every factual claim in a verdict or insight line must be entailed by that product’s glass-box trace JSON</b> — or the build fails. Combine with the banned-phrase linter.</p>
+    <div class="kills"><b>Kills:</b> the read-every-string gate as human discipline — it becomes a compiler guarantee.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT4">7</div>
+  <div class="body">
+    <span class="tag cT4">THE SPINE</span>
+    <h3>The Pipeline Becomes a Real DAG — typed artifacts, lineage, resume, parallelism</h3>
+    <p class="what">Today the “factory” is a folder of bespoke scripts per category. Declare the stages (scrape → enrich → score → QA → package) in an orchestration framework (Dagster / Prefect, or a lean homegrown runner): every artifact <b>typed and hashed</b>, lineage queryable (“which scrape produced this live score?”), failed stages resumable without full reruns, categories processed in parallel.</p>
+    <div class="kills"><b>Kills:</b> the forgotten factory artifacts — they get emitted automatically because they <i>are</i> the pipeline’s edges. The 6-run regen cycle shrinks to re-running only the stages that changed.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT4">8</div>
+  <div class="body">
+    <span class="tag cT4">THE SPINE</span>
+    <h3>One Queryable Datastore — instead of JSON-file archaeology</h3>
+    <p class="what">Products, observations, runs, traces, copy versions, live deployments — as <b>DuckDB / SQLite tables with real foreign keys</b>. The frontend JSON becomes a <i>generated view</i>, not a hand-built artifact. The live-state manifest, category health dashboard, drift detection, and “what changed between run 5 and 6?” all collapse into one-line SQL queries.</p>
+    <div class="kills"><b>Kills:</b> about half the gap-analysis additions in a single move — they stop being features and become queries.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT3">9</div>
+  <div class="body">
+    <span class="tag cT3">MACHINE GATES</span>
+    <h3>Adversarial Corpus Fuzzing — red-team as a build step, not an event</h3>
+    <p class="what">Codify every attack the Red-Team Agent has ever landed — keyword stuffing, marketing-prose injection, implausible macros, disclaimer contamination, grade-boundary values — into a generator that <b>mutates real products into adversarial variants</b>, then assert the pipeline flags or scores each correctly, on every build.</p>
+    <div class="kills"><b>Kills:</b> re-running old attacks by hand. The human red-team spends its time inventing <i>new</i> attacks — the only thing humans are needed for.</div>
+  </div>
+</div>
+
+<div class="leap">
+  <div class="num cT5">10</div>
+  <div class="body">
+    <span class="tag cT5">THE MOAT</span>
+    <h3>The Glass Box Goes Interactive — a grounded “why?” answerer on every product</h3>
+    <p class="what">The trace JSON is Bari’s most defensible asset, and consumers never see it. Ship a per-product Q&amp;A — “why only B?” · “what’s E414?” · “is this better than X for my kid?” — answered by an LLM <b>strictly grounded</b> in that product’s trace + the methodology docs, with hard refusal outside that scope.</p>
+    <div class="moat"><b>The moat:</b> nobody in the Israeli market — or honestly most of the global market — has explainable food scoring at the individual-product level. This converts internal rigor into the consumer-facing differentiator, and is the reason to build the other nine.</div>
+  </div>
+</div>
+
+<!-- ============ STACK ============ -->
+<div class="stack">
+  <h2>How They Stack</h2>
+  <div class="stack-row"><div class="label">1 · 2 · 3</div><div class="desc">make the <b>data and engine</b> trustworthy by construction.</div></div>
+  <div class="stack-row"><div class="label">4 · 5</div><div class="desc">make the <b>corpus</b> self-maintaining — the shelf updates itself.</div></div>
+  <div class="stack-row"><div class="label">6 · 9</div><div class="desc">turn the two <b>human gates</b> (copy review, red-team) into machine gates.</div></div>
+  <div class="stack-row"><div class="label">7 · 8</div><div class="desc">give the whole thing a <b>real spine</b> — a factory instead of a folder of scripts.</div></div>
+  <div class="stack-row"><div class="label">10</div><div class="desc">is the one <b>consumers actually see</b> — and the reason to do the other nine.</div></div>
+</div>
+
+<div class="build-order">
+  <b>Recommended build order:</b> datastore first, spine second, then the consensus extractor lands on solid ground.
+  <div class="build-chain">
+    <div class="build-step">8<small>DATASTORE</small></div>
+    <span class="build-arrow">→</span>
+    <div class="build-step">7<small>DAG SPINE</small></div>
+    <span class="build-arrow">→</span>
+    <div class="build-step">1<small>DUAL EXTRACTOR</small></div>
+    <span class="build-arrow">→</span>
+    <div class="build-step" style="background:#3a4658;color:#e8edf5;">…<small>THE REST</small></div>
+  </div>
+</div>
+
+<div class="footer">
+  Bari Agent OS · 10 Technology Leaps v1 · 2026-06-11 · Companions: <code>comparison_page_production_map_v1</code> · <code>comparison_chain_gap_analysis_v1</code> · Location: <code>01_framework/operations/comparison_chain_tech_leaps_v1.html</code>
+</div>
+
+</div>
+</body>
+</html>

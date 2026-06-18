@@ -1,0 +1,98 @@
+name: CI — Barint
+
+on:
+  pull_request:
+    paths:
+      - "bari-web/src/**"
+      - "bari-web/scripts/**"
+      - "bari-web/package.json"
+      - "bari-web/next.config.ts"
+      - "bari-web/tsconfig.json"
+      - "bari-web/eslint.config.mjs"
+      - "03_operations/**"
+      - ".github/workflows/barint_ci.yml"
+      - ".github/workflows/argento_bari_ci.yml"
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bari-web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: bari-web/package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: TypeScript + Next build
+        run: npm run build
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Validate corpus (all datasets, error mode)
+        run: node scripts/validate-corpus.mjs --all --handoff
+
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install pytest beautifulsoup4 lxml
+
+      - name: BSIP0 nutrition tests (20)
+        run: python -m pytest 03_operations/bsip0/scrape/_shared/test_bsip0_nutrition.py -v --tb=short
+
+      - name: BSIP1 enricher tests (64)
+        run: python 03_operations/bsip1/core/test_enricher.py
+
+      - name: Router regression
+        run: python 03_operations/bsip2/proto_v0/src/run_router_regression.py
+
+      - name: Scoring regression (golden corpus)
+        run: python 03_operations/bsip2/proto_v0/src/run_regression_check.py
+
+      - name: BSIP0 QA validator tests
+        run: python -m pytest 03_operations/bsip0/validators/test_bsip0_qa_validator.py -v --tb=short
+
+      - name: BSIP0 exit gate tests (30)
+        run: python -m pytest 03_operations/bsip0/scrape/_shared/test_bsip0_gate.py -v --tb=short
+
+      - name: BSIP0 exit gate — live corpus check
+        run: python 03_operations/bsip0/scrape/_shared/bsip0_gate.py 02_products/breakfast_cereals/bsip0_outputs/cereals_bsip0_raw_20260601T152207.json || true
+
+      - name: Spine smoke manifest dry-run (TASK-290)
+        run: python 03_operations/spine/smoke_test.py --dry-run
+
+  off-sweep:
+    # TASK-238 — OFF is BANNED project-wide. Fail if any Open-Food-Facts marker
+    # appears in the frontend data directory (bari-web/src/data/).
+    # Mechanises the manual Phase-J check from the QA checklist.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OFF-string sweep (bari-web/src/data/)
+        run: |
+          if grep -riE \
+            "openfoodfacts|open_food_facts|off_api|off_candidate_panel|openfoodfacts\.org" \
+            bari-web/src/data/; then
+            echo "::error::Banned Open-Food-Facts marker found in bari-web/src/data/ (TASK-238). Remove before merge."
+            exit 1
+          fi
+          echo "OFF sweep CLEAN — no banned markers found."

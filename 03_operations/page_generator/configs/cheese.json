@@ -1,0 +1,51 @@
+{
+  "_comment": "Cheese spreads category config (TASK-321B/P171 REV2). Legacy category CONFORMED to uniform generate_page path — NOT re-baselined to cheese_frontend_v3. Run: run_cheese_004 (59 traces, Shufersal scrape, engine 0.4.1 + BARI_RECAL_P0). Corpus: run_cheese_003 BSIP1 (59 records; traces reference run_cheese_003/output). baseline_json=null — copy authored fresh by Content later. Scope: emit all valid cheese-spread products; 1 mis-route exclusion (7290014217492 seasoning blend, TASK-153). OFF: 0 in BSIP1 corpus + traces (grep-verified).",
+  "category": "cheese-spreads",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_004\\products",
+  "baseline_json": null,
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off"
+    },
+    "shelf_rel": {
+      "nutrient": "fat_saturated_g",
+      "median": 16.05,
+      "scale": 2.0756,
+      "scale_type": "iqr"
+    },
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+    "corpus_filter": null,
+    "_source": "run_cheese_004 (TASK-169B RECAL_P0); shelf_rel from constants.py FATSAT_SHELF_REL_CHEESESPREAD_MEDIAN/SCALE"
+  },
+  "exclusions": [
+    {
+      "barcode": "7290014217492",
+      "reason": "out_of_scope: non_cheese_seasoning_blend (TASK-153 mis-route — תערובת תיבול, not cheese/spread)"
+    },
+    {"barcode": "4127800", "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"},
+    {"barcode": "4127862", "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"},
+    {"barcode": "48185", "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"},
+    {"barcode": "4127817", "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"},
+    {"barcode": "47942", "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"}
+  ],
+  "extension_fields": [],
+  "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
+  "_render_fields_note": "TASK-321B/P171 REV2: novaGroup from trace.nova_proxy; confidence_level from trace.data_sufficiency; d4_additives from detect_additives_d4+w2 lookup. Modeled on brined_cheeses + yogurts dairy render contract.",
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

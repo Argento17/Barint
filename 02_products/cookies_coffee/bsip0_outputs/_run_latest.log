@@ -1,0 +1,108 @@
+C:\Bari\03_operations\bsip0\scrape\shufersal_cookies_coffee\01_scrape_cookies_coffee.py:498: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  ts = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+=== Phase 1: Search queries ===
+  'עוגיות' page 0: 16 items, 16 new (total 16)
+  'עוגיות' page 1: 16 items, 0 new (total 16)
+  'עוגיות' total new: 16
+  'ביסקוויט' page 0: 16 items, 16 new (total 32)
+  'ביסקוויט' page 1: 16 items, 0 new (total 32)
+  'ביסקוויט' total new: 16
+  'ביסקוויטים' page 0: 16 items, 1 new (total 33)
+  'ביסקוויטים' page 1: 16 items, 0 new (total 33)
+  'ביסקוויטים' total new: 1
+  'פתי בר' page 0: 14 items, 5 new (total 38)
+  'פתי בר' page 1: 14 items, 0 new (total 38)
+  'פתי בר' total new: 5
+  'פטיבר' page 0: no results — stopping
+  'פטיבר' total new: 0
+  'מארי' page 0: no results — stopping
+  'מארי' total new: 0
+  'לוטוס' page 0: 8 items, 4 new (total 42)
+  'לוטוס' page 1: 8 items, 0 new (total 42)
+  'לוטוס' total new: 4
+  'עוגיות חמאה' page 0: 15 items, 9 new (total 51)
+  'עוגיות חמאה' page 1: 15 items, 0 new (total 51)
+  'עוגיות חמאה' total new: 9
+  'עוגיות שוקולד צ'יפס' page 0: 5 items, 5 new (total 56)
+  'עוגיות שוקולד צ'יפס' page 1: 5 items, 0 new (total 56)
+  'עוגיות שוקולד צ'יפס' total new: 5
+  'שורטברד' page 0: no results — stopping
+  'שורטברד' total new: 0
+  'דייג'סטיב' page 0: no results — stopping
+  'דייג'סטיב' total new: 0
+  'ביסקוטי' page 0: 8 items, 5 new (total 61)
+  'ביסקוטי' page 1: 8 items, 0 new (total 61)
+  'ביסקוטי' total new: 5
+  'lotus' page 0: 6 items, 0 new (total 61)
+  'lotus' total new: 0
+  'biscoff' page 0: no results — stopping
+  'biscoff' total new: 0
+  'speculoos' page 0: no results — stopping
+  'speculoos' total new: 0
+  'עוגיות קפה' page 0: 17 items, 4 new (total 65)
+  'עוגיות קפה' page 1: 17 items, 0 new (total 65)
+  'עוגיות קפה' total new: 4
+  'עוגיות תה' page 0: 17 items, 0 new (total 65)
+  'עוגיות תה' total new: 0
+  'עוגיות מקמח מלא' page 0: 12 items, 10 new (total 75)
+  'עוגיות מקמח מלא' page 1: 12 items, 0 new (total 75)
+  'עוגיות מקמח מלא' total new: 10
+  'קנטוצ'יני' page 0: 1 items, 1 new (total 76)
+  'קנטוצ'יני' page 1: 1 items, 0 new (total 76)
+  'קנטוצ'יני' total new: 1
+  'עוגיות שקדים' page 0: 17 items, 7 new (total 83)
+  'עוגיות שקדים' page 1: 17 items, 0 new (total 83)
+  'עוגיות שקדים' total new: 7
+  'מקרון' page 0: no results — stopping
+  'מקרון' total new: 0
+  'עוגיות טבעוניות' page 0: 17 items, 1 new (total 84)
+  'עוגיות טבעוניות' page 1: 17 items, 0 new (total 84)
+  'עוגיות טבעוניות' total new: 1
+  'עוגיות אורגניות' page 0: 10 items, 0 new (total 84)
+  'עוגיות אורגניות' total new: 0
+  'שופרסל עוגיות' page 0: 10 items, 3 new (total 87)
+  'שופרסל עוגיות' page 1: 10 items, 0 new (total 87)
+  'שופרסל עוגיות' total new: 3
+
+=== Phase 2: Category browsing (87 so far) ===
+  A2508_sweet_snacks page 0: 39 items, 29 new (total 116)
+  A2508_sweet_snacks page 1: 39 items, 0 new (total 116)
+  A2508_sweet_snacks total new: 29
+  A250804_packaged_cookies page 0: 56 items, 13 new (total 129)
+  A250804_packaged_cookies page 1: 56 items, 0 new (total 129)
+  A250804_packaged_cookies total new: 13
+  A250801_biscuits page 0: 14 items, 0 new (total 129)
+  A250801_biscuits total new: 0
+
+Total unique product codes discovered: 129
+
+=== Phase 3: Product page fetching + raw-store banking ===
+C:\Bari\03_operations\bsip0\scrape\shufersal_cookies_coffee\01_scrape_cookies_coffee.py:356: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "scraped_at": datetime.utcnow().isoformat(),
+  [20/129] fetched 21 OK
+  [40/129] fetched 41 OK
+  [60/129] fetched 61 OK
+  [80/129] fetched 81 OK
+  [100/129] fetched 101 OK
+  [120/129] fetched 121 OK
+
+Product pages: 129 OK, 0 failed
+Coverage: 105/129 nutrition, 123/129 ingredients, 129/129 images, 104/129 high-confidence
+OFF ban check: 0 products with off_source_used=True (MUST be 0)
+
+=== DONE ===
+Products: 129
+Raw JSON: C:\Bari\02_products\cookies_coffee\bsip0_outputs\cookies_coffee_bsip0_raw_20260613T163431.json
+
+--- BSIP0 Composition Gate ---
+Products:      129 [need >=25]
+Nutrition:     105/129 (81%) [target >=85%]
+Ingredients:   123/129 (95%) [target >=80%]
+Images:        129/129
+High-conf:     104/129   Low-conf: 23/129
+Plausibility:  127/129 plausible (1.6% implausible) [PASS; fail >=5%]
+   ! עוגיות חמאה דנית ללא תוס: sodium_implausible: 6000 mg/100g exceeds 2000 mg safety ceiling (unit corruption — double g→mg conversion; suppress from scoring)
+   ! עוגיות חמאה דנית: sodium_implausible: 6000 mg/100g exceeds 2000 mg safety ceiling (unit corruption — double g→mg conversion; suppress from scoring)
+OFF ban check: 0/0 violations (MUST be 0)
+Raw-store banked: 129 pages at 03_operations/bsip0/raw_store/shufersal/cookies_coffee/
+Gate:          FAIL (check coverage above)

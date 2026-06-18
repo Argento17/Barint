@@ -1,0 +1,746 @@
+{
+  "stage": "2_corpus_filter",
+  "category_slug": "brined-cheeses",
+  "run_id": "run_brined_001",
+  "generated": "2026-06-13",
+  "owner": "Data Architecture (data-agent)",
+  "source_bsip0": "brined_cheese_bsip0_raw_20260613T065721.json",
+  "source_bsip0_count": 94,
+  "methodology_ref": "brined_cheeses_scoring_interpretation_v1.md Section 1",
+  "nutrition_sufficiency_gate": "energy_kcal_raw AND fat_raw AND protein_raw must all be non-empty. Partial panels where fat_raw OR protein_raw is absent are TRANSPARENCY_NULL — the score engine requires both fat and protein to run a full panel. Fat is a core differentiator for this category (fat-tier labeling); a product with no fat value would be mis-graded as fat-absent.",
+  "filter_logic": "Name-based and barcode-based exclusion gate applied in R1–R8 priority order; R9 nutrition sufficiency gate applied last on remaining in-scope products. Same two-stage pattern as run_cheese_001 / run_cereals_002.",
+  "exclusion_rules": {
+    "R1_NON_FOOD": "Barcode 7290108351613 (floor cleaner 'נוזל רצפות מלון חלומי') matched on halloumi acquisition keyword. Any non-food product is OUT_OF_SCOPE.",
+    "R2_NON_CHEESE_BAKERY": "Berman Bread products (barcodes 497358, 4033583) matched on halloumi acquisition keyword. Not dairy cheese.",
+    "R3_NON_CHEESE_ICE_CREAM": "Ice cream products (גלידת) are not table cheeses. Sec 1.3 (c).",
+    "R4_RICOTTA_OUT": "All ricotta products are OUT. Ricotta is a heat-coagulated whey cheese (not brine-preserved), consumed primarily as a cooking/baking ingredient in Israeli retail (ריקוטה לאפייה dominant shelf form). Not a brined cheese, not a table cheese. Out of scope for both brined-cheeses and cheese-spreads. Methodology Sec 1.3 ricotta ruling.",
+    "R5_PREPARED_PASTRY_OUT": "Filo/pastry products (מעטפות פילו, פילו ריקוטה פרימיום) where cheese is a filling ingredient. Sec 1.3 (c).",
+    "R6_SAUCE_OUT": "Sauce products (רוטב פטה ים תיכוני, רוטב אלפרדו עם ריקוטה). Sec 1.3 (c).",
+    "R7_SPREADABLE_OUT": "Products explicitly labeled למריחה or ממרח בולגרית. Routes to cheese-spreads cream-cheese pool per Sec 1.3 boundary call. Brined-block בולגרית at any fat tier belongs in brined-cheeses; spreadable/whipped form does not.",
+    "R8_VEGAN_OUT": "Plant-based feta-style products: Planty (almond/cashew), Violife (coconut oil, protein=0). Not dairy, not brined. Sec 1.3 (a)+(b).",
+    "R9_NULL_NUTRITION": "Products where Shufersal rendered a partial or absent nutrition panel — specifically where fat_raw OR protein_raw is absent from parsed fields. Cannot be fully scored. Retained as TRANSPARENCY_NULL. OFF fill is absolutely prohibited (CLAUDE.md, TASK-238). Known Shufersal rendering gap (~20-25% of shelf); accepted by owner. Rule hardened 2026-06-13: previously required only 'fat_raw AND protein_raw both absent'; now requires BOTH present for IN_SCORED."
+  },
+  "in_scope_types": [
+    "בולגרית",
+    "פטה (כבשים/עיזים/פרה)",
+    "צפתית",
+    "חלומי",
+    "גבינה מלוחה"
+  ],
+  "notes": [
+    "פטינה בסגנון פטה (Rucker Quantum) — classified IN_SCORED. Name explicitly says 'בסגנון פטה'; dairy cheese, has nutrition. Methodology Sec 1.2: 'evaluate on structure: if it is brined semi-soft, it is in scope.'",
+    "גבינת טמרה מלוחה בקר 17% (Rajab dairy) — classified IN_SCORED. Ingredients: milk + salt only; classic brined cheese. Matches 'גבינה מלוחה' in-scope type.",
+    "כדורי פטה בשמן מתובל (Nizan) — classified IN_SCORED. Feta balls in seasoned oil; the cheese itself is the primary food, oil is a preservation/presentation medium. Consumed as table cheese.",
+    "גבינה צפתית בטעמים (Hamoshava) — classified IN_SCORED. Tzfatit with garlic/dill; seasoning variants are in-scope per Sec 1.2 ('seasoning variants treated as variants within same type').",
+    "סלט קוביות בולגרית 25% (Nizan) — classified TRANSPARENCY_NULL. Has energy=282 and sodium=698 but fat_raw and protein_raw are absent from parsed panel. Partial panel insufficient for scoring.",
+    "גבינה בולגרית למריחה 5% (Gad) — classified OUT_OF_SCOPE (SPREADABLE_OUT). Name explicitly says 'למריחה'; routes to cheese-spreads. Confirmed by ingredients: includes starch + potassium sorbate consistent with spreadable texture.",
+    "בסגנון פטה יוונית טבעוני (Violife) — classified OUT_OF_SCOPE (VEGAN_OUT). Ingredients: water, coconut oil, starch. Protein=0. Not dairy, not brined.",
+    "פטה שקדים (Planty) — classified OUT_OF_SCOPE (VEGAN_OUT). Ingredients: water, almonds, cashews. Not dairy, not brined.",
+    "16 products have TRANSPARENCY_NULL due to partial nutrition panels (energy+sodium or energy+sat_fat only, missing total fat and protein). This is a Shufersal rendering pattern for products in the 7296073... barcode series — likely the retailer's private-label shelf tag format omits the full table.",
+    "No OFF data was used at any point. NULL fields are NULL.",
+    "2026-06-13 CHANGES_REQUESTED fix: scorability rule hardened from 'fat_raw OR protein_raw present' to 'fat_raw AND protein_raw both present'. Re-scan of all 49 prior IN_SCORED products against BSIP0 source found exactly 1 partial panel: barcode 4861025 (גבינה בולגרית 5%, מחלבת המושבה) — fat_raw empty string, protein_raw=16. Reclassified to TRANSPARENCY_NULL. All other 48 IN_SCORED products confirmed to have both fat_raw and protein_raw populated."
+  ],
+  "min_corpus_size": 30,
+  "corpus_size_check": "PASS: 48 IN_SCORED >= 30 minimum",
+  "off_used": false,
+  "off_note": "OFF ban is absolute (CLAUDE.md hard rule, TASK-238). No field from any product was filled from OFF or any external source. NULL fields remain NULL.",
+  "reclassified_this_pass": [
+    {
+      "barcode": "4861025",
+      "name_he": "גבינה בולגרית 5%",
+      "brand": "מחלבת המושבה",
+      "from": "IN_SCORED",
+      "to": "TRANSPARENCY_NULL",
+      "reason": "partial panel — fat_raw absent (Shufersal render gap: panel shows sat_fat=2.9g and cholesterol but total fat not rendered). Engine requires both fat AND protein. protein_raw=16, energy_kcal_raw=147, sodium_raw=1000mg present but fat_raw is empty string. Rule hardened 2026-06-13 per CHANGES_REQUESTED fix."
+    }
+  ],
+  "summary": {
+    "total_bsip0": 94,
+    "in_scored": 48,
+    "transparency_null": 25,
+    "out_of_scope": 21,
+    "sum_check": "48 + 25 + 21 = 94 PASS",
+    "out_of_scope_breakdown": {
+      "RICOTTA_OUT": 10,
+      "NON_CHEESE": 3,
+      "NON_FOOD": 1,
+      "PREPARED_PASTRY_OUT": 2,
+      "SPREADABLE_OUT": 1,
+      "VEGAN_OUT": 3,
+      "SAUCE_PRODUCT_OUT": 1
+    },
+    "brand_distribution_in_scored": {
+      "מחלבות גד": 16,
+      "משק צוריאל": 8,
+      "מחלבת המושבה": 7,
+      "שופרסל": 5,
+      "מחלבת רמת הגולן": 4,
+      "יורו מחלבות אירופה": 2,
+      "Rucker Quantum": 2,
+      "מחלבת רג'ב": 1,
+      "פיראוס": 1,
+      "מחלבות רמת הגולן": 1,
+      "גבינות ניצן": 1
+    }
+  },
+  "products": [
+    {
+      "barcode": "7296073593744",
+      "name_he": "בולגרית מעודנת 24%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290108509755",
+      "name_he": "גבינת חלומי 23%",
+      "brand": "יורו מחלבות אירופה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2107798",
+      "name_he": "בולגרית מעודנת 5%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "5992964",
+      "name_he": "פטה כבשים 20%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290011499303",
+      "name_he": "פטה מעודנת עיזים 5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "554952",
+      "name_he": "גבינה צפתית קשה 10%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7296073641902",
+      "name_he": "פטה כבשים 20%",
+      "brand": "שופרסל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290011499846",
+      "name_he": "ריקוטה פרסקה 9%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7296073453093",
+      "name_he": "פטה עיזים 5% גד ארוז",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "4861025",
+      "name_he": "גבינה בולגרית 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "PARTIAL_PANEL: fat_raw is absent (Shufersal render gap). Panel renders: energy=147kcal, protein=16g, carbs=9.2g, sat_fat=2.9g, sodium=1000mg, cholesterol=16mg — but total fat field was not rendered. Engine requires fat AND protein both present; fat is the primary fat-tier differentiator for this category. Reclassified IN_SCORED → TRANSPARENCY_NULL on 2026-06-13 (CHANGES_REQUESTED fix, hardened scorability rule). OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "5992872",
+      "name_he": "גבינה צפתית במים 5% שומן",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073453154",
+      "name_he": "צפתית 5% ארוז",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290019790112",
+      "name_he": "פטה כבשים 20% שומן",
+      "brand": "מחלבת רמת הגולן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290108509106",
+      "name_he": "קוביות בולגרית מעודנת13%",
+      "brand": "יורו מחלבות אירופה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073641919",
+      "name_he": "חלומי בקר 24%",
+      "brand": "שופרסל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073706977",
+      "name_he": "גבינה צפתית עם קצח",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290011499358",
+      "name_he": "פטה עיזים 20% שומן",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2107071",
+      "name_he": "פטה עיזים מעודנת 16%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073730330",
+      "name_he": "פטינה בסגנון פטה 22%",
+      "brand": "Rucker Quantum",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290018011164",
+      "name_he": "גלידת ריקוטה קראמבל תפוח",
+      "brand": "תמרה",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "NON_CHEESE: ice cream product (גלידת ריקוטה); not a table cheese, not brined. Out of scope per Sec 1.3 (c): not consumed as-purchased standalone cheese."
+    },
+    {
+      "barcode": "7296073719779",
+      "name_he": "גבינת ריקוטה 5%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7290114312486",
+      "name_he": "בולגרית שום+ע.תיבול 16%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "3075805",
+      "name_he": "גבינת טמרה מלוחה בקר 17%",
+      "brand": "מחלבת רג'ב",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290019635352",
+      "name_he": "קרם ריקוטה 16%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7290108351613",
+      "name_he": "נוזל רצפות מלון חלומי",
+      "brand": "ריצפז",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "NON_FOOD: floor cleaner matched on halloumi acquisition keyword. Out of scope per methodology Sec 1.3 in/out rule."
+    },
+    {
+      "barcode": "7296073593683",
+      "name_he": "בולגרית 16% מסורית המו",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290011499112",
+      "name_he": "גבינה בולגרית 16% שומן",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "8606370",
+      "name_he": "פטינה גבינה סגנון פטה22%",
+      "brand": "Rucker Quantum",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290117264430",
+      "name_he": "מעטפות פילו עם פטה+תרד",
+      "brand": "וילי פוד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "PREPARED_PASTRY_OUT: filo/pastry product; cheese is a filling ingredient, not the primary food. Out of scope per Sec 1.3 (c): not a table cheese consumed as-purchased."
+    },
+    {
+      "barcode": "7290114312707",
+      "name_he": "בולגרית מעודנת 16%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2511229",
+      "name_he": "בולגרית מעודנת 16%",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073593270",
+      "name_he": "גבינה בולגרית 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7296073593928",
+      "name_he": "פטה כבשים 20%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "48413",
+      "name_he": "גבינה מלוחה חמד16%",
+      "brand": "פיראוס",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290014890176",
+      "name_he": "ריקוטה בסגנון איטלקי5%",
+      "brand": "משק יעקבס",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "3006021",
+      "name_he": "סלט קוביות בולגרית 25%",
+      "brand": "גבינות ניצן",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290011499327",
+      "name_he": "גבינה בולגרית מעודנת 5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073593911",
+      "name_he": "גבינה צפתית קשה 10%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290019790402",
+      "name_he": "בולגרית של פעם 16%שומן",
+      "brand": "מחלבת רמת הגולן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290019635222",
+      "name_he": "קוביות בולגרית מעודנת16%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290117264423",
+      "name_he": "מעטפת בצק פילו פטה",
+      "brand": "וילי פוד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "PREPARED_PASTRY_OUT: filo/pastry product; cheese is a filling ingredient, not the primary food. Out of scope per Sec 1.3 (c): not a table cheese consumed as-purchased."
+    },
+    {
+      "barcode": "7296073593317",
+      "name_he": "בולגרית16% המושבה",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "5992575",
+      "name_he": "גבינה בולגרית למריחה 5%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "SPREADABLE_OUT: spreadable/whipped form (למריחה / ממרח). Routes to cheese-spreads cream-cheese pool per Sec 1.3 boundary call. Block/brined-block בולגרית belongs in brined-cheeses; spreadable/whipped form does not."
+    },
+    {
+      "barcode": "7296073453222",
+      "name_he": "בולגרית מסורתית 16% ארוז",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290019635826",
+      "name_he": "קוביות פטה עיזים מעודנ5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290013787415",
+      "name_he": "רביולי תרד וריקוטה",
+      "brand": "פסטה ריקו",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7290011499365",
+      "name_he": "גבינת חלומי 24%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073729631",
+      "name_he": "בולגרית מסורתית 5%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "554822",
+      "name_he": "ריקוטה גד 5% שומן",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7290019635482",
+      "name_he": "רוטב אלפרדו עם ריקוטה",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "9953930",
+      "name_he": "גב.צפתית קשה 10% מגורדת",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290017065137",
+      "name_he": "ריקוטה למריחה 5%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7296073593706",
+      "name_he": "גבינה צפתית קשה 24%",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "554921",
+      "name_he": "גבינת ריקוטה 5%",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "4861056",
+      "name_he": "גבינה צפתית 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290019790808",
+      "name_he": "פטה עיזים 16% שומן",
+      "brand": "מחלבות רמת הגולן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2385455",
+      "name_he": "בולגרית מעודנת 24%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2133889",
+      "name_he": "בולגרית מעודנת 5% שומן",
+      "brand": "מחלבת רמת הגולן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073641964",
+      "name_he": "בולגרית מעודנת 5%",
+      "brand": "שופרסל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073641957",
+      "name_he": "בולגרית מסורתית 16%",
+      "brand": "שופרסל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290018593011",
+      "name_he": "פטה שקדים עשבי תיבול",
+      "brand": "פלנטי",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "VEGAN_OUT: plant-based feta-style product (almond/cashew/coconut oil base; zero protein). Not dairy, not brined. Out of scope per Sec 1.3 (a)+(b): must be dairy soft/semi-firm cheese preserved in brine."
+    },
+    {
+      "barcode": "2511243",
+      "name_he": "בולגרית מסורתית 16%",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290114310550",
+      "name_he": "פטה עיזים מעודנת 5%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "554457",
+      "name_he": "גבינה צפתית 5% שומן",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073644972",
+      "name_he": "גבינה צפתית קשה10% מגורד",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290114314015",
+      "name_he": "בולגרית 24%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "497358",
+      "name_he": "חלומית חלה מתוקה ארוזה",
+      "brand": "ברמן לחם",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "NON_CHEESE: bakery product (Berman Bread) matched on halloumi acquisition keyword. Out of scope per Sec 1.3 in/out rule: not a dairy cheese product."
+    },
+    {
+      "barcode": "554792",
+      "name_he": "גבינה בולגרית 5% שומן",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290018593004",
+      "name_he": "פטה שקדים טבעי",
+      "brand": "פלנטי",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "VEGAN_OUT: plant-based feta-style product (almond/cashew/coconut oil base; zero protein). Not dairy, not brined. Out of scope per Sec 1.3 (a)+(b): must be dairy soft/semi-firm cheese preserved in brine."
+    },
+    {
+      "barcode": "2133162",
+      "name_he": "גבינה בולגרית 5% שומן",
+      "brand": "מחלבת רמת הגולן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073644996",
+      "name_he": "גבינה צפתית קשה24% מגורד",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073453116",
+      "name_he": "גבינת בולגרית 5% גד ארוז",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290011499105",
+      "name_he": "גבינה בולגרית מסורתית 5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "5992858",
+      "name_he": "פטה עיזים 5%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7296073593287",
+      "name_he": "בולגרית מעודנת 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290017065236",
+      "name_he": "בולגרית מעודנת 24%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "5992667",
+      "name_he": "בולגרית מסורתית 5%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "4861360",
+      "name_he": "גבינה צפתית בטעמים",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "3158164",
+      "name_he": "פילו ריקוטה פרימיום",
+      "brand": "שופרסל",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "RICOTTA_OUT: heat-coagulated whey product (not brine-preserved); cooking/baking ingredient. Not a table cheese in Israeli retail context. Out of scope per methodology Sec 1.3 ricotta ruling."
+    },
+    {
+      "barcode": "7290102397334",
+      "name_he": "גבינה בולגרית 5%",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290011499129",
+      "name_he": "קוביות בולגרית מעודנת 5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7290011499051",
+      "name_he": "גבינה פטה כבשים 20%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073593300",
+      "name_he": "גבינה צפתית 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "7290102393718",
+      "name_he": "חלומי בקר",
+      "brand": "משק צוריאל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "554532",
+      "name_he": "גבינה צפתית מעודנת 5%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "369617",
+      "name_he": "כדורי פטה בשמן מתובל",
+      "brand": "גבינות ניצן",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "5202390020407",
+      "name_he": "בסגנון פטה יוונית טבעוני",
+      "brand": "ויולייף",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "VEGAN_OUT: plant-based feta-style product (almond/cashew/coconut oil base; zero protein). Not dairy, not brined. Out of scope per Sec 1.3 (a)+(b): must be dairy soft/semi-firm cheese preserved in brine."
+    },
+    {
+      "barcode": "7290019635864",
+      "name_he": "רוטב פטה ים תיכוני",
+      "brand": "מחלבות גד",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "SAUCE_PRODUCT_OUT: sauce/condiment product; cheese is ingredient, not standalone table cheese. Out of scope per Sec 1.3 (c)."
+    },
+    {
+      "barcode": "2511236",
+      "name_he": "בולגרית מעודנת 5%",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "2385431",
+      "name_he": "בולגרית מסורתית גד 16%",
+      "brand": "מחלבות גד",
+      "decision": "TRANSPARENCY_NULL",
+      "reason": "NULL_NUTRITION: Shufersal did not render a scorable nutrition panel (fat_raw and protein_raw both absent). Cannot be fully scored. Retained as transparency/data-unavailable entry per standing policy. Page may disclose as \"לא ניתן לאחזר נתונים\". OFF fill is absolutely prohibited."
+    },
+    {
+      "barcode": "4033583",
+      "name_he": "לחמניות חלומית",
+      "brand": "ברמן לחם",
+      "decision": "OUT_OF_SCOPE",
+      "reason": "NON_CHEESE: bakery product (Berman Bread) matched on halloumi acquisition keyword. Out of scope per Sec 1.3 in/out rule: not a dairy cheese product."
+    },
+    {
+      "barcode": "7290017065663",
+      "name_he": "פטה עיזים מעודנת 16%",
+      "brand": "מחלבות גד",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "4861070",
+      "name_he": "גבינה צפתית קשה 24%",
+      "brand": "מחלבת המושבה",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    },
+    {
+      "barcode": "7296073641940",
+      "name_he": "בולגרית מסורתית 5%",
+      "brand": "שופרסל",
+      "decision": "IN_SCORED",
+      "reason": "IN_SCOPE: brined/salty soft or semi-firm dairy table cheese with scorable nutrition panel. Meets all three Sec 1.3 in/out criteria: (a) soft/semi-firm, (b) preserved in brine, (c) table cheese consumed as-purchased. Type: בולגרית/פטה/צפתית/חלומי/גבינה מלוחה."
+    }
+  ]
+}

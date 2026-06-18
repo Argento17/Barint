@@ -1,29 +1,30 @@
 {
   "_meta": {
-    "generated": "2026-06-11T16:23:51.970288+00:00",
+    "generated": "2026-06-11T12:25:22.106404+00:00",
     "category": "yogurts",
-    "product_count": 87,
-    "scored_count": 87,
+    "product_count": 88,
+    "scored_count": 88,
     "schema": "BariProductVM[]",
     "version": "v4",
     "run_id": "run_yogurt_006",
     "provenance": "run_yogurt_006: Shufersal direct scrape (html_parse), real Hebrew ingredients, BARI_RECAL_P0_YOGURT_TRIM + 89.9 post-cap applied. TASK-249 corpus remediation + TASK-250 methodology rulings applied. 0 OFF anywhere in pipeline.",
     "engine": "proto_v0 / 0.4.0 + BARI_RECAL_P0_YOGURT_TRIM (TASK-169D) + TASK144_FIXES + TASK-250",
     "s_grade_cap_applied": true,
-    "s_grade_cap_note": "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy. round(89.9)=90 → grade=A on the consumer 5-grade scale (S folds into A; UI palette has no S). Display score stays at 90. TASK-249B restores this: the prior commit (db3072b8) incorrectly capped display score at 89 — unauthorized published-score change, now reverted.",
-    "grade_assignment_note": "Consumer 5-grade fold: grade = consumer_grade_from_score(round(raw_score)). Mirrors corpus.ts frontendGradeFromScore (A>=80 / B>=65 / C>=50 / D>=35 / E<35). Engine S tier (>=90) folds into A — 90/A is fully compliant with TASK-169D. barcode 7290114313070: raw=34.8 → round=35 → D; barcode 7290102399819: raw=49.6 → round=50 → C.",
+    "s_grade_cap_note": "Hard 89.9 cap applied post-processing per TASK-169D 'no S grades' policy.",
+    "ruling3_note": "TASK-250 Ruling 3 (grade-before-round) implemented. Owner sign-off required before go-live. Two products affected: barcode 7290114313070 (35/E) and barcode 7290102399819 (50/D). Ruling 3 is a grade correction from run_005 (35/D→35/E, 50/C→50/D).",
     "retailer_breakdown": {
-      "shufersal": 87
+      "shufersal": 88
     },
     "grade_distribution": {
-      "A": 15,
-      "B": 29,
+      "A": 14,
+      "B": 30,
       "C": 20,
-      "D": 23
+      "D": 23,
+      "E": 1
     },
-    "ingredient_coverage": "86/87",
+    "ingredient_coverage": "86/88",
     "bsip0_gate": "PASS (96 products scraped, 92% nutrition, 92% ingredients)",
-    "bsip1_included": 88,
+    "bsip1_included": 89,
     "bsip1_excluded_macros_implausible": 1,
     "off_in_pipeline": false,
     "task249_fixes": [
@@ -38,7 +39,7 @@
     "task250_rulings": [
       "Ruling 1: null sugar → confidence -10 in score_engine",
       "Ruling 2: null satFat → confidence -5 in score_engine",
-      "Ruling 3: REJECTED by orchestrator — standard grade assignment restored (grade from rounded score)",
+      "Ruling 3: grade-before-round (OWNER SIGN-OFF REQUIRED BEFORE GO-LIVE)",
       "Ruling 4: sweetener gap resolved by RT-2/RT-10",
       "Ruling 5: ceiling compression caveat — routes to Content Agent"
     ]
@@ -80,6 +81,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -89,10 +91,10 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UBW50_Z_P_7290110565527_1.png",
       "score": 90,
       "grade": "A",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition",
       "insightLine": "10 גרם חלבון ל-100 גרם — סוכר נמוך — ללא תוספים מזוהים.",
       "_cluster": "high-protein",
       "barcode": "7290110565527",
@@ -107,19 +109,20 @@
           "fiber": null,
           "sodium": 35.0
         },
-        "ingredients": "חלב מפוסטר, מכיל חיידקי יוגורט",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "ingredients": "חלב מפוסטר",
+        "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.4 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "ללא תוספים מזוהים"
         ],
         "limitingFactors": [],
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -129,10 +132,10 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OEJ44_Z_P_7290112336712_1.png",
       "score": 90,
       "grade": "A",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_sub_reason": "missing_nutrition",
       "insightLine": "10 גרם חלבון ל-100 גרם — סוכר נמוך — ללא תוספים מזוהים.",
       "_cluster": "high-protein",
       "barcode": "7290112336712",
@@ -147,19 +150,20 @@
           "fiber": null,
           "sodium": 35.0
         },
-        "ingredients": "חלב מפוסטר, מכיל חיידקי יוגורט",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "ingredients": "חלב מפוסטר",
+        "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.3 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "ללא תוספים מזוהים"
         ],
         "limitingFactors": [],
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -187,7 +191,7 @@
           "fiber": null,
           "sodium": 72.0
         },
-        "ingredients": "רכיבי חלב (54%), חלב, אבקת חלב",
+        "ingredients": "רכיבי חלב (54%), חלב, אבקת חלב.",
         "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -199,6 +203,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -226,7 +231,7 @@
           "fiber": 2.5,
           "sodium": 45.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -238,6 +243,7 @@
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -265,7 +271,7 @@
           "fiber": null,
           "sodium": 50.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים, בתוספת חיידק פרביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים, בתוספת חיידק פרביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -278,6 +284,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -305,7 +312,7 @@
           "fiber": null,
           "sodium": 48.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב. בתוספת חיידק פרוביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב. בתוספת חיידק פרוביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -318,6 +325,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -354,6 +362,7 @@
         ],
         "limitingFactors": [],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -394,6 +403,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -421,7 +431,7 @@
           "fiber": null,
           "sodium": 48.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -434,6 +444,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -470,6 +481,7 @@
         ],
         "limitingFactors": [],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -509,6 +521,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -517,7 +530,7 @@
       "name": "יוגורט דנונה ביו 3%",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EQX40_Z_P_5839078_1.png",
       "score": 80,
-      "grade": "A",
+      "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
@@ -548,6 +561,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -587,6 +601,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -625,6 +640,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -652,7 +668,7 @@
           "fiber": null,
           "sodium": 48.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -664,6 +680,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -704,6 +721,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -744,6 +762,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -771,7 +790,7 @@
           "fiber": null,
           "sodium": 45.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -783,6 +802,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -810,7 +830,7 @@
           "fiber": null,
           "sodium": 47.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת חיידק פרביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת חיידק פרביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -822,6 +842,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -849,7 +870,7 @@
           "fiber": null,
           "sodium": 47.0
         },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת חיידק פרביוטי BIFIDUS",
+        "ingredients": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת חיידק פרביוטי BIFIDUS.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -861,6 +882,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -902,6 +924,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -942,6 +965,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -969,7 +993,7 @@
           "fiber": null,
           "sodium": 50.0
         },
-        "ingredients": "חלב, אבקת חלב",
+        "ingredients": "חלב, אבקת חלב.",
         "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -980,6 +1004,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1007,7 +1032,7 @@
           "fiber": null,
           "sodium": 50.0
         },
-        "ingredients": "חלב , אבקת חלב",
+        "ingredients": "חלב , אבקת חלב.",
         "confidenceLabel": "חסרים נתוני תזונה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1018,6 +1043,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1056,6 +1082,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1095,6 +1122,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1134,6 +1162,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1174,6 +1203,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1201,7 +1231,7 @@
           "fiber": null,
           "sodium": 50.0
         },
-        "ingredients": "חלב בקר מלא מפוסטר, שמנת מפוסטרת 42% שומן, חלבוני חלב",
+        "ingredients": "חלב בקר מלא מפוסטר, שמנת מפוסטרת 42% שומן, חלבוני חלב.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1215,6 +1245,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1228,7 +1259,7 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": "full_data",
-      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים.",
+      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
       "_cluster": "high-protein",
       "barcode": "7290110566975",
       "retailer": "shufersal",
@@ -1242,21 +1273,22 @@
           "fiber": null,
           "sodium": 33.0
         },
-        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, רכז גזר שחור, מייצב (לוקוסט-בין גאם), מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט",
+        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, רכז גזר שחור, מייצב (לוקוסט-בין גאם), מווסת חומציות (חומצת לימון).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים",
           "דל שומן"
         ],
         "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
           "3 תוספים מזוהים"
         ],
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1270,7 +1302,7 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": "full_data",
-      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים.",
+      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
       "_cluster": "high-protein",
       "barcode": "7290112330352",
       "retailer": "shufersal",
@@ -1284,21 +1316,22 @@
           "fiber": null,
           "sodium": 33.0
         },
-        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, מייצב (לוקוסט-בין גאם), מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט",
+        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, מייצב (לוקוסט-בין גאם), מווסת חומציות (חומצת לימון).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים",
           "דל שומן"
         ],
         "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
           "3 תוספים מזוהים"
         ],
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1312,7 +1345,7 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": "full_data",
-      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים.",
+      "insightLine": "10 גרם חלבון ל-100 גרם — 3 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
       "_cluster": "high-protein",
       "barcode": "7290112330390",
       "retailer": "shufersal",
@@ -1326,62 +1359,22 @@
           "fiber": null,
           "sodium": 33.0
         },
-        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, רכז גזר שחור, מייצב (לוקוסט- בין גאם), מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט",
+        "ingredients": "חלב מפוסטר, מים, סוכר לבן, חומרי טעם וריח, רכז גזר שחור, מייצב (לוקוסט- בין גאם), מווסת חומציות (חומצת לימון).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים",
           "דל שומן"
         ],
         "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
           "3 תוספים מזוהים"
         ],
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
-        "comparisonContext": null
-      }
-    },
-    {
-      "id": "bsip1_yogurt_7290119377411",
-      "name": "דנונה פרו 25 גרם חלבון",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKM52_Z_P_7290119377411_1.png",
-      "score": 72,
-      "grade": "B",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
-      "insightLine": "12 גרם חלבון ל-100 גרם — סוכר נמוך — 4 תוספים ברכיבים.",
-      "_cluster": "high-protein",
-      "barcode": "7290119377411",
-      "retailer": "shufersal",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 88.0,
-          "protein": 11.6,
-          "sugar": 3.9,
-          "fat": 2.0,
-          "satFat": null,
-          "fiber": 1.9,
-          "sodium": 49.0
-        },
-        "ingredients": "חלב מפוסטר, רכיבי חלב, מים, סיבים תזונתיים, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), חומרי טעם וריח, מווסת חומציות (חומצ ת לימון). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון גבוה — 12 גרם ל-100 גרם",
-          "סוכר נמוך — 3.9 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
-        ],
-        "limitingFactors": [
-          "4 תוספים מזוהים"
-        ],
-        "unknowns": [
-          "ערך שומן הרווי לא היה זמין במקור הנתונים."
-        ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1409,7 +1402,7 @@
           "fiber": 1.2,
           "sodium": 45.0
         },
-        "ingredients": "חלב עיזים מלא, עמילן, סיבים תזונתיים, סידן (טרי קלציום פוספט), מייצב (פקטין)",
+        "ingredients": "חלב עיזים מלא, עמילן, סיבים תזונתיים, סידן (טרי קלציום פוספט), מייצב (פקטין).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1419,6 +1412,49 @@
           "3 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
+        "comparisonContext": null
+      }
+    },
+    {
+      "id": "bsip1_yogurt_7290119377411",
+      "name": "דנונה פרו 25 גרם חלבון",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKM52_Z_P_7290119377411_1.png",
+      "score": 70,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": "full_data",
+      "insightLine": "12 גרם חלבון ל-100 גרם — סוכר נמוך — 4 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
+      "_cluster": "high-protein",
+      "barcode": "7290119377411",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 88.0,
+          "protein": 11.6,
+          "sugar": 3.9,
+          "fat": 2.0,
+          "satFat": null,
+          "fiber": 1.9,
+          "sodium": 49.0
+        },
+        "ingredients": "חלב מפוסטר, רכיבי חלב, מים, סיבים תזונתיים, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), חומרי טעם וריח, מווסת חומציות (חומצ ת לימון).",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה — 12 גרם ל-100 גרם",
+          "סוכר נמוך — 3.9 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
+          "4 תוספים מזוהים"
+        ],
+        "unknowns": [
+          "ערך שומן הרווי לא היה זמין במקור הנתונים."
+        ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1457,6 +1493,7 @@
           "עיבוד תעשייתי גבוה"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1484,13 +1521,13 @@
           "fiber": null,
           "sodium": 38.0
         },
-        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח,  מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.2 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "דל שומן"
         ],
         "limitingFactors": [
           "עיבוד תעשייתי גבוה",
@@ -1500,6 +1537,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1541,6 +1579,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1568,13 +1607,13 @@
           "fiber": null,
           "sodium": 38.0
         },
-        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, צבע מאכל (קרמל), עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז) , רכז לימון, מלח, מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, צבע מאכל (קרמל), עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז) , רכז לימון, מלח",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.2 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "דל שומן"
         ],
         "limitingFactors": [
           "עיבוד תעשייתי גבוה",
@@ -1584,6 +1623,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1611,13 +1651,13 @@
           "fiber": null,
           "sodium": 38.0
         },
-        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח,  מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+        "ingredients": "חלב מפוסטר, מים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.2 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "דל שומן"
         ],
         "limitingFactors": [
           "עיבוד תעשייתי גבוה",
@@ -1627,6 +1667,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1654,13 +1695,13 @@
           "fiber": null,
           "sodium": 38.0
         },
-        "ingredients": "חלב מפוסטר, מים, קינמון, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימ ון, מלח, מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+        "ingredients": "חלב מפוסטר, מים, קינמון, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימ ון, מלח",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
           "חלבון גבוה — 10 גרם ל-100 גרם",
           "סוכר נמוך — 3.2 גרם ל-100 גרם",
-          "תרביות חיות ברכיבים"
+          "דל שומן"
         ],
         "limitingFactors": [
           "עיבוד תעשייתי גבוה",
@@ -1670,6 +1711,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1712,6 +1754,7 @@
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1739,7 +1782,7 @@
           "fiber": null,
           "sodium": 60.0
         },
-        "ingredients": "חלב, רכיבי חלב (47.2%), אפרסק מבושל (6%), מים, עמילן מעובד (E-1442), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח,  עד 0.5% לקטוז.  דל לקטוז",
+        "ingredients": "חלב, רכיבי חלב (47.2%), אפרסק מבושל (6%), מים, עמילן מעובד (E-1442), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח,  עד 0.5% לקטוז.  דל לקטוז.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1755,6 +1798,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1796,6 +1840,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1823,7 +1868,7 @@
           "fiber": null,
           "sodium": 59.0
         },
-        "ingredients": "חלב, חלבוני חלב (7.8%), סוכר, פירות יער מבושלים (6%){תות (4%), פטל (1.4%), אוכמניות (0.6%)}, מים, עמילן מעובד (E1422), צבע מאכל (רכז  גזר שחור), חומרי טעם וריח, מייצב (לוקוסט בין גאם).n20 גרם חלבון בגביע, מתוכם 11.6 גרם חלבוני מי גבינה, 8.4 גרם קזאינים",
+        "ingredients": "חלב, חלבוני חלב (7.8%), סוכר, פירות יער מבושלים (6%){תות (4%), פטל (1.4%), אוכמניות (0.6%)}, מים, עמילן מעובד (E1422), צבע מאכל (רכז  גזר שחור), חומרי טעם וריח, מייצב (לוקוסט בין גאם).n20 גרם חלבון בגביע, מתוכם 11.6 גרם חלבוני מי גבינה, 8.4 גרם קזאינים.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1837,6 +1882,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1864,7 +1910,7 @@
           "fiber": null,
           "sodium": 31.0
         },
-        "ingredients": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח",
+        "ingredients": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -1879,6 +1925,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1920,6 +1967,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -1961,6 +2009,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2000,6 +2049,7 @@
           "סוכר גבוה — 13.6 גרם ל-100 גרם"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2041,6 +2091,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2084,6 +2135,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2127,6 +2179,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2168,6 +2221,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2195,7 +2249,7 @@
           "fiber": null,
           "sodium": 58.0
         },
-        "ingredients": "חלב, רכיבי חלב (47.2%), סוכר, אפרסק מבושל (6%), מים, עמילן מעובד (E-1422), חומרי טעם וריח,  מייצב (גואר גם (במוצר כשר לפסח מייצב לוק וסט בין גאם)",
+        "ingredients": "חלב, רכיבי חלב (47.2%), סוכר, אפרסק מבושל (6%), מים, עמילן מעובד (E-1422), חומרי טעם וריח,  מייצב (גואר גם (במוצר כשר לפסח מייצב לוק וסט בין גאם) .",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -2209,6 +2263,41 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
+        "comparisonContext": null
+      }
+    },
+    {
+      "id": "bsip1_yogurt_7290112346797",
+      "name": "אקטיביה שיבולת שועל שזיף",
+      "imageUrl": null,
+      "score": 60,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": "full_data",
+      "insightLine": "נבדק על בסיס נתוני תזונה ורכיבים.",
+      "_cluster": "probiotic",
+      "barcode": "7290112346797",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 89.0,
+          "protein": 4.3,
+          "sugar": 8.9,
+          "fat": 2.5,
+          "satFat": 1.6,
+          "fiber": 1.2,
+          "sodium": 68.0
+        },
+        "ingredients": null,
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [],
+        "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2248,6 +2337,7 @@
           "סוכר גבוה — 13.8 גרם ל-100 גרם"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2291,6 +2381,7 @@
           "ערך שומן הרווי לא היה זמין במקור הנתונים.",
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2331,6 +2422,7 @@
           "סוכר גבוה — 13.1 גרם ל-100 גרם"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2372,6 +2464,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2399,7 +2492,7 @@
           "fiber": null,
           "sodium": 400.0
         },
-        "ingredients": "חלב בקר מפוסטר, מלפפונים (10%*),שמנת מפוסטרת 42% שומן, חלבוני חלב, מחית שמיר [שמיר (1.5%), שמן קנולה, מעכב חמצון (סודיום לקטט), מווס תי חומציות (חומצה לקטית, מלח לימון)], מלח, שום יבש (0.5%), חומרי טעם וריח",
+        "ingredients": "חלב בקר מפוסטר, מלפפונים (10%*),שמנת מפוסטרת 42% שומן, חלבוני חלב, מחית שמיר [שמיר (1.5%), שמן קנולה, מעכב חמצון (סודיום לקטט), מווס תי חומציות (חומצה לקטית, מלח לימון)], מלח, שום יבש (0.5%), חומרי טעם וריח.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [
@@ -2413,6 +2506,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2454,6 +2548,7 @@
           "ערך הסוכר לא היה זמין במקור הנתונים.",
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2481,7 +2576,7 @@
           "fiber": 1.7,
           "sodium": 30.0
         },
-        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, מחית תות (2%), סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלב מי גבינה), אבקת חלב, חומרי טעם ורי ח, רכז פרי המונק, חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם), עמילן טפיוקה מעובד, ויטמין D, חיידקי L.CASEI DN114-001.(חלב)",
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, מחית תות (2%), סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלב מי גבינה), אבקת חלב, חומרי טעם ורי ח, רכז פרי המונק, חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם), עמילן טפיוקה מעובד, ויטמין D, חיידקי L.CASEI DN114-001.(חלב).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
@@ -2489,6 +2584,7 @@
           "3 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2527,6 +2623,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2567,6 +2664,7 @@
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2575,7 +2673,7 @@
       "name": "מולר פרוטאין יוגור.פירות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EQE60_Z_P_7290102399819_1.png",
       "score": 50,
-      "grade": "C",
+      "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
@@ -2607,6 +2705,81 @@
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
+        "comparisonContext": null
+      }
+    },
+    {
+      "id": "bsip1_yogurt_7290102393176",
+      "name": "יוגורט אפרסק 3% שומן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UUR50_Z_P_7290102393176_1.png",
+      "score": 48,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": "full_data",
+      "insightLine": "4 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
+      "_cluster": "flavored",
+      "barcode": "7290102393176",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 88.0,
+          "protein": 4.1,
+          "sugar": 9.5,
+          "fat": 3.0,
+          "satFat": 1.8,
+          "fiber": 0.5,
+          "sodium": 40.0
+        },
+        "ingredients": "חלב מפוסטר, אפרסק (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מווסתי חומציות (חומצת ל ימון, מלח לימון), מייצב (פקטין).",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
+          "4 תוספים מזוהים"
+        ],
+        "unknowns": [],
+        "bottomLine": null,
+        "comparisonContext": null
+      }
+    },
+    {
+      "id": "bsip1_yogurt_7290102393947",
+      "name": "יוגורט קיווי 3% שומן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VYI56_Z_P_7290102393947_1.png",
+      "score": 48,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": "full_data",
+      "insightLine": "4.1 גרם חלבון — 3 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
+      "_cluster": "plain",
+      "barcode": "7290102393947",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 88.0,
+          "protein": 4.1,
+          "sugar": 9.8,
+          "fat": 3.0,
+          "satFat": 1.8,
+          "fiber": 0.5,
+          "sodium": 40.0
+        },
+        "ingredients": "חלב מפוסטר, קיווי (9%*), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסת ח ומציות (מלח לימון). *לאחר שיחזור.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
+          "3 תוספים מזוהים"
+        ],
+        "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2645,6 +2818,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2685,6 +2859,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2724,6 +2899,7 @@
           "סוכר גבוה — 13.5 גרם ל-100 גרם"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2764,6 +2940,44 @@
           "סוכר גבוה — 14.0 גרם ל-100 גרם"
         ],
         "unknowns": [],
+        "bottomLine": null,
+        "comparisonContext": null
+      }
+    },
+    {
+      "id": "bsip1_yogurt_7290102393190",
+      "name": "יוגורט פירות יער 3% שומן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UVF46_Z_P_7290102393190_1.png",
+      "score": 43,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": "full_data",
+      "insightLine": "4 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
+      "_cluster": "flavored",
+      "barcode": "7290102393190",
+      "retailer": "shufersal",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 90.0,
+          "protein": 4.1,
+          "sugar": 9.8,
+          "fat": 3.0,
+          "satFat": 1.8,
+          "fiber": 0.5,
+          "sodium": 45.0
+        },
+        "ingredients": "חלב מפוסטר, פירות יער (10%*) (אוכמניות, תות, פטל), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם ו ריח, מווסת חומציות (מלח לימון), מייצב (פקטין, רכז גזר שחור.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "עיבוד תעשייתי גבוה",
+          "4 תוספים מזוהים"
+        ],
+        "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2791,7 +3005,7 @@
           "fiber": 0.5,
           "sodium": 40.0
         },
-        "ingredients": "חלב מפוסטר, תות שדה (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, רכז גזר, חומרי טעם וריח, מייצב (פקטי ן), מווסתי חומציות (חומצת לימון, מלח לימון)",
+        "ingredients": "חלב מפוסטר, תות שדה (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, רכז גזר, חומרי טעם וריח, מייצב (פקטי ן), מווסתי חומציות (חומצת לימון, מלח לימון).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
@@ -2800,82 +3014,7 @@
           "3 תוספים מזוהים"
         ],
         "unknowns": [],
-        "comparisonContext": null
-      }
-    },
-    {
-      "id": "bsip1_yogurt_7290102393176",
-      "name": "יוגורט אפרסק 3% שומן",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UUR50_Z_P_7290102393176_1.png",
-      "score": 42,
-      "grade": "D",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
-      "insightLine": "4 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
-      "_cluster": "flavored",
-      "barcode": "7290102393176",
-      "retailer": "shufersal",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 88.0,
-          "protein": 4.1,
-          "sugar": 9.5,
-          "fat": 3.0,
-          "satFat": 1.8,
-          "fiber": 0.5,
-          "sodium": 40.0
-        },
-        "ingredients": "חלב מפוסטר, אפרסק (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מווסתי חומציות (חומצת ל ימון, מלח לימון), מייצב (פקטין). מכיל חיידקי BIO.n מאפיינים נוספים דל לקטוז",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "תרביות חיות ברכיבים"
-        ],
-        "limitingFactors": [
-          "עיבוד תעשייתי גבוה",
-          "4 תוספים מזוהים"
-        ],
-        "unknowns": [],
-        "comparisonContext": null
-      }
-    },
-    {
-      "id": "bsip1_yogurt_7290102393947",
-      "name": "יוגורט קיווי 3% שומן",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VYI56_Z_P_7290102393947_1.png",
-      "score": 42,
-      "grade": "D",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
-      "insightLine": "4.1 גרם חלבון — 3 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
-      "_cluster": "plain",
-      "barcode": "7290102393947",
-      "retailer": "shufersal",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 88.0,
-          "protein": 4.1,
-          "sugar": 9.8,
-          "fat": 3.0,
-          "satFat": 1.8,
-          "fiber": 0.5,
-          "sodium": 40.0
-        },
-        "ingredients": "חלב מפוסטר, קיווי (9%*), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסת ח ומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO.n מאפיינים נוספים דל לקטוז",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "תרביות חיות ברכיבים"
-        ],
-        "limitingFactors": [
-          "עיבוד תעשייתי גבוה",
-          "3 תוספים מזוהים"
-        ],
-        "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2903,7 +3042,7 @@
           "fiber": 0.5,
           "sodium": 40.0
         },
-        "ingredients": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס",
+        "ingredients": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
@@ -2912,6 +3051,7 @@
           "3 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2939,17 +3079,16 @@
           "fiber": 0.5,
           "sodium": 40.0
         },
-        "ingredients": "חלב מפוסטר, אננס (9.8%), סוכר, מים, פרוקטוז, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים (אינולין), מייצב (פקטין), מווסתי חומציו ת (מלח לימון, חומצת לימון), חומרי טעם וריח, מיצוי קרתמוס, רכז גזר. מכיל חיידקי BIO",
+        "ingredients": "חלב מפוסטר, אננס (9.8%), סוכר, מים, פרוקטוז, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים (אינולין), מייצב (פקטין), מווסתי חומציו ת (מלח לימון, חומצת לימון), חומרי טעם וריח, מיצוי קרתמוס, רכז גזר.",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "תרביות חיות ברכיבים"
-        ],
+        "positiveSignals": [],
         "limitingFactors": [
           "עיבוד תעשייתי גבוה",
           "4 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -2990,6 +3129,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3028,6 +3168,7 @@
           "6 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3064,6 +3205,7 @@
           "9 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3102,44 +3244,7 @@
           "6 תוספים מזוהים"
         ],
         "unknowns": [],
-        "comparisonContext": null
-      }
-    },
-    {
-      "id": "bsip1_yogurt_7290102393190",
-      "name": "יוגורט פירות יער 3% שומן",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UVF46_Z_P_7290102393190_1.png",
-      "score": 38,
-      "grade": "D",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": "full_data",
-      "insightLine": "4 תוספים ברכיבים — עיבוד תעשייתי גבוה — משפיע על הציון.",
-      "_cluster": "flavored",
-      "barcode": "7290102393190",
-      "retailer": "shufersal",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 90.0,
-          "protein": 4.1,
-          "sugar": 9.8,
-          "fat": 3.0,
-          "satFat": 1.8,
-          "fiber": 0.5,
-          "sodium": 45.0
-        },
-        "ingredients": "חלב מפוסטר, פירות יער (10%*) (אוכמניות, תות, פטל), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם ו ריח, מווסת חומציות (מלח לימון), מייצב (פקטין, רכז גזר שחור. מכיל חיידקי BIO.n מאפיינים נוספים דל לקטוז",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "תרביות חיות ברכיבים"
-        ],
-        "limitingFactors": [
-          "עיבוד תעשייתי גבוה",
-          "4 תוספים מזוהים"
-        ],
-        "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3176,6 +3281,7 @@
           "6 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3212,6 +3318,7 @@
           "8 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3250,6 +3357,7 @@
           "8 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3288,6 +3396,7 @@
           "4 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3326,6 +3435,7 @@
           "8 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3366,6 +3476,7 @@
         "unknowns": [
           "ערך הסיבים התזונתיים לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3408,6 +3519,7 @@
         "unknowns": [
           "ערך שומן הרווי לא היה זמין במקור הנתונים."
         ],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3446,6 +3558,7 @@
           "8 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     },
@@ -3454,7 +3567,7 @@
       "name": "יוגורט מוקצף אפרסק",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZUD38_Z_P_7290114313070_1.png",
       "score": 35,
-      "grade": "D",
+      "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
@@ -3484,6 +3597,7 @@
           "8 תוספים מזוהים"
         ],
         "unknowns": [],
+        "bottomLine": null,
         "comparisonContext": null
       }
     }

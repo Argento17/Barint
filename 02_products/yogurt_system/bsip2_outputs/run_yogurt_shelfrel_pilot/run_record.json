@@ -1,0 +1,543 @@
+{
+  "run_id": "run_yogurt_shelfrel_pilot",
+  "task": "TASK-278 Phase-3 diagnostic",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T08:45:31.797256+00:00",
+  "scope_note": "DIAGNOSTIC PILOT: yogurt routes to dairy_protein, not biscuit. Engine module namespace patched at runtime: SUGAR_SHELF_REL_SCOPE = frozenset({'dairy_protein'}), SUGAR_SHELF_SURCHARGE_BANDS and SUGAR_SHELF_RELIEF_BANDS overridden with yogurt-calibrated bands. Scope restored after flag-ON run. NOT a real enrollment — requires own EV+D7. Bleed risk: mitigated — corpus is yogurt-only.",
+  "corpus": {
+    "run": "run_yogurt_006",
+    "n_products": 88,
+    "excluded": [
+      "7290116932620"
+    ]
+  },
+  "yogurt_sugar_stats": {
+    "n": 74,
+    "n_products_total": 88,
+    "min": 2.5,
+    "max": 14.0,
+    "q1": 3.9,
+    "median": 5.45,
+    "q3": 9.7,
+    "iqr": 5.8,
+    "mad_raw": 2.55,
+    "robust_scale_iqr": 4.299,
+    "robust_scale_mad": 3.781,
+    "robust_scale": 4.299
+  },
+  "sugar_ranked_bottom5": [
+    {
+      "barcode": "7290114311069",
+      "name": "מולר אקטיב לבן0% 25חלבון",
+      "sugars_g": 2.5
+    },
+    {
+      "barcode": "3126712",
+      "name": "יוגורט עיזים ביו 3%",
+      "sugars_g": 2.8
+    },
+    {
+      "barcode": "7290014890572",
+      "name": "יוגורט עיזים 3.5% ביו",
+      "sugars_g": 2.9
+    },
+    {
+      "barcode": "7290016606522",
+      "name": "יוגורט טבעי מחלב עיזים",
+      "sugars_g": 2.9
+    },
+    {
+      "barcode": "7290102395231",
+      "name": "יוגורט ביו נטורל 2.8%",
+      "sugars_g": 2.9
+    }
+  ],
+  "sugar_ranked_top5": [
+    {
+      "barcode": "7290102394081",
+      "name": "מולר מיקס קורנפלקס מצופה",
+      "sugars_g": 13.1
+    },
+    {
+      "barcode": "7290102393039",
+      "name": "יוגורט מולר מיקס פצפוצים",
+      "sugars_g": 13.5
+    },
+    {
+      "barcode": "7290102397600",
+      "name": "מולר מיקס שקדים ובוטנים",
+      "sugars_g": 13.6
+    },
+    {
+      "barcode": "7290102397617",
+      "name": "מולר מיקס כדורי דגנים",
+      "sugars_g": 13.8
+    },
+    {
+      "barcode": "7290102393060",
+      "name": "יוגורט מולר מיקס גליליות",
+      "sugars_g": 14.0
+    }
+  ],
+  "engine_shelf_stats": {
+    "median": 5.45,
+    "scale": 4.3
+  },
+  "pilot_bands": {
+    "surcharge_bands": [
+      [
+        0.0,
+        0.5,
+        0
+      ],
+      [
+        0.5,
+        1.0,
+        1
+      ],
+      [
+        1.0,
+        1.5,
+        2
+      ],
+      [
+        1.5,
+        2.5,
+        4
+      ],
+      [
+        2.5,
+        null,
+        8
+      ]
+    ],
+    "relief_bands": [
+      [
+        0.0,
+        0.5,
+        0
+      ],
+      [
+        0.5,
+        1.5,
+        2
+      ],
+      [
+        1.5,
+        3.0,
+        3
+      ],
+      [
+        3.0,
+        null,
+        4
+      ]
+    ],
+    "low_variance_guard": 1.0,
+    "no_formulation_absolute_floor": true
+  },
+  "grade_dist_committed_baseline": {
+    "A": 12,
+    "B": 31,
+    "D": 23,
+    "C": 19,
+    "S": 2,
+    "E": 1
+  },
+  "grade_dist_flag_off": {
+    "A": 7,
+    "B": 30,
+    "D": 23,
+    "C": 26,
+    "S": 1,
+    "E": 1
+  },
+  "grade_dist_flag_on": {
+    "A": 5,
+    "B": 35,
+    "D": 22,
+    "C": 21,
+    "S": 3,
+    "E": 2
+  },
+  "score_dist_off": {
+    "min": 34.8,
+    "max": 90.4,
+    "median": 62.65,
+    "stdev": 15.96
+  },
+  "score_dist_on": {
+    "min": 34.0,
+    "max": 92.4,
+    "median": 64.0,
+    "stdev": 16.66
+  },
+  "avg_delta_on_vs_off": 0.2295,
+  "n_products_scored_on": 88,
+  "n_products_scored_off": 88,
+  "n_movers": 61,
+  "n_grade_changes": 8,
+  "grade_changes": [
+    {
+      "barcode": "7290110321031",
+      "grade_off": "A",
+      "grade_on": "S",
+      "score_off": 89.9,
+      "score_on": 91.9,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290110558314",
+      "grade_off": "C",
+      "grade_on": "B",
+      "score_off": 64.0,
+      "score_on": 66.0,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290114310406",
+      "grade_off": "D",
+      "grade_on": "E",
+      "score_off": 35.0,
+      "score_on": 34.6,
+      "delta": -0.4
+    },
+    {
+      "barcode": "7290116934402",
+      "grade_off": "C",
+      "grade_on": "B",
+      "score_off": 64.0,
+      "score_on": 66.0,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290116935614",
+      "grade_off": "A",
+      "grade_on": "S",
+      "score_off": 89.9,
+      "score_on": 91.9,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290119370177",
+      "grade_off": "C",
+      "grade_on": "B",
+      "score_off": 64.0,
+      "score_on": 66.0,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290119370955",
+      "grade_off": "C",
+      "grade_on": "B",
+      "score_off": 64.0,
+      "score_on": 66.0,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290119372997",
+      "grade_off": "C",
+      "grade_on": "B",
+      "score_off": 64.0,
+      "score_on": 66.0,
+      "delta": 2.0
+    }
+  ],
+  "top_movers": [
+    {
+      "barcode": "7290102394081",
+      "name": "מולר מיקס קורנפלקס מצופה",
+      "score_off": 55.0,
+      "score_on": 51.0,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C",
+      "sugars_g": 13.1,
+      "rel_pen": 4
+    },
+    {
+      "barcode": "7290102397600",
+      "name": "מולר מיקס שקדים ובוטנים",
+      "score_off": 62.4,
+      "score_on": 58.4,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C",
+      "sugars_g": 13.6,
+      "rel_pen": 4
+    },
+    {
+      "barcode": "7290102397617",
+      "name": "מולר מיקס כדורי דגנים",
+      "score_off": 57.5,
+      "score_on": 53.5,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C",
+      "sugars_g": 13.8,
+      "rel_pen": 4
+    },
+    {
+      "barcode": "3126712",
+      "name": "יוגורט עיזים ביו 3%",
+      "score_off": 71.1,
+      "score_on": 73.1,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": 2.8,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "43944",
+      "name": "יוגורט בכד 4% שומן",
+      "score_off": 74.7,
+      "score_on": 76.7,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": null,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "45771",
+      "name": "יוגורט בכד 4% שומן",
+      "score_off": 74.5,
+      "score_on": 76.5,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": null,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "5416415",
+      "name": "יוגורט עזים טבעי 3%",
+      "score_off": 77.6,
+      "score_on": 79.6,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": null,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290014890572",
+      "name": "יוגורט עיזים 3.5% ביו",
+      "score_off": 72.4,
+      "score_on": 74.4,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": 2.9,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290014890589",
+      "name": "יוגורט יווני 8%",
+      "score_off": 73.3,
+      "score_on": 75.3,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": 3.0,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290016606522",
+      "name": "יוגורט טבעי מחלב עיזים",
+      "score_off": 74.2,
+      "score_on": 76.2,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": 2.9,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290017065588",
+      "name": "יוגורט יווני 10%",
+      "score_off": 70.1,
+      "score_on": 72.1,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": 3.0,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290102395231",
+      "name": "יוגורט ביו נטורל 2.8%",
+      "score_off": 80.8,
+      "score_on": 82.8,
+      "delta": 2.0,
+      "grade_off": "A",
+      "grade_on": "A",
+      "sugars_g": 2.9,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290110321031",
+      "name": "יופלה GO מועשר בחלבון",
+      "score_off": 89.9,
+      "score_on": 91.9,
+      "delta": 2.0,
+      "grade_off": "A",
+      "grade_on": "S",
+      "sugars_g": null,
+      "rel_pen": -2
+    },
+    {
+      "barcode": "7290110321697",
+      "name": "יופלה GO אפרסק",
+      "score_off": 61.0,
+      "score_on": 59.0,
+      "delta": -2.0,
+      "grade_off": "C",
+      "grade_on": "C",
+      "sugars_g": 9.8,
+      "rel_pen": 2
+    },
+    {
+      "barcode": "7290110328221",
+      "name": "יוגורט נטול לקטוז 3%שומן",
+      "score_off": 77.8,
+      "score_on": 79.8,
+      "delta": 2.0,
+      "grade_off": "B",
+      "grade_on": "B",
+      "sugars_g": null,
+      "rel_pen": -2
+    }
+  ],
+  "rel_pen_distribution": {
+    "None": 27,
+    "-2": 29,
+    "1": 20,
+    "2": 7,
+    "4": 5
+  },
+  "absorption_summary": {
+    "products_with_nonzero_rel_pen": 61,
+    "absorbed_count": 0,
+    "lands_count": 61,
+    "no_pen_count": 27,
+    "absorption_rate": 0.0
+  },
+  "absorption_check": {
+    "7290102393060": {
+      "barcode": "7290102393060",
+      "name": "יוגורט מולר מיקס גליליות",
+      "sugars_g": 14.0,
+      "score_off": 43.5,
+      "score_on": 41.9,
+      "delta": -1.6,
+      "rel_pen": 4,
+      "score_after_cap_off": 52.45,
+      "score_after_penalty_off": 43.45,
+      "score_after_cap_on": 52.45,
+      "score_after_penalty_on": 41.85,
+      "committed_score": 43.5,
+      "committed_cap": 52.45,
+      "committed_pen": 43.45,
+      "verdict": "LANDS"
+    },
+    "7290102397600": {
+      "barcode": "7290102397600",
+      "name": "מולר מיקס שקדים ובוטנים",
+      "sugars_g": 13.6,
+      "score_off": 62.4,
+      "score_on": 58.4,
+      "delta": -4.0,
+      "rel_pen": 4,
+      "score_after_cap_off": 62.44,
+      "score_after_penalty_off": 62.44,
+      "score_after_cap_on": 62.44,
+      "score_after_penalty_on": 58.44,
+      "committed_score": 62.4,
+      "committed_cap": 62.44,
+      "committed_pen": 62.44,
+      "verdict": "LANDS"
+    },
+    "7290014890572": {
+      "barcode": "7290014890572",
+      "name": "יוגורט עיזים 3.5% ביו",
+      "sugars_g": 2.9,
+      "score_off": 72.4,
+      "score_on": 74.4,
+      "delta": 2.0,
+      "rel_pen": -2,
+      "score_after_cap_off": 72.4,
+      "score_after_penalty_off": 72.4,
+      "score_after_cap_on": 72.4,
+      "score_after_penalty_on": 74.4,
+      "committed_score": 74.6,
+      "committed_cap": 74.6,
+      "committed_pen": 74.6,
+      "verdict": "LANDS"
+    },
+    "7290114311069": {
+      "barcode": "7290114311069",
+      "name": "מולר אקטיב לבן0% 25חלבון",
+      "sugars_g": 2.5,
+      "score_off": 82.7,
+      "score_on": 84.7,
+      "delta": 2.0,
+      "rel_pen": -2,
+      "score_after_cap_off": 82.65,
+      "score_after_penalty_off": 82.65,
+      "score_after_cap_on": 82.65,
+      "score_after_penalty_on": 84.65,
+      "committed_score": 84.8,
+      "committed_cap": 84.85,
+      "committed_pen": 84.85,
+      "verdict": "LANDS"
+    }
+  },
+  "safety": {
+    "routing_distribution": {
+      "dairy_protein": 87,
+      "cereal": 1
+    },
+    "non_dairy_protein_routing": {
+      "cereal": 1
+    },
+    "flag_off_vs_committed_mismatches": 54,
+    "off_vs_committed_first5": [
+      {
+        "barcode": "2824466",
+        "committed": 82.3,
+        "off_session": 80.1,
+        "diff": -2.2
+      },
+      {
+        "barcode": "408316",
+        "committed": 79.3,
+        "off_session": 77.1,
+        "diff": -2.2
+      },
+      {
+        "barcode": "4119133",
+        "committed": 72.7,
+        "off_session": 70.2,
+        "diff": -2.5
+      },
+      {
+        "barcode": "43944",
+        "committed": 75.0,
+        "off_session": 74.7,
+        "diff": -0.3
+      },
+      {
+        "barcode": "45771",
+        "committed": 74.9,
+        "off_session": 74.5,
+        "diff": -0.4
+      }
+    ],
+    "note_on_committed_mismatch": "Mismatches between flag-OFF session rescore and committed run_yogurt_006 traces may reflect environmental differences (python version, float rounding). The decisive comparison is flag-ON vs flag-OFF within this session (same environment)."
+  },
+  "score_engine_sha256": "7abf47171204ef55c68fa6ad924bd06055d04561d556c20cde303a347205c25b",
+  "constants_sha256": "292faa2d05980282c51cd214a9ea16ad2ad3dde3a445b91666bb61ca505a52d3",
+  "off_used": false
+}

@@ -10,6 +10,17 @@ import re as _re
 # DEFAULT OFF → classifier byte-identical. See recalibration_p0_design_v1.md R4.
 RECAL_P0_ON = os.environ.get("BARI_RECAL_P0", "off").lower() == "on"
 
+# BSIP2-HC-002 revert gate (EV-099, D7 co-signed 2026-06-15).
+# HC-002 reclassifies short-ingredient dairy to NOVA-1, which suppressed the
+# dairy sat_fat inference (BARI_DAIRY_SAT_FAT_INFER) and caused hard cheeses
+# with unlabelled sat_fat (~28-30g fat) to escape the ISRAELI_RED_LABELS_2_PLUS
+# cap.  Per EV-099 governance ruling: HC-002 must be reverted for the SR+fat-tech
+# go-live — short-ingredient dairy must NOT be auto-reclassified to NOVA-1.
+# The NOVA-1 reclassification path (HC-002) now requires BARI_HC002_NOVA1=on;
+# default OFF ensures the revert is permanent until explicitly re-enabled by a
+# future D6+D7 governance approval.
+HC002_NOVA1_ON = os.environ.get("BARI_HC002_NOVA1", "off").lower() == "on"
+
 # R4 v1.1 (TASK-169A) — flavored/seasoned-variant markers that disqualify the plain-dairy
 # NOVA-3→2 demotion. Imported from constants so the list is single-sourced.
 try:
@@ -140,6 +151,34 @@ PHOSPHATE_EMULSIFYING_SALT_RE = _re.compile(
     _re.IGNORECASE,
 )
 
+# P60 / TASK-271 — dairy-single-token NOVA-1 exemption for bsip1_text_fallback provenance.
+# Overrides ONLY the text_fallback degradation guard when a single bare dairy token is present.
+# Cream (שמנת) intentionally excluded — conservative minimal scope (D7 condition 3).
+DAIRY_SINGLE_TOKEN_NOVA1_WHITELIST = frozenset({
+    "חלב",
+    "חלב פרה",
+    "חלב עיזים",
+    "חלב כבשים",
+})
+
+
+def _dairy_single_token_nova1_exempt(token: str) -> bool:
+    """True when token is a whitelisted bare dairy base (P60 / TASK-271).
+
+    Exact match for all entries. Multi-word entries (חלב פרה/עיזים/כבשים) also match
+    a single token whose suffix is pasteurization/homogenization text only
+    (e.g. חלב עיזים מפוסטר מהומגן). Bare חלב is exact-only.
+    """
+    token = str(token).strip()
+    if token in DAIRY_SINGLE_TOKEN_NOVA1_WHITELIST:
+        return True
+    for entry in sorted(DAIRY_SINGLE_TOKEN_NOVA1_WHITELIST, key=len, reverse=True):
+        if entry == "חלב":
+            continue
+        if token.startswith(entry + " "):
+            return True
+    return False
+
 
 def infer_nova(product: dict, l3_signals: dict) -> dict:
     """
@@ -182,10 +221,17 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
     # so the NOVA estimate reflects the actual uncertainty rather than a false 0.90.
     _mf = product.get("missing_fields") or []
     _prov_source = (product.get("ingredients_raw_provenance") or {}).get("source", "")
+    _text_fallback_degraded = _prov_source == "bsip1_text_fallback"
+    if (_text_fallback_degraded
+            and ing_count == 1
+            and additive_count == 0
+            and ingredients
+            and _dairy_single_token_nova1_exempt(ingredients[0])):
+        _text_fallback_degraded = False
     _ingredient_data_degraded = (
         ing_quality in ("missing", "corrupted", "malformed")
         or "ingredients_list" in _mf
-        or _prov_source == "bsip1_text_fallback"
+        or _text_fallback_degraded
     )
     if ing_count == 1 and additive_count == 0 and not has_sweetener and not _ingredient_data_degraded:
         return {
@@ -250,6 +296,7 @@ def infer_nova(product: dict, l3_signals: dict) -> dict:
     _hc002_artificial_color_block = has_color and _has_artificial_color_early
 
     if (RECAL_P0_ON
+            and HC002_NOVA1_ON          # EV-099: requires explicit opt-in (default OFF = reverted)
             and _product_type_dairy_early
             and ing_count <= 6
             and not _hc002_blocking_cats_present

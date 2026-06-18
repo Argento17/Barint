@@ -1,0 +1,544 @@
+{
+  "_meta": {
+    "draft": "yogurts_copy_regen_draft_v1",
+    "authored": "2026-06-12",
+    "task": "TASK-256 P14",
+    "run_id": "run_yogurt_006_shipcfg2",
+    "product_count": 17,
+    "status": "DRAFT — awaiting Nutrition Agent claim gate",
+    "sources": [
+      "bari-web/src/data/comparisons/yogurts_frontend_v4.json",
+      "02_products/yogurt_system/bsip2_outputs/run_yogurt_006_shipcfg2/products/products/*/bsip2_trace.json",
+      "02_products/yogurt_system/s_grade_explanations_v1.md"
+    ],
+    "note": "DO NOT merge into yogurts_frontend_v4.json until claim gate passes. S-product copy is VERBATIM from s_grade_explanations_v1.md (Nutrition-approved). FLAG for Nutrition Agent: the verbatim S caveat paragraph in category_note (from s_grade_explanations_v1.md SHARED METHODOLOGY NOTE) contains two em-dashes per the copy governance rule. Content Agent cannot alter verbatim-approved text. Nutrition Agent to either approve as-is or supply a revised version before go-live."
+  },
+  "page_strings": {
+    "hero_eyebrow": "יוגורטים — שופרסל",
+    "hero_title": "שני מוצרים הגיעו ל-S. שאר המדף נפרס בין B ל-D.",
+    "prologue_1": "בקטגוריית היוגורטים בשופרסל ניתחנו 17 מוצרים. שניים מהם, שתי גרסאות של דנונה פרו, קיבלו ציון S — הציון הגבוה ביותר בסולם, שמשמעותו שכל מרכיבי הניתוח יצאו נקיים ולא הופעל אף קנס.",
+    "prologue_2": "אחריהם, בטווח A, נמצאים שני מוצרי חלבון גבוה נוספים: יופלה GO מועשר בחלבון ומולר אקטיב לבן. שניהם נתקעו ממש מתחת ל-S בגלל היבט אחד שנשאר מאחור.",
+    "prologue_3": "מרבית היוגורטים הלבנים הרגילים (ביו תנובה, ללא לקטוז, יווני) נחתו ב-B. ההפרש ביניהם לבין ה-S נובע כמעט כולו מפוטנציאל החלבון: אצל הפשוטים הוא עומד על 5–6 גרם ל-100 גרם, לעומת 10–10.5 גרם אצל ה-S.",
+    "prologue_4": "ממנגו ווניל ועד קורנפלקס — ברגע שנוספים תוספות, ממתיקים, ציפויים או רשימת רכיבים ארוכה, הציון יורד ל-C ול-D. אין כאן הפתעות: ההפרש בין הפשוט לממותג הוא המדף שאתם רואים.",
+    "methodology_1": "הציון שברי נותנת מבוסס על ניתוח של עשרה היבטים: דרגת העיבוד של המוצר, צפיפות רכיבי התזונה, צפיפות קלורית, איכות הפחמימות, כמות ואיכות החלבון, תוספות ומצרכים מלאכותיים, כוח השובע, טיב השומן, עמידה ברגולציה ושלמות המזון.",
+    "methodology_2": "ביוגורטים, הגורם שמשמש הכי הרבה כמגביל הוא כמות החלבון ומקורו. יוגורט עם 10 גרם חלבון ל-100 גרם יקבל ציון חלבון גבוה בהרבה מיוגורט עם 3.6 גרם — ולכן הפוטנציאל של כל גביע קבוע בנוסחה שלו.",
+    "methodology_3": "בכל מוצר מעובד (יוגורט עם פירות, ציפוי, קורנפלקס, ממתיק) הניתוח מפעיל מגבלת ניקוד על בסיס עוצמת העיבוד ומספר התוספות. מגבלה זו מציבה תקרה שהציון לא יכול לחצות, בלי קשר לערכים התזונתיים.",
+    "methodology_4": "סיבים תזונתיים לא נכנסו לניתוח הקטגוריה הזו. מוצרי חלב רבים לא מדווחים על סיבים בתווית, ולכן הגורם הזה הוצא מהחישוב כדי למנוע הטיה בין מוצרים.",
+    "category_note": "הערת קטגוריה — יוגורטים\n\nהמספר הכי גדול על הגביע אינו בהכרח הסיגנל שמניע את הציון. יוגורט שמכריז על 20 גרם חלבון בגביע יכול לעמוד על שני קצות הסולם: הכל תלוי אם החלבון הגיע עם תוספות וממתיקים או בלי. דנונה פרו 21 ודנונה פרו וניל הם אותה משפחה של מותג, ובין השניים יש הפרש של 20 ציונים.\n\nשני מוצרי הדנונה פרו (20 ו-21 גרם חלבון) קיבלו ציון S — הציון הגבוה ביותר בסולם. שניהם מכילים שני מרכיבים בלבד ועברו את כל שערי הניתוח ללא קנסות. ציון S בקטגוריית יוגורטים נדיר: מתוך 87 מוצרים שנותחו, רק שניים הגיעו אליו. זהו ממצא מבנה — לא תקרה שהוטלה — ומשקף ניקוד אמיתי.\n\nסיבים תזונתיים אינם חלק מניתוח הקטגוריה הזו. מוצרי חלב רבים אינם מדווחים על סיבים בתווית, ולכן הוא הוצא מהחישוב במלואו כדי להבטיח השוואה שוויונית בין כל המוצרים בקטגוריה."
+  },
+  "products": [
+    {
+      "barcode": "7290112336712",
+      "name": "דנונה פרו 21 חלבון 0%",
+      "badge": {
+        "score": 92.6,
+        "grade": "S"
+      },
+      "insightLine": "שני מרכיבים בלבד: חלב מפוסטר וחיידקי יוגורט. ללא חומרי טעם, ממתיקים או תוספות.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "שני מרכיבים בלבד: חלב מפוסטר וחיידקי יוגורט",
+          "10.5 גרם חלבון ל-100 גרם ממקור שלם",
+          "58 קילוקלוריות ל-100 גרם",
+          "אפס תוספות, ממתיקים וסמיכות",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "נתוני שומן רווי לא זמינים על התווית",
+          "סיבים תזונתיים לא מדווחים (לא נספרים בקטגוריה זו)"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים חסרים בתווית — שומן רווי וסיבים תזונתיים. הציון מבוסס על מה שקיים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "s_grade_explanation": "דנונה פרו 21 הוא אחד מיחידים בקטגוריית היוגורטים שקיבל ציון S. הציון נובע משלושה גורמים שמצטברים: הרכב מינימלי — רק חלב מפוסטר וחיידקי יוגורט, ללא כל תוסף, ממתיק או סמיכה; צפיפות קלורית נמוכה במיוחד — 58 קילוקלוריות ל-100 גרם ללא שומן; וריכוז חלבון גבוה — 10.5 גרם ל-100 גרם, כולו ממקור מלא. כל מרכיב ניקוד שנבחן — עיבוד, תוספות, טיב השומן, רמת הסוכר, תרומת חלבון — יצא נקי. לא הופעלה אף הגבלת ניקוד.",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "no penalty fired",
+        "fermentation bonus Path A +8",
+        "protein_quality=80.0 and nutrient_density=80.0 (10.5g protein)"
+      ]
+    },
+    {
+      "barcode": "7290110565527",
+      "name": "דנונה PRO 20 גרם חלבון",
+      "badge": {
+        "score": 90.6,
+        "grade": "S"
+      },
+      "insightLine": "שני מרכיבים: חלב מפוסטר וחיידקי יוגורט. ללא תוספות, ממתיקים או חומרי סמיכה.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "שני מרכיבים בלבד: חלב מפוסטר וחיידקי יוגורט",
+          "10 גרם חלבון ל-100 גרם ממקור שלם",
+          "70 קילוקלוריות ל-100 גרם",
+          "אפס תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "שומן רווי לא מדווח בתווית",
+          "סיבים תזונתיים לא מדווחים (לא נספרים בקטגוריה זו)"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים חסרים בתווית — שומן רווי וסיבים תזונתיים. הציון מבוסס על מה שקיים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "s_grade_explanation": "דנונה פרו 20 קיבל ציון S על בסיס אותו עיקרון כמו תאומו ה-21 גרם: מרכיב יחיד — חלב מפוסטר עם חיידקי יוגורט — ללא שום תוספת. בהשוואה לגרסת ה-21 גרם, מוצר זה מכיל 1.5 גרם שומן ל-100 גרם (לעומת 0%) ו-10 גרם חלבון (לעומת 10.5 גרם), מה שמוריד אותו ב-2 נקודות. בכל שאר המרכיבים — עיבוד, תוספות, רמת הסוכר, רגולציה — אין הבדל: שני המוצרים עברו את כל שערי הניקוד ולא הופעל אף קנס.",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "no penalty fired",
+        "fermentation bonus Path A +8",
+        "protein_quality=75.0 (10g protein vs 10.5g)",
+        "fat_quality=83.0 (1.5g fat vs 0g)"
+      ]
+    },
+    {
+      "barcode": "7290110321031",
+      "name": "יופלה GO מועשר בחלבון",
+      "badge": {
+        "score": 89.9,
+        "grade": "A"
+      },
+      "insightLine": "10 גרם חלבון ל-100 גרם, 5 רכיבים — חלב, חלבוני חלב ואבקת חלב.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם",
+          "72 קילוקלוריות ל-100 גרם — קלילות יחסית",
+          "ללא תוספות ומתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "חלבון מגיע ממקור מעורב (חלב מלא + חלבוני חלב + אבקה) — פוטנציאל חלבון נמוך מ-S",
+          "סוכרים לא מדווחים בתווית",
+          "שומן רווי לא מדווח"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "נתוני סוכרים ושומן רווי חסרים בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "protein_quality=63.8 lowest dimension (mixed protein source: חלבוני חלב + אבקת חלב, multiplier 0.85)"
+      ]
+    },
+    {
+      "barcode": "7290114311069",
+      "name": "מולר אקטיב לבן 0% 25 חלבון",
+      "badge": {
+        "score": 84.8,
+        "grade": "A"
+      },
+      "insightLine": "12.5 גרם חלבון ל-100 גרם, 3 רכיבים: חלב מפוסטר, רכיבי חלב וסיבים תזונתיים.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "12.5 גרם חלבון ל-100 גרם — הגבוה בקטגוריה",
+          "65 קילוקלוריות ל-100 גרם",
+          "0% שומן",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "מידת עיבוד אינה ודאית — הנתונים מאפשרים הערכה חלקית בלבד",
+          "שומן רווי לא מדווח"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי חסר בתווית, ומידת העיבוד הוערכה בביטחון נמוך. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "processing_quality=64.0 lowest dimension (NOVA 2 low confidence)"
+      ]
+    },
+    {
+      "barcode": "7290014758100",
+      "name": "יוגורט ביו תנובה 3%",
+      "badge": {
+        "score": 79.7,
+        "grade": "B"
+      },
+      "insightLine": "יוגורט ביו קלאסי: 5.3 גרם חלבון, 4 רכיבים, חיידקי ביפידוס.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "4 רכיבים בלבד: חלב, אבקת חלב, חלבוני חלב, חיידקי ביפידוס",
+          "64 קילוקלוריות ל-100 גרם",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "5.3 גרם חלבון ל-100 גרם — כחצי מגרסאות ה-S",
+          "סיבים תזונתיים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "low_extraction",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "protein_quality=31.7 lowest dimension (protein=5.3g, mixed source, multiplier 0.85)"
+      ]
+    },
+    {
+      "barcode": "7290014758117",
+      "name": "יוגורט ביו תנובה 1.5%",
+      "badge": {
+        "score": 78.4,
+        "grade": "B"
+      },
+      "insightLine": "1.5% שומן, 5.2 גרם חלבון — בסיס רזה, חלבון מתון.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "56 קילוקלוריות ל-100 גרם — בין הקלילים בקטגוריה",
+          "1.5% שומן",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "5.2 גרם חלבון ל-100 גרם — מוגבל ביחס לגרסאות החלבון הגבוה",
+          "מידת עיבוד אינה ודאית — הנתונים מאפשרים הערכה חלקית בלבד",
+          "שומן רווי לא מדווח"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי חסר, וסיווג מידת העיבוד אינו ודאי. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_3_PROCESSED cap=94.8 fired but NOT binding (score 78.4 below cap)",
+        "real driver: dimension combination — nutrient_density=36.5, protein_quality=31.0 lowest (protein=5.2g, mixed source)"
+      ]
+    },
+    {
+      "barcode": "7290110328221",
+      "name": "יוגורט נטול לקטוז 3% שומן",
+      "badge": {
+        "score": 77.8,
+        "grade": "B"
+      },
+      "insightLine": "נטול לקטוז, 3% שומן — הרכב דומה ליוגורט הרגיל, בלי הלקטוז.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "64 קילוקלוריות ל-100 גרם",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "5 גרם חלבון ל-100 גרם — מוגבל",
+          "מידת עיבוד אינה ודאית — הנתונים מאפשרים הערכה חלקית בלבד",
+          "סוכרים ושומן רווי לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סוכרים ושומן רווי חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_3_PROCESSED cap=94.8 fired but NOT binding (score 77.8 below cap)",
+        "real driver: protein_quality=29.8 lowest (protein=5.0g, mixed source)"
+      ]
+    },
+    {
+      "barcode": "7290107936309",
+      "name": "יוגורט בסגנון יווני 6.5%",
+      "badge": {
+        "score": 76.6,
+        "grade": "B"
+      },
+      "insightLine": "3 רכיבים, 5.5 גרם חלבון — יוגורט יווני בסיסי, צפיפות קלורית בינונית.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "101 קילוקלוריות ל-100 גרם — גבוה מהיוגורטים הרזים",
+          "5.5 גרם חלבון ל-100 גרם — מתחת לטווח הגבוה",
+          "סיבים תזונתיים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "low_extraction",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "nutrient_density=38.8 lowest dimension (protein=5.5g, 101kcal density reduces score)"
+      ]
+    },
+    {
+      "barcode": "7290014890589",
+      "name": "יוגורט יווני 8%",
+      "badge": {
+        "score": 75.5,
+        "grade": "B"
+      },
+      "insightLine": "8% שומן, 6 גרם חלבון — יוגורט יווני שמן. הציון משקף צפיפות תזונתית נמוכה, לא קנס שומן.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "3 רכיבים בלבד",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "109 קילוקלוריות ל-100 גרם",
+          "6 גרם חלבון ל-100 גרם — מתון ביחס לקלוריות",
+          "סיבים תזונתיים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "low_extraction",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "nutrient_density=42.5 lowest dimension (protein=6.0g relative to 109kcal)"
+      ]
+    },
+    {
+      "barcode": "7290012645297",
+      "name": "יוגורט עיזים ביו",
+      "badge": {
+        "score": 75.3,
+        "grade": "B"
+      },
+      "insightLine": "יוגורט עיזים: 3.6 גרם חלבון, 3 רכיבים — פחות חלבון מהיוגורט הפרה הרגיל.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "3 רכיבים בלבד: חלב עיזים, אבקת חלב, חיידקי יוגורט",
+          "62 קילוקלוריות ל-100 גרם",
+          "ללא תוספות וממתיקים",
+          "ללא תוויות אזהרה אדומות ישראליות"
+        ],
+        "limitingFactors": [
+          "3.6 גרם חלבון ל-100 גרם — הנמוך ביותר ביוגורטים הלבנים",
+          "סיבים תזונתיים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "low_extraction",
+      "trace_drivers_cited": [
+        "no cap fired",
+        "nutrient_density=24.5 lowest dimension (protein=3.6g — lowest protein in plain base cluster)"
+      ]
+    },
+    {
+      "barcode": "7290112330352",
+      "name": "דנונה PRO 20 גר׳ וניל 0%",
+      "badge": {
+        "score": 72,
+        "grade": "B"
+      },
+      "insightLine": "אותו מותג כמו ה-S, תוספת וניל — הפרש של 20 ציונים.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם",
+          "65 קילוקלוריות ל-100 גרם",
+          "0% שומן"
+        ],
+        "limitingFactors": [
+          "3 קטגוריות תוספות זוהו — מגבילות את הציון",
+          "מידת עיבוד נאמדה כ-3 בביטחון נמוך",
+          "שומן רווי וסיבים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי וסיבים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "ADDITIVE_MARKERS_3_PLUS cap=72 BINDS (binding_cap=72)",
+        "NOVA_PROXY_3_PROCESSED also fired",
+        "additive_quality=46.0 (3 additive categories detected)"
+      ]
+    },
+    {
+      "barcode": "7290116934402",
+      "name": "יוגורט אוורירי GO מנגו",
+      "badge": {
+        "score": 64,
+        "grade": "C"
+      },
+      "insightLine": "10 גרם חלבון, אבל 3 קטגוריות תוספות ומעובד מאוד — הפרש מ-S בגלל הרכיבים, לא החלבון.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם",
+          "64 קילוקלוריות ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "3 קטגוריות תוספות זוהו, כולל קרגינן",
+          "סוכרים, שומן רווי וסיבים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "נתונים תזונתיים מרכזיים חסרים בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 and ADDITIVE_MARKERS_3_PLUS cap=72 both fired",
+        "binding_cap=68 (NOVA4 tighter)",
+        "additive_quality=28.0 with carrageenan F1 delta"
+      ]
+    },
+    {
+      "barcode": "7290110328764",
+      "name": "יוגורט GO קרמי תות",
+      "badge": {
+        "score": 62,
+        "grade": "C"
+      },
+      "insightLine": "10 גרם חלבון, עיבוד גבוה ורשימת תוספות — אותו עיקרון כמו גרסת המנגו.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם",
+          "54 קילוקלוריות ל-100 גרם — קלילות יחסית"
+        ],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "3 קטגוריות תוספות זוהו",
+          "שומן רווי וסיבים לא מדווחים"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי וסיבים חסרים בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 and ADDITIVE_MARKERS_3_PLUS cap=72 both fired",
+        "binding_cap=68 (NOVA4 tighter)",
+        "score_after_cap=68.0 (weighted score was 70.44 above cap, so cap bound)"
+      ]
+    },
+    {
+      "barcode": "7290110321680",
+      "name": "יופלה GO תות",
+      "badge": {
+        "score": 57.7,
+        "grade": "C"
+      },
+      "insightLine": "10 גרם חלבון על הגביע, 4 קטגוריות תוספות ברשימת הרכיבים.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "4 קטגוריות תוספות זוהו",
+          "13 רכיבים — רשימה ארוכה מהממוצע",
+          "98 קילוקלוריות ל-100 גרם",
+          "9.6 גרם סוכרים ל-100 גרם"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי וסיבים חסרים בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 binding",
+        "ADDITIVE_MARKERS_3_PLUS cap=72 also fired",
+        "LONG_INGREDIENT_LIST penalty -4 applied",
+        "additive_quality=28.0"
+      ]
+    },
+    {
+      "barcode": "7290102394081",
+      "name": "מולר מיקס קורנפלקס מצופה",
+      "badge": {
+        "score": 55,
+        "grade": "C"
+      },
+      "insightLine": "יוגורט + ציפוי קורנפלקס מעובד מאוד: 12 רכיבים, 13.1 גרם סוכרים ל-100 גרם.",
+      "expansion": {
+        "confidenceLabel": "ניתוח מלא",
+        "positiveSignals": [
+          "5.6 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "3 קטגוריות תוספות זוהו",
+          "125 קילוקלוריות ל-100 גרם — הגבוה בקטגוריה ללא D",
+          "13.1 גרם סוכרים ל-100 גרם"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. מידת העיבוד הוערכה בביטחון נמוך.",
+      "confidence_sub_reason": "low_extraction",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 and ADDITIVE_MARKERS_3_PLUS cap=72 both fired",
+        "binding_cap=68 (NOVA4 tighter)",
+        "score_after_cap=54.99 already below 68"
+      ]
+    },
+    {
+      "barcode": "7290102399819",
+      "name": "מולר פרוטאין יוגורט פירות יער",
+      "badge": {
+        "score": 49.9,
+        "grade": "D"
+      },
+      "insightLine": "חלבון מודגש, אבל 4 קטגוריות תוספות, 9.5 גרם סוכרים ו-14 רכיבים.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [
+          "10 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "4 קטגוריות תוספות זוהו",
+          "14 רכיבים — רשימה ארוכה",
+          "מספר מקורות סוכר מוסף ברשימת הרכיבים",
+          "9.5 גרם סוכרים ל-100 גרם",
+          "101 קילוקלוריות ל-100 גרם"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "שומן רווי חסר בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "missing_nutrition",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 binding_cap",
+        "MULTIPLE_ADDED_SUGAR_MARKERS penalty -5 fired",
+        "LONG_INGREDIENT_LIST penalty -4 fired",
+        "binding_cap=68.0, score_after_cap=62.87, then penalties push to 49.9"
+      ]
+    },
+    {
+      "barcode": "7290010471669",
+      "name": "יוגורט קראנצ תות קורנפלק",
+      "badge": {
+        "score": 36.3,
+        "grade": "D"
+      },
+      "insightLine": "19 רכיבים, 5 קטגוריות תוספות, סירופ גלוקוז — הציון הנמוך ביותר בדף.",
+      "expansion": {
+        "confidenceLabel": "ניתוח חלקי",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "מוצר מעובד מאוד — רשימת הרכיבים ועוצמת העיבוד מגבילות את הציון",
+          "5 קטגוריות תוספות זוהו",
+          "19 רכיבים",
+          "מכיל סירופ גלוקוז",
+          "104 קילוקלוריות ל-100 גרם",
+          "9.9 גרם סוכרים ל-100 גרם",
+          "3.6 גרם חלבון בלבד ל-100 גרם"
+        ]
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "סיבים תזונתיים חסרים בתווית. הציון מבוסס על הנתונים הזמינים.",
+      "confidence_sub_reason": "partial_field",
+      "trace_drivers_cited": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED cap=68 and ADDITIVE_MARKERS_5_PLUS cap=60 both fired",
+        "binding_cap=60 (ADDITIVE_MARKERS_5_PLUS is tighter)",
+        "score_after_cap=46.26 (weighted was already below both caps at 46.26)",
+        "all low dimensions: processing_quality=35, nutrient_density=24.5, additive_quality=10, whole_food_integrity=13"
+      ]
+    }
+  ]
+}

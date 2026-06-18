@@ -26,9 +26,9 @@
     "sodium_mg": 24.0
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+  "ingredients_text_he": "גרגירי חומוס",
   "ingredients_list": [
-    "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס"
+    "גרגירי חומוס"
   ],
   "allergens_contains": [],
   "allergens_may_contain": [],
@@ -66,18 +66,18 @@
   },
   "bsip1_converted_at": "2026-05-30T20:50:27",
   "bsip1_conversion_source": "TASK-034",
-  "ingredients_raw": "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+  "ingredients_raw": "גרגירי חומוס",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
     "populated_at": "bsip1_enrichment_v1",
     "missing": false,
-    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he. TASK-300 remediation: nutrition panel text stripped from ingredient field; real ingredient is the text before the ערכים תזונתיים marker."
   },
   "ingredient_order": [
     {
       "position": 1,
-      "text": "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+      "text": "גרגירי חומוס",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -116,5 +116,15 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "enrichment_warnings": [],
+  "_data_remediation": {
+    "task": "TASK-300",
+    "applied_at": "2026-06-17",
+    "defect": "ingredient_field_contains_nutrition_panel_text",
+    "root_cause": "Shufersal HTML scraper captured ingredients starting at the label text block. The scraper parsed the real ingredient (raw chickpeas: first word/phrase) but continued concatenating the full nutrition panel text that follows on the label. No BSIP0 HTML file exists for this product (bsip0_file_not_found); fix applied by truncating at the 'ערכים תזונתיים' panel marker.",
+    "before_ingredients_text_he": "גרגירי חומוס ערכים תזונתיים 100 גרם 17.4 גרם סיבים תזונתיים 10.7 גרם סוכרים מתוך פחמימות 339 קל אנרגיה 19.3 גרם חלבונים 43.2 גרם פחמימות 6 גרם שומנים 24 מג נתרן 0.6 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס ערכים תזונתיים ל-100 גרם מוצר מבושל 7.6 גרם סיבים תזונתיים 4.8 גרם סוכרים מתוך פחמימות 152 קל אנרגיה 8.8 גרם חלבונים 19.8 גרם פחמימות 2.4 גרם שומנים 6.7 מג נתרן 0.2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס",
+    "after_ingredients_text_he": "גרגירי חומוס",
+    "source": "direct_product_scrape_text_truncation",
+    "evidence": "Panel marker 'ערכים תזונתיים' found in ingredients_text_he; real ingredient is the content preceding the marker."
+  }
 }

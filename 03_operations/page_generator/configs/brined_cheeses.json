@@ -1,0 +1,63 @@
+{
+  "_comment": "Brined cheeses category config. Corpus: run_brined_cheeses_002 (hygiene-cleaned, per live _meta.provenance). Run: run_brined_005 (48 traces). Live brined_cheeses_frontend_v2.json displays 36 products (12 v1 products dropped in v2 editorial pass); _meta.product_count=48 is stale. Score-provenance: run_brined_005 final_score_estimate matches all 36 live barcodes on rounded comparison; grades match floor policy. Exclusions = 12 run-universe barcodes present in v1 but absent from v2.",
+  "category": "brined_cheeses",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\brined_cheeses\\bsip2_outputs\\run_brined_005\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\brined_cheeses_frontend_v2.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_RECAL_P0_YOGURT_TRIM": "off",
+      "BARI_GRAD_SODIUM_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_TASK144_FIXES": "off",
+      "BARI_TASK250_CONF": "off",
+      "BARI_GLASSBOX_D5D6": "off",
+      "BARI_GLASSBOX_W15": "off",
+      "BARI_GLASSBOX_W2": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on"
+    },
+    "shelf_rel": {
+      "nutrient": "sodium_mg",
+      "median": 1000.0,
+      "scale": 266.25,
+      "scale_type": "stdev",
+      "api": "sodium_ev056",
+      "_frozen_source": "run_brined_005/run_record.json SHELF_SODIUM_MEDIAN_MG=1000.0 SHELF_SODIUM_STDEV_MG=266.25 (2026-06-15)"
+    },
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output",
+    "corpus_filter": "C:\\Bari\\02_products\\brined_cheeses\\factory_run_001\\corpus_filter.json",
+    "bsip1_glob": "bsip1_brinedcheese_*.json",
+    "_source": "batch_run_brined_cheeses_005.py"
+  },
+  "exclusions": [
+    {"barcode": "2107071", "reason": "out_of_scope: v2_curation_drop_goat_feta_variant"},
+    {"barcode": "2385455", "reason": "out_of_scope: v2_curation_drop_bulgarit_24_variant"},
+    {"barcode": "2511229", "reason": "out_of_scope: v2_curation_drop_bulgarit_16_variant"},
+    {"barcode": "2511236", "reason": "out_of_scope: v2_curation_drop_bulgarit_5_variant"},
+    {"barcode": "2511243", "reason": "out_of_scope: v2_curation_drop_bulgarit_16_traditional"},
+    {"barcode": "4861056", "reason": "out_of_scope: v2_curation_drop_tsfatit_5_duplicate"},
+    {"barcode": "4861070", "reason": "out_of_scope: v2_curation_drop_tsfatit_hard_24"},
+    {"barcode": "5992872", "reason": "out_of_scope: v2_curation_drop_tsfatit_in_water"},
+    {"barcode": "7290114310550", "reason": "out_of_scope: v2_curation_drop_goat_feta_5"},
+    {"barcode": "7296073644996", "reason": "out_of_scope: v2_curation_drop_tsfatit_grated_24"},
+    {"barcode": "7296073730330", "reason": "out_of_scope: v2_curation_drop_fetina_style"},
+    {"barcode": "8606370", "reason": "out_of_scope: v2_curation_drop_fetina_style"}
+  ],
+  "extension_fields": [],
+  "render_fields": ["novaGroup", "d4_additives"],
+  "_render_fields_note": "TASK-316: novaGroup from trace.nova_proxy; d4_additives from detect_additives_d4+w2. Live schema: brined_cheeses_frontend_v2.json.",
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

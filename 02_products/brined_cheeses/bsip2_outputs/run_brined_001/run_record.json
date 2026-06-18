@@ -1,0 +1,240 @@
+{
+  "run_id": "run_brined_001",
+  "task": "TASK-266",
+  "category_slug": "brined-cheeses",
+  "category_context": "dairy_protein",
+  "generated": "2026-06-13T07:34:35.110667+00:00",
+  "engine": "proto_v0 / score_engine.py (unmodified)",
+  "flag_config": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_GLASSBOX_W4": "on"
+  },
+  "sodium_path": "brined_food 0.7 weight (EV-052)",
+  "hp_suppression": "NOT implemented (D7 deferred) - let fire, fired 0/48",
+  "off_used": false,
+  "in_scored_count": 48,
+  "bsip0_matched": 48,
+  "bsip1": {
+    "enriched": 48,
+    "errors": 0,
+    "ing_coverage_pct": 79,
+    "nova_dist": {
+      "NOVA_1": 16,
+      "NOVA_2": 17,
+      "NOVA_3": 15
+    }
+  },
+  "bsip2": {
+    "scored": 48,
+    "errors": 0
+  },
+  "score_distribution": {
+    "min": 35.0,
+    "max": 82.4,
+    "median": 39.0,
+    "range": 47.4,
+    "histogram": {
+      "30-39": 28,
+      "60-69": 15,
+      "70-79": 3,
+      "80-89": 2
+    },
+    "grade_dist": {
+      "A": 2,
+      "B": 17,
+      "C": 1,
+      "D": 28
+    }
+  },
+  "anti_collapse_verdict": "SPREAD_HONEST: range=47.4pts (35-82.4), 4 grade bands A/B/C/D. NOT collapse. Score geography: 5 products no-cap (A/B), 15 products cap72 (B/C), 28 products cap45 (D). ISRAELI_RED_LABELS_2_PLUS cap dominates mid-high fat+high sodium segment.",
+  "structural_finding_2redlabel_cap": {
+    "cap45_count": 28,
+    "cap72_count": 15,
+    "no_cap_count": 5,
+    "explanation": "ISRAELI_RED_LABELS_2_PLUS (45) fires when both sat_fat AND sodium red labels present. 16%+ fat brined cheese typically has sat_fat red label; 700mg+ sodium adds sodium red label. The brined_food 0.7 weight raises the standalone HIGH_SODIUM_700MG_PLUS from 60 to 72, but the 2-red-label cap at 45 is independent and governs when both labels are present. This is honest: these products genuinely have two compounding nutritional concerns."
+  },
+  "brined_flag": {
+    "fired_count": 45,
+    "not_fired_count": 3,
+    "note": "45/48 fired. 2 not fired: sodium=300mg (correctly below 500 threshold). 1 not fired: barcode 3075805, construct-form name not matching keyword list.",
+    "not_fired_list": [
+      {
+        "barcode": "3075805",
+        "name_he": "גבינת טמרה מלוחה בקר 17%",
+        "sodium_mg": null,
+        "score": 39.0,
+        "grade": "D",
+        "reason": "name construct-form not in keyword list"
+      },
+      {
+        "barcode": "4861070",
+        "name_he": "גבינה צפתית קשה 24%",
+        "sodium_mg": null,
+        "score": 70.9,
+        "grade": "B",
+        "reason": "name construct-form not in keyword list"
+      },
+      {
+        "barcode": "7296073644996",
+        "name_he": "גבינה צפתית קשה24% מגורד",
+        "sodium_mg": null,
+        "score": 70.9,
+        "grade": "B",
+        "reason": "name construct-form not in keyword list"
+      }
+    ]
+  },
+  "hp_fat_sodium": {
+    "fired_count": 0,
+    "fired_list": [],
+    "note": "HP_FAT_SODIUM_COMBO did not fire for any product. D7 suppression deferred item is moot for this shelf."
+  },
+  "top3": [
+    {
+      "barcode": "554457",
+      "name_he": "גבינה צפתית 5% שומן",
+      "brand": "מחלבות גד",
+      "score": 82.4,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "confidence_score": 90,
+      "dimension_scores": {
+        "processing_quality": 95.0,
+        "nutrient_density": 90.0,
+        "calorie_density": 80.0,
+        "glycemic_quality": 75.0,
+        "protein_quality": 90.0,
+        "additive_quality": 100,
+        "satiety_support": 100,
+        "fat_quality": 73.6,
+        "regulatory_quality": 95.0,
+        "whole_food_integrity": 100
+      }
+    },
+    {
+      "barcode": "554532",
+      "name_he": "גבינה צפתית מעודנת 5%",
+      "brand": "מחלבות גד",
+      "score": 82.4,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "confidence_score": 90,
+      "dimension_scores": {
+        "processing_quality": 95.0,
+        "nutrient_density": 90.0,
+        "calorie_density": 80.0,
+        "glycemic_quality": 75.0,
+        "protein_quality": 90.0,
+        "additive_quality": 100,
+        "satiety_support": 100,
+        "fat_quality": 73.6,
+        "regulatory_quality": 95.0,
+        "whole_food_integrity": 100
+      }
+    },
+    {
+      "barcode": "5992872",
+      "name_he": "גבינה צפתית במים 5% שומן",
+      "brand": "מחלבות גד",
+      "score": 75,
+      "grade": "B",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "confidence_score": 55,
+      "dimension_scores": {
+        "processing_quality": 64.0,
+        "nutrient_density": 90.0,
+        "calorie_density": 80.0,
+        "glycemic_quality": 75.0,
+        "protein_quality": 90.0,
+        "additive_quality": 100,
+        "satiety_support": 100,
+        "fat_quality": 73.6,
+        "regulatory_quality": 60.0,
+        "whole_food_integrity": 85
+      }
+    }
+  ],
+  "bottom3": [
+    {
+      "barcode": "7290114312707",
+      "name_he": "בולגרית מעודנת 16%",
+      "brand": "משק צוריאל",
+      "score": 38.0,
+      "grade": "D",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 45,
+      "confidence_score": 70,
+      "dimension_scores": {
+        "processing_quality": 65.0,
+        "nutrient_density": 34.2,
+        "calorie_density": 80.0,
+        "glycemic_quality": 91.2,
+        "protein_quality": 36.5,
+        "additive_quality": 82.0,
+        "satiety_support": 78.9,
+        "fat_quality": 30.5,
+        "regulatory_quality": 25.0,
+        "whole_food_integrity": 60
+      }
+    },
+    {
+      "barcode": "369617",
+      "name_he": "כדורי פטה בשמן מתובל",
+      "brand": "גבינות ניצן",
+      "score": 36.0,
+      "grade": "D",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 45,
+      "confidence_score": 80,
+      "dimension_scores": {
+        "processing_quality": 65.0,
+        "nutrient_density": 26.0,
+        "calorie_density": 85.0,
+        "glycemic_quality": 90.0,
+        "protein_quality": 40.0,
+        "additive_quality": 64.0,
+        "satiety_support": 27.0,
+        "fat_quality": 70.2,
+        "regulatory_quality": 25.0,
+        "whole_food_integrity": 60
+      }
+    },
+    {
+      "barcode": "2107071",
+      "name_he": "פטה עיזים מעודנת 16%",
+      "brand": "משק צוריאל",
+      "score": 35.0,
+      "grade": "D",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 45,
+      "confidence_score": 70,
+      "dimension_scores": {
+        "processing_quality": 65.0,
+        "nutrient_density": 29.2,
+        "calorie_density": 80.0,
+        "glycemic_quality": 87.3,
+        "protein_quality": 32.0,
+        "additive_quality": 100,
+        "satiety_support": 67.1,
+        "fat_quality": 30.5,
+        "regulatory_quality": 25.0,
+        "whole_food_integrity": 48
+      }
+    }
+  ],
+  "errors": []
+}

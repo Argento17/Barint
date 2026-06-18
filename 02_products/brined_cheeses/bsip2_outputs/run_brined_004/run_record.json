@@ -1,0 +1,416 @@
+{
+  "run_id": "run_brined_004",
+  "task": "brined-data-remediation-run004",
+  "category_slug": "brined-cheeses",
+  "category_context": "dairy_protein",
+  "generated": "2026-06-13T10:08:50.252878+00:00",
+  "engine": "proto_v0 / score_engine.py — EV-052addendum + EV-053 + EV-054 + EV-055",
+  "ev_applied": [
+    "EV-052_addendum",
+    "EV-053",
+    "EV-054",
+    "EV-055"
+  ],
+  "flag_config": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on (default)"
+  },
+  "changes_from_run003": [
+    "BSIP1 source: run_brined_cheeses_002 (hygiene-cleaned — marketing copy nulled for bc-035/bc-045; scrape artifacts stripped; typos fixed; bc-001 name corrected)",
+    "evaluation_scope.py: brined_food keyword list extended with construct forms 'גבינת מלוחה', 'גבינת עזים', 'גבינת כבשים' (EV-052 addendum, RT-1 vocabulary fix)"
+  ],
+  "evaluation_scope_sha256": "2d2acad2fce699892be98224f9caa9b12c65e91b6408db689723e18f85dc1082",
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\02_products\\brined_cheeses\\factory_run_001\\corpus_filter.json",
+  "bsip0_source": "C:\\Bari\\02_products\\brined_cheeses\\bsip0_outputs\\brined_cheese_bsip0_raw_20260613T065721.json",
+  "in_scored_count": 48,
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output",
+  "bsip1": {
+    "records_loaded": 48,
+    "note": "run_brined_cheeses_002 — hygiene-cleaned corpus (RT-1/2/6/9/10/11 fixes)"
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\brined_cheeses\\bsip2_outputs\\run_brined_004",
+    "scored": 48,
+    "errors": 0
+  },
+  "score_distribution": {
+    "min": 46.8,
+    "max": 88.8,
+    "median": 74.4,
+    "stdev": 9.35,
+    "range": 42.0,
+    "histogram": {
+      "50-59": 6,
+      "70-79": 23,
+      "80-89": 12,
+      "60-69": 6,
+      "40-49": 1
+    },
+    "grade_dist": {
+      "C": 7,
+      "B": 28,
+      "A": 12,
+      "D": 1
+    }
+  },
+  "routing_distribution": {
+    "dairy_protein": 48
+  },
+  "rt1_bc048": {
+    "barcode": "3075805",
+    "name": "גבינת טמרה מלוחה בקר 17%",
+    "context_flag": "brined_food",
+    "score_run003": 39.0,
+    "score_run004": 68.8,
+    "grade_run003": "D",
+    "grade_run004": "B",
+    "rt1_fixed": true,
+    "drivers": [
+      "-12 SODIUM_LOAD_GENERAL_GRAD"
+    ]
+  },
+  "rt2_marketing_fix": {
+    "fixed_count": 2,
+    "products": [
+      {
+        "barcode": "7290114310550",
+        "ingredient_text_quality": "marketing_bleed",
+        "ingredients_null": true,
+        "score": 74.3,
+        "grade": "B"
+      },
+      {
+        "barcode": "2107071",
+        "ingredient_text_quality": "marketing_bleed",
+        "ingredients_null": true,
+        "score": 59.7,
+        "grade": "C"
+      }
+    ]
+  },
+  "brined_flag": {
+    "fired_count": 46,
+    "not_fired_count": 2,
+    "not_fired_list": [
+      {
+        "barcode": "4861070",
+        "name": "גבינה צפתית קשה 24%",
+        "sodium_mg": 300.0,
+        "ctx_flag": null,
+        "score": 70.9,
+        "grade": "B",
+        "note": "sodium<=500 or name not matched"
+      },
+      {
+        "barcode": "7296073644996",
+        "name": "גבינה צפתית קשה24% מגורד",
+        "sodium_mg": 300.0,
+        "ctx_flag": null,
+        "score": 70.9,
+        "grade": "B",
+        "note": "sodium<=500 or name not matched"
+      }
+    ]
+  },
+  "sodium_grad_fired": {
+    "count": 46,
+    "list": [
+      {
+        "barcode": "2107071",
+        "name": "פטה עיזים מעודנת 16%",
+        "sodium_mg": 840.0,
+        "score": 59.7,
+        "grade": "C",
+        "penalty": 8,
+        "note": "sodium=840.0mg band=700–899 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2107798",
+        "name": "בולגרית מעודנת 5%",
+        "sodium_mg": 1000.0,
+        "score": 76.1,
+        "grade": "B",
+        "penalty": 12,
+        "note": "sodium=1000.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2133162",
+        "name": "גבינה בולגרית 5% שומן",
+        "sodium_mg": 1300.0,
+        "score": 84.1,
+        "grade": "A",
+        "penalty": 12,
+        "note": "sodium=1300.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2133889",
+        "name": "בולגרית מעודנת 5% שומן",
+        "sodium_mg": 1200.0,
+        "score": 83.1,
+        "grade": "A",
+        "penalty": 12,
+        "note": "sodium=1200.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2385455",
+        "name": "בולגרית מעודנת 24%",
+        "sodium_mg": 1010.0,
+        "score": 65.3,
+        "grade": "B",
+        "penalty": 12,
+        "note": "sodium=1010.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2511229",
+        "name": "בולגרית מעודנת 16%",
+        "sodium_mg": 940.0,
+        "score": 75,
+        "grade": "B",
+        "penalty": 12,
+        "note": "sodium=940.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2511236",
+        "name": "בולגרית מעודנת 5%",
+        "sodium_mg": 880.0,
+        "score": 75,
+        "grade": "B",
+        "penalty": 8,
+        "note": "sodium=880.0mg band=700–899 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "2511243",
+        "name": "בולגרית מסורתית 16%",
+        "sodium_mg": 940.0,
+        "score": 75,
+        "grade": "B",
+        "penalty": 12,
+        "note": "sodium=940.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "3075805",
+        "name": "גבינת טמרה מלוחה בקר 17%",
+        "sodium_mg": 1628.0,
+        "score": 68.8,
+        "grade": "B",
+        "penalty": 12,
+        "note": "sodium=1628.0mg band=>=900 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      },
+      {
+        "barcode": "369617",
+        "name": "כדורי פטה בשמן מתובל",
+        "sodium_mg": 800.0,
+        "score": 46.8,
+        "grade": "D",
+        "penalty": 8,
+        "note": "sodium=800.0mg band=700–899 (BARI_GRAD_SODIUM_V1 / EV-055)"
+      }
+    ]
+  },
+  "acceptance_test": {
+    "all_pass": true,
+    "pairs": [
+      {
+        "label": "NOVA1_5pct_bulgarian_vs_NOVA3_16pct_bulgarian_pin_break",
+        "clean_bc": "2107798",
+        "clean_score": 76.1,
+        "clean_grade": "B",
+        "clean_nova": 3,
+        "processed_bc": "7290114312707",
+        "processed_score": 58.9,
+        "processed_grade": "C",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 17.2
+      },
+      {
+        "label": "NOVA1_13pct_bulgarian_vs_NOVA3_feta_oil",
+        "clean_bc": "7290108509106",
+        "clean_score": 79.7,
+        "clean_grade": "B",
+        "clean_nova": 1,
+        "processed_bc": "369617",
+        "processed_score": 46.8,
+        "processed_grade": "D",
+        "processed_nova": 3,
+        "nova1_above_nova3": true,
+        "delta": 32.9
+      },
+      {
+        "label": "NOVA3_5pct_bulgarian_vs_NOVA3_24pct_bulgarian_sodium_effect",
+        "clean_bc": "2107798",
+        "clean_score": 76.1,
+        "clean_grade": "B",
+        "clean_nova": 3,
+        "processed_bc": "2385455",
+        "processed_score": 65.3,
+        "processed_grade": "B",
+        "processed_nova": 2,
+        "nova1_above_nova3": true,
+        "delta": 10.8
+      },
+      {
+        "label": "NOVA1_13pct_low_sodium_vs_NOVA1_24pct_high_sodium",
+        "clean_bc": "7290108509106",
+        "clean_score": 79.7,
+        "clean_grade": "B",
+        "clean_nova": 1,
+        "processed_bc": "7290017065236",
+        "processed_score": 70.6,
+        "processed_grade": "B",
+        "processed_nova": 1,
+        "nova1_above_nova3": true,
+        "delta": 9.1
+      }
+    ]
+  },
+  "before_after_run003": [
+    {
+      "barcode": "3075805",
+      "name": "גבינת טמרה מלוחה בקר 17%",
+      "nova": 1,
+      "fat_g": 17.0,
+      "sodium_mg": 1628.0,
+      "context_flag": "brined_food",
+      "run003_score": 39.0,
+      "run003_grade": "D",
+      "run004_score": 68.8,
+      "run004_grade": "B",
+      "delta": 29.8
+    },
+    {
+      "barcode": "2107071",
+      "name": "פטה עיזים מעודנת 16%",
+      "nova": 2,
+      "fat_g": 16.0,
+      "sodium_mg": 840.0,
+      "context_flag": "brined_food",
+      "run003_score": 54.4,
+      "run003_grade": "C",
+      "run004_score": 59.7,
+      "run004_grade": "C",
+      "delta": 5.3
+    },
+    {
+      "barcode": "7290114310550",
+      "name": "פטה עיזים מעודנת 5%",
+      "nova": 2,
+      "fat_g": 5.0,
+      "sodium_mg": 890.0,
+      "context_flag": "brined_food",
+      "run003_score": 69.0,
+      "run003_grade": "B",
+      "run004_score": 74.3,
+      "run004_grade": "B",
+      "delta": 5.3
+    },
+    {
+      "barcode": "369617",
+      "name": "כדורי פטה בשמן מתובל",
+      "nova": 3,
+      "fat_g": 31.0,
+      "sodium_mg": 800.0,
+      "context_flag": "brined_food",
+      "run003_score": 45.0,
+      "run003_grade": "D",
+      "run004_score": 46.8,
+      "run004_grade": "D",
+      "delta": 1.8
+    }
+  ],
+  "top3": [
+    {
+      "barcode": "7290019635826",
+      "name": "קוביות פטה עיזים מעודנת 5%",
+      "score": 88.8,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "-12 SODIUM_LOAD_GENERAL_GRAD"
+      ]
+    },
+    {
+      "barcode": "7290102397334",
+      "name": "גבינה בולגרית 5%",
+      "score": 88.2,
+      "grade": "A",
+      "nova": 1,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "-12 SODIUM_LOAD_GENERAL_GRAD"
+      ]
+    },
+    {
+      "barcode": "7296073641940",
+      "name": "בולגרית מסורתית 5%",
+      "score": 85.4,
+      "grade": "A",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "-12 SODIUM_LOAD_GENERAL_GRAD"
+      ]
+    }
+  ],
+  "bottom3": [
+    {
+      "barcode": "8606370",
+      "name": "פטינה גבינה סגנון פטה22%",
+      "score": 58.3,
+      "grade": "C",
+      "nova": 2,
+      "context_flag": "brined_food",
+      "binding_cap": null,
+      "drivers": [
+        "-12 SODIUM_LOAD_GENERAL_GRAD"
+      ]
+    },
+    {
+      "barcode": "7290114312486",
+      "name": "בולגרית שום+ע.תיבול 16%",
+      "score": 50.2,
+      "grade": "C",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 87.0,
+      "drivers": [
+        "-12 SODIUM_LOAD_GENERAL_GRAD",
+        "cap=87.0 NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "369617",
+      "name": "כדורי פטה בשמן מתובל",
+      "score": 46.8,
+      "grade": "D",
+      "nova": 3,
+      "context_flag": "brined_food",
+      "binding_cap": 87.0,
+      "drivers": [
+        "-8 SODIUM_LOAD_GENERAL_GRAD",
+        "-3 SEED_OIL_PRESENT",
+        "cap=87.0 NOVA_PROXY_3_PROCESSED"
+      ]
+    }
+  ],
+  "errors": [],
+  "self_check": {
+    "rt1_bc048_fixed": true,
+    "rt2_marketing_nulled": 2,
+    "off_used": false
+  }
+}

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bari — Comparison Page Production Map v1</title>
+<style>
+  @page { size: A4; margin: 14mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", -apple-system, Arial, sans-serif;
+    color: #1a2330; margin: 0; font-size: 10.5pt; line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h1, h2, h3 { font-weight: 700; line-height: 1.25; }
+  h2 { font-size: 15pt; margin: 26px 0 10px; padding-bottom: 5px; border-bottom: 2.5px solid #1a2330; }
+  h3 { font-size: 11.5pt; margin: 16px 0 6px; color: #2b3a52; }
+  p { margin: 6px 0; }
+  code { font-family: Consolas, monospace; font-size: 9pt; background: #eef1f6; padding: 1px 4px; border-radius: 3px; }
+  .avoid-break { break-inside: avoid; }
+  .pagebreak { break-before: page; }
+
+  /* ===== Cover header ===== */
+  .cover {
+    background: linear-gradient(135deg, #0e1c33 0%, #1d3a63 60%, #2a5f8f 100%);
+    color: #fff; border-radius: 14px; padding: 28px 30px 24px; margin-bottom: 22px;
+  }
+  .cover .kicker { font-size: 9pt; letter-spacing: 2.5px; text-transform: uppercase; color: #8fc1ee; font-weight: 600; }
+  .cover h1 { font-size: 22pt; margin: 6px 0 4px; color: #fff; }
+  .cover .sub { font-size: 11pt; color: #c9dcf0; max-width: 92%; }
+  .cover .meta { margin-top: 14px; font-size: 8.5pt; color: #9db8d6; }
+  .cover .meta b { color: #d6e6f7; font-weight: 600; }
+
+  /* ===== Agent badges ===== */
+  .badge {
+    display: inline-block; font-size: 7.6pt; font-weight: 700; letter-spacing: .4px;
+    padding: 2px 8px; border-radius: 999px; color: #fff; vertical-align: middle;
+    margin: 1px 2px 1px 0; white-space: nowrap;
+  }
+  .b-orch { background: #6d4bbf; }      /* orchestrator – purple */
+  .b-prod { background: #344fa3; }      /* product – indigo */
+  .b-nutr { background: #527a26; }      /* nutrition – olive green */
+  .b-rsch { background: #6b7785; }      /* research – slate */
+  .b-data { background: #1273b8; }      /* data – blue */
+  .b-qa   { background: #c07c10; }      /* qa – amber */
+  .b-red  { background: #bb2d3b; }      /* red team – red */
+  .b-cont { background: #1d8a6b; }      /* content – green */
+  .b-fe   { background: #0f8b96; }      /* frontend – teal */
+  .b-des  { background: #b35a8e; }      /* design – pink */
+  .b-own  { background: #1a2330; border: 1.5px solid #d4a017; color: #ffd863; } /* owner */
+  .b-mktg { background: #8a6db1; }
+
+  /* ===== Flow chain ===== */
+  .flow { margin: 10px 0 4px; }
+  .flow-row {
+    display: flex; align-items: stretch; margin-bottom: 0; break-inside: avoid;
+  }
+  .flow-rail { width: 44px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .flow-dot {
+    width: 32px; height: 32px; border-radius: 9px; color: #fff; font-weight: 800; font-size: 11pt;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .flow-line { width: 3px; flex-grow: 1; background: #cdd6e3; min-height: 8px; }
+  .flow-card {
+    flex-grow: 1; border: 1px solid #dde4ee; border-radius: 9px; padding: 7px 12px 7px;
+    margin: 0 0 7px 6px; background: #fbfcfe;
+  }
+  .flow-card .t { font-weight: 700; font-size: 10.5pt; }
+  .flow-card .d { font-size: 9.3pt; color: #45536b; margin-top: 1px; }
+  .flow-gate {
+    margin: 0 0 7px 50px; font-size: 8.2pt; font-weight: 700; color: #9b1c2a;
+    background: #fdeef0; border: 1px dashed #e3a6ae; border-radius: 6px; padding: 3px 10px;
+    display: inline-block;
+  }
+
+  /* phase colors */
+  .c0 { background:#6d4bbf } .cA { background:#344fa3 } .cB { background:#1273b8 }
+  .cC { background:#2a8fd4 } .cD { background:#3b6fb5 } .cE { background:#c07c10 }
+  .cF { background:#bb2d3b } .cG { background:#1d8a6b } .cH { background:#1273b8 }
+  .cI { background:#0f8b96 } .cJ { background:#a35f12 } .cK { background:#6d4bbf }
+
+  /* ===== Phase detail cards ===== */
+  .phase {
+    border: 1px solid #dde4ee; border-left: 6px solid #888; border-radius: 10px;
+    padding: 12px 16px 10px; margin: 12px 0; break-inside: avoid; background: #fff;
+  }
+  .phase h3 { margin: 0 0 2px; font-size: 12pt; }
+  .phase .actors { margin: 2px 0 8px; }
+  .phase ul { margin: 5px 0 5px 18px; padding: 0; }
+  .phase li { margin: 3.5px 0; }
+  .out {
+    font-size: 8.8pt; background: #eef4fb; border-radius: 6px; padding: 5px 10px; margin-top: 8px;
+    color: #28415f;
+  }
+  .out b { color: #16365c; }
+  .warn {
+    font-size: 9.2pt; background: #fff7e8; border: 1px solid #efd9a8; border-radius: 6px;
+    padding: 6px 10px; margin-top: 8px; color: #6e4e0a;
+  }
+  .lesson {
+    font-size: 9.2pt; background: #fdf0f1; border: 1px solid #ecc4c9; border-radius: 6px;
+    padding: 6px 10px; margin-top: 8px; color: #7c1f2b;
+  }
+
+  /* ===== Tables ===== */
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9pt; }
+  th { background: #1a2330; color: #fff; text-align: left; padding: 6px 8px; font-size: 8.6pt; letter-spacing: .3px; }
+  td { border-bottom: 1px solid #e3e8f0; padding: 5px 8px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+
+  /* ===== Hard laws ===== */
+  .laws { counter-reset: law; }
+  .law {
+    display: flex; gap: 10px; align-items: flex-start; margin: 7px 0; break-inside: avoid;
+    background: #f7f9fc; border: 1px solid #e0e6ef; border-radius: 8px; padding: 8px 12px;
+  }
+  .law .n {
+    counter-increment: law; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: #1a2330; color: #ffd863; font-weight: 800; font-size: 10pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .law .n::before { content: counter(law); }
+  .law .txt { font-size: 9.4pt; }
+  .law .txt b { color: #16365c; }
+
+  /* ===== Timeline (worked example) ===== */
+  .tl { border-left: 3px solid #bb2d3b; margin: 10px 0 4px 10px; padding-left: 16px; }
+  .tl-item { margin: 9px 0; break-inside: avoid; position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -22.5px; top: 4px; width: 10px; height: 10px;
+    border-radius: 50%; background: #bb2d3b; border: 2px solid #fff;
+  }
+  .tl-item .h { font-weight: 700; font-size: 9.8pt; color: #7c1f2b; }
+  .tl-item .b { font-size: 9.3pt; color: #3a4658; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 2px; }
+  .footer { margin-top: 24px; font-size: 8pt; color: #8a94a6; border-top: 1px solid #e0e6ef; padding-top: 8px; }
+  .he { direction: rtl; unicode-bidi: isolate; font-style: normal; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="kicker">Bari · Agent OS · Reference Map</div>
+  <h1>What Happens When You Ask for a Comparison Page on “X”</h1>
+  <div class="sub">The complete production chain — what the system does and what every agent does at each link, from your one-line ask to a live consumer page.</div>
+  <div class="meta"><b>Version:</b> v1 · <b>Date:</b> 2026-06-11 · <b>Grounded in:</b> category-factory skill · orchestration model v1 · scoring architecture (BSIP2 v0.4.1) · QA audit skill · decision authority matrix · yogurts v4 run_006 (most recent real traversal)</div>
+</div>
+
+<div class="legend">
+  <span class="badge b-orch">ORCHESTRATOR / CC</span>
+  <span class="badge b-prod">PRODUCT</span>
+  <span class="badge b-nutr">NUTRITION</span>
+  <span class="badge b-rsch">RESEARCH</span>
+  <span class="badge b-data">DATA</span>
+  <span class="badge b-qa">QA</span>
+  <span class="badge b-red">RED-TEAM</span>
+  <span class="badge b-cont">CONTENT</span>
+  <span class="badge b-fe">FRONTEND</span>
+  <span class="badge b-des">DESIGN</span>
+  <span class="badge b-mktg">MARKETING</span>
+  <span class="badge b-own">OWNER (YOU)</span>
+</div>
+
+<!-- ============ FLOW ============ -->
+<h2>1 · The Chain at a Glance</h2>
+
+<div class="flow">
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot c0">0</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">The Ask Arrives</span> <span class="badge b-orch">ORCHESTRATOR</span>
+      <div class="d">Classifies as Registry Work · opens <code>TASK-NNN</code> · scans the 5 tripwires · builds delegation specs and dispatches agents directly.</div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cA">A</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Scope &amp; Define the Category</span> <span class="badge b-prod">PRODUCT</span><span class="badge b-nutr">NUTRITION</span><span class="badge b-data">DATA</span><span class="badge b-rsch">RESEARCH</span>
+      <div class="d">Shelf mapping → corpus filter rules → comparison lens choice → BSIP0 entry gate. “Category” = a real retailer shelf, not an abstract food group.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · BSIP0 entry — sparse corpus or shelf conflict = halt</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cB">B</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Acquire Real Data (BSIP0)</span> <span class="badge b-data">DATA</span>
+      <div class="d">Direct scrape of retailer product pages + OCR of label images. Unparsed field = NULL, never substituted. <b>Open Food Facts is banned, forever, for every field.</b></div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cC">C</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Enrich (BSIP1)</span> <span class="badge b-data">DATA</span>
+      <div class="d">Hebrew ingredient semantics: additives, fermentation, protein source, whole-grain, data-quality flags (<code>macros_plausible</code>, disclaimer/marketing bleed), trust level.</div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cD">D</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Score (BSIP2)</span> <span class="badge b-data">DATA</span><span class="badge b-nutr">NUTRITION owns methodology</span>
+      <div class="d">Router v2 → 10 weighted dimensions → guardrails &amp; caps → hyper-palatability → concern budgets → confidence ceiling → grade. Full glass-box trace per product.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · frozen-category regression must show zero diff after any engine change</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cE">E</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">QA Gate</span> <span class="badge b-qa">QA</span>
+      <div class="d">Traceability of every product, label and score · hard fails block promotion · warnings need a named acceptor · clean run ⇒ baseline freeze.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · any hard fail = promotion blocked, no exceptions</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cF">F</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Red-Team Challenge</span> <span class="badge b-red">RED-TEAM</span>
+      <div class="d">Independent adversarial audit of scores, data and claims. Findings classified CRITICAL / HIGH / MEDIUM. Criticals loop back → fix → full regeneration as a new run → re-audit.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · open CRITICAL findings block everything downstream</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cG">G</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Consumer Copy (Hebrew)</span> <span class="badge b-cont">CONTENT</span>
+      <div class="d">Hero · 2-line row verdicts · insight lines from real trace data · mandatory category caveat box · methodology blurb. No jargon, no invented provenance.</div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cH">H</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Package for the Website</span> <span class="badge b-data">DATA</span>
+      <div class="d">Frontend JSON build → honesty blocks (implausible macros, marketing bleed) → D4 additive wiring with Hebrew explanations → byte-identical score invariant check.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · score / grade / glassBox must be byte-identical after D4 wiring</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cI">I</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Build the Page</span> <span class="badge b-fe">FRONTEND</span><span class="badge b-des">DESIGN</span>
+      <div class="d">Route + page-data adapter + shelf filters from the 7 canonical components. The UI never sorts, rounds or interprets. <code>tsc</code> + <code>next build</code> must pass.</div>
+    </div>
+  </div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cJ">J</div><div class="flow-line"></div></div>
+    <div class="flow-card">
+      <span class="t">Pre-Go-Live Gates</span> <span class="badge b-qa">QA</span><span class="badge b-cont">CONTENT</span><span class="badge b-own">OWNER</span>
+      <div class="d">① QA re-verify on the live tree · ② read every consumer-facing string · ③ owner tripwire sign-off (go-live is irreversible + consumer-facing) · ④ OFF-ban sweep.</div>
+    </div>
+  </div>
+  <div class="flow-gate">GATE · owner sign-off — the one mandatory human checkpoint</div>
+
+  <div class="flow-row">
+    <div class="flow-rail"><div class="flow-dot cK">K</div></div>
+    <div class="flow-card">
+      <span class="t">Verify &amp; Close</span> <span class="badge b-orch">ORCHESTRATOR / CC</span>
+      <div class="d">Every return-block claim verified against artifacts (file:line, real numbers) → <code>CLOSED</code> with evidence → unblocked tasks dispatched → page is live.</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="font-size:9pt;color:#5a6678;margin-top:6px;">Typical calendar time for a new category: several working sessions over multiple days. Most of it goes to <b>B</b> (scrape &amp; parse quality) and the <b>F→C/D loop</b> (red-team findings forcing rebuilds — yogurts needed 6 runs).</p>
+
+<!-- ============ PHASE DETAILS ============ -->
+<div class="pagebreak"></div>
+<h2>2 · Each Link in Detail</h2>
+
+<div class="phase" style="border-left-color:#6d4bbf;">
+  <h3>Phase 0 — The Ask Arrives</h3>
+  <div class="actors"><span class="badge b-orch">ORCHESTRATOR (main chat)</span></div>
+  <ul>
+    <li><b>Classify:</b> a comparison page is always <i>Registry Work</i> — multi-step, governed deliverable. Never handled inline.</li>
+    <li><b>Registry First:</b> check <code>C:\Bari\tasks\</code> for an existing task; otherwise open <code>TASK-NNN.md</code> (owner, status, dependencies).</li>
+    <li><b>Tripwire scan:</b> a new category doesn’t trip a wire by itself, but two will fire later — go-live (irreversible + consumer-facing) and any touch on frozen scores.</li>
+    <li><b>Dispatch:</b> 5-part delegation specs (objective / boundaries / inputs / deliverable / guards) sent to owning agents — parallel where independent, background for long runs. You are never handed prompts to paste.</li>
+    <li><b>Standing rule:</b> after every returned deliverable, the close-readiness gate runs before anything else moves.</li>
+  </ul>
+  <div class="out"><b>Creates:</b> <code>tasks/TASK-NNN.md</code> · dashboard entry in <code>command_center.json</code> (auto-refresh).</div>
+</div>
+
+<div class="phase" style="border-left-color:#344fa3;">
+  <h3>Phase A — Scoping &amp; Category Definition</h3>
+  <div class="actors"><span class="badge b-prod">PRODUCT</span><span class="badge b-nutr">NUTRITION</span><span class="badge b-data">DATA</span><span class="badge b-rsch">RESEARCH (optional)</span></div>
+  <ul>
+    <li><b>Shelf mapping:</b> identify the real retailer shelf slug(s) for X; verify against the shelf registry; one shelf can never feed two categories. → <code>shelf_map.json</code></li>
+    <li><b>Corpus filter:</b> rules that cut the raw shelf to in-scope products, with a minimum corpus size (too sparse = halt). Boundary calls get a recorded Nutrition ruling — e.g., spread-vs-raw-chickpea is decided by tahini + sodium + energy, never by protein or the word <span class="he">״סלט״</span>. → <code>corpus_filter.json</code></li>
+    <li><b>Lens &amp; presentation:</b> which of the 3 comparison lenses applies; deviations from the A–E model (like frozen-veg’s score-free segments) are owner-level and never a precedent. Anti-Immunity Rule: no framing may shield a product class from its real weaknesses.</li>
+    <li><b>BSIP0 entry gate:</b> shelf confirmed + filter non-empty + no category conflicts, or the chain halts here. → <code>bsip0_gate_result.json</code></li>
+  </ul>
+</div>
+
+<div class="phase" style="border-left-color:#1273b8;">
+  <h3>Phase B — BSIP0: Data Acquisition</h3>
+  <div class="actors"><span class="badge b-data">DATA</span></div>
+  <ul>
+    <li><b>Scrape</b> retailer product pages (Shufersal primary; Yohananof 4-stage: discover → approve → scrape → audit) — raw HTML/JSON + images per product.</li>
+    <li><b>OCR</b> physical label images through the Azure pipeline when the page lacks a parseable panel.</li>
+    <li><b>Parse</b> nutrition + Hebrew ingredients; the raw source is persisted for replay (lesson of the fat-overwrite bug EV-029).</li>
+    <li><b>Field honesty:</b> unparsed = NULL; the page will say “data could not be retrieved.” No fallback source exists, by law.</li>
+  </ul>
+  <div class="lesson"><b>Where it bites (yogurts):</b> parse <i>quality</i>, not coverage. run_005 looked complete, but the parser was counting website disclaimer text as ingredients on 67/89 products — corrupting NOVA inference and all three 90/A grades. Only the red-team caught it. The fixes (disclaimer-strip, quality flags, plausibility gate) are now permanent infrastructure.</div>
+  <div class="out"><b>Creates:</b> <code>02_products/{cat}/observations_bsip0/{retailer}/…</code> + raw run JSON &amp; log.</div>
+</div>
+
+<div class="phase" style="border-left-color:#2a8fd4;">
+  <h3>Phase C — BSIP1: Semantic Enrichment</h3>
+  <div class="actors"><span class="badge b-data">DATA</span></div>
+  <ul>
+    <li><b>Ingredient signals:</b> white flour vs whole grain, fermentation markers, sweeteners, protein source.</li>
+    <li><b>Additives:</b> E-number detection (incl. parenthesized forms) + burden count.</li>
+    <li><b>Data-quality flags:</b> <code>ingredient_text_quality</code> (clean / disclaimer_stripped / marketing_bleed), <code>macros_plausible</code> (protein = 190 g/100 g gets flagged, not scored), trust level high/medium/low.</li>
+    <li><b>Ledger:</b> every product is included or excluded with a named reason (yogurt run_006: 88 in, 8 out).</li>
+  </ul>
+  <div class="out"><b>Creates:</b> one canonical JSON per product at <code>03_operations/bsip1/run_{cat}_NNN/output/</code> + coverage report. Guarded by a 64-check pytest suite.</div>
+</div>
+
+<div class="phase" style="border-left-color:#3b6fb5;">
+  <h3>Phase D — BSIP2: Scoring</h3>
+  <div class="actors"><span class="badge b-data">DATA executes</span><span class="badge b-nutr">NUTRITION owns every methodological choice</span></div>
+  <p style="font-size:9.4pt;">Engine v0.4.1 · per product, six stages:</p>
+  <table>
+    <tr><th style="width:26%">Stage</th><th>What happens</th></tr>
+    <tr><td><b>1 · Features</b></td><td>50+ features from panel, ingredients, category, red labels. Missing fields recorded, <b>never imputed</b>. Router v2 assigns the structural archetype first.</td></tr>
+    <tr><td><b>2 · 10 Dimensions</b></td><td>processing 15% · nutrient density 15% · calorie density 15% (category-relative: yogurt 60–250 kcal “normal”) · glycemic 12% · protein 10% · additives 10% · fat quality 8% · satiety 6% · regulatory 5% (IL red labels) · whole-food 4%.</td></tr>
+    <tr><td><b>3 · Guardrails</b></td><td>Trans-fat veto (floor 20) · hard caps (NOVA 4, multi red-label, sugar, sodium, additive burden — most restrictive wins) · floors for honest whole foods.</td></tr>
+    <tr><td><b>4 · Hyper-palatability</b></td><td>4 combo patterns (fat-sugar, fat-sodium, refined-carb+fat, crunch-sweet) with amplifiers and relief factors, under a family budget.</td></tr>
+    <tr><td><b>5 · Concern budgets</b></td><td>The same root concern is never punished twice — primary signal full weight, echoes demoted.</td></tr>
+    <tr><td><b>6 · Resolution</b></td><td>Caps → penalties → floors → <b>confidence ceiling</b> (null sugar −10, null sat-fat −5; low confidence can’t score high) → clamp → grade <b>before</b> rounding. S 90+ · A 80 · B 65 · C 50 · D 35 · E &lt;35.</td></tr>
+  </table>
+  <div class="warn"><b>Standing guard:</b> any engine change re-runs the golden-corpus + router regressions. Frozen categories (milk 85/A top, bread, snack-bar ceiling 70/B) must show <b>zero diff</b> — otherwise the change hides behind a default-OFF env flag.</div>
+  <div class="out"><b>Creates:</b> a glass-box <code>bsip2_trace.json</code> per product + run summary with config hash · <code>bsip2_readiness_checklist.json</code> (rule registered, observable, rollback exists).</div>
+</div>
+
+<div class="phase" style="border-left-color:#c07c10;">
+  <h3>Phase E — QA Gate</h3>
+  <div class="actors"><span class="badge b-qa">QA</span></div>
+  <ul>
+    <li><b>Traceability:</b> every product → corpus entry; every label → enrichment step; every score → registered rule. Any gap = hard fail.</li>
+    <li><b>Hard fails block promotion:</b> coverage below minimum, out-of-scope labels, unregistered rules, duplicates, version mismatch. No exceptions for small categories.</li>
+    <li><b>Warnings</b> (skewed distribution, low confidence, label drift) need a <i>named acceptor</i> or a fix.</li>
+    <li><b>Baseline freeze</b> only over a clean run; contaminated runs are invalidated with recorded reason + replacement run, and may never be referenced again.</li>
+  </ul>
+  <div class="out"><b>Creates:</b> <code>qa_gate_result.json</code> + audit verdict (pass / fail / invalidated) + freeze record.</div>
+</div>
+
+<div class="phase" style="border-left-color:#bb2d3b;">
+  <h3>Phase F — Red-Team Challenge <span style="font-weight:400;font-size:9pt;color:#9b1c2a;">(mandatory, never skipped)</span></h3>
+  <div class="actors"><span class="badge b-red">RED-TEAM</span> <span style="font-size:8.6pt;color:#5a6678;">— attacks only; never fixes, approves, or closes</span></div>
+  <ul>
+    <li>Hunts what the pipeline self-certified: data corruption, implausible values, misrouted products, false sweetener/fermentation detections, grade-boundary artifacts, ceiling compression, copy that overstates.</li>
+    <li>Every finding classified <b>CRITICAL / HIGH / MEDIUM</b>; open CRITICALs block all downstream work; HIGHs must be resolved or accepted in writing.</li>
+    <li><b>The loop:</b> CRITICALs route to Nutrition (methodology) + Data (pipeline) → fixes → <b>full regeneration as a new run number</b> → QA re-audit → red-team re-audit. Scores are <i>expected</i> to move — that’s the point.</li>
+  </ul>
+  <div class="out"><b>Creates:</b> <code>02_products/{cat}/reports/red_team_{corpus}.md</code>. QA (Phase E) checks the pipeline did what it claims; Red-Team checks whether the claims are <i>true</i>. Disjoint failure classes.</div>
+</div>
+
+<div class="phase" style="border-left-color:#1d8a6b;">
+  <h3>Phase G — Consumer Copy (Hebrew)</h3>
+  <div class="actors"><span class="badge b-cont">CONTENT</span></div>
+  <ul>
+    <li><b>Hero / prologue</b> — insight-first: what this shelf is and what Bari found.</li>
+    <li><b>Row verdicts</b> — each collapsed row is a 2-line human verdict (standing → why → catch → grade), naming calorie density + the <i>real fired driver</i> from the trace. Sodium = displayed fact only, never an unfired “driver.”</li>
+    <li><b>Insight lines</b> — typed per spec, from actual trace data; quiet lines on unremarkable products are correct. 9 phrases banned. Jargon never leaks (“NOVA 4” → <span class="he">״עיבוד תעשייתי גבוה״</span>; missing data → <span class="he">״ערך הסוכר לא היה זמין במקור הנתונים״</span>).</li>
+    <li><b>Category caveat</b> — owner-mandated <span class="he">״הערת קטגוריה״</span> yellow box on every page, grounded in real engine behavior for this category.</li>
+    <li><b>Score presentation law:</b> numeric/grade only (72/B), no strength labels, no color-encoded judgment, 3 confidence states.</li>
+  </ul>
+  <div class="warn"><b>Hard gate:</b> every consumer-facing string is read in full before any push — generated copy has fabricated provenance before (“official food source” shipped live, was false). Deliberate rule deviations need an Exception Registry entry <i>first</i>.</div>
+</div>
+
+<div class="phase" style="border-left-color:#1273b8;">
+  <h3>Phase H — Frontend Packaging + D4 Additive Wiring</h3>
+  <div class="actors"><span class="badge b-data">DATA</span> <span style="font-size:8.6pt;color:#5a6678;">(D4 Hebrew copy owned by</span> <span class="badge b-cont">CONTENT</span><span style="font-size:8.6pt;color:#5a6678;">)</span></div>
+  <ul>
+    <li><b>Builder script</b> emits per product: id, name, score, grade, insight line, confidence, image, Hebrew ingredients, nutrition, limiting factors, glass-box payload, cluster. RTL-safe; Hebrew coverage validated.</li>
+    <li><b>Honesty blocks:</b> <code>macros_plausible=false</code> → product blocked from the frontend; marketing-bleed ingredient text hidden rather than shown.</li>
+    <li><b>D4 wiring (mandatory):</b> detect additives on every product, attach each E-number’s Hebrew explanation (34-entry copy doc). Coverage &lt;15% → halt and investigate.</li>
+    <li><b>Hard invariant:</b> score, grade, glassBox <b>byte-identical</b> before/after wiring — D4 annotates, never moves a score. Config hash recorded.</li>
+  </ul>
+  <div class="out"><b>Creates:</b> <code>{cat}_frontend_vN.json</code> → copied to <code>bari-web/src/data/comparisons/</code> — <b>the only thing the website ever consumes from the pipeline.</b></div>
+</div>
+
+<div class="phase" style="border-left-color:#0f8b96;">
+  <h3>Phase I — Website Implementation</h3>
+  <div class="actors"><span class="badge b-fe">FRONTEND</span><span class="badge b-des">DESIGN reviews</span></div>
+  <ul>
+    <li>All work in <code>bari-web/</code> (Next.js) — never at the repo root.</li>
+    <li><b>Per category:</b> data drop + <code>{cat}-comparison-page-data.ts</code> adapter (JSON → view-model) + <code>{cat}-shelf-filters.ts</code> (typed ids + Hebrew labels) + route composed from the <b>7 canonical components only</b>.</li>
+    <li><b>Law of the view layer:</b> the UI never sorts, rounds, or interprets — the view-model transform is the only interpretive layer. <span class="he">מעדנים</span> is the canonical reference; 14 Gen-0 patterns prohibited; legacy tree (milk/bread/snack) never crosses in; design tokens only, no improvised values.</li>
+    <li><b>Exit:</b> <code>tsc</code> green · <code>next build</code> green · RTL verified · mobile metric: shelf understood in 15–20 seconds.</li>
+  </ul>
+</div>
+
+<div class="phase" style="border-left-color:#a35f12;">
+  <h3>Phase J — Pre-Go-Live Gates <span style="font-weight:400;font-size:9pt;color:#7a4a08;">(four, in order)</span></h3>
+  <div class="actors"><span class="badge b-qa">QA</span><span class="badge b-cont">CONTENT</span><span class="badge b-orch">ORCHESTRATOR</span><span class="badge b-own">OWNER</span></div>
+  <table>
+    <tr><th style="width:5%">#</th><th style="width:24%">Gate</th><th style="width:18%">Holder</th><th>Checks</th></tr>
+    <tr><td>1</td><td><b>QA propagation re-verify</b></td><td>QA</td><td>Live tree == frozen run: built-site scores match BSIP2 traces, no stale JSON, routes resolve, baseline frozen on final artifacts.</td></tr>
+    <tr><td>2</td><td><b>Read-every-string</b></td><td>Orchestrator + Content</td><td>Every consumer-facing string read in full; zero fabricated provenance/authority.</td></tr>
+    <tr><td>3</td><td><b>Owner tripwire</b></td><td><b>You</b></td><td>Go-live is irreversible + consumer-facing (wire 2 always fires). Also fires if any <i>published</i> grade changes (wire 1) — as with yogurts’ two grade moves.</td></tr>
+    <tr><td>4</td><td><b>OFF-ban sweep</b></td><td>QA</td><td>No Open Food Facts dependency anywhere — data, copy, images, fallbacks. Any hit = launch blocker.</td></tr>
+  </table>
+  <p style="font-size:9.2pt;">Only after all four: merge → deploy. At launch the <i>framing</i> freezes (“best ≠ excellent”); the <i>numbers</i> stay versioned and re-verify on every rescore.</p>
+</div>
+
+<div class="phase" style="border-left-color:#6d4bbf;">
+  <h3>Phase K — Verification &amp; Close</h3>
+  <div class="actors"><span class="badge b-orch">ORCHESTRATOR / CC</span> <span style="font-size:8.6pt;color:#5a6678;">— domain agents propose RETURNED/BLOCKED; they never write CLOSED</span></div>
+  <ul>
+    <li>Every return-block claim verified <b>against the artifact itself</b> — file:line and real numbers, not prose (“88 products, 0 errors” → open the run summary and count).</li>
+    <li>Hunt for unstated side-effects (did anything touch a frozen category? show the regression evidence).</li>
+    <li><code>status: CLOSED</code> recorded with a <code>close_reason</code> citing evidence; whatever the close unblocks is opened and dispatched; decision map reported.</li>
+  </ul>
+  <div class="out"><b>Durable end-state:</b> closed TASKs · frozen QA baseline · red-team report all-closed · run records with config hashes · memory entries for every new ruling future categories must respect.</div>
+</div>
+
+<!-- ============ MATRIX ============ -->
+<div class="pagebreak"></div>
+<h2>3 · Who Does What — Agent Responsibility Matrix</h2>
+
+<table>
+  <tr><th style="width:15%">Agent</th><th style="width:11%">Phases</th><th style="width:42%">Does</th><th>Never does</th></tr>
+  <tr><td><span class="badge b-orch">ORCHESTRATOR</span></td><td>0 · J · K</td><td>Classifies, opens TASKs, dispatches delegation specs, runs the close gate after every return, closes with evidence.</td><td>Executes pipeline work itself; hands you prompts to paste.</td></tr>
+  <tr><td><span class="badge b-prod">PRODUCT</span></td><td>A · J</td><td>Category go/no-go, scope rationalization, lens choice, kills overbuild, signs cross-category rule adoption.</td><td>Writes copy; touches the engine.</td></tr>
+  <tr><td><span class="badge b-nutr">NUTRITION</span></td><td>A · D · F-loop</td><td>Category interpretation, boundary rulings, owns scoring methodology and every ruling, resolves red-team methodology findings.</td><td>Runs scrapers; closes own tasks; manufactures differentiation where clustering is the honest finding.</td></tr>
+  <tr><td><span class="badge b-rsch">RESEARCH</span></td><td>A · F-loop</td><td>Evidence for rules (literature, USDA FDC; Tzameret directional-only), market context.</td><td>Makes decisions — evidence only.</td></tr>
+  <tr><td><span class="badge b-data">DATA</span></td><td>B · C · D · H</td><td>BSIP0 scrape + OCR, BSIP1 enrichment, BSIP2 batch runs, frontend JSON, D4 wiring, regressions.</td><td>Uses OFF (banned); imputes missing fields; changes methodology without Nutrition sign-off.</td></tr>
+  <tr><td><span class="badge b-qa">QA</span></td><td>E · J</td><td>QA runner, traceability, hard-fail enforcement, warning adjudication, baseline freeze/invalidate, live-tree re-verify, OFF sweep.</td><td>Accepts warnings anonymously; freezes over hard fails; skips traceability “because small category.”</td></tr>
+  <tr><td><span class="badge b-red">RED-TEAM</span></td><td>F</td><td>Independent adversarial audit; CRITICAL/HIGH/MEDIUM report.</td><td>Fixes, approves, closes — attack-only by design.</td></tr>
+  <tr><td><span class="badge b-cont">CONTENT</span></td><td>G · H · J</td><td>All Hebrew consumer copy: verdicts, insight lines, caveat box, methodology, D4 additive explanations.</td><td>Invents data; leaks jargon; deviates from editorial law without an Exception Registry entry.</td></tr>
+  <tr><td><span class="badge b-fe">FRONTEND</span></td><td>I</td><td>Route, page-data adapter, shelf filters, canonical-component composition, tsc/build green.</td><td>Sorts/rounds/interprets in the UI; touches pipeline code; invents components.</td></tr>
+  <tr><td><span class="badge b-des">DESIGN</span></td><td>I</td><td>Hierarchy, spacing, interaction review vs the canonical reference; drift detection.</td><td>Implements data logic.</td></tr>
+  <tr><td><span class="badge b-mktg">MARKETING</span></td><td>post-launch</td><td>SEO / content / growth for the live page.</td><td>Gates or initiates any pipeline stage.</td></tr>
+  <tr><td><span class="badge b-own">OWNER (YOU)</span></td><td>A* · J</td><td><b>Tripwires only:</b> go-live sign-off, published-grade changes, frozen invariants, new strategic framing.</td><td>Everything else — autonomy-default: the system decides and logs.</td></tr>
+</table>
+
+<!-- ============ HARD LAWS ============ -->
+<h2>4 · Hard Laws That Bind the Entire Chain</h2>
+<div class="laws">
+  <div class="law"><div class="n"></div><div class="txt"><b>OFF ban (absolute).</b> No Open Food Facts data anywhere — nutrition, ingredients, names, images, fallback, validation, copy, confidence. NULL beats borrowed data. Any dependency = launch blocker.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>No invented data.</b> Product / nutrition / ingredient facts come from the direct scrape or are absent.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>Frozen invariants.</b> Milk = run_005_headpin (top 85/A) · bread = real_bread_retail_003_v1 · snack-bar ceiling = 70/B. Engine changes prove zero diff on frozen categories or hide behind a default-OFF flag.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>Gates are sequential and non-skippable.</b> No packaging before QA passes · no advancement with open CRITICALs · no shipped JSON without D4 wiring.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>Honest findings stand.</b> If scores genuinely cluster, that’s the finding — never add signals to manufacture differentiation (butter precedent).</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>Separation of powers.</b> The engine scores, content explains, the UI displays. The UI never interprets; copy never claims what the trace didn’t fire; D4 never moves a score.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>Closing authority is singular.</b> Only the orchestrator/CC records CLOSED, only after artifact-level verification.</div></div>
+  <div class="law"><div class="n"></div><div class="txt"><b>The owner touches exactly two points</b> in a normal run: the strategic scoping call (if novel) and the go-live tripwire. Everything else is autonomous and logged.</div></div>
+</div>
+
+<!-- ============ WORKED EXAMPLE ============ -->
+<div class="pagebreak"></div>
+<h2>5 · Worked Example — Yogurts v4, the Most Recent Full Traversal</h2>
+
+<div class="tl">
+  <div class="tl-item"><div class="h">Phases B–D · run_yogurt_005 built</div><div class="b">Shufersal yogurt shelf scraped; BSIP1 + BSIP2 produced run_005; frontend v4 built. Looked clean.</div></div>
+  <div class="tl-item"><div class="h">Phases E + F · QA FAIL + Red-Team FAIL</div><div class="b">Red-team found the parser counting website <i>disclaimer text</i> as ingredients on 67/89 products — corrupting NOVA inference and all three 90/A grades — plus a protein=190 corruption no gate had blocked. 12 findings total.</div></div>
+  <div class="tl-item"><div class="h">The loop · TASK-249 (Data) + TASK-250 (Nutrition)</div><div class="b">7 parser-level fixes (disclaimer strip, plausibility gate, E414 detection, live-cultures, misroute exclusion…) + 5 methodology rulings (null-sugar −10 confidence, null-satfat −5, grade-before-round, sweetener gap, ceiling-compression disclosure).</div></div>
+  <div class="tl-item"><div class="h">Full regeneration · run_yogurt_006</div><div class="b">88 products, 0 errors · grades A:14 B:30 C:20 D:23 E:1 · one product blocked outright for implausible macros · the false 90/S fell to 89.9/A once fake fermentation keywords were stripped · 14 products changed grade.</div></div>
+  <div class="tl-item"><div class="h">Phase G · copy corrected in the same pass</div><div class="b">NOVA jargon out, honest missing-data lines in; category caveat update (ceiling compression) routed to Content.</div></div>
+  <div class="tl-item"><div class="h">Phase J · current state (2026-06-11)</div><div class="b">Three gates open before go-live: <b>owner sign-off</b> on the two published-grade changes (tripwire) · Content caveat copy · QA baseline freeze on run_006.</div></div>
+  <div class="tl-item"><div class="h">Phase K · pending</div><div class="b">TASK-249 sits at RETURNED; CC verifies the return block against run artifacts before recording CLOSED.</div></div>
+</div>
+
+<p style="font-size:9.6pt;margin-top:10px;"><b>The takeaway:</b> the page was <i>buildable</i> after run_005 — but four independent gates refused to let a corrupted corpus reach consumers, and the loop produced a measurably honest run_006. That is the system working as designed.</p>
+
+<div class="footer">
+  Bari Agent OS · Comparison Page Production Map v1 · 2026-06-11 · Source: <code>01_framework/operations/comparison_page_production_map_v1.md</code> · Known weak links &amp; improvement candidates are the agreed next document.
+</div>
+
+</body>
+</html>

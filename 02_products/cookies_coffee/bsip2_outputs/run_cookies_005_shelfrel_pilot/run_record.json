@@ -1,0 +1,844 @@
+{
+  "run_id": "run_cookies_005_shelfrel_pilot",
+  "task": "TASK-278 Phase-2 / EV-085",
+  "category_slug": "cookies-coffee",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T07:11:26.605084+00:00",
+  "engine": "proto_v0 / score_engine.py (BARI_SHELF_RELATIVE_V1=on, asymmetric P=6/B=3)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GLASSBOX_W4": "engine_default(on)"
+  },
+  "calibration": {
+    "proposal_median_g": 21.5,
+    "proposal_scale_g": 5.115,
+    "engine_median_g": 21.5,
+    "engine_scale_g": 5.11,
+    "scale_divergence": 0.004999999999999893,
+    "tolerance": 0.5,
+    "result": "PASS: |5.110 - 5.115| = 0.005 <= 0.5"
+  },
+  "shelf_stats_set": {
+    "nutrient": "sugars_g",
+    "median": 21.5,
+    "scale": 5.11,
+    "scale_type": "iqr"
+  },
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\02_products\\cookies_coffee\\factory_run_001\\corpus_filter.json",
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_cookies_001\\output",
+  "in_scored_count": 58,
+  "bsip1": {
+    "records_loaded": 58
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_005_shelfrel_pilot",
+    "scored": 58,
+    "errors": 0
+  },
+  "score_distribution": {
+    "min": 10,
+    "max": 62.4,
+    "median": 28.8,
+    "stdev": 13.24,
+    "range": 52.4,
+    "most_common_score": 18.1,
+    "most_common_count": 4,
+    "histogram": {
+      "30-39": 12,
+      "10-19": 13,
+      "40-49": 11,
+      "20-29": 17,
+      "50-59": 4,
+      "60-69": 1
+    },
+    "grade_dist": {
+      "D": 22,
+      "E": 31,
+      "C": 5
+    }
+  },
+  "baseline_grade_dist": {
+    "C": 7,
+    "D": 22,
+    "E": 29,
+    "B": 0,
+    "A": 0
+  },
+  "routing_distribution": {
+    "biscuit": 58
+  },
+  "avg_score_delta_baseline_to_pilot": -2.55,
+  "per_product_deltas": [
+    {
+      "barcode": "2986058",
+      "baseline": 35.1,
+      "pilot": 35.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "2986065",
+      "baseline": 35.4,
+      "pilot": 35.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "311128",
+      "baseline": 29.1,
+      "pilot": 18.0,
+      "delta": -11.1
+    },
+    {
+      "barcode": "311463",
+      "baseline": 44.9,
+      "pilot": 47.9,
+      "delta": 3.0
+    },
+    {
+      "barcode": "311708",
+      "baseline": 32.0,
+      "pilot": 22.6,
+      "delta": -9.4
+    },
+    {
+      "barcode": "313160",
+      "baseline": 31.2,
+      "pilot": 21.8,
+      "delta": -9.4
+    },
+    {
+      "barcode": "4820180816552",
+      "baseline": 18.0,
+      "pilot": 16.0,
+      "delta": -2.0
+    },
+    {
+      "barcode": "4820180816576",
+      "baseline": 24.0,
+      "pilot": 24.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "4820180816590",
+      "baseline": 20.9,
+      "pilot": 23.6,
+      "delta": 2.7
+    },
+    {
+      "barcode": "4823077614675",
+      "baseline": 23.6,
+      "pilot": 17.4,
+      "delta": -6.2
+    },
+    {
+      "barcode": "4823077614699",
+      "baseline": 26.0,
+      "pilot": 26.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5317194",
+      "baseline": 48.3,
+      "pilot": 37.8,
+      "delta": -10.5
+    },
+    {
+      "barcode": "540160",
+      "baseline": 63.1,
+      "pilot": 54.1,
+      "delta": -9.0
+    },
+    {
+      "barcode": "5410126006049",
+      "baseline": 18.1,
+      "pilot": 18.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5410126116168",
+      "baseline": 18.1,
+      "pilot": 18.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5410126726244",
+      "baseline": 18.1,
+      "pilot": 18.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5410126806250",
+      "baseline": 18.1,
+      "pilot": 18.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "61245",
+      "baseline": 21.5,
+      "pilot": 15.5,
+      "delta": -6.0
+    },
+    {
+      "barcode": "7290011489625",
+      "baseline": 37.7,
+      "pilot": 37.7,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290013453501",
+      "baseline": 44.4,
+      "pilot": 44.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290013453631",
+      "baseline": 32.0,
+      "pilot": 31.6,
+      "delta": -0.4
+    },
+    {
+      "barcode": "7290013453693",
+      "baseline": 59.4,
+      "pilot": 62.4,
+      "delta": 3.0
+    },
+    {
+      "barcode": "7290013740052",
+      "baseline": 44.7,
+      "pilot": 45.5,
+      "delta": 0.8
+    },
+    {
+      "barcode": "7290013740113",
+      "baseline": 52.9,
+      "pilot": 54.9,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290013740137",
+      "baseline": 50.4,
+      "pilot": 52.4,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290013740229",
+      "baseline": 46.1,
+      "pilot": 48.1,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290013740342",
+      "baseline": 42.9,
+      "pilot": 44.1,
+      "delta": 1.2
+    },
+    {
+      "barcode": "7290013740465",
+      "baseline": 43.3,
+      "pilot": 44.3,
+      "delta": 1.0
+    },
+    {
+      "barcode": "7290013740472",
+      "baseline": 45.2,
+      "pilot": 41.2,
+      "delta": -4.0
+    },
+    {
+      "barcode": "7290013740540",
+      "baseline": 44.3,
+      "pilot": 46.5,
+      "delta": 2.2
+    },
+    {
+      "barcode": "7290013740557",
+      "baseline": 48.1,
+      "pilot": 48.5,
+      "delta": 0.4
+    },
+    {
+      "barcode": "7290013740694",
+      "baseline": 29.6,
+      "pilot": 28.3,
+      "delta": -1.3
+    },
+    {
+      "barcode": "7290017894317",
+      "baseline": 43.7,
+      "pilot": 35.7,
+      "delta": -8.0
+    },
+    {
+      "barcode": "7290017898506",
+      "baseline": 47.7,
+      "pilot": 37.1,
+      "delta": -10.6
+    },
+    {
+      "barcode": "7290017962108",
+      "baseline": 39.0,
+      "pilot": 39.4,
+      "delta": 0.4
+    },
+    {
+      "barcode": "7290017962139",
+      "baseline": 54.5,
+      "pilot": 55.7,
+      "delta": 1.2
+    },
+    {
+      "barcode": "7290018371923",
+      "baseline": 29.0,
+      "pilot": 29.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290018371930",
+      "baseline": 37.0,
+      "pilot": 28.6,
+      "delta": -8.4
+    },
+    {
+      "barcode": "7290018371947",
+      "baseline": 32.0,
+      "pilot": 26.6,
+      "delta": -5.4
+    },
+    {
+      "barcode": "7290018893845",
+      "baseline": 52.3,
+      "pilot": 36.0,
+      "delta": -16.3
+    },
+    {
+      "barcode": "7290109354972",
+      "baseline": 10,
+      "pilot": 10,
+      "delta": 0
+    },
+    {
+      "barcode": "7290109354996",
+      "baseline": 10.5,
+      "pilot": 10.5,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119040179",
+      "baseline": 22.8,
+      "pilot": 11.8,
+      "delta": -11.0
+    },
+    {
+      "barcode": "7290119040803",
+      "baseline": 19.4,
+      "pilot": 19.0,
+      "delta": -0.4
+    },
+    {
+      "barcode": "7290119041053",
+      "baseline": 37.2,
+      "pilot": 38.6,
+      "delta": 1.4
+    },
+    {
+      "barcode": "7290119041107",
+      "baseline": 55.0,
+      "pilot": 38.6,
+      "delta": -16.4
+    },
+    {
+      "barcode": "7290119041152",
+      "baseline": 37.2,
+      "pilot": 38.6,
+      "delta": 1.4
+    },
+    {
+      "barcode": "7290119041206",
+      "baseline": 21.1,
+      "pilot": 21.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119041350",
+      "baseline": 21.1,
+      "pilot": 21.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119043095",
+      "baseline": 21.1,
+      "pilot": 21.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119043743",
+      "baseline": 48.7,
+      "pilot": 49.7,
+      "delta": 1.0
+    },
+    {
+      "barcode": "7290119043798",
+      "baseline": 26.3,
+      "pilot": 25.8,
+      "delta": -0.5
+    },
+    {
+      "barcode": "7290123330488",
+      "baseline": 23.3,
+      "pilot": 21.7,
+      "delta": -1.6
+    },
+    {
+      "barcode": "74184",
+      "baseline": 38.4,
+      "pilot": 21.0,
+      "delta": -17.4
+    },
+    {
+      "barcode": "80083665",
+      "baseline": 34.3,
+      "pilot": 26.3,
+      "delta": -8.0
+    },
+    {
+      "barcode": "8008698037171",
+      "baseline": 22.8,
+      "pilot": 22.8,
+      "delta": 0.0
+    },
+    {
+      "barcode": "960860015432",
+      "baseline": 45.7,
+      "pilot": 48.7,
+      "delta": 3.0
+    },
+    {
+      "barcode": "99804",
+      "baseline": 20.6,
+      "pilot": 17.3,
+      "delta": -3.3
+    }
+  ],
+  "named_inversions": {
+    "inversion_A": {
+      "description": "Lotus (38.1g sugar) vs פתי בר אורגני (20.5g sugar) — within-E resolution",
+      "high_sugar_barcode": "5410126806250",
+      "low_sugar_barcode": "7290018371923",
+      "gap_baseline_pts": 10.9,
+      "gap_pilot_pts": 10.9,
+      "high_sugar_trace": {
+        "barcode": "5410126806250",
+        "name": "עוגיות לוטוס",
+        "score": 18.1,
+        "grade": "E",
+        "sugars_g": 38.1,
+        "shelf_rel_pen": 6,
+        "floor_applied": null
+      },
+      "low_sugar_trace": {
+        "barcode": "7290018371923",
+        "name": "פתי בר קמח מלא אורגני",
+        "score": 29.0,
+        "grade": "E",
+        "sugars_g": 20.5,
+        "shelf_rel_pen": null,
+        "floor_applied": null
+      },
+      "pass_condition": "gap >= 13 pts",
+      "pass": false
+    },
+    "inversion_B": {
+      "description": "מרוקאי (13.5g sugar) vs וניל הדר (22g sugar) — true rank inversion",
+      "low_sugar_barcode": "7290119041053",
+      "high_sugar_barcode": "5317194",
+      "gap_baseline_pts": 11.1,
+      "gap_pilot_pts": -0.8,
+      "low_sugar_trace": {
+        "barcode": "7290119041053",
+        "name": "עוגיות סגנון מרוקאי",
+        "score": 38.6,
+        "grade": "D",
+        "sugars_g": 13.5,
+        "shelf_rel_pen": -2,
+        "floor_applied": null
+      },
+      "high_sugar_trace": {
+        "barcode": "5317194",
+        "name": "ביסקוויט בטעם וניל הדר",
+        "score": 37.8,
+        "grade": "D",
+        "sugars_g": 22.0,
+        "shelf_rel_pen": null,
+        "floor_applied": null
+      },
+      "pass_condition": "gap <= 10 pts",
+      "pass": true
+    }
+  },
+  "floor_compliance": {
+    "high_sugar_threshold_g": 20.0,
+    "floor_value": 55,
+    "products_checked": 39,
+    "violations": 0,
+    "violation_list": [],
+    "full_list": [
+      {
+        "barcode": "2986058",
+        "sugars_g": 21.4,
+        "score": 35.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "2986065",
+        "sugars_g": 21.7,
+        "score": 35.4,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "311128",
+        "sugars_g": 23.3,
+        "score": 18.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "311708",
+        "sugars_g": 21.5,
+        "score": 22.6,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "313160",
+        "sugars_g": 22.0,
+        "score": 21.8,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "4820180816552",
+        "sugars_g": 36.6,
+        "score": 16.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "4820180816576",
+        "sugars_g": 22.1,
+        "score": 24.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "4820180816590",
+        "sugars_g": 26.2,
+        "score": 23.6,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "4823077614675",
+        "sugars_g": 20.7,
+        "score": 17.4,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "4823077614699",
+        "sugars_g": 20.7,
+        "score": 26.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "5317194",
+        "sugars_g": 22.0,
+        "score": 37.8,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "5410126006049",
+        "sugars_g": 38.1,
+        "score": 18.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "5410126116168",
+        "sugars_g": 38.1,
+        "score": 18.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "5410126726244",
+        "sugars_g": 38.1,
+        "score": 18.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "5410126806250",
+        "sugars_g": 38.1,
+        "score": 18.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "61245",
+        "sugars_g": 34.0,
+        "score": 15.5,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290011489625",
+        "sugars_g": 22.0,
+        "score": 37.7,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290013453501",
+        "sugars_g": 23.4,
+        "score": 44.4,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290013453631",
+        "sugars_g": 24.8,
+        "score": 31.6,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290013740472",
+        "sugars_g": 31.6,
+        "score": 41.2,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290013740694",
+        "sugars_g": 21.0,
+        "score": 28.3,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290017894317",
+        "sugars_g": 24.0,
+        "score": 35.7,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290017898506",
+        "sugars_g": 20.0,
+        "score": 37.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290018371923",
+        "sugars_g": 20.5,
+        "score": 29.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290018371930",
+        "sugars_g": 24.4,
+        "score": 28.6,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290018371947",
+        "sugars_g": 24.4,
+        "score": 26.6,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290018893845",
+        "sugars_g": 21.0,
+        "score": 36.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290109354972",
+        "sugars_g": 22.0,
+        "score": 10,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290109354996",
+        "sugars_g": 20.0,
+        "score": 10.5,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290119040179",
+        "sugars_g": 44.3,
+        "score": 11.8,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290119040803",
+        "sugars_g": 20.0,
+        "score": 19.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290119041206",
+        "sugars_g": 23.2,
+        "score": 21.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290119041350",
+        "sugars_g": 23.2,
+        "score": 21.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290119043095",
+        "sugars_g": 23.2,
+        "score": 21.1,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "7290123330488",
+        "sugars_g": 30.5,
+        "score": 21.7,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "74184",
+        "sugars_g": 22.0,
+        "score": 21.0,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "80083665",
+        "sugars_g": 24.0,
+        "score": 26.3,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "8008698037171",
+        "sugars_g": 20.0,
+        "score": 22.8,
+        "compliant": true,
+        "category": "biscuit"
+      },
+      {
+        "barcode": "99804",
+        "sugars_g": 37.3,
+        "score": 17.3,
+        "compliant": true,
+        "category": "biscuit"
+      }
+    ]
+  },
+  "d_to_c_crossings": [],
+  "success_criteria": [
+    {
+      "criterion": 1,
+      "name": "Resolution restored",
+      "pass": false,
+      "note": "baseline max_pinned=4, pilot max_pinned=4"
+    },
+    {
+      "criterion": 2,
+      "name": "Rank inversions corrected",
+      "pass": false,
+      "note": "InvA gap: baseline=10.9 pilot=10.9 (need>=13) FAIL; InvB gap: baseline=11.1 pilot=-0.8 (need<=10) PASS"
+    },
+    {
+      "criterion": 3,
+      "name": "Shelf average stable (<=1.5 pts)",
+      "pass": false,
+      "note": "avg_delta=-2.55 (need<=1.5)"
+    },
+    {
+      "criterion": 4,
+      "name": "Anti-Immunity holds (no sugar>=20g at A)",
+      "pass": true,
+      "note": "high_sugar (>=20g) products at A (>=80): 0 (need=0)"
+    },
+    {
+      "criterion": 5,
+      "name": "Absolute floor enforced (sugar>=20g score<=55)",
+      "pass": true,
+      "note": "39 products with sugar>=20g checked, 0 violations (need=0)"
+    },
+    {
+      "criterion": 6,
+      "name": "Flag-off byte-identical",
+      "pass": null,
+      "note": "Verified separately: BARI_SHELF_RELATIVE_V1=off byte-identity test (Step 5)"
+    },
+    {
+      "criterion": 7,
+      "name": "No cross-category contamination",
+      "pass": true,
+      "note": "Non-biscuit products with SUGAR_SHELF_REL_V1 fired: 0 (need=0). Cross-category contamination by external published categories verified separately in Step 5."
+    }
+  ],
+  "success_criteria_summary": {
+    "C1": "FAIL",
+    "C2": "FAIL",
+    "C3": "FAIL",
+    "C4": "PASS",
+    "C5": "PASS",
+    "C6": "UNKNOWN",
+    "C7": "PASS"
+  },
+  "all_criteria_pass": false,
+  "brined_flag": {
+    "fired_count": 0,
+    "guard_pass": true,
+    "fired_products": []
+  },
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "score_engine_sha256": "7abf47171204ef55c68fa6ad924bd06055d04561d556c20cde303a347205c25b",
+  "constants_sha256": "292faa2d05980282c51cd214a9ea16ad2ad3dde3a445b91666bb61ca505a52d3",
+  "verification_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_005_shelfrel_pilot\\verification_table.csv",
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "flag_on": true,
+    "calibration_pass": true,
+    "brined_food_fired": 0,
+    "brined_food_guard_pass": true,
+    "scored_count": 58,
+    "expected_count": 58,
+    "count_match": true,
+    "floor_violations": 0,
+    "floor_compliance_pass": true,
+    "non_biscuit_shelf_rel_fired": 0
+  }
+}

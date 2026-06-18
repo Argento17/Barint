@@ -1,0 +1,187 @@
+{
+  "sku_id": "SP-0033984005181",
+  "barcode": "0033984005181",
+  "name_he": "סולגר סידן ומגנזיום +Dויטמין 150 טבליות",
+  "brand_bucket": "solgar",
+  "engine_active": "magnesium",
+  "price_ils": 157.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "solgar.com",
+    "confidence": 1.0,
+    "reason": "barcode match via solgar.com"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "raw HE claim -> umbrella will resolve: 'Calcium Magnesium Vitamin D3 bone support'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.solgar.com/products/calcium-magnesium-with-vitamin-d3-tablets",
+    "source": "solgar.com",
+    "brand": "solgar",
+    "product_name": "Solgar Calcium Magnesium with Vitamin D3 150 tabs",
+    "barcode": "0033984005181",
+    "serving_size": "5 tablets",
+    "servings_per_container": "30",
+    "ingredient_list_raw": null,
+    "primary_claim": "Calcium Magnesium Vitamin D3 bone support",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "calcium (calcium citrate)",
+        "amount": 200.0,
+        "unit": "mg",
+        "form": "citrate",
+        "form_raw": "citrate",
+        "active_slug": "vitamin_d3"
+      },
+      {
+        "ingredient": "magnesium (magnesium oxide+citrate)",
+        "amount": 100.0,
+        "unit": "mg",
+        "form": "citrate",
+        "form_raw": "oxide+citrate",
+        "active_slug": "vitamin_d3"
+      },
+      {
+        "ingredient": "vitamin D3 (cholecalciferol)",
+        "amount": 80.0,
+        "unit": "IU",
+        "form": "cholecalciferol",
+        "form_raw": null,
+        "active_slug": "vitamin_d3"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:solgar.com",
+      "source_id": "solgar:0033984005181",
+      "source_url": "https://www.solgar.com/products/calcium-magnesium-with-vitamin-d3-tablets",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "Solgar Calcium Magnesium with Vitamin D3 150 tabs",
+    "primary_claim_fed": "Calcium Magnesium Vitamin D3 bone support",
+    "actives": [
+      {
+        "active_slug": "vitamin_d3",
+        "display_name": "calcium (calcium citrate)",
+        "quantity": 200.0,
+        "unit": "mg",
+        "form": "citrate",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "bone mineral density (BMD) in older adults",
+    "score": 69.8,
+    "grade": "B",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 61.3,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:55.631954Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-0033984005181",
+    "active": "magnesium",
+    "on_label_claim": "Calcium Magnesium Vitamin D3 bone support",
+    "claim_matched": "bone mineral density (BMD) in older adults",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "bone mineral density (BMD) in older adults",
+      "resolved_phrase": "bone health",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-006",
+      "resolution_citations": [
+        "PMID:34666201",
+        "PMID:26556742",
+        "PMID:19488681"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "bone health",
+          "resolves_to": "bone mineral density (BMD) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        }
+      ],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 61.3,
+        "reason": "sub_therapeutic"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "within_ul"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "MID",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 69.8,
+    "dossier_facts_used": [
+      {
+        "field": "claims['bone mineral density (BMD) in older adults'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 69.8,
+      "grade": "B"
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "sku_id": "SP-7290019444206",
+  "barcode": "7290019444206",
+  "name_he": "אלטמן מגנזיום באלאנס 60 כמוסות",
+  "brand_bucket": "altman",
+  "engine_active": "magnesium",
+  "price_ils": 110.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "HE+EN combined -> umbrella: 'קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השר'",
+  "lossy": [
+    "actives[1].form (not on panel)",
+    "actives[2].form (not on panel)",
+    "actives[3].form (not on panel)"
+  ],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן מגנזיום Balance",
+    "barcode": "7290019444206",
+    "serving_size": "1 unit",
+    "servings_per_container": null,
+    "ingredient_list_raw": null,
+    "primary_claim": "קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השרירים ומערכת העצבים",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "מגנזיום (from oxide)",
+        "amount": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "form_raw": "oxide",
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "אשווגנדה KSM-66",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ולריאן",
+        "amount": 50.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      },
+      {
+        "ingredient": "ויטמין B6",
+        "amount": 30.0,
+        "unit": "mg",
+        "form": null,
+        "form_raw": null,
+        "active_slug": "magnesium"
+      }
+    ],
+    "missing_fields": [
+      "actives[1].form (not on panel)",
+      "actives[2].form (not on panel)",
+      "actives[3].form (not on panel)"
+    ],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290019444206",
+      "source_url": "https://www.altman.co.il/shop/magnesium/magnesium-balance/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן מגנזיום Balance",
+    "primary_claim_fed": "קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השרירים ומערכת העצבים muscle health nerve health",
+    "actives": [
+      {
+        "active_slug": "magnesium",
+        "display_name": "מגנזיום (from oxide)",
+        "quantity": 450.0,
+        "unit": "mg",
+        "form": "oxide",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "score": 20.0,
+    "grade": "E",
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "sub_scores": {
+      "evidence": 47.0,
+      "dose": 72,
+      "form": 45,
+      "honesty": 100,
+      "safety": "veto"
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ]
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:54.156798Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290019444206",
+    "active": "magnesium",
+    "on_label_claim": "קומפלקס מגנזיום לפעילות מאוזנת ולתפקוד תקין של השרירים ומערכת העצבים muscle health nerve health",
+    "claim_matched": "muscle mass / strength (sarcopenia) in older adults",
+    "claim_resolution": {
+      "via_umbrella": true,
+      "resolved_endpoint": "muscle mass / strength (sarcopenia) in older adults",
+      "resolved_phrase": "muscle health",
+      "resolved_tier": "Weak",
+      "resolution_supp_ev": "SUPP-EV-006",
+      "resolution_citations": [
+        "PMID:37355247",
+        "PMID:28711425",
+        "PMID:32956536"
+      ],
+      "umbrella_mapped": [
+        {
+          "phrase": "muscle health",
+          "resolves_to": "muscle mass / strength (sarcopenia) in older adults",
+          "resolved_tier": "Weak",
+          "supp_ev": "SUPP-EV-006"
+        }
+      ],
+      "umbrella_present_nonmapping": [
+        "nerve health",
+        "מערכת העצבים"
+      ],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 47.0,
+        "tier": "Weak"
+      },
+      "dose": {
+        "value": 72,
+        "reason": "over_studied_no_bonus"
+      },
+      "form": {
+        "value": 45
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "veto",
+        "reason": "exceeds_UL"
+      }
+    },
+    "signature": {
+      "evidence": "MID",
+      "dose": "HIGH",
+      "form": "MID",
+      "honesty": "HIGH",
+      "safety": "VETO"
+    },
+    "caps_vetoes_fired": [
+      {
+        "mechanism": "veto_safety",
+        "kind": "floor",
+        "ceiling_or_floor": 20
+      }
+    ],
+    "binding_constraint": {
+      "mechanism": "veto_safety",
+      "machine_reason": "dose_exceeds_safe_ceiling"
+    },
+    "also_fired": [],
+    "blend": 63.1,
+    "dossier_facts_used": [
+      {
+        "field": "claims['muscle mass / strength (sarcopenia) in older adults'].evidence_tier",
+        "value": "Weak",
+        "supp_ev": "SUPP-EV-002"
+      }
+    ],
+    "final": {
+      "score": 20.0,
+      "grade": "E"
+    }
+  }
+}

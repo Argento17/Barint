@@ -1,0 +1,524 @@
+{
+  "run_id": "run_brined_001",
+  "generated": "2026-06-13T07:26:49.343824+00:00",
+  "task": "TASK-266",
+  "flag_config": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on (default)"
+  },
+  "scored": 48,
+  "errors": 0,
+  "score_distribution": {
+    "min": 35.0,
+    "max": 82.4,
+    "median": 39.0,
+    "range": 47.400000000000006,
+    "histogram": {
+      "30-39": 28,
+      "60-69": 15,
+      "70-79": 3,
+      "80-89": 2
+    },
+    "grade_dist": {
+      "D": 28,
+      "B": 17,
+      "C": 1,
+      "A": 2
+    }
+  },
+  "anti_collapse": "SPREAD_HONEST: range=47.4 pts (35.0–82.4), 4 grade bands — genuine differentiation",
+  "brined_flag_fired": 0,
+  "brined_flag_not_fired": 48,
+  "hp_fat_sodium_fired": 0,
+  "off_used": false,
+  "products": [
+    {
+      "barcode": "7290108509755",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2107798",
+      "name": null,
+      "score": 65.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290011499303",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7296073641902",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "5992872",
+      "name": null,
+      "score": 75,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": null
+    },
+    {
+      "barcode": "7290019790112",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290108509106",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7296073641919",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290011499358",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2107071",
+      "name": null,
+      "score": 35.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7296073730330",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290114312486",
+      "name": null,
+      "score": 38.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "3075805",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "cracker",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290011499112",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "8606370",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290114312707",
+      "name": null,
+      "score": 38.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2511229",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "48413",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "cracker",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290011499327",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290019790402",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290019635222",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290019635826",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290011499365",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "4861056",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290019790808",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2385455",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2133889",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7296073641964",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7296073641957",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2511243",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290114310550",
+      "name": null,
+      "score": 62.0,
+      "grade": "C",
+      "category": "dairy_protein",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "554457",
+      "name": null,
+      "score": 82.4,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": null
+    },
+    {
+      "barcode": "7290114314015",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2133162",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7296073644996",
+      "name": null,
+      "score": 70.9,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": null
+    },
+    {
+      "barcode": "7290011499105",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290017065236",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "4861360",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290102397334",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290011499129",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290011499051",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "7290102393718",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "554532",
+      "name": null,
+      "score": 82.4,
+      "grade": "A",
+      "category": "dairy_protein",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": null
+    },
+    {
+      "barcode": "369617",
+      "name": null,
+      "score": 36.0,
+      "grade": "D",
+      "category": "whole_food_fat",
+      "nova": 3,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "2511236",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    },
+    {
+      "barcode": "7290017065663",
+      "name": null,
+      "score": 39.0,
+      "grade": "D",
+      "category": "default",
+      "nova": 1,
+      "context_flag": null,
+      "binding_cap": 45
+    },
+    {
+      "barcode": "4861070",
+      "name": null,
+      "score": 70.9,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": null
+    },
+    {
+      "barcode": "7296073641940",
+      "name": null,
+      "score": 66.0,
+      "grade": "B",
+      "category": "dairy_protein",
+      "nova": 2,
+      "context_flag": null,
+      "binding_cap": 72
+    }
+  ]
+}

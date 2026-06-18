@@ -1,0 +1,693 @@
+{
+  "run_id": "run_hummus_001_sodium_pilot",
+  "task_id": "TASK-278",
+  "phase": "Phase-12 hummus×sodium wire+pilot",
+  "agent": "data-agent",
+  "run_date": "2026-06-14T18:42:15.553924+00:00",
+  "measured_not_published": true,
+  "engine_flag": "BARI_SHELF_RELATIVE_V1=on",
+  "ev094_constants": {
+    "SODIUM_SHELF_REL_HUMMUS_MEDIAN": 390.0,
+    "SODIUM_SHELF_REL_HUMMUS_IQR": 43.0,
+    "SODIUM_SHELF_REL_HUMMUS_SCALE": 31.88,
+    "SODIUM_SHELF_REL_HUMMUS_FLOOR": 62,
+    "SODIUM_SHELF_REL_HUMMUS_FLOOR_THRESHOLD_MG": 395.0,
+    "SODIUM_SHELF_REL_HUMMUS_P_MAX": 6,
+    "SODIUM_SHELF_REL_HUMMUS_B_MAX": 3
+  },
+  "corpus_counts": {
+    "hummus_in_scope_n": 60,
+    "salty_snacks_n": 54,
+    "milk_n": 20,
+    "yogurt_n": 88,
+    "cheese_spread_n": 59,
+    "hard_cheese_n": 37,
+    "juice_n": 65,
+    "maadanim_n": 200
+  },
+  "gate_criteria": {
+    "C1_directional_pct_70": "FAIL",
+    "C2a_grade_dist_plausible": "PASS",
+    "C2b_grade_absorption_50": "FAIL",
+    "C2c_mean_abs_delta_movers": "PASS",
+    "C3_named_inversion": "PASS",
+    "C4_movers_n_5": "PASS",
+    "C5_grade_changes_n_1": "PASS",
+    "C6_dead_zone_60": "PASS",
+    "C7_anti_immunity": "PASS",
+    "C8_floor_compliance": "PASS",
+    "C9_scope_bleed_0": "PASS",
+    "C10_milk_delta_zero_CRITICAL": "PASS",
+    "C11_q4_suppression_700mg": "PASS"
+  },
+  "all_criteria_pass": false,
+  "c10_milk_critical": {
+    "milk_delta_zero_count": "20/20",
+    "pass": true,
+    "violations": []
+  },
+  "directional": {
+    "c1_pct": 36.4,
+    "high_sodium_correct": "1/26",
+    "low_sodium_correct": "19/29"
+  },
+  "movers_n": 39,
+  "grade_changes_n": 15,
+  "dead_zone_pct": 35.0,
+  "mean_abs_delta_movers": 8.372,
+  "grade_dist_flag_on": {
+    "B": 11,
+    "C": 33,
+    "E": 2,
+    "D": 12,
+    "A": 2
+  },
+  "grade_dist_flag_off": {
+    "B": 11,
+    "C": 18,
+    "D": 26,
+    "E": 3,
+    "A": 2
+  },
+  "c3_named_inversion": {
+    "lower_sodium": {
+      "barcode": "7296073705505",
+      "sodium_mg": 6.0,
+      "score_on": 77.1,
+      "name": "חומוס מוקפא"
+    },
+    "higher_sodium": {
+      "barcode": "1990261",
+      "sodium_mg": 12.0,
+      "score_on": 72.0,
+      "name": "חומוס"
+    }
+  },
+  "q4_suppressed_count": 3,
+  "floor_threshold_mg": 395.0,
+  "floor_value": 62,
+  "off_used": false,
+  "errors": [],
+  "score_table_hummus": [
+    {
+      "barcode": "7296073705505",
+      "sodium_mg": 6.0,
+      "flag_off_score": 74.1,
+      "flag_off_grade": "B",
+      "flag_on_score": 77.1,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "1990261",
+      "sodium_mg": 12.0,
+      "flag_off_score": 69.0,
+      "flag_off_grade": "B",
+      "flag_on_score": 72.0,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "3643714",
+      "sodium_mg": 12.0,
+      "flag_off_score": 69.0,
+      "flag_off_grade": "B",
+      "flag_on_score": 72.0,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "3643820",
+      "sodium_mg": 17.0,
+      "flag_off_score": 69.2,
+      "flag_off_grade": "B",
+      "flag_on_score": 72.2,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073733317",
+      "sodium_mg": 23.0,
+      "flag_off_score": 75,
+      "flag_off_grade": "B",
+      "flag_on_score": 75,
+      "flag_on_grade": "B",
+      "delta": 0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073733324",
+      "sodium_mg": 23.0,
+      "flag_off_score": 80.2,
+      "flag_off_grade": "A",
+      "flag_on_score": 83.2,
+      "flag_on_grade": "A",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073733331",
+      "sodium_mg": 23.0,
+      "flag_off_score": 80.2,
+      "flag_off_grade": "A",
+      "flag_on_score": 83.2,
+      "flag_on_grade": "A",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073005889",
+      "sodium_mg": 24.0,
+      "flag_off_score": 75.9,
+      "flag_off_grade": "B",
+      "flag_on_score": 78.9,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073006015",
+      "sodium_mg": 24.0,
+      "flag_off_score": 75.9,
+      "flag_off_grade": "B",
+      "flag_on_score": 78.9,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073733348",
+      "sodium_mg": 64.0,
+      "flag_off_score": 75,
+      "flag_off_grade": "B",
+      "flag_on_score": 75,
+      "flag_on_grade": "B",
+      "delta": 0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290018359686",
+      "sodium_mg": 150.0,
+      "flag_off_score": 70.8,
+      "flag_off_grade": "B",
+      "flag_on_score": 73.8,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "208428",
+      "sodium_mg": 152.0,
+      "flag_off_score": 70.4,
+      "flag_off_grade": "B",
+      "flag_on_score": 73.4,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725404",
+      "sodium_mg": 231.0,
+      "flag_off_score": 65.6,
+      "flag_off_grade": "B",
+      "flag_on_score": 68.6,
+      "flag_on_grade": "B",
+      "delta": 3.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725381",
+      "sodium_mg": 328.0,
+      "flag_off_score": 53.5,
+      "flag_off_grade": "C",
+      "flag_on_score": 55.5,
+      "flag_on_grade": "C",
+      "delta": 2.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725398",
+      "sodium_mg": 328.0,
+      "flag_off_score": 47.2,
+      "flag_off_grade": "D",
+      "flag_on_score": 49.2,
+      "flag_on_grade": "D",
+      "delta": 2.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "467320",
+      "sodium_mg": 360.0,
+      "flag_off_score": 49.7,
+      "flag_off_grade": "D",
+      "flag_on_score": 50.7,
+      "flag_on_grade": "C",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725565",
+      "sodium_mg": 362.0,
+      "flag_off_score": 54.3,
+      "flag_off_grade": "C",
+      "flag_on_score": 55.3,
+      "flag_on_grade": "C",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725589",
+      "sodium_mg": 362.0,
+      "flag_off_score": 54.3,
+      "flag_off_grade": "C",
+      "flag_on_score": 55.3,
+      "flag_on_grade": "C",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725374",
+      "sodium_mg": 365.0,
+      "flag_off_score": 51.5,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.5,
+      "flag_on_grade": "C",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290119374885",
+      "sodium_mg": 370.0,
+      "flag_off_score": 41.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 42.4,
+      "flag_on_grade": "D",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725367",
+      "sodium_mg": 373.0,
+      "flag_off_score": 51.3,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.3,
+      "flag_on_grade": "C",
+      "delta": 1.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290104061417",
+      "sodium_mg": 375.0,
+      "flag_off_score": 47.0,
+      "flag_off_grade": "D",
+      "flag_on_score": 47.0,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290119373710",
+      "sodium_mg": 375.0,
+      "flag_off_score": 48.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 48.4,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290104061448",
+      "sodium_mg": 379.0,
+      "flag_off_score": 46.0,
+      "flag_off_grade": "D",
+      "flag_on_score": 46.0,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "6724786",
+      "sodium_mg": 380.0,
+      "flag_off_score": 34.5,
+      "flag_off_grade": "E",
+      "flag_on_score": 34.5,
+      "flag_on_grade": "E",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290110557478",
+      "sodium_mg": 380.0,
+      "flag_off_score": 53.0,
+      "flag_off_grade": "C",
+      "flag_on_score": 53.0,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290110579319",
+      "sodium_mg": 380.0,
+      "flag_off_score": 53.2,
+      "flag_off_grade": "C",
+      "flag_on_score": 53.2,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290112968685",
+      "sodium_mg": 380.0,
+      "flag_off_score": 47.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 47.4,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290119374892",
+      "sodium_mg": 388.0,
+      "flag_off_score": 48.7,
+      "flag_off_grade": "D",
+      "flag_on_score": 48.7,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290119387434",
+      "sodium_mg": 390.0,
+      "flag_off_score": 52.4,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.4,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7296073725497",
+      "sodium_mg": 390.0,
+      "flag_off_score": 45.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 45.4,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290104061424",
+      "sodium_mg": 392.0,
+      "flag_off_score": 49.3,
+      "flag_off_grade": "D",
+      "flag_on_score": 49.3,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "2987963",
+      "sodium_mg": 393.0,
+      "flag_off_score": 52.4,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.4,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "5174551",
+      "sodium_mg": 393.0,
+      "flag_off_score": 52.5,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.5,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290105964564",
+      "sodium_mg": 393.0,
+      "flag_off_score": 52.5,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.5,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "8645935",
+      "sodium_mg": 393.0,
+      "flag_off_score": 52.4,
+      "flag_off_grade": "C",
+      "flag_on_score": 52.4,
+      "flag_on_grade": "C",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7296073725640",
+      "sodium_mg": 394.0,
+      "flag_off_score": 37.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 37.4,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "3727667",
+      "sodium_mg": 395.0,
+      "flag_off_score": 52.7,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 9.3,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "467153",
+      "sodium_mg": 395.0,
+      "flag_off_score": 48.8,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 13.2,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106573598",
+      "sodium_mg": 395.0,
+      "flag_off_score": 49.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 12.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106573628",
+      "sodium_mg": 395.0,
+      "flag_off_score": 47.1,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 14.9,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106573642",
+      "sodium_mg": 395.0,
+      "flag_off_score": 51.3,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 10.7,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106573819",
+      "sodium_mg": 395.0,
+      "flag_off_score": 48.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 13.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106576513",
+      "sodium_mg": 395.0,
+      "flag_off_score": 52.7,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 9.3,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106576537",
+      "sodium_mg": 395.0,
+      "flag_off_score": 49.7,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 12.3,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106577480",
+      "sodium_mg": 395.0,
+      "flag_off_score": 30.2,
+      "flag_off_grade": "E",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 31.8,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290106577572",
+      "sodium_mg": 395.0,
+      "flag_off_score": 36.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 25.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290110564360",
+      "sodium_mg": 395.0,
+      "flag_off_score": 52.5,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 9.5,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290115202434",
+      "sodium_mg": 395.0,
+      "flag_off_score": 49.1,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 12.9,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290115202687",
+      "sodium_mg": 395.0,
+      "flag_off_score": 46.0,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 16.0,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290115207484",
+      "sodium_mg": 395.0,
+      "flag_off_score": 40.5,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 21.5,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290122780314",
+      "sodium_mg": 395.0,
+      "flag_off_score": 49.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 12.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290104061431",
+      "sodium_mg": 396.0,
+      "flag_off_score": 49.5,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 12.5,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290104721533",
+      "sodium_mg": 397.0,
+      "flag_off_score": 51.1,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 10.9,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7290107958639",
+      "sodium_mg": 398.0,
+      "flag_off_score": 44.4,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 17.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "6666307",
+      "sodium_mg": 480.0,
+      "flag_off_score": 64.6,
+      "flag_off_grade": "C",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": -2.6,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "6666444",
+      "sodium_mg": 623.0,
+      "flag_off_score": 47.9,
+      "flag_off_grade": "D",
+      "flag_on_score": 62,
+      "flag_on_grade": "C",
+      "delta": 14.1,
+      "ev094_fired": true
+    },
+    {
+      "barcode": "7296073725510",
+      "sodium_mg": 852.0,
+      "flag_off_score": 37.9,
+      "flag_off_grade": "D",
+      "flag_on_score": 37.9,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7296073725633",
+      "sodium_mg": 852.0,
+      "flag_off_score": 37.9,
+      "flag_off_grade": "D",
+      "flag_on_score": 37.9,
+      "flag_on_grade": "D",
+      "delta": 0.0,
+      "ev094_fired": false
+    },
+    {
+      "barcode": "7290010154265",
+      "sodium_mg": 864.0,
+      "flag_off_score": 34.5,
+      "flag_off_grade": "E",
+      "flag_on_score": 34.5,
+      "flag_on_grade": "E",
+      "delta": 0.0,
+      "ev094_fired": false
+    }
+  ]
+}

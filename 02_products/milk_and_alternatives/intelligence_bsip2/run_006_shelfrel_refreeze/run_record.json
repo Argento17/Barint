@@ -1,0 +1,270 @@
+{
+  "run_id": "run_006_shelfrel_refreeze",
+  "task": "TASK-284E / TASK-275-FIX1",
+  "created_utc": "2026-06-16T04:57:39Z",
+  "engine_flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "off"
+  },
+  "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+  "compared_against": "run_005_headpin",
+  "headpin_count": 20,
+  "scored_count": 20,
+  "error_count": 0,
+  "grade_dist": {
+    "A": 3,
+    "B": 1,
+    "C": 5,
+    "D": 10,
+    "E": 1
+  },
+  "score_min": 33.5,
+  "score_max": 85,
+  "frozen_invariant": {
+    "top_trio_held": true,
+    "distribution_held": true,
+    "max_held": true,
+    "all_held": true,
+    "expected_dist": {
+      "A": 3,
+      "B": 1,
+      "C": 5,
+      "D": 10,
+      "E": 1
+    },
+    "actual_dist": {
+      "D": 10,
+      "E": 1,
+      "A": 3,
+      "C": 5,
+      "B": 1
+    },
+    "trio": [
+      {
+        "product_id": "bsip1_7290000051352",
+        "label": "whole 3.4% (taste of old days)",
+        "expected": "85/A",
+        "got": "85/A",
+        "status": "HELD"
+      },
+      {
+        "product_id": "bsip1_7290019790259",
+        "label": "natural 4%",
+        "expected": "85/A",
+        "got": "85/A",
+        "status": "HELD"
+      },
+      {
+        "product_id": "bsip1_7290102392094",
+        "label": "goat milk",
+        "expected": "85/A",
+        "got": "85/A",
+        "status": "HELD"
+      }
+    ]
+  },
+  "delta_table": [
+    {
+      "product_id": "bsip1_5411188112709",
+      "name_he": "אלפרו שקדים ללא סוכר",
+      "run_005_score": 46.2,
+      "run_005_grade": "D",
+      "run_006_score": 46.2,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_5411188124689",
+      "name_he": "אלפרו שיבולת שועל ללא סוכר",
+      "run_005_score": 49.7,
+      "run_005_grade": "D",
+      "run_006_score": 49.7,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_5411188300328",
+      "name_he": "אלפרו שוקו משקה סויה",
+      "run_005_score": 33.5,
+      "run_005_grade": "E",
+      "run_006_score": 33.5,
+      "run_006_grade": "E",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290000051352",
+      "name_he": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+      "run_005_score": 85,
+      "run_005_grade": "A",
+      "run_006_score": 85,
+      "run_006_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290014760141",
+      "name_he": "משקה שקדים",
+      "run_005_score": 51.5,
+      "run_005_grade": "C",
+      "run_006_score": 51.5,
+      "run_006_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290019790259",
+      "name_he": "חלב טבעי 4% 1 ליטר",
+      "run_005_score": 85,
+      "run_005_grade": "A",
+      "run_006_score": 85,
+      "run_006_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290102392094",
+      "name_he": "חלב עיזים בקרטון 1 ליטר",
+      "run_005_score": 85,
+      "run_005_grade": "A",
+      "run_006_score": 85,
+      "run_006_grade": "A",
+      "delta": 0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290107932134",
+      "name_he": "חלב בבקבוק 1% מועשר- מהדרין",
+      "run_005_score": 55.5,
+      "run_005_grade": "C",
+      "run_006_score": 55.5,
+      "run_006_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290110324773",
+      "name_he": "משקה חלב גו 27 גרם חלבון 2% בטעם וניל 340 מ\"ל",
+      "run_005_score": 37.0,
+      "run_005_grade": "D",
+      "run_006_score": 37.0,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290110324926",
+      "name_he": "משקה סויה ללא תוספת סוכר",
+      "run_005_score": 56.7,
+      "run_005_grade": "C",
+      "run_006_score": 56.7,
+      "run_006_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290110325619",
+      "name_he": "משקה שיבולת שועל",
+      "run_005_score": 47.6,
+      "run_005_grade": "D",
+      "run_006_score": 47.6,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290114313285",
+      "name_he": "מולר פרוטאין משקה חלבון בטעם בננה 25גרם חלבון 0%שומן",
+      "run_005_score": 46.3,
+      "run_005_grade": "D",
+      "run_006_score": 46.3,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290114313865",
+      "name_he": "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+      "run_005_score": 71.0,
+      "run_005_grade": "B",
+      "run_006_score": 71.0,
+      "run_006_grade": "B",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290116936116",
+      "name_he": "משקה סויה ללא סוכרים 1 ליטר",
+      "run_005_score": 63.9,
+      "run_005_grade": "C",
+      "run_006_score": 63.9,
+      "run_006_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7290119385560",
+      "name_he": "משקה סויה בריסטה אלפרו 500 מ\"ל",
+      "run_005_score": 49.9,
+      "run_005_grade": "D",
+      "run_006_score": 49.9,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7394376619939",
+      "name_he": "משקה בריסטה שיבולת שועל",
+      "run_005_score": 49.8,
+      "run_005_grade": "D",
+      "run_006_score": 49.8,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7394376620904",
+      "name_he": "משקה שיבולת שועל ללא סוכר",
+      "run_005_score": 50.5,
+      "run_005_grade": "C",
+      "run_006_score": 50.5,
+      "run_006_grade": "C",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_7394376621451",
+      "name_he": "משקה בריסטה שיבולת שועל להקצפה",
+      "run_005_score": 49.8,
+      "run_005_grade": "D",
+      "run_006_score": 49.8,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_8000215204219",
+      "name_he": "משקה אורז אורגני",
+      "run_005_score": 46.3,
+      "run_005_grade": "D",
+      "run_006_score": 46.3,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    },
+    {
+      "product_id": "bsip1_8000215204554",
+      "name_he": "משקה אורז קוקוס אורגני",
+      "run_005_score": 48.1,
+      "run_005_grade": "D",
+      "run_006_score": 48.1,
+      "run_006_grade": "D",
+      "delta": 0.0,
+      "class": "MATCH"
+    }
+  ],
+  "note": "FIX-1 (TASK-275): prior run_006 traces were null-nutrition stubs (bsip1_source_path=null). Root cause: runner did not call load_batch() from input_loader.py. This run correctly loads BSIP1 and reproduces the frozen invariant."
+}

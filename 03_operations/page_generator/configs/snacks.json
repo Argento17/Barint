@@ -1,0 +1,34 @@
+{
+  "_comment": "Snacks category config. Corpus: run_001 (106 products, Yochananof/multi). Run: run_snack_bars_001/products (53 trace dirs). The live page displays 18 curated products out of 48 scored — the run contains all 53 (48 scored + others). Category is snack_bars in the engine. The _internal_cluster extension field is present in live JSON but stripped by the page-data layer. Discovered via: snacks.ts imports snacks-comparison-page-data.ts which imports snacks_frontend_v2.json; run record run_snackbars_007_headpin corpus points to run_001 (53 products, corpus_n=53); BSIP2 trace dirs in run_snack_bars_001/products (53 dirs). NOTE: snacks applies editorial curation (18/48 displayed) — the generator will produce all 53 trace products, the 35 non-displayed are LIVE_DEBT in the diff.",
+  "category": "snacks",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_001\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\run_snack_bars_001\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\snacks_frontend_v2.json",
+  "retailer_scope": ["yohananof", "carrefour"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_FAT_TECH_V1": "on"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_001\\output",
+    "corpus_filter": null,
+    "_source": "batch_run_snack_bars_001.py (no shelf-rel enrollment)"
+  },
+  "exclusions": [],
+  "extension_fields": ["_internal_cluster"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

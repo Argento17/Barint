@@ -1,0 +1,163 @@
+{
+  "sku_id": "SP-7290015765572",
+  "barcode": "7290015765572",
+  "name_he": "אלטמן ויטמין B12 מתיל קובלאמין 60 טבליות",
+  "brand_bucket": "altman",
+  "engine_active": "vitamin_b12",
+  "price_ils": 79.9,
+  "resolution": {
+    "matched": true,
+    "method": "barcode",
+    "source": "altman",
+    "confidence": 1.0,
+    "reason": "barcode match via altman"
+  },
+  "verification_status": "candidate",
+  "acquisition_method": "brand_panel",
+  "outcome": "scored",
+  "claim_note": "studied endpoint from HE: 'ויטמין B12 למניעת אנמיה; תורם להפחתת עייפות ותשישו'",
+  "lossy": [],
+  "panel": {
+    "url": "https://www.altman.co.il/shop/vms/vitamin-b/vitamin-b12-methylcobalamin/",
+    "source": "altman",
+    "brand": "altman",
+    "product_name": "אלטמן ויטמין B12 מתיל קובלאמין 60 טבליות",
+    "barcode": "7290015765572",
+    "serving_size": "1 tablet (sublingual)",
+    "servings_per_container": "60",
+    "ingredient_list_raw": null,
+    "primary_claim": "ויטמין B12 למניעת אנמיה; תורם להפחתת עייפות ותשישות",
+    "proprietary_blend": false,
+    "actives": [
+      {
+        "ingredient": "ויטמין B12 (methylcobalamin)",
+        "amount": 1000.0,
+        "unit": "mcg",
+        "form": "methylcobalamin",
+        "form_raw": "methylcobalamin",
+        "active_slug": "vitamin_b12"
+      }
+    ],
+    "missing_fields": [],
+    "provenance": {
+      "source": "il_supplement_panels:altman",
+      "source_id": "altman:7290015765572",
+      "source_url": "https://www.altman.co.il/shop/vms/vitamin-b/vitamin-b12-methylcobalamin/",
+      "fetched_at": "2026-06-14T07:03:53Z",
+      "client_version": "il_supplement_panels/0.1 (firecrawl json + IL e-tailer/brand-site)",
+      "verification_status": "candidate"
+    }
+  },
+  "bsip0s_label": {
+    "product_name": "אלטמן ויטמין B12 מתיל קובלאמין 60 טבליות",
+    "primary_claim_fed": "treating/preventing B12 deficiency",
+    "actives": [
+      {
+        "active_slug": "vitamin_b12",
+        "display_name": "ויטמין B12 (methylcobalamin)",
+        "quantity": 1000.0,
+        "unit": "mcg",
+        "form": "methylcobalamin",
+        "is_core": true,
+        "in_proprietary_blend": false,
+        "quantity_basis": "per_serving"
+      }
+    ]
+  },
+  "engine_output": {
+    "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+    "score": 91.2,
+    "grade": "S",
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "sub_scores": {
+      "evidence": 92.5,
+      "dose": 92,
+      "form": 92,
+      "honesty": 100,
+      "safety": "neutral"
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": []
+  },
+  "trace": {
+    "sie_engine_version": "proto_v0",
+    "sie_algorithm_version": "0.2.0",
+    "methodology_version": "methodology_v1.md v1.3",
+    "trace_generated_at": "2026-06-14T07:03:55.179058Z",
+    "verification_status": "candidate",
+    "calibration_pending": true,
+    "sku_id": "SP-7290015765572",
+    "active": "vitamin B12 (cobalamin)",
+    "on_label_claim": "treating/preventing B12 deficiency",
+    "claim_matched": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+    "claim_resolution": {
+      "via_umbrella": false,
+      "resolved_endpoint": "correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)",
+      "resolved_phrase": null,
+      "resolved_tier": "Strong",
+      "resolution_supp_ev": null,
+      "resolution_citations": [
+        "PMID:28925645",
+        "PMID:38231320"
+      ],
+      "umbrella_mapped": [],
+      "umbrella_present_nonmapping": [],
+      "over_promise": false,
+      "over_promise_markers": []
+    },
+    "sub_scores": {
+      "evidence": {
+        "value": 92.5,
+        "tier": "Strong"
+      },
+      "dose": {
+        "value": 92,
+        "reason": "in_range"
+      },
+      "form": {
+        "value": 92
+      },
+      "honesty": {
+        "value": 100
+      },
+      "safety": {
+        "value": "neutral",
+        "reason": "no_ul_or_no_dose"
+      }
+    },
+    "signature": {
+      "evidence": "HIGH",
+      "dose": "HIGH",
+      "form": "HIGH",
+      "honesty": "HIGH",
+      "safety": "NEUTRAL"
+    },
+    "caps_vetoes_fired": [],
+    "binding_constraint": {
+      "mechanism": "blend_dominant_limit",
+      "machine_reason": "limited_by_weakest_applicable_dimension"
+    },
+    "also_fired": [],
+    "blend": 91.2,
+    "dossier_facts_used": [
+      {
+        "field": "claims['correcting/preventing B12-deficiency (incl. dietary/vegan inadequacy, raising B12 status)'].evidence_tier",
+        "value": "Strong",
+        "supp_ev": "SUPP-EV-012"
+      }
+    ],
+    "final": {
+      "score": 91.2,
+      "grade": "S"
+    }
+  }
+}

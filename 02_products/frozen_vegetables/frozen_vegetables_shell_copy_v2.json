@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "מנוע השוואה · ירקות קפואים",
+    "title": "ירקות קפואים: מה כל מוצר מביא לשימוש שלכם"
+  },
+  "metadataLine": "53 מוצרים ממדף שופרסל · 4 שימושים במטבח",
+  "prologueSentences": [
+    "בדקנו 53 ירקות קפואים ממדף שופרסל — אפונה, ברוקולי, קטניות, תערובות ותבלינים. בעמוד הזה לא נותנים ציון ולא מדרגים מי \"מנצח\". במקום זה חילקנו את המדף לפי ארבעה שימושים במטבח, ובכל אחד מראים מה כל מוצר מביא לשימוש שאתם מתכננים.",
+    "ירק בודד, קטנייה, תערובת מוכנה ותבלין הם דברים שונים, ואי אפשר למדוד אותם באותה סרגל: כף שום כתוש משמשת לתיבול, צלחת אפונה היא מנה. לכן ההשוואה היא תמיד בתוך אותו שימוש, אף פעם לא בין שימוש לשימוש.",
+    "בכל קבוצה מופיע מה שכתוב על התווית הישראלית. איפה שהתווית שותקת, מופיע לצידו ערך אופייני לאותו ירק כייחוס כללי. הוא מסומן כטיפוסי לירק, ולא כמדידה של המוצר הזה."
+  ],
+  "categoryNote": "הערת קטגוריה — ארבעה שימושים, ארבע סרגלים נפרדות\n\nהמדף הזה מחולק לפי שימוש: ירקות בודדים (רכיב אחד), קטניות (קטנייה), תערובות וארוחות (ארוחה) ותיבול ובישול (תיבול). כל קבוצה נשפטת לפי השאלה שמתאימה לה — מה ירק בודד מביא בצלחת, כמה חלבון וסיבים יש בקטנייה, מה הפסטה או הרוטב מוסיפים לתערובת, ומה התבלין באמת. אנחנו משווים בתוך הקבוצה בלבד.\n\nבגלל זה תבלין לא נמדד כאילו הוא ירק שאוכלים בצלחת. השמן והמלח שהופכים שום כתוש למשחת שום הם מה שעושה אותו תבלין, לא פגם. תערובת מוכנה היא הקבוצה היחידה שבה תוספות כמו פסטה, רוטב או מלח מצוינות כדבר לשים לב אליו, כי בצלחת אמיתית אוכלים אותן יחד עם הירק."
+  ,
+  "methodologyLines": [
+    "הבדיקה מבוססת על תוויות של מוצרים שנסרקו ממדף אחד בשופרסל — לא סקר שוק ישראלי מלא.",
+    "אין כאן ציון ואין דירוג. כל מוצר משויך לאחד מארבעה שימושים, ובתוכו מתואר מה הוא מביא לאותו שימוש.",
+    "ערכים שהתווית הישראלית לא מציינת, כמו סיבים וויטמינים, מוצגים כערך אופייני לאותו ירק לפי מקור ייחוס כללי (USDA). הם מסומנים כטיפוסיים לירק, ולא כמדידה של המוצר הזה.",
+    "כשלתערובת אין ייחוס נקי שמתאים לה בדיוק, משאירים את הערכים בלי השלמה במקום לנחש."
+  ],
+  "footerNote": "בעמוד הזה אין ציון מסכם. כל מה שמופיע נשען על מה שכתוב על תווית המוצר, ועל ערך ייחוס אופייני לירק במקומות שהתווית הישראלית לא מפרטת — מסומן ככזה.",
+  "nutrition_signoff_phase4_shell": {
+    "agent": "Nutrition Agent (Bari)",
+    "task": "TASK-235 Phase 4 — shell prose accuracy gate (Hard Rule #6)",
+    "date": "2026-06-10",
+    "scope": "PAGE-SHELL prose only (hero, metadataLine, prologueSentences, categoryNote, methodologyLines, footerNote). Per-product claims NOT re-reviewed (signed off Phase 3).",
+    "checks": [
+      "USDA-reference framing: every USDA/ייחוס-כללי mention presents the value as typical-for-the-vegetable and explicitly 'לא כמדידה של המוצר הזה'; never shown as the product's own figure. Matches phrasing_APPROVED.",
+      "Band-logic: legumes framed as protein+fiber; seasoning judged per-teaspoon-use with oil/salt 'לא פגם'; blends left uncharacterized when no clean generic ('בלי השלמה במקום לנחש'). Consistent with Phase 1 §2/§4.",
+      "No absent/zero micro implied as a benefit; no מומלץ/בריא יותר/כדאי/'best' or ranking language; absence handled as reference-or-blank, never as 0."
+    ],
+    "verdict": "GO — shell prose makes no inaccurate nutrition claim and frames USDA correctly.",
+    "files_otherwise_unchanged": true
+  }
+}

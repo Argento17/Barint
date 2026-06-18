@@ -1,0 +1,35 @@
+{
+  "stage": "1_shelf_mapping",
+  "category_slug": "brined-cheeses",
+  "run_id": "run_brined_cheese_001",
+  "generated": "2026-06-13",
+  "source_retailer": "shufersal",
+  "owner": "Data Agent (factory move #6); Product approves, QA verifies",
+  "governance_ref": "cheese_spreads shelf_map.json — brined_cheeses carved out as separate category per line: 'Brined/aged sub-family with a very different sodium architecture — separate stress test.'",
+  "shelf_map": [
+    {
+      "shelf_slug": "shufersal_gvinot_malokhot",
+      "shelf_name_he": "גבינות מלוחות",
+      "category_slug": "brined-cheeses",
+      "mapping_rationale": "Shufersal's brined/salty cheese aisle: בולגרית (Bulgarian white cheese, fat tiers 5/16/24%), פטה (cow/goat/sheep milk, fat tiers 5/16/20%), צפתית (Safed-style soft cheese), חלומי (halloumi, grilled/fried cheese), ריקוטה (ricotta, fresh whey cheese), גבינה מלוחה (generic brined cheese), גבינת מריחה בולגרית (Bulgarian spreadable variant). This is a DISTINCT shelf from 'גבינות לבנות וממרחים' (cheese-spreads category) — brined cheeses are characterised by the brining/salting process, higher sodium architecture, and a different consumption role (salad ingredient, table cheese, cooked). The cheese-spreads shelf_map.json explicitly excludes brined cheeses: 'salty brined cheese (בולגרית, פטה, צפתית, פסטרמה) — Brined/aged sub-family with a very different sodium architecture — separate stress test.' Product searches target the Hebrew category terms used on Shufersal: גבינה בולגרית, גבינת פטה, גבינה צפתית, גבינה מלוחה, חלומי, ריקוטה. Category browse uses the A06 dairy aisle (same parent aisle as cheese-spreads) with name-based filtering to isolate brined types."
+    }
+  ],
+  "sub_pools": [
+    {"pool": "BG", "slug": "bulgari", "name_he": "גבינה בולגרית", "basis": "Classical Israeli brined white cheese; fat tiers 5/16/24% are variants within pool. Most widely consumed brined cheese type in Israel."},
+    {"pool": "FT", "slug": "feta", "name_he": "גבינת פטה", "basis": "Feta-style brined cheese (cow/goat/sheep); origin variants are scoring candidates. Fat tiers 5/16/20% are variants."},
+    {"pool": "ZF", "slug": "tzfatit", "name_he": "גבינה צפתית", "basis": "Safed-style semi-soft brine cheese; unique Israeli cheese type. Distinct from peta and bulgari by texture and production method."},
+    {"pool": "HL", "slug": "halloumi", "name_he": "חלומי", "basis": "Grilling/frying cheese; high-melt-point. Distinct purpose (cooked) vs other brined types (raw/salad). Corpus filter will decide whether to include or route to separate page."},
+    {"pool": "RC", "slug": "ricotta", "name_he": "ריקוטה", "basis": "Fresh whey cheese; lower salt than bulgari/feta. Corpus filter and Nutrition Agent methodology will decide scope inclusion."},
+    {"pool": "GM", "slug": "other_brined", "name_he": "גבינה מלוחה אחרת", "basis": "Residual: branded products not cleanly mapping to above pools (e.g. גבינת מריחה בולגרית, mixed blends)."}
+  ],
+  "explicitly_out_of_scope": [
+    {"item": "קוטג', גבינה לבנה, לבנה, ממרח גבינה, גבינת שמנת", "reason": "Fresh white cheese / spread scope — owned by cheese-spreads category (shufersal_gvinot_levanot_vememrahim shelf)."},
+    {"item": "גאודה, קשקבל, עמק, צהובה, אמנטל, צ'דר, פרמזן", "reason": "Hard / semi-hard / aged yellow cheese — separate category (no Bari category yet; out of scope for this run)."},
+    {"item": "משולשים, פרוסות מותכות, מעובדת", "reason": "Processed melting slices — NOVA 4, different shelf logic."},
+    {"item": "יוגורט, קפיר, משקה חלב", "reason": "Cultured dairy — yogurt_system scope."},
+    {"item": "מעדן, מילקי, גבינת ילדים ממותקת", "reason": "Sweetened dessert cheese — maadanim scope."},
+    {"item": "גבינת תינוקות (0-36m)", "reason": "Infant nutrition — Constitution Art. II Sec 2.3 absolute restriction."}
+  ],
+  "duplicate_shelf_check": "PASS — cheese-spreads category explicitly excludes brined cheese at corpus level; yogurt_system excludes all cheese; maadanim excludes savory cheese. No other active Bari category claims the brined-cheese shelf.",
+  "status": "pass"
+}

@@ -1,0 +1,396 @@
+{
+  "run_id": "run_cereals_003_corrected_pilot",
+  "task": "TASK-278 Phase-5 / P109 corrected clean pilot",
+  "category_slug": "breakfast_cereals",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T12:21:16.030320+00:00",
+  "engine": "proto_v0 / score_engine.py (BARI_SHELF_RELATIVE_V1=on vs off, cereal floor, asymmetric)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "dual (on then off via patch)",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GLASSBOX_W4": "engine_default(on)"
+  },
+  "dual_run_method": "module patch on score_engine.BARI_SHELF_RELATIVE_V1 (same process, same shelf_stats)",
+  "off_used": false,
+  "corpus_source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_001\\output",
+  "bsip1": {
+    "records_loaded": 45
+  },
+  "bsip2": {
+    "output_dir": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_003_corrected_pilot",
+    "scored_on": 45,
+    "errors": 0
+  },
+  "n_total": 45,
+  "cereal_n": 34,
+  "granola_n": 11,
+  "cereal_barcodes": [
+    "4013228100001",
+    "5000159100001",
+    "5011145100001",
+    "5054568100001",
+    "5054568100002",
+    "5054568100010",
+    "5054568100011",
+    "5054568100012",
+    "5054568100020",
+    "5054568100021",
+    "5054568100022",
+    "5054568100040",
+    "5054568100050",
+    "5900100000003",
+    "5900100000005",
+    "5900100000006",
+    "5900100000007",
+    "7290100000001",
+    "7290100000002",
+    "7290100000004",
+    "7290100000008",
+    "7290100000011",
+    "7290100000020",
+    "7290100000041",
+    "7290100000042",
+    "7290100000045",
+    "7613031100001",
+    "7613031100010",
+    "7613031100011",
+    "7613031100012",
+    "7613031100020",
+    "7613031100021",
+    "7613031100050",
+    "8437014100001"
+  ],
+  "granola_barcodes": [
+    "4016249100001",
+    "4016249100002",
+    "5054568100030",
+    "7290100000028",
+    "7290100000029",
+    "7290100000030",
+    "7290100000031",
+    "7290100000032",
+    "7290100000033",
+    "7290100000034",
+    "7290100000038"
+  ],
+  "clean_delta": {
+    "method": "flag_on_score - flag_off_score",
+    "n_all": 45
+  },
+  "cereal_only": {
+    "n_movers": 26,
+    "n_grade_changes": 6,
+    "absorption": {
+      "fired": 26,
+      "absorbed_zero": 0,
+      "rate": 0.0
+    },
+    "grade_changes": [
+      {
+        "barcode": "5000159100001",
+        "from_grade": "C",
+        "to_grade": "D",
+        "score_before": 51.8,
+        "score_after": 49.8,
+        "delta": -2.0
+      },
+      {
+        "barcode": "5054568100011",
+        "from_grade": "D",
+        "to_grade": "E",
+        "score_before": 36.3,
+        "score_after": 30.3,
+        "delta": -6.0
+      },
+      {
+        "barcode": "5900100000003",
+        "from_grade": "B",
+        "to_grade": "A",
+        "score_before": 79.8,
+        "score_after": 80.8,
+        "delta": 1.0
+      },
+      {
+        "barcode": "5900100000005",
+        "from_grade": "B",
+        "to_grade": "A",
+        "score_before": 79.8,
+        "score_after": 81.8,
+        "delta": 2.0
+      },
+      {
+        "barcode": "7290100000002",
+        "from_grade": "B",
+        "to_grade": "A",
+        "score_before": 79.4,
+        "score_after": 80.4,
+        "delta": 1.0
+      },
+      {
+        "barcode": "7613031100011",
+        "from_grade": "C",
+        "to_grade": "D",
+        "score_before": 50.4,
+        "score_after": 48.4,
+        "delta": -2.0
+      }
+    ]
+  },
+  "granola_bleed_nonzero_delta": 0,
+  "inversion_b": {
+    "7290100000042": {
+      "flag_off": 73.5,
+      "flag_on": 74.5,
+      "delta": 1.0
+    },
+    "5054568100022": {
+      "flag_off": 69.5,
+      "flag_on": 69.5,
+      "delta": 0.0
+    },
+    "gap_flag_off": 4.0,
+    "gap_flag_on": 5.0,
+    "gap_widened_by": 1.0,
+    "criterion_pass": false
+  },
+  "flag_off_vs_synthesis_001": {
+    "mismatches_cereal": 25,
+    "details": [
+      {
+        "barcode": "4013228100001",
+        "flag_off": 78.7,
+        "synth_001": 85
+      },
+      {
+        "barcode": "5000159100001",
+        "flag_off": 51.8,
+        "synth_001": 52.0
+      },
+      {
+        "barcode": "5011145100001",
+        "flag_off": 74.2,
+        "synth_001": 75.6
+      },
+      {
+        "barcode": "5054568100001",
+        "flag_off": 62.4,
+        "synth_001": 64.8
+      },
+      {
+        "barcode": "5054568100002",
+        "flag_off": 61.2,
+        "synth_001": 62.5
+      },
+      {
+        "barcode": "5054568100011",
+        "flag_off": 36.3,
+        "synth_001": 35.0
+      },
+      {
+        "barcode": "5054568100020",
+        "flag_off": 61.2,
+        "synth_001": 62.5
+      },
+      {
+        "barcode": "5054568100022",
+        "flag_off": 69.5,
+        "synth_001": 70.4
+      },
+      {
+        "barcode": "5054568100040",
+        "flag_off": 68.0,
+        "synth_001": 68.8
+      },
+      {
+        "barcode": "5054568100050",
+        "flag_off": 62.9,
+        "synth_001": 61.6
+      },
+      {
+        "barcode": "5900100000003",
+        "flag_off": 79.8,
+        "synth_001": 85.0
+      },
+      {
+        "barcode": "5900100000005",
+        "flag_off": 79.8,
+        "synth_001": 85.0
+      },
+      {
+        "barcode": "5900100000007",
+        "flag_off": 67.7,
+        "synth_001": 69.0
+      },
+      {
+        "barcode": "7290100000001",
+        "flag_off": 80.2,
+        "synth_001": 85.4
+      },
+      {
+        "barcode": "7290100000002",
+        "flag_off": 79.4,
+        "synth_001": 85
+      },
+      {
+        "barcode": "7290100000004",
+        "flag_off": 85.9,
+        "synth_001": 90.7
+      },
+      {
+        "barcode": "7290100000008",
+        "flag_off": 77.5,
+        "synth_001": 81.1
+      },
+      {
+        "barcode": "7290100000011",
+        "flag_off": 62.5,
+        "synth_001": 63.9
+      },
+      {
+        "barcode": "7290100000041",
+        "flag_off": 71.7,
+        "synth_001": 73.0
+      },
+      {
+        "barcode": "7290100000042",
+        "flag_off": 73.5,
+        "synth_001": 74.9
+      },
+      {
+        "barcode": "7290100000045",
+        "flag_off": 64.3,
+        "synth_001": 64.1
+      },
+      {
+        "barcode": "7613031100001",
+        "flag_off": 58.0,
+        "synth_001": 60.4
+      },
+      {
+        "barcode": "7613031100011",
+        "flag_off": 50.4,
+        "synth_001": 51.7
+      },
+      {
+        "barcode": "7613031100020",
+        "flag_off": 52.1,
+        "synth_001": 53.4
+      },
+      {
+        "barcode": "8437014100001",
+        "flag_off": 68.3,
+        "synth_001": 85
+      }
+    ]
+  },
+  "grade_dist_on": {
+    "B": 12,
+    "D": 5,
+    "C": 16,
+    "E": 7,
+    "A": 5
+  },
+  "grade_dist_off": {
+    "B": 15,
+    "C": 18,
+    "E": 6,
+    "D": 4,
+    "A": 2
+  },
+  "gate_results": [
+    {
+      "criterion": 1,
+      "name": "resolution_restored",
+      "pass": true,
+      "evidence": "on_max_pinned=2, off_max_pinned=3 (fewer identical in on = restored resolution)"
+    },
+    {
+      "criterion": 2,
+      "name": "inversion_a",
+      "pass": null,
+      "evidence": "n/a — D6 corpus correction (7290100000029 routes to snack_bar_granola); P110 provides revised gate"
+    },
+    {
+      "criterion": 3,
+      "name": "inversion_b_gap",
+      "pass": false,
+      "evidence": "gap_flag_off=4.0, gap_flag_on=5.0, widened_by=1.0 (need >=5.5)"
+    },
+    {
+      "criterion": 4,
+      "name": "min_movers_cereal",
+      "pass": true,
+      "evidence": "n_cereal_movers=26 (need >=15)"
+    },
+    {
+      "criterion": 5,
+      "name": "min_grade_changes_cereal",
+      "pass": true,
+      "evidence": "n_cereal_grade_changes=6 (need >=1)"
+    },
+    {
+      "criterion": 6,
+      "name": "max_absorption_cereal",
+      "pass": true,
+      "evidence": "absorbed_zero_net_cereal=0/fired=26 rate=0.0 (need <=0.40)"
+    },
+    {
+      "criterion": 7,
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "high_sugar (>=25g) cereal at B(>=70) flag-on: 0 (need=0)"
+    },
+    {
+      "criterion": 8,
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "7 cereal sugar>=25g checked, 0 >62 violations (need=0); floor=62"
+    },
+    {
+      "criterion": 9,
+      "name": "no_granola_bleed",
+      "pass": true,
+      "evidence": "granola products with non-zero delta: 0 (need=0)"
+    },
+    {
+      "criterion": 10,
+      "name": "brined_byte_id",
+      "pass": true,
+      "evidence": "48/48 scores byte-identical (pre vs post re-run of brined_005 with BARI_SHELF_RELATIVE_V1=on explicit)"
+    },
+    {
+      "criterion": 11,
+      "name": "flag_off_drift_check",
+      "pass": false,
+      "evidence": "25 cereal mismatches vs synthesis_001 (need=0)"
+    }
+  ],
+  "brined_byte_id": {
+    "pass": true,
+    "mismatches": 0,
+    "evidence": "48/48 scores byte-identical (pre vs post re-run of brined_005 with BARI_SHELF_RELATIVE_V1=on explicit)"
+  },
+  "engine_invariants": "pending separate run (P109 Step 5)",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "score_engine_sha256": "e643a192573f37a0be09024d1369e711e4e8ff9e5e59865706c70b41490bfafa",
+  "constants_sha256": "3aea86614f97cb03518450681b7a86eb2290d4ce08c71d83af9fc173bcedd52c",
+  "verification_table": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_003_corrected_pilot\\verification_table_clean.csv",
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "cereal_only_gate": true,
+    "granola_excluded_from_gate": true,
+    "scored_count_on": 45,
+    "expected_count": 45,
+    "count_match": true,
+    "floor_violations": 0,
+    "anti_immunity_violations": 0,
+    "granola_nonzero_delta": 0,
+    "flag_off_drift_cereal": 25
+  }
+}

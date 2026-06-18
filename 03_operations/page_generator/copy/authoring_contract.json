@@ -1,0 +1,256 @@
+{
+  "$id": "bari-authoring-contract-v2",
+  "title": "Bari Copy Authoring Contract v2",
+  "description": "v2 (TASK-262/P43): widened to milk-depth content fields. The precise interface between the deterministic build_copy_inputs stage (Part 1) and the author_copy stage (Part 2). A real Content-Agent LLM pass reads this contract and produces the authored-strings JSON that merge_copy.py consumes. The contract is the only place authoring logic is defined: once both sides obey it, no other change is needed to swap in the real author.",
+
+  "author_engine_versions": {
+    "baseline_placeholder": "Deterministic rule-based placeholder. Obeys editorial law. NOT milk-quality. Author = author_copy.py. Mark: author_engine=baseline_placeholder in every authored JSON.",
+    "content_agent_v1": "Real Hebrew content author (LLM, Content Agent). Quality bar = milk-comparison.json. Plugs into the same seam with no code change — reads fact_sheets.json exactly as specified below, writes authored.json exactly as specified below."
+  },
+
+  "input": {
+    "source_file": "fact_sheets.json (output of build_copy_inputs.py)",
+    "schema": {
+      "type": "object",
+      "required": ["_meta", "sheets"],
+      "properties": {
+        "_meta": {
+          "description": "Run metadata. Author reads category slug + corpus_stats only.",
+          "properties": {
+            "category": { "type": "string" },
+            "product_count": { "type": "integer" },
+            "corpus_stats": {
+              "description": "Per-metric {n, min, max, median} across all products. Used to calibrate relative claims.",
+              "type": "object"
+            },
+            "ambiguous_drivers": {
+              "description": "Products whose scoring driver could not be resolved. Author writes conservative copy for these — no causal claim.",
+              "type": "array"
+            },
+            "s_products": {
+              "description": "Barcodes of S-grade products. Their copy is in s_verbatim — author MUST use it verbatim.",
+              "type": "array"
+            }
+          }
+        },
+        "sheets": {
+          "type": "array",
+          "description": "One fact sheet per product. Author writes one authored record per sheet.",
+          "items": {
+            "type": "object",
+            "required": ["barcode", "id", "name", "score", "grade", "driver", "nutrition"],
+            "properties": {
+              "barcode": { "type": "string" },
+              "id": { "type": "string" },
+              "name": { "type": "string", "description": "Hebrew product name — may be cited literally" },
+              "score": { "type": ["number", "null"] },
+              "grade": { "type": ["string", "null"] },
+              "driver": {
+                "type": "object",
+                "description": "The real scoring driver. The author tells this story. Never invents a different one.",
+                "required": ["type", "story"],
+                "properties": {
+                  "type": { "type": "string", "enum": ["cap", "cap_plus_penalty", "dimension"] },
+                  "story": { "type": "string", "description": "Consumer vocabulary tag (e.g. 'processing_is_the_ceiling', 'calorie_dense')" },
+                  "detail": { "type": "object" }
+                }
+              },
+              "cap_misclaim_risk": {
+                "type": "boolean",
+                "description": "TRUE = author must NOT claim the cap is the sole reason. Name the real driver."
+              },
+              "nutrition": {
+                "type": "object",
+                "description": "Per-100g values. null stays null — author NEVER asserts a value they do not see here.",
+                "properties": {
+                  "protein": { "type": ["number", "null"] },
+                  "sugar": { "type": ["number", "null"] },
+                  "fat": { "type": ["number", "null"] },
+                  "kcal": { "type": ["number", "null"] },
+                  "sodium": { "type": ["number", "null"] },
+                  "fiber": { "type": ["number", "null"] }
+                }
+              },
+              "ingredients_head": {
+                "type": ["array", "null"],
+                "description": "First 3 ingredients. null = not available. Author may cite these literally. Never infers ingredients not listed here."
+              },
+              "additive_count": { "type": "integer" },
+              "superlatives_allowed": {
+                "type": "array",
+                "description": "Tokens the author MAY use (e.g. 'highest_protein'). Empty = no superlatives permitted for this product."
+              },
+              "s_verbatim": {
+                "type": "object",
+                "description": "S-grade only. Author copies these strings BYTE-VERBATIM into insightLine and s_grade_explanation. No paraphrasing.",
+                "properties": {
+                  "insightLine": { "type": "string" },
+                  "s_grade_explanation": { "type": "string" }
+                }
+              },
+              "bari_interpretation_inputs": {
+                "type": "array",
+                "description": "v3 addition. Per-dimension deterministic data (key/label/score/strength) from the BSIP2 trace. Author writes one interpretation sentence per entry. null score → 'נתון לא זמין'.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": { "type": "string" },
+                    "label": { "type": "string" },
+                    "score": { "type": ["number", "null"] },
+                    "strength": { "type": "string" }
+                  }
+                }
+              },
+              "best_use_cases_pending": {
+                "type": "boolean",
+                "description": "v3 addition. True = bestUseCases was PENDING_COPY in the page (author must fill). False = already deterministic; author uses best_use_cases_deterministic as-is."
+              },
+              "best_use_cases_deterministic": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "v3 addition. When best_use_cases_pending=False, these are the already-filled tags. Author passes them through unchanged."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "output": {
+    "dest_file": "authored.json (consumed by merge_copy.py)",
+    "schema": {
+      "type": "object",
+      "required": ["_meta", "products", "_page"],
+      "properties": {
+        "_meta": {
+          "type": "object",
+          "required": ["author_engine", "authored_at", "category"],
+          "properties": {
+            "author_engine": { "type": "string", "description": "e.g. 'baseline_placeholder' or 'content_agent_v1'" },
+            "authored_at": { "type": "string", "description": "ISO-8601 timestamp" },
+            "category": { "type": "string" },
+            "product_count": { "type": "integer" }
+          }
+        },
+        "products": {
+          "type": "object",
+          "description": "Map of barcode (string) -> product copy record. Must cover every barcode in fact_sheets.sheets.",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["insightLine", "rowVerdict", "expansion"],
+            "properties": {
+              "insightLine": {
+                "type": "string",
+                "description": "Exactly one standalone sentence (no trailing period). Grade as badge only — never spelled out in prose. No framework vocabulary. max ~90 chars. Must pass hebrew_readability.analyze is_clean=True."
+              },
+              "rowVerdict": {
+                "type": "string",
+                "description": "2-3 sentences. States: what the score stands for → the honest limiting factor or strength. No sodium/fat as causal claims. No banned phrases. Must pass is_clean=True."
+              },
+              "expansion": {
+                "type": "object",
+                "required": ["comparisonContext", "positiveSignals"],
+                "properties": {
+                  "comparisonContext": {
+                    "type": "string",
+                    "description": "1-2 sentences placing this product on the shelf vs peers. May cite numeric facts from the fact sheet. No grade re-statement. Passes is_clean=True."
+                  },
+                  "positiveSignals": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "minItems": 1,
+                    "maxItems": 3,
+                    "description": "1-3 observable strengths. Short bullets. Grounded in fact-sheet data only. Each passes is_clean=True."
+                  },
+                  "limitingFactors": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "maxItems": 2,
+                    "description": "0-2 compositional limits. Omit when empty (schema: absent when no limits). Each passes is_clean=True."
+                  },
+                  "consumerExplanation": {
+                    "type": "object",
+                    "description": "v3 addition. Structured multi-part explanation (milk-depth). All sub-fields must be non-PENDING in the authored output.",
+                    "required": ["whyRated", "good", "watchOut", "context", "takeaway"],
+                    "properties": {
+                      "whyRated": { "type": "string", "description": "One sentence. Why the product received its score. Grade badge only. Passes is_clean=True." },
+                      "good": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Observed strengths (richer/longer than positiveSignals). Each passes is_clean=True." },
+                      "watchOut": { "type": "array", "items": { "type": "string" }, "description": "Caution signals. Empty array when none. Each passes is_clean=True." },
+                      "context": { "type": "string", "description": "One sentence placing on shelf vs peers. Passes is_clean=True." },
+                      "takeaway": { "type": "string", "description": "Mirrors consumerTakeaway. Passes is_clean=True." }
+                    }
+                  }
+                }
+              },
+              "s_grade_explanation": {
+                "type": "string",
+                "description": "S-grade products ONLY. Copied byte-verbatim from s_verbatim. Absent for non-S products."
+              },
+              "consumerTakeaway": {
+                "type": "string",
+                "description": "v3 addition. One-line plain Hebrew summary. Same editorial law as insightLine. Passes is_clean=True. Max ~90 chars."
+              },
+              "bariInterpretation": {
+                "type": "array",
+                "description": "v3 addition. Per-dimension authored list. key/label/score/strength from the fact sheet (pass through unchanged); author writes interpretation sentence. null score → 'נתון לא זמין'.",
+                "items": {
+                  "type": "object",
+                  "required": ["key", "label", "score", "strength", "interpretation"],
+                  "properties": {
+                    "key": { "type": "string" },
+                    "label": { "type": "string" },
+                    "score": { "type": ["number", "null"] },
+                    "strength": { "type": "string" },
+                    "interpretation": { "type": "string", "description": "One short Hebrew sentence. No framework vocabulary. Passes is_clean=True." }
+                  }
+                }
+              },
+              "bestUseCases": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "v3 addition. Consumer use-case tags (Hebrew). When best_use_cases_pending=False, pass best_use_cases_deterministic through unchanged. When pending=True, author writes a list of 1-3 short Hebrew tags grounded in facts."
+              }
+            }
+          }
+        },
+        "_page": {
+          "type": "object",
+          "description": "Page-level authored strings. Written under _meta.page_copy by merge_copy.py.",
+          "required": ["story_headline", "story_teaser", "philosophy_note"],
+          "properties": {
+            "story_headline": {
+              "type": "string",
+              "description": "Hebrew headline for the comparison page. Max ~100 chars. Passes is_clean=True."
+            },
+            "story_teaser": {
+              "type": "string",
+              "description": "1-2 sentences expanding on the headline. Passes is_clean=True."
+            },
+            "philosophy_note": {
+              "type": "string",
+              "description": "Standard Bari methodology disclaimer (Hebrew). Passes is_clean=True."
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "editorial_law": {
+    "description": "Mandatory constraints for EVERY author engine, including the baseline placeholder.",
+    "rules": [
+      "standalone_lines: each insightLine is one complete standalone sentence — no opening fragments, no trailing qualifiers bleeding into the next line",
+      "grade_in_prose_equals_badge: the only place the letter grade appears is as a badge (the score display); never spell it out in prose as a Hebrew equivalent letter",
+      "sodium_fat_never_causal: sodium and fat are displayed as facts; never frame them as the cause of a score (no 'because of sodium', 'due to fat content')",
+      "no_framework_leakage: NOVA, BSIP, cap, floor, penalty, dimension, confidence_score, etc. must never appear in any consumer string",
+      "null_stays_null: if a nutrition fact is null in the fact sheet, the author writes nothing about that fact — never substitutes or infers",
+      "no_OFF: no Open Food Facts data may be asserted — the only source is the fact sheet",
+      "no_banned_phrases: the 9 banned phrases from Explanation Engine v2 are forbidden (see run_gates.py BANNED_PHRASES_HE)",
+      "no_recommendation_language: Bari describes, never prescribes; 'recommended', 'you should buy', 'avoid' are forbidden",
+      "s_verbatim_verbatim: S-grade insightLine and s_grade_explanation are copied byte-verbatim from s_verbatim in the fact sheet; no paraphrasing"
+    ]
+  },
+
+  "milk_depth_note": "v2 contract (TASK-262/P43): schema_carries_milk_depth=TRUE. All 4 per-product milk fields are now first-class in canonical-v3: consumerTakeaway, consumerExplanation.{whyRated/good/watchOut/context/takeaway}, bariInterpretation[] (det+authored), bestUseCases[] (det+authored). Page-level story_headline/story_teaser/philosophy_note already in _meta.page_copy via additionalProperties:true. The authoring contract v2 declares all inputs and outputs needed for a Content-Agent LLM pass to produce milk-quality copy without any code change."
+}

@@ -35,6 +35,7 @@ CATEGORIES = [
     "bread",
     "cracker",
     "crispbread",
+    "biscuit",
     # Frozen vegetable (TASK-??? / EV-006 follow-up)
     "frozen_vegetable",
     "default",
@@ -67,6 +68,34 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("קריספ-ברד",      "crispbread",        "crispbread",     0.93),
     ("קרקר",           "cracker",           "cracker",        0.93),
     ("פריכיות",        "cracker",           "puffed_cracker", 0.88),
+    # ── Coffee biscuits / plain sweet biscuits (EV-058 / TASK-275) ───────────────
+    # Dedicated biscuit routing for dry, plain, sweet biscuits consumed as coffee
+    # accompaniments. Purpose: taxonomy + explainability only. Caps INTACT.
+    ("ביסקוויט בלגי",   "biscuit",  "speculoos",         0.94),
+    ("ביסקוויט תה",     "biscuit",  "tea_biscuit",       0.93),
+    ("מרי ביסקוויט",    "biscuit",  "marie_biscuit",     0.92),
+    ("ביסקוויט מרי",    "biscuit",  "marie_biscuit",     0.92),
+    ("עוגיות חמאה",     "biscuit",  "butter_cookie",     0.92),
+    ("פטי-בר",          "biscuit",  "petit_beurre",      0.93),
+    ("פטי בר",          "biscuit",  "petit_beurre",      0.93),
+    ("פתי-בר",          "biscuit",  "petit_beurre",      0.93),
+    ("פתי בר",          "biscuit",  "petit_beurre",      0.93),
+    ("פתיבר",           "biscuit",  "petit_beurre",      0.93),
+    ("פטיבר",           "biscuit",  "petit_beurre",      0.93),
+    ("ביסקוויט",        "biscuit",  "plain_biscuit",     0.88),
+    ("לוטוס",           "biscuit",  "speculoos",         0.92),
+    ("דייג'סטיב",       "biscuit",  "digestive",         0.92),
+    ("ביסקוטי",         "biscuit",  "biscotti",          0.91),
+    ("שורטברד",         "biscuit",  "shortbread",        0.90),
+    # EV-058 / P89 (2026-06-13): named-עוגיות OAT biscuits ("שיבולת שועל" in name) route
+    # to biscuit even when "דגנים" is also present. The specific combination עוגיות +
+    # שיבולת שועל is an oat coffee biscuit (§1.4 whole-grain IN), not a granola/cereal.
+    # This anchor fires BEFORE the bare "עוגיות" anchor and beats its "דגנים" exclusion.
+    # Confidence 0.86 > bare עוגיות (0.85) + longer term wins on tie.
+    # Exclusions: must not fire when product is a granola bar, cereal, snack, or in a
+    # filling/coating context (same exclusion philosophy as bare "עוגיות" + cereal terms).
+    ("עוגיות שיבולת שועל", "biscuit", "oat_cookie",     0.86),
+    ("עוגיות",          "biscuit",  "plain_cookie",      0.85),
     ("בגט",            "bread",             "baguette",       0.92),
     ("לחמנייה",        "bread",             "bread_roll",     0.92),
     ("פיתה",           "bread",             "flatbread",      0.90),
@@ -120,6 +149,17 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("דנונ.פרו", "dairy_protein", "protein_yogurt", 0.93),
     ("דנונה ביו", "dairy_protein", "bio_yogurt", 0.93),
     ("דנונה יווני", "dairy_protein", "greek_yogurt", 0.93),
+    # ── Brined cheeses (TASK-267 / EV-055) ───────────────────────────────────
+    # Brined-cheese products whose names do NOT contain "גבינה"/"גבינת" (already
+    # anchored above) use type-specific terms: פטה (feta), בולגרית (Bulgarian),
+    # חלומי (halloumi). These are endemic dairy products — routing them to default
+    # or cracker is a category-detection bug (see graduated_sodium_d7_design_v1.md
+    # Decision 4 + graduated_sodium_d7_cosign_v1.md). Anchors scoped by exclusions.
+    # Confidence 0.88 beats Stage 2 cracker/default signals (מלוח, פריך at 0.50).
+    # These anchors are SCOPED TO BRINED DAIRY PRODUCTS ONLY — not other contexts.
+    ("פטה",            "dairy_protein",     "feta_brined",    0.88),
+    ("בולגרית",        "dairy_protein",     "bulgarian_brined", 0.88),
+    ("חלומי",          "dairy_protein",     "halloumi_brined", 0.88),
     # ── Whole-food fats ───────────────────────────────────────────────────────
     # TASK-191 — butter anchor. "חמאה" leads the product name for all pure dairy
     # butter SKUs. Confidence 0.92 beats Stage 2 cracker/default signals that fire
@@ -189,8 +229,40 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "לחמי קריספ":     [],
     # Puffed crackers: "פריכיות" must not fire when it's a pure oat-drink brand context
     "פריכיות":        ["משקה", "שתייה"],
+    # Biscuit anchors (EV-058 / TASK-275) — must not fire when biscuit is filling/modifier
+    "ביסקוויט":     ["מילוי", "שכבת", "ציפוי", "קרם", "טחינה", "מצופה",
+                      "גבינה", "שוקולד ביסקוויט"],
+    "לוטוס":        ["מילוי", "ציפוי", "שכבת", "רוטב", "קרם", "מצופה",
+                      "גלידה"],
+    "ביסקוויט בלגי": [],
+    "ביסקוויט תה":   [],
+    "מרי ביסקוויט":  [],
+    "ביסקוויט מרי":  [],
+    "דייג'סטיב":     ["חטיף", "ציפוי"],
+    "ביסקוטי":       ["גלידה", "מילוי"],
+    "שורטברד":       ["גלידה", "מילוי"],
+    "עוגיות חמאה":   ["ממולא", "שוקולד", "ציפוי", "מצופה", "חטיף",
+                      "גרנולה", "דגנים"],
+    "פטי-בר":        [],
+    "פטי בר":        [],
+    "פתי-בר":        [],
+    "פתי בר":        [],
+    "פתיבר":         [],
+    "פטיבר":         [],
+    # EV-058 / P89 oat-cookie anchor — must not fire on granola/cereal/snack/filling context
+    # even when "שיבולת שועל" is present (e.g., a granola bar with oat in name).
+    "עוגיות שיבולת שועל": ["גרנולה", "מוזלי", "מוסלי", "חטיף", "ברים",
+                            "ממרח", "וופל", "קרקר", "פריכיות", "ציפוי",
+                            "מילוי", "קרם", "שכבת", "אנרגיה", "חלבון"],
+    "עוגיות":        ["אורז", "גרנולה", "דגנים", "מוזלי", "מוסלי", "חטיף",
+                      "ברים", "ממרח", "וופל", "קרקר", "פריכיות", "ציפוי",
+                      "מילוי", "קרם", "שכבת", "אנרגיה", "חלבון"],
     # Savory spread anchors — tahini exclusions
     "טחינה":          ["חציל", "חצילים"],            # "חציל על האש בטחינה" = eggplant spread, not tahini product
+    # Brined-cheese anchors (TASK-267 / EV-055) — must not fire in snack/cracker/flavor context
+    "פטה":            ["חטיף", "מילוי", "בטעם", "קרקר", "ממרח"],
+    "בולגרית":        ["חטיף", "מילוי", "בטעם", "קרקר", "ממרח"],
+    "חלומי":          ["חטיף", "מילוי", "בטעם", "קרקר", "ממרח"],
     # Cream-cheese anchors (TASK-145) — must not fire on the napoleon CAKE / pastry (עוגת פס נפוליאון)
     "נפוליאון":       ["עוגה", "עוגת", "פס", "מאפה", "בצק"],
     # Hard cheese anchors — must not fire in snack/filling/flavouring context
@@ -433,6 +505,8 @@ _CRACKER: list[tuple[str, float, str]] = [
     ("שיפון",          0.35, "name_weighted"),   # rye (also cracker)
 ]
 
+_BISCUIT: list[tuple[str, float, str]] = []
+
 _BREAD: list[tuple[str, float, str]] = [
     ("מלא",            0.40, "name_weighted"),   # "whole" in bread name
     ("שיפון",          0.35, "name_weighted"),   # rye bread
@@ -454,6 +528,7 @@ ALL_SIGNALS: dict[str, list[tuple[str, float, str]]] = {
     # Bakery archetypes
     "crispbread":        _CRISPBREAD,
     "cracker":           _CRACKER,
+    "biscuit":           _BISCUIT,
     "bread":             _BREAD,
 }
 
@@ -518,6 +593,12 @@ CATEGORY_PRIOR_SUBTYPE_FIELDS: dict[str, str] = {
     "bsip_cereal_subtype":          "cereal",
     "bsip_yogurt_subtype":          "dairy_protein",
     "bsip_frozen_vegetable_subtype": "frozen_vegetable",
+    # TASK-267 / EV-055 — brined-cheese corpus category prior.
+    # bsip_cheese_subpool="brined_cheese" is set for all 48 brined-cheese BSIP1 records.
+    # This ensures products that lack a named dairy anchor (פטה/בולגרית/חלומי/גבינה)
+    # still route to dairy_protein via the category prior (Stage 2) as a belt-and-suspenders
+    # guard. The hard anchors above are the primary fix; this handles any remaining edge cases.
+    "bsip_cheese_subpool":          "dairy_protein",
 }
 # Subtype values that do NOT assert category membership (do not carry a prior).
 _CATEGORY_PRIOR_NULL_SUBTYPES: set[str] = {

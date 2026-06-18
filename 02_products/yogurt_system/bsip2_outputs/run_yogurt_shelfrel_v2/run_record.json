@@ -1,0 +1,1180 @@
+{
+  "run_id": "run_yogurt_shelfrel_v2",
+  "task": "TASK-278 Phase-6 yogurt×sugar wire + pilot (P115)",
+  "pilot_type": "MEASURED_NOT_PUBLISHED",
+  "generated": "2026-06-14T12:59:33.258874+00:00",
+  "engine": "proto_v0 + EV-088 yogurt SR call site + EV-088 floor (subtype guard, no scope change)",
+  "flag_config": {
+    "BARI_SHELF_RELATIVE_V1": "dual (on/off patch)",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK250_CONF": "on",
+    "other_recal_sodium_redlabel": "off (per 006)"
+  },
+  "dual_run_method": "module patch on score_engine.BARI_SHELF_RELATIVE_V1 (same process, yogurt-locked shelf_stats)",
+  "off_used": false,
+  "corpus": {
+    "yogurt_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_yogurt_005\\output",
+    "milk_bsip1": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+    "baseline_for_c11": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_006\\products",
+    "n_yogurt_loaded": 88,
+    "n_milk_loaded": 20
+  },
+  "shelf_stats_used": {
+    "median": 5.45,
+    "scale": 4.299,
+    "n": 74,
+    "source": "locked D7/P115 from run_yogurt_006"
+  },
+  "scope_guard_used": "category == dairy_protein AND category_subtype in CULTURED_YOGURT_SUBTYPES",
+  "constants_used": {
+    "SUGAR_SHELF_REL_YOGURT_MEDIAN": 5.45,
+    "SUGAR_SHELF_REL_YOGURT_SCALE": 4.299,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+    "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+    "SUGAR_SHELF_REL_YOGURT_B_MAX": 3
+  },
+  "milk_byte_id": {
+    "pass": true,
+    "milk_products_checked": 20,
+    "milk_deltas": [
+      {
+        "barcode": "5411188112709",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188124689",
+        "delta": 0.0
+      },
+      {
+        "barcode": "5411188300328",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290000051352",
+        "delta": 0
+      },
+      {
+        "barcode": "7290014760141",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290019790259",
+        "delta": 0
+      },
+      {
+        "barcode": "7290102392094",
+        "delta": 0
+      },
+      {
+        "barcode": "7290107932134",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324773",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110324926",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290110325619",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313285",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290114313865",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290116936116",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7290119385560",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376619939",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376620904",
+        "delta": 0.0
+      },
+      {
+        "barcode": "7394376621451",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204219",
+        "delta": 0.0
+      },
+      {
+        "barcode": "8000215204554",
+        "delta": 0.0
+      }
+    ],
+    "any_nonzero_delta": false
+  },
+  "non_yogurt_dairy_bleed": {
+    "non_yogurt_dairy_protein_products": 5,
+    "non_yogurt_delta_nonzero": 0
+  },
+  "inversion_1": {
+    "7290110321697": {
+      "sugars_g": 9.8,
+      "flag_off": 61.0,
+      "flag_on": 59.0
+    },
+    "7290102397600": {
+      "sugars_g": 13.6,
+      "flag_off": 62.4,
+      "flag_on": 58.4
+    },
+    "gap_flag_on": 0.6,
+    "criterion_pass_c3": false
+  },
+  "yogurt_movers": 46,
+  "yogurt_grade_changes": 5,
+  "absorption": 0.0,
+  "gate_results": [
+    {
+      "criterion": "C1",
+      "name": "resolution_restored",
+      "pass": false,
+      "evidence": "on_max_pinned=4, off_max_pinned=4 (n=72 with sugars)"
+    },
+    {
+      "criterion": "C2",
+      "name": "grade_dist_and_magnitude",
+      "pass": true,
+      "evidence": "A: high_sg_B=0==0; B: low_sg_AS=4>=2; C: mean|d|=0.6861>=0.5; D: mean_d_low=0.4118>=0"
+    },
+    {
+      "criterion": "C3",
+      "name": "inversion_gap",
+      "pass": false,
+      "evidence": "gap_flag_on=0.6 (need >=2.0); low9.8=59.0 high13.6=58.4"
+    },
+    {
+      "criterion": "C4",
+      "name": "min_movers",
+      "pass": true,
+      "evidence": "n=46 (need >=25)"
+    },
+    {
+      "criterion": "C5",
+      "name": "min_grade_changes",
+      "pass": true,
+      "evidence": "n=5 (need >=1)"
+    },
+    {
+      "criterion": "C6",
+      "name": "max_absorption",
+      "pass": true,
+      "evidence": "0/46=0.0 (need <=0.40)"
+    },
+    {
+      "criterion": "C7",
+      "name": "anti_immunity",
+      "pass": true,
+      "evidence": "high_sg(>=12) @B on: 0 (need=0)"
+    },
+    {
+      "criterion": "C8",
+      "name": "floor_compliance",
+      "pass": true,
+      "evidence": "5 checked, 0 >62 (need=0); floor=62"
+    },
+    {
+      "criterion": "C9",
+      "name": "no_scope_bleed",
+      "pass": true,
+      "evidence": "non_yogurt_dairy_protein with nonzero delta: 0 (need=0); milks verified in C10"
+    },
+    {
+      "criterion": "C10",
+      "name": "frozen_byte_id",
+      "pass": true,
+      "evidence": "milk products all delta=0: True; checked=20"
+    },
+    {
+      "criterion": "C11",
+      "name": "flag_off_drift",
+      "pass": "n/a-docs-only",
+      "evidence": "53 mismatches vs run_yogurt_006"
+    }
+  ],
+  "per_product_table": [
+    {
+      "barcode": "3126712",
+      "sugars_g": 2.8,
+      "flag_off": 71.1,
+      "flag_on": 72.1,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290014890572",
+      "sugars_g": 2.9,
+      "flag_off": 72.4,
+      "flag_on": 73.4,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290016606522",
+      "sugars_g": 2.9,
+      "flag_off": 74.2,
+      "flag_on": 75.2,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290102395231",
+      "sugars_g": 2.9,
+      "flag_off": 80.8,
+      "flag_on": 81.8,
+      "delta": 1.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "7290110328627",
+      "sugars_g": 2.9,
+      "flag_off": 62.0,
+      "flag_on": 63.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290014890589",
+      "sugars_g": 3.0,
+      "flag_off": 73.3,
+      "flag_on": 74.3,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290017065588",
+      "sugars_g": 3.0,
+      "flag_off": 70.1,
+      "flag_on": 71.1,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110328764",
+      "sugars_g": 3.1,
+      "flag_off": 62.0,
+      "flag_on": 63.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290110558314",
+      "sugars_g": 3.2,
+      "flag_off": 64.0,
+      "flag_on": 65.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290114313377",
+      "sugars_g": 3.2,
+      "flag_off": 76.3,
+      "flag_on": 77.3,
+      "delta": 1.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290119370177",
+      "sugars_g": 3.2,
+      "flag_off": 64.0,
+      "flag_on": 65.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290119370955",
+      "sugars_g": 3.2,
+      "flag_off": 64.0,
+      "flag_on": 65.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290119372997",
+      "sugars_g": 3.2,
+      "flag_off": 64.0,
+      "flag_on": 65.0,
+      "delta": 1.0,
+      "grade_off": "C",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290112336712",
+      "sugars_g": 3.3,
+      "flag_off": 90.4,
+      "flag_on": 91.4,
+      "delta": 1.0,
+      "grade_off": "S",
+      "grade_on": "S"
+    },
+    {
+      "barcode": "7290110323585",
+      "sugars_g": 3.4,
+      "flag_off": 53.0,
+      "flag_on": 53.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290110565527",
+      "sugars_g": 3.4,
+      "flag_off": 88.4,
+      "flag_on": 88.4,
+      "delta": 0.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "4119133",
+      "sugars_g": 3.5,
+      "flag_off": 70.2,
+      "flag_on": 70.2,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290019635819",
+      "sugars_g": 3.9,
+      "flag_off": 50.0,
+      "flag_on": 50.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290119377404",
+      "sugars_g": 3.9,
+      "flag_off": 62.9,
+      "flag_on": 62.9,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290119377411",
+      "sugars_g": 3.9,
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "57149",
+      "sugars_g": 4.0,
+      "flag_off": 77.5,
+      "flag_on": 77.5,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290012645297",
+      "sugars_g": 4.0,
+      "flag_off": 73.2,
+      "flag_on": 73.2,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290014758100",
+      "sugars_g": 4.0,
+      "flag_off": 77.5,
+      "flag_on": 77.5,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110323592",
+      "sugars_g": 4.2,
+      "flag_off": 60.0,
+      "flag_on": 60.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290107936309",
+      "sugars_g": 4.3,
+      "flag_off": 74.4,
+      "flag_on": 74.4,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290115678222",
+      "sugars_g": 4.3,
+      "flag_off": 74.7,
+      "flag_on": 74.7,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "408316",
+      "sugars_g": 4.5,
+      "flag_off": 77.1,
+      "flag_on": 77.1,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "4584528",
+      "sugars_g": 4.5,
+      "flag_off": 79.3,
+      "flag_on": 79.3,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "5839078",
+      "sugars_g": 4.5,
+      "flag_off": 77.4,
+      "flag_on": 77.4,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "6664990",
+      "sugars_g": 4.5,
+      "flag_off": 78.5,
+      "flag_on": 78.5,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290102396740",
+      "sugars_g": 4.5,
+      "flag_off": 36.4,
+      "flag_on": 36.4,
+      "delta": 0.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290110558284",
+      "sugars_g": 4.5,
+      "flag_off": 75.3,
+      "flag_on": 75.3,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "2824466",
+      "sugars_g": 4.6,
+      "flag_off": 80.1,
+      "flag_on": 80.1,
+      "delta": 0.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "7290119380916",
+      "sugars_g": 5.0,
+      "flag_off": 54.0,
+      "flag_on": 54.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "57132",
+      "sugars_g": 5.3,
+      "flag_off": 78.4,
+      "flag_on": 78.4,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290014758117",
+      "sugars_g": 5.3,
+      "flag_off": 78.4,
+      "flag_on": 78.4,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110566975",
+      "sugars_g": 5.6,
+      "flag_off": 67.0,
+      "flag_on": 67.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290112330352",
+      "sugars_g": 5.6,
+      "flag_off": 72.0,
+      "flag_on": 72.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290112330390",
+      "sugars_g": 5.6,
+      "flag_off": 67.0,
+      "flag_on": 67.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290114314596",
+      "sugars_g": 7.0,
+      "flag_off": 68.8,
+      "flag_on": 68.8,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290119377480",
+      "sugars_g": 8.4,
+      "flag_off": 82.0,
+      "flag_on": 81.0,
+      "delta": -1.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "408354",
+      "sugars_g": 8.5,
+      "flag_off": 45.6,
+      "flag_on": 44.6,
+      "delta": -1.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290110578053",
+      "sugars_g": 8.6,
+      "flag_off": 39.7,
+      "flag_on": 39.3,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290112346629",
+      "sugars_g": 8.9,
+      "flag_off": 47.4,
+      "flag_on": 47.0,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290114312424",
+      "sugars_g": 9.0,
+      "flag_off": 37.9,
+      "flag_on": 37.5,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "5416262",
+      "sugars_g": 9.5,
+      "flag_off": 51.6,
+      "flag_on": 50.6,
+      "delta": -1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102393169",
+      "sugars_g": 9.5,
+      "flag_off": 37.1,
+      "flag_on": 36.7,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102393176",
+      "sugars_g": 9.5,
+      "flag_off": 38.3,
+      "flag_on": 37.9,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102399802",
+      "sugars_g": 9.5,
+      "flag_off": 52.0,
+      "flag_on": 51.0,
+      "delta": -1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102399819",
+      "sugars_g": 9.5,
+      "flag_off": 49.6,
+      "flag_on": 49.2,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290114310406",
+      "sugars_g": 9.5,
+      "flag_off": 35.0,
+      "flag_on": 34.6,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "E"
+    },
+    {
+      "barcode": "7290102399635",
+      "sugars_g": 9.6,
+      "flag_off": 36.7,
+      "flag_on": 36.3,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290110321680",
+      "sugars_g": 9.6,
+      "flag_off": 57.4,
+      "flag_on": 56.4,
+      "delta": -1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102390427",
+      "sugars_g": 9.7,
+      "flag_off": 38.0,
+      "flag_on": 37.6,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102390465",
+      "sugars_g": 9.7,
+      "flag_off": 37.5,
+      "flag_on": 37.1,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102390489",
+      "sugars_g": 9.7,
+      "flag_off": 37.6,
+      "flag_on": 37.2,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102391844",
+      "sugars_g": 9.7,
+      "flag_off": 37.1,
+      "flag_on": 36.7,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290110321703",
+      "sugars_g": 9.7,
+      "flag_off": 59.2,
+      "flag_on": 58.2,
+      "delta": -1.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290114311359",
+      "sugars_g": 9.7,
+      "flag_off": 37.9,
+      "flag_on": 37.5,
+      "delta": -0.4,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290114314060",
+      "sugars_g": 9.7,
+      "flag_off": 41.3,
+      "flag_on": 40.3,
+      "delta": -1.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102393190",
+      "sugars_g": 9.8,
+      "flag_off": 38.0,
+      "flag_on": 37.2,
+      "delta": -0.8,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102393947",
+      "sugars_g": 9.8,
+      "flag_off": 38.3,
+      "flag_on": 37.5,
+      "delta": -0.8,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290110321697",
+      "sugars_g": 9.8,
+      "flag_off": 61.0,
+      "flag_on": 59.0,
+      "delta": -2.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290114312431",
+      "sugars_g": 9.8,
+      "flag_off": 37.8,
+      "flag_on": 37.0,
+      "delta": -0.8,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290114313070",
+      "sugars_g": 9.8,
+      "flag_off": 34.8,
+      "flag_on": 34.0,
+      "delta": -0.8,
+      "grade_off": "E",
+      "grade_on": "E"
+    },
+    {
+      "barcode": "7290010471669",
+      "sugars_g": 9.9,
+      "flag_off": 36.3,
+      "flag_on": 35.5,
+      "delta": -0.8,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290114314053",
+      "sugars_g": 9.9,
+      "flag_off": 41.4,
+      "flag_on": 39.4,
+      "delta": -2.0,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102394081",
+      "sugars_g": 13.1,
+      "flag_off": 55.0,
+      "flag_on": 51.0,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102393039",
+      "sugars_g": 13.5,
+      "flag_off": 45.2,
+      "flag_on": 43.6,
+      "delta": -1.6,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "7290102397600",
+      "sugars_g": 13.6,
+      "flag_off": 62.4,
+      "flag_on": 58.4,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102397617",
+      "sugars_g": 13.8,
+      "flag_off": 57.5,
+      "flag_on": 53.5,
+      "delta": -4.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290102393060",
+      "sugars_g": 14.0,
+      "flag_off": 43.5,
+      "flag_on": 41.9,
+      "delta": -1.6,
+      "grade_off": "D",
+      "grade_on": "D"
+    },
+    {
+      "barcode": "43944",
+      "sugars_g": null,
+      "flag_off": 74.7,
+      "flag_on": 74.7,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "45771",
+      "sugars_g": null,
+      "flag_off": 74.5,
+      "flag_on": 74.5,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "5416415",
+      "sugars_g": null,
+      "flag_off": 77.6,
+      "flag_on": 77.6,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110321031",
+      "sugars_g": null,
+      "flag_off": 89.9,
+      "flag_on": 89.9,
+      "delta": 0.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "7290110328221",
+      "sugars_g": null,
+      "flag_off": 77.8,
+      "flag_on": 77.8,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110328788",
+      "sugars_g": null,
+      "flag_off": 65.0,
+      "flag_on": 65.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290110329952",
+      "sugars_g": null,
+      "flag_off": 60.0,
+      "flag_on": 60.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290116932484",
+      "sugars_g": null,
+      "flag_off": 68.0,
+      "flag_on": 68.0,
+      "delta": 0.0,
+      "grade_off": "B",
+      "grade_on": "B"
+    },
+    {
+      "barcode": "7290116934402",
+      "sugars_g": null,
+      "flag_off": 64.0,
+      "flag_on": 64.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290116935614",
+      "sugars_g": null,
+      "flag_off": 89.9,
+      "flag_on": 89.9,
+      "delta": 0.0,
+      "grade_off": "A",
+      "grade_on": "A"
+    },
+    {
+      "barcode": "7290116935621",
+      "sugars_g": null,
+      "flag_off": 60.0,
+      "flag_on": 60.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290116936123",
+      "sugars_g": null,
+      "flag_off": 58.0,
+      "flag_on": 58.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290116936215",
+      "sugars_g": null,
+      "flag_off": 54.0,
+      "flag_on": 54.0,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    },
+    {
+      "barcode": "7290116936222",
+      "sugars_g": null,
+      "flag_off": 53.2,
+      "flag_on": 53.2,
+      "delta": 0.0,
+      "grade_off": "C",
+      "grade_on": "C"
+    }
+  ],
+  "milk_table": [
+    {
+      "barcode": "5411188112709",
+      "flag_off": 49.0,
+      "flag_on": 49.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5411188124689",
+      "flag_off": 52.3,
+      "flag_on": 52.3,
+      "delta": 0.0
+    },
+    {
+      "barcode": "5411188300328",
+      "flag_off": 36.0,
+      "flag_on": 36.0,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290000051352",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290014760141",
+      "flag_off": 51.5,
+      "flag_on": 51.5,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290019790259",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290102392094",
+      "flag_off": 85,
+      "flag_on": 85,
+      "delta": 0
+    },
+    {
+      "barcode": "7290107932134",
+      "flag_off": 60.8,
+      "flag_on": 60.8,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110324773",
+      "flag_off": 39.5,
+      "flag_on": 39.5,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110324926",
+      "flag_off": 56.7,
+      "flag_on": 56.7,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290110325619",
+      "flag_off": 47.2,
+      "flag_on": 47.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290114313285",
+      "flag_off": 49.6,
+      "flag_on": 49.6,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290114313865",
+      "flag_off": 76.1,
+      "flag_on": 76.1,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290116936116",
+      "flag_off": 63.9,
+      "flag_on": 63.9,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290119385560",
+      "flag_off": 49.9,
+      "flag_on": 49.9,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376619939",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376620904",
+      "flag_off": 53.2,
+      "flag_on": 53.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7394376621451",
+      "flag_off": 49.4,
+      "flag_on": 49.4,
+      "delta": 0.0
+    },
+    {
+      "barcode": "8000215204219",
+      "flag_off": 49.2,
+      "flag_on": 49.2,
+      "delta": 0.0
+    },
+    {
+      "barcode": "8000215204554",
+      "flag_off": 47.8,
+      "flag_on": 47.8,
+      "delta": 0.0
+    }
+  ],
+  "flag_off_drift_yogurt": {
+    "mismatches": 53,
+    "details": [
+      {
+        "barcode": "2824466",
+        "flag_off": 80.1,
+        "baseline": 82.3
+      },
+      {
+        "barcode": "408316",
+        "flag_off": 77.1,
+        "baseline": 79.3
+      },
+      {
+        "barcode": "4119133",
+        "flag_off": 70.2,
+        "baseline": 72.7
+      },
+      {
+        "barcode": "43944",
+        "flag_off": 74.7,
+        "baseline": 75.0
+      },
+      {
+        "barcode": "45771",
+        "flag_off": 74.5,
+        "baseline": 74.9
+      },
+      {
+        "barcode": "4584528",
+        "flag_off": 79.3,
+        "baseline": 81.5
+      },
+      {
+        "barcode": "5416262",
+        "flag_off": 51.6,
+        "baseline": 51.7
+      },
+      {
+        "barcode": "5416415",
+        "flag_off": 77.6,
+        "baseline": 75
+      },
+      {
+        "barcode": "57132",
+        "flag_off": 78.4,
+        "baseline": 81.2
+      },
+      {
+        "barcode": "57149",
+        "flag_off": 77.5,
+        "baseline": 80.2
+      }
+    ]
+  },
+  "engine_invariants": "342 PASS (run before pilot)",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "score_engine_sha256": "9c40a651e648891fe16fd3da7cc9f88cd684b4b39ef66de03f0fced1d6a76a51",
+  "constants_sha256": "fffe33d7e4c633def80cee763f49540d1b5efd10012892c76a13ae8b2d6b57c3",
+  "output_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_outputs\\run_yogurt_shelfrel_v2",
+  "errors": [],
+  "self_check": {
+    "off_used": false,
+    "yogurt_only_gates": true,
+    "milk_included_for_c10": true,
+    "C10_critical": true,
+    "C9_no_bleed": true
+  }
+}
