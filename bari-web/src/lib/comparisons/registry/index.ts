@@ -4,7 +4,6 @@ import { granolaCategoryDefinition } from "./categories/granola";
 import { cheeseCategoryDefinition } from "./categories/cheese";
 import { hummusCategoryDefinition } from "./categories/hummus";
 import { snacksCategoryDefinition } from "./categories/snacks";
-import { yogurtsCategoryDefinition } from "./categories/yogurts";
 import type {
   ComparisonCategoryDefinition,
   ComparisonCategoryId,
@@ -14,7 +13,6 @@ import type {
 const comparisonCategoryRegistry = {
   bread: breadCategoryDefinition,
   snacks: snacksCategoryDefinition,
-  yogurts: yogurtsCategoryDefinition,
   hummus: hummusCategoryDefinition,
   cheese: cheeseCategoryDefinition,
   "breakfast-cereals": cerealsCategoryDefinition,
