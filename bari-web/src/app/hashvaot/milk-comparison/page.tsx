@@ -10,7 +10,7 @@ import {
   milkMethodologyLines,
   milkPrologueSentences,
   milkVmProducts,
-} from "@/lib/comparisons/milk-comparison-page-data";
+} from "@/lib/comparisons/milk-page-data";
 
 export const metadata: Metadata = milkComparisonMetadata;
 

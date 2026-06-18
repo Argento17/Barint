@@ -1,0 +1,900 @@
+{
+  "_meta": {
+    "generated": "2026-06-17T00:00:00+00:00",
+    "category": "milk",
+    "run_id": "run_005_headpin",
+    "product_count": 18,
+    "scored_count": 18,
+    "schema": "milk-v1",
+    "version": "v1",
+    "task": "TASK-321D — milk baseline extraction (bespoke TS → comparison JSON)",
+    "source": "src/lib/comparisons/milk-comparison-page-data.ts + src/data/milk-comparison.json",
+    "provenance": "direct product scrape (Yochananof storefront); frozen run_005_headpin (top=85/A for whole/natural/goat dairy)",
+    "grade_distribution": {
+      "A": 3,
+      "B": 2,
+      "C": 8,
+      "D": 4,
+      "E": 1
+    },
+    "off_used": false,
+    "copy_status": "EXTRACTED_FROM_BESPOKE_TS",
+    "retailer": "yochananof",
+    "note": "Additive-only extraction — milk bespoke JSON does not carry structured d4_additives or full per-product nutrition panel (fat/satFat/carbs/sodium). Those gaps will be filled by a clean BSIP0 rescore in TASK-321 Wave 3."
+  },
+  "page_copy": {
+    "hero": {
+      "eyebrow": "חלב ותחליפים",
+      "title": "השוואת חלב ותחליפי חלב",
+      "productCount": 18,
+      "scoredCount": 18
+    },
+    "prologue": {
+      "sentences": [
+        "חלב נראה כמו קטגוריה פשוטה, אבל המדף מספר סיפור קצת יותר מורכב.",
+        "חלק מהמוצרים נשענים על הרכב בסיסי וקצר יחסית, בעוד אחרים משתמשים בתוספות שונות כדי להשפיע על מרקם, חיי מדף או ערכים תזונתיים.",
+        "בבדיקה ראינו שמוצרים שנראים דומים מאוד מבחוץ יכולים להיות שונים בהרכב, ברמת העיבוד ובאופן שבו הם משתלבים בשימוש יומיומי.",
+        "לכן ההשוואה כאן לא מסתכלת רק על מספר אחד, אלא על התמונה הרחבה של המוצר כפי שהוא מופיע על המדף."
+      ]
+    },
+    "methodology": {
+      "lines": [
+        "ההשוואה מבוססת על מוצרי חלב שנאספו ונבדקו מתוך מידע גלוי לצרכן במדף הישראלי.",
+        "לכל מוצר נבחנים הרכב הרכיבים, הערכים התזונתיים, רמת העיבוד וההקשר הקטגורי שלו.",
+        "ההשוואה אינה נשענת רק על קלוריות, חלבון או סוכר, אלא מנסה להבין את איכות המוצר כמכלול.",
+        "הדירוג נועד לעזור בהשוואה בין מוצרים דומים באותה קטגוריה, ולא לשמש כהמלצה רפואית או תזונתית אישית."
+      ]
+    },
+    "caveat": {
+      "notes": [
+        {
+          "title": "הערת קטגוריה — 'דל שומן' אינו אוטומטית ציון גבוה יותר",
+          "body": "הציון משקלל את הרכב המוצר כולו — חלבון, סוכר, תוספים ורמת עיבוד — ולא את אחוז השומן לבדו. חלב מלא או 3% עשוי לקבל ציון גבוה מגרסת דל-שומן של אותו מותג, כשהבסיס שלו פשוט יותר."
+        },
+        {
+          "title": "הערת קטגוריה — חלב פרה ותחליפים צמחיים נמדדים על אותו מדף",
+          "body": "משקה שקדים, סויה או שיבולת שועל אינו מקבל ציון נמוך רק משום שאינו חלב. כל מוצר נמדד מול דומיו לפי ההרכב שעל האריזה — אך שימו לב שתחליפים צמחיים רבים מועשרים ומיוצבים, וזה משתקף בציון."
+        }
+      ]
+    },
+    "blog_link": {
+      "href": "/blog/milk-analysis",
+      "label": "קראו את הניתוח העיתונאי בבלוג ←"
+    },
+    "shelf_lens_options": [
+      { "id": "type:dairy", "label": "חלב פרה", "group": "type" },
+      { "id": "type:oat", "label": "שיבולת שועל", "group": "type" },
+      { "id": "type:soy", "label": "סויה", "group": "type" },
+      { "id": "type:almond", "label": "שקדים", "group": "type" },
+      { "id": "type:rice", "label": "אורז", "group": "type" },
+      { "id": "no_additives", "label": "ללא תוספים", "group": "trait" },
+      { "id": "high_protein", "label": "חלבון גבוה", "group": "trait" },
+      { "id": "low_sugar", "label": "פחות סוכר", "group": "trait" },
+      { "id": "coffee", "label": "הכי מתאים לקפה", "group": "trait" },
+      { "id": "high_score", "label": "ציון Bari הגבוה", "group": "trait" }
+    ]
+  },
+  "products": [
+    {
+      "id": "milk_7290000051352",
+      "name": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+      "barcode": "7290000051352",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏85 (מצוין) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ציון גבוה ביחס למדף · ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 67.0,
+          "protein": 3.3,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "חלב",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "חלבון בכמות טובה ביחס לקטגוריה (3.3 ג׳ ל־100 מ״ל)",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "חלב פרה בסיסי — חלבון טבעי בלי תוספות מיותרות"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים"
+        ],
+        "comparisonContext": "פשוט ברכיבים, אך ערך תזונתי ביחס למוצר לא בהכרח גבוה — תלוי מה אתם מחפשים."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 1,
+      "filterTags": ["type:dairy", "no_additives", "high_protein", "high_score"],
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "metrics": { "protein_g": 3.3, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290019790259",
+      "name": "חלב טבעי 4% 1 ליטר",
+      "barcode": "7290019790259",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001979025910-03-2024_07-59-53.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏85 (מצוין) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ציון גבוה ביחס למדף · ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 69.0,
+          "protein": 3.4,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "חלב,",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "חלבון בכמות טובה ביחס לקטגוריה (3.4 ג׳ ל־100 מ״ל)",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים"
+        ],
+        "comparisonContext": "פשוט ברכיבים, אך ערך תזונתי ביחס למוצר לא בהכרח גבוה — תלוי מה אתם מחפשים."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 1,
+      "filterTags": ["type:dairy", "no_additives", "high_protein", "high_score"],
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "metrics": { "protein_g": 3.4, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290102392094",
+      "name": "חלב עיזים בקרטון 1 ליטר",
+      "barcode": "7290102392094",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729010239209402-26-2026_07-22-01.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏85 (מצוין) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ציון גבוה ביחס למדף · ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 68.0,
+          "protein": 3.4,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "חלב עיזים מפוסטר מהומגן",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "חלבון בכמות טובה ביחס לקטגוריה (3.4 ג׳ ל־100 מ״ל)",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים"
+        ],
+        "comparisonContext": "פשוט ברכיבים, אך ערך תזונתי ביחס למוצר לא בהכרח גבוה — תלוי מה אתם מחפשים."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 1,
+      "filterTags": ["type:dairy", "no_additives", "high_protein", "high_score"],
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב עיזים",
+      "metrics": { "protein_g": 3.4, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290114313865",
+      "name": "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+      "barcode": "7290114313865",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729011431386505-25-2025_05-53-36.jpg",
+      "score": 74.1,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏74 (טוב) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ציון גבוה ביחס למדף · רכיבים פשוטים יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 64.0,
+          "protein": 6.5,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "חלב מפוסטר, רכיבי חלב",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "חלבון בכמות טובה ביחס לקטגוריה — מעל ממוצע משקה חלבון (6.5 ג׳ ל־100 מ״ל)",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים"
+        ],
+        "comparisonContext": "מוצר שמחזק חלבון אך לרוב בטריידאוף של רשימת רכיבים ועיבוד — לא אותו דבר כמו חלב בסיסי."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 2,
+      "filterTags": ["type:protein_drink", "no_additives", "high_protein", "high_score"],
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב מועשר בחלבון",
+      "metrics": { "protein_g": 6.5, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290116936116",
+      "name": "משקה סויה ללא סוכרים 1 ליטר",
+      "barcode": "7290116936116",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
+      "score": 67.0,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏67 (טוב) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית · רכיבים פשוטים יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 32.0,
+          "protein": 3.3,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מיצוי פולי סויה (מים, פולי סויה 6.4%), מלח",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "חלבון בכמות טובה ביחס לקטגוריה (3.3 ג׳ ל־100 מ״ל)",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים"
+        ],
+        "comparisonContext": "פשוט ברכיבים, אך ערך תזונתי ביחס למוצר לא בהכרח גבוה — תלוי מה אתם מחפשים."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 2,
+      "filterTags": ["type:soy", "no_additives", "high_protein", "low_sugar", "high_score"],
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "metrics": { "protein_g": 3.3, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290107932134",
+      "name": "חלב בבקבוק 1% מועשר- מהדרין",
+      "barcode": "7290107932134",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/4/344072_7290107932134.jpg",
+      "score": 56.6,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏57 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 43.0,
+          "protein": 3.4,
+          "sugar": 5.0,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "חלב, סידן, מייצב (קרגינן), ויטמין D. ויטמין A הוסף לחלב להשלמת ריכוזו כבחלב רגיל.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "חלבון בכמות טובה ביחס לקטגוריה (3.4 ג׳ ל־100 מ״ל)",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "סוכר בינוני (5.0 ג׳) — לא בהכרח «ללא סוכר» למרות מוצר צמחי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:dairy", "high_protein"],
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "metrics": { "protein_g": 3.4, "sugar_g": 5.0 }
+    },
+    {
+      "id": "milk_7290110324926",
+      "name": "משקה סויה ללא תוספת סוכר",
+      "barcode": "7290110324926",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110324926_s1_1509-24-2020_12-46-31.jpg",
+      "score": 58.1,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏58 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 32.0,
+          "protein": 3.3,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v),E-452(i),E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12,B2 ו- D (B2-0.24 מ\"ג, B12-מק\"ג 0.4, D-0.75 מק\"ג ל-100 גרם).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "חלבון בכמות טובה ביחס לקטגוריה (3.3 ג׳ ל־100 מ״ל)",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:soy", "high_protein"],
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "metrics": { "protein_g": 3.3, "sugar_g": null }
+    },
+    {
+      "id": "milk_7290014760141",
+      "name": "משקה שקדים",
+      "barcode": "7290014760141",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290014760141_s1_1505-19-2021_06-53-14.jpg",
+      "score": 54.5,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏55 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 56.0,
+          "protein": 1.6,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, סוכר, שקדים טחונים (4%), תוסף תזונה סידן: טריקלציום פוספאט, מלח, מייצבים (מייצב מזרעי חרובים, גילאן גאם), מתחלב לציטין סויה, ויטמינים E, B12, B2, D",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "חלבון נמוך מול ממוצע סויה — לשקול אם חשוב לכם חלבון",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות",
+          "מזוהים ממתיקים או סוכר מוסף — משפיעים על טעם ורמת מתיקות"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:soy"],
+      "milkProductType": "almond",
+      "milkProductTypeLabel": "שקדים",
+      "metrics": { "protein_g": 1.6, "sugar_g": null }
+    },
+    {
+      "id": "milk_7394376620904",
+      "name": "משקה שיבולת שועל ללא סוכר",
+      "barcode": "7394376620904",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/3/7394376620904_s106-25-2025_09-58-48.jpg",
+      "score": 51.9,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏51 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 44.0,
+          "protein": 1.0,
+          "sugar": 0.0,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, שיבולת שועל (מכיל גלוטן) (10%), שמן קנולה מזוכך, מווסת חומציות (דיפוטסיום פוספט), מינרלים (קלציום קרבונט, אשלגן יודי), מלח לתעשיות המזון סוג א'', ויטמינים (B2, D2, B12)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "פחות סוכר ביחס למוצרים דומים (0.0 ג׳ ל־100 מ״ל)",
+          "רמת סוכר נמוכה יחסית לעומת משקאות ממותקים דומים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "תוספים: מווסת חומציות, פוספט — שווה לבדוק אם חשוב לכם מה נכנס למרקם והטעם",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:oat", "low_sugar", "coffee"],
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "metrics": { "protein_g": 1.0, "sugar_g": 0.0 }
+    },
+    {
+      "id": "milk_5411188124689",
+      "name": "אלפרו שיבולת שועל ללא סוכר",
+      "barcode": "5411188124689",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/6/360830_5411188124689.jpg",
+      "score": 51.0,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏51 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 40.0,
+          "protein": 0.0,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "בסיס שיבולת שועל (גלוטן) (מים, שיבולת שועל (8.3%)),סיבים תזונתיים, שמן חמניות, סידן (קלציום קרבונט), מלח, מייצב (ג''לן גאם), ויטמינים (ריבופלאבין (B2), D2, B12).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:oat", "low_sugar", "coffee"],
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "metrics": { "protein_g": 0.0, "sugar_g": null }
+    },
+    {
+      "id": "milk_7394376619939",
+      "name": "משקה בריסטה שיבולת שועל",
+      "barcode": "7394376619939",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/3/7394376619939_s103-10-2024_12-41-48.jpg",
+      "score": 50.7,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏50 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 61.0,
+          "protein": 1.1,
+          "sugar": 3.4,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, שיבולת שועל (מכיל גלוטן) (10%), שמן קנולה מזוכך, מווסת חומציות (דיפוטסיום פוספט), מינרלים (קלציום קרבונט, אשלגן יודי), מלח לתעשיית המזון סוג א'', ויטמינים (B2, D2, B12)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רמת סוכר נמוכה יחסית לעומת משקאות ממותקים דומים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "תוספים: מווסת חומציות, פוספט — שווה לבדוק אם חשוב לכם מה נכנס למרקם והטעם",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה"
+        ],
+        "comparisonContext": "נעים לשתייה ולקפה, אך לעיתים יותר סוכר/פחמימה מאשר נדמה."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:oat", "low_sugar", "coffee"],
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "metrics": { "protein_g": 1.1, "sugar_g": 3.4 }
+    },
+    {
+      "id": "milk_7394376621451",
+      "name": "משקה בריסטה שיבולת שועל להקצפה",
+      "barcode": "7394376621451",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/3/7394376621451_s101-21-2024_12-00-00.jpg",
+      "score": 50.7,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏50 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 61.0,
+          "protein": 1.1,
+          "sugar": 3.4,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, שיבולת שועל (מכיל גלוטן) (10%), שמן קנולה מזוכך, מווסת חומציות (דיפוטסיום פוספט), מינרלים (קלציום קרבונט, אשלגן יודי), מלח לתעשיית המזון סוג א'', ויטמינים (B2, D2, B12)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רמת סוכר נמוכה יחסית לעומת משקאות ממותקים דומים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "תוספים: מווסת חומציות, פוספט — שווה לבדוק אם חשוב לכם מה נכנס למרקם והטעם",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה"
+        ],
+        "comparisonContext": "נעים לשתייה ולקפה, אך לעיתים יותר סוכר/פחמימה מאשר נדמה."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:oat", "low_sugar", "coffee"],
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "metrics": { "protein_g": 1.1, "sugar_g": 3.4 }
+    },
+    {
+      "id": "milk_8000215204219",
+      "name": "משקה אורז אורגני",
+      "barcode": "8000215204219",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/0/8000215204219_s103-08-2021_13-22-47.jpg",
+      "score": 52.3,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏52 (בינוני) — בין השאר בזכות רשימת רכיבים פשוטה יחסית — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית · רכיבים פשוטים יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 55.0,
+          "protein": 0.3,
+          "sugar": 4.9,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים,אורז (14%),שמן חמניות,מלח ים.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "הרכב המוצר קרוב יותר למזון בסיסי — פחות רכיבים תפקודיים ארוכים",
+          "רמת עיבוד יחסית מתונה — בסיס ברור ברשימת הרכיבים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "סוכר בינוני (4.9 ג׳) — לא בהכרח «ללא סוכר» למרות מוצר צמחי",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "פשוט ברכיבים, אך ערך תזונתי ביחס למוצר לא בהכרח גבוה — תלוי מה אתם מחפשים."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 2,
+      "filterTags": ["type:rice", "no_additives"],
+      "milkProductType": "rice",
+      "milkProductTypeLabel": "אורז",
+      "metrics": { "protein_g": 0.3, "sugar_g": 4.9 }
+    },
+    {
+      "id": "milk_8000215204554",
+      "name": "משקה אורז קוקוס אורגני",
+      "barcode": "8000215204554",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/0/8000215204554_s103-08-2021_13-18-29.jpg",
+      "score": 49.1,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏52 (בינוני) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. רכיבים פשוטים יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 65.0,
+          "protein": 0.4,
+          "sugar": 4.9,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, אורז (14%),קוקוס (2%), שמן חמניות, חלבון אפונה, מלח ים, טעם טבעי.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "רשימת רכיבים יחסית פשוטה — מעט תוספים או מייצבים חזקים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "סוכר בינוני (4.9 ג׳) — לא בהכרח «ללא סוכר» למרות מוצר צמחי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "מוצר שמחזק חלבון אך לרוב בטריידאוף של רשימת רכיבים ועיבוד — לא אותו דבר כמו חלב בסיסי."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["no_additives"],
+      "milkProductType": "rice",
+      "milkProductTypeLabel": "אורז",
+      "metrics": { "protein_g": 0.4, "sugar_g": 4.9 }
+    },
+    {
+      "id": "milk_7290119385560",
+      "name": "משקה סויה בריסטה אלפרו 500 מ\"ל",
+      "barcode": "7290119385560",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/7/370387_7290119385560.jpg",
+      "score": 48.4,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏48 (חלש) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל — רמת עיבוד גבוהה גם מורידה את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 46.0,
+          "protein": 3.3,
+          "sugar": 2.5,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מיצוי סויה (מים, פולי סויה קלופים (8.6%)], סוכר לבן, סיבים תזונתיים (אינולין), סידן (קלציום קרבונט), מווסת חומציות (דיפוטסיום פוספט), מלח, חומרי טעם וריח, מייצב (ג''לן גאם), ויטמינים [ריבופלאבין (B12, *D2, (B2). *בפסח ללא ויטמין D2.",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "חלבון בכמות טובה ביחס לקטגוריה (3.3 ג׳ ל־100 מ״ל)",
+          "פחות סוכר ביחס למוצרים דומים (2.5 ג׳ ל־100 מ״ל)",
+          "רמת סוכר נמוכה יחסית לעומת משקאות ממותקים דומים",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "רמת עיבוד גבוהה — רשימת רכיבים ארוכה יותר ורכיבים תפקודיים",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות",
+          "מזוהים ממתיקים או סוכר מוסף — משפיעים על טעם ורמת מתיקות",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 4,
+      "filterTags": ["type:soy", "high_protein", "low_sugar", "coffee"],
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "metrics": { "protein_g": 3.3, "sugar_g": 2.5 }
+    },
+    {
+      "id": "milk_7290110325619",
+      "name": "משקה שיבולת שועל",
+      "barcode": "7290110325619",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110325619_s1_1505-19-2021_06-53-08.jpg",
+      "score": 48.5,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏48 (חלש) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 55.0,
+          "protein": 1.3,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מיצוי שיבולת שועל (95%) (מים, שיבולת שועל 10%) (מכיל גלוטן שיבולת שועל), שמן קנולה, סיבים תזונתיים (אנולין), תוסף תזונה: סידן: (קלציום קרבונט, טרי קלציום פוספט), מווסת חומציות: דיפוטסיום פוספט, מלח, מייצב: ג''לן גאם, ויטמינים B12, D, E (E-1.8 מ\"ג, D-0.75 מק\"ג, B12- 0.4 מק\"ג ל- 100 גרם)",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "עיבוד בינוני-גבוה — תחליף מעובד, לא חלב בסיסי בלבד",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות",
+          "יש שמן צמחי ברשימה — עוזר במרקם והקצפה, מוסיף שומן למנה",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 3,
+      "filterTags": ["type:oat", "coffee"],
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "metrics": { "protein_g": 1.3, "sugar_g": null }
+    },
+    {
+      "id": "milk_5411188112709",
+      "name": "אלפרו שקדים ללא סוכר",
+      "barcode": "5411188112709",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/5/355921_5411188112709.jpg",
+      "score": 47.1,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏47 (חלש) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל — רמת עיבוד גבוהה גם מורידה את הציון הכולל. ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 15.0,
+          "protein": 0.5,
+          "sugar": null,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מים, שקדים (2.3%), סידן (קלציום קרבונט), מלח, מייצבים (גואר גאם, ג''לן גאם), מתחלב (לציטין), חומרי טעם וריח, ויטמינים (E, B12 , D2).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "כמות חלבון נמוכה מאוד — בעיקר משקה, לא מקור חלבון משמעותי",
+          "רמת עיבוד גבוהה — רשימת רכיבים ארוכה יותר ורכיבים תפקודיים",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "קליל ודל קלוריות, אך חלבון נמוך — טוב כתחליף טעם, פחות כמקור חלבון."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 4,
+      "filterTags": ["type:almond", "low_sugar"],
+      "milkProductType": "almond",
+      "milkProductTypeLabel": "שקדים",
+      "metrics": { "protein_g": 0.5, "sugar_g": null }
+    },
+    {
+      "id": "milk_5411188300328",
+      "name": "אלפרו שוקו משקה סויה",
+      "barcode": "5411188300328",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/5/355900_5411188300328_4.jpg",
+      "score": 34.5,
+      "grade": "E",
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
+      "insightLine": "",
+      "rowVerdict": "ציון Bari ‏35 (חלש מאוד) — במקביל, ערך תזונתי נמוך יחסית מוריד את הציון הכולל — רמת עיבוד גבוהה גם מורידה את הציון הכולל. ציון נמוך יחסית בקטגוריה · ערך תזונתי נמוך יחסית",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 61.0,
+          "protein": 3.1,
+          "sugar": 7.6,
+          "fat": null,
+          "satFat": null,
+          "carbs": null,
+          "sodium": null,
+          "fiber": null
+        },
+        "ingredients": "מיצוי סויה (מים, פולי סויה קלופים (7%)), סוכר לבן, אבקת קקאו דלת שומן* (1.5%), סידן (קלציום קרבונט), מייצבים (קרגינן, גואר גאם, קסנטן גאם), מווסת חומציות (פוטסיום פוספט), חומרי טעם וריח, מלח, ויטמינים (ריבופלאבין (B2),D2).",
+        "confidenceLabel": "נתונים מלאים",
+        "servingNote": "ל-100 מ״ל",
+        "positiveSignals": [
+          "חלבון בכמות טובה ביחס לקטגוריה (3.1 ג׳ ל־100 מ״ל)",
+          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+        ],
+        "limitingFactors": [
+          "ערך תזונתי ביחס למוצר נמוך — חלבון וסיבים פחות בולטים לעומת מוצרים דומים",
+          "רמת סוכר גבוהה יחסית (7.6 ג׳) — כדאי להשוות למוצרים דומים בתווית",
+          "רמת עיבוד גבוהה — רשימת רכיבים ארוכה יותר ורכיבים תפקודיים",
+          "יש כמה תוספים ומייצבים — טריידאוף למרקם ויציבות",
+          "מזוהים ממתיקים או סוכר מוסף — משפיעים על טעם ורמת מתיקות",
+          "המיקום בציון נמוך יחסית לשאר המדף — כדאי לבחור לפי עדיפות אישית (חלבון מול פשטות)"
+        ],
+        "comparisonContext": "אין «מנצח» אחד — יש טריידאוף בין חלבון, פשטות, טעם ועיבוד."
+      },
+      "retailer": "yochananof",
+      "novaGroup": 4,
+      "filterTags": ["type:soy", "high_protein"],
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "metrics": { "protein_g": 3.1, "sugar_g": 7.6 }
+    }
+  ]
+}

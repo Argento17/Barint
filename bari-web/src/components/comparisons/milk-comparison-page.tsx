@@ -5,8 +5,7 @@ import {
   DAIRY_PROTEIN_METRIC,
   SUGAR_METRIC,
 } from "@/components/shared/comparison-metric-column";
-import { milkShelfFilters } from "@/lib/comparisons/milk-comparison-page-data";
-import type { MilkShelfFilterId } from "@/lib/comparisons/milk-shelf-filters";
+import { milkShelfFilters } from "@/lib/comparisons/milk-page-data";
 import type { BariProductVM } from "@/lib/view-models";
 
 export interface MilkComparisonPageProps {
@@ -18,15 +17,12 @@ export interface MilkComparisonPageProps {
   };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
-  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
   categoryNote?: string;
   blogLink?: { href: string; label: string };
   initialExpandedProductId?: string | null;
 }
 
-// Milk's headline metrics are protein + sugar — both real per-100ml label data. Sugar is
-// a genuine dairy signal (unlike hummus, where it is suppressed). additive_count is NOT a
-// numeric field in the milk data (only a textual additivesLabel) → not fabricated.
+// Milk's headline metrics are protein + sugar — both real per-100ml label data.
 const MILK_METRIC_SPECS = [DAIRY_PROTEIN_METRIC, SUGAR_METRIC] as const;
 
 export function MilkComparisonPage({
@@ -40,7 +36,7 @@ export function MilkComparisonPage({
   initialExpandedProductId = null,
 }: MilkComparisonPageProps) {
   return (
-    <ComparisonPage<MilkShelfFilterId>
+    <ComparisonPage
       products={products}
       metadataLine={metadataLine}
       hero={hero}

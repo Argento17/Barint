@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
 
-import {
-  ComparisonIntelligenceHero,
-} from "@/components/comparisons/comparison-intelligence-hero";
+import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
 import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
-  milkComparisonPage,
-  milkProducts,
-  PRIMARY_DIMENSION_KEYS,
+  milkCorpusMeta,
+  milkVmProducts,
+  milkPrologueSentences,
 } from "@/lib/comparisons/milk-page-data";
 import { cn } from "@/lib/utils";
 
-const INSIGHT_LINES = [
+type Props = {
+  href: string;
+  description?: string;
+};
+
+const MILK_INSIGHT_LINES = [
   "משקאות שיבולת שועל נוטים להכיל יותר מייצבים",
   "חלק ממוצרי הסויה מובילים בכמות החלבון",
   "מוצרים עתירי חלבון מגיעים לעיתים עם יותר עיבוד",
@@ -23,24 +25,10 @@ const INSIGHT_LINES = [
   "חלק מהמועשרים מציגים סידן או ויטמין D בתווית — ההשוואה מציגה את הפרטים",
 ] as const;
 
-type Props = {
-  href: string;
-  description: string;
-};
-
 export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
-  const metadata = useMemo(() => {
-    const productCount = milkProducts.length;
-    const categoryKeys = new Set(milkProducts.map((p) => p.productType));
-    const pillarCount =
-      milkProducts.find((p) => p.bariInterpretation?.length)?.bariInterpretation?.length ?? 6;
-    const paramSlots = PRIMARY_DIMENSION_KEYS.length * pillarCount;
-    return {
-      productCount,
-      categoryCount: categoryKeys.size,
-      paramCount: paramSlots >= 42 ? paramSlots : 42,
-    };
-  }, []);
+  const insightLines = milkVmProducts.map((product) => product.insightLine).filter(Boolean);
+  const lines = insightLines.length > 0 ? insightLines : MILK_INSIGHT_LINES;
+  const cardDescription = description ?? milkPrologueSentences[0];
 
   return (
     <Link
@@ -51,17 +39,17 @@ export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
       )}
     >
       <ComparisonIntelligenceHero
-        badge="דוח ראשון"
+        badge="ניתוח מובייל"
         categoryTags="חלב · תחליפי חלב · משקאות חלבון"
-        title={milkComparisonPage.comparison_title}
-        description={description}
-        insightLines={INSIGHT_LINES}
+        title="השוואת חלב ותחליפי חלב"
+        description={cardDescription}
+        insightLines={lines}
         stats={[
-          { value: metadata.productCount, label: "מוצרים נותחו" },
-          { value: metadata.paramCount, label: "פרמטרים הושוו" },
-          { value: metadata.categoryCount, label: "קטגוריות" },
+          { value: milkCorpusMeta.product_count, label: "מוצרים נבדקו" },
+          { value: milkCorpusMeta.scored_count ?? milkVmProducts.length, label: "קיבלו ציון" },
+          { value: milkVmProducts.length, label: "בדף ההשוואה" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(milkComparisonPage.generated_at)}
+        updatedLabel={formatComparisonUpdatedLine(milkCorpusMeta.generated)}
         asLinkChild
         theme={{ accent: "#5C7FB0", photo: "/hashvaot/themes/milk.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

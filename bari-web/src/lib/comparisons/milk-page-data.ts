@@ -1,11 +1,44 @@
+/**
+ * TASK-321 Wave 3 — uniform milk loader (milk-page-data.ts rewrite).
+ *
+ * This file serves two cohorts:
+ *  1. LEGACY consumers (blog, home-flagship, dimension-bars, bari-grade-badge, …) — the
+ *     original exports kept 100% unchanged so those files compile without modification.
+ *  2. NEW uniform route consumers (milk-comparison-page.tsx, milk-comparison/page.tsx,
+ *     featured-milk-intelligence-card.tsx) — BariProductVM[] exports driven by the
+ *     uniform milk_frontend_v1.json corpus.
+ *
+ * `milkProducts` stays typed as MilkComparisonProduct[] to avoid breaking
+ * src/lib/blog/milk-analysis-content.ts and milk-analysis-chart-data.ts, which are
+ * out of scope for this structural conform (task instruction: "leave [blog] untouched").
+ * New route consumers use `milkVmProducts: BariProductVM[]` instead.
+ */
+
+import type { Metadata } from "next";
+
+// ─── Legacy imports ────────────────────────────────────────────────────────────
 import rawPage from "@/data/milk-comparison.json";
 import { formatGram } from "@/lib/format/numbers";
-
 import type {
   ComparisonFilterId,
   MilkComparisonPageData,
   MilkComparisonProduct,
 } from "@/lib/comparisons/milk-types";
+
+// ─── Uniform-corpus imports ────────────────────────────────────────────────────
+import rawCorpus from "@/data/comparisons/milk_frontend_v1.json";
+import {
+  formatComparisonMetadataLine,
+  loadComparisonCorpus,
+  type ComparisonCorpusMeta,
+  type ComparisonCorpusRaw,
+} from "@/lib/comparisons/corpus";
+import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
+import type { BariProductVM } from "@/lib/view-models";
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// LEGACY BLOCK — preserved verbatim for blog / home-flagship / dimension-bars
+// ═══════════════════════════════════════════════════════════════════════════════
 
 export const milkComparisonPage = rawPage as MilkComparisonPageData;
 
@@ -100,4 +133,139 @@ export function getRowEmphasis(
 
 export function countVisible(active: Set<ComparisonFilterId>): number {
   return milkProducts.filter((p) => productMatchesFilters(p, active)).length;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UNIFORM VM BLOCK — new, driven by milk_frontend_v1.json
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export type MilkCorpusMeta = ComparisonCorpusMeta;
+
+// milk page_copy shape (differs from yogurt):
+//   hero:              { eyebrow, title, productCount, scoredCount }
+//   prologue:          { sentences: string[] }         ← dict, NOT a plain string
+//   methodology:       { lines: string[] }
+//   caveat:            { notes: Array<{title, body}> } ← multi-note array, NOT {title, body}
+//   blog_link:         { href, label }
+//   shelf_lens_options: Array<{id, label, group}>
+type MilkCorpusRaw = typeof rawCorpus & {
+  page_copy: {
+    hero: { eyebrow: string; title: string; productCount: number; scoredCount: number };
+    prologue: { sentences: string[] };
+    methodology: { lines: string[] };
+    caveat: { notes: Array<{ title: string; body: string }> };
+    blog_link: { href: string; label: string };
+    shelf_lens_options: Array<{ id: string; label: string; group: string }>;
+  };
+};
+
+const _typedRaw = rawCorpus as MilkCorpusRaw;
+const _pageCopy = _typedRaw.page_copy;
+
+const { meta: milkCorpusMeta, products: _milkVmProductsRaw } =
+  loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
+
+export { milkCorpusMeta };
+
+export const milkVmProducts: BariProductVM[] = _milkVmProductsRaw.map((p) => ({
+  ...p,
+  imageUrl: p.imageUrl ?? null,
+  d4_additives: p.d4_additives ?? [],
+  metrics: {
+    protein_g: p.expansion?.nutrition?.protein ?? null,
+    sugar_g: p.expansion?.nutrition?.sugar ?? null,
+  },
+}));
+
+export const milkMetadataLine = formatComparisonMetadataLine(
+  milkVmProducts.length,
+  milkCorpusMeta.generated
+);
+
+export const milkHero = {
+  eyebrow: _pageCopy.hero.eyebrow,
+  title: _pageCopy.hero.title,
+} as const;
+
+// prologue is { sentences: string[] } — spread directly into the array.
+export const milkPrologueSentences: readonly string[] = _pageCopy.prologue.sentences;
+
+export const milkMethodologyLines: readonly string[] = _pageCopy.methodology.lines;
+
+// caveat is { notes: [{title, body}] } — join all notes as paragraphs.
+export const milkCategoryNote: string = _pageCopy.caveat.notes
+  .map((n) => `${n.title}\n\n${n.body}`)
+  .join("\n\n");
+
+export const milkBlogLink = {
+  href: _pageCopy.blog_link.href,
+  label: _pageCopy.blog_link.label,
+} as const;
+
+export const milkComparisonMetadata: Metadata = {
+  title: "השוואת חלב ואלטרנטיבות | Bari",
+  description: `השוואת ${milkVmProducts.length} מוצרי חלב ותחליפים ממדפי סופרים — ציון Bari, חלבון, סוכר, תוספים. מידע, לא המלצה.`,
+};
+
+// ─── Shelf filters ─────────────────────────────────────────────────────────────
+// 10 lens options from page_copy.shelf_lens_options.
+// type:* filters are OR'd within the group; trait filters are AND'd.
+// Filter key: filterTags[] on each product in the corpus (copied verbatim into the VM).
+
+export type MilkFilterId = string;
+
+const MILK_LENS_OPTIONS: Array<{ id: MilkFilterId; label: string }> =
+  _pageCopy.shelf_lens_options.map((opt) => ({ id: opt.id, label: opt.label }));
+
+// Build a filterTags lookup keyed by product id (e.g. "milk_7290000051352").
+const FILTER_TAGS_BY_VM_ID = new Map<string, string[]>(
+  (rawCorpus.products as Array<{ id: string; filterTags?: string[] }>).map((p) => [
+    p.id,
+    p.filterTags ?? [],
+  ])
+);
+
+function filterMilkVmProducts(
+  products: BariProductVM[],
+  activeFilters: MilkFilterId[]
+): BariProductVM[] {
+  if (activeFilters.length === 0) return products;
+
+  const typeFilters = activeFilters.filter((f) => f.startsWith("type:"));
+  const traitFilters = activeFilters.filter((f) => !f.startsWith("type:"));
+
+  return products.filter((product) => {
+    const tags = FILTER_TAGS_BY_VM_ID.get(product.id) ?? [];
+    if (typeFilters.length > 0 && !typeFilters.some((f) => tags.includes(f))) {
+      return false;
+    }
+    return traitFilters.every((trait) => tags.includes(trait));
+  });
+}
+
+export const milkShelfFilters = {
+  lensOptions: MILK_LENS_OPTIONS,
+  filterProducts: filterMilkVmProducts,
+};
+
+export function getMilkPageData(): ComparisonCategoryPageData<MilkFilterId> {
+  return {
+    products: milkVmProducts,
+    metadataLine: milkMetadataLine,
+    hero: milkHero,
+    prologueSentences: milkPrologueSentences,
+    methodologyLines: milkMethodologyLines,
+    corpusMeta: milkCorpusMeta,
+    shelfFilters: milkShelfFilters,
+  };
+}
+
+export function getMilkCorpusPayload(): {
+  _meta: MilkCorpusMeta;
+  products: BariProductVM[];
+} {
+  return {
+    _meta: milkCorpusMeta,
+    products: milkVmProducts,
+  };
 }
