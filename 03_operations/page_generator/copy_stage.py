@@ -54,6 +54,12 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+_COPY_DIR = Path(__file__).resolve().parent / "copy"
+if str(_COPY_DIR) not in sys.path:
+    sys.path.insert(0, str(_COPY_DIR))
+from author_copy import _comparison_context  # noqa: E402
+from build_copy_inputs import compute_corpus_stats  # noqa: E402
+
 # Force UTF-8 stdout on Windows
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -309,6 +315,67 @@ def _carry_copy_fields(
     s["expansion"] = staging_exp
 
     return s
+
+
+# ---------------------------------------------------------------------------
+# Required expansion fields missing after carry / schema-match
+# ---------------------------------------------------------------------------
+
+def _product_as_sheet(prod: dict) -> dict:
+    """Minimal fact-sheet shape for _comparison_context from a page product."""
+    nut = (prod.get("expansion") or {}).get("nutrition") or {}
+    return {
+        "barcode": prod.get("barcode"),
+        "grade": prod.get("grade"),
+        "score": prod.get("score"),
+        "nutrition": {
+            "protein": nut.get("protein"),
+            "sugar": nut.get("sugar"),
+            "fat": nut.get("fat"),
+            "kcal": nut.get("energyKcal"),
+            "sodium": nut.get("sodium"),
+            "fiber": nut.get("fiber"),
+        },
+    }
+
+
+def _derive_missing_expansion_fields(
+    prod: dict,
+    corpus_stats: dict[str, Any],
+) -> bool:
+    """
+    Fill schema-required expansion fields absent after carry-forward.
+
+    Live baselines may predate comparisonContext; schema-match strips it.
+    Re-derive via author_copy._comparison_context — never invent copy text.
+    Returns True if comparisonContext was derived on this call.
+    """
+    exp = prod.setdefault("expansion", {})
+    ctx = exp.get("comparisonContext")
+    if ctx is not None and ctx != PENDING and ctx != "":
+        return False
+
+    sheet = _product_as_sheet(prod)
+    exp["comparisonContext"] = _comparison_context(
+        sheet,
+        prod.get("grade"),
+        prod.get("score"),
+        corpus_stats,
+    )
+    return True
+
+
+def _complete_required_expansion_on_products(products: list[dict]) -> int:
+    """Derive missing comparisonContext for all products; return derived count."""
+    if not products:
+        return 0
+    corpus_stats = compute_corpus_stats(products)
+    corpus_stats["_product_count"] = len(products)
+    derived = 0
+    for prod in products:
+        if _derive_missing_expansion_fields(prod, corpus_stats):
+            derived += 1
+    return derived
 
 
 # ---------------------------------------------------------------------------
@@ -644,6 +711,11 @@ def run_copy_stage(
             print(f"  !! SCORE_MOVED {bc:<20} grade={s_grade} {l_score:.1f}->{s_score:.1f} (delta={score_delta:.1f})")
 
     result.score_moved_flags = score_moved_flags
+
+    # --- Derive schema-required expansion fields stripped by live schema-match ---
+    derived_ctx = _complete_required_expansion_on_products(new_staging_products)
+    if derived_ctx:
+        print(f"  derived comparisonContext for {derived_ctx}/{result.total_products} products (live schema lacked field)")
 
     # --- Write copy-applied staging page ---
     staging_data["products"] = new_staging_products

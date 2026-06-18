@@ -103,8 +103,9 @@ PRIOR_RUN_PATTERNS = [
 ]
 
 # Sodium causal framing: נתרן within 30 chars after כי / בגלל / בשל
+# word-boundary guard (P217/C3) — stop `כי` matching inside `נמוכים` / `בשל` inside `מבשל` (EV-051 substring-collision class); optional ו/ש prefix preserves real causal forms `ובגלל`/`שבגלל`.
 SODIUM_CAUSAL_PATTERN = re.compile(
-    r"(?:כי|בגלל|בשל).{0,30}נתרן",
+    r"(?<![א-ת])(?:[וש])?(?:כי|בגלל|בשל)(?![א-ת]).{0,30}נתרן",
     re.UNICODE,
 )
 
