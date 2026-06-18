@@ -111,10 +111,23 @@ to no-ops (addenda not in tree; commit 8553158d absent). **DISPATCHED 2026-06-18
   - **✅ TASK-330 CLOSED + orchestrator-verified + committed (`e3e24ebc4`, 2026-06-18).** Render-contract charter
     (G1 comparisonContext + G6 copy-safety) DONE → 7/8 gates PASS both shelves, score_moves=0, frozen none. 4 files
     committed (copy_stage.py, run_gates.py, cereals_v2.json, hummus_v5.json). NOT pushed (deploy owner-gated).
-  - **OWNER RULING 2026-06-18: G2 → allow documented nulls (Nutrition-owned).** → **TASK-331 OPEN (MEDIUM,
-    nutrition-agent, depends_on TASK-330):** relax G2 so disclosed nutrition nulls ('data could not be retrieved')
-    PASS instead of 100%-required — 'unknown is acceptable; OFF is not'. C3+Nutrition reviewed like the G6 fix.
-    Closes the last gap to a full overall-PASS flip. Ready to dispatch.
+  - **⚠️ PARALLEL-CHAT RED-TEAM (2026-06-18): spine rescore has shadow/gate silent-skip bugs.** Coordination: DO
+    NOT edit spine_flip.py / affected_set.py / run_gates.py / conformance.py — fixes queued there. (NOTE for them:
+    this chat already COMMITTED a run_gates.py change `e3e24ebc4` = G6 word-boundary fix; rebase onto it.)
+  - **⚠️ PALM-HYDRO FINDING CORRECTED via direct rescore (finding #1 ACTION).** Earlier "0 live targets" was WRONG
+    — I grepped canonical_bsip1 but live cakes use run_cakes_shelfrel_001; **3 live cakes DO carry `שמן דקל מוקשה`.**
+    affected_set omitted cakes (shelf-relative shadow blind spot, absolute-mode). Direct `rescore_all --shelf cakes`
+    off-vs-on (proper shelf stats): **65 cakes, 0 score/grade moves** — generic-tier ceiling (55) doesn't bind on
+    cakes already ≤55. CONCLUSION (palm-hydro = no-op on scores, dormant, safe default-OFF) HOLDS; the *reason* is
+    "ceiling doesn't bind," not "no targets." TASK-327 close_reason's "0 products carry" clause is superseded by this.
+  - **⚠️ G2 DIAGNOSIS CORRECTED (2026-06-18).** Orchestrator misread INFO lines: sugar coverage (19/20, 55/57) is
+    `g.info`, NOT a fail. The REAL G2 fail = staged cereals/hummus are schema_version=**v3 (milk-depth)** which
+    HARD-requires `consumerExplanation.whyRated` + `bestUseCases` per product → all **PENDING_COPY** (unauthored).
+    The 'allow documented nulls' ruling addressed the wrong problem. **TASK-331 → BLOCKED + re-scoped + re-owned to
+    product-agent.** Real decision (owner): (A) author v3 milk-depth content for these shelves (heavy); (B) these
+    categories shouldn't be v3 milk-depth — fix schema_version assignment (milk = the content gold standard, not
+    cereals/hummus); (C) make v3 milk-depth content non-hard-fail for non-milk categories. **Not dispatched —
+    awaiting owner ruling.**
   - **Deferred (logged):** affected_set over-inclusion (flags 0-move shelves) = spine-tooling refinement, not a
     PASS blocker — future low-pri task.
 
