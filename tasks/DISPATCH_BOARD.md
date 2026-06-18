@@ -129,7 +129,31 @@ to no-ops (addenda not in tree; commit 8553158d absent). **DISPATCHED 2026-06-18
     cereals/hummus); (C) make v3 milk-depth content non-hard-fail for non-milk categories. **Not dispatched —
     awaiting owner ruling.**
   - **Deferred (logged):** affected_set over-inclusion (flags 0-move shelves) = spine-tooling refinement, not a
-    PASS blocker — future low-pri task.
+    PASS blocker — future low-pri task. **→ SUPERSEDED 2026-06-18 (see SPINE RE-FLOW FIX below).**
+  - **🛠️ SPINE RE-FLOW ROOT-CAUSE + FIX — orchestrator-verified GREEN 2026-06-18 (parallel chat owns the code; this chat verified).**
+    **Root cause (this chat, verified):** `spine_flip` gated the rescore on `affected_set` → which gated on
+    `shadow_backtest diff` → which iterates the STORED `shadow/shadow_registry_v1.json` baseline keys. That
+    baseline (06-16) is missing 5 live shelves (cakes/cookies_coffee/bread/brined_cheeses/granola) AND still lists
+    purged maadanim(200)/wiped yogurt(88). So the palm flag's only real targets (cakes+cookies_coffee carry
+    `שמן דקל מוקשה`, 3 each — verified by grep across all 12 live corpora) were NEVER scanned → never rescored.
+    Worse, the gate reported PHANTOM movement (shadow hummus moved=2 vs actual rescore moves=0). This violated the
+    CLAUDE.md re-flow doctrine ("every live category re-scores on every spine_flip"). [[score_switch_spine_built]]
+    **Fix (parallel chat, uncommitted→pending their commit):** `spine_flip.py` now rescores EVERY live
+    `configs/*.json` shelf UNCONDITIONALLY (12); shadow diff is advisory PREVIEW only (report carries
+    rescored_shelves / shadow_preview_shelves / shadow_preview_blind_to / shadow_preview_phantom).
+    `conformance.py` HARD-2 (registry reachability) demoted to SOFT-2; re-flow guaranteed by HARD-1+HARD-3;
+    conformance --all still 12/12.
+    **Verification (this chat, bundle `_spine_runs/20260618T144356Z`):** `spine_flip --set BARI_PALM_HYDRO_V1=on`
+    → **12 shelves rescored** (cakes+cookies_coffee no longer blind, both in shadow_preview_blind_to);
+    milk C10 Δ0 all 12; baseline_moved none. **Flag = confirmed project-wide NO-OP:** direct off-vs-on per-product
+    diff = cakes 0/65, cookies_coffee 0/119 (generic ceiling 55 doesn't bind on those shelves; 10 other shelves
+    carry 0 markers). The spine-report per-shelf `moves` are vs-committed-BASELINE drift, NOT flag-induced.
+  - **⚠️ Full re-flow EXPOSES (not causes) baseline drift on several shelves — ALREADY-KNOWN, not new:** hard_cheeses
+    27 moves/19 grade (EV-099 D7 sat-fat pending), snacks 16/10 (RT-1 floor governance), bread 3/1, cakes 2 (baseline
+    drift). These map to existing held items (stale-page drift + EV-099 + RT-1 floor); no new task opened. Surfaced
+    so a future owner-gated republish re-confirms them.
+  - **shadow_preview_phantom = [] despite cereals/hummus phantom moves** — flagged to parallel chat (their field;
+    preview is advisory so non-blocking).
 
 ---
 
