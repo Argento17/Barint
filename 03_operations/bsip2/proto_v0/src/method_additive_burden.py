@@ -22,6 +22,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from ingredient_taxonomy import resolve_additive
+
 # ---------------------------------------------------------------------------
 # Inert weights / bands (NOT referenced by score_engine.py)
 # ---------------------------------------------------------------------------
@@ -66,6 +68,41 @@ def _trace_off_sourced(trace: dict[str, Any]) -> bool:
     return bool(OFF_REGEX.search(blob))
 
 
+
+def _norm_additive_token(token: str) -> str:
+    return (token or "").strip().lower()
+
+
+def _additive_identity_keys(token: str) -> set[str]:
+    """Canonical + E-number keys for cross-list dedupe (EV-002 vs EV-003)."""
+    keys = {_norm_additive_token(token)}
+    ident = resolve_additive(token) or resolve_additive(None, category=token)
+    if ident:
+        keys.add(_norm_additive_token(ident.canonical))
+        if ident.e_number:
+            keys.add(_norm_additive_token(ident.e_number))
+    return keys
+
+
+def _dedupe_high_risk_against_at_risk(
+    at_risk_list: list[str],
+    high_risk_emulsifiers: list[str],
+) -> tuple[list[str], int]:
+    """Exclude EV-003 high-risk hits already counted under EV-002 at-risk."""
+    at_risk_keys: set[str] = set()
+    for item in at_risk_list:
+        at_risk_keys |= _additive_identity_keys(item)
+
+    deduped: list[str] = []
+    excluded = 0
+    for em in high_risk_emulsifiers:
+        if _additive_identity_keys(em) & at_risk_keys:
+            excluded += 1
+        else:
+            deduped.append(em)
+    return deduped, excluded
+
+
 def _burden_band(index: float) -> str:
     if index <= 0:
         return "NONE"
@@ -103,11 +140,15 @@ def evaluate_additive_burden(trace: dict[str, Any]) -> dict[str, Any]:
         }
 
     at_risk_list = list(l3.get(EV002_TRACE_KEY) or [])
-    high_risk_emulsifiers = list(l3.get(EV003_HIGH_TRACE_KEY) or [])
+    high_risk_emulsifiers_raw = list(l3.get(EV003_HIGH_TRACE_KEY) or [])
     neutral_emulsifiers = list(l3.get(EV003_NEUTRAL_TRACE_KEY) or [])
     prebiotic_exempt = list(l3.get(EV019_TRACE_KEY) or [])
 
+    high_risk_emulsifiers, ev003_deduped_count = _dedupe_high_risk_against_at_risk(
+        at_risk_list, high_risk_emulsifiers_raw
+    )
     at_risk_count = len(at_risk_list)
+    high_risk_count = len(high_risk_emulsifiers)
 
     components = {
         "ev002_at_risk": {
@@ -123,10 +164,16 @@ def evaluate_additive_burden(trace: dict[str, Any]) -> dict[str, Any]:
             "high_risk": {
                 "trace_field": EV003_HIGH_TRACE_KEY,
                 "emulsifiers": high_risk_emulsifiers,
-                "count": len(high_risk_emulsifiers),
+                "emulsifiers_raw": high_risk_emulsifiers_raw,
+                "count": high_risk_count,
                 "weight": ADDITIVE_BURDEN_WEIGHT_HIGH_RISK_EMULS,
                 "weighted": round(
-                    len(high_risk_emulsifiers) * ADDITIVE_BURDEN_WEIGHT_HIGH_RISK_EMULS, 2
+                    high_risk_count * ADDITIVE_BURDEN_WEIGHT_HIGH_RISK_EMULS, 2
+                ),
+                "deduped_against_ev002": ev003_deduped_count,
+                "trace_note": (
+                    f"{ev003_deduped_count} high-risk emulsifier(s) excluded — "
+                    "already counted in EV-002 at-risk"
                 ),
             },
             "neutral": {
