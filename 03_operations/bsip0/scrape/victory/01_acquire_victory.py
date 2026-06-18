@@ -8,7 +8,7 @@ Victory-specific URL and popup handling.
 Architecture:
   Identity:  il_prices via laibcatalog (chain 7290696200003) — barcodes + Hebrew names
   Panel:     Direct Playwright — open product modal, click "ערכים תזונתיים" / "רכיבים" tabs
-  Fallback:  OFF per-barcode API if modal tabs return empty (common for imported products)
+  Fallback:  NONE. Empty panels stay NULL — OFF is banned project-wide (TASK-238/247).
   Firecrawl: NOT used. Playwright-only.
 
 Run order:
@@ -35,7 +35,6 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, r"C:\Bari")
 
 from integrations.clients import il_prices as ip
-from integrations.clients import open_food_facts as off
 from integrations.source_validator import require_il_prices_accessible
 
 # ---------------------------------------------------------------------------
@@ -366,7 +365,7 @@ def browse_category_for_candidates(
 
 
 # ---------------------------------------------------------------------------
-# Main acquisition flow (il_prices identity → Playwright panel → OFF fallback)
+# Main acquisition flow (il_prices identity → Playwright panel; no OFF fallback)
 # ---------------------------------------------------------------------------
 
 def acquire(
@@ -383,9 +382,9 @@ def acquire(
       1. il_prices laibcatalog feed (barcodes + Hebrew names, preferred)
       2. Victory storefront category browse (fallback when feed unavailable)
 
-    Panel priority:
-      1. Playwright (direct from product modal)
-      2. OFF fallback (for products where modal is empty — often imported goods)
+    Panel:
+      Playwright only (direct from product modal). Empty panels stay NULL —
+      OFF is banned project-wide; there is no second nutrition source.
     """
     identity_source = "victory/laibcatalog"
     candidates_raw: list  # either PriceItem objects (il_prices) or dicts (browse)
@@ -482,28 +481,11 @@ def acquire(
         context.close()
         browser.close()
 
-    # --- Fallback: OFF for empty-panel products ---
+    # Empty-panel products stay NULL. OFF ban (project-wide): no fallback source.
+    # "Unknown is acceptable; OFF is not." (TASK-238 / TASK-247.)
     scraped_ok = [r for r in run_report if r.get("status") == "scraped"]
     nutrition_empty = [r for r in scraped_ok if r.get("nutrition") in ("tab_missing", "dialog_missing", "not_found")]
-    print(f"\nOFF fallback needed for {len(nutrition_empty)} products")
-
-    for r in nutrition_empty:
-        try:
-            p = off.get_product(r["barcode"])
-            r["off_panel"] = {
-                "found": p.found,
-                "has_panel": p.has_panel,
-                "name": p.name,
-                "nutriments": p.nutriments if p.found else {},
-                "ingredients_text": p.ingredients_text if p.found else "",
-            }
-            if p.found and p.has_panel:
-                r.setdefault("provenance", {})
-                r["provenance"]["nutrition_source"] = "off_api"
-                r["provenance"]["ingredients_source"] = "off_api"
-        except Exception as e:
-            r["off_panel"] = {"found": False, "error": str(e)[:100]}
-        time.sleep(0.2)
+    print(f"\n{len(nutrition_empty)} products have empty nutrition panels — left NULL (no OFF fallback)")
 
     # --- Write output ---
     out_path = OUT_DIR / f"victory_bsip0_raw_{ts}.json"
@@ -518,7 +500,7 @@ def acquire(
         "scraped_ok": len(scraped_ok),
         "failed": sum(1 for r in run_report if r.get("status") == "failed"),
         "not_found": sum(1 for r in run_report if r.get("status") == "not_found"),
-        "off_fallback_attempted": len(nutrition_empty),
+        "nutrition_empty": len(nutrition_empty),
         "products": run_report,
     }
     out_path.write_text(json.dumps(out_data, ensure_ascii=False, indent=2), encoding="utf-8")

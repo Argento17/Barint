@@ -1,7 +1,10 @@
 """
-Build olive oil corpus from available sources (gov + OFF).
+Build olive oil corpus from il_gov_data imported-foods (identity only).
 Run as: python _build_corpus_from_sources.py
 TASK-197 Phase 2 — fallback when Shufersal storefront is blocked.
+
+TASK-238/248: the former Open Food Facts barcode-lookup source was removed (OFF banned
+project-wide). il_gov_data supplies identity; nutrition stays NULL until a direct scrape.
 """
 import sys
 import json
@@ -11,7 +14,6 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.path.insert(0, r"C:\Bari")
 
 from integrations.clients.il_gov_data import query
-from integrations.clients.open_food_facts import get_product
 
 ts = datetime.utcnow().isoformat()
 
@@ -87,7 +89,8 @@ def main():
                 "client_version": "1.0",
                 "verification_status": "candidate",
             },
-            # Nutrition: NOT in gov data — enrichment required (OFF/USDA FDC)
+            # Nutrition: NOT in gov data — enrichment requires a DIRECT product scrape
+            # (USDA FDC for reference only). OFF is banned (TASK-238); never enrich from it.
             "nutrition": {
                 "energy_kcal_raw": None,
                 "fat_raw": None,
@@ -116,76 +119,10 @@ def main():
             },
         })
 
-    # ── Source 2: Open Food Facts — Israeli olive oil barcodes ───────────────
-    print("Pulling OFF products (known Israeli barcodes)...")
-    off_barcodes = [
-        "7290003427154",  # זיתא EVOO
-        "7290014692749",  # וילי פוד
-        "7296073223009",  # שופרסל
-        "7290002407812",  # ג'השאן
-        "7290112195500",  # generic
-        "7290012313011",  # קבוצת יבנה
-        "7290112198044",  # רמי לוי
-    ]
-    for bc in off_barcodes:
-        p = get_product(bc)
-        if not (p and p.found):
-            print(f"  {bc}: NOT FOUND in OFF")
-            continue
-        n = p.nutriments
-        is_complete = bool(n.get("fat_100g") and n.get("energy-kcal_100g"))
-        name_he = p.name or ""
-        print(f"  {bc}: {name_he[:50]} | fat={n.get('fat_100g')} kcal={n.get('energy-kcal_100g')}")
-        corpus.append({
-            "source": "open_food_facts",
-            "scraped_at": ts,
-            "gov_record_id": None,
-            "barcode": bc,
-            "name_he": name_he,
-            "name_en": "",
-            "brand": p.brand or "",
-            "importer": "",
-            "manufacturer": "",
-            "cert_id": "",
-            "cert_expiry": "",
-            "import_date": "",
-            "kashrut_type": "",
-            "kashrut_body": "",
-            "provenance": {
-                "source": "open_food_facts",
-                "source_id": bc,
-                "source_url": f"https://world.openfoodfacts.org/product/{bc}",
-                "fetched_at": ts,
-                "client_version": "1.0",
-                "verification_status": "candidate",
-            },
-            "nutrition": {
-                "energy_kcal_raw": str(n.get("energy-kcal_100g", "") or ""),
-                "fat_raw": str(n.get("fat_100g", "") or ""),
-                "saturated_fat_raw": str(n.get("saturated-fat_100g", "") or ""),
-                "protein_raw": str(n.get("proteins_100g", "") or ""),
-                "carbs_raw": str(n.get("carbohydrates_100g", "") or ""),
-                "sodium_raw": str(n.get("sodium_100g", "") or ""),
-            },
-            "nutrition_source": "open_food_facts",
-            "olive_signals": {
-                "grade_claim_raw": "extra_virgin" if "כתית מעולה" in name_he else "unknown",
-                "origin_country_primary": "",
-                "origin_countries_all": [],
-                "origin_multi_country": False,
-                "harvest_date_raw": "",
-                "pdo_pgi_claim_raw": "",
-                "acidity_claim_raw": "",
-                "certification_raw": ["kosher"] if any("kosher" in (l or "") for l in (p.labels or [])) else [],
-                "dilution_flags": [],
-            },
-            "corpus_flags": {
-                "is_contamination": False,
-                "contamination_reason": "",
-                "nutrition_complete": is_complete,
-                "ingredients_available": bool(p.ingredients_text),
-            },
-        })
+    # ── Source 2: REMOVED — was Open Food Facts barcode lookup (TASK-238/248) ─────
+    # OFF is banned project-wide as a nutrition/ingredients source. The olive-oil
+    # corpus now carries il_gov_data identity only; nutrition stays NULL until a
+    # DIRECT product scrape supplies it. "Unknown is acceptable; OFF is not."
 
     # ── Save ──────────────────────────────────────────────────────────────────
     out_path = r"C:\Bari\02_products\olive_oil\bsip0_raw\olive_oil_bsip0_raw_20260606T000000.json"
@@ -194,7 +131,6 @@ def main():
 
     # Stats
     gov_count = sum(1 for r in corpus if r["source"] == "il_gov_data:imported_foods")
-    off_count = sum(1 for r in corpus if r["source"] == "open_food_facts")
     contam = sum(1 for r in corpus if r["corpus_flags"]["is_contamination"])
     clean = sum(1 for r in corpus if not r["corpus_flags"]["is_contamination"])
     nutrition_ok = sum(1 for r in corpus if r["corpus_flags"]["nutrition_complete"])
@@ -205,7 +141,6 @@ def main():
     print(f"\n=== CORPUS COMPLETE ===")
     print(f"Total records: {len(corpus)}")
     print(f"  Gov (imported_foods): {gov_count}")
-    print(f"  OFF (barcode lookup): {off_count}")
     print(f"Contamination: {contam} / {len(corpus)} ({100*contam//max(len(corpus),1)}%)")
     print(f"Clean records: {clean}")
     print(f"Nutrition panels complete: {nutrition_ok} / {len(corpus)}")
