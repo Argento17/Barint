@@ -1,11 +1,11 @@
 {
-  "_comment": "Bread category config — TASK-322 spine conformance. Bread is the last bespoke category; this config conforms it to the uniform generate_page path. Source: real_bread_retail_003_v1 (Shufersal, 25 May 2026), 258 BSIP0 → 31 curated → 29 scoreable (2 excluded: no nutrition in BSIP0 scrape). BSIP1: run_bread_conform_001 (31 records, direct Shufersal scrape). BSIP2: run_bread_conform_001 (31 scored). baseline_json set to task243 worktree copy (19 products with authored Hebrew copy) — copy_stage carries insightLine/rowVerdict/bottomLine for 19/29 overlapping products; 10 new-to-page products get PENDING_COPY. OFF: 0 (nutrition+ingredients from direct scrape only). Scores move vs lechem bespoke scorer — EXPECTED (owner approved 2026-06-18). Flag set: grain/non-dairy (mirrors cereals — RECAL_P0=on, FAT_TECH=on, no shelf-rel, no dairy flags). BARI_SHELF_RELATIVE_V1=off rationale: bread has no single saturated-fat shelf-differentiator; sodium matters but GRAD_SODIUM is not yet evidence-approved; keep disabled per cereals precedent. No BARI_SODIUM_CEREAL (bread is not in the cereal pool).",
+  "_comment": "Bread category config — TASK-322 spine conformance. Bread is the last bespoke category; this config conforms it to the uniform generate_page path. Source: real_bread_retail_003_v1 (Shufersal, 25 May 2026), 258 BSIP0 → 31 curated → 29 scoreable (2 excluded: no nutrition in BSIP0 scrape). BSIP1: run_bread_conform_001 (31 records, direct Shufersal scrape). BSIP2: run_bread_conform_001 (31 scored). baseline_json set to canonical bari-web copy (19 products with authored Hebrew copy) — copy_stage carries insightLine/rowVerdict/bottomLine for 19/29 overlapping products; 10 new-to-page products get PENDING_COPY. OFF: 0 (nutrition+ingredients from direct scrape only). Scores move vs lechem bespoke scorer — EXPECTED (owner approved 2026-06-18). Flag set: grain/non-dairy (mirrors cereals — RECAL_P0=on, FAT_TECH=on, no shelf-rel, no dairy flags). BARI_SHELF_RELATIVE_V1=off rationale: bread has no single saturated-fat shelf-differentiator; sodium matters but GRAD_SODIUM is not yet evidence-approved; keep disabled per cereals precedent. No BARI_SODIUM_CEREAL (bread is not in the cereal pool).",
   "category": "bread",
   "corpus_dirs": [
     "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output"
   ],
   "run_products_dir": "C:\\Bari\\02_products\\bread\\bsip2_outputs\\run_bread_conform_001\\products",
-  "baseline_json": "C:\\Bari\\Bari-task243\\bari-web\\src\\data\\comparisons\\bread_frontend_v2.json",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v2.json",
   "retailer_scope": ["shufersal"],
   "subpool_filter": null,
   "dedup": {
