@@ -165,7 +165,12 @@ def main() -> int:
     if result["conforms"]:
         corpora = stem_corpora.get(stem, [])
         if corpora:
-            hard_fail, repro_msg, _moves = run_shadow_reproduce(corpora[0])
+            # Reproduce-check THIS category's corpus, not a co-mapped shared one.
+            # stem_corpora can include corpora that merely share a dir (e.g. cakes
+            # appears under cookies_coffee via run_cakes_001) — corpora[0] could be
+            # the wrong one. Prefer the corpus whose name == this stem. (Red-team R2, RT-3.)
+            target_corpus = next((c for c in corpora if norm(c) == norm(stem)), corpora[0])
+            hard_fail, repro_msg, _moves = run_shadow_reproduce(target_corpus)
             print(chr(10) + repro_msg)
             if hard_fail:
                 return 1

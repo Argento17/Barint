@@ -396,14 +396,19 @@ def main() -> int:
                                 moves["score_moves"] = int(ent.get("score_moves") or 0)
                                 moves["grade_moves"] = int(ent.get("grade_moves") or 0)
                                 moves["off_count"] = int(ent.get("off_count") or 0)
-                                moves["c10_pass"] = bool(ent.get("c10_pass", True))
+                                # FAIL-SAFE: absent c10_pass evidence == treat as MOVED.
+                                # If run_summary is missing/truncated or the shelf entry
+                                # lacks c10_pass, we must NOT default to "clean" (that
+                                # would let a crashed/partial rescore read READY). Default
+                                # False -> shelf lands in baseline_moved -> REVIEW. (RT-1 R2.)
+                                moves["c10_pass"] = bool(ent.get("c10_pass", False))
                                 break
                     except Exception:
                         pass
                 shelf_rec["score_moves"] = moves["score_moves"]
                 shelf_rec["grade_moves"] = moves["grade_moves"]
                 shelf_rec["off_count"] = moves["off_count"]
-                shelf_rec["c10_pass"] = moves.get("c10_pass", True)
+                shelf_rec["c10_pass"] = moves.get("c10_pass", False)
 
                 # 3. COPY STAGE
                 copy_cmd = [

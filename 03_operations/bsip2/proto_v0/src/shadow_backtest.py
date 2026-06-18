@@ -133,9 +133,20 @@ def _config_corpus_paths(cfg: dict) -> set[str]:
 
 
 def lookup_shelf_rel(corpus_name: str, source: str | list) -> dict | None:
-    """Map a registry corpus to its page_generator config shelf_rel block."""
+    """Map a registry corpus to its page_generator config shelf_rel block.
+
+    IDENTITY match (config filename stem OR category == corpus name) takes PRIORITY
+    over corpus-dir path intersection. Path-first matching is wrong for corpora that
+    SHARE a dir with another category — e.g. the cookies_coffee corpus shares
+    run_cakes_001 with cakes, so a path-first match steals cakes' sugar shelf_rel and
+    injects it into cookies_coffee (which is NOT shelf-relative, shelf_rel=null),
+    corrupting the shadow baseline for the shared corpus. (Red-team round 2, RT-5.)
+    Path intersection is kept only as a fallback when no identity match exists.
+    """
     src_paths = {_norm_path(s) for s in (source if isinstance(source, list) else [source])}
-    matched: dict | None = None
+    cn = _norm_name(corpus_name)
+    identity_match: dict | None = None
+    path_match: dict | None = None
     for cfg_path in sorted(CONFIGS_DIR.glob("*.json")):
         if cfg_path.name.startswith("_generated_"):
             continue
@@ -143,12 +154,12 @@ def lookup_shelf_rel(corpus_name: str, source: str | list) -> dict | None:
             cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
         except Exception:
             continue
-        cfg_paths = _config_corpus_paths(cfg)
-        if src_paths & cfg_paths:
-            matched = cfg
+        if _norm_name(cfg_path.stem) == cn or _norm_name(cfg.get("category")) == cn:
+            identity_match = cfg
             break
-        if _norm_name(cfg.get("category")) == _norm_name(corpus_name):
-            matched = cfg
+        if path_match is None and (src_paths & _config_corpus_paths(cfg)):
+            path_match = cfg
+    matched = identity_match if identity_match is not None else path_match
     if not matched:
         return None
     shelf_rel = (matched.get("scoring") or {}).get("shelf_rel")
