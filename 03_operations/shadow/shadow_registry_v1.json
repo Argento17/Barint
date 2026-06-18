@@ -227,13 +227,26 @@
       },
       "invariants": [],
       "note": "Registered for spine re-flow (2026-06-18). Flags verbatim from configs/granola.json (_source batch_run_cereals_008). Granola subpool; bsip1 source run_cereals_005 (66) distinct from the cereals corpus (run_cereals_008) so it needs its own entry. No shelf-rel."
+    },
+    {
+      "name": "bread",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output",
+      "flags": {
+        "BARI_RECAL_P0": "on",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_SODIUM_CEREAL": "off"
+      },
+      "invariants": [],
+      "note": "Registered for spine re-flow (owner directive 2026-06-18: bread re-scores on every scoring switch, NO freeze carve-out). Flags verbatim from configs/bread.json (_source batch_run_bread_conform_001). Source run_bread_conform_001/output loads 31 via load_batch (the old 'bespoke loader, not load_batch-compatible' deferral was STALE — bread was re-run through the conformance pipeline). Provenance still real_bread_retail_003_v1 lineage; what changed is scores now version on rescore per CLAUDE.md."
     }
   ],
   "deferred": [
-    {
-      "name": "bread_retail_003",
-      "reason": "Bespoke loader (frozen provenance real_bread_retail_003_v1; curated 31-product set built by build_curated_003.py, not load_batch-compatible). Add via custom loader in Shadow v2."
-    },
     {
       "name": "butter",
       "reason": "Single merged JSON (02_products/butter/bsip1_outputs/butter_bsip1_merged.json), not a load_batch dir. Add via custom loader in Shadow v2."
