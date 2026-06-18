@@ -1,11 +1,11 @@
 {
-  "_comment": "Milk category config finalized for uniform spine (P200 / TASK-321 Wave 3). baseline_json=null, render_fields=cheese mirror, scoring.flags kept as MILK_CANONICAL_FLAGS (reproduces published run_005_headpin scores).",
+  "_comment": "Milk category config finalized for uniform spine (P200 / TASK-321 Wave 3). baseline_json=canonical milk_frontend_v1; exclusions keep page scope = live curated 18-shelf; scoring.flags kept as MILK_CANONICAL_FLAGS (reproduces published run_005_headpin scores).",
   "category": "milk-comparison",
   "corpus_dirs": [
     "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output"
   ],
   "run_products_dir": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_006_shelfrel_refreeze\\products",
-  "baseline_json": null,
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\milk_frontend_v1.json",
   "retailer_scope": null,
   "subpool_filter": null,
   "dedup": {
@@ -29,7 +29,10 @@
     "corpus_filter": null,
     "_source": "MILK_CANONICAL_FLAGS (rescore_all.py); run_006_shelfrel_refreeze reproduces run_005_headpin 85/A under the current blessed engine"
   },
-  "exclusions": [],
+  "exclusions": [
+    {"barcode": "7290110324773", "reason": "not in live curated milk shelf (18-product curation) — keep page scope = live"},
+    {"barcode": "7290114313285", "reason": "not in live curated milk shelf (18-product curation) — keep page scope = live"}
+  ],
   "extension_fields": ["_subPool", "_novaGroup"],
   "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
