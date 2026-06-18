@@ -230,6 +230,53 @@ def off_count(frontend_path: Path) -> int:
     return sum(blob.count(m) for m in OFF_MARKERS)
 
 
+ALLOWED_OFF_CONTEXT_KEYS = frozenset({"reason", "note", "_comment", "exclusions"})
+
+
+def _off_disallowed_outside_products(data: Any) -> list[str]:
+    """Find OFF markers outside products[] and outside allowed audit-key contexts."""
+    hits: list[str] = []
+
+    def walk(obj: Any, key_path: list[str]) -> None:
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if k == "products":
+                    continue
+                walk(v, key_path + [str(k)])
+        elif isinstance(obj, list):
+            for i, item in enumerate(obj):
+                walk(item, key_path + [f"[{i}]"])
+        elif isinstance(obj, str):
+            lower = obj.lower()
+            if any(m in lower for m in OFF_MARKERS):
+                if not any(k in ALLOWED_OFF_CONTEXT_KEYS for k in key_path):
+                    hits.append(".".join(key_path) or "(root)")
+
+    if isinstance(data, dict):
+        walk(data, [])
+    return hits
+
+
+def config_corpus_source_paths(cfg: dict) -> set[str]:
+    """Normalized corpus/scoring source dirs declared by the shelf config."""
+    paths: set[str] = set()
+    for key in ("corpus_dirs", "run_products_dir"):
+        val = cfg.get(key)
+        items = val if isinstance(val, list) else ([val] if val else [])
+        for item in items:
+            if item:
+                paths.add(norm_path(item))
+    scoring = cfg.get("scoring") or {}
+    bsip1 = scoring.get("bsip1_dir")
+    if isinstance(bsip1, str) and bsip1:
+        paths.add(norm_path(bsip1))
+    return paths
+
+
+def registry_source_map(registry: dict) -> dict[str, str]:
+    return {c.get("name", ""): norm_path(c.get("source")) for c in registry.get("corpora", [])}
+
+
 # ---------------------------------------------------------------------------
 # Evaluate one config stem
 # ---------------------------------------------------------------------------
@@ -321,6 +368,86 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
     n_off = off_count(frontend_path) if frontend_path else 0
     add("HARD-7-off_zero", True, n_off == 0,
         "OFF markers = 0" if n_off == 0 else f"OFF markers found: {n_off} (LAUNCH BLOCKER)")
+
+    # SOFT-8 (RT-4): OFF markers outside products[] in disallowed context
+    off_outside_ok = True
+    off_outside_detail = "no OFF markers outside products[]"
+    if frontend_path and frontend_path.is_file() and n_off == 0:
+        try:
+            data = load_json(frontend_path)
+            disallowed = _off_disallowed_outside_products(data)
+            if disallowed:
+                off_outside_ok = False
+                off_outside_detail = (
+                    f"OFF marker(s) outside products[] in disallowed context: "
+                    f"{', '.join(disallowed[:3])}"
+                    + (" ..." if len(disallowed) > 3 else "")
+                )
+        except Exception as exc:  # noqa: BLE001
+            off_outside_detail = f"OFF outside-products scan skipped: {exc}"
+    add("SOFT-8-off_misplaced", False, off_outside_ok, off_outside_detail)
+
+    # SOFT-9 (RT-8): registry shadow source not referenced by config corpus dirs
+    reg_sources = registry_source_map(registry)
+    cfg_sources = config_corpus_source_paths(cfg)
+    shadow_hits: list[str] = []
+    for corpus_name in corpora:
+        src = reg_sources.get(corpus_name, "")
+        if src and src not in cfg_sources:
+            shadow_hits.append(f"{corpus_name}:{src}")
+    add(
+        "SOFT-9-registry_source",
+        False,
+        not shadow_hits,
+        "all registry sources referenced by config corpus_dirs"
+        if not shadow_hits
+        else "; ".join(
+            f"shadow source {hit} not referenced by config corpus_dirs — "
+            f"shadow may validate a stale/partial corpus."
+            for hit in shadow_hits
+        ),
+    )
+
+    # SOFT-10 (RT-9): MALFORMED shelf_rel calibration (declared but incomplete).
+    # NOTE: we do NOT warn on "flag on + shelf_rel null". BARI_SHELF_RELATIVE_V1 is a
+    # GLOBAL DEFAULT flag; actual shelf-relative enrollment is by category scope
+    # (constants.py SUGAR/FATSAT_SHELF_REL_SCOPE), not the flag — so a null shelf_rel
+    # is correct for non-enrolled categories (e.g. milk). Flagging flag-on-without-block
+    # false-alarms on every such category. We only flag a shelf_rel that IS declared
+    # but is missing median/scale (a real, reliably-detectable misconfiguration).
+    scoring = cfg.get("scoring") or {}
+    shelf_rel = scoring.get("shelf_rel")
+    shelf_rel_ok = True
+    shelf_rel_detail = "shelf_rel calibration present or category not shelf-relative"
+    if isinstance(shelf_rel, dict):
+        missing = [k for k in ("median", "scale") if shelf_rel.get(k) is None]
+        if missing:
+            shelf_rel_ok = False
+            shelf_rel_detail = (
+                f"shelf_rel declared but missing {missing} — incomplete calibration; "
+                "shelf-relative scores will be wrong."
+            )
+    add("SOFT-10-shelf_rel", False, shelf_rel_ok, shelf_rel_detail)
+
+    # SOFT-11 (RT-11): live_manifest product_count vs served JSON products length
+    manifest_count_ok = True
+    manifest_count_detail = "product_count not comparable (no served manifest entry)"
+    if frontend_path and frontend_path.is_file() and served is not None:
+        try:
+            data = load_json(frontend_path)
+            file_count = len(data.get("products", [])) if isinstance(data, dict) else 0
+            manifest_count = served.get("product_count")
+            if manifest_count is not None and file_count != manifest_count:
+                manifest_count_ok = False
+                manifest_count_detail = (
+                    f"live_manifest product_count={manifest_count} != "
+                    f"served file products={file_count} (manifest stale?)"
+                )
+            else:
+                manifest_count_detail = f"product_count matches ({file_count})"
+        except Exception as exc:  # noqa: BLE001
+            manifest_count_detail = f"manifest product_count check skipped: {exc}"
+    add("SOFT-11-manifest_count", False, manifest_count_ok, manifest_count_detail)
 
     return _finalize(stem, cat, checks, deferred=deferred)
 

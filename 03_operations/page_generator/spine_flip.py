@@ -396,12 +396,14 @@ def main() -> int:
                                 moves["score_moves"] = int(ent.get("score_moves") or 0)
                                 moves["grade_moves"] = int(ent.get("grade_moves") or 0)
                                 moves["off_count"] = int(ent.get("off_count") or 0)
+                                moves["c10_pass"] = bool(ent.get("c10_pass", True))
                                 break
                     except Exception:
                         pass
                 shelf_rec["score_moves"] = moves["score_moves"]
                 shelf_rec["grade_moves"] = moves["grade_moves"]
                 shelf_rec["off_count"] = moves["off_count"]
+                shelf_rec["c10_pass"] = moves.get("c10_pass", True)
 
                 # 3. COPY STAGE
                 copy_cmd = [
@@ -472,6 +474,7 @@ def main() -> int:
 
     # Compute gate summary
     gate_fails = [s["shelf"] for s in per_shelf if s.get("gate_overall") == "FAIL"]
+    baseline_moved = [s["shelf"] for s in per_shelf if s.get("c10_pass") is False]
     integrity_flags: list[str] = []
     INTEGRITY_GATES = ["G4 OFF", "G5 GRADE-INTEGRITY", "G7 PARITY", "G8 DATA-SANITY"]
     for srec in per_shelf:
@@ -503,7 +506,11 @@ def main() -> int:
     if integrity_flags:
         gates_summary = "REVIEW (integrity)"
 
-    overall_verdict = "READY" if (not gate_fails and not any(s.get("error") for s in per_shelf)) else "REVIEW"
+    overall_verdict = (
+        "READY"
+        if (not gate_fails and not baseline_moved and not any(s.get("error") for s in per_shelf))
+        else "REVIEW"
+    )
 
     spine_report = {
         "spine": "flip",
@@ -518,6 +525,7 @@ def main() -> int:
         },
         "gates_summary": gates_summary,
         "integrity_flags": integrity_flags,
+        "baseline_moved": baseline_moved,
         "overall_verdict": overall_verdict,
         "affected_set_sha": sha256_path(bundle_affected),
         "commands_run": all_commands,
@@ -599,7 +607,8 @@ def main() -> int:
     print("\n" + "=" * 70)
     print(
         f"DEPLOY-READY: {n_shelves} shelves, {total_author} products need copy authoring, "
-        f"gates {gates_summary}. No push performed."
+        f"gates {gates_summary} baseline_moved: {','.join(baseline_moved) or 'none'}. "
+        f"No push performed."
     )
     print(f"Bundle: {out_dir}")
     print(f"Report: {out_dir / 'spine_run_report.json'} + .md")

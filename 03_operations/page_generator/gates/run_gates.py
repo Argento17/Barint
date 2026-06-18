@@ -565,6 +565,26 @@ def gate_coverage(frontend, corpus):
     else:
         g.info("name: all products have Hebrew characters in name")
 
+    # --- Schema-agnostic PENDING_COPY check (insightLine, rowVerdict) ---
+    pending = "PENDING_COPY"
+    copy_stage_ran = any(
+        (il := p.get("insightLine")) is not None and il != "" and il != pending
+        for p in products
+    )
+    if not copy_stage_ran:
+        g.info("PENDING_COPY base check: SKIP (pre-copy generator output)")
+    else:
+        for field in ["insightLine", "rowVerdict"]:
+            pending_count = sum(
+                1 for p in products
+                if p.get(field) is not None and p.get(field) != "" and p.get(field) == pending
+            )
+            if pending_count > 0:
+                g.fail(
+                    f"{field}: {pending_count}/{n} products still PENDING_COPY "
+                    f"(page authored but incomplete)"
+                )
+
     # --- v3 COVERAGE: milk-depth authored fields non-PENDING check ---
     # Only check when the fields are present (v3 pages) AND the copy stage has run.
     # We detect "copy stage ran" by checking that insightLine is non-PENDING on

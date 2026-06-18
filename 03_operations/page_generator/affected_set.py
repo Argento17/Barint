@@ -117,7 +117,7 @@ def build_corpus_to_shelves_map() -> dict[str, list[str]]:
                     add_mapping(corpus, stem)
                 else:
                     for shelf_src in meta["sources"]:
-                        if shelf_src and (src.startswith(shelf_src) or shelf_src.startswith(src)):
+                        if shelf_src and src == shelf_src:
                             add_mapping(corpus, stem)
 
     return corpus_to_shelves
