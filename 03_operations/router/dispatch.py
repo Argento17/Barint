@@ -28,8 +28,10 @@ Lanes
   C2        → DeepSeek via opencode HTTP API (mechanical / zero-judgment)
   C1-GROK   → xAI Grok Build CLI (C1-grade spec-complete work, repo access;
               owner's SuperGrok subscription; route tag `(route: C1-GROK)`).
-              REPLACED the retired Cursor lane 2026-06-14.
-  C1-CURSOR → RETIRED 2026-06-14 — legacy tag still routes transparently to C1-GROK.
+  C1-CURSOR → Cursor headless agent CLI (cursor-agent), owner's Cursor Pro
+              subscription. C1-grade executor: repo access + file edits.
+              REACTIVATED 2026-06-18 (was retired 2026-06-14 → Grok; owner
+              renewed the subscription). Route tag `(route: C1-CURSOR)`.
   C1-GEMINI → Google Gemini CLI (C1-grade judgment work, repo access;
               owner route tag C1-GEMINI
   C3        → OpenAI (gpt-5.5) via opencode HTTP API — the orchestrator's
@@ -100,10 +102,10 @@ C2_PROVIDER_ID = "opencode"
 C3_MODEL_ID = "gpt-5.5"
 C3_PROVIDER_ID = "openai"
 
-# ── Cursor lane (C1-CURSOR) — RETIRED 2026-06-14 ─────────────────────────────
-# Replaced by the Grok lane (see run_via_grok_cli below). These functions are
-# kept dormant (no active route reaches them; the C1-CURSOR tag now aliases to
-# C1-GROK) so the change is reversible. Do not wire new work here.
+# ── Cursor lane (C1-CURSOR) — REACTIVATED 2026-06-18 ─────────────────────────
+# Retired 2026-06-14 (→ Grok) then brought back 2026-06-18 when the owner renewed
+# the Cursor Pro subscription. The C1-CURSOR route tag dispatches here again, a
+# co-equal C1 builder alongside Sonnet / Gemini / Grok.
 # Cursor's headless agent CLI ("cursor-agent"), authenticated via the owner's
 # Cursor subscription.  C1-grade executor: real repo access + file edits.
 # The top-level wrapper (%LOCALAPPDATA%\cursor-agent\agent.cmd) has a
@@ -794,10 +796,10 @@ def cmd_dispatch(p_number: str, dry_run: bool, timeout: int) -> int:
         return _dispatch_grok(p_number, prompt_path, dry_run, timeout)
 
     if route == "C1-CURSOR":
-        # RETIRED 2026-06-14 — Cursor lane replaced by Grok. Legacy tags still
-        # route, transparently, to C1-GROK so old prompt files don't break.
-        print("[dispatch] NOTE: C1-CURSOR is retired → routing to C1-GROK.")
-        return _dispatch_grok(p_number, prompt_path, dry_run, timeout)
+        # REACTIVATED 2026-06-18 — owner renewed the Cursor Pro subscription.
+        # Cursor rejoins C1 Build alongside Sonnet / Gemini / Grok. Routes to its
+        # own lane again (was transiently aliased to C1-GROK while retired).
+        return _dispatch_cursor(p_number, prompt_path, dry_run, timeout)
 
     if route == "C1-GEMINI":
         return _dispatch_gemini(p_number, prompt_path, dry_run, timeout)

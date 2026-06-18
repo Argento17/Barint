@@ -27,8 +27,10 @@ governance — and pushing everything else outward.
 | **C1-GROK** | xAI Grok Build CLI (`grok -p --always-approve`, SuperGrok sub) | flat | router `(route: C1-GROK)` | yes |
 | **C1-GEMINI** | Google Gemini CLI (full executor, `--approval-mode=yolo`) | flat/free tier | router `(route: C1-GEMINI)` | yes |
 
-*C1-CURSOR retired 2026-06-14 — replaced by C1-GROK (owner killed the Cursor sub). The legacy
-`(route: C1-CURSOR)` tag still routes transparently to Grok so old prompt files don't break.*
+| **C1-CURSOR** | Cursor headless agent CLI (cursor-agent, `--force --trust`) | flat-rate sub | router `(route: C1-CURSOR)` → `_dispatch_cursor` | yes |
+
+*C1-CURSOR was retired 2026-06-14 (→ C1-GROK) and **REACTIVATED 2026-06-18** when the owner renewed the
+Cursor Pro subscription; `(route: C1-CURSOR)` dispatches to its own lane again (`--selftest-cursor` PASS).*
 | **C2** | DeepSeek via opencode | free | router `(route: C2)` | yes |
 | **C3** | ChatGPT Plus (web) | flat + owner time | owner pastes | **never** — advice only |
 

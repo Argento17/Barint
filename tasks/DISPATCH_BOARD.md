@@ -3,6 +3,21 @@
 
 ---
 
+## 🧬 NUTRITION ENGINE ENHANCEMENT — DATA + METHODS (owner: "build the data and methods for now, nothing scoring yet; new engine, test at the end", 2026-06-18)
+Owner-opened program from a 2-dump horizon-scan (Food Compass / Fazzino HPF / matrix / NVS / UPF / sustainability). Nutrition-Agent verdict: most already in-engine or correctly parked (KB-003/004/005); declined sustainability dual-scoring (tripwire 5 **+** the dump's OFF Eco-Score source = hard OFF-ban violation). **Scope this wave = build DATA + METHODS only — NO score activation, NO published-score movement, NOTHING wired into the live scoring path.** Governance/activation (D6/D7) is a later, separate program. The new scoring engine gets tested at the end.
+- **P173 → TASK-322 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-18).** method_hp_carb_sodium.py + calibration over **979 BSIP1 products / 12 shelves** (independently reconciled 283 fired + 89 insufficient + 607 not-fired = 979; calibration.json + calibration.md w/ FP table). Thresholds inert; **scope guard VERIFIED — git diff on score_engine/constants/configs/bari-web = EMPTY**. OFF-ban honored. FP signal for later D6/D7: endemic-food FPs (brined 1/48 @45.55% carb, some cakes/cheese) need an EV-054-style context guard before any activation. No commit/push.
+- **P174 → TASK-323 → C1-GEMINI — 🔴 CHANGES_REQUESTED (orchestrator-verified, 2026-06-18).** method_counterfactual.py STRUCTURE sound (scope-guard EMPTY, label-observable levers only, 40/53 achievable:false honest, counts reconcile via lever_type 3 single + 10 double = 13) BUT fails central DoD: CONTINUOUS levers not minimized — sets sugars_g→0.0 (extreme) instead of solving the boundary threshold; "reduce sugar to 0" is not an actionable counterfactual. Binary/cliff levers OK. (Gemini return was all 429 capacity-exhaustion noise.)
+- **P177 → TASK-323 (retry 1) → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-18).** Continuous levers now threshold-solve (binary search) to the boundary; cliff=12 confirmed (constants PROCESSING_PENALTIES). **Independently verified: 19/19 continuous levers PARTIAL, 0 at the 0.0 extreme** (defect gone); cited 5900020015174 sugars 24.8→6.5 flips E→D at score 35. Counts reconcile 53/17 achievable (8 single+9 double)/36 false/19 partial. Scope guard EMPTY. No commit/push.
+- **🎉 PROGRAM COMPLETE (2026-06-18): all 4 data+methods deliverables closed + orchestrator-verified, ZERO scoring-path changes across the wave.** 4 standalone modules under `03_operations/bsip2/proto_v0/src/` (method_hp_carb_sodium, method_omega_lipid_extract, method_additive_burden, method_counterfactual) + datasets under `reports/methods/`. Findings for the LATER (separate) D6/D7 governance program: (1) **HP carb+sodium = the real activation candidate** — 283/979 fire, concentrated in cakes/cookies/granola, endemic-food FPs (brined etc.) need an EV-054-style context guard; (2) **omega-6:3 = dead end on current corpus** (0% label coverage) — built+parked like EV-011; (3) **additive-burden index** double-counts emulsifiers that are also at-risk additives — reconcile before any display; (4) **counterfactual layer** ready (read-only, minimized). Nothing committed/pushed; ready for owner to test against the new engine.
+- **P175 → TASK-324 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-18).** method_omega_lipid_extract.py + coverage over 979/12 shelves. **DECISIVE positive-case test by orchestrator:** declared omega (1200/3600)→ratio 3.0/declared:True; absent→declared:False — so the **0% quantitative coverage is a REAL finding, not a broken-method false negative** (186 qualitative oil signals captured separately, never→mg). Scope guard VERIFIED (scoring diff empty). FINDING: omega-6:3 EV-### NOT viable on current corpus (0% label coverage) — built+parked like EV-011 Na:K; validates the firewall. No commit/push.
+- **P176 → TASK-325 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-18).** method_additive_burden.py rolls EXISTING EV-002/003/019 trace signals into one burden index/band. 935 traces / 37 null (OFF excluded) / 898 computed (bands 40 HIGH / 280 MED / 4 LOW / 574 NONE reconciled). **Criterion (d) FAITHFUL-ROLLUP verified vs real trace** (cakes 2472148: trace additives/emulsifiers match payload exactly, 13.0 = 3×3+2×2, no re-derivation). Scope guard empty. ⚠️ **Orchestrator finding for D6/D7:** index DOUBLE-COUNTS emulsifiers that are also at-risk additives (CMC/E466, carrageenan/E407 score under both EV-002 ×3 AND EV-003 ×2) — harmless for representation, reconcile before any display/activation. No commit/push.
+- **DECLINED (logged):** sustainability/Eco-Score dual scoring — strategic tripwire 5 + OFF-ban violation as specified.
+
+### Evidence Horizon-Scan salvage (owner: "use the orchestrator skill", 2026-06-18)
+- **TASK-326 → Nutrition Agent (C1-Sonnet) — ✅ CLOSED + orchestrator-verified (2026-06-18).** No-score-change corroboration addendum landed at **EV-059** (registry lines 1990-1998) on the contested Southampton-6 azo-dye tier. **Verified:** git diff --stat HEAD = +26 insertions / 0 deletions / 1 file (purely additive); NO score_engine/constants/render_fields/config/page-JSON touched. FDA facts FDA.gov/HHS.gov-sourced — Red 3 revocation (2025-01-15; E127 erythrosine correctly flagged xanthene-not-azo, NOT one of the six) + 6-dye phase-out (2025-04-22; 3/6 overlap E102/E110/E129). Contested tier confirmed-not-promoted; azo-dye-cap future-action left gated; no D6/D7 opened (firewall + tripwire-1 held). Not committed/pushed.
+
+---
+
 ## 🏗️ Scoring Release Platform — Phase 0 (owner-approved 2026-06-16, assessment in chat)
 
 Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + shared packaging core
@@ -26,6 +41,39 @@ Program = finish/wire the already-built Shadow (TASK-253) + Spine (TASK-252) + s
 - **✅ MASTER RECONCILED (1e8f3365, 2026-06-16):** canonical Spine landed (7e6eafbd) + all outstanding work
   committed (4,739 files); working tree clean; stale Bari-task243/ gitignored. Not pushed (deploy gated).
   Spine ingest verified: 77 runs / 1,272 products / 4,269 scores / 2,838 lineage / live_state=17 pages.
+
+### 🚀 FIRST PRODUCTION RELEASE THROUGH THE CONFIRMED TOPOLOGY (2026-06-17)
+Owner confirmed Vercel topology: **bari.digital ← Argento17/Barint, prod branch `master`, root `bari-web`.** TASK-314 blocker resolved.
+- **PR #7** `publish/rebaseline-4pages` → merge `09490d4f5` (cereals/granola/juices/hummus re-baseline data).
+- **PR #8** `publish/rebaseline-3pages-frontend` → merge `3c6cb1b9f` (= master tip; cakes/cookies-coffee/brined-cheeses net-new pages).
+- **Production deploy = `3c6cb1b9f`** (atomic, both PRs). **Live smoke GREEN on all 8 routes** (orchestrator-verified via WebFetch, cache-busted): hummus 80·A→71·B, cakes/cookies ceiling C, brined top 83·A, juices A, cereals/granola B; OFF clean; milk/snack_bars frozen-untouched. (Owner merged #8 ahead of the #7 smoke gate — noted; end-state green.)
+- **OPEN (TASK-314 remainder):** `/hashvaot` index on master is stale — dead cards for wiped cats (butter/bread/cheese/maadanim/salty-snacks) + missing cards for the 3 new pages. Fix exists in task-275 working tree; needs a clean surgical index PR.
+
+### 🎯 TASK-321 — ZERO-DIFFERENT-CATEGORY CONFORMANCE SWEEP (owner hard goal, 2026-06-17)
+**Binding goal:** after the sweep, NO live `/hashvaot` category may be structurally "different" — each conforms to the uniform `generate_page`+`render_fields`+`spine_flip` path, **or is DELETED entirely (page+route).** No third option; delete is the default fallback. Memory: [[zero_different_category_mandate]]. Each go-live/delete owner-gated.
+- **CONFORMING (9):** breakfast-cereals, granola, juices, hummus, hard-cheeses, brined-cheeses, cakes, cookies-coffee, snacks.
+- **CONFORM-OR-DELETE — stale/no-config (6):** butter (OFF-risk→re-scrape or delete), bread (real frozen provenance), cheese, maadanim, salty-snacks (fabricated→rebuild or delete), yogurts (still live, v4 rejected).
+- **DELETE — duplicate/legacy routes (2):** bread-comparison, cakes-hard-cookies.
+- **BORDERLINE:** vegetable-spreads (bespoke lens UI → conform or justify); snack-bars (A–E + frozen no-A ceiling → keep, audit).
+- **ESCALATION (owner ruling pending):** milk-comparison — cannot delete (flagship + frozen run_005_headpin). (a) conform plumbing feeding frozen traces (loses bespoke premium page), or (b) single documented exception.
+- **Wave 0 prerequisite:** ship the clean `/hashvaot` index PR (removes stale cards, adds the 3 new) — TASK-314 remainder.
+
+#### Sweep execution status (2026-06-17)
+- **✅ Wave 0 (TASK-321A) — SHIPPED + LIVE-VERIFIED.** PR #9 merged (master `ed53b858c`), Vercel Ready, smoke GREEN:
+  6 routes 404, index reconciled, hummus intact. Butter + salty-snacks taken down. CLOSED.
+- **✅ TASK-321B (cheese) → C1-GROK — CONFIG VERIFIED.** REV2 corrected (run_cheese_004, no-parity per owner ruling). Orchestrator-verified: 53 products (59 − 1 non-cheese − 5 G8 discards), ALL gates PASS, OFF=0, baseline_json=null. Remaining: Hebrew copy (Content/Sonnet) + frontend.
+- **✅ TASK-321C (yogurt) → C1-GEMINI — CONFIG VERIFIED.** run_yogurt_shelfrel_v2, scoped 108→83 (21 milk-context + 4 G8 discards). ALL gates PASS, OFF=0, baseline_json=null, dist S:1/A:7/B:30/C:21/D:22/E:2. Remaining: Hebrew copy + frontend.
+- **✅ TASK-321D (milk baseline) → parallel chat — VERIFIED.** milk_frontend_v1.json (18 products, 0 OFF) extracted from bespoke TS; blocker #1 resolved, configs/milk.json baseline wired. Milk blocker #2 (retire C10 canonical gate) remains; #3 moot (scores don't matter).
+- **OWNER RULING locked:** uniformity-only, scores irrelevant, OFF=0 + structural sameness the only gates ([[zero_different_category_mandate]]). G8 nutrition-bleed records discarded per missing-data-discard rule (cheese 5, yogurt 4).
+- **NEXT:** Hebrew copy for cheese+yogurt → Content/Sonnet (NOT Grok/Gemini — editorial rule); milk gate retirement; then frontend wiring → build → PR → owner merge.
+
+#### SWEEP STATE @ session end 2026-06-17
+- **Deletions:** Wave 0 LIVE (PR #9). Wave 1 (TASK-321G) verified → branch `sweep/wave1-legacy-routes` queued.
+- **Yogurt:** FULLY CONFORMED (config 321C + copy 321F + frontend 321H, all orchestrator-verified) → branch **`sweep/yogurt-conform`** (clean FF, data+frontend) = deploy-ready, owner merge.
+- **Cheese:** config (321B) + copy (321E) verified; data staged on `sweep/cheese-conform-data`; frontend wiring DISPATCHED to parallel chat (TASK-321I, mirrors 321H) — IN FLIGHT.
+- **Milk:** baseline extracted+verified (321D, branch `sweep/milk-baseline-extract`), config drafted + baseline wired. REMAINING: (#2) retire the milk-canonical C10 gate in rescore_all so milk scores as a normal shelf (owner lifted freeze; scores irrelevant); then frontend wiring. NOT started.
+- **Branches queued for owner merge (all clean FF, disjoint):** sweep/wave1-legacy-routes, sweep/milk-baseline-extract, sweep/yogurt-conform (+ sweep/cheese-conform once 321I returns & is verified).
+- **Remaining sweep work:** verify 321I (cheese frontend); milk gate-retirement + milk frontend; then snack-bars ceiling decision (the last "different" scoring special-case per [[zero_different_category_mandate]]).
 
 ### Phase 1 — Wave 1 (dispatched 2026-06-16, decomposed across lanes, NOT Sonnet-default)
 - **P150 → TASK-290 → C1-GROK — ✅ CLOSED + orchestrator-verified (2026-06-16).** smoke_test.py manifest-driven
@@ -1408,8 +1456,8 @@ TASK-280 CLOSED. Snacks factory unblocked. **NO PRODUCTION DEPLOY on anything w/
   **C2.1 Audit = DeepSeek** (`route: C2`; cheap validation/contradiction-hunting, nothing complex) ·
   **C2.2 Research = Gemini** (`route: C1-GEMINI`; web-grounded) ·
   **C2.3 Design = Grok** (`route: C1-GROK`; image_gen/edit concepts) ·
-  **C1 Build = Sonnet + Gemini + Grok in PARALLEL** (decompose into independent pieces,
-  pick per piece — NO default builder; native Sonnet + the two flat lanes) ·
+  **C1 Build = Sonnet + Gemini + Grok + Cursor in PARALLEL** (decompose into independent pieces,
+  pick per piece — NO default builder; native Sonnet + the three flat lanes) ·
   **C0 validators** (deterministic truth — beats every model).
   C3 consult **mandatory** before honest-vs-artifact / precedent / tripwire forks.
   Escalation: one in-lane retry, then one lane up; quota/auth = exit 75 ⛔ LANE DOWN →

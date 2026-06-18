@@ -24,13 +24,14 @@ researches; Grok builds *and* designs). The band says *what role*; the engine sa
 | **C2.1** | **Audit** — cheap validation + contradiction-hunting; *nothing complex routes here* | **DeepSeek** (only) | proposes findings; never closes |
 | **C2.2** | **Research** — web-grounded research / source packs | **Gemini** | proposes evidence; never closes |
 | **C2.3** | **Design** — visual / design concepts (mood, illustration, layout spikes) | **Grok** | proposes concepts; never closes |
-| **C1** | **Build** — write the code / data / copy, **decomposed and run in parallel** | **Sonnet + Gemini + Grok** | proposes RETURNED; never closes |
+| **C1** | **Build** — write the code / data / copy, **decomposed and run in parallel** | **Sonnet + Gemini + Grok + Cursor** | proposes RETURNED; never closes |
 | **C0** | **Validators** — deterministic, non-AI truth; the launch gate | scripts/tests/Shadow | **beats every model**; pass/fail is final |
 
 **Engine → hats (so nothing is ambiguous):**
 - **DeepSeek** → C2.1 Audit only (cheap/simple: validation, contradiction-hunting, zero-judgment bulk passes).
 - **Gemini** → C2.2 Research **+** C1 Build.
 - **Grok** → C2.3 Design **+** C1 Build.
+- **Cursor** → C1 Build only (reactivated 2026-06-18, owner renewed Cursor Pro).
 - **Sonnet** → C1 Build only.
 - **ChatGPT** → C3 only.
 - **C0** → scripts; no engine, no opinion.
@@ -39,13 +40,13 @@ researches; Grok builds *and* designs). The band says *what role*; the engine sa
 
 ## C1 Build — the parallelism rule
 
-The orchestrator has **three build resources: Sonnet, Gemini, Grok.** There is **no default builder.**
+The orchestrator has **four build resources: Sonnet, Gemini, Grok, Cursor.** There is **no default builder.**
 For each build:
 
 1. **Decompose** the task into independent pieces (different files/dirs, no two writers on the same file).
-2. **Distribute** the pieces concurrently across Sonnet / Gemini / Grok, each piece to whichever fits best
-   (judgment-heavy → Sonnet; long-context / repo-wide / tests → Gemini; UI spike / punchy copy / bold
-   alternative → Grok).
+2. **Distribute** the pieces concurrently across Sonnet / Gemini / Grok / Cursor, each piece to whichever
+   fits best (judgment-heavy → Sonnet; long-context / repo-wide / tests → Gemini; UI spike / punchy copy /
+   bold alternative → Grok; spec-complete code with repo access → Cursor).
 3. **Collapse to one builder** only when the work genuinely can't be split (a single tight change).
 4. **Reconverge:** the orchestrator integrates the pieces and runs **C0** on the whole.
 
@@ -106,7 +107,8 @@ What lives in C0 (each is a yes/no check, run before anything ships):
   wired**), NotebookLM (**manual**), Jules (GitHub agent, **not wired**). Never auto-route a delegated lane.
 
 > **Lane wiring states (honest):** LIVE = Sonnet, DeepSeek, ChatGPT, **Gemini CLI** (build + research),
-> **Grok CLI** (build + image/design). NOT-WIRED / DELEGATED = Gemini Deep Research Agent API, NotebookLM,
+> **Grok CLI** (build + image/design), **Cursor CLI** (build — reactivated 2026-06-18,
+> `--selftest-cursor` PASS). NOT-WIRED / DELEGATED = Gemini Deep Research Agent API, NotebookLM,
 > Jules. A lane is not LIVE until its `--selftest` passes.
 
 ---
@@ -141,8 +143,8 @@ stage 0 caught at stage 9 cost everything built between — **push the catch to 
 
 ## Cloud boundary (data-exposure rule)
 
-Sonnet, Grok, Gemini, ChatGPT all run the model **in the vendor cloud** — files a task touches leave the
-building (accepted risk class, = the retired Cursor lane). Two hard rules:
+Sonnet, Grok, Gemini, ChatGPT, Cursor all run the model **in the vendor cloud** — files a task touches
+leave the building (accepted risk class). Two hard rules:
 
 1. **No whole-repo uploads.** Grok Build defaults to bulk-uploading the entire repo (~800MB of
    `02_products`) to xAI on start. The router **self-heals + fails closed** (`_ensure_grok_hardening`:
@@ -170,7 +172,7 @@ building (accepted risk class, = the retired Cursor lane). Two hard rules:
    honest-vs-artifact scoring call, a precedent/governance question, or any tripwire-adjacent ruling.
 4. **C2 is three specific single-engine lanes:** Audit=DeepSeek, Research=Gemini, Design=Grok. Nothing is
    lumped; each is its own number.
-5. **C1 has no default builder** — decompose and run Sonnet + Gemini + Grok in parallel; pick per piece.
+5. **C1 has no default builder** — decompose and run Sonnet + Gemini + Grok + Cursor in parallel; pick per piece.
 6. **C0 beats every model. No launch without deterministic validation.**
 7. **Delegated/not-wired lanes are never auto-routed** and never close work.
 8. **Log the lane split at every report/wall.** A ledger that is ~100% one lane is a routing-failure signal.
@@ -199,7 +201,8 @@ Bands are reasoning; the router still parses these literal route tags on a promp
 | C2.1 Audit | DeepSeek | `(route: C2)` | opencode HTTP |
 | C3 Challenge | ChatGPT | `(route: C3)` | opencode HTTP (advice-only) |
 | C2.2 Research / C1 Build | Gemini | `(route: C1-GEMINI)` | `_dispatch_gemini` (web search on) |
-| C2.3 Design / C1 Build | Grok | `(route: C1-GROK)` | `_dispatch_grok` (image_gen/edit; legacy `C1-CURSOR` aliases here) |
+| C2.3 Design / C1 Build | Grok | `(route: C1-GROK)` | `_dispatch_grok` (image_gen/edit) |
+| C1 Build | Cursor | `(route: C1-CURSOR)` | `_dispatch_cursor` (cursor-agent CLI; reactivated 2026-06-18) |
 | C1 Build | Sonnet | *(native)* | Agent tool — orchestrator dispatches directly |
 | C0 | scripts | *(scripts)* | `03_operations/spine/validate_comparison_page.py`, Shadow, gates |
 

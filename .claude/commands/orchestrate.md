@@ -52,11 +52,11 @@ launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If
   (`01_framework\operations\return_contract_v1.md`).
 - Registry Work without an id → register first: `python C:\Bari\tasks\new_task.py …` (writes the TASK
   file; then add the move to `DISPATCH_BOARD.md`).
-- **Lane** (title line carries `(route: C1|C2|C3|C1-GROK|C1-GEMINI)`; full law
+- **Lane** (title line carries `(route: C1|C2|C3|C1-GROK|C1-GEMINI|C1-CURSOR)`; full law
   `01_framework\operations\bari_router_v4_2.md` — band-per-function; v1 is the wire appendix). Bands:
   **C5** Owner · **C4** Orchestrator · **C3** ChatGPT (challenge, never closes) · **C2.1 Audit = DeepSeek**
   (cheap validation, nothing complex) · **C2.2 Research = Gemini** (web-grounded) · **C2.3 Design = Grok**
-  (image_gen/edit concepts) · **C1 Build = THREE executors, Sonnet + Gemini + Grok, in PARALLEL** (decompose into independent
+  (image_gen/edit concepts) · **C1 Build = FOUR executors, Sonnet + Gemini + Grok + Cursor, in PARALLEL** (decompose into independent
   pieces, pick per piece — **NO default builder; "C1" is NOT the Claude `Agent` tool**) · **C2 also = audit/QA
   + GRUNT** (mechanical/bookkeeping → DeepSeek; route it, never hand-do it on the Opus orchestrator) ·
   **C0** validators. **C3 consult mandatory** before
@@ -64,7 +64,7 @@ launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If
   Deep Research API, NotebookLM, Jules). **No launch without C0** (`validate_comparison_page.py` / Shadow /
   score==trace / OFF=0 / build-exit) — C0 beats every model. Escalation: one in-lane retry, then one lane up.
 
-**4. Dispatch — in the background. C1 BUILD HAS THREE EXECUTORS — Sonnet + Gemini + Grok. You MUST
+**4. Dispatch — in the background. C1 BUILD HAS FOUR EXECUTORS — Sonnet + Gemini + Grok + Cursor. You MUST
 decompose the move into independent pieces and pick the best-fit executor per piece. There is NO default
 builder. Sending every piece to the Claude `Agent` tool is the Sonnet-default drift the owner rejected
 (2026-06-14) — if you catch yourself doing it, STOP and re-decompose.**
@@ -85,7 +85,9 @@ Reaching each lane (all dispatches run_in_background):
   C2 matched run_id by barcode-presence, not score-provenance → wrong provenance on 2/4 files). Cheap, not trusted.
 - **C3 (challenge / consult)** — `(route: C3)` → `dispatch.py PNN`. ChatGPT; advice only, never closes,
   never builds. **Mandatory before any honest-vs-artifact / precedent / tripwire fork.**
-- `C1-CURSOR` is **RETIRED** → the tag still transparently aliases to C1-GROK; author no new Cursor work.
+- **C1-CURSOR** — `(route: C1-CURSOR)` → `python 03_operations\router\dispatch.py PNN`. Cursor headless
+  agent CLI (cursor-agent); spec-complete build/data work with repo access + file edits. **REACTIVATED
+  2026-06-18** (owner renewed Cursor Pro); `--selftest-cursor` PASS. A co-equal C1 builder again.
 
 The router reads the route tag from the **first line of `tasks\prompts\PNN_*.md`** (format
 `# PNN / title (route: C1-GROK)`), runs the lane, writes `tasks\returns\PNN_return.md`, records the git
@@ -130,8 +132,8 @@ record — never leave state only in this chat. There is no dashboard to regener
 ## Guardrails (always on)
 - **Owner override is absolute** — a live owner instruction beats this skill; on "stop", fully halt and
   confirm before any further action.
-- **C1 is three executors (Sonnet + Gemini + Grok), reached three ways — never default everything to the
-  Claude `Agent` tool.** Decompose and pick per piece (see step 4). Grunt/bookkeeping → C2, not your hands.
+- **C1 is four executors (Sonnet + Gemini + Grok + Cursor), reached four ways — never default everything to
+  the Claude `Agent` tool.** Decompose and pick per piece (see step 4). Grunt/bookkeeping → C2, not your hands.
 - **Never write CLOSED without artifact verification.** The router never closes; you do, on evidence.
 - **OFF ban** is absolute (TASK-238): any OFF finding is a launch blocker; every data-adjacent prompt
   carries the guard.

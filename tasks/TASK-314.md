@@ -2,13 +2,13 @@
 id: TASK-314
 title: Monorepo → live reconciliation — get the re-baseline publish (and future work) onto the actual bari.digital deploy source
 owner: orchestrator
-status: BLOCKED
+status: IN_PROGRESS
 priority: HIGH
 created_at: 2026-06-17
 depends_on: [TASK-310, TASK-312, TASK-313]
 blocks: []
 category_id: null
-blocked_on: final confirmation that origin/master (Argento17/Barint) is the Vercel production branch (owner doesn't know offhand; strong evidence points to it)
+blocked_on: null  # RESOLVED 2026-06-17 — owner confirmed Vercel topology (Barint / master / root=bari-web) and a real release shipped through it
 deploy_source_finding: >
   STRONG LEAD (2026-06-17): the local repo has TWO remotes — `bari` (Argento17/bari = OLD standalone, root layout,
   the WRONG target I pushed to earlier) and `origin` (Argento17/Barint = the monorepo). origin/Barint `master` HAS
@@ -55,3 +55,18 @@ Resolve the true deploy source first, then choose the migration/reconciliation p
 - **REMAINING (task stays open):** (1) confirm origin/master IS the Vercel production branch; (2) port FRONTEND (route +
   page-data loader + components) for cakes / cookies-coffee / brined onto Barint so their re-baselined pages can land; (3) reconcile
   the broader 18/27-commit divergence. Mistaken push to Argento17/bari (old standalone) is harmless; clean up later.
+
+## RELEASE SHIPPED + VERIFIED 2026-06-17 (owner merged; orchestrator verified live)
+- **Topology CONFIRMED by owner:** Vercel project serves bari.digital ← repo **Argento17/Barint**, production branch **master**, root dir **bari-web**. Blocker resolved.
+- **PR #7** (`publish/rebaseline-4pages`) merged → merge commit **`09490d4f5`** (cereals_v2 / granola_v1 / juices_v3 / hummus_v5 data).
+- **PR #8** (`publish/rebaseline-3pages-frontend`) merged → merge commit **`3c6cb1b9f`** (= current master tip; cakes / cookies-coffee / brined-cheeses net-new pages + libs).
+- **Production deployment = master tip `3c6cb1b9f`** (atomic; both PRs in one deploy). Vercel Ready (owner-confirmed).
+- **Live smoke = GREEN on all 8 routes** (WebFetch, cache-busted): hummus top flipped 80·A→71·B (re-baseline live); cereals/granola ceiling B; juices ceiling A; brined top 83·A; cakes & cookies ceiling C (no A/B); vegetable-spreads lens map intact. OFF-ban clean, milk/snack_bars untouched.
+- Transient CDN edge propagation lag observed on first read (~1–2 min), self-resolved. WebFetch product *counts* unreliable — verified via grade ceilings.
+
+## REMAINING (now the whole of TASK-314) — /hashvaot index reconciliation + divergence
+The 8 category PAGES are live, but the **`/hashvaot` index on master is stale** (the index reconciliation was never in PR #7/#8 — it lives only in working tree `task-275-engine-fixes-abc`):
+- **Dead/likely-dead cards on the live index** → wiped categories: `butter` (/hashvaot/butter), `bread`, `cheese`, `maadanim`, `salty-snacks`. These link to wiped/stale routes.
+- **Missing cards** → the 3 net-new pages: `brined-cheeses`, `cakes`, `cookies-coffee` are LIVE by direct URL but **unlinked** (commercially dark).
+- **Fix already exists** in `task-275`'s `bari-web/src/app/hashvaot/page.tsx` (correct card set: removes wiped, adds new). Needs a CLEAN surgical PR (index page + any missing `Featured*IntelligenceCard` components) onto Barint master — NOT a push of the divergent task-275 branch.
+- Broader 18/27-commit divergence between task-275 and origin/master still to reconcile deliberately (Phase-1).

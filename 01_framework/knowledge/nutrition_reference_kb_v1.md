@@ -166,3 +166,47 @@ score. Promotion path: confirm Brazilian-fruits DOI → `EV-###` proposal → D7
 + Product Agent). The phytate chelation principle itself could seed a future legume/whole-grain
 bioaccessibility signal if label-parseable proxy inputs become available (e.g., declared phytate
 content, if Israeli labels adopt it).
+
+---
+
+## KB-004 — DIAAS protein-quality classification (FAO bands) and the bioavailability gap
+
+| Field | Value |
+|---|---|
+| **id** | KB-004 |
+| **topic** | Protein quality measured by digestible indispensable amino acid score (DIAAS) rather than crude protein grams: the FAO classification bands, why DIAAS supersedes PDCAAS, and why none of it is per-SKU label-derivable |
+| **source** | FAO Expert Consultation on protein quality evaluation (FAO Food and Nutrition Paper 92, 2013) establishing DIAAS using true ileal digestibility; method validation in the growing-pig model and meta-analyses (e.g. *British Journal of Nutrition* DIAAS-vs-PDCAAS comparisons). Owner research dump 2026-06-17 cited the now-established FAO bands. **Specific recent-meta-analysis DOIs pending Research Agent confirmation before any consumer citation.** |
+| **source_tier** | `primary_peer_reviewed` for the FAO method; `directional_source_pending` for the specific 2026 meta-analyses cited in the research dump (DOIs unconfirmed) |
+| **applies_to_future_categories** | whole_foods, legumes, dairy_protein, plant_protein, protein_bars, food_combinations |
+| **scoring_relevance** | **future-candidate** — DIAAS is the correct frame for protein *quality* vs. quantity, but **a per-product DIAAS is NOT label-derivable**: it requires true ileal amino-acid digestibility data that appears on no Israeli label and is not parseable from BSIP0. The most any future engine could do is a coarse **directional proxy** (e.g. animal/dairy ≈ high; fermented/sprouted plant > cooked > raw legume; heat-treated legume > raw) — and doing even that on a live category would **re-rank published protein scores → frozen-invariant tripwire → owner-gated.** Reference frame only today. |
+| **consumer_copy_usable** | yes — "more grams of protein doesn't mean more usable protein — quality depends on how digestible the amino acids are" is a clean Bari-style honest-architecture line for a future protein category, **provided** no specific numeric DIAAS or unverified study is cited (no-health-claims: describe architecture, don't prescribe intake). |
+
+**FAO classification bands (reference).** DIAAS <75 → no quality claim permitted; 75–99 → "high quality"; ≥100 → "excellent quality." DIAAS is computed from the **true ileal digestibility of each indispensable amino acid** (measured at the end of the small intestine), scored against the limiting amino acid — unlike legacy PDCAAS, which used faecal digestibility, truncated scores at 1.0, and thereby overstated some lower-quality plant proteins.
+
+**Why it matters as a future frame.** Two products with identical declared protein grams can differ materially in usable protein: a high-protein ultra-processed item with poor amino-acid digestibility vs. a fermented/sprouted whole food whose processing *raises* DIAAS (antinutrient reduction). This is the protein analogue of KB-003's bioaccessibility gap — declared content is a ceiling, not a guarantee.
+
+**Antinutrient interaction (links KB-003).** Phytates and trypsin inhibitors depress plant-protein ileal digestibility; cooking, sprouting, and fermentation degrade them and raise effective DIAAS. So the same matrix that modulates *mineral* bioaccessibility (KB-003) also modulates *protein* quality — a single "processing-modulates-bioavailability" theme spanning both entries.
+
+**Firewall.** Nothing here moves a published score, activates a signal, or re-ranks any live protein category. DIAAS inputs are not label-observable. Promotion path: a label-derivable proxy + `EV-###` + D7 co-sign (Nutrition + Product), and — because it would move *published* scores — owner sign-off under the frozen-invariant tripwire.
+
+---
+
+## KB-005 — UPF food-matrix structural collapse and neo-formed contaminants
+
+| Field | Value |
+|---|---|
+| **id** | KB-005 |
+| **topic** | Ultra-processing harm that is independent of nutrient composition: physical disruption of the food matrix (gastric-transit / satiety effects) and neo-formed process contaminants (acrylamide, lipid-oxidation products) — and the sharp line between what of this is label-derivable and what is not |
+| **source** | 2026 peer-reviewed UPF-matrix literature (Imperial College conference data; Monash / São Paulo cohorts, n≈2,100) per owner research dump 2026-06-17. **Specific DOIs pending Research Agent confirmation.** Acrylamide/Maillard and lipid-oxidation chemistry are textbook-consensus food science. |
+| **source_tier** | `directional_source_pending` for the 2026 UPF-matrix cohort claims (DOIs unconfirmed); `primary_peer_reviewed` consensus for the neo-contaminant chemistry |
+| **applies_to_future_categories** | whole_foods, snacks_adjacent, cereals, bakery, fried_categories, food_combinations |
+| **scoring_relevance** | **partly already modelled, partly not implementable.** Matrix-integrity logic, the hyper-palatability detector, and the NOVA/Siga processing proxy (EV-001) already capture much of the *structural* dimension from labels. **Neo-formed contaminants (acrylamide, lipid-oxidation products) are NOT label-derivable** — no Israeli label declares them and they cannot be inferred reliably from ingredient text or a process claim — so that layer is reference-only and cannot move a score. |
+| **consumer_copy_usable** | yes, carefully — "processing changes more than the numbers on the panel — it changes the food's structure and how the body handles it" is defensible Bari-style architecture framing for future whole-food vs. UPF copy. Do **not** assert a specific contaminant is present in a specific product (not label-knowable) and do **not** make a health-outcome claim (Hard Rule #5). |
+
+**Two distinct harm layers (reference).**
+- **Matrix disruption** — milling, extraction, extrusion, and reconstitution destroy intact cell walls and fibre networks that normally slow gastric transit and blunt the glycaemic/insulin response. Two foods of identical macros can therefore have opposite metabolic kinetics. *This is largely already in the engine* via matrix-integrity + processing proxies; KB-005 does not imply it is absent.
+- **Neo-formed contaminants** — high-heat / high-pressure processing generates compounds not present in the raw ingredients: acrylamide (Maillard, in high-temperature starch browning), advanced glycation end-products, and lipid-oxidation products in repeatedly heated/extracted oils. **Not label-observable; reference only.**
+
+**Honest limit / why this is reference, not a new EV.** The structural half is already scored; the contaminant half fails the project-wide eligibility bar (*"only signals observable or inferrable from packaged food labels"* — Evidence Registry core constraint). Adding a "likely-acrylamide" penalty would require inventing a process inference the label does not support — exactly the fabrication the OFF ban and the missing-data-discard rule forbid. If a future category ever carries a declared or independently measured contaminant value, that becomes an `EV-###` candidate; until then it stays here.
+
+**Firewall.** Nothing here moves a published score or activates a signal. Promotion path for any label-derivable sliver: `EV-###` + D7 co-sign (Nutrition + Product).
