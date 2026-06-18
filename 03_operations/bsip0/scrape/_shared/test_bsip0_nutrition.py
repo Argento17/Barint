@@ -270,6 +270,192 @@ def test_extract_nutrition_raw_carries_selection():
     assert bn.parse_num(bn.parse_nutrition_rows(raw["rows"])["energy"]) == 77.0
 
 
+# ── TASK-239: Victory retailer parser invariants ───────────────────────────────
+#
+# Fixture: REAL Victory product 7290005610509 nutrition panel (captured 2026-06).
+# Victory uses <th> for labels and <td> for values, with <thead> containing the
+# serving-basis header ("ל-100 גרם").
+
+_VICTORY_FIXTURE = os.path.join(_FIXTURE_DIR, "victory_7290005610509.html")
+
+
+def test_victory_th_td_rows_parse():
+    """<th> labels / <td> values parse into correct (field, value, unit) tuples."""
+    raw = bn._parse_victory_nutrition(_soup(_VICTORY_FIXTURE))
+    assert len(raw["rows"]) == 6
+    rows_by_label = {r["label"]: r for r in raw["rows"]}
+    assert rows_by_label["energy"]["value"] == "16000"
+    assert rows_by_label["fat"]["value"] == "0.1"
+    assert rows_by_label["sodium"]["value"] == "39"
+    assert rows_by_label["carbs"]["value"] == "3.4"
+    assert rows_by_label["fiber"]["value"] == "2"
+    assert rows_by_label["protein"]["value"] == "0.68"
+    # unit sniff
+    assert "קל" in rows_by_label["energy"]["unit"]
+    assert "גרם" in rows_by_label["fat"]["unit"]
+    assert "מג" in rows_by_label["sodium"]["unit"] or "מ״ג" in rows_by_label["sodium"]["unit"]
+
+
+def test_victory_basis_per_100g_from_header():
+    """Basis is per_100g, and selected_table_header is the actual header text."""
+    raw = bn._parse_victory_nutrition(_soup(_VICTORY_FIXTURE))
+    assert raw["selection"]["selected_basis"] == "per_100g"
+    assert "ל-100 גרם" in raw["selection"]["selected_table_header"]
+    assert raw["selection"]["selected_table_header"] == raw["tables"][0]["subInfo"]
+    assert raw["selection"]["insufficient"] is False
+
+
+def test_victory_ambiguous_header_insufficient():
+    """Header-less or unrecognized value-header → insufficient=True."""
+    from bs4 import BeautifulSoup
+    no_header_html = (
+        '<section class="nutrition-values"><div class="table-wrapper">'
+        "<table><tbody>"
+        "<tr><th>אנרגיה (קלוריות)</th><td>16000 קלוריות</td></tr>"
+        "</tbody></table></div></section>"
+    )
+    raw = bn._parse_victory_nutrition(BeautifulSoup(no_header_html, "lxml"))
+    assert raw["selection"]["selected_basis"] == "unknown"
+    assert raw["selection"]["insufficient"] is True
+    assert raw["rows"] == []
+
+
+def test_victory_multi_td_row_insufficient():
+    """A data row with >1 <td> → insufficient (cannot safely choose which value)."""
+    from bs4 import BeautifulSoup
+    multi_td_html = (
+        '<section class="nutrition-values"><div class="table-wrapper">'
+        "<table><thead><tr><th>משקל ליחידה</th><th>ל-100 גרם</th></tr></thead><tbody>"
+        "<tr><th>אנרגיה (קלוריות)</th><td>16000 קלוריות</td><td>80000 קלוריות</td></tr>"
+        "</tbody></table></div></section>"
+    )
+    raw = bn._parse_victory_nutrition(BeautifulSoup(multi_td_html, "lxml"))
+    assert raw["selection"]["insufficient"] is True
+    assert raw["rows"] == []
+
+
+# ── TASK-240 #4 / TASK-247: Yohananof retailer parser invariants ───────────────
+#
+# Fixture: REAL Yohananof product 16000423534 ("קראנצ'י חטיף שיבולת שועל ושוקולד
+# מריר", Nature Valley), captured 2026-05-15 from yochananof.co.il (direct scrape,
+# NOT OFF). Yohananof renders nutrition as #simple-tabpanel-1 <li> rows whose label
+# is a <span> and whose value is the li's trailing text node; the serving-basis
+# caption ("ל100 גרם" — note: NO hyphen on the real page) lives OUTSIDE the tabpanel.
+
+_YOHANANOF_FIXTURE = os.path.join(_FIXTURE_DIR, "yohananof_16000423534.html")
+
+
+def _yo_soup(li_html, basis_caption="ל100 גרם"):
+    """Build a minimal Yohananof page: a basis caption sibling + the tabpanel.
+
+    Structural test scaffold (mirrors the real DOM where the basis is a caption
+    outside #simple-tabpanel-1). Pass ``basis_caption=None`` to omit the basis.
+    """
+    from bs4 import BeautifulSoup
+    cap = f'<div class="caption">{basis_caption}</div>' if basis_caption else ""
+    html = f'{cap}<div id="simple-tabpanel-1"><div><ul>{li_html}</ul></div></div>'
+    return BeautifulSoup(html, "lxml")
+
+
+def test_yohananof_li_rows_parse_from_real_fixture():
+    """Real th/li rows parse to correct (field, value, unit); basis per_100g read
+    from the REAL header; selected_table_header == that header verbatim."""
+    raw = bn._parse_yohananof_nutrition(_soup(_YOHANANOF_FIXTURE))
+    assert raw["selection"]["selected_basis"] == "per_100g"
+    assert raw["selection"]["insufficient"] is False
+    rows_by_label = {r["label"]: r for r in raw["rows"]}
+    assert rows_by_label["energy"]["value"] == "199"
+    assert rows_by_label["protein"]["value"] == "3.7"
+    assert rows_by_label["carbs"]["value"] == "25.8"
+    assert rows_by_label["sugar"]["value"] == "11.3"
+    assert rows_by_label["fat"]["value"] == "8.3"
+    assert rows_by_label["saturated_fat"]["value"] == "1.4"
+    assert rows_by_label["trans_fat"]["value"] == "0.5"     # from "L 0.5"
+    assert rows_by_label["sodium"]["value"] == "109"
+    assert rows_by_label["fiber"]["value"] == "2.9"
+    # unit comes from the label parenthetical, not the bare value
+    assert rows_by_label["sodium"]["unit"] == "מג"
+    assert "קל" in rows_by_label["energy"]["unit"]
+    assert rows_by_label["fat"]["unit"] == "גרם"
+
+
+def test_yohananof_header_read_verbatim_not_synthesized():
+    """The verbatim page header is recorded — the real page shows 'ל100 גרם' with NO
+    hyphen. The old parser fabricated the literal 'ל-100 גרם'; that must not recur."""
+    raw = bn._parse_yohananof_nutrition(_soup(_YOHANANOF_FIXTURE))
+    header = raw["selection"]["selected_table_header"]
+    assert header == "ל100 גרם"                 # exactly what the page renders
+    assert "ל-100" not in header                # the fabricated hyphenated literal is gone
+    assert header == raw["tables"][0]["subInfo"]
+
+
+def test_yohananof_sodium_mg_preserved_end_to_end():
+    """A mg value must survive to the parsed panel as mg (unit-in-label fix). On the
+    real fixture sodium=109; a SMALL mg value (7) must NOT be ×1000'd to 7000."""
+    parsed = bn.parse_nutrition_rows(
+        bn._parse_yohananof_nutrition(_soup(_YOHANANOF_FIXTURE))["rows"])
+    assert parsed["sodium"] == "109 מג"
+    assert bn.parse_sodium_mg(parsed["sodium"]) == 109.0
+    # the failure mode the old value-only sniff caused: low-mg sodium demoted to grams
+    small = bn._parse_yohananof_nutrition(
+        _yo_soup('<li><div><span>נתרן (מג)</span></div>7</li>'))
+    p = bn.parse_nutrition_rows(small["rows"])
+    assert p["sodium"] == "7 מג"
+    assert bn.parse_sodium_mg(p["sodium"]) == 7.0      # NOT 7000
+
+
+def test_yohananof_unknown_basis_is_insufficient():
+    """Tabpanel present but the page states NO basis caption → insufficient=True,
+    rows=[] (match Victory). No silent-accept of unknown-basis rows."""
+    raw = bn._parse_yohananof_nutrition(
+        _yo_soup('<li><div><span>אנרגיה (קלוריות)</span></div>199</li>',
+                 basis_caption=None))
+    assert raw["selection"]["selected_basis"] == "unknown"
+    assert raw["selection"]["insufficient"] is True
+    assert raw["rows"] == []
+    # a price-only "₪ / 100 גרם" string must NOT be promoted to a basis
+    priced = bn._parse_yohananof_nutrition(
+        _yo_soup('<li><div><span>אנרגיה (קלוריות)</span></div>199</li>',
+                 basis_caption="‏7.10 ₪ / 100 גרם"))
+    assert priced["selection"]["insufficient"] is True
+    assert priced["rows"] == []
+
+
+def test_yohananof_ambiguous_row_is_insufficient():
+    """A structurally ambiguous row (>1 numeric token) rejects the whole panel."""
+    raw = bn._parse_yohananof_nutrition(
+        _yo_soup('<li><div><span>אנרגיה (קלוריות)</span></div>199 240</li>'))
+    assert raw["selection"]["insufficient"] is True
+    assert raw["rows"] == []
+
+
+def test_sniff_unit_matches_all_mg_quote_forms():
+    """Unit sniff recognises mg in bare / gershayim / ASCII-quote forms (TASK-247 #4)."""
+    assert bn._sniff_unit('39 מ"ג') == "מג"          # ASCII double-quote
+    assert bn._sniff_unit("39 מ״ג") == "מג"          # Hebrew gershayim U+05F4
+    assert bn._sniff_unit("39 מג") == "מג"           # bare
+    assert bn._sniff_unit("נתרן (מג)", "109") == "מג"  # unit in label (Yohananof)
+    assert bn._sniff_unit("16000 קלוריות") == "קל"
+    assert bn._sniff_unit("8.3 גרם") == "גרם"
+
+
+def test_extract_nutrition_raw_auto_dispatches_by_retailer():
+    """Auto-detect routes Shufersal / Victory / Yohananof to the right parser."""
+    shuf = _soup(_GINGER_DUAL)
+    vic = _soup(_VICTORY_FIXTURE)
+    yo = _soup(_YOHANANOF_FIXTURE)
+    assert bn._detect_html_format(shuf) == "shufersal"
+    assert bn._detect_html_format(vic) == "victory"
+    assert bn._detect_html_format(yo) == "yohananof"
+    # Shufersal path == extract_nutrition_raw (two competing tables, per-100g chosen)
+    auto_shuf = bn.extract_nutrition_raw_auto(shuf)
+    assert auto_shuf["selection"]["competing_table_count"] == 2
+    assert bn.parse_num(bn.parse_nutrition_rows(auto_shuf["rows"])["energy"]) == 77.0
+    # Victory path == _parse_victory_nutrition
+    assert bn.extract_nutrition_raw_auto(vic)["rows"] == bn._parse_victory_nutrition(vic)["rows"]
+    # Yohananof path == _parse_yohananof_nutrition
+    assert bn.extract_nutrition_raw_auto(yo)["selection"]["selected_table_header"] == "ל100 גרם"
+
 # ── Bare runner (no pytest dependency) ─────────────────────────────────────────
 
 if __name__ == "__main__":
