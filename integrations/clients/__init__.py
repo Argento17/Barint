@@ -6,7 +6,9 @@ surface. Run any client module directly (`python -m integrations.clients.<name>`
 for a live smoke test.
 
 Sources:
-  open_food_facts  — product nutrition/ingredients by barcode (Data, Nutrition)
+  open_food_facts  — DISABLED (TASK-238 OFF ban, project-wide, forever). Raises OffDisabledError
+                     on every call. NOT a data source. Retained only as the enforced ban guard;
+                     see open_food_facts.py. Never use OFF for any field, any category.
   il_prices        — Israeli price-transparency feeds (Data)
   literature       — PubMed E-utilities + Europe PMC (Research)
   tzameret         — Israeli MoH food-composition DB (Nutrition)
