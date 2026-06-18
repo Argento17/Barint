@@ -21,11 +21,11 @@
   "corpora": [
     {
       "name": "milk",
-      "class": "frozen",
+      "class": "published",
       "source": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
       "flags": {},
       "invariants": [],
-      "note": "RE-FROZEN 2026-06-15 (TASK-284/TASK-284E): owner authorized on-everywhere + re-freeze. New baseline: run_006_shelfrel_refreeze (engine commit 97a9213b, BARI_SHELF_RELATIVE_V1=on, BARI_FAT_TECH_V1=on). New dist (20 headpin products): A:3 B:1 C:5 D:10 E:1, max=85/A invariant holds. Prior: run_005_headpin (engine-baseline-2026-06-04, f075d9e). Prior note: FROZEN INVARIANT (CNO 2026-05-30): scores = run_005_headpin, engine-baseline-2026-06-04. Headpin runner sets no flags -> engine defaults. Any shadow movement here is a frozen-invariant breach.",
+      "note": "UNFROZEN 2026-06-18 (owner: nothing frozen). Re-flows freely on a scoring switch like every other category. RE-FROZEN 2026-06-15 (TASK-284/TASK-284E): owner authorized on-everywhere + re-freeze. New baseline: run_006_shelfrel_refreeze (engine commit 97a9213b, BARI_SHELF_RELATIVE_V1=on, BARI_FAT_TECH_V1=on). New dist (20 headpin products): A:3 B:1 C:5 D:10 E:1, max=85/A invariant holds. Prior: run_005_headpin (engine-baseline-2026-06-04, f075d9e). Prior note: FROZEN INVARIANT (CNO 2026-05-30): scores = run_005_headpin, engine-baseline-2026-06-04. Headpin runner sets no flags -> engine defaults. Any shadow movement here is a frozen-invariant breach.",
       "baseline_run": "run_006_shelfrel_refreeze",
       "baseline_dist": {
         "A": 3,
@@ -39,17 +39,11 @@
     },
     {
       "name": "snack_bars",
-      "class": "frozen",
+      "class": "published",
       "source": "C:\\Bari\\03_operations\\bsip1\\run_001\\output",
       "flags": {},
-      "invariants": [
-        {
-          "type": "no_grade_at_or_above",
-          "grade": "A",
-          "why": "Frozen invariant: no snack bar reaches A; snk-001 = 70/B is the validated category ceiling."
-        }
-      ],
-      "note": "RE-FROZEN 2026-06-15 (TASK-284E): BARI_FAT_TECH_V1=on + BARI_SHELF_RELATIVE_V1=on (EV-096+EV-097 activated). No grade changes, ceiling invariant (max 70/B, no A) holds. Prior: run_snackbars_007_headpin config — BARI_RECAL_P0=off, W4=on (engine defaults)."
+      "invariants": [],
+      "note": "UNFROZEN 2026-06-18 (owner: nothing frozen). Re-flows freely on a scoring switch like every other category. RE-FROZEN 2026-06-15 (TASK-284E): BARI_FAT_TECH_V1=on + BARI_SHELF_RELATIVE_V1=on (EV-096+EV-097 activated). No grade changes, ceiling invariant (max 70/B, no A) holds. Prior: run_snackbars_007_headpin config — BARI_RECAL_P0=off, W4=on (engine defaults)."
     },
     {
       "name": "yogurt",

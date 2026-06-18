@@ -20,15 +20,13 @@ at `C:\bari\bari-web\` (the Next.js app, formerly the standalone `C:\bari-web` r
   localization). Any OFF dependency is a launch blocker. The OFF integration client stays disabled.
   Removing only with a future explicit written owner policy. (Memory: `off_ban_hard_rule`; TASK-238.)
 
-## Frozen invariants (CNO ruling, 2026-05-30)
-- Milk scores = `run_005_headpin` (frozen 2026-06-04, TASK-180A, engine tag `engine-baseline-2026-06-04` / `f075d9e`; supersedes `run_004_recalibrated`, retained as history). Top = 85/A (whole 3.4% / natural 4% / goat dairy). No reversion.
-- No snack bar reaches A. snk-001 = 70/B is the validated category ceiling.
-- Bread provenance = `real_bread_retail_003_v1` (Shufersal, 25–26 May 2026):
-  256 scanned → 81 scored → 31 curated (24 scored + 7 transparency).
-- Freeze the framing ("best ≠ excellent"); version the numbers (re-verify on every rescore).
+## Re-flow policy (owner ruling, 2026-06-18 — supersedes the 2026-05-30 CNO freeze)
+- **Nothing is frozen.** Every live category re-scores on every scoring switch (`spine_flip`), with **no category-level freeze gate and no exit-2 hard block** (the old `class: frozen` + `frozen_touched` gate is removed/inert; never re-arm it). "Freeze shenanigans" are retired — the job is to *version the numbers and verify movement*, never to prevent it. Verify with `03_operations/page_generator/conformance.py --all` (12/12 categories re-flow as of 2026-06-18; see [[spine_conformance_gate]]).
+- **Historical baselines (re-verify on rescore, do NOT freeze):** milk top was 85/A at `run_005_headpin` (whole 3.4% / natural 4% / goat); snack-bar ceiling was snk-001 70/B (a validated *finding*, not an enforced cap); bread provenance lineage = `real_bread_retail_003_v1` (corpus identity — which products — NOT a score freeze; 256 scanned → 81 scored → 31 curated). These are starting points to compare against, not values to hold fixed.
+- Framing principle retained: "best ≠ excellent." That was always about *framing*, not pinning numbers — and "version the numbers, re-verify on every rescore" is now the whole of it.
 
 ## Decision authority (autonomy default, 2026-06-04)
-- **Default to autonomous action.** Owning agents, the orchestrator, and Product decide and act within their lanes. The owner makes **extremely strategic decisions only.** Escalate to the owner **only if a decision trips one of 5 tripwires:** (1) touches a **frozen invariant** / published scores / scoring philosophy; (2) ships something **irreversible AND consumer-facing** (category go-live, public claim, brand/positioning); (3) **starts or kills a major program**; (4) creates **external commitment, spend, or legal exposure**; (5) **redefines strategy, target user, or what Bari is.**
+- **Default to autonomous action.** Owning agents, the orchestrator, and Product decide and act within their lanes. The owner makes **extremely strategic decisions only.** Escalate to the owner **only if a decision trips one of 5 tripwires:** (1) **an agent would change published scores / scoring philosophy** (note: an owner-initiated `spine_flip` re-flowing every category is expected and NOT a tripwire — nothing is frozen); (2) ships something **irreversible AND consumer-facing** (category go-live, public claim, brand/positioning); (3) **starts or kills a major program**; (4) creates **external commitment, spend, or legal exposure**; (5) **redefines strategy, target user, or what Bari is.**
 - **If no wire fires → decide, act, keep it reversible (flag / PR / draft), and log it in the registry.** If unsure whether a wire fires, it doesn't — act and surface it for after-the-fact review. A decision beyond your lane that trips no wire routes to Product / Orchestrator, **not** the owner. Expert calls inside a lane are the owning agent's — recommend the single best option and implement it; no A/B menus for expert calls.
 - Full law (5 tripwires, triage matrix, ownership tiers, safety guarantees): `01_framework/governance/decision_authority_matrix_v1.md`.
 
