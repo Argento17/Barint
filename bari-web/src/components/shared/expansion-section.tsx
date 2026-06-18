@@ -12,6 +12,7 @@ import type {
   BariGlassBoxVM,
   BariNutritionVM,
   BariProcessingSignalVM,
+  BariProductVM,
 } from "@/lib/view-models";
 import {
   GLASS_BOX_DISCLOSURE_HEADING,
@@ -20,6 +21,7 @@ import {
 } from "@/lib/view-models";
 import { AdditivePanel } from "@/components/shared/AdditivePanel";
 import { ProcessingSignalNote } from "@/components/shared/processing-signal-note";
+import { DeepDiveSection, hasDeepDiveContent } from "@/components/shared/deep-dive-section";
 
 const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string }[] = [
   { key: "energyKcal", label: 'קק"ל', unit: "" },
@@ -418,6 +420,10 @@ export function ExpansionSection({
   productId,
   category,
   rowVerdict,
+  consumerExplanation,
+  bestUseCases,
+  consumerTakeaway,
+  bariInterpretation,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -471,6 +477,17 @@ export function ExpansionSection({
    * guard short-circuits).
    */
   rowVerdict?: string;
+  // ─── Deep-dive fields (TASK-332) — absent → section hidden ───────────────────
+  /** Per-product authored explanation from expansion.consumerExplanation. */
+  consumerExplanation?: NonNullable<BariExpansionVM["consumerExplanation"]> | null;
+  /** Short use-case tags for the product (e.g. "חלבון", "רכיבים פשוטים"). */
+  bestUseCases?: string[];
+  /** One-sentence shelf verdict. */
+  consumerTakeaway?: string;
+  /** Scored pillar breakdown rows. Accepts v2 canonical shape ({ key, label, score, strength,
+   *  interpretation }) or legacy v1 shape ({ dimension, score, label_he, explanation_he }).
+   *  Only v2 pillars are rendered by DeepDiveSection. */
+  bariInterpretation?: NonNullable<BariProductVM["bariInterpretation"]>;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
   // Score Confidence Indicators spec §6/§7: prefer the backend-prerendered label
@@ -489,6 +506,16 @@ export function ExpansionSection({
     // TASK-179T: additive panel counts as "technical" content (so the row never
     // shows the "no details available" fallback when the panel is the only content).
     (GLASSBOX_D5D6_ON && d4Additives !== undefined);
+
+  // TASK-332: deep-dive content (consumerExplanation / bestUseCases / consumerTakeaway /
+  // bariInterpretation). Counts as "has content" for the "no details" fallback guard.
+  const deepDiveProps = {
+    consumerExplanation: consumerExplanation ?? expansion.consumerExplanation ?? null,
+    bestUseCases,
+    consumerTakeaway,
+    bariInterpretation,
+  };
+  const hasDeepDive = hasDeepDiveContent(deepDiveProps);
 
   // Render the "unscored" expansion for two cases:
   //  (a) a genuinely insufficient product (no glass box involved), and
@@ -556,12 +583,17 @@ export function ExpansionSection({
         {!interpretive &&
         !rowVerdict?.trim() &&
         !hasTechnical &&
+        !hasDeepDive &&
         glassBox?.gateState !== "demote" &&
         !d3Processing ? (
           <p className="text-xs leading-relaxed text-[#6E756F]">
             פרטים נוספים לא זמינים לאריזה זו.
           </p>
         ) : null}
+
+        {/* TASK-332: per-product deep-dive (consumerExplanation, bestUseCases,
+            consumerTakeaway, bariInterpretation). Absent on bread v3 → no render. */}
+        {hasDeepDive ? <DeepDiveSection {...deepDiveProps} /> : null}
 
         {hasTechnical ? (
           <TechnicalDetails

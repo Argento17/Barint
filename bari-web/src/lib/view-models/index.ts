@@ -46,6 +46,23 @@ export interface BariExpansionVM {
   bottomLine?: string;
   /** Shelf-relative context without algorithm vocabulary. */
   comparisonContext?: string | null;
+  /**
+   * Per-product deep-dive explanation block. Authored by the Content pipeline —
+   * UI renders verbatim. All sub-fields may be missing/empty → degrade gracefully.
+   * Matches the ConsumerExplanation schema in milk-types.ts.
+   */
+  consumerExplanation?: {
+    /** Why the product received its score — one short summary sentence. */
+    whyRated: string;
+    /** Positive contributors — observable strengths (Hebrew strings). */
+    good: string[];
+    /** Trade-offs / limits the user should know. */
+    watchOut: string[];
+    /** Category or product context (e.g. format, typical use). */
+    context: string;
+    /** One-line closure / takeaway. */
+    takeaway: string;
+  } | null;
 }
 
 // ─── Metrics (v2 — comparison_ui_reference_v2 §2.1, §4) ─────────────────────────
@@ -255,6 +272,37 @@ export interface BariProductVM {
    *  today). The calm "how processed is this food" drilldown line. Presentation only — the
    *  engine (TASK-181G) owns the score; the UI never reads the modifier as a number. */
   d3_processing?: BariProcessingSignalVM;
+
+  // ─── Deep-Dive fields (TASK-332) ─────────────────────────────────────────────
+  // Carry per-product authored depth from the pipeline. Absent on categories whose
+  // JSON predates these fields (e.g. bread v3) — UI degrades gracefully (sections hidden).
+  // Do NOT display score / numeric pipeline values — render verbatim authored strings only.
+
+  /**
+   * Short use-case labels (e.g. "חלבון", "רכיבים פשוטים"). Display as a tag row.
+   * Absent / empty array → section hidden.
+   */
+  bestUseCases?: string[];
+  /**
+   * One-sentence shelf verdict the consumer takes away. Max ~20 words. Authored by Content.
+   * Absent / empty → section hidden.
+   */
+  consumerTakeaway?: string;
+  /**
+   * Interpretation pillar breakdown — one row per scored dimension (label, strength, blurb).
+   * Absent / empty → pillar section hidden. Bread may have none (degrade gracefully).
+   * Values are pre-authored Hebrew strings — never raw score math.
+   *
+   * Two possible shapes depending on pipeline version:
+   *   v2 (cheese/canonical): { key, label, score, strength, interpretation }
+   *   v1 (legacy, cookies-coffee): { dimension, score, label_he, explanation_he }
+   * The DeepDiveSection renders v2 shape only; v1 products simply have no pillar section.
+   * We use a discriminated union so both JSON shapes satisfy the type.
+   */
+  bariInterpretation?: Array<
+    | { key: string; label: string; score: number; strength: string; interpretation: string }
+    | { dimension: string; score: number; label_he: string; explanation_he: string }
+  >;
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────
