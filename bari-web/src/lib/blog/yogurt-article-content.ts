@@ -5,8 +5,10 @@ export const HASHVAOT_HREF = "/hashvaot";
 /**
  * Article content object for the yogurt deep-dive.
  *
- * Corpus: yogurts_frontend_v4.json — 89 scored products
+ * Corpus (historical, at time of writing): 89 scored products
  *   Shufersal: 89 products (run_yogurt_005, 2026-06-11 scrape, real Hebrew ingredients)
+ *   NOTE: yogurts_frontend_v4.json was retired in the TASK-321 conformance sweep —
+ *   yogurts now ships from yogurts_frontend_v1.json on the uniform spine path.
  * Grade distribution: A×9, B×30, C×27, D×23
  * Score range: ~40/D → 90/A (high-protein Greek, 89.9 cap applied per TASK-169D)
  *
