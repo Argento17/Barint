@@ -9,19 +9,11 @@ import { absoluteUrl } from "@/lib/site-url";
  */
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/dev/"],
-      },
-      { userAgent: "GPTBot",            allow: "/" },
-      { userAgent: "PerplexityBot",     allow: "/" },
-      { userAgent: "ClaudeBot",         allow: "/" },
-      { userAgent: "anthropic-ai",      allow: "/" },
-      { userAgent: "YouBot",            allow: "/" },
-      { userAgent: "Applebot-Extended", allow: "/" },
-    ],
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/dev/"],
+    },
     sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

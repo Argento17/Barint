@@ -1,4 +1,4 @@
-export type BariGrade = "S" | "A" | "B" | "C" | "D" | "E";
+export type BariGrade = "A" | "B" | "C" | "D" | "E";
 
 export type ProductNutrition = {
   energy_kcal: number | null;

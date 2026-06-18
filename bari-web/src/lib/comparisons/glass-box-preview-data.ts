@@ -5,7 +5,7 @@
 // any go-live decision. It does NOT touch a live score or the published comparison JSON
 // under src/data/comparisons/*.json — every product object below is authored here from
 // the pilot engine output:
-//   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_hummus_on.json
+//   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_{hummus,maadanim}_on.json
 //   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_summary.json
 //
 // The grade/score values shown are the pilot's OFF-baseline display values (what the
@@ -113,8 +113,8 @@ export const glassBoxHummusPreview: BariProductVM[] = [
   },
 ];
 
-// ─── DESSERT preview (3 rows: normal · demoted ג'לי · withheld) ─────────────────
-export const glassBoxDessertPreview: BariProductVM[] = [
+// ─── MAADANIM preview (3 rows: normal · demoted ג'לי · withheld) ─────────────────
+export const glassBoxMaadanimPreview: BariProductVM[] = [
   {
     // A normal graded maadan — baseline.
     id: "preview_maadan_graded",
@@ -142,7 +142,7 @@ export const glassBoxDessertPreview: BariProductVM[] = [
     glassBox: { gateState: "unconstrained" },
   },
   {
-    // DEMOTED — ג'לי בטעם ענבים (pilot demote, d5_band "partial",
+    // DEMOTED — ג'לי בטעם ענבים (_pilot_summary maadanim demote, d5_band "partial",
     // findings: proportions + missing_field×5). Keeps its grade + `ניתוח חלקי` flag.
     id: "preview_maadan_demoted",
     name: "ג'לי בטעם ענבים",
@@ -168,7 +168,7 @@ export const glassBoxDessertPreview: BariProductVM[] = [
     },
   },
   {
-    // WITHHELD — a maadan with no usable panel (pilot withhold,
+    // WITHHELD — a maadan with no usable panel (_pilot_summary maadanim withhold,
     // e.g. בולגרית מעודנת / המבורגר ילדים, panel absent → `לא נוקד`).
     id: "preview_maadan_withheld",
     name: "בולגרית מעודנת 24%",

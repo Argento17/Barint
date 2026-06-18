@@ -38,9 +38,9 @@ export function stripInternalProductFields(
 }
 
 /**
- * Frontend grade is a pure function of the rounded score on the 6-grade consumer scale
- * (S 90+ · A 80–89 · B 65–79 · C 50–64 · D 35–49 · E 0–34). S is a live UI grade:
- * the gradePalette carries an S entry and the chip renders it. The only sanctioned deviation is the cheese A-ceiling,
+ * Frontend grade is a pure function of the rounded score on the 5-grade consumer scale
+ * (A 80+ · B 65–79 · C 50–64 · D 35–49 · E 0–34 — the engine's 6-grade S≥90 folds into A,
+ * since the UI palette has no S). The only sanctioned deviation is the cheese A-ceiling,
  * marked per-product with `_aCappedToB` (a high-scoring product held at B because its
  * saturated fat is over the line the score itself can't see). Centralizing this here
  * removes the boundary drift that had crept into the frozen JSON exports (e.g. 65→C,
@@ -48,7 +48,6 @@ export function stripInternalProductFields(
  * scores (INSUFFICIENT products) keep whatever grade the export carried.
  */
 function frontendGradeFromScore(score: number): BariProductVM["grade"] {
-  if (score >= 90) return "S";
   if (score >= 80) return "A";
   if (score >= 65) return "B";
   if (score >= 50) return "C";

@@ -16,7 +16,7 @@ import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import { PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   glassBoxHummusPreview,
-  glassBoxDessertPreview,
+  glassBoxMaadanimPreview,
   glassBoxProcessingPreview,
 } from "@/lib/comparisons/glass-box-preview-data";
 import { GLASSBOX_D5D6_ON, GLASSBOX_W4_ON } from "@/lib/feature-flags";
@@ -112,11 +112,11 @@ export default function GlassBoxPreviewRoute() {
       <div className="h-6" />
 
       <ComparisonPage
-        products={glassBoxDessertPreview}
-        metadataLine="תצוגה מקדימה · מוצרי מדגם · 3 שורות לדוגמה"
+        products={glassBoxMaadanimPreview}
+        metadataLine="תצוגה מקדימה · מעדנים · 3 שורות לדוגמה"
         hero={{
           eyebrow: "Glass Box · תצוגה מקדימה",
-          title: "מוצרי מדגם — ניתוח חלקי / לא נוקד",
+          title: "מעדנים — ניתוח חלקי / לא נוקד",
         }}
         prologueSentences={[
           'שלוש שורות לדוגמה: מוצר מדורג רגיל, ג\'לי עם "ניתוח חלקי", ומוצר "לא נוקד".',

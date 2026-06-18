@@ -1,10 +1,5 @@
 export const BARI_COMPARISON_TOKENS = {
   gradePalette: {
-    // S extends the green ramp above A — same hue family, deeper saturation and darker bg,
-    // so the palette reads as a monotonic premium tier rather than a new color axis.
-    // Dot shares the "top" position with A (both are excellent tiers); numeric score
-    // and the deeper bg/accent distinguish S from A without adding a new color dimension.
-    S: { accent: "#0D5C38", bg: "#D4EDDF", text: "#0A4529", border: "#0D5C3833", dot: "top" },
     A: { accent: "#1E7A4F", bg: "#E7F4EC", text: "#155C3C", border: "#1E7A4F33", dot: "top" },
     B: { accent: "#5F7D17", bg: "#F0F3DF", text: "#4C6314", border: "#5F7D1733", dot: "upper" },
     C: { accent: "#A87A0C", bg: "#FBF3D8", text: "#7E5800", border: "#A87A0C33", dot: "middle" },

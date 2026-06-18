@@ -9,8 +9,6 @@ import {
   cerealsProducts,
   cerealsCategoryNote,
 } from "@/lib/comparisons/cereals-page-data";
-import { buildFaqScript } from "@/lib/seo/faq-schema";
-import rawFaqSchema from "@/data/seo/breakfast_cereals_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת דגני בוקר | Bari",
@@ -20,16 +18,13 @@ export const metadata: Metadata = {
 
 export default function BreakfastCerealsComparisonRoute() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
-      <CerealsComparisonPage
-        products={cerealsProducts}
-        metadataLine={cerealsMetadataLine}
-        hero={cerealsHero}
-        prologueSentences={cerealsPrologueSentences}
-        methodologyLines={cerealsMethodologyLines}
-        categoryNote={cerealsCategoryNote}
-      />
-    </>
+    <CerealsComparisonPage
+      products={cerealsProducts}
+      metadataLine={cerealsMetadataLine}
+      hero={cerealsHero}
+      prologueSentences={cerealsPrologueSentences}
+      methodologyLines={cerealsMethodologyLines}
+      categoryNote={cerealsCategoryNote}
+    />
   );
 }

@@ -2,7 +2,7 @@
 // All BSIP outputs must be transformed into these types before reaching the UI.
 // The UI layer never imports from lib/comparisons/, lib/bsip/, or any scoring module.
 
-export type BariGrade = "S" | "A" | "B" | "C" | "D" | "E";
+export type BariGrade = "A" | "B" | "C" | "D" | "E";
 
 // "verified" maps from backend "full" — language boundary lives here
 export type BariConfidence = "verified" | "partial" | "insufficient";
@@ -255,13 +255,6 @@ export interface BariProductVM {
    *  today). The calm "how processed is this food" drilldown line. Presentation only — the
    *  engine (TASK-181G) owns the score; the UI never reads the modifier as a number. */
   d3_processing?: BariProcessingSignalVM;
-  /**
-   * TASK-256: Pre-authored Hebrew explanation of why this product received an S grade.
-   * Present only on S-grade products (empty string or absent on all other grades).
-   * Rendered verbatim — Nutrition-approved copy, do not alter. No new color encoding.
-   * Rendered in the canonical expansion surface before the positive/limiting signals.
-   */
-  s_grade_explanation?: string;
 }
 
 // ─── Filter ───────────────────────────────────────────────────────────────────

@@ -16,8 +16,8 @@ const INSIGHT_LINES = [
   "תווית «דגנים מלאים» מופיעה על מוצרים שמדורגים D",
   "שיבולת שועל בגרסה העבה — רכיב אחד, ציון B גבוה",
   "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-75/B",
-  "טענת «דגנים מלאים» על 18 מוצרים — לא בכולם הסדר תומך בה",
-  "ארבעה מוצרים מיועדים לילדים",
+  "טענת «דגנים מלאים» על 20 מוצרים — לא בכולם הסדר תומך בה",
+  "חמישה מוצרים מיועדים לילדים",
   "גרנולה, מוזלי ושיבולת שועל אינם בעמוד זה",
 ] as const;
 
@@ -38,7 +38,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
       <ComparisonIntelligenceHero
         badge="ניתוח חדש"
         categoryTags="דגני בוקר · שיבולת שועל · קורנפלקס"
-        title="דגני בוקר: 26 מוצרים, אף אחד לא מגיע ל-A"
+        title="דגני בוקר: 37 מוצרים, אף אחד לא מגיע ל-A"
         description={description}
         insightLines={INSIGHT_LINES}
         stats={[
