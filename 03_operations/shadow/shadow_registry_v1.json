@@ -153,6 +153,80 @@
       },
       "invariants": [],
       "note": "batch_run_hard_cheeses_001.py: BARI_RECAL_P0=on, TASK144=off. The red-label experimental config (BARI_REDLABEL_V1=on + BARI_DAIRY_SAT_FAT_INFER=on, TASK-REDLABEL-001) is NOT the registered config until it ships."
+    },
+    {
+      "name": "cakes",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output",
+      "flags": {
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_RECAL_P0": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_GRAD_SODIUM_V1": "off"
+      },
+      "invariants": [],
+      "note": "Registered for spine re-flow (TASK conformance gate, 2026-06-18). Flags verbatim from configs/cakes.json scoring.flags (_source batch_run_shelfrel_golive_001). Shelf-relative on sugars_g (frozen median/scale live in config; shadow diff cancels stat absence). Source loads full run_cakes_001 corpus (167); config curates to live 65 via corpus_filter."
+    },
+    {
+      "name": "cookies_coffee",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cookies_001\\output",
+      "flags": {
+        "BARI_RECAL_P0": "off",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "invariants": [],
+      "note": "Registered for spine re-flow (2026-06-18). Flags verbatim from configs/cookies_coffee.json (_source batch_run_cookies_005 + batch_run_cakes_001). SHADOW-V1 SINGLE-SOURCE LIMITATION: config corpus spans TWO dirs (run_cookies_001 + run_cakes_001); registered source is the primary run_cookies_001 (61). Live rescore uses BOTH dirs via the config. No shelf-rel."
+    },
+    {
+      "name": "brined_cheeses",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output",
+      "flags": {
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GRAD_SODIUM_V1": "on",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_TASK144_FIXES": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "invariants": [],
+      "note": "Registered for spine re-flow (2026-06-18). Flags verbatim from configs/brined_cheeses.json (_source batch_run_brined_cheeses_005). Shelf-relative on sodium_mg (frozen median=1000/stdev=266.25 live in config; shadow diff cancels stat absence). Source loads full run_brined_cheeses_002 (48); config curates to live 36."
+    },
+    {
+      "name": "granola",
+      "class": "published",
+      "source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_005\\output",
+      "flags": {
+        "BARI_RECAL_P0": "on",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_SODIUM_CEREAL": "off"
+      },
+      "invariants": [],
+      "note": "Registered for spine re-flow (2026-06-18). Flags verbatim from configs/granola.json (_source batch_run_cereals_008). Granola subpool; bsip1 source run_cereals_005 (66) distinct from the cereals corpus (run_cereals_008) so it needs its own entry. No shelf-rel."
     }
   ],
   "deferred": [

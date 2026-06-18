@@ -157,12 +157,19 @@ def manifest_for_path(baseline_json: str | None, entries: list[dict]) -> dict | 
 
 
 def registry_class(cat_norm: str, registry: dict) -> tuple[str | None, bool]:
-    """Return (class, is_deferred). Best-effort name match on the corpus list."""
+    """Return (class, is_deferred). Best-effort name match on the corpus list.
+
+    Deferred matching tolerates a prefix relationship (e.g. category 'bread'
+    matches deferred entry 'bread_retail_003') so a documented, accepted Shadow-v1
+    limitation reads as DEFERRED rather than a fixable failure (avoids false-alarm
+    fatigue — C3 P215). Corpus matches stay exact.
+    """
     for c in registry.get("corpora", []):
         if norm(c.get("name")) == cat_norm:
             return c.get("class"), False
     for d in registry.get("deferred", []):
-        if norm(d.get("name")) == cat_norm:
+        dn = norm(d.get("name"))
+        if dn == cat_norm or dn.startswith(cat_norm) or cat_norm.startswith(dn):
             return "deferred", True
     return None, False
 
@@ -240,6 +247,7 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
 
     cat = cfg.get("category")
     cat_norm = norm(cat)
+    cls, deferred = registry_class(cat_norm, registry)
 
     # HARD-1: config + corpus dirs resolve
     dirs_ok, missing = corpus_dirs_resolve(cfg)
@@ -247,12 +255,21 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
         "all corpus dirs exist" if dirs_ok
         else f"missing/empty corpus dirs: {missing or '(none declared)'}")
 
-    # HARD-2: stem reachable by the real flip mapper
+    # HARD-2: stem reachable by the real flip mapper.
+    # If the category is in the registry's DEFERRED list, non-reachability is a
+    # documented, accepted Shadow-v1 limitation (bespoke loader / Shadow v2), not a
+    # fixable bug -> report it but do NOT hard-fail (would be a perpetual false alarm).
     corpora = stem_corpora.get(stem, [])
-    add("HARD-2-flip_reachable", True, bool(corpora),
-        f"reachable via registered corpus/corpora: {corpora}" if corpora
-        else "NO registered corpus maps to this shelf -> a score-flip will SKIP it "
-             "(not in shadow_registry_v1.json or mapping unresolved)")
+    if not corpora and deferred:
+        add("HARD-2-flip_reachable", False, False,
+            "NOT reachable, but category is in shadow_registry DEFERRED list "
+            "(bespoke loader / out of Shadow-v1 scope) -> accepted; needs a Shadow-v2 "
+            "custom loader to re-flow on a switch")
+    else:
+        add("HARD-2-flip_reachable", True, bool(corpora),
+            f"reachable via registered corpus/corpora: {corpora}" if corpora
+            else "NO registered corpus maps to this shelf -> a score-flip will SKIP it "
+                 "(not in shadow_registry_v1.json or mapping unresolved)")
 
     # HARD-3: baseline_json set + equals served frontend JSON
     baseline = cfg.get("baseline_json")
@@ -295,8 +312,7 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
         f"frontend JSON shape = {shape}"
         + (" (FLAT: needs manual loader override, e.g. juices)" if shape == "flat" else ""))
 
-    # SOFT-6: registry class diagnostic
-    cls, deferred = registry_class(cat_norm, registry)
+    # SOFT-6: registry class diagnostic (cls/deferred computed at top)
     add("SOFT-6-registry_class", False, True,
         f"registry class = {cls or 'NOT REGISTERED'}"
         + (" (deferred: bespoke/out-of-scope)" if deferred else ""))
@@ -306,16 +322,17 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
     add("HARD-7-off_zero", True, n_off == 0,
         "OFF markers = 0" if n_off == 0 else f"OFF markers found: {n_off} (LAUNCH BLOCKER)")
 
-    return _finalize(stem, cat, checks)
+    return _finalize(stem, cat, checks, deferred=deferred)
 
 
-def _finalize(stem: str, cat: str | None, checks: list[dict]) -> dict:
+def _finalize(stem: str, cat: str | None, checks: list[dict], *, deferred: bool = False) -> dict:
     hard_fail = [c for c in checks if c["hard"] and not c["ok"]]
     soft_fail = [c for c in checks if not c["hard"] and not c["ok"]]
     return {
         "stem": stem,
         "category": cat,
         "conforms": not hard_fail,
+        "deferred": deferred,
         "hard_failures": [c["id"] for c in hard_fail],
         "soft_warnings": [c["id"] for c in soft_fail],
         "checks": checks,
@@ -339,7 +356,12 @@ def resolve_stem(slug: str, configs: dict[str, dict]) -> str | None:
 
 def print_report(results: list[dict]) -> None:
     for r in results:
-        status = "CONFORMS" if r["conforms"] else "NON-CONFORMING"
+        if not r["conforms"]:
+            status = "NON-CONFORMING"
+        elif r.get("deferred"):
+            status = "DEFERRED"
+        else:
+            status = "CONFORMS"
         print(f"\n[{status}] {r['stem']}  (category: {r['category']})")
         for c in r["checks"]:
             mark = "PASS" if c["ok"] else ("FAIL" if c["hard"] else "warn")
@@ -347,8 +369,16 @@ def print_report(results: list[dict]) -> None:
             print(f"    {mark:4s} {tier} {c['id']:24s} {c['detail']}")
 
     bad = [r for r in results if not r["conforms"]]
+    deferred = [r for r in results if r["conforms"] and r.get("deferred")]
+    ok = [r for r in results if r["conforms"] and not r.get("deferred")]
     print("\n" + "=" * 72)
-    print(f"SUMMARY: {len(results) - len(bad)}/{len(results)} categories conform to the spine.")
+    print(f"SUMMARY: {len(ok)} conform, {len(deferred)} deferred (accepted), "
+          f"{len(bad)} non-conforming  (of {len(results)}).")
+    if deferred:
+        print("\nDEFERRED (documented Shadow-v1 limitation; won't re-flow until a Shadow-v2 "
+              "custom loader exists — accepted, not a bug):")
+        for r in deferred:
+            print(f"  - {r['stem']}")
     if bad:
         print("\nNON-CONFORMING (a score-flip would leave these stale / mis-served):")
         for r in bad:
@@ -356,7 +386,7 @@ def print_report(results: list[dict]) -> None:
         print("\nA targeted spine_flip would re-flow every OTHER shelf and leave the above "
               "at OLD scores. Fix before the next score switch.")
     else:
-        print("All checked categories will re-flow correctly on a score-flip.")
+        print("\nAll non-deferred categories will re-flow correctly on a score-flip.")
 
 
 def main() -> int:
