@@ -3,7 +3,7 @@ import {
   getYogurtsCorpusPayload,
   getYogurtsPageData,
   yogurtsComparisonMetadata,
-} from "../../yogurts-comparison-page-data";
+} from "../../yogurts-page-data";
 
 export const yogurtsCategoryDefinition: ComparisonCategoryDefinition = {
   id: "yogurts",

@@ -9,7 +9,7 @@ import {
   yogurtsProducts,
   yogurtsCategoryNote,
   yogurtsComparisonMetadata,
-} from "@/lib/comparisons/yogurts-comparison-page-data";
+} from "@/lib/comparisons/yogurts-page-data";
 
 export const metadata: Metadata = yogurtsComparisonMetadata;
 

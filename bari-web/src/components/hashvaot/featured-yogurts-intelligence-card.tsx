@@ -8,7 +8,7 @@ import {
   yogurtsCorpusMeta,
   yogurtsProducts,
   yogurtsPrologueSentences,
-} from "@/lib/comparisons/yogurts-comparison-page-data";
+} from "@/lib/comparisons/yogurts-page-data";
 import { cn } from "@/lib/utils";
 
 type Props = {
