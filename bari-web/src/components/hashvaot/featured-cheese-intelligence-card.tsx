@@ -8,7 +8,7 @@ import {
   cheeseCorpusMeta,
   cheeseProducts,
   cheesePrologueSentences,
-} from "@/lib/comparisons/cheese-comparison-page-data";
+} from "@/lib/comparisons/cheese-page-data";
 import { cn } from "@/lib/utils";
 
 type Props = {

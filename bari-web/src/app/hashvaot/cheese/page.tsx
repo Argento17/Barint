@@ -9,7 +9,7 @@ import {
   cheeseProducts,
   cheeseCategoryNote,
   cheeseComparisonMetadata,
-} from "@/lib/comparisons/cheese-comparison-page-data";
+} from "@/lib/comparisons/cheese-page-data";
 
 export const metadata: Metadata = cheeseComparisonMetadata;
 
