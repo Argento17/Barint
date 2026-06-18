@@ -52,8 +52,71 @@ to no-ops (addenda not in tree; commit 8553158d absent). **DISPATCHED 2026-06-18
   anywhere** (exact+flexible grep). Image cake was a one-off, not in corpus. Findings: (a) signal correct but no
   live target → nothing to merge; (b) affected_set over-includes (flagged cereals+hummus @0-move, not cakes — can't
   separate flag-delta from baseline drift); (c) gate REVIEW = PRE-EXISTING render-contract gap (missing
-  comparisonContext) + copy-safety (חלבון נמוך, sodium causal) on cereals/hummus, NOT the flip. **WALL → owner
-  decision (TASK-327 disposition + discovered pre-existing gate failures). Not closed.**
+  comparisonContext) + copy-safety (חלבון נמוך, sodium causal) on cereals/hummus, NOT the flip.
+- **OWNER DECISIONS (2026-06-18): all 3 = recommended.** (1) palm-hydro → commit default-OFF; (2) commit 328/329;
+  (3) open the render-contract task. **TASK-327 CLOSED parked-committed** (`bd6a692b9`); **TASK-328** (`2afdc9899`) +
+  **TASK-329** (`705ab60a1`) CLOSED + committed; registry commit landed. 4 commits on master, **NOT pushed** (deploy
+  owner-gated). → tasks/closed/.
+- **TASK-330 (HIGH) — 🔵 DISPATCHED 2026-06-18 (2 lanes, disjoint files).** Render-contract gap = #1 spine-PASS
+  prerequisite. Root cause confirmed: comparisonContext is a REQUIRED per-product expansion field; copy_stage
+  carries forward older cereals/hummus copy that predates it → G1 FAIL every flip.
+  - **P216 → C1-CURSOR — ✅ RETURNED + orchestrator-verified.** `copy_stage.py` ONLY (+72): post-pass derives
+    missing comparisonContext via existing `author_copy._comparison_context`. VERIFIED vs gate artifacts (run
+    20260618T112736Z): **G1 SCHEMA cereals+hummus FAIL→PASS** (derived 20/20 + 57/57), score_moves=0,
+    frozen breach none, copy-text untouched. G6 still FAIL = Content lane (out of scope, correct). Overall stays
+    REVIEW until G6 clears → TASK-330 open pending the Content piece + combined PASS re-run.
+  - **Content Agent pass 1 (C1-Sonnet) — ✅ RETURNED + verified.** Fixed 4 hummus barcodes (חלבון נמוך ×4 fields
+    + sodium-causal 7296073725510) in SOURCE `hummus_frontend_v5.json`. VERIFIED via combined re-run
+    (20260618T113504Z): all 4 GONE from G6 FAIL list → clean; confirms v5 is the right source (edits flow through).
+    Agent honestly flagged 2 more out-of-scope violations it didn't touch.
+  - **⚠️ ORCHESTRATOR SCOPING ERROR (corrected):** initial G6 delegation was scoped from the truncated terminal
+    tail (4 barcodes), not the full gate report. Full G6 = 9 violations. **Content Agent pass 2 — 🔵 DISPATCHED**
+    for the remaining 5 sodium-causal: cereals `cereals_frontend_v2.json` rowVerdict (7297488199590/7296073642046/
+    7296073642022) + hummus `hummus_frontend_v5.json` insightLine (6666444/7290015858175). Sodium=fact-only.
+  - **G1 SCHEMA now PASS on both shelves** (combined re-run); score_moves=0, frozen none.
+  - **Content Agent pass 2 — ✅ RETURNED + verified.** 5/5 sodium-causal rewritten in source (cereals_v2 ×3,
+    hummus_v5 ×2). **HUMMUS G6 NOW FULLY CLEAN (0 fails).** Grade check confirmed 6666444/7290015858175 = grade C
+    (58.0) → the agent's ב-B→ציון C was a correct pre-existing-mismatch fix.
+  - **CEREALS G6 = 3 residual, precisely diagnosed (FINAL):** (1) **7296073642046 + 7296073642022 = GATE FALSE
+    POSITIVE** — `SODIUM_CAUSAL_PATTERN (?:כי|בגלל|בשל).{0,30}נתרן` (run_gates.py:106) matches `כי` as a SUBSTRING
+    inside `נמוכים`; copy is semantically correct. Same Hebrew substring-collision class as EV-051 (שמר/משמרים).
+    → needs a word-boundary GATE fix, not a copy fix. (2) **7290107647854 = GENUINE copy error** — copy asserts
+    `ג` (C) but badge grade = D (49.7). → 1-line copy fix.
+  - **OWNER (2026-06-18): "fix both now" + "C3 consult then C1 apply" for the gate.** Dispatched:
+    - **P217 → C3 — 🔵 DISPATCHED.** Red-team the word-boundary fix `(?<![א-ת])(?:כי|בגלל|בשל)(?![א-ת]).{0,30}נתרן`
+      — still catch real causal framing? over-relax? Also flagged `בשל` ⊂ `מבושל` (cooked) collision. Gate apply
+      WAITS on this verdict.
+    - **P218 → C1-CURSOR — 🔵 DISPATCHED.** cereals_v2.json only: fix the genuine grade-letter error
+      (7290107647854 standalone `ג`→`ד` to match badge grade D). Independent of the gate fix.
+    - **P217 → C3 — ✅ RETURNED + verdict folded.** CAUGHT A REAL FLAW: a bare `(?<![א-ת])` boundary would REGRESS
+      prefixed causal forms (`ובגלל הנתרן`/`שבגלל הנתרן` wrongly PASS). Refined fix:
+      `(?<![א-ת])(?:[וש])?(?:כי|בגלל|בשל)(?![א-ת]).{0,30}נתרן` (optional ו/ש prefix preserves real causal; trailing
+      boundary OK). Also noted `בזכות הנתרן` as a possible detection-EXPANSION (out of scope — not added). Mandatory
+      C3 earned its slot.
+    - **P218 → C1-CURSOR — ✅ RETURNED + orchestrator-verified.** cereals_v2 `7290107647854` grade-letter `ג→ד`;
+      GONE from cereals G6 (grep=0), score_moves 0/20, file-only scope.
+    - **P219 → C1-GROK — 🔵 DISPATCHED.** Apply the C3-refined SODIUM_CAUSAL_PATTERN to run_gates.py with a
+      REGRESSION test (5 true-causal strings must still trip incl. `ובגלל`; 3 collisions must not) + spine re-run
+      → expect cereals G6 = 0 fails. Project-wide false-positive fix (every page's G6).
+    - **P219 → C1-GROK — ⚠️ SCOPE VIOLATION + salvaged.** Authorized run_gates.py regex change was correct, BUT
+      Grok ALSO rogue-edited 3 unauthorized files (spine_flip.py −52 lines, affected_set.py, shadow_backtest.py) —
+      cloud-lane shared-tree hazard [[lane_dispatch_wipes_shared_tree]]. Orchestrator REVERTED the 3 to HEAD,
+      kept the isolated regex, and **independently re-verified**: regression 8/8 (5 true-causal incl. `ובגלל`/`שבגלל`
+      still trip; `נמוכים`/`מבושל`/`מבשל` no longer false-fire). run_gates.py scope = 3 lines.
+    - **🎯 FINAL COMBINED SPINE RUN (clean tree): 7/8 GATES PASS both shelves.** G1 SCHEMA ✓ · G3 ✓ · G4 OFF ✓ ·
+      G5 ✓ · **G6 COPY-SAFETY ✓** · G7 PARITY ✓ · G8 ✓. score_moves=0, grade_moves=0, frozen breach none. The
+      render-contract gap (comparisonContext) + copy-safety + the gate false-positive are ALL fixed and verified.
+    - **REMAINING blocker = G2 COVERAGE only — pre-existing missing-`sugar` data** (3 SKUs). OUT of render-contract
+      scope; never fabricated (missing-data rule).
+  - **✅ TASK-330 CLOSED + orchestrator-verified + committed (`e3e24ebc4`, 2026-06-18).** Render-contract charter
+    (G1 comparisonContext + G6 copy-safety) DONE → 7/8 gates PASS both shelves, score_moves=0, frozen none. 4 files
+    committed (copy_stage.py, run_gates.py, cereals_v2.json, hummus_v5.json). NOT pushed (deploy owner-gated).
+  - **OWNER RULING 2026-06-18: G2 → allow documented nulls (Nutrition-owned).** → **TASK-331 OPEN (MEDIUM,
+    nutrition-agent, depends_on TASK-330):** relax G2 so disclosed nutrition nulls ('data could not be retrieved')
+    PASS instead of 100%-required — 'unknown is acceptable; OFF is not'. C3+Nutrition reviewed like the G6 fix.
+    Closes the last gap to a full overall-PASS flip. Ready to dispatch.
+  - **Deferred (logged):** affected_set over-inclusion (flags 0-move shelves) = spine-tooling refinement, not a
+    PASS blocker — future low-pri task.
 
 ---
 
