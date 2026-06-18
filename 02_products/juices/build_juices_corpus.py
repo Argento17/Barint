@@ -366,12 +366,9 @@ def run():
             continue
         seen_barcodes.add(barcode)
 
-        log.info("  Fetching OFF: %s — %s", barcode, seed.get("name_he", "")[:50])
-        try:
-            off = off_get(barcode, timeout=20)
-        except Exception as e:
-            log.warning("    OFF error: %s", e)
-            off = None
+        # OFF fetch REMOVED (TASK-238 hard rule). off stays None — nutrition/image/source
+        # are never sourced from Open Food Facts. build_bsip1 already guards `if off`.
+        off = None
 
         rec = build_bsip1(barcode, seed, off)
         records.append(rec)

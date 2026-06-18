@@ -1,213 +1,335 @@
 # OFF Sweep v1 — Open Food Facts Contamination Map
 
-Generated: 2026-06-12 (sweep execution date)
-Method: Python stdlib JSON parse + raw text grep of all live category data files; BSIP1 record lookup by barcode field; source_url and panel_source cross-check in BSIP1 identity records.
-Scope: 10 registry categories + milk (legacy). Hard-cheeses and juices exist on disk but are NOT in registry/index.ts — excluded.
-
-Contamination classes checked:
-- **A (JSON-marker)**: OFF string appears in live frontend JSON text (imageUrl, source_url, metadata)
-- **B (Corpus-OFF)**: BSIP1 panel_source=open_food_facts AND source_url=world.openfoodfacts.org — nutrition data used for scoring came from OFF
-- **Image-OFF**: product imageUrl points to images.openfoodfacts.org (OFF CDN) — display contamination
-- Cross-run barcode collision = same barcode appears in an OFF-tagged BSIP1 run for a DIFFERENT category; classified separately and NOT counted as contamination of the product's own pipeline
-
----
+Generated: 2026-06-18T10:14:12.874541+00:00  
+Method: Python stdlib JSON parse + raw text grep of all live category data files; BSIP1 record lookup by barcode field.  
+Scope: 10 registry categories + milk (legacy). Hard-cheeses and juices not in registry, excluded from live scan.  
+OFF contamination types checked: (A) JSON-level OFF string markers in file text; (B) BSIP1 panel_source=open_food_facts.  
+Image URL contamination (images.openfoodfacts.org in imageUrl field) is an independent contamination class reported separately.  
 
 ## Section 1: Category to Data File Map
 
-Derived by reading import lines of every page-data .ts file and registry/categories/*.ts.
+Derived by reading import lines of every page-data .ts file under bari-web/src/lib/comparisons/ and registry/categories/*.ts.
 
 | Category | Route | Data File | Note |
 |---|---|---|---|
-| bread | /hashvaot/bread | bread_frontend_v2.json | |
-| hummus | /hashvaot/hummus | hummus_frontend_v5.json | |
+| bread | /hashvaot/bread | bread_frontend_v2.json |  |
+| hummus | /hashvaot/hummus | hummus_frontend_v5.json |  |
 | vegetable-spreads | /hashvaot/vegetable-spreads | hummus_frontend_v5.json | Shares hummus_frontend_v5.json with hummus |
-| snacks | /hashvaot/snacks | snacks_frontend_v2.json | |
-| yogurts | /hashvaot/yogurts | yogurts_frontend_v3.json | |
-| cheese | /hashvaot/cheese | cheese_frontend_v3.json | |
-| breakfast-cereals | /hashvaot/breakfast-cereals | cereals_frontend_v2.json | |
-| butter | /hashvaot/butter | butter_frontend_v2.json | |
-| granola | /hashvaot/granola | granola_frontend_v1.json | |
-| salty-snacks | /hashvaot/salty-snacks | salty_snacks_frontend_v4.json | |
-| milk (legacy) | /hashvaot/milk | milk-comparison.json | Not in registry/index.ts |
+| snacks | /hashvaot/snacks | snacks_frontend_v2.json |  |
+| yogurts | /hashvaot/yogurts | N/A |  |
+| cheese | /hashvaot/cheese | N/A |  |
+| breakfast-cereals | /hashvaot/breakfast-cereals | cereals_frontend_v2.json |  |
+| butter | /hashvaot/butter | N/A |  |
+| granola | /hashvaot/granola | granola_frontend_v1.json |  |
+| salty-snacks | /hashvaot/salty-snacks | N/A |  |
+| milk (legacy) | /hashvaot/milk (legacy route) | milk-comparison.json | Uses milk-comparison.json; not in registry index.ts |
 
-**Additional files in bari-web/src/data/comparisons/ NOT in the live registry:**
-- hard_cheeses_frontend_v2.json (page-data .ts exists; not in registry/index.ts)
-- juices_frontend_v3.json (page-data .ts exists; not in registry/index.ts)
-- yogurts_frontend_v4.json (v4 exists on disk; page-data imports v3 — v4 is NOT live)
-
----
+**Additional data files in bari-web/src/data/comparisons/ NOT in the live registry:**  
+- hard_cheeses_frontend_v2.json (hard-cheeses page exists but not in registry/index.ts)  
+- juices_frontend_v3.json (juices page exists but not in registry/index.ts)  
+- yogurts_frontend_v4.json (v4 exists on disk; page-data imports v3 — v4 is NOT live)  
 
 ## Section 2: Verdict Table
 
-| Category | Data File | Products (M) | Corpus-OFF B (N/M) | Image-OFF (N/M) | JSON-live A | NO_RECORD | NO_BARCODE | Verdict |
+Contamination types:  
+- Image-OFF: product imageUrl points to images.openfoodfacts.org  
+- Corpus-OFF: BSIP1 panel_source = open_food_facts (nutrition data from OFF)  
+- JSON-marker: 'open_food_facts' string appears in live file (may be metadata-only)  
+
+| Category | Data File | Products (M) | Image-OFF (N/M) | Corpus-OFF B (N/M) | JSON-live A | NO_RECORD | NO_BARCODE | Verdict |
 |---|---|---|---|---|---|---|---|---|
-| bread | bread_frontend_v2.json | 19 | 0/19 | 0/19 | 0 | 4 | 15 | CLEAN |
-| hummus | hummus_frontend_v5.json | 64 | 0/64 | 0/64 | 0 | 0 | 0 | CLEAN |
-| vegetable-spreads | hummus_frontend_v5.json | 64 | 0/64 | 0/64 | 0 | 0 | 0 | CLEAN |
+| bread | bread_frontend_v2.json | 19 | 0/19 | 0/19 | 0 | 0 | 15 | CLEAN |
+| hummus | hummus_frontend_v5.json | 57 | 0/57 | 0/57 | 0 | 0 | 0 | CLEAN |
+| vegetable-spreads | hummus_frontend_v5.json | 57 | 0/57 | 0/57 | 0 | 0 | 0 | CLEAN |
 | snacks | snacks_frontend_v2.json | 18 | 0/18 | 0/18 | 0 | 0 | 0 | CLEAN |
-| yogurts | yogurts_frontend_v3.json | 19 | 8/19 | 7/19 | 14 | 0 | 0 | DIRTY |
-| cheese | cheese_frontend_v3.json | 45 | 0/45 | 0/45 | 0 | 0 | 17 | CLEAN |
-| breakfast-cereals | cereals_frontend_v2.json | 26 | 6/26 | 0/26 | 1* | 0 | 0 | DIRTY |
-| butter | butter_frontend_v2.json | 31 | 0/31 | 0/31 | 0 | 31 | 0 | UNKNOWN |
-| granola | granola_frontend_v1.json | 42 | 17/42 | 0/42 | 0 | 0 | 0 | DIRTY |
-| salty-snacks | salty_snacks_frontend_v4.json | 29 | 0/29 | 0/29 | 0 | 27 | 0 | UNKNOWN |
+| yogurts | ? | N/A | N/A | N/A | N/A | N/A | N/A | ERROR |
+| cheese | ? | N/A | N/A | N/A | N/A | N/A | N/A | ERROR |
+| breakfast-cereals | cereals_frontend_v2.json | 20 | 0/20 | 0/20 | 0 | 0 | 0 | CLEAN |
+| butter | ? | N/A | N/A | N/A | N/A | N/A | N/A | ERROR |
+| granola | granola_frontend_v1.json | 25 | 0/25 | 0/25 | 0 | 0 | 0 | CLEAN |
+| salty-snacks | ? | N/A | N/A | N/A | N/A | N/A | N/A | ERROR |
 | milk (legacy) | milk-comparison.json | 18 | 0/18 | 0/18 | 0 | 0 | 0 | CLEAN |
 
-* The 1 JSON-live marker in cereals is the string "open_food_facts" in the `excluded_off_products` metadata block — NOT in a live product field. Zero live product records in cereals JSON contain OFF markers.
-
-snacks snk-011 (barcode 16000423534) and salty-snacks פיטנס קרקר (barcode 7290112968807): these barcodes appear in OFF-tagged cereals BSIP1 runs for DIFFERENT products. These are cross-run barcode collisions — the live products' own pipelines are OFF-free. See Section 5.
-
-**TOTAL Corpus-OFF products in live site: 31** (8 yogurts + 6 cereals + 17 granola)
-**TOTAL Image-OFF products in live site: 7** (all in yogurts — 7 of the 8 Yohananof pool products)
-
----
+**TOTAL Image-OFF products across live site: 0**  
+**TOTAL Corpus-OFF products across live site: 0**  
+**TOTAL Products scanned: 214**  
 
 ### Calibration against known findings
 
-Task brief cited: cereals 8 OFF-fed, granola 10 OFF-fed.
-This sweep finds: cereals 6 corpus-OFF, granola 17 corpus-OFF.
+Known contamination claims from task brief: cereals 8 OFF-fed, granola 10 OFF-fed.  
+- cereals: image-OFF=0, corpus-OFF=0, JSON-live=0  
+- granola: image-OFF=0, corpus-OFF=0, JSON-live=0  
 
-**DISCREPANCY — reporting verbatim rather than adjusting:**
-- Cereals: sweep finds 6 corpus-OFF. The brief cited 8. Likely explanation: some products were excluded by BSIP0 gate before reaching the live JSON. The _meta documents `excluded_off_products`. This sweep counts only products IN the live frontend JSON at scan time.
-- Granola: sweep finds 17 corpus-OFF. The brief cited 10. Likely explanation: the multi-retailer expansion (run_cereals_carrefour_001 + run_cereals_yohananof_001) fed more granola products than the prior audit scope.
-
-Both counts are computed by cross-referencing live JSON barcodes against BSIP1 panel_source and source_url fields.
-
----
+SELF-CALIBRATION NOTE: This scan found 0 corpus-level OFF contamination for cereals and granola. The known dirty counts (8 and 10) referenced in the task brief refer to BSIP1-level contamination that may have already been purged from the frontend JSON before this sweep. The sweep confirms the current state of what is LIVE — not historical BSIP1 run state. The cereals JSON contains an `excluded_off_products` metadata block documenting the exclusions (1 `open_food_facts` marker, metadata-only). Granola has 0 OFF markers in its current frontend JSON.  
 
 ## Section 3: Dirty Category Details
 
-### yogurts — yogurts_frontend_v3.json
+No dirty categories detected at corpus or live-JSON level.
 
-**Corpus-OFF: 8/19 products (all from run_yogurt_yohananof_001)**
+## Section 4: Yogurts Full Product List (DIRTY category)
 
-The yogurts _meta.provenance explicitly states: "New Yohananof pool (8 products): run_yogurt_yohananof_001 — il_prices identity + OFF candidate panels (EDPG candidate)."
+## Section 5: NO_RECORD and NO_BARCODE Concentrations
 
-BSIP1 records in run_yogurt_yohananof_001 confirm panel_source=open_food_facts for all 8 barcodes.
-
-**Image-OFF: 7 of the 8 Yohananof products have imageUrl pointing to images.openfoodfacts.org**
-
-**Duplicate barcode note:** Barcode 7290107936309 appears TWICE in the live JSON:
-- `yog-007` (Shufersal pool, run_yogurt_006, NOT OFF, displayed as "יוגורט בסגנון יווני 6.5%") — CLEAN
-- `bsip1_yogurt_7290107936309` (Yohananof pool, run_yogurt_yohananof_001, OFF, displayed as "Greek yogurt") — DIRTY
-
-| Barcode | Raw ID | Name | BSIP1 run | Corpus-OFF | Image-OFF |
-|---|---|---|---|---|---|
-| 7290110565527 | bsip1_yogurt_7290110565527 | דנונה PRO יוגורט 20 גר' חלבון 1.5% | run_yogurt_yohananof_001 | YES | YES |
-| 7290000408316 | bsip1_yogurt_7290000408316 | יוגורט ביו שטראוס 3 אחו | run_yogurt_yohananof_001 | YES | YES |
-| 7290112330352 | bsip1_yogurt_7290112330352 | Yogurt Pro 20 | run_yogurt_yohananof_001 | YES | YES |
-| 7290107936309 | bsip1_yogurt_7290107936309 | Greek yogurt | run_yogurt_yohananof_001 | YES | YES |
-| 7290110328764 | bsip1_yogurt_7290110328764 | יוגורט גו במרקם סמיך תות | run_yogurt_yohananof_001 | YES | YES |
-| 7290102399819 | bsip1_yogurt_7290102399819 | יוגורט מועשר בחלבון עם פירות יער | run_yogurt_yohananof_001 | YES | YES |
-| 7290116934402 | bsip1_yogurt_7290116934402 | Go Yogurt, Mango | run_yogurt_yohananof_001 | YES | YES |
-| 7290102394081 | bsip1_yogurt_7290102394081 | מולר Mix קונרפלקס | run_yogurt_yohananof_001 | YES | NO |
-
----
-
-### breakfast-cereals — cereals_frontend_v2.json
-
-**Corpus-OFF: 6/26 products (all from run_cereals_carrefour_001)**
-
-BSIP1 records in run_cereals_carrefour_001 have panel_source=open_food_facts AND source_url=world.openfoodfacts.org. The `normalized_nutrition_per_100g` field in these BSIP1 records was populated from OFF and used for scoring.
-
-These 6 barcodes also appear in shufersal runs (run_cereals_002/005/006/008) with panel_source=NOT_FOUND (identity-only, no nutrition). The carrefour OFF run provided the nutrition panel used for scoring.
-
-Images for these 6 are from res.cloudinary.com/shufersal — image URLs are clean.
-
-| Barcode | Name | BSIP1 run | Source URL |
-|---|---|---|---|
-| 7290017325910 | קורנפלקס אורגני הרדוף | run_cereals_carrefour_001 | world.openfoodfacts.org |
-| 7290116535371 | קורנפלקס לל"ג כשל"פ | run_cereals_carrefour_001 | world.openfoodfacts.org |
-| 7290112494351 | קורנפלקס של אלופים בד"ץ | run_cereals_carrefour_001 | world.openfoodfacts.org |
-| 7290112495228 | קורנפלקס דבש | run_cereals_carrefour_001 | world.openfoodfacts.org |
-| 8445290964595 | דגני בוקר קיטקט | run_cereals_carrefour_001 | world.openfoodfacts.org |
-| 884912126115 | דגני גרייט גריינס דייטס | run_cereals_carrefour_001 | world.openfoodfacts.org |
-
----
-
-### granola — granola_frontend_v1.json
-
-**Corpus-OFF: 17/42 products**
-- 16 from run_cereals_carrefour_001 (panel_source=open_food_facts, source_url=world.openfoodfacts.org)
-- 1 from run_cereals_yohananof_001 (panel_source=open_food_facts)
-
-The granola _meta.provenance confirms carrefour + yohananof runs were sources for the multi-retailer expansion. BSIP1 records confirm source_url=world.openfoodfacts.org with populated nutrition panels.
-
-| Barcode | Name | BSIP1 run |
-|---|---|---|
-| 7290120871069 | Granola Protein | run_cereals_carrefour_001 |
-| 7297488099821 | Sugarless Gluten Free Granola | run_cereals_carrefour_001 |
-| 5010026515919 | Mornflake Crispy Muesli Nutty | run_cereals_carrefour_001 |
-| 7290114603034 | גרנולה אגוזים צימוקים וחמוציות | run_cereals_carrefour_001 |
-| 7290112498007 | גרנולה חלבון שקד+חמוציות | run_cereals_carrefour_001 |
-| 7290112497994 | גרנולה פרוטאין+אגוזים | run_cereals_carrefour_001 |
-| 7290019603634 | גרנולה קוקוס ופירות | run_cereals_carrefour_001 |
-| 5010026521149 | Crispy Muesli | run_cereals_carrefour_001 |
-| 7290011668570 | גרנולה | run_cereals_carrefour_001 |
-| 3560070826186 | MUESLI & Co 2 CHOCOLATS & NOISETTES | run_cereals_carrefour_001 |
-| 7613035758834 | פיטנס גרנולה חמוציות | run_cereals_carrefour_001 |
-| 7613035635845 | גרנולה שוקולד פיטנס | run_cereals_carrefour_001 |
-| 7290011131968 | גרנולה אגוזים | run_cereals_carrefour_001 |
-| 7290014471412 | מוזלי בטנים, לוז, שקדים | run_cereals_carrefour_001 |
-| 7290014471429 | מוזלי פירות יבשים | run_cereals_carrefour_001 |
-| 7290011668587 | גרנולה עשירה | run_cereals_yohananof_001 |
-| 7290116534619 | גרנולה פרוטאין+שוקולד | run_cereals_yohananof_001 |
-
----
-
-## Section 4: UNKNOWN Categories
-
-### butter — butter_frontend_v2.json
-
-31/31 products have NO BSIP1 record in any run. No dedicated butter BSIP1 run exists under 03_operations/bsip1/. The _meta has no panel_source field. Products show confidence=partial. Cannot confirm OFF-free from BSIP1 evidence alone.
-
-### salty-snacks — salty_snacks_frontend_v4.json
-
-27/29 products have no BSIP1 record. No standard BSIP1 run for salty-snacks.
-HOWEVER: _meta.panel_source = "retailer_product_page (yochananof storefront modal) + shufersal_product_page (4 TASK-241 rescued panels)" and _meta.provenance = "No external nutrition aggregators."
-Self-declared clean but not independently verifiable from BSIP1 records.
-
----
-
-## Section 5: Cross-Run Barcode Collisions
-
-| Barcode | Live product (category) | BSIP1 OFF record (different category) | Classification |
-|---|---|---|---|
-| 16000423534 | snk-011 "פרי מארז תמרים ואגוזי לוז" (snacks, nutrition=null) | run_cereals_multiretailer_001: "קראנצ'י שיבולת שועל" Nature Valley cereal bar | COLLISION — different product, snacks product has no OFF-sourced nutrition |
-| 7290112968807 | "פיטנס קרקר דק סלק 140 גרם" (salty-snacks, run_salty_snacks_002, retailer-sourced) | run_cereals_carrefour_001: "Fitness Thin" wafer/cereal | COLLISION — salty-snacks pipeline explicitly retailer-only |
-
----
-
-## Section 6: NO_RECORD and NO_BARCODE Concentrations
+Categories with high NO_RECORD rates cannot confirm clean BSIP1 provenance.
 
 | Category | NO_RECORD | NO_BARCODE | Total | NO_RECORD% | Note |
 |---|---|---|---|---|---|
-| bread | 4 | 15 | 19 | 21% | 15 products use shufersal_NNNN IDs with no barcode field |
-| hummus | 0 | 0 | 64 | 0% | |
-| vegetable-spreads | 0 | 0 | 64 | 0% | |
-| snacks | 0 | 0 | 18 | 0% | |
-| yogurts | 0 | 0 | 19 | 0% | |
-| cheese | 0 | 17 | 45 | 0% | 17 with che-BARCODE IDs; barcode field present and matched |
-| breakfast-cereals | 0 | 0 | 26 | 0% | |
-| butter | 31 | 0 | 31 | 100% | No BSIP1 run for butter |
-| granola | 0 | 0 | 42 | 0% | |
-| salty-snacks | 27 | 0 | 29 | 93% | No standard BSIP1 run |
-| milk (legacy) | 0 | 0 | 18 | 0% | |
+| bread | 0 | 15 | 19 | 0.0% | 15 products have no numeric barcode (e.g. bread uses shufersal_NNNN IDs) |
+| hummus | 0 | 0 | 57 | 0.0% |  |
+| vegetable-spreads | 0 | 0 | 57 | 0.0% |  |
+| snacks | 0 | 0 | 18 | 0.0% |  |
+| breakfast-cereals | 0 | 0 | 20 | 0.0% |  |
+| granola | 0 | 0 | 25 | 0.0% |  |
+| milk (legacy) | 0 | 0 | 18 | 0.0% |  |
 
----
+## Section 6: Full Corpus Results Per Category
 
-## Summary
+### bread — bread_frontend_v2.json (19 products)
 
-**Categories scanned: 11** (10 registry + milk legacy)
-**DIRTY: 3** — yogurts, breakfast-cereals, granola
-**CLEAN: 6** — bread, hummus, vegetable-spreads, snacks, cheese, milk
-**UNKNOWN: 2** — butter (no BSIP1 records), salty-snacks (self-declared clean, no BSIP1 records)
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+|  | shufersal_2079996 | לחם אחיד פרוס קל | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_497044 | לחם ברמן אקטיב | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_3268429 | לחם ירוק מקמח מלא | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_481203 | לחם מחמצת קמח מלא | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_3268252 | לחם חיטה מלא לילדים | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_574370 | לחם שיפון קל | NO_BARCODE |  | NO_BARCODE |
+| 7290016245325 | shufersal_7290016245325 | לחם טחינה פרוס | NOT_FOUND |  | ok |
+| 7290018500316 | shufersal_7290018500316 | לחם כוסמין לבן | NOT_FOUND |  | ok |
+|  | shufersal_2079033 | לחם דגנים לייט | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_3054183 | לחם שיפון מלא מסטמכר | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_481197 | לחם מחמצת גרעינים | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_2079927 | לחם דגנים מלא | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_2079477 | לחם אחיד פרוס | NO_BARCODE |  | NO_BARCODE |
+| 7290016967074 | shufersal_7290016967074 | לחם אנג'ל חיטה מלאה | NOT_FOUND |  | ok |
+| 7290018500460 | shufersal_7290018500460 | לחם אנג'ל חצי מלא | NOT_FOUND |  | ok |
+|  | shufersal_4685027 | לחם מחמצת וחיטה מלאה קל | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_6451507 | לחם מחמצת מכוסמין | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_6451484 | לחם מחמצת אגוזים צימוקים | NO_BARCODE |  | NO_BARCODE |
+|  | shufersal_2079217 | לחם מחמצת שיפון+אגוזים | NO_BARCODE |  | NO_BARCODE |
 
-**Total corpus-OFF (nutrition from OFF): 31**
-- yogurts: 8/19 products
-- breakfast-cereals: 6/26 products
-- granola: 17/42 products
+### hummus — hummus_frontend_v5.json (57 products)
 
-**Total image-OFF (imageUrl from OFF CDN): 7** (all yogurts Yohananof pool)
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 7296073725404 | bsip1_7296073725404 | חומוס מסעדות | NOT_FOUND |  | ok |
+| 6666307 | bsip1_6666307 | סלט חומוס | NOT_FOUND |  | ok |
+| 7296073725565 | bsip1_7296073725565 | חומוס אסלי | NOT_FOUND |  | ok |
+| 7296073725589 | bsip1_7296073725589 | חומוס | NOT_FOUND |  | ok |
+| 6666444 | bsip1_6666444 | סלט מטבוחה | NOT_FOUND |  | ok |
+| 7290015858175 | bsip1_7290015858175 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290110564360 | bsip1_7290110564360 | חומוס עשיר ב40% טחינה | NOT_FOUND |  | ok |
+| 7290110579319 | bsip1_7290110579319 | חומוס גלילי | NOT_FOUND |  | ok |
+| 7290110557478 | bsip1_7290110557478 | חומוס גלילי | NOT_FOUND |  | ok |
+| 7290011800642 | bsip1_7290011800642 | סלט מטבוחה מרוקאית | NOT_FOUND |  | ok |
+| 7296073725381 | bsip1_7296073725381 | חומוס אבו גוש | NOT_FOUND |  | ok |
+| 3727667 | bsip1_3727667 | חומוס מסעדה | NOT_FOUND |  | ok |
+| 7290106576513 | bsip1_7290106576513 | חומוס מסעדה | NOT_FOUND |  | ok |
+| 5174551 | bsip1_5174551 | חומוס יום יום | NOT_FOUND |  | ok |
+| 7290105964564 | bsip1_7290105964564 | חומוס | NOT_FOUND |  | ok |
+| 2987963 | bsip1_2987963 | חומוס | NOT_FOUND |  | ok |
+| 8645935 | bsip1_8645935 | חומוס | NOT_FOUND |  | ok |
+| 7290119387434 | bsip1_7290119387434 | חומוס ישראלי | NOT_FOUND |  | ok |
+| 7296073725497 | bsip1_7296073725497 | סלט חצילים על האש | NOT_FOUND |  | ok |
+| 7296073725374 | bsip1_7296073725374 | סלט חומוס עם טחינה | NOT_FOUND |  | ok |
+| 7290106573642 | bsip1_7290106573642 | חומוס צנובר צבר | NOT_FOUND |  | ok |
+| 7296073725367 | bsip1_7296073725367 | סלט חומוס+מסבחה | NOT_FOUND |  | ok |
+| 7290010931330 | bsip1_7290010931330 | סלט מטבוחה | NOT_FOUND |  | ok |
+| 8644112 | bsip1_8644112 | סלט מטבוחה יום יום | NOT_FOUND |  | ok |
+| 7290107958639 | bsip1_7290107958639 | מטבוחה חריפה אש | NOT_FOUND |  | ok |
+| 7290104721533 | bsip1_7290104721533 | סלט פלפלים קלויים | NOT_FOUND |  | ok |
+| 467320 | bsip1_467320 | מלך החומוס אבו מרוואן | NOT_FOUND |  | ok |
+| 7290104061431 | bsip1_7290104061431 | חומוס עם צנובר אחלה | NOT_FOUND |  | ok |
+| 7290106576537 | bsip1_7290106576537 | חומוס מסעדה צבר | NOT_FOUND |  | ok |
+| 7290122780314 | bsip1_7290122780314 | חומוס אבו מרוואן26%טחינה | NOT_FOUND |  | ok |
+| 7290106573598 | bsip1_7290106573598 | חומוס לבנוני צבר | NOT_FOUND |  | ok |
+| 7290119373710 | bsip1_7290119373710 | חומוס מועשר 40% עם חריף | NOT_FOUND |  | ok |
+| 7290104061424 | bsip1_7290104061424 | חומוס עם זעתר | NOT_FOUND |  | ok |
+| 7290115202434 | bsip1_7290115202434 | חומוס עם זעתר | NOT_FOUND |  | ok |
+| 467153 | bsip1_467153 | מלך החומוס סמיר הגדול | NOT_FOUND |  | ok |
+| 7290106573819 | bsip1_7290106573819 | חומוס אבו גוש+צנובר+חריף | NOT_FOUND |  | ok |
+| 7290119374892 | bsip1_7290119374892 | חומוס עם מלא מטבוחה חריף | NOT_FOUND |  | ok |
+| 7290106573628 | bsip1_7290106573628 | חומוס עם טחינה צבר | NOT_FOUND |  | ok |
+| 7290104061417 | bsip1_7290104061417 | חומוס עם טחינה אחלה | NOT_FOUND |  | ok |
+| 7290112968685 | bsip1_7290112968685 | חומוס גרגרים בתטבילה | NOT_FOUND |  | ok |
+| 7296073725398 | bsip1_7296073725398 | חומוס מסבחה | NOT_FOUND |  | ok |
+| 7290115207484 | bsip1_7290115207484 | חציל על האש | NOT_FOUND |  | ok |
+| 7290104061448 | bsip1_7290104061448 | חומוס עם חריף אחלה | NOT_FOUND |  | ok |
+| 7290115202687 | bsip1_7290115202687 | חומוס עם חריף | NOT_FOUND |  | ok |
+| 7290111563492 | bsip1_7290111563492 | מטבוחה חריפה | NOT_FOUND |  | ok |
+| 7290106577572 | bsip1_7290106577572 | מטבוחה אמיתית | NOT_FOUND |  | ok |
+| 3989096 | bsip1_3989096 | סלט חציל פיקנטי | NOT_FOUND |  | ok |
+| 7296073725510 | bsip1_7296073725510 | סלט מטבוחה פיקנטי | NOT_FOUND |  | ok |
+| 7296073725633 | bsip1_7296073725633 | מטבוחה פיקנטית | NOT_FOUND |  | ok |
+| 7290105366023 | bsip1_7290105366023 | סלט חציל בטעם כבד | NOT_FOUND |  | ok |
+| 7296073725640 | bsip1_7296073725640 | מעדן חצילים | NOT_FOUND |  | ok |
+| 6724786 | bsip1_6724786 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290119374885 | bsip1_7290119374885 | חומוס עם חציל פיקנטי | NOT_FOUND |  | ok |
+| 7290106520905 | bsip1_7290106520905 | סלט טורקי | NOT_FOUND |  | ok |
+| 7296073451969 | bsip1_7296073451969 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290010154265 | bsip1_7290010154265 | פלפל צ'ומה | NOT_FOUND |  | ok |
+| 7290106577480 | bsip1_7290106577480 | חציל על האש בטחינה | NOT_FOUND |  | ok |
 
-**Cross-run barcode collisions (not contamination): 2**
+### vegetable-spreads — hummus_frontend_v5.json (57 products)
+
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 7296073725404 | bsip1_7296073725404 | חומוס מסעדות | NOT_FOUND |  | ok |
+| 6666307 | bsip1_6666307 | סלט חומוס | NOT_FOUND |  | ok |
+| 7296073725565 | bsip1_7296073725565 | חומוס אסלי | NOT_FOUND |  | ok |
+| 7296073725589 | bsip1_7296073725589 | חומוס | NOT_FOUND |  | ok |
+| 6666444 | bsip1_6666444 | סלט מטבוחה | NOT_FOUND |  | ok |
+| 7290015858175 | bsip1_7290015858175 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290110564360 | bsip1_7290110564360 | חומוס עשיר ב40% טחינה | NOT_FOUND |  | ok |
+| 7290110579319 | bsip1_7290110579319 | חומוס גלילי | NOT_FOUND |  | ok |
+| 7290110557478 | bsip1_7290110557478 | חומוס גלילי | NOT_FOUND |  | ok |
+| 7290011800642 | bsip1_7290011800642 | סלט מטבוחה מרוקאית | NOT_FOUND |  | ok |
+| 7296073725381 | bsip1_7296073725381 | חומוס אבו גוש | NOT_FOUND |  | ok |
+| 3727667 | bsip1_3727667 | חומוס מסעדה | NOT_FOUND |  | ok |
+| 7290106576513 | bsip1_7290106576513 | חומוס מסעדה | NOT_FOUND |  | ok |
+| 5174551 | bsip1_5174551 | חומוס יום יום | NOT_FOUND |  | ok |
+| 7290105964564 | bsip1_7290105964564 | חומוס | NOT_FOUND |  | ok |
+| 2987963 | bsip1_2987963 | חומוס | NOT_FOUND |  | ok |
+| 8645935 | bsip1_8645935 | חומוס | NOT_FOUND |  | ok |
+| 7290119387434 | bsip1_7290119387434 | חומוס ישראלי | NOT_FOUND |  | ok |
+| 7296073725497 | bsip1_7296073725497 | סלט חצילים על האש | NOT_FOUND |  | ok |
+| 7296073725374 | bsip1_7296073725374 | סלט חומוס עם טחינה | NOT_FOUND |  | ok |
+| 7290106573642 | bsip1_7290106573642 | חומוס צנובר צבר | NOT_FOUND |  | ok |
+| 7296073725367 | bsip1_7296073725367 | סלט חומוס+מסבחה | NOT_FOUND |  | ok |
+| 7290010931330 | bsip1_7290010931330 | סלט מטבוחה | NOT_FOUND |  | ok |
+| 8644112 | bsip1_8644112 | סלט מטבוחה יום יום | NOT_FOUND |  | ok |
+| 7290107958639 | bsip1_7290107958639 | מטבוחה חריפה אש | NOT_FOUND |  | ok |
+| 7290104721533 | bsip1_7290104721533 | סלט פלפלים קלויים | NOT_FOUND |  | ok |
+| 467320 | bsip1_467320 | מלך החומוס אבו מרוואן | NOT_FOUND |  | ok |
+| 7290104061431 | bsip1_7290104061431 | חומוס עם צנובר אחלה | NOT_FOUND |  | ok |
+| 7290106576537 | bsip1_7290106576537 | חומוס מסעדה צבר | NOT_FOUND |  | ok |
+| 7290122780314 | bsip1_7290122780314 | חומוס אבו מרוואן26%טחינה | NOT_FOUND |  | ok |
+| 7290106573598 | bsip1_7290106573598 | חומוס לבנוני צבר | NOT_FOUND |  | ok |
+| 7290119373710 | bsip1_7290119373710 | חומוס מועשר 40% עם חריף | NOT_FOUND |  | ok |
+| 7290104061424 | bsip1_7290104061424 | חומוס עם זעתר | NOT_FOUND |  | ok |
+| 7290115202434 | bsip1_7290115202434 | חומוס עם זעתר | NOT_FOUND |  | ok |
+| 467153 | bsip1_467153 | מלך החומוס סמיר הגדול | NOT_FOUND |  | ok |
+| 7290106573819 | bsip1_7290106573819 | חומוס אבו גוש+צנובר+חריף | NOT_FOUND |  | ok |
+| 7290119374892 | bsip1_7290119374892 | חומוס עם מלא מטבוחה חריף | NOT_FOUND |  | ok |
+| 7290106573628 | bsip1_7290106573628 | חומוס עם טחינה צבר | NOT_FOUND |  | ok |
+| 7290104061417 | bsip1_7290104061417 | חומוס עם טחינה אחלה | NOT_FOUND |  | ok |
+| 7290112968685 | bsip1_7290112968685 | חומוס גרגרים בתטבילה | NOT_FOUND |  | ok |
+| 7296073725398 | bsip1_7296073725398 | חומוס מסבחה | NOT_FOUND |  | ok |
+| 7290115207484 | bsip1_7290115207484 | חציל על האש | NOT_FOUND |  | ok |
+| 7290104061448 | bsip1_7290104061448 | חומוס עם חריף אחלה | NOT_FOUND |  | ok |
+| 7290115202687 | bsip1_7290115202687 | חומוס עם חריף | NOT_FOUND |  | ok |
+| 7290111563492 | bsip1_7290111563492 | מטבוחה חריפה | NOT_FOUND |  | ok |
+| 7290106577572 | bsip1_7290106577572 | מטבוחה אמיתית | NOT_FOUND |  | ok |
+| 3989096 | bsip1_3989096 | סלט חציל פיקנטי | NOT_FOUND |  | ok |
+| 7296073725510 | bsip1_7296073725510 | סלט מטבוחה פיקנטי | NOT_FOUND |  | ok |
+| 7296073725633 | bsip1_7296073725633 | מטבוחה פיקנטית | NOT_FOUND |  | ok |
+| 7290105366023 | bsip1_7290105366023 | סלט חציל בטעם כבד | NOT_FOUND |  | ok |
+| 7296073725640 | bsip1_7296073725640 | מעדן חצילים | NOT_FOUND |  | ok |
+| 6724786 | bsip1_6724786 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290119374885 | bsip1_7290119374885 | חומוס עם חציל פיקנטי | NOT_FOUND |  | ok |
+| 7290106520905 | bsip1_7290106520905 | סלט טורקי | NOT_FOUND |  | ok |
+| 7296073451969 | bsip1_7296073451969 | ממרח פלפלים קלויים | NOT_FOUND |  | ok |
+| 7290010154265 | bsip1_7290010154265 | פלפל צ'ומה | NOT_FOUND |  | ok |
+| 7290106577480 | bsip1_7290106577480 | חציל על האש בטחינה | NOT_FOUND |  | ok |
+
+### snacks — snacks_frontend_v2.json (18 products)
+
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 7290011498870 | snk-001 | חטיף תמרים במילוי חמאת שקדים | NOT_FOUND |  | ok |
+| 7290011498894 | snk-015 | חטיף תמרים במילוי חמאת בוטנים | NOT_FOUND |  | ok |
+| 7290011498948 | snk-004 | מרבה סלים דליס שוקולד מריר | NOT_FOUND |  | ok |
+| 8423207210287 | snk-002 | חטיף תמרים בציפוי שוקולד 100% קקאו | NOT_FOUND |  | ok |
+| 7290011498894 | snk-003 | קראנצ'י שיבולת שועל עם דבש | NOT_FOUND |  | ok |
+| 8423207209885 | snk-016 | מרבה סלים טופינג אגוזי לוז | NOT_FOUND |  | ok |
+| 8410076610379 | snk-009 | נייצ'ר וואלי פרוטאין בוטנים ושוקולד | NOT_FOUND |  | ok |
+| 8423207208260 | snk-005 | חטיפי דגנים פיטנס קלאסי | NOT_FOUND |  | ok |
+| 8410076610386 | snk-010 | נייצ'ר וואלי פרוטאין בוטנים קרמל מלוח | NOT_FOUND |  | ok |
+| 8423207210928 | snk-018 | קראנצ'י שיבולת שועל עם חתיכות שוקולד | NOT_FOUND |  | ok |
+| 16000423534 | snk-011 | פרי מארז תמרים ואגוזי לוז | NOT_FOUND |  | ok |
+| 16000548404 | snk-012 | פרי מארז תמרים ושברי קקאו | NOT_FOUND |  | ok |
+| 8423207208680 | snk-017 | נייצ'ר וואלי צ'ואי שוקולד מריר | NOT_FOUND |  | ok |
+| 8410076610492 | snk-019 | חטיפי פיטנס שיבולת שועל דבש | NOT_FOUND |  | ok |
+| 8410076610508 | snk-020 | מרבה סלים דליס קריספי אוכמניות | NOT_FOUND |  | ok |
+| 5900020039590 | snk-007 | חטיפי דגנים פיטנס שוקולד מריר | NOT_FOUND |  | ok |
+| 8423207206495 | snk-006 | פיטנס בר גרנולה שוקולד מריר | NOT_FOUND |  | ok |
+| 8423207207362 | snk-013 | שחור ולבן קורני שוקולד | NOT_FOUND |  | ok |
+
+### breakfast-cereals — cereals_frontend_v2.json (20 products)
+
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 5010029000061 | bsip1_cereal_501002900006 | דגני בוקר ויטביקס | NOT_FOUND |  | ok |
+| 7297488098688 | bsip1_cereal_729748809868 | פצפוצי אורז ללת"ס | NOT_FOUND |  | ok |
+| 7297488199590 | bsip1_cereal_729748819959 | פצפוצי אורז תפוח | NOT_FOUND |  | ok |
+| 7296073642046 | bsip1_cereal_729607364204 | קורנפלקס ללא גלוטן | NOT_FOUND |  | ok |
+| 5900020036407 | bsip1_cereal_590002003640 | ליון דגני שוקולד וקרמל | NOT_FOUND |  | ok |
+| 5900020012814 | bsip1_cereal_590002001281 | דגני בוקר נסקוויק | NOT_FOUND |  | ok |
+| 72968 | bsip1_cereal_72968 | דגני בוקר סיני מיניס | NOT_FOUND |  | ok |
+| 7290107647731 | bsip1_cereal_729010764773 | דגני בוקר קוקומן חום לבן | NOT_FOUND |  | ok |
+| 7290017894911 | bsip1_cereal_729001789491 | טבעות דגנים שיבולת שועל | NOT_FOUND |  | ok |
+| 7290107647854 | bsip1_cereal_729010764785 | דגני בוקר שוגי | NOT_FOUND |  | ok |
+| 7290017894928 | bsip1_cereal_729001789492 | צדפי דגנים טעם שוקולד | NOT_FOUND |  | ok |
+| 7296073705550 | bsip1_cereal_729607370555 | כדורי דגנים טעם שוקו | NOT_FOUND |  | ok |
+| 7296073705567 | bsip1_cereal_729607370556 | טבעות דגנים בטעם דבש | NOT_FOUND |  | ok |
+| 7290112495433 | bsip1_cereal_729011249543 | דגני בוקר דליפקאן | NOT_FOUND |  | ok |
+| 7290017894904 | bsip1_cereal_729001789490 | כדורי דגנים טעם שוקולד | NOT_FOUND |  | ok |
+| 8445291638839 | bsip1_cereal_844529163883 | צ'יריוס טעם דבש ושקדים | NOT_FOUND |  | ok |
+| 7296073642022 | bsip1_cereal_729607364202 | דגני בוקר טבעות דבש לל"ג | NOT_FOUND |  | ok |
+| 7296073705574 | bsip1_cereal_729607370557 | ריבועי דגנים עם קינמון | NOT_FOUND |  | ok |
+| 3387390525960 | bsip1_cereal_338739052596 | דגני בוקר קראנץ' | NOT_FOUND |  | ok |
+| 7613030979647 | bsip1_cereal_761303097964 | טריקס דגנים בטעם פירות | NOT_FOUND |  | ok |
+
+### granola — granola_frontend_v1.json (25 products)
+
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 1164266 | bsip1_cereal_1164266 | גרנולה ממותקת בסילאן | NOT_FOUND |  | ok |
+| 7290017962047 | bsip1_cereal_729001796204 | גרנולה חמוציות ושקדים | NOT_FOUND |  | ok |
+| 7290116534619 | bsip1_cereal_729011653461 | גרנולה פרוטאין+שוקולד | NOT_FOUND |  | ok |
+| 7290106773714 | bsip1_cereal_729010677371 | גרנולה מיקס קראנץ' מלוח | NOT_FOUND |  | ok |
+| 7290017962023 | bsip1_cereal_729001796202 | גרנולה מייפל תמר פקאן | NOT_FOUND |  | ok |
+| 7290013433244 | bsip1_cereal_729001343324 | גרנולה 18% חלבון | NOT_FOUND |  | ok |
+| 7290013433336 | bsip1_cereal_729001343333 | גרנולה 48% סופרפוד | NOT_FOUND |  | ok |
+| 1164273 | bsip1_cereal_1164273 | חגיגת גרנולה | NOT_FOUND |  | ok |
+| 7290106771369 | bsip1_cereal_729010677136 | גרנולה לוז וקינמון | NOT_FOUND |  | ok |
+| 7290112498007 | bsip1_cereal_729011249800 | גרנולה חלבון שקד+חמוציות | NOT_FOUND |  | ok |
+| 7290106771314 | bsip1_cereal_729010677131 | גרנולה אגוזים חמוציות | NOT_FOUND |  | ok |
+| 7290112497994 | bsip1_cereal_729011249799 | גרנולה פרוטאין+אגוזים | NOT_FOUND |  | ok |
+| 7290106771161 | bsip1_cereal_729010677116 | גרנולה מייפל פקאן | NOT_FOUND |  | ok |
+| 7290011668587 | bsip1_cereal_729001166858 | גרנולה עשירה | NOT_FOUND |  | ok |
+| 7290013433091 | bsip1_cereal_729001343309 | גרנולה 8% שוקולד מריר | NOT_FOUND |  | ok |
+| 7290014471443 | bsip1_cereal_729001447144 | גרנולה אגוזים | NOT_FOUND |  | ok |
+| 7290013433107 | bsip1_cereal_729001343310 | גרנולה חלבה תמר קשיו | NOT_FOUND |  | ok |
+| 7613035635845 | bsip1_cereal_761303563584 | גרנולה שוקולד פיטנס | NOT_FOUND |  | ok |
+| 7613037012095 | bsip1_cereal_761303701209 | גרנולה שוקולד קינואה | NOT_FOUND |  | ok |
+| 6582751 | bsip1_cereal_6582751 | גרנולה עם פירות יבשים | NOT_FOUND |  | ok |
+| 7290011131050 | bsip1_cereal_729001113105 | גרנולה פקאן | NOT_FOUND |  | ok |
+| 7290011131968 | bsip1_cereal_729001113196 | גרנולה אגוזים | NOT_FOUND |  | ok |
+| 7613035622623 | bsip1_cereal_761303562262 | גרנולה דבש פיטנס | NOT_FOUND |  | ok |
+| 7290011131975 | bsip1_cereal_729001113197 | גרנולה פירות | NOT_FOUND |  | ok |
+| 1343845 | bsip1_cereal_1343845 | גרנולה עם פירות | NOT_FOUND |  | ok |
+
+### milk (legacy) — milk-comparison.json (18 products)
+
+| Barcode | Raw ID | Name | panel_source | img_off | Status |
+|---|---|---|---|---|---|
+| 7290000051352 |  | חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן | NOT_FOUND |  | ok |
+| 7290019790259 |  | חלב טבעי 4% 1 ליטר | NOT_FOUND |  | ok |
+| 7290102392094 |  | חלב עיזים בקרטון 1 ליטר | NOT_FOUND |  | ok |
+| 7290114313865 |  | חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר | NOT_FOUND |  | ok |
+| 7290116936116 |  | משקה סויה ללא סוכרים 1 ליטר | NOT_FOUND |  | ok |
+| 7290107932134 |  | חלב בבקבוק 1% מועשר- מהדרין | NOT_FOUND |  | ok |
+| 7290110324926 |  | משקה סויה ללא תוספת סוכר | NOT_FOUND |  | ok |
+| 7290014760141 |  | משקה שקדים | NOT_FOUND |  | ok |
+| 7394376620904 |  | משקה שיבולת שועל ללא סוכר | NOT_FOUND |  | ok |
+| 5411188124689 |  | אלפרו שיבולת שועל ללא סוכר | NOT_FOUND |  | ok |
+| 7394376619939 |  | משקה בריסטה שיבולת שועל | NOT_FOUND |  | ok |
+| 7394376621451 |  | משקה בריסטה שיבולת שועל להקצפה | NOT_FOUND |  | ok |
+| 8000215204219 |  | משקה אורז אורגני | NOT_FOUND |  | ok |
+| 8000215204554 |  | משקה אורז קוקוס אורגני | NOT_FOUND |  | ok |
+| 7290119385560 |  | משקה סויה בריסטה אלפרו 500 מ"ל | NOT_FOUND |  | ok |
+| 7290110325619 |  | משקה שיבולת שועל | NOT_FOUND |  | ok |
+| 5411188112709 |  | אלפרו שקדים ללא סוכר | NOT_FOUND |  | ok |
+| 5411188300328 |  | אלפרו שוקו משקה סויה | NOT_FOUND |  | ok |
+

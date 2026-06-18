@@ -2,12 +2,10 @@
   "_comment": "Granola category config. Granola is a SUB-POOL of the shared breakfast cereals corpus — the split is expressed via subpool_filter on bsip_cereal_subtype=granola. Corpus: run_cereals_005 (66 products, Shufersal) + run_cereals_multiretailer_001 (37 products, Carrefour/Yochananof), ordered by priority. Run: run_cereals_008 (63 shufersal traces) + run_cereals_multiretailer_001 (37 multi-retailer traces). Only traces whose BSIP1 record has bsip_cereal_subtype=granola are displayed. The _meta.subpool_filter documents this split so G3 can enumerate it. Discovered via: granola.ts imports granola-page-data.ts which imports granola_frontend_v1.json; provenance: 'run_cereals_005 granola sub-pool + run_cereals_multiretailer_001 EV-045'.",
   "category": "granola",
   "corpus_dirs": [
-    "C:\\Bari\\03_operations\\bsip1\\run_cereals_005\\output",
-    "C:\\Bari\\03_operations\\bsip1\\run_cereals_multiretailer_001\\output"
+    "C:\\Bari\\03_operations\\bsip1\\run_cereals_005\\output"
   ],
   "run_products_dir": [
-    "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008\\products",
-    "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_multiretailer_001\\products"
+    "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008\\products"
   ],
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\granola_frontend_v1.json",
   "retailer_scope": ["shufersal", "carrefour", "yohananof"],

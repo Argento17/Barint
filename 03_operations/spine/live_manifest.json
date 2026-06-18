@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "generated": "2026-06-11T16:29:20+00:00",
+    "generated": "2026-06-18T10:30:25+00:00",
     "source": "spine.db (TASK-252)",
     "entry_count": 13,
     "note": "trace_grade_distribution counts ALL traces of the run, including products blocked at frontend packaging."
@@ -17,44 +17,97 @@
       "sha256": "23b76362d2f03c4f0f77f629d4edae628fb03b9e1bdc390ad19f2a9fe948e833"
     },
     {
-      "data_file": "butter_frontend_v2.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\butter_frontend_v2.json",
-      "category": "butter",
+      "data_file": "bread_frontend_v3.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v3.json",
+      "category": "bread",
+      "version": null,
+      "run_id": null,
+      "product_count": 29,
+      "generated_at": "2026-06-18T00:00:00Z",
+      "sha256": "afed0a67f74f9043a30b69131f3dbdda22269ea47f4eea4390d8777a98286a59"
+    },
+    {
+      "data_file": "brined_cheeses_frontend_v2.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\brined_cheeses_frontend_v2.json",
+      "category": "brined_cheeses",
       "version": "v2",
-      "run_id": "butter_run_003",
-      "product_count": 31,
-      "generated_at": "2026-06-07T05:12:44.882524+00:00",
-      "sha256": "7f50dbacecf6e1c0f9ffdee79c569a5821a701d047b29cb7a45e454176fd2954"
+      "run_id": "run_brined_005",
+      "product_count": 36,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "6e091f83b09ac83592c1e1db1d112d129ae0346814e367f82442b7ac2188c285",
+      "trace_grade_distribution": {
+        "A": 9,
+        "B": 28,
+        "C": 9,
+        "D": 2
+      }
+    },
+    {
+      "data_file": "cakes_hard_cookies_frontend_v1.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cakes_hard_cookies_frontend_v1.json",
+      "category": "cakes",
+      "version": "v1",
+      "run_id": "run_cakes_shelfrel_001",
+      "product_count": 65,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "700c7ed02c8c474c647250897074a1024bc8663e5786c69e290202ed8bf02c27",
+      "trace_grade_distribution": {
+        "C": 5,
+        "D": 17,
+        "E": 127
+      }
     },
     {
       "data_file": "cereals_frontend_v2.json",
       "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cereals_frontend_v2.json",
       "category": "breakfast-cereals",
       "version": "v2",
-      "run_id": null,
-      "product_count": 34,
-      "generated_at": "2026-06-07T06:06:48.657195+00:00",
-      "sha256": "ce58827b28af84572e0df27e090b12585e9db6e1507569365f7842cf5ed6d6c7"
+      "run_id": "run_cereals_008",
+      "product_count": 20,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "5a7457e70d9ef6be451dcb82c46c7ffb832f0ca2d5e7990b443b6cc7ed72abbf",
+      "trace_grade_distribution": {
+        "B": 10,
+        "C": 19,
+        "D": 28,
+        "E": 6
+      }
     },
     {
-      "data_file": "cheese_frontend_v3.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cheese_frontend_v3.json",
+      "data_file": "cheese_frontend_v4.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cheese_frontend_v4.json",
       "category": "cheese-spreads",
-      "version": "v3",
+      "version": null,
       "run_id": null,
-      "product_count": 45,
-      "generated_at": "2026-06-07T06:18:30.757960+00:00",
-      "sha256": "5ef53809cf3cddf87366cb81aa2d0b138d930fc2f56404ec306eb2d7c7ae68e8"
+      "product_count": 53,
+      "generated_at": "2026-06-17T18:22:52Z",
+      "sha256": "0448795103616b684e7897ae4a06e824e23bb8caeabe516fb70de21df199cf43"
+    },
+    {
+      "data_file": "cookies_coffee_frontend_v2.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cookies_coffee_frontend_v2.json",
+      "category": "cookies_coffee",
+      "version": "v2",
+      "run_id": "run_cookies_005+run_cakes_001_cookies",
+      "product_count": 119,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "9c4fe11e2deca4a3f5e2f52c8bf4051149c3fd0f7e3dc395c3445448b979d9d7"
     },
     {
       "data_file": "granola_frontend_v1.json",
       "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\granola_frontend_v1.json",
       "category": "granola",
       "version": "v1",
-      "run_id": null,
-      "product_count": 42,
-      "generated_at": "2026-06-07T05:23:06.033439+00:00",
-      "sha256": "07ae7ec53f9713a4aef02af26347ea911466e9d9071c2b5e4f7f0828890995d5"
+      "run_id": "run_cereals_008",
+      "product_count": 25,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "125333d666861ee885b80c7db15f3d94ec4eee67242839fb88a675afa861bac4",
+      "trace_grade_distribution": {
+        "B": 10,
+        "C": 19,
+        "D": 28,
+        "E": 6
+      }
     },
     {
       "data_file": "hard_cheeses_frontend_v2.json",
@@ -62,9 +115,9 @@
       "category": "hard_cheeses",
       "version": "v2",
       "run_id": "run_hard_cheeses_yohananof_001",
-      "product_count": 30,
+      "product_count": 28,
       "generated_at": "2026-06-08T17:01:21.766299+00:00",
-      "sha256": "409ec39f2356961c8d0d8e4b11d219ce96c5812484eaa05c739831b12c4a98ad",
+      "sha256": "c9bdfaea540feeb0a4d1d90eba4c51ea27b8b6d3ac10ec796e96b9db2100c2b0",
       "trace_grade_distribution": {
         "B": 9,
         "D": 21,
@@ -76,53 +129,36 @@
       "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hummus_frontend_v5.json",
       "category": "hummus",
       "version": "v5-glassbox_w4",
-      "run_id": null,
-      "product_count": 64,
-      "generated_at": "2026-06-05T05:35:54.160169+00:00",
-      "sha256": "6f823f59d515f6860444c533f9a03b7c87ff03f3a34e36d8de63e6bf96bd5cd9"
+      "run_id": "run_hummus_shelfrel_002",
+      "product_count": 57,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "2cf858e9711dd332ca99d4861056d077e2926cd61d927d4a7715bd20a0362715"
     },
     {
       "data_file": "juices_frontend_v3.json",
       "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\juices_frontend_v3.json",
       "category": "juices",
       "version": "v3",
-      "run_id": "run_juices_yohananof_002",
-      "product_count": 20,
-      "generated_at": "2026-06-07T17:47:07.827153+00:00",
-      "sha256": "56d0538063967564dfb898fa043f4ed2d76e1d379c2209a63b3d391d280de88b",
+      "run_id": "run_juices_shelfrel_001",
+      "product_count": 21,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "de781881e0e663c957728fd9d2b9df36dab764b02b9a73be3635c427c565b0b9",
       "trace_grade_distribution": {
         "A": 14,
-        "C": 2,
+        "C": 4,
         "D": 8,
-        "E": 4
+        "E": 6
       }
     },
     {
-      "data_file": "maadanim_frontend_v3.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\maadanim_frontend_v3.json",
-      "category": "maadanim",
-      "version": "v3-glassbox_w4",
-      "run_id": null,
-      "product_count": 77,
-      "generated_at": "2026-06-05T05:35:54.160169+00:00",
-      "sha256": "b472d8219e30a9e0711b1f2b5c1aa5e61e7be885e478bbbc38f92171314b2c02"
-    },
-    {
-      "data_file": "salty_snacks_frontend_v4.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\salty_snacks_frontend_v4.json",
-      "category": "salty-snacks",
-      "version": "v4",
-      "run_id": "run_salty_snacks_002",
-      "product_count": 29,
-      "generated_at": "2026-06-10T17:04:35.963558+00:00",
-      "sha256": "68e16c50728a3fdb12390bb1cfbc0b8fe4fe0a41485fa4961604da8b1e63a81c",
-      "trace_grade_distribution": {
-        "A": 7,
-        "B": 16,
-        "C": 18,
-        "D": 9,
-        "E": 4
-      }
+      "data_file": "milk_frontend_v1.json",
+      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\milk_frontend_v1.json",
+      "category": "milk",
+      "version": "v1",
+      "run_id": "run_005_headpin",
+      "product_count": 18,
+      "generated_at": "2026-06-17T00:00:00+00:00",
+      "sha256": "251629ae1f392827db8fcae76db3ffabe14a33374c7a5440ba5ecf4dc301809a"
     },
     {
       "data_file": "snacks_frontend_v2.json",
@@ -133,34 +169,6 @@
       "product_count": 18,
       "generated_at": "2026-05-29T00:00:00Z",
       "sha256": "f969d6dea433ce456c0884e96a15f977a8441bdc6089425cea15f5ab8ef8f291"
-    },
-    {
-      "data_file": "yogurts_frontend_v3.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\yogurts_frontend_v3.json",
-      "category": "yogurts",
-      "version": "v3",
-      "run_id": null,
-      "product_count": 19,
-      "generated_at": "2026-06-07T06:18:30.750857+00:00",
-      "sha256": "dc4549d16f3147535b5102730d0417a2da9b0276cdd1650dd616472387dbe92f"
-    },
-    {
-      "data_file": "yogurts_frontend_v4.json",
-      "path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\yogurts_frontend_v4.json",
-      "category": "yogurts",
-      "version": "v4",
-      "run_id": "run_yogurt_006",
-      "product_count": 88,
-      "generated_at": "2026-06-11T12:29:19.755162+00:00",
-      "sha256": "2c1e84a233402fd4da6ef1c9d2ee088ad1f95f456d6ab1cf6af751b2ebd340b0",
-      "trace_grade_distribution": {
-        "A": 12,
-        "B": 31,
-        "C": 19,
-        "D": 23,
-        "E": 1,
-        "S": 2
-      }
     }
   ]
 }

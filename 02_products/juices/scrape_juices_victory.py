@@ -40,7 +40,7 @@ sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 sys.path.insert(0, r"C:\Bari")
 
-from integrations.clients import open_food_facts as off
+# OFF import removed (TASK-238 hard rule): no Open Food Facts fallback. Empty panels stay NULL.
 
 # ---------------------------------------------------------------------------
 # Config
@@ -369,29 +369,9 @@ def run_off_fallback(run_report: list[dict]) -> None:
         and r.get("nutrition") in ("tab_missing", "dialog_missing", "not_found",
                                    "captured_but_nearly_empty")
     ]
-    print(f"\nOFF fallback: {len(nutrition_empty)} products with empty nutrition panel")
-
-    for r in nutrition_empty:
-        try:
-            p = off.get_product(r["barcode"])
-            r["off_panel"] = {
-                "found": p.found,
-                "has_panel": p.has_panel,
-                "name": p.name,
-                "nutriments": p.nutriments if p.found else {},
-                "ingredients_text": p.ingredients_text if p.found else "",
-            }
-            if p.found and p.has_panel:
-                r.setdefault("provenance", {})
-                r["provenance"]["nutrition_source"] = "off_api"
-                r["provenance"]["ingredients_source"] = "off_api"
-                print(f"  OFF hit: {r['barcode']} | {r.get('name', '')[:40]}")
-            else:
-                print(f"  OFF miss: {r['barcode']}")
-        except Exception as e:
-            r["off_panel"] = {"found": False, "error": str(e)[:100]}
-            print(f"  OFF error: {r['barcode']} — {e}")
-        time.sleep(0.3)
+    # OFF fallback REMOVED (TASK-238 hard rule, project-wide). Empty panels stay NULL —
+    # there is no second nutrition source. "Unknown is acceptable; OFF is not."
+    print(f"\n{len(nutrition_empty)} products with empty nutrition panel — left NULL (no OFF fallback)")
 
 
 # ---------------------------------------------------------------------------
