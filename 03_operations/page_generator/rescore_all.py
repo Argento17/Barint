@@ -9,7 +9,7 @@ compute_from_corpus), scores BSIP1 corpus, C10 milk gate, generate_page
 
 Owner direction (2026-06-16): CANONICAL RE-BASELINE mode.
   - Score moves vs live are EXPECTED and reported, NOT treated as failures.
-  - Only these are hard gate failures: error / OFF>0 / C10 milk delta>0.001.
+  - Hard gate failures: error / OFF>0. (C10 milk-freeze RETIRED 2026-06-17 — diagnostic only.)
 
 C10 milk gate (fixed, v2):
   The milk headpin (run_005_headpin) was frozen with milk-canonical flags:
@@ -795,7 +795,8 @@ def process_shelf(config_path: Path) -> ShelfResult:
 
 
 # ---------------------------------------------------------------------------
-# Hard gate: only error / OFF / C10 are failures.
+# Hard gate: only error / OFF are failures. (C10 milk-freeze RETIRED 2026-06-17 →
+# diagnostic only; owner lifted the freeze, milk conforms as a normal shelf.)
 # Score/grade moves vs live are expected in canonical re-baseline mode.
 # ---------------------------------------------------------------------------
 
@@ -805,8 +806,11 @@ def shelf_hard_failed(result: ShelfResult) -> bool:
         return True
     if result.off_count > 0:
         return True
-    if not result.c10_pass:
-        return True
+    # C10 milk-freeze gate RETIRED 2026-06-17 — owner lifted the CNO milk freeze
+    # ("I don't mind the rescoring; scores don't matter, only uniformity"; see memory
+    # zero_different_category_mandate). Milk now conforms as a normal shelf. The C10 delta
+    # is STILL computed + printed + recorded (a useful DIAGNOSTIC for cross-shelf flag
+    # perturbation, shown in the acceptance table), but it no longer HARD-FAILS the rescore.
     return False
 
 

@@ -1,0 +1,37 @@
+{
+  "_comment": "Milk category config finalized for uniform spine (P200 / TASK-321 Wave 3). baseline_json=null, render_fields=cheese mirror, scoring.flags kept as MILK_CANONICAL_FLAGS (reproduces published run_005_headpin scores).",
+  "category": "milk-comparison",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_006_shelfrel_refreeze\\products",
+  "baseline_json": null,
+  "retailer_scope": null,
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+    "corpus_filter": null,
+    "_source": "MILK_CANONICAL_FLAGS (rescore_all.py); run_006_shelfrel_refreeze reproduces run_005_headpin 85/A under the current blessed engine"
+  },
+  "exclusions": [],
+  "extension_fields": ["_subPool", "_novaGroup"],
+  "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
+  "_status": "READY — spine-runnable"
+}
