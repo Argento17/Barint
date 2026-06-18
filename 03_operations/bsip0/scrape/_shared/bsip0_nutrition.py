@@ -391,6 +391,9 @@ def extract_nutrition_raw(soup) -> dict:
 # Tokens that mark a value as a "less-than" upper bound ("פחות מ 0.5", "< 0.5", "עד 0.5").
 _LESS_THAN_MARKERS = ("פחות מ", "פחות", "פחותמ", "<", "עד ", "מתחת ל")
 
+# Number extraction regex for retailer-agnostic parsers
+_NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
+
 
 def parse_value_bound(raw) -> tuple[float | None, bool]:
     """Parse a raw Hebrew nutrition value → ``(value, is_upper_bound)``.
@@ -827,3 +830,355 @@ def composition_nutrition_report(products: list[dict], fail_pct: float = 5.0) ->
         "implausible_pct": pct,
         "examples": flagged[:8],
     }
+
+
+# ── Retailer-agnostic HTML auto-detection (TASK-240 #4 / TASK-247 / P-04) ───────
+#
+# NOTE: the original commit (5b295f8c) was mislabeled "TASK-239" (already CLOSED);
+# this work belongs to TASK-240 item #4. TASK-247 brought the Yohananof parser to
+# Victory's invariant parity (verbatim basis, unknown→insufficient, unit-in-label).
+#
+# Different retailers render nutrition panels in different HTML structures:
+#   Shufersal   : div.nutritionList  (handled above by extract_nutrition_tables)
+#   Victory     : section.nutrition-values > div.table-wrapper  (text-grid)
+#   Yohananof   : #simple-tabpanel-1 li  (Bootstrap tabpanel)
+#   Carrefour   : (disabled / OFF-banned; not handled here)
+#
+# ``extract_nutrition_raw_auto`` auto-detects the format and dispatches to the
+# appropriate parser.  The output schema is the same as ``extract_nutrition_raw``.
+
+_VICTORY_LABEL_MAP: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"אנרגיה\s*\(קלוריות\)"), "energy"),
+    (re.compile(r"שומנים\s*\(גרם\)"), "fat"),
+    (re.compile(r"מתוכם\s*חומצות\s*שומן\s*רוויות"), "saturated_fat"),
+    (re.compile(r"פחמימות\s*\(גרם\)|סך\s*הפחמימות"), "carbs"),
+    (re.compile(r"סוכרים\s*\(גרם\)|מתוכם\s*סוכרים"), "sugar"),
+    (re.compile(r"סיבים\s*תזונתיים"), "fiber"),
+    (re.compile(r"חלבונים\s*\(גרם\)"), "protein"),
+    (re.compile(r"נתרן\s*\(מג\)"), "sodium"),
+]
+
+_YOHANANOF_LABEL_MAP: list[tuple[str, str]] = [
+    ("אנרגיה", "energy"),
+    ("שומנים", "fat"),
+    ("חומצות שומן רוויות", "saturated_fat"),
+    ("חומצות שומן טראנס", "trans_fat"),
+    ("כולסטרול", "cholesterol"),
+    ("נתרן", "sodium"),
+    ("סך הפחמימות", "carbs"),
+    ("סוכרים מתוך פחמימות", "sugar"),
+    ("מתוכן כפיות סוכר", "sugar_teaspoons"),
+    ("סיבים תזונתיים", "fiber"),
+    ("חלבונים", "protein"),
+]
+
+# Milligram markers in every rendered quote form: bare ``מג``, Hebrew gershayim
+# ``מ״ג`` (U+05F4) and ASCII-quote ``מ"ג`` (U+0022). All three must be matched, or a
+# value/label in mg is mislabeled ``גרם`` and the downstream sodium heuristic
+# (``value > 10`` ⇒ already-mg) over-multiplies a small mg value ×1000. (TASK-247 #4.)
+_MG_MARKERS = ('מ"ג', "מ״ג", "מג")
+_KCAL_MARKERS = ("קלוריות", "קל")
+
+
+def _sniff_unit(*texts: str) -> str:
+    """Infer the physical unit (``מג`` | ``קל`` | ``גרם``) from label/value text.
+
+    Victory carries the unit in the value cell (``16000 מ"ג``); Yohananof carries it
+    in the label parenthetical (``נתרן (מג)``) while the value is a bare number — so
+    callers pass whichever text(s) may hold it. milligrams is checked across all
+    three quote forms so mg is never silently demoted to grams.
+    """
+    blob = " ".join(t for t in texts if t)
+    if any(m in blob for m in _MG_MARKERS):
+        return "מג"
+    if any(m in blob for m in _KCAL_MARKERS):
+        return "קל"
+    return "גרם"
+
+
+# Yohananof serving-basis caption rules. The basis is a short standalone label
+# rendered OUTSIDE #simple-tabpanel-1 (e.g. ``ל100 גרם``). It is read VERBATIM and
+# NEVER synthesized; price strings (``₪ / 100 גרם``) are excluded so they cannot
+# masquerade as a basis.
+_YO_BASIS_RULES: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"100\s*גרם"), "per_100g"),
+    (re.compile(r"100\s*מ[\"״׳']?\s*ל"), "per_100ml"),
+    (re.compile(r"למנה|ליחידה"), "per_serving"),
+]
+
+
+def _find_yohananof_basis(soup) -> tuple[str, str]:
+    """Read the Yohananof serving-basis caption VERBATIM from the page.
+
+    Returns ``(verbatim_header_text, basis_type)``. The caption lives outside
+    ``#simple-tabpanel-1`` as a short standalone label. Price strings (``₪ / 100
+    גרם``) and long sentences are skipped. If no basis caption is present — or two
+    different bases conflict — returns ``("", "unknown")``. The basis is NEVER
+    synthesized: if the page does not state it, it is unknown (→ insufficient).
+    """
+    found: list[tuple[str, str]] = []
+    for node in soup.find_all(string=re.compile(r"100\s*גרם|100\s*מ|למנה|ליחידה")):
+        text = re.sub(r"\s+", " ", str(node)).strip()
+        if not text or "₪" in text or "/" in text:
+            continue
+        if len(text) > 30:  # a basis caption is a short label, not a sentence
+            continue
+        for pat, basis in _YO_BASIS_RULES:
+            if pat.search(text):
+                found.append((text, basis))
+                break
+    if not found:
+        return "", "unknown"
+    if len({b for _, b in found}) > 1:  # conflicting bases on one page → ambiguous
+        return "", "unknown"
+    return found[0]
+
+
+def _parse_victory_nutrition(soup) -> dict:
+    """Parse a Victory ``section.nutrition-values`` HTML table panel.
+
+    Victory renders nutrition as a table inside::
+
+        <section class="nutrition-values">
+          <div class="table-wrapper">
+            <div class="title">??? ????</div>
+            <table>
+              <thead>
+                <tr><th>???? ????</th><th>?-100 ??
+              <tbody>
+                <tr><th>????? (???????)</th><td>16000 ????????</td></tr>
+                ...
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+    The label column is ``<th>``, the value column is ``<td>``.
+    The value-column header (e.g. ``?-100 ??"``) carries the serving basis.
+
+    Returns the same ``extract_nutrition_raw`` output schema.
+    """
+    sec = soup.find("section", class_="nutrition-values")
+    if not sec:
+        return {"rows": [], "tables": [], "selection": {"selected_basis": "none",
+                "selected_table_index": None, "selected_table_header": "",
+                "competing_table_count": 0, "insufficient": False}, "html": ""}
+
+    # ── Count tables in section ─────────────────────────────────────────────────
+    tables_in_section = sec.find_all("table")
+    n_tables = len(tables_in_section)
+    if n_tables == 0:
+        return {"rows": [], "tables": [], "selection": {"selected_basis": "none",
+                "selected_table_index": None, "selected_table_header": "",
+                "competing_table_count": 0, "insufficient": False}, "html": ""}
+    if n_tables > 1:
+        # Multi-table Victory: cannot safely choose → insufficient
+        return {"rows": [], "tables": [],
+                "selection": {"selected_basis": "unknown",
+                              "selected_table_index": None,
+                              "selected_table_header": "",
+                              "competing_table_count": n_tables,
+                              "insufficient": True},
+                "html": str(sec)}
+
+    table = tables_in_section[0]
+
+    # ── Extract the value-column header (basis label) ────────────────────────────
+    basis = "unknown"
+    value_header = ""
+    thead = table.find("thead")
+    if thead:
+        header_cells = thead.find_all(["th", "td"])
+        n_headers = len(header_cells)
+        if n_headers > 2:
+            # Opaque multi-column layout: cannot safely pair last-header basis
+            # with a first-td value.
+            return {"rows": [], "tables": [],
+                    "selection": {"selected_basis": "unknown",
+                                  "selected_table_index": None,
+                                  "selected_table_header": "",
+                                  "competing_table_count": n_tables,
+                                  "insufficient": True},
+                    "html": str(sec)}
+        value_header = header_cells[-1].get_text(" ", strip=True) if header_cells else ""
+    else:
+        header_cells = table.find_all("th") or table.select("tr:first-child td")
+        value_header = header_cells[-1].get_text(" ", strip=True) if header_cells else ""
+
+    if "100 גרם" in value_header or "ל-100 גרם" in value_header:
+        basis = "per_100g"
+    elif "100 מ״ל" in value_header or "ל-100 מ״ל" in value_header:
+        basis = "per_100ml"
+    elif "למנה" in value_header or "ליחידה" in value_header:
+        basis = "per_serving"
+
+    if basis == "unknown":
+        return {"rows": [], "tables": [],
+                "selection": {"selected_basis": "unknown",
+                              "selected_table_index": None,
+                              "selected_table_header": value_header,
+                              "competing_table_count": n_tables,
+                              "insufficient": True},
+                "html": str(sec)}
+
+    # ── Parse data rows (label = <th>, value = <td>) ────────────────────────────
+    rows: list[dict[str, str]] = []
+    for tr in table.find_all("tr"):
+        label_cell = tr.find("th")
+        value_cell = tr.find("td")
+        if not label_cell or not value_cell:
+            continue
+        # Structural assertion: a data row with >1 <td> is ambiguous
+        if len(tr.find_all("td")) > 1:
+            return {"rows": [], "tables": [],
+                    "selection": {"selected_basis": "unknown",
+                                  "selected_table_index": None,
+                                  "selected_table_header": value_header,
+                                  "competing_table_count": n_tables,
+                                  "insufficient": True},
+                    "html": str(sec)}
+
+        label_text = label_cell.get_text(" ", strip=True)
+        value_text = value_cell.get_text(" ", strip=True).replace("\xa0", " ").strip()
+
+        for pattern, field in _VICTORY_LABEL_MAP:
+            if pattern.search(label_text):
+                val_match = _NUM_RE.search(value_text.replace(",", "."))
+                if val_match:
+                    raw_val = val_match.group(1)
+                    unit = _sniff_unit(value_text)
+                    rows.append({"value": raw_val, "label": field, "unit": unit})
+                break
+
+    html = str(sec)
+    return {
+        "rows": rows,
+        "tables": [{"table_index": 0, "basis": basis,
+                     "subInfo": value_header, "rows": rows}],
+        "selection": {"selected_basis": basis,
+                      "selected_table_index": 0 if rows else None,
+                      "selected_table_header": value_header,
+                      "competing_table_count": n_tables,
+                      "insufficient": not rows},
+        "html": html,
+    }
+
+
+def _parse_yohananof_nutrition(soup) -> dict:
+    """Parse a Yohananof ``#simple-tabpanel-1`` Bootstrap tabpanel.
+
+    Each ``<li>`` carries the field label in a ``<span>`` and the value as the li's
+    trailing text node; the physical unit is encoded in the label parenthetical
+    (``נתרן (מג)``), not in the bare value. The serving basis is a separate caption
+    read VERBATIM by ``_find_yohananof_basis`` — it is NEVER synthesized.
+
+    Mirrors the Victory invariants (TASK-240 #4 / TASK-247):
+      * unknown basis → ``insufficient=True``, ``rows=[]`` — no silent-accept of
+        unknown-basis rows;
+      * a structurally ambiguous row (>1 numeric token after the label) → the whole
+        panel is rejected as insufficient;
+      * ``selected_table_header`` / ``subInfo`` record the verbatim page header — an
+        empty string when the page states no basis, never a fabricated literal.
+
+    Returns the same ``extract_nutrition_raw`` output schema.
+    """
+    tabpanel = soup.select_one("#simple-tabpanel-1")
+    if not tabpanel:
+        return {"rows": [], "tables": [], "selection": {"selected_basis": "none",
+                "selected_table_index": None, "selected_table_header": "",
+                "competing_table_count": 0, "insufficient": False}, "html": ""}
+
+    value_header, basis = _find_yohananof_basis(soup)
+    html = str(tabpanel)
+
+    def _insufficient() -> dict:
+        return {"rows": [], "tables": [],
+                "selection": {"selected_basis": "unknown",
+                              "selected_table_index": None,
+                              "selected_table_header": value_header,
+                              "competing_table_count": 1,
+                              "insufficient": True},
+                "html": html}
+
+    # Unknown basis MUST reject (match Victory) — never silent-accept unknown-basis rows.
+    if basis == "unknown":
+        return _insufficient()
+
+    rows: list[dict[str, str]] = []
+    for li in tabpanel.select("li"):
+        label_el = li.select_one("span")
+        if not label_el:
+            continue
+        label = label_el.get_text(" ", strip=True)
+        full = li.get_text(" ", strip=True)
+        value_text = full.replace(label, "", 1).strip() if label else full
+        nums = _NUM_RE.findall(value_text.replace(",", "."))
+        # Structural guard: a single nutrition row carries exactly one value token.
+        if len(nums) > 1:
+            return _insufficient()
+        if not nums:
+            continue
+        raw_val = nums[0]
+        for he_label, field in _YOHANANOF_LABEL_MAP:
+            if he_label in label:
+                # Unit lives in the LABEL for Yohananof (value is a bare number).
+                unit = _sniff_unit(label, value_text)
+                rows.append({"value": raw_val, "label": field, "unit": unit})
+                break
+
+    return {
+        "rows": rows,
+        "tables": [{"table_index": 0, "basis": basis,
+                     "subInfo": value_header, "rows": rows}],
+        "selection": {"selected_basis": basis,
+                      "selected_table_index": 0 if rows else None,
+                      "selected_table_header": value_header,
+                      "competing_table_count": 1,
+                      "insufficient": not rows},
+        "html": html,
+    }
+
+
+# Detected HTML format cache key (string constant for comparison)
+_SHUFERSAL_FORMAT = "shufersal"
+_VICTORY_FORMAT = "victory"
+_YOHANANOF_FORMAT = "yohananof"
+_UNKNOWN_FORMAT = "unknown"
+
+
+def _detect_html_format(soup) -> str:
+    """Detect which retailer's nutrition panel a BeautifulSoup page uses."""
+    if soup.find_all("div", class_="nutritionList"):
+        return _SHUFERSAL_FORMAT
+    if soup.find("section", class_="nutrition-values"):
+        return _VICTORY_FORMAT
+    if soup.select_one("#simple-tabpanel-1"):
+        return _YOHANANOF_FORMAT
+    return _UNKNOWN_FORMAT
+
+
+def extract_nutrition_raw_auto(soup) -> dict:
+    """Auto-detect the retailer HTML format and extract nutrition.
+
+    Dispatches to the correct parser:
+      - Shufersal ``div.nutritionList`` → ``extract_nutrition_raw``
+      - Victory ``section.nutrition-values`` → ``_parse_victory_nutrition``
+      - Yohananof ``#simple-tabpanel-1`` → ``_parse_yohananof_nutrition``
+
+    Returns the same unified output schema::
+
+        {"rows": [...], "tables": [...], "selection": {...}, "html": "..."}
+
+    The output is suitable for passing to ``parse_nutrition_rows`` and for
+    the BSIP0 gate's G2/G3 basis checks.
+    """
+    fmt = _detect_html_format(soup)
+    if fmt == _SHUFERSAL_FORMAT:
+        return extract_nutrition_raw(soup)
+    if fmt == _VICTORY_FORMAT:
+        return _parse_victory_nutrition(soup)
+    if fmt == _YOHANANOF_FORMAT:
+        return _parse_yohananof_nutrition(soup)
+    return {"rows": [], "tables": [], "selection": {"selected_basis": "unknown",
+            "selected_table_index": None, "selected_table_header": "",
+            "competing_table_count": 0, "insufficient": True}, "html": ""}
