@@ -68,7 +68,7 @@ finding (cf. `butter_clustering_honest_finding`, `owner_s_grade_honesty_ruling`)
 - **Naming the disguise** — "קינוח בתחפושת", "מוצר מתוק שמקבל תדמית של ארוחה רק כי מוזגים עליו חלב".
 - **The respect line** — "הצרכן לא צריך להיות כימאי כדי להבין מה הוא קונה."
 - **The rhetorical mirror** (cakes) — "אם על האריזה היה כתוב מראש 'עוגת מדף עם רשימת רכיבים ארוכה ותוספי מזון רבים' — האם הייתם מתייחסים אליה אותו דבר?"
-- ★ **Rhetorical-question dismissal (Harvest #1, E002)** — for clearly-bad products: "שוגי? תחשוב שוב." The name becomes the question; the verdict is immediate. Use sparingly, only when the gap between name/fame and reality is the whole story.
+- ~~★ **Rhetorical-question dismissal (Harvest #1, E002)** — for clearly-bad products: "שוגי? תחשוב שוב." The name becomes the question; the verdict is immediate.~~ **RETIRED — Harvest #3 H3-R1.** This pattern attacks a brand by name and is banned. Bari critiques composition, not brand character. Replace with a direct composition statement: "82% קמח תירס מעובד, נתרן הגבוה ביותר בקטגוריה — זה מה שיש כאן."
 - ★ **Product-anchor precision (Harvest #1, E007, E011)** — "בעוגה הזאת יש 21 (!) תוספי מזון", not "כאן יש 21". Ground every count in the specific product. The "(!) " construction signals "stop and notice this number" without editorializing — use only for genuinely exceptional counts.
 - **הקשר במדף closer** — the shelf-context beat that closes every review. Not a one-liner; nuanced products earn two or three sentences.
 
@@ -126,7 +126,11 @@ Tom's edits confirm he wants more latitude.
 ---
 
 ## 8. Confidence / status
-- **v1.0 — confirmed and locked.** Traceable to S1–S3 + Harvest #1 (17 pairs, cakes, 2026-06-19) + Harvest #2 (4 rulings, cereals, 2026-06-19).
+- **v1.0 — confirmed and locked.** Traceable to S1–S3 + Harvest #1 (17 pairs, cakes, 2026-06-19) + Harvest #2 (4 rulings, cereals, 2026-06-19) + **Harvest #3 (3 rulings, cereals owner review, 2026-06-19)**.
 - Harvest #1 lessons fully promoted into this file (see §1 step 4, §2, §3, §5, §6).
 - Harvest #2 rulings fully encoded (see §1 step 7, §6 last two items).
+- **Harvest #3 rulings (ALL-SHELF):**
+  - **H3-R1 — HARD BAN: brand-directed dismissive rhetoric.** "שוגי? תחשוב שוב", "תחשבו שוב", any rhetorical attack on a brand by name is banned. Bari critiques the product's **composition**, never the brand's character. The rhetorical-question dismissal move (§3: "שוגי? תחשוב שוב") is **RETIRED** from the approved signature-move list. Owner ruling: "very negatively towards a brand, not where Bari wants to be." See file 5 banned-phrase table and HF-7 in file 7.
+  - **H3-R2 — HARD BAN: information-dumping.** No bare juxtaposition of facts without the finding. "הוויטמינים הוספו; הסיבים — לא" standing alone = dumping, not insight. Every line must carry the "so what." See file 5 banned-phrase table and HF-7 in file 7.
+  - **H3-R3 — RULE: no nutrition-fact tails in verdicts.** Raw per-100g data ("נתרן: 110 מיליגרם ל-100 גרם", "סוכר: 22.4 גרם ל-100 גרם") appended to insightLine/rowVerdict are banned. Numbers appear in verdicts ONLY when they ARE the finding (framed, comparative). Nutrition section carries the raw data; the verdict carries the interpretation. See file 5 banned-phrase table and HF-7 in file 7.
 - Open-confidence items still to watch: exact em-dash latitude (§7), how strong Positive-mode praise is allowed to get, whether rhetorical questions belong in short insight lines or only in intros.

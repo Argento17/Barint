@@ -171,6 +171,27 @@ of tier.
 
 ---
 
+### HF-7 — Brand-directed rhetoric, information-dumping, or nutrition-tail (Harvest #3 — ALL modes)
+
+**Criterion:** Any consumer-facing text (insightLine, rowVerdict, comparisonContext, intro sentences) that contains any of the following = FAIL:
+
+1. **Brand-directed dismissive rhetoric:** any pattern matching `"<brand-name>? תחשוב שוב"`, `"תחשבו שוב"`, or any sentence that attacks a brand's character by name. Detecting criterion: the brand/product name appears in the same sentence as a rhetorical dismissal. Applies to ALL shelf products regardless of how weak the score is.
+2. **Information-dumping:** a bare juxtaposition of two facts without an interpretive connector that names the finding or the "so what." Example fail: `"הוויטמינים הוספו; הסיבים — לא"` — this is a data dump, not a verdict. Example pass: `"הוויטמינים הגיעו מתוספת חיצונית — הדגן שיספק סיבים לא נמצא כאן"` (names the structural absence as the finding).
+3. **Nutrition-tail:** a `rowVerdict` or `insightLine` that ends with a standalone raw number in the format `"נתרן: X מיליגרם ל-100 גרם"` or `"סוכר: Y גרם ל-100 גרם"` — whether alone or as a comma-list. These numbers belong in the nutrition section, not the verdict. A number is allowed in a verdict only when it IS the finding (e.g., "435 מיליגרם נתרן — הגבוה ביותר בקטגוריה"), never as a trailing raw-data appendage.
+
+**Detection:**
+```
+# Brand rhetoric
+grep -E "(תחשוב שוב|תחשבו שוב)" <draft_file>
+# Nutrition tail
+grep -E "נתרן: [0-9]|סוכר: [0-9]" <rowVerdict_field>
+```
+Any match = FAIL.
+
+**Fix signal:** Remove the trailing data tail entirely from the verdict; reframe any bare fact-pair as a named finding; replace brand-rhetoric with a product-composition statement.
+
+---
+
 ### HF-6 — Code-token leakage in consumer output (Harvest #2, ruling #1 — ALL modes)
 
 **Criterion:** Any consumer-facing text (insight line, bullet, body paragraph, closing beat, headline) that contains any of the following = FAIL:
