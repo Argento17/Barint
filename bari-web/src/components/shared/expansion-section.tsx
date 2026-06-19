@@ -252,7 +252,9 @@ const FONT_BODY = {
   lineHeight: 1.5,
 } as const;
 
-// Plus: green ring + plus — mirrors DashGlyph shape/size/placement (issue #2)
+// Plus: exact mirror of DashGlyph (same ring geometry/size/placement, transparent
+// fill) with a green + in place of the dash. The earlier white-disc fill made it
+// read as a plain filled dot, not a "+" paired with the "−" (owner issue #2).
 function PlusGlyph() {
   return (
     <svg
@@ -262,20 +264,19 @@ function PlusGlyph() {
       aria-hidden
       className="shrink-0 mt-[1px]"
     >
-      {/* white disc so the green + reads on the light-green positive panel (issue #2 contrast) */}
       <circle
         cx="8"
         cy="8"
         r="7.2"
-        fill="#FFFFFF"
-        stroke="var(--bari-green-deep)"
-        strokeWidth="1.6"
+        fill="none"
+        stroke="var(--bari-green)"
+        strokeWidth="1.5"
       />
       <path
-        d="M8 4.6v6.8M4.6 8h6.8"
+        d="M8 5v6M5 8h6"
         fill="none"
         stroke="var(--bari-green-deep)"
-        strokeWidth="1.8"
+        strokeWidth="1.6"
         strokeLinecap="round"
       />
     </svg>
@@ -550,34 +551,11 @@ function AssessmentSection({
               }}
             >
               <DashGlyph />
-              {/* limBody wraps text + magnitude bar */}
-              <span style={{ flex: 1, minWidth: 0 }}>
-                {lf.text}
-                {/* Magnitude bar — R-03: 5px track, border-radius 4px */}
-                <span
-                  style={{
-                    display: "block",
-                    // R-03: 5px height
-                    height: "5px",
-                    borderRadius: "4px",
-                    background: "#E7E7E0",
-                    overflow: "hidden",
-                    marginTop: "7px",
-                  }}
-                  aria-hidden
-                >
-                  <i
-                    style={{
-                      display: "block",
-                      height: "100%",
-                      // R-03: 5px fill
-                      borderRadius: "4px",
-                      background: "#B9BEB7",
-                      width: lf.magnitude > 0 ? `${lf.magnitude * 100}%` : "0%",
-                    }}
-                  />
-                </span>
-              </span>
+              {/* Text only — the magnitude track was empty on every category
+                  (string magnitudes fail the numeric fill test), so it read as a
+                  stray underline that made the two columns' separators look
+                  mismatched (owner issue #1). Removed for column symmetry. */}
+              <span style={{ flex: 1, minWidth: 0 }}>{lf.text}</span>
             </div>
           ))
         ) : (
