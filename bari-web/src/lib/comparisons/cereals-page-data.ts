@@ -27,7 +27,7 @@ function isCerealsShelfFilterId(filter: string): filter is CerealsShelfFilterId 
 // the shelf-filters cast to CerealsCorpusProduct to access them. They are never
 // forwarded to any rendered JSX string.
 const { meta: cerealsCorpusMeta, products: cerealsProducts } =
-  loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
+  loadComparisonCorpus(rawCorpus as unknown as ComparisonCorpusRaw);
 
 export { cerealsCorpusMeta, cerealsProducts };
 
