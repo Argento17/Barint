@@ -234,16 +234,20 @@ acquire corpus data from authoritative sources instead of scraping storefronts:
 | Client | Use | Status |
 |---|---|---|
 | `il_prices` | Israeli price-transparency feeds — barcode, Hebrew name, brand, pack size, unit, price, per-store availability. Replaces fragile storefront scraping; widens corpus across chains. | Shufersal LIVE-VERIFIED; Cerberus chains (Rami Levy/Victory/Yochananof/...) flagged NEEDS-ENV-VERIFY |
-| `open_food_facts` | Product nutrition + ingredients + **front-of-pack image** by barcode. The feed gives the barcode → OFF gives a *candidate* panel. | LIVE-VERIFIED |
+| ~~`open_food_facts`~~ | **BANNED — do not use, ever.** Listed only so it is not re-added. OFF is forbidden project-wide for every field; the client stays disabled. | DISABLED (off_ban_hard_rule, TASK-238) |
 | `il_gov_data` | data.gov.il regulatory layer — imported-food products (32k, identity/importer), licensed manufacturers (legitimacy), official max-price list (backup price source). | LIVE-VERIFIED |
 | `dsld` | NIH supplement-label DB — structured ingredient rows for the **supplement corpus** (US data; generic actives/doses, not Israeli SKUs). | LIVE-VERIFIED |
 | `usda_fdc` | USDA FoodData Central — the **lab-measured generic-composition reference** for enrichment when a label is incomplete. `lookup(name, prefer_generic=True)` returns Foundation/SR-Legacy panels on the **same canonical per-100g keys** the rest of the pipeline uses, with a `provenance` stamp. Stays a candidate; never substitutes a SKU's scanned panel. Prefer it over Tzameret for values — **Tzameret is directional only** (known data-quality issues, not authoritative). | LIVE-VERIFIED (set `FDC_API_KEY`; `DEMO_KEY` is rate-limited) |
 
 **Guardrails.** Price feeds carry identity + price only — **never** nutrition; never
-treat a price-feed record as a scored panel. OFF is crowd-sourced — a panel from OFF is a
-*candidate* that still passes the normal BSIP0/QA gates, never a sealed source of truth. A
-barcode miss = "not found", never "no such product". These clients do not bypass any
-pipeline gate. **Provenance is mandatory (EDPG):** every ingestion client now stamps a
+treat a price-feed record as a scored panel. **Open Food Facts (OFF) is BANNED project-wide
+— never a source for ANY field (nutrition, ingredients, names, barcodes, images, serving
+sizes, category, fallback, enrichment — anything), ever. The OFF client stays disabled.** The
+**only** source for ingredients + nutrition is the **direct product scrape**: if it's parsed,
+use it; if not, the field is NULL and the page shows "data could not be retrieved." Never
+substitute OFF or any other source — *unknown is acceptable; OFF is not*. Any OFF dependency
+is a launch blocker (CLAUDE.md hard rule; off_ban_hard_rule; TASK-238). A barcode miss =
+"not found", never "no such product". These clients do not bypass any pipeline gate. **Provenance is mandatory (EDPG):** every ingestion client now stamps a
 `provenance` envelope (source / source_id / source_url / fetched_at / client_version /
 `verification_status=candidate`) — carry it into the run record, and **no external value
 reaches scoring until promoted to `verified` by a BSIP0/QA pass.** See
