@@ -51,6 +51,7 @@ export function SnacksComparisonPage({
         label: "קראו את הניתוח העיתונאי בבלוג ←",
       }}
       initialExpandedProductId={initialExpandedProductId}
+      category="snacks"
     />
   );
 }
