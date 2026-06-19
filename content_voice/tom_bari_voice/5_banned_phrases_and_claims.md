@@ -1,4 +1,4 @@
-# 5 — Banned Phrases & Claim Control (Tom / Bari Hebrew)
+﻿# 5 — Banned Phrases & Claim Control (Tom / Bari Hebrew)
 
 Two firewalls in one file:
 1. **Phrase bans** — language that breaks Bari's non-shaming, non-prescribing voice.
@@ -79,7 +79,8 @@ scrape field, or an approved doc/URL). Vague provenance ("מקור מזון רש
 2. **Phrase scan** — no banned phrase (§1); run `hebrew_readability.is_clean` (must be true).
 3. **Tone scan** — any witty/critical line passes HebEMO anger+disgust.
 4. **Form scan** — run hero/prologue/insight lines through DICTA Nakdan; garbled word = rewrite.
-5. **Voice-match gate** — `7_voice_match_gate.md`.
+5. **Grammar/agreement scan** — run `hebrew_grammar_gate.analyze(text).is_clean` (must be true); gender/number agreement failure = not-done. High-confidence flags may be auto-fixed via `hebrew_grammar_autofix.auto_fix(text)`; medium-confidence flags require human review.
+6. **Voice-match gate** — `7_voice_match_gate.md`.
 
 Fail any → not done.
 

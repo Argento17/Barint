@@ -1,4 +1,4 @@
-# 7 — Voice-Match Gate (Tom / Bari Hebrew)
+﻿# 7 — Voice-Match Gate (Tom / Bari Hebrew)
 
 The pass/fail gate every draft clears before handoff. It sits **after** the
 mechanical gates (leakage, claim, tone, nakdan in `5_…`) and answers one question:
@@ -292,9 +292,11 @@ Relative to the existing gate sequence in `5_banned_phrases_and_claims.md` §3:
 2. Leakage — hebrew_readability.is_clean
 3. Tone — HebEMO anger+disgust
 4. Form — DICTA Nakdan
-5. [THIS FILE] Voice-match gate (checklist Steps 1–3)
-   + HARD FAILURES (HF-1 through HF-5) ← NEW: run before handoff to Tom-edit loop
-6. Tom-edit loop (file 8 logging)
+5. Grammar/agreement — hebrew_grammar_gate.analyze(text).is_clean
+   (high-confidence flags: auto_fix via hebrew_grammar_autofix; medium: human review)
+6. [THIS FILE] Voice-match gate (checklist Steps 1–3)
+   + HARD FAILURES (HF-1 through HF-5) ← run before handoff to Tom-edit loop
+7. Tom-edit loop (file 8 logging)
 ```
 
 **Where exactly to insert the hard-failure check:**
@@ -327,8 +329,15 @@ pipeline), not earlier. The flag is correct and required during all earlier stag
 ## Relationship to the mechanical gates
 This gate does **not** replace the file-5 firewalls. Order of operations:
 1. Claim scan (Tier-A/B) → 2. Leakage (`hebrew_readability.is_clean`) →
-3. Tone (HebEMO) → 4. Form (DICTA Nakdan) → **5. This voice-match gate (Steps 1–3 + HF-1 through HF-5).**
-A draft must pass all five.
+3. Tone (HebEMO) → 4. Form (DICTA Nakdan) → 5. Grammar/agreement (`hebrew_grammar_gate.analyze(text).is_clean`) →
+**6. This voice-match gate (Steps 1–3 + HF-1 through HF-5).**
+A draft must pass all six.
+
+Gate 5 — grammar/agreement — runs after the DICTA Nakdan form check (gate 4) and before
+this voice-match gate. It catches noun-adjective and subject-verb gender/number mismatches.
+High-confidence flags (`confidence="high"`) may be auto-fixed via
+`hebrew_grammar_autofix.auto_fix(text)` before re-gating; medium-confidence flags must be
+resolved by human review. A failed grammar gate is not-done; it does not reach this file.
 
 HF-4 (unverified fact) sequences with and extends the §2 firewall in file 5.
 They do not duplicate: file 5 §2 governs the Tier-B escalation path; HF-4 closes
