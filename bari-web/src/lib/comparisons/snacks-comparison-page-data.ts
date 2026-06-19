@@ -51,10 +51,10 @@ const snacksMetadataUpdated = (() => {
     : date.toLocaleDateString("he-IL", { month: "long", year: "numeric" });
 })();
 
-/** CE framing: 18 displayed · 53 scanned · 48 scored (hero metadata line). */
+/** CE framing: 16 displayed · 53 scanned · 48 scored (hero metadata line). */
 export const snacksMetadataLine = snacksMetadataUpdated
-  ? `18 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
-  : "18 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון";
+  ? `16 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
+  : "16 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון";
 
 /** Shelf hero — impulse-rack moment, distinct from cereals/juices/cheese openers. */
 export const snacksHero = {
@@ -69,7 +69,7 @@ export const snacksPrologueSentences = [
 ] as const;
 
 // Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
-// the frozen category invariant (CLAUDE.md: "No snack bar reaches A. snk-001 = 70/B is the
+// the frozen category invariant (CLAUDE.md: "No snack bar reaches A. 68/B ceiling (snk-008) is the
 // validated category ceiling") and the engineered-snack scoring nuance (.claude/scoring.md
 // Stage 4 — fat-sugar / fat-sodium hyper-palatability patterns). "Best" here is relative.
 export const snacksCategoryNote = [

@@ -4,7 +4,7 @@
   "corpus_dirs": [
     "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs"
   ],
-  "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hard_cheeses_003_shelfrel\\products",
+  "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hc_redlabel_v2_001\\products",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v2.json",
   "retailer_scope": ["yohananof"],
   "subpool_filter": null,
@@ -19,7 +19,7 @@
       "BARI_RECAL_P0": "on",
       "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
       "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
-      "BARI_REDLABEL_V1": "off",
+      "BARI_REDLABEL_V1": "on",
       "BARI_SODIUM_CEREAL": "off",
       "BARI_GRAD_SODIUM_V1": "off"
     },
@@ -31,7 +31,7 @@
     },
     "bsip1_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
     "corpus_filter": null,
-    "_source": "batch_run_shelfrel_golive_001.py + constants.py FATSAT_SHELF_REL_HARDCHEESE_*; run_hard_cheeses_003_shelfrel"
+    "_source": "batch_run_hc_redlabel_v2_001.py + constants.py FATSAT_SHELF_REL_HARDCHEESE_*; run_hc_redlabel_v2_001 (BARI_REDLABEL_V1=on, owner-approved 2026-06-19)"
   },
   "exclusions": [
     {"barcode": "7290102302864", "reason": "OFF-CONTAMINATED: nutrition from open_food_facts_fallback (TASK-238 hard rule). Removed from live page; re-add only after direct re-scrape."},

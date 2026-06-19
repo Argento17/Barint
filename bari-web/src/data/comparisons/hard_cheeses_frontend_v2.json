@@ -1,16 +1,16 @@
 {
   "_meta": {
     "category": "hard-cheeses",
-    "config_sha256": "2f77f14a9ea7e2cc6f9994a4ccf19badaf890132bb99eb2b4680257cc2c728b5",
+    "config_sha256": "(pending — regenerate from signed config)",
     "exclusions": [],
-    "generated": "2026-06-16T00:00:00Z",
+    "generated": "2026-06-19T17:35:02.286737+00:00",
     "generator_version": "1.2.0",
     "product_count": 23,
     "retailer_breakdown": {
       "yohananof": 23
     },
     "schema": "BariProductVM[]",
-    "schema_version": "v3-patched-task333",
+    "schema_version": "v3-redlabel-v2",
     "scored_count": 23,
     "editorial_note": "הערת קטגוריה: רוב הגבינות הקשות במדף מקבלות ציון B — לא בגלל חולשה, אלא בגלל שהקטגוריה הומוגנית במהותה. גבינה צהובה מסורתית היא מזון מינימלי: חלב, מלח, מקריש. כשהרכב בסיסי זהה לרוב המוצרים, ה-B כאן מתאר תחרות צפופה בין מוצרים דומים — ולא גבינה 'בינונית'. ההבדלים האמיתיים בקטגוריה נמצאים בנתרן ובעיבוד: גבינות עם נתרן גבוה במיוחד (מעל 800 מ\"ג) מגיעות ל-C; גבינות מותכות עם עמילן ומתחלבים — ל-D. מה שנשאר הוא מדף שבו ציון B על גבינה זו אינו שקול לציון B על חטיף, על דגן בוקר, או על יוגורט — גבינה קשה היא מזון שלם, עתיר חלבון, ועם רשימת רכיבים קצרה כמעט בכל המקרים. גבינה מותכת אחת נכללת בהשוואה מפני שהיא נמכרת במדף זה כתחליף לגבינה קשה. ההבדלים ברכיבים ובנתרן גלויים לצד שאר המוצרים.",
     "source_paths": {
@@ -22,11 +22,41 @@
       ]
     },
     "subpool_filter": null,
-    "patch_notes": "RT-1: _subPool/_novaGroup → public subPool/novaGroup from live map. RT-8: schema contract reconciled. RT-6: confidence convention → missing_nutrition. RT-5: מגביר חוזק annotated in d4_additives (no score change). TASK-fan-hc2: rowVerdict voice pass + size-variant dedupe (28→23) + rank re-derived.",
+    "patch_notes": "RT-1: _subPool/_novaGroup → public subPool/novaGroup from live map. RT-8: schema contract reconciled. RT-6: confidence convention → missing_nutrition. RT-5: מגביר חוזק annotated in d4_additives (no score change). TASK-fan-hc2: rowVerdict voice pass + size-variant dedupe (28→23) + rank re-derived. TASK-fan-hcredlabel: BARI_REDLABEL_V1=on — binary ISRAELI_RED_LABELS_2_PLUS cap removed, HIGH_SODIUM_700MG_PLUS cliff removed, graduated reg_qual formula. 3 grade changes: Babybel D->B, Dutch Gouda C->B, Imported Goat Gouda C->B. Stale verdicts flagged for copy update pass.",
     "hcadd_d4_populated": "2026-06-19T17:00:03.608309+00:00",
     "hcadd_source": "BSIP1 direct scrape — detect_additives_d4(ingredients_text_he)",
     "hcadd_populated_count": 14,
-    "hcadd_total_products": 23
+    "hcadd_total_products": 23,
+    "run_id": "run_hc_redlabel_v2_001",
+    "scoring_flags": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "on",
+      "BARI_REDLABEL_V1": "on",
+      "BARI_HC002_NOVA1": "on"
+    },
+    "redlabel_v1_changes": {
+      "binary_cap_removed": "ISRAELI_RED_LABELS_2_PLUS(cap=45) replaced by REFORMULABLE_LABELS_2_PLUS (endemic sat_fat excluded from reformulable count)",
+      "sodium_cliff_removed": "HIGH_SODIUM_700MG_PLUS(cap=60) replaced by SODIUM_GENERAL_BANDS graduated penalty (700-899mg=8pt, 600-699mg=4pt, 450-599mg=2pt)",
+      "reg_quality_formula": "continuous per-label deduction (zero-base) replacing binary 95/60/25 step function",
+      "grade_changes": [
+        "3073781199918",
+        "7290017065434",
+        "8711528211138"
+      ]
+    },
+    "stale_verdicts": [
+      "8711528211138",
+      "3073781199918",
+      "7290017065434",
+      "7290108501346",
+      "7290117265888",
+      "7290117265918"
+    ],
+    "grade_distribution": {
+      "B": 22,
+      "D": 1
+    }
   },
   "products": [
     {
@@ -65,7 +95,7 @@
       "name": "פרוסות גבינת גאודה 28% יורו צ'יז 400 גרם",
       "retailer": "yohananof",
       "rowVerdict": "חמישה רכיבים, 25 גרם חלבון, ואף חומר משמר ברשימה — שלושה דברים שקשה למצוא ביחד במדף הגבינות. הנתרן גבוה וכך גם השומן, אבל בפרמטרים שהמדף שולט בהם, זו הגבינה שמוביל.",
-      "score": 78.9,
+      "score": 77.8,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 1,
@@ -108,7 +138,7 @@
       "name": "פרוסות גאודה עיזים",
       "retailer": "yohananof",
       "rowVerdict": "שני רכיבים בלבד: חלב עיזים ומלח. הרשימה הקצרה ביותר בכל המדף הזה — בלי תוספי מזון, בלי צבע, בלי חומר משמר. החלבון מעט נמוך מהמוביל, אבל הנקיות היא עובדה.",
-      "score": 77.9,
+      "score": 76.9,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 1,
@@ -161,11 +191,55 @@
       "name": "פרוסות גבינת גלבוע 5% 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "33 גרם חלבון ל-100 גרם — הגבוה ביותר בכל המדף הזה — עם שומן של 5 גרם בלבד. המחיר: חומר משמר וצבע מאכל שנדרשים כדי לייצב גבינה דלת שומן. מי שמחפש ריכוז חלבון גבוה ימצא כאן את הפסגה; מי שמחפש רשימה נקייה — פחות.",
-      "score": 77.6,
+      "score": 75.6,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 2,
       "rank": 3,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290102396672",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנאטו).",
+        "limitingFactors": [
+          "נתרן גבוה (620 מ\"ג ל-100 גרם)",
+          "כוללת צבע מאכל ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 201.0,
+          "fat": 9.0,
+          "fiber": null,
+          "protein": 30.0,
+          "sodium": 620.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "שלושה רכיבים בלבד — ללא חומרי שימור או מייצבים",
+          "חלבון גבוה במיוחד — 30 גרם ל-100 גרם",
+          "שומן נמוך של 9 גרם ל-100 גרם וערך קלורי נמוך"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "נעם 9% מציגה שלושה רכיבים בלבד — הישג יפה למוצר מופחת שומן. היא מספקת 30 גרם חלבון, אך הנתרן שלה (620 מ\"ג) גבוה יחסית למתחרה מבית עמק (495 מ\"ג). מנגד, אין בה חומר משמר בעוד שבעמק יש. זו פשרה ברורה בין נתרן לתוספים."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290102396672",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/7/2/7290102396672.jpg",
+      "insightLine": "הגרסה הגדולה של נעם 9% — אותה נוסחה של שלושה רכיבים ו-30 גרם חלבון, בקופסת 360 גרם.",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 9% נעם 360 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "גבינה 9% שומן עם שלושה רכיבים בלבד ו-30 גרם חלבון — ללא חומר משמר. הנתרן גבוה (620 מ\"ג), וזו הפשרה שצריך להכיר: רשימה נקייה בגבינה מופחתת שומן, במחיר מלח גבוה יותר מהמתחרה הישירה.",
+      "score": 74.2,
+      "source_traceability_status": "resolved",
+      "subPool": "yellow_light",
+      "novaGroup": 1,
+      "rank": 4,
       "categoryTotal": 23
     },
     {
@@ -212,11 +286,11 @@
       "name": "פרוסות גבינת טל העמק 32% בסגנון אמנטל 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "27 גרם חלבון ו-550 מ\"ג נתרן — מספרים טובים בקטגוריה הזאת. חומר משמר אחד ברשימה, ושומן של 32 גרם ל-100 גרם שמסביר את הטעם העשיר. לא הרשימה הנקייה ביותר, אבל אחד הפרופילים המאוזנים יותר.",
-      "score": 76.7,
+      "score": 74.0,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 2,
-      "rank": 4,
+      "rank": 5,
       "categoryTotal": 23
     },
     {
@@ -263,15 +337,15 @@
       "name": "פרוסות גאודה עמק 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "גאודה עם חלבון טוב ונתרן שמתון יחסית למדף — אבל שלושה חומרי שימור שונים ברשימה, יותר מכל גבינה בחמישייה הפותחת. הפרופיל התזונתי ראוי; הרכב הרכיבים פחות נקי.",
-      "score": 76.4,
+      "score": 73.7,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 3,
-      "rank": 5,
+      "rank": 6,
       "categoryTotal": 23
     },
     {
-      "barcode": "7290102396672",
+      "barcode": "8711528211138",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
@@ -279,39 +353,39 @@
       "d4_additives": [],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנאטו).",
+        "ingredients": "חלב עיזים מפוסטר (97.7%),מלח,רנט,תרבית לקטית. ציפוי הגבינה לא למאכל.",
         "limitingFactors": [
-          "נתרן גבוה (620 מ\"ג ל-100 גרם)",
-          "כוללת צבע מאכל ברשימת הרכיבים"
+          "שומן גבוה במיוחד (34 גרם ל-100 גרם) — הגבוה ביותר בסקירה",
+          "נתרן גבוה מאוד (800 מ\"ג ל-100 גרם)"
         ],
         "nutrition": {
-          "energyKcal": 201.0,
-          "fat": 9.0,
+          "energyKcal": 397.0,
+          "fat": 34.0,
           "fiber": null,
-          "protein": 30.0,
-          "sodium": 620.0,
+          "protein": 24.0,
+          "sodium": 800.0,
           "sugar": null
         },
         "positiveSignals": [
-          "שלושה רכיבים בלבד — ללא חומרי שימור או מייצבים",
-          "חלבון גבוה במיוחד — 30 גרם ל-100 גרם",
-          "שומן נמוך של 9 גרם ל-100 גרם וערך קלורי נמוך"
+          "ארבעה רכיבים בלבד — ללא חומרי שימור או מייצבים",
+          "97.7% חלב עיזים ברשימה",
+          "חלבון טוב — 24 גרם ל-100 גרם"
         ],
         "servingNote": "ל-100 גרם",
-        "comparisonContext": "נעם 9% מציגה שלושה רכיבים בלבד — הישג יפה למוצר מופחת שומן. היא מספקת 30 גרם חלבון, אך הנתרן שלה (620 מ\"ג) גבוה יחסית למתחרה מבית עמק (495 מ\"ג). מנגד, אין בה חומר משמר בעוד שבעמק יש. זו פשרה ברורה בין נתרן לתוספים."
+        "comparisonContext": "גאודה עיזים מיובאת זו מציגה רשימה נקייה ללא חומרי שימור, בדומה לגאודה עיזים הישראלית (מקום 2). היא מתחרה באמצע העליון של המדף — מקום 7 — אך פרופיל השומן והנתרן שלה כבד מהממוצע: 34 גרם שומן (הגבוה בסקירה) ו-800 מ\"ג נתרן. גבינה עשירה ומיוחדת; לא ליום-יום."
       },
       "grade": "B",
-      "id": "bsip1_hardcheese_7290102396672",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/7/2/7290102396672.jpg",
-      "insightLine": "הגרסה הגדולה של נעם 9% — אותה נוסחה של שלושה רכיבים ו-30 גרם חלבון, בקופסת 360 גרם.",
-      "name": "פרוסות גבינה צהובה חצי קשה דקה 9% נעם 360 גרם",
+      "id": "bsip1_hardcheese_8711528211138",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/7/871152821113805-09-2023_14-48-33.jpg",
+      "insightLine": "גאודה עיזים מיובאת — ארבעה רכיבים נקייה, אך שומן (34 גרם) ונתרן (800 מ\"ג) מהגבוהים בסקירה.",
+      "name": "גבינת גאודה עיזים.",
       "retailer": "yohananof",
-      "rowVerdict": "גבינה 9% שומן עם שלושה רכיבים בלבד ו-30 גרם חלבון — ללא חומר משמר. הנתרן גבוה (620 מ\"ג), וזו הפשרה שצריך להכיר: רשימה נקייה בגבינה מופחתת שומן, במחיר מלח גבוה יותר מהמתחרה הישירה.",
-      "score": 74.4,
+      "rowVerdict": "גבינת עיזים עם ארבעה רכיבים ואף חומר משמר — רשימה נקייה לחלוטין. אבל השומן (34 גרם — הגבוה בסקירה) והנתרן (800 מ\"ג) הם מה שמגדיר אותה. גבינה עשירה ומיוחדת; לא גבינת יומיום.",
+      "score": 72.5,
       "source_traceability_status": "resolved",
-      "subPool": "yellow_light",
+      "subPool": "yellow",
       "novaGroup": 1,
-      "rank": 6,
+      "rank": 7,
       "categoryTotal": 23
     },
     {
@@ -359,11 +433,11 @@
       "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "30 גרם חלבון ו-495 מ\"ג נתרן — הנמוך ביותר בין גבינות ה-9% בסקירה. הפשרה היא חומר משמר אחד שנעם 9% לא מכילה. שתי הגבינות נמצאות זו לצד זו על המדף; הבחירה ביניהן היא בין מלח לתוספים.",
-      "score": 74.3,
+      "score": 72.3,
       "source_traceability_status": "resolved",
       "subPool": "yellow_light",
       "novaGroup": 2,
-      "rank": 7,
+      "rank": 8,
       "categoryTotal": 23
     },
     {
@@ -411,142 +485,54 @@
       "name": "פרוסות גבינת עמק מופחתת שומן 9% בקופסא 400 גרם",
       "retailer": "yohananof",
       "rowVerdict": "אותה נוסחת עמק 9% באריזה גדולה יותר: 30 גרם חלבון, 491 מ\"ג נתרן, חומר משמר אחד. הנוסחה לא משתנה עם גודל האריזה — ביצועים זהים, נפח גדול יותר.",
-      "score": 74.3,
+      "score": 72.3,
       "source_traceability_status": "resolved",
       "subPool": "yellow_light",
       "novaGroup": 2,
-      "rank": 7,
+      "rank": 8,
       "categoryTotal": 23
     },
     {
-      "barcode": "7290108501346",
+      "barcode": "3073781199918",
       "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "confidence_label_he": "מבוסס על נתונים חלקיים",
+      "confidence_sub_reason": "partial_field",
+      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
       "d4_additives": [],
       "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב מפוסטר, מלח, תרבית לקטית, חומר מייצב: קלציום כלוריד, מקריש, חומר מונע התגיישות (E460)",
+        "confidenceLabel": "מבוסס על נתונים חלקיים",
+        "ingredients": "חלב פרה מפוסטר(98%), מלח, תרבית לקטית, רנט.",
         "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (630 מ\"ג ל-100 גרם)",
-          "כוללת חומר מונע התגיישות ומייצב ברשימת הרכיבים"
+          "שומן רווי גבוה במיוחד (16 גרם ל-100 גרם)",
+          "נתרן גבוה (710 מ\"ג ל-100 גרם)",
+          "שומן טרנס גבוה יחסית של 1.0 גרם ל-100 גרם המדווח על האריזה"
         ],
         "nutrition": {
-          "energyKcal": 363.0,
-          "fat": 28.0,
+          "energyKcal": 305.0,
+          "fat": 24.0,
           "fiber": null,
-          "protein": 27.0,
-          "sodium": 630.0,
-          "sugar": null
+          "protein": 23.0,
+          "sodium": 710.0,
+          "sugar": 0.1
         },
         "positiveSignals": [
-          "חלבון גבוה — 27 גרם ל-100 גרם",
-          "ברשימה אין חומר משמר — רק מייצב וחומר מונע התגיישות מהפורמט המגורד"
+          "ארבעה רכיבים בלבד — 98% חלב פרה, ללא חומרי שימור או מייצבים",
+          "חלבון טוב — 23 גרם ל-100 גרם"
         ],
         "servingNote": "ל-100 גרם",
-        "comparisonContext": "מכינים פיצה ומושיטים יד לשקית המגורדת — הגבינה הזו ממוקמת בעשירי. היא מגיעה עם חומר מונע התגיישות הנדרש כדי למנוע מהשבבים להידבק זה לזה, ומייצב המקובל בגבינות תעשייתיות. החלבון שלה — 27 גרם — טוב ביחס למגורדות האחרות."
+        "comparisonContext": "בייבי בל מציגה רשימה קצרה במיוחד — ארבעה רכיבים בלבד, 98% חלב פרה, ללא חומרי שימור — ומתחרה באמצע המדף. שומן רווי גבוה (16 גרם), נתרן של 710 מ\"ג ושומן טרנס של 1.0 גרם ל-100 גרם — נתון שרוב הגבינות במדף לא מדווחות עליו — הם מה שמבדיל אותה מהמובילות, לא פסלים אותה."
       },
       "grade": "B",
-      "id": "bsip1_hardcheese_7290108501346",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290108501346_s1_1502-08-2026_09-47-11.jpg",
-      "insightLine": "שקית מגורדת לפיצה — 27 גרם חלבון, עם מייצב וחומר מונע התגיישות מהפורמט.",
-      "name": "גבינת גאודה מגורדת 28% יורו צ'יז 500 גרם",
+      "id": "bsip1_hardcheese_3073781199918",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/0/3073781199918.jpg",
+      "insightLine": "בייבי בל — ארבעה רכיבים בלבד, 98% חלב ו-23 גרם חלבון; שומן רווי, נתרן ושומן טרנס הם הסימנים שכדאי לדעת.",
+      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
       "retailer": "yohananof",
-      "rowVerdict": "גבינה מגורדת לפיצה ולבישול: 27 גרם חלבון, ואין חומר משמר ברשימה. יש מייצב וחומר מונע התגיישות — הם קיימים כי הפורמט המגורד דורש אותם, לא בגלל עיבוד נוסף. הגבוהה ביותר בחלבון בין הגבינות המגורדות בסקירה.",
-      "score": 73.4,
-      "source_traceability_status": "resolved",
-      "subPool": "hard_grating",
-      "novaGroup": 3,
-      "rank": 9,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "7290117265888",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד, חומר מונע התגיישות: E460.",
-        "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
-          "כוללת חומר מונע התגיישות ומייצב ברשימת הרכיבים"
-        ],
-        "nutrition": {
-          "energyKcal": 352.0,
-          "fat": 28.0,
-          "fiber": null,
-          "protein": 25.0,
-          "sodium": 640.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חלבון טוב — 25 גרם ל-100 גרם",
-          "אין חומר משמר — רק מייצב וחומר מונע התגיישות"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "הגבינה הזו מציגה הרכב הדומה למגורדת של יורו צ'יז, כולל מייצב וחומר מונע התגיישות הנדרשים לפורמט המגורד. היא מדורגת מעט מתחתיה בשל חלבון נמוך במעט (25 גרם לעומת 27 גרם ל-100 גרם) ונתרן מעט גבוה יותר."
-      },
-      "grade": "B",
-      "id": "bsip1_hardcheese_7290117265888",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117265888_s108-12-2024_15-24-12.jpg",
-      "insightLine": "גאודה מגורדת יוחננוף — שישה רכיבים, 25 גרם חלבון, בלי חומר משמר.",
-      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "גאודה מגורדת עם שישה רכיבים ו-25 גרם חלבון, בלי חומר משמר. הפורמט המגורד מביא אתו מייצב וחומר מונע התגיישות — זה הסיפור האמיתי של כל גבינה מגורדת, לא ייחוד לזו.",
-      "score": 73.1,
-      "source_traceability_status": "resolved",
-      "subPool": "hard_grating",
-      "novaGroup": 3,
-      "rank": 10,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "7290117265918",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד,",
-        "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
-          "כוללת מייצב ברשימת הרכיבים"
-        ],
-        "nutrition": {
-          "energyKcal": 352.0,
-          "fat": 28.0,
-          "fiber": null,
-          "protein": 25.0,
-          "sodium": 640.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חלבון טוב — 25 גרם ל-100 גרם",
-          "נקייה מחומר מונע התגיישות — יתרון של הפורמט הפרוס"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "אותה גאודה יוחננוף, אבל בפרוסות — לא בשבבים. הגרסה הפרוסה נקייה מחומר מונע התגיישות שמופיע במגורדת, ולכן הרשימה קצרה בפריט אחד, למרות ציון זהה."
-      },
-      "grade": "B",
-      "id": "bsip1_hardcheese_7290117265918",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117265918_s109-12-2024_08-17-54.jpg",
-      "insightLine": "פרוסות במקום שבבים — אותה גאודה יוחננוף, עם רשימה קצרה יותר בזכות הפורמט.",
-      "name": "גבינת גאודה פרוסות יוחננוף 400 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "אותה גאודה יוחננוף, בפרוסות ולא בשבבים — ולכן הרשימה קצרה בפריט אחד: אין חומר מונע התגיישות. חמישה רכיבים, 25 גרם חלבון, בלי חומר משמר. הפורמט הוא ההבדל.",
-      "score": 73.1,
+      "rowVerdict": "ארבעה רכיבים ואף חומר משמר — הרשימה נקייה לחלוטין, ו-23 גרם חלבון מגבינה שלמה. השומן הרווי (16 גרם), הנתרן (710 מ\"ג) ושומן הטרנס שמדווח על האריזה — אלה הסימנים שמגבילים אותה יחסית למובילות, לא פוסלים אותה. גבינה סבירה באמצע המדף.",
+      "score": 71.4,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
-      "novaGroup": 3,
+      "novaGroup": 1,
       "rank": 10,
       "categoryTotal": 23
     },
@@ -595,11 +581,187 @@
       "name": "פרוסות גבינה צהובה חצי קשה דקה 22% נעם 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "שלושה רכיבים, 22% שומן, 25 גרם חלבון — וללא חומר משמר. הנוסחה הנקייה של סדרת נעם ברמת שומן בינונית. הנתרן (670 מ\"ג) הוא הצד החלש; שאר הפרופיל מדובר.",
-      "score": 72.1,
+      "score": 71.0,
+      "source_traceability_status": "resolved",
+      "subPool": "yellow",
+      "novaGroup": 1,
+      "rank": 11,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290017065434",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנטו).",
+        "limitingFactors": [
+          "שומן גבוה (30 גרם ל-100 גרם)",
+          "נתרן גבוה במיוחד (831 מ\"ג ל-100 גרם)",
+          "כוללת צבע מאכל ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 368.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 831.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "שלושה רכיבים בלבד — ללא חומרי שימור או מייצבים",
+          "חלבון טוב — 23 גרם ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "גאודה הולנדית זו מציגה רשימת רכיבים קצרה של שלושה פריטים ללא חומרי שימור, בדומה לגבינות המובילות. הנתרן שלה — 831 מ\"ג — הגבוה ביותר בכל הסקירה, וזה מה שדוחף אותה לתחתית האמצע. מוצר נקי ברכיבים, עמוס במלח."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290017065434",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001706543402-19-2020_14-50-32.jpg",
+      "insightLine": "שלושה רכיבים ללא חומרי שימור — אבל 831 מ\"ג נתרן, הגבוה ביותר בסקירה, משפיע על מיקומה.",
+      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "שלושה רכיבים ואף חומר משמר ברשימה — רשימה נקייה לחלוטין. אבל 831 מ\"ג נתרן ל-100 גרם הם המספר הגבוה ביותר בין כל הגבינות הקשות בסקירה הזו. הרכב טוב; המלח חריג.",
+      "score": 70.7,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 1,
       "rank": 12,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290108501346",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב מפוסטר, מלח, תרבית לקטית, חומר מייצב: קלציום כלוריד, מקריש, חומר מונע התגיישות (E460)",
+        "limitingFactors": [
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (630 מ\"ג ל-100 גרם)",
+          "כוללת חומר מונע התגיישות ומייצב ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 363.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 27.0,
+          "sodium": 630.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון גבוה — 27 גרם ל-100 גרם",
+          "ברשימה אין חומר משמר — רק מייצב וחומר מונע התגיישות מהפורמט המגורד"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "מכינים פיצה ומושיטים יד לשקית המגורדת — הגבינה הזו ממוקמת באמצע התחתון של המדף. היא מגיעה עם חומר מונע התגיישות הנדרש כדי למנוע מהשבבים להידבק זה לזה, ומייצב המקובל בגבינות תעשייתיות. החלבון שלה — 27 גרם — הגבוה ביותר בין המגורדות בסקירה."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290108501346",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290108501346_s1_1502-08-2026_09-47-11.jpg",
+      "insightLine": "שקית מגורדת לפיצה — 27 גרם חלבון, עם מייצב וחומר מונע התגיישות מהפורמט.",
+      "name": "גבינת גאודה מגורדת 28% יורו צ'יז 500 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "גבינה מגורדת לפיצה ולבישול: 27 גרם חלבון, ואין חומר משמר ברשימה. יש מייצב וחומר מונע התגיישות — הם קיימים כי הפורמט המגורד דורש אותם, לא בגלל עיבוד נוסף. הגבוהה ביותר בחלבון בין הגבינות המגורדות בסקירה.",
+      "score": 70.4,
+      "source_traceability_status": "resolved",
+      "subPool": "hard_grating",
+      "novaGroup": 3,
+      "rank": 13,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290117265888",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד, חומר מונע התגיישות: E460.",
+        "limitingFactors": [
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
+          "כוללת חומר מונע התגיישות ומייצב ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון טוב — 25 גרם ל-100 גרם",
+          "אין חומר משמר — רק מייצב וחומר מונע התגיישות"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "הגבינה הזו מציגה הרכב הדומה למגורדת של יורו צ'יז, כולל מייצב וחומר מונע התגיישות הנדרשים לפורמט המגורד. היא מדורגת מעט מתחתיה — 25 גרם חלבון לעומת 27 גרם ביורו צ'יז, ונתרן מעט גבוה יותר (640 מ\"ג לעומת 630 מ\"ג)."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290117265888",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117265888_s108-12-2024_15-24-12.jpg",
+      "insightLine": "גאודה מגורדת יוחננוף — שישה רכיבים, 25 גרם חלבון, בלי חומר משמר.",
+      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "גאודה מגורדת עם שישה רכיבים ו-25 גרם חלבון, בלי חומר משמר. הפורמט המגורד מביא אתו מייצב וחומר מונע התגיישות — זה הסיפור האמיתי של כל גבינה מגורדת, לא ייחוד לזו.",
+      "score": 70.1,
+      "source_traceability_status": "resolved",
+      "subPool": "hard_grating",
+      "novaGroup": 3,
+      "rank": 14,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290117265918",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד,",
+        "limitingFactors": [
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
+          "כוללת מייצב ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון טוב — 25 גרם ל-100 גרם",
+          "נקייה מחומר מונע התגיישות — יתרון של הפורמט הפרוס"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "אותה גאודה יוחננוף, אבל בפרוסות — לא בשבבים. שתי הגרסאות חולקות ציון ומיקום (14), אך הפרוסות נקיות מחומר מונע התגיישות שמופיע במגורדת — ולכן הרשימה קצרה בפריט אחד."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290117265918",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117265918_s109-12-2024_08-17-54.jpg",
+      "insightLine": "פרוסות במקום שבבים — אותה גאודה יוחננוף, עם רשימה קצרה יותר בזכות הפורמט.",
+      "name": "גבינת גאודה פרוסות יוחננוף 400 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "אותה גאודה יוחננוף, בפרוסות ולא בשבבים — ולכן הרשימה קצרה בפריט אחד: אין חומר מונע התגיישות. חמישה רכיבים, 25 גרם חלבון, בלי חומר משמר. הפורמט הוא ההבדל.",
+      "score": 70.1,
+      "source_traceability_status": "resolved",
+      "subPool": "yellow",
+      "novaGroup": 3,
+      "rank": 14,
       "categoryTotal": 23
     },
     {
@@ -647,11 +809,11 @@
       "name": "פרוסות גבינה צהובה חצי קשה 28% נעם 500 גרם",
       "retailer": "yohananof",
       "rowVerdict": "גבינה 28% שומן עם שלושה רכיבים בלבד ומבלי שום חומר משמר — הנקייה ביותר בקבוצת הגבינות הצהובות הרגילות. הנתרן (660 מ\"ג) ורמת השומן הם המגבלות; המבנה הוא הנקודה החזקה.",
-      "score": 70.9,
+      "score": 69.9,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 1,
-      "rank": 13,
+      "rank": 16,
       "categoryTotal": 23
     },
     {
@@ -699,164 +861,11 @@
       "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 400 גרם",
       "retailer": "yohananof",
       "rowVerdict": "גבינה 28% שומן עם נתרן נמוך יחסית לקבוצה — 510 מ\"ג ל-100 גרם. חומר משמר אחד וצבע מאכל ברשימה, אבל לא יותר מזה. הפשרה הנוחה ביותר בין נתרן נמוך לרשימה קצרה בקבוצת ה-28%.",
-      "score": 70.8,
+      "score": 68.1,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 2,
-      "rank": 14,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "7290004125776",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
-        "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
-          "כוללת חומר משמר וצבע מאכל ברשימת הרכיבים"
-        ],
-        "nutrition": {
-          "energyKcal": 344.0,
-          "fat": 28.0,
-          "fiber": null,
-          "protein": 23.0,
-          "sodium": 640.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חלבון טוב — 23 גרם ל-100 גרם"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "קופסת 400 גרם של עמק 28% — אותה נוסחה כמו ה-200 גרם (640 מ\"ג נתרן, 23 גרם חלבון, חומר משמר וצבע מאכל), עם הבדל מינורי בסימון הקלוריות: 344 לעומת 345. האריזה הגדולה מתאימה למשפחות שצורכות כמות בינונית."
-      },
-      "grade": "B",
-      "id": "bsip1_hardcheese_7290004125776",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004125776_s1_1502-09-2026_17-22-14.jpg",
-      "insightLine": "הגרסה הבינונית של עמק 28% — 400 גרם, אותה נוסחה כמו הקופסה הקטנה.",
-      "name": "פרוסות גבינת עמק 28% בקופסא 400 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "גבינת עמק קלאסית בשומן מלא: 23 גרם חלבון, חומר משמר אחד וצבע מאכל, ונתרן של 640 מ\"ג. לא מציעה ייחוד מיוחד — לא בנקיות הרכיבים ולא בנתרן — אבל זה בדיוק מה שרוב המקרר הישראלי קונה.",
-      "score": 69.1,
-      "source_traceability_status": "resolved",
-      "subPool": "yellow",
-      "novaGroup": 2,
-      "rank": 15,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "7290004122683",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
-        "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
-          "כוללת חומר משמר וצבע מאכל ברשימת הרכיבים"
-        ],
-        "nutrition": {
-          "energyKcal": 344.0,
-          "fat": 28.0,
-          "fiber": null,
-          "protein": 23.0,
-          "sodium": 640.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חלבון טוב — 23 גרם ל-100 גרם"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "ילד מבקש 'גבינה לנשנוש' — אצבעות העמק נראות כמו הבחירה הנוחה. הנוסחה זהה לפרוסות עמק 28% (חומר משמר, צבע מאכל, 640 מ\"ג נתרן), אבל האריזה של 172 גרם וצורת האצבעות מיועדות לצריכה מדודה, לא לכריך."
-      },
-      "grade": "B",
-      "id": "bsip1_hardcheese_7290004122683",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004122683_s1_1511-11-2025_16-39-32.jpg",
-      "insightLine": "אצבעות עמק לילדים — אותה נוסחה כמו הפרוסות, רק ב-172 גרם ובצורת נשנוש.",
-      "name": "אצבעות גבינת עמק 28% 172 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "אצבעות גבינה בפורמט נשנוש — 172 גרם של אותה נוסחת עמק 28%: חומר משמר, צבע מאכל, 23 גרם חלבון, 640 מ\"ג נתרן. הצורה שינתה; הנוסחה לא.",
-      "score": 69.1,
-      "source_traceability_status": "resolved",
-      "subPool": "yellow",
-      "novaGroup": 2,
-      "rank": 15,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "7290110320867",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
-        "limitingFactors": [
-          "שומן גבוה (28 גרם ל-100 גרם)",
-          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
-          "כוללת חומר משמר, חומר מונע התגיישות וצבע מאכל ברשימת הרכיבים"
-        ],
-        "nutrition": {
-          "energyKcal": 344.0,
-          "fat": 28.0,
-          "fiber": null,
-          "protein": 23.0,
-          "sodium": 640.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חלבון טוב — 23 גרם ל-100 גרם"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "גרסה זו זהה לגמרי בהרכבה ובערכיה לגרסת ה-200 גרם של עמק מגורדת, ומקבלת ציון זהה. אריזת ה-500 גרם מציעה נוחות וכמות גדולה יותר לשימוש תדיר במטבח, ללא הבדל באיכות הגבינה."
-      },
-      "grade": "B",
-      "id": "bsip1_hardcheese_7290110320867",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110320867_s1_1505-19-2021_05-46-09.jpg",
-      "insightLine": "הגרסה הגדולה של עמק מגורדת — חמישה רכיבים וערכים זהים לחלוטין לגרסת ה-200 גרם.",
-      "name": "גבינת עמק מגורדת 28% 500 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "עמק 28% מגורדת: חמישה רכיבים, חומר מונע התגיישות ייעודי לפורמט, חומר משמר אחד ו-23 גרם חלבון. גבינת הבישול הסטנדרטית של המטבח הישראלי — לא מצטיינת בנקיות הרכיבים, אבל גם לא מפתיעה לרעה.",
-      "score": 69.1,
-      "source_traceability_status": "resolved",
-      "subPool": "hard_grating",
-      "novaGroup": 3,
-      "rank": 15,
+      "rank": 17,
       "categoryTotal": 23
     },
     {
@@ -903,7 +912,109 @@
       "name": "פרוסות גבינת עמק דק 28% 200 גרם",
       "retailer": "yohananof",
       "rowVerdict": "עמק 28% בפרוסות דקות: אותה נוסחה, אותם ערכים, עובי פרוסה שונה בלבד. ארבעה רכיבים כולל חומר משמר וצבע מאכל, 23 גרם חלבון, 640 מ\"ג נתרן. הפורמט הוא ההבדל היחיד.",
-      "score": 69.0,
+      "score": 66.0,
+      "source_traceability_status": "resolved",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "rank": 18,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290004122683",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "limitingFactors": [
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
+          "כוללת חומר משמר וצבע מאכל ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 344.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון טוב — 23 גרם ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "ילד מבקש 'גבינה לנשנוש' — אצבעות העמק נראות כמו הבחירה הנוחה. הנוסחה זהה לפרוסות עמק 28% (חומר משמר, צבע מאכל, 640 מ\"ג נתרן), אבל האריזה של 172 גרם וצורת האצבעות מיועדות לצריכה מדודה, לא לכריך."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290004122683",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004122683_s1_1511-11-2025_16-39-32.jpg",
+      "insightLine": "אצבעות עמק לילדים — אותה נוסחה כמו הפרוסות, רק ב-172 גרם ובצורת נשנוש.",
+      "name": "אצבעות גבינת עמק 28% 172 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "אצבעות גבינה בפורמט נשנוש — 172 גרם של אותה נוסחת עמק 28%: חומר משמר, צבע מאכל, 23 גרם חלבון, 640 מ\"ג נתרן. הצורה שינתה; הנוסחה לא.",
+      "score": 66.0,
+      "source_traceability_status": "resolved",
+      "subPool": "yellow",
+      "novaGroup": 2,
+      "rank": 18,
+      "categoryTotal": 23
+    },
+    {
+      "barcode": "7290004125776",
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני תזונה",
+      "confidence_sub_reason": "missing_nutrition",
+      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
+      "expansion": {
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
+        "limitingFactors": [
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
+          "כוללת חומר משמר וצבע מאכל ברשימת הרכיבים"
+        ],
+        "nutrition": {
+          "energyKcal": 344.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון טוב — 23 גרם ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם",
+        "comparisonContext": "קופסת 400 גרם של עמק 28% — אותה נוסחה כמו ה-200 גרם (640 מ\"ג נתרן, 23 גרם חלבון, חומר משמר וצבע מאכל), עם הבדל מינורי בסימון הקלוריות: 344 לעומת 345. האריזה הגדולה מתאימה למשפחות שצורכות כמות בינונית."
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290004125776",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004125776_s1_1502-09-2026_17-22-14.jpg",
+      "insightLine": "הגרסה הבינונית של עמק 28% — 400 גרם, אותה נוסחה כמו הקופסה הקטנה.",
+      "name": "פרוסות גבינת עמק 28% בקופסא 400 גרם",
+      "retailer": "yohananof",
+      "rowVerdict": "גבינת עמק קלאסית בשומן מלא: 23 גרם חלבון, חומר משמר אחד וצבע מאכל, ונתרן של 640 מ\"ג. לא מציעה ייחוד מיוחד — לא בנקיות הרכיבים ולא בנתרן — אבל זה בדיוק מה שרוב המקרר הישראלי קונה.",
+      "score": 66.0,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 2,
@@ -954,7 +1065,7 @@
       "name": "פרוסות גבינת עמק 28% 600 גרם",
       "retailer": "yohananof",
       "rowVerdict": "אריזת 600 גרם של אותה נוסחת עמק 28%: ארבעה רכיבים, חומר משמר וצבע מאכל, 23 גרם חלבון ו-640 מ\"ג נתרן. הנוסחה הסטנדרטית של המדף, בכמות גדולה יותר.",
-      "score": 69.0,
+      "score": 66.0,
       "source_traceability_status": "resolved",
       "subPool": "yellow",
       "novaGroup": 2,
@@ -962,91 +1073,54 @@
       "categoryTotal": 23
     },
     {
-      "barcode": "7290017065434",
+      "barcode": "7290110320867",
       "confidence": "partial",
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנטו).",
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
         "limitingFactors": [
-          "שומן גבוה (30 גרם ל-100 גרם)",
-          "נתרן גבוה במיוחד (831 מ\"ג ל-100 גרם)",
-          "כוללת צבע מאכל ברשימת הרכיבים"
+          "שומן גבוה (28 גרם ל-100 גרם)",
+          "נתרן גבוה (640 מ\"ג ל-100 גרם)",
+          "כוללת חומר משמר, חומר מונע התגיישות וצבע מאכל ברשימת הרכיבים"
         ],
         "nutrition": {
-          "energyKcal": 368.0,
-          "fat": 30.0,
+          "energyKcal": 344.0,
+          "fat": 28.0,
           "fiber": null,
           "protein": 23.0,
-          "sodium": 831.0,
+          "sodium": 640.0,
           "sugar": null
         },
         "positiveSignals": [
-          "שלושה רכיבים בלבד — ללא חומרי שימור או מייצבים",
           "חלבון טוב — 23 גרם ל-100 גרם"
         ],
         "servingNote": "ל-100 גרם",
-        "comparisonContext": "גאודה הולנדית זו מציגה רשימת רכיבים קצרה במיוחד של שלושה פריטים ללא חומרי שימור, בדומה לגבינות המובילות. עם זאת, רמת הנתרן הגבוהה שלה (831 מ\"ג) חורגת משמעותית מטווח ה-500–600 מ\"ג הנפוץ במוצרי B ומורידה אותה ישירות לציון C. זהו מוצר נקי ברכיבים אך עמוס במלח."
+        "comparisonContext": "גרסה זו זהה לגמרי בהרכבה ובערכיה לגרסת ה-200 גרם של עמק מגורדת, ומקבלת ציון זהה. אריזת ה-500 גרם מציעה נוחות וכמות גדולה יותר לשימוש תדיר במטבח, ללא הבדל באיכות הגבינה."
       },
-      "grade": "C",
-      "id": "bsip1_hardcheese_7290017065434",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001706543402-19-2020_14-50-32.jpg",
-      "insightLine": "רשימת רכיבים נקייה ללא חומרי שימור, אך נתרן גבוה מאוד של 831 מ\"ג מוריד אותה לציון C.",
-      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290110320867",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110320867_s1_1505-19-2021_05-46-09.jpg",
+      "insightLine": "הגרסה הגדולה של עמק מגורדת — חמישה רכיבים וערכים זהים לחלוטין לגרסת ה-200 גרם.",
+      "name": "גבינת עמק מגורדת 28% 500 גרם",
       "retailer": "yohananof",
-      "rowVerdict": "שלושה רכיבים ואף חומר משמר ברשימה — רשימה נקייה לחלוטין. אבל 831 מ\"ג נתרן ל-100 גרם הם המספר הגבוה ביותר בין כל הגבינות הקשות בסקירה הזו. הרכב טוב; המלח חריג.",
-      "score": 54.0,
+      "rowVerdict": "עמק 28% מגורדת: חמישה רכיבים, חומר מונע התגיישות ייעודי לפורמט, חומר משמר אחד ו-23 גרם חלבון. גבינת הבישול הסטנדרטית של המטבח הישראלי — לא מצטיינת בנקיות הרכיבים, אבל גם לא מפתיעה לרעה.",
+      "score": 66.0,
       "source_traceability_status": "resolved",
-      "subPool": "yellow",
-      "novaGroup": 1,
-      "rank": 20,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "8711528211138",
-      "confidence": "partial",
-      "confidence_label_he": "חסרים נתוני תזונה",
-      "confidence_sub_reason": "missing_nutrition",
-      "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
-      "expansion": {
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "ingredients": "חלב עיזים מפוסטר (97.7%),מלח,רנט,תרבית לקטית. ציפוי הגבינה לא למאכל.",
-        "limitingFactors": [
-          "שומן גבוה במיוחד (34 גרם ל-100 גרם) — הגבוה ביותר בסקירה",
-          "נתרן גבוה מאוד (800 מ\"ג ל-100 גרם)"
-        ],
-        "nutrition": {
-          "energyKcal": 397.0,
-          "fat": 34.0,
-          "fiber": null,
-          "protein": 24.0,
-          "sodium": 800.0,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "ארבעה רכיבים בלבד — ללא חומרי שימור או מייצבים",
-          "97.7% חלב עיזים ברשימה",
-          "חלבון טוב — 24 גרם ל-100 גרם"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "גאודה עיזים מיובאת זו מציגה רשימה נקייה ללא חומרי שימור, בדומה לגאודה עיזים הישראלית (מקום 2). אולם, היא מגיעה לציון C בגלל פרופיל תזונתי כבד בהרבה: שומן של 34 גרם ל-100 גרם (הכי גבוה בסקירה) ונתרן של 800 מ\"ג ל-100 גרם. מדובר בגבינה עשירה מאוד אך מלוחה ושומנית יחסית."
-      },
-      "grade": "C",
-      "id": "bsip1_hardcheese_8711528211138",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/7/871152821113805-09-2023_14-48-33.jpg",
-      "insightLine": "גאודה עיזים מיובאת עם ארבעה רכיבים וללא חומרי שימור, אך עם שומן ונתרן גבוהים המורידים אותה ל-C.",
-      "name": "גבינת גאודה עיזים.",
-      "retailer": "yohananof",
-      "rowVerdict": "גבינת עיזים עם ארבעה רכיבים ואף חומר משמר — רשימה נקייה לחלוטין. אבל השומן (34 גרם — הגבוה בסקירה) והנתרן (800 מ\"ג) הם מה שמגדיר אותה. גבינה עשירה ומיוחדת; לא גבינת יומיום.",
-      "score": 54.0,
-      "source_traceability_status": "resolved",
-      "subPool": "yellow",
-      "novaGroup": 1,
-      "rank": 20,
+      "subPool": "hard_grating",
+      "novaGroup": 3,
+      "rank": 18,
       "categoryTotal": 23
     },
     {
@@ -1103,7 +1177,7 @@
         },
         "positiveSignals": [],
         "servingNote": "ל-100 גרם",
-        "comparisonContext": "גבינה מותכת זו נמכרת במקרר לצד הגבינות הצהובות הרגילות, אך הרכבה שונה מהיסוד. היא מכילה עמילן מעובד ומספר תוספי מזון שחלקם שנויים במחלוקת המשמשים כמתחלבים, וחלבון נמוך במיוחד של 8.2 גרם בלבד (לעומת ממוצע של 23–25 גרם בגבינה קשה). בנוסף, היא מכילה 1,300 מ\"ג נתרן — כפול מרוב הגבינות בסקירה."
+        "comparisonContext": "גבינה מותכת זו נמכרת במקרר לצד הגבינות הצהובות הרגילות, אך הרכבה שונה מהיסוד. היא מכילה עמילן מעובד ומספר תוספי מזון שחלקם שנויים במחלוקת המשמשים כמתחלבים, ורק 8.2 גרם חלבון ל-100 גרם (לעומת ממוצע של 23–25 גרם בגבינה קשה). בנוסף, היא מכילה 1,300 מ\"ג נתרן — כפול מרוב הגבינות בסקירה."
       },
       "grade": "D",
       "id": "bsip1_hardcheese_7290108503999",
@@ -1112,54 +1186,10 @@
       "name": "פרוסות גבינה מותכת 13% בטעם גאודה יורו צ'יז 150 גרם",
       "retailer": "yohananof",
       "rowVerdict": "8.2 גרם חלבון ל-100 גרם — פחות משליש ממה שגבינה קשה רגילה מספקת. מה ממלא את השאר? עמילן מעובד ותוספי מזון שחלקם שנויים במחלוקת. ו-1,300 מ\"ג נתרן — כפול מהרוב. זו גבינה מותכת שנמכרת לצד גבינות קשות; ההבדל בפנים עצום.",
-      "score": 44.3,
+      "score": 37.0,
       "source_traceability_status": "resolved",
       "subPool": "processed",
       "novaGroup": 4,
-      "rank": 22,
-      "categoryTotal": 23
-    },
-    {
-      "barcode": "3073781199918",
-      "confidence": "partial",
-      "confidence_label_he": "מבוסס על נתונים חלקיים",
-      "confidence_sub_reason": "partial_field",
-      "confidence_tooltip_he": "הציון מבוסס על נתונים חלקיים. חלק מהפרטים לא היו זמינים.",
-      "d4_additives": [],
-      "expansion": {
-        "confidenceLabel": "מבוסס על נתונים חלקיים",
-        "ingredients": "חלב פרה מפוסטר(98%), מלח, תרבית לקטית, רנט.",
-        "limitingFactors": [
-          "שומן רווי גבוה במיוחד (16 גרם ל-100 גרם)",
-          "נתרן גבוה (710 מ\"ג ל-100 גרם)",
-          "שומן טרנס גבוה יחסית של 1.0 גרם ל-100 גרם המדווח על האריזה"
-        ],
-        "nutrition": {
-          "energyKcal": 305.0,
-          "fat": 24.0,
-          "fiber": null,
-          "protein": 23.0,
-          "sodium": 710.0,
-          "sugar": 0.1
-        },
-        "positiveSignals": [
-          "ארבעה רכיבים בלבד — 98% חלב פרה, ללא חומרי שימור או מייצבים",
-          "חלבון טוב — 23 גרם ל-100 גרם"
-        ],
-        "servingNote": "ל-100 גרם",
-        "comparisonContext": "גבינה זו ממוקמת אחרונה בסקירה. על אף שהיא מצטיינת ברשימה קצרה ונקייה ביותר של ארבעה רכיבים ללא חומרי שימור, היא יורדת לציון D עקב שלושה נתונים תזונתיים חריגים המדווחים על האריזה עצמה: שומן רווי גבוה מאוד (16 גרם), נתרן גבוה (710 מ\"ג), ושומן טרנס של 1.0 גרם ל-100 גרם — ננתון שרוב הגבינות במדף לא מצהירות עליו כלל או שאינו קיים בהן ברמות אלו."
-      },
-      "grade": "D",
-      "id": "bsip1_hardcheese_3073781199918",
-      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/0/3073781199918.jpg",
-      "insightLine": "רשימה נקייה ללא חומרי שימור, אך שלושה ערכים חריגים מורידים אותה לציון D: שומן רווי גבוה, שומן טרנס, ונתרן גבוה.",
-      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
-      "retailer": "yohananof",
-      "rowVerdict": "ארבעה רכיבים ואף חומר משמר — הרשימה מושלמת. אז זהו — שלא תמיד. שומן רווי גבוה במיוחד, נתרן של 710 מ\"ג, ושומן טרנס של 1.0 גרם ל-100 גרם — נתון חריג שרוב הגבינות הקשות לא מדווחות עליו כלל. הרשימה הנקייה לא מצילה כשהערכים התזונתיים מוציאים אותה מהתחרות.",
-      "score": 39.0,
-      "source_traceability_status": "resolved",
-      "subPool": "yellow",
-      "novaGroup": 1,
       "rank": 23,
       "categoryTotal": 23
     }
