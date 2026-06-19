@@ -36,8 +36,13 @@ export interface BariExpansionVM {
   servingNote: string;
   /** מה שבלט — 1–3 observable strengths (Hebrew strings). */
   positiveSignals?: string[];
-  /** מה שהגביל — 0–2 compositional limits (no cap/score language). */
-  limitingFactors?: string[];
+  /**
+   * מה שהגביל — 0–2 compositional limits (no cap/score language).
+   * TASK-346: extended to support magnitude bars. Accepts legacy string[] (existing JSON)
+   * or the new { text, magnitude }[] shape (spec §2). UI normalises both at render time.
+   * magnitude 0–1 is display-only — never a score input.
+   */
+  limitingFactors?: string[] | { text: string; magnitude: number }[];
   /** מה שלא ניתן לאמת — data gaps Bari could not verify (e.g. suppressed fat). */
   unknowns?: string[];
   /** הערות — product-level caveats (partial-data, confidence, routing). */
@@ -46,6 +51,11 @@ export interface BariExpansionVM {
   bottomLine?: string;
   /** Shelf-relative context without algorithm vocabulary. */
   comparisonContext?: string | null;
+  /**
+   * Source attribution line shown in the expansion footer (spec §3.6 / §2).
+   * Pre-authored, e.g. "מקור: שופרסל · עודכן השבוע". Optional — absent → footer omits source field.
+   */
+  sourceLine?: string | null;
   /**
    * Per-product deep-dive explanation block. Authored by the Content pipeline —
    * UI renders verbatim. All sub-fields may be missing/empty → degrade gracefully.
@@ -272,6 +282,18 @@ export interface BariProductVM {
    *  today). The calm "how processed is this food" drilldown line. Presentation only — the
    *  engine (TASK-181G) owns the score; the UI never reads the modifier as a number. */
   d3_processing?: BariProcessingSignalVM;
+
+  /**
+   * TASK-346: Position within the full category corpus. Used by the expansion's
+   * shelf-context section (§3.2) to render the positional track. Optional — absent
+   * categories fall back gracefully (shelf-context section hidden). Display-only.
+   */
+  rank?: number;
+  /**
+   * TASK-346: Total number of products in the scored corpus (denominator for rank).
+   * Paired with rank. Optional — absent → shelf-context track hidden.
+   */
+  categoryTotal?: number;
 
   // ─── Deep-Dive fields (TASK-332) ─────────────────────────────────────────────
   // Carry per-product authored depth from the pipeline. Absent on categories whose

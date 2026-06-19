@@ -266,6 +266,8 @@ export const ComparisonRow = memo(function ComparisonRow({
                 bestUseCases={product.bestUseCases}
                 consumerTakeaway={product.consumerTakeaway}
                 bariInterpretation={product.bariInterpretation}
+                rank={product.rank}
+                categoryTotal={product.categoryTotal}
               />
             ) : null}
           </div>

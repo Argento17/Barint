@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bari · Product Dropdown — Redesign</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--canvas); color: var(--fg1); font-family: var(--font-sans); }
+
+  .page { max-width: 920px; margin: 0 auto; padding: 40px 20px 96px; }
+
+  /* ---------- header ---------- */
+  .eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.24em;
+    color: color-mix(in oklab, var(--bari-green) 80%, transparent); }
+  .pageTitle { font-family: var(--font-heading); font-weight: 800; font-size: 30px;
+    letter-spacing: -0.045em; margin: 10px 0 8px; color: var(--fg1); }
+  .pageLead { font-size: 15px; line-height: 1.65; color: var(--fg2); max-width: 620px; margin: 0; }
+  .pageMeta { display: flex; gap: 14px; align-items: center; margin-top: 16px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--fg3); }
+  .pageMeta .dotsep { width: 3px; height: 3px; border-radius: 50%; background: var(--fg4); }
+
+  /* ---------- list ---------- */
+  .shelf { margin-top: 26px; background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: var(--radius-2xl); overflow: hidden; box-shadow: var(--shadow-card); }
+  .colhead { display: grid; grid-template-columns: 34px 48px 1fr 132px 96px;
+    align-items: center; gap: 12px; padding: 11px 18px; background: var(--surface-3);
+    border-bottom: 1px solid var(--hairline); font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--fg3); }
+  .colhead .r { text-align: center; }
+  .colhead .g { text-align: center; }
+
+  .row { border-bottom: 1px solid var(--hairline-faint); }
+  .row:last-child { border-bottom: none; }
+
+  .rowhead { width: 100%; display: grid; grid-template-columns: 34px 48px 1fr 132px 96px;
+    align-items: center; gap: 12px; padding: 16px 18px; background: none; border: none;
+    text-align: inherit; cursor: pointer; font-family: inherit;
+    transition: background var(--dur) var(--ease-out-soft); }
+  .rowhead:hover { background: #FBFBF9; }
+  .rank { font-family: var(--font-mono); font-size: 13px; color: var(--fg3); text-align: center;
+    font-variant-numeric: tabular-nums; }
+  .thumb { width: 48px; height: 48px; border-radius: 12px; background-size: cover;
+    background-position: center; background-color: #F2F2EC; border: 1px solid var(--hairline-soft); }
+  .nameCol { min-width: 0; }
+  .pname { font-family: var(--font-heading); font-weight: 800; font-size: 15px;
+    letter-spacing: -0.02em; color: var(--fg1); line-height: 1.25; }
+  .pbrand { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em;
+    color: var(--fg3); margin-top: 2px; }
+  .reasonLine { display: flex; align-items: center; gap: 7px; margin-top: 7px;
+    font-size: 12.5px; color: var(--fg2); line-height: 1.4; }
+  .reasonLine .glyph { flex: none; font-family: var(--font-mono); font-weight: 700;
+    width: 15px; height: 15px; display: grid; place-items: center; border-radius: 50%;
+    font-size: 11px; }
+  .reasonLine .glyph.pos { background: #E8F5EF; color: var(--bari-green-deep); }
+  .reasonLine .glyph.lim { background: #F1F1ED; color: var(--fg2); }
+
+  /* collapsed mini metrics */
+  .miniMetrics { display: flex; flex-direction: column; gap: 6px; }
+  .miniMetric { display: grid; grid-template-columns: 38px 1fr 30px; align-items: center; gap: 7px; }
+  .miniMetric .mk { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.04em; color: var(--fg3); }
+  .miniMetric .mtrack { height: 4px; border-radius: 3px; background: #EEEEE8; overflow: hidden; }
+  .miniMetric .mtrack i { display: block; height: 100%; border-radius: 3px; }
+  .miniMetric .mv { font-family: var(--font-mono); font-size: 11px; font-variant-numeric: tabular-nums;
+    color: var(--fg1); text-align: start; }
+
+  .gradeCol { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+  .gradeBadge { display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 56px; padding: 7px 0 6px; border-radius: 12px; border: 1px solid; line-height: 1; }
+  .gradeBadge b { font-family: var(--font-heading); font-weight: 800; font-size: 21px;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
+  .gradeBadge .gl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+    margin-top: 3px; opacity: 0.9; }
+  .chev { color: var(--fg3); transition: transform var(--dur-fast) var(--ease-out-soft); }
+  .chev.open { transform: rotate(180deg); }
+
+  /* ---------- expansion ---------- */
+  .exp { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-fast) var(--ease-out-soft); }
+  .exp.open { grid-template-rows: 1fr; }
+  .expClip { overflow: hidden; }
+  .expInner { padding: 4px 18px 22px 18px; }
+
+  /* section scaffold */
+  .sec { padding-top: 18px; }
+  .secHead { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .secHead .lbl { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg3); white-space: nowrap; }
+  .secHead .rule { flex: 1; height: 1px; background: var(--hairline-faint); }
+
+  /* works / limits two-up */
+  .wlGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { border-radius: var(--radius-xl); padding: 15px 16px; border: 1px solid var(--hairline-soft); }
+  .panel.works { background: #F1F8F4; border-color: rgba(31,143,106,0.16); }
+  .panel.limits { background: #FAFAF7; }
+  .panelTitle { display: flex; align-items: center; gap: 8px; margin: 0 0 11px;
+    font-family: var(--font-heading); font-weight: 800; font-size: 13.5px; letter-spacing: -0.01em; }
+  .panel.works .panelTitle { color: var(--bari-green-deep); }
+  .panel.limits .panelTitle { color: var(--fg1); }
+  .badgeMini { font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 999px; letter-spacing: 0.02em; }
+  .panel.works .badgeMini { background: #E0F0E8; color: var(--bari-green-deep); }
+  .panel.limits .badgeMini { background: #EEEEE8; color: var(--fg2); }
+
+  .wlItem { display: flex; gap: 9px; align-items: flex-start; padding: 7px 0;
+    font-size: 13px; line-height: 1.5; color: var(--fg2); }
+  .wlItem + .wlItem { border-top: 1px solid rgba(17,19,24,0.04); }
+  .wlItem .tick { flex: none; margin-top: 1px; }
+  .limBody { flex: 1; min-width: 0; }
+  .limMag { height: 4px; border-radius: 3px; background: #E7E7E0; overflow: hidden; margin-top: 7px; }
+  .limMag i { display: block; height: 100%; border-radius: 3px; background: #B9BEB7; }
+  .emptyState { font-size: 13px; color: var(--bari-green-deep); display: flex; gap: 8px; align-items: center; }
+
+  /* shelf context */
+  .shelfCtx { background: #F6F7F4; border: 1px solid var(--hairline-soft);
+    border-radius: var(--radius-xl); padding: 15px 16px; }
+  .ctxTop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .ctxRank { font-family: var(--font-heading); font-weight: 800; font-size: 15px; letter-spacing: -0.02em; color: var(--fg1); }
+  .ctxRank b { color: var(--bari-green-deep); }
+  .ctxCat { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--fg3); }
+  .ctxTrack { position: relative; height: 6px; border-radius: 4px; margin: 14px 0 12px;
+    background: linear-gradient(90deg, #C77F5A 0%, #C49A4A 35%, #9A9A5E 60%, #3FA07E 82%, #1F8F6A 100%); opacity: 0.5; }
+  .ctxMarker { position: absolute; top: 50%; width: 13px; height: 13px; border-radius: 50%;
+    background: var(--surface); border: 2.5px solid var(--fg1); transform: translate(50%, -50%); }
+  .ctxNote { font-size: 13px; line-height: 1.6; color: var(--fg2); margin: 0; }
+
+  /* bottom line */
+  .bottomLine { display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px;
+    background: var(--surface); border: 1px solid var(--hairline-soft); border-inline-start: 3px solid var(--bari-green);
+    border-radius: var(--radius-md); font-size: 13.5px; line-height: 1.6; color: var(--fg1); }
+  .bottomLine .bl { font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--bari-green-deep); white-space: nowrap; margin-top: 3px; }
+
+  /* nutrition */
+  .nutriGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .nutri { background: var(--surface); border: 1px solid var(--hairline-soft); border-radius: var(--radius-md); padding: 12px 12px 13px; }
+  .nutri .nk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--fg3); }
+  .nutri .nv { font-family: var(--font-heading); font-weight: 800; font-size: 19px; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums; color: var(--fg1); margin: 5px 0 9px; }
+  .nutri .nv i { font-style: normal; font-size: 11px; font-weight: 600; color: var(--fg3); margin-inline-start: 2px; }
+  .nutri .ntrack { height: 4px; border-radius: 3px; background: #EEEEE8; overflow: hidden; }
+  .nutri .ntrack i { display: block; height: 100%; border-radius: 3px; }
+  .ingredients { margin: 12px 0 0; font-size: 13px; line-height: 1.6; color: var(--fg2); }
+  .ingredients .ik { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+    color: var(--fg3); text-transform: uppercase; margin-inline-end: 8px; }
+
+  /* additives sub-dropdown */
+  .addBox { border: 1px solid var(--hairline); border-radius: var(--radius-xl); overflow: hidden; background: var(--surface); }
+  .addHead { width: 100%; display: flex; align-items: center; gap: 11px; padding: 13px 15px; cursor: pointer;
+    background: none; border: none; font-family: inherit; text-align: inherit;
+    transition: background var(--dur) var(--ease-out-soft); }
+  .addHead:hover { background: #FBFBF9; }
+  .addHead.static { cursor: default; }
+  .addHead.static:hover { background: none; }
+  .addIcon { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex: none; }
+  .addIcon.clean { background: #E8F5EF; color: var(--bari-green-deep); }
+  .addIcon.has { background: #F4F1EA; color: #8F6600; }
+  .addTitle { flex: 1; min-width: 0; }
+  .addTitle .t { font-family: var(--font-heading); font-weight: 800; font-size: 13.5px; letter-spacing: -0.01em; color: var(--fg1); }
+  .addTitle .s { font-size: 11.5px; color: var(--fg3); margin-top: 2px; }
+  .addCount { font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; letter-spacing: 0.04em; }
+  .addCount.clean { background: #E8F5EF; color: var(--bari-green-deep); }
+  .addCount.has { background: #F4ECD8; color: #8F6600; }
+  .addExp { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-fast) var(--ease-out-soft); }
+  .addExp.open { grid-template-rows: 1fr; }
+  .addList { overflow: hidden; }
+  .addList .inner { padding: 2px 15px 14px; }
+  .addItem { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 10px 0;
+    border-top: 1px solid var(--hairline-faint); }
+  .addItem .an { font-size: 13px; color: var(--fg1); font-weight: 600; }
+  .addItem .af { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--fg3);
+    background: #F6F6F1; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+
+  /* footer of expansion */
+  .expFoot { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding-top: 13px;
+    border-top: 1px solid var(--hairline-faint); }
+  .confTag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.04em; color: var(--fg3); }
+  .confDot { width: 7px; height: 7px; border-radius: 50%; }
+  .foot100 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--fg4); margin-inline-start: auto; }
+
+  @media (max-width: 640px) {
+    .colhead { grid-template-columns: 26px 1fr 70px; }
+    .colhead .mh, .colhead .ch2 { display: none; }
+    .rowhead { grid-template-columns: 26px 44px 1fr 70px; gap: 9px; padding: 14px 13px; }
+    .miniMetrics { display: none; }
+    .expInner { padding: 4px 13px 20px; }
+    .wlGrid { grid-template-columns: 1fr; }
+    .nutriGrid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .exp, .addExp, .chev, .rowhead, .addHead { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState } = React;
+const IMG = "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom";
+
+// ---- real milk-shelf data (names/scores/nutrition from Bari milk run; expansion copy in Bari voice) ----
+const TOTAL = 18;
+const PRODUCTS = [
+  {
+    id:"m1", name:"חלב מלא בטעם של פעם 3.4%", brand:"תנובה · 1 ליטר", grade:"A", score:85, conf:"verified",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{pos:"רכיב יחיד — חלב פרה בלבד, ללא תוספים"},
+    nutri:{protein:3.3, sugar:4.7, energy:67, sodium:47},
+    works:["רכיב יחיד — חלב פרה בלבד, ללא תוספים","ללא סוכר מוסף — הסוכר כולו לקטוז טבעי","מקור סידן וחלבון איכותי לקטגוריה"],
+    limits:[["ערך תזונתי יחסי בלבד — חלבון וסיבים פחות בולטים לעומת מוצרים מועשרים",0.35]],
+    rank:1, ctx:"ההרכב הנקי ביותר במדף — אין מה לנקות ממנו. ערך תזונתי גבוה לא בהכרח מה שאתם מחפשים בחלב בסיסי.",
+    bottom:"פשוט ברכיבים. אם אתם מחפשים חלב פרה בסיסי ונקי — זו נקודת הפתיחה.",
+    ingredients:"חלב פרה (3.4% שומן).", additives:[],
+  },
+  {
+    id:"m2", name:"חלב טבעי 4%", brand:"תנובה · 1 ליטר", grade:"A", score:82, conf:"verified",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{pos:"חלב פרה מלא — ללא תוספים או מייצבים"},
+    nutri:{protein:3.4, sugar:4.8, energy:69, sodium:50},
+    works:["רכיב יחיד — חלב פרה מלא","ללא תוספים או מייצבים","חלבון 3.4 ג׳ ל-100 מ״ל"],
+    limits:[["אחוז שומן גבוה יותר — אנרגיה מעט גבוהה לקטגוריה",0.4]],
+    rank:3, ctx:"כמעט זהה בהרכבו לחלב המוביל; אחוז השומן הגבוה יותר מעלה מעט את האנרגיה.",
+    bottom:"חלב מלא נקי. ההבדל מהמוביל הוא אחוז השומן בלבד.",
+    ingredients:"חלב פרה (4% שומן).", additives:[],
+  },
+  {
+    id:"m3", name:"חלב נטול לקטוז מועשר בחלבון 2%", brand:"תנובה · 1 ליטר", grade:"B", score:73, conf:"verified",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{pos:"חלבון גבוה לקטגוריה — 6.5 ג׳ ל-100 מ״ל"},
+    nutri:{protein:6.5, sugar:0, energy:64, sodium:55},
+    works:["חלבון גבוה לקטגוריה — 6.5 ג׳ ל-100 מ״ל","ללא לקטוז — מתאים לרגישים","ללא סוכר חופשי"],
+    limits:[["עבר עיבוד קל להסרת לקטוז",0.35],["תוסף אחד — אנזים לקטאז, לא חומר משמר",0.2]],
+    rank:6, ctx:"חלבון גבוה במיוחד לקטגוריה. העיבוד נועד להסרת לקטוז בלבד, והתוסף היחיד הוא אנזים.",
+    bottom:"בחירה טובה אם חשוב לכם חלבון גבוה או רגישות ללקטוז — העיבוד מינימלי וממוקד.",
+    ingredients:"חלב פרה (2% שומן), חלבון חלב.", additives:[{n:"לקטאז",f:"אנזים לפירוק לקטוז"}],
+  },
+  {
+    id:"m4", name:"משקה סויה ללא סוכרים", brand:"אלפרו · 1 ליטר", grade:"C", score:66, conf:"partial",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{pos:"חלבון צמחי דומה לחלב — 3.3 ג׳"},
+    nutri:{protein:3.3, sugar:0, energy:32, sodium:40},
+    works:["חלבון צמחי דומה לחלב — 3.3 ג׳ ל-100 מ״ל","ללא סוכר מוסף","אנרגיה נמוכה לקטגוריה"],
+    limits:[["שלושה תוספים — בעיקר העשרה ומייצב מרקם",0.5],["משקה מעובד — לא רכיב יחיד",0.45]],
+    rank:9, ctx:"חלופה צמחית עשירת חלבון. התוספים הם בעיקר העשרת סידן וויטמינים ומייצב מרקם — לא חומרי טעם או סוכר.",
+    bottom:"חלופה צמחית סבירה לחלב מבחינת חלבון; ההבדל הוא רמת העיבוד וההעשרה.",
+    ingredients:"מים, פולי סויה מקולפים (8%), סידן, מייצב, ויטמינים.",
+    additives:[{n:"סידן (טרי-קלציום פוספט)",f:"העשרה"},{n:"ויטמינים B12 / D2",f:"העשרה"},{n:"גואר גאם",f:"מייצב מרקם"}],
+  },
+  {
+    id:"m5", name:"חלב בבקבוק 1% מועשר", brand:"מהדרין · 1 ליטר", grade:"C", score:58, conf:"verified",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{lim:"שני תוספים — העשרת ויטמינים ומייצב"},
+    nutri:{protein:3.4, sugar:4.9, energy:43, sodium:52},
+    works:["חלבון שמור — 3.4 ג׳ ל-100 מ״ל","אנרגיה נמוכה — דל שומן"],
+    limits:[["שני תוספים — העשרת ויטמינים ומייצב",0.45],["עבר עיבוד — דל שומן מתוקנן",0.4]],
+    rank:12, ctx:"חלב דל שומן מועשר. ההעשרה והמייצב מורידים אותו מקבוצת החלבים הנקיים, אך אינם מעידים על מוצר מעובד מאוד.",
+    bottom:"דל שומן ומועשר — בחירה סבירה אם אתם מפחיתים שומן, במחיר של מעט עיבוד.",
+    ingredients:"חלב פרה (1% שומן), ויטמינים A ו-D, מייצב.",
+    additives:[{n:"ויטמין A / D",f:"העשרה"},{n:"מייצב",f:"מרקם"}],
+  },
+  {
+    id:"m6", name:"משקה חלב 27 ג׳ חלבון בטעם וניל", brand:"GO · 340 מ״ל", grade:"E", score:39, conf:"verified",
+    img:`${IMG}/UEA56_Z_P_7290000051352_1.png`,
+    reason:{lim:"מוצר מעובד מאוד — ריבוי תוספים, ממתיק וחומרי טעם"},
+    nutri:{protein:7.4, sugar:6.0, energy:67, sodium:60},
+    works:["חלבון גבוה מאוד — 7.4 ג׳ ל-100 מ״ל"],
+    limits:[["מוצר מעובד מאוד — ריבוי תוספים",0.9],["ממתיק וחומרי טעם מוספים",0.7],["סוכר מוסף — 6 ג׳ ל-100 מ״ל",0.55]],
+    rank:17, ctx:"חלבון גבוה במחיר עיבוד גבוה. חמישה תוספים, כולל ממתיק וחומרי טעם — רחוק מחלב פרה בסיסי.",
+    bottom:"אם המטרה היא חלבון מירבי לכל מ״ל — יעיל. אם אתם מחפשים מוצר נקי — זו לא הבחירה.",
+    ingredients:"מים, חלב דל לקטוז, חלבון מי גבינה מרוכז, ממתיק, מייצבים, חומרי טעם, צבע מאכל.",
+    additives:[{n:"חלבון מי גבינה מרוכז",f:"העשרת חלבון"},{n:"סוכרלוז",f:"ממתיק"},{n:"קרגינן",f:"מייצב"},{n:"חומרי טעם",f:"טעם וניל"},{n:"צבע מאכל",f:"מראה"}],
+  },
+];
+
+const GRADE = {
+  A:{bg:"var(--grade-a-bg)",tx:"var(--grade-a-text)",bd:"var(--grade-a-border)"},
+  B:{bg:"var(--grade-b-bg)",tx:"var(--grade-b-text)",bd:"var(--grade-b-border)"},
+  C:{bg:"var(--grade-c-bg)",tx:"var(--grade-c-text)",bd:"var(--grade-c-border)"},
+  D:{bg:"var(--grade-d-bg)",tx:"var(--grade-d-text)",bd:"var(--grade-d-border)"},
+  E:{bg:"var(--grade-e-bg)",tx:"var(--grade-e-text)",bd:"var(--grade-e-border)"},
+};
+const CONF = {
+  verified:{dot:"var(--bari-green)",label:"נתונים מלאים"},
+  partial:{dot:"#B5882F",label:"נתונים חלקיים"},
+  insufficient:{dot:"#B5BBB6",label:"נתונים חסרים"},
+};
+// per-100ml display scales for the nutrition mini-bars
+const SCALE = { protein:8, sugar:8, energy:80, sodium:80 };
+const toneFor = (k,v)=>{
+  if(k==="protein") return v>=5?"var(--bari-green)":v<3?"#C49A4A":"#9AA09B";
+  if(k==="sugar")   return v<=1?"var(--bari-green)":v>=6?"#C49A4A":"#9AA09B";
+  return "#9AA09B";
+};
+const NLABEL = { protein:"חלבון", sugar:"סוכר", energy:"אנרגיה", sodium:"נתרן" };
+const NUNIT  = { protein:"ג׳", sugar:"ג׳", energy:"קק״ל", sodium:'מ״ג' };
+
+function Check(){ return (
+  <svg className="tick" width="15" height="15" viewBox="0 0 16 16" aria-hidden>
+    <circle cx="8" cy="8" r="7.2" fill="none" stroke="var(--bari-green)" strokeWidth="1.3" opacity="0.55"/>
+    <path d="M5 8.2l2 2 4-4.2" fill="none" stroke="var(--bari-green-deep)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+); }
+function Dash(){ return (
+  <svg className="tick" width="15" height="15" viewBox="0 0 16 16" aria-hidden>
+    <circle cx="8" cy="8" r="7.2" fill="none" stroke="#C2C7C0" strokeWidth="1.3"/>
+    <path d="M5 8h6" fill="none" stroke="#7A817C" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+); }
+
+function GradeBadge({score,grade}){
+  const g = GRADE[grade]||GRADE.C;
+  return <span className="gradeBadge" style={{background:g.bg,color:g.tx,borderColor:g.bd}}>
+    <b>{score}</b><span className="gl">{grade}</span></span>;
+}
+
+function MiniMetric({k,v}){
+  const pct = Math.max(4, Math.min(100, (v/SCALE[k])*100));
+  return <div className="miniMetric">
+    <span className="mk">{NLABEL[k]}</span>
+    <span className="mtrack"><i style={{width:pct+"%",background:toneFor(k,v)}}/></span>
+    <span className="mv">{v}</span>
+  </div>;
+}
+
+function Additives({list}){
+  const [open,setOpen] = useState(false);
+  const clean = list.length===0;
+  return <div className="addBox">
+    <button className={"addHead"+(clean?" static":"")} onClick={()=>!clean&&setOpen(o=>!o)} aria-expanded={clean?undefined:open}>
+      <span className={"addIcon "+(clean?"clean":"has")}>
+        {clean
+          ? <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden><path d="M4 8.3l2.4 2.4L12 5.2" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          : <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" strokeWidth="1.4"/><circle cx="3" cy="8" r="1.3" fill="currentColor"/><circle cx="13" cy="8" r="1.3" fill="currentColor"/></svg>}
+      </span>
+      <span className="addTitle">
+        <span className="t">תוספי מזון</span>
+        <span className="s">{clean ? "לא זוהו תוספים — רכיבים מזוהים בלבד" : "לחצו לפירוט התוספים ותפקידם"}</span>
+      </span>
+      <span className={"addCount "+(clean?"clean":"has")}>{clean ? "ללא" : list.length}</span>
+      {!clean && <svg className={"chev"+(open?" open":"")} width="15" height="15" viewBox="0 0 16 16" aria-hidden><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+    </button>
+    {!clean && <div className={"addExp"+(open?" open":"")}>
+      <div className="addList"><div className="inner">
+        {list.map((a,i)=><div className="addItem" key={i}>
+          <span className="an">{a.n}</span><span className="af">{a.f}</span>
+        </div>)}
+      </div></div>
+    </div>}
+  </div>;
+}
+
+function Expansion({p}){
+  const noLimits = p.limits.length===0;
+  return <div className="expInner">
+
+    {/* WORKS / LIMITS */}
+    <div className="sec">
+      <div className="secHead"><span className="lbl">הערכת המוצר</span><span className="rule"/></div>
+      <div className="wlGrid">
+        <div className="panel works">
+          <p className="panelTitle">מה עובד לטובת המוצר<span className="badgeMini">{p.works.length}</span></p>
+          {p.works.map((w,i)=><div className="wlItem" key={i}><Check/><span>{w}</span></div>)}
+        </div>
+        <div className="panel limits">
+          <p className="panelTitle">מה מגביל את הציון{!noLimits && <span className="badgeMini">{p.limits.length}</span>}</p>
+          {noLimits
+            ? <div className="wlItem"><span className="emptyState"><Check/>אין גורמים מגבילים מהותיים</span></div>
+            : p.limits.map((l,i)=><div className="wlItem" key={i}><Dash/>
+                <span className="limBody">{l[0]}<span className="limMag"><i style={{width:(l[1]*100)+"%"}}/></span></span>
+              </div>)}
+        </div>
+      </div>
+    </div>
+
+    {/* SHELF CONTEXT */}
+    <div className="sec">
+      <div className="secHead"><span className="lbl">הקשר במדף</span><span className="rule"/></div>
+      <div className="shelfCtx">
+        <div className="ctxTop">
+          <span className="ctxRank">מדורג <b>{p.rank}</b> מתוך {TOTAL}</span>
+          <span className="ctxCat">חלב ומשקאות · לכל המדף</span>
+        </div>
+        <div className="ctxTrack"><span className="ctxMarker" style={{insetInlineStart:(100-(p.rank-1)/(TOTAL-1)*100)+"%"}}/></div>
+        <p className="ctxNote">{p.ctx}</p>
+      </div>
+    </div>
+
+    {/* BOTTOM LINE */}
+    <div className="sec">
+      <div className="bottomLine"><span className="bl">בשורה התחתונה</span><span>{p.bottom}</span></div>
+    </div>
+
+    {/* NUTRITION + INGREDIENTS */}
+    <div className="sec">
+      <div className="secHead"><span className="lbl">ערכים תזונתיים · ל-100 מ״ל</span><span className="rule"/></div>
+      <div className="nutriGrid">
+        {["protein","sugar","energy","sodium"].map(k=>{
+          const v = p.nutri[k]; const pct = Math.max(4, Math.min(100,(v/SCALE[k])*100));
+          return <div className="nutri" key={k}>
+            <div className="nk">{NLABEL[k]}</div>
+            <div className="nv">{v}<i>{NUNIT[k]}</i></div>
+            <div className="ntrack"><i style={{width:pct+"%",background:toneFor(k,v)}}/></div>
+          </div>;
+        })}
+      </div>
+      <p className="ingredients"><span className="ik">רכיבים</span>{p.ingredients}</p>
+    </div>
+
+    {/* ADDITIVES — separate dropdown */}
+    <div className="sec">
+      <div className="secHead"><span className="lbl">תוספי מזון</span><span className="rule"/></div>
+      <Additives list={p.additives}/>
+    </div>
+
+    {/* FOOTER */}
+    <div className="expFoot">
+      <span className="confTag"><span className="confDot" style={{background:CONF[p.conf].dot}}/>{CONF[p.conf].label}</span>
+      <span className="foot100">מקור: שופרסל · עודכן השבוע</span>
+    </div>
+  </div>;
+}
+
+function Row({p,rank,open,onToggle}){
+  const r = p.reason;
+  return <div className="row">
+    <button className="rowhead" aria-expanded={open} onClick={onToggle}>
+      <span className="rank">{rank}</span>
+      <span className="thumb" style={{backgroundImage:`url(${p.img})`}} aria-hidden/>
+      <span className="nameCol">
+        <span className="pname">{p.name}</span>
+        <div className="pbrand">{p.brand}</div>
+        <div className="reasonLine">
+          <span className={"glyph "+(r.pos?"pos":"lim")}>{r.pos?"+":"−"}</span>
+          <span>{r.pos||r.lim}</span>
+        </div>
+      </span>
+      <span className="miniMetrics">
+        <MiniMetric k="protein" v={p.nutri.protein}/>
+        <MiniMetric k="sugar" v={p.nutri.sugar}/>
+      </span>
+      <span className="gradeCol">
+        <GradeBadge score={p.score} grade={p.grade}/>
+        <svg className={"chev"+(open?" open":"")} width="15" height="15" viewBox="0 0 16 16" aria-hidden><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </span>
+    </button>
+    <div className={"exp"+(open?" open":"")}><div className="expClip"><Expansion p={p}/></div></div>
+  </div>;
+}
+
+function App(){
+  const [open,setOpen] = useState(()=>new Set(["m1"]));
+  const toggle = (id)=>setOpen(cur=>{const n=new Set(cur); n.has(id)?n.delete(id):n.add(id); return n;});
+  return <div className="page">
+    <div className="eyebrow">BARI · השוואת מוצרים</div>
+    <h1 className="pageTitle">חלב ומשקאות — מה באמת יש במדף?</h1>
+    <p className="pageLead">כל מוצר נפתח לאותו הסבר שקוף: מה עובד לטובתו, מה מגביל את ציונו, ואיך הוא יושב מול שאר המדף — ואז הערכים התזונתיים, הרכיבים, והתוספים בנפרד.</p>
+    <div className="pageMeta"><span>18 מוצרים</span><span className="dotsep"/><span>מדורג לפי ציון</span><span className="dotsep"/><span>עודכן השבוע</span></div>
+
+    <div className="shelf">
+      <div className="colhead">
+        <span className="r">#</span><span/><span>מוצר ותובנה</span>
+        <span className="mh">חלבון · סוכר</span><span className="g ch2">ציון</span>
+      </div>
+      {PRODUCTS.map((p,i)=><Row key={p.id} p={p} rank={i+1} open={open.has(p.id)} onToggle={()=>toggle(p.id)}/>)}
+    </div>
+  </div>;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

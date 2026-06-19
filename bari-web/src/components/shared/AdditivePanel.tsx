@@ -576,3 +576,304 @@ export function AdditivePanel({
     </div>
   );
 }
+
+// ─── NewAdditivePanel ─────────────────────────────────────────────────────────
+// TASK-346: spec §3.5 sub-dropdown — used by the redesigned expansion-section.
+//
+// Has-additives state: amber-tinted icon + count pill + expandable list.
+// Clean state: green-tinted icon + "ללא" pill + non-clickable static header.
+//
+// Independent open state; default closed. Same grid-rows technique as parent expansion.
+// Polish: R-08 border-radius 10px tile; R-11 opacity fade on reveal.
+// Reduced-motion: transitions disabled under prefers-reduced-motion: reduce.
+
+interface NewAdditivePanelProps {
+  additives: { name: string; function: string }[] | AdditiveEntry[];
+  category?: string;
+  productId?: string;
+}
+
+export function NewAdditivePanel({
+  additives,
+}: NewAdditivePanelProps) {
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const clean = additives.length === 0;
+
+  // Normalise: accept both simple { name, function } shape (spec §2) and
+  // AdditiveEntry shape (legacy glassbox). Map to { name, fn } for display.
+  const items = additives.map((a) => {
+    if ("name" in a && "function" in a) {
+      return { name: (a as { name: string; function: string }).name, fn: (a as { name: string; function: string }).function };
+    }
+    // AdditiveEntry shape: use name_he + function_he
+    const ae = a as AdditiveEntry;
+    return { name: ae.name_he, fn: ae.function_he };
+  });
+
+  return (
+    <div
+      style={{
+        border: "1px solid var(--hairline)",
+        borderRadius: "var(--radius-xl)",
+        overflow: "hidden",
+        background: "var(--surface)",
+      }}
+    >
+      {/* Header: static (clean) or button (has additives) */}
+      {clean ? (
+        /* Clean state — non-interactive, no button role (spec §3.5, §6) */
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "11px",
+            padding: "13px 15px",
+          }}
+          aria-label="אין תוספי מזון"
+        >
+          {/* Icon tile — green — R-08: border-radius 10px, icon 17px */}
+          <span
+            style={{
+              width: "30px",
+              height: "30px",
+              // R-08: calc(var(--radius-md) + 2px) = 10px
+              borderRadius: "calc(var(--radius-md) + 2px)",
+              display: "grid",
+              placeItems: "center",
+              flexShrink: 0,
+              background: "#E8F5EF",
+              color: "var(--bari-green-deep)",
+            }}
+          >
+            {/* Checkmark SVG — 17px per R-08 */}
+            <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden>
+              <path
+                d="M4 8.3l2.4 2.4L12 5.2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+
+          <span style={{ flex: 1, minWidth: 0 }}>
+            <span
+              style={{
+                display: "block",
+                fontFamily: "var(--font-heading)",
+                fontWeight: 800,
+                fontSize: "13.5px",
+                letterSpacing: "-0.01em",
+                color: "var(--fg1)",
+              }}
+            >
+              תוספי מזון
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontSize: "11.5px",
+                color: "var(--fg3)",
+                marginTop: "2px",
+              }}
+            >
+              לא זוהו תוספים — רכיבים מזוהים בלבד
+            </span>
+          </span>
+
+          {/* Count pill "ללא" — green tint */}
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
+              fontWeight: 700,
+              padding: "3px 9px",
+              borderRadius: "999px",
+              letterSpacing: "0.04em",
+              background: "#E8F5EF",
+              color: "var(--bari-green-deep)",
+              flexShrink: 0,
+            }}
+          >
+            ללא
+          </span>
+        </div>
+      ) : (
+        /* Has-additives state — expandable button */
+        <>
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls={panelId}
+            onClick={() => setOpen((o) => !o)}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              gap: "11px",
+              padding: "13px 15px",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "inherit",
+              textAlign: "inherit",
+              transition: "background var(--dur) var(--ease-out-soft)",
+            }}
+            className="hover:bg-[#FBFBF9]"
+          >
+            {/* Icon tile — amber — R-08: border-radius 10px, icon 17px */}
+            <span
+              style={{
+                width: "30px",
+                height: "30px",
+                borderRadius: "calc(var(--radius-md) + 2px)",
+                display: "grid",
+                placeItems: "center",
+                flexShrink: 0,
+                background: "#F4F1EA",
+                color: "#8F6600",
+              }}
+            >
+              {/* Dots SVG — 17px per R-08 */}
+              <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden>
+                <circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                <circle cx="3" cy="8" r="1.3" fill="currentColor" />
+                <circle cx="13" cy="8" r="1.3" fill="currentColor" />
+              </svg>
+            </span>
+
+            <span style={{ flex: 1, minWidth: 0 }}>
+              <span
+                style={{
+                  display: "block",
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 800,
+                  fontSize: "13.5px",
+                  letterSpacing: "-0.01em",
+                  color: "var(--fg1)",
+                }}
+              >
+                תוספי מזון
+              </span>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "11.5px",
+                  color: "var(--fg3)",
+                  marginTop: "2px",
+                }}
+              >
+                לחצו לפירוט התוספים ותפקידם
+              </span>
+            </span>
+
+            {/* Count pill — amber tint */}
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "11px",
+                fontWeight: 700,
+                padding: "3px 9px",
+                borderRadius: "999px",
+                letterSpacing: "0.04em",
+                background: "#F4ECD8",
+                color: "#8F6600",
+                flexShrink: 0,
+              }}
+            >
+              {items.length}
+            </span>
+
+            {/* Chevron — rotates 180° when open (spec §4) */}
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              aria-hidden
+              style={{
+                flexShrink: 0,
+                color: "var(--fg3)",
+                transition: "transform var(--dur-fast) var(--ease-out-soft)",
+                transform: open ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+              className="motion-reduce:transition-none"
+            >
+              <path
+                d="M4 6l4 4 4-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          {/* Collapsible body — grid-rows 0fr→1fr (spec §4) — R-11: opacity fade */}
+          <div
+            id={panelId}
+            style={{
+              display: "grid",
+              gridTemplateRows: open ? "1fr" : "0fr",
+              transition: "grid-template-rows var(--dur-fast) var(--ease-out-soft)",
+            }}
+            className="motion-reduce:transition-none"
+          >
+            <div style={{ overflow: "hidden" }}>
+              {/* R-11: opacity fade on the inner content */}
+              <div
+                style={{
+                  padding: "2px 15px 14px",
+                  opacity: open ? 1 : 0,
+                  transition: "opacity var(--dur-fast) var(--ease-out-soft)",
+                }}
+                className="motion-reduce:transition-none"
+              >
+                {items.map((item, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr auto",
+                      alignItems: "center",
+                      gap: "12px",
+                      padding: "10px 0",
+                      borderTop: "1px solid var(--hairline-faint)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "13px",
+                        color: "var(--fg1)",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {item.name}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "10.5px",
+                        letterSpacing: "0.04em",
+                        color: "var(--fg3)",
+                        background: "#F6F6F1",
+                        padding: "3px 9px",
+                        borderRadius: "999px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.fn}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}

@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from "react";
 
-import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { GLASSBOX_D5D6_ON } from "@/lib/feature-flags";
 import { cn } from "@/lib/utils";
 import type {
@@ -19,392 +18,1009 @@ import {
   resolveDisclosureLines,
   resolveWithholdReason,
 } from "@/lib/view-models";
-import { AdditivePanel } from "@/components/shared/AdditivePanel";
+import { NewAdditivePanel } from "@/components/shared/AdditivePanel";
 import { ProcessingSignalNote } from "@/components/shared/processing-signal-note";
 import { DeepDiveSection, hasDeepDiveContent } from "@/components/shared/deep-dive-section";
 
-const NUTRIENT_LABELS: { key: keyof BariNutritionVM; label: string; unit: string }[] = [
-  { key: "energyKcal", label: 'קק"ל', unit: "" },
-  { key: "protein", label: "חלבון", unit: 'ג\'' },
-  { key: "sugar", label: "סוכרים", unit: 'ג\'' },
-  { key: "fiber", label: "סיבים", unit: 'ג\'' },
-  { key: "fat", label: "שומן", unit: 'ג\'' },
-  { key: "satFat", label: "שומן רווי", unit: 'ג\'' },
-  { key: "sodium", label: "נתרן", unit: 'מ"ג' },
-];
+// ─── Label constants (verbatim — spec §1, non-negotiable) ─────────────────────
+const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
+const LABEL_LIMITING = "מה מגביל את הציון?";
+const LABEL_COMPARISON = "הקשר במדף";
+const LABEL_BOTTOM = "בשורה התחתונה";
+const LABEL_NUTRITION = "ערכים תזונתיים";
+const LABEL_ADDITIVES = "תוספי מזון";
+// Legacy / glass-box labels kept for those paths
+const LABEL_UNKNOWNS = "מה שלא ניתן לאמת";
+const LABEL_CAVEATS = "הערות";
+const LABEL_DISCLOSURE = GLASS_BOX_DISCLOSURE_HEADING;
 
+// ─── Confidence labels ────────────────────────────────────────────────────────
 const CONFIDENCE_LABELS: Record<BariConfidence, string> = {
   verified: "נתונים מלאים",
   partial: "נתונים חלקיים",
   insufficient: "נתונים חסרים",
 };
 
-const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
-const LABEL_LIMITING = "מה מגביל את הציון?";
-const LABEL_UNKNOWNS = "מה שלא ניתן לאמת";
-const LABEL_CAVEATS = "הערות";
-const LABEL_BOTTOM = "בשורה התחתונה";
-const LABEL_COMPARISON = "הקשר במדף";
-// TASK-179N — Glass Box D5 disclosure section heading comes from the Content-owned copy
-// map (GLASS_BOX_DISCLOSURE_HEADING = "מה לא צוין בתווית") so all glass-box strings live
-// in one place. Calm, factual register (Q2): "what the label did not state", not an accusation.
-const LABEL_DISCLOSURE = GLASS_BOX_DISCLOSURE_HEADING;
+// Confidence dot/ring colors (spec §3.6, polish R-12)
+const CONF_COLORS: Record<BariConfidence, string> = {
+  verified: "var(--bari-green)",
+  partial: "#B5882F",
+  insufficient: "#B5BBB6",
+};
 
-function SectionLabel({ children }: { children: string }) {
+// ─── Normalise limitingFactors ────────────────────────────────────────────────
+// The VM accepts either legacy string[] or new { text, magnitude }[].
+// This helper normalises to { text, magnitude }[] for the renderer.
+type LimitingFactor = { text: string; magnitude: number };
+
+function normaliseLimits(
+  raw: string[] | { text: string; magnitude: number }[] | undefined
+): LimitingFactor[] {
+  if (!raw || raw.length === 0) return [];
+  if (typeof raw[0] === "string") {
+    return (raw as string[]).map((s) => ({ text: s, magnitude: 0 }));
+  }
+  return raw as { text: string; magnitude: number }[];
+}
+
+// ─── Category-scoped nutrition scales (spec §3.4) ─────────────────────────────
+// "Set per category — do not reuse dairy scales for hummus."
+// Format: { max, goodAbove?, goodBelow?, warnAbove?, warnBelow? }
+interface NutrientScale {
+  max: number;
+  goodAbove?: number;  // protein: ≥5 → green
+  warnBelow?: number;  // protein: <3 → amber
+  goodBelow?: number;  // sugar: ≤1 → green
+  warnAbove?: number;  // sugar: ≥6 → amber
+}
+
+interface CategoryNutritionConfig {
+  energyKcal: NutrientScale;
+  protein: NutrientScale;
+  sugar: NutrientScale;
+  sodium: NutrientScale;
+  servingLabel: string;
+}
+
+const CATEGORY_NUTRITION: Record<string, CategoryNutritionConfig> = {
+  // Dairy / milk (spec §3.4 dairy shown as example)
+  milk: {
+    energyKcal: { max: 80 },
+    protein: { max: 8, goodAbove: 5, warnBelow: 3 },
+    sugar: { max: 8, goodBelow: 1, warnAbove: 6 },
+    sodium: { max: 80 },
+    servingLabel: "ל-100 מ״ל",
+  },
+  // Hummus: protein runs 0–22 (spec §3.4 example)
+  hummus: {
+    energyKcal: { max: 350 },
+    protein: { max: 22, goodAbove: 10, warnBelow: 4 },
+    sugar: { max: 5, goodBelow: 1, warnAbove: 4 },
+    sodium: { max: 600 },
+    servingLabel: "ל-100 גרם",
+  },
+  // Bread
+  bread: {
+    energyKcal: { max: 350 },
+    protein: { max: 16, goodAbove: 8, warnBelow: 3 },
+    sugar: { max: 10, goodBelow: 1, warnAbove: 6 },
+    sodium: { max: 600 },
+    servingLabel: "ל-100 גרם",
+  },
+  // Cereals / granola
+  cereals: {
+    energyKcal: { max: 450 },
+    protein: { max: 20, goodAbove: 10, warnBelow: 5 },
+    sugar: { max: 30, goodBelow: 5, warnAbove: 20 },
+    sodium: { max: 400 },
+    servingLabel: "ל-100 גרם",
+  },
+  granola: {
+    energyKcal: { max: 480 },
+    protein: { max: 20, goodAbove: 10, warnBelow: 5 },
+    sugar: { max: 35, goodBelow: 5, warnAbove: 22 },
+    sodium: { max: 400 },
+    servingLabel: "ל-100 גרם",
+  },
+  // Snacks
+  snacks: {
+    energyKcal: { max: 600 },
+    protein: { max: 20, goodAbove: 8, warnBelow: 3 },
+    sugar: { max: 30, goodBelow: 3, warnAbove: 15 },
+    sodium: { max: 800 },
+    servingLabel: "ל-100 גרם",
+  },
+  // Cheese
+  cheese: {
+    energyKcal: { max: 400 },
+    protein: { max: 30, goodAbove: 20, warnBelow: 8 },
+    sugar: { max: 5, goodBelow: 1, warnAbove: 3 },
+    sodium: { max: 800 },
+    servingLabel: "ל-100 גרם",
+  },
+  "hard-cheeses": {
+    energyKcal: { max: 420 },
+    protein: { max: 32, goodAbove: 22, warnBelow: 10 },
+    sugar: { max: 3, goodBelow: 0.5, warnAbove: 2 },
+    sodium: { max: 900 },
+    servingLabel: "ל-100 גרם",
+  },
+  "brined-cheeses": {
+    energyKcal: { max: 350 },
+    protein: { max: 25, goodAbove: 16, warnBelow: 8 },
+    sugar: { max: 3, goodBelow: 0.5, warnAbove: 2 },
+    sodium: { max: 1000 },
+    servingLabel: "ל-100 גרם",
+  },
+  // Juices
+  juices: {
+    energyKcal: { max: 80 },
+    protein: { max: 2 },
+    sugar: { max: 15, goodBelow: 5, warnAbove: 10 },
+    sodium: { max: 50 },
+    servingLabel: "ל-100 מ״ל",
+  },
+  // Cookies
+  "cookies-coffee": {
+    energyKcal: { max: 550 },
+    protein: { max: 15, goodAbove: 7, warnBelow: 3 },
+    sugar: { max: 40, goodBelow: 5, warnAbove: 25 },
+    sodium: { max: 600 },
+    servingLabel: "ל-100 גרם",
+  },
+  cakes: {
+    energyKcal: { max: 550 },
+    protein: { max: 10, goodAbove: 5, warnBelow: 2 },
+    sugar: { max: 45, goodBelow: 8, warnAbove: 28 },
+    sodium: { max: 500 },
+    servingLabel: "ל-100 גרם",
+  },
+};
+
+// Default scales (fallback when category not in map)
+const DEFAULT_NUTRITION: CategoryNutritionConfig = {
+  energyKcal: { max: 400 },
+  protein: { max: 20, goodAbove: 8, warnBelow: 3 },
+  sugar: { max: 20, goodBelow: 3, warnAbove: 12 },
+  sodium: { max: 600 },
+  servingLabel: "ל-100 גרם",
+};
+
+function getCategoryNutrition(category?: string): CategoryNutritionConfig {
+  if (!category) return DEFAULT_NUTRITION;
+  return CATEGORY_NUTRITION[category] ?? DEFAULT_NUTRITION;
+}
+
+// Bar fill tone for a nutrient value (spec §3.4)
+function nutrientTone(key: keyof BariNutritionVM, value: number, scale: NutrientScale): string {
+  if (key === "protein") {
+    if (scale.goodAbove !== undefined && value >= scale.goodAbove) return "var(--bari-green)";
+    if (scale.warnBelow !== undefined && value < scale.warnBelow) return "#C49A4A";
+    return "#9AA09B";
+  }
+  if (key === "sugar") {
+    if (scale.goodBelow !== undefined && value <= scale.goodBelow) return "var(--bari-green)";
+    if (scale.warnAbove !== undefined && value >= scale.warnAbove) return "#C49A4A";
+    return "#9AA09B";
+  }
+  // energy and sodium stay neutral grey
+  return "#9AA09B";
+}
+
+// ─── SVG glyphs (spec §3.1, polish R-09) ─────────────────────────────────────
+// Check: green ring (opacity 0.7 per R-09) + checkmark in bari-green-deep
+function CheckGlyph() {
   return (
-    <p className="text-[11px] font-bold leading-snug tracking-[0.01em] text-[#4A524E]">
-      {children}
-    </p>
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      aria-hidden
+      className="shrink-0 mt-[1px]"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        r="7.2"
+        fill="none"
+        stroke="var(--bari-green)"
+        strokeWidth="1.3"
+        opacity="0.7"
+      />
+      <path
+        d="M5 8.2l2 2 4-4.2"
+        fill="none"
+        stroke="var(--bari-green-deep)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
-function InterpretiveSection({
+// Dash: neutral ring (strokeWidth 1.5 per R-09) + dash in fg3
+function DashGlyph() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      aria-hidden
+      className="shrink-0 mt-[1px]"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        r="7.2"
+        fill="none"
+        stroke="#C2C7C0"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M5 8h6"
+        fill="none"
+        stroke="#7A817C"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+// ─── Section header (spec §1: mono uppercase label + hairline rule) ───────────
+function SectionHeader({ label }: { label: string }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        marginBottom: "12px",
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "10.5px",
+          fontWeight: 700,
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          color: "var(--fg3)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {label}
+      </span>
+      <span
+        style={{
+          flex: 1,
+          height: "1px",
+          background: "var(--hairline-faint)",
+        }}
+        aria-hidden
+      />
+    </div>
+  );
+}
+
+// ─── Section wrapper (spec R-01: 24px top gap, 20px at <640px) ───────────────
+function Section({
   label,
-  spaced,
   children,
+  first = false,
 }: {
   label: string;
-  spaced?: boolean;
   children: ReactNode;
+  first?: boolean;
 }) {
   return (
-    <div className={spaced ? "pt-2.5" : undefined}>
-      <SectionLabel>{label}</SectionLabel>
+    <div
+      style={{
+        // R-01: 24px between sections (18px tightens to 20px on mobile via responsive)
+        paddingTop: first ? "4px" : "24px",
+      }}
+      className={first ? undefined : "sm:pt-[24px] max-sm:pt-[20px]"}
+    >
+      <SectionHeader label={label} />
       {children}
     </div>
   );
 }
 
-function hasInterpretiveContent(expansion: BariExpansionVM): boolean {
-  return Boolean(
-    expansion.bottomLine?.trim() ||
-      expansion.comparisonContext?.trim() ||
-      (expansion.positiveSignals?.length ?? 0) > 0 ||
-      (expansion.limitingFactors?.length ?? 0) > 0 ||
-      (expansion.unknowns?.length ?? 0) > 0 ||
-      (expansion.caveats?.length ?? 0) > 0
-  );
-}
+// ─── §3.1 Assessment section ─────────────────────────────────────────────────
 
-function NoteList({ lines }: { lines: string[] }) {
-  return (
-    <ul className="mt-1.5 space-y-1">
-      {lines.map((line) => (
-        <li key={line} className="flex gap-1.5 text-[12px] leading-relaxed text-[#5E6560]">
-          <span className="shrink-0 text-[#C5CAC6]" aria-hidden>
-            ·
-          </span>
-          <span>{line}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function SignalList({ lines, tone }: { lines: string[]; tone: "positive" | "limiting" }) {
-  const textClass =
-    tone === "positive"
-      ? "text-[12px] leading-relaxed text-[#4E5663]"
-      : "text-[12px] leading-relaxed text-[#6E756F]";
-  const dotClass =
-    tone === "positive" ? "text-[#B5BBB6]" : "text-[#C5CAC6]";
-
-  return (
-    <ul className="mt-1.5 space-y-1">
-      {lines.map((line) => (
-        <li key={line} className={`flex gap-1.5 ${textClass}`}>
-          <span className={`shrink-0 ${dotClass}`} aria-hidden>
-            ·
-          </span>
-          <span>{line}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function InterpretiveExpansion({
-  expansion,
-  wide = false,
+function AssessmentSection({
+  positiveSignals,
+  limitingFactors,
 }: {
-  expansion: BariExpansionVM;
-  wide?: boolean;
+  positiveSignals: string[];
+  limitingFactors: LimitingFactor[];
 }) {
-  if (!hasInterpretiveContent(expansion)) return null;
-
-  const { bottomLine, positiveSignals, limitingFactors, unknowns, caveats, comparisonContext } =
-    expansion;
-
-  const hasPositive = (positiveSignals?.length ?? 0) > 0;
-  const hasLimiting = (limitingFactors?.length ?? 0) > 0;
-  const hasUnknowns = (unknowns?.length ?? 0) > 0;
-  const hasCaveats = (caveats?.length ?? 0) > 0;
-
-  if (wide) {
-    return (
-      <div className="space-y-3 lg:space-y-2.5">
-        {hasPositive || hasLimiting ? (
-          <div
-            className={cn(
-              "grid grid-cols-1 gap-y-3",
-              hasPositive && hasLimiting && "lg:grid-cols-2 lg:gap-x-12 lg:gap-y-0"
-            )}
-          >
-            {hasPositive ? (
-              <InterpretiveSection label={LABEL_POSITIVE}>
-                <SignalList lines={positiveSignals!} tone="positive" />
-              </InterpretiveSection>
-            ) : null}
-            {hasLimiting ? (
-              <InterpretiveSection label={LABEL_LIMITING} spaced={hasPositive}>
-                <SignalList lines={limitingFactors!} tone="limiting" />
-              </InterpretiveSection>
-            ) : null}
-          </div>
-        ) : null}
-
-        {hasUnknowns ? (
-          <InterpretiveSection label={LABEL_UNKNOWNS} spaced={hasPositive || hasLimiting}>
-            <NoteList lines={unknowns!} />
-          </InterpretiveSection>
-        ) : null}
-
-        {hasCaveats ? (
-          <InterpretiveSection
-            label={LABEL_CAVEATS}
-            spaced={hasPositive || hasLimiting || hasUnknowns}
-          >
-            <NoteList lines={caveats!} />
-          </InterpretiveSection>
-        ) : null}
-
-        {bottomLine?.trim() ? (
-          <InterpretiveSection
-            label={LABEL_BOTTOM}
-            spaced={hasPositive || hasLimiting || hasUnknowns || hasCaveats}
-          >
-            <p className="mt-1.5 text-[13px] leading-[1.55] text-[#2F3531]">{bottomLine}</p>
-          </InterpretiveSection>
-        ) : null}
-
-        {comparisonContext?.trim() ? (
-          <InterpretiveSection label={LABEL_COMPARISON} spaced>
-            <p className="mt-1.5 text-[12px] leading-relaxed text-[#5E6560]">
-              {comparisonContext}
-            </p>
-          </InterpretiveSection>
-        ) : null}
-      </div>
-    );
-  }
-
-  const sections: { label: string; body: ReactNode }[] = [];
-
-  if (hasPositive) {
-    sections.push({
-      label: LABEL_POSITIVE,
-      body: <SignalList lines={positiveSignals!} tone="positive" />,
-    });
-  }
-
-  if (hasLimiting) {
-    sections.push({
-      label: LABEL_LIMITING,
-      body: <SignalList lines={limitingFactors!} tone="limiting" />,
-    });
-  }
-
-  if (hasUnknowns) {
-    sections.push({
-      label: LABEL_UNKNOWNS,
-      body: <NoteList lines={unknowns!} />,
-    });
-  }
-
-  if (hasCaveats) {
-    sections.push({
-      label: LABEL_CAVEATS,
-      body: <NoteList lines={caveats!} />,
-    });
-  }
-
-  if (bottomLine?.trim()) {
-    sections.push({
-      label: LABEL_BOTTOM,
-      body: (
-        <p className="mt-1.5 text-[13px] leading-[1.55] text-[#2F3531]">{bottomLine}</p>
-      ),
-    });
-  }
-
-  if (comparisonContext?.trim()) {
-    sections.push({
-      label: LABEL_COMPARISON,
-      body: (
-        <p className="mt-1.5 text-[12px] leading-relaxed text-[#5E6560]">
-          {comparisonContext}
-        </p>
-      ),
-    });
-  }
+  const hasLimits = limitingFactors.length > 0;
 
   return (
-    <div>
-      {sections.map((section, index) => (
-        <InterpretiveSection
-          key={section.label}
-          label={section.label}
-          spaced={index > 0}
+    // wlGrid: 2-col → 1-col < 640px
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "14px",
+      }}
+      className="max-sm:!grid-cols-1"
+    >
+      {/* Positive panel */}
+      <div
+        style={{
+          borderRadius: "var(--radius-xl)",
+          // R-02: padding 18px 16px
+          padding: "18px 16px",
+          background: "#F1F8F4",
+          border: "1px solid rgba(31,143,106,0.16)",
+        }}
+      >
+        <p
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            margin: "0 0 11px",
+            fontFamily: "var(--font-heading)",
+            fontWeight: 800,
+            fontSize: "13.5px",
+            letterSpacing: "-0.01em",
+            color: "var(--bari-green-deep)",
+          }}
         >
-          {section.body}
-        </InterpretiveSection>
-      ))}
+          {LABEL_POSITIVE}
+          {/* Count pill — R-05: ringed, near-transparent */}
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "10px",
+              fontWeight: 700,
+              padding: "2px 7px",
+              borderRadius: "999px",
+              letterSpacing: "0.02em",
+              background: "rgba(31,143,106,0.10)",
+              color: "var(--bari-green-deep)",
+              border: "1px solid rgba(31,143,106,0.18)",
+            }}
+          >
+            {positiveSignals.length}
+          </span>
+        </p>
+        {positiveSignals.map((signal, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              gap: "9px",
+              alignItems: "flex-start",
+              // R-02: item row padding 9px
+              padding: "9px 0",
+              fontSize: "13px",
+              lineHeight: 1.5,
+              color: "var(--fg2)",
+              borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
+            }}
+          >
+            <CheckGlyph />
+            <span>{signal}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Limits panel */}
+      <div
+        style={{
+          borderRadius: "var(--radius-xl)",
+          // R-02: padding 18px 16px
+          padding: "18px 16px",
+          background: "#FAFAF7",
+          border: "1px solid var(--hairline-soft)",
+        }}
+      >
+        <p
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            margin: "0 0 11px",
+            fontFamily: "var(--font-heading)",
+            fontWeight: 800,
+            fontSize: "13.5px",
+            letterSpacing: "-0.01em",
+            color: "var(--fg1)",
+          }}
+        >
+          {LABEL_LIMITING}
+          {/* Count pill only when > 0 (spec §3.1) — R-05: ringed neutral */}
+          {hasLimits ? (
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                fontWeight: 700,
+                padding: "2px 7px",
+                borderRadius: "999px",
+                letterSpacing: "0.02em",
+                background: "rgba(17,19,24,0.05)",
+                color: "var(--fg2)",
+                border: "1px solid var(--hairline)",
+              }}
+            >
+              {limitingFactors.length}
+            </span>
+          ) : null}
+        </p>
+
+        {hasLimits ? (
+          limitingFactors.map((lf, i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                gap: "9px",
+                alignItems: "flex-start",
+                // R-02: item row padding 9px
+                padding: "9px 0",
+                fontSize: "13px",
+                lineHeight: 1.5,
+                color: "var(--fg2)",
+                borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
+              }}
+            >
+              <DashGlyph />
+              {/* limBody wraps text + magnitude bar */}
+              <span style={{ flex: 1, minWidth: 0 }}>
+                {lf.text}
+                {/* Magnitude bar — R-03: 5px track, border-radius 4px */}
+                <span
+                  style={{
+                    display: "block",
+                    // R-03: 5px height
+                    height: "5px",
+                    borderRadius: "4px",
+                    background: "#E7E7E0",
+                    overflow: "hidden",
+                    marginTop: "7px",
+                  }}
+                  aria-hidden
+                >
+                  <i
+                    style={{
+                      display: "block",
+                      height: "100%",
+                      // R-03: 5px fill
+                      borderRadius: "4px",
+                      background: "#B9BEB7",
+                      width: lf.magnitude > 0 ? `${lf.magnitude * 100}%` : "0%",
+                    }}
+                  />
+                </span>
+              </span>
+            </div>
+          ))
+        ) : (
+          /* Empty state: green check + text, no count pill */
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+              alignItems: "center",
+              fontSize: "13px",
+              color: "var(--bari-green-deep)",
+              padding: "9px 0",
+            }}
+          >
+            <CheckGlyph />
+            אין גורמים מגבילים מהותיים
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-function NutritionGrid({
+// ─── §3.2 Shelf context ───────────────────────────────────────────────────────
+
+function ShelfContextSection({
+  rank,
+  categoryTotal,
+  comparisonContext,
+}: {
+  rank: number;
+  categoryTotal: number;
+  comparisonContext: string;
+}) {
+  // Position marker: best rank (1) sits at end (right in RTL).
+  // inset-inline-start = 100% − (rank−1)/(categoryTotal−1) × 100%
+  const markerPct =
+    categoryTotal > 1
+      ? 100 - ((rank - 1) / (categoryTotal - 1)) * 100
+      : 50;
+
+  return (
+    <div
+      style={{
+        background: "#F6F7F4",
+        border: "1px solid var(--hairline-soft)",
+        borderRadius: "var(--radius-xl)",
+        padding: "15px 16px",
+      }}
+    >
+      {/* Top row: rank + category meta */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+          gap: "12px",
+          flexWrap: "wrap",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontWeight: 800,
+            fontSize: "15px",
+            letterSpacing: "-0.02em",
+            color: "var(--fg1)",
+          }}
+        >
+          מדורג{" "}
+          <strong style={{ color: "var(--bari-green-deep)" }}>{rank}</strong>
+          {" "}מתוך {categoryTotal}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "10.5px",
+            letterSpacing: "0.08em",
+            color: "var(--fg3)",
+          }}
+        >
+          לכל המדף
+        </span>
+      </div>
+
+      {/* Position track: grade gradient — R-07: opacity 0.65 */}
+      <div
+        style={{
+          position: "relative",
+          height: "6px",
+          borderRadius: "4px",
+          margin: "14px 0 12px",
+          background:
+            "linear-gradient(90deg, #C77F5A 0%, #C49A4A 35%, #9A9A5E 60%, #3FA07E 82%, #1F8F6A 100%)",
+          // R-07: opacity 0.65 (up from 0.5)
+          opacity: 0.65,
+        }}
+        aria-hidden
+      >
+        {/* Marker — R-07: border 3px (up from 2.5px), positioned via inset-inline-start */}
+        <span
+          style={{
+            position: "absolute",
+            top: "50%",
+            width: "13px",
+            height: "13px",
+            borderRadius: "50%",
+            background: "var(--surface)",
+            // R-07: 3px border
+            border: "3px solid var(--fg1)",
+            transform: "translate(50%, -50%)",
+            insetInlineStart: `${markerPct}%`,
+          }}
+        />
+      </div>
+
+      {/* Prose context */}
+      <p
+        style={{
+          margin: 0,
+          fontSize: "13px",
+          lineHeight: 1.6,
+          color: "var(--fg2)",
+        }}
+      >
+        {comparisonContext}
+      </p>
+    </div>
+  );
+}
+
+// ─── §3.3 Bottom line ─────────────────────────────────────────────────────────
+
+function BottomLineSection({ bottomLine }: { bottomLine: string }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+        alignItems: "flex-start",
+        padding: "14px 16px",
+        background: "var(--surface)",
+        border: "1px solid var(--hairline-soft)",
+        // R-06: 4px border (up from 3px)
+        borderInlineStart: "4px solid var(--bari-green)",
+        borderRadius: "var(--radius-md)",
+        // R-06: shadow-sm lifts the card
+        boxShadow: "var(--shadow-sm)",
+        fontSize: "13.5px",
+        lineHeight: 1.6,
+        color: "var(--fg1)",
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "9.5px",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "var(--bari-green-deep)",
+          whiteSpace: "nowrap",
+          marginTop: "3px",
+        }}
+      >
+        {LABEL_BOTTOM}
+      </span>
+      <span>{bottomLine}</span>
+    </div>
+  );
+}
+
+// ─── §3.4 Nutrition + ingredients ────────────────────────────────────────────
+
+const NUTRITION_KEYS: {
+  key: keyof BariNutritionVM;
+  label: string;
+  unit: string;
+}[] = [
+  { key: "protein", label: "חלבון", unit: "ג׳" },
+  { key: "sugar", label: "סוכר", unit: "ג׳" },
+  { key: "energyKcal", label: "אנרגיה", unit: 'קק״ל' },
+  { key: "sodium", label: "נתרן", unit: 'מ״ג' },
+];
+
+function NutritionSection({
   nutrition,
+  ingredients,
+  category,
   servingNote,
 }: {
   nutrition: BariNutritionVM;
+  ingredients: string | null;
+  category?: string;
   servingNote: string;
 }) {
-  const cells = NUTRIENT_LABELS.filter(({ key }) => nutrition[key] != null);
+  const catConfig = getCategoryNutrition(category);
+  const displayedCells = NUTRITION_KEYS.filter(({ key }) => nutrition[key] != null);
 
-  if (cells.length === 0) return null;
+  const sectionLabel = servingNote
+    ? `${LABEL_NUTRITION} · ${servingNote}`
+    : `${LABEL_NUTRITION} · ${catConfig.servingLabel}`;
 
   return (
     <div>
-      {servingNote ? (
-        <p
-          className="mb-1.5 text-[10px] font-medium leading-none"
-          style={{ color: BARI_COMPARISON_TOKENS.methodology.color }}
-        >
-          {servingNote}
-        </p>
-      ) : null}
-      {/* Adjacent label+value pairs that wrap — readable at any width. (Replaces the
-          old justify-between rows, which flung label and value to opposite edges in
-          the wide unified table.) */}
-      <div className="flex flex-wrap gap-x-6 gap-y-1.5">
-        {cells.map(({ key, label, unit }) => {
+      <SectionHeader label={sectionLabel} />
+
+      {/* 4-up grid → 2-col < 640px (spec §3.4, §5) */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "10px",
+        }}
+        className="max-sm:!grid-cols-2"
+      >
+        {displayedCells.map(({ key, label, unit }) => {
           const value = nutrition[key];
+          if (value == null) return null;
+
+          const scaleKey = key === "energyKcal" ? "energyKcal" : key === "sodium" ? "sodium" : key as "protein" | "sugar";
+          const scale: NutrientScale = catConfig[scaleKey as keyof CategoryNutritionConfig] as NutrientScale ?? { max: 100 };
+          const tone = nutrientTone(key, value as number, scale);
+          const barPct = Math.max(3, Math.min(100, ((value as number) / scale.max) * 100));
+
           return (
-            <div key={key} className="flex items-baseline gap-1.5">
-              <span className="text-[10px] font-medium leading-none text-[#9A9FA6]">
+            <div
+              key={key}
+              style={{
+                background: "var(--surface)",
+                border: "1px solid var(--hairline-soft)",
+                borderRadius: "var(--radius-md)",
+                padding: "12px 12px 13px",
+              }}
+              aria-label={`${label} ${typeof value === "number" ? Math.round(value) : "—"} ${unit}`}
+            >
+              <div
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.06em",
+                  color: "var(--fg3)",
+                }}
+              >
                 {label}
-              </span>
-              <span className="text-[12px] font-semibold tabular-nums leading-none text-[#6E756F]">
+              </div>
+              {/* R-04: numeral 21px, unit 12px */}
+              <div
+                style={{
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 800,
+                  // R-04: 21px (up from 19px)
+                  fontSize: "21px",
+                  letterSpacing: "-0.03em",
+                  fontVariantNumeric: "tabular-nums",
+                  color: "var(--fg1)",
+                  margin: "5px 0 9px",
+                }}
+              >
                 {typeof value === "number" ? Math.round(value) : "—"}
-                {unit && <span className="text-[9px] font-medium text-[#9A9FA6]"> {unit}</span>}
-              </span>
+                <i
+                  style={{
+                    fontStyle: "normal",
+                    // R-04: 12px (up from 11px)
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    color: "var(--fg3)",
+                    marginInlineStart: "2px",
+                  }}
+                >
+                  {unit}
+                </i>
+              </div>
+              {/* Mini-bar — decorative */}
+              <div
+                style={{
+                  height: "4px",
+                  borderRadius: "3px",
+                  background: "#EEEEE8",
+                  overflow: "hidden",
+                }}
+                aria-hidden
+              >
+                <i
+                  style={{
+                    display: "block",
+                    height: "100%",
+                    borderRadius: "3px",
+                    background: tone,
+                    width: `${barPct}%`,
+                  }}
+                />
+              </div>
             </div>
           );
         })}
       </div>
-    </div>
-  );
-}
 
-function IngredientList({ ingredients }: { ingredients: string }) {
-  const [showAll, setShowAll] = useState(false);
-
-  if (!ingredients) return null;
-
-  return (
-    <div>
-      <p
-        className="text-[11px] leading-relaxed text-[#5E6560]"
-        style={
-          showAll
-            ? undefined
-            : {
-                display: "-webkit-box",
-                WebkitLineClamp: 4,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }
-        }
-      >
-        {ingredients}
-      </p>
-      {!showAll && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowAll(true);
+      {/* Ingredients line */}
+      <div style={{ marginTop: "12px", fontSize: "13px", lineHeight: 1.6, color: "var(--fg2)" }}>
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "10px",
+            letterSpacing: "0.06em",
+            color: "var(--fg3)",
+            textTransform: "uppercase",
+            marginInlineEnd: "8px",
           }}
-          className="mt-1 text-[11px] font-semibold text-[#1F8F6A]"
         >
-          הצג הכל
-        </button>
-      )}
+          רכיבים
+        </span>
+        {ingredients ? (
+          <IngredientText ingredients={ingredients} />
+        ) : (
+          <span style={{ color: "var(--fg3)", fontStyle: "normal" }}>
+            רשימת רכיבים מלאה לא אומתה במקור.
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
-function TechnicalDetails({
-  expansion,
-  d4Additives,
-  productId,
-  category,
-}: {
-  expansion: BariExpansionVM;
-  /** TASK-179T: D4 additive entries (flag-gated; undefined when flag OFF or not a pilot category). */
-  d4Additives?: AdditiveEntry[];
-  /** Anonymous shelf position for analytics context. */
-  productId?: string;
-  /** Category slug for analytics context. */
-  category?: string;
-}) {
-  const nutrition = expansion.nutrition;
-  const hasNutrition =
-    nutrition != null && Object.values(nutrition).some((v) => v != null);
-  const hasIngredients = Boolean(expansion.ingredients?.trim());
-  // The additive panel is always rendered for pilot categories when the flag is ON
-  // (even for empty — the empty state is part of the engagement gate signal).
-  const showAdditivePanel = GLASSBOX_D5D6_ON && d4Additives !== undefined;
+function IngredientText({ ingredients }: { ingredients: string }) {
+  const [expanded, setExpanded] = useState(false);
 
-  if (!hasNutrition && !hasIngredients && !showAdditivePanel) return null;
+  if (expanded) {
+    return <span>{ingredients}</span>;
+  }
 
+  // Truncate at 180 chars; prefer sentence break
+  const MAX = 180;
+  if (ingredients.length <= MAX) return <span>{ingredients}</span>;
+
+  const preview = ingredients.slice(0, MAX).trimEnd() + "…";
   return (
-    <div className="mt-3 space-y-2 border-t border-[rgba(17,19,24,0.06)] pt-2.5">
-      {/* TASK-179T: AdditivePanel renders BEFORE the nutrition table (spec §5.2). */}
-      {showAdditivePanel ? (
-        <AdditivePanel
-          additives={d4Additives ?? []}
-          productId={productId}
-          category={category}
-        />
+    <>
+      <span>{preview}</span>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setExpanded(true);
+        }}
+        style={{
+          marginInlineStart: "6px",
+          fontSize: "12px",
+          fontWeight: 600,
+          color: "var(--bari-green)",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          padding: 0,
+        }}
+      >
+        הצג הכל
+      </button>
+    </>
+  );
+}
+
+// ─── §3.6 Confidence footer ───────────────────────────────────────────────────
+// R-12: hollow ring for partial/insufficient, solid fill for verified.
+
+function ConfDot({ confidence }: { confidence: BariConfidence }) {
+  const color = CONF_COLORS[confidence];
+
+  if (confidence === "verified") {
+    // Solid 7px fill circle
+    return (
+      <span
+        style={{
+          display: "inline-block",
+          width: "7px",
+          height: "7px",
+          borderRadius: "50%",
+          background: color,
+          flexShrink: 0,
+        }}
+        aria-hidden
+      />
+    );
+  }
+
+  // R-12: hollow 9px ring for partial/insufficient
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        width: "9px",
+        height: "9px",
+        borderRadius: "50%",
+        background: "transparent",
+        border: `1.5px solid ${color}`,
+        flexShrink: 0,
+      }}
+      aria-hidden
+    />
+  );
+}
+
+function ExpansionFooter({
+  confidence,
+  confidenceText,
+  confidenceTooltip,
+  sourceLine,
+  onCollapse,
+  hide,
+}: {
+  confidence: BariConfidence;
+  confidenceText: string;
+  confidenceTooltip: string | null;
+  sourceLine?: string | null;
+  onCollapse: () => void;
+  hide?: boolean;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        marginTop: "16px",
+        paddingTop: "13px",
+        borderTop: "1px solid var(--hairline-faint)",
+        flexWrap: "wrap",
+      }}
+    >
+      {!hide ? (
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "10.5px",
+            letterSpacing: "0.04em",
+            color: "var(--fg3)",
+          }}
+        >
+          <ConfDot confidence={confidence} />
+          {confidenceText}
+        </span>
       ) : null}
-      {hasNutrition && nutrition ? (
-        <NutritionGrid nutrition={nutrition} servingNote={expansion.servingNote} />
+      {confidenceTooltip && !hide ? (
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "10px",
+            color: "var(--fg4)",
+            letterSpacing: "0.04em",
+          }}
+        >
+          {confidenceTooltip}
+        </span>
       ) : null}
-      {hasIngredients && expansion.ingredients ? (
-        <IngredientList ingredients={expansion.ingredients} />
+      {sourceLine ? (
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "10px",
+            letterSpacing: "0.06em",
+            color: "var(--fg4)",
+            marginInlineStart: "auto",
+          }}
+        >
+          {sourceLine}
+        </span>
       ) : null}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onCollapse();
+        }}
+        style={{
+          marginInlineStart: sourceLine ? "0" : "auto",
+          fontSize: "11px",
+          color: "#666C67",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          padding: 0,
+          flexShrink: 0,
+        }}
+      >
+        סגור
+      </button>
     </div>
   );
 }
 
-// TASK-179I — Glass Box D5 disclosure note inside the expansion. PLAIN-LANGUAGE ONLY
-// (DEC-006 Q4): never a number, never an engine term. Calm register (Q2). Rendered only
-// for a demoted product, flag-gated upstream (the prop is undefined when the flag is OFF).
+// ─── Glass Box disclosure (legacy path, carried unchanged) ────────────────────
+function NoteList({ lines }: { lines: string[] }) {
+  return (
+    <ul style={{ margin: "6px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "4px" }}>
+      {lines.map((line) => (
+        <li key={line} style={{ display: "flex", gap: "6px", fontSize: "12px", lineHeight: 1.5, color: "#5E6560" }}>
+          <span style={{ flexShrink: 0, color: "#C5CAC6" }} aria-hidden>·</span>
+          <span>{line}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function GlassBoxDisclosure({ glassBox }: { glassBox: BariGlassBoxVM }) {
-  // Live JSON carries coded disclosureCodes; resolveDisclosureLines maps them to the
-  // calm Hebrew lines (falling back to the preview dataset's authored prose). One place.
   const notes = resolveDisclosureLines(glassBox);
   if (notes.length === 0) return null;
-
   return (
-    <div className="pt-2.5">
-      <SectionLabel>{LABEL_DISCLOSURE}</SectionLabel>
+    <div style={{ paddingTop: "10px" }}>
+      <p style={{ fontSize: "11px", fontWeight: "bold", color: "#4A524E", margin: "0 0 4px" }}>
+        {LABEL_DISCLOSURE}
+      </p>
       <NoteList lines={notes} />
     </div>
   );
 }
+
+// ─── Main ExpansionSection ────────────────────────────────────────────────────
 
 export function ExpansionSection({
   expansion,
@@ -424,91 +1040,46 @@ export function ExpansionSection({
   bestUseCases,
   consumerTakeaway,
   bariInterpretation,
+  rank,
+  categoryTotal,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
-  /**
-   * Backend-prerendered Hebrew confidence label (Score Confidence Indicators spec §6).
-   * Rendered VERBATIM in `.bari-meta` / --fg3 in the existing confidence row. When absent
-   * (categories predating the field) the legacy 3-state label map is used.
-   */
   confidenceLabelHe?: string;
-  /**
-   * Backend-prerendered Hebrew tooltip sentence. Rendered VERBATIM in `.bari-footnote`
-   * (10px / --fg4) beneath the label. Absent → no tooltip line (the label still shows).
-   */
   confidenceTooltipHe?: string;
   onCollapse: () => void;
   wide?: boolean;
-  /**
-   * v2 §5/§6 — when confidence is shown on the collapsed row, the expansion no
-   * longer repeats it in the footnote (disclosure de-duplication). Maadanim-only.
-   */
   confidencePromoted?: boolean;
-  /**
-   * TASK-179I — Glass Box D5/D6 presentation. Passed (flag-gated) only for a demoted
-   * or withheld product; undefined → no glass-box surface. Drives the plain-language
-   * disclosure note (demote) and the withhold reason (withhold). Presentation only.
-   */
   glassBox?: BariGlassBoxVM;
-  /**
-   * TASK-179T — Glass Box W2 D4 additive entries. Passed (flag-gated) only when
-   * GLASSBOX_D5D6_ON is true AND the category is a W2 pilot (hummus / maadanim).
-   * Undefined → AdditivePanel not rendered. Empty array → panel renders empty state.
-   * Presentation only — no score movement.
-   */
   d4Additives?: AdditiveEntry[];
-  /**
-   * TASK-181I — Glass Box W4 D3 processing signal. Passed (flag-gated) only when
-   * GLASSBOX_W4_ON is true AND the product carries a d3_processing signal. Undefined →
-   * no D3 surface (byte-identical to today). Drives the calm processing drilldown line
-   * (note_he / note_he_mobile, rendered verbatim). Presentation only — no score movement.
-   */
   d3Processing?: BariProcessingSignalVM;
-  /** Anonymous product shelf position ID for analytics context. */
   productId?: string;
-  /** Category slug for analytics context. */
   category?: string;
-  /**
-   * Collapsed-row verdict text (granola / cereals). Shown at the top of the expansion
-   * ONLY when the product has no interpretive content (positiveSignals / limitingFactors
-   * etc.) — gives users the reasoning even when the full signal breakdown is absent.
-   * Products that already have interpretive content are unaffected (the `!interpretive`
-   * guard short-circuits).
-   */
   rowVerdict?: string;
-  // ─── Deep-dive fields (TASK-332) — absent → section hidden ───────────────────
-  /** Per-product authored explanation from expansion.consumerExplanation. */
   consumerExplanation?: NonNullable<BariExpansionVM["consumerExplanation"]> | null;
-  /** Short use-case tags for the product (e.g. "חלבון", "רכיבים פשוטים"). */
   bestUseCases?: string[];
-  /** One-sentence shelf verdict. */
   consumerTakeaway?: string;
-  /** Scored pillar breakdown rows. Accepts v2 canonical shape ({ key, label, score, strength,
-   *  interpretation }) or legacy v1 shape ({ dimension, score, label_he, explanation_he }).
-   *  Only v2 pillars are rendered by DeepDiveSection. */
   bariInterpretation?: NonNullable<BariProductVM["bariInterpretation"]>;
+  /** TASK-346: rank within category corpus (for shelf-context positional track). */
+  rank?: number;
+  /** TASK-346: total products in category corpus (denominator for rank). */
+  categoryTotal?: number;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
-  // Score Confidence Indicators spec §6/§7: prefer the backend-prerendered label
-  // (verbatim, state-specialised) over the legacy 3-state map. UI never branches copy
-  // off confidence_sub_reason — it renders the pre-rendered string as-is.
+
   const confidenceText =
     confidenceLabelHe?.trim() ||
     CONFIDENCE_LABELS[confidence] ||
     expansion.confidenceLabel;
   const confidenceTooltip = confidenceTooltipHe?.trim() || null;
-  const interpretive = hasInterpretiveContent(expansion);
-  const hasTechnical =
-    (expansion.nutrition != null &&
-      Object.values(expansion.nutrition).some((v) => v != null)) ||
-    Boolean(expansion.ingredients?.trim()) ||
-    // TASK-179T: additive panel counts as "technical" content (so the row never
-    // shows the "no details available" fallback when the panel is the only content).
-    (GLASSBOX_D5D6_ON && d4Additives !== undefined);
 
-  // TASK-332: deep-dive content (consumerExplanation / bestUseCases / consumerTakeaway /
-  // bariInterpretation). Counts as "has content" for the "no details" fallback guard.
+  const hasNutrition =
+    expansion.nutrition != null &&
+    Object.values(expansion.nutrition).some((v) => v != null);
+  const hasIngredients = Boolean(expansion.ingredients?.trim());
+  const showAdditivePanel = GLASSBOX_D5D6_ON && d4Additives !== undefined;
+  const hasTechnical = hasNutrition || hasIngredients || showAdditivePanel;
+
   const deepDiveProps = {
     consumerExplanation: consumerExplanation ?? expansion.consumerExplanation ?? null,
     bestUseCases,
@@ -517,128 +1088,175 @@ export function ExpansionSection({
   };
   const hasDeepDive = hasDeepDiveContent(deepDiveProps);
 
-  // Render the "unscored" expansion for two cases:
-  //  (a) a genuinely insufficient product (no glass box involved), and
-  //  (b) a glass-box WITHHOLD — even when the underlying VM still carries a score/partial
-  //      confidence (the D6 gate withholds the grade because the panel is absent). In the
-  //      withhold case the graded interpretive/technical content is deliberately suppressed
-  //      so the expansion matches the `לא נוקד` chip: a calm reason, no number.
+  // ── Withhold / insufficient path (unchanged logic, updated close button) ──
   if (confidence === "insufficient" || isWithheld) {
-    // Glass Box WITHHOLD: lead with the plain, calm reason the product is unscored
-    // (DEC-006 Q4 — no number, no engine term). TASK-179N C1: the fallback is now the
-    // single canonical reason (resolveWithholdReason → GLASS_BOX_WITHHOLD_REASON), so an
-    // unscored row reads the SAME sentence whether the reason comes from data or fallback.
     const withheldReason = resolveWithholdReason(isWithheld ? glassBox : undefined);
     return (
       <div
         className={cn("px-4 pb-3", wide && "lg:px-0 lg:pb-2")}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="space-y-2 pt-0.5 lg:space-y-2">
-          <p className="text-xs leading-relaxed text-[#6E756F]">{withheldReason}</p>
-          <div className="flex items-end justify-between pt-0.5">
-            {confidencePromoted && !confidenceTooltip ? (
-              <span aria-hidden />
-            ) : (
-              <ConfidenceRow label={confidenceText} tooltip={confidenceTooltip} />
-            )}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onCollapse();
-              }}
-              className="text-[11px] text-[#666C67]"
-            >
-              סגור
-            </button>
-          </div>
+        <div style={{ paddingTop: "2px" }}>
+          <p style={{ fontSize: "12px", lineHeight: 1.6, color: "#6E756F" }}>{withheldReason}</p>
+          <ExpansionFooter
+            confidence={confidence}
+            confidenceText={confidenceText}
+            confidenceTooltip={confidenceTooltip}
+            sourceLine={expansion.sourceLine}
+            onCollapse={onCollapse}
+            hide={confidencePromoted && !confidenceTooltip}
+          />
         </div>
       </div>
     );
   }
 
+  // ── Normalise VM data ───────────────────────────────────────────────────────
+  const positiveSignals = expansion.positiveSignals ?? [];
+  const limitingFactors = normaliseLimits(expansion.limitingFactors);
+  const hasAssessment = positiveSignals.length > 0 || expansion.limitingFactors !== undefined;
+  const hasShelfCtx =
+    rank !== undefined &&
+    categoryTotal !== undefined &&
+    Boolean(expansion.comparisonContext?.trim());
+  const hasBottomLine = Boolean(expansion.bottomLine?.trim());
+
+  // Legacy unknowns/caveats (carried for backward compat but rendered after main 5 sections)
+  const hasUnknowns = (expansion.unknowns?.length ?? 0) > 0;
+  const hasCaveats = (expansion.caveats?.length ?? 0) > 0;
+
+  // ── Full expansion body ─────────────────────────────────────────────────────
   return (
     <div
       className={cn("px-4 pb-3", wide && "lg:px-0 lg:pb-1")}
       onClick={(e) => e.stopPropagation()}
+      dir="rtl"
     >
-      <div className="space-y-0 pt-0.5">
-        {interpretive ? (
-          <InterpretiveExpansion expansion={expansion} wide={wide} />
-        ) : null}
+      {/* ── Section 1: Assessment (works / limits) ──────────────────────── */}
+      {hasAssessment ? (
+        <Section label="הערכת המוצר" first>
+          <AssessmentSection
+            positiveSignals={positiveSignals}
+            limitingFactors={limitingFactors}
+          />
+        </Section>
+      ) : rowVerdict?.trim() ? (
+        <div style={{ paddingTop: "4px" }}>
+          <p style={{ fontSize: "13px", lineHeight: 1.55, color: "#2F3531" }}>{rowVerdict}</p>
+        </div>
+      ) : null}
 
-        {!interpretive && rowVerdict?.trim() ? (
-          <p className="text-[13px] leading-[1.55] text-[#2F3531]">{rowVerdict}</p>
-        ) : null}
+      {/* ── Section 2: Shelf context ─────────────────────────────────────── */}
+      {hasShelfCtx ? (
+        <Section label={LABEL_COMPARISON}>
+          <ShelfContextSection
+            rank={rank!}
+            categoryTotal={categoryTotal!}
+            comparisonContext={expansion.comparisonContext!}
+          />
+        </Section>
+      ) : null}
 
-        {glassBox?.gateState === "demote" ? (
-          <GlassBoxDisclosure glassBox={glassBox} />
-        ) : null}
+      {/* ── Section 3: Bottom line ────────────────────────────────────────── */}
+      {hasBottomLine ? (
+        <Section label={LABEL_BOTTOM}>
+          <BottomLineSection bottomLine={expansion.bottomLine!} />
+        </Section>
+      ) : null}
 
-        {/* TASK-181I — Glass Box W4 D3 processing signal (calm drilldown line). Flag-gated
-            upstream: d3Processing is undefined when GLASSBOX_W4_ON is false → no surface. */}
-        {d3Processing ? <ProcessingSignalNote signal={d3Processing} /> : null}
+      {/* ── Section 4: Nutrition + ingredients ───────────────────────────── */}
+      {hasTechnical ? (
+        <Section label={LABEL_NUTRITION}>
+          {hasNutrition && expansion.nutrition ? (
+            <NutritionSection
+              nutrition={expansion.nutrition}
+              ingredients={expansion.ingredients ?? null}
+              category={category}
+              servingNote={expansion.servingNote}
+            />
+          ) : hasIngredients ? (
+            <div style={{ fontSize: "13px", lineHeight: 1.6, color: "var(--fg2)" }}>
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "10px",
+                  letterSpacing: "0.06em",
+                  color: "var(--fg3)",
+                  textTransform: "uppercase",
+                  marginInlineEnd: "8px",
+                }}
+              >
+                רכיבים
+              </span>
+              <IngredientText ingredients={expansion.ingredients!} />
+            </div>
+          ) : null}
+        </Section>
+      ) : null}
 
-        {!interpretive &&
-        !rowVerdict?.trim() &&
-        !hasTechnical &&
-        !hasDeepDive &&
-        glassBox?.gateState !== "demote" &&
-        !d3Processing ? (
-          <p className="text-xs leading-relaxed text-[#6E756F]">
-            פרטים נוספים לא זמינים לאריזה זו.
-          </p>
-        ) : null}
-
-        {/* TASK-332: per-product deep-dive (consumerExplanation, bestUseCases,
-            consumerTakeaway, bariInterpretation). Absent on bread v3 → no render. */}
-        {hasDeepDive ? <DeepDiveSection {...deepDiveProps} /> : null}
-
-        {hasTechnical ? (
-          <TechnicalDetails
-            expansion={expansion}
-            d4Additives={GLASSBOX_D5D6_ON ? d4Additives : undefined}
+      {/* ── Section 5: Additives sub-dropdown ────────────────────────────── */}
+      {showAdditivePanel ? (
+        <Section label={LABEL_ADDITIVES}>
+          <NewAdditivePanel
+            additives={d4Additives ?? []}
             productId={productId}
             category={category}
           />
-        ) : null}
-
-        <div className="flex items-end justify-between pt-2 lg:pt-1.5">
-          <ConfidenceRow label={confidenceText} tooltip={confidenceTooltip} />
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onCollapse();
-            }}
-            className="shrink-0 text-[11px] text-[#666C67]"
-          >
-            סגור
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Score Confidence Indicators spec §6 — the confidence row at the bottom of the
-// expansion. Label in .bari-meta (0.8125rem / --fg3 #7A817C); the backend tooltip
-// sentence beneath it in .bari-footnote (0.625rem / --fg4 #AAAAAA). Both rendered
-// VERBATIM. No new heading, no card, no border — the existing confidence row reused.
-function ConfidenceRow({
-  label,
-  tooltip,
-}: {
-  label: string;
-  tooltip: string | null;
-}) {
-  return (
-    <div className="min-w-0 flex flex-col gap-0.5">
-      <span className="text-[0.8125rem] leading-snug text-[#5E6560]">{label}</span>
-      {tooltip ? (
-        <span className="text-[0.625rem] leading-snug text-[#666C67]">{tooltip}</span>
+        </Section>
       ) : null}
+
+      {/* ── Fallback: no content at all ──────────────────────────────────── */}
+      {!hasAssessment &&
+      !rowVerdict?.trim() &&
+      !hasShelfCtx &&
+      !hasBottomLine &&
+      !hasTechnical &&
+      !hasDeepDive &&
+      glassBox?.gateState !== "demote" &&
+      !d3Processing ? (
+        <p style={{ paddingTop: "2px", fontSize: "12px", lineHeight: 1.6, color: "#6E756F" }}>
+          פרטים נוספים לא זמינים לאריזה זו.
+        </p>
+      ) : null}
+
+      {/* ── Glass Box demote disclosure ───────────────────────────────────── */}
+      {glassBox?.gateState === "demote" ? (
+        <GlassBoxDisclosure glassBox={glassBox} />
+      ) : null}
+
+      {/* ── D3 Processing signal ─────────────────────────────────────────── */}
+      {d3Processing ? <ProcessingSignalNote signal={d3Processing} /> : null}
+
+      {/* ── Deep-dive (TASK-332) ─────────────────────────────────────────── */}
+      {hasDeepDive ? <DeepDiveSection {...deepDiveProps} /> : null}
+
+      {/* ── Legacy unknowns / caveats (backward compat) ──────────────────── */}
+      {hasUnknowns ? (
+        <div style={{ paddingTop: "16px" }}>
+          <p style={{ fontSize: "11px", fontWeight: "bold", color: "#4A524E", margin: "0 0 4px" }}>
+            {LABEL_UNKNOWNS}
+          </p>
+          <NoteList lines={expansion.unknowns!} />
+        </div>
+      ) : null}
+      {hasCaveats ? (
+        <div style={{ paddingTop: "16px" }}>
+          <p style={{ fontSize: "11px", fontWeight: "bold", color: "#4A524E", margin: "0 0 4px" }}>
+            {LABEL_CAVEATS}
+          </p>
+          <NoteList lines={expansion.caveats!} />
+        </div>
+      ) : null}
+
+      {/* ── Footer ───────────────────────────────────────────────────────── */}
+      <ExpansionFooter
+        confidence={confidence}
+        confidenceText={confidenceText}
+        confidenceTooltip={confidenceTooltip}
+        sourceLine={expansion.sourceLine}
+        onCollapse={onCollapse}
+        hide={confidencePromoted && !confidenceTooltip}
+      />
     </div>
   );
 }
