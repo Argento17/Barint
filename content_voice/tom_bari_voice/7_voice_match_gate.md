@@ -25,7 +25,7 @@ flag the gap, don't guess.
 1. ☐ Opens from a **real consumer situation** or a familiar product perception (not "המוצר מכיל…").
 2. ☐ **Pivots** quickly from perception to evidence.
 3. ☐ Cites **product-specific facts** (ingredient-list length, sugar/fat/fiber/protein, additives), numbers where available.
-4. ☐ Ends with a **useful consumer insight** ("שורת בארי" or equivalent), not a verdict.
+4. ☐ Ends with **הקשר במדף** — the shelf-context closing beat (Harvest #2, ruling #2). "שורת בארי" as a label is retired from the spine. The closing beat places the product in shelf context: standing, what it beats, what it doesn't. Not a verdict.
 
 ## Step 2 — The stance (voice values)
 5. ☐ Does **not** moralize or shame the consumer.
@@ -101,8 +101,8 @@ AND ≤8 ingredients receives a review that:
   - Uses "לא תמיד אומר" or "אבל" as its ONLY evaluative move (hedge without
     any positive claim)
   - Never states what the product does well in a concrete, product-specific term
-  - Ends with a Balanced-mode closer ("מוצר סביר הוא לא תמיד מוצר חזק") instead
-    of naming the genuine strength
+  - Ends with a Balanced-mode הקשר במדף closer ("מוצר סביר הוא לא תמיד מוצר חזק")
+    instead of naming the genuine strength
 
 Detection: if the product data profile meets the "Positive" criteria (see Step 0)
 but the שורת בארי closer is hedging language only, with no named concrete strength
@@ -171,6 +171,29 @@ of tier.
 
 ---
 
+### HF-6 — Code-token leakage in consumer output (Harvest #2, ruling #1 — ALL modes)
+
+**Criterion:** Any consumer-facing text (insight line, bullet, body paragraph, closing beat, headline) that contains any of the following = FAIL:
+- The literal string `null` (the JSON null value rendered as text)
+- Any field-path identifier: `d4_additives`, `expansion.nutrition`, `expansion.ingredients`, `expansion.X`, `_wholeGrainClaim`, `_isChildrens`, `insightLine`, `rowVerdict`, `confidence_level`, or any other camelCase/snake_case JSON field name
+- Any backtick-wrapped token (e.g., `` `expansion.nutrition` ``)
+- Any E-field reference embedded in consumer copy as a field identifier (e.g., "(d4_additives ריק)", "מקור: expansion.X")
+
+**Detection:**
+```
+grep -E "(null|d4_|expansion\.|_whole|_isChild|insightLine|rowVerdict|`)" <draft_file>
+```
+Any match in consumer-facing sections (not in the internal "מקורות" block) = FAIL.
+
+**Correct handling when data is absent:**
+- Missing quantity: "לא צוין על האריזה" or "לא ידוע מהאריזה"
+- Null ingredient list: "רשימת הרכיבים המלאה לא נקראה מהאריזה" — honest, not alarming
+- Never: "כמות מדויקת null", "ללא תוספי מזון (d4_additives ריק)"
+
+**Why this is a hard fail:** A shopper reading "d4_additives ריק" on a comparison page is looking at a broken internal artifact, not a Bari page. Code tokens in consumer copy are a first-order credibility failure. They also indicate the agent is reading from raw engine output rather than interpreting it into consumer language — the core job.
+
+---
+
 ### HF-5 — User-facing clutter ("דורש אימות" in publication mode)
 
 **Criterion:** Any review exported in PUBLICATION mode that contains the string
@@ -208,13 +231,14 @@ process into consumer copy, which is a first-order failure of the Bari voice.
 
 | Status | Condition |
 |---|---|
-| **PASS** | All 14 checklist items "yes" AND all 5 hard-fail criteria clear (zero triggers) |
+| **PASS** | All 14 checklist items "yes" AND all 6 hard-fail criteria clear (zero triggers) |
 | **FAIL — HF-1** | Same signature move in >2/5 consecutive reviews on the shelf |
 | **FAIL — HF-2A** | Critical framing applied to a product with ≤8 ingredients, no E-numbers, ≤10g sugar/100g |
 | **FAIL — HF-2B** | Positive-threshold product (≥5g fiber, ≤8g sugar, ≥5g protein, ≤8 ingredients) reviewed with hedge-only language and no named concrete strength |
 | **FAIL — HF-3** | Fewer than 2 product-specific facts; swap test passes for ≥3 shelf neighbors |
 | **FAIL — HF-4** | Product-specific factual claim not in scrape data AND not flagged "דורש אימות" |
 | **FAIL — HF-5** | "דורש אימות" appears in publication-mode output |
+| **FAIL — HF-6** | Any `null`, field-path token (d4_additives, expansion.X, etc.), backtick, or JSON identifier in consumer-facing output |
 | **FAIL — Step 1–3** | Any checklist item "no" |
 | **CONDITIONAL** | Borderline voice ("sounds off, can't name it") → route to C3 fresh-eyes read before deciding; C3 names failing lines, never rewrites |
 
@@ -266,7 +290,7 @@ no coded additives, one label claim "דגן מלא".
 > זה מוצר נקי שמוגבל קצת על-ידי המתיקות שלו. לא מורכב, לא בעייתי — פשוט לא הכי חזק
 > שיש כשאתם מחפשים בסיס בוקר עם סוכר נמוך.
 >
-> **שורת בארי:** כוסמין מלא עם סיבים טובים — עם תוספת דבש שמגבילה אותו קצת.
+> **הקשר במדף:** כוסמין מלא עם סיבים טובים — תוספת הדבש מגבילה אותו קצת, אבל בתוך המדף הזה הוא בצד הנקי.
 
 **How the corrected version clears each hard fail:**
 - **HF-2A cleared:** Mode is now Balanced (short list, real fiber, moderate sugar) —

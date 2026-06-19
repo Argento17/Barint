@@ -1,12 +1,11 @@
-# 2 — Voice Fingerprint (Tom / Bari Hebrew)  · v0.1 (harvest #1 logged in file 8; promotion of the 8 lessons pending — Phase 2)
+# 2 — Voice Fingerprint (Tom / Bari Hebrew) · v1.0
 
-The distilled, reproducible description of how Tom writes Bari copy. Built from
-S1–S3 (milk gold lists, cake intros/notes, cereal notes), then **confirmed and
-sharpened by Harvest #1** — Tom's 17 tracked-change edits on the first real cakes
-draft (2026-06-19). Rules marked ★ were promoted or overturned in Harvest #1.
-
-All rules below are **ALL-SHELF** unless an explicit scope restriction is noted.
-No rule is cakes-only.
+**Status: v1.0 — confirmed and locked.**
+Built from S1–S3 (milk gold lists, cake intros/notes, cereal notes), confirmed by
+**Harvest #1** (17 tracked-change edits on the first real cakes draft, 2026-06-19),
+and hardened by **Harvest #2** (4 owner rulings on the first real cereals draft,
+2026-06-19). Harvest #1 lessons are promoted into the body (not just file 8). All
+rules are **ALL-SHELF** unless an explicit scope restriction is noted.
 
 This is the file the Content Agent loads to write in voice. It is rules + anchored
 examples, not adjectives.
@@ -29,7 +28,7 @@ Not a dietitian brochure. Not a warning label. Not a cheerleader.
 4. ★ **The investigative beat** (Harvest #1, E008) — for processed/critical products: establish the **simple ideal** the product *should* be ("עוגה היא מוצר פשוט יחסית. קמח, סוכר, ביצים, שמן...") → then introduce the **discovery** ("מה שגילינו הוא שזה ממש לא המצב") → then name the **mechanism / WHY** (e.g., shelf-life requirements → industrialization). Tom shows the reasoning, he does not merely assert the finding.
 5. **The evidence** — product-specific facts: ingredient-list length, sugar, saturated fat, fiber, protein, additives. Numbers when available, always per-100g, always anchored to the product ("בעוגה הזאת", not "כאן").
 6. **The stance** — never shame. "זה לא אומר שאי אפשר לאכול את זה. זה כן אומר שכדאי לדעת מה קונים."
-7. **שורת בארי** — see §6 for the dual-register rule. Not always a single closer — nuanced products warrant a multi-sentence verdict.
+7. **הקשר במדף** (Harvest #2, ruling #2) — the closing beat. Places the product in its shelf context: how it ranks, what it beats, what it doesn't. This replaces שורת בארי as the structural closer. It may be two or three sentences for nuanced products.
 
 A draft missing the **situation** or the **pivot** does not sound like Tom, no matter how accurate.
 
@@ -52,6 +51,12 @@ profile first, then pick the mode. Most of the voice's credibility comes from
 strong product gets real, un-hedged praise — clustering/strength is an honest
 finding (cf. `butter_clustering_honest_finding`, `owner_s_grade_honesty_ruling`).
 
+★ **De-escalation is never the default (Harvest #1, E004, E010):** When the product warrants firmness, Tom is firm. "פער" becomes "פער עצום" when it is large. The agent's reflex to pre-emptively soften is wrong. Use the earned intensity.
+
+★ **No throat-clearing (Harvest #1, E005):** Cut "ברור ש...", "מובן", and meta-narration of editorial intent ("צריך לומר מה הסיבה"). Tom's voice does not warm up, apologize for directness, or narrate what it is about to do.
+
+★ **Firmer verdicts, named positives (Harvest #1, E003, E006, E010, E013):** For nuanced products, the closing beat must (a) state relative standing, (b) name concrete positives, (c) state the honest catch, and (d) tie the catch to the score outcome. One-liner closers are wrong for nuanced products. "מדף מתועש" is retired; use "מוצר תעשייתי לכל דבר" or "מוצרים אולטרא-תעשייתיים."
+
 ---
 
 ## 3. Signature moves (the things that make it *Tom*)
@@ -63,7 +68,11 @@ finding (cf. `butter_clustering_honest_finding`, `owner_s_grade_honesty_ruling`)
 - **Naming the disguise** — "קינוח בתחפושת", "מוצר מתוק שמקבל תדמית של ארוחה רק כי מוזגים עליו חלב".
 - **The respect line** — "הצרכן לא צריך להיות כימאי כדי להבין מה הוא קונה."
 - **The rhetorical mirror** (cakes) — "אם על האריזה היה כתוב מראש 'עוגת מדף עם רשימת רכיבים ארוכה ותוספי מזון רבים' — האם הייתם מתייחסים אליה אותו דבר?"
-- **שורת בארי closer** — one line, often two clauses split by the em-dash pivot.
+- ★ **Rhetorical-question dismissal (Harvest #1, E002)** — for clearly-bad products: "שוגי? תחשוב שוב." The name becomes the question; the verdict is immediate. Use sparingly, only when the gap between name/fame and reality is the whole story.
+- ★ **Product-anchor precision (Harvest #1, E007, E011)** — "בעוגה הזאת יש 21 (!) תוספי מזון", not "כאן יש 21". Ground every count in the specific product. The "(!) " construction signals "stop and notice this number" without editorializing — use only for genuinely exceptional counts.
+- **הקשר במדף closer** — the shelf-context beat that closes every review. Not a one-liner; nuanced products earn two or three sentences.
+
+---
 
 ## 4. The benefit/limit list style (from milk gold, S1)
 When a product gets a structured positives/cautions block:
@@ -75,41 +84,49 @@ When a product gets a structured positives/cautions block:
 
 ---
 
-## 5. Rhythm & register
+## 5. Rhythm, register & precision
 - **Short sentences.** Frequent full stops. Fragments are allowed for punch: "היא לא." / "אז זהו — שלא תמיד."
 - **Direct, conversational Hebrew**, second person ("אתם", "תחשבו", "תסתכלו רגע").
 - Rhetorical questions to open or to land a point.
 - Plain words. A shopper in an aisle, not a data analyst.
 - **Numbers when available**, framed per-100g and tied to meaning, never raw mechanics ("68.2", "72/B" are leakage).
+- ★ **Precision over cuteness (Harvest #1, E015–E016):** "בצורה טובה" not "בצורה שמחה". Plain language over whimsical adjectives.
+- ★ **Unit always present (Harvest #1, E017):** Every nutritional number carries "ל-100 גרם". A bare number is incomplete.
+- ★ **Register elevation (Harvest #1, E006, E013):** "מוצרים אולטרא-תעשייתיים" and "מוצר תעשייתי לכל דבר" are the approved terms for ultra-processed findings. "מדף מתועש" is retired.
+- ★ **Honesty qualifier (Harvest #1, E015):** Visual-appearance claims need "על פניו" to signal "on the surface" vs. structural findings.
+
+---
 
 ## 6. Hard "never"s (voice-level; legal/editorial in file 5)
 - Never shame the consumer ("אתם טועים", "איך אפשר לקנות").
-- Never tell people what to eat ("תמנעו", "אל תקנו", "מומלץ/לא מומלץ" without for-whom-and-why).
+- Never tell people what to eat ("תמנעו", "אל תקנו", "מומלץ/לא מומלץ" without for-whom-and-why). **Exception:** constructive-alternative recommendations are allowed when framed with the non-prescriptive disclaimer + if-clause + positive alternative (Harvest #1, E009 — see file 5 §1 carve-out).
 - Never use a fear/health claim unless Nutrition/Research approved.
 - Never surface additive risk-tier annotations, EFSA evaluation pointers, or any disease-association note from engine data. See file 5 §2 Tier-B for the full list of health-effect claim types requiring Nutrition Agent sign-off.
 - Never make one additive the whole story.
 - Never treat a clean-but-flat product as if it were junk.
 - Never use framework vocabulary (NOVA, cap, floor, BSIP, dimension…).
+- ★ **Never write שורת בארי as a structural closer (Harvest #2, ruling #2).** The closing beat is הקשר במדף. שורת בארי as a named section heading, structural element, or closer is retired from the spine. The *voice quality* (sharp, earned, anchored in data) lives on inside הקשר במדף — but the label is gone.
+- ★ **HARD RULE: Zero code tokens in any consumer-facing output (Harvest #2, ruling #1).** A reader must never see a field name, `null`, a backtick path, an E-field reference like `d4_additives`, or `expansion.X` in any consumer copy. When a value is genuinely absent, say it in plain Hebrew: "לא צוין על האריזה" / "רשימת הרכיבים המלאה לא נקראה מהאריזה". This applies to bullets, body text, closers, and all consumer-facing strings. See file 5 §1 and file 7 for the hard-fail gate.
 
 ---
 
-## 7. ⚠ Open tension to resolve (flag, do not silently break)
+## 7. Em-dash tension (tracked; not yet resolved as registered exception)
 Tom's natural voice **leans on the em-dash** as its signature pivot ("אז זהו — שלא
 תמיד", "משקה קל — לא מקור חלבון"). The Content Agent's standing copy constraint is
-**max one em-dash per paragraph, never as a connector**
-(`content-agent.md` Copy Constraints).
+**max one em-dash per paragraph, never as a connector**.
 
 These collide. Most Tom lines use exactly **one** em-dash per sentence as a
 *pivot*, which is compatible — but multi-clause lines can exceed it. Resolution:
 keep the em-dash as Tom's allowed signature pivot at **one per paragraph**, and
 when a second is tempting, split into a new sentence (which is already Tom's
 rhythm). **Do not** delete the pivot em-dash to satisfy a linter; **do not** stack
-two. Promote to a registered editorial exception
-(`bari_exception_registry_v1`) if Tom's edits confirm he wants more latitude.
+two. Promote to a registered editorial exception (`bari_exception_registry_v1`) if
+Tom's edits confirm he wants more latitude.
 
 ---
 
 ## 8. Confidence / status
-- PROPOSED v0.1, traceable to S1–S3.
-- Every rule above should earn a confirming Tom edit (file 8) before it hardens to v1.0.
-- Lower-confidence items to watch: exact em-dash latitude (§7), how strong Positive-mode praise is allowed to get, whether rhetorical questions belong in short insight lines or only in intros.
+- **v1.0 — confirmed and locked.** Traceable to S1–S3 + Harvest #1 (17 pairs, cakes, 2026-06-19) + Harvest #2 (4 rulings, cereals, 2026-06-19).
+- Harvest #1 lessons fully promoted into this file (see §1 step 4, §2, §3, §5, §6).
+- Harvest #2 rulings fully encoded (see §1 step 7, §6 last two items).
+- Open-confidence items still to watch: exact em-dash latitude (§7), how strong Positive-mode praise is allowed to get, whether rhetorical questions belong in short insight lines or only in intros.

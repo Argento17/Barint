@@ -293,3 +293,94 @@ Promotion status: promoted → file 2 §5 (no whimsy rule) (2026-06-19)
 **E017 — "ל-100 גרם" added (unit precision):**
 Tom added the per-100g unit specification where the agent stated a raw number without a referent. Confirms: every nutritional number must carry its unit and referent ("ל-100 גרם"). A bare number is incomplete.
 Promotion status: promoted → file 2 §5 (precision rule confirmed) (2026-06-19)
+
+---
+
+## Harvest #2 — Cereals shelf · 2026-06-19 · ALL-SHELF CONFIRMED
+
+Source: Tom's redline on the first real cereals category draft (cereals_draft_v0_AGENT.md).
+4 owner rulings. All are **promoted** this round into `2_voice_fingerprint.md`,
+`5_banned_phrases_and_claims.md`, and `7_voice_match_gate.md`.
+
+---
+
+### H2-R1 — No code language in consumer copy · 2026-06-19 · ALL modes · ALL surfaces
+
+**Agent draft (failing examples):**
+> "ללא תוספי מזון (d4_additives ריק)"
+> "כמות מדויקת null"
+> "מקור: `expansion.nutrition`"
+
+**Owner ruling:**
+A reader must NEVER see a field name, `null`, a backtick path, or `expansion.X` in any consumer-facing text. This is a first-order leakage failure.
+
+**What to do instead:**
+- Absent quantity: "לא צוין על האריזה" or "לא ידוע מהאריזה"
+- Null ingredient list: "רשימת הרכיבים המלאה לא נקראה מהאריזה"
+- No additives: "ללא תוספי מזון" — no source citation in consumer copy; source citations go in the separated internal notes block only
+
+**Promotion status:** promoted → file 2 §6 (HARD RULE) + file 5 §1 (new banned row) + file 7 HF-6 (new hard fail) (2026-06-19)
+
+**Notes:** The agent was leaking internal engine field names directly into consumer bullets. The fix is total: code tokens in consumer output are a hard fail, no exceptions, no "mostly clear."
+
+---
+
+### H2-R2 — שורת בארי retired as structural closer; הקשר במדף is the closing beat · 2026-06-19 · ALL modes · closer
+
+**Agent draft (failing example):**
+> The draft used "שורת בארי" as a named section heading and structural closing element for each product.
+
+**Owner ruling:**
+שורת בארי as a section/structural element is repetitive alongside הקשר במדף, which is "good and important." הקשר במדף becomes the sole closing beat. שורת בארי is removed from the spine (§1 step 7), signature moves (§3), and any structural checklist.
+
+**What to do instead:**
+הקשר במדף closes each review. It places the product in its real shelf context: how it ranks, what it beats, what it falls short of. The *voice quality* that Tom wants in a closer (sharp, earned, anchored in data) lives on inside הקשר במדף — only the label "שורת בארי" is retired.
+
+**Promotion status:** promoted → file 2 §1 step 7 (replaced), §3 (שורת בארי closer removed), §6 (hard never) + file 7 Step 1.4 (updated) + file 7 HF-2B (updated closer language) (2026-06-19)
+
+**Notes:** הקשר במדף was already in the v0 draft as a section. The owner confirmed it is sufficient and superior. No structural closer was needed in addition to it.
+
+---
+
+### H2-R3 — Sugar IS in the JSON; "null" claims about sugar are WRONG · 2026-06-19 · ALL modes · evidence
+
+**Agent draft (failing examples):**
+> "סוכר גבוה (מסומן בנתונים כ'סוכר גבוה', כמות מדויקת null)"
+> (applied to ליון, נסקוויק, סיני מיניס)
+
+**Owner ruling:**
+Sugar values ARE present in `expansion.nutrition.sugar` for all three products:
+- ליון: 24.7 גרם ל-100 גרם
+- נסקוויק: 22.4 גרם ל-100 גרם
+- סיני מיניס: 25.0 גרם ל-100 גרם
+
+The agent claimed these were null/unknown — this was STALE and WRONG. Always state the real sugar number from the nutrition block. That is how the engine flagged them as high-sugar.
+
+**What to do instead:**
+State the actual value: "24.7 גרם סוכר ל-100 גרם — הגורם שמגביל את הציון."
+
+**Promotion status:** captured as a data-verification lesson; reinforces HF-4 (unverified facts fail the gate) + the principle of reading the full JSON before writing (2026-06-19)
+
+**Notes:** The agent apparently carried stale information from an earlier analysis rather than reading the live JSON. This is a verification failure, not a voice failure. The fix is protocol: always read `expansion.nutrition.sugar` from the JSON before declaring any value unknown.
+
+---
+
+### H2-R4 — Null ingredients: 3 products, honest handling · 2026-06-19 · ALL modes · evidence
+
+**Agent draft (failing example):**
+> "רשימת הרכיבים: לא זמינה בנתונים — מה שיש מאחורי 'שוקולד וקרמל' לא ניתן לבדיקה מלאה"
+
+**Owner ruling:**
+Exactly 3 products have genuinely null ingredient lists (ליון 5900020036407, נסקוויק 5900020012814, סיני מיניס 72968) — the scrape caught front-of-pack marketing text, not the real ingredient list. A separate re-scrape is underway. For these 3:
+- Do NOT invent ingredients
+- Do NOT write "null" or code-language
+- Lean "מה מגביל" on the real nutrition facts (sugar, sodium, etc.) which ARE known
+- If you must reference the list: "רשימת הרכיבים המלאה לא נקראה מהאריזה" — honest, not alarmist
+- The framing is factual, not suspicious
+
+**What to do instead:**
+Write the מה מגביל section entirely from the nutrition block (sugar, sodium, energy, fiber, protein — all of which are present). The ingredient-list gap is an honest data limitation, not a sign of concealment.
+
+**Promotion status:** promoted → file 2 §6 (HARD RULE zero code tokens) + file 5 §1 (correct handling of null ingredient lists) (2026-06-19)
+
+**Notes:** The agent's handling in v0 was directionally correct (no invented ingredients) but used both an evasive framing and internal field language. The ruling clarifies both dimensions.

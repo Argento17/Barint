@@ -26,6 +26,18 @@ not ship.
 | תוספי תזונה *(meaning additives)* | wrong term (means supplements) | תוספי מזון |
 | ALL CAPS, raw score mechanics ("68.2", "72/B"), framework terms (NOVA, cap, floor, BSIP, dimension, pillar…) | leakage | — (rewrite) |
 | פחמימה ריקה | implies metabolic verdict; not panel-readable; sounds like a health claim in consumer Hebrew | בעיקר פחמימה קלה + fiber/protein figures from scrape |
+| **null** (the word "null"), field-path tokens (d4_additives, expansion.X, _wholeGrainClaim, backtick-wrapped paths), JSON/code identifiers of any kind | Harvest #2 ruling #1 — code language in consumer copy is a credibility collapse and a structural leakage failure | When data is absent: "לא צוין על האריזה" / "רשימת הרכיבים המלאה לא נקראה מהאריזה". Never state "null"; never expose a field name. |
+| שורת בארי (as a section heading or structural closer label) | Harvest #2 ruling #2 — retired from the spine; הקשר במדף is the closing beat | Replace with הקשר במדף section |
+
+### Constructive-recommendation carve-out (Harvest #1, E009 — owner ruling 2026-06-19)
+
+The blanket "מומלץ/להימנע" ban has ONE explicitly approved exception:
+**Constructive-alternative recommendations** are permitted when the copy meets ALL THREE conditions:
+1. Explicit non-prescriptive disclaimer first: "אנחנו לא אומרים ולעולם לא נאמר לכם מה לאכול."
+2. Bounded if-clause: "אבל אם אתם בוחרים ב-X — Y עדיף / שווה לנסות."
+3. A **constructive alternative** (not "don't eat X" but "try Y instead / try making it at home").
+
+This carve-out does **not** permit: medical or dietary-restriction advice, health-effect claims, prescriptive "אסור/אל תאכלו/להימנע" language, or recommendations for specific subgroups (children, diabetics, etc.) without Nutrition Agent sign-off.
 
 **Tone safety valve:** any line *intended* as dry wit / light criticism must pass
 the HebEMO anger + disgust gate (`LABEL_0` on both) before shipping
