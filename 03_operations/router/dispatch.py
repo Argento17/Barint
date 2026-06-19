@@ -134,17 +134,29 @@ def find_cursor_agent_cmd() -> Path:
             f"No cursor-agent version directories under {_CURSOR_VERSIONS_DIR}"
         )
     return candidates[0] / "cursor-agent.cmd"
-# Gemini lane
-_GEMINI_CMD_DEFAULT = Path(
-    r"C:\Users\HP\AppData\Roaming\npm\gemini.cmd"
-)
+# Gemini lane — migrated 2026-06-19 to the Antigravity CLI (agy).
+# Google retired the old `gemini` CLI for Pro/Ultra/free tiers on 2026-06-18
+# (IneligibleTier / UNSUPPORTED_CLIENT — "migrate to Antigravity"). `agy` is the
+# Go-based successor and honours the owner's Google AI Pro plan via OAuth (token
+# lives in the Windows Credential Manager, Target=gemini:antigravity — there is
+# no credential FILE to point at). Critically, agy is an *agentic* coder
+# (plan + edit files), NOT a text-in/text-out model: in headless `-p` mode it
+# returns its work as FILE CHANGES, not stdout (a trivial "say PONG" prompt yields
+# empty stdout). So this lane is Build-only; _dispatch_gemini reads git_before/after
+# as the real signal, and --selftest-gemini verifies via a sentinel file.
+# Pro quota is ~200 requests / 24h rolling (throttles, never bills overage).
+_GEMINI_CMD_DEFAULT = Path(os.path.expandvars(r"%LOCALAPPDATA%\agy\bin\agy.exe"))
 
 def find_gemini_cmd() -> Path:
     if _GEMINI_CMD_DEFAULT.exists(): return _GEMINI_CMD_DEFAULT
     import shutil as _shutil
-    alt=_shutil.which("gemini")
+    alt=_shutil.which("agy")
     if alt: return Path(alt)
-    raise FileNotFoundError(f"Gemini CLI not found at {_GEMINI_CMD_DEFAULT}")
+    raise FileNotFoundError(
+        f"Antigravity CLI (agy) not found at {_GEMINI_CMD_DEFAULT}. "
+        f"Install: irm https://antigravity.google/cli/install.ps1 | iex, "
+        f"then run `agy` once to log in with the Google AI Pro account."
+    )
 # opencode on Windows is installed as a .ps1 wrapper around the actual exe.
 # Python subprocess cannot invoke .ps1 files directly; we use the underlying
 # exe.  Resolved once at import time so the script fails fast if not found.
@@ -595,14 +607,17 @@ def run_via_cursor_cli(message: str, timeout: int) -> tuple[int, str]:
 
 
 def run_via_gemini_cli(message: str, timeout: int, executor: bool = True):
-    gemini_cmd=find_gemini_cmd()
-    # --approval-mode: default=prompt (auto-denies in headless -p mode -> "Unauthorized
-    # tool call"), yolo=auto-approve all tools (the executor lane, mirrors Cursor's --force),
-    # plan=read-only. The lane was long mis-described as "read/plan-only" purely because this
-    # flag was unset and it fell to `default`; yolo makes it a real C1-grade executor.
-    approval = "yolo" if executor else "plan"
-    cmd=[str(gemini_cmd),"--skip-trust",f"--approval-mode={approval}","-p",message]
-    print(f"[gemini] Invoking {gemini_cmd.name} ({len(message)} chars)...", flush=True)
+    agy_cmd=find_gemini_cmd()
+    # agy (Antigravity CLI) flags differ from the retired gemini CLI:
+    #   --dangerously-skip-permissions = auto-approve every tool/file action (the
+    #       executor analog of Grok --force / Cursor --force / old gemini yolo).
+    #   --print-timeout <godur>        = how long agy waits internally; keep it just
+    #       under our subprocess wall so we get a clean exit, not a hard kill.
+    # agy has no read-only/plan mode, so `executor` no longer toggles flags; the
+    # selftest path verifies success via a sentinel file instead of stdout text.
+    inner = max(30, timeout - 15)
+    cmd=[str(agy_cmd),"--dangerously-skip-permissions","--print-timeout",f"{inner}s","-p",message]
+    print(f"[gemini/agy] Invoking {agy_cmd.name} ({len(message)} chars)...", flush=True)
     try:
         proc=subprocess.run(cmd,cwd=str(REPO_ROOT),capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=timeout,shell=False)
         output=(proc.stdout or "")
@@ -1201,23 +1216,49 @@ def cmd_selftest_cursor(timeout: int) -> int:
 
 
 def cmd_selftest_gemini(timeout: int) -> int:
-    PONG="Reply with the single word PONG and do nothing else. Do not use any tools, do not read or edit any files."
-    print("[selftest-gemini] Sending PONG to gemini ...")
+    # agy is an agentic coder with no text-to-stdout in -p mode, so a "say PONG"
+    # check is meaningless (always empty). Instead we hand it a tiny, isolated
+    # build task — write a sentinel token into result.txt inside a throwaway temp
+    # dir — and verify the FILE. This exercises the real path: Pro-plan auth +
+    # tool execution + file write. The temp cwd also keeps the probe away from the
+    # Bari brain (agy uploads its workspace to Google's cloud).
+    import tempfile, uuid
+    token = "AGY_OK_" + uuid.uuid4().hex[:8]
+    ws = Path(tempfile.gettempdir()) / ("agy_selftest_" + uuid.uuid4().hex[:8])
+    ws.mkdir(parents=True, exist_ok=True)
+    sentinel = ws / "result.txt"
+    msg = ("Create a file named result.txt in the current directory whose only "
+           f"contents are exactly this single line: {token}")
+    print("[selftest-gemini] Probing agy (Antigravity / Google AI Pro) via a sentinel-file build task ...")
     print("-" * 60)
-    started=datetime.now(timezone.utc)
     try:
-        exit_code,output=run_via_gemini_cli(PONG,timeout,executor=False)
+        agy_cmd = find_gemini_cmd()
     except FileNotFoundError as e:
-        print(f"[selftest-gemini] FAIL - {e}", file=__import__("sys").stderr); return 1
-    finished=datetime.now(timezone.utc)
+        print(f"[selftest-gemini] FAIL - {e}", file=sys.stderr); return 1
+    inner = max(30, timeout - 15)
+    cmd = [str(agy_cmd), "--dangerously-skip-permissions", "--print-timeout", f"{inner}s", "-p", msg]
+    started = datetime.now(timezone.utc)
+    try:
+        proc = subprocess.run(cmd, cwd=str(ws), capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", timeout=timeout, shell=False)
+    except subprocess.TimeoutExpired:
+        print(f"[selftest-gemini] FAIL - agy timed out after {timeout}s.", file=sys.stderr); return 1
+    finished = datetime.now(timezone.utc)
+    elapsed = (finished - started).total_seconds()
+    got = sentinel.read_text(encoding="utf-8").strip() if sentinel.exists() else ""
     print("-" * 60)
-    elapsed=(finished-started).total_seconds()
-    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code: {exit_code}")
-    print("[selftest-gemini] Output:")
-    print(output[:1000])
-    stdout_part=output.split('\n\n--- STDERR ---\n')[0]
-    if exit_code==0 and "PONG" in stdout_part.upper(): print("[selftest-gemini] PASS - PONG received."); return 0
-    print("[selftest-gemini] FAIL - PONG not detected.",file=__import__("sys").stderr); return 1
+    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code: {proc.returncode}")
+    print(f"[selftest-gemini] Sentinel {'PRESENT' if sentinel.exists() else 'MISSING'} at {sentinel}; content: {got!r}")
+    if proc.stderr and proc.stderr.strip():
+        print("[selftest-gemini] (stderr tail) " + proc.stderr.strip()[-300:])
+    if token in got:
+        print("[selftest-gemini] PASS - agy authenticated on Pro and completed the build task.")
+        return 0
+    print("[selftest-gemini] FAIL - sentinel not written. Likely causes: agy not "
+          "logged in (token lives in Windows Credential Manager, Target=gemini:antigravity "
+          "- run `agy` once to sign in with the Google AI Pro account), or the ~200/24h "
+          "Pro quota is exhausted.", file=sys.stderr)
+    return 1
 def cmd_selftest(timeout: int) -> int:
     """
     Send a harmless PONG round-trip through opencode to verify the pipe works.
