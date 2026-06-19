@@ -185,9 +185,32 @@ const DEFAULT_NUTRITION: CategoryNutritionConfig = {
   servingLabel: "ל-100 גרם",
 };
 
+const CATEGORY_NUTRITION_ALIASES: Record<string, string> = {
+  "breakfast-cereals": "cereals",
+};
+
 function getCategoryNutrition(category?: string): CategoryNutritionConfig {
   if (!category) return DEFAULT_NUTRITION;
-  return CATEGORY_NUTRITION[category] ?? DEFAULT_NUTRITION;
+  const resolved = CATEGORY_NUTRITION_ALIASES[category] ?? category;
+  return CATEGORY_NUTRITION[resolved] ?? DEFAULT_NUTRITION;
+}
+
+function getNutrientScale(
+  config: CategoryNutritionConfig,
+  key: keyof BariNutritionVM
+): NutrientScale {
+  switch (key) {
+    case "energyKcal":
+      return config.energyKcal;
+    case "protein":
+      return config.protein;
+    case "sugar":
+      return config.sugar;
+    case "sodium":
+      return config.sodium;
+    default:
+      return { max: 100 };
+  }
 }
 
 // Bar fill tone for a nutrient value (spec §3.4)
@@ -207,6 +230,55 @@ function nutrientTone(key: keyof BariNutritionVM, value: number, scale: Nutrient
 }
 
 // ─── SVG glyphs (spec §3.1, polish R-09) ─────────────────────────────────────
+// Shared box outline tokens — one weight/radius rhythm across all dropdown panels
+const BOX_BORDER_NEUTRAL = "1px solid var(--hairline-soft)";
+const BOX_BORDER_POSITIVE = "1px solid rgba(31,143,106,0.16)";
+const BOX_RADIUS_PANEL = "var(--radius-xl)";
+const BOX_RADIUS_CELL = "var(--radius-md)";
+const BOX_PADDING_PANEL = "18px 16px";
+
+// Typography roles (dropdown-only — reuse existing tokens, no new sizes)
+const FONT_PANEL_TITLE = {
+  fontFamily: "var(--font-heading)",
+  fontWeight: 800,
+  fontSize: "13px",
+  letterSpacing: "-0.01em",
+} as const;
+const FONT_BODY = {
+  fontSize: "13px",
+  lineHeight: 1.5,
+} as const;
+
+// Plus: green ring + plus — mirrors DashGlyph shape/size/placement (issue #2)
+function PlusGlyph() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      aria-hidden
+      className="shrink-0 mt-[1px]"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        r="7.2"
+        fill="none"
+        stroke="var(--bari-green)"
+        strokeWidth="1.5"
+        opacity="0.7"
+      />
+      <path
+        d="M8 5v6M5 8h6"
+        fill="none"
+        stroke="var(--bari-green-deep)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 // Check: green ring (opacity 0.7 per R-09) + checkmark in bari-green-deep
 function CheckGlyph() {
   return (
@@ -268,7 +340,7 @@ function DashGlyph() {
 }
 
 // ─── Section header (spec §1: mono uppercase label + hairline rule) ───────────
-function SectionHeader({ label }: { label: string }) {
+function SectionHeader({ label, suffix }: { label: string; suffix?: string }) {
   return (
     <div
       style={{
@@ -290,6 +362,18 @@ function SectionHeader({ label }: { label: string }) {
         }}
       >
         {label}
+        {suffix ? (
+          <span
+            style={{
+              fontWeight: 500,
+              letterSpacing: "0.06em",
+              textTransform: "none",
+              marginInlineStart: "6px",
+            }}
+          >
+            · {suffix}
+          </span>
+        ) : null}
       </span>
       <span
         style={{
@@ -306,10 +390,12 @@ function SectionHeader({ label }: { label: string }) {
 // ─── Section wrapper (spec R-01: 24px top gap, 20px at <640px) ───────────────
 function Section({
   label,
+  suffix,
   children,
   first = false,
 }: {
   label: string;
+  suffix?: string;
   children: ReactNode;
   first?: boolean;
 }) {
@@ -321,7 +407,7 @@ function Section({
       }}
       className={first ? undefined : "sm:pt-[24px] max-sm:pt-[20px]"}
     >
-      <SectionHeader label={label} />
+      <SectionHeader label={label} suffix={suffix} />
       {children}
     </div>
   );
@@ -351,11 +437,10 @@ function AssessmentSection({
       {/* Positive panel */}
       <div
         style={{
-          borderRadius: "var(--radius-xl)",
-          // R-02: padding 18px 16px
-          padding: "18px 16px",
+          borderRadius: BOX_RADIUS_PANEL,
+          padding: BOX_PADDING_PANEL,
           background: "#F1F8F4",
-          border: "1px solid rgba(31,143,106,0.16)",
+          border: BOX_BORDER_POSITIVE,
         }}
       >
         <p
@@ -364,10 +449,7 @@ function AssessmentSection({
             alignItems: "center",
             gap: "8px",
             margin: "0 0 11px",
-            fontFamily: "var(--font-heading)",
-            fontWeight: 800,
-            fontSize: "13.5px",
-            letterSpacing: "-0.01em",
+            ...FONT_PANEL_TITLE,
             color: "var(--bari-green-deep)",
           }}
         >
@@ -398,13 +480,12 @@ function AssessmentSection({
               alignItems: "flex-start",
               // R-02: item row padding 9px
               padding: "9px 0",
-              fontSize: "13px",
-              lineHeight: 1.5,
+              ...FONT_BODY,
               color: "var(--fg2)",
               borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
             }}
           >
-            <CheckGlyph />
+            <PlusGlyph />
             <span>{signal}</span>
           </div>
         ))}
@@ -413,11 +494,10 @@ function AssessmentSection({
       {/* Limits panel */}
       <div
         style={{
-          borderRadius: "var(--radius-xl)",
-          // R-02: padding 18px 16px
-          padding: "18px 16px",
+          borderRadius: BOX_RADIUS_PANEL,
+          padding: BOX_PADDING_PANEL,
           background: "#FAFAF7",
-          border: "1px solid var(--hairline-soft)",
+          border: BOX_BORDER_NEUTRAL,
         }}
       >
         <p
@@ -426,10 +506,7 @@ function AssessmentSection({
             alignItems: "center",
             gap: "8px",
             margin: "0 0 11px",
-            fontFamily: "var(--font-heading)",
-            fontWeight: 800,
-            fontSize: "13.5px",
-            letterSpacing: "-0.01em",
+            ...FONT_PANEL_TITLE,
             color: "var(--fg1)",
           }}
         >
@@ -464,8 +541,7 @@ function AssessmentSection({
                 alignItems: "flex-start",
                 // R-02: item row padding 9px
                 padding: "9px 0",
-                fontSize: "13px",
-                lineHeight: 1.5,
+                ...FONT_BODY,
                 color: "var(--fg2)",
                 borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
               }}
@@ -508,7 +584,7 @@ function AssessmentSection({
               display: "flex",
               gap: "8px",
               alignItems: "center",
-              fontSize: "13px",
+              ...FONT_BODY,
               color: "var(--bari-green-deep)",
               padding: "9px 0",
             }}
@@ -544,9 +620,9 @@ function ShelfContextSection({
     <div
       style={{
         background: "#F6F7F4",
-        border: "1px solid var(--hairline-soft)",
-        borderRadius: "var(--radius-xl)",
-        padding: "15px 16px",
+        border: BOX_BORDER_NEUTRAL,
+        borderRadius: BOX_RADIUS_PANEL,
+        padding: BOX_PADDING_PANEL,
       }}
     >
       {/* Top row: rank + category meta */}
@@ -619,7 +695,7 @@ function ShelfContextSection({
       <p
         style={{
           margin: 0,
-          fontSize: "13px",
+          ...FONT_BODY,
           lineHeight: 1.6,
           color: "var(--fg2)",
         }}
@@ -647,24 +723,16 @@ function NutritionSection({
   nutrition,
   ingredients,
   category,
-  servingNote,
 }: {
   nutrition: BariNutritionVM;
   ingredients: string | null;
   category?: string;
-  servingNote: string;
 }) {
   const catConfig = getCategoryNutrition(category);
   const displayedCells = NUTRITION_KEYS.filter(({ key }) => nutrition[key] != null);
 
-  const sectionLabel = servingNote
-    ? `${LABEL_NUTRITION} · ${servingNote}`
-    : `${LABEL_NUTRITION} · ${catConfig.servingLabel}`;
-
   return (
     <div>
-      <SectionHeader label={sectionLabel} />
-
       {/* 4-up grid → 2-col < 640px (spec §3.4, §5) */}
       <div
         style={{
@@ -678,8 +746,7 @@ function NutritionSection({
           const value = nutrition[key];
           if (value == null) return null;
 
-          const scaleKey = key === "energyKcal" ? "energyKcal" : key === "sodium" ? "sodium" : key as "protein" | "sugar";
-          const scale: NutrientScale = catConfig[scaleKey as keyof CategoryNutritionConfig] as NutrientScale ?? { max: 100 };
+          const scale = getNutrientScale(catConfig, key);
           const tone = nutrientTone(key, value as number, scale);
           const barPct = Math.max(3, Math.min(100, ((value as number) / scale.max) * 100));
 
@@ -688,9 +755,9 @@ function NutritionSection({
               key={key}
               style={{
                 background: "var(--surface)",
-                border: "1px solid var(--hairline-soft)",
-                borderRadius: "var(--radius-md)",
-                padding: "12px 12px 13px",
+                border: BOX_BORDER_NEUTRAL,
+                borderRadius: BOX_RADIUS_CELL,
+                padding: "12px",
               }}
               aria-label={`${label} ${typeof value === "number" ? Math.round(value) : "—"} ${unit}`}
             >
@@ -731,25 +798,41 @@ function NutritionSection({
                   {unit}
                 </i>
               </div>
-              {/* Mini-bar — decorative */}
-              <div
-                style={{
-                  height: "4px",
-                  borderRadius: "3px",
-                  background: "#EEEEE8",
-                  overflow: "hidden",
-                }}
-                aria-hidden
-              >
-                <i
+              {/* Mini-bar with scale anchors (0–max) */}
+              <div aria-hidden>
+                <div
                   style={{
-                    display: "block",
-                    height: "100%",
+                    height: "4px",
                     borderRadius: "3px",
-                    background: tone,
-                    width: `${barPct}%`,
+                    background: "#EEEEE8",
+                    overflow: "hidden",
                   }}
-                />
+                >
+                  <i
+                    style={{
+                      display: "block",
+                      height: "100%",
+                      borderRadius: "3px",
+                      background: tone,
+                      width: `${barPct}%`,
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "4px",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    letterSpacing: "0.04em",
+                    color: "var(--fg4)",
+                    direction: "ltr",
+                  }}
+                >
+                  <span>0</span>
+                  <span>{scale.max}</span>
+                </div>
               </div>
             </div>
           );
@@ -757,7 +840,7 @@ function NutritionSection({
       </div>
 
       {/* Ingredients line */}
-      <div style={{ marginTop: "12px", fontSize: "13px", lineHeight: 1.6, color: "var(--fg2)" }}>
+      <div style={{ marginTop: "12px", ...FONT_BODY, lineHeight: 1.6, color: "var(--fg2)" }}>
         <span
           style={{
             fontFamily: "var(--font-mono)",
@@ -1115,16 +1198,21 @@ export function ExpansionSection({
 
       {/* ── Section 3: Nutrition + ingredients ───────────────────────────── */}
       {hasTechnical ? (
-        <Section label={LABEL_NUTRITION}>
+        <Section
+          label={LABEL_NUTRITION}
+          suffix={
+            expansion.servingNote?.trim() ||
+            getCategoryNutrition(category).servingLabel
+          }
+        >
           {hasNutrition && expansion.nutrition ? (
             <NutritionSection
               nutrition={expansion.nutrition}
               ingredients={expansion.ingredients ?? null}
               category={category}
-              servingNote={expansion.servingNote}
             />
           ) : hasIngredients ? (
-            <div style={{ fontSize: "13px", lineHeight: 1.6, color: "var(--fg2)" }}>
+            <div style={{ ...FONT_BODY, lineHeight: 1.6, color: "var(--fg2)" }}>
               <span
                 style={{
                   fontFamily: "var(--font-mono)",

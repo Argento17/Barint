@@ -614,7 +614,7 @@ export function NewAdditivePanel({
   return (
     <div
       style={{
-        border: "1px solid var(--hairline)",
+        border: "1px solid var(--hairline-soft)",
         borderRadius: "var(--radius-xl)",
         overflow: "hidden",
         background: "var(--surface)",
@@ -665,7 +665,7 @@ export function NewAdditivePanel({
                 display: "block",
                 fontFamily: "var(--font-heading)",
                 fontWeight: 800,
-                fontSize: "13.5px",
+                fontSize: "13px",
                 letterSpacing: "-0.01em",
                 color: "var(--fg1)",
               }}
@@ -675,7 +675,7 @@ export function NewAdditivePanel({
             <span
               style={{
                 display: "block",
-                fontSize: "11.5px",
+                fontSize: "11px",
                 color: "var(--fg3)",
                 marginTop: "2px",
               }}
@@ -751,7 +751,7 @@ export function NewAdditivePanel({
                   display: "block",
                   fontFamily: "var(--font-heading)",
                   fontWeight: 800,
-                  fontSize: "13.5px",
+                  fontSize: "13px",
                   letterSpacing: "-0.01em",
                   color: "var(--fg1)",
                 }}
@@ -761,7 +761,7 @@ export function NewAdditivePanel({
               <span
                 style={{
                   display: "block",
-                  fontSize: "11.5px",
+                  fontSize: "11px",
                   color: "var(--fg3)",
                   marginTop: "2px",
                 }}
