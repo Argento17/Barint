@@ -26,7 +26,6 @@ import { DeepDiveSection, hasDeepDiveContent } from "@/components/shared/deep-di
 const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
 const LABEL_LIMITING = "מה מגביל את הציון?";
 const LABEL_COMPARISON = "הקשר במדף";
-const LABEL_BOTTOM = "בשורה התחתונה";
 const LABEL_NUTRITION = "ערכים תזונתיים";
 const LABEL_ADDITIVES = "תוספי מזון";
 // Legacy / glass-box labels kept for those paths
@@ -631,48 +630,7 @@ function ShelfContextSection({
   );
 }
 
-// ─── §3.3 Bottom line ─────────────────────────────────────────────────────────
-
-function BottomLineSection({ bottomLine }: { bottomLine: string }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        gap: "10px",
-        alignItems: "flex-start",
-        padding: "14px 16px",
-        background: "var(--surface)",
-        border: "1px solid var(--hairline-soft)",
-        // R-06: 4px border (up from 3px)
-        borderInlineStart: "4px solid var(--bari-green)",
-        borderRadius: "var(--radius-md)",
-        // R-06: shadow-sm lifts the card
-        boxShadow: "var(--shadow-sm)",
-        fontSize: "13.5px",
-        lineHeight: 1.6,
-        color: "var(--fg1)",
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "9.5px",
-          fontWeight: 700,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "var(--bari-green-deep)",
-          whiteSpace: "nowrap",
-          marginTop: "3px",
-        }}
-      >
-        {LABEL_BOTTOM}
-      </span>
-      <span>{bottomLine}</span>
-    </div>
-  );
-}
-
-// ─── §3.4 Nutrition + ingredients ────────────────────────────────────────────
+// ─── §3.3 Nutrition + ingredients ────────────────────────────────────────────
 
 const NUTRITION_KEYS: {
   key: keyof BariNutritionVM;
@@ -1119,8 +1077,6 @@ export function ExpansionSection({
     rank !== undefined &&
     categoryTotal !== undefined &&
     Boolean(expansion.comparisonContext?.trim());
-  const hasBottomLine = Boolean(expansion.bottomLine?.trim());
-
   // Legacy unknowns/caveats (carried for backward compat but rendered after main 5 sections)
   const hasUnknowns = (expansion.unknowns?.length ?? 0) > 0;
   const hasCaveats = (expansion.caveats?.length ?? 0) > 0;
@@ -1157,14 +1113,7 @@ export function ExpansionSection({
         </Section>
       ) : null}
 
-      {/* ── Section 3: Bottom line ────────────────────────────────────────── */}
-      {hasBottomLine ? (
-        <Section label={LABEL_BOTTOM}>
-          <BottomLineSection bottomLine={expansion.bottomLine!} />
-        </Section>
-      ) : null}
-
-      {/* ── Section 4: Nutrition + ingredients ───────────────────────────── */}
+      {/* ── Section 3: Nutrition + ingredients ───────────────────────────── */}
       {hasTechnical ? (
         <Section label={LABEL_NUTRITION}>
           {hasNutrition && expansion.nutrition ? (
@@ -1194,7 +1143,7 @@ export function ExpansionSection({
         </Section>
       ) : null}
 
-      {/* ── Section 5: Additives sub-dropdown ────────────────────────────── */}
+      {/* ── Section 4: Additives sub-dropdown ────────────────────────────── */}
       {showAdditivePanel ? (
         <Section label={LABEL_ADDITIVES}>
           <NewAdditivePanel
@@ -1209,7 +1158,6 @@ export function ExpansionSection({
       {!hasAssessment &&
       !rowVerdict?.trim() &&
       !hasShelfCtx &&
-      !hasBottomLine &&
       !hasTechnical &&
       !hasDeepDive &&
       glassBox?.gateState !== "demote" &&
