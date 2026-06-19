@@ -231,8 +231,11 @@ function nutrientTone(key: keyof BariNutritionVM, value: number, scale: Nutrient
 
 // ─── SVG glyphs (spec §3.1, polish R-09) ─────────────────────────────────────
 // Shared box outline tokens — one weight/radius rhythm across all dropdown panels
-const BOX_BORDER_NEUTRAL = "1px solid var(--hairline-soft)";
-const BOX_BORDER_POSITIVE = "1px solid rgba(31,143,106,0.16)";
+// Single visible outline used on ALL dropdown boxes (owner: boxes must be consistent —
+// either all outlined or none; the old --hairline-soft neutral read as borderless next
+// to the green positive box). One clearly-visible neutral border everywhere.
+const BOX_BORDER_NEUTRAL = "1px solid rgba(17,19,24,0.13)";
+const BOX_BORDER_POSITIVE = "1px solid rgba(17,19,24,0.13)";
 const BOX_RADIUS_PANEL = "var(--radius-xl)";
 const BOX_RADIUS_CELL = "var(--radius-md)";
 const BOX_PADDING_PANEL = "18px 16px";
@@ -259,20 +262,20 @@ function PlusGlyph() {
       aria-hidden
       className="shrink-0 mt-[1px]"
     >
+      {/* white disc so the green + reads on the light-green positive panel (issue #2 contrast) */}
       <circle
         cx="8"
         cy="8"
         r="7.2"
-        fill="none"
-        stroke="var(--bari-green)"
-        strokeWidth="1.5"
-        opacity="0.7"
+        fill="#FFFFFF"
+        stroke="var(--bari-green-deep)"
+        strokeWidth="1.6"
       />
       <path
-        d="M8 5v6M5 8h6"
+        d="M8 4.6v6.8M4.6 8h6.8"
         fill="none"
         stroke="var(--bari-green-deep)"
-        strokeWidth="1.5"
+        strokeWidth="1.8"
         strokeLinecap="round"
       />
     </svg>
