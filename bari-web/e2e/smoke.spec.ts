@@ -5,12 +5,12 @@ import { test, expect } from "@playwright/test";
  *
  * This is a real route check, not a unit test: it boots the app and asserts the things a
  * first-time mobile user depends on — the document is RTL Hebrew, the page has a heading,
- * and the canonical reference page (maadanim) actually paints product rows. If a data or
+ * and the canonical reference page (breakfast-cereals) actually paints product rows. If a data or
  * routing regression blanks a comparison page, this fails before a human notices.
  */
 
 const COMPARISON_ROUTES = [
-  "/hashvaot/maadanim", // canonical reference page
+  "/hashvaot/breakfast-cereals", // canonical reference page
   "/hashvaot/hummus",
   "/hashvaot/cheese",
 ];
@@ -40,8 +40,8 @@ for (const route of COMPARISON_ROUTES) {
   });
 }
 
-test("maadanim page paints multiple product rows", async ({ page }) => {
-  await page.goto("/hashvaot/maadanim");
+test("breakfast-cereals page paints multiple product rows", async ({ page }) => {
+  await page.goto("/hashvaot/breakfast-cereals");
   // grade chips (A-E) are the per-product anchor; expect several on a populated shelf.
   const gradeChips = page.getByText(/^[A-E]$/);
   await expect(gradeChips.first()).toBeVisible({ timeout: 15_000 });

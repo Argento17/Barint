@@ -20,7 +20,7 @@ import { test, expect } from "@playwright/test";
  * cold server rather than flaky.
  */
 
-const ROUTES = ["/", "/hashvaot/maadanim", "/hashvaot/hummus"];
+const ROUTES = ["/", "/hashvaot/breakfast-cereals", "/hashvaot/hummus"];
 const LCP_BUDGET_MS = 2500;
 const CLS_BUDGET = 0.1;
 

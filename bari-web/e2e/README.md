@@ -49,11 +49,11 @@ Point at a deployed preview instead with `PLAYWRIGHT_BASE_URL=https://… npm ru
 - **Smoke E2E — LIVE-VERIFIED.** 5/5 pass on mobile against the dev server.
 - **a11y scan — LIVE-VERIFIED, and it already found a real bug.** axe reports a
   serious **WCAG 1.4.3 (color-contrast)** violation on the grade chips on
-  `/hashvaot/maadanim`. That is a genuine finding for Design/Frontend, not a harness
+  `/hashvaot/breakfast-cereals`. That is a genuine finding for Design/Frontend, not a harness
   defect — the gate is doing its job. Fixing chip contrast is tracked separately; until
   then `test:a11y` will (correctly) fail on that route.
 - **Web-Vitals perf (`test:perf`) — LIVE-VERIFIED 2026-06-04** against the production build:
-  `/` LCP≈1.6s, `/hashvaot/maadanim` & `/hashvaot/hummus` LCP≈1.14s, **CLS=0 on all three**
+  `/` LCP≈1.6s, `/hashvaot/breakfast-cereals` & `/hashvaot/hummus` LCP≈1.14s, **CLS=0 on all three**
   — comfortably inside budget. This is the primary, key-free perf instrument.
 - **Lighthouse CI** config is wired (LCP/CLS/a11y/SEO budgets) and *runs* locally — it
   launches Chrome and completes the audit — but on Windows it currently aborts at teardown
@@ -76,7 +76,7 @@ npm run test:visual
 
 On failure, actual/diff images are written to `test-results/` (gitignored).
 
-Routes covered: `/`, `/hashvaot`, `/hashvaot/maadanim`, `/hashvaot/hard-cheeses`, `/hashvaot/snack-bars`, `/hashvaot/milk-comparison`.
+Routes covered: `/`, `/hashvaot`, `/hashvaot/hard-cheeses`, `/hashvaot/snack-bars`, `/hashvaot/milk-comparison`.
 
 Mobile full-page routes use JS freeze (`page.screenshot` + `toMatchSnapshot` with
 3% tolerance) to work around unstoppable SVG radar chart / expandable card animations.

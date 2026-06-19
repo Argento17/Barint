@@ -9,7 +9,7 @@ import AxeBuilder from "@axe-core/playwright";
  * moderate findings are reported but not failed, to keep the gate honest and unflaky.
  */
 
-const ROUTES = ["/", "/hashvaot/maadanim", "/hashvaot/hummus"];
+const ROUTES = ["/", "/hashvaot/breakfast-cereals", "/hashvaot/hummus"];
 
 for (const route of ROUTES) {
   test(`a11y: no serious/critical violations on ${route}`, async ({ page }) => {

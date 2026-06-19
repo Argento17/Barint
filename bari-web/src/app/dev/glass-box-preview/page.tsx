@@ -16,7 +16,6 @@ import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import { PROTEIN_METRIC } from "@/components/shared/comparison-metric-column";
 import {
   glassBoxHummusPreview,
-  glassBoxMaadanimPreview,
   glassBoxProcessingPreview,
 } from "@/lib/comparisons/glass-box-preview-data";
 import { GLASSBOX_D5D6_ON, GLASSBOX_W4_ON } from "@/lib/feature-flags";
@@ -101,25 +100,6 @@ export default function GlassBoxPreviewRoute() {
         }}
         prologueSentences={[
           'שלוש שורות לדוגמה: מוצר מדורג רגיל, מוצר עם "ניתוח חלקי", ומוצר "לא נוקד".',
-        ]}
-        methodologyLines={[
-          "תצוגה מקדימה בלבד. אינה משנה אף ציון חי או נתון שפורסם.",
-        ]}
-        shelfFilters={noShelfFilters}
-        metricSpecs={PREVIEW_METRICS}
-      />
-
-      <div className="h-6" />
-
-      <ComparisonPage
-        products={glassBoxMaadanimPreview}
-        metadataLine="תצוגה מקדימה · מעדנים · 3 שורות לדוגמה"
-        hero={{
-          eyebrow: "Glass Box · תצוגה מקדימה",
-          title: "מעדנים — ניתוח חלקי / לא נוקד",
-        }}
-        prologueSentences={[
-          'שלוש שורות לדוגמה: מוצר מדורג רגיל, ג\'לי עם "ניתוח חלקי", ומוצר "לא נוקד".',
         ]}
         methodologyLines={[
           "תצוגה מקדימה בלבד. אינה משנה אף ציון חי או נתון שפורסם.",

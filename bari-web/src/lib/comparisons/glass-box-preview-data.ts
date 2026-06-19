@@ -5,7 +5,7 @@
 // any go-live decision. It does NOT touch a live score or the published comparison JSON
 // under src/data/comparisons/*.json — every product object below is authored here from
 // the pilot engine output:
-//   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_{hummus,maadanim}_on.json
+//   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_hummus_on.json
 //   03_operations/bsip2/proto_v0/reports/glass_box/_pilot_summary.json
 //
 // The grade/score values shown are the pilot's OFF-baseline display values (what the
@@ -97,81 +97,6 @@ export const glassBoxHummusPreview: BariProductVM[] = [
     // WITHHELD — plain חומוס SKU, panel absent (_pilot_summary hummus withholds).
     id: "preview_hummus_withheld",
     name: "חומוס",
-    imageUrl: null,
-    score: null,
-    grade: null,
-    insightLine: "",
-    confidence: "insufficient",
-    expansion: previewExpansion({
-      confidenceLabel: "נתונים חסרים",
-    }),
-    glassBox: {
-      gateState: "withhold",
-      withheld: true,
-      disclosureCodes: [],
-    },
-  },
-];
-
-// ─── MAADANIM preview (3 rows: normal · demoted ג'לי · withheld) ─────────────────
-export const glassBoxMaadanimPreview: BariProductVM[] = [
-  {
-    // A normal graded maadan — baseline.
-    id: "preview_maadan_graded",
-    name: "יופלה קלאסי",
-    imageUrl: null,
-    score: 69,
-    grade: "B",
-    insightLine:
-      "מהטובים בקטגוריה — הרכב ברור עם חלבון סביר. עוצר ב-B בשל תוספת הסוכר.",
-    confidence: "verified",
-    expansion: previewExpansion({
-      nutrition: {
-        energyKcal: 95,
-        protein: 3.5,
-        sugar: 13,
-        fat: 2.8,
-        fiber: 0,
-        sodium: 55,
-      },
-      positiveSignals: ["חלבון סביר לקטגוריה"],
-      limitingFactors: ["תוספת סוכר ניכרת"],
-    }),
-    rowVerdict:
-      "מהטובים בקטגוריה — הרכב ברור עם חלבון סביר. עוצר ב-B בשל תוספת הסוכר.",
-    glassBox: { gateState: "unconstrained" },
-  },
-  {
-    // DEMOTED — ג'לי בטעם ענבים (_pilot_summary maadanim demote, d5_band "partial",
-    // findings: proportions + missing_field×5). Keeps its grade + `ניתוח חלקי` flag.
-    id: "preview_maadan_demoted",
-    name: "ג'לי בטעם ענבים",
-    imageUrl: null,
-    score: 35,
-    grade: "E",
-    insightLine: "",
-    confidence: "partial",
-    expansion: previewExpansion({
-      confidenceLabel: "נתונים חלקיים",
-      positiveSignals: [],
-      limitingFactors: ["מבוסס ברובו על סוכר"],
-    }),
-    rowVerdict:
-      "מבוסס ברובו על סוכר. הדירוג נשען על מידע חלקי — חלק מהפרטים לא צוינו בתווית.",
-    // TASK-179N: exercise the LIVE coded path (disclosureCodes → Hebrew via the copy map),
-    // the same shape the pilot JSONs emit — not authored prose.
-    glassBox: {
-      gateState: "demote",
-      gatedScore: 35,
-      gatedGrade: "E",
-      disclosureCodes: ["proportions", "missing_field"],
-    },
-  },
-  {
-    // WITHHELD — a maadan with no usable panel (_pilot_summary maadanim withhold,
-    // e.g. בולגרית מעודנת / המבורגר ילדים, panel absent → `לא נוקד`).
-    id: "preview_maadan_withheld",
-    name: "בולגרית מעודנת 24%",
     imageUrl: null,
     score: null,
     grade: null,

@@ -29,7 +29,6 @@ import { test, expect } from "@playwright/test";
 const ROUTES = [
   { path: "/",                          name: "homepage"            },
   { path: "/hashvaot",                  name: "hashvaot-index"      },
-  { path: "/hashvaot/maadanim",         name: "hashvaot-maadanim"   },
   { path: "/hashvaot/hard-cheeses",     name: "hashvaot-hard-cheeses" },
   { path: "/hashvaot/snack-bars",       name: "hashvaot-snack-bars" },
   { path: "/hashvaot/milk-comparison",  name: "hashvaot-milk"       },
@@ -40,7 +39,6 @@ const CAROUSEL_PAGES = new Set(["/", "/hashvaot"]);
 
 // ── Comparison pages (subset that should show grade chips) ───────────────────
 const COMPARISON_ROUTES = new Set([
-  "/hashvaot/maadanim",
   "/hashvaot/hard-cheeses",
   "/hashvaot/snack-bars",
   "/hashvaot/milk-comparison",
