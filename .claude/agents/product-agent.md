@@ -100,7 +100,7 @@ Drawn from `decision_rights_matrix.md`. The Product Agent holds approval authori
 - Research outputs from Research Agent (market context, competitive analysis)
 - Scoring impact estimates from Nutrition Agent
 - Feasibility assessments from Frontend Agent and Data Agent
-- QA verdicts from QA Agent
+- QA verdicts from Adversarial QA Agent
 - Campaign proposals from Marketing Agent
 - Content briefs from Content Agent
 
@@ -173,7 +173,7 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 **Escalate to the owner if:**
 - A scoring rule change creates a business conflict the Nutrition Agent cannot resolve alone
-- A QA hard fail requires a launch deferral decision the QA Agent cannot make alone
+- A QA hard fail requires a launch deferral decision the Adversarial QA Agent cannot make alone
 - A capability gap requires a new skill not covered by the existing stack
 
 **Others escalate to this agent when:**

@@ -105,7 +105,7 @@ Always assign a tier. Never leave a claim without a classification.
 
 Do not wait to be commissioned. When a new category enters the pipeline (any stage), immediately run a parallel evidence sweep on that category's core nutritional claims and marketing patterns. This surfaces findings *before* the scoring methodology is locked — not after.
 
-**Default trigger:** When Data Agent opens a new category task or Red-Team Agent begins a challenge, Research Agent should simultaneously produce a category characterization brief covering:
+**Default trigger:** When Data Agent opens a new category task or the Adversarial QA Agent begins a challenge, Research Agent should simultaneously produce a category characterization brief covering:
 - Typical nutritional ranges and what drives variation (peer-reviewed sources)
 - Known deceptive marketing patterns in this category (literature + regulatory reports)
 - Signals where evidence suggests current scoring rules may be incomplete

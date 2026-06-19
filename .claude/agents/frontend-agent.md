@@ -114,7 +114,7 @@ Legacy quarantine: **Do not import** `bari-grade-badge.tsx`, `dimension-bars.tsx
 - Approved scope from Product Agent (required before any work begins)
 - Frontend JSON from Data Agent (via `src\data\comparisons\`)
 - Approved copy from Content Agent (for integration into JSON)
-- QA reports from QA Agent (issues to fix, not redesign)
+- QA reports from Adversarial QA Agent (issues to fix, not redesign)
 
 ---
 

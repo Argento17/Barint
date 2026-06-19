@@ -110,7 +110,7 @@ Note: D14 requires Product Agent approval before campaigns that make product cla
 
 ## Hard Rules
 
-1. Never launch a campaign for a category that has not received QA Agent PASS and Product Agent go-live approval.
+1. Never launch a campaign for a category that has not received Adversarial QA Agent PASS and Product Agent go-live approval.
 2. Never produce marketing copy that makes health claims — Bari does not advise on diet or health outcomes.
 3. Never use framework terminology (NOVA, BSIP, cap, floor, structural_class) in any marketing output.
 4. Do not implement landing pages directly — route implementation through Product Agent approval and Frontend Agent execution.

@@ -102,7 +102,7 @@ Note: Content Agent initiates and implements copy, but cannot publish without Nu
 - Scoring rationale from Nutrition Agent (what the score means, what signals matter)
 - Design structural guidance from Design Agent (how long, what position, what hierarchy)
 - Label registry from Data Agent (approved attribute display names)
-- QA feedback on copy field completeness from QA Agent
+- QA feedback on copy field completeness from Adversarial QA Agent
 
 ---
 

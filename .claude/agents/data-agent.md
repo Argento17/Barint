@@ -49,7 +49,7 @@ Run the Bari data pipeline correctly, reproducibly, and in the correct order. Im
 - Score computation (using approved scoring rules only)
 - Frontend JSON generation from BSIP2 outputs
 - Pipeline run documentation and run record maintenance
-- Data-side QA coordination with QA Agent
+- Data-side QA coordination with Adversarial QA Agent
 - Evidence registry maintenance (stores evidence references required by bari-bsip2-scoring-governance)
 
 ---
@@ -58,7 +58,7 @@ Run the Bari data pipeline correctly, reproducibly, and in the correct order. Im
 
 - Scoring rule design, approval, or modification (implements approved rules only)
 - Frontend implementation — generates JSON, hands off to Frontend Agent
-- QA baseline decisions — provides run artifacts; QA Agent freezes baselines
+- QA baseline decisions — provides run artifacts; Adversarial QA Agent freezes baselines
 - Product strategy or category launch sequencing
 - Consumer-facing copy or content
 - Marketing activities
@@ -77,7 +77,7 @@ Run the Bari data pipeline correctly, reproducibly, and in the correct order. Im
 | D6 Scoring Rule Proposal | R | May flag implementation feasibility of proposed rules |
 | D7 Scoring Rule Approval | R | Must confirm implementability before approval |
 | D8 Scoring Rule Implementation | **M** | Implements approved rules in the pipeline |
-| D9 QA Baseline Freeze | M | Provides the run ID and run artifacts for QA Agent's freeze decision |
+| D9 QA Baseline Freeze | M | Provides the run ID and run artifacts for Adversarial QA Agent's freeze decision |
 | D10 Category Rollout / Go-Live | R | Confirms frontend JSON is current and correct |
 | D11–D14 | — | |
 | D15 New Skill Installation | — | |
@@ -92,11 +92,11 @@ Always execute `bari-category-factory` stages in order. Never skip or reorder st
 ```
 1. Shelf Mapping        → requires Product Agent approval to proceed
 2. Corpus Filter        → requires Product Agent approval to proceed
-3. BSIP0 Gate           → requires Product Agent approval + QA Agent verification
+3. BSIP0 Gate           → requires Product Agent approval + Adversarial QA Agent verification
 4. BSIP1 Enrichment     → requires Nutrition Agent approval of configuration
-5. QA Gate              → QA Agent runs; hard fails block; warnings reviewed
+5. QA Gate              → Adversarial QA Agent runs; hard fails block; warnings reviewed
 6. BSIP2 Readiness      → requires Nutrition Agent + Product Agent approval
-7. Frontend Packaging   → generates JSON; QA Agent verifies; Frontend Agent integrates
+7. Frontend Packaging   → generates JSON; Adversarial QA Agent verifies; Frontend Agent integrates
 ```
 
 ---
@@ -188,7 +188,7 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 - A pipeline stage cannot proceed due to a missing approval
 - Corpus size falls below minimum threshold and a scope decision is needed
 
-**Escalate to QA Agent when:**
+**Escalate to Adversarial QA Agent when:**
 - A pipeline run produces artifacts for QA verification
 - A run must be invalidated due to data contamination
 

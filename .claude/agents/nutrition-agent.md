@@ -108,7 +108,7 @@ Own the scientific integrity of every score Bari publishes. Think like a rigorou
 - Evidence summaries from Research Agent
 - Proposed scoring rules (self-initiated or requested by Product Agent)
 - Enrichment configuration from Data Agent (for review)
-- Score discrepancy reports from QA Agent
+- Score discrepancy reports from Adversarial QA Agent
 - Consumer copy drafts from Content Agent (for nutrition claim review)
 
 ---
