@@ -15,12 +15,16 @@ export interface ScoreBand {
 }
 
 // 80+ · 70–79 · 60–69 · 50–59 · <50 (README §5 / spec §3).
+// `max` is the EXCLUSIVE upper bound (half-open [min, max)) so the bands cover the
+// real number line with no gaps — a fractional score like 49.7 must land in the
+// "<50" band, not fall through to the unscored bucket. (Earlier integer maxes of
+// 49 / 59 left the 49–50 and 59–60 intervals uncovered.)
 export const SCORE_BANDS: readonly ScoreBand[] = [
   { id: "b80", label: "80+", min: 80, max: Infinity, tone: "#1F8F6A" },
-  { id: "b70", label: "70–79", min: 70, max: 79, tone: "#3FA07E" },
-  { id: "b60", label: "60–69", min: 60, max: 69, tone: "#9A9A5E" },
-  { id: "b50", label: "50–59", min: 50, max: 59, tone: "#C49A4A" },
-  { id: "b00", label: "מתחת ל-50", min: 0, max: 49, tone: "#C77F5A" },
+  { id: "b70", label: "70–79", min: 70, max: 80, tone: "#3FA07E" },
+  { id: "b60", label: "60–69", min: 60, max: 70, tone: "#9A9A5E" },
+  { id: "b50", label: "50–59", min: 50, max: 60, tone: "#C49A4A" },
+  { id: "b00", label: "מתחת ל-50", min: 0, max: 50, tone: "#C77F5A" },
 ];
 
 const UNSCORED_BAND: ScoreBand = {
@@ -34,7 +38,7 @@ const UNSCORED_BAND: ScoreBand = {
 /** The band a score falls into. `null` (unscored / insufficient) → its own trailing band. */
 export function bandOf(score: number | null): ScoreBand {
   if (score == null) return UNSCORED_BAND;
-  return SCORE_BANDS.find((b) => score >= b.min && score <= b.max) ?? UNSCORED_BAND;
+  return SCORE_BANDS.find((b) => score >= b.min && score < b.max) ?? UNSCORED_BAND;
 }
 
 export interface RailBand extends ScoreBand {
