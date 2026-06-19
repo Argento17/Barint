@@ -644,34 +644,49 @@ function ShelfContextSection({
         </span>
       </div>
 
-      {/* Position track: grade gradient — R-07: opacity 0.65 */}
+      {/* Position track: gradient (dimmed) + product marker (full opacity, on top).
+          direction:ltr so the marker's physical `left` maps cleanly onto the
+          90deg gradient (orange/worst at left → green/best at right); best rank
+          lands on the green end. The marker must NOT inherit the gradient's
+          opacity, so it's a sibling — not a child — of the dimmed bar. */}
       <div
         style={{
           position: "relative",
-          height: "6px",
-          borderRadius: "4px",
+          height: "14px",
           margin: "14px 0 12px",
-          background:
-            "linear-gradient(90deg, #C77F5A 0%, #C49A4A 35%, #9A9A5E 60%, #3FA07E 82%, #1F8F6A 100%)",
-          // R-07: opacity 0.65 (up from 0.5)
-          opacity: 0.65,
+          direction: "ltr",
         }}
-        aria-hidden
       >
-        {/* Marker — R-07: border 3px (up from 2.5px), positioned via inset-inline-start */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: 0,
+            right: 0,
+            transform: "translateY(-50%)",
+            height: "6px",
+            borderRadius: "4px",
+            background:
+              "linear-gradient(90deg, #C77F5A 0%, #C49A4A 35%, #9A9A5E 60%, #3FA07E 82%, #1F8F6A 100%)",
+            opacity: 0.65,
+          }}
+          aria-hidden
+        />
         <span
           style={{
             position: "absolute",
             top: "50%",
-            width: "13px",
-            height: "13px",
+            left: `${markerPct}%`,
+            width: "14px",
+            height: "14px",
             borderRadius: "50%",
-            background: "var(--surface)",
-            // R-07: 3px border
+            background: "#FFFFFF",
             border: "3px solid var(--fg1)",
-            transform: "translate(50%, -50%)",
-            insetInlineStart: `${markerPct}%`,
+            transform: "translate(-50%, -50%)",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.28)",
+            zIndex: 1,
           }}
+          aria-hidden
         />
       </div>
 
