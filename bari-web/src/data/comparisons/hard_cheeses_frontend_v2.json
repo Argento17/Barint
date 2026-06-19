@@ -22,7 +22,11 @@
       ]
     },
     "subpool_filter": null,
-    "patch_notes": "RT-1: _subPool/_novaGroup → public subPool/novaGroup from live map. RT-8: schema contract reconciled. RT-6: confidence convention → missing_nutrition. RT-5: מגביר חוזק annotated in d4_additives (no score change). TASK-fan-hc2: rowVerdict voice pass + size-variant dedupe (28→23) + rank re-derived."
+    "patch_notes": "RT-1: _subPool/_novaGroup → public subPool/novaGroup from live map. RT-8: schema contract reconciled. RT-6: confidence convention → missing_nutrition. RT-5: מגביר חוזק annotated in d4_additives (no score change). TASK-fan-hc2: rowVerdict voice pass + size-variant dedupe (28→23) + rank re-derived.",
+    "hcadd_d4_populated": "2026-06-19T17:00:03.608309+00:00",
+    "hcadd_source": "BSIP1 direct scrape — detect_additives_d4(ingredients_text_he)",
+    "hcadd_populated_count": 14,
+    "hcadd_total_products": 23
   },
   "products": [
     {
@@ -31,15 +35,7 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [
-        {
-          "e_number": "לא ידוע",
-          "name_he": "מגביר חוזק",
-          "tier": "unclassified",
-          "function_he": "מחזק מרקם",
-          "explanation_he": "מגביר חוזק ללא מספר E מוצהר — ייתכן כי מדובר בקלציום כלוריד (E509) המופיע גם במפורש, או תוסף נפרד שלא זוהה. מסווג כלא ידוע עד בירור."
-        }
-      ],
+      "d4_additives": [],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב מפוסטר , מלח , תרבית גבינה , מקריש רנט , מגביר חוזק , קלציום כלוריד",
@@ -125,7 +121,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -170,7 +174,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל : אנאטו (ממקור צמחי), חומר משמר (E-202). מתכון חדש",
@@ -213,7 +225,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומרים משמרים (E-202, E-234, E-235).",
@@ -300,7 +320,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -344,7 +372,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -520,7 +556,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E160a",
+          "name_he": "בטא-קרוטן",
+          "tier": "functional",
+          "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
+          "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן)",
@@ -564,7 +608,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E160a",
+          "name_he": "בטא-קרוטן",
+          "tier": "functional",
+          "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
+          "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן)",
@@ -608,7 +660,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -652,7 +712,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -695,7 +763,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -738,7 +814,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -781,7 +865,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -824,7 +916,15 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202).",
@@ -955,7 +1055,36 @@
       "confidence_label_he": "חסרים נתוני תזונה",
       "confidence_sub_reason": "missing_nutrition",
       "confidence_tooltip_he": "חלק מנתוני התזונה לא היו זמינים — הציון מבוסס על הנתונים שכן היו זמינים.",
-      "d4_additives": [],
+      "d4_additives": [
+        {
+          "e_number": "E1422",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
+        },
+        {
+          "e_number": "E331",
+          "name_he": "סודיום ציטרט",
+          "tier": "functional",
+          "function_he": "מלח ציטרט — מווסת חומציות / מלח מתחלב",
+          "explanation_he": "ציטרט נתרן הוא מלח נתרן של חומצת לימון, המשמש לאיזון חומציות; הגוף מפרק אותו לציטרט."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
       "expansion": {
         "confidenceLabel": "חסרים נתוני תזונה",
         "ingredients": "גבינה (חלב מפוסטר , מלח, תרבית לקטית , מקריש רנט ),עמילן מעובד E 144, מתחלבים E331,E330,E339,NKJ '' חומר משמר E202",
