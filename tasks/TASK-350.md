@@ -1,5 +1,5 @@
 ---
-id: TASK-343
+id: TASK-350
 title: Admin blog editor — extend /admin to edit blog article prose (all blog pages), prose-only
 owner: frontend-agent
 status: IN_PROGRESS
