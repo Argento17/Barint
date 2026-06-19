@@ -27,6 +27,12 @@ export const LIVE_BLOG_DOCS: BlogDoc[] = [
   { slug: "yogurt", file: "yogurt.json", labelHe: "בלוג — יוגורט", route: "/blog/yogurt" },
   { slug: "olive-oil", file: "olive-oil.json", labelHe: "בלוג — שמן זית", route: "/blog/shemen-zayit" },
   { slug: "bread-article", file: "bread-article.json", labelHe: "בלוג — לחם", route: "/blog/lechem" },
+  { slug: "bread-everyday", file: "bread-everyday.json", labelHe: "בלוג — לחם יומיומי", route: "/blog/bread-everyday" },
+  { slug: "bread-standouts", file: "bread-standouts.json", labelHe: "בלוג — לחם בולטים", route: "/blog/bread-standouts" },
+  { slug: "bread-wellness-gap", file: "bread-wellness-gap.json", labelHe: "בלוג — לחם פער בריאות", route: "/blog/bread-wellness-gap" },
+  { slug: "snack-editorial", file: "snack-editorial.json", labelHe: "בלוג — חטיפים (מאמר)", route: "/blog/snack-bars-flagship" },
+  { slug: "snack-analysis", file: "snack-analysis.json", labelHe: "בלוג — חטיפים (מתודולוגיה)", route: "/blog/snack-bars-flagship" },
+  { slug: "blog-index", file: "blog-index.json", labelHe: "בלוג — עמוד ראשי", route: "/blog" },
 ];
 
 export const BLOG_DIR = "bari-web/src/data/blog";

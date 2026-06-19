@@ -1,3 +1,4 @@
+import snackEditorialData from "@/data/blog/snack-editorial.json";
 import type { ComparisonMomentProps } from "@/components/snack/comparison-moment";
 import { snackProducts } from "@/lib/comparisons/snack-page-data";
 
@@ -9,32 +10,11 @@ function product(id: string) {
   return item;
 }
 
-export const snackWellnessHero = {
-  headlineLines: ["בר פרוטאין: 47/D.", "חטיף תמרים עם 4 רכיבים: 70/B."],
-  subline: "23 נקודות הפרש. אותה קטגוריה.",
-  driverSubline: "מה שהפריד ביניהם — לא השם על האריזה.",
-  productIds: ["snk-009", "snk-001"] as const,
-} as const;
+export const snackWellnessHero = snackEditorialData.snackWellnessHero;
 
-export const snackShelfIntro = `יוחננוף, מדף הקטגוריה. חטיפי פיטנס בצהוב-כחול. Nature Valley קלאסי. קורני ושוגי. חטיפי תמרים בחום. בשורה הבאה — חטיפי פרוטאין, ובצד: "אנרג'י", "סלים", "Free". אנחנו סרקנו 53 מוצרים מהמדף הזה. הציון הגבוה ביותר — 70/B — לא הלך לאף אחד מהשמות שהזכרנו.`;
+export const snackShelfIntro = snackEditorialData.snackShelfIntro;
 
-export const snackWellnessFindings = [
-  {
-    tag: "ממצא",
-    title: "חטיפי הפרוטאין קיבלו D. חטיף תמרים עם 4 רכיבים קיבל B.",
-    body: "הפרש: 23 נקודות. הגורם: עומק העיבוד, לא כמות הפרוטאין.",
-  },
-  {
-    tag: "דפוס",
-    title: '"תמרים" על האריזה לא אמר את אותו הדבר בשני מוצרים שונים.',
-    body: "חטיף תמרים במילוי חמאת שקדים: 70/B. פרי מארז תמרים ואגוזי לוז: 43/D.",
-  },
-  {
-    tag: "פער",
-    title: 'NOVA4 הוא תקרת ציון — לא מדד "רע".',
-    body: "כשמוצר הוא NOVA4, הציון המקסימלי שיכול לקבל הוא D. המיצוב על האריזה לא שינה את זה.",
-  },
-] as const;
+export const snackWellnessFindings = snackEditorialData.snackWellnessFindings;
 
 export const snackBlogMap = {
   title: "פשטות הרכיבים מול מיצוב — 53 חטיפים",
@@ -82,12 +62,9 @@ export const snackWellnessComparisons: ComparisonMomentProps[] = [
   },
 ];
 
-export const snackWellnessSynthesis = `מה שהפריד את המוצרים בקטגוריה הזו היה מבנה הרכיבים ועומק העיבוד — לא השם. חטיפי פרוטאין, חטיפי פיטנס, ומוצרים עם "תמרים" בשם שהם NOVA4 — כולם הגיעו לאותה תקרה. הציון הגבוה ביותר — 70/B — לא נשא שום תווית. 4 רכיבים, NOVA2.`;
+export const snackWellnessSynthesis = snackEditorialData.snackWellnessSynthesis;
 
-export const snackBlogCta = {
-  line: "→ לכל 53 המוצרים, סוננים לפי ציון",
-  button: "לטבלת ההשוואה המלאה",
-} as const;
+export const snackBlogCta = snackEditorialData.snackBlogCta;
 
 export const snackEnginePresets: Array<{
   label: string;
