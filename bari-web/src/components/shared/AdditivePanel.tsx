@@ -139,22 +139,28 @@ function truncate(text: string, maxChars: number): string {
 function AdditiveRow({
   entry,
   onTierExpand,
+  fullExplanation = false,
 }: {
   entry: AdditiveEntry;
-  onTierExpand: (tier: AdditiveTier) => void;
+  onTierExpand?: (tier: AdditiveTier) => void;
+  /** When true, render explanation_he in full (dropdown sub-panel). */
+  fullExplanation?: boolean;
 }) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleToggle = useCallback(() => {
     if (detailsRef.current?.open) {
-      onTierExpand(entry.tier);
+      onTierExpand?.(entry.tier);
     }
   }, [entry.tier, onTierExpand]);
 
   // RT-3 crash guard: explanation_he may be absent at runtime before TASK-179U
   // joins the field from w2_additive_copy_v1.md (TypeScript says required but
   // the data path can be missing). Fall back to empty string defensively.
-  const truncatedExplanation = truncate(entry.explanation_he ?? "", 120);
+  const explanationText = entry.explanation_he ?? "";
+  const displayedExplanation = fullExplanation
+    ? explanationText
+    : truncate(explanationText, 120);
 
   return (
     <div
@@ -205,7 +211,7 @@ function AdditiveRow({
           color: "#6E756F",
         }}
       >
-        {truncatedExplanation}
+        {displayedExplanation}
       </p>
 
       {/* "עוד" expand sub-row — function_he shown on expand */}
@@ -593,6 +599,12 @@ interface NewAdditivePanelProps {
   productId?: string;
 }
 
+function isAdditiveEntry(
+  entry: { name: string; function: string } | AdditiveEntry
+): entry is AdditiveEntry {
+  return "tier" in entry && "e_number" in entry;
+}
+
 export function NewAdditivePanel({
   additives,
 }: NewAdditivePanelProps) {
@@ -600,16 +612,27 @@ export function NewAdditivePanel({
   const panelId = useId();
   const clean = additives.length === 0;
 
-  // Normalise: accept both simple { name, function } shape (spec §2) and
-  // AdditiveEntry shape (legacy glassbox). Map to { name, fn } for display.
-  const items = additives.map((a) => {
-    if ("name" in a && "function" in a) {
-      return { name: (a as { name: string; function: string }).name, fn: (a as { name: string; function: string }).function };
-    }
-    // AdditiveEntry shape: use name_he + function_he
-    const ae = a as AdditiveEntry;
-    return { name: ae.name_he, fn: ae.function_he };
-  });
+  const richEntries = additives.filter(isAdditiveEntry);
+  const hasRichEntries = richEntries.length === additives.length && richEntries.length > 0;
+  const sortedRichEntries = hasRichEntries
+    ? [...richEntries].sort(
+        (a, b) => (TIER_SEVERITY[a.tier] ?? 99) - (TIER_SEVERITY[b.tier] ?? 99)
+      )
+    : [];
+
+  // Legacy simple shape fallback: { name, function } only.
+  const simpleItems = hasRichEntries
+    ? []
+    : additives.map((a) => {
+        if ("name" in a && "function" in a) {
+          return {
+            name: (a as { name: string; function: string }).name,
+            fn: (a as { name: string; function: string }).function,
+          };
+        }
+        const ae = a as AdditiveEntry;
+        return { name: ae.name_he, fn: ae.function_he };
+      });
 
   return (
     <div
@@ -784,7 +807,7 @@ export function NewAdditivePanel({
                 flexShrink: 0,
               }}
             >
-              {items.length}
+              {hasRichEntries ? sortedRichEntries.length : simpleItems.length}
             </span>
 
             {/* Chevron — rotates 180° when open (spec §4) */}
@@ -832,43 +855,51 @@ export function NewAdditivePanel({
                 }}
                 className="motion-reduce:transition-none"
               >
-                {items.map((item, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr auto",
-                      alignItems: "center",
-                      gap: "12px",
-                      padding: "10px 0",
-                      borderTop: "1px solid var(--hairline-faint)",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "13px",
-                        color: "var(--fg1)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {item.name}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "10.5px",
-                        letterSpacing: "0.04em",
-                        color: "var(--fg3)",
-                        background: "#F6F6F1",
-                        padding: "3px 9px",
-                        borderRadius: "999px",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {item.fn}
-                    </span>
-                  </div>
-                ))}
+                {hasRichEntries
+                  ? sortedRichEntries.map((entry) => (
+                      <AdditiveRow
+                        key={entry.e_number}
+                        entry={entry}
+                        fullExplanation
+                      />
+                    ))
+                  : simpleItems.map((item, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "1fr auto",
+                          alignItems: "center",
+                          gap: "12px",
+                          padding: "10px 0",
+                          borderTop: "1px solid var(--hairline-faint)",
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontSize: "13px",
+                            color: "var(--fg1)",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {item.name}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "10.5px",
+                            letterSpacing: "0.04em",
+                            color: "var(--fg3)",
+                            background: "#F6F6F1",
+                            padding: "3px 9px",
+                            borderRadius: "999px",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {item.fn}
+                        </span>
+                      </div>
+                    ))}
               </div>
             </div>
           </div>
