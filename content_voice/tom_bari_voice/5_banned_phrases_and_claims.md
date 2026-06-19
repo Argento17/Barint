@@ -31,6 +31,7 @@ not ship.
 | **"<מותג>? תחשוב שוב" / "תחשבו שוב" / any mocking or attacking of a brand by name** | Harvest #3 rule 1 — brand-directed dismissive rhetoric is banned; Bari critiques composition, never brand character. (Owner's example: "שוגי? תחשוב שוב" — "very negatively towards a brand, not where Bari wants to be.") | Critique the product's formulation directly: "82% קמח תירס מעובד ו-435 מיליגרם נתרן — זה מה שיש כאן." |
 | **Bare juxtaposition of facts without the finding ("הוויטמינים הוספו; הסיבים — לא" standing alone)** | Harvest #3 rule 2 — information-dumping: facts side-by-side without the "so what" are not a verdict, they are data. Every line must carry the insight, not raw data. | Frame the finding: "הוויטמינים הוספו מבחוץ; הדגן המלא שיספק סיבים — לא נמצא כאן." |
 | **Trailing nutrition-fact tails in insightLine / rowVerdict ("נתרן: 110 מיליגרם ל-100 גרם" / "סוכר: 22.4 גרם ל-100 גרם" appended to verdicts)** | Harvest #3 rule 3 — raw per-100g numbers recited at the end of a verdict are not insight, they are the nutrition section. A number appears in a verdict ONLY when it IS the finding (framed), never as a trailing data tail. Owner: "Why do we have still nutritional facts in the product description? we dont need that." | State numbers only when they ARE the finding: "ו-435 מיליגרם נתרן ל-100 גרם — הגבוה ביותר בקטגוריה" (anchored, comparative, framed as finding). Never append "נתרן: X, סוכר: Y" as a data tail. |
+| **Technical additive dump in rowVerdict / insightLine (E-numbers, chemical names: "E471", "מונו- ודיגליצרידים של חומצות שומן", long additive laundry lists)** | Harvest #4 H4-3 — additive generalization: verdict prose is not the additive panel. Dumping codes or chemical names into the verdict is information noise and duplicates the sub-dropdown. | Generalize: "תוספי מזון" or "מספר תוספי מזון ברשימה". For contested-tier additives: "שחלקם שנויים במחלוקת". Per-additive names, codes, and tier detail live **only** in the additive sub-dropdown — never in insightLine / rowVerdict / comparisonContext. |
 
 ### Constructive-recommendation carve-out (Harvest #1, E009 — owner ruling 2026-06-19)
 
@@ -124,6 +125,8 @@ If a review calls a product "מעובד" or "מתועש", the same paragraph (or
 ### P-4: Additive mentions are whole-picture counts, never E-number disease annotations
 
 In publication copy, additives appear as additive class and count only ("מספר מתחלבים ומייצבים" / "שלושה חומרים משמרים ברשימת הרכיבים"). No E-numbers surfaced to the consumer. No EFSA risk-tier annotations, disease associations, or OPENFDA adverse-event data surfaced to the consumer. The engine's additive-burden risk scoring informs the Bari score; it does not become copy.
+
+**Additive generalization in verdict prose (Harvest #4, H4-3):** `insightLine`, `rowVerdict`, and `comparisonContext` never dump technical additive names, E-numbers, or long additive laundry lists. Generalize to "תוספי מזון" (or class + count). When contested-tier additives are material to the finding, surface as "שחלקם שנויים במחלוקת" — not as a named chemical roster. Per-additive detail (name, code, tier) lives **only** in the additive sub-dropdown UI; the verdict carries the formulation finding, not the additive encyclopedia.
 
 ### P-5: No disease or toxicity language at any severity level
 

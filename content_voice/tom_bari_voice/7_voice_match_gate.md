@@ -192,6 +192,34 @@ Any match = FAIL.
 
 ---
 
+### HF-8 — Internal product-ID tokens in consumer copy (Harvest #4, H4-1 — ALL modes)
+
+**Criterion:** Any consumer-facing text (`insightLine`, `rowVerdict`, `comparisonContext`, intro/prologue sentences) that contains any internal product-ID token = FAIL. Banned token classes:
+- Shelf-prefix IDs: `jc-NNN`, `snk-NNN`, `hc-NNN` (any `*-NNN` internal slug)
+- Raw barcodes (8–13 digit numeric strings used as identifiers)
+- Engine/scoring identifiers: `bsip1_*`, `bsip2_*`, corpus/run tokens (`run_005_headpin`, etc.)
+- Any camelCase/snake_case product key from the JSON (`product_id`, `barcode` field value pasted as reference)
+
+Siblings and shelf neighbors must be referenced by **Hebrew product name or a plain descriptor** — never by internal ID.
+
+**Detection:**
+```
+grep -E "(jc-[0-9]+|snk-[0-9]+|hc-[0-9]+|bsip1_|bsip2_|[0-9]{8,13})" <consumer_copy_fields>
+```
+Any match in consumer-facing sections (not in the internal "מקורות" block) = FAIL.
+
+**Failing signal:**
+> "כמו snk-001 — סוכר גבוה ורשימת רכיבים ארוכה."
+> "השוואה ל-jc-042 בקטגוריה."
+
+**Corrected signal:**
+> "כמו בר דגנים בדבש של המותג המוכר — סוכר גבוה ורשימת רכיבים ארוכה."
+> "השוואה לבר הדגנים הטבעי בקטגוריה."
+
+**Why this is a hard fail:** A shopper reading `snk-001` on a comparison page is looking at pipeline plumbing, not product language. Internal IDs are for the engine and the editorial workflow — they never belong in copy that names a neighbor product.
+
+---
+
 ### HF-6 — Code-token leakage in consumer output (Harvest #2, ruling #1 — ALL modes)
 
 **Criterion:** Any consumer-facing text (insight line, bullet, body paragraph, closing beat, headline) that contains any of the following = FAIL:
@@ -252,7 +280,7 @@ process into consumer copy, which is a first-order failure of the Bari voice.
 
 | Status | Condition |
 |---|---|
-| **PASS** | All 14 checklist items "yes" AND all 6 hard-fail criteria clear (zero triggers) |
+| **PASS** | All 14 checklist items "yes" AND all 8 hard-fail criteria clear (zero triggers) |
 | **FAIL — HF-1** | Same signature move in >2/5 consecutive reviews on the shelf |
 | **FAIL — HF-2A** | Critical framing applied to a product with ≤8 ingredients, no E-numbers, ≤10g sugar/100g |
 | **FAIL — HF-2B** | Positive-threshold product (≥5g fiber, ≤8g sugar, ≥5g protein, ≤8 ingredients) reviewed with hedge-only language and no named concrete strength |
@@ -260,6 +288,8 @@ process into consumer copy, which is a first-order failure of the Bari voice.
 | **FAIL — HF-4** | Product-specific factual claim not in scrape data AND not flagged "דורש אימות" |
 | **FAIL — HF-5** | "דורש אימות" appears in publication-mode output |
 | **FAIL — HF-6** | Any `null`, field-path token (d4_additives, expansion.X, etc.), backtick, or JSON identifier in consumer-facing output |
+| **FAIL — HF-7** | Brand-directed dismissive rhetoric, bare fact-dump without finding, or nutrition-tail in verdict |
+| **FAIL — HF-8** | Internal product-ID token (jc-/snk-/hc-NNN, raw barcode, bsip1_*) in consumer-facing copy |
 | **FAIL — Step 1–3** | Any checklist item "no" |
 | **CONDITIONAL** | Borderline voice ("sounds off, can't name it") → route to C3 fresh-eyes read before deciding; C3 names failing lines, never rewrites |
 
@@ -340,13 +370,13 @@ Relative to the existing gate sequence in `5_banned_phrases_and_claims.md` §3:
 5. Grammar/agreement — hebrew_grammar_gate.analyze(text).is_clean
    (high-confidence flags: auto_fix via hebrew_grammar_autofix; medium: human review)
 6. [THIS FILE] Voice-match gate (checklist Steps 1–3)
-   + HARD FAILURES (HF-1 through HF-5) ← run before handoff to Tom-edit loop
+   + HARD FAILURES (HF-1 through HF-8) ← run before handoff to Tom-edit loop
 7. Tom-edit loop (file 8 logging)
 ```
 
 **Where exactly to insert the hard-failure check:**
 
-Run HF-1 through HF-5 at the end of Step 5 (this file), BEFORE the draft enters
+Run HF-1 through HF-8 at the end of Step 5 (this file), BEFORE the draft enters
 the Tom-edit loop. Rationale: the Tom-edit loop is expensive (human time); the
 hard-fail checks are mechanical and catch structurally broken drafts that do not
 deserve a human review cycle. A draft that fails HF-3 (generic) or HF-4
@@ -366,7 +396,7 @@ pipeline), not earlier. The flag is correct and required during all earlier stag
 ---
 
 ## Scoring
-- **All applicable items "yes" + all 5 hard-fail criteria clear** → passes voice gate → handoff.
+- **All applicable items "yes" + all 8 hard-fail criteria clear** → passes voice gate → handoff.
 - **Any checklist "no"** → not done; revise. Note which item failed in the return block.
 - **Any hard-fail triggered** → FAIL; revise before re-check. Note the specific HF number and the exact criterion that fired.
 - **Borderline "sounds off but I can't say why"** → route to an independent fresh-eyes read (C3 / ChatGPT lane, manual paste) with the prompt: *"Does this sound like the Tom-Bari voice in `2_voice_fingerprint.md`, or like generic AI copy? Name the lines that break voice."* C3 reviews, never rewrites (cf. `c3_lane_chatgpt`).
@@ -375,7 +405,7 @@ pipeline), not earlier. The flag is correct and required during all earlier stag
 This gate does **not** replace the file-5 firewalls. Order of operations:
 1. Claim scan (Tier-A/B) → 2. Leakage (`hebrew_readability.is_clean`) →
 3. Tone (HebEMO) → 4. Form (DICTA Nakdan) → 5. Grammar/agreement (`hebrew_grammar_gate.analyze(text).is_clean`) →
-**6. This voice-match gate (Steps 1–3 + HF-1 through HF-5).**
+**6. This voice-match gate (Steps 1–3 + HF-1 through HF-8).**
 A draft must pass all six.
 
 Gate 5 — grammar/agreement — runs after the DICTA Nakdan form check (gate 4) and before

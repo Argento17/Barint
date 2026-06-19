@@ -47,6 +47,60 @@ edits at them so v1.0 rests on real data:
 
 ---
 
+### Harvest #4 — Batch-1 reconciliation · 2026-06-19 · ALL-SHELF CONFIRMED
+
+Source: Owner batch-1 reconciliation on cereals + cross-shelf voice rules.
+4 owner rulings. All are **promoted** this round into `2_voice_fingerprint.md`,
+`5_banned_phrases_and_claims.md`, and `7_voice_match_gate.md`.
+
+---
+
+### H4-1 — No internal product-ID tokens in consumer copy · 2026-06-19 · ALL modes · ALL surfaces
+
+**Agent draft (failing examples):**
+> "כמו snk-001 — סוכר גבוה ורשימת רכיבים ארוכה."
+> "השוואה ל-jc-042 בקטגוריה."
+
+**Owner ruling:**
+Internal slugs (jc-/snk-/hc-NNN), raw barcodes, and bsip1_* keys are pipeline identifiers — never consumer language. Siblings must be named by Hebrew product name or plain descriptor.
+
+**Promotion status:** promoted → file 7 HF-8 (new hard fail) (2026-06-19)
+
+---
+
+### H4-2 — Intro originality: no cross-shelf opener cloning · 2026-06-19 · ALL shelves · intro/hero
+
+**Agent draft (failing pattern):**
+> Multiple shelves opening with the cereals "בוקר. ילד צריך לצאת…" scene verbatim.
+
+**Owner ruling:**
+Each category's intro/prologue + hero title must be framed to that category's shopping moment. Cereals "בוקר…" is a voice reference for tone, not a template.
+
+**Promotion status:** promoted → file 2 §1 intro-originality principle (2026-06-19)
+
+---
+
+### H4-3 — Additive generalization in verdict prose · 2026-06-19 · ALL modes · rowVerdict/insightLine
+
+**Agent draft (failing examples):**
+> "E471, מונו- ודיגליצרידים של חומצות שומן, ושלושה חומרים משמרים…"
+
+**Owner ruling:**
+Verdict prose generalizes to "תוספי מזון"; contested-tier additives surface as "שחלקם שנויים במחלוקת". Per-additive detail lives only in the additive sub-dropdown.
+
+**Promotion status:** promoted → file 5 §1 banned table + §4 P-4 (2026-06-19)
+
+---
+
+### H4-4 — Punch on the egregious · 2026-06-19 · ALL modes · verdict framing
+
+**Owner ruling:**
+Egregious products (near-zero real primary ingredient, deceptive naming, multiple red signals) get the sharpest honest framing first. Punch = sharper truth, never brand-attack, never fabrication.
+
+**Promotion status:** promoted → file 2 §2 punch-on-egregious calibration (2026-06-19)
+
+---
+
 ### Harvest #1 — Cakes shelf · 2026-06-19 · ALL-SHELF CONFIRMED
 
 Source: Tom's Track Changes edits on the first real cakes category draft.

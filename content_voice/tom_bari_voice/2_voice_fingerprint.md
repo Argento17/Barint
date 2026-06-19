@@ -34,6 +34,8 @@ A draft missing the **situation** or the **pivot** does not sound like Tom, no m
 
 ★ **Headline rule (Harvest #1, E001 — ALL shelves):** Headlines are **not** poetic two-beat statements. They are a **direct second-person question** about the reader's real action at the shelf, followed by a **value promise**: "קונים X בסופרמרקט? הנה מה שאתם צריכים לדעת." The question establishes relevance; the promise earns the click. Poetic pivot-openers belong in the body, not the headline.
 
+★ **Intro originality (Harvest #4, H4-2 — ALL shelves):** Each category's intro/prologue and hero title must be **originally framed** to that category's real shopping moment — not copied from another shelf. The cereals opener ("בוקר. ילד צריך לצאת…") is a **voice reference** for tone and situation-first structure, never a template to transplant. Two shelves must not open the same way; a milk page opens at the dairy cooler, a bread page at the bakery aisle, a snack-bar page at the impulse rack. Reusing another category's opening scene is a voice failure even when the facts are accurate.
+
 ---
 
 ## 2. The three modes (mandatory — do not collapse to "critical")
@@ -52,6 +54,8 @@ strong product gets real, un-hedged praise — clustering/strength is an honest
 finding (cf. `butter_clustering_honest_finding`, `owner_s_grade_honesty_ruling`).
 
 ★ **De-escalation is never the default (Harvest #1, E004, E010):** When the product warrants firmness, Tom is firm. "פער" becomes "פער עצום" when it is large. The agent's reflex to pre-emptively soften is wrong. Use the earned intensity.
+
+★ **Punch on the egregious (Harvest #4, H4-4 — ALL modes):** Products with egregious profiles — near-zero real primary ingredient, deceptive naming, multiple red signals stacked — earn the **sharpest honest framing first**. Punch means sharper truth anchored in evidence: name the gap, quantify the disguise, lead with the structural finding. Punch is **not** brand-attack (see H3-R1 / HF-7), **not** fabrication, and **not** fear language. A near-zero-grain cereal gets "82% קמח תירס מעובד — זה מה שיש כאן" before any hedge; a dessert-in-disguise snack gets the disguise named immediately. De-escalation (§2 above) applies to nuanced products, not to egregious ones.
 
 ★ **No throat-clearing (Harvest #1, E005):** Cut "ברור ש...", "מובן", and meta-narration of editorial intent ("צריך לומר מה הסיבה"). Tom's voice does not warm up, apologize for directness, or narrate what it is about to do.
 
@@ -126,11 +130,16 @@ Tom's edits confirm he wants more latitude.
 ---
 
 ## 8. Confidence / status
-- **v1.0 — confirmed and locked.** Traceable to S1–S3 + Harvest #1 (17 pairs, cakes, 2026-06-19) + Harvest #2 (4 rulings, cereals, 2026-06-19) + **Harvest #3 (3 rulings, cereals owner review, 2026-06-19)**.
+- **v1.0 — confirmed and locked.** Traceable to S1–S3 + Harvest #1 (17 pairs, cakes, 2026-06-19) + Harvest #2 (4 rulings, cereals, 2026-06-19) + **Harvest #3 (3 rulings, cereals owner review, 2026-06-19)** + **Harvest #4 (4 rulings, batch-1 reconciliation, 2026-06-19)**.
 - Harvest #1 lessons fully promoted into this file (see §1 step 4, §2, §3, §5, §6).
 - Harvest #2 rulings fully encoded (see §1 step 7, §6 last two items).
 - **Harvest #3 rulings (ALL-SHELF):**
   - **H3-R1 — HARD BAN: brand-directed dismissive rhetoric.** "שוגי? תחשוב שוב", "תחשבו שוב", any rhetorical attack on a brand by name is banned. Bari critiques the product's **composition**, never the brand's character. The rhetorical-question dismissal move (§3: "שוגי? תחשוב שוב") is **RETIRED** from the approved signature-move list. Owner ruling: "very negatively towards a brand, not where Bari wants to be." See file 5 banned-phrase table and HF-7 in file 7.
   - **H3-R2 — HARD BAN: information-dumping.** No bare juxtaposition of facts without the finding. "הוויטמינים הוספו; הסיבים — לא" standing alone = dumping, not insight. Every line must carry the "so what." See file 5 banned-phrase table and HF-7 in file 7.
   - **H3-R3 — RULE: no nutrition-fact tails in verdicts.** Raw per-100g data ("נתרן: 110 מיליגרם ל-100 גרם", "סוכר: 22.4 גרם ל-100 גרם") appended to insightLine/rowVerdict are banned. Numbers appear in verdicts ONLY when they ARE the finding (framed, comparative). Nutrition section carries the raw data; the verdict carries the interpretation. See file 5 banned-phrase table and HF-7 in file 7.
+- **Harvest #4 rulings (ALL-SHELF, batch-1 reconciliation, 2026-06-19):**
+  - **H4-1 — HARD FAIL: no internal product-ID tokens in consumer copy.** jc-/snk-/hc-NNN slugs, raw barcodes, bsip1_* keys never appear in insightLine/rowVerdict/comparisonContext. Siblings referenced by Hebrew name/descriptor only. See HF-8 in file 7.
+  - **H4-2 — RULE: intro originality.** Each category's intro/prologue + hero title is framed to that category's shopping moment; cereals "בוקר…" opener is a voice reference, not a template. See §1 intro-originality note.
+  - **H4-3 — RULE: additive generalization in verdict prose.** Row/verdict copy never dumps technical additive names or E-numbers; generalize to "תוספי מזון"; contested-tier additives surface as "שחלקם שנויים במחלוקת". Per-additive detail lives only in the additive sub-dropdown. See file 5 additive-generalization rule.
+  - **H4-4 — RULE: punch on the egregious.** Egregious products get sharpest honest framing first; punch = sharper truth, never brand-attack, never fabrication. See §2 punch note.
 - Open-confidence items still to watch: exact em-dash latitude (§7), how strong Positive-mode praise is allowed to get, whether rhetorical questions belong in short insight lines or only in intros.
