@@ -1,0 +1,218 @@
+{
+  "run_id": "ingredient_recovery_20260619T075624",
+  "task_ref": "TASK-342 / P241",
+  "fetched_at": "2026-06-19T07:56:24.915205+00:00",
+  "source_policy": "shufersal_direct_only — OFF banned",
+  "targets": [
+    "5900020036407",
+    "5900020012814",
+    "72968"
+  ],
+  "genuine_captured": 3,
+  "total_targets": 3,
+  "results": [
+    {
+      "barcode": "5900020036407",
+      "name_he": "ליון דגני שוקולד וקרמל",
+      "fetch_status": "ok",
+      "http_status": 200,
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%A7%D7%95%D7%A8%D7%A0%D7%A4%D7%9C%D7%A7%D7%A1-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8-%D7%9C%D7%99%D7%9C%D7%93%D7%99%D7%9D/%D7%9C%D7%99%D7%95%D7%9F-%D7%93%D7%92%D7%A0%D7%99-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%95%D7%A7%D7%A8%D7%9E%D7%9C/p/P_5900020036407",
+      "fetched_at": "2026-06-19T07:56:17.110175+00:00",
+      "content_sha256": "5ae42d0a45de283c96079d2d33d5bcfd7809b192c07aba8fc848c47ebe360467",
+      "content_bytes": 260194,
+      "ld_barcode_confirmed": "5900020036407",
+      "ld_name_confirmed": "ליון דגני שוקולד וקרמל",
+      "outcome": "genuine_captured",
+      "outcome_reason": "No marketing tier-1 triggers. Contains 13 ingredient signal(s): ['סוכר', 'קמח', 'קקאו', 'קרמל', 'מלח']. Separator count: 20. Structure is consistent with a back-of-pack declaration.",
+      "ingredient_text": "קמח חיטה מלא (מכיל גלוטן) (40.8%), קמח חיטה (29.4%), סוכר, סירופ גלוקוזה, שמן צמחי, אבקת קקאו, מינרלים (סידן (קלציום קרבונט), ברזל),  אבקת חלב מלא, מסת קקאו, מלח, חומרי טעם וריח, סירופ סוכר קרמל, חומר מתחלב (לציטין), ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פ נטותנית), ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין B1 (תיאמין), חומצה פולית, ויטמין D).n*סך הדגנים במוצר: 70.2%n58% מסך הדגנים במ וצר הינם דגנים מלאים",
+      "best_candidate_selector": "li_ingredient_fallback",
+      "candidates_found": 2,
+      "all_candidates": [
+        {
+          "selector": "ingredient_label_parent_container",
+          "raw_html_tag": "div",
+          "text": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל, סידן וויטמינים מקבוצת B • ללא צבעי מאכל • ללא חומרים משמרים לארוחת בוקר ניתן להוסיף : חלב, פרי טרי, מים. ליון, תענוג פראי!",
+          "judgment": {
+            "verdict": "marketing_bleed_again",
+            "confidence": "high",
+            "reason": "Contains marketing tier-1 phrase(s): ['tier1:ניתן להוסיף', 'tier1:לארוחת בוקר', 'tier1:תענוג פראי', 'tier1:תענוג']. Text is front-of-pack copy.",
+            "marketing_triggers": [
+              "tier1:ניתן להוסיף",
+              "tier1:לארוחת בוקר",
+              "tier1:תענוג פראי",
+              "tier1:תענוג"
+            ],
+            "ingredient_signals_matched": [
+              "ברזל",
+              "סידן",
+              "חיטה",
+              "מי"
+            ],
+            "separator_count": 4,
+            "text_length": 174
+          }
+        },
+        {
+          "selector": "li_ingredient_fallback",
+          "text": "קמח חיטה מלא (מכיל גלוטן) (40.8%), קמח חיטה (29.4%), סוכר, סירופ גלוקוזה, שמן צמחי, אבקת קקאו, מינרלים (סידן (קלציום קרבונט), ברזל),  אבקת חלב מלא, מסת קקאו, מלח, חומרי טעם וריח, סירופ סוכר קרמל, חומר מתחלב (לציטין), ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פ נטותנית), ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין B1 (תיאמין), חומצה פולית, ויטמין D).n*סך הדגנים במוצר: 70.2%n58% מסך הדגנים במ וצר הינם דגנים מלאים",
+          "judgment": {
+            "verdict": "candidate_genuine",
+            "confidence": "medium",
+            "reason": "No marketing tier-1 triggers. Contains 13 ingredient signal(s): ['סוכר', 'קמח', 'קקאו', 'קרמל', 'מלח']. Separator count: 20. Structure is consistent with a back-of-pack declaration.",
+            "marketing_triggers": [],
+            "ingredient_signals_matched": [
+              "סוכר",
+              "קמח",
+              "קקאו",
+              "קרמל",
+              "מלח",
+              "גלוקוז",
+              "שמן",
+              "ויטמין",
+              "ברזל",
+              "סידן"
+            ],
+            "separator_count": 20,
+            "text_length": 417
+          }
+        }
+      ]
+    },
+    {
+      "barcode": "5900020012814",
+      "name_he": "דגני בוקר נסקוויק",
+      "fetch_status": "ok",
+      "http_status": 200,
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%A7%D7%95%D7%A8%D7%A0%D7%A4%D7%9C%D7%A7%D7%A1-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8-%D7%9C%D7%99%D7%9C%D7%93%D7%99%D7%9D/%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8-%D7%A0%D7%A1%D7%A7%D7%95%D7%95%D7%99%D7%A7/p/P_5900020012814",
+      "fetched_at": "2026-06-19T07:56:20.300418+00:00",
+      "content_sha256": "16b2d7c747ee2c5f0ec65ce816e0aec98121542032d70c7eb8a5325fa2869203",
+      "content_bytes": 259577,
+      "ld_barcode_confirmed": "5900020012814",
+      "ld_name_confirmed": "דגני בוקר נסקוויק",
+      "outcome": "genuine_captured",
+      "outcome_reason": "No marketing tier-1 triggers. Contains 12 ingredient signal(s): ['סוכר', 'קמח', 'קקאו', 'מלח', 'גלוקוז']. Separator count: 16. Structure is consistent with a back-of-pack declaration.",
+      "ingredient_text": "קמח חיטה מלא (מכיל גלוטן) (53.1%), סוכר, גריסי תירס (17.2%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, מינרלים (סידן (קלציום קרבונט), ברז ל), שמן צמחי, מלח, חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין B2 (ריבופלאבין),  ויטמין B6, ויט מין B1 (תיאמין), חומצה פולית, ויטמין D).rn*סך הדגנים במוצר: 70.3%rn75% מסך הדגנים במוצר הינם דגנים מלאיםrn",
+      "best_candidate_selector": "li_ingredient_fallback",
+      "candidates_found": 2,
+      "all_candidates": [
+        {
+          "selector": "ingredient_label_parent_container",
+          "raw_html_tag": "div",
+          "text": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל וויטמינים מקבוצת B • ללא חומרים משמרים • ללא צבעי מאכל לארוחת בוקר ניתן להוסיף : חלב, פרי טרי, מים.",
+          "judgment": {
+            "verdict": "marketing_bleed_again",
+            "confidence": "high",
+            "reason": "Contains marketing tier-1 phrase(s): ['tier1:ניתן להוסיף', 'tier1:לארוחת בוקר']. Text is front-of-pack copy.",
+            "marketing_triggers": [
+              "tier1:ניתן להוסיף",
+              "tier1:לארוחת בוקר"
+            ],
+            "ingredient_signals_matched": [
+              "ברזל",
+              "חיטה",
+              "מי"
+            ],
+            "separator_count": 2,
+            "text_length": 150
+          }
+        },
+        {
+          "selector": "li_ingredient_fallback",
+          "text": "קמח חיטה מלא (מכיל גלוטן) (53.1%), סוכר, גריסי תירס (17.2%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, מינרלים (סידן (קלציום קרבונט), ברז ל), שמן צמחי, מלח, חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין B2 (ריבופלאבין),  ויטמין B6, ויט מין B1 (תיאמין), חומצה פולית, ויטמין D).rn*סך הדגנים במוצר: 70.3%rn75% מסך הדגנים במוצר הינם דגנים מלאיםrn",
+          "judgment": {
+            "verdict": "candidate_genuine",
+            "confidence": "medium",
+            "reason": "No marketing tier-1 triggers. Contains 12 ingredient signal(s): ['סוכר', 'קמח', 'קקאו', 'מלח', 'גלוקוז']. Separator count: 16. Structure is consistent with a back-of-pack declaration.",
+            "marketing_triggers": [],
+            "ingredient_signals_matched": [
+              "סוכר",
+              "קמח",
+              "קקאו",
+              "מלח",
+              "גלוקוז",
+              "שמן",
+              "ויטמין",
+              "סידן",
+              "חיטה",
+              "תירס"
+            ],
+            "separator_count": 16,
+            "text_length": 372
+          }
+        }
+      ]
+    },
+    {
+      "barcode": "72968",
+      "name_he": "דגני בוקר סיני מיניס",
+      "fetch_status": "ok",
+      "http_status": 200,
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%A7%D7%95%D7%A8%D7%A0%D7%A4%D7%9C%D7%A7%D7%A1-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8-%D7%9C%D7%99%D7%9C%D7%93%D7%99%D7%9D/%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8-%D7%A1%D7%99%D7%A0%D7%99-%D7%9E%D7%99%D7%A0%D7%99%D7%A1/p/P_72968",
+      "fetched_at": "2026-06-19T07:56:23.335402+00:00",
+      "content_sha256": "c5ec1c5db91bc32d395fb3004ba01a937f4ade632982c2c05d87536731e3fea4",
+      "content_bytes": 258144,
+      "ld_barcode_confirmed": "72968",
+      "ld_name_confirmed": "דגני בוקר סיני מיניס",
+      "outcome": "genuine_captured",
+      "outcome_reason": "No marketing tier-1 triggers. Contains 11 ingredient signal(s): ['סוכר', 'קמח', 'מלח', 'גלוקוז', 'שמן']. Separator count: 21. Structure is consistent with a back-of-pack declaration.",
+      "ingredient_text": "קמח חיטה מלא (מכיל גלוטן) (33.8%), קמח אורז (30%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מילוי (קלציום קרבונט), עמילן חיטה, מלח, קינמון  (0.4%), חומרי טעם וריח, חומר מתחלב (לציטין), חומר מעכב חימצון (טוקופרולים), תמצית לתת שעורה (מכיל גלוטן), צבע מאכל (אנאטו), ברזל, ו יטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין D, ויטמין B6, ויטמין B1 (תיאמין), ויטמין B2 (ריבופלאבין), חומצה פולי ת).nnסך הדגנים במוצר (קמחים וגרעינים): 63.8%n53% מסך הדגנים במוצר הינם דגנים מלאים",
+      "best_candidate_selector": "li_ingredient_fallback",
+      "candidates_found": 2,
+      "all_candidates": [
+        {
+          "selector": "ingredient_label_parent_container",
+          "raw_html_tag": "div",
+          "text": "מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל, סידן וויטמינים מקבוצת B • ללא חומרים משמרים לארוחת בוקר ניתן להוסיף : חלב, פרי טרי, מים.",
+          "judgment": {
+            "verdict": "marketing_bleed_again",
+            "confidence": "high",
+            "reason": "Contains marketing tier-1 phrase(s): ['tier1:ניתן להוסיף', 'tier1:לארוחת בוקר']. Text is front-of-pack copy.",
+            "marketing_triggers": [
+              "tier1:ניתן להוסיף",
+              "tier1:לארוחת בוקר"
+            ],
+            "ingredient_signals_matched": [
+              "ברזל",
+              "סידן",
+              "חיטה",
+              "מי"
+            ],
+            "separator_count": 3,
+            "text_length": 140
+          }
+        },
+        {
+          "selector": "li_ingredient_fallback",
+          "text": "קמח חיטה מלא (מכיל גלוטן) (33.8%), קמח אורז (30%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מילוי (קלציום קרבונט), עמילן חיטה, מלח, קינמון  (0.4%), חומרי טעם וריח, חומר מתחלב (לציטין), חומר מעכב חימצון (טוקופרולים), תמצית לתת שעורה (מכיל גלוטן), צבע מאכל (אנאטו), ברזל, ו יטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין D, ויטמין B6, ויטמין B1 (תיאמין), ויטמין B2 (ריבופלאבין), חומצה פולי ת).nnסך הדגנים במוצר (קמחים וגרעינים): 63.8%n53% מסך הדגנים במוצר הינם דגנים מלאים",
+          "judgment": {
+            "verdict": "candidate_genuine",
+            "confidence": "medium",
+            "reason": "No marketing tier-1 triggers. Contains 11 ingredient signal(s): ['סוכר', 'קמח', 'מלח', 'גלוקוז', 'שמן']. Separator count: 21. Structure is consistent with a back-of-pack declaration.",
+            "marketing_triggers": [],
+            "ingredient_signals_matched": [
+              "סוכר",
+              "קמח",
+              "מלח",
+              "גלוקוז",
+              "שמן",
+              "ויטמין",
+              "ברזל",
+              "מתחלב",
+              "חיטה",
+              "אורז"
+            ],
+            "separator_count": 21,
+            "text_length": 481
+          }
+        }
+      ]
+    }
+  ],
+  "guard_confirmations": {
+    "off_used": false,
+    "score_changed": false,
+    "nutrition_changed": false,
+    "live_json_touched": false,
+    "fabrication": false
+  }
+}
