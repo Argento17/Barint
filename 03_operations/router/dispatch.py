@@ -209,6 +209,144 @@ def find_free_port(start: int = 19000, end: int = 19999) -> int:
     raise RuntimeError(f"No free port found in {start}–{end}")
 
 
+# ── Telemetry (owner 2026-06-19: instrument the router) ──────────────────────
+# Every real dispatch appends ONE JSON line here. This turns the orchestrator
+# audit standard (lane ledger: lane · wall · outcome) from aspiration into data,
+# and makes router rule 8 ("~100% one lane = routing failure") measurable instead
+# of asserted. Token usage is NOT captured — the CLI lanes (cursor/agy/grok) do
+# not emit usage, so `tokens` is null (honest UNTRACKED), a future enhancement
+# where the opencode SSE `usage` event is available. Telemetry is wrapped so it
+# can NEVER break a live dispatch.
+TELEMETRY_LOG = REPO_ROOT / "03_operations" / "router" / "telemetry" / "dispatch_log.jsonl"
+
+
+def log_telemetry(*, p_number: str, route: str, engine: str,
+                  started=None, finished=None, exit_code: int = 0,
+                  git_before: str = "", git_after: str = "",
+                  tokens=None, note: str = "") -> None:
+    """Append one telemetry record. Never raises — telemetry must not break dispatch."""
+    try:
+        TELEMETRY_LOG.parent.mkdir(parents=True, exist_ok=True)
+        gi = TELEMETRY_LOG.parent / ".gitignore"
+        if not gi.exists():
+            gi.write_text("# router telemetry — runtime data, not committed\n*\n!.gitignore\n",
+                          encoding="utf-8")
+        wall_ms = (int((finished - started).total_seconds() * 1000)
+                   if (started and finished) else None)
+        outcome = "ok" if exit_code == 0 else ("lane_outage" if exit_code == 75 else "fail")
+        rec = {
+            "ts": (finished or datetime.now(timezone.utc)).isoformat(),
+            "p": p_number, "route": route, "engine": engine,
+            "wall_ms": wall_ms, "exit": exit_code, "outcome": outcome,
+            "tree_changed": (git_before != git_after) if (git_before or git_after) else None,
+            "tokens": tokens,
+        }
+        if note:
+            rec["note"] = note
+        with open(TELEMETRY_LOG, "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception as e:  # noqa: BLE001 — telemetry is best-effort by design
+        print(f"[dispatch] telemetry write failed (non-fatal): {e}", file=sys.stderr)
+
+
+# ── Deterministic routing policy (owner 2026-06-19) ──────────────────────────
+# "Routing deterministic by default" + "agents default to the C1 cloud lane, not
+# Sonnet." The DEFAULT is a cloud C1 builder (Cursor); native Sonnet (route "C1")
+# is RESERVED for the documented carve-outs — Hebrew editorial copy, the
+# nutrition/regulatory firewall, and adversarial reasoning — so reaching for
+# native Sonnet is an explicit, logged opt-out, not the silent default (the
+# native-subagent trap). First pattern that matches wins; order matters.
+ROUTING_POLICY = [
+    ("C1", "Hebrew editorial / voice copy → Content lane = native Sonnet (content_lane_sonnet_not_gemini)",
+     r"voice|tone|editorial|\bcopy\b|insightline|rowverdict|hebrew|ניסוח|קופי|כותרת|נוסח"),
+    ("C1", "regulatory / health / nutrition claim → Nutrition firewall = native Sonnet",
+     r"regulat|nutrition|health claim|additive warning|southampton|efsa|allergen|רגולצ|בריאות|תזונ"),
+    ("C1", "adversarial reasoning / red-team / methodology challenge → native Sonnet",
+     r"red.?team|adversar|challenge the|methodolog|defensib|stress.?test"),
+    ("C2", "zero-judgment bulk / mechanical audit → DeepSeek (cheap)",
+     r"\bbulk\b|stale.?string|\brename\b|find.?and.?replace|json field|\bcount\b|\btally\b|\bgrep\b|\bsweep\b|dedup"),
+    ("C1-GEMINI", "long-context / repo-wide / tests → Gemini",
+     r"repo.?wide|across all|every (page|file|category)|\btest(s|ing)?\b|coverage|migrat"),
+    ("C1-GROK", "design / image / UI spike → Grok",
+     r"\bdesign\b|\bimage\b|illustration|mockup|visual concept|\bmood\b"),
+    ("C3", "independent review / research / 2nd opinion → ChatGPT (advice only, never closes)",
+     r"second opinion|fresh eyes|\bcritique\b|sanity check|\bresearch\b|outside opinion"),
+    ("C1-CURSOR", "spec-complete code with repo access → Cursor",
+     r"implement|component|\.tsx|\.ts\b|\broute\b|\bbuild\b|refactor|\bwire\b|adapter|\bfix\b|frontend"),
+]
+DEFAULT_LANE = ("C1-CURSOR",
+                "default builder = cloud C1 (Cursor); native Sonnet requires an explicit opt-out "
+                "reason (agent_os_redesign_direction)")
+
+
+def recommend_route(task_text: str) -> tuple[str, str]:
+    """Deterministic lane recommendation. Returns (lane, reason). Pure function."""
+    t = (task_text or "").lower()
+    for lane, reason, pat in ROUTING_POLICY:
+        if re.search(pat, t, re.IGNORECASE):
+            return lane, reason
+    return DEFAULT_LANE
+
+
+def cmd_route(target: str) -> int:
+    """Print the deterministic lane recommendation for a P-number or free text."""
+    text = target
+    if re.fullmatch(r"[Pp]\d+", target.strip()):
+        try:
+            text = strip_owner_meta(find_prompt_file(target.upper()))
+        except (FileNotFoundError, ValueError) as e:
+            print(f"[route] ERROR: {e}", file=sys.stderr)
+            return 1
+    lane, reason = recommend_route(text)
+    print(f"[route] recommended lane: {lane}")
+    print(f"[route] reason: {reason}")
+    if lane == "C1":
+        print("[route] dispatch: native Sonnet via the orchestrator (Agent tool) — a reserved opt-out")
+    else:
+        print(f"[route] dispatch: tag the prompt '(route: {lane})' then `python dispatch.py <Pnum>`")
+    return 0
+
+
+def cmd_ledger(limit: int = 0) -> int:
+    """Print the lane-split ledger from telemetry (audit rule 8)."""
+    if not TELEMETRY_LOG.exists():
+        print(f"[ledger] no telemetry yet at {TELEMETRY_LOG}")
+        return 0
+    rows = []
+    with open(TELEMETRY_LOG, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except Exception:
+                pass
+    if limit:
+        rows = rows[-limit:]
+    from collections import defaultdict
+    agg = defaultdict(lambda: {"n": 0, "ok": 0, "fail": 0, "outage": 0, "wall_ms": 0})
+    for r in rows:
+        a = agg[r.get("route", "?")]
+        a["n"] += 1
+        oc = r.get("outcome")
+        a["ok" if oc == "ok" else ("outage" if oc == "lane_outage" else "fail")] += 1
+        if isinstance(r.get("wall_ms"), int):
+            a["wall_ms"] += r["wall_ms"]
+    total = sum(a["n"] for a in agg.values())
+    print(f"[ledger] {total} dispatches across {len(agg)} lanes  ({TELEMETRY_LOG})")
+    print(f"{'lane':<12}{'n':>5}{'pct':>6}{'ok':>5}{'fail':>5}{'outage':>7}{'wall_s':>9}")
+    for k, a in sorted(agg.items(), key=lambda kv: -kv[1]["n"]):
+        pct = (a["n"] / total * 100) if total else 0
+        print(f"{k:<12}{a['n']:>5}{pct:>5.0f}%{a['ok']:>5}{a['fail']:>5}{a['outage']:>7}{a['wall_ms']/1000:>9.1f}")
+    if total >= 5:
+        top_k, top_a = max(agg.items(), key=lambda kv: kv[1]["n"])
+        if top_a["n"] / total >= 0.9:
+            print(f"[ledger] ⚠ {top_k} = {top_a['n']/total*100:.0f}% of dispatches — "
+                  f"router rule 8: ~100% one lane is a routing-failure signal.")
+    return 0
+
+
 def find_prompt_file(p_number: str) -> Path:
     """
     Locate tasks/prompts/P{N}_*.md for a given P-number (e.g. 'P35').
@@ -794,12 +932,16 @@ def cmd_dispatch(p_number: str, dry_run: bool, timeout: int) -> int:
 
     print(f"[dispatch] Prompt file: {prompt_path}")
 
-    # Step 1b: parse route
+    # Step 1b: parse route — explicit (route:) tag wins; otherwise fall back to the
+    # deterministic routing policy (owner 2026-06-19: routing deterministic by default,
+    # default = cloud C1, not native Sonnet). An untagged prompt used to hard-error.
     try:
         route = parse_route(prompt_path)
-    except ValueError as e:
-        print(f"[dispatch] ERROR: {e}", file=sys.stderr)
-        return 1
+    except ValueError:
+        route, _reason = recommend_route(strip_owner_meta(prompt_path))
+        print(f"[dispatch] No (route:) tag → deterministic default lane: {route}")
+        print(f"[dispatch]   reason: {_reason}")
+        print(f"[dispatch]   (native Sonnet is a reserved opt-out; the default is a cloud C1 lane)")
 
     print(f"[dispatch] Route: {route}")
 
@@ -887,6 +1029,10 @@ def cmd_dispatch(p_number: str, dry_run: bool, timeout: int) -> int:
     # Step 7: auto-tick board
     tick_dispatch_board(p_number)
 
+    log_telemetry(p_number=p_number, route=route,
+                  engine=f"{active_provider_id}/{active_model_id}",
+                  started=started, finished=finished, exit_code=exit_code,
+                  git_before=git_before, git_after=git_after)
     return exit_code
 
 
@@ -932,6 +1078,9 @@ def _dispatch_cursor(p_number: str, prompt_path: Path, dry_run: bool,
     )
     print(f"[dispatch] Return file written: {return_path}")
     tick_dispatch_board(p_number)
+    log_telemetry(p_number=p_number, route="C1-CURSOR", engine="cursor/agent-cli",
+                  started=started, finished=finished, exit_code=exit_code,
+                  git_before=git_before, git_after=git_after)
     return exit_code
 
 
@@ -943,7 +1092,11 @@ def _dispatch_gemini(p_number, prompt_path, dry_run, timeout):
     started=datetime.now(timezone.utc); exit_code,output=run_via_gemini_cli(bootstrap,timeout); finished=datetime.now(timezone.utc)
     git_after=git_status_porcelain(REPO_ROOT)
     write_return_file(p_number=p_number,prompt_path=prompt_path,model_id="cli",provider_id="gemini",started=started,finished=finished,exit_code=exit_code,output=output,git_before=git_before,git_after=git_after)
-    tick_dispatch_board(p_number); return exit_code
+    tick_dispatch_board(p_number)
+    log_telemetry(p_number=p_number, route="C1-GEMINI", engine="gemini/agy",
+                  started=started, finished=finished, exit_code=exit_code,
+                  git_before=git_before, git_after=git_after)
+    return exit_code
 
 
 # ── Grok lane (C1-GROK) ──────────────────────────────────────────────────────
@@ -1151,6 +1304,9 @@ def _dispatch_grok(p_number, prompt_path, dry_run, timeout):
     )
     print(f"[dispatch] Return file written: {return_path}")
     tick_dispatch_board(p_number)
+    log_telemetry(p_number=p_number, route="C1-GROK", engine="grok/build-cli",
+                  started=started, finished=finished, exit_code=exit_code,
+                  git_before=git_before, git_after=git_after)
     return exit_code
 
 
@@ -1339,8 +1495,30 @@ def main():
         default=DEFAULT_TIMEOUT,
         help=f"Timeout in seconds for the opencode invocation (default: {DEFAULT_TIMEOUT}).",
     )
+    parser.add_argument(
+        "--route",
+        metavar="P-NUMBER|TEXT",
+        help="Print the deterministic lane recommendation for a P-number or free text, then exit.",
+    )
+    parser.add_argument(
+        "--ledger",
+        action="store_true",
+        help="Print the lane-split telemetry ledger (audit rule 8) and exit.",
+    )
+    parser.add_argument(
+        "--ledger-limit",
+        type=int,
+        default=0,
+        help="With --ledger, only aggregate the last N dispatches (0 = all).",
+    )
 
     args = parser.parse_args()
+
+    if args.ledger:
+        sys.exit(cmd_ledger(args.ledger_limit))
+
+    if args.route:
+        sys.exit(cmd_route(args.route))
 
     if args.selftest:
         sys.exit(cmd_selftest(args.timeout))
