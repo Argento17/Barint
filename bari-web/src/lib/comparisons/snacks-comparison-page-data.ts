@@ -18,7 +18,6 @@ import {
   SNACKS_SHELF_LENS_OPTIONS,
   type SnacksShelfFilterId,
 } from "@/lib/comparisons/snacks-shelf-filters";
-import { snackHeroLine } from "@/lib/comparisons/snack-page-data";
 import type { BariProductVM } from "@/lib/view-models";
 
 export type SnacksCorpusMeta = ComparisonCorpusMeta;
@@ -57,17 +56,16 @@ export const snacksMetadataLine = snacksMetadataUpdated
   ? `18 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
   : "18 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון";
 
-/** Shelf copy from CE-stabilized snack comparison hero line. */
+/** Shelf hero — impulse-rack moment, distinct from cereals/juices/cheese openers. */
 export const snacksHero = {
   eyebrow: "חטיפים",
-  title: "השוואת חטיפים",
+  title: "קונים חטיפים בסופרמרקט? הנה מה שאתם צריכים לדעת.",
 } as const;
 
-/** Verbatim sentences from snack-editorial-content.ts (snackShelfIntro closing lines) + snackHeroLine. */
 export const snacksPrologueSentences = [
-  snackHeroLine,
-  "מתוך 53 מוצרים שנסרקו, 48 קיבלו ציון, ו-18 נבחרו לתצוגה על בסיס מגוון קטגוריות ופערי ציון משמעותיים.",
-  "הציון הגבוה ביותר — 70/B — לא הלך לאף אחד מהשמות שהזכרנו.",
+  "התור לקופה. מולכם מדף חטיפים: ברים צבעוניים, חטיפי דגנים עם הבטחות על האריזה, תמרים מצופים. 'רגע, רק משהו קטן.'",
+  "החטיף נראה קטן וזמין. לפעמים הרשימה תומכת בזה — שלושה מרכיבים, דגן מלא, בוטנים. לפעמים השם אומר 'שיבולת שועל' וברשימה יושבים שוקולד, סירופ גלוקוזה ועשרה מרכיבים נוספים.",
+  "גם החטיף החזק במדף הזה מגיע רק ל-B — כי כאן 'טוב' אומר פחות מהונדס, לא בריא במובן הרחב.",
 ] as const;
 
 // Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
@@ -76,7 +74,7 @@ export const snacksPrologueSentences = [
 // Stage 4 — fat-sugar / fat-sodium hyper-palatability patterns). "Best" here is relative.
 export const snacksCategoryNote = [
   "הערת קטגוריה — 'הכי טוב' כאן הוא B, לא A\n\nבמדף החטיפים אף מוצר אינו מגיע ל-A. הציון הגבוה בקטגוריה הוא 70/B. זו אינה החמרה אלא תיאור הקטגוריה: חטיפים מתוכננים סביב שילוב של שומן, סוכר או מלח שמעלה את החיך — והציון משקף זאת.",
-  "הערת קטגוריה — ההשוואה היא בתוך הקטגוריה בלבד\n\nחטיף נמדד מול חטיפים אחרים, לא מול מזון אחר. ציון B כאן אומר 'הטוב יחסית במדף החטיפים' — לא שהמוצר שקול לארוחה או לחטיף בריאות.",
+  "הערת קטגוריה — ההשוואה היא בתוך הקטגוריה בלבד\n\nחטיף נמדד מול חטיפים אחרים, לא מול מזון אחר. ציון B כאן אומר 'הטוב יחסית במדף החטיפים' — לא שהמוצר שקול לארוחה או לבסיס מזון מלא.",
 ]
   .join("\n\n");
 
