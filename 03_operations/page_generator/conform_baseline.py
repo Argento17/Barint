@@ -78,7 +78,7 @@ FORBIDDEN_PRODUCT_KEYS = frozenset(
 )
 
 FORBIDDEN_EXPANSION_KEYS = frozenset(
-    {"consumerExplanation", "bottomLine", "unknowns"}
+    {"consumerExplanation", "bottomLine", "unknowns", "rowVerdict"}
 )
 
 RE_ID_PREFIX = re.compile(r"\b(?:jc|snk|hc)-\d+", re.I)
