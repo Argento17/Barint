@@ -41,39 +41,41 @@ async function gh(path: string, init?: RequestInit): Promise<Response> {
   });
 }
 
-export interface FetchedFile {
-  data: { _meta?: Record<string, unknown>; products?: Record<string, unknown>[] };
+export interface FetchedJson<T = Record<string, unknown>> {
+  data: T;
   sha: string;
 }
 
-/** Fetch + parse one comparison file. Returns the parsed JSON and its blob sha. */
-export async function getComparisonFile(file: string): Promise<FetchedFile> {
+/** Fetch + parse a JSON file at an arbitrary repo path (relative to repo root). */
+export async function getRepoJson<T = Record<string, unknown>>(
+  repoPath: string,
+): Promise<FetchedJson<T>> {
   const { repo, branch } = cfg();
-  const res = await gh(
-    `/repos/${repo}/contents/${DIR}/${encodeURIComponent(file)}?ref=${encodeURIComponent(branch)}`,
-  );
+  const encoded = repoPath.split("/").map(encodeURIComponent).join("/");
+  const res = await gh(`/repos/${repo}/contents/${encoded}?ref=${encodeURIComponent(branch)}`);
   if (!res.ok) {
-    throw new Error(`GitHub getFile ${file} failed: ${res.status} ${await res.text()}`);
+    throw new Error(`GitHub getFile ${repoPath} failed: ${res.status} ${await res.text()}`);
   }
   const body = (await res.json()) as { content: string; sha: string; encoding: string };
   const raw = Buffer.from(body.content, body.encoding === "base64" ? "base64" : "utf8").toString("utf8");
-  return { data: JSON.parse(raw), sha: body.sha };
+  return { data: JSON.parse(raw) as T, sha: body.sha };
 }
 
 /**
- * Commit new content for one comparison file. `sha` must be the current blob
- * sha (optimistic concurrency — GitHub rejects a stale sha, which protects
- * against overwriting a change made since load).
+ * Commit new content for a JSON file at an arbitrary repo path. `sha` must be
+ * the current blob sha (optimistic concurrency — GitHub rejects a stale sha,
+ * protecting against overwriting a change made since load).
  */
-export async function putComparisonFile(
-  file: string,
+export async function putRepoJson(
+  repoPath: string,
   data: unknown,
   sha: string,
   message: string,
 ): Promise<{ commitSha: string }> {
   const { repo, branch } = cfg();
   const text = JSON.stringify(data, null, 2);
-  const res = await gh(`/repos/${repo}/contents/${DIR}/${encodeURIComponent(file)}`, {
+  const encoded = repoPath.split("/").map(encodeURIComponent).join("/");
+  const res = await gh(`/repos/${repo}/contents/${encoded}`, {
     method: "PUT",
     body: JSON.stringify({
       message,
@@ -83,8 +85,28 @@ export async function putComparisonFile(
     }),
   });
   if (!res.ok) {
-    throw new Error(`GitHub putFile ${file} failed: ${res.status} ${await res.text()}`);
+    throw new Error(`GitHub putFile ${repoPath} failed: ${res.status} ${await res.text()}`);
   }
   const body = (await res.json()) as { commit: { sha: string } };
   return { commitSha: body.commit.sha };
+}
+
+export interface FetchedFile {
+  data: { _meta?: Record<string, unknown>; products?: Record<string, unknown>[] };
+  sha: string;
+}
+
+/** Fetch + parse one comparison file (thin wrapper over getRepoJson). */
+export function getComparisonFile(file: string): Promise<FetchedFile> {
+  return getRepoJson<FetchedFile["data"]>(`${DIR}/${file}`);
+}
+
+/** Commit new content for one comparison file (thin wrapper over putRepoJson). */
+export function putComparisonFile(
+  file: string,
+  data: unknown,
+  sha: string,
+  message: string,
+): Promise<{ commitSha: string }> {
+  return putRepoJson(`${DIR}/${file}`, data, sha, message);
 }

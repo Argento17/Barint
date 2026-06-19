@@ -22,17 +22,19 @@ interface EditableProduct {
   fields: EditableField[];
 }
 
+type DocKind = "comparison" | "blog";
+
 interface CategorySummary {
+  kind: DocKind;
   slug: string;
-  file: string;
   nameHe: string;
-  productCount: number;
+  productCount?: number;
   unavailable?: boolean;
 }
 
 interface LoadedCategory {
+  kind: DocKind;
   slug: string;
-  file: string;
   sha: string;
   nameHe: string;
   products: EditableProduct[];
@@ -54,7 +56,8 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState("");
 
   // data
-  const [categories, setCategories] = useState<CategorySummary[]>([]);
+  const [comparisons, setComparisons] = useState<CategorySummary[]>([]);
+  const [blogDocs, setBlogDocs] = useState<CategorySummary[]>([]);
   const [loaded, setLoaded] = useState<LoadedCategory | null>(null);
   const [draft, setDraft] = useState<Draft>({});
   const [busy, setBusy] = useState(false);
@@ -64,7 +67,8 @@ export default function AdminPage() {
     const res = await fetch("/api/admin/categories");
     if (!res.ok) return;
     const data = await res.json();
-    setCategories(data.categories ?? []);
+    setComparisons(data.comparisons ?? []);
+    setBlogDocs(data.blog ?? []);
   }, []);
 
   // ---- session bootstrap ----
@@ -115,16 +119,16 @@ export default function AdminPage() {
     setStatus("login");
   }
 
-  async function openCategory(slug: string) {
+  async function openCategory(slug: string, kind: DocKind) {
     setNotice(null);
     setBusy(true);
     setLoaded(null);
     setDraft({});
     try {
-      const res = await fetch(`/api/admin/load?slug=${encodeURIComponent(slug)}`);
+      const res = await fetch(`/api/admin/load?kind=${kind}&slug=${encodeURIComponent(slug)}`);
       const data = await res.json();
       if (data.ok) setLoaded(data as LoadedCategory);
-      else setNotice({ kind: "err", text: "טעינת הקטגוריה נכשלה." });
+      else setNotice({ kind: "err", text: "הטעינה נכשלה." });
     } finally {
       setBusy(false);
     }
@@ -171,7 +175,7 @@ export default function AdminPage() {
       const res = await fetch("/api/admin/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: loaded.slug, edits: dirtyEdits }),
+        body: JSON.stringify({ kind: loaded.kind, slug: loaded.slug, edits: dirtyEdits }),
       });
       const data = await res.json();
       if (data.ok) {
@@ -180,7 +184,7 @@ export default function AdminPage() {
           text: `נשמר ופורסם — ${data.applied} שינוי(ים). העדכון יעלה לאתר תוך כ-2 דקות.`,
         });
         // refresh so the editor reflects the committed values as the new baseline
-        await openCategory(loaded.slug);
+        await openCategory(loaded.slug, loaded.kind);
       } else if (data.error === "github_not_configured") {
         setNotice({ kind: "err", text: "הפרסום ל-GitHub לא מוגדר בשרת." });
       } else {
@@ -236,20 +240,19 @@ export default function AdminPage() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-[220px_1fr]">
         {/* category list */}
-        <aside className="space-y-1">
-          {categories.map((c) => (
-            <button
-              key={c.slug}
-              onClick={() => openCategory(c.slug)}
-              disabled={c.unavailable}
-              className={`block w-full rounded-md px-3 py-2 text-right text-sm ${
-                loaded?.slug === c.slug ? "bg-neutral-900 text-white" : "hover:bg-neutral-100"
-              } ${c.unavailable ? "opacity-40" : ""}`}
-            >
-              {c.nameHe}
-              <span className="mr-1 text-xs opacity-60">({c.productCount})</span>
-            </button>
-          ))}
+        <aside className="space-y-4">
+          <CategoryGroup
+            title="השוואות"
+            items={comparisons}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
+          <CategoryGroup
+            title="בלוג"
+            items={blogDocs}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
         </aside>
 
         {/* editor */}
@@ -263,7 +266,7 @@ export default function AdminPage() {
               <div className="sticky top-0 z-10 mb-4 flex items-center justify-between border-b border-neutral-200 bg-white/90 py-3 backdrop-blur">
                 <div>
                   <h2 className="text-lg font-medium">{loaded.nameHe}</h2>
-                  <p className="text-xs text-neutral-400">{loaded.file}</p>
+                  <p className="text-xs text-neutral-400">{loaded.slug}</p>
                 </div>
                 <button
                   onClick={save}
@@ -292,6 +295,42 @@ export default function AdminPage() {
   );
 }
 
+function CategoryGroup({
+  title,
+  items,
+  loadedKey,
+  onOpen,
+}: {
+  title: string;
+  items: CategorySummary[];
+  loadedKey?: string;
+  onOpen: (slug: string, kind: DocKind) => void;
+}) {
+  if (items.length === 0) return null;
+  return (
+    <div>
+      <h2 className="mb-1 px-3 text-xs font-semibold tracking-wide text-neutral-400">{title}</h2>
+      <div className="space-y-1">
+        {items.map((c) => (
+          <button
+            key={`${c.kind}:${c.slug}`}
+            onClick={() => onOpen(c.slug, c.kind)}
+            disabled={c.unavailable}
+            className={`block w-full rounded-md px-3 py-2 text-right text-sm ${
+              loadedKey === `${c.kind}:${c.slug}` ? "bg-neutral-900 text-white" : "hover:bg-neutral-100"
+            } ${c.unavailable ? "opacity-40" : ""}`}
+          >
+            {c.nameHe}
+            {typeof c.productCount === "number" && (
+              <span className="mr-1 text-xs opacity-60">({c.productCount})</span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ProductBlock({
   product,
   draft,
@@ -305,9 +344,11 @@ function ProductBlock({
     <section className="rounded-lg border border-neutral-200 p-4">
       <header className="mb-3 flex items-baseline justify-between">
         <h3 className="font-medium">{product.name || product.id}</h3>
-        <span className="text-xs text-neutral-400">
-          {product.score ?? "—"} · {product.grade ?? "—"} <span className="opacity-60">(לא ניתן לעריכה)</span>
-        </span>
+        {product.score !== null && (
+          <span className="text-xs text-neutral-400">
+            {product.score} · {product.grade ?? "—"} <span className="opacity-60">(לא ניתן לעריכה)</span>
+          </span>
+        )}
       </header>
 
       {product.fields.length === 0 && (
