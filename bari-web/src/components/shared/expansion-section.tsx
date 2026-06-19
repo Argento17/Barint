@@ -264,19 +264,22 @@ function PlusGlyph() {
       aria-hidden
       className="shrink-0 mt-[1px]"
     >
+      {/* literal hex (not CSS var()) — var() does not resolve as an SVG
+          presentation attribute, which is why this glyph was invisible. Mirrors
+          DashGlyph's grey ring/dash with the brand greens (#1F8F6A / #176F53). */}
       <circle
         cx="8"
         cy="8"
         r="7.2"
         fill="none"
-        stroke="var(--bari-green)"
+        stroke="#1F8F6A"
         strokeWidth="1.5"
       />
       <path
         d="M8 5v6M5 8h6"
         fill="none"
-        stroke="var(--bari-green-deep)"
-        strokeWidth="1.6"
+        stroke="#176F53"
+        strokeWidth="1.8"
         strokeLinecap="round"
       />
     </svg>
@@ -298,14 +301,14 @@ function CheckGlyph() {
         cy="8"
         r="7.2"
         fill="none"
-        stroke="var(--bari-green)"
+        stroke="#1F8F6A"
         strokeWidth="1.3"
         opacity="0.7"
       />
       <path
         d="M5 8.2l2 2 4-4.2"
         fill="none"
-        stroke="var(--bari-green-deep)"
+        stroke="#176F53"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
