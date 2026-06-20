@@ -1,0 +1,68 @@
+{
+  "schema_version": "bsip0_task360_playwright_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%95%D7%99%D7%98%D7%9E%D7%99%D7%A0%D7%99%D7%9D-%D7%95%D7%AA%D7%95%D7%A1%D7%A4%D7%99-%D7%AA%D7%96%D7%95%D7%A0%D7%94-/c/A38",
+    "source_type": "product_page_playwright_rendered",
+    "scrape_run": "run_snacks_task360_phase2_20260620_065728",
+    "scraped_at": "2026-06-20T06:58:27+00:00"
+  },
+  "product_identity": {
+    "name": "וואפל אנרגיה שוקולד מלוח",
+    "brand": "",
+    "barcode": "769493101648",
+    "shufersal_code": "P_769493101648",
+    "image_urls": [
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DTX58_Z_P_769493101648_1.png",
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/DTX58_L_P_769493101648_1.png",
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DTX58_Z_P_769493101648_1.png"
+    ]
+  },
+  "serving_info": {
+    "package_size_g": null,
+    "unit_size_g": null,
+    "unit_count": null,
+    "serving_size_g": null,
+    "parse_source": null
+  },
+  "nutrition_raw": {
+    "parsed_strings": {},
+    "basis": "none",
+    "basis_header": ""
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": null,
+    "fat_g": null,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": null,
+    "carbohydrates_g": null,
+    "sugars_g": null,
+    "dietary_fiber_g": null,
+    "protein_g": null
+  },
+  "ingredients_raw": "מהחי 8",
+  "allergens_raw": "",
+  "provenance": {
+    "source": "shufersal_playwright_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%95%D7%99%D7%98%D7%9E%D7%99%D7%A0%D7%99%D7%9D-%D7%95%D7%AA%D7%95%D7%A1%D7%A4%D7%99-%D7%AA%D7%96%D7%95%D7%A0%D7%94-/c/A38",
+    "fetched_at": "2026-06-20T06:58:27+00:00",
+    "client_version": "task360_phase2_playwright",
+    "verification_status": "candidate",
+    "off_check": "PASS — no Open Food Facts"
+  },
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 0.0,
+    "kcal": 0.0,
+    "fail_reasons": [
+      "accounted_mass=0.0g < 70.0g per 100g",
+      "kcal=0 < 150.0 (dry snack minimum)"
+    ],
+    "nutrition_basis": null,
+    "conversion_factor": 1.0,
+    "final_nutrition": null
+  }
+}

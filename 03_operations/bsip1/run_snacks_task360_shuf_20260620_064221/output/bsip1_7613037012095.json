@@ -1,0 +1,117 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_7613037012095",
+  "barcode": "7613037012095",
+  "canonical_name_he": "גרנולה שוקולד קינואה",
+  "canonical_name_en": null,
+  "brand": "",
+  "package_size_g": null,
+  "unit_count": null,
+  "unit_size_g": null,
+  "serving_size_g": null,
+  "country_of_origin": null,
+  "kosher_certification": null,
+  "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QCU44_Z_P_7613037012095_1.png",
+  "source_retailers": [
+    "shufersal"
+  ],
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 443.0,
+    "fat_g": 16.4,
+    "fat_saturated_g": 2.5,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 89.0,
+    "carbohydrates_g": 61.2,
+    "sugars_g": 17.9,
+    "dietary_fiber_g": 7.3,
+    "protein_g": 9.1
+  },
+  "energy_source_unit": "kcal",
+  "ingredients_text_he": null,
+  "ingredients_list": [],
+  "allergens_contains": [],
+  "allergens_may_contain": [],
+  "claims": [],
+  "confidence": {
+    "identity_confidence": "medium",
+    "barcode_confidence": "high",
+    "nutrition_confidence": "confirmed_per_100g",
+    "matched_by": "shufersal_product_page",
+    "observation_count": 1
+  },
+  "barcode_validation_status": "from_ld_json",
+  "barcode_confidence_reason": "Extracted from Shufersal product page LD+JSON gtin13.",
+  "nutrition_basis_claimed": "100 גרם",
+  "nutrition_basis_detected": "per_100g",
+  "nutrition_basis_gate": "pass",
+  "nutrition_basis_conversion_factor": 1.0,
+  "nutrition_serving_g_used": null,
+  "nutrition_consistency_status": "consistent",
+  "nutrition_consistency_warnings": [],
+  "ingredient_text_quality": "missing",
+  "ingredient_warnings": [
+    "ingredients_missing"
+  ],
+  "canonical_trust_score": 0.85,
+  "canonical_trust_level": "medium",
+  "canonical_risk_flags": [
+    "shufersal_single_source"
+  ],
+  "conflicts_summary": {
+    "count": 0,
+    "has_unresolved": false,
+    "fields_in_conflict": [],
+    "identity_conflicts": [],
+    "nutrition_conflicts": [],
+    "ingredient_conflicts": [],
+    "labeling_conflicts": [],
+    "completeness_conflicts": []
+  },
+  "missing_fields": [
+    "serving_size_g"
+  ],
+  "inferred_fields": [],
+  "audit_ref": "bsip1_audit_7613037012095.json",
+  "ingredients_raw": "",
+  "ingredients_raw_provenance": {
+    "source": "shufersal_product_page",
+    "bsip0_status": "bsip0_scrape",
+    "populated_at": "bsip1_task360_shuf",
+    "missing": true,
+    "note": "Direct scrape from Shufersal product page HTML. TASK-360 Shufersal re-scrape."
+  },
+  "ingredient_order": [],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 0,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 0,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": false,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_task360_shuf",
+  "enrichment_warnings": [
+    "ingredients_missing"
+  ],
+  "nova_proxy": 3,
+  "nova_confidence": 0.5,
+  "nova_confidence_band": "medium",
+  "nova_notes": [
+    "insufficient_ingredient_data"
+  ]
+}

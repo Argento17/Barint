@@ -1,0 +1,85 @@
+{
+  "schema_version": "bsip0_task360_shuf_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%91%D7%98%D7%A2%D7%9E%D7%99%D7%9D/p/P_16000548909",
+    "source_type": "product_page_html",
+    "scrape_run": "run_snacks_task360_shuf_20260620_064221",
+    "scraped_at": "2026-06-20T06:44:19+00:00"
+  },
+  "product_identity": {
+    "name": "חטיפי שיבולת שועל בטעמים",
+    "brand": "",
+    "barcode": "16000548909",
+    "shufersal_code": "P_16000548909",
+    "image_urls": [
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MAG42_Z_P_16000548909_1.png",
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_large/MAG42_L_P_16000548909_1.png",
+      "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MAG42_Z_P_16000548909_1.png"
+    ],
+    "category_raw": "[A250104, A25, A2512, categories, A, A2502, A250207]",
+    "source_category": "search:חטיף שיבולת שועל"
+  },
+  "serving_info": {
+    "package_size_g": null,
+    "unit_size_g": null,
+    "unit_count": null,
+    "serving_size_g": null,
+    "parse_source": null
+  },
+  "nutrition_raw": {
+    "parsed_strings": {},
+    "raw_source": {
+      "rows": [],
+      "tables": [],
+      "selection": {
+        "selected_basis": "none",
+        "selected_table_index": null,
+        "selected_table_header": "",
+        "competing_table_count": 0,
+        "insufficient": false
+      },
+      "html": ""
+    },
+    "basis": "none",
+    "basis_header": ""
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": null,
+    "fat_g": null,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": null,
+    "carbohydrates_g": null,
+    "sugars_g": null,
+    "dietary_fiber_g": null,
+    "protein_g": null
+  },
+  "ingredients_raw": "",
+  "allergens_raw": "",
+  "price": "21.9",
+  "weight_g": null,
+  "provenance": {
+    "source": "shufersal_direct_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%91%D7%98%D7%A2%D7%9E%D7%99%D7%9D/p/P_16000548909",
+    "fetched_at": "2026-06-20T06:44:19+00:00",
+    "client_version": "task360_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  },
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "final_nutrition": null,
+    "nutrition_basis": null,
+    "conversion_factor": 1.0,
+    "fail_reasons": [
+      "accounted_mass=0.0g < 70.0g per 100g",
+      "kcal=0 < 150.0 for dry snack"
+    ],
+    "no_serving_size_available": true,
+    "accounted_mass": 0.0,
+    "kcal": 0.0
+  }
+}

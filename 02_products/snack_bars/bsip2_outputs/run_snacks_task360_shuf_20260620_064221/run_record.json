@@ -1,0 +1,153 @@
+{
+  "run_id": "run_snacks_task360_shuf_20260620_064221",
+  "run_timestamp": "2026-06-20T06:46:42+00:00",
+  "task": "TASK-360",
+  "pipeline": "snacks_rescrape_shufersal_plausibility_gate",
+  "primary_source": "shufersal",
+  "cross_check_source": "victory",
+  "shufersal_reachable": true,
+  "victory_reachable": true,
+  "candidates_discovered": 66,
+  "scrape_attempts": 66,
+  "scraped_ok": 66,
+  "scrape_failed": 0,
+  "passed_gate_direct": 54,
+  "passed_gate_converted": 0,
+  "quarantined": 12,
+  "bsip1_built": 54,
+  "bsip2_scored": 54,
+  "bsip2_errors": 0,
+  "victory_crosschecks": 0,
+  "frontend_products": 54,
+  "quarantined_detail": [
+    {
+      "barcode": "7290013724816",
+      "name": "חטיף גרנולה צימוק ותמר",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "7290013724809",
+      "name": "חטיף גרנולה שקד ואגוז",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "769493101648",
+      "name": "וואפל אנרגיה שוקולד מלוח",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "769493102515",
+      "name": "וואפל אנרגיה בטעם קוקוס",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "769493101662",
+      "name": "וואפל אנרגיה בטעם תות",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "16000548909",
+      "name": "חטיפי שיבולת שועל בטעמים",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "7290014455467",
+      "name": "מעדן שיבולת שועל",
+      "fail_reasons": [
+        "accounted_mass=20.6g < 70.0g per 100g",
+        "kcal=62 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 20.6,
+      "kcal": 62.0
+    },
+    {
+      "barcode": "5000108478119",
+      "name": "שיבולת שועל בפח",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "7290112199942",
+      "name": "גרנולה תותים ללת\"ס",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "7290112199959",
+      "name": "גרנולה פירות ללת\"ס",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "7290020030283",
+      "name": "מארז חטיפי חלוה ללת\"ס",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    },
+    {
+      "barcode": "769493100078",
+      "name": "ג'ל אנרגיה טעם אספרסו",
+      "fail_reasons": [
+        "accounted_mass=0.0g < 70.0g per 100g",
+        "kcal=0 < 150.0 for dry snack"
+      ],
+      "accounted_mass": 0.0,
+      "kcal": 0.0
+    }
+  ],
+  "bsip2_error_detail": [],
+  "output_paths": {
+    "bsip0_dir": "C:\\Bari\\02_products\\snack_bars\\observations_bsip0\\shufersal\\run_snacks_task360_shuf_20260620_064221",
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_snacks_task360_shuf_20260620_064221\\output",
+    "bsip2_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\run_snacks_task360_shuf_20260620_064221",
+    "frontend_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\snacks_frontend_v4.json"
+  },
+  "scoring_engine_tripwire_check": "TRIPWIRE-1 COMPLIANT — no changes to 03_operations/bsip2/** or page_generator configs. Score changes result only from corrected per-100g nutrition flowing through unchanged engine.",
+  "off_check": "PASS — no Open Food Facts used in any field"
+}

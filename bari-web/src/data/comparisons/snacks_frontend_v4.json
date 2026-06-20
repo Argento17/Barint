@@ -1,0 +1,3948 @@
+{
+  "_meta": {
+    "category": "snacks",
+    "config_sha256": "df0136698b52564e937d631565975479ea691a7b36d2a555ce90f4fdb877500c",
+    "display_count": 28,
+    "generated": "2026-06-20T07:00:10+00:00",
+    "generator_version": "TASK-360-phase2-playwright-curation-v1.0",
+    "grade_distribution": {
+      "B": 3,
+      "C": 10,
+      "D": 6,
+      "E": 9
+    },
+    "off_check": "PASS — 0 products use Open Food Facts. OFF banned project-wide. All nutrition from Shufersal direct scrape (requests) or Playwright-rendered page.",
+    "pending_copy_fields": [
+      "insightLine",
+      "rowVerdict",
+      "consumerTakeaway",
+      "bariInterpretation.interpretation",
+      "expansion.consumerExplanation",
+      "expansion.comparisonContext",
+      "expansion.bottomLine",
+      "expansion.positiveSignals",
+      "expansion.limitingFactors",
+      "bestUseCases"
+    ],
+    "product_count": 28,
+    "schema": "BariProductVM[]",
+    "schema_version": "v4",
+    "scope_note": "ניתוח מדף שופרסל — לא סקר שוק ישראלי כולל. TASK-360 Phase 2: Playwright recovery + curation.",
+    "source_run": "run_snacks_task360_phase2_20260620_065728",
+    "phase1_run": "run_snacks_task360_shuf_20260620_064221",
+    "primary_source": "shufersal",
+    "cross_check_source": "victory",
+    "staging_note": "TASK-360 Phase 2: Playwright recovery + category curation + Victory cross-check. Consumer copy NOT done — separate voice pass required. Do NOT deploy without copy review + adversarial QA.",
+    "playwright_recovery": [
+      {
+        "barcode": "7290013724816",
+        "name": "חטיף גרנולה צימוק ותמר",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "7290013724809",
+        "name": "חטיף גרנולה שקד ואגוז",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "769493101648",
+        "name": "וואפל אנרגיה שוקולד מלוח",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": true
+      },
+      {
+        "barcode": "769493102515",
+        "name": "וואפל אנרגיה בטעם קוקוס",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": true
+      },
+      {
+        "barcode": "769493101662",
+        "name": "וואפל אנרגיה בטעם תות",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": true
+      },
+      {
+        "barcode": "16000548909",
+        "name": "חטיפי שיבולת שועל בטעמים",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "7290112199942",
+        "name": "גרנולה תותים ללת\"ס",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "7290112199959",
+        "name": "גרנולה פירות ללת\"ס",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "7290020030283",
+        "name": "מארז חטיפי חלוה ללת\"ס",
+        "status": "still_quarantine",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": 0.0,
+        "accounted_mass": 0.0,
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "ingredients_found": false
+      },
+      {
+        "barcode": "7290014455467",
+        "name": "מעדן שיבולת שועל",
+        "status": "skipped_non_snack",
+        "reason": "מעדן שיבולת שועל — refrigerated oat dessert (kcal=62 with nutrition, clearly a dessert cup)",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": null,
+        "accounted_mass": null
+      },
+      {
+        "barcode": "5000108478119",
+        "name": "שיבולת שועל בפח",
+        "status": "skipped_non_snack",
+        "reason": "שיבולת שועל בפח — Quaker rolled oats in tin (raw ingredient)",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": null,
+        "accounted_mass": null
+      },
+      {
+        "barcode": "769493100078",
+        "name": "ג'ל אנרגיה טעם אספרסו",
+        "status": "skipped_non_snack",
+        "reason": "ג'ל אנרגיה טעם אספרסו — liquid energy gel, not a snack bar format",
+        "gate_verdict": "quarantine",
+        "recovered_kcal": null,
+        "accounted_mass": null
+      }
+    ],
+    "quarantined_products": [
+      {
+        "barcode": "7290013724816",
+        "name": "חטיף גרנולה צימוק ותמר",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290013724809",
+        "name": "חטיף גרנולה שקד ואגוז",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "769493101648",
+        "name": "וואפל אנרגיה שוקולד מלוח",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "769493102515",
+        "name": "וואפל אנרגיה בטעם קוקוס",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "769493101662",
+        "name": "וואפל אנרגיה בטעם תות",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "16000548909",
+        "name": "חטיפי שיבולת שועל בטעמים",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290112199942",
+        "name": "גרנולה תותים ללת\"ס",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290112199959",
+        "name": "גרנולה פירות ללת\"ס",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290020030283",
+        "name": "מארז חטיפי חלוה ללת\"ס",
+        "reason": "still_quarantine",
+        "gate_fails": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 (dry snack minimum)"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290014455467",
+        "name": "מעדן שיבולת שועל",
+        "reason": "מעדן שיבולת שועל — refrigerated oat dessert (kcal=62 with nutrition, clearly a dessert cup)",
+        "gate_fails": [],
+        "accounted_mass_g": null,
+        "kcal": null
+      },
+      {
+        "barcode": "5000108478119",
+        "name": "שיבולת שועל בפח",
+        "reason": "שיבולת שועל בפח — Quaker rolled oats in tin (raw ingredient)",
+        "gate_fails": [],
+        "accounted_mass_g": null,
+        "kcal": null
+      },
+      {
+        "barcode": "769493100078",
+        "name": "ג'ל אנרגיה טעם אספרסו",
+        "reason": "ג'ל אנרגיה טעם אספרסו — liquid energy gel, not a snack bar format",
+        "gate_fails": [],
+        "accounted_mass_g": null,
+        "kcal": null
+      }
+    ],
+    "quarantine_count": 12,
+    "curation_dropped_count": 26,
+    "curation_dropped_products": [
+      {
+        "barcode": "7290014095960",
+        "reason": "שיבולת שועל עבה — raw rolled oats, a staple ingredient not a snack"
+      },
+      {
+        "barcode": "7290017894089",
+        "reason": "קמח שיבולת שועל — oat flour, baking ingredient"
+      },
+      {
+        "barcode": "480442",
+        "reason": "קוואקר שיבולת שועל — Quaker rolled oats, raw ingredient"
+      },
+      {
+        "barcode": "7613035622623",
+        "reason": "גרנולה דבש — Nestlé loose granola bag (cereal format, not a bar)"
+      },
+      {
+        "barcode": "7290011131968",
+        "reason": "גרנולה אגוזים — loose granola bag"
+      },
+      {
+        "barcode": "7290011668587",
+        "reason": "גרנולה עשירה — loose granola bag"
+      },
+      {
+        "barcode": "7290011131050",
+        "reason": "גרנולה פקאן — loose granola bag"
+      },
+      {
+        "barcode": "7290011131975",
+        "reason": "גרנולה פירות — loose granola bag"
+      },
+      {
+        "barcode": "7613035635845",
+        "reason": "גרנולה שוקולד פיטנס — Nestlé loose granola bag (Fitness brand cereal/topping)"
+      },
+      {
+        "barcode": "7290014471443",
+        "reason": "גרנולה אגוזים — loose granola bag"
+      },
+      {
+        "barcode": "7613037012095",
+        "reason": "גרנולה שוקולד קינואה — Nestlé loose granola bag"
+      },
+      {
+        "barcode": "1164273",
+        "reason": "חגיגת גרנולה — loose granola bag"
+      },
+      {
+        "barcode": "7290011668570",
+        "reason": "חגיגת גרנולה פירות יבשים — loose granola bag"
+      },
+      {
+        "barcode": "1343845",
+        "reason": "גרנולה עם פירות — loose granola bag"
+      },
+      {
+        "barcode": "7290106771161",
+        "reason": "גרנולה מייפל פקאן — loose granola bag"
+      },
+      {
+        "barcode": "1164266",
+        "reason": "גרנולה ממותקת בסילאן — loose granola bag"
+      },
+      {
+        "barcode": "7290013433336",
+        "reason": "גרנולה 48% סופרפוד — loose granola bag"
+      },
+      {
+        "barcode": "7290017962047",
+        "reason": "גרנולה חמוציות ושקדים — loose granola bag"
+      },
+      {
+        "barcode": "7290106771369",
+        "reason": "גרנולה לוז וקינמון — loose granola bag"
+      },
+      {
+        "barcode": "7290106773714",
+        "reason": "גרנולה מיקס קראנץ' מלוח — loose granola bag"
+      },
+      {
+        "barcode": "7290112497994",
+        "reason": "גרנולה פרוטאין+אגוזים — loose granola bag (protein granola topping)"
+      },
+      {
+        "barcode": "7290116534619",
+        "reason": "גרנולה פרוטאין+שוקולד — loose granola bag"
+      },
+      {
+        "barcode": "7296073515135",
+        "reason": "מלית תמרים — date filling for baking, not a snack"
+      },
+      {
+        "barcode": "7290119040162",
+        "reason": "אוזן המן תמרים — Hamantaschen (seasonal pastry format)"
+      },
+      {
+        "barcode": "7290119040018",
+        "reason": "אוזני המן תמרים — Hamantaschen (seasonal pastry format)"
+      },
+      {
+        "barcode": "66318",
+        "reason": "חטיף במבה — Bamba (savory corn puff), not a cereal/energy bar"
+      }
+    ],
+    "scoring_engine_unchanged": "TRIPWIRE-1 compliant — no changes to 03_operations/bsip2/** or page_generator configs",
+    "editorial_note": "הערת קטגוריה: קטגוריית חטיפי הדגנים היא מדף פינוק — כל המוצרים הם חטיפים מעובדים. הציונים מדרגים חטיף מול חטיף בלבד. ציון גבוה אינו אישור לאכול יותר."
+  },
+  "products": [
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 43.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 31.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 72.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "5900020039590",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מקור לברזל, סידן וויטמינים מקבוצת B • 77 קלוריות לחטיף • ללא ממתיקים מלאכותיים • מתיקות מעודנת פיטנס - מזין אותך באנרגיה",
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 332.0,
+          "protein": 6.3,
+          "sugar": 5.9,
+          "fat": 4.2,
+          "fiber": 23.5,
+          "sodium": 238.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "B",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EFN42_Z_P_5900020039590_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף דגנים קלאסי",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 70.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 67.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 71.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 93.8,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 87.7,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 67.1,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011622428",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 482.0,
+          "protein": 15.6,
+          "sugar": 3.9,
+          "fat": 27.2,
+          "fiber": 6.8,
+          "sodium": 250.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "B",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IOB44_Z_P_7290011622428_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "כתמטמינים חטיף בריאות",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 70.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 48.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 24.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 85.2,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 96.6,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290100659090",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 306.0,
+          "protein": 4.8,
+          "sugar": 9.9,
+          "fat": 4.6,
+          "fiber": 22.9,
+          "sodium": 24.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "B",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DPB48_Z_P_7290100659090_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף FREE תמרים וקינמון",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 69.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 55.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 58.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 87.2,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 55.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290118424956",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 459.0,
+          "protein": 12.0,
+          "sugar": 5.5,
+          "fat": 15.6,
+          "fiber": 5.5,
+          "sodium": 400.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YLP58_Z_P_7290118424956_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "פיטנס THIN רוזמרין",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 64.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 55.1,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 34.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 76.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498870",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 418.0,
+          "protein": 6.9,
+          "sugar": 47.3,
+          "fat": 12.9,
+          "fiber": 11.8,
+          "sodium": 35.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HTV56_Z_P_7290011498870_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חט.תמרים במילוי חמאת שקד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 63.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 57.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 41.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 79.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498894",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 405.0,
+          "protein": 8.3,
+          "sugar": 47.6,
+          "fat": 11.7,
+          "fiber": 11.1,
+          "sodium": 38.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUT62_Z_P_7290011498894_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי תמר + חמאת בוטנים",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 63.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 34.1,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 32.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 47.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 62.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 55.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "5900020015174",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 392.0,
+          "protein": 6.5,
+          "sugar": 24.8,
+          "fat": 8.3,
+          "fiber": 7.0,
+          "sodium": 247.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCL34_Z_P_5900020015174_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "פיטנס חטיף דגנים שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 57.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 31.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 31.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 49.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 67.9,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 51.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "5900020034021",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 382.0,
+          "protein": 6.3,
+          "sugar": 22.9,
+          "fat": 7.3,
+          "fiber": 6.0,
+          "sodium": 202.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VZI26_Z_P_5900020034021_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי דגנים שוקולד בננה",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 57.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 30.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 33.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 52.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 60.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 44.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "5900020029669",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 400.0,
+          "protein": 6.6,
+          "sugar": 21.2,
+          "fat": 10.1,
+          "fiber": 5.0,
+          "sodium": 169.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PNY48_Z_P_5900020029669_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "פיטנס חטיף דגנים פ.יער",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 56.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 53.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 48.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 24.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290105431516",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 396.0,
+          "protein": 9.6,
+          "sugar": 37.1,
+          "fat": 17.9,
+          "fiber": 7.3,
+          "sodium": 5.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RJX44_Z_P_7290105431516_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי FREE תמרים ובוטנים",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 51.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 48.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 62.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290105436382",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 394.0,
+          "protein": 8.0,
+          "sugar": 39.1,
+          "fat": 17.3,
+          "fiber": 7.5,
+          "sodium": 5.5
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPB50_Z_P_7290105436382_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי FREE תמרים קשיו",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 51.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 58.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 39.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 70.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 77.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498900",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 445.0,
+          "protein": 7.8,
+          "sugar": 40.5,
+          "fat": 18.8,
+          "fiber": 12.5,
+          "sodium": 31.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף תמר עם חמאת שקד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 50,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 54.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 36.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 85.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 60.9,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 71.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498986",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 435.0,
+          "protein": 7.3,
+          "sugar": 40.8,
+          "fat": 17.0,
+          "fiber": 11.2,
+          "sodium": 30.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "C",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף תמרים עם חמאת קשיו",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 50,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 46.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 20.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 45.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 82.9,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498948",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 381.0,
+          "protein": 4.0,
+          "sugar": 50.5,
+          "fat": 8.9,
+          "fiber": 13.4,
+          "sodium": 36.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי תמר בציפוי שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 45.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 49.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 43.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 37.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 88.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 51.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "16000423534",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 473.0,
+          "protein": 8.7,
+          "sugar": 26.8,
+          "fat": 19.8,
+          "fiber": 7.0,
+          "sodium": 259.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IOD28_Z_P_16000423534_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף שיבולת שועל+שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 43.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 48.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 43.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 35.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "16000548503",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 8.7,
+          "sugar": 26.8,
+          "fat": 17.8,
+          "fiber": 6.4,
+          "sodium": 312.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LKQ32_Z_P_16000548503_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף שיבולת שועל+מייפל",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 43.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 48.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 43.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 35.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 49.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "16000548404",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 467.0,
+          "protein": 8.7,
+          "sugar": 26.8,
+          "fat": 18.1,
+          "fiber": 6.4,
+          "sodium": 341.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LGV32_Z_P_16000548404_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף שיבולת שועל עם דבש",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 42.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 44.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 42.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 89.2,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 43.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "8410076602251",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 472.0,
+          "protein": 8.4,
+          "sugar": 28.1,
+          "fat": 20.0,
+          "fiber": 5.3,
+          "sodium": 264.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KGY42_Z_P_8410076602251_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף שיבולת שועל+שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 41.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 42.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 43.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 74.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 54.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 37.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290116536217",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 489.0,
+          "protein": 8.6,
+          "sugar": 9.3,
+          "fat": 21.7,
+          "fiber": 4.0,
+          "sodium": 844.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "D",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MLU50_Z_P_7290116536217_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף נשנושים פלוס עם סלק",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 39.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 39.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 34.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 32.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 66.1,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 39.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "6009684861000",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 464.0,
+          "protein": 6.9,
+          "sugar": 27.0,
+          "fat": 17.8,
+          "fiber": 5.0,
+          "sodium": 200.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HKB48_Z_P_6009684861000_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף גרנולה דבש ומייפל",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 32.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 49.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 27.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 72.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290011498917",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 460.0,
+          "protein": 5.0,
+          "sugar": 41.0,
+          "fat": 21.0,
+          "fiber": 13.7,
+          "sodium": 34.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיפי תמר+קוקוס מצופים",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 32.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 62.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 15.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 37.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 86.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 54.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290107971522",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 540.0,
+          "protein": 14.0,
+          "sugar": 26.0,
+          "fat": 33.0,
+          "fiber": 6.3,
+          "sodium": 40.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EUL52_Z_P_7290107971522_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף בוטנים ושקדים קראנצ",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 32.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 26.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 10.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 54.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 17.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290010116355",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 550.0,
+          "protein": 8.1,
+          "sugar": 48.0,
+          "fat": 33.0,
+          "fiber": null,
+          "sodium": 67.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QQE40_Z_P_7290010116355_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "מארז חטיפי מיני פסק זמן",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 31.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 36.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 27.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 23.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 25.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 38.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "4011800632519",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 468.0,
+          "protein": 5.5,
+          "sugar": 31.1,
+          "fat": 22.9,
+          "fiber": 5.7,
+          "sodium": 170.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VGQ40_Z_P_4011800632519_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "קורני חטיפי קוקוס שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 30.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 59.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 58.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 49.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 74.9,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 59.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "8410076610492",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 485.0,
+          "protein": 12.1,
+          "sugar": 21.9,
+          "fat": 25.7,
+          "fiber": 7.1,
+          "sodium": 416.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WLX48_Z_P_8410076610492_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף בוטנים ושיבולת שועל",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 29.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 58.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 47.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 51.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 68.1,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "8410076610508",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 464.0,
+          "protein": 9.5,
+          "sugar": 23.3,
+          "fat": 22.9,
+          "fiber": 10.1,
+          "sodium": 372.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WMN46_Z_P_8410076610508_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף בוטנים עם שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 29.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 23.1,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 35.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 30.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 65.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 18.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "7290019297208",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 468.5,
+          "protein": 7.1,
+          "sugar": 24.0,
+          "fat": 18.0,
+          "fiber": null,
+          "sodium": 0.2
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTX56_Z_P_7290019297208_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "חטיף גרנולה פירות יבשים",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 25.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 33.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 34.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 16.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 45.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 31.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 25.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "barcode": "4011800628512",
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר (שופרסל). הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "bottomLine": "PENDING_COPY",
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": null,
+        "limitingFactors": [
+          "PENDING_COPY"
+        ],
+        "nutrition": {
+          "energyKcal": 455.0,
+          "protein": 6.8,
+          "sugar": 34.0,
+          "fat": 17.6,
+          "fiber": 3.1,
+          "sodium": 200.0
+        },
+        "positiveSignals": [
+          "PENDING_COPY"
+        ],
+        "servingNote": "ל-100 גרם",
+        "unknowns": [],
+        "_nutrition_basis": "per_100g",
+        "_gate_verdict": "pass",
+        "_victory_crosscheck": null
+      },
+      "grade": "E",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PIN38_Z_P_4011800628512_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "קורני חטיפי דגנים+שוקולד",
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 24.8,
+      "source_traceability_status": "resolved"
+    }
+  ]
+}
