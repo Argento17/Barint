@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
 import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
-import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import {
   snacksCorpusMeta,
   snacksProducts,
@@ -37,13 +36,13 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
     >
       <ComparisonIntelligenceHero
         badge="דוח חדש"
-        categoryTags="חטיפים · מדף יוחננוף"
-        title="השוואת חטיפים"
+        categoryTags="חטיפי דגנים · שופרסל"
+        title="השוואת חטיפי דגנים"
         description={description}
         insightLines={lines}
         stats={[
-          { value: SNACK_REPORT_STATS.scraped, label: "מוצרים נסרקו" },
-          { value: SNACK_REPORT_STATS.scored, label: "קיבלו ציון" },
+          { value: 655, label: "מוצרים נסרקו" },
+          { value: 73, label: "קיבלו ציון" },
           { value: snacksProducts.length, label: "בדף ההשוואה" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(snacksCorpusMeta.generated)}

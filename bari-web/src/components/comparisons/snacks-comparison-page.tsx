@@ -46,10 +46,6 @@ export function SnacksComparisonPage({
       shelfFilters={snacksShelfFilters}
       metricSpecs={[]}
       categoryNote={categoryNote}
-      blogLink={{
-        href: "/blog/snack-bars-flagship",
-        label: "קראו את הניתוח העיתונאי בבלוג ←",
-      }}
       initialExpandedProductId={initialExpandedProductId}
       category="snacks"
     />

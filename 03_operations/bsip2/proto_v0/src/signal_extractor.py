@@ -886,6 +886,40 @@ def extract_signals(product: dict) -> dict:
     tier_c_he = _search(full_text, SWEETENER_TIER_C_HE)
     tier_c_e  = [e for e in SWEETENER_TIER_C_E if e.lower() in full_text.lower()]
 
+    # REQ-362-R1 Rule 3 — Negation-aware sweetener detection (TASK-362, co-signed).
+    # "ללא ממתיק" / "ללא ממתיקים" means WITHOUT sweeteners; do NOT fire the Tier-C
+    # "ממתיק"/"ממתיקים" general-sweetener signal in that context.
+    # Window: "ללא" within 5 tokens (whitespace-split, stripped of punctuation) preceding
+    # the sweetener token.  Only affects the catch-all tokens ("ממתיק", "ממתיקים");
+    # specific named sweeteners (e.g. "סוכרלוז", "אספרטם") remain unaffected — they
+    # are never negated this way.
+    _NEGATION_SWEETENER_TOKENS: frozenset = frozenset({"ממתיק", "ממתיקים"})
+    _negation_suppressed: list[str] = []
+    if tier_c_he:
+        # Strip trailing/leading punctuation from each whitespace-delimited token so that
+        # "ממתיקים," and "ללא," still match their bare forms.
+        _punct_strip_re = re.compile(r"^[^א-ת]*|[^א-ת]*$")
+        _raw_tokens = full_text.split()
+        _clean_tokens = [_punct_strip_re.sub("", t) for t in _raw_tokens]
+        _negated: set[str] = set()
+        for _i, _tok in enumerate(_clean_tokens):
+            if _tok in _NEGATION_SWEETENER_TOKENS:
+                # look back up to 5 cleaned tokens for "ללא"
+                _window = _clean_tokens[max(0, _i - 5):_i]
+                if "ללא" in _window:
+                    _negated.add(_tok)
+        if _negated:
+            _before = list(tier_c_he)
+            # tier_c_he may contain "ממתיק" matched as a substring of "ממתיקים".
+            # Suppress a tier_c term if it IS one of the negated tokens OR if it is
+            # a prefix/substring of a negated token (covers "ממתיק" ⊂ "ממתיקים").
+            def _is_negated_match(term: str) -> bool:
+                if term in _negated:
+                    return True
+                return any(neg.startswith(term) for neg in _negated)
+            tier_c_he = [t for t in tier_c_he if not _is_negated_match(t)]
+            _negation_suppressed = [t for t in _before if t not in tier_c_he]
+
     has_tier_a = bool(tier_a_he or tier_a_e)
     has_tier_b = bool(tier_b_he or tier_b_e)
     has_tier_c = bool(tier_c_he or tier_c_e)
@@ -1258,6 +1292,7 @@ def extract_signals(product: dict) -> dict:
         "sweetener_detected":       has_sweetener,
         "sweetener_tier":           sweetener_tier,
         "sweetener_matches":        sweetener_matches,
+        "sweetener_negation_suppressed": _negation_suppressed,  # REQ-362-R1 Rule 3 trace
         "additive_marker_count":    additive_marker_count,
         "additive_categories":      additive_categories_list,
         "has_flavor_enhancer":      has_flavor_enhancer,
