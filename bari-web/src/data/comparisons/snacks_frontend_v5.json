@@ -1,68 +1,49 @@
 {
   "_meta": {
-    "version": "snacks_frontend_v5",
-    "run_id": "run_snacks_task360_phase3_20260620_083413_fix",
-    "generated_at": "2026-06-20T09:08:07+00:00",
+    "version": "snacks_frontend_task362",
     "category": "snacks",
-    "product_count": 14,
-    "copy_status": "complete",
+    "product_count": 24,
+    "generated": "2026-06-20T00:00:00+00:00",
+    "copy_status": "PARTIAL_PENDING_COPY",
     "engine_unchanged": true,
-    "off_check": "PASS - no Open Food Facts",
-    "phase3_fix": "correct_score_extraction+second_curation_pass",
-    "generated": "2026-06-20T09:08:07+00:00"
+    "off_check": "PASS - no Open Food Facts"
   },
   "products": [
     {
+      "id": "snk-001",
       "barcode": "7290100659090",
+      "name": "חטיף FREE תמרים וקינמון",
       "name_he": "חטיף FREE תמרים וקינמון",
       "brand": "FREE",
-      "score": 66.9,
+      "score": 66.8,
       "grade": "B",
+      "rank": 1,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DPB48_Z_P_7290100659090_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DPB48_Z_P_7290100659090_1.png",
       "nutrition_per_100g": {
         "energy_kcal": 306.0,
         "fat_g": 4.6,
         "fat_saturated_g": 0.4,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
         "sodium_mg": 24.0,
         "carbohydrates_g": 49.9,
         "sugars_g": 9.9,
         "dietary_fiber_g": 22.9,
         "protein_g": 4.8
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "23 גרם סיבים ו-10 גרם סוכר בלבד ל-100 גרם — מהפרופילים הנקיים במדף.",
+      "rowVerdict": "מהחטיפים הפחות מתפשרים כאן: 23 גרם סיבים ו-10 גרם סוכר בלבד ל-100 גרם, עם דגנים, סיבי עולש, תמרים ואגוזים — בלי תחליפי סוכר וכמעט בלי שומן רווי (0.4 גרם). עדיין חטיף מעובד, אבל מהסוג שעשוי ממזון.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "D",
-          "primary_label": "Industrially Reconstructed",
-          "primary_confidence": 0.355,
-          "secondary": "C",
-          "secondary_label": "Mechanically Fragmented",
-          "secondary_confidence": 0.306,
-          "class_weights": {
-            "A": 0.057,
-            "B": 0.199,
-            "C": 0.306,
-            "D": 0.355,
-            "E": 0.083,
-            "F": 0.0
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_3_signal"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 66.9,
-        "grade_estimate": "B",
-        "nova_proxy": 3,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=87.0 from rules: ['NOVA_PROXY_3_PROCESSED']"
-        ]
+        "protein_g": 4.8
       },
-      "name": "חטיף FREE תמרים וקינמון",
-      "id": "snk-002",
-      "rank": 1,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
           "energyKcal": 306.0,
@@ -72,7 +53,7 @@
           "fiber": 22.9,
           "sodium": 24.0
         },
-        "ingredients": "דגנים 45% [פתיתי תירס (24%), אורז תפוח (21%)], סיבים תזונתיים מעולש, מחית תמרים מזן מג'הול (8%), אגוזי מלך, אגוזי קשיו, חומר הלחה (ג ליצרול), סילאן תמרים, קינמון (0.7%).",
+        "ingredients": "דגנים 45% [פתיתי תירס (24%), אורז תפוח (21%)], סיבים תזונתיים מעולש, מחית תמרים מזן מג'הול (8%), אגוזי מלך, אגוזי קשיו, חומר הלחה (ג ליצרול), סילאן תמרים, קינמון (0.7%). מאפיינים נוספים ללא צבעי מאכל,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
         "comparisonContext": "סיבים גבוהים וסוכר נמוך נפגשים כאן באותו מוצר — מה שחטיפי החלבון לא משיגים. הבסיס דגנים ותמרים, לא אבקות.",
@@ -92,255 +73,775 @@
             "magnitude": 1
           }
         ]
-      },
-      "insightLine": "23 גרם סיבים ו-10 גרם סוכר בלבד ל-100 גרם — מהפרופילים הנקיים במדף.",
-      "rowVerdict": "מהחטיפים הפחות מתפשרים כאן: 23 גרם סיבים ו-10 גרם סוכר בלבד ל-100 גרם, עם דגנים, סיבי עולש, תמרים ואגוזים — בלי תחליפי סוכר וכמעט בלי שומן רווי (0.4 גרם). עדיין חטיף מעובד, אבל מהסוג שעשוי ממזון.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DPB48_Z_P_7290100659090_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "7290011498870",
-      "name_he": "חטיף תמרים טבעי במילוי חמאת שקדים 100%",
+      "id": "snk-002",
+      "barcode": "7290011498894",
+      "name": "חטיפי תמר + חמאת בוטנים",
+      "name_he": "חטיפי תמר + חמאת בוטנים",
       "brand": "שקד תבור",
-      "score": 63.0,
+      "score": 55.0,
       "grade": "C",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HTV56_Z_P_7290011498870_1.png",
+      "rank": 2,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUT62_Z_P_7290011498894_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUT62_Z_P_7290011498894_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 418.0,
-        "fat_g": 12.9,
-        "fat_saturated_g": 1.0,
-        "sodium_mg": 35.0,
-        "carbohydrates_g": 62.7,
-        "sugars_g": 47.3,
-        "dietary_fiber_g": 11.8,
-        "protein_g": 6.9
+        "energy_kcal": 405.0,
+        "fat_g": 11.7,
+        "fat_saturated_g": 1.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 38.0,
+        "carbohydrates_g": 61.1,
+        "sugars_g": 47.6,
+        "dietary_fiber_g": 11.1,
+        "protein_g": 8.3
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שלושה רכיבים בלבד — תמרים וחמאת בוטנים — אבל 47.6 גרם סוכר ל-100 גרם, הכול מהתמר.",
+      "rowVerdict": "מהחטיפים הפשוטים במדף: 76% תמרים, 22% חמאת בוטנים, ובלי סוכר מוסף. הסוכר הגבוה (47.6 גרם) מגיע כולו מהפרי, ולצידו 11 גרם סיבים וחלבון מהבוטנים. עדיין צפוף קלורית, אבל מזון אמיתי ולא תעשייה.",
       "_scoring_trace": {
         "category": "whole_food_fat",
-        "structural_class": {
-          "primary": "B",
-          "primary_label": "Lightly Transformed Traditional",
-          "primary_confidence": 0.494,
-          "secondary": "A",
-          "secondary_label": "Intact Whole Food",
-          "secondary_confidence": 0.286,
-          "class_weights": {
-            "A": 0.286,
-            "B": 0.494,
-            "C": 0.22,
-            "D": 0.0,
-            "E": 0.0,
-            "F": 0.0
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_2_signal",
-            "no_additives_detected",
-            "zero_additive_categories"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 63.0,
-        "grade_estimate": "C",
-        "nova_proxy": 2,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=63 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR']"
-        ]
+        "protein_g": 8.3
       },
-      "name": "חטיף תמרים טבעי במילוי חמאת שקדים 100%",
-      "id": "snk-003",
-      "rank": 2,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 418.0,
-          "protein": 6.9,
-          "sugar": 47.3,
-          "fat": 12.9,
-          "fiber": 11.8,
-          "sodium": 35.0
+          "energyKcal": 405.0,
+          "protein": 8.3,
+          "sugar": 47.6,
+          "fat": 11.7,
+          "fiber": 11.1,
+          "sodium": 38.0
         },
-        "ingredients": "תמרים ( 76%), מחית שקדים מולבנים (22%), שקדים מולבנים גרוסים וטחונים.",
+        "ingredients": "תמרים (76%), חמאת בוטנים (22%), בוטנים קלויים גרוסים וטחונים, מלח שולחן. מאפיינים נוספים ללא תוספת סוכר,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בין הרשימות הנקיות במדף — שלושה רכיבים מול רשימות של עשרים. לעומת חטיפי החלבון, אין כאן תחליפי סוכר ולא חומרי תפיחה — אבל גם הסוכר הכולל גבוה בהרבה.",
+        "comparisonContext": "מהבסיסים הנקיים במדף — תמרים ובוטנים מול חטיפים עם 10+ רכיבים. הסוכר גבוה, אבל ממקור שלם ולא מסירופ.",
         "positiveSignals": [
-          "שלושה רכיבים בלבד: תמרים (76%), מחית שקדים (22%), שקדים טחונים",
-          "אפס סוכר מוסף — כל המתיקות מהתמרים",
-          "12 גרם סיבים ל-100 גרם",
-          "שומן רווי נמוך (1 גרם) — השומן מהשקדים"
+          "שלושה רכיבים בלבד: תמרים, חמאת בוטנים, בוטנים — בלי תוספי מזון",
+          "11 גרם סיבים ל-100 גרם, מהגבוהים במדף",
+          "כל הסוכר מהתמר, בלי סוכר מוסף"
         ],
         "limitingFactors": [
           {
-            "text": "47 גרם סוכר ל-100 גרם — גבוה מאוד, גם אם מקורו בפרי",
+            "text": "47.6 גרם סוכר ל-100 גרם — גבוה, גם אם מקורו בפרי",
+            "magnitude": 2
+          },
+          {
+            "text": "405 קלוריות ל-100 גרם — צפיפות מורגשת",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-003",
+      "barcode": "5900020015174",
+      "name": "פיטנס חטיף דגנים שוקולד",
+      "name_he": "פיטנס חטיף דגנים שוקולד",
+      "brand": "פיטנס",
+      "score": 53.5,
+      "grade": "C",
+      "rank": 3,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCL34_Z_P_5900020015174_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCL34_Z_P_5900020015174_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 392.0,
+        "fat_g": 8.3,
+        "fat_saturated_g": 3.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 247.0,
+        "carbohydrates_g": 69.2,
+        "sugars_g": 24.8,
+        "dietary_fiber_g": 7.0,
+        "protein_g": 6.5
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "מועשר בוויטמיני B, אבל 247 מ\"ג נתרן בחטיף מתוק — גבוה לקטגוריה.",
+      "rowVerdict": "חטיף דגנים ממותג עם שיבולת שועל מלאה והעשרת ויטמינים, אבל הבסיס מעובד: 24.8 גרם סוכר ו-247 מ\"ג נתרן לחטיף שאמור להיות מתוק. סיבים סבירים (7 גרם), חלבון נמוך (6.5). בינוני למדף — לא הגרוע, רחוק מהטוב.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 6.5
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 392.0,
+          "protein": 6.5,
+          "sugar": 24.8,
+          "fat": 8.3,
+          "fiber": 7.0,
+          "sodium": 247.0
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מתחרה בחטיפי הדגנים הממותגים. הנתרן הגבוה מבדיל אותו לרעה מחטיפי התמרים הפשוטים שמעליו.",
+        "positiveSignals": [
+          "שיבולת שועל מלאה בבסיס",
+          "7 גרם סיבים ל-100 גרם",
+          "מועשר בוויטמינים מקבוצת B"
+        ],
+        "limitingFactors": [
+          {
+            "text": "247 מ\"ג נתרן ל-100 גרם — גבוה לחטיף מתוק",
+            "magnitude": 2
+          },
+          {
+            "text": "24.8 גרם סוכר ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "בסיס מעובד, לא דגן שלם בלבד",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-004",
+      "barcode": "5900020034021",
+      "name": "חטיפי דגנים שוקולד בננה",
+      "name_he": "חטיפי דגנים שוקולד בננה",
+      "brand": "פיטנס",
+      "score": 53.5,
+      "grade": "C",
+      "rank": 3,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VZI26_Z_P_5900020034021_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VZI26_Z_P_5900020034021_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 382.0,
+        "fat_g": 7.3,
+        "fat_saturated_g": 5.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 202.0,
+        "carbohydrates_g": 67.7,
+        "sugars_g": 22.9,
+        "dietary_fiber_g": 6.0,
+        "protein_g": 6.3
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "חיטה מלאה, אבל סירופ גלוקוז וסוכר הופכים אותו לממתק.",
+      "rowVerdict": "חיטה מלאה (21%) וקמח חיטה מלא בבסיס, אבל סירופ גלוקוז, סוכר ושבבי שוקולד חלב מביאים 23 גרם סוכר ל-100 גרם. הסיבים נמוכים (6 גרם) והחלבון בסיסי. חטיף דגנים שהוא בעיקר סוכר.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 6.3
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 382.0,
+          "protein": 6.3,
+          "sugar": 22.9,
+          "fat": 7.3,
+          "fiber": 6.0,
+          "sodium": 202.0
+        },
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "הבסיס דגני, אבל הסוכר המוסף (23 גרם) וסירופ הגלוקוז מציבים אותו בתחתית. מול ה-FREE, אותו 'חטיף דגנים' אבל פי שלושה סוכר.",
+        "positiveSignals": [
+          "חיטה מלאה (21%) וקמח חיטה מלא בבסיס",
+          "7.3 גרם שומן ל-100 גרם — מהנמוכים במדף"
+        ],
+        "limitingFactors": [
+          {
+            "text": "23 גרם סוכר ל-100 גרם — סירופ גלוקוז וסוכר ברשימה",
             "magnitude": 3
           },
           {
-            "text": "418 קלוריות ל-100 גרם — צפוף, מנה קטנה היא הרבה אנרגיה",
+            "text": "6 גרם סיבים בלבד ל-100 גרם — בינוני",
             "magnitude": 2
+          },
+          {
+            "text": "202 מ\"ג נתרן ל-100 גרם",
+            "magnitude": 1
           }
         ]
-      },
-      "insightLine": "תמרים 76% וחמאת שקדים 22% — שלושה רכיבים, אפס סוכר מוסף.",
-      "rowVerdict": "חטיף מזון־שלם אמיתי: שלושה רכיבים בלבד — תמרים, מחית שקדים ושקדים טחונים. 47 גרם הסוכר כולם מהתמרים, ולצידם 12 גרם סיבים וחלבון מהשקדים. ועדיין — גם בלי סוכר מוסף, 47 גרם סוכר ל-100 גרם הם הרבה.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HTV56_Z_P_7290011498870_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "7290101486688",
-      "name_he": "חטיף דגנים ושוקולד",
-      "brand": "FREE",
-      "score": 59.3,
+      "id": "snk-005",
+      "barcode": "5900020029669",
+      "name": "פיטנס חטיף דגנים פ.יער",
+      "name_he": "פיטנס חטיף דגנים פ.יער",
+      "brand": "פיטנס",
+      "score": 52.8,
       "grade": "C",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FVT60_Z_P_7290101486688_1.png",
+      "rank": 5,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PNY48_Z_P_5900020029669_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PNY48_Z_P_5900020029669_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 343.0,
-        "fat_g": 9.8,
-        "fat_saturated_g": 3.7,
-        "sodium_mg": 23.0,
-        "carbohydrates_g": 48.1,
-        "sugars_g": 6.7,
-        "dietary_fiber_g": 18.5,
-        "protein_g": 6.3
+        "energy_kcal": 400.0,
+        "fat_g": 10.1,
+        "fat_saturated_g": 4.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 169.0,
+        "carbohydrates_g": 64.0,
+        "sugars_g": 21.2,
+        "dietary_fiber_g": 5.0,
+        "protein_g": 6.6
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "21.2 גרם סוכר ו-169 מ\"ג נתרן — פרופיל מעובד מתון, לא דגן שלם.",
+      "rowVerdict": "אותה משפחת פיטנס, גרסת פירות יער: שיבולת שועל מלאה והעשרת B, אבל 21.2 גרם סוכר, 169 מ\"ג נתרן ורשימת רכיבים מעובדת. סיבים נמוכים (5 גרם). בינוני — חטיף דגנים סביר שאינו מתיימר ליותר.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.318,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.242,
-          "class_weights": {
-            "A": 0.051,
-            "B": 0.051,
-            "C": 0.146,
-            "D": 0.191,
-            "E": 0.242,
-            "F": 0.318
-          },
-          "is_between_worlds": false,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 59.3,
-        "grade_estimate": "C",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']"
-        ]
+        "protein_g": 6.6
       },
-      "name": "חטיף דגנים ושוקולד",
-      "id": "snk-004",
-      "rank": 3,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 343.0,
-          "protein": 6.3,
-          "sugar": 6.7,
-          "fat": 9.8,
-          "fiber": 18.5,
-          "sodium": 23.0
+          "energyKcal": 400.0,
+          "protein": 6.6,
+          "sugar": 21.2,
+          "fat": 10.1,
+          "fiber": 5.0,
+          "sodium": 169.0
         },
-        "ingredients": "דגנים 40% [פתיתי תירס (21%), אורז תפוח (19%)], סיבים תזונתיים מעולש, שוקולד מריר ללא תוספת סוכר (13%), אגוזים (13%) [אגוזי קשיו (9%) , אגוזי לוז טחונים (4%)], סילאן תמרים, חומר הלחה (גליצרול), חומרי טעם וריח טבעיים. מינימום 60% מוצקי קקאו בשוקולד מריר ללא תוספת סוכ ר.",
+        "ingredients": "ייחודיים וטעימים, בתוספת שיבולת שועל מלאה. חטיפי הדגנים מועשרים בויטמינים מקבוצת B המסייעים בתהליך הפקת האנרגיה בגוף. לפחות פעם ביום, נהנים מחטיף דגנים של פיטנס, ומתמלאים באנרגיה לקראת יום חדש ומלא עשייה! • מכיל דגנים מלאים • מועשר ב-7 ויטמינים ומינרלים פיטנס - מזין אותך באנרגיה",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "סוכר נמוך וסיבים גבוהים יחד — נדיר במדף. השוקולד מריר ובלי תוספת סוכר, ולכן לא הופך אותו לממתק, גם אם מבחינה מבנית הוא מעובד יותר מאחיו התמרים-קינמון.",
+        "comparisonContext": "מהמתונים בקבוצת חטיפי הדגנים הממותגים, אך עדיין מעובד לעומת בסיסי התמרים במדף.",
         "positiveSignals": [
-          "18.5 גרם סיבים ל-100 גרם — מהגבוהים במדף",
-          "7 גרם סוכר בלבד ל-100 גרם — נמוך",
-          "שוקולד מריר ללא תוספת סוכר, ואגוזי קשיו ולוז אמיתיים",
-          "בסיס של דגנים ותמרים, לא אבקות"
+          "שיבולת שועל מלאה בבסיס",
+          "21.2 גרם סוכר — נמוך יחסית למשפחה",
+          "מועשר בוויטמיני B"
         ],
         "limitingFactors": [
           {
-            "text": "3.7 גרם שומן רווי ל-100 גרם — מהשוקולד, מתון",
+            "text": "169 מ\"ג נתרן ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "5 גרם סיבים בלבד — נמוך",
             "magnitude": 1
           },
           {
-            "text": "6.3 גרם חלבון ל-100 גרם — בסיסי",
+            "text": "רשימת רכיבים מעובדת",
             "magnitude": 1
           }
         ]
-      },
-      "insightLine": "18 גרם סיבים ו-7 גרם סוכר בלבד, עם שוקולד מריר ללא תוספת סוכר.",
-      "rowVerdict": "הגרסה ה'שוקולדית' של אותה משפחה, ועדיין מהטובות במדף ביחס סוכר-סיבים: 18.5 גרם סיבים ו-7 גרם סוכר בלבד ל-100 גרם. השוקולד מריר וללא תוספת סוכר, והמתיקות מסילאן תמרים. חטיף מעובד, אבל עם רשימת רכיבים פחות תעשייתית מרוב המדף.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FVT60_Z_P_7290101486688_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
+      "id": "snk-006",
+      "barcode": "7290105436382",
+      "name": "חטיפי FREE תמרים קשיו",
+      "name_he": "חטיפי FREE תמרים קשיו",
+      "brand": "FREE",
+      "score": 47.0,
+      "grade": "D",
+      "rank": 6,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPB50_Z_P_7290105436382_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPB50_Z_P_7290105436382_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 394.0,
+        "fat_g": 17.3,
+        "fat_saturated_g": 2.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 5.5,
+        "carbohydrates_g": 47.7,
+        "sugars_g": 39.1,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 8.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "מחית תמרים, צימוקים, קשיו וגרעינים — מזון שלם, אבל 39 גרם סוכר ל-100 גרם.",
+      "rowVerdict": "רשימת רכיבים של מזון: תמרי מג'הול 50%, צימוקים, קשיו, חמניות ושומשום — בלי סוכר מוסף וללא תוספים. המחיר הוא 39 גרם סוכר ו-17 גרם שומן, צפיפות קלורית של חטיף אנרגיה. טוב יחסית בזכות הבסיס, נמוך בגלל הסוכר.",
+      "_scoring_trace": {
+        "category": "whole_food_fat",
+        "protein_g": 8.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 394.0,
+          "protein": 8.0,
+          "sugar": 39.1,
+          "fat": 17.3,
+          "fiber": 7.5,
+          "sodium": 5.5
+        },
+        "ingredients": "מחית תמרים מזן מג'הול (50%), צימוקים (13%), אגוזי קשיו (13%), גרעיני חמנייה (13%), שומשום מלא (10%), חומרי טעם וריח טבעיים. מאפיינים נוספים ללא צבעי מאכל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מהבסיסים הנקיים במדף, אבל הסוכר מהפירות מציב אותו נמוך מחטיפי התמרים הדלילים יותר.",
+        "positiveSignals": [
+          "בסיס מזון שלם: תמרים, צימוקים, קשיו, חמניות, שומשום",
+          "ללא סוכר מוסף וללא צבעי מאכל",
+          "7.5 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "39 גרם סוכר ל-100 גרם — גבוה, גם אם מהפרי",
+            "magnitude": 2
+          },
+          {
+            "text": "17.3 גרם שומן ו-394 קלוריות — צפיפות אנרגיה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-007",
+      "barcode": "7290011498948",
+      "name": "חטיפי תמר בציפוי שוקולד",
+      "name_he": "חטיפי תמר בציפוי שוקולד",
+      "brand": "שקד תבור",
+      "score": 45.0,
+      "grade": "D",
+      "rank": 7,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 381.0,
+        "fat_g": 8.9,
+        "fat_saturated_g": 5.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 36.0,
+        "carbohydrates_g": 64.6,
+        "sugars_g": 50.5,
+        "dietary_fiber_g": 13.4,
+        "protein_g": 4.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שני רכיבים בלבד — תמרים ושוקולד 100% — אבל 50.5 גרם סוכר, חצי מהמשקל.",
+      "rowVerdict": "פשטות קיצונית: 84% תמרים ו-16% שוקולד מריר 100% מוצקי קקאו, בלי שום דבר אחר. 13.4 גרם סיבים גבוהים, אבל 50.5 גרם סוכר — חצי מהמשקל — וחלבון זניח (4 גרם). מזון אמיתי, אבל סוכרי מאוד.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 4.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 381.0,
+          "protein": 4.0,
+          "sugar": 50.5,
+          "fat": 8.9,
+          "fiber": 13.4,
+          "sodium": 36.0
+        },
+        "ingredients": "תמרים (84%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים 100% טבעי,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "הרשימה הקצרה במדף, אבל הסוכר הגבוה מהתמר מוריד אותו אל מתחת לחטיפים מאוזנים יותר.",
+        "positiveSignals": [
+          "שני רכיבים בלבד: תמרים ושוקולד 100% קקאו",
+          "13.4 גרם סיבים ל-100 גרם — מהגבוהים במדף",
+          "ללא סוכר מוסף, ללא תוספים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "50.5 גרם סוכר ל-100 גרם — כמחצית מהמשקל",
+            "magnitude": 3
+          },
+          {
+            "text": "4 גרם חלבון בלבד — זניח",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-008",
+      "barcode": "7290105431516",
+      "name": "חטיפי FREE תמרים ובוטנים",
+      "name_he": "חטיפי FREE תמרים ובוטנים",
+      "brand": "FREE",
+      "score": 42.8,
+      "grade": "D",
+      "rank": 8,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RJX44_Z_P_7290105431516_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RJX44_Z_P_7290105431516_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 396.0,
+        "fat_g": 17.9,
+        "fat_saturated_g": 2.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 5.0,
+        "carbohydrates_g": 45.4,
+        "sugars_g": 37.1,
+        "dietary_fiber_g": 7.3,
+        "protein_g": 9.6
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "מג'הול, בוטנים וחמניות — בסיס שלם, אבל 37 גרם סוכר ו-18 גרם שומן.",
+      "rowVerdict": "בסיס מזון שלם: תמרי מג'הול 50%, בוטנים 20%, חמניות וצימוקים, בלי תוספים. 9.6 גרם חלבון מהבוטנים, אבל 37 גרם סוכר ו-18 גרם שומן הופכים אותו לצפוף קלורית. נקי בהרכבו, נמוך בציון בגלל הסוכר והשומן.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 9.6
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 396.0,
+          "protein": 9.6,
+          "sugar": 37.1,
+          "fat": 17.9,
+          "fiber": 7.3,
+          "sodium": 5.0
+        },
+        "ingredients": "מחית תמרים מזן מג'הול (50%), בוטנים (20%), גרעיני חמנייה (19%), צימוקים (10%), חומרי טעם וריח טבעיים. מאפיינים נוספים ללא צבעי מאכל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מהבסיסים הנקיים, אך השילוב של סוכר גבוה ושומן גבוה מציב אותו באמצע-תחתית הקבוצה.",
+        "positiveSignals": [
+          "בסיס שלם: תמרים, בוטנים, חמניות, צימוקים",
+          "9.6 גרם חלבון — מהגבוהים בין חטיפי התמרים",
+          "ללא צבעי מאכל וללא סוכר מוסף"
+        ],
+        "limitingFactors": [
+          {
+            "text": "37 גרם סוכר ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "17.9 גרם שומן ל-100 גרם — צפיפות קלורית",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-009",
+      "barcode": "16000548404",
+      "name": "חטיף שיבולת שועל עם דבש",
+      "name_he": "חטיף שיבולת שועל עם דבש",
+      "brand": "נייטשר וואלי",
+      "score": 34.6,
+      "grade": "E",
+      "rank": 9,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LGV32_Z_P_16000548404_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LGV32_Z_P_16000548404_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 467.0,
+        "fat_g": 18.1,
+        "fat_saturated_g": 2.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 341.0,
+        "carbohydrates_g": 64.3,
+        "sugars_g": 26.8,
+        "dietary_fiber_g": 6.4,
+        "protein_g": 8.7
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שיבולת שועל 60% בכותרת — אבל סוכר לבן הרכיב השני, ו-341 מ\"ג נתרן.",
+      "rowVerdict": "שיבולת שועל מלאה מובילה (60%), אבל מיד אחריה סוכר לבן ושמנים צמחיים, והדבש הוא 3% בלבד. 26.8 גרם סוכר ו-341 מ\"ג נתרן לחטיף מתוק. הבסיס הדגני אמיתי, אבל מה שמסביבו מעובד ומתוק.",
+      "_scoring_trace": {
+        "category": "cereal",
+        "protein_g": 8.7
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 467.0,
+          "protein": 8.7,
+          "sugar": 26.8,
+          "fat": 18.1,
+          "fiber": 6.4,
+          "sodium": 341.0
+        },
+        "ingredients": "פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, דבש (3%), מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ב יקרבונט). מאפיינים נוספים ללא תוספת צבעי מאכל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "הבסיס הדגני טוב יותר מחטיפי השוקולד שמתחתיו, אבל הסוכר והנתרן הגבוהים מציבים אותו ב-E.",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 60% — הרכיב הראשון",
+          "6.4 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "סוכר לבן הרכיב השני; דבש 3% בלבד",
+            "magnitude": 2
+          },
+          {
+            "text": "341 מ\"ג נתרן ל-100 גרם — גבוה לחטיף מתוק",
+            "magnitude": 2
+          },
+          {
+            "text": "שמנים צמחיים גבוה ברשימה",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-010",
+      "barcode": "16000548503",
+      "name": "חטיף שיבולת שועל+מייפל",
+      "name_he": "חטיף שיבולת שועל+מייפל",
+      "brand": "נייטשר וואלי",
+      "score": 34.6,
+      "grade": "E",
+      "rank": 9,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LKQ32_Z_P_16000548503_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LKQ32_Z_P_16000548503_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 465.0,
+        "fat_g": 17.8,
+        "fat_saturated_g": 2.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 312.0,
+        "carbohydrates_g": 64.3,
+        "sugars_g": 26.8,
+        "dietary_fiber_g": 6.4,
+        "protein_g": 8.7
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שיבולת שועל 60%, אבל המייפל 2% והדבש טוקנים — סוכר לבן הוא המתיקות.",
+      "rowVerdict": "תאומו של גרסת הדבש: שיבולת שועל מלאה 60% מובילה, אבל סוכר לבן ושמנים צמחיים אחריה, והמייפל 2% הוא בעיקר שיווק. 26.8 גרם סוכר, 312 מ\"ג נתרן. דגן אמיתי בעטיפה מעובדת.",
+      "_scoring_trace": {
+        "category": "cereal",
+        "protein_g": 8.7
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 8.7,
+          "sugar": 26.8,
+          "fat": 17.8,
+          "fiber": 6.4,
+          "sodium": 312.0
+        },
+        "ingredients": "פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, סירופ מייפל (2%), דבש, חומר טעם וריח, מלח, מתחלב (לציטין), ח ומר תפיחה (סודיום ביקרבונט), מולסה. מאפיינים נוספים ללא תוספת צבעי מאכל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "כמו אחיו עם הדבש — בסיס דגני סביר, אבל סוכר ונתרן גבוהים מורידים אותו ל-E.",
+        "positiveSignals": [
+          "שיבולת שועל מלאה 60% — הרכיב הראשון",
+          "6.4 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "סוכר לבן שני ברשימה; מייפל 2% טוקן",
+            "magnitude": 2
+          },
+          {
+            "text": "312 מ\"ג נתרן ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "שמנים צמחיים גבוה ברשימה",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-011",
+      "barcode": "7290011498986",
+      "name": "חטיף תמרים עם חמאת קשיו",
+      "name_he": "חטיף תמרים עם חמאת קשיו",
+      "brand": "שקד תבור",
+      "score": 32.0,
+      "grade": "E",
+      "rank": 11,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 435.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 30.0,
+        "carbohydrates_g": 57.6,
+        "sugars_g": 40.8,
+        "dietary_fiber_g": 11.2,
+        "protein_g": 7.3
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "תמרים, קשיו ושוקולד 100% — נקי, אבל 41 גרם סוכר ו-17 גרם שומן יחד.",
+      "rowVerdict": "שלושה רכיבים שלמים: תמרים 65%, מחית קשיו 19%, שוקולד 100% קקאו, בלי סוכר מוסף. 11 גרם סיבים יפים, אבל השילוב של 40.8 גרם סוכר (תמר) ו-17 גרם שומן (קשיו) הוא צפיפות קלורית גבוהה. מזון אמיתי, ציון נמוך בגלל הצפיפות.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 7.3
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 435.0,
+          "protein": 7.3,
+          "sugar": 40.8,
+          "fat": 17.0,
+          "fiber": 11.2,
+          "sodium": 30.0
+        },
+        "ingredients": "תמרים (65%), מחית קשיו (19%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "נקי כמו אחיו במשפחת שקד תבור, אבל הקשיו מוסיף שומן והופך אותו לצפוף יותר מגרסת הבוטנים.",
+        "positiveSignals": [
+          "שלושה רכיבים שלמים: תמרים, קשיו, שוקולד 100%",
+          "11.2 גרם סיבים ל-100 גרם",
+          "ללא סוכר מוסף וללא תוספים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "40.8 גרם סוכר ל-100 גרם",
+            "magnitude": 3
+          },
+          {
+            "text": "17 גרם שומן (קשיו) ו-435 קלוריות — צפוף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-012",
+      "barcode": "7290011498917",
+      "name": "חטיפי תמר+קוקוס מצופים",
+      "name_he": "חטיפי תמר+קוקוס מצופים",
+      "brand": "שקד תבור",
+      "score": 32.0,
+      "grade": "E",
+      "rank": 11,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 460.0,
+        "fat_g": 21.0,
+        "fat_saturated_g": 16.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 34.0,
+        "carbohydrates_g": 55.9,
+        "sugars_g": 41.0,
+        "dietary_fiber_g": 13.7,
+        "protein_g": 5.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "מחית קוקוס מקפיצה את השומן ל-21 גרם — הגבוה בין חטיפי התמרים.",
+      "rowVerdict": "תמרים 65%, מחית קוקוס 19% ושוקולד 100% — שלושה רכיבים שלמים בלי סוכר מוסף. אבל הקוקוס מביא 21 גרם שומן (חלקו רווי) ל-460 קלוריות, ולצידם 41 גרם סוכר מהתמר. נקי בהרכבו, מהצפופים קלורית בקבוצה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 5.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460.0,
+          "protein": 5.0,
+          "sugar": 41.0,
+          "fat": 21.0,
+          "fiber": 13.7,
+          "sodium": 34.0
+        },
+        "ingredients": "תמרים (65%), מחית קוקוס (19%), שוקולד מריר 100% מוצקי קקאו (16%). מאפיינים נוספים ללא תוספת סוכר,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "אותו בסיס נקי כמו אחיו, אבל הקוקוס הופך אותו לצפוף השומן בקבוצת התמרים.",
+        "positiveSignals": [
+          "שלושה רכיבים שלמים: תמרים, קוקוס, שוקולד 100%",
+          "13.7 גרם סיבים ל-100 גרם — מהגבוהים במדף",
+          "ללא סוכר מוסף"
+        ],
+        "limitingFactors": [
+          {
+            "text": "21 גרם שומן ל-100 גרם — הגבוה בין חטיפי התמרים, חלקו רווי מהקוקוס",
+            "magnitude": 3
+          },
+          {
+            "text": "41 גרם סוכר ו-460 קלוריות",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-013",
       "barcode": "7290011498900",
+      "name": "חטיף תמר עם חמאת שקד",
       "name_he": "חטיף תמר עם חמאת שקד",
       "brand": "שקד תבור",
-      "score": 50,
-      "grade": "C",
+      "score": 32.0,
+      "grade": "E",
+      "rank": 11,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
       "nutrition_per_100g": {
         "energy_kcal": 445.0,
         "fat_g": 18.8,
         "fat_saturated_g": 6.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
         "sodium_mg": 31.0,
         "carbohydrates_g": 55.0,
         "sugars_g": 40.5,
         "dietary_fiber_g": 12.5,
         "protein_g": 7.8
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "תמרים 65% וחמאת שקדים, אבל הציפוי מוסיף שומן רווי מורגש.",
+      "rowVerdict": "אותה פילוסופיה של מזון־שלם, עם שוקולד מריר 100% קקאו שמוסיף 6 גרם שומן רווי — מהגבוה במשפחת התמר. 40 גרם הסוכר מהתמרים, החלבון והסיבים מהשקדים. כן ומתוק, אבל הציפוי מושך אותו מטה.",
       "_scoring_trace": {
         "category": "whole_food_fat",
-        "structural_class": {
-          "primary": "B",
-          "primary_label": "Lightly Transformed Traditional",
-          "primary_confidence": 0.454,
-          "secondary": "A",
-          "secondary_label": "Intact Whole Food",
-          "secondary_confidence": 0.262,
-          "class_weights": {
-            "A": 0.262,
-            "B": 0.454,
-            "C": 0.202,
-            "D": 0.0,
-            "E": 0.082,
-            "F": 0.0
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_2_signal",
-            "no_additives_detected",
-            "moderate_protein_quality",
-            "zero_additive_categories"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 50,
-        "grade_estimate": "C",
-        "nova_proxy": 2,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=45 from rules: ['HIGH_SUGAR_25G_PLUS', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
-          "FLOOR APPLIED: whole_food_fat_nova1_2 → minimum 50",
-          "PENALTIES: ['HIGH_CAL_HIGH_SUGAR_SOFT', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 7.8
       },
-      "name": "חטיף תמר עם חמאת שקד",
-      "id": "snk-005",
-      "rank": 4,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
           "energyKcal": 445.0,
@@ -350,7 +851,7 @@
           "fiber": 12.5,
           "sodium": 31.0
         },
-        "ingredients": "תמרים (65%), מחית שקדים (19%), שוקולד מריר 100% מוצקי קקאו (16%)",
+        "ingredients": "תמרים (65%), מחית שקדים (19%),nשוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר מכיל שקדים עלול להכיל אגוזי לוז,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
         "comparisonContext": "ליד אחיו עם חמאת השקדים — אותו בסיס נקי, אבל כאן הציפוי מעלה את השומן הרווי ל-6 גרם, פי שישה.",
@@ -373,165 +874,43 @@
             "magnitude": 2
           }
         ]
-      },
-      "insightLine": "תמרים 65% וחמאת שקדים, אבל הציפוי מוסיף שומן רווי מורגש.",
-      "rowVerdict": "אותה פילוסופיה של מזון־שלם, עם שוקולד מריר 100% קקאו שמוסיף 6 גרם שומן רווי — מהגבוה במשפחת התמר. 40 גרם הסוכר מהתמרים, החלבון והסיבים מהשקדים. כן ומתוק, אבל הציפוי מושך אותו מטה.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "5900020039590",
-      "name_he": "חטיף דגנים קלאסי",
-      "brand": "פיטנס",
-      "score": 47.4,
-      "grade": "D",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EFN42_Z_P_5900020039590_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 332.0,
-        "fat_g": 4.2,
-        "fat_saturated_g": 3.1,
-        "sodium_mg": 238.0,
-        "carbohydrates_g": 50.8,
-        "sugars_g": 5.9,
-        "dietary_fiber_g": 23.5,
-        "protein_g": 6.3
-      },
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "E",
-          "primary_label": "Engineered Wellness System",
-          "primary_confidence": 0.335,
-          "secondary": "F",
-          "secondary_label": "Structurally Void System",
-          "secondary_confidence": 0.307,
-          "class_weights": {
-            "A": 0.045,
-            "B": 0.045,
-            "C": 0.0,
-            "D": 0.268,
-            "E": 0.335,
-            "F": 0.307
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 47.4,
-        "grade_estimate": "D",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
-        ]
-      },
-      "name": "חטיף דגנים קלאסי",
-      "id": "snk-007",
-      "rank": 5,
-      "categoryTotal": 14,
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 332.0,
-          "protein": 6.3,
-          "sugar": 5.9,
-          "fat": 4.2,
-          "fiber": 23.5,
-          "sodium": 238.0
-        },
-        "ingredients": "חיטה מלאה (מכיל גלוטן) (38.3%) , אורז (21.6%), חומר מילוי (פולידקסטרוז), פרוקטו-אוליגוסכרידים חומר הלחה (גליצרול), שיבולת שועל מלאה (מכיל גלוטן) (3%), שומן צמחי, מינרלים (סידן (קלציום קרבונט), ברזל), תמצית לתת שעורה (מכיל גלוטן), סירופ סוכר אינברטי, סוכר, מלח, חומ רי טעם וריח, מתחלב (לציטין ), מולסה, חומר מעכב חמצון (טוקופרולים), ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמי ן B2 (ריבופלאבין), ויטמין B6, חומצה פולית).n*סך הדגנים במוצר: 62.9%n 65.6% מסך הדגנים במוצר הינם דגנים מלאים",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "הסיבים הגבוהים כאן מטעים — חלקם מתוספת תעשייתית. מול FREE, ששם הסיבים מדגנים ועולש, כאן הם בחלקם חומר מילוי.",
-        "positiveSignals": [
-          "332 קלוריות ל-100 גרם — מהנמוכות במדף",
-          "חיטה מלאה (38%) בבסיס",
-          "5.9 גרם סוכר בלבד ל-100 גרם — נמוך"
-        ],
-        "limitingFactors": [
-          {
-            "text": "חלק מ-23.5 גרם הסיבים מסיבים מוספים (פולידקסטרוז, פרוקטו-אוליגוסכרידים), לא מדגן שלם",
-            "magnitude": 2
-          },
-          {
-            "text": "238 מ\"ג נתרן ל-100 גרם — גבוה לחטיף מתוק",
-            "magnitude": 2
-          },
-          {
-            "text": "שומן צמחי ורשימת רכיבים מעובדת",
-            "magnitude": 1
-          }
-        ]
-      },
-      "insightLine": "23.5 גרם סיבים ל-100 גרם — הגבוה במדף, אבל חלקם מסיבים מוספים ולא מדגן שלם.",
-      "rowVerdict": "צפיפות קלורית נמוכה (332) ו-23.5 גרם סיבים נשמעים מצוין, עד שמסתכלים ברשימה: חלק מהסיבים מסיבים מוספים (פולידקסטרוז, פרוקטו-אוליגוסכרידים), לא רק מדגן שלם. חיטה מלאה יש (38%), אבל גם 238 מ\"ג נתרן לחטיף מתוק.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EFN42_Z_P_5900020039590_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
-    },
-    {
+      "id": "snk-014",
       "barcode": "16000423534",
-      "name_he": "חטיף שיבולת שועל עם שוקולד מריר",
+      "name": "חטיף שיבולת שועל+שוקולד",
+      "name_he": "חטיף שיבולת שועל+שוקולד",
       "brand": "נייטשר וואלי",
-      "score": 35.6,
-      "grade": "D",
+      "score": 31.5,
+      "grade": "E",
+      "rank": 14,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IOD28_Z_P_16000423534_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IOD28_Z_P_16000423534_1.png",
       "nutrition_per_100g": {
         "energy_kcal": 473.0,
         "fat_g": 19.8,
         "fat_saturated_g": 3.4,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
         "sodium_mg": 259.0,
         "carbohydrates_g": 61.5,
         "sugars_g": 26.8,
         "dietary_fiber_g": 7.0,
         "protein_g": 8.7
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שיבולת שועל מלאה 54%, אבל עטופה ב-27 גרם סוכר.",
+      "rowVerdict": "שיבולת שועל מלאה אמיתית בבסיס (54%), אבל סוכר לבן הוא הרכיב השני, והתוצאה 27 גרם סוכר ל-100 גרם לצד 20 גרם שומן ו-473 קלוריות. ה'בריאות' של השיבולת שועל נבלעת בסוכר ובשוקולד.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "D",
-          "primary_label": "Industrially Reconstructed",
-          "primary_confidence": 0.359,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.257,
-          "class_weights": {
-            "A": 0.048,
-            "B": 0.168,
-            "C": 0.168,
-            "D": 0.359,
-            "E": 0.257,
-            "F": 0.0
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_3_signal",
-            "moderate_protein_quality"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 35.6,
-        "grade_estimate": "D",
-        "nova_proxy": 3,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=55 from rules: ['HIGH_CAL_HIGH_SUGAR_MODERATE', 'HIGH_SUGAR_25G_PLUS', 'SNACK_BAR_HIGH_CAL_SUGAR', 'SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'SNACK_BAR_HIGH_CAL', 'NOVA_PROXY_3_PROCESSED']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'HIGH_CAL_HIGH_SUGAR_SOFT', 'SEED_OIL_PRESENT', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 8.7
       },
-      "name": "חטיף שיבולת שועל עם שוקולד מריר",
-      "id": "snk-016",
-      "rank": 6,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
           "energyKcal": 473.0,
@@ -541,7 +920,7 @@
           "fiber": 7.0,
           "sodium": 259.0
         },
-        "ingredients": "פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דב ש, מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט), חומר טעם וריח .",
+        "ingredients": "פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דב ש, מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט), חומר טעם וריח . מכיל גלוטן שיבולת שועל,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
         "comparisonContext": "הבסיס טוב מהחטיפים המעובדים יותר במדף — שיבולת שועל מלאה אמיתית. אבל הסוכר המוסף (27 גרם) מציב אותו בחצי התחתון.",
@@ -564,648 +943,511 @@
             "magnitude": 1
           }
         ]
-      },
-      "insightLine": "שיבולת שועל מלאה 54%, אבל עטופה ב-27 גרם סוכר.",
-      "rowVerdict": "שיבולת שועל מלאה אמיתית בבסיס (54%), אבל סוכר לבן הוא הרכיב השני, והתוצאה 27 גרם סוכר ל-100 גרם לצד 20 גרם שומן ו-473 קלוריות. ה'בריאות' של השיבולת שועל נבלעת בסוכר ובשוקולד.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IOD28_Z_P_16000423534_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "7290110563851",
-      "name_he": "מאגדת חטיף דגנים עם תחתית שוקולד חלב",
-      "brand": "אנרג'י",
-      "score": 35.0,
-      "grade": "D",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RPK48_Z_P_7290110563851_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 414.0,
-        "fat_g": 14.7,
-        "fat_saturated_g": 3.9,
-        "sodium_mg": 156.0,
-        "carbohydrates_g": 60.0,
-        "sugars_g": 19.9,
-        "dietary_fiber_g": 11.2,
-        "protein_g": 6.1
-      },
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.443,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.394,
-          "class_weights": {
-            "A": 0.0,
-            "B": 0.0,
-            "C": 0.0,
-            "D": 0.163,
-            "E": 0.394,
-            "F": 0.443
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "high_additive_load",
-            "whole_food_integrity_low",
-            "sweetener_detected",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 35.0,
-        "grade_estimate": "D",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=55 from rules: ['SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-          "PENALTIES: ['LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
-        ]
-      },
-      "name": "מאגדת חטיף דגנים עם תחתית שוקולד חלב",
-      "id": "snk-017",
-      "rank": 7,
-      "categoryTotal": 14,
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 414.0,
-          "protein": 6.1,
-          "sugar": 19.9,
-          "fat": 14.7,
-          "fiber": 11.2,
-          "sodium": 156.0
-        },
-        "ingredients": "פתיתי דגנים 37% (אורז 30%, סוכר לבן, קמח תירס 2%, חיטה מלאה- גלוטן 1%, תמצית לתת שעורה- גלוטן, מלח), שוקולד חלב מעולה 15%, סירופ גלו קוז, שברי אגוזים 10.2% (שקדים, לוז), סיבים תזונתיים (אינולין), חומרי הלחה (גליצרול, סורביטול), סוכר לבן, שמן צמחי, אבקת רכיבי חלב, מ סמיך (אקציה גאם), מים, מתחלבים (לציטין לפתית, E-471), מלח, חומרי טעם וריח, מווסת חומציות (סודיום ביקרבונט). כלל מוצרי קקאו בשוקולד ח לב מעולה: 30% מינימום. עלול להכיל קליפות אגוז.",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מוצג כחטיף דגנים, אבל תחתית שוקולד החלב וסירופ הגלוקוז עושים את העבודה. הסיבים (11 גרם) מתוספת, לא מדגן שלם.",
-        "positiveSignals": [
-          "11.2 גרם סיבים ל-100 גרם — אם כי מתוספת אינולין",
-          "שברי אגוזים אמיתיים (שקדים, לוז)"
-        ],
-        "limitingFactors": [
-          {
-            "text": "20 גרם סוכר ל-100 גרם — שוקולד חלב וסירופ גלוקוז ברשימה",
-            "magnitude": 3
-          },
-          {
-            "text": "14.7 גרם שומן ל-100 גרם",
-            "magnitude": 2
-          },
-          {
-            "text": "הדגן מעובד, והסיבים מתוספת ולא מדגן שלם",
-            "magnitude": 1
-          }
-        ]
-      },
-      "insightLine": "דגנים עם תחתית שוקולד חלב — ממתק בתחפושת חטיף בריאות.",
-      "rowVerdict": "פתיתי דגנים (37%) עם תחתית שוקולד חלב וסירופ גלוקוז: 20 גרם סוכר ל-100 גרם. יש 11 גרם סיבים מתוספת אינולין, אבל הסיפור האמיתי הוא הסוכר והשוקולד. חטיף ממותק שלובש 'דגנים'.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RPK48_Z_P_7290110563851_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
-    },
-    {
-      "barcode": "5900020034021",
-      "name_he": "חטיפי דגנים שוקולד בננה",
-      "brand": "פיטנס",
-      "score": 24.4,
+      "id": "snk-015",
+      "barcode": "7290107971522",
+      "name": "חטיף בוטנים ושקדים קראנצ",
+      "name_he": "חטיף בוטנים ושקדים קראנצ",
+      "brand": "FREE",
+      "score": 26.0,
       "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VZI26_Z_P_5900020034021_1.png",
+      "rank": 15,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EUL52_Z_P_7290107971522_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EUL52_Z_P_7290107971522_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 382.0,
-        "fat_g": 7.3,
-        "fat_saturated_g": 5.0,
-        "sodium_mg": 202.0,
-        "carbohydrates_g": 67.7,
-        "sugars_g": 22.9,
-        "dietary_fiber_g": 6.0,
-        "protein_g": 6.3
+        "energy_kcal": 540.0,
+        "fat_g": 33.0,
+        "fat_saturated_g": 6.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 40.0,
+        "carbohydrates_g": 43.0,
+        "sugars_g": 26.0,
+        "dietary_fiber_g": 6.3,
+        "protein_g": 14.0
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "540 קלוריות ל-100 גרם — הצפוף במדף, עם שני סירופי סוכר ברשימה.",
+      "rowVerdict": "בוטנים 39% ושקדים 13% נשמעים טוב, אבל הבסיס נשען על סירופ סוכר אינוורטי וסירופ מלטוז, ועם 33 גרם שומן זה החטיף הצפוף במדף — 540 קלוריות. 14 גרם חלבון אמיתי מהאגוזים, אבל אריזה קלורית כבדה.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.481,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.385,
-          "class_weights": {
-            "A": 0.0,
-            "B": 0.0,
-            "C": 0.0,
-            "D": 0.135,
-            "E": 0.385,
-            "F": 0.481
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "high_additive_load",
-            "whole_food_integrity_low",
-            "sweetener_detected",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 24.4,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=55 from rules: ['SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
-        ]
+        "protein_g": 14.0
       },
-      "name": "חטיפי דגנים שוקולד בננה",
-      "id": "snk-020",
-      "rank": 8,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 382.0,
-          "protein": 6.3,
-          "sugar": 22.9,
-          "fat": 7.3,
-          "fiber": 6.0,
-          "sodium": 202.0
+          "energyKcal": 540.0,
+          "protein": 14.0,
+          "sugar": 26.0,
+          "fat": 33.0,
+          "fiber": 6.3,
+          "sodium": 40.0
         },
-        "ingredients": "חיטה מלאה (21.1%) (מכיל גלוטן), קמח חיטה מלא (13.9%), סירופ גלוקוז, אורז (11.9%), סוכר, שבבי שוקולד חלב (7%) (מכיל מוצקי חלב, חומר מ תחלב: לציטין סויה), חומרי הלחה (גליצרול, סורביטול), סירופ סוכר אינברטי, תמצית לתת שעורה (מכיל גלוטן), שמנים צמחיים, שיבולת שועל מלאה (3%) (מכיל גלוטן), מינרלים (סידן (קלציום קרבונט), ברזל), בננה מיובשת (1.8%), אבקת בננה (1.2%), גריסי תירס (0.9%), קמח אורז (0.8%), מלח, אבקת קקאו מופחת שומן, חומרי טעם וריח, אבקת קקאו, חומר מתחלב (לציטין), מולסה, מעכב חימצון (טוקופרולים), מווסת חומציות (חומצת לימ ון), ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6,ויטמין B2 (ריבופלאבין)). rn סך הדגנים במוצר (קמחים וגרעינים) 51.6%rn 73.6% מסך הדגנים במוצר הינם דגנים מלאים. מוצקי קקאו בשוקולד מינימום 25%",
+        "ingredients": "בוטנים קלויים (39%), שקדים קלויים (12.8%), סירופ סוכר אינווטי, שוקולד מריר מעולה (12%), סירופ מלטוז, פיסטוקים קלויים (5%), דגנים תפו חים (קמח תירס, אורז, סוכר לבן, מלח שולחן), דקסטרוז, דבש (2.4%), קמח אורז, מתחלב (לציטין), מלח שולחן. מאפיינים נוספים ללא צבעי מאכל מכיל פיסטוק,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "הבסיס דגני, אבל הסוכר המוסף (23 גרם) וסירופ הגלוקוז מציבים אותו בתחתית. מול ה-FREE, אותו 'חטיף דגנים' אבל פי שלושה סוכר.",
+        "comparisonContext": "האגוזים אמיתיים, אבל הצפיפות הקלורית הגבוהה במדף ושני הסירופים מציבים אותו ב-E.",
         "positiveSignals": [
-          "חיטה מלאה (21%) וקמח חיטה מלא בבסיס",
-          "7.3 גרם שומן ל-100 גרם — מהנמוכים במדף"
+          "בוטנים 39% ושקדים — אגוזים אמיתיים בכמות",
+          "14 גרם חלבון ל-100 גרם — מהגבוהים בין חטיפי הדגנים"
         ],
         "limitingFactors": [
           {
-            "text": "23 גרם סוכר ל-100 גרם — סירופ גלוקוז וסוכר ברשימה",
+            "text": "540 קלוריות ו-33 גרם שומן ל-100 גרם — הצפוף במדף",
             "magnitude": 3
           },
           {
-            "text": "6 גרם סיבים בלבד ל-100 גרם — בינוני",
+            "text": "שני סירופי סוכר ברשימה (אינוורטי, מלטוז)",
             "magnitude": 2
-          },
-          {
-            "text": "202 מ\"ג נתרן ל-100 גרם",
-            "magnitude": 1
           }
         ]
-      },
-      "insightLine": "חיטה מלאה, אבל סירופ גלוקוז וסוכר הופכים אותו לממתק.",
-      "rowVerdict": "חיטה מלאה (21%) וקמח חיטה מלא בבסיס, אבל סירופ גלוקוז, סוכר ושבבי שוקולד חלב מביאים 23 גרם סוכר ל-100 גרם. הסיבים נמוכים (6 גרם) והחלבון בסיסי. חטיף דגנים שהוא בעיקר סוכר.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VZI26_Z_P_5900020034021_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "7290014095496",
-      "name_he": "חטיף דגנים עם שקדים, אגוזים ושוקולד מריר",
+      "id": "snk-016",
+      "barcode": "6009684861000",
+      "name": "חטיף גרנולה דבש ומייפל",
+      "name_he": "חטיף גרנולה דבש ומייפל",
       "brand": "השוק הקולינרי",
-      "score": 23.4,
+      "score": 26.0,
       "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AYB56_Z_P_7290014095496_1.png",
+      "rank": 15,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HKB48_Z_P_6009684861000_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HKB48_Z_P_6009684861000_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 396.0,
-        "fat_g": 11.5,
-        "fat_saturated_g": 4.0,
-        "sodium_mg": 100.0,
-        "carbohydrates_g": 67.0,
-        "sugars_g": 40.2,
-        "dietary_fiber_g": null,
-        "protein_g": 6.2
-      },
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.346,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.252,
-          "class_weights": {
-            "A": 0.05,
-            "B": 0.05,
-            "C": 0.126,
-            "D": 0.176,
-            "E": 0.252,
-            "F": 0.346
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 23.4,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=55 from rules: ['HIGH_SUGAR_25G_PLUS', 'SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST']"
-        ]
-      },
-      "name": "חטיף דגנים עם שקדים, אגוזים ושוקולד מריר",
-      "id": "snk-021",
-      "rank": 9,
-      "categoryTotal": 14,
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 396.0,
-          "protein": 6.2,
-          "sugar": 40.2,
-          "fat": 11.5,
-          "fiber": null,
-          "sodium": 100.0
-        },
-        "ingredients": "פתיתי דגינים מעורבים 47% (אורז, חיטה מלאה (מכיל גלוטן), פרוקוטז, גלוטן חיטה, לתת שעורה (מכיל גלוטן), קמח חיטה (מכיל גלוטן), נבט חיטה , מתחלב (E471), שוקולד מריר 10%: (סוכר, חמאת קקאו, עיסת קקאו, מתחלב (E322), חומרי טעם וריח), סירופ גלוקוז, סירופ גלוקוז-פרוקטוז, שמן צמחי, סוכר חום, בוטנים 2%, שקדים 1%, אגוזי לוז 1%, חומרי טעם וריח.nמינימום מוצקי קקאו: 53%.",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מהגבוהים בסוכר במדף (40 גרם). האגוזים והשקדים לא משנים את התמונה — זה ממתק דגנים.",
-        "positiveSignals": [
-          "שקדים ואגוזים אמיתיים ברשימה",
-          "שוקולד מריר (10%)"
-        ],
-        "limitingFactors": [
-          {
-            "text": "40 גרם סוכר ל-100 גרם — יותר מ-40% מהמשקל",
-            "magnitude": 3
-          },
-          {
-            "text": "דגן מעובד ורשימת רכיבים ארוכה",
-            "magnitude": 2
-          },
-          {
-            "text": "396 קלוריות ל-100 גרם",
-            "magnitude": 1
-          }
-        ]
-      },
-      "insightLine": "40 גרם סוכר ל-100 גרם — יותר מ-40% מהמשקל.",
-      "rowVerdict": "פתיתי דגנים מעורבים ושוקולד מריר, אבל 40 גרם סוכר ל-100 גרם — יותר מ-40% מהמשקל — מציבים אותו עמוק בתחתית. שקדים ואגוזים יש, אבל הם תפאורה לחטיף שהוא בעיקר סוכר ודגן מעובד.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AYB56_Z_P_7290014095496_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
-    },
-    {
-      "barcode": "7290019297192",
-      "name_he": "חטיף דגנים בתוספת שקדים ושוקולד מריר",
-      "brand": "השוק הקולינרי",
-      "score": 23.0,
-      "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTH58_Z_P_7290019297192_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 418.0,
-        "fat_g": 17.5,
-        "fat_saturated_g": 6.4,
+        "energy_kcal": 464.0,
+        "fat_g": 17.8,
+        "fat_saturated_g": 6.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
         "sodium_mg": 200.0,
-        "carbohydrates_g": 58.6,
-        "sugars_g": 24.8,
+        "carbohydrates_g": 69.0,
+        "sugars_g": 27.0,
         "dietary_fiber_g": 5.0,
-        "protein_g": 7.6
+        "protein_g": 6.9
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "45% שיבולת שועל, אבל שומן צמחי וסוכר אחריו — הדבש והמייפל 1% כל אחד.",
+      "rowVerdict": "שיבולת שועל מלאה 45% בבסיס, אבל מיד אחריה שומן צמחי, סוכר וסירופ סוכר חום. הדבש והמייפל שבשם הם 1% כל אחד. 27 גרם סוכר, 200 מ\"ג נתרן וסיבים נמוכים. דגן בכותרת, ממתק בהרכב.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "E",
-          "primary_label": "Engineered Wellness System",
-          "primary_confidence": 0.387,
-          "secondary": "F",
-          "secondary_label": "Structurally Void System",
-          "secondary_confidence": 0.284,
-          "class_weights": {
-            "A": 0.041,
-            "B": 0.041,
-            "C": 0.0,
-            "D": 0.247,
-            "E": 0.387,
-            "F": 0.284
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low",
-            "moderate_protein_quality",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 23.0,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=45 from rules: ['SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 6.9
       },
-      "name": "חטיף דגנים בתוספת שקדים ושוקולד מריר",
-      "id": "snk-022",
-      "rank": 10,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 418.0,
-          "protein": 7.6,
-          "sugar": 24.8,
-          "fat": 17.5,
+          "energyKcal": 464.0,
+          "protein": 6.9,
+          "sugar": 27.0,
+          "fat": 17.8,
           "fiber": 5.0,
           "sodium": 200.0
         },
-        "ingredients": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2.6%, לתת שעורה (מכיל גלוטן), שוקולד מריר 2.2% (עיסת קקאו, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0.4%, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
+        "ingredients": "45% דגנים מלאים (פתיתי שיבולת שועל), שומן צמחי, סוכר, סירופ סוכר חום, פצפוצי אורז, דבש (1%), סירופ מייפל (1%)קמח תירס, מלח, חומר מתח לב: לציטין סויה, חומר תפיחה: nסודיום ביקרבונייט, חומר טעם וריח. מכיל גלוטן. מאפיינים נוספים ללא כולסטרול,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בסיס שיבולת שועל כמו הטובים יותר במדף, אבל שמן הדקלים והסוכר החום מציבים אותו בתחתית.",
+        "comparisonContext": "מבטיח דבש ומייפל, אבל ההרכב נשען על שומן צמחי וסוכר — קרוב יותר לחטיף ממתק מאשר לגרנולה.",
         "positiveSignals": [
-          "שיבולת שועל מלאה (45%) בבסיס",
-          "שקדים אמיתיים ברשימה"
+          "45% שיבולת שועל מלאה בבסיס"
         ],
         "limitingFactors": [
           {
-            "text": "25 גרם סוכר ל-100 גרם — סוכר חום וסירופ גלוקוז",
-            "magnitude": 3
-          },
-          {
-            "text": "שמן דקלים — הרכיב השני, מקור לשומן רווי",
-            "magnitude": 3
-          },
-          {
-            "text": "418 קלוריות ל-100 גרם",
-            "magnitude": 2
-          }
-        ]
-      },
-      "insightLine": "שיבולת שועל, אבל שמן דקלים וסוכר חום מובילים אחריה.",
-      "rowVerdict": "שיבולת שועל (45%) בבסיס, אבל שמן דקלים וסוכר חום הם הרכיבים הבאים: 25 גרם סוכר, 17.5 גרם שומן ו-6.4 גרם שומן רווי ל-100 גרם. הדגן השלם לא מציל מול השומן והסוכר המוספים.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTH58_Z_P_7290019297192_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
-    },
-    {
-      "barcode": "5900020022325",
-      "name_he": "חטיפי דגנים סיני מיניס",
-      "brand": "נסטלה",
-      "score": 20.9,
-      "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ERM30_Z_P_5900020022325_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 399.0,
-        "fat_g": 10.7,
-        "fat_saturated_g": 4.4,
-        "sodium_mg": 259.0,
-        "carbohydrates_g": 62.1,
-        "sugars_g": 20.6,
-        "dietary_fiber_g": 5.0,
-        "protein_g": 8.0
-      },
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.481,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.385,
-          "class_weights": {
-            "A": 0.0,
-            "B": 0.0,
-            "C": 0.0,
-            "D": 0.135,
-            "E": 0.385,
-            "F": 0.481
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "high_additive_load",
-            "whole_food_integrity_low",
-            "sweetener_detected",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 20.9,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=55 from rules: ['SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT']"
-        ]
-      },
-      "name": "חטיפי דגנים סיני מיניס",
-      "id": "snk-023",
-      "rank": 11,
-      "categoryTotal": 14,
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 399.0,
-          "protein": 8.0,
-          "sugar": 20.6,
-          "fat": 10.7,
-          "fiber": 5.0,
-          "sodium": 259.0
-        },
-        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (28.1%), סירופ גלוקוזה, אבקת חלב כחוש (10.2%), שמנים צמחיים, סוכר, שיבולת שועל מלאה (מכיל גלוטן) (7.9%), ח ומרי הלחה (גליצרול, סורביטול), סירופ סוכר אינברטי, קמח אורז (5.9%), מינרל: סידן (קלציום קרבונט), מלטודקסטרין, עמילן חיטה, מלח, גריסי תירס (0.4%), חומר מתחלב (לציטין ), מעכב חמצון (טוקופרולים), קינמון (0.02%), חומרי טעם וריח, צבע מאכל (קרוטן), ויטמינים (ויטמין B3 ( ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין)).nסך הדגנים במוצר (קמחים וגרעינים): 42.3%n85% מסך הדגנים במוצר הינם דגנים מלאים מכיל 15% קרם חלב",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "הבסיס דגני, אבל סירופ הגלוקוז והרכיבים הממותקים מקרבים אותו לעוגייה. 21 גרם סוכר מציבים אותו בתחתית.",
-        "positiveSignals": [
-          "קמח חיטה מלא (28%) ושיבולת שועל בבסיס",
-          "8 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [
-          {
-            "text": "21 גרם סוכר ל-100 גרם — סירופ גלוקוז ברשימה",
-            "magnitude": 3
-          },
-          {
-            "text": "5 גרם סיבים בלבד ל-100 גרם — נמוך",
+            "text": "שומן צמחי וסוכר מיד אחרי הדגן; דבש ומייפל 1% טוקנים",
             "magnitude": 2
           },
           {
-            "text": "259 מ\"ג נתרן ל-100 גרם",
+            "text": "27 גרם סוכר ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "200 מ\"ג נתרן; סיבים נמוכים (5 גרם)",
             "magnitude": 1
           }
         ]
-      },
-      "insightLine": "קמח חיטה מלא, אבל סירופ גלוקוז ואבקת חלב הופכים אותו לעוגייה.",
-      "rowVerdict": "קמח חיטה מלא (28%) ושיבולת שועל בבסיס, אבל סירופ גלוקוז ורכיבים ממותקים מביאים 21 גרם סוכר ל-100 גרם. הסיבים נמוכים (5 גרם). פחות חטיף דגנים, יותר עוגיית בוקר ארוזה.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ERM30_Z_P_5900020022325_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "7290107947480",
-      "name_he": "מאגדת חטיף דגנים מצופה שוקולד חלב",
-      "brand": "אנרג'י",
-      "score": 19.5,
+      "id": "snk-017",
+      "barcode": "8423207208703",
+      "name": "חטיף דגנים שוקולד מריר · סלים דליס",
+      "name_he": "חטיף דגנים שוקולד מריר · סלים דליס",
+      "brand": "סלים דליס",
+      "score": 24.4,
       "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VFT58_Z_P_7290107947480_1.png",
+      "rank": 17,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIA46_Z_P_8423207208703_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IIA46_Z_P_8423207208703_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 427.0,
-        "fat_g": 15.7,
-        "fat_saturated_g": 6.4,
-        "sodium_mg": 150.0,
-        "carbohydrates_g": 62.0,
-        "sugars_g": 28.0,
-        "dietary_fiber_g": 9.3,
-        "protein_g": 5.6
+        "energy_kcal": 493.0,
+        "fat_g": 24.0,
+        "fat_saturated_g": 14.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 130.0,
+        "carbohydrates_g": 60.0,
+        "sugars_g": 39.0,
+        "dietary_fiber_g": 9.0,
+        "protein_g": 4.8
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "74% שוקולד מריר — סוכר ראשון ברשימה — ורק 19% דגנים. זה ממתק.",
+      "rowVerdict": "מוצג כחטיף דגנים, אבל 74% מהמשקל שוקולד מריר (סוכר רכיב ראשון) ורק 19% דגנים. 39 גרם סוכר, 24 גרם שומן וחלבון זניח (4.8). הסיבים המוספים (9 גרם) לא משנים את התמונה: זה ממתק שוקולד בתחפושת חטיף.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "F",
-          "primary_label": "Structurally Void System",
-          "primary_confidence": 0.553,
-          "secondary": "E",
-          "secondary_label": "Engineered Wellness System",
-          "secondary_confidence": 0.274,
-          "class_weights": {
-            "A": 0.0,
-            "B": 0.0,
-            "C": 0.0,
-            "D": 0.174,
-            "E": 0.274,
-            "F": 0.553
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "high_additive_load",
-            "whole_food_integrity_low",
-            "sweetener_detected",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 19.5,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=45 from rules: ['HIGH_SUGAR_25G_PLUS', 'SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
-          "PENALTIES: ['LONG_INGREDIENT_LIST', 'SEED_OIL_PRESENT', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 4.8
       },
-      "name": "מאגדת חטיף דגנים מצופה שוקולד חלב",
-      "id": "snk-024",
-      "rank": 12,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 427.0,
-          "protein": 5.6,
-          "sugar": 28.0,
-          "fat": 15.7,
-          "fiber": 9.3,
-          "sodium": 150.0
+          "energyKcal": 493.0,
+          "protein": 4.8,
+          "sugar": 39.0,
+          "fat": 24.0,
+          "fiber": 9.0,
+          "sodium": 130.0
         },
-        "ingredients": "פתיתי דגנים 32% (אורז 26%, סוכר לבן, קמח תירס 2%, חיטה מלאה- גלוטן 1%, תמצית לתת שעורה- גלוטן, מלח), שוקולד חלב מעולה 32%, סירופ גלו קוז, סיבים תזונתיים (אינולין), חומרי הלחה (גליצרול, סורביטול), שברי אגוזים 4.7% (שקדים, לוז), סוכר לבן, שמן צמחי, אבקת רכיבי חלב, מס מיך (אקציה גאם), מים, מתחלבים (לציטין לפתית, E-471), מלח, חומרי טעם וריח, מווסת חומציות (סודיום ביקרבונט). כלל מוצקי קקאו בשוקולד ח לב מעולה: 30% מינימום. עלול להכיל קליפות אגוז.",
+        "ingredients": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A,D,E, 1B, 2B,???? מאפיינים נוספים דל קלוריות מכיל חלב,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מהגרסאות המתוקות במדף: 32% שוקולד חלב ו-28 גרם סוכר. הסיבים (9 גרם) מתוספת, לא מדגן שלם.",
+        "comparisonContext": "מוגדר חטיף דגנים אבל בנוי כממתק שוקולד — הדגן הוא מיעוט, והסוכר מציב אותו בתחתית.",
         "positiveSignals": [
-          "9.3 גרם סיבים ל-100 גרם — אם כי מתוספת אינולין"
+          "9 גרם סיבים ל-100 גרם (חלקם מסיבים מוספים)"
         ],
         "limitingFactors": [
           {
-            "text": "28 גרם סוכר ל-100 גרם — שוקולד חלב (32%) וסירופ גלוקוז",
+            "text": "74% שוקולד מריר, סוכר רכיב ראשון; דגנים 19% בלבד",
             "magnitude": 3
           },
           {
-            "text": "15.7 גרם שומן ו-6.4 גרם שומן רווי ל-100 גרם",
+            "text": "39 גרם סוכר ו-24 גרם שומן ל-100 גרם",
             "magnitude": 3
           },
           {
-            "text": "427 קלוריות ל-100 גרם",
+            "text": "4.8 גרם חלבון בלבד",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-018",
+      "barcode": "8410076610508",
+      "name": "חטיף בוטנים עם שוקולד",
+      "name_he": "חטיף בוטנים עם שוקולד",
+      "brand": "נייטשר וואלי",
+      "score": 22.2,
+      "grade": "E",
+      "rank": 18,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WMN46_Z_P_8410076610508_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WMN46_Z_P_8410076610508_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 464.0,
+        "fat_g": 22.9,
+        "fat_saturated_g": 8.8,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 372.0,
+        "carbohydrates_g": 50.0,
+        "sugars_g": 23.3,
+        "dietary_fiber_g": 10.1,
+        "protein_g": 9.5
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "בוטנים ושיבולת שועל, אבל סירופ גלוקוזה, חתיכות שוקולד ו-372 מ\"ג נתרן.",
+      "rowVerdict": "בוטנים ושיבולת שועל מלאה בבסיס, אבל סירופ גלוקוזה וחתיכות שוקולד מובילים את המתיקות, ו-372 מ\"ג נתרן גבוה מאוד. 22.9 גרם שומן, 23.3 גרם סוכר. 9.5 גרם חלבון אמיתי, אבל הרכב מעובד ומלוח.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 9.5
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 464.0,
+          "protein": 9.5,
+          "sugar": 23.3,
+          "fat": 22.9,
+          "fiber": 10.1,
+          "sodium": 372.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (18.7%), שמן צמחי], פתיתי שיבולת שועל מלאה (14.1%) (מכיל גלוטן), סירופ גלוקוזה, שבבי שוקולד מריר מעולה (9.3%),  סיבים תזונתיים (אינולין מעולש) (7.5%),שמנים ושומנים צמחיים, סוכר, קמח חיטה לבן (מכיל גלוטן), מלטודקסטרין, קמח אורז, פרוקטוז, אבקת ק קאו מופחת שומן, לקטוז, שבבי שקדים (1.35%), חומר הלחה (גליצרול), מלח, מתחלבים (לציטין) (סויה), חמאת בוטנים (0.75%), מים, דקסטרוזה, חו מרי טעם וריח, דבש, מעכב חמצון (תערובת טוקופרולים). המוצר מכיל 18% ציפוי . מאפיינים נוספים ללא תוספת צבעי מאכל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "בסיס אגוזים-שיבולת סביר, אבל סירופ הגלוקוזה והנתרן הגבוה מציבים אותו עמוק ב-E.",
+        "positiveSignals": [
+          "בוטנים ושיבולת שועל מלאה בבסיס",
+          "9.5 גרם חלבון ו-10 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "372 מ\"ג נתרן ל-100 גרם — גבוה מאוד",
+            "magnitude": 3
+          },
+          {
+            "text": "סירופ גלוקוזה וחתיכות שוקולד ברשימה",
+            "magnitude": 2
+          },
+          {
+            "text": "22.9 גרם שומן ל-100 גרם",
             "magnitude": 2
           }
         ]
-      },
-      "insightLine": "32% שוקולד חלב על דגנים — ממתק כמעט לכל דבר.",
-      "rowVerdict": "מאגדת דגנים שבה שוקולד החלב הוא 32% — כמעט שליש מהמוצר — עם 28 גרם סוכר וסירופ גלוקוז. 9 גרם סיבים מתוספת אינולין לא משנים את התמונה. זה ממתק שוקולד עם בסיס דגני.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VFT58_Z_P_7290107947480_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
+      "id": "snk-019",
+      "barcode": "8423207208680",
+      "name": "חטיף קידס שוקולד חלב",
+      "name_he": "חטיף קידס שוקולד חלב",
+      "brand": "סלים דליס",
+      "score": 21.8,
+      "grade": "E",
+      "rank": 19,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHD50_Z_P_8423207208680_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHD50_Z_P_8423207208680_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 495.0,
+        "fat_g": 25.0,
+        "fat_saturated_g": 14.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 192.0,
+        "carbohydrates_g": 60.0,
+        "sugars_g": 41.0,
+        "dietary_fiber_g": 6.0,
+        "protein_g": 4.6
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "74% שוקולד חלב, ממותג לילדים — סוכר ושומן מובילים, דגנים 19%.",
+      "rowVerdict": "ממותג לילדים, אבל 74% שוקולד חלב (סוכר ראשון) ורק 19% דגנים. 41 גרם סוכר, 25 גרם שומן, חלבון זניח (4.6). הסיבים המוספים לא הופכים אותו לחטיף דגנים — זה ממתק שוקולד חלב.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 4.6
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 495.0,
+          "protein": 4.6,
+          "sugar": 41.0,
+          "fat": 25.0,
+          "fiber": 6.0,
+          "sodium": 192.0
+        },
+        "ingredients": "שוקולד חלב (74%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב רזה, חמאה נטולת מים, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמ ח אורז), סיבים תזונתיים (סיבי אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו), מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז),???? מאפיינים נוספים עשיר בסיבים תזונתיים,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "כמו אחיו המריר — ממתק שוקולד בתחפושת חטיף דגנים, והמיצוב לילדים לא משנה את ההרכב.",
+        "positiveSignals": [
+          "6 גרם סיבים ל-100 גרם (חלקם מוספים)"
+        ],
+        "limitingFactors": [
+          {
+            "text": "74% שוקולד חלב, סוכר ראשון; דגנים 19% בלבד",
+            "magnitude": 3
+          },
+          {
+            "text": "41 גרם סוכר ו-25 גרם שומן ל-100 גרם",
+            "magnitude": 3
+          },
+          {
+            "text": "מיצוב 'ילדים' על ממתק שוקולד",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-020",
+      "barcode": "8410076610492",
+      "name": "חטיף בוטנים ושיבולת שועל",
+      "name_he": "חטיף בוטנים ושיבולת שועל",
+      "brand": "נייטשר וואלי",
+      "score": 21.5,
+      "grade": "E",
+      "rank": 20,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WLX48_Z_P_8410076610492_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WLX48_Z_P_8410076610492_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 485.0,
+        "fat_g": 25.7,
+        "fat_saturated_g": 7.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 416.0,
+        "carbohydrates_g": 47.8,
+        "sugars_g": 21.9,
+        "dietary_fiber_g": 7.1,
+        "protein_g": 12.1
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "416 מ\"ג נתרן — הגבוה במדף — בחטיף שמוכר כבריא.",
+      "rowVerdict": "בוטנים 29% ושיבולת שועל מלאה, אבל סירופ גלוקוזה, שומנים צמחיים, סוכר וקמח לבן אחריהם. 416 מ\"ג נתרן הוא הגבוה במדף, עם 25.7 גרם שומן. 12 גרם חלבון אמיתי, אבל הרכב מעובד ומלוח מאוד.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 12.1
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 485.0,
+          "protein": 12.1,
+          "sugar": 21.9,
+          "fat": 25.7,
+          "fiber": 7.1,
+          "sodium": 416.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (29.3%), שמן צמחי)], פתיתי שיבולת שועל מלאה (13.19%) (מכיל גלוטן), סירופ גלוקוזה, שמנים ושומנים צמחיים, סוכר, קמח חיטה לבן (מכיל גלוטן), מלטודקסטרין, סיבים תזונתיים (אינולין מעולש) (4.6%),פרוקטוז,  קמח אורז, חמאת בוטנים (3.1%), אבקת מי גבינה,  לקטוז, חומר הלחה (גליצרול), מלח, מתחלבים (לציטין) (סויה), קמח בוטנים (0.65%), אבקת חלב כחוש, מים, דקסטרוזה, דבש, חומרי טעם וריח, אב קת קקאו מופחת שומן, מעכב חמצון (תערובת טוקופרולים). המוצר מכיל 18% ציפוי . מכיל בוטנים,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "החלבון הגבוה לא מציל אותו: הנתרן הגבוה במדף וההרכב המעובד מציבים אותו בתחתית.",
+        "positiveSignals": [
+          "בוטנים 29% ושיבולת שועל מלאה בבסיס",
+          "12.1 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "416 מ\"ג נתרן ל-100 גרם — הגבוה במדף",
+            "magnitude": 3
+          },
+          {
+            "text": "25.7 גרם שומן ל-100 גרם",
+            "magnitude": 2
+          },
+          {
+            "text": "סירופ גלוקוזה, שומן צמחי וקמח לבן ברשימה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-021",
+      "barcode": "7290019297208",
+      "name": "חטיף גרנולה פירות יבשים",
+      "name_he": "חטיף גרנולה פירות יבשים",
+      "brand": "השוק הקולינרי",
+      "score": 16.6,
+      "grade": "E",
+      "rank": 21,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTX56_Z_P_7290019297208_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTX56_Z_P_7290019297208_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 468.5,
+        "fat_g": 18.0,
+        "fat_saturated_g": 6.7,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.2,
+        "carbohydrates_g": 69.5,
+        "sugars_g": 24.0,
+        "dietary_fiber_g": null,
+        "protein_g": 7.1
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שיבולת שועל 45%, אבל סירופ גלוקוז ושמן דקלים אחריו — הפירות 1-2% טוקנים.",
+      "rowVerdict": "שיבולת שועל 45% מובילה, אבל מיד אחריה סירופ גלוקוז, שמן דקלים, סוכר חום וסוכר חום נוסף. הצימוקים והשזיפים שבשם הם 1% כל אחד. 24 גרם סוכר, ושמן הדקלים מוסיף שומן רווי. דגן בכותרת, סירופ ושמן דקלים בהרכב.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 7.1
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 468.5,
+          "protein": 7.1,
+          "sugar": 24.0,
+          "fat": 18.0,
+          "fiber": null,
+          "sodium": 0.2
+        },
+        "ingredients": "פתיתי שיבולת שועל (מכיל גלוטן) 45%, סירופ גלוקוז, שמן דקלים, סוכר חום, אורז תפוח 5%, סוכר חום לא מזוקק, צימוקים 1%, שזיפים 1%, חומצי ות 1%, קמח תירס, מתחלב (E322), חומר תפיחה (E500ii), חומרי טעם וריח. מיוצר מ 45% דגנים מלאים. מכיל גלוטן שיבולת שועל,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "השם מבטיח פירות יבשים, אבל ההרכב נשען על סירופ גלוקוז ושמן דקלים — קרוב לתחתית המדף.",
+        "positiveSignals": [
+          "45% שיבולת שועל בבסיס"
+        ],
+        "limitingFactors": [
+          {
+            "text": "סירופ גלוקוז ושמן דקלים מיד אחרי הדגן",
+            "magnitude": 3
+          },
+          {
+            "text": "פירות יבשים 1-2% בלבד — טוקן שיווקי",
+            "magnitude": 2
+          },
+          {
+            "text": "שני מקורות סוכר חום ברשימה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-022",
       "barcode": "4011800633516",
-      "name_he": "חטיף דגנים עם שוקולד מריר מעולה",
+      "name": "חטיף דגנים שוקולד מריר · קורני",
+      "name_he": "חטיף דגנים שוקולד מריר · קורני",
       "brand": "קורני",
       "score": 15.9,
       "grade": "E",
+      "rank": 22,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WSZ38_Z_P_4011800633516_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WSZ38_Z_P_4011800633516_1.png",
       "nutrition_per_100g": {
         "energy_kcal": 451.0,
         "fat_g": 17.3,
         "fat_saturated_g": 11.7,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
         "sodium_mg": 164.0,
         "carbohydrates_g": 65.2,
         "sugars_g": 33.3,
         "dietary_fiber_g": 6.0,
         "protein_g": 5.8
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "24% שוקולד מריר ו-12 גרם שומן רווי — חטיף בשם בלבד.",
+      "rowVerdict": "שוקולד מריר הוא הרכיב הראשון (24%), ואיתו 33 גרם סוכר, 11.7 גרם שומן רווי ו-451 קלוריות ל-100 גרם. פתיתי הדגנים נדחקים למקום השני. זה לוח שוקולד עם דגנים, לא חטיף דגנים.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "E",
-          "primary_label": "Engineered Wellness System",
-          "primary_confidence": 0.355,
-          "secondary": "F",
-          "secondary_label": "Structurally Void System",
-          "secondary_confidence": 0.325,
-          "class_weights": {
-            "A": 0.018,
-            "B": 0.018,
-            "C": 0.0,
-            "D": 0.284,
-            "E": 0.355,
-            "F": 0.325
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 15.9,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=45 from rules: ['HIGH_SUGAR_25G_PLUS', 'SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'SNACK_BAR_HIGH_CAL', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'HIGH_CAL_HIGH_SUGAR_SOFT', 'LONG_INGREDIENT_LIST', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 5.8
       },
-      "name": "חטיף דגנים עם שוקולד מריר מעולה",
-      "id": "snk-025",
-      "rank": 13,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
           "energyKcal": 451.0,
@@ -1215,7 +1457,7 @@
           "fiber": 6.0,
           "sodium": 164.0
         },
-        "ingredients": "שוקולד מריר מעולה (24%)( עיסת קקאו,סוכר לבן, חמאת קקאו, מתחלב (E442)),פתיתי דגנים מלאים קלויים(16%)(שיבולת שועל(מכיל גלוטן), שעורה ( מכיל גלוטן), חיטה (מכיל גלוטן)), סירופ גלוקוז-פרוקטוז,סירופ גלוקוז, פתיתי דגנים (12.5%)(קמח חיטה(מכיל גלוטן), סוכר לבן, קמח תירס, קמ ח אורז, לתת שעורה (מכיל גלוטן), מלח שולחן, סירופ קרמל), סוכר לבן, שומן קוקוס, פתיתי דגנים עם קקאו (קמח אורז, קמח חיטה (מכיל גלוטן), אבקת קקאו מופחת שומן, אבקת חלב מלא, סוכר לבן, קמח תירס, מלח שולחן), פתיתי קקאו קלויים, פתיתי תירס (תירס, מלח שולחן, תמצית לתת שעורה (מכיל גלוטן)), דבש, סירופ קרמל, מלח שולחן, מתחלב (ליציטין חמניות), חומרי טעם וריח.",
+        "ingredients": "שוקולד מריר מעולה (24%)( עיסת קקאו,סוכר לבן, חמאת קקאו, מתחלב (E442)),פתיתי דגנים מלאים קלויים(16%)(שיבולת שועל(מכיל גלוטן), שעורה ( מכיל גלוטן), חיטה (מכיל גלוטן)), סירופ גלוקוז-פרוקטוז,סירופ גלוקוז, פתיתי דגנים (12.5%)(קמח חיטה(מכיל גלוטן), סוכר לבן, קמח תירס, קמ ח אורז, לתת שעורה (מכיל גלוטן), מלח שולחן, סירופ קרמל), סוכר לבן, שומן קוקוס, פתיתי דגנים עם קקאו (קמח אורז, קמח חיטה (מכיל גלוטן), אבקת קקאו מופחת שומן, אבקת חלב מלא, סוכר לבן, קמח תירס, מלח שולחן), פתיתי קקאו קלויים, פתיתי תירס (תירס, מלח שולחן, תמצית לתת שעורה (מכיל גלוטן)), דבש, סירופ קרמל, מלח שולחן, מתחלב (ליציטין חמניות), חומרי טעם וריח. מכיל גלוטן חיטה,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
         "comparisonContext": "כמעט בתחתית המדף: השוקולד מוביל את הרשימה, והסוכר (33 גרם) והשומן הרווי (12 גרם) מהגבוהים בקטגוריה.",
@@ -1236,109 +1478,137 @@
             "magnitude": 2
           }
         ]
-      },
-      "insightLine": "24% שוקולד מריר ו-12 גרם שומן רווי — חטיף בשם בלבד.",
-      "rowVerdict": "שוקולד מריר הוא הרכיב הראשון (24%), ואיתו 33 גרם סוכר, 11.7 גרם שומן רווי ו-451 קלוריות ל-100 גרם. פתיתי הדגנים נדחקים למקום השני. זה לוח שוקולד עם דגנים, לא חטיף דגנים.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WSZ38_Z_P_4011800633516_1.png",
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      }
     },
     {
-      "barcode": "4011800630515",
-      "name_he": "קורני דגנים+שוקולד+בננה",
+      "id": "snk-023",
+      "barcode": "4011800628512",
+      "name": "קורני חטיפי דגנים+שוקולד",
+      "name_he": "קורני חטיפי דגנים+שוקולד",
       "brand": "קורני",
-      "score": 15.7,
+      "score": 15.4,
       "grade": "E",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SHO34_Z_P_4011800630515_1.png",
+      "rank": 23,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PIN38_Z_P_4011800628512_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PIN38_Z_P_4011800628512_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 431.0,
-        "fat_g": 14.8,
-        "fat_saturated_g": 9.8,
-        "sodium_mg": 159.0,
-        "carbohydrates_g": 67.1,
-        "sugars_g": 35.9,
-        "dietary_fiber_g": 3.6,
-        "protein_g": 5.1
+        "energy_kcal": 455.0,
+        "fat_g": 17.6,
+        "fat_saturated_g": 10.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 200.0,
+        "carbohydrates_g": 65.8,
+        "sugars_g": 34.0,
+        "dietary_fiber_g": 3.1,
+        "protein_g": 6.8
       },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שוקולד חלב הרכיב הראשון (24%) — וסיבים של 3.1 גרם, הנמוך במדף.",
+      "rowVerdict": "מאגד דגנים שבו שוקולד החלב הוא הרכיב הראשון (24%) והדגנים שניים (19%). 34 גרם סוכר ורק 3.1 גרם סיבים — הנמוך במדף. זה ממתק שוקולד עם פצפוצי דגנים, לא חטיף דגנים עם ציפוי.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
-        "structural_class": {
-          "primary": "E",
-          "primary_label": "Engineered Wellness System",
-          "primary_confidence": 0.355,
-          "secondary": "F",
-          "secondary_label": "Structurally Void System",
-          "secondary_confidence": 0.325,
-          "class_weights": {
-            "A": 0.018,
-            "B": 0.018,
-            "C": 0.0,
-            "D": 0.284,
-            "E": 0.355,
-            "F": 0.325
-          },
-          "is_between_worlds": true,
-          "classification_notes": [
-            "nova_4_signal",
-            "whole_food_integrity_low",
-            "high_complexity_assembly"
-          ],
-          "classifier_version": "structural_classifier_v1"
-        },
-        "final_score_estimate": 15.7,
-        "grade_estimate": "E",
-        "nova_proxy": 4,
-        "explanation_drivers": [
-          "DOMINANT: Binding cap=45 from rules: ['HIGH_SUGAR_25G_PLUS', 'SNACK_BAR_RED_SUGAR_LABEL', 'ISRAELI_RED_LABEL_1_SUGAR', 'ISRAELI_RED_LABELS_2_PLUS', 'SNACK_BAR_HIGH_CAL', 'NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'ISRAELI_RED_LABEL_1_SAT_FAT']",
-          "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'HIGH_CAL_HIGH_SUGAR_SOFT', 'LONG_INGREDIENT_LIST', 'HP_FAT_SUGAR_COMBO']"
-        ]
+        "protein_g": 6.8
       },
-      "name": "קורני דגנים+שוקולד+בננה",
-      "id": "snk-026",
-      "rank": 14,
-      "categoryTotal": 14,
       "expansion": {
         "nutrition": {
-          "energyKcal": 431.0,
-          "protein": 5.1,
-          "sugar": 35.9,
-          "fat": 14.8,
-          "fiber": 3.6,
-          "sodium": 159.0
+          "energyKcal": 455.0,
+          "protein": 6.8,
+          "sugar": 34.0,
+          "fat": 17.6,
+          "fiber": 3.1,
+          "sodium": 200.0
         },
-        "ingredients": "שוקולד חלב (24%)(סוכר לבן, עיסת קקאו, חמאת קקאו, אבקת חלב מופחת שומן, שומן חמאה, מתחלב (ליציטין חמניות),פתיתי דגנים (19%)(קמח חיטה(מ כיל גלוטן), סוכר לבן, קמח אורז, קמח תירס, תמצית לתת שעורה(מכיל גלוטן), מלח שולחן, סירופ קרמל), סירופ גלוקוז-פרוקטוז, פתיתי דגנים מלא ים(13%)(שיבולת שועל (מכיל גלוטן), חיטה (מכיל גלוטן), שעורה (מכיל גלוטן)), סירופ גלוקוז, סוכר לבן, שומן קוקוס, בננות מיובשות (3%), פת יתי תירס (תירס, מלח שולחן, תמצית לתת שעורה(מכיל גלוטן)), בוטנים קלויין, דבש, מלח שולחן, מתחלב (ליציטין חמניות), חומרי טעם וריח",
+        "ingredients": "שוקולד חלב (24%)(סוכר לבן, עיסת קקאו, חמאת קקאו, אבקת חלב מופחת שומן, שומן חמאה, מתחלב (ליציטין חמניות)), פתיתי דגנים (19%)(קמח חיטה (מכיל גלוטן), סוכר לבן, קמח אורז, קמח תירס, לתת שעורה (מכיל גלוטן), מלח שולחן, סירופ קרמל), סירופ גלוקוז, סירופ גלוקוז-פרוקטוז, פתית י דגנים מלאים קלויים(10%)(שיבולת שועל (מכיל גלוטן), חיטה(מכיל גלוטן), שעורה(מכיל גלוטן), בוטנים קלויים (7%), סוכר לבן, שומן קוקוס, פ תיתי תירס (3%)(תירס, מלח שולחן, תמצית לתת שעורה (מכיל גלוטן)), דבש, מלח שולחן, סירופ קרמל, מתחלב (ליציטין חמניות), חומרי טעם וריח. מכיל בוטנים,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "תחתית המדף: הסוכר הגבוה (36 גרם), שומן רווי גבוה וסיבים נמוכים — שילוב שאין לו תירוץ.",
-        "positiveSignals": [
-          "פתיתי דגנים ברשימה"
-        ],
+        "comparisonContext": "מסדרת קורני, ובנוי כממתק שוקולד: השוקולד מוביל, הסיבים בתחתית, והציון בהתאם.",
+        "positiveSignals": [],
         "limitingFactors": [
           {
-            "text": "36 גרם סוכר ל-100 גרם — מהגבוהים בין חטיפי הדגנים, שוקולד חלב כרכיב ראשון",
+            "text": "שוקולד חלב הרכיב הראשון (24%); דגנים שניים",
             "magnitude": 3
           },
           {
-            "text": "3.6 גרם סיבים בלבד ל-100 גרם — הנמוך במדף",
+            "text": "34 גרם סוכר ל-100 גרם",
             "magnitude": 3
           },
           {
-            "text": "9.8 גרם שומן רווי ל-100 גרם",
+            "text": "3.1 גרם סיבים בלבד — הנמוך במדף",
             "magnitude": 2
           }
         ]
+      }
+    },
+    {
+      "id": "snk-024",
+      "barcode": "4011800632519",
+      "name": "קורני חטיפי קוקוס שוקולד",
+      "name_he": "קורני חטיפי קוקוס שוקולד",
+      "brand": "קורני",
+      "score": 14.8,
+      "grade": "E",
+      "rank": 24,
+      "categoryTotal": 24,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VGQ40_Z_P_4011800632519_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VGQ40_Z_P_4011800632519_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 468.0,
+        "fat_g": 22.9,
+        "fat_saturated_g": 18.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 170.0,
+        "carbohydrates_g": 57.2,
+        "sugars_g": 31.1,
+        "dietary_fiber_g": 5.7,
+        "protein_g": 5.5
       },
-      "insightLine": "סוגר את המדף: 36 גרם סוכר ושוקולד חלב כרכיב ראשון.",
-      "rowVerdict": "שוקולד חלב (24%) מוביל את הרשימה, עם 36 גרם סוכר ו-10 גרם שומן רווי ל-100 גרם — והסיבים הנמוכים במדף (3.6 גרם). אין כאן כמעט צד תזונתי לטובתו. ממתק שמוכר עצמו כחטיף דגנים.",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SHO34_Z_P_4011800630515_1.png",
       "confidence": "verified",
       "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "",
-      "confidence_tooltip_he": "הנתונים נאספו ישירות מעמוד המוצר של הקמעונאי ואומתו מול הרכיבים והערכים התזונתיים.",
-      "d4_additives": []
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "שוקולד חלב ראשון, קוקוס שני, סירופ גלוקוז — תחתית המדף.",
+      "rowVerdict": "שוקולד חלב 24% מוביל, קוקוס 16% וסירופ גלוקוז אחריהם. 31 גרם סוכר, 22.9 גרם שומן (חלקו רווי מהקוקוס והשוקולד) וחלבון זניח (5.5). הצירוף של שוקולד, קוקוס וסירופ מציב אותו בתחתית המדף.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 5.5
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 468.0,
+          "protein": 5.5,
+          "sugar": 31.1,
+          "fat": 22.9,
+          "fiber": 5.7,
+          "sodium": 170.0
+        },
+        "ingredients": "שוקולד חלב (24%)(סוכר לבן, עיסת קקאו, חמאת קקאו, אבקת חלב מופחת שומן, שומן חמאה, מתחלב (ליציטין חמניות)), פתיתי קוקוס(16%) ,סירופ גל וקוז, פתיתי דגנים מלאים קלויים(13%)(שיבולת שועל (מכיל גלוטן), חיטה(מכיל גלוטן)),סירופ גלוקוז-פרוקטוז, פתיתי דגנים(12%) (קמח חיטה(מכי ל גלוטן), סוכר לבן, קמח אורז, קמח תירס, תמצית לתת שעורה(מכיל גלוטן), מלח שולחן, סירופ קרמל),סוכר לבן, שומן קוקוס(4%), פתיתי תירס (3% )(תירס, מלח שולחן, תמצית לתת שעורה (מכיל גלוטן)), מייצב(גליצרול), מלח שולחן, חומרי טעם וריח, מתחלב (ליציטין חמניות). מכיל גלוטן חיטה,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "החטיף בתחתית מדף הדגנים: שוקולד וקוקוס שמרוכזים סביב סוכר ושומן, כמעט בלי ערך דגני.",
+        "positiveSignals": [],
+        "limitingFactors": [
+          {
+            "text": "שוקולד חלב ראשון, קוקוס וסירופ גלוקוז אחריו",
+            "magnitude": 3
+          },
+          {
+            "text": "31 גרם סוכר ו-22.9 גרם שומן ל-100 גרם",
+            "magnitude": 3
+          },
+          {
+            "text": "5.5 גרם חלבון בלבד",
+            "magnitude": 1
+          }
+        ]
+      }
     }
   ]
 }

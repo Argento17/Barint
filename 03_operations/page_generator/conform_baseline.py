@@ -42,6 +42,7 @@ SHELF_FILES: dict[str, str] = {
     "juices": "juices_frontend_v3.json",
     "milk": "milk_frontend_v1.json",
     "snacks": "snacks_frontend_v5.json",
+    "protein_bars": "protein_bars_frontend_v1.json",
 }
 
 REQUIRED_PRODUCT_KEYS = (

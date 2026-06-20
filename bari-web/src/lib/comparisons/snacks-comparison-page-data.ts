@@ -53,8 +53,8 @@ const snacksMetadataUpdated = (() => {
 
 /** CE framing: 16 displayed · 53 scanned · 48 scored (hero metadata line). */
 export const snacksMetadataLine = snacksMetadataUpdated
-  ? `14 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
-  : "14 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון";
+  ? `25 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
+  : "25 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון";
 
 /** Shelf hero — impulse-rack moment, distinct from cereals/juices/cheese openers. */
 export const snacksHero = {
