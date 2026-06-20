@@ -51,21 +51,21 @@ const snacksMetadataUpdated = (() => {
     : date.toLocaleDateString("he-IL", { month: "long", year: "numeric" });
 })();
 
-/** CE framing: 16 displayed · 53 scanned · 48 scored (hero metadata line). */
+/** Count auto-derives from the corpus so it can never go stale. */
 export const snacksMetadataLine = snacksMetadataUpdated
-  ? `25 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
-  : "25 חטיפי דגנים בדף · 655 נסרקו · 73 קיבלו ציון";
+  ? `${snacksProducts.length} חטיפי דגנים בדף · נסרקו ממדף החטיפים בשופרסל · עודכן ב${snacksMetadataUpdated}`
+  : `${snacksProducts.length} חטיפי דגנים בדף · נסרקו ממדף החטיפים בשופרסל`;
 
-/** Shelf hero — impulse-rack moment, distinct from cereals/juices/cheese openers. */
+/** Shelf hero — focused on grain/oat/date bars (protein bars are a separate page). */
 export const snacksHero = {
-  eyebrow: "חטיפים",
-  title: "קונים חטיפים בסופרמרקט? הנה מה שאתם צריכים לדעת.",
+  eyebrow: "חטיפי דגנים",
+  title: "חטיף דגנים נשמע כמו הבחירה הבריאה במדף — הרשימה לא תמיד מסכימה",
 } as const;
 
 export const snacksPrologueSentences = [
-  "התור לקופה. מולכם מדף חטיפים: ברים צבעוניים, חטיפי דגנים עם הבטחות על האריזה, תמרים מצופים. 'רגע, רק משהו קטן.'",
-  "החטיף נראה קטן וזמין. לפעמים הרשימה תומכת בזה — שלושה מרכיבים, דגן מלא, בוטנים. לפעמים השם אומר 'שיבולת שועל' וברשימה יושבים שוקולד, סירופ גלוקוזה ועשרה מרכיבים נוספים.",
-  "גם החטיף החזק במדף הזה מגיע רק ל-B — כי כאן 'טוב' אומר פחות מהונדס, לא בריא במובן הרחב.",
+  "חטיף דגנים, שיבולת שועל או תמרים. האריזות מבטיחות 'טבעי', 'דגן מלא', 'מקור לסיבים' — וקל להניח שכל החטיפים על המדף דומים זה לזה.",
+  "הם לא. מצד אחד חטיף תמרים עם שלושה רכיבים שכולם מזון; מצד שני 'חטיף דגנים' ששוקולד חלב הוא הרכיב הראשון שלו וסירופ גלוקוז השני. אותו מדף, אותה הבטחה — וציונים שנעים מ-67 עד 15.",
+  "גם החטיף החזק כאן מגיע רק ל-B, כי במדף הזה 'טוב' אומר פחות מהונדס — לא בריא במובן הרחב. חטיפי חלבון מהונדסים סביב 25–34 גרם חלבון נמדדים בקטגוריה ובעמוד נפרדים.",
 ] as const;
 
 // Category caveat (cheese gold-standard format), rendered once in the header. Grounded in
