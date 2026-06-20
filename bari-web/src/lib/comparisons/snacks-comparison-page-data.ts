@@ -53,8 +53,8 @@ const snacksMetadataUpdated = (() => {
 
 /** CE framing: 16 displayed · 53 scanned · 48 scored (hero metadata line). */
 export const snacksMetadataLine = snacksMetadataUpdated
-  ? `16 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
-  : "16 מוצרים בדף · 53 נסרקו · 48 קיבלו ציון";
+  ? `26 מוצרים בדף · 655 נסרקו · 73 קיבלו ציון · עודכן ב${snacksMetadataUpdated}`
+  : "26 מוצרים בדף · 655 נסרקו · 73 קיבלו ציון";
 
 /** Shelf hero — impulse-rack moment, distinct from cereals/juices/cheese openers. */
 export const snacksHero = {
@@ -73,7 +73,7 @@ export const snacksPrologueSentences = [
 // validated category ceiling") and the engineered-snack scoring nuance (.claude/scoring.md
 // Stage 4 — fat-sugar / fat-sodium hyper-palatability patterns). "Best" here is relative.
 export const snacksCategoryNote = [
-  "הערת קטגוריה — 'הכי טוב' כאן הוא B, לא A\n\nבמדף החטיפים אף מוצר אינו מגיע ל-A. הציון הגבוה בקטגוריה הוא 70/B. זו אינה החמרה אלא תיאור הקטגוריה: חטיפים מתוכננים סביב שילוב של שומן, סוכר או מלח שמעלה את החיך — והציון משקף זאת.",
+  "הערת קטגוריה — 'הכי טוב' כאן הוא B, לא A\n\nבמדף החטיפים אף מוצר אינו מגיע ל-A. הציון הגבוה בקטגוריה הוא 71/B. זו אינה החמרה אלא תיאור הקטגוריה: חטיפים מתוכננים סביב שילוב של שומן, סוכר או מלח שמעלה את החיך — והציון משקף זאת.",
   "הערת קטגוריה — ההשוואה היא בתוך הקטגוריה בלבד\n\nחטיף נמדד מול חטיפים אחרים, לא מול מזון אחר. ציון B כאן אומר 'הטוב יחסית במדף החטיפים' — לא שהמוצר שקול לארוחה או לבסיס מזון מלא.",
 ]
   .join("\n\n");
