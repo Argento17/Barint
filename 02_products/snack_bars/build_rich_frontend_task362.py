@@ -21,7 +21,17 @@ manifest = json.load(open(sorted(glob.glob(str(ROOT / "02_products/snack_bars/sc
 # Near-duplicate identity discard (Nutrition Agent flag + conform size-duplicate):
 # 8410076602251 is a second Nature Valley "שיבולת שועל+שוקולד" (54.8% oat) that is
 # the same bar as 16000423534 (54% oat) at a different barcode. Keep the higher one.
-EXCLUDE = {"8410076602251"}
+# Corrupt-ingredient discard (missing_data_discard_rule): the 3 Nestlé Fitness bars
+# (5900020*) scraped a marketing brochure paragraph ("...מזין אותך באנרגיה") in place of
+# a real ingredient list — we don't actually have their ingredients, so they cannot be
+# honestly described. Re-scrape is IP-blocked; per the discard rule we drop rather than
+# over-invest in re-sourcing. (Owner flagged rows #3-5 as sub-standard, 2026-06-20.)
+EXCLUDE = {
+    "8410076602251",
+    "5900020015174",  # פיטנס חטיף דגנים שוקולד
+    "5900020034021",  # פיטנס חטיפי דגנים שוקולד בננה
+    "5900020029669",  # פיטנס חטיף דגנים פ.יער
+}
 
 def load_canon(barcode):
     p = CANON / f"bsip1_{barcode}.json"
