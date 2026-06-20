@@ -1,0 +1,80 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%93%D7%99%D7%90%D7%98-%D7%95%D7%9C%D7%9C%D7%90-%D7%A1%D7%95%D7%9B%D7%A8/%D7%9E%D7%9E%D7%A8%D7%97%D7%99%D7%9D-%D7%95%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%9D-%D7%93%D7%99%D7%90%D7%98/%D7%A8%D7%99%D7%91%D7%AA-%D7%A4%D7%99%D7%A8%D7%95%D7%AA-%D7%99%D7%A2%D7%A8/p/P_7290112197597",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:50:19+00:00"
+  },
+  "product_identity": {
+    "name": "ריבת פירות יער",
+    "brand": "טרו",
+    "barcode": "7290112197597",
+    "shufersal_code": "P_7290112197597",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QJU60_Z_P_7290112197597_1.png",
+    "all_cat_codes": [
+      "A280825",
+      "F",
+      "A2808",
+      "F130304",
+      "categories",
+      "A28",
+      "A",
+      "F1303",
+      "F13"
+    ],
+    "second_level_category": "אורגני ובריאות",
+    "manufacturer": "סימה",
+    "unit_description": "250 גרם",
+    "health_attrs": [
+      "GLUTEN_FREE"
+    ],
+    "source": "search:חטיף פירות"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 124.0,
+    "fats": 0.0,
+    "sodium": 0.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 124.0,
+    "fat_g": 0.0,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 0.0,
+    "carbohydrates_g": 30.0,
+    "sugars_g": 25.0,
+    "dietary_fiber_g": null,
+    "protein_g": 0.0
+  },
+  "ingredients_raw": "פירות יער(50%)(תות שדה, דומדמניות שחורות, דובדבן חמוץ, אוכמניות,  פרוקטוז, ממתיק Truvia )ממתיקים(אריתריתול, גליקוזידים של סטיביול), חומרי טעם וריח), מקריש (פקטין), מייצב (סודיום אלגינט), מווסת חומציות (חומצת לימון), מכילה 50% פרי. מכילה 30% סוכרים (Bx).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 30.0,
+    "kcal": 124.0,
+    "fail_reasons": [
+      "accounted_mass=30.0g < 70.0g (carbs=30.0+fat=0.0+prot=0.0+fiber=0.0)",
+      "kcal=124 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "16.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%93%D7%99%D7%90%D7%98-%D7%95%D7%9C%D7%9C%D7%90-%D7%A1%D7%95%D7%9B%D7%A8/%D7%9E%D7%9E%D7%A8%D7%97%D7%99%D7%9D-%D7%95%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%9D-%D7%93%D7%99%D7%90%D7%98/%D7%A8%D7%99%D7%91%D7%AA-%D7%A4%D7%99%D7%A8%D7%95%D7%AA-%D7%99%D7%A2%D7%A8/p/P_7290112197597",
+    "fetched_at": "2026-06-20T08:50:19+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

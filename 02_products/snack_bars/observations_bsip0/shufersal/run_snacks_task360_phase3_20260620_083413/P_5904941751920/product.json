@@ -1,0 +1,81 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%91%D7%99%D7%A8%D7%94-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/%D7%91%D7%9C%D7%95-%D7%93%D7%99%D7%99-%D7%9E%D7%A9%D7%A7%D7%94-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/p/P_5904941751920",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:47:41+00:00"
+  },
+  "product_identity": {
+    "name": "בלו דיי משקה אנרגיה",
+    "brand": "בלו",
+    "barcode": "5904941751920",
+    "shufersal_code": "P_5904941751920",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TTP56_Z_P_5904941751920_1.png",
+    "all_cat_codes": [
+      "A13",
+      "C550101",
+      "C5501",
+      "categories",
+      "C55",
+      "A",
+      "A53",
+      "A131401",
+      "A1314"
+    ],
+    "second_level_category": "יינות משקאות כהליים ותירוש",
+    "manufacturer": "אקו ביט",
+    "unit_description": "250 מ\"ל",
+    "health_attrs": [],
+    "source": "search:חטיף אנרגיה"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 46.0,
+    "fats": 0.0,
+    "sodium": 50.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 46.0,
+    "fat_g": 0.0,
+    "fat_saturated_g": 0.1,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 50.0,
+    "carbohydrates_g": 10.8,
+    "sugars_g": 10.8,
+    "dietary_fiber_g": null,
+    "protein_g": 0.35,
+    "_integrity": [
+      "sat_gt_total_fat: saturated=0.1g > total_fat=0.0g"
+    ]
+  },
+  "ingredients_raw": "מים, סוכר, מווסת חומציות: חומצה ציטרית(E330), פחמן דו חמצני (E290), טאורין(400 מ\"ג / 100 מ\"ל), מווסת חומציות: סודיום ציטרט (E331) , חומרי טעם וריח, קפאין (32 מ\"ג/100 מ\"ל), ויטמינים: ניאצין (PP), חומצה פנטותנית (B5), פירידוקסין (B6), קובלמין (B12).צבע מאכל : E 102, E133 (ורטרזין).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 11.15,
+    "kcal": 46.0,
+    "fail_reasons": [
+      "accounted_mass=11.2g < 70.0g (carbs=10.8+fat=0.0+prot=0.3+fiber=0.0)",
+      "kcal=46 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "4.5",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%91%D7%99%D7%A8%D7%94-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/%D7%91%D7%9C%D7%95-%D7%93%D7%99%D7%99-%D7%9E%D7%A9%D7%A7%D7%94-%D7%90%D7%A0%D7%A8%D7%92%D7%99%D7%94/p/P_5904941751920",
+    "fetched_at": "2026-06-20T08:47:41+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

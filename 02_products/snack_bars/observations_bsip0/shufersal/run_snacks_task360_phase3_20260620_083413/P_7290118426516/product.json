@@ -1,0 +1,83 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A6%D7%A0%D7%99%D7%9E%D7%99%D7%9D/%D7%A4%D7%99%D7%98%D7%A0%D7%A1-%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%93%D7%A7%D7%95%D7%AA-%D7%AA%D7%99%D7%A8%D7%A1/p/P_7290118426516",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:57:09+00:00"
+  },
+  "product_identity": {
+    "name": "פיטנס פריכיות דקות תירס",
+    "brand": "פיטנס",
+    "barcode": "7290118426516",
+    "shufersal_code": "P_7290118426516",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ATP52_Z_P_7290118426516_1.png",
+    "all_cat_codes": [
+      "A250708",
+      "A25",
+      "A2507",
+      "categories",
+      "A250704",
+      "A"
+    ],
+    "second_level_category": "חטיפים מתוקים ודגני בוקר",
+    "manufacturer": "פרח תעשיות מזון בע\"מ",
+    "unit_description": "120 גרם",
+    "health_attrs": [],
+    "source": "search:פיטנס בר"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 384.0,
+    "fats": 2.0,
+    "sodium": 400.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 384.0,
+    "fat_g": 2.0,
+    "fat_saturated_g": 0.5,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 400.0,
+    "carbohydrates_g": 82.5,
+    "sugars_g": 0.4,
+    "dietary_fiber_g": 3.2,
+    "protein_g": 7.3
+  },
+  "ingredients_raw": "גריסי תירס (74%), אורז שחור מלא (25%), מלח, מתחלב (לציטין סויה).nסך הדגנים במוצר 99%, מכיל 25% דגנים מלאים.",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 95.0,
+    "kcal": 384.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 384.0,
+      "fat_g": 2.0,
+      "fat_saturated_g": 0.5,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 400.0,
+      "carbohydrates_g": 82.5,
+      "sugars_g": 0.4,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 7.3
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "12.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A6%D7%A0%D7%99%D7%9E%D7%99%D7%9D/%D7%A4%D7%99%D7%98%D7%A0%D7%A1-%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%93%D7%A7%D7%95%D7%AA-%D7%AA%D7%99%D7%A8%D7%A1/p/P_7290118426516",
+    "fetched_at": "2026-06-20T08:57:09+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

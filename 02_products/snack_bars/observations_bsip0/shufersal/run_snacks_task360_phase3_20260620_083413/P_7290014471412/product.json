@@ -1,0 +1,83 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%9E%D7%95%D7%96%D7%9C%D7%99-%D7%91%D7%95%D7%98%D7%A0%D7%99%D7%9D%2C-%D7%9C%D7%95%D7%96%2C-%D7%A9%D7%A7%D7%93%D7%99%D7%9D/p/P_7290014471412",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:40:51+00:00"
+  },
+  "product_identity": {
+    "name": "מוזלי בוטנים, לוז, שקדים",
+    "brand": "שוק קולינרי",
+    "barcode": "7290014471412",
+    "shufersal_code": "P_7290014471412",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LAJ42_Z_P_7290014471412_1.png",
+    "all_cat_codes": [
+      "A25",
+      "A250204",
+      "categories",
+      "A250201",
+      "A",
+      "A2502"
+    ],
+    "second_level_category": "חטיפים מתוקים ודגני בוקר",
+    "manufacturer": "דין שיווק",
+    "unit_description": "850 גרם",
+    "health_attrs": [],
+    "source": "search:חטיף גרנולה"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 384.0,
+    "fats": 13.0,
+    "sodium": 400.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 384.0,
+    "fat_g": 13.0,
+    "fat_saturated_g": 2.4,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 400.0,
+    "carbohydrates_g": 57.5,
+    "sugars_g": 17.5,
+    "dietary_fiber_g": 5.2,
+    "protein_g": 9.3
+  },
+  "ingredients_raw": "פתיתי שיבולת שועל (מכיל גלוטן) 38%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן) בוטנים 2.7%, אגוזי לוז 1%, שקדים 1%, קוקוס, גרעיני חמנייה, אבקת קקאו, מלח, מתלב (E322), חומרי טעם וריח",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 85.0,
+    "kcal": 384.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 384.0,
+      "fat_g": 13.0,
+      "fat_saturated_g": 2.4,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 400.0,
+      "carbohydrates_g": 57.5,
+      "sugars_g": 17.5,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 9.3
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "19.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%95%D7%97%D7%98%D7%99%D7%A4%D7%99-%D7%93%D7%92%D7%A0%D7%99%D7%9D/%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%9E%D7%95%D7%96%D7%9C%D7%99-%D7%91%D7%95%D7%98%D7%A0%D7%99%D7%9D%2C-%D7%9C%D7%95%D7%96%2C-%D7%A9%D7%A7%D7%93%D7%99%D7%9D/p/P_7290014471412",
+    "fetched_at": "2026-06-20T08:40:51+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%9D-%D7%95%D7%A7%D7%99%D7%A0%D7%95%D7%97%D7%99%D7%9D/%D7%9E%D7%A2%D7%93%D7%A0%D7%99-%D7%97%D7%9C%D7%91/%D7%9E%D7%A2%D7%93%D7%9F-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C/p/P_7290014455467",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:42:54+00:00"
+  },
+  "product_identity": {
+    "name": "מעדן שיבולת שועל",
+    "brand": "מחלבות גד",
+    "barcode": "7290014455467",
+    "shufersal_code": "P_7290014455467",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NLC54_Z_P_7290014455467_1.png",
+    "all_cat_codes": [
+      "categories",
+      "A011001",
+      "A0110",
+      "A",
+      "A01"
+    ],
+    "second_level_category": "מוצרי חלב וביצים",
+    "manufacturer": "מחלבות גד",
+    "unit_description": "150 גרם",
+    "health_attrs": [],
+    "source": "search:חטיף שיבולת שועל"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 62.0,
+    "fats": 2.0,
+    "sodium": 40.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 62.0,
+    "fat_g": 2.0,
+    "fat_saturated_g": 0.9,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 40.0,
+    "carbohydrates_g": 12.9,
+    "sugars_g": 3.0,
+    "dietary_fiber_g": 3.1,
+    "protein_g": 2.6
+  },
+  "ingredients_raw": "חלב (50.4%), מים, שיבולת שועל (גלוטן) (6.7%), ממתיקים (אריטריטול, סטיביול גליקוזיד מצמח הסטיביה), סיבים תזונתיים (אינולין), עמילן מע ובד (E1422), חלמון ביצה מיובש (ביצים), מייצב (קרגינן), מלח, חומרי טעם וריח",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 20.6,
+    "kcal": 62.0,
+    "fail_reasons": [
+      "accounted_mass=20.6g < 70.0g (carbs=12.9+fat=2.0+prot=2.6+fiber=3.1)",
+      "kcal=62 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "7.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%9D-%D7%95%D7%A7%D7%99%D7%A0%D7%95%D7%97%D7%99%D7%9D/%D7%9E%D7%A2%D7%93%D7%A0%D7%99-%D7%97%D7%9C%D7%91/%D7%9E%D7%A2%D7%93%D7%9F-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C/p/P_7290014455467",
+    "fetched_at": "2026-06-20T08:42:54+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

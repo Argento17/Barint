@@ -1,0 +1,82 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%93%D7%92%D7%93%D7%92-%D7%97%D7%98%D7%99%D7%A3-%D7%90%D7%A4%D7%95%D7%99-%D7%9E%D7%9C%D7%95%D7%97/p/P_7290116533704",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:57:59+00:00"
+  },
+  "product_identity": {
+    "name": "דגדג חטיף אפוי מלוח",
+    "brand": "בייגל בייגל",
+    "barcode": "7290116533704",
+    "shufersal_code": "P_7290116533704",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ITD48_Z_P_7290116533704_1.png",
+    "all_cat_codes": [
+      "A25",
+      "A250702",
+      "A2507",
+      "categories",
+      "A"
+    ],
+    "second_level_category": "חטיפים מתוקים ודגני בוקר",
+    "manufacturer": "בייגל את בייגל (1985) בע",
+    "unit_description": "250 גרם",
+    "health_attrs": [],
+    "source": "search:קורני חטיף"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 459.0,
+    "fats": 14.9,
+    "sodium": 606.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 459.0,
+    "fat_g": 14.9,
+    "fat_saturated_g": 6.8,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 606.0,
+    "carbohydrates_g": 70.7,
+    "sugars_g": 4.3,
+    "dietary_fiber_g": null,
+    "protein_g": 10.4
+  },
+  "ingredients_raw": "קמח חיטה (מכיל גלוטן), שמן צמחי, סירופ גלוקוזה, לתת שעורה ( מכיל גלוטן), סוכר, מלח, שמרים, מתחלב (E-472e).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 96.00000000000001,
+    "kcal": 459.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 459.0,
+      "fat_g": 14.9,
+      "fat_saturated_g": 6.8,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 606.0,
+      "carbohydrates_g": 70.7,
+      "sugars_g": 4.3,
+      "dietary_fiber_g": null,
+      "protein_g": 10.4
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "14.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%93%D7%92%D7%93%D7%92-%D7%97%D7%98%D7%99%D7%A3-%D7%90%D7%A4%D7%95%D7%99-%D7%9E%D7%9C%D7%95%D7%97/p/P_7290116533704",
+    "fetched_at": "2026-06-20T08:57:59+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9C%D7%97%D7%9E%D7%99%D7%9D%2C-%D7%9C%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA-%D7%95%D7%A4%D7%99%D7%AA%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%99%D7%94/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%91%D7%92%D7%98%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9D-%D7%91%D7%A1%D7%92%D7%A0%D7%95%D7%9F-%D7%A6%D7%A8%D7%A4%D7%AA%D7%99-%D7%9C%D7%9C%22%D7%92/p/P_7296073389460",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T09:01:39+00:00"
+  },
+  "product_identity": {
+    "name": "לחם בסגנון צרפתי ללא גלוטן",
+    "brand": "גרין",
+    "barcode": "7296073389460",
+    "shufersal_code": "P_7296073389460",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FNX64_Z_P_7296073389460_1.png",
+    "all_cat_codes": [
+      "F12",
+      "A281407",
+      "categories",
+      "A1005",
+      "A101801",
+      "A100508",
+      "F120502",
+      "A2814",
+      "F",
+      "A1018",
+      "A28",
+      "F1205",
+      "A",
+      "A10"
+    ],
+    "second_level_category": "ללא גלוטן",
+    "manufacturer": "איתנס",
+    "unit_description": "500 גרם",
+    "health_attrs": [],
+    "source": "search:חטיף ללא גלוטן"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 285.0,
+    "fats": 5.7,
+    "sodium": 392.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 285.0,
+    "fat_g": 5.7,
+    "fat_saturated_g": 0.7,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 392.0,
+    "carbohydrates_g": 55.9,
+    "sugars_g": 1.0,
+    "dietary_fiber_g": 1.0,
+    "protein_g": 2.0
+  },
+  "ingredients_raw": "מים, עמילן תפו\"א, מסמיכים (E1414, E1442), שמן סויה מזוכך, קמח סויה, שמרים לאפיה, סוכר לבן, מלח שולחן, מייצבים (קסנטן גאם, גואר גאם) , מתפיח (סודיום ביקרבונט), מווסת חומציות (חומצה לקטית), משמר (E202)",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 64.6,
+    "kcal": 285.0,
+    "fail_reasons": [
+      "accounted_mass=64.6g < 70.0g (carbs=55.9+fat=5.7+prot=2.0+fiber=1.0)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "24.5",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9C%D7%97%D7%9E%D7%99%D7%9D%2C-%D7%9C%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA-%D7%95%D7%A4%D7%99%D7%AA%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%99%D7%94/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%91%D7%92%D7%98%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9D-%D7%91%D7%A1%D7%92%D7%A0%D7%95%D7%9F-%D7%A6%D7%A8%D7%A4%D7%AA%D7%99-%D7%9C%D7%9C%22%D7%92/p/P_7296073389460",
+    "fetched_at": "2026-06-20T09:01:39+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

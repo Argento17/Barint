@@ -1,0 +1,75 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9C%D7%97%D7%9D%2C-%D7%9C%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA-%D7%95%D7%A4%D7%99%D7%AA%D7%95%D7%AA/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%99%D7%9D-%D7%90%D7%A8%D7%95%D7%96%D7%99%D7%9D/%D7%9C%D7%97%D7%9D-E-FREE-%D7%9E%D7%A7%D7%9E%D7%97-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F/p/P_498034",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:59:12+00:00"
+  },
+  "product_identity": {
+    "name": "לחם E-FREE מקמח כוסמין",
+    "brand": "ברמן לחם",
+    "barcode": "498034",
+    "shufersal_code": "P_498034",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HSD28_Z_P_498034_1.png",
+    "all_cat_codes": [
+      "A101402",
+      "A1014",
+      "categories",
+      "A1008",
+      "A10",
+      "A",
+      "A100801"
+    ],
+    "second_level_category": "לחמים ומוצרי מאפה",
+    "manufacturer": "מאפית ברמן",
+    "unit_description": "750 גרם",
+    "health_attrs": [],
+    "source": "search:free חטיף"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 240.0,
+    "fats": 3.0,
+    "sodium": 378.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 240.0,
+    "fat_g": 3.0,
+    "fat_saturated_g": 0.7,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 378.0,
+    "carbohydrates_g": 36.4,
+    "sugars_g": 2.1,
+    "dietary_fiber_g": 7.0,
+    "protein_g": 13.4
+  },
+  "ingredients_raw": "קמח כוסמין מלא הנטחן מן הגרעין בשלמותו (מכיל גלוטן) (100% מסך הקמחים,  50% ממשקל המוצר), מים, גלוטן חיטה, שמרים, מחמצת חיטה (מכיל גל וטן)*, לתת שעורה (מכיל גלוטן), שמן צמחי, מלח שולחן, אבקת סויה, אבקת רכז מיץ פרי (אצרולה), אנזימים לאפיה.n*מכיל מחמצת חיטה כחומר משמ ר.",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 59.8,
+    "kcal": 240.0,
+    "fail_reasons": [
+      "accounted_mass=59.8g < 70.0g (carbs=36.4+fat=3.0+prot=13.4+fiber=7.0)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "17.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9C%D7%97%D7%9D%2C-%D7%9C%D7%97%D7%9E%D7%A0%D7%99%D7%95%D7%AA-%D7%95%D7%A4%D7%99%D7%AA%D7%95%D7%AA/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%99%D7%9D-%D7%90%D7%A8%D7%95%D7%96%D7%99%D7%9D/%D7%9C%D7%97%D7%9D-E-FREE-%D7%9E%D7%A7%D7%9E%D7%97-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F/p/P_498034",
+    "fetched_at": "2026-06-20T08:59:12+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

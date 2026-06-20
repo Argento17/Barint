@@ -1,0 +1,81 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/green-%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%95%D7%98%D7%91%D7%A2/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%9E%D7%9E%D7%A8%D7%97%D7%99%D7%9D-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%9E%D7%97%D7%99%D7%95%D7%AA-%D7%A4%D7%A8%D7%99/%D7%9E%D7%97%D7%99%D7%95%D7%AA-%D7%A4%D7%A8%D7%99-%D7%9C%D7%A9%D7%AA%D7%99%D7%94/%D7%A1%D7%9E%D7%95%D7%96%D7%99-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%AA%D7%A4%D7%95%D7%97/p/P_8024985013482",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:43:56+00:00"
+  },
+  "product_identity": {
+    "name": "סמוזי שיבולת שועל תפוח בטטה תות אורגני",
+    "brand": "נטורה נובה",
+    "barcode": "8024985013482",
+    "shufersal_code": "P_8024985013482",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CSH54_Z_P_8024985013482_1.png",
+    "all_cat_codes": [
+      "F0306",
+      "A280307",
+      "F",
+      "A2803",
+      "categories",
+      "A28",
+      "F03",
+      "A",
+      "F030601"
+    ],
+    "second_level_category": "בישול אפיה ממרחים ושימורים",
+    "manufacturer": "נטורה נובה",
+    "unit_description": "100 גרם",
+    "health_attrs": [
+      "PRESERVATIVES_FREE",
+      "ORGANIC"
+    ],
+    "source": "search:חטיף שיבולת שועל"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 66.0,
+    "fats": 0.4,
+    "sodium": 0.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 66.0,
+    "fat_g": 0.4,
+    "fat_saturated_g": 0.1,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 0.0,
+    "carbohydrates_g": 13.0,
+    "sugars_g": 9.9,
+    "dietary_fiber_g": 2.3,
+    "protein_g": 1.2
+  },
+  "ingredients_raw": "תפוח (67%), בטטה (20%), תות (10%), שיבולת שועל (3%)",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 16.9,
+    "kcal": 66.0,
+    "fail_reasons": [
+      "accounted_mass=16.9g < 70.0g (carbs=13.0+fat=0.4+prot=1.2+fiber=2.3)",
+      "kcal=66 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "6.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/green-%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%95%D7%98%D7%91%D7%A2/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%9E%D7%9E%D7%A8%D7%97%D7%99%D7%9D-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%9E%D7%97%D7%99%D7%95%D7%AA-%D7%A4%D7%A8%D7%99/%D7%9E%D7%97%D7%99%D7%95%D7%AA-%D7%A4%D7%A8%D7%99-%D7%9C%D7%A9%D7%AA%D7%99%D7%94/%D7%A1%D7%9E%D7%95%D7%96%D7%99-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%AA%D7%A4%D7%95%D7%97/p/P_8024985013482",
+    "fetched_at": "2026-06-20T08:43:56+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

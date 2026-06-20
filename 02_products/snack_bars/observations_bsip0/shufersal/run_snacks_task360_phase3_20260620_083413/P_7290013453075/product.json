@@ -1,0 +1,95 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/green-%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%95%D7%98%D7%91%D7%A2/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA/%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D/%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%95%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA/%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%98%D7%97%D7%99%D7%A0%D7%94/p/P_7290013453075",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:43:46+00:00"
+  },
+  "product_identity": {
+    "name": "עוגיות שיבולת שועל טחינה ללת\"ס",
+    "brand": "דני וגלית",
+    "barcode": "7290013453075",
+    "shufersal_code": "P_7290013453075",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MPO46_Z_P_7290013453075_1.png",
+    "all_cat_codes": [
+      "A280810",
+      "A25",
+      "F050301",
+      "A2808",
+      "categories",
+      "A250804",
+      "F05",
+      "F",
+      "A280304",
+      "A2803",
+      "A2508",
+      "A28",
+      "A",
+      "F0503"
+    ],
+    "second_level_category": "חטיפים מתוקים ודגני בוקר",
+    "manufacturer": "",
+    "unit_description": "270 גרם",
+    "health_attrs": [
+      "LACTOSE_FREE",
+      "VEGAN",
+      "PRESERVATIVES_FREE"
+    ],
+    "source": "search:חטיף שיבולת שועל"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 435.0,
+    "fats": 21.2,
+    "sodium": 41.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 435.0,
+    "fat_g": 21.2,
+    "fat_saturated_g": 5.0,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 41.0,
+    "carbohydrates_g": 39.2,
+    "sugars_g": 13.5,
+    "dietary_fiber_g": 16.1,
+    "protein_g": 13.8
+  },
+  "ingredients_raw": "שיבולת שועל (גלוטן) (42%), טחינה מלאה (19%), סילאן תמרים (13%), סיבים תזונתיים (עולש), שומשום מלא , קוקוס, אוכמניות, אגוזי מלך, קינמ ון.",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 90.30000000000001,
+    "kcal": 435.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 435.0,
+      "fat_g": 21.2,
+      "fat_saturated_g": 5.0,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 41.0,
+      "carbohydrates_g": 39.2,
+      "sugars_g": 13.5,
+      "dietary_fiber_g": 16.1,
+      "protein_g": 13.8
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "26.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/green-%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%95%D7%98%D7%91%D7%A2/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA/%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D/%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%95%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA/%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C-%D7%98%D7%97%D7%99%D7%A0%D7%94/p/P_7290013453075",
+    "fetched_at": "2026-06-20T08:43:46+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

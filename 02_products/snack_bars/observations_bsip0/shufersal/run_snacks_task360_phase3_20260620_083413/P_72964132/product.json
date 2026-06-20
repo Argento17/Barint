@@ -1,0 +1,75 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98/%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98-%D7%A4%D7%A8%D7%99/%D7%A4%D7%A8%D7%99%D7%9C%D7%99-%D7%98%D7%91%D7%A2-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%94-%D7%95%D7%A4%D7%99%D7%A8%D7%95%D7%AA/p/P_72964132",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:40:36+00:00"
+  },
+  "product_identity": {
+    "name": "פרילי טבע גרנולה ופירות",
+    "brand": "פרילי",
+    "barcode": "72964132",
+    "shufersal_code": "P_72964132",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IBT34_Z_P_72964132_1.png",
+    "all_cat_codes": [
+      "A011301",
+      "A011307",
+      "A0113",
+      "categories",
+      "A",
+      "A01"
+    ],
+    "second_level_category": "מוצרי חלב וביצים",
+    "manufacturer": "מחלבת אלון תבור",
+    "unit_description": "200 גרם",
+    "health_attrs": [],
+    "source": "search:חטיף גרנולה"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 73.0,
+    "fats": 1.9,
+    "sodium": 50.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 73.0,
+    "fat_g": 1.9,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 50.0,
+    "carbohydrates_g": 10.8,
+    "sugars_g": 8.5,
+    "dietary_fiber_g": null,
+    "protein_g": 3.2
+  },
+  "ingredients_raw": "חלב,מים, סוכר, תערובת גרנולה (3.1%) [פתיתי שיבולת שועל (מכיל גלוטן), סוכר, שקדים פרוסים, שמן חמניות, פתיתי חיטה(מכיל גלוטן), סובין ח יטה, סובין שיפון (מכיל גלוטן)), פירורי קורנפלקס (תירס, מלח שולחן, לתת שעורה (מכיל גלוטן)), נבט חיטה, קמח חיטה, קמח שיפון, דבש, קינמו ן, מלח, חומרי טעם וריח], משמש מבושל (1.4%), עמילן מעובד (E1442), חלבוני חלב, תוסף תזונה: סידן (טרי קלציום ציטרט), תפוח מבושל (0.4%),  צימוקים (0.3%), מייצבים (פקטין, קראגינן), מיץ לימון, חומרי טעם וריח, מווסת חומציות (חומצת לימון).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 15.900000000000002,
+    "kcal": 73.0,
+    "fail_reasons": [
+      "accounted_mass=15.9g < 70.0g (carbs=10.8+fat=1.9+prot=3.2+fiber=0.0)",
+      "kcal=73 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "5.8",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98/%D7%99%D7%95%D7%92%D7%95%D7%A8%D7%98-%D7%A4%D7%A8%D7%99/%D7%A4%D7%A8%D7%99%D7%9C%D7%99-%D7%98%D7%91%D7%A2-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%94-%D7%95%D7%A4%D7%99%D7%A8%D7%95%D7%AA/p/P_72964132",
+    "fetched_at": "2026-06-20T08:40:36+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

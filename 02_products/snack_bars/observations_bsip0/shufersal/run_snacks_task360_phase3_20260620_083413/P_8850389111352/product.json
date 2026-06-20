@@ -1,0 +1,82 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A6%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%98%D7%A8%D7%99%D7%9D/%D7%9E%D7%95%D7%92%D7%95-%D7%9E%D7%9C%D7%95%D7%9F-%D7%A7%D7%95%D7%A7%D7%95%D7%A1/p/P_8850389111352",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:48:36+00:00"
+  },
+  "product_identity": {
+    "name": "משקה בטעם מלון עם חתיכות ג'לי קוקוס",
+    "brand": "מוגו מוגו",
+    "barcode": "8850389111352",
+    "shufersal_code": "P_8850389111352",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUV54_Z_P_8850389111352_1.png",
+    "all_cat_codes": [
+      "A13",
+      "C550101",
+      "categories",
+      "C5501",
+      "C55",
+      "A53",
+      "A1308",
+      "A130208",
+      "A130819",
+      "A",
+      "A130816",
+      "A1302",
+      "A130822"
+    ],
+    "second_level_category": "יינות משקאות כהליים ותירוש",
+    "manufacturer": "סאפה פובליק קומפני לימיט",
+    "unit_description": "320 מ\"ל",
+    "health_attrs": [],
+    "source": "search:חטיף אנרגיה"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 51.0,
+    "fats": null,
+    "sodium": 29.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 51.0,
+    "fat_g": null,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 29.0,
+    "carbohydrates_g": 12.6,
+    "sugars_g": 12.2,
+    "dietary_fiber_g": null,
+    "protein_g": null
+  },
+  "ingredients_raw": "מים, חתיכות ג'ל קוקוס (15%), סוכר, פרוקטוז, מווסתי חומציות: (E-330,E-327), חומרי טעם מלון, חומר משמר E-211, מייצב:E-418, צבע מאכל E- 102(טרטזין), E-133.nnn",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 12.6,
+    "kcal": 51.0,
+    "fail_reasons": [
+      "accounted_mass=12.6g < 70.0g (carbs=12.6+fat=0.0+prot=0.0+fiber=0.0)",
+      "kcal=51 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "7.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A6%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%98%D7%A8%D7%99%D7%9D/%D7%9E%D7%95%D7%92%D7%95-%D7%9E%D7%9C%D7%95%D7%9F-%D7%A7%D7%95%D7%A7%D7%95%D7%A1/p/P_8850389111352",
+    "fetched_at": "2026-06-20T08:48:36+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

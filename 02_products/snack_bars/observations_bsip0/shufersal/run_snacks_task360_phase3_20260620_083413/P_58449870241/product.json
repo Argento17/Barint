@@ -1,0 +1,86 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%9B%D7%93%D7%95%D7%A8%D7%95%D7%A0%D7%99-%D7%AA%D7%99%D7%A8%D7%A1-%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99%2B%D7%A7%D7%A7%D7%90%D7%95/p/P_58449870241",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:38:14+00:00"
+  },
+  "product_identity": {
+    "name": "כדורוני תירס אורגני בתוספת קקאו ללא גלוטן",
+    "brand": "נייטשר פאת",
+    "barcode": "58449870241",
+    "shufersal_code": "P_58449870241",
+    "image_url": "",
+    "all_cat_codes": [
+      "F12",
+      "A2814",
+      "F",
+      "F1202",
+      "F120201",
+      "categories",
+      "A281404",
+      "A28",
+      "A"
+    ],
+    "second_level_category": "ללא גלוטן",
+    "manufacturer": "נייטשר פאת'",
+    "unit_description": "284 גרם",
+    "health_attrs": [],
+    "source": "category:A281404"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 388.0,
+    "fats": 2.5,
+    "sodium": 300.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 388.0,
+    "fat_g": 2.5,
+    "fat_saturated_g": 0.1,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 300.0,
+    "carbohydrates_g": 80.0,
+    "sugars_g": 30.0,
+    "dietary_fiber_g": 7.5,
+    "protein_g": 7.5
+  },
+  "ingredients_raw": "סה\"כ תירס (62%): קמח תירס מלא (32%), קמח תירס (30%), סוכר קנים, אבקת קקאו (5%), מולסות, תמצית טעם שוקולד, מלח",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 97.5,
+    "kcal": 388.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 388.0,
+      "fat_g": 2.5,
+      "fat_saturated_g": 0.1,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 300.0,
+      "carbohydrates_g": 80.0,
+      "sugars_g": 30.0,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 7.5
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "32.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%9B%D7%93%D7%95%D7%A8%D7%95%D7%A0%D7%99-%D7%AA%D7%99%D7%A8%D7%A1-%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99%2B%D7%A7%D7%A7%D7%90%D7%95/p/P_58449870241",
+    "fetched_at": "2026-06-20T08:38:14+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

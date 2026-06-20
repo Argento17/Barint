@@ -1,0 +1,76 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%94%D7%A7%D7%A0%D7%99%D7%95%D7%9F-%D7%94%D7%9B%D7%9C-%D7%9C%D7%91%D7%99%D7%AA/%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99%D7%A7%D7%94-%D7%95%D7%A1%D7%9C%D7%95%D7%9C%D7%A8/%D7%A1%D7%9C%D7%95%D7%9C%D7%A8%2C-%D7%A9%D7%A2%D7%95%D7%A0%D7%99%D7%9D-%2C%D7%98%D7%90%D7%91%D7%9C%D7%98%D7%99%D7%9D-%D7%95%D7%9E%D7%A6%D7%9C%D7%9E%D7%95%D7%AA/%D7%90%D7%95%D7%96%D7%A0%D7%99%D7%95%D7%AA/%D7%90%D7%95%D7%96%D7%A0%D7%99%D7%95%D7%AA-%D7%A1%D7%A4%D7%95%D7%A8%D7%98-%D7%90%D7%9C%D7%97%D7%95%D7%98%D7%99%D7%95%D7%AA-%D7%90/p/P_850033806199",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T09:01:01+00:00"
+  },
+  "product_identity": {
+    "name": "אוזניות ספורט אלחוטיות אדום SHOKZ",
+    "brand": "SHOKZ",
+    "barcode": "850033806199",
+    "shufersal_code": "P_850033806199",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVS52_Z_P_850033806199_1.png",
+    "all_cat_codes": [
+      "G030104",
+      "G0302",
+      "G030209",
+      "G03",
+      "categories",
+      "G",
+      "G0301"
+    ],
+    "second_level_category": "אלקטרוניקה וסלולר",
+    "manufacturer": "כללי",
+    "unit_description": "OPENRUN",
+    "health_attrs": [],
+    "source": "search:חטיף ספורט"
+  },
+  "nutrition_from_api_hints": {
+    "calories": null,
+    "fats": null,
+    "sodium": null,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": null,
+    "fat_g": null,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": null,
+    "carbohydrates_g": null,
+    "sugars_g": null,
+    "dietary_fiber_g": null,
+    "protein_g": null
+  },
+  "ingredients_raw": "",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 0.0,
+    "kcal": 0.0,
+    "fail_reasons": [
+      "accounted_mass=0.0g < 70.0g (carbs=0.0+fat=0.0+prot=0.0+fiber=0.0)",
+      "kcal=0 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "699.0",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%94%D7%A7%D7%A0%D7%99%D7%95%D7%9F-%D7%94%D7%9B%D7%9C-%D7%9C%D7%91%D7%99%D7%AA/%D7%90%D7%9C%D7%A7%D7%98%D7%A8%D7%95%D7%A0%D7%99%D7%A7%D7%94-%D7%95%D7%A1%D7%9C%D7%95%D7%9C%D7%A8/%D7%A1%D7%9C%D7%95%D7%9C%D7%A8%2C-%D7%A9%D7%A2%D7%95%D7%A0%D7%99%D7%9D-%2C%D7%98%D7%90%D7%91%D7%9C%D7%98%D7%99%D7%9D-%D7%95%D7%9E%D7%A6%D7%9C%D7%9E%D7%95%D7%AA/%D7%90%D7%95%D7%96%D7%A0%D7%99%D7%95%D7%AA/%D7%90%D7%95%D7%96%D7%A0%D7%99%D7%95%D7%AA-%D7%A1%D7%A4%D7%95%D7%A8%D7%98-%D7%90%D7%9C%D7%97%D7%95%D7%98%D7%99%D7%95%D7%AA-%D7%90/p/P_850033806199",
+    "fetched_at": "2026-06-20T09:01:01+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

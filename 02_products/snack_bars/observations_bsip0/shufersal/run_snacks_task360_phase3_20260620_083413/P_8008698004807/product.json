@@ -1,0 +1,89 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%A2%D7%96%D7%A8%D7%99-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%91%D7%99%D7%A9%D7%95%D7%9C/%D7%A7%D7%9E%D7%97-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/p/P_8008698004807",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T09:02:13+00:00"
+  },
+  "product_identity": {
+    "name": "קמח ללא גלוטן",
+    "brand": "שר",
+    "barcode": "8008698004807",
+    "shufersal_code": "P_8008698004807",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GPS58_Z_P_8008698004807_1.png",
+    "all_cat_codes": [
+      "F12",
+      "A2814",
+      "F",
+      "categories",
+      "A28",
+      "A281413",
+      "A",
+      "F1201",
+      "F120101"
+    ],
+    "second_level_category": "ללא גלוטן",
+    "manufacturer": "",
+    "unit_description": "1 ק\"ג",
+    "health_attrs": [
+      "LACTOSE_FREE",
+      "GLUTEN_FREE"
+    ],
+    "source": "search:חטיף ללא גלוטן"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 345.0,
+    "fats": 1.1,
+    "sodium": 400.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 345.0,
+    "fat_g": 1.1,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 400.0,
+    "carbohydrates_g": 77.0,
+    "sugars_g": 4.0,
+    "dietary_fiber_g": 6.1,
+    "protein_g": 3.7
+  },
+  "ingredients_raw": "עמילן תירס (55%), קמח אורז (30%), חלבון תורמוס, דקסטרוז, סיבי תפוחים, מסמיך (הידרוקסיפרופיל מתיל צלולוז), מלח. שמרים יבשים (2 שקיות 10X גרם) : שמרים יבשים, מתחלב (סורביטן מונוסטיראט).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 87.89999999999999,
+    "kcal": 345.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 345.0,
+      "fat_g": 1.1,
+      "fat_saturated_g": null,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 400.0,
+      "carbohydrates_g": 77.0,
+      "sugars_g": 4.0,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 3.7
+    }
+  },
+  "weight_g": 1000.0,
+  "serving_g": null,
+  "price": "33.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%A2%D7%96%D7%A8%D7%99-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%91%D7%99%D7%A9%D7%95%D7%9C/%D7%A7%D7%9E%D7%97-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/p/P_8008698004807",
+    "fetched_at": "2026-06-20T09:02:13+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

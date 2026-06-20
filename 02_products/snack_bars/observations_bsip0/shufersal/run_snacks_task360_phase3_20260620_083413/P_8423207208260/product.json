@@ -1,0 +1,89 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%A1%D7%9C%D7%99%D7%9D-%D7%93%D7%9C%D7%99%D7%A1-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%97%D7%9C%D7%91-%D7%9C%D7%9C%D7%92/p/P_8423207208260",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:37:37+00:00"
+  },
+  "product_identity": {
+    "name": "מארז חטיף דגנים+שוקולד ללא גלוטן",
+    "brand": "סלים דליס",
+    "barcode": "8423207208260",
+    "shufersal_code": "P_8423207208260",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HQZ44_Z_P_8423207208260_1.png",
+    "all_cat_codes": [
+      "F12",
+      "A2814",
+      "F",
+      "F1202",
+      "F120202",
+      "categories",
+      "A281404",
+      "A28",
+      "A500701",
+      "A"
+    ],
+    "second_level_category": "ללא גלוטן",
+    "manufacturer": "ביסצ'ורי",
+    "unit_description": "6 * 13 גרם",
+    "health_attrs": [
+      "GLUTEN_FREE"
+    ],
+    "source": "category:A281404"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 477.0,
+    "fats": 21.0,
+    "sodium": 290.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 477.0,
+    "fat_g": 21.0,
+    "fat_saturated_g": 11.0,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 290.0,
+    "carbohydrates_g": 64.0,
+    "sugars_g": 35.0,
+    "dietary_fiber_g": 1.0,
+    "protein_g": 4.9
+  },
+  "ingredients_raw": "שוקולד חלב (60%) (סוכר, חמאת קקאו, מסת קקאו, אבקת חלב דל, חמאה, מתחלב: לציטין סויה, חומרי טעם), דגנים (32%) (קמח תירס, קמח אורז, קמח  כוסמת), סיבים תזונתיים (סיבי אפונה, סיבי שיטה, סיבי במבוק), סוכר, מלח, מתחלב: לציטין סויה, ויטמינים (A, D, E, 1B, 2B, 3B, 5????",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 90.9,
+    "kcal": 477.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 477.0,
+      "fat_g": 21.0,
+      "fat_saturated_g": 11.0,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 290.0,
+      "carbohydrates_g": 64.0,
+      "sugars_g": 35.0,
+      "dietary_fiber_g": 1.0,
+      "protein_g": 4.9
+    }
+  },
+  "weight_g": null,
+  "serving_g": 13.0,
+  "price": "10.0",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%92%D7%A8%D7%A0%D7%95%D7%9C%D7%95%D7%AA/%D7%A1%D7%9C%D7%99%D7%9D-%D7%93%D7%9C%D7%99%D7%A1-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%97%D7%9C%D7%91-%D7%9C%D7%9C%D7%92/p/P_8423207208260",
+    "fetched_at": "2026-06-20T08:37:37+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

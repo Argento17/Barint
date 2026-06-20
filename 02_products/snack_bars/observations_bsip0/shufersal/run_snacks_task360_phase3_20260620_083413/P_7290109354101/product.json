@@ -1,0 +1,88 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D-%D7%95%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%9C-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9E%D7%99%D7%AA-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/p/P_7290109354101",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T09:02:06+00:00"
+  },
+  "product_identity": {
+    "name": "לחמית ללא גלוטן",
+    "brand": "אסם",
+    "barcode": "7290109354101",
+    "shufersal_code": "P_7290109354101",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WAO42_Z_P_7290109354101_1.png",
+    "all_cat_codes": [
+      "F12",
+      "A281407",
+      "A2814",
+      "F",
+      "F120501",
+      "categories",
+      "A28",
+      "A",
+      "F1205"
+    ],
+    "second_level_category": "ללא גלוטן",
+    "manufacturer": "אסם תעשיות מזון בע\"מ",
+    "unit_description": "200 גרם",
+    "health_attrs": [
+      "GLUTEN_FREE"
+    ],
+    "source": "search:חטיף ללא גלוטן"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 470.0,
+    "fats": 17.0,
+    "sodium": 400.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 470.0,
+    "fat_g": 17.0,
+    "fat_saturated_g": 7.5,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 400.0,
+    "carbohydrates_g": 74.0,
+    "sugars_g": 3.0,
+    "dietary_fiber_g": null,
+    "protein_g": 5.4
+  },
+  "ingredients_raw": "עמילן תירס, שמן צמחי, קמח סויה (11%), קמח אורז, מלטודקסטרין, סוכר, מייצב (E466), מתחלב (לציטין סויה), rnחומרי תפיחה (E503, E500, E 450), מלח, שמרים, סוכר קרמל, תמצית תחליף מלח (מלח אשלגן).",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "pass",
+    "accounted_mass": 96.4,
+    "kcal": 470.0,
+    "fail_reasons": [],
+    "basis": "per_100g",
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": {
+      "energy_kcal": 470.0,
+      "fat_g": 17.0,
+      "fat_saturated_g": 7.5,
+      "fat_trans_g": null,
+      "cholesterol_mg": null,
+      "sodium_mg": 400.0,
+      "carbohydrates_g": 74.0,
+      "sugars_g": 3.0,
+      "dietary_fiber_g": null,
+      "protein_g": 5.4
+    }
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "12.5",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D-%D7%95%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%9C-%D7%92%D7%9C%D7%95%D7%98%D7%9F/%D7%9C%D7%97%D7%9E%D7%99%D7%AA-%D7%9C%D7%9C%D7%90-%D7%92%D7%9C%D7%95%D7%98%D7%9F/p/P_7290109354101",
+    "fetched_at": "2026-06-20T09:02:06+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

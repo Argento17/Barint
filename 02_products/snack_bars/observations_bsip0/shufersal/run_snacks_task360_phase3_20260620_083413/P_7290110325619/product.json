@@ -1,0 +1,85 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%91%D7%9E%D7%A7%D7%A8%D7%A8/%D7%97%D7%9C%D7%91-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%AA%D7%97%D7%9C%D7%99%D7%A4%D7%99%D7%99%D7%9D/%D7%9E%D7%A9%D7%A7%D7%94-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C/p/P_7290110325619",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:43:06+00:00"
+  },
+  "product_identity": {
+    "name": "משקה שיבולת שועל",
+    "brand": "תנובה אלטרנטיב",
+    "barcode": "7290110325619",
+    "shufersal_code": "P_7290110325619",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DEQ46_Z_P_7290110325619_1.png",
+    "all_cat_codes": [
+      "F10",
+      "categories",
+      "F100202",
+      "A0112",
+      "A280501",
+      "A500501",
+      "A011201",
+      "F",
+      "A2805",
+      "A28",
+      "A",
+      "F1002",
+      "A01"
+    ],
+    "second_level_category": "מוצרי מקרר וביצים",
+    "manufacturer": "תנובה בע\"מ",
+    "unit_description": "1 ליטר",
+    "health_attrs": [
+      "LACTOSE_FREE",
+      "VEGAN"
+    ],
+    "source": "search:חטיף שיבולת שועל"
+  },
+  "nutrition_from_api_hints": {
+    "calories": 55.0,
+    "fats": 3.0,
+    "sodium": 40.0,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 55.0,
+    "fat_g": 3.0,
+    "fat_saturated_g": 0.3,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 40.0,
+    "carbohydrates_g": 5.0,
+    "sugars_g": null,
+    "dietary_fiber_g": 1.5,
+    "protein_g": 1.3
+  },
+  "ingredients_raw": "מיצוי שיבולת שועל (95%) (מים, שיבולת שועל 10%) (מכיל גלוטן שיבולת שועל), שמן קנולה, סיבים תזונתיים (אנולין), תוסף תזונה: סידן: (קלצי ום קרבונט, טרי קלציום פוספט), מווסת חומציות: דיפוטסיום פוספט, מלח, מייצב: ג'לן גאם, ויטמינים B12, D, E (E-1.8 מ\"ג, D-0.75 מק\"ג, B1 2- 0.4 מק\"ג ל- 100 גרם)",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 10.8,
+    "kcal": 55.0,
+    "fail_reasons": [
+      "accounted_mass=10.8g < 70.0g (carbs=5.0+fat=3.0+prot=1.3+fiber=1.5)",
+      "kcal=55 < 150.0 (dry snack minimum)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "13.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA-%D7%91%D7%9E%D7%A7%D7%A8%D7%A8/%D7%97%D7%9C%D7%91-%D7%95%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%AA%D7%97%D7%9C%D7%99%D7%A4%D7%99%D7%99%D7%9D/%D7%9E%D7%A9%D7%A7%D7%94-%D7%A9%D7%99%D7%91%D7%95%D7%9C%D7%AA-%D7%A9%D7%95%D7%A2%D7%9C/p/P_7290110325619",
+    "fetched_at": "2026-06-20T08:43:06+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}

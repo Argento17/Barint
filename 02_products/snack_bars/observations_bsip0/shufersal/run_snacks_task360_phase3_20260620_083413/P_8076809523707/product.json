@@ -1,0 +1,75 @@
+{
+  "schema_version": "bsip0_task360_phase3_v1",
+  "source": {
+    "retailer": "Shufersal",
+    "retailer_id": "shufersal",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A4%D7%A1%D7%98%D7%94-%D7%90%D7%95%D7%A8%D7%96-%D7%A7%D7%95%D7%A1%D7%A7%D7%95%D7%A1-%D7%95%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%A4%D7%A1%D7%98%D7%94-%D7%95%D7%90%D7%98%D7%A8%D7%99%D7%95%D7%AA/%D7%A4%D7%A1%D7%98%D7%94-%D7%A7%D7%A1%D7%98%D7%9C%D7%A0%D7%94-%D7%91%D7%A8%D7%99%D7%9C%D7%94/p/P_8076809523707",
+    "source_type": "json_api+product_page_html",
+    "scrape_run": "run_snacks_task360_phase3_20260620_083413",
+    "scraped_at": "2026-06-20T08:56:23+00:00"
+  },
+  "product_identity": {
+    "name": "פסטה קסטלנה ברילה",
+    "brand": "ברילה",
+    "barcode": "8076809523707",
+    "shufersal_code": "P_8076809523707",
+    "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JJO62_Z_P_8076809523707_1.png",
+    "all_cat_codes": [
+      "A2211",
+      "D",
+      "A22",
+      "categories",
+      "A",
+      "A221110",
+      "A500901"
+    ],
+    "second_level_category": "בישול אפיה ושימורים",
+    "manufacturer": "ברילה ג'י.אי.אר. פרטלי ס",
+    "unit_description": "500 גרם",
+    "health_attrs": [],
+    "source": "search:fitness bar"
+  },
+  "nutrition_from_api_hints": {
+    "calories": null,
+    "fats": null,
+    "sodium": null,
+    "sugar": null
+  },
+  "nutrition_numeric_per_100g": {
+    "energy_kcal": 180.0,
+    "fat_g": 1.0,
+    "fat_saturated_g": null,
+    "fat_trans_g": null,
+    "cholesterol_mg": null,
+    "sodium_mg": 0.0,
+    "carbohydrates_g": 35.6,
+    "sugars_g": 1.8,
+    "dietary_fiber_g": 1.5,
+    "protein_g": 6.3
+  },
+  "ingredients_raw": "100% סמולינה מחיטת דורום (מכיל גלוטן)",
+  "allergens_raw": "",
+  "plausibility_gate": {
+    "verdict": "quarantine",
+    "accounted_mass": 44.4,
+    "kcal": 180.0,
+    "fail_reasons": [
+      "accounted_mass=44.4g < 70.0g (carbs=35.6+fat=1.0+prot=6.3+fiber=1.5)"
+    ],
+    "basis": null,
+    "conversion_factor": 1.0,
+    "serving_g_used": null,
+    "final_nutrition": null
+  },
+  "weight_g": null,
+  "serving_g": null,
+  "price": "16.9",
+  "provenance": {
+    "source": "shufersal_json_api+html_scrape",
+    "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%91%D7%99%D7%A9%D7%95%D7%9C-%D7%90%D7%A4%D7%99%D7%94-%D7%95%D7%A9%D7%99%D7%9E%D7%95%D7%A8%D7%99%D7%9D/%D7%A4%D7%A1%D7%98%D7%94-%D7%90%D7%95%D7%A8%D7%96-%D7%A7%D7%95%D7%A1%D7%A7%D7%95%D7%A1-%D7%95%D7%A7%D7%98%D7%A0%D7%99%D7%95%D7%AA/%D7%A4%D7%A1%D7%98%D7%94-%D7%95%D7%90%D7%98%D7%A8%D7%99%D7%95%D7%AA/%D7%A4%D7%A1%D7%98%D7%94-%D7%A7%D7%A1%D7%98%D7%9C%D7%A0%D7%94-%D7%91%D7%A8%D7%99%D7%9C%D7%94/p/P_8076809523707",
+    "fetched_at": "2026-06-20T08:56:23+00:00",
+    "client_version": "task360_phase3_v1",
+    "verification_status": "candidate",
+    "off_check": "PASS - no Open Food Facts"
+  }
+}
