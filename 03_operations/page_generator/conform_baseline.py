@@ -41,7 +41,7 @@ SHELF_FILES: dict[str, str] = {
     "hummus": "hummus_frontend_v5.json",
     "juices": "juices_frontend_v3.json",
     "milk": "milk_frontend_v1.json",
-    "snacks": "snacks_frontend_v3.json",
+    "snacks": "snacks_frontend_v4.json",
 }
 
 REQUIRED_PRODUCT_KEYS = (
