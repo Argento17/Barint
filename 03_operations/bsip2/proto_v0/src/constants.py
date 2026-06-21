@@ -1394,8 +1394,25 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "לציטין", "לציטין סויה", "לציטין מסויה", "לציטין חמניות",
             "לציטין מחמניות", "לציטין חמנית", "לציטין לפתית",
             "מתחלב (לציטין)", "מתחלב: לציטין",
+            # common Israeli-label spelling variant (no yod): לצטין
+            "לצטין", "לצטין סויה", "לצטין לפתית",
         ],
         "cosmetic_mup": True,   # emulsifier — restores texture lost in processing
+    },
+    "E414": {
+        # Acacia gum / gum arabic — natural soluble fibre exuded by the acacia tree,
+        # used as a stabiliser/thickener. EFSA: no safety concern, "not specified" ADI;
+        # JECFA "not limited"; FDA GRAS. A benign natural hydrocolloid. Disclosed because
+        # it is a declared E-number stabiliser, but tier: functional (no asterisk).
+        "name_he": "גומי ערבי",
+        "name_en": "Acacia gum / gum arabic",
+        "tier": "functional",
+        "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+        "match_patterns_he": [
+            "אקציה גאם", "אקסיה גאם", "גומי ערבי", "גומי אקציה",
+            "מייצב (אקציה גאם)", "414E", "E414",
+        ],
+        "cosmetic_mup": True,   # texture stabiliser
     },
     "E476": {
         # PGPR — polyglycerol polyricinoleate. Synthetic ester of polyglycerols and

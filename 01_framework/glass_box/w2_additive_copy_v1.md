@@ -306,6 +306,11 @@ live in signal_extractor.py + ingredient_taxonomy.py (emulsifier_benign / emulsi
 **Explanation (final):** PGPR הוא חומר תחליב סינתטי המשמש בציפויי שוקולד להפחתת צמיגות; מאושר ברמות הנוכחיות, אינו מוכר בשאר שימושי המזון.
 **Change from draft:** new entry. Character count: 101. DEC-006 verified: no alarm word, no health verdict. "סינתטי" is accurate, not alarmist; "מאושר" provides the regulatory counter-position.
 
+### E414 — גומי ערבי (Acacia gum / gum arabic)
+**Tier:** functional
+**Explanation (final):** גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון.
+**Change from draft:** new entry (chocolate scrape surfaced acacia gum in a Klik countline). DEC-006 verified: no alarm word, no health verdict; benign natural hydrocolloid stated plainly.
+
 ---
 
 ## W3 addendum sign-off (TASK-181E)
