@@ -1,5 +1,5 @@
 ---
-id: TASK-350
+id: TASK-363
 title: SIE red-team CRITICAL remediation (RT-1 elemental veto bug, RT-2 D3 claim translation, RT-3 infant dosing)
 owner: nutrition-agent
 status: CLOSED
