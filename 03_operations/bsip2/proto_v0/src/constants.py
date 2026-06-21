@@ -1371,6 +1371,56 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "cosmetic_mup": True,   # colorant
     },
 
+    # ── Bar-shelf emulsifiers — Wave 6 extension (2026-06-21) ──────────────────
+    # E322 and E476 were absent from the disclosure library despite being present
+    # in real ingredient text on snack bars (snk-006, snk-012–017) and protein bars
+    # (prot-013, prot-014). Both are already fully modelled in the SCORING system
+    # via signal_extractor.py + ingredient_taxonomy.py (E322 as emulsifier_benign
+    # F1 relief; E476 as emulsifier_medium ECS-v1). This entry is DISPLAY-ONLY —
+    # it adds no new scoring logic. ANNOTATE-ONLY. Tier authority: Nutrition Agent
+    # (this file). D7 co-sign not required (no score movement).
+    "E322": {
+        # Lecithin (soy / sunflower / rapeseed). EFSA ADI "not specified" (no safety
+        # concern at food-use levels); JECFA "not limited"; FDA GRAS.
+        # Naturally derived phospholipid; classified emulsifier_benign in scoring
+        # taxonomy (F1 +2 relief — engine already credits it positively vs generic
+        # synthetic emulsifiers). No dose-response concern, no contested signal.
+        # Tier: functional — clear, well-characterised, plant-derived, no asterisk.
+        "name_he": "לציטין",
+        "name_en": "Lecithin (soy / sunflower / rapeseed)",
+        "tier": "functional",
+        "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+        "match_patterns_he": [
+            "לציטין", "לציטין סויה", "לציטין מסויה", "לציטין חמניות",
+            "לציטין מחמניות", "לציטין חמנית", "לציטין לפתית",
+            "מתחלב (לציטין)", "מתחלב: לציטין",
+        ],
+        "cosmetic_mup": True,   # emulsifier — restores texture lost in processing
+    },
+    "E476": {
+        # PGPR — polyglycerol polyricinoleate. Synthetic ester of polyglycerols and
+        # ricinoleic acid (from castor oil). Used almost exclusively in chocolate coatings
+        # to reduce viscosity / substitute for part of the cocoa butter — an industrial
+        # cost-reduction ingredient. EFSA 2017 ADI 25 mg/kg bw/d; JECFA ADI 7.5 mg/kg;
+        # typical consumer exposure ≈1.7 mg/kg/d in heavy chocolate consumers — well below
+        # both ADIs. No carcinogenicity, genotoxicity, or reproductive concern at food doses.
+        # ECS-v1 (constants.py) already classifies it as emulsifier_medium (-3 ECS points)
+        # because it is synthetic and industrial; that scoring signal is already live.
+        # No contested evidence (no active mechanistic controversy at food doses) → not
+        # `contested`. Synthetic, industrial-purpose emulsifier → not `functional`.
+        # Tier: likely-neutral — approved, no harm signal at food doses, but synthetic and
+        # structurally industrial. Consistent with SSL/DATEM treatment.
+        # On Israeli labels written as "476E", "לציטין לפתית, 476E", or "E476".
+        "name_he": "פוליגליצרול PGPR",
+        "name_en": "Polyglycerol polyricinoleate (PGPR)",
+        "tier": "likely-neutral",
+        "function_he": "חומר תחליב סינתטי בציפויי שוקולד — מפחית צמיגות ומחליף חלקית חמאת קקאו",
+        "match_patterns_he": [
+            "פוליגליצרול פוליריצינולאט", "476E", "PGPR", "pgpr",
+        ],
+        "cosmetic_mup": True,   # emulsifier — industrial texture agent
+    },
+
     # ── Curing preservatives — first confirmed-negative entries ──
     # IARC 2A ("probably carcinogenic to humans") for nitrate/nitrite in processed meat;
     # N-nitrosamine formation mechanism well-established. cosmetic_mup=False: primary
