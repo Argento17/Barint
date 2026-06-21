@@ -42,6 +42,7 @@ SHELF_FILES: dict[str, str] = {
     "juices": "juices_frontend_v3.json",
     "milk": "milk_frontend_v1.json",
     "snacks": "snacks_frontend_v5.json",
+    "protein_bars": "protein_bars_frontend_v1.json",
 }
 
 REQUIRED_PRODUCT_KEYS = (
@@ -196,6 +197,41 @@ def check_copy_hygiene(product: dict[str, Any]) -> list[str]:
     return hits
 
 
+# Additive-disclosure completeness (owner gate, 2026-06-21): if the ingredient list
+# clearly carries an additive (an E-code, or a named additive class) but the product's
+# d4_additives section is empty, the additives drilldown is silently missing data the
+# label actually states. Empty-by-default d4_additives used to pass; it no longer does.
+RE_ADDITIVE_ECODE = re.compile(r"E\s?\d{3}[a-z]?|(?<!\d)\d{3}\s?E(?![a-z])")
+# High-confidence disclosure-worthy classes only. Borderline classes (humectant/glycerol,
+# antioxidant/tocopherols) are deliberately EXCLUDED pending a Nutrition Agent ruling on the
+# canonical disclosure set, so the gate does not false-flag e.g. glycerol on the flagship.
+ADDITIVE_NAME_TOKENS = (
+    "מתחלב",       # emulsifier
+    "חומר תפיחה",  # raising agent
+    "מייצב",       # stabilizer
+    "לציטין",       # lecithin (E322)
+)
+
+
+def check_additives_completeness(product: dict[str, Any]) -> list[str]:
+    pid = str(product.get("id", "?"))
+    expansion = product.get("expansion")
+    if not isinstance(expansion, dict):
+        return []
+    ingredients = expansion.get("ingredients")
+    if not isinstance(ingredients, str) or not ingredients.strip():
+        return []
+    has_additive = bool(RE_ADDITIVE_ECODE.search(ingredients)) or any(
+        tok in ingredients for tok in ADDITIVE_NAME_TOKENS
+    )
+    if has_additive and not product.get("d4_additives"):
+        return [
+            f"{pid} additives-incomplete: ingredients carry an additive "
+            f"(E-code/named class) but d4_additives is empty"
+        ]
+    return []
+
+
 def check_product(
     product: dict[str, Any],
     *,
@@ -265,6 +301,7 @@ def check_product(
             rank_issues.append(f"{pid} categoryTotal={ct!r} not an integer")
 
     copy_issues.extend(check_copy_hygiene(product))
+    copy_issues.extend(check_additives_completeness(product))
 
     return missing, dict(forbidden), no_image, rank_issues, copy_issues
 

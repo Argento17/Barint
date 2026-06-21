@@ -2,32 +2,28 @@
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import {
-  filterSnacksProducts,
-  SNACKS_SHELF_LENS_OPTIONS,
-  type SnacksShelfFilterId,
-} from "@/lib/comparisons/snacks-shelf-filters";
+  filterProteinBarsProducts,
+  PROTEIN_BARS_SHELF_LENS_OPTIONS,
+  type ProteinBarsShelfFilterId,
+} from "@/lib/comparisons/protein-bars-shelf-filters";
 import type { BariProductVM } from "@/lib/view-models";
 
-export interface SnacksComparisonPageProps {
+export interface ProteinBarsComparisonPageProps {
   products: BariProductVM[];
   metadataLine: string;
-  hero: {
-    eyebrow: string;
-    title: string;
-  };
+  hero: { eyebrow: string; title: string };
   prologueSentences: readonly string[];
   methodologyLines: readonly string[];
-  /** Single category-wide caveat, shown once in the header (cheese gold-standard format). */
   categoryNote?: string;
   initialExpandedProductId?: string | null;
 }
 
-const snacksShelfFilters = {
-  lensOptions: SNACKS_SHELF_LENS_OPTIONS,
-  filterProducts: filterSnacksProducts,
+const proteinBarsShelfFilters = {
+  lensOptions: PROTEIN_BARS_SHELF_LENS_OPTIONS,
+  filterProducts: filterProteinBarsProducts,
 } as const;
 
-export function SnacksComparisonPage({
+export function ProteinBarsComparisonPage({
   products,
   metadataLine,
   hero,
@@ -35,19 +31,19 @@ export function SnacksComparisonPage({
   methodologyLines,
   categoryNote,
   initialExpandedProductId = null,
-}: SnacksComparisonPageProps) {
+}: ProteinBarsComparisonPageProps) {
   return (
-    <ComparisonPage<SnacksShelfFilterId>
+    <ComparisonPage<ProteinBarsShelfFilterId>
       products={products}
       metadataLine={metadataLine}
       hero={hero}
       prologueSentences={prologueSentences}
       methodologyLines={methodologyLines}
-      shelfFilters={snacksShelfFilters}
+      shelfFilters={proteinBarsShelfFilters}
       metricSpecs={[]}
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
-      category="snacks"
+      category="protein-bars"
     />
   );
 }

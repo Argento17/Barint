@@ -11,15 +11,16 @@ import { FeaturedHummusIntelligenceCard } from "@/components/hashvaot/featured-h
 import { FeaturedJuicesIntelligenceCard } from "@/components/hashvaot/featured-juices-intelligence-card";
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
+import { FeaturedProteinBarsIntelligenceCard } from "@/components/hashvaot/featured-protein-bars-intelligence-card";
 import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
-import { breadProducts } from "@/lib/comparisons/bread-page-data";
-import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
+import { breadProducts } from "@/lib/comparisons/bread-comparison-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
+import { proteinBarsProducts } from "@/lib/comparisons/protein-bars-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
 import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-page-data";
 import { cerealsProducts } from "@/lib/comparisons/cereals-page-data";
@@ -56,7 +57,8 @@ export default function HashvaotIndexPage() {
   const productCount = milkProducts.length;
   const milkDescription = `השוואה בין ${productCount} מוצרי חלב ומשקאות חלב פופולריים בישראל — כולל חלב פרה, סויה, שיבולת שועל, שקדים ומוצרים עתירי חלבון. Bari מנתחת רכיבים, ערכים תזונתיים, רמת עיבוד ותוספים כדי להציג את הטריידאופים בין המוצרים.`;
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
-  const snacksDescription = `דוח השוואה לחטיפי המדף: ${SNACK_REPORT_STATS.scraped} נסרקו ב${SNACK_REPORT_STATS.retailer}, ${snacksProducts.length} מוצרים בדף ההשוואה.`;
+  const snacksDescription = `דוח השוואה לחטיפי הדגנים: ${snacksProducts.length} חטיפי דגנים בדף ההשוואה, מתוך מדף החטיפים שנסרק בשופרסל.`;
+  const proteinBarsDescription = `דוח השוואה לחטיפי החלבון: ${proteinBarsProducts.length} חטיפים עם 25–34 גרם חלבון ל-100 גרם — והמחיר ההנדסי שמגיע איתם. קטגוריה נפרדת מחטיפי הדגנים.`;
   const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
   const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
@@ -133,6 +135,7 @@ export default function HashvaotIndexPage() {
           />
           <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
           <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
+          <FeaturedProteinBarsIntelligenceCard href="/hashvaot/protein-bars" description={proteinBarsDescription} />
           <FeaturedHummusIntelligenceCard
             href={HUMMUS_COMPARISON_HREF}
             description={hummusDescription}

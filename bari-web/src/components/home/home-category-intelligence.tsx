@@ -3,7 +3,6 @@ import { ChevronLeft } from "lucide-react";
 
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
-import { SNACK_REPORT_STATS } from "@/lib/comparisons/snack-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { HomeContainer } from "./section-frame";
 
@@ -25,7 +24,7 @@ const CATEGORIES = [
   {
     id: "bars",
     label: "חטיפי גרנולה וחלבון",
-    hint: `${SNACK_REPORT_STATS.scraped} נסרקו · ${snacksProducts.length} בדף · ${SNACK_REPORT_STATS.retailer}`,
+    hint: `655 נסרקו · ${snacksProducts.length} בדף · שופרסל`,
     href: SNACK_COMPARISON_HREF,
     status: "זמין",
   },

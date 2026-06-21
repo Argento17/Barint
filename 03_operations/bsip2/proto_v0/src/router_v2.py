@@ -21,7 +21,7 @@ Key improvements over v1 (category_classifier.py):
 
 from __future__ import annotations
 
-ROUTER_VERSION = "router_v2"
+ROUTER_VERSION = "router_v2.1"  # REQ-362-R1: protein-marker/engineered-bar routing fixes
 
 CATEGORIES = [
     "whole_food_fat",
@@ -674,6 +674,113 @@ def _check_supplement_quarantine(name: str, ing_text: str) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
+# REQ-362-R1 — Post-classification routing overrides (TASK-362, co-signed)
+# ---------------------------------------------------------------------------
+# These three rules correct misrouting WITHOUT touching dimension scoring, caps,
+# or floors.  They are applied as a Stage 4 pass after Stage 3 resolution.
+# Any override is recorded in classification_basis and req362_override_trace.
+
+# Rule 1 — Protein-marker name tokens that force cracker→snack_bar_granola.
+# Must match canonical_name_he (lowercased).  Ingredient text is NOT consulted.
+_R1_PROTEIN_NAME_MARKERS: frozenset[str] = frozenset({"חלבון", "פרוטאין", "protein"})
+
+# Rule 2 — Threshold for engineered-bar override (whole_food_fat→snack_bar_granola).
+_R2_PROTEIN_THRESHOLD_G: float = 20.0    # per-100g
+_R2_INGREDIENT_COUNT_MIN: int  = 15
+
+
+def _apply_req362_overrides(result: dict, product: dict) -> dict:
+    """REQ-362-R1: apply three post-classification routing corrections.
+
+    Rule 1 — Protein-marker overrides cracker:
+        If engine_category == cracker AND product name (canonical_name_he) contains
+        a protein marker (חלבון | פרוטאין | protein) → route to snack_bar_granola.
+        Rationale: salty-name token "מלוח" in a protein-bar name should not anchor
+        the product as a cracker; the explicit protein declaration wins.
+
+    Rule 2 — Engineered-bar overrides whole_food_fat:
+        If engine_category == whole_food_fat AND protein_g ≥ 20 (per-100g) AND
+        ingredient_count ≥ 15 → route to snack_bar_granola.
+        The whole_food_fat lens is for tahini/nut-butter products; a multi-ingredient
+        protein bar with ≥20 g protein/100g is not a whole-food-fat product.
+        ingredient_count is emitted into the trace for QA verification.
+
+    Rule 3 is implemented upstream in signal_extractor.py (negation-aware sweetener
+    detection for "ללא ממתיקים").  Nothing to do here.
+
+    Returns a (possibly mutated) copy of result with req362_override_trace added.
+    """
+    name = (product.get("canonical_name_he") or "").lower()
+    nn   = product.get("normalized_nutrition_per_100g") or {}
+    protein_g      = nn.get("protein_g")
+    ingredient_count = product.get("_req362_ingredient_count")  # injected by caller
+
+    current_cat = result.get("category")
+    override_applied = None
+    override_reason  = None
+
+    # --- Rule 1 ---
+    if current_cat == "cracker":
+        protein_marker_hit = next(
+            (m for m in _R1_PROTEIN_NAME_MARKERS if m in name), None
+        )
+        if protein_marker_hit:
+            result["category"]              = "snack_bar_granola"
+            result["category_subtype"]      = "protein_bar"
+            result["anchor_override"]       = True
+            result["category_confidence"]   = 0.85
+            result["confidence_band"]       = "high"
+            result["category_instability_flag"] = False
+            result["routing_instability_warning"] = None
+            result["classification_basis"]  = [
+                f"req362_r1:protein_name_marker({protein_marker_hit})",
+                f"cracker_overridden:protein_marker_beats_savory_signal",
+            ] + result.get("classification_basis", [])[:3]
+            override_applied = "rule1_protein_marker"
+            override_reason  = (
+                f"cracker→snack_bar_granola: protein marker '{protein_marker_hit}' "
+                f"in name overrides cracker:מלוח routing"
+            )
+
+    # --- Rule 2 ---
+    elif current_cat == "whole_food_fat":
+        prot_ok  = (protein_g is not None and protein_g >= _R2_PROTEIN_THRESHOLD_G)
+        count_ok = (ingredient_count is not None and ingredient_count >= _R2_INGREDIENT_COUNT_MIN)
+        if prot_ok and count_ok:
+            result["category"]              = "snack_bar_granola"
+            result["category_subtype"]      = "protein_bar"
+            result["anchor_override"]       = True
+            result["category_confidence"]   = 0.82
+            result["confidence_band"]       = "high"
+            result["category_instability_flag"] = False
+            result["routing_instability_warning"] = None
+            result["classification_basis"]  = [
+                f"req362_r2:engineered_bar(protein_g={protein_g},ingredient_count={ingredient_count})",
+                f"whole_food_fat_overridden:high_protein_multiingredient_bar",
+            ] + result.get("classification_basis", [])[:3]
+            override_applied = "rule2_engineered_bar"
+            override_reason  = (
+                f"whole_food_fat→snack_bar_granola: protein_g={protein_g} ≥ "
+                f"{_R2_PROTEIN_THRESHOLD_G} AND ingredient_count={ingredient_count} "
+                f"≥ {_R2_INGREDIENT_COUNT_MIN}"
+            )
+        # else: threshold not met; emit diagnostic for QA
+        elif prot_ok and not count_ok:
+            override_reason = (
+                f"rule2_not_fired: protein_g={protein_g} qualifies but "
+                f"ingredient_count={ingredient_count} < {_R2_INGREDIENT_COUNT_MIN}"
+            )
+
+    result["req362_override_trace"] = {
+        "override_applied": override_applied,
+        "reason":           override_reason,
+        "ingredient_count_used": ingredient_count,
+        "protein_g_used":   protein_g,
+    }
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
 
@@ -681,10 +788,32 @@ def classify_category(product: dict) -> dict:
     """
     Three-stage router. Drop-in replacement for category_classifier.classify_category().
     All v1 output keys are preserved; new router-trace keys are additive.
+
+    Stage 4 (REQ-362-R1): post-classification routing overrides applied after Stage 3.
+    See _apply_req362_overrides() for rule descriptions.
     """
     name     = (product.get("canonical_name_he") or "").lower()
     ing_text = (product.get("ingredients_text_he") or "").lower()
     nn       = product.get("normalized_nutrition_per_100g") or {}
+
+    # REQ-362-R1: resolve ingredient_count for Rule 2.  The count is taken from
+    # the BSIP1 ingredient list (already sanitized by the signal extractor).  If
+    # not present, fall back to a comma-split of the ingredient text — this must
+    # be consistent with what signal_extractor.py sees.
+    # BSIP1 uses "ingredients_list" (primary) or "ingredient_list" or "ingredients".
+    _ing_list = (product.get("ingredients_list")
+                 or product.get("ingredient_list")
+                 or product.get("ingredients")
+                 or [])
+    if _ing_list:
+        _ingredient_count = len(_ing_list)
+    else:
+        import re as _re
+        _ing_text_raw = product.get("ingredients_text_he") or ""
+        _parts = [x.strip() for x in _re.split(r"[,;]", _ing_text_raw) if x.strip() and len(x.strip()) > 1]
+        _ingredient_count = len(_parts)
+    # Inject for _apply_req362_overrides so it can log the count without re-deriving.
+    product["_req362_ingredient_count"] = _ingredient_count
 
     # Supplement quarantine — run first; injected into result regardless of routing path
     supplement_q = _check_supplement_quarantine(name, ing_text)
@@ -709,7 +838,7 @@ def classify_category(product: dict) -> dict:
         suppressed_log.extend(bev_suppressed)
         result = _resolve(scores, signal_log, suppressed_log)
         result["supplement_quarantine"] = supplement_q
-        return result
+        return _apply_req362_overrides(result, product)
 
     # Stage 1 — hard anchor
     anchor = _check_anchors(name)
@@ -717,7 +846,7 @@ def classify_category(product: dict) -> dict:
         cat, subtype, conf, term = anchor
         result = _build_anchor_result(cat, subtype, conf, term, name, ing_text, nn, product)
         result["supplement_quarantine"] = supplement_q
-        return result
+        return _apply_req362_overrides(result, product)
 
     # Stage 2 — signal scoring
     scores, signal_log, suppressed_log = _score_signals(name, ing_text, nn)
@@ -737,7 +866,9 @@ def classify_category(product: dict) -> dict:
     # Stage 3 — resolution
     result = _resolve(scores, signal_log, suppressed_log)
     result["supplement_quarantine"] = supplement_q
-    return result
+
+    # Stage 4 — REQ-362-R1 post-classification routing overrides
+    return _apply_req362_overrides(result, product)
 
 
 # ---------------------------------------------------------------------------

@@ -279,6 +279,35 @@ Tier-4 framework term / raw score / recommendation language) and the ≤120-char
 
 ---
 
+---
+
+## Wave 6 addendum — bar-shelf emulsifiers (2026-06-21)
+
+**Added 2026-06-21.** E322 (lecithin) and E476 (PGPR) were present in real ingredient text
+on the snack-bar and protein-bar shelves but absent from the D4 detection library.
+This addendum adds their `explanation_he` entries. Same standards and ≤120-char limit as all
+prior entries. Presentation-only — no score moved.
+
+**Evidence basis:** EFSA ADIs (E322 "not specified"; E476 ADI 25 mg/kg, 2017 re-evaluation);
+JECFA "not limited" (E322) / ADI 7.5 mg/kg (E476); scoring-taxonomy classification already
+live in signal_extractor.py + ingredient_taxonomy.py (emulsifier_benign / emulsifier_medium).
+
+---
+
+### E322 — לציטין (Lecithin)
+**Tier:** functional
+**Explanation (final):** לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.
+**Change from draft:** new entry. Character count: 87. DEC-006 verified: no alarm word, no health verdict.
+
+---
+
+### E476 — פוליגליצרול PGPR (Polyglycerol polyricinoleate)
+**Tier:** likely-neutral
+**Explanation (final):** PGPR הוא חומר תחליב סינתטי המשמש בציפויי שוקולד להפחתת צמיגות; מאושר ברמות הנוכחיות, אינו מוכר בשאר שימושי המזון.
+**Change from draft:** new entry. Character count: 101. DEC-006 verified: no alarm word, no health verdict. "סינתטי" is accurate, not alarmist; "מאושר" provides the regulatory counter-position.
+
+---
+
 ## W3 addendum sign-off (TASK-181E)
 
 - All 14 lines authored against the same standards as the original 20 (insight_line_spec + row_description_standard + DEC-006 alarm-framing prohibition).
