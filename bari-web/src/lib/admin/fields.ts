@@ -30,7 +30,8 @@ export const LIVE_COMPARISON_FILES: Record<string, string> = {
   hummus: "hummus_frontend_v5.json",
   juices: "juices_frontend_v3.json",
   milk: "milk_frontend_v1.json",
-  snacks: "snacks_frontend_v3.json",
+  snacks: "snacks_frontend_v5.json",
+  protein_bars: "protein_bars_frontend_v1.json",
 };
 
 // Top-level single-string copy fields.
