@@ -40,10 +40,16 @@ export function enrichRowSurface(products: BariProductVM[]): BariProductVM[] {
  * (TASK-167). Kept as a passthrough so callers don't have to change.
  */
 export function enrichRowReasonOnly(products: BariProductVM[]): BariProductVM[] {
-  // No metric bar (e.g. snacks, all nutrition null), but route the authored verdict to the
-  // multi-line rowVerdict slot (TASK-168) so the collapsed row shows it in full.
+  // No metric bar (e.g. snacks, all nutrition null). The collapsed row renders rowVerdict
+  // (the multi-line interpretive verdict, like every other category). KEEP the corpus's
+  // authored rowVerdict when present — earlier this clobbered it with the short insightLine,
+  // which discarded the authored judgment entirely (owner caught it 2026-06-21). Fall back
+  // to insightLine only for products that have no distinct rowVerdict.
   return products.map((product) => ({
     ...product,
-    rowVerdict: product.insightLine,
+    rowVerdict:
+      typeof product.rowVerdict === "string" && product.rowVerdict.trim()
+        ? product.rowVerdict
+        : product.insightLine,
   }));
 }
