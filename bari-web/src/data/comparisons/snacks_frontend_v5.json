@@ -1,12 +1,14 @@
 {
   "_meta": {
-    "version": "snacks_frontend_task362",
+    "version": "snacks_frontend_task373_staged",
     "category": "snacks",
     "product_count": 21,
     "generated": "2026-06-20T00:00:00+00:00",
     "copy_status": "PARTIAL_PENDING_COPY",
     "engine_unchanged": true,
-    "off_check": "PASS - no Open Food Facts"
+    "off_check": "PASS - no Open Food Facts",
+    "staging_note": "TASK-373 staged scores, copy refresh pending",
+    "scores_staged": "2026-06-22"
   },
   "products": [
     {
@@ -59,7 +61,7 @@
         "comparisonContext": "כל חטיף אחר במדף מבקש שתבחרו: או סיבים, או סוכר נמוך. כאן שניהם נמצאים באותו מוצר, והמתיקות מגיעה מתמרים אמיתיים ולא מסירופ. זו הסיבה שהוא לבדו בראש.",
         "positiveSignals": [
           "23 גרם סיבים ל-100 גרם — הכי גבוה במדף, ומגיעים מדגנים ועולש, לא מתוספת",
-          "10 גרם סוכר בלבד — בזמן שרוב המדף יושב על 30 עד 50 גרם",
+          "9.9 גרם סוכר — הנמוך ביותר על המדף, בפער גדול מהחטיף הבא שמגיע לכ-22 גרם ומשם ל-50 גרם",
           "המתיקות כולה מתמרים וסילאן, בלי שום סירופ או תחליף סוכר",
           "כמעט בלי שומן רווי — 0.4 גרם ל-100 גרם"
         ],
@@ -141,6 +143,205 @@
       }
     },
     {
+      "id": "snk-004",
+      "barcode": "7290011498948",
+      "name": "חטיפי תמר בציפוי שוקולד",
+      "name_he": "חטיפי תמר בציפוי שוקולד",
+      "brand": "שקד תבור",
+      "score": 49.0,
+      "grade": "D",
+      "rank": 3,
+      "categoryTotal": 21,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 381.0,
+        "fat_g": 8.9,
+        "fat_saturated_g": 5.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 36.0,
+        "carbohydrates_g": 64.6,
+        "sugars_g": 50.5,
+        "dietary_fiber_g": 13.4,
+        "protein_g": 4.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "רשימת הרכיבים הקצרה ביותר במדף: תמרים ושוקולד 100% קקאו — בלי סוכר מוסף, בלי שום תוסף.",
+      "rowVerdict": "שני רכיבים, וזהו: 84% תמרים ו-16% שוקולד מריר ב-100% קקאו. בלי סירופ, בלי תוסף, בלי סוכר מוסף. במדף שבו רוב המוצרים נבנו מעשרות רכיבים ומסירופ מוביל את המתיקות, זה נבדל בצורה מובהקת. הכנות כאן היא מוחלטת — והמגבלה היא מוחלטת בדיוק כמוה: תמרים הם בעיקרם סוכר, 50.5 גרם ל-100 גרם, והחלבון נמוך (4 גרם). המוצר הזה הוא מזון אמיתי שמתנהג כמו קינוח.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 4.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 381.0,
+          "protein": 4.0,
+          "sugar": 50.5,
+          "fat": 8.9,
+          "fiber": 13.4,
+          "sodium": 36.0
+        },
+        "ingredients": "תמרים (84%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים 100% טבעי,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "הרשימה הקצרה ביותר במדף — שני רכיבים שכולם מזון. ברוב המוצרים כאן יש עשרה רכיבים ומעלה, ואת המתיקות מובילים סירופ או סוכר מוסף. כאן הכל תמרים. הציון משקף את מה שתמרים הם — פרי מתוק מאוד — לא את מה שהמוצר מסתיר.",
+        "positiveSignals": [
+          "שני רכיבים בלבד: תמרים ושוקולד 100% קקאו — הרשימה הקצרה ביותר על כל המדף",
+          "13.4 גרם סיבים ל-100 גרם — מהגבוהים במדף",
+          "המתיקות כולה מהתמרים, בלי שום תוספת"
+        ],
+        "limitingFactors": [
+          {
+            "text": "50.5 גרם סוכר ל-100 גרם — כמעט מחצית המשקל, מהתמרים עצמם",
+            "magnitude": 3
+          },
+          {
+            "text": "4 גרם חלבון ל-100 גרם — נמוך",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-008",
+      "barcode": "7290011498986",
+      "name": "חטיף תמרים עם חמאת קשיו",
+      "name_he": "חטיף תמרים עם חמאת קשיו",
+      "brand": "שקד תבור",
+      "score": 49.0,
+      "grade": "D",
+      "rank": 3,
+      "categoryTotal": 21,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 435.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 30.0,
+        "carbohydrates_g": 57.6,
+        "sugars_g": 40.8,
+        "dietary_fiber_g": 11.2,
+        "protein_g": 7.3
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "הקשיו הוא מה שמבדיל כאן: 17 גרם שומן ו-435 קלוריות ל-100 גרם — צפוף קלורית בין חטיפי התמרים.",
+      "rowVerdict": "הקשיו הוא הסיפור כאן. תמרים (65%), מחית קשיו (19%) ושוקולד 100% קקאו — שלושה רכיבים שלמים בלי שום תוספת, אבל הקשיו שמן יותר מגרסת הבוטנים של שקד תבור ומביא 17 גרם שומן ו-435 קלוריות ל-100 גרם. הסוכר (40.8 גרם) כולו מהתמרים, ויש 11 גרם סיבים. כל גרם הוא מזון, אבל הצפיפות הקלורית אמיתית.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 7.3
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 435.0,
+          "protein": 7.3,
+          "sugar": 40.8,
+          "fat": 17.0,
+          "fiber": 11.2,
+          "sodium": 30.0
+        },
+        "ingredients": "תמרים (65%), מחית קשיו (19%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "חלק ממשפחת חטיפי התמרים הנקיים שנפרדת מהשאר במדף הזה — תמרים, אגוזים ושוקולד 100% קקאו בלי שום תוספת. הקשיו שמן יותר מהבוטנים ומביא 17 גרם שומן ו-435 קלוריות ל-100 גרם, וזה מה שמציב אותו מעט מתחת לגרסת הבוטנים. בתוך הקטגוריה הרחבה, ההרכב הוא מהנקיים שיש.",
+        "positiveSignals": [
+          "שלושה רכיבים שלמים: תמרים, מחית קשיו ושוקולד 100% קקאו",
+          "11.2 גרם סיבים ל-100 גרם",
+          "כל הסוכר מהתמרים — ללא סירופ, ללא תוספת"
+        ],
+        "limitingFactors": [
+          {
+            "text": "40.8 גרם סוכר ל-100 גרם — מהתמר, אבל כמות גבוהה",
+            "magnitude": 3
+          },
+          {
+            "text": "הקשיו מוסיף 17 גרם שומן — 435 קלוריות ל-100 גרם, צפוף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "snk-010",
+      "barcode": "7290011498900",
+      "name": "חטיף תמר עם חמאת שקד",
+      "name_he": "חטיף תמר עם חמאת שקד",
+      "brand": "שקד תבור",
+      "score": 49.0,
+      "grade": "D",
+      "rank": 3,
+      "categoryTotal": 21,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 445.0,
+        "fat_g": 18.8,
+        "fat_saturated_g": 6.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 31.0,
+        "carbohydrates_g": 55.0,
+        "sugars_g": 40.5,
+        "dietary_fiber_g": 12.5,
+        "protein_g": 7.8
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "השקדים הם מה שמייחד את החטיף הזה: 7.8 גרם חלבון — הגבוה ביותר מבין חטיפי תמרים עם שוקולד — ו-12.5 גרם סיבים.",
+      "rowVerdict": "השקדים עושים כאן את ההבדל. תמרים (65%), מחית שקדים (19%) ושוקולד מריר 100% קקאו — בלי סוכר מוסף, בלי שום תוסף — אבל השקדים מביאים 7.8 גרם חלבון, הגבוה ביותר מבין חטיפי התמרים עם שוקולד, לצד 12.5 גרם סיבים. כל הסוכר (40.5 גרם) מהתמר עצמו. מה שמושך את הציון מטה הוא 6.1 גרם שומן רווי מהשוקולד, לצד הסוכר הגבוה מהפרי. בתוך קטגוריה של חטיפים מתועשים, ההרכב הזה הוא אחר.",
+      "_scoring_trace": {
+        "category": "whole_food_fat",
+        "protein_g": 7.8
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 445.0,
+          "protein": 7.8,
+          "sugar": 40.5,
+          "fat": 18.8,
+          "fiber": 12.5,
+          "sodium": 31.0
+        },
+        "ingredients": "תמרים (65%), מחית שקדים (19%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר מכיל שקדים עלול להכיל אגוזי לוז,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "חלק ממשפחת חטיפי התמרים הנקיים שנפרדת מהשאר במדף הזה. כל הרכיבים הם מזון, אפס סוכר מוסף, אפס תוספים. השוקולד 100% קקאו מוסיף 6.1 גרם שומן רווי, ולצד 40.5 גרם סוכר מהתמרים — זה הוביל לציון הנמוך יחסית. בתוך הקטגוריה הרחבה, ההרכב הוא מהנקיים שיש.",
+        "positiveSignals": [
+          "תמרים (65%) ומחית שקדים — בסיס מזון שלם",
+          "7.8 גרם חלבון — הגבוה בין חטיפי התמרים עם שוקולד — ו-12.5 גרם סיבים",
+          "כל המתיקות מהתמר — ללא תוספת סוכר, ללא תוספים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "40.5 גרם סוכר ל-100 גרם — מהתמרים, אבל גבוה",
+            "magnitude": 3
+          },
+          {
+            "text": "6.1 גרם שומן רווי מהשוקולד — מוסיף לציון ביחד עם הסוכר",
+            "magnitude": 2
+          },
+          {
+            "text": "445 קלוריות ל-100 גרם — מהצפופים במדף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
       "id": "snk-003",
       "barcode": "7290105436382",
       "name": "חטיפי FREE תמרים קשיו",
@@ -148,7 +349,7 @@
       "brand": "FREE",
       "score": 47.0,
       "grade": "D",
-      "rank": 3,
+      "rank": 6,
       "categoryTotal": 21,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPB50_Z_P_7290105436382_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPB50_Z_P_7290105436382_1.png",
@@ -187,7 +388,7 @@
         "ingredients": "מחית תמרים מזן מג'הול (50%), צימוקים (13%), אגוזי קשיו (13%), גרעיני חמנייה (13%), שומשום מלא (10%), חומרי טעם וריח טבעיים. מאפיינים נוספים ללא צבעי מאכל,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "ההרכב נקי כמו של חטיף התמרים הבודד שמעליו, אבל כאן יש יותר פירות מיובשים ויותר אגוזים — וזה בדיוק מה שמעלה גם את הסוכר וגם את השומן ומוריד את הציון.",
+        "comparisonContext": "ההרכב נקי כמו של חטיפי התמרים שמעליו — מזון שלם ללא תוספים. כאן יש יותר סוגי פירות מיובשים ויותר אגוזים, וזה בדיוק מה שמעלה גם את הסוכר וגם את השומן ומציב אותו מעט מתחת למשפחת חטיפי התמרים הפשוטים.",
         "positiveSignals": [
           "בסיס מזון שלם: תמרים, צימוקים, קשיו, חמניות ושומשום",
           "אפס סוכר מוסף ואפס צבעי מאכל",
@@ -206,71 +407,6 @@
       }
     },
     {
-      "id": "snk-004",
-      "barcode": "7290011498948",
-      "name": "חטיפי תמר בציפוי שוקולד",
-      "name_he": "חטיפי תמר בציפוי שוקולד",
-      "brand": "שקד תבור",
-      "score": 45.0,
-      "grade": "D",
-      "rank": 4,
-      "categoryTotal": 21,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV62_Z_P_7290011498948_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 381.0,
-        "fat_g": 8.9,
-        "fat_saturated_g": 5.3,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 36.0,
-        "carbohydrates_g": 64.6,
-        "sugars_g": 50.5,
-        "dietary_fiber_g": 13.4,
-        "protein_g": 4.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "אי אפשר לכתוב רשימת רכיבים נקייה מזו — אבל חצי מהמשקל כאן הוא סוכר.",
-      "rowVerdict": "שני רכיבים, וזהו: 84% תמרים ו-16% שוקולד מריר ב-100% קקאו, בלי סירופ, בלי תוסף, בלי סוכר מוסף. אבל הפשטות הזו לא מבטלת את העובדה שהתמר הוא בעיקרו סוכר — 50.5 גרם ל-100 גרם, כמעט מחצית המשקל — והחלבון זניח (4 גרם). מזון אמיתי, אבל קרוב יותר לקינוח מאשר לנשנוש מאוזן.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 4.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 381.0,
-          "protein": 4.0,
-          "sugar": 50.5,
-          "fat": 8.9,
-          "fiber": 13.4,
-          "sodium": 36.0
-        },
-        "ingredients": "תמרים (84%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים 100% טבעי,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "הרשימה הקצרה ביותר במדף — אבל קוצר הרשימה לא הופך אותו למאוזן. התמר הוא כמעט כולו סוכר, וזה מה שמציב אותו מתחת לחטיפי תמרים עם פחות מתיקות.",
-        "positiveSignals": [
-          "שני רכיבים בלבד: תמרים ושוקולד 100% קקאו",
-          "13.4 גרם סיבים ל-100 גרם — מהגבוהים במדף",
-          "אפס סוכר מוסף ואפס תוספי מזון"
-        ],
-        "limitingFactors": [
-          {
-            "text": "50.5 גרם סוכר ל-100 גרם — כמעט מחצית מהמשקל של החטיף",
-            "magnitude": 3
-          },
-          {
-            "text": "4 גרם חלבון בלבד — לא נותן שובע אמיתי",
-            "magnitude": 1
-          }
-        ]
-      }
-    },
-    {
       "id": "snk-005",
       "barcode": "7290105431516",
       "name": "חטיפי FREE תמרים ובוטנים",
@@ -278,7 +414,7 @@
       "brand": "FREE",
       "score": 42.8,
       "grade": "D",
-      "rank": 5,
+      "rank": 7,
       "categoryTotal": 21,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RJX44_Z_P_7290105431516_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RJX44_Z_P_7290105431516_1.png",
@@ -336,6 +472,71 @@
       }
     },
     {
+      "id": "snk-009",
+      "barcode": "7290011498917",
+      "name": "חטיפי תמר+קוקוס מצופים",
+      "name_he": "חטיפי תמר+קוקוס מצופים",
+      "brand": "שקד תבור",
+      "score": 40.0,
+      "grade": "D",
+      "rank": 8,
+      "categoryTotal": 21,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 460.0,
+        "fat_g": 21.0,
+        "fat_saturated_g": 16.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 34.0,
+        "carbohydrates_g": 55.9,
+        "sugars_g": 41.0,
+        "dietary_fiber_g": 13.7,
+        "protein_g": 5.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "הקוקוס נותן לו את השומן הרווי הגבוה ביותר במשפחת חטיפי התמרים — 16.2 גרם ל-100 גרם — וזו הסיבה שהוא הנמוך בקבוצה.",
+      "rowVerdict": "16.2 גרם שומן רווי ל-100 גרם — כך בדיוק נבדל חטיף הקוקוס משאר אחיו. תמרים (65%), מחית קוקוס (19%) ושוקולד 100% קקאו: הרכב נקי לחלוטין, ללא סוכר מוסף, ללא תוספים. אבל הקוקוס מביא שומן רווי גבוה בהרבה מהבוטנים, הקשיו או השקדים שבגרסאות האחרות. לצד 41 גרם סוכר מהתמרים ו-460 קלוריות ל-100 גרם, זה מציב אותו בתחתית הקבוצה הנקייה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 5.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 460.0,
+          "protein": 5.0,
+          "sugar": 41.0,
+          "fat": 21.0,
+          "fiber": 13.7,
+          "sodium": 34.0
+        },
+        "ingredients": "תמרים (65%), מחית קוקוס (19%), שוקולד מריר 100% מוצקי קקאו (16%). מאפיינים נוספים ללא תוספת סוכר,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "חלק ממשפחת חטיפי התמרים הנקיים — שלושה רכיבים שכולם מזון, אפס סוכר מוסף, אפס תוספים. הקוקוס הוא מה שמבדיל אותו מאחיו: במקום הבוטנים או הקשיו, הקוקוס מביא שומן רווי גבוה בהרבה — 16.2 גרם ל-100 גרם. זו הסיבה שהציון שלו הנמוך ביותר בתוך הקבוצה.",
+        "positiveSignals": [
+          "שלושה רכיבים שלמים: תמרים, מחית קוקוס ושוקולד 100% קקאו",
+          "13.7 גרם סיבים ל-100 גרם — מהגבוהים במדף",
+          "ללא סוכר מוסף, ללא תוספי מזון — הרכב נקי לחלוטין"
+        ],
+        "limitingFactors": [
+          {
+            "text": "16.2 גרם שומן רווי ל-100 גרם מהקוקוס — הגבוה במשפחת התמרים",
+            "magnitude": 3
+          },
+          {
+            "text": "41 גרם סוכר מהתמרים ו-460 קלוריות ל-100 גרם",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
       "id": "snk-006",
       "barcode": "16000548404",
       "name": "חטיף שיבולת שועל עם דבש",
@@ -343,7 +544,7 @@
       "brand": "נייטשר וואלי",
       "score": 34.6,
       "grade": "E",
-      "rank": 6,
+      "rank": 9,
       "categoryTotal": 21,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LGV32_Z_P_16000548404_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LGV32_Z_P_16000548404_1.png",
@@ -420,7 +621,7 @@
       "brand": "נייטשר וואלי",
       "score": 34.6,
       "grade": "E",
-      "rank": 6,
+      "rank": 9,
       "categoryTotal": 21,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LKQ32_Z_P_16000548503_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LKQ32_Z_P_16000548503_1.png",
@@ -493,205 +694,6 @@
           {
             "text": "שמנים צמחיים גבוה ברשימת הרכיבים",
             "magnitude": 1
-          }
-        ]
-      }
-    },
-    {
-      "id": "snk-008",
-      "barcode": "7290011498986",
-      "name": "חטיף תמרים עם חמאת קשיו",
-      "name_he": "חטיף תמרים עם חמאת קשיו",
-      "brand": "שקד תבור",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 8,
-      "categoryTotal": 21,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HYH64_Z_P_7290011498986_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 435.0,
-        "fat_g": 17.0,
-        "fat_saturated_g": 7.1,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 30.0,
-        "carbohydrates_g": 57.6,
-        "sugars_g": 40.8,
-        "dietary_fiber_g": 11.2,
-        "protein_g": 7.3
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "אותם שלושה רכיבים נקיים כמו אחיו — אבל הקשיו מוסיף שומן שמרים את הצפיפות.",
-      "rowVerdict": "תמרים, מחית קשיו ושוקולד 100% קקאו — שלושה רכיבים שלמים, בלי סוכר מוסף, עם 11 גרם סיבים. אבל כאן הקשיו הוא שעושה את ההבדל: הוא מוסיף 17 גרם שומן, שיחד עם 40.8 גרם סוכר מהתמר נותנים 435 קלוריות ל-100 גרם. מזון אמיתי, אבל מהצפופים במשפחה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 7.3
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 435.0,
-          "protein": 7.3,
-          "sugar": 40.8,
-          "fat": 17.0,
-          "fiber": 11.2,
-          "sodium": 30.0
-        },
-        "ingredients": "תמרים (65%), מחית קשיו (19%), שוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "נקי בדיוק כמו אחיו ממשפחת שקד תבור — אותם תמרים, אותו שוקולד 100%. ההבדל הוא הקשיו: הוא צפוף בשומן יותר מהבוטנים, וזה מה שמוריד את הציון מול גרסת הבוטנים.",
-        "positiveSignals": [
-          "שלושה רכיבים שלמים: תמרים, מחית קשיו ושוקולד 100% קקאו",
-          "11.2 גרם סיבים ל-100 גרם",
-          "אפס סוכר מוסף ואפס תוספי מזון"
-        ],
-        "limitingFactors": [
-          {
-            "text": "40.8 גרם סוכר ל-100 גרם — מהתמר, אבל כמות גבוהה",
-            "magnitude": 3
-          },
-          {
-            "text": "הקשיו מוסיף 17 גרם שומן — יחד עם הסוכר, 435 קלוריות ל-100 גרם",
-            "magnitude": 2
-          }
-        ]
-      }
-    },
-    {
-      "id": "snk-009",
-      "barcode": "7290011498917",
-      "name": "חטיפי תמר+קוקוס מצופים",
-      "name_he": "חטיפי תמר+קוקוס מצופים",
-      "brand": "שקד תבור",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 8,
-      "categoryTotal": 21,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HVQ58_Z_P_7290011498917_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 460.0,
-        "fat_g": 21.0,
-        "fat_saturated_g": 16.2,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 34.0,
-        "carbohydrates_g": 55.9,
-        "sugars_g": 41.0,
-        "dietary_fiber_g": 13.7,
-        "protein_g": 5.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "הקוקוס נשמע תמים, אבל הוא מביא 16 גרם שומן רווי — הגבוה במשפחת התמרים.",
-      "rowVerdict": "תמרים, מחית קוקוס ושוקולד 100% קקאו — שוב שלושה רכיבים שלמים בלי סוכר מוסף. אבל הקוקוס כאן הוא הסיפור: הוא דוחף את השומן ל-21 גרם, מתוכם 16 גרם שומן רווי, הגבוה בקבוצה. יחד עם 41 גרם סוכר מהתמר, זה החטיף השמנוני בין חטיפי התמרים.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 5.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 460.0,
-          "protein": 5.0,
-          "sugar": 41.0,
-          "fat": 21.0,
-          "fiber": 13.7,
-          "sodium": 34.0
-        },
-        "ingredients": "תמרים (65%), מחית קוקוס (19%), שוקולד מריר 100% מוצקי קקאו (16%). מאפיינים נוספים ללא תוספת סוכר,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "אותו בסיס נקי כמו שאר משפחת התמרים, אבל הקוקוס מחליף את הבוטנים או הקשיו ומביא איתו שומן רווי גבוה הרבה יותר — וזה מה שמציב אותו כצפוף השומן בקבוצה.",
-        "positiveSignals": [
-          "שלושה רכיבים שלמים: תמרים, מחית קוקוס ושוקולד 100% קקאו",
-          "13.7 גרם סיבים ל-100 גרם — מהגבוהים במדף",
-          "אפס סוכר מוסף"
-        ],
-        "limitingFactors": [
-          {
-            "text": "21 גרם שומן ל-100 גרם, מתוכם 16 גרם רווי מהקוקוס — הגבוה במשפחת התמרים",
-            "magnitude": 3
-          },
-          {
-            "text": "41 גרם סוכר ו-460 קלוריות ל-100 גרם",
-            "magnitude": 2
-          }
-        ]
-      }
-    },
-    {
-      "id": "snk-010",
-      "barcode": "7290011498900",
-      "name": "חטיף תמר עם חמאת שקד",
-      "name_he": "חטיף תמר עם חמאת שקד",
-      "brand": "שקד תבור",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 8,
-      "categoryTotal": 21,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUZ50_Z_P_7290011498900_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 445.0,
-        "fat_g": 18.8,
-        "fat_saturated_g": 6.1,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 31.0,
-        "carbohydrates_g": 55.0,
-        "sugars_g": 40.5,
-        "dietary_fiber_g": 12.5,
-        "protein_g": 7.8
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "השקדים תורמים חלבון וסיבים — אבל ציפוי השוקולד מוסיף שומן רווי (6.1 גרם) שחטיפי תמר ללא ציפוי לא נושאים.",
-      "rowVerdict": "בסיס נקי של שלושה רכיבים: תמרים, מחית שקדים ושוקולד מריר 100% קקאו, בלי סוכר מוסף. החלבון והסיבים מגיעים מהשקדים, והסוכר (40.5 גרם) כולו מהתמר. מה שמושך אותו מטה הוא ציפוי השוקולד — הוא מוסיף שומן רווי (6.1 גרם) שחטיף תמר פשוט לא נושא, ועל זה כבר יושבים 40 גרם הסוכר של התמרים. נקי וישר, אבל הציפוי עולה ביוקר.",
-      "_scoring_trace": {
-        "category": "whole_food_fat",
-        "protein_g": 7.8
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 445.0,
-          "protein": 7.8,
-          "sugar": 40.5,
-          "fat": 18.8,
-          "fiber": 12.5,
-          "sodium": 31.0
-        },
-        "ingredients": "תמרים (65%), מחית שקדים (19%),nשוקולד מריר 100% מוצקי קקאו (16%) מאפיינים נוספים ללא תוספת סוכר מכיל שקדים עלול להכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בסיס נקי של תמרים ושקדים, כמו חטיפי התמר הפשוטים שעל המדף. ההבדל היחיד הוא ציפוי השוקולד — והוא לבדו מוסיף את השומן הרווי (6.1 גרם) שחטיפי תמר ללא ציפוי, כמו זה של שקד תבור, פשוט לא נושאים. זה מה שמושך אותו מטה.",
-        "positiveSignals": [
-          "תמרים (65%) ומחית שקדים — בסיס מזון שלם",
-          "אפס סוכר מוסף — כל המתיקות מהפרי",
-          "12.5 גרם סיבים ל-100 גרם"
-        ],
-        "limitingFactors": [
-          {
-            "text": "40.5 גרם סוכר ל-100 גרם — מהתמרים, אבל גבוה",
-            "magnitude": 3
-          },
-          {
-            "text": "הציפוי מוסיף שומן רווי (6.1 גרם) שחטיפי התמר הפשוטים לא נושאים",
-            "magnitude": 2
-          },
-          {
-            "text": "445 קלוריות ל-100 גרם — מהצפופים במדף",
-            "magnitude": 2
           }
         ]
       }
@@ -908,7 +910,7 @@
           "fiber": 5.0,
           "sodium": 200.0
         },
-        "ingredients": "45% דגנים מלאים (פתיתי שיבולת שועל), שומן צמחי, סוכר, סירופ סוכר חום, פצפוצי אורז, דבש (1%), סירופ מייפל (1%)קמח תירס, מלח, חומר מתח לב: לציטין סויה, חומר תפיחה: nסודיום ביקרבונייט, חומר טעם וריח. מכיל גלוטן. מאפיינים נוספים ללא כולסטרול,",
+        "ingredients": "45% דגנים מלאים (פתיתי שיבולת שועל), שומן צמחי, סוכר, סירופ סוכר חום, פצפוצי אורז, דבש (1%), סירופ מייפל (1%)קמח תירס, מלח, חומר מתח לב: לציטין סויה, חומר תפיחה: סודיום ביקרבונייט, חומר טעם וריח. מכיל גלוטן. מאפיינים נוספים ללא כולסטרול,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
         "comparisonContext": "השם מבטיח דבש ומייפל, אבל מי שקורא את הרשימה מוצא שומן צמחי וסוכר מובילים — וזה מציב אותו קרוב יותר לחטיף ממתק מאשר לגרנולה אמיתית.",
