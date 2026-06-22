@@ -223,14 +223,19 @@ function getNutrientScale(
 }
 
 // Bar fill tone for a nutrient value (spec §3.4)
+// NOTE: use literal hex values for green, not var(--bari-green). The CSS custom property
+// is defined only in colors_and_type.css (a reference file), not imported by the Next.js
+// app. var(--bari-green) resolves to 'initial' at runtime → transparent fill → invisible bar.
+// This matches the approach in confidence-marker.tsx which says "the project has no CSS
+// custom properties for them" and inlines the hex directly. #1F8F6A = bari-green.
 function nutrientTone(key: keyof BariNutritionVM, value: number, scale: NutrientScale): string {
   if (key === "protein") {
-    if (scale.goodAbove !== undefined && value >= scale.goodAbove) return "var(--bari-green)";
+    if (scale.goodAbove !== undefined && value >= scale.goodAbove) return "#1F8F6A";
     if (scale.warnBelow !== undefined && value < scale.warnBelow) return "#C49A4A";
     return "#9AA09B";
   }
   if (key === "sugar") {
-    if (scale.goodBelow !== undefined && value <= scale.goodBelow) return "var(--bari-green)";
+    if (scale.goodBelow !== undefined && value <= scale.goodBelow) return "#1F8F6A";
     if (scale.warnAbove !== undefined && value >= scale.warnAbove) return "#C49A4A";
     return "#9AA09B";
   }
