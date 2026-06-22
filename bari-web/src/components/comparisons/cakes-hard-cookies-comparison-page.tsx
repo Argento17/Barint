@@ -96,8 +96,10 @@ export function CakesHardCookiesComparisonPage({
     return activeFilters.reduce((acc, filterId) => {
       switch (filterId) {
         case "least_bad":
-          // Category tops out at C — no A or B products exist (RT-R1).
-          return acc.filter((p) => p.grade === "C");
+          // Category tops out at D after the D4 contested-additive patch — the
+          // single former-C product (bc 7290119030095) moved C→D, so the best
+          // available grade is now D (2 products). No A/B/C exist (RT-R1).
+          return acc.filter((p) => p.grade === "D");
         case "has_phvo":
           return acc.filter((p) => phvoSet.has(p.id));
         case "no_phvo":
