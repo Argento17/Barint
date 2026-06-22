@@ -193,6 +193,12 @@ BARI_SODIUM_CEREAL = os.environ.get("BARI_SODIUM_CEREAL", "off").lower() == "on"
 # before activation. Source: redlabel_v1_design_spec.md. EV-REDLABEL-001–012.
 BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
 
+# TASK-373 / P281 — Whole-food fruit/nut bar scoring relief (WHAT-IF flag).
+# DEFAULT OFF → engine byte-identical to baseline for every category.
+# When ON: negation-aware added-sugar SC routing + intrinsic red-label / HP relief
+# for clean date+nut bars in snack_bar_granola / whole_food_fat lenses.
+BARI_SNACK_WHOLEFOOD_V1 = os.environ.get("BARI_SNACK_WHOLEFOOD_V1", "off").lower() == "on"
+
 # TASK-267 / EV-055 — Surgical graduated-sodium flag for endemic-sodium dairy categories.
 # DEFAULT OFF → engine byte-identical to baseline.
 # Controls ONLY the SODIUM_GENERAL_BANDS block (score_engine.py ~lines 2005-2044) for
@@ -2072,8 +2078,26 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     # BARI_REDLABEL_V1 — family-aware reformulable label count.
     # Endemic sat_fat (dairy_protein / whole_food_fat) is compositionally fixed and
     # excluded from the >=2 reformulable-label cap trigger (EV-REDLABEL-005/006).
+    _wholefood_relief = None
+    _added_sg_override = None
+    _sc5_override = None
+    if BARI_SNACK_WHOLEFOOD_V1:
+        _ing_list_for_wf = l3.get("ingredient_list", []) if "ingredient_list" in l3 else []
+        _added_sg_override = _negation_aware_added_sugar_count(_ing_list_for_wf)
+        _sc5_override = _wholefood_sc5_refined_present(_ing_list_for_wf)
+        _wholefood_relief = _evaluate_wholefood_bar_predicate(
+            category, l3, _added_sg_override)
+
     if BARI_REDLABEL_V1:
-        _rl_sat_fat_endemic = red_label_sat_fat and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
+        _wf_sat_fat_endemic = (
+            BARI_SNACK_WHOLEFOOD_V1
+            and _wholefood_relief
+            and _wholefood_relief.get("passed")
+            and red_label_sat_fat
+        )
+        _rl_sat_fat_endemic = red_label_sat_fat and (
+            category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES or _wf_sat_fat_endemic
+        )
         reformulable_rl_count = red_label_count - (1 if _rl_sat_fat_endemic else 0)
         endemic_sat_fat_excluded = bool(_rl_sat_fat_endemic)
     else:
@@ -2096,6 +2120,8 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
 
     additive_ct       = l3.get("additive_marker_count", 0)
     added_sugar_ct    = l3.get("added_sugar_sources_count", 0)
+    if BARI_SNACK_WHOLEFOOD_V1 and _added_sg_override is not None:
+        added_sugar_ct = _added_sg_override
     ing_list_count    = len(l3.get("ingredient_list", [])) if "ingredient_list" in l3 else 0
     fat_pct           = l3.get("fat_pct_of_kcal", 0) or 0  # from L2
     has_seed_oil      = l3.get("has_seed_oil", False)
@@ -2110,7 +2136,11 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     context_flag      = eval_status.get("context_flag")
 
     # SRC-02: sugar context routing
-    sc_class = _classify_sugar_context(l3, nn, nova_level)
+    sc_class = _classify_sugar_context(
+        l3, nn, nova_level,
+        added_sg_ct_override=_added_sg_override,
+        sc5_refined_present=_sc5_override,
+    )
 
     # SRC-06: HP NOVA gate
     # TASK-181G / EV-042 — Glass Box W4 removes NOVA-class amplification of HP
@@ -2236,6 +2266,11 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
             _sodium_in_labels = "sodium" in (l3.get("red_labels") or [])
             if _sodium_in_labels:
                 _rl_count_for_2plus = max(0, red_label_count - 1)
+        if (BARI_SNACK_WHOLEFOOD_V1
+                and _wholefood_relief
+                and _wholefood_relief.get("passed")
+                and red_label_sat_fat):
+            _rl_count_for_2plus = max(0, _rl_count_for_2plus - 1)
         check_cap("ISRAELI_RED_LABELS_2_PLUS", _rl_count_for_2plus >= 2, 45, sugar_caps_fired)
 
     # Sugar penalties
@@ -2940,14 +2975,23 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     hp_crunch     = (category == "cereal" and sugar >= HP_CRUNCH_SWEET_SUGAR
                      and fiber <= HP_CRUNCH_SWEET_FIBER)
 
+    _suppress_hp_fat_sugar = (
+        BARI_SNACK_WHOLEFOOD_V1
+        and _wholefood_relief
+        and _wholefood_relief.get("passed")
+    )
     if hp_fat_sugar:
-        effective_pen = round(HP_FAT_SUGAR_PENALTY * hp_nova_weight, 1)
-        if effective_pen > 0:
-            hp_pens_fired.append(("HP_FAT_SUGAR_COMBO", effective_pen))
-            penalties_applied.append({"rule": "HP_FAT_SUGAR_COMBO", "amount": effective_pen,
-                                      "note": f"raw_pen={HP_FAT_SUGAR_PENALTY} × nova_weight={hp_nova_weight}"})
-        penalties_considered.append({"rule": "HP_FAT_SUGAR_COMBO", "amount": HP_FAT_SUGAR_PENALTY,
-                                      "fired": True, "nova_weight": hp_nova_weight, "effective": effective_pen})
+        if _suppress_hp_fat_sugar:
+            penalties_considered.append({"rule": "HP_FAT_SUGAR_COMBO", "fired": False,
+                                          "note": "TASK-373: wholefood_bar_relief — intrinsic fruit+nut fat+sugar, not HP stack"})
+        else:
+            effective_pen = round(HP_FAT_SUGAR_PENALTY * hp_nova_weight, 1)
+            if effective_pen > 0:
+                hp_pens_fired.append(("HP_FAT_SUGAR_COMBO", effective_pen))
+                penalties_applied.append({"rule": "HP_FAT_SUGAR_COMBO", "amount": effective_pen,
+                                          "note": f"raw_pen={HP_FAT_SUGAR_PENALTY} × nova_weight={hp_nova_weight}"})
+            penalties_considered.append({"rule": "HP_FAT_SUGAR_COMBO", "amount": HP_FAT_SUGAR_PENALTY,
+                                          "fired": True, "nova_weight": hp_nova_weight, "effective": effective_pen})
     else:
         penalties_considered.append({"rule": "HP_FAT_SUGAR_COMBO", "fired": False,
                                       "condition": f"fat_pct={l2_fat_pct:.1f}<{HP_FAT_SUGAR_FAT_PCT} or sugar={sugar}<{HP_FAT_SUGAR_SUGAR_G}"})
@@ -3027,6 +3071,7 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         "all_family_caps": all_caps,
         "binding_cap": binding_cap,
         "total_coordinated_penalty": total_penalty,
+        "wholefood_bar_relief": _wholefood_relief if BARI_SNACK_WHOLEFOOD_V1 else None,
     }
 
 
@@ -3057,18 +3102,107 @@ def _coordinate_family(caps: list, penalties: list, budget: float) -> tuple:
     return binding, round(total, 2), detail
 
 
-def _classify_sugar_context(l3: dict, nn: dict, nova_level: int) -> str:
+WHOLEFOOD_NEGATION_TOKENS = (
+    "ללא תוספת", "ללא הוספת", "ללא", "בלי", "נטול", "0%",
+)
+WHOLEFOOD_SC5_REFINED_TERMS = ("סוכר", "סוכר קנים", "סוכר חום")
+WHOLEFOOD_REFINED_INGREDIENT_MARKERS = (
+    "סירופ", "גלוקוז", "פרוקטוז", "מלטוז", "דקסטרוז",
+    "שמן", "מרגרינה", "סוכר לבן", "סוכר חום",
+)
+WHOLEFOOD_BAR_CATEGORIES = frozenset({"snack_bar_granola", "whole_food_fat"})
+WHOLEFOOD_MAX_SANITIZED_INGREDIENTS = 6
+_WHOLEFOOD_ADDED_SUGAR_MARKERS = (
+    "סוכר", "סירופ גלוקוזה", "סירופ גלוקוז", "סירופ גלוקוז-פרוקטוז",
+    "סירופ גלוקוזה-פרוקטוזה", "פרוקטוזה", "דקסטרוזה", "מולסה", "סירופ תמרים",
+    "סירופ מייפל", "סוכר קנים", "סוכר חום", "סירופ סוכר", "סירופ אגבה",
+    "מלטוז", "לקטוז", "סירופ תירס", "סירופ קרמל", "אינברטי", "ריבה",
+    "רכז פרות", "מיץ פרות מרוכז", "אגבה", "פרי",
+)
+
+
+def _wholefood_marker_unnegated(clause: str, marker: str) -> bool:
+    """True when marker appears in clause and is not preceded by a negation token."""
+    if not clause or not marker:
+        return False
+    pos = 0
+    while True:
+        idx = clause.find(marker, pos)
+        if idx == -1:
+            return False
+        prefix = clause[:idx]
+        if not any(neg in prefix for neg in WHOLEFOOD_NEGATION_TOKENS):
+            return True
+        pos = idx + len(marker)
+
+
+def _negation_aware_added_sugar_count(ingredient_list: list) -> int:
+    """Negation-aware added-sugar source count (local to BARI_SNACK_WHOLEFOOD_V1)."""
+    matches: set[str] = set()
+    for clause in ingredient_list or []:
+        for marker in _WHOLEFOOD_ADDED_SUGAR_MARKERS:
+            if marker == "דבש":
+                continue
+            if _wholefood_marker_unnegated(clause, marker):
+                matches.add(marker)
+    return len(matches)
+
+
+def _wholefood_sc5_refined_present(ingredient_list: list) -> bool:
+    for clause in ingredient_list or []:
+        for term in WHOLEFOOD_SC5_REFINED_TERMS:
+            if _wholefood_marker_unnegated(clause, term):
+                return True
+    return False
+
+
+def _evaluate_wholefood_bar_predicate(
+        category: str, l3: dict, negation_aware_sugar_count: int) -> dict:
+    ing_list = l3.get("ingredient_list", []) if "ingredient_list" in l3 else []
+    cat_ok = category in WHOLEFOOD_BAR_CATEGORIES
+    sugar_ok = negation_aware_sugar_count == 0
+    no_refined = not any(
+        _wholefood_marker_unnegated(clause, marker)
+        for clause in ing_list
+        for marker in WHOLEFOOD_REFINED_INGREDIENT_MARKERS
+    )
+    ing_count = l3.get("sanitized_ingredient_count")
+    if ing_count is None:
+        ing_count = len(ing_list)
+    ing_ok = ing_count <= WHOLEFOOD_MAX_SANITIZED_INGREDIENTS
+    add_ok = l3.get("additive_marker_count", 0) == 0
+    passed = cat_ok and sugar_ok and no_refined and ing_ok and add_ok
+    return {
+        "passed": passed,
+        "category_ok": cat_ok,
+        "negation_aware_added_sugar_zero": sugar_ok,
+        "no_refined_markers": no_refined,
+        "sanitized_ingredient_count_le_6": ing_ok,
+        "sanitized_ingredient_count": ing_count,
+        "zero_additives": add_ok,
+        "negation_aware_added_sugar_count": negation_aware_sugar_count,
+    }
+
+
+def _classify_sugar_context(l3: dict, nn: dict, nova_level: int,
+                            added_sg_ct_override: int | None = None,
+                            sc5_refined_present: bool | None = None) -> str:
     """SRC-02: Classify sugar context class SC-1 through SC-5."""
     ingredients = l3.get("ingredient_list", []) if "ingredient_list" in l3 else []
     has_fruit_conc = l3.get("has_fruit_concentrate", False)
-    added_sg_ct    = l3.get("added_sugar_sources_count", 0)
+    added_sg_ct = (added_sg_ct_override if added_sg_ct_override is not None
+                   else l3.get("added_sugar_sources_count", 0))
     ing_text       = " ".join(ingredients)
 
     # SC-5: refined added sugar explicitly listed
-    refined_sugar_terms = ["סוכר", "סוכר קנים", "סוכר חום"]
-    for term in refined_sugar_terms:
-        if term in ing_text:
+    if sc5_refined_present is not None:
+        if sc5_refined_present:
             return "SC-5"
+    else:
+        refined_sugar_terms = ["סוכר", "סוכר קנים", "סוכר חום"]
+        for term in refined_sugar_terms:
+            if term in ing_text:
+                return "SC-5"
 
     # SC-4: fruit concentrate / syrup used as sweetener ingredient
     if has_fruit_conc:
@@ -3080,6 +3214,14 @@ def _classify_sugar_context(l3: dict, nn: dict, nova_level: int) -> str:
 
     # SC-2: whole fruit as primary in multi-ingredient product (NOVA 1-2)
     if nova_level <= 2 and added_sg_ct == 0:
+        return "SC-2"
+
+    # TASK-373 Fix 1: when negation-aware recount clears a false added-sugar hit,
+    # classify intrinsic-fruit sugar as SC-2 even if NOVA proxy was inflated by the
+    # uncorrected signal_extractor count.
+    if (added_sg_ct_override is not None
+            and added_sg_ct == 0
+            and added_sg_ct_override != l3.get("added_sugar_sources_count", 0)):
         return "SC-2"
 
     # SC-1: single-ingredient whole fruit (NOVA 1, no added sugar signals)
@@ -4292,6 +4434,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     if BARI_D4_SCORE_V1:
         result["d4_score_penalty"] = d4_score_penalty
         result["d4_score_note"] = d4_score_note
+
+    if BARI_SNACK_WHOLEFOOD_V1:
+        result["wholefood_bar_relief"] = gr.get("wholefood_bar_relief")
 
     return result
 
