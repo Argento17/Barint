@@ -71,8 +71,17 @@ Logged in file 8 (Harvest #5, APPLIED).
   NEW gold copy = consumer-facing content authoring → must go through the Content Agent
   + two-gate (content_signoff_hard_rule); orchestrator must NOT author inline. Needs an
   explicit dispatch authorization from the owner.
-- **Protein-bars copy regeneration** (fix the 18 HIGH calques the gate caught) — same
-  lane constraint: Content Agent dispatch through the two-gate.
+- ~~**Protein-bars copy regeneration**~~ — **DONE 2026-06-22, two-gate PASSED.**
+  Content Agent (dispatched) rewrote 24 strings → 0 HIGH. Independent Adversarial QA
+  judge: CONDITIONAL PASS (7/16; 4 HIGH blockers — the agent had traded `X, לא Y` for a
+  NEW calque family `עובד כ-X; פחות כ-Y` + 2 T4 metaphors + 1 META opener). **Gate
+  hardened** to catch those (T1b/META detectors + T4→HIGH; selftest 12 flagged lines).
+  Content Agent refine cycle → 0 HIGH on hardened gate. Independent judge RE-JUDGE:
+  **PASS, 16/16 F1≥4 AND F2≥4, 0 CRITICAL.** Orchestrator verified: 0 HIGH, JSON valid,
+  numbers + scores/grades identical to baseline. 2 non-blocking MEDIUM polish notes
+  (round 33.7→34 in prot-003 verdict; prot-002 closer slightly soft) → content-agent.
+  This proved the two-gate works: Layer 1 said clean, the independent judge caught the
+  swapped calque, the gate learned it (Phase-4 cadence trigger 3).
 - Optional: a runnable Layer-2 LLM-judge harness (independence already covered by the
   two-gate, so lower priority).
 - Committed on branch `task-374-toms-voice`: d98406d8 (Phases 0/1/1.5), ebb796bf

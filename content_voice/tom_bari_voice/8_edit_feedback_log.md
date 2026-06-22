@@ -72,6 +72,22 @@ edits at them so v1.0 rests on real data:
 
 ---
 
+### Harvest #6 — Gate-miss on protein-bars refine (Phase-4 cadence trigger 3) · 2026-06-22 · ALL-SHELF
+
+The protein-bars rewrite cleared Layer-1 (0 HIGH) but the **independent judge** caught
+the Content Agent had traded the `X, לא Y` calque for a NEW one: the antithesis closer
+**`עובד/נוח/מצוין כ-X; פחות/רחוק כ-Y`** ("works as X; less so as Y") on 4 products, plus
+T4 metaphors that survived (`החלבון נושא אותו`, `נזקף לטובתו`) and a META opener
+(`כדאי לקרוא לזה כמו שזה`). Per the standing cadence (gate-miss → harden), these became
+new detectors in `naturalness_gate.py`: **T1b** (antithesis closer), **META**
+(meta-narration opener), and **T4 promoted MEDIUM→HIGH** (specific known calques). The
+selftest grew from 7 to 12 flagged lines. After a refine cycle the re-judge returned
+**PASS (16/16, F1≥4 AND F2≥4)**. Lesson: removing one calque is not enough — agents
+substitute a sibling calque; the gate must enumerate the family. The judge (not the
+deterministic layer) is what caught it — the two-gate is load-bearing, not ceremony.
+
+---
+
 ### Harvest #5 — Translationese taxonomy (Project Tom's Voice / TASK-374) · 2026-06-22 · ALL-SHELF
 
 Source: owner provided **12 labeled live examples** (cereals + chocolate-tablet shelves)

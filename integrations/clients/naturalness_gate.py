@@ -80,6 +80,15 @@ _T1_CLOSER = re.compile(r"[,—]\s*לא\s+\S+")
 # T1 mid-text contrastive (weaker) — same shape anywhere. MEDIUM.
 _T1_MID = re.compile(r"[,—]\s*לא\s+\S+\s+\S+")
 
+# T1b — the "works as X; less so as Y" antithesis CLOSER (calque). Added after the
+# independent judge caught it recurring 4× on the protein-bars shelf (NT-H1, TASK-374)
+# where Layer-1 T1 missed it (semicolon/comma form, no bare "לא"). HIGH.
+_T1B_CLOSER = re.compile(r"(עובד|נוח|מצוין|מתאים)\s+כ.{0,45}[;,]\s*(פחות|רחוק)\b")
+
+# META — meta-narration opener ("let's call it what it is"). file 2 §5 bans warming-up
+# / narrating intent. Caught by the judge (NT-H4, TASK-374). HIGH.
+_META = re.compile(r"כדאי לקרוא לזה כמו שזה")
+
 # T2 — retired calque "X לא תמיד אומר Y" (repaired to "X הוא לא בהכרח Y"). HIGH.
 _T2 = re.compile(r"לא\s+תמיד\s+אומר")
 # Related variant on watch: "זה לא אומר" / "...לא אומר ש". MEDIUM.
@@ -88,11 +97,14 @@ _T2_VARIANT = re.compile(r"\bלא\s+אומר\b")
 # T3 — dangling "גם" ending a sentence ("הסוכר גם."). HIGH.
 _T3 = re.compile(r"\bגם\s*$")
 
-# T4 — calqued metaphors (extensible phrase list). MEDIUM.
+# T4 — calqued metaphors (extensible phrase list). These are SPECIFIC known calques
+# (not open-ended judgments) → HIGH. Expanded after the judge caught "נושא אותו" and
+# "נזקף לטובתו" surviving a rewrite (NT-H2/NT-H3, TASK-374).
 _T4_PHRASES = [
     "המחיר שלו ברור", "המחיר שלה ברור",
     "נושאים את החלבון", "נושא את החלבון", "נושאת את החלבון",
-    "לזכותו", "לזכותה",
+    "נושא אותו", "נושאת אותו", "נושאים אותו",
+    "לזכותו", "לזכותה", "נזקף לטובתו", "נזקף לזכותו", "נזקף לטובתה",
     "עוצר אותו בציון", "עוצרים אותו בציון", "עוצרת אותה בציון",
     "מעמיד אותו ליד", "מעמידה אותה ליד",
     "מציב אותו ב", "מציב אותה ב", "מציבה אותה ב",
@@ -194,6 +206,22 @@ def analyze(text: str) -> NaturalnessReport:
                 "Possible 'X, לא Y' contrastive mid-text — judge whether it reads "
                 "as a calque."))
 
+    # T1b "works as X; less/far as Y" antithesis closer (HIGH) — on the final sentence.
+    m = _T1B_CLOSER.search(last)
+    if m:
+        flags.append(NaturalnessFlag(
+            "T1b", "HIGH", m.group(0).strip(),
+            "'עובד/נוח כ-X; פחות/רחוק כ-Y' antithesis closer (calque of 'works as X; "
+            "less so as Y'). Stop earlier or land on a flowing verdict; do not write "
+            "the symmetrical antithesis."))
+
+    # META meta-narration opener (HIGH)
+    if _META.search(text):
+        flags.append(NaturalnessFlag(
+            "META", "HIGH", "כדאי לקרוא לזה כמו שזה",
+            "Meta-narration opener ('let's call it what it is') — Tom does not warm up "
+            "or narrate intent (file 2 §5). Start at the finding."))
+
     # T2 retired calque (HIGH)
     m = _T2.search(text)
     if m:
@@ -214,12 +242,13 @@ def analyze(text: str) -> NaturalnessReport:
                 "Rewrite as a full clause."))
             break
 
-    # T4 calqued metaphors (MEDIUM)
+    # T4 calqued metaphors (HIGH — these are specific, known calques)
     for p in _T4_PHRASES:
         if p in text:
             flags.append(NaturalnessFlag(
-                "T4", "MEDIUM", p,
-                "Calqued metaphor — reads as English figure of speech in Hebrew."))
+                "T4", "HIGH", p,
+                "Calqued metaphor — reads as an English figure of speech in Hebrew. "
+                "Use plain Hebrew (e.g. 'מקורו מ…', 'היתרון שלו')."))
             break
 
     # T5 nominalization (MEDIUM)
@@ -279,6 +308,12 @@ def _selftest() -> int:
         "הפקאן שם. הסוכר גם.",                           # T3 dangling גם (#1)
         "נקי לא תמיד אומר חזק.",                         # T2 (#2)
         "מתאים למי שמחפש מילק עם מינימום סוכר.",         # T6 loanword (#9)
+        # New tells caught by the independent judge on the protein-bars refine (TASK-374):
+        "עובד כמקור חלבון וסיבים מרוכז, פחות כנשנוש עשוי ממאכל אמיתי.",  # T1b (NT-H1)
+        "מצוין כתוסף חלבון נוח; פחות כמזון אמיתי.",      # T1b (NT-H1)
+        "החלבון נושא אותו, השאר ציפוי תעשייתי.",         # T4 metaphor (NT-H2)
+        "החלבון בא מבוטנים קלויים אמיתיים, וזה נזקף לטובתו.",  # T4 metaphor (NT-H3)
+        "כדאי לקרוא לזה כמו שזה: יש כאן הרבה סוכר.",     # META opener (NT-H4)
     ]
     # Owner GOLD lines: none may raise a HIGH flag.
     good = [

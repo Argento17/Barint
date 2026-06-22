@@ -7,10 +7,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [medium] /products[0]/rowVerdict
-> החזק במדף, וזה אמיתי: החלבון והסיבים (27 ו-13 גרם) נשענים על אגוזי לוז ותמרים, לא על תערובת מבודדים בלבד. אבל זה גם מה שמייקר אותו תזונתית — 17 גרם סוכר ו-17 גרם שומן, יותר מרוב שכניו. הכי קרוב למזון בקבוצה, עדיין לא נשנוש קל.
+## [clean] /products[0]/rowVerdict
+> החזק במדף, וזה אמיתי: החלבון והסיבים (27 ו-13 גרם) נשענים על אגוזי לוז ותמרים ולא על תערובת מבודדים בלבד. אבל זה גם מה שמייקר אותו תזונתית — 17 גרם סוכר ו-17 גרם שומן, יותר מרוב שכניו. הכי קרוב למזון בקבוצה, אך עדיין רחוק מנשנוש קל.
 
-  - MEDIUM T1: «, לא על תערובת» — Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque.
   - F2-signal: hedges=0 verdict_marker=True risk=low
 
 ## [clean] /products[0]/expansion/comparisonContext
@@ -58,23 +57,20 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[1]/expansion/limitingFactors[2]/text
-> הבסיס הוא תערובת חלבונים מבודדים, לא מזון שלם
+## [clean] /products[1]/expansion/limitingFactors[2]/text
+> הבסיס בנוי על תערובת חלבונים מבודדים יותר מאשר על מזון שלם
 
-  - HIGH T1: «, לא מזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[2]/insightLine
-> המספרים מושלמים — 34 גרם חלבון, כמעט בלי סוכר — אבל הם תוצאה של מעבדה, לא של מזון.
+## [clean] /products[2]/insightLine
+> המספרים מושלמים על הנייר — 34 גרם חלבון וכמעט בלי סוכר — אבל מדובר בסך הכל בהישג של מעבדה יותר מאשר של מטבח.
 
-  - HIGH T1: «, לא של» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[2]/rowVerdict
-> על הנייר זה הפרופיל החלומי: 33.7 גרם חלבון ובקושי 3 גרם סוכר. אבל ה'בלי סוכר' לא בא מהפחתה אמיתית — הוא מורכב מתחליפי מתיקות, ציפוי שוקולד מתועש ורשימת רכיבים ארוכה, עם 352 מ"ג נתרן. תוסף חלבון שעוצב למספרים, לא נשנוש עשוי מחומרי גלם אמיתיים.
+## [clean] /products[2]/rowVerdict
+> על הנייר זה הפרופיל החלומי: 33.7 גרם חלבון ובקושי 3 גרם סוכר. אבל ה'בלי סוכר' לא הושג בהפחתה אמיתית אלא בתחליפי מתיקות, ציפוי שוקולד מתועש ורשימת רכיבים ארוכה, עם 352 מ"ג נתרן. במהותו זה תוסף חלבון שעוצב סביב המספרים, ולא נשנוש שמורכב מחומרי גלם אמיתיים.
 
-  - HIGH T1: «, לא נשנוש» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
-  - F2-signal: hedges=1 verdict_marker=False risk=high
+  - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[2]/expansion/comparisonContext
 > זה בדיוק הסיפור של הקטגוריה במוצר אחד: 33.7 גרם חלבון וסוכר נמוך שלא הושגו בעזרת מזון פשוט אלא בעזרת ממתיקים מלאכותיים ורשימת רכיבים ארוכה. נוסיף לזה 352 מ"ג נתרן — מהמלוחים בקבוצה — ומתקבל פרופיל שמרשים במספרים אבל תעשייתי בהרכב.
@@ -96,16 +92,15 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[3]/insightLine
-> הכי הרבה סיבים בקבוצה (19 גרם) — אבל הם מוספים מחומר מילוי, לא מדגן או אגוז.
+## [clean] /products[3]/insightLine
+> הכי הרבה סיבים בקבוצה (19 גרם), אבל מקורם בחומר מילוי שנוסף בייצור ולא בדגן או אגוז.
 
-  - HIGH T1: «, לא מדגן» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[3]/rowVerdict
-> המספרים הפונקציונליים מרשימים: 36 גרם חלבון ו-19 גרם סיבים, הכי הרבה בקבוצה, עם שומן נמוך. אבל הסיבים האלה אינם מגיעים מדגן או אגוז — הם נוספו מחומר מילוי, וגם הנתרן (387 מ"ג) מהגבוהים במדף. עובד כמקור חלבון וסיבים מרוכז, פחות כנשנוש עשוי ממאכל אמיתי.
+> המספרים הפונקציונליים מרשימים: 36 גרם חלבון ו-19 גרם סיבים, הכי הרבה בקבוצה, עם שומן נמוך. אבל הסיבים האלה אינם מגיעים מדגן או אגוז — הם נוספו מחומר מילוי, וגם הנתרן (387 מ"ג) מהגבוהים במדף. מדובר בסך הכל בריכוז חלבון וסיבים מהונדס, ולא בנשנוש שמורכב ממזון אמיתי.
 
-  - F2-signal: hedges=1 verdict_marker=False risk=high
+  - F2-signal: hedges=0 verdict_marker=True risk=low
 
 ## [clean] /products[3]/expansion/comparisonContext
 > מוביל הסיבים בקבוצה, אבל כדאי לדעת מאיפה הם באים: לא מדגן מלא או אגוז, אלא מחומר מילוי שנוסף בייצור. עם נתרן גבוה (387 מ"ג), זה מקור חלבון וסיבים מרוכז יותר משהוא חטיף שמורכב מרכיבים אמיתיים.
@@ -117,10 +112,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[3]/expansion/limitingFactors[1]/text
-> הסיבים מוספים מחומר מילוי, לא ממזון שלם
+## [clean] /products[3]/expansion/limitingFactors[1]/text
+> הסיבים מקורם בחומר מילוי שנוסף בייצור יותר מאשר במזון שלם
 
-  - HIGH T1: «, לא ממזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[3]/expansion/limitingFactors[2]/text
@@ -143,27 +137,24 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[4]/expansion/limitingFactors[0]/text
-> המתיקות הנמוכה מושגת בתחליפים, לא בהפחתה אמיתית
+## [clean] /products[4]/expansion/limitingFactors[0]/text
+> המתיקות הנמוכה מושגת בתחליפי סוכר ולא בהפחתה אמיתית
 
-  - HIGH T1: «, לא בהפחתה» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[4]/expansion/limitingFactors[1]/text
-> הבסיס תערובת חלבונים מבודדים, לא מזון שלם
+## [clean] /products[4]/expansion/limitingFactors[1]/text
+> הבסיס נשען על תערובת חלבונים מבודדים יותר מאשר על מזון שלם
 
-  - HIGH T1: «, לא מזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[5]/insightLine
-> שקדים וקשיו אמיתיים בפנים — אבל המתיקות הנמוכה עדיין באה מתחליפים, וצפיפות קלורית של 406 קלוריות.
+> שקדים וקשיו אמיתיים בפנים — אבל המתיקות הנמוכה עדיין באה מתחליפים, וב-406 קלוריות זה גם מהצפופים בקבוצה.
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [medium] /products[5]/rowVerdict
-> כאן יש משהו אמיתי שרוב הקבוצה חסרה — שקדים וקשיו ממש בתוך החטיף, לא רק אבקות. החלבון גבוה (33 גרם) והסוכר נמוך, אבל המתיקות עדיין מהונדסת מתחליפים, ועם 20 גרם שומן זה גם מהצפופים בקבוצה. האגוזים האמיתיים הם היתרון; הצפיפות הקלורית היא המחיר.
+## [clean] /products[5]/rowVerdict
+> כאן יש משהו אמיתי שרוב הקבוצה חסרה — שקדים וקשיו ממש בתוך החטיף ולא רק אבקות. החלבון גבוה (33 גרם) והסוכר נמוך, אבל המתיקות עדיין מהונדסת מתחליפים, ועם 20 גרם שומן זה גם מהצפופים בקבוצה. האגוזים האמיתיים הם היתרון הברור שלו, אלא שהוא מגיע במחיר של צפיפות קלורית גבוהה.
 
-  - MEDIUM T1: «, לא רק אבקות.» — Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque.
   - F2-signal: hedges=0 verdict_marker=True risk=low
 
 ## [clean] /products[5]/expansion/comparisonContext
@@ -171,10 +162,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[5]/expansion/limitingFactors[0]/text
-> המתיקות הנמוכה באה מתחליפים וחומר מילוי, לא מהפחתה אמיתית
+## [clean] /products[5]/expansion/limitingFactors[0]/text
+> המתיקות הנמוכה נשענת על תחליפים וחומר מילוי במקום על הפחתה אמיתית
 
-  - HIGH T1: «, לא מהפחתה» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[5]/expansion/limitingFactors[1]/text
@@ -193,25 +183,23 @@ Consumer Hebrew strings scanned: 90
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[6]/rowVerdict
-> הפרופיל קורא נקי: חלבון גבוה (32 גרם), כמעט בלי סוכר ונתרן נמוך מאוד (100 מ"ג). אבל המתיקות לא הופחתה — היא הוחלפה בתחליפים, והבסיס תערובת חלבונים מבודדים. מצוין כתוסף חלבון נוח; פחות כמזון אמיתי.
+> הפרופיל קורא נקי: חלבון גבוה (32 גרם), כמעט בלי סוכר ונתרן נמוך מאוד (100 מ"ג). אבל המתיקות לא הופחתה — היא הוחלפה בתחליפים, והבסיס תערובת חלבונים מבודדים. במהותו זה תוסף חלבון נוח, יותר מאשר מזון.
 
-  - F2-signal: hedges=0 verdict_marker=True risk=low
+  - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[6]/expansion/comparisonContext
 > מהנקיים בקבוצה על הנייר — חלבון גבוה, כמעט בלי סוכר ונתרן נמוך. אבל המתיקות לא נחסכה, היא הומרה בתחליפים, והבסיס הוא תערובת מבודדים. תוסף חלבון נוח יותר משהוא חטיף של ממש.
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[6]/expansion/limitingFactors[0]/text
-> המתיקות באה מתחליפים, לא מהפחתה אמיתית של סוכר
+## [clean] /products[6]/expansion/limitingFactors[0]/text
+> המתיקות מגיעה מתחליפי סוכר ולא מהפחתה אמיתית של סוכר
 
-  - HIGH T1: «, לא מהפחתה» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[6]/expansion/limitingFactors[1]/text
-> הבסיס תערובת חלבונים מבודדים, לא מזון שלם
+## [clean] /products[6]/expansion/limitingFactors[1]/text
+> הבסיס הוא בעיקר תערובת חלבונים מבודדים ולא מזון שלם
 
-  - HIGH T1: «, לא מזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[7]/insightLine
@@ -240,31 +228,28 @@ Consumer Hebrew strings scanned: 90
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[8]/insightLine
-> עוד טעם באותה משפחה — המספרים נקיים (33 גרם חלבון, נתרן נמוך), ההרכב תעשייתי כמו אצל אחיו.
+> אותו מתכון של המשפחה בעטיפת טעם חדשה — 33 גרם חלבון ונתרן נמוך, אבל ההרכב נשאר תעשייתי בדיוק כמו אצל אחיו.
 
   - F2-signal: hedges=0 verdict_marker=True risk=low
 
-## [medium] /products[8]/rowVerdict
-> כמעט בלתי-נבדל מאחיו הקרובים: חלבון גבוה (33 גרם), כמעט בלי סוכר ונתרן נמוך (100 מ"ג). ההבדל הוא הטעם, לא ההרכב — אותה מתיקות מתחליפים ואותו בסיס מבודדים. נוח כתוסף חלבון, רחוק ממאכל אמיתי.
+## [clean] /products[8]/rowVerdict
+> ההבדל היחיד מאחיו הקרובים הוא הטעם — המספרים זהים: חלבון גבוה (33 גרם), כמעט בלי סוכר ונתרן נמוך (100 מ"ג). מתחת לטעם הבננה-טופי יושב בדיוק אותו מתכון, עם המתיקות מתחליפים ובסיס המבודדים. מי שקונה אותו קונה את אותה המהונדסות של הקבוצה, בגרסה אחרת של טעם.
 
-  - MEDIUM T1: «, לא ההרכב —» — Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque.
-  - F2-signal: hedges=0 verdict_marker=False risk=medium
+  - F2-signal: hedges=0 verdict_marker=True risk=low
 
 ## [clean] /products[8]/expansion/comparisonContext
 > עוד טעם באותה משפחה. המספרים נקיים — חלבון גבוה, סוכר נמוך, נתרן נמוך — אבל מה שמבדל אותו משכניו הקרובים הוא הטעם בלבד, לא ההרכב. אותה מתיקות מתחליפים ואותו בסיס מבודדים.
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[8]/expansion/limitingFactors[0]/text
-> המתיקות באה מתחליפים, לא מהפחתה אמיתית
+## [clean] /products[8]/expansion/limitingFactors[0]/text
+> המתיקות מבוססת על תחליפים ולא על הפחתה אמיתית
 
-  - HIGH T1: «, לא מהפחתה» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[8]/expansion/limitingFactors[1]/text
-> הבסיס תערובת חלבונים מבודדים, לא מזון שלם
+## [clean] /products[8]/expansion/limitingFactors[1]/text
+> הבסיס הוא תערובת חלבונים מבודדים ולא מזון שלם
 
-  - HIGH T1: «, לא מזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[9]/insightLine
@@ -273,7 +258,7 @@ Consumer Hebrew strings scanned: 90
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[9]/rowVerdict
-> החלבון אמיתי וגבוה (33 גרם), אבל מה שמושך אותו מטה הוא דווקא שכבת הקרמל: היא מוסיפה 8.2 גרם שומן רווי, נמוכה בסיבים (4.9 גרם בלבד) ובנויה משומן צמחי וממתיקים. החלבון נושא אותו, השאר ציפוי תעשייתי.
+> החלבון אמיתי וגבוה (33 גרם), אבל מה שמושך אותו מטה הוא דווקא שכבת הקרמל: היא מוסיפה 8.2 גרם שומן רווי, נמוכה בסיבים (4.9 גרם בלבד) ובנויה משומן צמחי וממתיקים. בשורה התחתונה החלבון הוא היתרון, ומסביבו ציפוי תעשייתי שמכביד עליו.
 
   - F2-signal: hedges=0 verdict_marker=True risk=low
 
@@ -303,7 +288,7 @@ Consumer Hebrew strings scanned: 90
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[10]/rowVerdict
-> הבסיס דווקא אמין — חלבון גבוה (34 גרם) מחלבוני חלב וסיבים סבירים. מה שמכביד עליו הוא הציפוי המתוק: 8.5 גרם שומן רווי, שומן קוקוס ושורת תוספים שבונים את הקרמל. עובד כתוסף חלבון; פחות מוצלח כנשנוש נקי.
+> הבסיס דווקא אמין — חלבון גבוה (34 גרם) מחלבוני חלב וסיבים סבירים. מה שמכביד עליו הוא הציפוי המתוק: 8.5 גרם שומן רווי, שומן קוקוס ושורת תוספים שבונים את הקרמל. אם היו עוצרים בבסיס היה כאן תוסף חלבון הגון, אבל הקרמל מושך אותו לאזור הפחות נקי.
 
   - F2-signal: hedges=1 verdict_marker=False risk=high
 
@@ -317,10 +302,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[10]/expansion/limitingFactors[1]/text
-> שכבת הקרמל בנויה משומן צמחי ושורת תוספים, לא ממזון
+## [clean] /products[10]/expansion/limitingFactors[1]/text
+> שכבת הקרמל בנויה משומן צמחי ושורת תוספים יותר מאשר ממזון
 
-  - HIGH T1: «, לא ממזון» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[11]/insightLine
@@ -328,10 +312,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [medium] /products[11]/rowVerdict
-> כאן החלבון (26 גרם) בא מבוטנים קלויים אמיתיים ולא רק מאבקה, וזה לזכותו. אבל הוא משלם על זה ביוקר: הצפוף ביותר בקבוצה ב-496 קלוריות, עם 29.5 גרם שומן, ובניגוד למשפחה המתוקה-בתחליפים, כאן הסוכר אמיתי וגבוה (16 גרם). מקור חלבון ממאכל ממשי, באריזה קלורית כבדה.
+## [clean] /products[11]/rowVerdict
+> כאן החלבון (26 גרם) בא מבוטנים קלויים אמיתיים ולא רק מאבקה, וזה היתרון הברור שלו. אבל הוא משלם על זה ביוקר: הצפוף ביותר בקבוצה ב-496 קלוריות, עם 29.5 גרם שומן, ובניגוד למשפחה שממותקת בתחליפים, כאן הסוכר אמיתי וגבוה (16 גרם). החלבון אמנם מגיע ממזון של ממש, אבל הצפיפות הקלורית כאן היא הגבוהה בקבוצה והיא מה שמכריע.
 
-  - MEDIUM T4: «לזכותו» — Calqued metaphor — reads as English figure of speech in Hebrew.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[11]/expansion/comparisonContext
@@ -349,10 +332,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[11]/expansion/limitingFactors[2]/text
-> 16 גרם סוכר ל-100 גרם — סוכר אמיתי, לא תחליף; וגם הנתרן גבוה (354 מ"ג)
+## [clean] /products[11]/expansion/limitingFactors[2]/text
+> 16 גרם סוכר אמיתי ל-100 גרם — סוכר ממש ולא תחליף, וגם הנתרן גבוה (354 מ"ג)
 
-  - HIGH T1: «, לא תחליף;» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[12]/insightLine
@@ -360,10 +342,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [medium] /products[12]/rowVerdict
-> אותו עיקרון כמו הגרסה האחרת מהמותג: החלבון (25 גרם) בא מבוטנים קלויים אמיתיים, וזה לזכותו. אבל גם כאן זה אחד הצפופים בקבוצה — 489 קלוריות, 28 גרם שומן ו-17 גרם סוכר אמיתי. מקור חלבון ממאכל ממשי, עטוף בצפיפות קלורית גבוהה.
+## [clean] /products[12]/rowVerdict
+> אותו עיקרון כמו הגרסה האחרת מהמותג: החלבון (25 גרם) בא מבוטנים קלויים אמיתיים, וזה היתרון שלו. אבל גם כאן זה אחד הצפופים בקבוצה — 489 קלוריות, 28 גרם שומן ו-17 גרם סוכר אמיתי. כך שגם אם המקור טוב יותר מרוב הקבוצה, הפרופיל הקלורי מציב אותו נמוך.
 
-  - MEDIUM T4: «לזכותו» — Calqued metaphor — reads as English figure of speech in Hebrew.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[12]/expansion/comparisonContext
@@ -391,10 +372,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[13]/rowVerdict
-> כדאי לקרוא לזה כמו שזה: בעוד רוב הקבוצה מורידה סוכר בכל דרך, כאן יש 31 גרם סוכר אמיתי, כמעט כמו בלוח שוקולד, עם 11 גרם שומן רווי — מהגבוהים במדף. החלבון אמנם גבוה, אבל המבנה כאן הוא של ממתק, לא של חטיף חלבון.
+## [clean] /products[13]/rowVerdict
+> בעוד רוב הקבוצה מורידה סוכר בכל דרך, כאן יש 31 גרם סוכר אמיתי, כמעט כמו בלוח שוקולד, עם 11 גרם שומן רווי — מהגבוהים במדף. החלבון אמנם גבוה, אבל המבנה כאן הוא של ממתק שעטוף בטענת חלבון יותר מאשר של חטיף חלבון אמיתי.
 
-  - HIGH T1: «, לא של» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[13]/expansion/comparisonContext
@@ -402,10 +382,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[13]/expansion/limitingFactors[0]/text
-> 31 גרם סוכר ל-100 גרם — סוכר אמיתי ברמה של ממתק שוקולד, לא תחליף
+## [clean] /products[13]/expansion/limitingFactors[0]/text
+> 31 גרם סוכר אמיתי ל-100 גרם — ברמה של ממתק שוקולד, וכאן הוא סוכר ממש ולא תחליף
 
-  - HIGH T1: «, לא תחליף» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[13]/expansion/limitingFactors[1]/text
@@ -428,10 +407,9 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[14]/expansion/comparisonContext
-> בתחתית הקבוצה, ובמקום נדיר: גם הכי מתוק וגם כמעט הכי מלוח במדף בו-זמנית. בעוד שכניו מורידים סוכר בתחליפים, כאן 35 גרם סוכר אמיתי לצד 396 מ"ג נתרן — מבנה של ממתק, לא של חטיף חלבון.
+## [clean] /products[14]/expansion/comparisonContext
+> בתחתית הקבוצה, ובמקום נדיר: גם הכי מתוק וגם כמעט הכי מלוח במדף בו-זמנית. בעוד שכניו מורידים סוכר בתחליפים, כאן 35 גרם סוכר אמיתי לצד 396 מ"ג נתרן. מדובר בסך הכל במבנה של ממתק שעוטה מעיל חלבון.
 
-  - HIGH T1: «, לא של» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[14]/expansion/limitingFactors[0]/text
@@ -449,16 +427,14 @@ Consumer Hebrew strings scanned: 90
 
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [HIGH-BLOCK] /products[15]/insightLine
-> זו קונפקציית שוקולד שהוסיפו לה חלבון, לא חטיף חלבון — 27 גרם סוכר ואפס סיבים מסגירים את זה.
+## [clean] /products[15]/insightLine
+> מדובר בסך הכל בקונפקציית שוקולד שהוסיפו לה חלבון — 27 גרם סוכר ואפס סיבים מסגירים את זה.
 
-  - HIGH T1: «, לא חטיף» — Contrastive 'X, לא Y' closer (calque). Resolve with 'מדובר בסך הכל ב…', 'עדיין', or a plain positive — do not end on a bare 'X, לא Y'.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
-## [medium] /products[15]/rowVerdict
-> החלבון גבוה (34 גרם), אבל הוא הדבר היחיד שמזכיר כאן חטיף חלבון. כל השאר שוקולד וממתק: 27 גרם סוכר, 24 גרם שומן, 465 קלוריות ובלי טיפת סיבים. קונפקציית שוקולד שמוסיפה חלבון, לא חטיף חלבון. תחתית הקבוצה, ובצדק.
+## [clean] /products[15]/rowVerdict
+> החלבון גבוה (34 גרם), אבל הוא הדבר היחיד שמזכיר כאן חטיף חלבון. כל השאר שוקולד וממתק: 27 גרם סוכר, 24 גרם שומן, 465 קלוריות ובלי טיפת סיבים. במהותו זו קונפקציית שוקולד שמוסיפה חלבון יותר משהיא חטיף חלבון. תחתית הקבוצה, ובצדק.
 
-  - MEDIUM T1: «, לא חטיף חלבון.» — Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque.
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ## [clean] /products[15]/expansion/comparisonContext
@@ -477,4 +453,4 @@ Consumer Hebrew strings scanned: 90
   - F2-signal: hedges=0 verdict_marker=False risk=medium
 
 ---
-SUMMARY: 18 HIGH-block · 6 medium-only · 66 clean (of 90 strings)
+SUMMARY: 0 HIGH-block · 0 medium-only · 90 clean (of 90 strings)
