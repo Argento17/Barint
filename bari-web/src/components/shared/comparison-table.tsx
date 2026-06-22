@@ -67,8 +67,21 @@ export function ComparisonTable({
       index,
       band: bandOf(product.score),
     }));
+    // TASK-365: standard competition ranking — tied products share the same rank number.
+    // Walk in corpus order (already score-sorted); the first product at each distinct score
+    // claims the next rank slot (= products seen so far + 1), so e.g. 12 products at score 50
+    // all show the same rank and the next distinct score resumes after the tie.
+    const scoreToRank = new Map<number, number>();
+    let nextRank = 1;
+    for (const { product } of withBand) {
+      if (product.score == null) continue;
+      if (!scoreToRank.has(product.score)) scoreToRank.set(product.score, nextRank);
+      nextRank++;
+    }
     return withBand.map((row, i) => ({
       ...row,
+      competitionRank:
+        row.product.score != null ? (scoreToRank.get(row.product.score) ?? 0) : 0,
       showDivider: i === 0 || withBand[i - 1].band.id !== row.band.id,
     }));
   }, [products]);
@@ -92,7 +105,7 @@ export function ComparisonTable({
           </div>
         ) : null}
 
-        {rows.map(({ product, index, band, showDivider }) => (
+        {rows.map(({ product, band, showDivider, competitionRank }) => (
           <Fragment key={product.id}>
             {showDivider ? (
               <div className="bari-cmp-divider" aria-hidden>
@@ -105,7 +118,7 @@ export function ComparisonTable({
             ) : null}
             <ComparisonRow
               product={product}
-              rank={showRank ? index + 1 : 0}
+              rank={showRank ? competitionRank : 0}
               open={open.has(product.id)}
               onToggle={onToggle}
               metricSpecs={metricSpecs}

@@ -27,10 +27,14 @@ export function enrichRowSurface(products: BariProductVM[]): BariProductVM[] {
   return products.map((product) => ({
     ...product,
     metrics: { protein_g: product.expansion.nutrition?.protein ?? null },
-    // The collapsed row shows the authored 2-line interpretive verdict (written into
-    // insightLine, TASK-168). Routing it through rowVerdict renders it in the multi-line
-    // verdict slot instead of the single-line truncated insightLine.
-    rowVerdict: product.insightLine,
+    // The collapsed row shows the authored 2-line interpretive verdict in the multi-line
+    // rowVerdict slot. Prefer a distinctly-authored rowVerdict when present (the protein
+    // content model authors insightLine + rowVerdict as separate fields); fall back to the
+    // insightLine for legacy categories where the verdict lives in insightLine (TASK-168).
+    rowVerdict:
+      typeof product.rowVerdict === "string" && product.rowVerdict.trim()
+        ? product.rowVerdict
+        : product.insightLine,
   }));
 }
 

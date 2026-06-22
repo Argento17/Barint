@@ -23,6 +23,41 @@ const METHODOLOGY_FOOTER_NOTE =
 const PARTIAL_PAGE_DISCLOSURE =
   "חלק מהמוצרים בדף זה מבוססים על נתונים חלקיים מהתווית.\nהציון כולל את המידע שהיה זמין בסריקה.";
 
+// TASK-365: multi-paragraph categoryNote renderer. The note string may contain multiple
+// paragraphs joined by "\n\n". Each paragraph may start with a heading line of the form
+// "הערת קטגוריה — <topic>" followed by a newline and the body text. Split and render
+// each paragraph independently so all paragraphs are visible with correct RTL spacing.
+// A single-paragraph note (no "\n\n") renders identically to the previous <p> approach.
+function CategoryNoteBox({ note }: { note: string }) {
+  const paragraphs = note.split(/\n\n+/);
+  return (
+    <div
+      className="rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-normal text-[#6A6147]"
+      dir="rtl"
+    >
+      {paragraphs.map((para, i) => {
+        // A heading line ends at the first "\n" within the paragraph.
+        const newlineIdx = para.indexOf("\n");
+        if (newlineIdx !== -1) {
+          const heading = para.slice(0, newlineIdx).trim();
+          const body = para.slice(newlineIdx + 1).trim();
+          return (
+            <p key={i} className={i > 0 ? "mt-3" : undefined}>
+              <span className="block font-semibold">{heading}</span>
+              {body}
+            </p>
+          );
+        }
+        return (
+          <p key={i} className={i > 0 ? "mt-3" : undefined}>
+            {para.trim()}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 function partialThresholdMet(products: BariProductVM[]): boolean {
   if (products.length === 0) return false;
   const partialCount = products.filter((p) => p.confidence === "partial").length;
@@ -132,9 +167,7 @@ export function ComparisonPage<TFilterId extends string = string>({
 
         {categoryNote ? (
           <div className={cn("px-4 pb-1", comparisonWebSectionPaddingClass())}>
-            <p className="whitespace-pre-line rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-[1.5] text-[#6A6147]">
-              {categoryNote}
-            </p>
+            <CategoryNoteBox note={categoryNote} />
           </div>
         ) : null}
 

@@ -159,6 +159,15 @@ const CATEGORY_NUTRITION: Record<string, CategoryNutritionConfig> = {
     sodium: { max: 50 },
     servingLabel: "ל-100 מ״ל",
   },
+  // Protein bars (TASK-365): high-protein shelf (23–36g/100g), sugar 1.7–35g/100g.
+  // Scales tuned to the real corpus range so bars differentiate within the shelf.
+  "protein-bars": {
+    energyKcal: { max: 520 },
+    protein: { max: 40, goodAbove: 28, warnBelow: 25 },
+    sugar: { max: 40, goodBelow: 4, warnAbove: 15 },
+    sodium: { max: 600 },
+    servingLabel: "ל-100 גרם",
+  },
   // Cookies
   "cookies-coffee": {
     energyKcal: { max: 550 },

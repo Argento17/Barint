@@ -129,6 +129,39 @@ export const SODIUM_METRIC: MetricSpec = {
   ariaUnit: 'מ״ג נתרן ל-100 גרם',
 };
 
+// Protein-bar protein variant (TASK-365): shelf range is 23–36 g/100g, so the generic
+// 0–20 scaleMax pegs every product at 100%. A 40g ceiling lets 23g read as ~58%
+// and 36g as 90%, preserving meaningful bar differentiation. Good threshold raised to
+// match the high-protein context of this shelf (≥28g). Poor threshold = 25g (below
+// the shelf median). aria unit stays per-100g (primary comparison basis).
+export const PROTEIN_BAR_PROTEIN_METRIC: MetricSpec = {
+  key: "protein_g",
+  label: "חלבון",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 40,
+  good: 28,
+  poor: 25,
+  ariaUnit: "גרם חלבון ל-100 גרם",
+};
+
+// Protein-bar sugar variant (TASK-365): shelf sugar range is 1.7–35g per 100g —
+// the generic scaleMax=15 clips the high end (several bars at 27–35g). A 40g ceiling
+// keeps the high-sugar bars visible without false-clipping. Lower is better;
+// ≤4g (most bars cluster here) = good; ≥15g = amber signal worth showing.
+export const PROTEIN_BAR_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  render: "bar",
+  scaleMax: 40,
+  good: 4,
+  poor: 15,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+};
+
 export const ADDITIVES_METRIC: MetricSpec = {
   key: "additive_count",
   label: "תוספים",
