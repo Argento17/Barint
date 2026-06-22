@@ -49,6 +49,35 @@ the HebEMO anger + disgust gate (`LABEL_0` on both) before shipping
 
 ---
 
+## 1.5 Translationese syntax sub-blacklist (T1–T7) — TASK-374
+
+These are **structural / syntactic** tells, not vocabulary. They are the defect no
+earlier firewall caught: grammatical, leakage-clean Hebrew that still reads
+*translated*. This is the human-facing mirror of the deterministic gate
+`integrations/clients/naturalness_gate.py` and the taxonomy
+`10_translationese_taxonomy.md`. A draft that trips a **HIGH** tell does not ship.
+
+| # | Tell (banned) | Why | Natural form |
+|---|---|---|---|
+| **T1** | The `X, לא Y` contrastive **closer** ("…מבודדים, לא מזון שלם", "…תוצאה של מעבדה, לא של מזון") — comma/dash + `לא` + short phrase ending the line | #1 calque ("it's X, not Y"); was 18/90 of the live protein-bars copy | Resolve in flowing prose, or land on `מדובר בסך הכל ב…` / `עדיין`. An *earned* bare fragment ("לייט זה לא.") is fine; the comma-contrastive closer is not. |
+| **T2** | `X לא תמיד אומר Y` (calque "doesn't always mean") | retired calque; owner flagged "נקי לא תמיד אומר חזק" | `X הוא לא בהכרח Y` ("מוצר נקי הוא לא בהכרח מוצר חזק"). `זה לא אומר Y` variant on watch. |
+| **T3** | Dangling `גם` ending a sentence ("הסוכר גם.") | calque of trailing "…too." | Full clause. (`גם` mid-sentence is fine: "יש בו גם דבש".) |
+| **T4** | Calqued metaphors ("המחיר שלו ברור", "נושא את החלבון", "לזכותו", "עוצר אותו בציון") | English figures that don't carry in Hebrew | Plain Hebrew ("מקורו מ…", "בזכות…"). |
+| **T5** | Passive nominalization ("הבחירה שנעשתה היא להוסיף", "סוכר שמוסף") | LLM-Hebrew register | Active verb ("בחרו להוסיף", "סוכר מוסף"). |
+| **T6** | Untranslated English loanword ("מילק") | breaks the Hebrew register | The Hebrew term ("שוקולד חלב"). |
+| **T7** | Wrong-register word / compression ("הפסד" for a food tradeoff, "סיבים יפים", "דבש בשם, X%") | register mismatch / calqued compression | Correct-register word ("עשיר בסיבים"); state it in full. |
+
+**Two failure modes (owner ruling, file 8 H5-R3):** T1–T7 are the **F1
+translationese-punch** axis. The opposite failure is **F2 neutral-bland** — no
+verdict, hedge-only, "says nothing." Both are banned: the target is *opinionated
+substance in natural connected Hebrew* (file 2 §0.5). `(!)` is seasoning used
+sparingly and only when earned — more than once on a shelf is overuse.
+
+> ⚠️ Calibration guards (do NOT over-flag): `אשר` is natural Hebrew, not a tell; an
+> earned short-fragment closer is allowed. Only the patterns above fire.
+
+---
+
 ## 2. Claim control — the firewall (mandatory)
 
 **Principle (project-wide):** *"Unknown is acceptable; fabrication is not."* The
@@ -96,7 +125,9 @@ scrape field, or an approved doc/URL). Vague provenance ("מקור מזון רש
 3. **Tone scan** — any witty/critical line passes HebEMO anger+disgust.
 4. **Form scan** — run hero/prologue/insight lines through DICTA Nakdan; garbled word = rewrite.
 5. **Grammar/agreement scan** — run `hebrew_grammar_gate.analyze(text).is_clean` (must be true); gender/number agreement failure = not-done. High-confidence flags may be auto-fixed via `hebrew_grammar_autofix.auto_fix(text)`; medium-confidence flags require human review.
+5.6. **Naturalness pre-filter (T1–T7, §1.5)** — run `naturalness_gate.analyze(text).is_clean` (must be true); any HIGH translationese tell = not-done. MEDIUM flags + `f2_signal` route to the independent judge (step 7).
 6. **Voice-match gate** — `7_voice_match_gate.md`.
+7. **Naturalness judge (two-axis, independent lane)** — `11_naturalness_gate.md`: F1 ≥ 4 AND F2 ≥ 4. Run by a lane that did NOT author the copy (Adversarial QA Track C). The author cannot self-clear it.
 
 Fail any → not done.
 

@@ -61,9 +61,13 @@ Logged in file 8 (Harvest #5, APPLIED).
   blocks the 18 HIGH lines until fixed.
 - Wire Layer 2 (LLM judge) as a runnable harness on an independent lane (or confirm
   it runs inside Adversarial QA Track C per agent doc).
-- Phase 2 (syntax sub-blacklist in file 5), Phase 3 (category golden: snacks/granola),
-  Phase 4 (standing harvest cadence).
-- Nothing committed yet (owner-gated).
+- ~~Phase 2 (syntax sub-blacklist in file 5)~~ — **DONE 2026-06-22**: file 5 §1.5
+  translationese sub-blacklist (T1–T7 + F1/F2 framing + calibration guards) added; gate
+  order updated (5.6 naturalness pre-filter, 7 independent judge).
+- Phase 3 (category golden: snacks/granola — needs new gold authored via Content Agent /
+  two-gate, NOT inline), Phase 4 (standing harvest cadence).
+- Committed on branch `task-374-toms-voice` (commit d98406d8 = Phases 0/1/1.5; Phase 2
+  follow-up commit). Not pushed (owner-gated).
 - Phase 1.5 fingerprint recalibration pass (default texture → connected prose; punch
   = seasoning-when-earned).
 - Phases 2–4 (syntax sub-blacklist, category golden, harvest cadence).
