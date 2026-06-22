@@ -100,10 +100,10 @@ TASK-179T reads this file for component strings. This is the content record for 
 
 ### E471 — מונו ודיגליצרידים (Mono- and diglycerides of fatty acids)
 **Tier:** contested
-**Explanation (final):** מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי פעיל על בטיחות השימוש בהם לאורך זמן, אם כי האיחוד האירופי אישר שימושם.
+**Explanation (final):** מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם.
 **Change from draft:** unchanged
 **Change (EV-061):** tier likely-neutral → contested. Copy revised to the active-debate + EU-approved register (modeled on E407/E466). Evidence basis: EV-061 (Sellem et al., PLoS Medicine 2024, PMID 38349899 — E471 isolated, cancer HRs 1.15/1.24/1.46; emulsifier signal, same family as E407/E466). LOW-to-moderate, single cohort, no replication → contested, not confirmed-negative.
-**CH-4 change (2026-06-22, Nutrition DEC-CH-4):** "השפעתם על מיקרוביום המעי" (microbiome — the hypothesised mechanism) replaced with "בטיחות השימוש בהם לאורך זמן" (safety of use over time). EV-061's primary finding was cancer HRs, not a microbiome outcome; naming "microbiome" mischaracterised what the study measured. New phrasing is accurate to an open safety question without adjudicating mechanism. 100 chars, DEC-006-compliant.
+**CH-4 change (2026-06-22, Nutrition DEC-CH-4):** "השפעתם על מיקרוביום המעי" (microbiome — the hypothesised mechanism) replaced with "בטיחות השימוש בהם לאורך זמן" (safety of use over time). EV-061's primary finding was cancer HRs, not a microbiome outcome; naming "microbiome" mischaracterised what the study measured. New phrasing is accurate to an open safety question without adjudicating mechanism. 107 chars (gate-2 M-2 fix: trimmed from a 122-char draft that exceeded the 120 limit — removed "פעיל" + "לאורך זמן"), DEC-006-compliant.
 
 ---
 
