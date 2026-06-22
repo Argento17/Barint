@@ -2142,6 +2142,11 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         sc5_refined_present=_sc5_override,
     )
 
+    if BARI_SNACK_WHOLEFOOD_V1 and _wholefood_relief is not None:
+        _orig_sg = l3.get("added_sugar_sources_count", 0)
+        if _added_sg_override is not None and _added_sg_override != _orig_sg:
+            _wholefood_relief["fix1_fired"] = True
+
     # SRC-06: HP NOVA gate
     # TASK-181G / EV-042 — Glass Box W4 removes NOVA-class amplification of HP
     # penalties (spec §1.3 O3 / §4.1 item 3). The HP detection signals fire on their
@@ -2270,7 +2275,10 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                 and _wholefood_relief
                 and _wholefood_relief.get("passed")
                 and red_label_sat_fat):
+            _rl_before_wf = _rl_count_for_2plus
             _rl_count_for_2plus = max(0, _rl_count_for_2plus - 1)
+            if _rl_before_wf >= 2 and _rl_count_for_2plus < 2:
+                _wholefood_relief["fix2_2plus_suppressed"] = True
         check_cap("ISRAELI_RED_LABELS_2_PLUS", _rl_count_for_2plus >= 2, 45, sugar_caps_fired)
 
     # Sugar penalties
@@ -2982,6 +2990,8 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     )
     if hp_fat_sugar:
         if _suppress_hp_fat_sugar:
+            if _wholefood_relief is not None:
+                _wholefood_relief["fix2_hp_suppressed"] = True
             penalties_considered.append({"rule": "HP_FAT_SUGAR_COMBO", "fired": False,
                                           "note": "TASK-373: wholefood_bar_relief — intrinsic fruit+nut fat+sugar, not HP stack"})
         else:
@@ -3112,6 +3122,12 @@ WHOLEFOOD_REFINED_INGREDIENT_MARKERS = (
 )
 WHOLEFOOD_BAR_CATEGORIES = frozenset({"snack_bar_granola", "whole_food_fat"})
 WHOLEFOOD_MAX_SANITIZED_INGREDIENTS = 6
+# P284 / TASK-373 — non-relieved calorie-density backstop (provisional; Nutrition D6/D7 co-sign).
+WHOLEFOOD_CALORIE_BACKSTOP_KCAL_MAX = 420
+WHOLEFOOD_CALORIE_BACKSTOP_FIBER_MIN = 10
+WHOLEFOOD_CALORIE_BACKSTOP_PROTEIN_MIN = 6
+WHOLEFOOD_CALORIE_BACKSTOP_CEILING_LOW_C = 55
+WHOLEFOOD_CALORIE_BACKSTOP_CEILING_D = 49
 _WHOLEFOOD_ADDED_SUGAR_MARKERS = (
     "סוכר", "סירופ גלוקוזה", "סירופ גלוקוז", "סירופ גלוקוז-פרוקטוז",
     "סירופ גלוקוזה-פרוקטוזה", "פרוקטוזה", "דקסטרוזה", "מולסה", "סירופ תמרים",
@@ -3182,6 +3198,41 @@ def _evaluate_wholefood_bar_predicate(
         "zero_additives": add_ok,
         "negation_aware_added_sugar_count": negation_aware_sugar_count,
     }
+
+
+def _wholefood_relief_elevated_score(wf_relief: dict) -> bool:
+    """True when Fix1/Fix2 materially changed guardrail outcome (P284 backstop gate)."""
+    return bool(
+        wf_relief.get("fix1_fired")
+        or wf_relief.get("fix2_2plus_suppressed")
+        or wf_relief.get("fix2_hp_suppressed")
+    )
+
+
+def _apply_wholefood_calorie_backstop(score: float, nn: dict, wf_relief: dict) -> tuple:
+    """Non-relieved ceiling on predicate-passing whole-food bars (P284). Only lowers."""
+    kcal = nn.get("energy_kcal")
+    fiber = nn.get("dietary_fiber_g")
+    protein = nn.get("protein_g")
+    low_c_exception = (
+        kcal is not None and kcal <= WHOLEFOOD_CALORIE_BACKSTOP_KCAL_MAX
+        and fiber is not None and fiber >= WHOLEFOOD_CALORIE_BACKSTOP_FIBER_MIN
+        and protein is not None and protein >= WHOLEFOOD_CALORIE_BACKSTOP_PROTEIN_MIN
+    )
+    ceiling = (
+        WHOLEFOOD_CALORIE_BACKSTOP_CEILING_LOW_C if low_c_exception
+        else WHOLEFOOD_CALORIE_BACKSTOP_CEILING_D
+    )
+    score_before = score
+    score_after = round(min(score, ceiling), 1)
+    wf_relief.update({
+        "calorie_backstop_ceiling": ceiling,
+        "low_c_exception_met": low_c_exception,
+        "score_before_backstop": score_before,
+        "score_after_backstop": score_after,
+        "calorie_backstop_applied": score_after < score_before,
+    })
+    return score_after, wf_relief
 
 
 def _classify_sugar_context(l3: dict, nn: dict, nova_level: int,
@@ -4243,6 +4294,16 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         ceiling_note = None
 
     final_score = round(final_score, 1)
+
+    # TASK-373 / P284 — non-relieved calorie-density backstop (BARI_SNACK_WHOLEFOOD_V1 only).
+    # After Fix1/Fix2 relief produces the score, cap predicate-passing whole-food bars so
+    # dense date bars land around D; low-C only for genuinely lean bars.
+    _wf_relief = gr.get("wholefood_bar_relief") if BARI_SNACK_WHOLEFOOD_V1 else None
+    if (_wf_relief and _wf_relief.get("passed") and final_score is not None
+            and _wholefood_relief_elevated_score(_wf_relief)):
+        final_score, _wf_relief = _apply_wholefood_calorie_backstop(final_score, nn, _wf_relief)
+        gr["wholefood_bar_relief"] = _wf_relief
+
     grade = score_to_grade(final_score)
 
     # Data sufficiency gate: when confidence is insufficient or nutrition panel is absent,

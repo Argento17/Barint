@@ -1,5 +1,5 @@
 """
-TASK-373 / P281 — Snacks whole-food scoring relief OFF-vs-ON movement table.
+TASK-373 / P284 — Snacks whole-food scoring relief + calorie backstop OFF-vs-ON table.
 
 Scores the 21-product snacks shelf from BSIP1 inputs at BARI_SNACK_WHOLEFOOD_V1 off/on,
 asserts OFF matches published snacks_frontend_v5.json scores, and runs a cross-category guard.
@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from collections import Counter
 import pathlib
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[4]
@@ -95,8 +96,39 @@ def _scores_match(engine_score, published_score, tol: float = 0.05) -> bool:
     return abs(float(engine_score) - float(published_score)) <= tol
 
 
+
+def _backstop_fields(on: dict) -> dict:
+    wf = on.get("wholefood_bar_relief") or {}
+    if not wf.get("passed") or wf.get("score_before_backstop") is None:
+        return {"before_bs": "", "after_bs": "", "backstop": "", "low_c": ""}
+    from score_engine import score_to_grade
+    before = wf.get("score_before_backstop")
+    after = wf.get("score_after_backstop")
+    return {
+        "before_bs": f"{before}/{score_to_grade(before)}",
+        "after_bs": f"{after}/{on.get('grade_estimate')}",
+        "backstop": wf.get("calorie_backstop_ceiling", ""),
+        "low_c": wf.get("low_c_exception_met", ""),
+    }
+
+
+def _grade_distribution(rows: list[dict], key: str) -> dict:
+    grades = [str(r.get(key, "")).split("/")[-1] for r in rows if r.get(key)]
+    grades = [g for g in grades if g and g != "None"]
+    if not grades:
+        return {}
+    counts = Counter(grades)
+    return {
+        "histogram": dict(sorted(counts.items())),
+        "n": len(grades),
+        "most_common": counts.most_common(1)[0],
+    }
+
 def _print_table(rows: list[dict]):
-    headers = ["id", "name_he", "barcode", "OFF", "ON", "delta", "predicate", "fixes"]
+    headers = [
+        "id", "name_he", "barcode", "OFF", "ON", "before_bs", "after_bs",
+        "backstop", "low_c", "delta", "predicate", "fixes",
+    ]
     widths = [max(len(h), *(len(str(r.get(h, ""))) for r in rows)) for h in headers]
     sep = " | "
     print(sep.join(h.ljust(widths[i]) for i, h in enumerate(headers)))
@@ -134,19 +166,29 @@ def main() -> int:
                 "published": f"{pub_score}/{pub_grade}",
                 "off": f"{off_score}/{off_grade}",
             })
+        bs = _backstop_fields(on)
         rows.append({
             "id": p.get("id", ""),
             "name_he": p.get("name_he") or p.get("name", ""),
             "barcode": barcode,
             "OFF": f"{off_score}/{off_grade}",
             "ON": f"{on_score}/{on_grade}",
+            **bs,
             "delta": delta if delta is not None else "",
             "predicate": predicate,
             "fixes": _fixes_fired(off, on),
         })
 
-    print("\n=== TASK-373 snacks shelf OFF vs ON ===")
+    on_dist = _grade_distribution(rows, "ON")
+
+    print("=== TASK-373 snacks shelf OFF vs ON (P284 backstop) ===")
     _print_table(rows)
+    if on_dist:
+        hist = on_dist["histogram"]
+        n = on_dist["n"]
+        mc = on_dist["most_common"]
+        print()
+        print(f"ON grade distribution: {hist} (n={n}, most_common={mc})")
 
     if published_mismatches:
         print("\nOFF=published: FAIL")
@@ -193,6 +235,7 @@ def main() -> int:
     VERIFY_OUT.parent.mkdir(parents=True, exist_ok=True)
     VERIFY_OUT.write_text(json.dumps({
         "rows": rows,
+        "on_grade_distribution": on_dist.get("histogram", {}),
         "published_assertion": "PASS" if pub_ok else "FAIL",
         "published_mismatches": published_mismatches,
         "cross_category_guard": "PASS" if cross_ok else "FAIL",
