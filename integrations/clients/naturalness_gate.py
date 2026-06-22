@@ -89,6 +89,18 @@ _T1B_CLOSER = re.compile(r"(עובד|נוח|מצוין|מתאים)\s+כ.{0,45}[;
 # / narrating intent. Caught by the judge (NT-H4, TASK-374). HIGH.
 _META = re.compile(r"כדאי לקרוא לזה כמו שזה")
 
+# BARE-CLOSER — a verdict that ends on a single bare evaluative word ("סביר.",
+# "מהונדס.", "סבירה."). The "calque swapped for a sibling calque" failure (v2 judge):
+# the X-not-Y closer was replaced by a one-word label that says nothing actionable
+# (F2-empty + T3 staccato). HIGH. Guard: an earned multi-word fragment is fine.
+_BARE_EVAL_WORDS = {"סביר", "סבירה", "מהונדס", "מהונדסת", "בינוני", "בינונית",
+                    "חלש", "חלשה", "בעייתי", "בעייתית", "תעשייתי", "תעשייתית"}
+_GRADE_TOKEN = re.compile(r"^[A-E]\s*[./]?\s*$")  # "C." grade leak as a whole closer
+
+# SIBLING-CALQUE — "as his/her sibling" product-family reference (calque). MEDIUM.
+_SIBLING_PHRASES = ["כמו אחיו", "כמו אחיה", "עוגייה אחות", "לאחותה", "לאחיו",
+                    "אותה הנדסה כמו אח"]
+
 # T2 — retired calque "X לא תמיד אומר Y" (repaired to "X הוא לא בהכרח Y"). HIGH.
 _T2 = re.compile(r"לא\s+תמיד\s+אומר")
 # Related variant on watch: "זה לא אומר" / "...לא אומר ש". MEDIUM.
@@ -222,6 +234,28 @@ def analyze(text: str) -> NaturalnessReport:
             "Meta-narration opener ('let's call it what it is') — Tom does not warm up "
             "or narrate intent (file 2 §5). Start at the finding."))
 
+    # Grade-token leak as the whole closer ("C.") (HIGH)
+    if _GRADE_TOKEN.match(last):
+        flags.append(NaturalnessFlag(
+            "GRADE", "HIGH", last.strip(),
+            "Grade/score token as the closing word — framework leakage + zero "
+            "consumer value (the grade is already in the chip). Delete it."))
+    # Bare-word evaluative closer ("סביר." / "מהונדס.") (HIGH)
+    elif len(last.split()) == 1 and last.strip() in _BARE_EVAL_WORDS:
+        flags.append(NaturalnessFlag(
+            "BARE", "HIGH", last.strip(),
+            "Bare one-word evaluative closer — says nothing actionable (F2-empty) and "
+            "reuses across products. Name the mechanism or shelf position instead."))
+
+    # Sibling-reference calque (MEDIUM)
+    for p in _SIBLING_PHRASES:
+        if p in text:
+            flags.append(NaturalnessFlag(
+                "T4s", "MEDIUM", p,
+                "'as his/her sibling' family-reference calque — phrase it directly "
+                "('מאותה משפחה', 'גרסה נוספת של…')."))
+            break
+
     # T2 retired calque (HIGH)
     m = _T2.search(text)
     if m:
@@ -314,6 +348,10 @@ def _selftest() -> int:
         "החלבון נושא אותו, השאר ציפוי תעשייתי.",         # T4 metaphor (NT-H2)
         "החלבון בא מבוטנים קלויים אמיתיים, וזה נזקף לטובתו.",  # T4 metaphor (NT-H3)
         "כדאי לקרוא לזה כמו שזה: יש כאן הרבה סוכר.",     # META opener (NT-H4)
+        # v2 judge: calque swapped for bare-word closer / grade-token leak:
+        "המספרים סבירים אבל ההרכב מהונדס לעומק. סביר.",   # BARE one-word closer
+        "רשימה ארוכה וחלבון מבודד מכמה מקורות. מהונדס.",  # BARE one-word closer
+        "עוגייה שמרכזת את הכל, חלבון מכמה מקורות מבודדים. C.",  # GRADE token leak
     ]
     # Owner GOLD lines: none may raise a HIGH flag.
     good = [

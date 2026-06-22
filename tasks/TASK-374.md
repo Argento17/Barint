@@ -55,6 +55,22 @@ conflicting punch-default rules); §1 opener broadened (calm-orienting OR scene)
 §5 rhythm flipped to connected-prose default; §3 "(!)" → seasoning-only + gate-monitored.
 Logged in file 8 (Harvest #5, APPLIED).
 
+## LIVE FILE (v2) — render works, NOT ship-clean yet (2026-06-22)
+The protein-bars page actually renders from `protein_combined_frontend_v2.json` (32
+products, UNTRACKED — an in-flight bars-rework migration; loader switched v1→v2 in the
+working tree; HEAD still imports v1). Content Agent rewrote 38 strings → 0 HIGH on the
+(then) gate; render-verified live at localhost:3000/hashvaot/protein-bars (clean copy
+served). Independent judge: **CONDITIONAL PASS, 23/32**. Caught the agent AGAIN swapping
+calques — this time bare-word closers (`סביר.`/`מהונדס.` ×8) + a grade-token leak (`C.`)
++ 3 sibling-calques. Gate hardened a 3rd time (BARE + GRADE + T4s detectors; selftest
+15 flagged). Remaining to ship-clean v2 (cross-lane):
+- Naturalness refine: 7 HIGH (bare-word closers + grade token) + sibling calques — content lane.
+- Firewall (pre-existing bars-rework copy): `בריא יותר מהממוצע` (health claim) + `צריך
+  לאכול במודעות` (prescriptive) — content rephrase; health claim may need nutrition-agent.
+- Data integrity (data-agent / bars-rework): pb-013 & pb-014 share a display name;
+  `_meta.product_count` 32 vs fix_note "33 remain"; pb-032 null fiber (handled OK).
+- v2 is untracked bars-rework — committing it must be coordinated with that task, not unilateral.
+
 ## Foundation complete — remaining program work (separate dispatches)
 - Route protein-bars corrected copy through the Content Agent + two-gate
   (orchestrator does NOT author inline — content_signoff_hard_rule). The gate now

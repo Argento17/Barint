@@ -4,7 +4,8 @@ import json, io, sys
 sys.path.insert(0, "C:/Bari")
 from integrations.clients.naturalness_gate import analyze
 
-SRC = "bari-web/src/data/comparisons/protein_bars_frontend_v1.json"
+import sys as _sys
+SRC = _sys.argv[1] if len(_sys.argv) > 1 else "bari-web/src/data/comparisons/protein_bars_frontend_v1.json"
 CONSUMER_KEYS = {
     "insightLine", "rowVerdict", "comparisonContext", "hero", "heroTitle",
     "prologue", "prologueText", "title", "subtitle", "takeaway", "verdict",
@@ -52,5 +53,8 @@ out.write("---\n")
 out.write(f"SUMMARY: {high} HIGH-block · {med} medium-only · {clean} clean "
           f"(of {len(rows)} strings)\n")
 
-open("content_voice/tom_bari_voice/_phase1_pilot_report.md", "w", encoding="utf-8").write(out.getvalue())
+import os as _os
+_rep = "content_voice/tom_bari_voice/_phase1_pilot_report" + (
+    "" if "v1" in _os.path.basename(SRC) else "_" + _os.path.basename(SRC).replace(".json", "")) + ".md"
+open(_rep, "w", encoding="utf-8").write(out.getvalue())
 print(f"done: {len(rows)} strings, {high} HIGH, {med} medium, {clean} clean")
