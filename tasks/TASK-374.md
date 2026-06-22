@@ -26,6 +26,7 @@ summary: >
 # TASK-374 — Project Tom's Voice — natural-Hebrew content quality program (naturalness rejection gate)
 
 Charter: `content_voice/tom_bari_voice/PROJECT_TOMS_VOICE_CHARTER.md`. Memory: `project_toms_voice`.
+Lessons learned (consolidated): `content_voice/tom_bari_voice/LESSONS_LEARNED.md`.
 
 ## Owner rulings (2026-06-22)
 - Scope: pilot on protein-bars / snacks / granola, then roll across live categories.
