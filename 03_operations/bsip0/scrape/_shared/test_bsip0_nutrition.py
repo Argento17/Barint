@@ -70,6 +70,38 @@ def test_sugar_of_which_is_still_captured():
     assert bn.classify_nutr_label("סוכרים") == "sugar"
 
 
+def test_shufersal_sugar_row_label():
+    """
+    TASK-378 regression: the actual Shufersal HTML label for the "of which sugars"
+    nutrition row is "סוכרים מתוך פחמימות".  The old shufersal_probe_v3.py
+    NUTR_LABEL_MAP dict fired "פחמימות"→carbs before "סוכרים"→sugar because
+    "פחמימות" is a substring of "סוכרים מתוך פחמימות", causing sugar to be
+    silently dropped on 29/31 curated bread products.
+
+    The shared parser (classify_nutr_label) checks sugar BEFORE carbs (sugar
+    key "סוכר" at line ~84, carbs key "פחמימ" at line ~86), so this label
+    must return "sugar", not "carbs".
+    """
+    assert bn.classify_nutr_label("סוכרים מתוך פחמימות") == "sugar", (
+        "Shufersal sugar-row label must classify as sugar, not carbs"
+    )
+    # The full panel order on Shufersal puts the sugar sub-row BEFORE the
+    # carbs total row.  parse_nutrition_rows first-value-wins must still yield
+    # the correct carbs total (from the carbs row) AND capture sugar.
+    rows_shufersal_bread = [
+        {"value": "220",  "label": "אנרגיה (קלוריות)"},
+        {"value": "8.5",  "label": "חלבונים"},
+        {"value": "1.8",  "label": "סוכרים מתוך פחמימות"},   # ← sub-row appears first in HTML
+        {"value": "38.4", "label": "פחמימות"},                # ← total carbs row after
+        {"value": "0.25", "label": "שומנים"},
+        {"value": "5.6",  "label": "סיבים תזונתיים"},
+        {"value": "380",  "label": "נתרן"},
+    ]
+    out = bn.parse_nutrition_rows(rows_shufersal_bread)
+    assert out["sugar"] == "1.8",  f"expected sugar='1.8', got {out.get('sugar')!r}"
+    assert out["carbs"] == "38.4", f"expected carbs='38.4', got {out.get('carbs')!r}"
+
+
 def test_full_panel_reads_total_not_subrow():
     """Reconstructed Shufersal cereal panel: total fat 34.2, sat/trans sub-rows < 0.5."""
     rows = [
@@ -455,6 +487,92 @@ def test_extract_nutrition_raw_auto_dispatches_by_retailer():
     assert bn.extract_nutrition_raw_auto(vic)["rows"] == bn._parse_victory_nutrition(vic)["rows"]
     # Yohananof path == _parse_yohananof_nutrition
     assert bn.extract_nutrition_raw_auto(yo)["selection"]["selected_table_header"] == "ל100 גרם"
+
+# ── TASK-376: Victory sugars_raw → sugars_g regression guard ───────────────────
+#
+# Root cause: choc_task366b_write_final.py wrote the Victory sugar field under the
+# key "sugars_raw" (plural) instead of the canonical "sugar_raw" (singular).
+# parse_nutrition_numeric() read n.get("sugar_raw") which returned None → sugars_g=null
+# → the chocolate scoring engine scored Lindt 70% as if sugar=0 → inflated score ~61/C
+# instead of the correct ~28.7/E.
+#
+# Fix at the shared layer: parse_nutrition_numeric() now accepts BOTH spellings —
+# "sugar_raw" (canonical, checked first) and "sugars_raw" (alternate/Victory) —
+# so a wrong-key bug at the builder layer never silently drops sugars again.
+
+def test_victory_sugars_raw_plural_accepted():
+    """TASK-376: sugars_raw (plural) must NOT drop to null — same as sugar_raw (singular).
+
+    This is the exact key-mismatch that caused Lindt 70% to be scored as if sugar=0,
+    inflating its score from ~28.7/E to ~61/C during the chocolate pass-2 Victory run.
+    """
+    # Canonical key: works before and after the fix
+    out_canonical = bn.parse_nutrition_numeric({
+        "energy_kcal_raw": "566", "fat_raw": "41", "saturated_fat_raw": "24",
+        "carbs_raw": "34", "sugar_raw": "30", "protein_raw": "9.5",
+        "sodium_raw": "39",
+    })
+    assert out_canonical["sugars_g"] == 30.0, "sugar_raw must map to sugars_g"
+
+    # Alternate key (the Victory builder bug spelling): must now also work
+    out_alt = bn.parse_nutrition_numeric({
+        "energy_kcal_raw": "566", "fat_raw": "41", "saturated_fat_raw": "24",
+        "carbs_raw": "34", "sugars_raw": "30", "protein_raw": "9.5",
+        "sodium_raw": "39",
+    })
+    assert out_alt["sugars_g"] == 30.0, (
+        "sugars_raw (plural) must also map to sugars_g — Victory builder uses this spelling"
+    )
+
+    # Canonical takes priority over alternate when BOTH are present
+    out_both = bn.parse_nutrition_numeric({
+        "sugar_raw": "28", "sugars_raw": "99",  # canonical must win
+        "energy_kcal_raw": "566", "fat_raw": "41", "saturated_fat_raw": "24",
+        "carbs_raw": "34", "protein_raw": "9.5", "sodium_raw": "39",
+    })
+    assert out_both["sugars_g"] == 28.0, "sugar_raw must take priority over sugars_raw"
+
+    # Neither key present → None (unchanged behaviour)
+    out_null = bn.parse_nutrition_numeric({
+        "energy_kcal_raw": "566", "fat_raw": "41", "carbs_raw": "34",
+        "protein_raw": "9.5", "sodium_raw": "39",
+    })
+    assert out_null["sugars_g"] is None, "absent sugar must remain None"
+
+
+def test_lindt_70_sugars_not_null_with_victory_spelling():
+    """TASK-376 Lindt 70% reproduction — the exact numeric panel from the Victory API.
+
+    nutrition dict from choc_task366b_write_final.py to_scoring_raw():
+      energy=566, fat=41, sat=24, carbs=34, sugar=30, protein=9.5, sodium=39
+    The bug: sugar was stored under 'sugars_raw'; parse_nutrition_numeric returned None.
+    After the fix: sugars_g must be 30.0 regardless of which spelling is used.
+    """
+    # Simulate the buggy builder output (key='sugars_raw')
+    buggy_raw = {
+        "energy_kcal_raw": "566",
+        "fat_raw": "41",
+        "saturated_fat_raw": "24",
+        "trans_fat_raw": "0.5",
+        "sodium_raw": "39",
+        "carbs_raw": "34",
+        "sugars_raw": "30",        # ← the wrong key that caused the bug
+        "fiber_raw": "",
+        "protein_raw": "9.5",
+    }
+    panel = bn.parse_nutrition_numeric(buggy_raw)
+    assert panel["sugars_g"] == 30.0, (
+        f"Lindt 70% sugars_g must be 30.0 g/100g, got {panel['sugars_g']!r} — "
+        "sugars_raw key must now be accepted by parse_nutrition_numeric"
+    )
+    # Confirm other fields unaffected
+    assert panel["energy_kcal"] == 566.0
+    assert panel["fat_g"] == 41.0
+    assert panel["fat_saturated_g"] == 24.0
+    assert panel["carbohydrates_g"] == 34.0
+    assert panel["protein_g"] == 9.5
+    assert panel["sodium_mg"] == 39.0
+
 
 # ── Bare runner (no pytest dependency) ─────────────────────────────────────────
 

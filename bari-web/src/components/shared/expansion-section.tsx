@@ -42,7 +42,7 @@ const CONFIDENCE_LABELS: Record<BariConfidence, string> = {
 
 // Confidence dot/ring colors (spec §3.6, polish R-12)
 const CONF_COLORS: Record<BariConfidence, string> = {
-  verified: "var(--bari-green)",
+  verified: "#1F8F6A", // literal hex — var(--bari-green) does not resolve in this CSS scope (see nutrientTone comment above)
   partial: "#B5882F",
   insufficient: "#B5BBB6",
 };
@@ -159,6 +159,15 @@ const CATEGORY_NUTRITION: Record<string, CategoryNutritionConfig> = {
     sodium: { max: 50 },
     servingLabel: "ל-100 מ״ל",
   },
+  // Protein bars (TASK-365): high-protein shelf (23–36g/100g), sugar 1.7–35g/100g.
+  // Scales tuned to the real corpus range so bars differentiate within the shelf.
+  "protein-bars": {
+    energyKcal: { max: 520 },
+    protein: { max: 40, goodAbove: 28, warnBelow: 25 },
+    sugar: { max: 40, goodBelow: 4, warnAbove: 15 },
+    sodium: { max: 600 },
+    servingLabel: "ל-100 גרם",
+  },
   // Cookies
   "cookies-coffee": {
     energyKcal: { max: 550 },
@@ -214,14 +223,19 @@ function getNutrientScale(
 }
 
 // Bar fill tone for a nutrient value (spec §3.4)
+// NOTE: use literal hex values for green, not var(--bari-green). The CSS custom property
+// is defined only in colors_and_type.css (a reference file), not imported by the Next.js
+// app. var(--bari-green) resolves to 'initial' at runtime → transparent fill → invisible bar.
+// This matches the approach in confidence-marker.tsx which says "the project has no CSS
+// custom properties for them" and inlines the hex directly. #1F8F6A = bari-green.
 function nutrientTone(key: keyof BariNutritionVM, value: number, scale: NutrientScale): string {
   if (key === "protein") {
-    if (scale.goodAbove !== undefined && value >= scale.goodAbove) return "var(--bari-green)";
+    if (scale.goodAbove !== undefined && value >= scale.goodAbove) return "#1F8F6A";
     if (scale.warnBelow !== undefined && value < scale.warnBelow) return "#C49A4A";
     return "#9AA09B";
   }
   if (key === "sugar") {
-    if (scale.goodBelow !== undefined && value <= scale.goodBelow) return "var(--bari-green)";
+    if (scale.goodBelow !== undefined && value <= scale.goodBelow) return "#1F8F6A";
     if (scale.warnAbove !== undefined && value >= scale.warnAbove) return "#C49A4A";
     return "#9AA09B";
   }
@@ -430,73 +444,76 @@ function AssessmentSection({
   limitingFactors: LimitingFactor[];
 }) {
   const hasLimits = limitingFactors.length > 0;
+  const hasPositives = positiveSignals.length > 0;
 
   return (
-    // wlGrid: 2-col → 1-col < 640px
+    // wlGrid: 2-col when both panels present → 1-col when positives absent or < 640px
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: hasPositives ? "1fr 1fr" : "1fr",
         gap: "14px",
       }}
-      className="max-sm:!grid-cols-1"
+      className={hasPositives ? "max-sm:grid-cols-1!" : undefined}
     >
-      {/* Positive panel */}
-      <div
-        style={{
-          borderRadius: BOX_RADIUS_PANEL,
-          padding: BOX_PADDING_PANEL,
-          background: "#F1F8F4",
-          border: BOX_BORDER_POSITIVE,
-        }}
-      >
-        <p
+      {/* Positive panel — only rendered when there are positive signals */}
+      {hasPositives && (
+        <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            margin: "0 0 11px",
-            ...FONT_PANEL_TITLE,
-            color: "var(--bari-green-deep)",
+            borderRadius: BOX_RADIUS_PANEL,
+            padding: BOX_PADDING_PANEL,
+            background: "#F1F8F4",
+            border: BOX_BORDER_POSITIVE,
           }}
         >
-          {LABEL_POSITIVE}
-          {/* Count pill — R-05: ringed, near-transparent */}
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "10px",
-              fontWeight: 700,
-              padding: "2px 7px",
-              borderRadius: "999px",
-              letterSpacing: "0.02em",
-              background: "rgba(31,143,106,0.10)",
-              color: "var(--bari-green-deep)",
-              border: "1px solid rgba(31,143,106,0.18)",
-            }}
-          >
-            {positiveSignals.length}
-          </span>
-        </p>
-        {positiveSignals.map((signal, i) => (
-          <div
-            key={i}
+          <p
             style={{
               display: "flex",
-              gap: "9px",
-              alignItems: "flex-start",
-              // R-02: item row padding 9px
-              padding: "9px 0",
-              ...FONT_BODY,
-              color: "var(--fg2)",
-              borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
+              alignItems: "center",
+              gap: "8px",
+              margin: "0 0 11px",
+              ...FONT_PANEL_TITLE,
+              color: "var(--bari-green-deep)",
             }}
           >
-            <PlusGlyph />
-            <span>{signal}</span>
-          </div>
-        ))}
-      </div>
+            {LABEL_POSITIVE}
+            {/* Count pill — R-05: ringed, near-transparent */}
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                fontWeight: 700,
+                padding: "2px 7px",
+                borderRadius: "999px",
+                letterSpacing: "0.02em",
+                background: "rgba(31,143,106,0.10)",
+                color: "var(--bari-green-deep)",
+                border: "1px solid rgba(31,143,106,0.18)",
+              }}
+            >
+              {positiveSignals.length}
+            </span>
+          </p>
+          {positiveSignals.map((signal, i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                gap: "9px",
+                alignItems: "flex-start",
+                // R-02: item row padding 9px
+                padding: "9px 0",
+                ...FONT_BODY,
+                color: "var(--fg2)",
+                borderTop: i === 0 ? undefined : "1px solid rgba(17,19,24,0.04)",
+              }}
+            >
+              <PlusGlyph />
+              <span>{signal}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Limits panel */}
       <div
@@ -739,7 +756,7 @@ function NutritionSection({
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "10px",
         }}
-        className="max-sm:!grid-cols-2"
+        className="max-sm:grid-cols-2!"
       >
         {displayedCells.map(({ key, label, unit }) => {
           const value = nutrition[key];
@@ -889,7 +906,7 @@ function IngredientText({ ingredients }: { ingredients: string }) {
           marginInlineStart: "6px",
           fontSize: "12px",
           fontWeight: 600,
-          color: "var(--bari-green)",
+          color: "#1F8F6A", // literal hex — var(--bari-green) does not resolve in this CSS scope
           background: "transparent",
           border: "none",
           cursor: "pointer",

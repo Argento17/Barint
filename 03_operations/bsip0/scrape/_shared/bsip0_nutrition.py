@@ -471,7 +471,11 @@ def parse_nutrition_numeric(n: dict) -> dict:
         "cholesterol_mg":  None,
         "sodium_mg":       parse_sodium_mg(n.get("sodium_raw") or ""),
         "carbohydrates_g": parse_num(n.get("carbs_raw")),
-        "sugars_g":        parse_num(n.get("sugar_raw")),
+        # TASK-376: accept both "sugar_raw" (canonical) and "sugars_raw" (Victory/alternate
+        # builder spelling) so a wrong key at the builder layer never silently drops sugars.
+        # Checked in order: canonical first, then the plural variant.
+        "sugars_g":        parse_num(n.get("sugar_raw") if n.get("sugar_raw") is not None
+                                     else n.get("sugars_raw")),
         "dietary_fiber_g": parse_num(n.get("fiber_raw")),
         "protein_g":       parse_num(n.get("protein_raw")),
     }
