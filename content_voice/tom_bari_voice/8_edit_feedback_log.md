@@ -18,6 +18,31 @@ to confirmed (v1.0) through entries in this log.
    - add any reusable phrase to `4_approved_phrases.md`.
 5. If an edit **contradicts** a current fingerprint rule, that's a correction — update the rule and note that it was overturned by a Tom edit (highest authority, S5).
 
+## Standing harvest cadence (Phase 4, TASK-374 — 2026-06-22)
+
+The harvest was owner-burst (all of Harvests #1–#5 happened reactively). For a
+content-first strategy it must be a **standing loop**, not a reaction to noticing bad
+copy. Triggers — capture a harvest entry whenever ANY of these fire:
+
+1. **Per category batch** — every time a shelf's copy is authored/regenerated, run the
+   Naturalness Gate (`11_naturalness_gate.md`) and log the HIGH/MEDIUM distribution +
+   any owner/judge rewrites as before/after pairs. (The protein-bars pilot is the
+   template: `_phase1_pilot_report.md`.)
+2. **Per owner redline** — any owner edit to shipped/draft copy is captured before the
+   original is discarded (the original rule, step 1 above).
+3. **Gate-miss** — any mediocre line that PASSED the gate but the owner/judge still
+   flags = a calibration gap: add it to the gate's test set (`naturalness_gate.py`
+   selftest / file 10) AND log why it slipped. This is how the gate gets sharper.
+
+**Promotion threshold (unchanged):** a move repeated 2–3× promotes into files 2/3/4.
+**Calibration threshold (new):** a tell that recurs across ≥2 shelves becomes a HIGH
+detector in `naturalness_gate.py` (was MEDIUM) or a new T-row in file 10 §1.5 of file 5.
+
+**Ownership:** the Content Agent runs triggers 1–2 in its self-check; the Adversarial QA
+judge surfaces trigger 3. The orchestrator records the distribution at category close.
+No separate scheduled job is required — the cadence rides the existing build-page /
+two-gate flow.
+
 ## Entry template
 ```
 ### E### — <short title> · <YYYY-MM-DD> · <mode> · <surface>

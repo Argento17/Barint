@@ -64,10 +64,19 @@ Logged in file 8 (Harvest #5, APPLIED).
 - ~~Phase 2 (syntax sub-blacklist in file 5)~~ — **DONE 2026-06-22**: file 5 §1.5
   translationese sub-blacklist (T1–T7 + F1/F2 framing + calibration guards) added; gate
   order updated (5.6 naturalness pre-filter, 7 independent judge).
-- Phase 3 (category golden: snacks/granola — needs new gold authored via Content Agent /
-  two-gate, NOT inline), Phase 4 (standing harvest cadence).
-- Committed on branch `task-374-toms-voice` (commit d98406d8 = Phases 0/1/1.5; Phase 2
-  follow-up commit). Not pushed (owner-gated).
+- ~~Phase 4 (standing harvest cadence)~~ — **DONE 2026-06-22**: file 8 cadence protocol
+  (per-batch / per-redline / gate-miss triggers; promotion + calibration thresholds;
+  rides the existing two-gate, no separate scheduled job).
+- **Phase 3 (category golden: snacks/granola) — BLOCKED on lane.** Requires authoring
+  NEW gold copy = consumer-facing content authoring → must go through the Content Agent
+  + two-gate (content_signoff_hard_rule); orchestrator must NOT author inline. Needs an
+  explicit dispatch authorization from the owner.
+- **Protein-bars copy regeneration** (fix the 18 HIGH calques the gate caught) — same
+  lane constraint: Content Agent dispatch through the two-gate.
+- Optional: a runnable Layer-2 LLM-judge harness (independence already covered by the
+  two-gate, so lower priority).
+- Committed on branch `task-374-toms-voice`: d98406d8 (Phases 0/1/1.5), ebb796bf
+  (Phase 2), + Phase 4 commit. Not pushed (owner-gated).
 - Phase 1.5 fingerprint recalibration pass (default texture → connected prose; punch
   = seasoning-when-earned).
 - Phases 2–4 (syntax sub-blacklist, category golden, harvest cadence).
