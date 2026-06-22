@@ -72,6 +72,22 @@ edits at them so v1.0 rests on real data:
 
 ---
 
+### Harvest #7 — Gate COVERAGE gap caught by render-verify · 2026-06-22 · ALL-SHELF (methodology)
+
+After the protein-bars copy passed the gate ("0 clean") and the judge (PASS), a
+**render-verify** of the live page (`localhost:3000/hashvaot/protein-bars`) showed
+`מזון שלם` ×19 still on screen. Root cause: the deterministic scanner + the pilot only
+covered `insightLine/rowVerdict/comparisonContext`. They MISSED `positiveSignals[]`,
+some `limitingFactors[]`, and ALL hardcoded `.ts/.tsx` copy — where `מזון שלם` ×16
+(JSON) + ×2 (loader + dimension-bars.tsx) survived. **Lesson (hard):** a gate's
+all-clear is only as wide as its field coverage; "0 HIGH" ≠ "page clean." RENDER-VERIFY
+(fetch the real DOM) is mandatory before declaring any page done — it is the only check
+that sees ALL consumer strings regardless of where they live. Two new owner editorial
+rules also landed this session: **T8** ("מזון שלם" → "אוכל אמיתי"/"חומרי גלם אמיתיים")
+and **T9** (gloss every named additive: "הממתיק מלטיטול"). Both encoded in the gate.
+
+---
+
 ### Harvest #6 — Gate-miss on protein-bars refine (Phase-4 cadence trigger 3) · 2026-06-22 · ALL-SHELF
 
 The protein-bars rewrite cleared Layer-1 (0 HIGH) but the **independent judge** caught

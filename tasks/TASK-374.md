@@ -2,8 +2,19 @@
 id: TASK-374
 title: Project Tom's Voice — natural-Hebrew content quality program (naturalness rejection gate)
 owner: content-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
+close_reason: >
+  Owner-directed close 2026-06-22. Foundation shipped + proven on a live shelf:
+  two-axis Naturalness Gate (deterministic Layer-1 naturalness_gate.py, hardened 4×
+  from real judge-misses: T1/T1b/T4/T4s/T6/META/BARE/GRADE/T8/T9; selftest 15 flagged
+  lines) + independent two-axis judge wired into the two-gate; translationese taxonomy
+  (file 10) + syntax sub-blacklist (file 5 §1.5) + fingerprint recalibration (file 2
+  §0.5, "opinionated substance in connected prose") + standing harvest cadence (file 8).
+  Protein-bars MAIN per-product copy (insightLine/rowVerdict/comparisonContext) rewritten
+  via Content Agent → two-gate PASS, render-verified live. Method validated. Deferred
+  backlog recorded below (gate field-coverage gap, cross-category sweep, deploy) — NOT
+  done; spin into follow-up tasks when resumed.
 created_at: 2026-06-22
 depends_on: []
 blocks: []
@@ -70,6 +81,23 @@ calques — this time bare-word closers (`סביר.`/`מהונדס.` ×8) + a gr
 - Data integrity (data-agent / bars-rework): pb-013 & pb-014 share a display name;
   `_meta.product_count` 32 vs fix_note "33 remain"; pb-032 null fiber (handled OK).
 - v2 is untracked bars-rework — committing it must be coordinated with that task, not unilateral.
+
+## DEFERRED BACKLOG (not done — spin into follow-up tasks)
+- **Gate field-coverage gap (found by render-verify 2026-06-22):** `naturalness_gate`
+  + the pilot scanner only covered insightLine/rowVerdict/comparisonContext. They MISS
+  `positiveSignals[]`, some `limitingFactors[]`, and ALL hardcoded `.ts/.tsx` copy. So
+  "0 clean" was a partial all-clear — `מזון שלם` ×16 survived in v2 JSON list fields +
+  ×2 in code (loader + dimension-bars.tsx). FIX: extend the scanner to every consumer
+  string + hardcoded component copy, then re-run the pass. Render-verify is mandatory
+  before claiming a page clean (the gate alone said done).
+- **Cross-category `מזון שלם` sweep:** also present in granola/snacks/hard_cheeses JSON.
+- **2 firewall fixes landed in v2 main fields** (health-claim + prescriptive) but the
+  list/code copy is un-audited for the same.
+- **v2 commit is a PARTIAL naturalness pass on an untracked in-flight bars-rework file**
+  — coordinate reconciliation with the bars-rework (TASK-362) before it ships; loader
+  v1→v2 switch is bars-rework's, left uncommitted here.
+- **Phase 3 (snacks/granola golden), Phase 1.5 fingerprint already applied, deploy
+  migration (TASK-314, blocked).**
 
 ## Foundation complete — remaining program work (separate dispatches)
 - Route protein-bars corrected copy through the Content Agent + two-gate

@@ -101,6 +101,19 @@ _GRADE_TOKEN = re.compile(r"^[A-E]\s*[./]?\s*$")  # "C." grade leak as a whole c
 _SIBLING_PHRASES = ["כמו אחיו", "כמו אחיה", "עוגייה אחות", "לאחותה", "לאחיו",
                     "אותה הנדסה כמו אח"]
 
+# JARGON — phrases unclear to a "naked" shopper (owner 2026-06-22). MEDIUM.
+# "מזון שלם" (whole food) reads as jargon — prefer "אוכל אמיתי" / "מזון אמיתי" /
+# "חומרי גלם אמיתיים".
+_JARGON_PHRASES = ["מזון שלם"]
+
+# ADDITIVE-NAME-UNGLOSSED — a named technical additive must be glossed in plain
+# language when it appears in consumer copy (owner 2026-06-22): e.g. "תוסף המזון
+# מלטיטול" / "הממתיק מלטיטול", not a bare "מלטיטול". MEDIUM. Refines H4-3: when an
+# additive name is MATERIAL to the finding it may be named, but always with a gloss.
+_ADDITIVE_NAMES = ["מלטיטול", "גליצרול", "סורביטול", "אריתריטול", "קסיליטול",
+                   "מלטודקסטרין", "סוכרלוז", "אספרטם", "אצסולפאם", "אצסולפיים"]
+_GLOSS_TOKENS = ["ממתיק", "תוסף", "תוספי", "חומר משמר", "חומרי", "ממתיקים", "תחליף סוכר"]
+
 # T2 — retired calque "X לא תמיד אומר Y" (repaired to "X הוא לא בהכרח Y"). HIGH.
 _T2 = re.compile(r"לא\s+תמיד\s+אומר")
 # Related variant on watch: "זה לא אומר" / "...לא אומר ש". MEDIUM.
@@ -255,6 +268,26 @@ def analyze(text: str) -> NaturalnessReport:
                 "'as his/her sibling' family-reference calque — phrase it directly "
                 "('מאותה משפחה', 'גרסה נוספת של…')."))
             break
+
+    # T8 jargon unclear to a shopper (MEDIUM)
+    for p in _JARGON_PHRASES:
+        if p in text:
+            flags.append(NaturalnessFlag(
+                "T8", "MEDIUM", p,
+                "Shopper-unclear jargon (owner 2026-06-22) — replace 'מזון שלם' with "
+                "'אוכל אמיתי' / 'מזון אמיתי' / 'חומרי גלם אמיתיים'."))
+            break
+
+    # T9 ungloss'd technical additive name (MEDIUM)
+    has_gloss = any(g in text for g in _GLOSS_TOKENS)
+    if not has_gloss:
+        for a in _ADDITIVE_NAMES:
+            if a in text:
+                flags.append(NaturalnessFlag(
+                    "T9", "MEDIUM", a,
+                    "Bare technical additive name — gloss it in plain language "
+                    "(owner 2026-06-22): 'תוסף המזון " + a + "' / 'הממתיק " + a + "'."))
+                break
 
     # T2 retired calque (HIGH)
     m = _T2.search(text)
