@@ -2,7 +2,17 @@
 id: TASK-371
 title: D4 additive layer ACTIVATION into headline score (Option C, owner-authorized 2026-06-21)
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
+close_reason: >
+  D4 activation (contested-only, EV-103) fully built, verified, two-gate-passed, and committed to
+  branch task-362-bars-rework across 3 commits (36174872 score patch + display reconciliation;
+  17dd34762 red-team CH-1/CH-4 fixes; 8103f6204 gate-2 M-1/M-2 cleanup). Independent Adversarial-QA
+  gate = PASS (Track V all green: score==trace 102 movers / 6 grades re-derived, field-scope,
+  add-only, build tsc 0; Track C: CH-1 sulphite-mislabel + CH-4 E471-framing RESOLVED, CH-2 bread
+  B->C Nutrition-ruled KEEP, all MEDIUMs closed). Milk de-frozen. NOT deployed — deploy is the
+  separate owner-gated step explicitly outside this task's DoD (cross-repo publish path unconfirmed).
+  Non-blocking follow-ups logged: E22x-by-number detection gap; non-score-eligible display-tier
+  staleness (E202/E330/E300 + cosmetic); pre-existing 313184 live-score-vs-trace discrepancy.
 priority: HIGH
 created_at: 2026-06-21
 depends_on: [TASK-368]
