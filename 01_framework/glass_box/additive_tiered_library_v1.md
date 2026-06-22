@@ -54,9 +54,9 @@ sheet's entry id.
 
 | # | E-number | Name | Function | Tier | Justification (181A evidence) | 181A src |
 |---|---|---|---|---|---|---|
-| 1 | E330 | Citric acid (+ E331/E333 citrate salts) | acidulant / antioxidant synergist | **functional** | Krebs-cycle metabolite; EFSA "no ADI necessary", JECFA GMP, FDA GRAS; no dose-response concern at food-label exposure. | 181A §3.A #1 |
-| 2 | E200–E203 | Sorbates (potassium sorbate) | preservative | **likely-neutral** | EFSA ADI 3 mg/kg & JECFA 25 mg/kg both >> typical exposure (0.5–1.5); one 2026 NutriNet-Santé T2D association is observational, unconfirmed, has not shifted the regulatory consensus. | 181A §3.A #2 |
-| 3 | E300 | Ascorbic acid (vit C) | antioxidant / dough improver | **functional** | Normal nutrient, no ADI; as dough improver it is oxidized during baking and not present in finished bread. **0 on displayed bread shelf.** | 181A §3.A #3 |
+| 1 | E330 | Citric acid (+ E331/E333 citrate salts) | acidulant / antioxidant synergist | **contested** (EV-101; **LOW confidence**; reverts to `functional` if no independent cohort replicates the antioxidant-preservative HTN signal by 2028-06-21) | Krebs-cycle metabolite; EFSA "no ADI necessary", JECFA GMP, FDA GRAS; no dose-response concern at food-label exposure **in its acidulant/sequestrant role.** However, EV-101 (NutriNet-Santé 2026, EHJ DOI 10.1093/eurheartj/ehag308, n=112,395, ~8y) names E330 *individually* as one of 8 hypertension-associated preservatives (antioxidant-preservative class HR 1.22 [1.13–1.31]); E300 is also individually named as the sole CVD-linked additive — same paper. Named-individually criterion met (primary source: ESC press release, retrieved 2026-06-21). Per-additive HRs not primary-verified (paywalled full text); individual identity is primary. Caveats identical to EV-061 E460 structure: single cohort, zero independent replication, mechanism unestablished, residual UPF-dietary-pattern confounding (Prof. Kuhnle, Science Media Centre). **Applies to additive-preservative use only; finding explicitly does not cover intrinsic citric acid in whole foods (author firewall, EHJ abstract).** D7 co-signed 2026-06-21 (Product Agent, TASK-364; EV-061/E460 parity). | 181A §3.A #1; EV-101 |
+| 2 | E200–E203 | Sorbates (potassium sorbate) | preservative | **contested** (EV-102; **LOW confidence**; reverts to `likely-neutral` if no independent cohort replicates any of the three NutriNet-Santé signals by 2028-06-21) | EFSA ADI 3 mg/kg & JECFA 25 mg/kg both >> typical exposure (0.5–1.5). However, three separate NutriNet-Santé signals now exist: (1) EV-102 (EHJ 2026, DOI 10.1093/eurheartj/ehag308): E202 **named individually** as one of 8 hypertension-associated preservatives (antioxidant-preservative class HR 1.22 [1.13–1.31]; per-additive HR not primary-verified); (2) NutriNet BMJ 2026 (DOI 10.1136/bmj-2025-084917): overall cancer HR 1.14, breast cancer HR 1.26 — E202 named specifically; (3) prior NutriNet T2D signal. Additionally, EFSA 2019 (DOI 10.2903/j.efsa.2019.5625) raised ADI to 11 mg/kg, no genotoxicity at tested levels, **but flagged unresolved reaction-product genotoxicity** (sorbate-nitrite → mutagenic dinitro-methylpyrrole, ACS JAFC DOI 10.1021/jf990777f; sorbate-ascorbate). Weight-of-accumulation across three NutriNet signals crosses the `contested` threshold — but all signals originate from one research group (Touvier) with zero independent replication. LOW confidence; reassess at first independent replication attempt. D7 co-signed 2026-06-21 (Product Agent, TASK-367; EV-101/E330 parity + multi-signal weight-of-accumulation). | 181A §3.A #2; EV-102 |
+| 3 | E300 | Ascorbic acid (vit C) | antioxidant / dough improver | **contested** (EV-101; **LOW confidence**; reverts to `functional` if no independent cohort replicates the antioxidant-preservative HTN signal by 2028-06-21) | Normal nutrient, no ADI; as dough improver it is oxidized during baking. **0 on displayed bread shelf.** However, EV-101 (NutriNet-Santé 2026, EHJ DOI 10.1093/eurheartj/ehag308, n=112,395, ~8y) names E300 *individually* as one of 8 hypertension-associated preservatives AND as the sole CVD-linked additive in the individual-preservative analysis (antioxidant-preservative class HR 1.22 [1.13–1.31]; CVD individual association primary-verbatim from ESC press release). Named-individually + CVD criterion met (primary source: ESC press release, retrieved 2026-06-21). Per-additive HRs not primary-verified (paywalled). Caveats: single cohort, zero independent replication, mechanism unestablished (paradox: E300 has proposed antihypertensive properties in isolation), residual UPF confounding. **Applies to additive-preservative use only; finding explicitly does not cover intrinsic vitamin C in whole foods (author firewall, EHJ abstract).** `cosmetic_mup=False` unchanged (antioxidant/preservation role). D7 co-signed 2026-06-21 (Product Agent, TASK-364; EV-061/E460 parity). | 181A §3.A #3; EV-101 |
 | 4 | E1422 / E1442 | Acetylated/hydroxypropyl distarch (modified starch) | thickener / freeze-thaw stabilizer | **likely-neutral** | Metabolized as carbohydrate; EFSA/JECFA group ADI "not specified"; well-characterised, no positive harm signal. Prototype tier kept; E1412/E1414 siblings (N16) fold in here. | 181A §3.A #4, N16 |
 | 5 | E282 | Calcium propionate | mould/rope inhibitor (bread) | **likely-neutral** | Endogenous SCFA; EFSA/JECFA "not limited"; Tirosh 2019 effect was pharmacological-dose, not confirmed at food exposure. **0 on displayed bread shelf.** | 181A §3.A #5 |
 | 6 | E481 | Sodium stearoyl-2-lactylate (SSL) | dough conditioner / emulsifier | **likely-neutral** | EFSA ADI 20 mg/kg; exposure < ADI; emulsifier class carries only class-level observational (NutriNet) signal, not E481-specific. **0 on displayed bread shelf.** | 181A §3.A #6 |
@@ -248,7 +248,7 @@ Nutrition does not.
 | 44 | E129 | Allura Red AC | colorant | **contested** | True | Southampton Mix B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
 | 45 | E104 | Quinoline Yellow | colorant | **contested** | True | Southampton Mix B. EU Art. 24 warning. Same EFSA / FDA split as E102. |
 | 46 | E249 | Potassium nitrite | preservative / curing | **confirmed-negative** | False | IARC 2A ("probably carcinogenic to humans") for nitrate/nitrite in processed meat. N-nitrosamine formation mechanism well-established. EFSA has ADIs (0.06 mg/kg) but also flags cumulative dietary exposure. First confirmed-negative entry in this library; relevant exclusively when Bari scores processed meats (no current live shelf exposure). |
-| 47 | E250 | Sodium nitrite | preservative / curing | **confirmed-negative** | False | Same evidence basis as E249. Standard processed-meat curing pair; same IARC 2A anchor. |
+| 47 | E250 | Sodium nitrite | preservative / curing | **confirmed-negative** | False | Same evidence basis as E249. Standard processed-meat curing pair; same IARC 2A anchor. **Additional evidence (EV-102, no tier change):** EHJ 2026 (DOI 10.1093/eurheartj/ehag308) names E250 individually as one of 8 hypertension-associated preservatives, adding a CVD/HTN axis to the existing confirmed-negative tier. Also: NutriNet-Santé IJE 2022 (PMID 35303088): prostate cancer HR 1.62 (95% CI 1.17–2.25), independent of the IARC processed-meat anchor. Tier remains `confirmed-negative` — these additional signals corroborate an already-established verdict; they do not change it. |
 
 **Note on dict count:** E1412/E1414 fold into E1422 (existing entry #4), so the Python `GLASSBOX_W2_ADDITIVES` dict has **46 keys** (35 existing + 11 new) while the logical library has 47 rows.
 
@@ -347,3 +347,107 @@ The EV-059 §7.3 table was accurate as of EV-059 (2026-06-14) and is NOT rewritt
 - **ANNOTATE-ONLY.** The E471 tier flip, 2 new entries, and E466 corroboration are detection/display changes only. No score formula, weight, cap, or penalty changed. The D4 annotate-only invariant inherited from EV-041/EV-043 applies in full.
 - **No score moved. No JSON edited. No engine code touched.**
 - **Frozen invariants untouched:** milk run_005_headpin, snack 70/B, bread provenance.
+
+---
+
+## 9. Wave 6 Extension — EV-101 (2026-06-21)
+
+**Source:** Hasenböhler A, et al. (NutriNet-Santé; Touvier group). "Preservative food additives, hypertension, and cardiovascular diseases: the NutriNet-Santé study." *European Heart Journal*, advance article, DOI `10.1093/eurheartj/ehag308`, published 2026-05-20. n=112,395, ~8-year follow-up.
+**Authored by:** Nutrition Agent (D6, 2026-06-21). **Governance:** annotate-only; D7 co-sign COMPLETE (Product Agent, 2026-06-21, TASK-364).
+**Evidence registry:** EV-101 (`03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md`).
+
+### 9.1 Tier updates — Rows 1 and 3 (E330 and E300)
+
+No new entries added. Two existing rows updated in-place above (§2.A rows 1 and 3): both tier values changed from `functional` to `contested`. See the updated row text for full justification and conditions.
+
+### 9.2 EV-101 addition (2026-06-21) — tier-distribution deltas
+
+The EV-061 §8.4 table was accurate as of EV-061 (2026-06-15) and is NOT rewritten. Deltas applied by EV-101 on top of that baseline:
+
+| Change | Detail |
+|---|---|
+| functional −2 | E330 and E300 each moved out → `contested` |
+| contested +2 | E330 (tier flip) + E300 (tier flip) |
+| E330 condition | Reverts to `functional` if no independent cohort replicates the antioxidant-preservative HTN signal by 2028-06-21 |
+| E300 condition | Same replication-revert condition (2028-06-21); E300 also individually named as sole CVD-linked additive — stronger finding than E330 but same evidence-quality caveat (per-additive HR unconfirmed; class HR 1.22 primary-verified) |
+| All other tiers | Unchanged |
+
+**Running totals after EV-101 (49 logical entries, 0 new entries added):**
+
+| Tier | EV-061 total | EV-101 delta | New total |
+|---|---|---|---|
+| functional | 19 | −2 | **17** |
+| likely-neutral | 6 | 0 | 6 |
+| dose-dependent | 5 | 0 | 5 |
+| contested | 15 | +2 | **17** |
+| disclosure-gap | 1 | 0 | 1 |
+| confirmed-negative | 2 | 0 | 2 |
+| unclassified | 1 | 0 | 1 |
+| **Total** | **49** | **0** | **49** |
+
+### 9.3 Annotate-only boundary (W6)
+
+- **ANNOTATE-ONLY.** The E330 and E300 tier flips are display-tier changes only. No score formula, weight, cap, or penalty changed. The D4 annotate-only invariant inherited from EV-041/EV-043 applies in full.
+- **No score moved. No JSON edited. No engine code touched.**
+- **Frozen invariants untouched:** milk run_005_headpin, snack 70/B, bread provenance.
+- **Consumer tooltip copy** for E300/E330 at `contested` tier has NOT been authored — it requires the standard Content Agent + Red-Team two-gate sign-off before any consumer-facing string ships. Specifically, tooltip copy MUST preserve: (a) additive-use form only (not whole-food vitamin C / citric acid); (b) observational association, not causal proof; (c) LOW confidence framing.
+
+---
+
+## 10. Wave 7 Extension — EV-102 (2026-06-21)
+
+**Source:** Same primary as EV-101 — Hasenböhler A, et al. (NutriNet-Santé; Touvier group). *European Heart Journal*, advance article, DOI `10.1093/eurheartj/ehag308`. Plus per-additive independent evidence for E202, E224, E250. See EV-102 in the evidence registry for full source table.
+**Authored by:** Product Agent (D6+D7 combined, 2026-06-21, TASK-367). **Governance:** annotate-only; D7 co-sign COMPLETE (Product Agent, 2026-06-21, TASK-367).
+**Evidence registry:** EV-102 (`03_operations/bsip2/evidence_registry/bsip2_evidence_registry_v1.md`).
+
+### 10.1 Tier update — Row 2 (E202)
+
+E202 tier updated from `likely-neutral` to `contested` in §2.A row 2 above. D7 co-signed 2026-06-21. See updated row text for full justification and conditions.
+
+### 10.2 E250 corroboration note
+
+Row 47 (E250) tier UNCHANGED at `confirmed-negative`. EHJ 2026 adds a CVD/HTN axis; NutriNet-Santé IJE 2022 (PMID 35303088) adds prostate cancer HR 1.62 (1.17–2.25). Both corroborate an already-established confirmed-negative verdict. Evidence cite broadened in the row; tier unchanged.
+
+### 10.3 New library entries (§2.E)
+
+Two new entries introduced by EV-102. Both are named individually in the EHJ 2026 paper's list of 8 hypertension-associated preservatives. `cosmetic_mup` assignments consistent with §7.2 rules (preservatives = `cosmetic_mup: False`).
+
+| # | E-number | Name | Function | Tier | cosmetic_mup | Justification | Src |
+|---|---|---|---|---|---|---|---|
+| 50 | E224 | Potassium metabisulphite | preservative / antioxidant | **contested** | False | **Named individually** (primary — ESC press release, 2026-06-21) as one of 8 hypertension-associated preservatives in EHJ 2026 (DOI 10.1093/eurheartj/ehag308; class HR 1.22 [1.13–1.31]; per-additive HR not primary-verified). **Strong independent regulatory basis independent of EHJ:** EFSA 2022 (PMC9685353) **withdrew the sulphite group ADI**, moved to Margin-of-Exposure approach; MOE is **below the safety threshold for most population groups**; neurological endpoint flagged. Mandatory EU/Israel allergen labelling (sulphite-induced asthma — confirmed respiratory harm pathway at realistic dietary exposure). This is the strongest independent regulatory basis of any additive added under EV-102; the EFSA ADI withdrawal alone clears the `contested` bar independent of the EHJ naming. `contested` (not `confirmed-negative`) because the neurological endpoint evidence is regulatory-MOE, not an established human harm RCT or IARC classification. D7 co-signed 2026-06-21 (Product Agent, TASK-367). | EV-102 |
+| 51 | E392 | Extracts of rosemary | antioxidant / preservative | **likely-neutral** (**reassess if any independent cohort replicates the EHJ HTN signal**) | False | **Named individually** (primary — ESC press release, 2026-06-21) as one of 8 hypertension-associated preservatives in EHJ 2026 (DOI 10.1093/eurheartj/ehag308). **However:** (a) No independent evidence base — EFSA 2008/2018 benign, ADI 0.3 mg/kg, exposures 100–3000× below; (b) **paradoxical directionality** — rosemary/carnosic acid is proposed as an anti-hypertensive compound in the independent pharmacology literature, making the EHJ naming mechanistically unexplained; (c) per-additive HR is not primary-verified and secondary-source "1.43" figure is believed to be an E-value (not an HR); (d) zero independent replication. **Ruling:** `likely-neutral` with forward reassess flag. The EV-061 bar for `contested` is "credible mechanistic or clinical signal" — naming alone in a single paper with paradoxical directionality and a clean independent safety record does not clear that bar. This is a deliberate divergence from the EHJ-named → `contested` pattern applied to E202/E224/E300/E330: those either had independent signals or a plausible mechanism; E392 has neither. Adding it at `likely-neutral` avoids rule-accumulation while preserving the forward reassess obligation. D7 co-signed 2026-06-21 (Product Agent, TASK-367). | EV-102 |
+
+**Note on dict count:** EV-102 adds 2 logical rows (50–51), bringing the logical library to **51 rows** and the Python `GLASSBOX_W2_ADDITIVES` dict to **50 keys** (E224 and E392 are new keys). The E202 flip is an in-place update to an existing key, not a new key.
+
+### 10.4 EV-102 addition (2026-06-21) — tier-distribution deltas
+
+The EV-101 §9.2 table was accurate as of EV-101 (2026-06-21) and is NOT rewritten. Deltas applied by EV-102 on top of that baseline:
+
+| Change | Detail |
+|---|---|
+| likely-neutral −1 | E202 moved out → `contested` |
+| likely-neutral +1 | E392 added as new entry at `likely-neutral` |
+| contested +2 | E202 (tier flip) + E224 (new entry #50, `contested`) |
+| E202 condition | Reverts to `likely-neutral` if no independent cohort replicates any of the three NutriNet signals by 2028-06-21 |
+| E250 | No tier change; evidence cite broadened (EHJ 2026 + IJE 2022 PMID 35303088) |
+| All other tiers | Unchanged |
+
+**Running totals after EV-102 (51 logical entries, 2 new entries added):**
+
+| Tier | EV-101 total | EV-102 delta | New total |
+|---|---|---|---|
+| functional | 17 | 0 | 17 |
+| likely-neutral | 6 | −1+1 | **6** |
+| dose-dependent | 5 | 0 | 5 |
+| contested | 17 | +2 | **19** |
+| disclosure-gap | 1 | 0 | 1 |
+| confirmed-negative | 2 | 0 | 2 |
+| unclassified | 1 | 0 | 1 |
+| **Total** | **49** | **+2** | **51** |
+
+### 10.5 Annotate-only boundary (W7)
+
+- **ANNOTATE-ONLY.** The E202 tier flip, 2 new entries (E224/E392), and E250 evidence broadening are detection/display changes only. No score formula, weight, cap, or penalty changed. The D4 annotate-only invariant inherited from EV-041/EV-043 applies in full.
+- **No score moved. No JSON edited. No engine code touched.**
+- **Frozen invariants untouched:** milk run_005_headpin, snack 70/B, bread provenance.
+- **Consumer tooltip copy** for any newly-contested or newly-added entry has NOT been authored — requires the standard Content Agent + Red-Team two-gate sign-off before any consumer-facing string ships.

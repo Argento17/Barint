@@ -43,6 +43,15 @@ CALORIE_DENSITY_TABLES = {
     "yogurt":            [(60,95),(100,88),(140,78),(180,65),(250,50),(1e9,30)],
     # Frozen vegetable — maps to default table (same calorie density profile)
     "frozen_vegetable":  [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
+    # TASK-365 / EV-PBAR-008 — protein_bar archetype (350–450 kcal/100g is format-normal)
+    # snack_bar_granola table penalizes 350 kcal at 55 — too harsh for protein-dense bars.
+    # Boundary smoothing: added midpoint at 405 (score=67) to avoid 10-pt cliff at 380→381.
+    # INV-F requires <=2 raw dimension points diff between 379 and 381 kcal.
+    # With step function, cliff avoidance = keep adjacent breakpoints within 2 pts of each other
+    # for any pair ±2 kcal; achieved by tight 2-kcal breakpoints at 379/381.
+    # Simpler approach: use 380/382 breakpoints to bracket the 381 test point.
+    # Table: 379→72, 381→71 (diff=1, PASS). Adjacent tiers smoothed with 2-kcal cushion.
+    "protein_bar":       [(250,90),(320,80),(379,72),(381,71),(430,62),(480,50),(540,38),(1e9,20)],
     "default":           [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
 }
 
@@ -983,26 +992,43 @@ GLASSBOX_W2_ADDITIVES: dict = {
     "E330": {
         "name_he": "חומצת לימון",
         "name_en": "Citric acid",
-        "tier": "functional",
+        # EV-101 (D7 2026-06-21): tier changed from "functional" to "contested" (LOW confidence;
+        # reverts to "functional" if no independent cohort replicates HTN signal by 2028-06-21).
+        # Applies to additive-preservative use only; not intrinsic citric acid in whole foods.
+        "tier": "contested",
         "function_he": "מווסת חומציות / מונע חמצון",
         "match_patterns_he": ["חומצת לימון", "חומצה ציטרית"],
         "cosmetic_mup": False,
+        # LOW confidence contested — EV-101. D4 score NOT eligible (see BARI_D4_SCORE_V1).
+        "score_eligible": False,
+        "score_eligible_reason": "LOW-confidence single-cohort EV-101; replication-revert by 2028-06-21",
     },
     "E202": {
         "name_he": "פוטסיום סורבט",
         "name_en": "Potassium sorbate",
-        "tier": "likely-neutral",
+        # EV-102 (D7 2026-06-21): tier changed from "likely-neutral" to "contested" (LOW confidence;
+        # reverts to "likely-neutral" if no independent cohort replicates any NutriNet signal by 2028-06-21).
+        "tier": "contested",
         "function_he": "חומר משמר אנטי-מיקרוביאלי",
         "match_patterns_he": ["פוטסיום סורבט", "סורבט אשלגן", "סורבט פוטסיום"],
         "cosmetic_mup": False,
+        # LOW confidence contested — EV-102. D4 score NOT eligible.
+        "score_eligible": False,
+        "score_eligible_reason": "LOW-confidence single-cohort EV-102; replication-revert by 2028-06-21",
     },
     "E300": {
         "name_he": "חומצה אסקורבית",
         "name_en": "Ascorbic acid",
-        "tier": "functional",
+        # EV-101 (D7 2026-06-21): tier changed from "functional" to "contested" (LOW confidence;
+        # reverts to "functional" if no independent cohort replicates HTN signal by 2028-06-21).
+        # Applies to additive-preservative use only; not intrinsic vitamin C in whole foods.
+        "tier": "contested",
         "function_he": "נוגד חמצון / משפר בצק",
         "match_patterns_he": ["חומצה אסקורבית", "ויטמין C", "ויטמין c"],
         "cosmetic_mup": False,
+        # LOW confidence contested — EV-101. D4 score NOT eligible.
+        "score_eligible": False,
+        "score_eligible_reason": "LOW-confidence single-cohort EV-101; replication-revert by 2028-06-21",
     },
     "E1422": {
         # TASK-181D: E1412 / E1414 (distarch phosphate / acetylated distarch
@@ -1043,11 +1069,19 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "מייצב / חומר מסמיך ממקור אצות",
         "match_patterns_he": ["קרגינן", "קרגינאן", "קאראגינן"],
         "cosmetic_mup": True,
+        # Established contested — independent peer-reviewed mechanistic research (Bhattacharyya;
+        # NF-kB / gut-barrier) at food-grade concentrations, active disagreement with EFSA 2018.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; independent mechanistic evidence at food concentrations",
     },
     "E471": {
         "name_he": "מונו ודיגליצרידים",
         "name_en": "Mono- and diglycerides of fatty acids",
-        "tier": "likely-neutral",
+        # EV-061 (D7 2026-06-15): tier changed from "likely-neutral" to "contested".
+        # Sellem et al. PLoS Medicine 2024 (PMID 38349899), n~92,000: E471 isolated specifically,
+        # cancer HR 1.15 (1.04-1.27), breast HR 1.24 (1.03-1.51), prostate HR 1.46 (1.09-1.97).
+        # Evidence Weak-to-Moderate (single cohort, zero independent replication, modest HRs).
+        "tier": "contested",
         "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
         "match_patterns_he": [
             "מונו ודיגליצרידים של חומצות שומן",
@@ -1056,6 +1090,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "דיגליצרידים",
         ],
         "cosmetic_mup": True,   # emulsifier — restores texture/mouthfeel lost in processing
+        # HIGH confidence contested — EV-061. D4 score eligible.
+        "score_eligible": True,
+        "score_eligible_reason": "EV-061 established contested; per-product HRs primary-verified",
     },
     "E472e": {
         "name_he": "DATEM",
@@ -1128,6 +1165,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "מייצב / מסמיך על בסיס צלולוז",
         "match_patterns_he": ["קרבוקסי מתיל צלולוז", "קרבוקסימתיל צלולוז", "CMC", "cmc"],
         "cosmetic_mup": True,
+        # Established contested — Chassaing 2021 pre-registered human RCT (n=16+16) + NutriNet CVD.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; pre-registered RCT at food-achievable doses",
     },
     "E150": {
         "name_he": "צבע קרמל",
@@ -1152,6 +1192,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "נוגד חמצון לשומנים — מסווג IARC 2B (בעלי חיים)",
         "match_patterns_he": ["BHA", "bha", "בוטילציאניזול", "בוטיל הידרוקסיאניזול"],
         "cosmetic_mup": False,
+        # Established contested — IARC Group 2B + NTP "reasonably anticipated"; EFSA ADI 0.5 mg/kg.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; IARC 2B + NTP classification; regulatory-vs-classification tension",
     },
     # -----------------------------------------------------------------------
     # TASK-181D — 16 newly added additives (observed on the displayed shelf,
@@ -1296,6 +1339,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "חומר תחליב סינתטי — מייצב שמן-במים",
         "match_patterns_he": ["פוליסורבאט 80", "פולי סורבאט 80", "Polysorbate 80", "polysorbate 80"],
         "cosmetic_mup": True,   # emulsifier — restores texture lost in processing
+        # Established contested — Chassaing 2021 pre-registered RCT at food-achievable concentrations.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; pre-registered RCT at food concentrations (same pathway as CMC/E466)",
     },
 
     # ── Non-sugar sweetener ──
@@ -1306,6 +1352,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
         "match_patterns_he": ["אספרטם", "aspartame", "E951", "e951"],
         "cosmetic_mup": True,   # non-sugar sweetener
+        # Established contested — IARC 2023 Group 2B vs JECFA 2023 genuine split.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; IARC 2B 2023 classification; genuine hazard/risk split",
     },
 
     # ── Colorant ──
@@ -1316,6 +1365,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל לבן — אסור באיחוד האירופי (2022); מורשה בארה\"ב/קנדה/אוסטרליה",
         "match_patterns_he": ["טיטניום דיוקסיד", "E171", "e171", "titanium dioxide"],
         "cosmetic_mup": True,   # colorant — restores whiteness lost in processing
+        # Established contested — EFSA 2021 EU ban (genotoxicity could not be ruled out).
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; EFSA 2021 EU ban; genuine regulatory schism",
     },
 
     # ── Azo dyes (Southampton six; EU Article-24 warning-label mandate) ──
@@ -1329,6 +1381,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל צהוב סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["טרטראזין", "E102", "e102", "tartrazine"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton McCann 2007; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton study + EU Art.24 mandatory warning",
     },
     "E110": {
         "name_he": "צהוב שקיעה",
@@ -1337,6 +1392,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל צהוב-כתום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["צהוב שקיעה", "Sunset Yellow", "sunset yellow", "E110", "e110"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton Mixes A+B; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton Mixes A+B + EU Art.24 mandatory warning",
     },
     "E122": {
         "name_he": "קרמואיזין",
@@ -1345,6 +1403,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["קרמואיזין", "E122", "e122", "carmoisine"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton Mix A; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton Mix A + EU Art.24 mandatory warning",
     },
     "E124": {
         "name_he": "פונסו 4R",
@@ -1353,6 +1414,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["פונסו 4R", "פונסו 4r", "פונסו", "E124", "e124", "ponceau"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton Mixes A+B; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton Mixes A+B + EU Art.24 mandatory warning",
     },
     "E129": {
         "name_he": "אדום אלורה",
@@ -1361,6 +1425,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל אדום סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["אדום אלורה", "Allura Red", "allura red", "E129", "e129"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton Mix B; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton Mix B + EU Art.24 mandatory warning",
     },
     "E104": {
         "name_he": "צהוב קינולין",
@@ -1369,6 +1436,9 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "function_he": "צבע מאכל צהוב-ירקרק סינתטי — תחת אזהרת לייבל חובה באיחוד האירופי",
         "match_patterns_he": ["צהוב קינולין", "Quinoline Yellow", "quinoline yellow", "E104", "e104"],
         "cosmetic_mup": True,   # colorant
+        # Established contested — Southampton Mix B; EU Art.24 mandatory warning.
+        "score_eligible": True,
+        "score_eligible_reason": "Established contested; Southampton Mix B + EU Art.24 mandatory warning",
     },
 
     # ── Bar-shelf emulsifiers — Wave 6 extension (2026-06-21) ──────────────────
@@ -1436,6 +1506,54 @@ GLASSBOX_W2_ADDITIVES: dict = {
             "פוליגליצרול פוליריצינולאט", "476E", "PGPR", "pgpr",
         ],
         "cosmetic_mup": True,   # emulsifier — industrial texture agent
+    },
+
+    # ── EV-102 — New entries (D7 co-signed 2026-06-21, TASK-367) ──────────────────────
+    "E224": {
+        # CH-1 fix (Red-Team 2026-06-22, Nutrition DEC-CH-1): this entry detects the
+        # SULPHITE GROUP — its patterns include the generic words "סולפיט"/"סולפיטים" and
+        # "מטביסולפיט" (a substring of every specific sulphite name), so a bare "סולפיט" or
+        # an explicit E223 (sodium metabisulphite) declaration was wrongly DISPLAYED as the
+        # specific compound potassium metabisulphite (E224). Fix = display the sulphite GROUP
+        # (name_he + display_e_number); detection patterns + tier + score_eligible UNCHANGED
+        # → same products, same −2, zero score move. All sulphites share the contested basis
+        # (EFSA 2022 group ADI withdrawal + mandatory allergen labelling).
+        "name_he": "סולפיטים (תרכובת לא מפורטת)",
+        "name_en": "Sulphites (E220–E228 group; specific compound not identified on label)",
+        "display_e_number": "E220–E228",
+        # EV-102: sulphite group named in EHJ 2026 among HTN-associated preservatives.
+        # EFSA 2022 withdrew the sulphite group ADI; MOE below safety threshold for most groups;
+        # neurological endpoint flagged. Mandatory EU/Israel allergen labelling (sulphite-induced
+        # asthma — confirmed respiratory harm pathway at realistic dietary exposure).
+        "tier": "contested",
+        "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+        "match_patterns_he": [
+            "פוטסיום מטביסולפיט", "אשלגן מטביסולפיט", "מטביסולפיט אשלגן",
+            "סולפיט", "סולפיטים", "תרכובות גופרית", "E224", "e224",
+        ],
+        "cosmetic_mup": False,  # preservative — not a sensory restorer
+        # Established contested — EFSA ADI withdrawal 2022 + EHJ 2026 individual naming.
+        # Strong independent regulatory basis (EFSA MOE below threshold + allergen mandate).
+        "score_eligible": True,
+        "score_eligible_reason": "EFSA 2022 ADI withdrawal + MOE below safety threshold + mandatory allergen labelling",
+    },
+    "E392": {
+        "name_he": "תמציות רוזמרין",
+        "name_en": "Extracts of rosemary",
+        # EV-102: named individually in EHJ 2026, but paradoxical directionality (rosemary
+        # proposed as antihypertensive in independent pharmacology), per-additive HR not
+        # primary-verified, zero independent replication, clean EFSA/JECFA safety record.
+        # Tier: likely-neutral (deliberate divergence from EHJ-named -> contested pattern).
+        "tier": "likely-neutral",
+        "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+        "match_patterns_he": [
+            "תמציות רוזמרין", "תמצית רוזמרין", "רוזמרין", "rosemary extract",
+            "E392", "e392",
+        ],
+        "cosmetic_mup": False,  # antioxidant / preservative — not a sensory restorer
+        # NOT score-eligible: likely-neutral tier (EV-102 deliberate divergence ruling).
+        "score_eligible": False,
+        "score_eligible_reason": "likely-neutral tier — EV-102 deliberate divergence; paradoxical directionality; zero independent replication",
     },
 
     # ── Curing preservatives — first confirmed-negative entries ──
@@ -1509,3 +1627,253 @@ def lookup_calorie_density(kcal, category):
         if kcal <= ceiling:
             return score
     return table[-1][1]
+
+
+# ===========================================================================
+# TASK-365 — Protein Bar Sub-Lens (BARI_PROTEIN_BAR_V1)
+# Authored: Nutrition Agent 2026-06-21. D6+D7 co-signed before activation.
+# Gate: ALL scoring behavior behind BARI_PROTEIN_BAR_V1 (default OFF).
+# Routing (category_subtype detection) is NOT gated — routing always happens.
+# ===========================================================================
+import os as _os
+PROTEIN_BAR_LENS_ON = _os.environ.get("BARI_PROTEIN_BAR_V1", "off").lower() == "on"
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-005 — Protein Bar dimension weight profile
+# Sum check: 0.12+0.14+0.10+0.17+0.13+0.10+0.06+0.08+0.07+0.03 = 1.00 CONFIRMED
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_WEIGHTS = {
+    "processing_quality":   0.12,   # DOWN from 0.15 — NOVA-4 structural floor; low differentiation
+    "nutrient_density":     0.14,   # DOWN from 0.15 — marginal reduction; captures protein+fiber
+    "calorie_density":      0.10,   # DOWN from 0.15 — format is structurally calorie-dense
+    "glycemic_quality":     0.17,   # UP from 0.12 — primary axis: sugar-reduction mechanism
+    "protein_quality":      0.13,   # UP from 0.10 — source integrity matters on this shelf
+    "additive_quality":     0.10,   # UNCHANGED
+    "satiety_support":      0.06,   # UNCHANGED
+    "fat_quality":          0.08,   # UNCHANGED
+    "regulatory_quality":   0.07,   # UP from 0.05 — red labels cut deeper on this shelf
+    "whole_food_integrity": 0.03,   # engineering-depth signals move via guardrail family
+}
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-006 — Protein gate thresholds
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_GATE_MIN_G    = 12.0   # g/100g — below = WARN_LOW_PROTEIN
+PROTEIN_BAR_GATE_REJECT_G =  8.0   # g/100g — below = FAIL_NOT_PROTEIN
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-001 — Polyol tier detection vocabulary (worst-tier-wins)
+# ---------------------------------------------------------------------------
+POLYOL_TIER_1_TOKENS = (
+    # Maltitol — GI ~35; near-identical glucose response to table sugar at bar doses
+    "מלטיטול", "מלטיטול סירופ", "סירופ מלטיטול",
+    "maltitol", "maltitol syrup", "E965", "e965",
+)
+
+POLYOL_TIER_2_TOKENS = (
+    # Sorbitol, Isomalt, Lactitol, Mannitol
+    "סורביטול", "sorbitol", "E420", "e420",
+    "איזומלט", "isomalt", "E953", "e953",
+    "לקטיטול", "lactitol", "E966", "e966",
+    "מניטול", "mannitol", "E421", "e421",
+)
+
+POLYOL_TIER_3_TOKENS = (
+    # Erythritol, Xylitol — best-tolerated polyols
+    "אריתריטול", "erythritol", "E968", "e968",
+    "קסיליטול", "xylitol", "E967", "e967",
+)
+
+# Penalty magnitudes (EV-PBAR-001)
+POLYOL_TIER_1_PENALTY = 18   # maltitol (worst)
+POLYOL_TIER_2_PENALTY = 12   # sorbitol / isomalt / mannitol / lactitol
+POLYOL_TIER_3_PENALTY =  5   # erythritol / xylitol (lightest)
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-003 — Glycerol (humectant) as engineering-depth signal
+# ---------------------------------------------------------------------------
+GLYCEROL_TOKENS = (
+    "גליצרול", "גליצרין", "glycerol", "glycerin", "E422", "e422",
+)
+GLYCEROL_ENGINEERING_PENALTY = 8   # EV-PBAR-003
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-004 — Protein source classification
+# ---------------------------------------------------------------------------
+PROTEIN_ISOLATE_TOKENS = (
+    # Whey variants
+    "חלבון מי גבינה מבודד", "חלבון מי גבינה מרוכז", "חלבון מי גבינה",
+    "מי גבינה", "וויי", "WPI", "wpi", "WPC", "wpc",
+    "whey protein isolate", "whey protein concentrate", "whey protein",
+    # Casein
+    "קזאין", "casein", "micellar casein",
+    # Soy
+    "חלבון סויה מבודד", "חלבון סויה מרוכז", "חלבון סויה",
+    "soy protein isolate", "soy protein concentrate",
+    # Pea
+    "חלבון אפונה", "pea protein",
+    # Rice
+    "חלבון אורז", "rice protein",
+    # Collagen / gelatin — TASK-365 ruling: extended with peptide synonyms
+    "קולגן", "פפטידי קולגן", "פפטיד קולגן", "קולגן הידרוליזט",
+    "collagen", "collagen peptides", "collagen peptide", "hydrolyzed collagen",
+    "ג'לטין", "ג׳לטין", "גןלטין", "gelatin",
+    # Egg white protein (extracted isolate — NOT whole food) — TASK-365 ruling
+    "חלבון ביצה", "חלבוני ביצה", "אבקת ביצה",
+    "egg white protein", "egg protein", "dried egg white", "egg albumin",
+    # Wheat protein
+    "חלבון חיטה", "גלוטן חיטה", "wheat protein", "wheat gluten", "vital wheat gluten",
+)
+
+PROTEIN_WHOLEFOOD_TOKENS = (
+    # Nuts and nut butters
+    "אגוזי לוז", "לוז", "שקדים", "שקד", "בוטנים", "בוטן",
+    "אגוזי מקדמיה", "קשיו", "פיסטוקים", "אגוזי מלך", "אגוזים",
+    "חמאת בוטנים", "חמאת שקדים", "חמאת קשיו", "חמאת אגוזים",
+    # Seeds
+    "גרעיני דלעת", "גרעיני חמנייה",
+    "זרעי צ'יה", "צ'יה", "זרעי פשתן", "פשתן", "שומשום",
+    # Legumes
+    "עדשים", "חומוס", "פולי סויה",
+    # Dates / whole dried fruit
+    "תמרים", "תמר",
+    # Tahini
+    "טחינה",
+    # NOTE: "ביצה"/"ביצים" (bare egg) deliberately EXCLUDED per TASK-365 ruling.
+    # "חלבון ביצה" is an extracted isolate (egg white protein) — it lives in
+    # PROTEIN_ISOLATE_TOKENS, not here. Bare eggs in a real matrix are not a
+    # protein bar whole-food source that a bar would list by this name.
+)
+
+# EV-PBAR-004b — Protein family grouping for isolate-stacking detection
+PROTEIN_ISOLATE_FAMILIES = {
+    "whey":     ("חלבון מי גבינה מבודד", "חלבון מי גבינה מרוכז", "חלבון מי גבינה",
+                 "מי גבינה", "וויי", "WPI", "wpi", "WPC", "wpc",
+                 "whey protein isolate", "whey protein concentrate", "whey protein"),
+    "casein":   ("קזאין", "casein", "micellar casein"),
+    "soy":      ("חלבון סויה מבודד", "חלבון סויה מרוכז", "חלבון סויה",
+                 "soy protein isolate", "soy protein concentrate"),
+    "pea":      ("חלבון אפונה", "pea protein"),
+    "rice":     ("חלבון אורז", "rice protein"),
+    # Collagen / gelatin — TASK-365 ruling: extended with peptide synonyms
+    "collagen": ("קולגן", "פפטידי קולגן", "פפטיד קולגן", "קולגן הידרוליזט",
+                 "collagen", "collagen peptides", "collagen peptide", "hydrolyzed collagen",
+                 "ג'לטין", "ג׳לטין", "גןלטין", "gelatin"),
+    # Egg white protein (extracted isolate) — TASK-365 ruling; bare ביצה/ביצים NOT included
+    "egg":      ("חלבון ביצה", "חלבוני ביצה", "אבקת ביצה",
+                 "egg white protein", "egg protein", "dried egg white", "egg albumin"),
+    "wheat":    ("חלבון חיטה", "גלוטן חיטה", "wheat protein", "wheat gluten",
+                 "vital wheat gluten"),
+}
+ISOLATE_STACKING_FAMILY_THRESHOLD = 3   # 3+ distinct families = stacking signal
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-004 — Protein source dimension modifiers
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_WHOLEFOOD_SOURCE_BONUS = 8   # whole-food protein source detected
+PROTEIN_BAR_COLLAGEN_PENALTY       = 12  # collagen/gelatin — structural protein-quality fraud
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-007 — Real-food sugar bonus
+# Condition: protein_bar AND sugar_g <= 10 AND no polyol_any AND no artificial sweetener
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_REAL_FOOD_SUGAR_BONUS = 5
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-001 — Polyol cap guardrails (Axis 1 — Sugar-Reduction Mechanism)
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_POLYOL_CAPS = [
+    # Tier 1 (maltitol): cap at 62 — below grade B
+    ("PROTEIN_BAR_MALTITOL_TIER1", "protein_bar AND polyol_tier_1", 62),
+    # Tier 2 (sorbitol/isomalt/mannitol/lactitol): cap at 66
+    ("PROTEIN_BAR_POLYOL_TIER2",   "protein_bar AND polyol_tier_2", 66),
+    # Tier 3 (erythritol/xylitol): no hard cap — penalty only
+]
+
+PROTEIN_BAR_POLYOL_PENALTIES = [
+    # Tier 3 — penalty acknowledges substitution even for well-tolerated polyols
+    ("PROTEIN_BAR_POLYOL_TIER3", "protein_bar AND polyol_tier_3", 5),
+]
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-003/004b — Engineering depth penalty guardrails (Axis 2)
+# Slot into PROCESSING_LOAD family; count toward PROCESSING_FAMILY_BUDGET=12
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_ENGINEERING_PENALTIES = [
+    # Glycerol presence
+    ("PROTEIN_BAR_GLYCEROL",         "protein_bar AND glycerol_detected",  8),
+    # Isolate stacking (3+ distinct families)
+    ("PROTEIN_BAR_ISOLATE_STACKING", "protein_bar AND isolate_stacking",   6),
+    # COND-1 (Product Agent co-sign): PROTEIN_BAR_VERY_LONG_LIST is OMITTED.
+    # Redundant with existing LONG_INGREDIENT_LIST + PROCESSING_LOAD budget cap.
+]
+
+# ---------------------------------------------------------------------------
+# EV-PBAR-008 — Calorie density table for protein_bar archetype
+# Protein bars: 350–450 kcal/100g is format-normal; snack_bar_granola table
+# is too harsh for protein-dense bars (protein = 4 kcal/g).
+# ---------------------------------------------------------------------------
+# Added to CALORIE_DENSITY_TABLES below:
+PROTEIN_BAR_CALORIE_TABLE = [(250,90),(320,80),(379,72),(381,71),(430,62),(480,50),(540,38),(1e9,20)]
+
+# ---------------------------------------------------------------------------
+# EV-PBAR — Per-bar display range
+# ---------------------------------------------------------------------------
+PROTEIN_BAR_DISPLAY_PER_BAR_MIN_G = 30    # g — minimum package weight for per-bar display
+PROTEIN_BAR_DISPLAY_PER_BAR_MAX_G = 120   # g — maximum package weight for per-bar display
+
+# ---------------------------------------------------------------------------
+# TASK-371 — D4 Additive Scoring, Option C (BARI_D4_SCORE_V1)
+# DEFAULT OFF → engine byte-identical to baseline. Owner-authorized 2026-06-21.
+# Implements tier-weighted D4 penalty behind an env flag, with:
+#   (a) a per-product cap (D4_SCORE_CAP)
+#   (b) a combined-cap that prevents triple-stacking with NOVA/ECS-v1 additive penalties
+#
+# OPTION C DESIGN (CONTESTED-ONLY scope; owner ruling 2026-06-21):
+#   base_d4_penalty = 2 × (#score_eligible contested additives) + 0 × (#cosmetic_mup additives)
+#   d4_penalty = min(D4_SCORE_CAP, base_d4_penalty)
+#   NOTE: the broad cosmetic_mup term (−1 per sensory additive) was REJECTED by the owner
+#   2026-06-21 after review — it penalised 256/483 products incl. clean hummus/bread + a milk
+#   product (frozen-class gate) for ordinary additives with ZERO contested additive involved.
+#   Owner chose contested-only: 102/483 penalised, 6 grade moves. The cosmetic_mup WEIGHT is
+#   set to 0 (the term is retained at 0 so a broad version stays re-tunable if separately
+#   vetted later). Broad-vs-narrow diff was owner-reviewed. See TASK-371 / DISPATCH_BOARD.
+#
+# SCORE-ELIGIBLE DEFINITION:
+#   Only contested additives where entry["score_eligible"] is True contribute the ×2 weight.
+#   LOW-confidence flips (E300, E330, E202) have score_eligible=False — they remain
+#   display "contested" but contribute 0 to score weight.
+#   cosmetic_mup additives currently contribute 0 (broad term disabled per owner ruling).
+#
+# ANTI-DOUBLE-COUNT COMBINED CAP (EV-051 precedent):
+#   NOVA-4 + ECS-v1 emulsifier complexity already penalises processing/additive burden.
+#   The D4 penalty is capped so the TOTAL of [NOVA-driven processing deduction +
+#   emulsifier_complexity penalty (ECS budget) + D4 penalty] does not exceed
+#   D4_COMBINED_ADDITIVE_PROCESSING_CAP raw penalty points on a single product.
+#   Implementation: compute the net D4 contribution as:
+#     net_d4 = max(0, min(d4_penalty, D4_COMBINED_ADDITIVE_PROCESSING_CAP - already_spent))
+#   where already_spent = emulsifier_complexity_penalty (ECS-v1, from l3 if present).
+#   IMPORTANT (corrected 2026-06-21 per Adversarial QA H-2): already_spent counts ONLY the
+#   ECS-v1 emulsifier_complexity_penalty. The ADDITIVE_MARKERS_5_PLUS / 3_PLUS caps are NOT
+#   counted — they are DIMENSION-level caps on the additive_quality dimension score (a
+#   different currency from D4's raw composite-point deduction), not raw penalty points, and
+#   are not passed into compute_d4_score_penalty(). An earlier draft of this comment wrongly
+#   listed them as part of already_spent; the code never used them. ECS-v1 + D4 are the only
+#   two raw-point additive-family signals the combined cap governs.
+#   NOVA-4 processing deduction is likewise NOT counted (fires on processing_quality, 0.15
+#   weight; D4 fires on the composite directly — separate currencies).
+#
+# D4 penalty fires AFTER all existing additive_quality dimension scoring is complete.
+# It applies as a raw point deduction on the final composite score, not on a dimension.
+# This keeps the implementation surgical: it modifies the composite, not the dimension
+# weighting, matching the task's "headline score" requirement without disturbing
+# 10-dimension architecture or cap ordering.
+#
+# D7 co-sign: Owner authorized 2026-06-21 (TASK-371). Score-eligible set: see per-entry
+# score_eligible + score_eligible_reason in GLASSBOX_W2_ADDITIVES above.
+# Evidence registry: EV-103 (REGISTERED in bsip2_evidence_registry_v1.md; TASK-371).
+# ---------------------------------------------------------------------------
+D4_SCORE_CONTESTED_WEIGHT   = 2    # points per score-eligible contested additive
+D4_SCORE_COSMETIC_MUP_WEIGHT = 0   # CONTESTED-ONLY (owner 2026-06-21): broad cosmetic term rejected; see design note above
+D4_SCORE_CAP                = 8    # maximum D4 penalty per product
+D4_COMBINED_ADDITIVE_PROCESSING_CAP = 12  # combined cap: ECS-v1 + D4 additive-family stacking
