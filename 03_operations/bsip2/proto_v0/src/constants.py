@@ -1510,9 +1510,18 @@ GLASSBOX_W2_ADDITIVES: dict = {
 
     # ── EV-102 — New entries (D7 co-signed 2026-06-21, TASK-367) ──────────────────────
     "E224": {
-        "name_he": "פוטסיום מטביסולפיט",
-        "name_en": "Potassium metabisulphite",
-        # EV-102: named individually in EHJ 2026 as one of 8 HTN-associated preservatives.
+        # CH-1 fix (Red-Team 2026-06-22, Nutrition DEC-CH-1): this entry detects the
+        # SULPHITE GROUP — its patterns include the generic words "סולפיט"/"סולפיטים" and
+        # "מטביסולפיט" (a substring of every specific sulphite name), so a bare "סולפיט" or
+        # an explicit E223 (sodium metabisulphite) declaration was wrongly DISPLAYED as the
+        # specific compound potassium metabisulphite (E224). Fix = display the sulphite GROUP
+        # (name_he + display_e_number); detection patterns + tier + score_eligible UNCHANGED
+        # → same products, same −2, zero score move. All sulphites share the contested basis
+        # (EFSA 2022 group ADI withdrawal + mandatory allergen labelling).
+        "name_he": "סולפיטים (תרכובת לא מפורטת)",
+        "name_en": "Sulphites (E220–E228 group; specific compound not identified on label)",
+        "display_e_number": "E220–E228",
+        # EV-102: sulphite group named in EHJ 2026 among HTN-associated preservatives.
         # EFSA 2022 withdrew the sulphite group ADI; MOE below safety threshold for most groups;
         # neurological endpoint flagged. Mandatory EU/Israel allergen labelling (sulphite-induced
         # asthma — confirmed respiratory harm pathway at realistic dietary exposure).

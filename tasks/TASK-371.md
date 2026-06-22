@@ -63,6 +63,36 @@ Owner approved fixing the d4_additives display gap. Done, all verified in the wo
 
 ---
 
+## ⚠️ ORCHESTRATOR ADDENDUM 4 (2026-06-22) — committed `36174872`; INDEPENDENT GATE-2 ran: CONDITIONAL PASS (0 CRITICAL, 2 HIGH)
+
+D4 work committed to branch task-362-bars-rework as `36174872` (21 files, NOT pushed/deployed). Independent Adversarial-QA gate then ran against `git diff HEAD~1 HEAD`:
+
+**TRACK V (verification) = PASS (all 6):** score==trace (102 movers, 6 grades recomputed independently — all correct), grade boundaries, field-scope (only score/grade/rank/d4_additives/copy/_meta), add-only (0 removals, 0 empty explanations), grade-mover coherence, `tsc --noEmit` exit 0.
+
+**TRACK C (challenge) = CONDITIONAL PASS — 0 CRITICAL, 2 HIGH, 3 MEDIUM. D10 go-live BLOCKED until the 2 HIGH resolve:**
+- **CH-1 (HIGH) — E224 compound-identity overfit.** The E224 detector matches the generic word "סולפיט", so it labels generic-sulphite AND explicit-E223 (sodium metabisulphite) declarations as E224 (potassium metabisulphite). Confirmed: cakes bc 8434165658523 declares "223E", both cookies grade-movers (7290018893845, 313184) declare bare "סולפיט". 21 products across 4 cats. SCORE is defensible (all sulphites = same contested class: EFSA-2022 ADI withdrawal + allergen apply group-wide → −2 stands, NO grade change on fix), but the displayed COMPOUND NAME + the 2 cookies verdicts ("E224/פוטסיום מטביסולפיט") are wrong. Fix = sulphite-GROUP handling (Nutrition taxonomy call: group entry vs per-compound) → relabel display + 2 verdicts to generic "סולפיט"; score unchanged. Routes: Nutrition + Data + Content.
+- **CH-2 (HIGH) — bread B→C on single-cohort E471.** 100% wholegrain / 13.9g protein / 8g fibre loaf (7290016967074) drops B→C on one E471 penalty backed by a single unreplicated NutriNet cohort (Sellem 2024, EV-061). Policy-compliant (owner-authorized contested-only), arithmetically correct, copy carries the contested framing — but the grade CHIP equates it with nutritionally inferior C products. Defensibility judgment for Nutrition/Product (owner already saw bread B→C in the digest and approved). NOT an error.
+- **CH-3 (MED):** Wave-7 tooltips (E433/E124/E122/E129/E171/E392/E575) — gate-2 CLEARED by this review; mark them cleared in w2 file header.
+- **CH-4 (MED):** E471 tooltip says "מיקרוביום המעי debate" but EV-061 found CANCER HRs (microbiome = hypothesised mechanism, not the finding). Reword to "דיון מדעי על בטיחות השימוש" (Nutrition/Content). Small copy fix.
+- **CH-5 (MED):** 313184 internal `_score_correction.to_grade=D` stale (now E) — non-consumer-facing metadata (Data).
+
+Score/grades are sound and verified; the blockers are DISPLAY-LABEL + DEFENSIBILITY, not score errors. No re-score needed for any fix.
+
+---
+
+## ⚠️ ORCHESTRATOR ADDENDUM 5 (2026-06-22) — gate findings RESOLVED (Nutrition-ruled, display/copy only, ZERO score move)
+
+Nutrition Agent ruled on all gate findings; orchestrator implemented (no score/grade/rank changed — verified vs committed `36174872`: only d4_additives + 2 verdicts + 1 internal metadata field differ):
+- **CH-1 RESOLVED (sulphite mislabel).** Chosen fix = relabel the existing E224 entry as the sulphite GROUP (constants.py: name_he "סולפיטים (תרכובת לא מפורטת)", display_e_number "E220–E228"; patterns/tier/score_eligible UNCHANGED → identical detection, same −2, zero score move). Rejected the separate-group-entry option after measuring it would double-count 1 product + newly detect 11 via E220–E228 patterns (the "מטביסולפיט" substring overlap). Display boxes (regen_d4_additives_display.py, display-label aware + idempotent) + w2 E224 explanation generalised to "סולפיטים"; the 2 cookies verdicts re-authored to the generic group (no E224 claim). The juices product 7290000136523 still shows "E224" only in its verbatim ingredient label (correct — that's the manufacturer's declaration).
+- **CH-4 RESOLVED (E471 framing).** w2 E471 explanation: "מיקרוביום המעי" → "בטיחות השימוש בהם לאורך זמן" (EV-061 found cancer HRs, not a microbiome outcome). 100c, DEC-006.
+- **CH-3 RESOLVED.** Wave-7 tooltips marked GATE-2 CLEARED in w2 header (the prior gate assessed all 7 defensible).
+- **CH-5 RESOLVED.** 313184 internal `_score_correction.to_grade` D→E + d4 note.
+- **CH-2 (bread B→C): Nutrition ruled KEEP** — consistent with the authorized contested-only policy; carving E471 out for wholegrain bread has no evidential basis and reintroduces the "best≠excellent" distortion; the 2028 replication-revert is the correct risk mechanism. Rationale delivered to owner.
+
+Residual: an independent gate-2 on the CH-1/CH-4 string revisions (the rest already gate-cleared). E22x-by-number detection gap (11 products declaring a sulphite by number without the generic word stay undetected, as before D4) logged as a separate non-blocking follow-up.
+
+---
+
 ## Return Block (Data Agent — documents the REJECTED broad design; see addendum above)
 
 ### Step 1 — Dict sync (DONE)

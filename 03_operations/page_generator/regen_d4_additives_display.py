@@ -54,36 +54,58 @@ SCORE_ELIGIBLE_CONTESTED = {
 }
 
 
+# display_e_number remap: some entries display a GROUP label (e.g. E224 -> "E220–E228")
+# instead of their detection key. KEY_OF maps the displayed label back to the dict key so
+# the merge stays idempotent (a box already carrying the display label is not re-added).
+DISPLAY_OF = {k: v["display_e_number"]
+              for k, v in _C.GLASSBOX_W2_ADDITIVES.items() if v.get("display_e_number")}
+KEY_OF = {disp: k for k, disp in DISPLAY_OF.items()}
+
+
+def _norm_key(e_number: str) -> str:
+    """Map a (possibly display-label) e_number back to its dict key."""
+    return KEY_OF.get(str(e_number), str(e_number))
+
+
+def _entry_explanation(key: str) -> str:
+    """w2 copy keyed by dict key, falling back to the dict entry's own explanation_he."""
+    return W2.get(key) or _C.GLASSBOX_W2_ADDITIVES.get(key, {}).get("explanation_he", "")
+
+
 def merge_missing_entries(ing_text: str, existing: list[dict]) -> list[dict]:
-    """ADD missing engine-detected additives (never remove), AND SYNC the tier/
-    function/explanation of any EXISTING entry for a score-eligible CONTESTED additive
-    to the engine + w2 (so a penalising additive is never shown as neutral). Non-
-    score-eligible existing entries are preserved verbatim (their display-tier
-    staleness is a separate, non-score follow-up)."""
+    """ADD missing engine-detected additives (never remove), AND SYNC the
+    name/tier/function/explanation/display-e_number of any EXISTING entry for a
+    score-eligible CONTESTED additive to the engine + w2 (so a penalising additive is
+    never shown as neutral or under a wrong compound name). Non-score-eligible existing
+    entries are preserved verbatim (their display-tier staleness is a separate,
+    non-score follow-up). Idempotent (display-label aware)."""
     existing = list(existing or [])
     if not ing_text or not ing_text.strip():
         return existing
     detected = {a.get("e_number", ""): a for a in (se.detect_additives_d4(ing_text) or [])}
-    have = {str(e.get("e_number", "")) for e in existing}
+    have = {_norm_key(e.get("e_number", "")) for e in existing}
     # sync existing score-eligible-contested entries to the engine value
     for e in existing:
-        en = str(e.get("e_number", ""))
-        if en in detected and en in SCORE_ELIGIBLE_CONTESTED:
-            add = detected[en]
+        key = _norm_key(e.get("e_number", ""))
+        if key in detected and key in SCORE_ELIGIBLE_CONTESTED:
+            add = detected[key]
+            ent = _C.GLASSBOX_W2_ADDITIVES.get(key, {})
+            e["e_number"] = DISPLAY_OF.get(key, key)
+            e["name_he"] = add.get("name_he", "")
             e["tier"] = add.get("tier", "")
             e["function_he"] = add.get("function_he", "")
-            e["explanation_he"] = W2.get(en, e.get("explanation_he", ""))
+            e["explanation_he"] = _entry_explanation(key)
     # append additives the box is missing
-    for en, add in detected.items():
-        if en in have:
+    for key, add in detected.items():
+        if key in have:
             continue
-        have.add(en)
+        have.add(key)
         existing.append({
-            "e_number": en,
+            "e_number": DISPLAY_OF.get(key, key),
             "name_he": add.get("name_he", ""),
             "tier": add.get("tier", ""),
             "function_he": add.get("function_he", ""),
-            "explanation_he": W2.get(en, ""),
+            "explanation_he": _entry_explanation(key),
         })
     return existing
 
@@ -124,19 +146,17 @@ def main() -> int:
                 tot_skipped += 1
                 continue
             cur = pr.get("d4_additives") or []
-            cur_e = {str(e.get("e_number", "")) for e in cur}
+            cur_e = {_norm_key(e.get("e_number", "")) for e in cur}
             new_d4 = merge_missing_entries(it, cur)
-            # only the APPENDED entries are ours to validate (existing preserved verbatim)
+            # validate every displayed additive has an explanation (incl. synced ones)
             for e in new_d4:
-                if str(e.get("e_number", "")) in cur_e:
-                    continue
                 if not e["explanation_he"]:
                     empty_expl.append((bj.name, bc, e["e_number"]))
-                if e["e_number"] == "E224":
+                if _norm_key(e.get("e_number", "")) == "E224":   # sulphite group (now E220–E228)
                     e224_check.append((bj.name, bc))
-            # safety: never remove — merged set must be a superset of existing
-            assert cur_e.issubset({str(e.get("e_number", "")) for e in new_d4}), \
-                f"REMOVAL detected {bj.name} {bc}"
+            # safety: never remove — merged set (normalised) must be a superset of existing
+            new_e = {_norm_key(e.get("e_number", "")) for e in new_d4}
+            assert cur_e.issubset(new_e), f"REMOVAL detected {bj.name} {bc}"
             if cur != new_d4:
                 changed += 1
                 tot_changed += 1

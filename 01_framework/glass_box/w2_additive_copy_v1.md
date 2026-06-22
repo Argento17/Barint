@@ -49,9 +49,10 @@ TASK-179T reads this file for component strings. This is the content record for 
 
 ---
 
-### E224 — פוטסיום מטביסולפיט (Potassium metabisulphite)
+### E224 — סולפיטים (תרכובת לא מפורטת) — sulphite group (was Potassium metabisulphite)
 **Tier:** contested
-**Explanation (final):** פוטסיום מטביסולפיט עלול לעורר אסתמא אצל רגישים ומחייב סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.
+**Explanation (final):** סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.
+**CH-1 change (2026-06-22, Nutrition DEC-CH-1):** this entry detects the sulphite GROUP (generic "סולפיט" + the "מטביסולפיט" substring), so the display was relabeled from the specific compound to the group ("סולפיטים (תרכובת לא מפורטת)", display E220–E228) and the explanation generalized from "פוטסיום מטביסולפיט" to "סולפיטים". Detection/tier/score_eligible unchanged — zero score move; EFSA-2022 group ADI withdrawal + allergen basis preserved. 108 chars.
 **Change from draft (round 1):** explanation revised to reflect the STRONGER, more-confident basis established by EV-102: (1) leads with the allergen / asthma trigger and mandatory-declaration fact; (2) references EFSA 2022 action on sulphite group safety. Tier remains contested but confidence footing is firmer. Evidence basis: EV-102; EFSA 2022 sulphite re-evaluation; mandatory allergen legislation (EU 1169/2011, Israeli parallel).
 **Change from draft (round 2 — RT-M2):** "עדכנה את הערכת הבטיחות שלו ב-2022" (understated — "updated") replaced with "הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים". The 2022 EFSA action was a WITHDRAWAL of the sulphite group ADI (moved to margin-of-exposure approach because MOE fell below the safety threshold for most groups) — "withdrawal" not merely "update". The new verb "הסירה" is accurate and proportionate; does not assert consumer harm (DEC-006 compliant), but does not under-disclose the regulatory action. This is the firmest of the four entries — the firm regulatory ground is now accurately reflected. Character count: 117. Note: "אסתמא" is the medically standard Hebrew spelling (vs "אסתמה" in round 1 — corrected for consistency with standard medical Hebrew).
 **Grammar gate (round 2):** one medium-confidence FLAG dismissed — subject_verb_number_mismatch on 'ומחייב' vs anchor 'רגישים'. False positive: gate's proximity-scan picks 'רגישים' (Plur) as the nearest noun, but the true subject of ומחייב is 'פוטסיום מטביסולפיט' (Sing Masc). Sentence is grammatically correct Hebrew.
@@ -99,9 +100,10 @@ TASK-179T reads this file for component strings. This is the content record for 
 
 ### E471 — מונו ודיגליצרידים (Mono- and diglycerides of fatty acids)
 **Tier:** contested
-**Explanation (final):** מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי פעיל על השפעתם על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושם.
+**Explanation (final):** מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי פעיל על בטיחות השימוש בהם לאורך זמן, אם כי האיחוד האירופי אישר שימושם.
 **Change from draft:** unchanged
-**Change (EV-061):** tier likely-neutral → contested. Copy revised to the active-debate + EU-approved register (modeled on E407/E466). Evidence basis: EV-061 (Sellem et al., PLoS Medicine 2024, PMID 38349899 — E471 isolated, cancer HRs 1.15/1.24/1.46; emulsifier signal, same family as E407/E466). LOW-to-moderate, single cohort, no replication → contested, not confirmed-negative. DRAFT pending Red-Team.
+**Change (EV-061):** tier likely-neutral → contested. Copy revised to the active-debate + EU-approved register (modeled on E407/E466). Evidence basis: EV-061 (Sellem et al., PLoS Medicine 2024, PMID 38349899 — E471 isolated, cancer HRs 1.15/1.24/1.46; emulsifier signal, same family as E407/E466). LOW-to-moderate, single cohort, no replication → contested, not confirmed-negative.
+**CH-4 change (2026-06-22, Nutrition DEC-CH-4):** "השפעתם על מיקרוביום המעי" (microbiome — the hypothesised mechanism) replaced with "בטיחות השימוש בהם לאורך זמן" (safety of use over time). EV-061's primary finding was cancer HRs, not a microbiome outcome; naming "microbiome" mischaracterised what the study measured. New phrasing is accurate to an open safety question without adjudicating mechanism. 100 chars, DEC-006-compliant.
 
 ---
 
@@ -355,8 +357,11 @@ reconciliation that lacked `explanation_he` tooltip strings: the EV-059 emulsifi
 (E433, E124, E122, E129, E171), plus E392 (rosemary extract, EV-102) and E575 (GDL).
 Authored against the **same** standards and the ≤120-char limit as all prior entries.
 Presentation-only — no score moved. Tier values are authoritative from `additive_tiered_library_v1.md`
-(E433/E124/E122/E129/E171 = §7.1 EV-059; E392/E575 = §10.3 EV-102 / §2.B #34). DRAFT pending the
-Adversarial-QA / Red-Team gate.
+(E433/E124/E122/E129/E171 = §7.1 EV-059; E392/E575 = §10.3 EV-102 / §2.B #34).
+**GATE-2 CLEARED (Adversarial-QA / Red-Team, 2026-06-22, CH-3):** all 7 assessed DEFENSIBLE —
+DEC-006 clean, ≤120c, citations accurate (E171 EFSA-2021/EU-2022 ban; azo E124/E122/E129 EU
+child-activity warning label; E433 emulsifier-microbiome RCT; E392 rosemary; E575 GDL),
+proportional contested framing. Both gates now cleared.
 
 **DEC-006 verified across all 7:** no alarm word (מסוכן/רעיל/נזק/מסרטן/מזיק/מסתיר/הוסתר); contested
 entries framed as active scientific debate or regulatory-status fact, never proven harm; every
