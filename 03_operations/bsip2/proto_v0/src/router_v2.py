@@ -21,7 +21,7 @@ Key improvements over v1 (category_classifier.py):
 
 from __future__ import annotations
 
-ROUTER_VERSION = "router_v2.1"  # REQ-362-R1: protein-marker/engineered-bar routing fixes
+ROUTER_VERSION = "router_v2.3"  # TASK-365: protein_bar sub-lens hard anchors (bars/cookies/bites)
 
 CATEGORIES = [
     "whole_food_fat",
@@ -113,6 +113,27 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("קורנפלקס",       "cereal",            "cornflakes",     0.93),
     ("קרנפלקס",        "cereal",            "cornflakes",     0.93),
     ("שיבולת שועל",    "cereal",            "oatmeal",        0.88),
+    # ── Protein bars / cookies / bites (TASK-365) ────────────────────────────
+    # Anchors on explicit protein identity in the product NAME only —
+    # ingredient text is NOT consulted (avoids false positives on granola bars
+    # that happen to contain whey as a minor ingredient).
+    # Inserted BEFORE generic "גרנולה" (0.90) so they win on specificity.
+    # Multi-word anchors first (longer/more-specific wins on ties).
+    ("חטיף חלבון",      "snack_bar_granola", "protein_bar",    0.93),
+    ("חטיף פרוטאין",    "snack_bar_granola", "protein_bar",    0.93),
+    ("בר חלבון",        "snack_bar_granola", "protein_bar",    0.93),
+    ("עוגיות חלבון",    "snack_bar_granola", "protein_bar",    0.92),
+    ("עוגיית חלבון",    "snack_bar_granola", "protein_bar",    0.92),
+    ("ביס חלבון",       "snack_bar_granola", "protein_bar",    0.91),
+    ("כדורי חלבון",     "snack_bar_granola", "protein_bar",    0.91),
+    ("פרוטאין בר",      "snack_bar_granola", "protein_bar",    0.93),
+    ("protein bar",     "snack_bar_granola", "protein_bar",    0.92),
+    # Stand-alone פרוטאין / חלבון tokens in name (covers brand+protein patterns
+    # like "אול אין פרוטאין", "גרנולה פרוטאין+אגוזים", "חט.חלבון" abbreviations).
+    # Confidence 0.91 — above גרנולה (0.90) so protein identity overrides granola routing.
+    # Exclusions prevent firing on dairy/beverage/spread contexts.
+    ("פרוטאין",         "snack_bar_granola", "protein_bar",    0.91),
+    ("חלבון",           "snack_bar_granola", "protein_bar",    0.91),
     # ── Snack bars ────────────────────────────────────────────────────────────
     ("מוסלי",          "snack_bar_granola", "muesli",         0.88),
     ("גרנולה",         "snack_bar_granola", "granola",        0.90),
@@ -257,6 +278,26 @@ ANCHOR_EXCLUSIONS: dict[str, list[str]] = {
     "עוגיות":        ["אורז", "גרנולה", "דגנים", "מוזלי", "מוסלי", "חטיף",
                       "ברים", "ממרח", "וופל", "קרקר", "פריכיות", "ציפוי",
                       "מילוי", "קרם", "שכבת", "אנרגיה", "חלבון"],
+    # TASK-365 — Protein bar / cookie / bite anchor exclusions
+    "חטיף חלבון":   [],
+    "חטיף פרוטאין": [],
+    "בר חלבון":     [],
+    "עוגיות חלבון": [],
+    "עוגיית חלבון": [],
+    "ביס חלבון":    [],
+    "כדורי חלבון":  [],
+    "פרוטאין בר":   [],
+    "protein bar":   [],
+    # Stand-alone פרוטאין/חלבון: exclude dairy/beverage/dessert contexts.
+    # "מעדן חלבון" = dairy dessert; "משקה פרוטאין" = beverage; "קוטג' פרוטאין" = dairy.
+    # NOTE: "חלב" is intentionally EXCLUDED from the exclusion list here — it is a
+    # substring of "חלבון" itself, so checking `"חלב" in name` fires on any product
+    # whose name contains "חלבון" (e.g., "חט.חלבון", "אין‌חלבון").  The dairy
+    # context is adequately covered by יוגורט/גבינה/קוטג'/מעדן/שתייה/אבקת/ממרח.
+    "פרוטאין":     ["משקה", "שתייה", "מעדן", "קוטג'", "יוגורט", "גבינה", "שייק",
+                    "אבקת"],
+    "חלבון":       ["משקה", "שתייה", "מעדן", "קוטג'", "יוגורט", "גבינה", "שייק",
+                    "אבקת", "ממרח"],
     # Savory spread anchors — tahini exclusions
     "טחינה":          ["חציל", "חצילים"],            # "חציל על האש בטחינה" = eggplant spread, not tahini product
     # Brined-cheese anchors (TASK-267 / EV-055) — must not fire in snack/cracker/flavor context
@@ -674,6 +715,31 @@ def _check_supplement_quarantine(name: str, ing_text: str) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
+# TASK-365 — Barcode-level routing overrides
+# ---------------------------------------------------------------------------
+# Some products have names that produce genuine routing ambiguity (no protein
+# token, but confirmed protein-bar identity by brand+format).  These overrides
+# apply AFTER Stage 3 signal resolution AND after REQ-362 rules, as a last-resort
+# hard anchor.  Each entry is documented with the routing failure reason.
+#
+# Format: barcode → (category, category_subtype, confidence, reason)
+#
+BARCODE_ROUTING_OVERRIDES: dict[str, tuple[str, str, float, str]] = {
+    # pb-024 — "אול אין קרם עוגיות" (barcode 7290018703304)
+    # Routing failure: "קרם" fires _DESSERT (0.45); "עוגיות" anchor suppressed (קרם
+    # in exclusion list); no חלבון/פרוטאין in name → routes to "dessert".
+    # This is confirmed: a protein-cookie format on the פרוטאין bar shelf, brand
+    # "אול אין" (All-In, a protein-focused brand).  The product's ingredient list
+    # contains ≥20 g protein/100g.  Fix: force snack_bar_granola+protein_bar.
+    # TASK-365 red-team fix RD-7.
+    "7290018703304": ("snack_bar_granola", "protein_bar", 0.90,
+                      "TASK-365 barcode override: cream-cookie format without חלבון in name; "
+                      "All-In brand protein product confirmed on protein shelf; "
+                      "קרם token caused false dessert routing"),
+}
+
+
+# ---------------------------------------------------------------------------
 # REQ-362-R1 — Post-classification routing overrides (TASK-362, co-signed)
 # ---------------------------------------------------------------------------
 # These three rules correct misrouting WITHOUT touching dimension scoring, caps,
@@ -688,9 +754,48 @@ _R1_PROTEIN_NAME_MARKERS: frozenset[str] = frozenset({"חלבון", "פרוטא�
 _R2_PROTEIN_THRESHOLD_G: float = 20.0    # per-100g
 _R2_INGREDIENT_COUNT_MIN: int  = 15
 
+# Rule 3 — Chocolate lens correction (TASK-362, Nutrition Agent co-sign).
+# The whole_food_fat lens is built for tahini, nut butters, and olive oil — products
+# where high calorie density and high fat are structural virtues (oleic acid, whole
+# seed matrix).  Chocolate fat is cocoa butter: predominantly saturated (stearic +
+# palmitic ≈ 60% of total fat), not equivalent to nut-butter fat in scoring context.
+# Routing chocolate to whole_food_fat gives confectionery a free pass on its defining
+# problem (high sat fat + high energy density + high sugar in milk/white varieties)
+# and produces a 21-point coherence gap between identical product types (prot-014
+# class failure at category scale).
+#
+# Rule: if engine_category is in _R3_WRONG_CATS AND product name (canonical_name_he)
+# contains a chocolate name marker → route to snack_bar_granola, subtype confectionery.
+# Name-only: ingredient text is NOT consulted (avoids false-positives on products that
+# merely contain chocolate as an ingredient and correctly sit in another category).
+# Exclusions: spreads/drinks that survived the scope filter in score_chocolate_task362.py
+# are already excluded upstream; no additional exclusions needed here.
+_R3_CHOCOLATE_NAME_MARKERS: frozenset[str] = frozenset({
+    "שוקולד",         # the primary identity token — present in virtually all Hebrew chocolate names
+    "שוק.",           # truncated "שוקולד" used in some Lindt Hebrew SKU names (e.g. "שוק.לינדט")
+    "טובלרון",        # Toblerone — brand name without "שוקולד" in several variants
+    "מילקה",          # Milka brand name in Hebrew; some SKUs lack "שוקולד" explicitly
+    "קיט קט",         # Kit Kat
+    "סניקרס",         # Snickers
+    "טוויקס",         # Twix
+    "באונטי",         # Bounty
+    "טורינו",         # Torino — Israeli Elit chocolate brand (tablets + bars, milk and dark)
+    "קליק",           # Klik — Israeli Elit chocolate confection brand (קליק אין, קליק ביסקוויט, etc.)
+    "לינדט אקסלנס",   # Lindt Excellence line — SKUs named "לינדט אקסלנס X" without "שוקולד"
+    "פינוקיות פסק זמן", # Paket Zman pinukhiyot — chocolate-coated confection
+})
+# These are the wrong-engine categories that Rule 3 corrects.
+# whole_food_fat: the primary offender (16 tablets got B/E free-pass on the fat lens).
+# dairy_protein, dessert, biscuit, sauce_spread, default, cracker, cereal: other wrong paths.
+# snack_bar_granola is intentionally excluded — that is the correct destination.
+_R3_WRONG_CATS: frozenset[str] = frozenset({
+    "whole_food_fat", "dairy_protein", "dessert", "biscuit",
+    "sauce_spread", "default", "cracker", "cereal",
+})
+
 
 def _apply_req362_overrides(result: dict, product: dict) -> dict:
-    """REQ-362-R1: apply three post-classification routing corrections.
+    """REQ-362-R1/R3: apply post-classification routing corrections.
 
     Rule 1 — Protein-marker overrides cracker:
         If engine_category == cracker AND product name (canonical_name_he) contains
@@ -705,8 +810,21 @@ def _apply_req362_overrides(result: dict, product: dict) -> dict:
         protein bar with ≥20 g protein/100g is not a whole-food-fat product.
         ingredient_count is emitted into the trace for QA verification.
 
-    Rule 3 is implemented upstream in signal_extractor.py (negation-aware sweetener
-    detection for "ללא ממתיקים").  Nothing to do here.
+    Rule 3 — Chocolate lens correction (TASK-362):
+        If engine_category is in _R3_WRONG_CATS AND product name contains a
+        chocolate identity marker (_R3_CHOCOLATE_NAME_MARKERS) → route to
+        snack_bar_granola, subtype confectionery_chocolate.
+        Rationale: whole_food_fat treats chocolate's cocoa-butter fat as a whole-food
+        virtue (same as tahini/nut-butter) — incorrect.  Cocoa butter is ~60% sat fat;
+        chocolate confectionery is NOT a whole-food fat product.  This produced a 21-pt
+        coherence gap between identical product types (prot-014 class failure at scale).
+        dairy_protein/dessert/biscuit/sauce_spread/default are also wrong paths;
+        snack_bar_granola is the single correct lens for all chocolate confectionery.
+        Name-only check: ingredient text is NOT consulted (avoids false-positives on
+        products that contain chocolate as a coating/filling in another category).
+
+    Note: the original "Rule 3" (negation-aware sweetener detection "ללא ממתיקים")
+    is implemented upstream in signal_extractor.py and is unchanged.
 
     Returns a (possibly mutated) copy of result with req362_override_trace added.
     """
@@ -769,6 +887,34 @@ def _apply_req362_overrides(result: dict, product: dict) -> dict:
             override_reason = (
                 f"rule2_not_fired: protein_g={protein_g} qualifies but "
                 f"ingredient_count={ingredient_count} < {_R2_INGREDIENT_COUNT_MIN}"
+            )
+
+    # --- Rule 3 — Chocolate lens correction (TASK-362) ---
+    # Applied to ANY wrong-engine result, including those already processed above
+    # (Rule 2 may have moved a WFF chocolate to snack_bar_granola correctly; those
+    # are a subset; Rule 3 catches the rest). Re-read current_cat after Rule 1/2.
+    current_cat_after = result.get("category")
+    if current_cat_after in _R3_WRONG_CATS:
+        choc_marker_hit = next(
+            (m for m in _R3_CHOCOLATE_NAME_MARKERS if m in name), None
+        )
+        if choc_marker_hit:
+            result["category"]              = "snack_bar_granola"
+            result["category_subtype"]      = "confectionery_chocolate"
+            result["anchor_override"]       = True
+            result["category_confidence"]   = 0.90
+            result["confidence_band"]       = "high"
+            result["category_instability_flag"] = False
+            result["routing_instability_warning"] = None
+            result["classification_basis"]  = [
+                f"task362_r3:chocolate_name_marker('{choc_marker_hit}')",
+                f"{current_cat_after}_overridden:chocolate_confectionery_not_whole_food_fat",
+            ] + result.get("classification_basis", [])[:3]
+            override_applied = "rule3_chocolate_lens"
+            override_reason  = (
+                f"{current_cat_after}→snack_bar_granola: chocolate name marker "
+                f"'{choc_marker_hit}' — cocoa-butter fat is not a whole-food-fat virtue; "
+                f"confectionery scores on snack_bar_granola lens (TASK-362 co-signed)"
             )
 
     result["req362_override_trace"] = {
@@ -868,7 +1014,29 @@ def classify_category(product: dict) -> dict:
     result["supplement_quarantine"] = supplement_q
 
     # Stage 4 — REQ-362-R1 post-classification routing overrides
-    return _apply_req362_overrides(result, product)
+    result = _apply_req362_overrides(result, product)
+
+    # Stage 5 — TASK-365 barcode-level hard overrides (last resort)
+    barcode = str(product.get("barcode") or "")
+    if barcode in BARCODE_ROUTING_OVERRIDES:
+        bc_cat, bc_subtype, bc_conf, bc_reason = BARCODE_ROUTING_OVERRIDES[barcode]
+        result["category"]              = bc_cat
+        result["category_subtype"]      = bc_subtype
+        result["category_confidence"]   = bc_conf
+        result["confidence_band"]       = "high"
+        result["anchor_override"]       = True
+        result["category_instability_flag"] = False
+        result["routing_instability_warning"] = None
+        result["classification_basis"]  = [
+            f"task365_barcode_override({barcode}): {bc_reason[:80]}",
+        ] + result.get("classification_basis", [])[:3]
+        result["task365_barcode_override"] = {
+            "barcode": barcode,
+            "category": bc_cat,
+            "category_subtype": bc_subtype,
+            "reason": bc_reason,
+        }
+    return result
 
 
 # ---------------------------------------------------------------------------

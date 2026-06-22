@@ -96,6 +96,8 @@ from constants import (
     DIAAS_COMPLETE_SOURCES, DIAAS_DISCLOSURE_GAP_TRIGGERS,
     DIAAS_D2_CREDIT, DIAAS_D2_SCORE_CAP,
     GLASSBOX_W2_ADDITIVES,
+    D4_SCORE_CONTESTED_WEIGHT, D4_SCORE_COSMETIC_MUP_WEIGHT,
+    D4_SCORE_CAP, D4_COMBINED_ADDITIVE_PROCESSING_CAP,
     SODIUM_CEREAL_CATEGORIES, SODIUM_CEREAL_BANDS,
     SODIUM_CEREAL_CAP_THRESHOLD, SODIUM_CEREAL_CAP_VALUE,
     SODIUM_CEREAL_RED_LABEL_BOUNDARY,
@@ -151,6 +153,18 @@ BARI_GLASSBOX_W15 = os.environ.get("BARI_GLASSBOX_W15", "off").lower() == "on"
 # No score movement; D4 signal is presentation-only for the W2 prototype.
 # Additives not in GLASSBOX_W2_ADDITIVES → tier "unclassified" (never invented).
 BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
+
+# TASK-371 — D4 Additive Scoring (Option C), activated via BARI_D4_SCORE_V1.
+# DEFAULT OFF → engine byte-identical to baseline (zero score change).
+# Owner-authorized 2026-06-21. See constants.py D4_SCORE_* for design rationale.
+# When ON: applies a tier-weighted D4 penalty on the final composite score AFTER
+# all dimension scoring, caps, floors, and the confidence ceiling. The penalty is
+# a raw point deduction on the composite (not a dimension weight), keeping the 10-
+# dimension architecture intact while activating headline-score discrimination.
+# Anti-double-count: combined additive-family cap prevents ECS-v1 + D4 stacking
+# beyond D4_COMBINED_ADDITIVE_PROCESSING_CAP points on any single product.
+# Does NOT auto-deploy; owner merges + deploys separately (hard rule TASK-371).
+BARI_D4_SCORE_V1 = os.environ.get("BARI_D4_SCORE_V1", "off").lower() == "on"
 
 # TASK-181G / TASK-181K — Glass Box W4 D3 de-moralization (confidence-scaled
 # processing signal). DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_W2 baseline.
@@ -911,6 +925,67 @@ def detect_additives_d4(ingredient_text: str) -> list:
         {k: v for k, v in f.items() if k != "_pos"}
         for f in sorted_findings
     ]
+
+
+def compute_d4_score_penalty(ingredient_text: str, l3: dict) -> tuple[int, str]:
+    """TASK-371 — Option C D4 composite-score penalty (BARI_D4_SCORE_V1).
+
+    Applies tier-weighted D4 penalty to the final composite score. ONLY called when
+    BARI_D4_SCORE_V1 is ON — caller is responsible for the flag guard.
+
+    Formula (Option C — CONTESTED-ONLY scope, owner ruling 2026-06-21):
+      base = 2 × (#score_eligible contested additives) + 0 × (#cosmetic_mup additives)
+      d4_raw = min(D4_SCORE_CAP, base)
+      NOTE: D4_SCORE_COSMETIC_MUP_WEIGHT is 0 — the broad cosmetic_mup term was built,
+      owner-reviewed, and REJECTED (penalised clean hummus/bread/milk for ordinary
+      additives). The term is retained at weight 0 so a broad version stays re-tunable
+      only if separately vetted. Do NOT re-enable without a new owner ruling.
+
+    Anti-double-count combined cap (EV-051 precedent):
+      already_spent = emulsifier_complexity_penalty from l3 (ECS-v1 budget spend)
+      net_d4 = max(0, min(d4_raw, D4_COMBINED_ADDITIVE_PROCESSING_CAP - already_spent))
+
+    SCORE-ELIGIBLE = contested additives where entry["score_eligible"] is True.
+    LOW-confidence flips (E300, E330, E202, score_eligible=False) are display-only.
+
+    Returns:
+        (net_d4_penalty: int, trace_note: str)
+    """
+    if not ingredient_text:
+        return 0, "D4_SCORE: no ingredient text"
+
+    findings = detect_additives_d4(ingredient_text)
+
+    score_eligible_contested = []
+    cosmetic_mup_any = []
+    for f in findings:
+        e_num = f["e_number"]
+        entry = GLASSBOX_W2_ADDITIVES.get(e_num, {})
+        if f["tier"] == "contested" and entry.get("score_eligible", False):
+            score_eligible_contested.append(e_num)
+        if f.get("cosmetic_mup", False):
+            cosmetic_mup_any.append(e_num)
+
+    n_contested = len(score_eligible_contested)
+    n_cosmetic = len(cosmetic_mup_any)
+    base = D4_SCORE_CONTESTED_WEIGHT * n_contested + D4_SCORE_COSMETIC_MUP_WEIGHT * n_cosmetic
+    d4_raw = min(D4_SCORE_CAP, base)
+
+    # Anti-double-count combined cap: ECS-v1 budget already consumed.
+    # l3 carries emulsifier_complexity_penalty (from signal_extractor ECS-v1 computation).
+    ecs_spent = int(l3.get("emulsifier_complexity_penalty", 0) or 0)
+    remaining_budget = max(0, D4_COMBINED_ADDITIVE_PROCESSING_CAP - ecs_spent)
+    net_d4 = max(0, min(d4_raw, remaining_budget))
+
+    cap_applied = (d4_raw > remaining_budget)
+    note = (
+        f"D4_SCORE v1: contested_eligible={n_contested}{score_eligible_contested} "
+        f"cosmetic_mup={n_cosmetic} base={base} "
+        f"raw_cap={d4_raw} ecs_spent={ecs_spent} "
+        f"combined_budget={remaining_budget} net={net_d4}"
+        f"{' [COMBINED_CAP_APPLIED]' if cap_applied else ''}"
+    )
+    return net_d4, note
 
 
 # ---------------------------------------------------------------------------
@@ -2026,6 +2101,12 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     has_seed_oil      = l3.get("has_seed_oil", False)
     has_sweetener     = l3.get("sweetener_detected", False)
     is_snack_bar      = category == "snack_bar_granola"
+    # TASK-365 / BEV-014: protein_bar sub-lens flag.
+    # When the protein_bar lens fires, ADDITIVE_MARKERS_5_PLUS and ADDITIVE_MARKERS_3_PLUS
+    # are suppressed to prevent double-counting with the PROCESSING_LOAD penalties already
+    # applied by apply_protein_bar_lens() (glycerol penalty + isolate-stacking penalty).
+    # The maltitol cap (62) and sweetener cap (70) remain binding.
+    is_protein_bar    = (category == "snack_bar_granola" and cat_subtype == "protein_bar")
     context_flag      = eval_status.get("context_flag")
 
     # SRC-02: sugar context routing
@@ -2383,8 +2464,13 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         _nova4_cap_val = 68
         _nova3_cap_val = _nova3_cap
     check_cap("NOVA_PROXY_4_ULTRA_PROCESSED", nova_level == 4, _nova4_cap_val, proc_caps_fired)
-    check_cap("ADDITIVE_MARKERS_5_PLUS",      additive_ct >= 5, 60, proc_caps_fired)
-    check_cap("ADDITIVE_MARKERS_3_PLUS",      3 <= additive_ct < 5, 72, proc_caps_fired)
+    # TASK-365 / BEV-014: ADDITIVE_MARKERS caps suppressed for protein_bar to prevent
+    # double-counting with the protein_bar lens PROCESSING_LOAD penalties (glycerol -8,
+    # isolate-stacking -6, capped at PROCESSING_FAMILY_BUDGET=12).  Maltitol cap (62)
+    # and sweetener cap (70) remain binding via the protein_bar lens.
+    if not is_protein_bar:
+        check_cap("ADDITIVE_MARKERS_5_PLUS",  additive_ct >= 5, 60, proc_caps_fired)
+        check_cap("ADDITIVE_MARKERS_3_PLUS",  3 <= additive_ct < 5, 72, proc_caps_fired)
     check_cap("NOVA_PROXY_3_PROCESSED",       nova_level == 3, _nova3_cap_val, proc_caps_fired)
 
     # Ingredient count for LONG_INGREDIENT_LIST uses full ingredients_list if available
@@ -4061,6 +4147,34 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         elif gate_state == "demote":
             glassbox_flag = GLASSBOX_PARTIAL_FLAG
 
+    # TASK-371 — D4 additive scoring penalty (BARI_D4_SCORE_V1).
+    # Applied AFTER Stage 9 (confidence ceiling) and D6 gate, so the penalty fires on the
+    # final displayable score. When flag is OFF → d4_score_penalty=0, no keys added (byte-identical).
+    # Penalty is skipped when score was withheld (final_score=None).
+    d4_score_penalty = 0
+    d4_score_note = None
+    if BARI_D4_SCORE_V1 and final_score is not None:
+        _d4_ing_text_score = (
+            product.get("ingredients_raw")
+            or product.get("ingredients_text_he")
+            or ""
+        )
+        if not _d4_ing_text_score and product.get("ingredients_list"):
+            _d4_ing_text_score = ", ".join(product["ingredients_list"])
+        d4_score_penalty, d4_score_note = compute_d4_score_penalty(_d4_ing_text_score or "", l3)
+        if d4_score_penalty > 0:
+            _pre_d4 = final_score
+            final_score = round(max(0.0, final_score - d4_score_penalty), 1)
+            grade = score_to_grade(final_score)
+            # Re-evaluate data_sufficiency after D4 (score may shift below insufficient threshold,
+            # but D4 cannot by itself pull a sufficient product into insufficient_data — the
+            # confidence computation already determined sufficiency independently of D4).
+            # Preserve the pre-D4 grade change in the trace; do not re-run the D6 gate.
+            d4_score_note = (
+                f"{d4_score_note} | pre_d4={_pre_d4} post_d4={final_score} "
+                f"grade_change={'yes' if score_to_grade(_pre_d4) != grade else 'no'}"
+            )
+
     # Explanation drivers
     drivers = _identify_drivers(gr, floor_result, conf_result, dim_scores, binding_cap, ceiling)
 
@@ -4172,6 +4286,12 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         if not _d4_ing_text and product.get("ingredients_list"):
             _d4_ing_text = ", ".join(product["ingredients_list"])
         result["d4_additives"] = detect_additives_d4(_d4_ing_text or "")
+
+    # TASK-371 — D4 score keys added ONLY when BARI_D4_SCORE_V1 is ON.
+    # Flag OFF → no d4_score_* keys → result dict byte-identical to the BARI_GLASSBOX_W2 baseline.
+    if BARI_D4_SCORE_V1:
+        result["d4_score_penalty"] = d4_score_penalty
+        result["d4_score_note"] = d4_score_note
 
     return result
 
