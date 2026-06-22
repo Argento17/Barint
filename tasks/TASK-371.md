@@ -9,10 +9,27 @@ close_reason: >
   17dd34762 red-team CH-1/CH-4 fixes; 8103f6204 gate-2 M-1/M-2 cleanup). Independent Adversarial-QA
   gate = PASS (Track V all green: score==trace 102 movers / 6 grades re-derived, field-scope,
   add-only, build tsc 0; Track C: CH-1 sulphite-mislabel + CH-4 E471-framing RESOLVED, CH-2 bread
-  B->C Nutrition-ruled KEEP, all MEDIUMs closed). Milk de-frozen. NOT deployed — deploy is the
-  separate owner-gated step explicitly outside this task's DoD (cross-repo publish path unconfirmed).
+  B->C Nutrition-ruled KEEP, all MEDIUMs closed). Milk de-frozen.
   Non-blocking follow-ups logged: E22x-by-number detection gap; non-score-eligible display-tier
   staleness (E202/E330/E300 + cosmetic); pre-existing 313184 live-score-vs-trace discrepancy.
+deployed: >
+  DEPLOYED to production 2026-06-22 (owner-authorized "deploy and close this"). Publish path
+  RESOLVED: bari.digital deploys from monorepo origin (Argento17/Barint) master via Vercel — the
+  legacy Argento17/bari repo is stale/abandoned (missing whole live categories; smoke manifest uses
+  monorepo filenames). Deploy done in an isolated git worktree (main tree's 335 uncommitted bars-WIP
+  files left untouched per the shared-tree-wipe hazard). Merged branch->master (commit 5e26fb075):
+  one score conflict (cheese bsip1_cheese_56272: master reformatted 68.0->68; D4 applied -2 E466
+  penalty -> 66.0, took D4 value); integrated a concurrent push (TASK-373 snacks relief, c2b9d927c)
+  — auto-merged cleanly (373 relief scores snk-004/008/009/010 + D4's snk-006 E500 box both survived).
+  Fixed a defect the deploy-gate caught that the two-gate missed: D4's surgical patch left bread_v3
+  (4) + cheese_v4 (8) rank inversions (it lowered scores without re-sorting); re-sorted both to
+  score-descending (display-only, no score/grade change, no positional copy refs). Verified: next
+  build exit 0 (18 routes prerendered); validate-corpus at parity with master (939 vs 940 errors —
+  all pre-existing systemic corpus debt, the gate is already non-blocking on master); scoring+router
+  regressions identical to clean master baseline (1 router FAIL + 1 scoring WARN both pre-existing,
+  not D4). Post-deploy smoke PASS (0 hard failures, OFF=0, all routes 200). D4 landing confirmed
+  LIVE: the D4-unique sulphite group relabel "E220–E228" now serves on bari.digital (cookies-coffee
+  16x, juices 3x, snacks 0x as expected).
 priority: HIGH
 created_at: 2026-06-21
 depends_on: [TASK-368]
