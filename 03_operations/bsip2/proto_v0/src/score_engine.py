@@ -2094,6 +2094,7 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
             and _wholefood_relief
             and _wholefood_relief.get("passed")
             and red_label_sat_fat
+            and not _wholefood_relief.get("coconut_primary_fat")
         )
         _rl_sat_fat_endemic = red_label_sat_fat and (
             category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES or _wf_sat_fat_endemic
@@ -2274,7 +2275,8 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         if (BARI_SNACK_WHOLEFOOD_V1
                 and _wholefood_relief
                 and _wholefood_relief.get("passed")
-                and red_label_sat_fat):
+                and red_label_sat_fat
+                and not _wholefood_relief.get("coconut_primary_fat")):
             _rl_before_wf = _rl_count_for_2plus
             _rl_count_for_2plus = max(0, _rl_count_for_2plus - 1)
             if _rl_before_wf >= 2 and _rl_count_for_2plus < 2:
@@ -3131,14 +3133,23 @@ WHOLEFOOD_CALORIE_BACKSTOP_CEILING_D = 49
 _WHOLEFOOD_ADDED_SUGAR_MARKERS = (
     "סוכר", "סירופ גלוקוזה", "סירופ גלוקוז", "סירופ גלוקוז-פרוקטוז",
     "סירופ גלוקוזה-פרוקטוזה", "פרוקטוזה", "דקסטרוזה", "מולסה", "סירופ תמרים",
-    "סירופ מייפל", "סוכר קנים", "סוכר חום", "סירופ סוכר", "סירופ אגבה",
+    "סירופ מייפל", "סוכר חום", "סוכר קנים", "סירופ סוכר", "סירופ אגבה",
     "מלטוז", "לקטוז", "סירופ תירס", "סירופ קרמל", "אינברטי", "ריבה",
-    "רכז פרות", "מיץ פרות מרוכז", "אגבה", "פרי",
+    "רכז פרות", "מיץ פרות מרוכז", "אגבה", "דבש",
+    "ריבת פרות", "מחית פרות",
+)
+WHOLEFOOD_COCONUT_FAT_MARKERS = (
+    "קוקוס מגורר", "קוקוס גרוס", "חמאת קוקוס", "מחית קוקוס", "קוקוס",
 )
 
 
 def _wholefood_marker_unnegated(clause: str, marker: str) -> bool:
-    """True when marker appears in clause and is not preceded by a negation token."""
+    """True when marker appears in clause and is not preceded by a negation token.
+
+    Known gap (P287 / EV registry): negation is clause-local only — a disclaimer on a
+    separate label clause (e.g. "תמרים, קקאו. (ללא תוספת סוכר)") may not suppress a
+    marker in another clause. Harden when ingredient-clause segmentation improves.
+    """
     if not clause or not marker:
         return False
     pos = 0
@@ -3157,11 +3168,18 @@ def _negation_aware_added_sugar_count(ingredient_list: list) -> int:
     matches: set[str] = set()
     for clause in ingredient_list or []:
         for marker in _WHOLEFOOD_ADDED_SUGAR_MARKERS:
-            if marker == "דבש":
-                continue
             if _wholefood_marker_unnegated(clause, marker):
                 matches.add(marker)
     return len(matches)
+
+
+def _wholefood_coconut_primary_fat(ingredient_list: list) -> bool:
+    """True when desiccated coconut / coconut butter is an unnegated ingredient."""
+    for clause in ingredient_list or []:
+        for marker in WHOLEFOOD_COCONUT_FAT_MARKERS:
+            if _wholefood_marker_unnegated(clause, marker):
+                return True
+    return False
 
 
 def _wholefood_sc5_refined_present(ingredient_list: list) -> bool:
@@ -3187,6 +3205,7 @@ def _evaluate_wholefood_bar_predicate(
         ing_count = len(ing_list)
     ing_ok = ing_count <= WHOLEFOOD_MAX_SANITIZED_INGREDIENTS
     add_ok = l3.get("additive_marker_count", 0) == 0
+    coconut_primary_fat = _wholefood_coconut_primary_fat(ing_list)
     passed = cat_ok and sugar_ok and no_refined and ing_ok and add_ok
     return {
         "passed": passed,
@@ -3197,6 +3216,7 @@ def _evaluate_wholefood_bar_predicate(
         "sanitized_ingredient_count": ing_count,
         "zero_additives": add_ok,
         "negation_aware_added_sugar_count": negation_aware_sugar_count,
+        "coconut_primary_fat": coconut_primary_fat,
     }
 
 
