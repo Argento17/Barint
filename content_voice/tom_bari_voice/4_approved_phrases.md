@@ -23,13 +23,14 @@ voice; rotate. New phrases enter only after they appear in a Tom edit (file 8).
 - הצרכן לא צריך להיות כימאי כדי להבין מה הוא קונה.
 - אין כאן דרמה. יש כאן פער בין הדימוי של המוצר לבין מה שיש בפנים.
 
-## C. "X לא תמיד אומר Y" (the workhorse)
-- נקי לא תמיד אומר חזק תזונתית.
-- קטן באריזה לא תמיד אומר קל תזונתית.
+## C. "X הוא לא בהכרח Y" (the workhorse — repaired 2026-06-22, TASK-374)
+> ⚠️ The earlier phrasing **"X לא תמיד אומר Y"** is **retired as a calque** (translationese tell T2 in `10_translationese_taxonomy.md`; owner flagged "נקי לא תמיד אומר חזק" as weird). Keep the move's intent; use the natural Hebrew form below. The "זה לא אומר Y" variant is on watch for the same reason.
+- מוצר נקי הוא לא בהכרח מוצר חזק תזונתית.
+- אריזה קטנה היא לא בהכרח מוצר קל תזונתית.
 - מתוק זה לא אוטומטית גרוע. מתועש מדי — שם מתחילה הבעיה.
-- פרווה זה שימושי. זה לא אומר פשוט.
-- "ללא גלוטן" הוא מידע חשוב. הוא לא ציון תזונתי.
-- טענה אחת על האריזה היא התחלה. לא סוף הסיפור.
+- פרווה שימושית, אבל היא לא בהכרח פשוטה.
+- "ללא גלוטן" הוא מידע חשוב, לא ציון תזונתי.
+- טענה אחת על האריזה היא התחלה, לא סוף הסיפור.
 
 ## D. Whole-picture framing (anti single-villain)
 - הבעיה היא לא רכיב אחד. הבעיה היא התמונה הכוללת.

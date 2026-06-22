@@ -47,6 +47,49 @@ edits at them so v1.0 rests on real data:
 
 ---
 
+### Harvest #5 — Translationese taxonomy (Project Tom's Voice / TASK-374) · 2026-06-22 · ALL-SHELF
+
+Source: owner provided **12 labeled live examples** (cereals + chocolate-tablet shelves)
++ **2 owner protein-bar rewrites**, flagging *naturalness* failures that pass every
+existing gate. Full catalogue: `10_translationese_taxonomy.md` (T1–T7 + the closer
+meta-finding). Two owner rulings promoted this round:
+
+**H5-R1 — Repair the "X לא תמיד אומר Y" signature move (calque T2).**
+**Failing:** `נקי לא תמיד אומר חזק` (#2 cereals) — owner: "weird phrasing."
+**Ruling:** the move's *intent* stays; the calqued "...לא תמיד אומר..." phrasing is
+retired. Repaired form: **`X הוא לא בהכרח Y`** (`מוצר נקי הוא לא בהכרח מוצר חזק`).
+**Promotion status:** promoted → file 2 §2 (Balanced core sentence + closer) + §3
+(workhorse construction) + file 4 §C (2026-06-22). "זה לא אומר Y" variant on watch.
+
+**H5-R2 — Pro/con (יתרון/חיסרון) labels in the protein rewrites = editing shorthand, not a format.**
+**Ruling:** final copy stays flowing prose (the #1-chocolate model). No frontend/design
+change. The value in the rewrites is the *phrasing* (T1/T4/T7 fixes, jargon gloss,
+discourse connectors), not the layout.
+**Promotion status:** recorded → file 10 RESOLVED (2026-06-22).
+
+**H5-R3 — The target register is "in-between"; two failure modes, not one.**
+Owner ruling on the 8 gold rewrites: the fix is NOT "calm" — *"AI does not treat
+'calm' nicely, it becomes too neutral that it doesn't write anything. Should be
+somewhere in between."* **Target = opinionated substance in natural connected Hebrew.**
+The gate must catch **F1 translationese-punch** (staccato calques, `X, לא Y`) AND
+**F2 neutral-bland** (no stance, hedge-only, says nothing). Fingerprint keeps its
+stance/verdict commitment (F2 guard) but moves default *texture* from staccato/"(!)"
+to connected prose; punch becomes seasoning-when-earned. **Promotion status:** recorded
+→ file 10 §D; drove Phase 1 (two-axis gate) + the fingerprint recalibration pass.
+**APPLIED 2026-06-22 (Phase 1.5):** file 2 §0.5 added (default register = opinionated
+substance in connected prose; F1+F2 failure modes; punch = seasoning-when-earned;
+stance kept as F2 guard, supersedes conflicting punch-default rules); §1 step 1 opener
+broadened to calm-orienting OR scene; §5 rhythm flipped to connected-prose default
+(staccato chain = F1 failure); §3 "(!)" marked seasoning-only + gate-monitored.
+
+**Meta-finding (owner):** the closer / "finish line" is the systematic failure zone —
+`הקשר במדף` reliably collapses into T1 (`X, לא Y`) and T3 (dangling `גם`) calques. The
+Phase 1 Naturalness Gate weights the final beat hardest. The full T1–T7 tell list is the
+gate's calibration target; pending confirmation of screenshot transcriptions before
+individual pairs promote to `3_before_after_pairs.md`.
+
+---
+
 ### Harvest #4 — Batch-1 reconciliation · 2026-06-19 · ALL-SHELF CONFIRMED
 
 Source: Owner batch-1 reconciliation on cereals + cross-shelf voice rules.

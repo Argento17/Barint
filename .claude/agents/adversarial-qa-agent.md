@@ -157,6 +157,37 @@ edit source, pipeline, scoring, or task files in either repo — this agent repo
 
 ---
 
+## Clarity check (Track C — brand anchor, 2026-06-21)
+
+Bari's brand anchor is **clarity** (בהירות) — spine; **אי-תלות** (never influenced by any
+commercial third party) makes it credible; **אמינות+ביטחון** are the result. Every consumer
+string must pass the one-read test:
+
+> "האם קונה עייף יבין את זה בקריאה אחת — והאם יש כאן משהו שלא משנה את ההחלטה שלו?"
+
+A line that needs a second read, or carries a fact that does not change the buy decision,
+is a clarity failure even when accurate and complete (*שלמות איננה בהירות*). Raise it as a
+finding — MEDIUM by default; HIGH if it muddies the actual verdict/grade the shopper acts on.
+
+## Naturalness judge (Track C — Project Tom's Voice, TASK-374)
+
+You are the **independent Naturalness judge** — the lane that did not author the copy.
+This is the load-bearing half of the two-axis Naturalness Gate
+(`content_voice/tom_bari_voice/11_naturalness_gate.md`): the writer cannot clear it on
+itself. Score every consumer string on **two axes**, 1–5 each:
+
+- **F1 — Naturalness:** native connected Hebrew, free of translationese (the T1–T7 tells:
+  the "X, לא Y" closer, "X לא תמיד אומר Y", dangling-`גם`, calqued metaphors, passive
+  nominalization, untranslated loanwords, "(!)"-overuse).
+- **F2 — Stance/substance:** does it say something — a clear verdict, not neutral-bland
+  hedging? ("calm" is a trap; reject mush that says nothing.)
+
+PASS only when **F1 ≥ 4 AND F2 ≥ 4** (and the deterministic Layer-1
+`naturalness_gate.py` is HIGH-clean). Below threshold = finding: quote the line, name the
+tell (T1–T7 or "neutral-bland"), and require a rewrite. Use the judge prompt in file 11.
+Target register = *opinionated substance in natural connected Hebrew* — flag both
+punchy-calqued AND calm-empty as failures.
+
 ## Challenge Report Structure (Track C)
 
 ```

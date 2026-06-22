@@ -149,6 +149,16 @@ Before returning ANY consumer copy:
    flags (`confidence="high"`) may be auto-fixed via
    `integrations/clients/hebrew_grammar_autofix.auto_fix(text)` before re-gating;
    medium-confidence flags must be resolved by human review.
+2b. **Naturalness pre-filter (TASK-374, Project Tom's Voice).** Run
+   `integrations/clients/naturalness_gate.analyze(text)` on every string — `is_clean`
+   must be true; any **HIGH** translationese flag (T1–T7: the "X, לא Y" closer,
+   "X לא תמיד אומר Y", dangling-`גם`, untranslated loanwords) = automatic not-done,
+   rewrite before returning. MEDIUM flags + the `f2_signal` (neutral-bland risk) are
+   candidates routed to the independent Naturalness judge (Adversarial QA Track C,
+   `content_voice/tom_bari_voice/11_naturalness_gate.md`). You CANNOT self-clear the
+   judge — naturalness must be confirmed by a lane that did not author the copy.
+   Target register = *opinionated substance in natural connected Hebrew* (not punchy
+   calques, not neutral mush).
 3. Standalone-value test: every line must fully inform a reader who sees ONLY
    that card. No relational framing ("כמו ה-X", "אותו עיקרון כמו", "הפרש של N
    ציונים מ-Y") unless the line still carries its own complete meaning.
@@ -156,6 +166,11 @@ Before returning ANY consumer copy:
    framed as the cause of a grade.
 5. Quality bar = the live milk/granola/snacks lines. If a draft reads thinner
    than those, it is not done — iterate before returning.
+6. Clarity test (brand anchor, 2026-06-21): "האם קונה עייף יבין את זה בקריאה
+   אחת — והאם יש כאן משהו שלא משנה את ההחלטה שלו?" If a line needs a second read,
+   or carries a fact that does not move the buy decision, it fails — even if it is
+   accurate and complete. שלמות איננה בהירות: cut it. (Brand hierarchy: בהירות is
+   the spine; אי-תלות makes it credible; אמינות+ביטחון are the result.)
 Right to challenge: a brief that instructs law-breaking copy (relational framing,
 leakage, fabricated causes) gets flagged with a proposed compliant alternative —
 executing it silently is the RC3 failure class.
@@ -242,6 +257,8 @@ to check your own Hebrew copy before it ships — no network, deterministic:
 | `.readability_score` | A transparent 0–100 heuristic (higher = simpler). Use it to *compare* drafts and catch outliers. |
 
 Status: **LIVE-VERIFIED** (offline; verified against clean + deliberately-leaky samples).
+
+| `naturalness_gate.analyze(text)` | Deterministic translationese pre-filter (T1–T7). `.is_clean` = no HIGH tell (the "X, לא Y" closer, "X לא תמיד אומר Y", dangling-`גם`, untranslated loanwords). `.flags` (HIGH=block, MEDIUM=route to judge), `.f2_signal` (neutral-bland risk). Calibrated to the owner's real flagged/gold lines (TASK-374). **Layer 1 only** — the F1-nuance + F2-stance judgment is the independent LLM judge in `11_naturalness_gate.md`. Status: **LIVE-VERIFIED** (`python -m integrations.clients.naturalness_gate` → PASS). |
 
 **Guardrails.** The **leakage scan is a precise gate** — copy that fails `is_clean` must not ship; it directly enforces the editorial framework-invisibility rule (no Tier-4 internals, no recommendations, Bari describes and never prescribes). The **readability score is a heuristic, not a validated Hebrew index** — it does not replace the consumer-attention test or your editorial judgement; use it as a tightening aid, not an arbiter of voice.
 
