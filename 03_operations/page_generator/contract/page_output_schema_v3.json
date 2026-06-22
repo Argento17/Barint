@@ -443,6 +443,14 @@
           "confidence_level": {
             "type": "string",
             "description": "Optional confidence level string (e.g. 'sufficient'). Present in some granola products only."
+          },
+          "rank": {
+            "type": "integer",
+            "description": "1-based rank of this product within the displayed shelf (scored by Bari score descending). Present on every scored product. Whitelisted 2026-06-22 — ShelfContextSection component requires it; confirmed present on all live categories."
+          },
+          "categoryTotal": {
+            "type": "integer",
+            "description": "Total number of displayed products in this category page. Used by ShelfContextSection to render 'X out of Y' shelf context. Whitelisted 2026-06-22 — confirmed present on all live categories."
           }
         }
       }

@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת גרנולה ומוזלי | Bari",
   description:
-    "השוואת 53 מוצרי גרנולה ומוזלי מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
 export default function GranolaComparisonRoute() {
