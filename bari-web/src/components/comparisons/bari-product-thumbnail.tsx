@@ -35,7 +35,7 @@ export function BariProductThumbnail({
     return (
       <div
         className={cn(
-          `relative ${dim} shrink-0 overflow-hidden rounded-2xl border border-black/[0.06] bg-gradient-to-b from-[#FFFFFF] to-[#F7F7F2] shadow-sm`,
+          `relative ${dim} shrink-0 overflow-hidden rounded-2xl border border-black/[0.06] bg-[#F7F7F2] shadow-sm`,
           className
         )}
       >
