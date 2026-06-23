@@ -295,6 +295,41 @@ export interface BariProductVM {
    */
   categoryTotal?: number;
 
+  /**
+   * Consumer warning flag shown as a small inline badge near the product name.
+   * Present when the product delivers LESS than the dose researched for its own
+   * matched claim (PDR < 1.0×). Plain Hebrew consumer text — never a score input.
+   * Absent → no badge rendered.
+   * Example: "מתחת למינון לייעוד שלו — ~כ-11 מ\"ג נספגים"
+   */
+  claimShortfallFlag?: string;
+
+  /**
+   * Optional short note displayed in a subtle inline strip immediately ABOVE this
+   * product row. Use to explain a sub-group boundary within a grade band (e.g. hidden
+   * composition products sorted last). Plain Hebrew consumer text — never a score input.
+   * Absent → no strip rendered. Authored inline; no token needed (uses existing muted styling).
+   */
+  bandNote?: string;
+
+  /**
+   * Absorbed-mg display pill. Shows the estimated absorbed magnesium per recommended
+   * daily serving. Format: «נספג: ~כ-X מ"ג». Population-average estimate — not a
+   * per-product lab measurement. Absent → no pill rendered. Do NOT show for products
+   * with unresolved form/dose (cap_1_insufficient_evidence products).
+   * Tooltip text is authored inline in the component: «הערכה לפי שיעורי ספיגה ממוצעים
+   * במחקרים — לא מדידה של מוצר זה.»
+   */
+  absorbedMgPill?: string;
+
+  /**
+   * Value flag pill. Shows when a product is in the top price quartile AND delivers
+   * absorbed magnesium below the shelf median. Plain Hebrew consumer text.
+   * Format: «תמורה גרועה למחיר — ₪XXX, ~כ-X מ"ג נספג»
+   * Absent → no pill rendered. Same visual style as claimShortfallFlag (warm amber).
+   */
+  valueFlag?: string;
+
   // ─── Deep-Dive fields (TASK-332) ─────────────────────────────────────────────
   // Carry per-product authored depth from the pipeline. Absent on categories whose
   // JSON predates these fields (e.g. bread v3) — UI degrades gracefully (sections hidden).
