@@ -25,15 +25,19 @@ function isGranolaShelfFilterId(filter: string): filter is GranolaShelfFilterId 
 const { meta: granolaCorpusMeta, products: _granolaProductsRaw } =
   loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 
-// Populate fiber_g metric from the nutrition panel (already present in the expansion
-// object). The base corpus loader doesn't wire nutrition fields into metrics, so we
-// do it here once, at load time. Null is preserved when fiber is absent.
-// We reassign only fiber_g; protein_g keeps its original value (required by the VM).
+// Populate sugar_g and protein_g metrics from the nutrition panel (already present in
+// the expansion object). TASK-385: sugar replaces fiber as the granola headline metric
+// (fiber is gameable via added chicory/inulin and creates fiber-vs-grade inversions).
+// The base corpus loader doesn't wire nutrition fields into metrics, so we do it here
+// once, at load time. Null is preserved when either field is absent.
+// protein_g: shelf range 8.7–23.7g — the GRANOLA_METRIC_SPECS passes a granola-tuned
+//   PROTEIN_METRIC override (scaleMax 25) to handle the 23.7g top without clipping.
+// sugar_g: shelf range 4.8–25g — calibrated via GRANOLA_SUGAR_METRIC (scaleMax 28).
 const granolaProducts: BariProductVM[] = _granolaProductsRaw.map((p) => ({
   ...p,
   metrics: {
     protein_g: p.metrics?.protein_g ?? null,
-    fiber_g: p.expansion?.nutrition?.fiber ?? null,
+    sugar_g: p.expansion?.nutrition?.sugar ?? null,
   },
 }));
 
@@ -51,7 +55,7 @@ export const granolaHero = {
 
 export const granolaPrologueSentences = [
   "בדקנו 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — משופרסל, קרפור ויוחננוף; קטגוריה שהופרדה מדגני הבוקר כי ההרכב והעיבוד שלה שונים.",
-  "אף מוצר לא הגיע ל-A: 4 ב-B, 8 ב-C, 8 ב-D — ו-2 נחתו ב-E.",
+  "אף מוצר לא הגיע ל-A: 4 ב-B, 8 ב-C, 7 ב-D — ו-3 נחתו ב-E.",
   "הטוב ביותר מגיע ל-69.7/B; הנמוך ל-31.4/E — פער של 38.3 נקודות על אותו מדף, לעיתים תחת שם דומה.",
   "מה שמפריד בין מוצר ל-B למוצר ל-D הוא כמות הסוכר, השומן והסירופ בפועל — לא תדמית הבריאות.",
 ] as const;
@@ -63,6 +67,7 @@ export const granolaMethodologyLines = [
   "בדקנו 22 מוצרי גרנולה ומוזלי משלוש רשתות — שופרסל, קרפור ויוחננוף — רכיבים, ערכי תזונה ורמת עיבוד, לא רק קלוריות.",
   "הציונים יחסיים לקטגוריה; בסקירה זו אף מוצר לא הגיע ל-A.",
   "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין.",
+  "הסוכר והחלבון מוצגים כשני מדדים מרכזיים — אבל הציון משקלל גם עיבוד, רכיבים, שומן וקלוריות ותוספים, כך שמוצר דל-סוכר עדיין יכול לקבל ציון נמוך.",
 ] as const;
 
 export const granolaComparisonMetadata: Metadata = {

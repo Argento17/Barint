@@ -1,26 +1,18 @@
 {
   "_meta": {
-    "generated": "2026-06-23T00:00:00+00:00",
-    "run_id": "run_granola_task385_off",
+    "generated": "2026-06-23T17:34:00+00:00",
+    "run_id": "run_granola_task385_25g",
     "version": "v2",
-    "generated_from": "TASK-385 score refresh (run_granola_task385_off BSIP2 traces)",
+    "generated_from": "TASK-385 / EV-105 score refresh: HIGH_SUGAR_25G_GRANOLA_SEVERE (BARI_GRAN_SUGAR_25G_V1=on). Barcode 7290011668587 D->E (score 38.0->33.0). All other 21 scores unchanged. Copy untouched — Content two-gate pending for 7290011668587 E-reframe.",
     "v1_run_id": "re_baseline_granola_2026_06_17",
     "promoted_from": "run_cereals_008 (BSIP1 corpus + enrichment) -> re-baseline scoring run (commit a147c244a, 2026-06-17, flags: BARI_FAT_TECH_V1=on BARI_RECAL_P0=on BARI_REDLABEL_V1=off BARI_SODIUM_CEREAL=off) -> TASK-377 discard surgery (2026-06-22, removed 3 null-sugar products, scores unchanged) -> D4 surgical patch (commit 361748722, 2026-06-22, d4_additives display-only, no granola score changes). NOTE: _meta.run_id was previously labelled 'run_cereals_008' which is the BSIP1 enrichment run identifier, not the scoring run. Corrected 2026-06-22 (TASK-377 F1 provenance reconciliation). | TASK-385 (2026-06-23): score refresh from run_granola_task385_off; 7 grade/driver-movers set to PENDING_COPY for Content two-gate; 15 unchanged products carry v1 copy verbatim; d4_additives refreshed from engine detector for all 22.",
     "category": "granola",
     "product_count": 22,
     "scored_count": 22,
     "schema": "BariProductVM[]",
-    "scoring_flags": "BARI_FAT_TECH_V1=on BARI_RECAL_P0=on BARI_REDLABEL_V1=off BARI_SODIUM_CEREAL=off",
-    "pending_copy_count": 7,
-    "pending_barcodes": [
-      "1343845",
-      "7290011131975",
-      "7290011668587",
-      "7290013433244",
-      "7290013433336",
-      "7290014471443",
-      "7290106773714"
-    ],
+    "scoring_flags": "BARI_FAT_TECH_V1=on BARI_RECAL_P0=on BARI_REDLABEL_V1=off BARI_SODIUM_CEREAL=off BARI_GRAN_SUGAR_25G_V1=on",
+    "pending_copy_count": 0,
+    "pending_barcodes": [],
     "subpool_exclusion_note": "Granola is a sub-pool of the shared breakfast cereals corpus (run_cereals_005, 66 Shufersal products). 37 cereals barcodes scored in the corpus are excluded from this page because bsip_cereal_subtype != 'granola' (muesli: 9, oat_cereal: 11, whole_grain_flakes: 8, cornflakes: 5, childrens_character: 2, bran: 1, cereal_other: 2, puffed_extruded: 1). 3 additional products discarded 2026-06-22 (TASK-377): barcodes 1164266, 1164273, 6582751 (null sugar — missing-data discard rule). Displayed: 22 granola products scored.",
     "excluded_off_products": {
       "reason": "OFF-sourced nutrition panels (panel_source=open_food_facts; run_cereals_carrefour_001 + run_cereals_yohananof_001) — TASK-238 OFF ban; removed from display per P35 sweep (off_sweep_v1.md). Source BSIP records retained, not erased. NOTE (TASK-377 2026-06-22): some of these barcodes were later RE-SOURCED from Shufersal (retailer=shufersal, source_traceability_status=resolved) and ARE displayed; their live nutrition is Shufersal-scraped, NOT OFF. This list records the historical OFF exclusion only — it is not a claim that currently-displayed products use OFF.",
@@ -95,7 +87,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KCI54_Z_P_7290116534619_1.png",
       "score": 69.3,
       "grade": "B",
-      "insightLine": "כ-21 גרם חלבון וכ-12 גרם סיבים עם שיבולת שועל מלאה 54% כבסיס. החלבון מחלבון סויה — לא ממזון שלם.",
+      "insightLine": "כ-21 גרם חלבון וכ-12 גרם סיבים עם שיבולת שועל מלאה 54% כבסיס. מקור החלבון הוא חלבון סויה מרוכז — תוסף בודד שמגיע מעיבוד תעשייתי.",
       "confidence": "partial",
       "expansion": {
         "nutrition": {
@@ -439,7 +431,7 @@
         ],
         "comparisonContext": "פרופיל תזונתי סביר, אך הקלוריות הגבוהות מגבילות. המדף מציע אפשרויות קלות יותר."
       },
-      "rowVerdict": "אגוזים 11.5% וסיבים גבוהים (14.4 ג') עם 11.8 ג' חלבון. יורדת ל-C כי 440 קק\"ל, הסיבים מוגברים בעולש מוסף, והחמוציות ברכז תפוחים — מהונדסת לסיבים.",
+      "rowVerdict": "אגוזים 11.5% עם 14.4 גרם סיבים ו-11.8 גרם חלבון — פרופיל שנראה חזק. יחד עם זאת, 440 קק\"ל, הסיבים מגיעים בעיקר מעולש מוסף ולא מהדגן עצמו, והחמוציות ממותקות ברכז תפוחים — מכאן ה-C.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -460,7 +452,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/STN64_Z_P_7290112497994_1.png",
       "score": 61.0,
       "grade": "C",
-      "insightLine": "אגוזים (קשיו, שקדים, פקאן) עם כ-24 גרם חלבון ושיבולת שועל מלאה 51%. 431 קלוריות ל-100 גרם.",
+      "insightLine": "אגוזים (קשיו, שקדים, פקאן, קוקוס) עם כ-24 גרם חלבון ושיבולת שועל מלאה 51%. 431 קלוריות ל-100 גרם.",
       "confidence": "partial",
       "expansion": {
         "nutrition": {
@@ -482,7 +474,7 @@
         "limitingFactors": [],
         "comparisonContext": "גרנולת אגוזים עם חלבון גבוה (כ-24 גרם) ו-431 קלוריות. 15 רכיבים ושני מקורות סוכר הם הגורמים שמגבילים את הציון."
       },
-      "rowVerdict": "431 קלוריות ל-100 גרם עם כ-24 גרם חלבון ו-8 גרם סיבים. אגוזים (קשיו, שקדים, פקאן), שיבולת שועל מלאה 51%, חלבון סויה. 15 רכיבים עם שני מקורות סוכר.",
+      "rowVerdict": "431 קלוריות ל-100 גרם עם כ-24 גרם חלבון ו-8 גרם סיבים. אגוזים (קשיו, שקדים, פקאן, קוקוס), שיבולת שועל מלאה 51%, חלבון סויה. 15 רכיבים עם שני מקורות סוכר.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -523,9 +515,9 @@
         "limitingFactors": [
           "קלורית גבוהה (451 קק\"ל ל-100 גרם)"
         ],
-        "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא צפיפות הקלוריות (451 קק\"ל) עם כפל ממתיקים — סירופ מייפל, סירופ אגבה וסילאן — ושמן קוקוס."
+        "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא צפיפות הקלוריות (451 קק\"ל) עם שלושה ממתיקים — סירופ מייפל, סירופ אגבה וסילאן — ושמן קוקוס."
       },
-      "rowVerdict": "מייפל ופקאן על בסיס 57% שיבולת שועל מלאה, 10.4 ג' חלבון. יורדת ל-C כי 451 קק\"ל וכפל ממתיקים (מייפל + אגבה) ושמן קוקוס — צפופה ומתוקה.",
+      "rowVerdict": "מייפל ופקאן על בסיס 57% שיבולת שועל מלאה, 10.4 גרם חלבון. אבל 451 קק\"ל ושלושה ממתיקים ברשימה — סירופ מייפל, סירופ אגבה וסילאן — יחד עם שמן קוקוס, הופכים אותה לגרנולה צפופה ומתוקה מהממוצע. זה המדף של C.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -565,7 +557,7 @@
         ],
         "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא סוכר חום כרכיב השני, לצד שומן צמחי ופצפוצי אורז — 416 קק\"ל ו-13.4 ג' סוכר."
       },
-      "rowVerdict": "שיבולת שועל ושוקולד מריר אמיתי (7.5%) עם 11 ג' חלבון. יורדת ל-C כי סוכר חום הוא הרכיב השני, ושמן צמחי ופצפוצי אורז ברשימה — מאפה מתוק של 416 קק\"ל.",
+      "rowVerdict": "שוקולד מריר אמיתי (7.5%) עם 11 גרם חלבון — וזה כל הטוב שיש כאן. סוכר חום הוא הרכיב השני ברשימה, ולצידו שמן צמחי ופצפוצי אורז. ביחד עם 416 קק\"ל, מדובר במאפה מתוק שמחופש לגרנולה — ומכאן ה-C.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": false,
@@ -594,7 +586,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JBO40_Z_P_7290013433107_1.png",
       "score": 47.0,
       "grade": "D",
-      "insightLine": "11% חלבה עם מלטיטול ושומן צמחי — 432 קק\"ל, מאפה-קינוח יותר מדגן.",
+      "insightLine": "9.3 גרם סוכר — אבל הציון D. הסיבה: 11% חלבה עם הממתיק מלטיטול ושומן צמחי, 432 קק\"ל, פצפוצי אורז ותמצית שורש ספונירה לקצף — ההנדסה מסבירה למה הסוכר לבדו לא מספר את כל הסיפור.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -614,9 +606,9 @@
         "limitingFactors": [
           "קלורית גבוהה (432 קק\"ל ל-100 גרם)"
         ],
-        "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא 11% חלבה, שמביאה מלטיטול ושומן צמחי, לצד מתיקות התמרים — 432 קק\"ל, מאפה-קינוח יותר מדגן."
+        "comparisonContext": "הסוכר כאן נמוך — 9.3 גרם ל-100 גרם. הציון D נובע ממרכיבים אחרים: 11% חלבה שמכילה את הממתיק מלטיטול ושומן צמחי (שמופיע פעמיים ברשימה), פצפוצי אורז ותמצית שורש ספונירה. ההנדסה יוצרת מוצר שגבוה בקלוריות (432 קק\"ל) ועתיר בעיבוד, ולכן D — גם כשהסוכר נמוך."
       },
-      "rowVerdict": "13 ג' חלבון ו-8.2 ג' סיבים עם חלבה (11%) ותמרים. החלבה מביאה מלטיטול ושומן צמחי, 432 קק\"ל ועיבוד גבוה — מאפה-קינוח יותר מדגן.",
+      "rowVerdict": "9.3 גרם סוכר בלבד — אחד הנמוכים במדף. אז למה D? 11% חלבה ברשימה מביאה את הממתיק מלטיטול ושומן צמחי, ושומן צמחי מוסף מופיע שוב כרכיב עצמאי. תוסיפו פצפוצי אורז, תמצית שורש ספונירה ו-432 קק\"ל — ומתברר שמדובר במוצר מהונדס לטעם ולמרקם, עם מספר רכיבים מעובדים שצוברים יחד.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": false,
@@ -652,7 +644,7 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JQX30_Z_P_7290011131050_1.png",
       "score": 40.2,
       "grade": "D",
-      "insightLine": "שני שלבי עיבוד, שמן דקלים וצבע קרמל — פקאן שולי.",
+      "insightLine": "שני רכיבי-בסיס מעובדים, שמן דקלים וצבע קרמל — פקאן שולי.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -672,7 +664,7 @@
         ],
         "comparisonContext": "מהנמוכות במדף — שמן דקלים, פירות מסוכרים ו/או נתרן גבוה הם הגורמים המגבילים."
       },
-      "rowVerdict": "'פקאן' בשם, אבל הבסיס הוא גרנולה 75% וחטיפי דגנים 19% עם שמן דקלים, סוכר וצבע קרמל. יורדת ל-D, 414 קק\"ל ו-10 ג' חלבון — מאפה כפול-עיבוד.",
+      "rowVerdict": "המוצר בנוי על שני רכיבי-בסיס מעובדים: גרנולה 75% וחטיפי דגנים 19% — שניהם עם שמן דקלים, סוכר וצבע קרמל. הפקאן שמבטיח השם מגיע ב-3% בלבד, אחרי כל אלה. 414 קק\"ל ו-10 גרם חלבון, ופרופיל D שמשקף בדיוק את מה שיש כאן.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": false,
@@ -779,7 +771,7 @@
         ],
         "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא סוכר כרכיב השני, סירופ גלוקוז מיובש ושמן חמניות — 443 קק\"ל, מאפה ממותק יותר מדגן."
       },
-      "rowVerdict": "השם מבטיח קינואה — שמופיעה כ-2.9% בלבד, אחרי סוכר שהוא הרכיב השני. יורדת ל-D כי 443 קק\"ל, סירופ גלוקוז ושמן חמניות — מאפה ממותק, 9.1 ג' חלבון.",
+      "rowVerdict": "קינואה מופיעה ב-2.9% בלבד, אחרי סוכר שהוא הרכיב השני, סירופ גלוקוז ושמן חמניות. 443 קק\"ל עם 9.1 גרם חלבון — מדובר בעיקרו במאפה ממותק שבו הקינואה היא תוסף שולי. הפער בין השם לרשימת הרכיבים הוא הסיפור כאן.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -837,7 +829,7 @@
         ],
         "comparisonContext": "מתחת לממוצע הקטגוריה. כאן הגורם הוא סוכר כרכיב השלישי, סירופ גלוקוז מיובש ושמן חמניות — 428 קק\"ל, הרכב מעובד-ממותק."
       },
-      "rowVerdict": "'דבש' ו'פיטנס' בשם, אבל סוכר הוא הרכיב השלישי עם סירופ גלוקוז ושמן חמניות. יורדת ל-D על 428 קק\"ל והרכב מעובד-ממותק. 8.7 ג' חלבון.",
+      "rowVerdict": "דבש ופיטנס בשם — סוכר כרכיב השלישי, סירופ גלוקוז ושמן חמניות ברשימה. הדבש עצמו מגיע ב-2.1% בלבד, אחרי שלושה מקורות אחרים של פחמימות ושומן. 428 קק\"ל עם 8.7 גרם חלבון — מבחינת התכולה, מדובר בגרנולה ממותקת ומעובדת.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -920,8 +912,8 @@
       "id": "bsip1_cereal_7290011668587",
       "name": "גרנולה עשירה",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YVK60_Z_P_7290011668587_1.png",
-      "score": 38.0,
-      "grade": "D",
+      "score": 33.0,
+      "grade": "E",
       "insightLine": "25 גרם סוכר ל-100 גרם — הרבה מעל סף האזהרה לסוכר. שני מקורות סוכר מוסף ברשימה: סוכר ואיזוגלוקוז.",
       "confidence": "partial",
       "expansion": {
@@ -946,10 +938,10 @@
           "195 מ\"ג נתרן ל-100 גרם",
           "5.7 גרם סיבים בלבד ל-100 גרם — נמוך לקטגוריה"
         ],
-        "comparisonContext": "גרנולה עשירה היא אחת ממעטות בקטגוריה שמגיעות ל-25 גרם סוכר ל-100 גרם — כמות גבוהה מאוד, הרבה מעל סף האזהרה לסוכר. שני מקורות סוכר מוסף (סוכר ואיזוגלוקוז) מסבירים את הכמות. ה-D משקף את שילוב הסוכר הגבוה, הסיבים הנמוכים ומחמר השימור.",
-        "consumerExplanation": "השם 'עשירה' מדויק — אבל העושר הזה הוא קודם כל בסוכר: 25 גרם ל-100 גרם, שמגיע משני מקורות שונים ברשימת הרכיבים: סוכר ואיזוגלוקוז. בנוסף, הפירות היבשים שומרים על עצמם בחומר משמר. הפרופיל הכולל — שומן גבוה, סיבים נמוכים, שני ממתיקים מוסיפים — הוא שמוריד את המוצר ל-D."
+        "comparisonContext": "גרנולה עשירה היא הגרנולה הממותקת ביותר במדף — 25 גרם סוכר ל-100 גרם, כמות גבוהה מאוד שמגיעה משני מקורות מוספים: סוכר ואיזוגלוקוז. הסיבים הנמוכים (5.7 גרם) ומחמר השימור על הפירות היבשים מצטרפים לתמונה. ה-E משקף את כל אלה יחד.",
+        "consumerExplanation": "השם 'עשירה' מדויק — אבל העושר הזה הוא קודם כל בסוכר: 25 גרם ל-100 גרם, שמגיע משני מקורות שונים ברשימת הרכיבים: סוכר ואיזוגלוקוז. בנוסף, הפירות היבשים שומרים על עצמם בחומר משמר. הפרופיל הכולל — שומן גבוה, סיבים נמוכים, שני ממתיקים מוספים — הוא שמוביל לציון E, הנמוך ביותר במדף."
       },
-      "rowVerdict": "25 גרם סוכר ל-100 גרם — הרבה מעל סף האזהרה לסוכר — עם שני מקורות סוכר מוסף ברשימה (סוכר ואיזוגלוקוז), חומר משמר על הפירות היבשים, ו-195 מ\"ג נתרן. שיבולת שועל ופירות יש כאן, אבל התמונה הכוללת היא גרנולה שממותקת מאוד — ומקבלת D בהתאם.",
+      "rowVerdict": "25 גרם סוכר ל-100 גרם — הכמות הגבוהה ביותר במדף, הרבה מעל סף האזהרה לסוכר. שני מקורות סוכר מוסף ברשימה (סוכר ואיזוגלוקוז), חומר משמר על הפירות היבשים, ו-195 מ\"ג נתרן. שיבולת שועל ופירות יש כאן — אבל התמונה הכוללת מסבירה את ה-E.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -969,7 +961,7 @@
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
       "confidence_sub_reason": "low_extraction",
-      "rank": 19,
+      "rank": 20,
       "categoryTotal": 22
     },
     {
@@ -1024,7 +1016,7 @@
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
       "confidence_sub_reason": "low_extraction",
-      "rank": 20,
+      "rank": 19,
       "categoryTotal": 22
     },
     {
@@ -1134,10 +1126,10 @@
           "21 גרם סוכר ל-100 גרם",
           "משפרי טעם וריח ברשימה הבסיסית"
         ],
-        "comparisonContext": "גרנולה עם פירות היא הנמוכה ביותר בקטגוריה. הבסיס (83%) כולל שמן דקלים, שני ממתיקים מוספים ומשפרי טעם. הפירות (17%) הם כולם פירות מסוכרים מראש עם חומרי שימור. שתי שכבות עיבוד שמצטרפות ל-21 גרם סוכר ל-100 גרם — הציון E הוא ציון מדויק.",
+        "comparisonContext": "גרנולה עם פירות היא הנמוכה ביותר בקטגוריה. הבסיס (83%) כולל שמן דקלים, שני ממתיקים מוספים ומשפרי טעם. הפירות (17%) הם כולם פירות מסוכרים מראש עם חומרי שימור. שני רכיבי-בסיס מעובדים שמצטרפים ל-21 גרם סוכר ל-100 גרם — הציון E הוא ציון מדויק.",
         "consumerExplanation": "גרנולה עם פירות נשמעת פשוטה. רשימת הרכיבים שלה פחות: שמן דקלים, סירופ גלוקוז וסוכר חום בבסיס הגרנולה, ואז פירות שמגיעים כבר מסוכרים — כל אחד מהם עם סוכר וחומרי שימור בנפרד. פפאיה, אננס, בננה, חמוציות — כולם עברו עיבוד לפני שנכנסו לאריזה. 21 גרם סוכר ל-100 גרם הם הסיכום של כל השכבות האלה."
       },
-      "rowVerdict": "שמן דקלים, סירופ גלוקוז וסוכר חום בגרנולה הבסיסית, ועוד 17% פירות שכולם מסוכרים בנפרד (פפאיה, אננס, בננה, חמוציות) עם חומרי שימור. שתי שכבות עיבוד שמסתכמות ב-21 גרם סוכר ל-100 גרם — מהנמוכים בקטגוריה, ובציון E בהתאם.",
+      "rowVerdict": "שמן דקלים, סירופ גלוקוז וסוכר חום בגרנולה הבסיסית, ועוד 17% פירות שכולם מסוכרים בנפרד (פפאיה, אננס, בננה, חמוציות) עם חומרי שימור. שני רכיבי-בסיס מעובדים שמסתכמים ב-21 גרם סוכר ל-100 גרם — הציון E הוא הנמוך ביותר בקטגוריה, ומשקף בדיוק את מה שמצאנו ברשימת הרכיבים.",
       "_subpool": "granola",
       "_isChildrens": false,
       "_wholeGrainClaim": false,

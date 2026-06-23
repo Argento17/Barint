@@ -196,6 +196,29 @@ export const SUGAR_METRIC: MetricSpec = {
   ariaUnit: "גרם סוכר ל-100 מ״ל",
 };
 
+// Granola sugar metric (TASK-385): replaces FIBER_METRIC as the category headline.
+// Fiber is gameable via added chicory/inulin and creates fiber-vs-grade inversions on
+// this shelf (products with 14g fiber land at B; products with 5g also land at B).
+// Sugar is a real differentiator: shelf range 4.8–25g/100g.
+//   scaleMax 28 — gives the 25g outlier a near-full bar without false-clipping.
+//   good  ≤8g  — few products clear this; marks the genuinely low-sugar products.
+//   poor  ≥18g — at/above the Israeli MoH 17.5g/100g red-label threshold (§4.3:
+//                shown in amber only, never alarm-red — limits are information, not alarms).
+// lowerIsBetter: true — a shorter bar = better for this metric.
+// aria unit is per-100g (solids, not per-100ml).
+export const GRANOLA_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 28,
+  good: 8,
+  poor: 18,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+};
+
 // Display rounding: raw per-100g values can carry full float precision (e.g. fiber
 // 7.66666666666667 from a back-computed panel). Round to at most 1 decimal and drop a
 // trailing ".0" so the value fits the 62px cell and never overflows into the next metric.
