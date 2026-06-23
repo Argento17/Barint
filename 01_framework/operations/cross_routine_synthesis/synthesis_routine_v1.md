@@ -11,18 +11,14 @@
 - **DST:** when IL → UTC+2 (~late Oct), change cron to `0 6 * * 0`.
 - Prompt is embedded **inline** in the cron (self-contained); this file is the versioned source-of-truth — keep them in sync via `RemoteTrigger` update.
 
-## Why it re-derives (it does NOT read the dailies' run histories)
-Verified 2026-06-23: Project Comp, BSIP2 Evidence Watch, and the Hebrew Health Scan all output to
-**run history only** — they persist nothing to the repo (comp `daily_reports`/`comp_action_queue`,
-`evidence_watch_log` all empty; no routine-authored commits). And a cloud agent **cannot** read another
-routine's run history: it's behind claude.ai auth (WebFetch fails on authenticated URLs) and the routine
-API exposes only list/get/create/run (`get` returns the routine *definition*, not run outputs).
-So this synthesizer **derives the week's picture itself**: reads the durable repo state (file 9, KB,
-evidence registry, comp source registry, tasks) + does a fresh themed web sweep, then synthesizes.
-
-**Optional future upgrade (not built):** to make it *truly aggregate* the dailies, point all three at a
-shared Notion log (they have the connector) and have this routine read that. Requires editing the two
-existing routines — phase 2 only if the owner wants it.
+## How it aggregates — the shared Notion Log (phase 2, BUILT 2026-06-23)
+Background: the three dailies output to **run history only** and a cloud agent **cannot** read another
+routine's run history (claude.ai auth + the API exposes no run-output export). So run-history can't be
+auto-aggregated. **Solution (owner-approved):** a shared **Notion database, "Bari Routine Log"**, that
+all three dailies now append to, and this synthesizer reads.
+- Notion DB: `fb50a533316440c4a571f9bb32206e48` · data source `collection://77bd20b8-fd7f-4486-b477-475a387f6b5e` · under the "Bari" Notion page.
+- Schema: Finding · Date · Routine · Bucket (the 4 owner buckets + Context/other) · Tag (ACT/WATCH/DROP) · Detail · Source URL · Owner · Status (New/Reviewed/Actioned/Dropped — for human triage).
+- The three dailies each got a Notion connector (`notion-create-pages`) + a logging step; they append one row per finding (same firewalls — no copied phrasing, no inherited data). This synthesizer reads the last 7 days (Notion query, or fetch+filter), groups by Bucket, and emails the 4-bucket report. A light **gap-fill web sweep** remains as a secondary supplement only.
 
 ## What it produces — the 4-bucket report (emailed weekly)
 Per item: finding · source URL · tag [ACT / WATCH / DROP] · one-line why · suggested owner agent.
