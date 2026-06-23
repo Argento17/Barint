@@ -1,8 +1,15 @@
 # Hebrew Health Scan — Schedule Spec v1
 
-**Status:** D1 — **spec-ready; the cloud routine is NOT yet created** (owner-trigger, per the
-established convention — see Project Comp `schedule_spec_v1.md`; program-start = owner trigger).
-**Built:** 2026-06-23 · **Registry:** TASK-381 · **Serves:** TASK-374 + Evidence Horizon-Scan.
+**Status:** D1 — **CREATED & LIVE** (owner-triggered 2026-06-23). **Built:** 2026-06-23 ·
+**Registry:** TASK-381 · **Serves:** TASK-374 + Evidence Horizon-Scan.
+
+**Live routine (cloud):**
+- Routine ID: `trig_01CkS9V6cacHDY3WCToqrK9i` · Manage: https://claude.ai/code/routines/trig_01CkS9V6cacHDY3WCToqrK9i
+- Cron `30 5 * * *` UTC = 08:30 Asia/Jerusalem (IDT/UTC+3). First run: 2026-06-23 08:31 IL.
+- Model `claude-sonnet-4-6` · repo `Argento17/Barint` · tools: **WebSearch, WebFetch, Read only** (no write/bash → cannot attempt the commit that 403s; output = run history).
+- **The run prompt is embedded INLINE in the cron** (self-contained — does not depend on these repo files being on master). These spec files are the versioned source-of-truth + the place to evolve the prompt; sync inline ↔ files when either changes.
+- **DST:** when IL → UTC+2 (~late Oct), change cron to `30 6 * * *` to hold 08:30 local.
+- Auto-attached MCP connectors (Calendar/Gmail/Drive/Notion/Spotify) are inert (empty permitted_tools) — ignore.
 
 ---
 
@@ -54,14 +61,14 @@ the firewalls are holding (no copied phrasing, no inherited data, COI/anti-model
 
 ---
 
-## 4. Pre-flight before the owner creates the cloud routine
+## 4. Post-creation notes (created 2026-06-23)
 
-- [ ] Confirm time (default 08:30 Asia/Jerusalem) and that it shouldn't clash with Project Comp (20:30).
-- [ ] Confirm the run agent has WebSearch + WebFetch (public web) enabled, model `claude-sonnet-4-6`.
-- [ ] **Push the spec files to the routine's repo (`Argento17/Barint @ master`)** — currently on branch
-      `task-374-toms-voice`, unpushed. The routine READS its own prompt + registry from the repo, so the
-      4 spec files + `source_registry` must be on master before the cron is created. (It does not WRITE
-      back — output is run-history only, matching the post-redesign pattern that fixed the 403s.)
-- [ ] Then create via the `/schedule` skill (mirror Project Comp's cron config; daily `30 5 * * *` UTC).
+- Created with the prompt **inline** (self-contained) so it runs regardless of repo/branch state — the
+  spec files reaching master is therefore NOT a runtime blocker. Pushing them to master is still worth
+  doing so the versioned source-of-truth is shared, but the routine does not depend on it.
+- First 3 runs = calibration; Adversarial QA reviews firewall adherence (no copied phrasing, no inherited
+  data, COI/anti-model handling) before any Lane A keeper is applied to file 9 or Lane B candidate reaches the KB.
+- To change the prompt: edit `daily_run_prompt_v1.md` here AND update the inline event via
+  `RemoteTrigger` update (keep them in sync).
 
 When green, safe to create. **This routine does not create itself** (program-start = owner trigger).

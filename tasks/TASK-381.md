@@ -44,9 +44,16 @@ register) + Evidence Horizon-Scan (Nutrition Agent). **Memory:** [[scheduled_rou
   20:30 slot), calibration mode (first 3 runs, Adversarial QA reviews firewall adherence), outputs map.
 - `daily_scans/.gitkeep` — output dir.
 
-## NOT done (remaining to go live)
-- **Cloud routine not yet created** (program-start = owner trigger, per the Project Comp convention).
-- **Spec files must reach the routine's branch/repo first** — cloud routines run on `Argento17/Barint @
-  master`; these files are on `task-374-toms-voice`, unpushed. Push (owner-gated) before creating the cron.
-- First 3 runs = calibration; Adversarial QA confirms firewalls hold before any Lane A keeper is applied
-  to file 9 or any Lane B candidate reaches the KB.
+## LIVE (created 2026-06-23)
+- **Cloud routine created:** `trig_01CkS9V6cacHDY3WCToqrK9i` (daily `30 5 * * *` UTC = 08:30 IL; first
+  run 2026-06-23 08:31 IL). Manage: https://claude.ai/code/routines/trig_01CkS9V6cacHDY3WCToqrK9i
+- Prompt embedded **inline** (self-contained); read-only tools (WebSearch/WebFetch/Read) → no commit
+  attempts, output to run history. Repo files are the versioned source-of-truth, not a runtime dependency.
+
+## NOT done (follow-ups)
+- **First 3 runs = calibration** — Adversarial QA reviews firewall adherence (0 copied phrasing, 0
+  inherited data, COI/anti-model handling) before any Lane A keeper is applied to file 9 or any Lane B
+  candidate reaches the KB. After QA sign-off → normal mode.
+- **Optional:** push the 5 spec files to `Argento17/Barint @ master` (owner-gated) so the versioned
+  source-of-truth is shared; not required for the routine to run.
+- Keep the inline cron prompt in sync with `daily_run_prompt_v1.md` on any edit.
