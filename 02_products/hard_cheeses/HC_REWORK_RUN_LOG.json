@@ -1,0 +1,169 @@
+{
+  "run_id": "hc_recover_off_barcodes_20260623_062002",
+  "run_timestamp": "2026-06-23T04:20:02.954286+00:00",
+  "targets": [
+    "7290102302864",
+    "7290014455252"
+  ],
+  "reachability": [
+    {
+      "retailer": "shufersal",
+      "reachable": true,
+      "status_code": 200,
+      "body_bytes": 1079673,
+      "note": "OK"
+    },
+    {
+      "retailer": "victory",
+      "reachable": true,
+      "status_code": 200,
+      "body_bytes": 6704,
+      "note": "OK"
+    },
+    {
+      "retailer": "yochananof",
+      "reachable": false,
+      "status_code": null,
+      "body_bytes": 0,
+      "note": "SSL error: HTTPSConnectionPool(host='www.yochananof.co.il', port=443): Max retries exceeded"
+    },
+    {
+      "retailer": "rami_levy",
+      "reachable": false,
+      "status_code": null,
+      "body_bytes": 0,
+      "note": "Connection error: HTTPSConnectionPool(host='www.ramilevi.co.il', port=443): Max retries exceeded w"
+    }
+  ],
+  "results": [
+    {
+      "barcode": "7290102302864",
+      "status": "DISCARD",
+      "reason": "not_found_at_any_reachable_retailer_one_shot",
+      "output_path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290102302864.json",
+      "scrape_attempts": [
+        {
+          "retailer": "shufersal",
+          "attempted": true,
+          "found": false,
+          "nutrition_fields": [],
+          "ingredients_found": false
+        },
+        {
+          "retailer": "victory",
+          "attempted": true,
+          "found": false,
+          "nutrition_fields": [],
+          "note": "not found"
+        },
+        {
+          "retailer": "yochananof",
+          "attempted": true,
+          "method": "prior_playwright_scrape",
+          "nutrition_captured": false,
+          "ingredients_captured": true,
+          "status": "tab_missing"
+        },
+        {
+          "retailer": "rami_levy",
+          "attempted": false,
+          "reason": "known blocked from sandbox (rami_levy.yaml DEFERRED)"
+        }
+      ]
+    },
+    {
+      "barcode": "7290014455252",
+      "status": "RECOVERED",
+      "source_retailer": "shufersal",
+      "output_path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290014455252.json",
+      "name_he": "גרנה פדנו מגורדת",
+      "nutrition_summary": {
+        "energy_kcal": 393.0,
+        "fat_g": 29.0,
+        "fat_saturated_g": 18.0,
+        "protein_g": 33.0,
+        "carbohydrates_g": 0.0,
+        "sodium_mg": 600.0
+      },
+      "ingredients_captured": true,
+      "plausibility": {
+        "ok": true,
+        "food_class": "dairy_solid",
+        "accounted_mass": null,
+        "reasons": []
+      },
+      "scrape_attempts": [
+        {
+          "retailer": "shufersal",
+          "attempted": true,
+          "found": true,
+          "nutrition_fields": [
+            "fiber",
+            "sugar",
+            "energy",
+            "protein",
+            "carbs",
+            "fat",
+            "sodium",
+            "saturated_fat"
+          ],
+          "ingredients_found": true
+        },
+        {
+          "retailer": "yochananof",
+          "attempted": true,
+          "method": "prior_playwright_scrape",
+          "nutrition_captured": false,
+          "ingredients_captured": false,
+          "status": "tab_missing"
+        },
+        {
+          "retailer": "rami_levy",
+          "attempted": false,
+          "reason": "known blocked from sandbox (rami_levy.yaml DEFERRED)"
+        }
+      ]
+    }
+  ],
+  "bsip1_dir_total_files": 70,
+  "off_contaminated_files_in_bsip1_dir": [
+    "bsip1_hardcheese_3256228310201.json",
+    "bsip1_hardcheese_7290000062419.json",
+    "bsip1_hardcheese_7290000062426.json",
+    "bsip1_hardcheese_7290000062433.json",
+    "bsip1_hardcheese_7290000062440.json",
+    "bsip1_hardcheese_7290000062457.json",
+    "bsip1_hardcheese_7290000062464.json",
+    "bsip1_hardcheese_7290000062471.json",
+    "bsip1_hardcheese_7290000062488.json",
+    "bsip1_hardcheese_7290000062495.json",
+    "bsip1_hardcheese_7290000062501.json",
+    "bsip1_hardcheese_7290000062518.json",
+    "bsip1_hardcheese_7290000062525.json",
+    "bsip1_hardcheese_7290000062532.json",
+    "bsip1_hardcheese_7290000062549.json",
+    "bsip1_hardcheese_7290000062556.json",
+    "bsip1_hardcheese_7290000062563.json",
+    "bsip1_hardcheese_7290000062570.json",
+    "bsip1_hardcheese_7290000062587.json",
+    "bsip1_hardcheese_7290000062594.json",
+    "bsip1_hardcheese_7290000062601.json",
+    "bsip1_hardcheese_7290000062618.json",
+    "bsip1_hardcheese_7290000425009.json",
+    "bsip1_hardcheese_7290000425016.json",
+    "bsip1_hardcheese_7290000425023.json",
+    "bsip1_hardcheese_7290000900018.json",
+    "bsip1_hardcheese_7290000900025.json",
+    "bsip1_hardcheese_7290000900032.json",
+    "bsip1_hardcheese_7290010644743.json",
+    "bsip1_hardcheese_7290010644750.json",
+    "bsip1_hardcheese_7290010644767.json",
+    "bsip1_hardcheese_7290010644774.json",
+    "bsip1_hardcheese_7290010644781.json",
+    "bsip1_hardcheese_7290019866105.json",
+    "bsip1_hardcheese_7290110178901.json",
+    "bsip1_hardcheese_7290110178918.json",
+    "bsip1_hardcheese_8866972.json"
+  ],
+  "off_count": 37
+}

@@ -58,6 +58,21 @@ from constants import (
     FATSAT_SHELF_REL_HARDCHEESE_FLOOR_THRESHOLD_G,
     FATSAT_SHELF_REL_HARDCHEESE_P_MAX, FATSAT_SHELF_REL_HARDCHEESE_B_MAX,
     HARD_CHEESE_YELLOW_SUBPOOLS,
+    HC_DAIRY_SATFAT_ELIGIBLE_SUBPOOLS,
+    HC_DAIRY_SATFAT_BLOCKED_SUBTYPES,
+    HC_DAIRY_SATFAT_BLOCKED_E_NUMBERS,
+    HC_DAIRY_SATFAT_BLOCKED_TOKENS,
+    HC_DAIRY_SATFAT_NOVA_MAX,
+    HC_DAIRY_SATFAT_ING_MAX,
+    HC_DAIRY_SATFAT_SODIUM_BACKSTOP,
+    HC_DAIRY_SATFAT_A_BLOCK_SATFAT,
+    HC_DAIRY_SATFAT_A_BLOCK_SODIUM,
+    HC_DAIRY_SATFAT_A_BLOCK_CAP,
+    HC_DAIRY_SATFAT_C_CEILING_SODIUM,
+    HC_DAIRY_SATFAT_C_CEILING_FAT,
+    HC_DAIRY_SATFAT_C_CEILING_VALUE,
+    HC_DAIRY_SATFAT_G4_KCAL,
+    HC_DAIRY_SATFAT_G4_BACKSTOP,
     SUGAR_SHELF_REL_JUICES_MEDIAN, SUGAR_SHELF_REL_JUICES_IQR,
     SUGAR_SHELF_REL_JUICES_SCALE, SUGAR_SHELF_REL_JUICES_FLOOR,
     SUGAR_SHELF_REL_JUICES_FLOOR_THRESHOLD_G,
@@ -166,6 +181,28 @@ BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
 # Does NOT auto-deploy; owner merges + deploys separately (hard rule TASK-371).
 BARI_D4_SCORE_V1 = os.environ.get("BARI_D4_SCORE_V1", "off").lower() == "on"
 
+# TASK-380 / EV-104 — Hard Cheese Endemic Sat-Fat Relief (BARI_HC_DAIRY_SATFAT_V1).
+# DEFAULT OFF → engine byte-identical to baseline for ALL categories.
+# Activation scope: category == "dairy_protein" AND bsip_cheese_subpool in
+#   HC_DAIRY_SATFAT_ELIGIBLE_SUBPOOLS {"yellow","yellow_light","hard_grating","hard"}.
+# P0 guard (outermost): must be a hard-cheese product — yogurt/kefir/labneh in the
+#   dairy_protein bucket are structurally untouched when flag is OFF or P0 is false.
+# When ON + P0 + full predicate (P1–P5) passes:
+#   1. sat_fat excluded from ISRAELI_RED_LABELS_2_PLUS reformulable count
+#      (endemic dairy-matrix sat_fat; dairy-matrix LDL-attenuation evidence EV-104).
+#   2. HP_FAT_SODIUM_COMBO penalty suppressed for qualifying products
+#      (structural dairy fat + cheese sodium is NOT hyper-palatability engineering).
+#   3. R5 seed_pen reduced from current base → 0 for qualifying products
+#      (endemic dairy fat is not a seed-oil engineering choice).
+#   PRESERVED: sat_fat red_label_pen in fat_quality (HC-5); 0.62×fat_g inference (HC-5);
+#              single sodium red label regulatory_quality penalty; all G1–G5 guardrails.
+# Post-score HC-1 A-block: sat_fat_eff > 5.0 AND sodium > 600 → cap score at 74.
+# Post-score HC-2 B/C tier ceilings: sodium >= 600 OR fat >= 25 → cap at 67.
+# Rollback: BARI_HC_DAIRY_SATFAT_V1=off (default) → byte-identical to current state.
+# D6: Nutrition Agent (2026-06-23, TASK-380). D7: Product Agent (2026-06-23, TASK-380).
+# EV-104 (bsip2_evidence_registry_v1.md). Hard rule: no page/copy/commit until owner go-live.
+BARI_HC_DAIRY_SATFAT_V1 = os.environ.get("BARI_HC_DAIRY_SATFAT_V1", "off").lower() == "on"
+
 # TASK-181G / TASK-181K — Glass Box W4 D3 de-moralization (confidence-scaled
 # processing signal). DEFAULT OFF → engine byte-identical to BARI_GLASSBOX_W2 baseline.
 # Source: d3_demoralization_spec_v1.md §2 / §4. Evidence registry: EV-042 — REVISED
@@ -250,6 +287,72 @@ _SHELF_SODIUM_STDEV_MG: float | None = None
 
 # Generalized shelf context (BARI_SHELF_RELATIVE_V1 / EV-084).
 _SHELF_STATS: dict[str, dict] = {}
+
+
+# ---------------------------------------------------------------------------
+# TASK-380 / EV-104 — HC endemic sat-fat qualification predicate
+# ---------------------------------------------------------------------------
+
+def _hc_dairy_satfat_qualifies(
+    product: dict,
+    category: str,
+    bsip_cheese_subpool: "str | None",
+    nova_level: "int | None",
+    ingredient_text: str,
+    sanitized_ing_count: int,
+    sodium_mg: "float | None",
+) -> tuple[bool, str]:
+    """
+    EV-104 ordered predicate: returns (qualified: bool, reason: str).
+
+    P0 — outermost category_id guard.
+    P1 — NOVA <= 2.
+    P2 — subpool != processed family.
+    P3 — sanitized_ing_count <= HC_DAIRY_SATFAT_ING_MAX.
+    P4 — sodium < HC_DAIRY_SATFAT_SODIUM_BACKSTOP (non-relieved absolute guard).
+    P5 — no blocked token or E-number in ingredient text.
+
+    Called ONLY when BARI_HC_DAIRY_SATFAT_V1 is ON.
+    Returns False (with reason) at the first failing predicate.
+    """
+    # P0 — category_id + subpool guard (outermost)
+    if category != "dairy_protein":
+        return False, "P0_not_dairy_protein"
+    if bsip_cheese_subpool is None:
+        return False, "P0_no_subpool"
+    if bsip_cheese_subpool in HC_DAIRY_SATFAT_BLOCKED_SUBTYPES:
+        return False, f"P0_blocked_subtype:{bsip_cheese_subpool}"
+    if bsip_cheese_subpool not in HC_DAIRY_SATFAT_ELIGIBLE_SUBPOOLS:
+        return False, f"P0_ineligible_subpool:{bsip_cheese_subpool}"
+
+    # P1 — NOVA gate
+    if nova_level is None:
+        return False, "P1_no_nova"
+    if nova_level > HC_DAIRY_SATFAT_NOVA_MAX:
+        return False, f"P1_nova>{HC_DAIRY_SATFAT_NOVA_MAX}:{nova_level}"
+
+    # P2 — processed subpool gate (belt-and-suspenders beyond P0)
+    if bsip_cheese_subpool == "processed":
+        return False, "P2_processed_subpool"
+
+    # P3 — ingredient count
+    if sanitized_ing_count > HC_DAIRY_SATFAT_ING_MAX:
+        return False, f"P3_ing_count>{HC_DAIRY_SATFAT_ING_MAX}:{sanitized_ing_count}"
+
+    # P4 — sodium hard backstop (non-relieved)
+    if sodium_mg is not None and sodium_mg >= HC_DAIRY_SATFAT_SODIUM_BACKSTOP:
+        return False, f"P4_na>={HC_DAIRY_SATFAT_SODIUM_BACKSTOP}:{sodium_mg}"
+
+    # P5 — anti-gaming blocker: E-number + token list
+    norm_ing = ingredient_text.lower() if ingredient_text else ""
+    for e_num in HC_DAIRY_SATFAT_BLOCKED_E_NUMBERS:
+        if e_num.lower() in norm_ing:
+            return False, f"P5_blocked_enumber:{e_num}"
+    for token in HC_DAIRY_SATFAT_BLOCKED_TOKENS:
+        if token.lower() in norm_ing:
+            return False, f"P5_blocked_token:{token}"
+
+    return True, "ok"
 
 
 def set_shelf_stats(
@@ -1521,7 +1624,8 @@ def _red_satfat_penalty(sat_f):
     return round(min(25.0, 3.0 + excess * 2.5), 1)   # 5g→0, 6g→5.5, 8g→10.5, 12g→20.5, cap 25
 
 
-def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
+def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict,
+                               hc_endemic_relief: bool = False) -> tuple:
     """EV-012: ratio-based fat quality. Falls back to v1 when fat_g < guard.
     Fix-C (TASK-275): when has_phvo==True, fat_quality is ceilinged at 40.
     This is a dimension ceiling (not a final-score cap). Fires on שומנים מוקשים /
@@ -1529,6 +1633,8 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
     Ceiling is applied after all other scoring so trans/seed penalties still fire.
     EV-096 (TASK-284B, BARI_FAT_TECH_V1): seed_pen 10→5 when flag ON.
     EV-097 (TASK-284B, BARI_FAT_TECH_V1): two-tier PHVO ceiling — partial→40, generic→55.
+    EV-104 (TASK-380, BARI_HC_DAIRY_SATFAT_V1): hc_endemic_relief=True → seed_pen 5→0
+      (endemic dairy fat is not a seed-oil engineering choice; R5 sat_fat pen PRESERVED).
     """
     fat   = nn.get("fat_g") or 0
     sat_f = nn.get("fat_saturated_g")
@@ -1567,7 +1673,8 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict) -> tuple:
         return s, n
 
     # EV-096 (TASK-284B): seed_pen 10→5 when BARI_FAT_TECH_V1 ON.
-    _seed_pen_base = 5 if BARI_FAT_TECH_V1 else 10
+    # EV-104 (TASK-380): hc_endemic_relief → seed_pen 5→0 (endemic dairy fat, R5 sat_fat pen PRESERVED).
+    _seed_pen_base = 0 if hc_endemic_relief else (5 if BARI_FAT_TECH_V1 else 10)
 
     if fat < 0.5 or se_result.get("structurally_empty"):
         if RECAL_P0_ON and not se_result.get("structurally_empty"):
@@ -2049,7 +2156,8 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                          maadanim_subtype: str | None = None,
                          bsip1_salty_snack: bool = False,
                          bsip_hummus_product_category: str | None = None,
-                         bsip1_cakes_product: bool = False) -> dict:
+                         bsip1_cakes_product: bool = False,
+                         hc_endemic_relief: bool = False) -> dict:
     """
     Evaluate all guardrail rules. Returns dict with all fired caps and penalties
     per concern family, plus coordination outcomes.
@@ -2076,6 +2184,14 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         _rl_sat_fat_endemic = red_label_sat_fat and category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
         reformulable_rl_count = red_label_count - (1 if _rl_sat_fat_endemic else 0)
         endemic_sat_fat_excluded = bool(_rl_sat_fat_endemic)
+    elif hc_endemic_relief and red_label_sat_fat:
+        # TASK-380 / EV-104: BARI_HC_DAIRY_SATFAT_V1 with qualifying HC product.
+        # sat_fat excluded from ISRAELI_RED_LABELS_2_PLUS reformulable count
+        # (dairy-matrix LDL-attenuation; compositionally fixed dairy fat, HC-5 preserved).
+        # This runs only when BARI_REDLABEL_V1 is OFF (the standard legacy path); if
+        # BARI_REDLABEL_V1 is ON it already handles the exclusion via the branch above.
+        reformulable_rl_count = max(0, red_label_count - 1)
+        endemic_sat_fat_excluded = True
     else:
         reformulable_rl_count = red_label_count
         endemic_sat_fat_excluded = False
@@ -2231,11 +2347,13 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         # brined_food flag is active. The sat-fat label continues to count unchanged.
         # The standalone HIGH_SODIUM_700MG_PLUS cap remains active (softened to 72 via
         # 0.7 sodium_weight per EV-052). Zero effect on any non-brined context.
-        _rl_count_for_2plus = red_label_count
+        # TASK-380 / EV-104: hc_endemic_relief — sat_fat excluded from reformulable count
+        # (reformulable_rl_count already adjusted above). Takes priority over raw red_label_count.
+        _rl_count_for_2plus = reformulable_rl_count if hc_endemic_relief else red_label_count
         if context_flag == "brined_food":  # EV-053
             _sodium_in_labels = "sodium" in (l3.get("red_labels") or [])
             if _sodium_in_labels:
-                _rl_count_for_2plus = max(0, red_label_count - 1)
+                _rl_count_for_2plus = max(0, _rl_count_for_2plus - 1)
         check_cap("ISRAELI_RED_LABELS_2_PLUS", _rl_count_for_2plus >= 2, 45, sugar_caps_fired)
 
     # Sugar penalties
@@ -2961,6 +3079,9 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
         if context_flag == "brined_food":  # EV-054
             penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": False,
                                           "note": "EV-054: brined_food context — structural dairy fat + brine sodium, not hyper-palatability stack; penalty suppressed"})
+        elif hc_endemic_relief:  # EV-104 / TASK-380
+            penalties_considered.append({"rule": "HP_FAT_SODIUM_COMBO", "fired": False,
+                                          "note": "EV-104: BARI_HC_DAIRY_SATFAT_V1 qualifying hard cheese — structural dairy fat + cheese sodium is not hyper-palatability stack; penalty suppressed"})
         elif (BARI_DAIRY_PROTEIN_REWEIGHT_V1
               and category == "dairy_protein"
               and sodium <= 400
@@ -3445,6 +3566,40 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         l3["red_labels"] = list(l3.get("red_labels", [])) + ["sodium"]
         l3["red_label_count"] = l3.get("red_label_count", 0) + 1
 
+    # TASK-380 / EV-104 — HC endemic sat-fat qualification (pre-dimension-scoring).
+    # Evaluated here so hc_endemic_relief is available to fat_quality and guardrails.
+    # Default OFF → hc_qualifies=False → hc_qualify_reason="flag_off" → zero change to any path.
+    hc_qualifies = False
+    hc_qualify_reason = "flag_off"
+    if BARI_HC_DAIRY_SATFAT_V1:
+        _ing_text = (
+            product.get("ingredients_raw")
+            or product.get("ingredients_text_he")
+            or ""
+        )
+        if not _ing_text and product.get("ingredients_list"):
+            _ing_text = ", ".join(str(x) for x in product["ingredients_list"])
+        _ing_list = l3.get("ingredient_list") or []
+        if not _ing_text and _ing_list:
+            _ing_text = ", ".join(str(x) for x in _ing_list)
+        _san_count = (
+            product.get("ingredient_sanitization", {}).get("clean_count")
+            or l3.get("ingredient_count_sanitized")
+            or l1.get("ingredient_count", 0)
+            or 0
+        )
+        _sodium_val_hc = nn.get("sodium_mg")
+        _bsip_cheese_subpool_hc = product.get("bsip_cheese_subpool")
+        hc_qualifies, hc_qualify_reason = _hc_dairy_satfat_qualifies(
+            product=product,
+            category=category,
+            bsip_cheese_subpool=_bsip_cheese_subpool_hc,
+            nova_level=nova_level,
+            ingredient_text=_ing_text,
+            sanitized_ing_count=int(_san_count) if _san_count else 0,
+            sodium_mg=_sodium_val_hc,
+        )
+
     pq_score,  pq_note  = score_processing_quality(nova_level, w4_confidence, w4_materiality)
     nd_score,  nd_note  = score_nutrient_density(nn, has_fortification, category)
     cd_table_key = category
@@ -3455,7 +3610,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     prq_score, prq_note = score_protein_quality(nn, l3, category)    # F2: matrix discount
     aq_score,  aq_note  = _score_additive_quality_sprint1(l3)        # EV-003/019 + F1/F4 identity
     ss_score,  ss_note  = score_satiety_support(nn, l3)   # EV-008 + EV-006
-    fq_score,  fq_note  = _score_fat_quality_sprint1(nn, l3, se_result)  # EV-012
+    # EV-104: pass hc_endemic_relief to fat_quality — seed_pen 5→0 for qualifying HC products.
+    fq_score,  fq_note  = _score_fat_quality_sprint1(nn, l3, se_result,
+                                                      hc_endemic_relief=hc_qualifies)  # EV-012 + EV-104
     rq_score,  rq_note  = score_regulatory_quality(l3, nn, category)
     wfi_score, wfi_note = score_whole_food_integrity(nova_level, l1.get("ingredient_count", 0), has_fermentation)
 
@@ -3667,6 +3824,9 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     # TASK-181G — pass the W4 confidence so the NOVA-driven PROCESSING_LOAD caps are
     # confidence-scaled and HP penalties are de-amplified (flag OFF → w4_confidence
     # is None → byte-identical guardrail evaluation).
+    # TASK-380 / EV-104 — pass hc_endemic_relief so evaluate_guardrails can:
+    #   (a) exclude sat_fat from ISRAELI_RED_LABELS_2_PLUS reformulable count, and
+    #   (b) suppress HP_FAT_SODIUM_COMBO for qualifying hard-cheese products.
     gr = evaluate_guardrails(nn, l3, nova_level, category, cat_conf, eval_result,
                              w4_confidence, w4_materiality, category_subtype=cat_subtype,
                              hard_cheese_subpool=bsip_cheese_subpool,
@@ -3674,7 +3834,8 @@ def score_product(product: dict, signals: dict, cat_result: dict,
                              maadanim_subtype=bsip_maadanim_subtype,
                              bsip1_salty_snack=bsip1_salty_snack,
                              bsip_hummus_product_category=bsip_hummus_product_category,
-                             bsip1_cakes_product=bsip1_cakes_product)
+                             bsip1_cakes_product=bsip1_cakes_product,
+                             hc_endemic_relief=hc_qualifies)
 
     if gr.get("trans_fat_veto"):
         return {

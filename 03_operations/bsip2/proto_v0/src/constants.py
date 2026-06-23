@@ -626,6 +626,81 @@ FATSAT_SHELF_REL_HARDCHEESE_B_MAX = 3
 
 HARD_CHEESE_YELLOW_SUBPOOLS: frozenset = frozenset({"yellow", "yellow_light", "hard_grating"})
 
+# TASK-380 / EV-104 — BARI_HC_DAIRY_SATFAT_V1 constants.
+# Scope: bsip_cheese_subpool in HC_DAIRY_SATFAT_ELIGIBLE_SUBPOOLS AND category=="dairy_protein".
+# Adds "hard" (e.g. Grana Padano) to the existing HARD_CHEESE_YELLOW_SUBPOOLS scope.
+HC_DAIRY_SATFAT_ELIGIBLE_SUBPOOLS: frozenset = frozenset({
+    "yellow", "yellow_light", "hard_grating", "hard"
+})
+# HC-3: blocked product subtypes (evaluated via bsip_cheese_subpool field).
+HC_DAIRY_SATFAT_BLOCKED_SUBTYPES: frozenset = frozenset({
+    "processed", "spread", "processed_slice", "analogue",
+    "cheese_product", "cheese_preparation", "cheese_substitute",
+})
+# HC-3: E-number blocklist (engine matches literal E-number strings in ingredient text).
+HC_DAIRY_SATFAT_BLOCKED_E_NUMBERS: frozenset = frozenset({
+    "E331", "E332", "E333",   # citrates
+    "E339", "E340", "E341",   # phosphates
+    "E406",                    # agar
+    "E407",                    # carrageenan
+    "E410",                    # locust bean gum
+    "E412",                    # guar gum
+    "E415",                    # xanthan gum
+    "E450", "E451", "E452",    # di/tri/polyphosphates
+})
+# HC-3: Tier-A/B/C ingredient token blocklist (both Hebrew and Latin substrings).
+# Engine performs case-insensitive substring match on normalized ingredient text.
+HC_DAIRY_SATFAT_BLOCKED_TOKENS: tuple = (
+    # Tier A — engineered fats
+    "שמן דקל", "palm oil",
+    "שמן חמניות", "sunflower oil",
+    "שמן קנולה", "canola oil", "rapeseed oil",
+    "שמן סויה", "soybean oil", "soya oil",
+    "שמן שיאה", "shea",
+    "שמן צמחי", "vegetable oil", "vegetable fat",
+    "מרגרינה", "margarine",
+    "שמן קוקוס", "coconut oil",
+    "שמן מוקשה", "hydrogenated", "partially hydrogenated",
+    "אינטר-אסטריפיקציה", "interesterified",
+    "שמנת מוספת",
+    "חמאה מוספת",
+    # Tier B — engineered dairy protein components
+    "קזאינט", "caseinate", "sodium caseinate", "calcium caseinate",
+    "תרכיז חלבון חלב", "milk protein concentrate", "mpc",
+    "תרכיז חלבון מי גבינה", "whey protein concentrate", "wpc",
+    "בידוד חלבון מי גבינה", "whey protein isolate", "wpi",
+    # Tier C — structural additives, stabilizers, emulsifiers
+    "עמילן מתוקן", "עמילן משונה", "modified starch",
+    "קרגינן", "carrageenan",
+    "גואר", "guar gum",
+    "ג'לטין", "gelatin",
+    "אגר", "agar",
+    "לוקוסט בין גאם", "locust bean gum", "carob gum",
+    "קסנתן", "xanthan",
+    "מלחי התכה", "melting salts", "emulsifying salts",
+    "פוליפוספט", "polyphosphate",
+    "ציטרט נתרן", "sodium citrate",
+    "ציטרט אשלגן", "potassium citrate",
+    "ציטרט סידן", "calcium citrate",
+    "פוספט נתרן", "sodium phosphate",
+    "פוספט סידן", "calcium phosphate",
+    "פירופוספט", "diphosphate",
+    "טריפוספט", "triphosphate",
+    "פוליפוספטים", "polyphosphates",
+)
+# HC thresholds.
+HC_DAIRY_SATFAT_NOVA_MAX = 2          # P1: NOVA > 2 → no relief
+HC_DAIRY_SATFAT_ING_MAX = 6           # P3: ingredient count > 6 → no relief
+HC_DAIRY_SATFAT_SODIUM_BACKSTOP = 850 # P4: sodium >= 850mg → no relief (non-relieved)
+HC_DAIRY_SATFAT_A_BLOCK_SATFAT = 5.0  # HC-1: sat_fat_eff > 5.0 AND sodium > 600 → block A
+HC_DAIRY_SATFAT_A_BLOCK_SODIUM = 600.0
+HC_DAIRY_SATFAT_A_BLOCK_CAP = 74.0    # HC-1: A-block caps score at 74 (top of B)
+HC_DAIRY_SATFAT_C_CEILING_SODIUM = 600.0  # HC-2: sodium >= 600 → C-ceiling
+HC_DAIRY_SATFAT_C_CEILING_FAT = 25.0      # HC-2: fat >= 25% → C-ceiling
+HC_DAIRY_SATFAT_C_CEILING_VALUE = 67.0    # HC-2: C-ceiling cap value
+HC_DAIRY_SATFAT_G4_KCAL = 380.0           # G4: kcal >= 380 → calorie backstop at 67
+HC_DAIRY_SATFAT_G4_BACKSTOP = 67.0        # HC-5: G4 preserved, non-relieved
+
 # EV-091 juices×sugar shelf-relative (P126, 2026-06-14; n=65 from run_juices_001).
 # Scope guard: product.get("juice_sub_pool") is not None (all juice subpool values included).
 # All 65 products have juice_sub_pool present (juice_100/nectar/fruit_drink/smoothie/cold_pressed).

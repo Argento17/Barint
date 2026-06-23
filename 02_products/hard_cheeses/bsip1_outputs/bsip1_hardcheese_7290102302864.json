@@ -1,0 +1,49 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_hardcheese_7290102302864",
+  "barcode": "7290102302864",
+  "canonical_name_he": "גאודה פסטו ירוק",
+  "category": "hard_cheeses",
+  "data_sufficiency": "discard",
+  "discard_reason": "not_found_at_any_reachable_retailer_one_shot",
+  "discard_per_rule": "missing_data_discard_rule (owner-2026-06-13)",
+  "off_used": false,
+  "scrape_attempts": [
+    {
+      "retailer": "shufersal",
+      "attempted": true,
+      "found": false,
+      "nutrition_fields": [],
+      "ingredients_found": false
+    },
+    {
+      "retailer": "victory",
+      "attempted": true,
+      "found": false,
+      "nutrition_fields": [],
+      "note": "not found"
+    },
+    {
+      "retailer": "yochananof",
+      "attempted": true,
+      "method": "prior_playwright_scrape",
+      "nutrition_captured": false,
+      "ingredients_captured": true,
+      "status": "tab_missing"
+    },
+    {
+      "retailer": "rami_levy",
+      "attempted": false,
+      "reason": "known blocked from sandbox (rami_levy.yaml DEFERRED)"
+    }
+  ],
+  "provenance": {
+    "source": "none",
+    "fetched_at": "2026-06-23T04:20:02.954286+00:00",
+    "off_used": false,
+    "verification_status": "discarded"
+  },
+  "enrichment_timestamp": "2026-06-23T04:20:02.954286+00:00",
+  "run_id": "hc_recover_off_barcodes_20260623_062002"
+}

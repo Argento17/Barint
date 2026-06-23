@@ -112,8 +112,8 @@ study_objects:
     population_direct: true
     rob_grade: low
     evidence_tier: A
-    source_doi: "10.1016/j.cell.2021.12.019"
-    notes: "Chassaing et al. 2022 — controlled human feeding trial (n=16, crossover). CMC at doses achievable from typical ultra-processed food consumption (approximately matching daily label exposure in a Western diet). Population: healthy adults. This is the foundational human RCT supporting the Strong tier for CMC. Mechanistic plausibility already established in mouse models by the same group."
+    source_doi: "10.1053/j.gastro.2021.11.006"
+    notes: "Chassaing et al. 2022 — controlled human feeding trial (n=16, crossover). CMC at doses achievable from typical ultra-processed food consumption (approximately matching daily label exposure in a Western diet). Population: healthy adults. This is the foundational human RCT supporting the Strong tier for CMC. Mechanistic plausibility already established in mouse models by the same group. Published in Gastroenterology (not Cell); PMID 34774538; source_doi corrected 2026-06-23 (prior identifier resolved to a Cell editorial unrelated to CMC research)."
   - claim: "Polysorbate 80 (E433) promotes pro-inflammatory gut bacteria and thins the intestinal mucus layer"
     dose_realistic: true
     population_direct: false
@@ -141,6 +141,8 @@ study_objects:
 - **The "reduce penalty below a dose threshold" suggestion is firewall-blocked.** Per-serving additive *dose* in mg is **never present on an Israeli label** — the engine reads ingredient presence/order only (EDPG firewall; see also the explicit "quantities not label-observable" constraint in EV-045/EV-051). A dose-graded emulsifier penalty is therefore not implementable regardless of the underlying science. This reaffirms the standing posture: apply per label presence, uniformly.
 - **Short-term null reconciliation.** The "no dysbiosis at real-world dose" result is the same class of short-term average-effect non-finding already reconciled for CMC: it does not override the CMC/P80-specific mechanistic + susceptibility evidence on which the tier rests. (Mirror of the BEV-081 reconciliation; no scoring change.)
 - Source DOIs to be confirmed by Research Agent before any consumer copy cites them (`citations_discipline`).
+
+**Corroboration addendum (2026-06-23) — no score change / no tier change.** A discourse-radar (2026-06-21) flagged a new, distinct RCT: Dahl et al. (2025), "Effect of Five Dietary Emulsifiers on Inflammation, Permeability, and the Gut Microbiome: A Placebo-controlled Randomized Trial," *Clinical Gastroenterology and Hepatology*, vol. 24, pp. 1092–1101. DOI: 10.1016/j.cgh.2025.08.005. This is **not** the trial already cited (Chassaing et al. 2022, *Gastroenterology*, DOI: 10.1053/j.gastro.2021.11.006, n=16, CMC-only, 11-day feeding). The Dahl 2025 trial is a distinct study: n=60 healthy volunteers, 7-week design (2-week emulsifier-free run-in, then 4-week placebo-controlled parallel-arm), brownies delivering five individual emulsifiers — CMC (E466), polysorbate-80 (E433), carrageenan (E407), soy lecithin (E322), and native rice starch as placebo. This is **RCT-grade evidence** (placebo-controlled, parallel-arm, published in a peer-reviewed gastroenterology journal). SCFA finding: compared with placebo, all SCFA concentrations were lower in the CMC arm; the pattern was directionally mirrored by other emulsifiers, though not all reached significance. This **corroborates the existing three-tier model** — CMC and P80 in the high-risk tier, soy lecithin in the neutral tier — by providing an independent human placebo-controlled arm where the CMC SCFA-reduction signal replicated. Note: the Dahl 2025 trial found no significant differences in fecal calprotectin, CRP, LPS-binding protein, or systemic inflammation at end-of-intervention; this null on inflammation endpoints does not contradict the microbiota/SCFA finding and is consistent with a 4-week window in healthy adults. EDPG firewall applies unchanged: per-serving dose in mg is not label-observable; the engine reads ingredient presence/order only. No score change, no weight change, no tier change.
 
 ---
 
@@ -622,8 +624,8 @@ study_objects:
     population_direct: true
     rob_grade: low
     evidence_tier: A
-    source_doi: "10.3390/nu11081781"
-    notes: "Systematic review of fermented dairy and gut health outcomes. Population: healthy adults. Dose: standard yogurt/fermented dairy serving. This is mechanism-level evidence supporting the existing fermentation bonus in BSIP2's WFI dimension. EV-024 itself is a vocabulary/detection fix, not a new scientific claim — this study object grounds the underlying scientific rationale for the bonus that the fix enables to fire correctly."
+    source_doi: "[CITATION UNVERIFIED — claim needs re-grounding or removal]"
+    notes: "Systematic review of fermented dairy and gut health outcomes. Population: healthy adults. Dose: standard yogurt/fermented dairy serving. This is mechanism-level evidence supporting the existing fermentation bonus in BSIP2's WFI dimension. EV-024 itself is a vocabulary/detection fix, not a new scientific claim — this study object grounds the underlying scientific rationale for the bonus that the fix enables to fire correctly. CITATION NOTE (2026-06-23): The original source_doi (nu11081781 in Nutrients) resolves to a dermatology/fasting paper wholly unrelated to fermented dairy. No verified replacement identifier was found via PubMed search. The underlying claim (fermentation produces SCFA, protein pre-digestion, lactose reduction in dairy) is well-established in food science, but requires a verified citation before re-use in consumer copy. Route to Research Agent for re-grounding."
   - claim: "Live bacterial cultures (lactobacilli, bifidobacteria) in yogurt are detectable and viable at point of consumption"
     dose_realistic: true
     population_direct: true
@@ -2545,17 +2547,17 @@ study_objects:
 | **proposed_status** | D6 PROPOSAL — requires D7 co-sign (Nutrition + Product) before any engine change. Gated behind BARI_HC_NOVA1_V1 (default OFF). |
 | **problem_statement** | Rule "BSIP2-HC-002" appeared in traces for run_hard_cheeses_003_shelfrel (9/30 products) with zero governance trail: no EV-### in the evidence registry, no D7 co-sign recorded, no BARI_RECAL_P0 entry verified. The rule reclassified short-ingredient (≤6) dairy products as NOVA 1 AND simultaneously removed the sat_fat inference (`sat_fat_inferred=False` in run_003 vs `sat_fat_inferred=True` in run_yohananof_001). These two changes together removed the `ISRAELI_RED_LABELS_2_PLUS` cap (cap=45, fires on sat_fat+sodium combination), allowing 8/9 affected products to jump D/39 → B/76–A/80. Two products (bc:7290108502725 @640mg sodium, bc:7290019635192 @659mg sodium) reached A with a confirmed regulatory sodium red label. |
 | **red_team_finding** | RT-5 (TASK-275): BSIP2-HC-002 unregistered rule reclassified 19 hard cheeses from D→B/A. Correct number per trace audit: 9/30 products carry BSIP2-HC-002 note in run_003_shelfrel; 8 of these moved grade upward (+34 to +42 points); 1 (bc:3073781199918) was unchanged (scored 39/D in both runs, has explicit sat_fat panel value so inference was never the driver). |
-| **ruling_a_nova1_classification** | **DEFENSIBLE IN PRINCIPLE, NOT IN IMPLEMENTATION.** The NOVA framework (Monteiro et al., 2019, Public Health Nutrition, DOI 10.1017/S1368980019001307; PMID 31122155) classifies traditional aged cheese made from milk + salt + cultures/rennet as NOVA 1–2 (minimally processed). A 2–6 ingredient hard cheese with no industrial additives, no sweeteners, and no emulsifiers is genuinely NOVA 1–2 by the framework's own criteria. The underlying nutrition science supports treating these products differently from NOVA 3–4 items: the processing quality dimension should reflect minimal processing for genuine fermented/aged dairy. **However,** the rule as implemented was: (a) unregistered — no EV-### entry; (b) unilaterally activated without D7 co-sign; (c) bundled two separate changes (NOVA reclassification + sat_fat inference removal) in a single undocumented trace note. Each change independently requires EV-### + D7. Defensible science does not substitute for missing governance. |
+| **ruling_a_nova1_classification** | **DEFENSIBLE IN PRINCIPLE, NOT IN IMPLEMENTATION.** The NOVA framework (Monteiro et al., 2019, Public Health Nutrition, DOI 10.1017/S1368980018003762; PMID 30744710) classifies traditional aged cheese made from milk + salt + cultures/rennet as NOVA 1–2 (minimally processed). A 2–6 ingredient hard cheese with no industrial additives, no sweeteners, and no emulsifiers is genuinely NOVA 1–2 by the framework's own criteria. The underlying nutrition science supports treating these products differently from NOVA 3–4 items: the processing quality dimension should reflect minimal processing for genuine fermented/aged dairy. **However,** the rule as implemented was: (a) unregistered — no EV-### entry; (b) unilaterally activated without D7 co-sign; (c) bundled two separate changes (NOVA reclassification + sat_fat inference removal) in a single undocumented trace note. Each change independently requires EV-### + D7. Defensible science does not substitute for missing governance. |
 | **ruling_b_sat_fat_inference_removal** | **PARTIALLY CORRECT, INCORRECTLY IMPLEMENTED.** The sat_fat inference (`sat_fat_inferred = 0.62 × fat_g` for dairy) was introduced as an evidence-proxy when no label sat_fat value is declared. For hard cheeses without a declared sat_fat panel value (all 30 products in run_003), fat_g=22–34g → inferred sat_fat=13.6–21g → fires ISRAELI_RED_LABEL_1_SAT_FAT or ISRAELI_RED_LABELS_2_PLUS. The inference is *directionally correct* for most hard cheeses: the typical dairy sat_fat fraction for hard cheeses is 60–70% of total fat (USDA FDC cheese database, avg across aged varieties; FDC SR Legacy). However, removing the inference entirely is NOT the correct fix. The correct fix is either: (A) obtain declared sat_fat from direct product scrape (preferred, OFF ban compliant); (B) retain the inference with a calibration note that the 0.62 coefficient may need adjustment for hard-cheese varieties; or (C) apply the inference with a downward flag in the confidence layer, not suppress it. Removing it without a replacement means these products have no fat_quality penalty for a confirmed-high-sat-fat food matrix. **Result of current removal: bc:7290108502725 fat_quality=50.0 (R3 leanness path, sat_fat absent → treated 0). This is factually wrong for a 28% fat hard cheese.** |
 | **ruling_c_sodium_red_label_at_a** | **A-GRADE WITH REGULATORY SODIUM RED LABEL IS PERMISSIBLE IF GENUINELY JUSTIFIED BY THE FULL NUTRITIONAL ARCHITECTURE, BUT IS A STRONG CONSUMER-COHERENCE WARNING.** The Anti-Immunity Rule (bari_usecase_guardrails_v2) prohibits escaping absolute penalties by being best-in-a-bad-category. A sodium red label fires a single-red-label cap (ISRAELI_RED_LABEL_1_SODIUM → cap=63, category-adjusted for dairy). A product can score above 63 only if its other dimensions are strong enough AND no second cap fires. For a 2-ingredient aged cheese (milk + salt), sodium is endemic to the product form and the fat/protein/additive profile is genuinely excellent. This is not Anti-Immunity: the product is not evading a legitimate penalty; the sodium red label IS already penalizing it via the cap. The grade reflects that a high-quality cheese has one structural concern (sodium) well-acknowledged. However, this conclusion is CONDITIONAL on the sat_fat inference being properly resolved. If sat_fat_inferred correctly fires (≥5g/100g sat_fat → red label → ISRAELI_RED_LABELS_2_PLUS cap=45), then A is impossible. The current A grades for these two products depend on sat_fat being absent — which is wrong given their fat_g=28–30g. Cross-category coherence concern (RT-7): a product with a sodium red label scoring A is challenging but not architecturally incoherent IF its non-sodium architecture is genuinely excellent. bc:7290019635192 (2-ingredient goat milk + salt, 22g protein, 0 additives) is a genuine whole-food. The concern is whether the grade holds once sat_fat is correctly handled. |
 | **correct_sat_fat_for_these_products** | USDA FDC SR Legacy data for aged hard cheeses: Gouda cheese (FDC ID 1008065): total fat 27.4g/100g, sat_fat 17.6g/100g → fraction 64.2%. Emmental/Swiss (FDC ID 1008066): total fat 27.8g/100g, sat_fat 17.8g/100g → fraction 64.0%. Parmesan (FDC ID 1008032): total fat 28.6g/100g, sat_fat 18.4g/100g → fraction 64.3%. The existing inference coefficient of 0.62 is directionally consistent (actual range 0.62–0.66 for hard cheeses). At fat_g=28g: inferred_sat_fat=0.62×28=17.36g → well above Israeli red-label threshold of 5g/100g. Two red labels (sodium + sat_fat) → ISRAELI_RED_LABELS_2_PLUS → cap=45. **At cap=45 with full penalty structure, these products cannot reach A.** Grade estimate with inference restored: bc:7290108502725 weighted_dim=86.84, cap=45, after HP_FAT_SODIUM penalty=6 → 39/D (identical to run_yohananof_001). Source: USDA FDC SR Legacy, cited above. |
 | **scope_guard** | Hard cheeses category, confirmed by bsip1 `canonical_product_id.startswith("bsip1_hardcheese_")`. n=30 in run_003_shelfrel. HC-002 active: 9/30. |
-| **proposed_ev099_changes** | **Two gated changes, each requiring D7 before activation:** (1) **BARI_HC_NOVA1_V1** (new flag, default OFF): activates NOVA 1 reclassification for ≤6-ingredient dairy with no additive markers, no sweetener, product_type_dairy=True. Requires: EV-### registration + D7 BEFORE engine edit. Evidence basis: Monteiro et al. 2019 (PMID 31122155) + NOVA 1 criteria for minimally processed foods. (2) **Sat_fat inference retention**: retain 0.62×fat_g inference for hard cheeses when sat_fat panel value is absent (current behavior before BSIP2-HC-002). The inference is evidence-grounded (USDA FDC SR Legacy, above). **Do NOT remove the inference without a confirmed label sat_fat value from direct scrape.** A separate D6/D7 process is required if the coefficient needs calibration for hard-cheese varieties. |
+| **proposed_ev099_changes** | **Two gated changes, each requiring D7 before activation:** (1) **BARI_HC_NOVA1_V1** (new flag, default OFF): activates NOVA 1 reclassification for ≤6-ingredient dairy with no additive markers, no sweetener, product_type_dairy=True. Requires: EV-### registration + D7 BEFORE engine edit. Evidence basis: Monteiro et al. 2019 (PMID 30744710) + NOVA 1 criteria for minimally processed foods. (2) **Sat_fat inference retention**: retain 0.62×fat_g inference for hard cheeses when sat_fat panel value is absent (current behavior before BSIP2-HC-002). The inference is evidence-grounded (USDA FDC SR Legacy, above). **Do NOT remove the inference without a confirmed label sat_fat value from direct scrape.** A separate D6/D7 process is required if the coefficient needs calibration for hard-cheese varieties. |
 | **immediate_action_required** | **REVERT BSIP2-HC-002 in the engine** (score_engine.py or signal_extractor.py — wherever the NOVA override fires). Restore sat_fat inference for hard cheeses. Re-run run_hard_cheeses. Affected published grades: 8/30 products (run_hard_cheeses_003_shelfrel is pre-publish; not yet live on bari.digital). No published consumer-facing score is moved — this is a pre-publish correction inside TASK-278/284. **This does NOT require owner tripwire**: no published score moves, category is not yet live, fix restores a governed state. Requires orchestrator dispatch to Data Agent for revert + re-run. |
 | **grade_impact_if_reverted** | bc:7290108502725 A→D; bc:7290019635192 A→D; bc:7290102394845 B→D; bc:7290102396672 B→D; bc:7290102397204 B→D; bc:7290102394463 B→D; bc:7290017065434 C→D; bc:8711528211138 C→D; bc:3073781199918 no change (D). All 8 moving products return to D/39 — the state in run_yohananof_001. bc:3073781199918 had explicit sat_fat panel value so was already at D/39 in both runs. |
-| **path_forward_for_hc_nova1** | After revert, the NOVA 1 reclassification can be re-proposed properly: (a) Register as a new EV-### (EV-100 or next available after this chain); (b) evidence: Monteiro et al. 2019 PMID 31122155; NOVA classification guidance for fermented dairy; (c) scope: ≤N ingredients, product_type_dairy=True, additive_marker_count=0, no sweetener; (d) impact analysis: confirm sat_fat inference is handled correctly before NOVA upgrade — if inferred sat_fat fires a cap, the NOVA 1 upgrade may not change the final grade anyway (whole-food floor 75 is overridden by cap=45 when two red labels fire); (e) D7 co-sign by both Nutrition Agent and Product Agent; (f) flag-gate, re-score, red-team, owner go-live. |
+| **path_forward_for_hc_nova1** | After revert, the NOVA 1 reclassification can be re-proposed properly: (a) Register as a new EV-### (EV-100 or next available after this chain); (b) evidence: Monteiro et al. 2019 PMID 30744710 (DOI 10.1017/S1368980018003762); NOVA classification guidance for fermented dairy; (c) scope: ≤N ingredients, product_type_dairy=True, additive_marker_count=0, no sweetener; (d) impact analysis: confirm sat_fat inference is handled correctly before NOVA upgrade — if inferred sat_fat fires a cap, the NOVA 1 upgrade may not change the final grade anyway (whole-food floor 75 is overridden by cap=45 when two red labels fire); (e) D7 co-sign by both Nutrition Agent and Product Agent; (f) flag-gate, re-score, red-team, owner go-live. |
 | **rt10_floor_record_fix** | Per RT-10, EV-094 floor must record to `floors_applied` when it fires. The run_hummus_shelfrel_001 trace for bc:7290106577480 shows `floors_applied: []` and `floors_considered: ["no_applicable_floor"]`. **Investigation result:** The floor did NOT fire for this product. The score_after_penalty=62 was reached through dimension scoring + caps (binding_cap=60) + penalties (−13), where max(45.79−13, 60_cap+floor_lift) converges to 62 via the penalty-on-cap mechanism, NOT via the EV-094 floor function. The `floors_applied: []` for ALL 19 products at score=62 confirms: the 19-product cluster at 62 is a penalty-convergence artifact, not floor-applied. 0 products were floor-lifted in run_hummus_shelfrel_001. However, the RT-10 finding stands: the floor mechanism at score_engine.py L3838–3845 only records to `floors_applied` when `score_after_floors > _pre_hummus_floor_score`. When the EV-094 floor fires but score is already ≥62, the `floors_applied` list remains empty and no record is written. The fix: always write the floor consideration result to `floors_considered` with `result="eligible_not_applied"` or `"applied"`. This is a trace transparency fix, not a score change. Dispatch to Data Agent. |
-| **evidence_tier** | Governance: Hard (no EV-### = block, no exceptions). Science (NOVA 1 for short-ingredient dairy): Strong (Monteiro et al. 2019). Science (sat_fat fraction for hard cheese): Strong (USDA FDC SR Legacy, multiple entries). |
+| **evidence_tier** | Governance: Hard (no EV-### = block, no exceptions). Science (NOVA 1 for short-ingredient dairy): Strong (Monteiro et al. 2019, PMID 30744710, DOI 10.1017/S1368980018003762, Public Health Nutrition). Science (sat_fat fraction for hard cheese): Strong (USDA FDC SR Legacy, multiple entries). |
 | **status** | REGISTERED — D6 Nutrition Agent ruling, 2026-06-15. D7 NOT yet co-signed — pending Product Agent review. Immediate revert action dispatched to orchestrator (pre-publish, no published score movement). |
 | **co_sign** | D6: Nutrition Agent (2026-06-15, TASK-275). D7: Product Agent — REQUIRED before any re-implementation of BSIP2-HC-002 as a governed rule. |
 
@@ -2726,6 +2728,383 @@ study_objects:
 **Status:** Implemented (TASK-371, 2026-06-21); flag default OFF; awaiting owner merge + deploy.
 
 **Task:** TASK-371
+
+---
+
+### EV-104 — Hard Cheese Endemic Sat-Fat Relief: Dairy-Matrix LDL Attenuation and NOVA-Gate Predicate (D6 Proposal, BARI_HC_DAIRY_SATFAT_V1)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-104 |
+| **task** | TASK-286 / TASK-380 |
+| **recorded** | 2026-06-23 |
+| **hardened** | 2026-06-23 (C3 P297 + Product D7 required changes folded in) |
+| **proposed_flag** | `BARI_HC_DAIRY_SATFAT_V1` (default OFF) |
+| **proposed_status** | D6 PROPOSAL — D7 co-sign received (direction approved); hardening complete; ready for engine build |
+| **replaces_proposal** | EV-099 path_forward_for_hc_nova1 (section `proposed_ev099_changes`) — this EV is the formal D6 filing that path called for |
+
+#### Problem Statement
+
+Under any scoring configuration that correctly restores the sat_fat inference (0.62 × fat_g, per EV-099 ruling B), hard yellow cheeses with 28% fat carry an inferred sat_fat of ~17.4g/100g — well above the Israeli red-label sat_fat threshold of 5g/100g. This causes `ISRAELI_RED_LABELS_2_PLUS` (cap=45) to fire on virtually every product in the corpus (sat_fat + sodium both above threshold), plus the `HP_FAT_SODIUM_COMBO` penalty (-6). The result: a NOVA-1 cheese made from milk + salt + rennet + cultures scores 39/D — identical to ultra-processed junk. This is an architectural mismatch, not a nutritional verdict.
+
+The sat_fat in hard cheese is intrinsic dairy fat — it cannot be reformulated out. It is compositionally fixed by the food form. Scoring it with the same cap designed for engineered fat (palm oil, margarine, added cream) is category-inappropriate and produces a consumer-incoherent signal.
+
+#### Scientific Rationale
+
+**1. Dairy-fat matrix effect (cheese-specific LDL attenuation)**
+
+The current Bari engine implicitly assumes sat_fat from any source produces proportional cardiovascular risk, consistent with the historical dietary-fat model. A body of evidence, specifically for the hard-cheese food matrix, challenges this assumption:
+
+- **[CITATION UNVERIFIED — Kay 2024 does not exist in PubMed]** The originally cited study ("Kay et al. 2024, AJCN") carried two wrong identifiers (both resolving to unrelated papers in neurology). No "Kay 2024, AJCN, cheese vs butter crossover n=18" paper was found in PubMed under any keyword combination (Research Agent verification 2026-06-23). This citation is removed. The load-bearing cheese-vs-butter RCT evidence is carried by the verified studies below.
+
+- **Brassard et al. (2017), Am J Clin Nutr.** DOI 10.3945/ajcn.116.150300, PMID 28251937. Multicenter randomized crossover controlled trial (n=92, abdominal obesity + low HDL, 5 dietary periods × 4 weeks). Cheese diet vs. butter diet at matched total fat and sat_fat: cheese produced LDL-C approximately 3.3% lower than butter (p<0.05); effect was significant only among participants with high baseline LDL (p-interaction=0.02). Both cheese and butter diets raised LDL vs. lower-SFA alternatives (MUFA, PUFA, carbohydrate). Authors note calcium soap formation as a proposed mechanism. Evidence tier: Moderate (one RCT, modest effect, baseline-modified, short 4-week duration). *(Source: PMID 28251937 verified via PubMed 2026-06-23; DOI confirmed.)*
+
+- **Feeney et al. (2018), Am J Clin Nutr.** DOI 10.1093/ajcn/nqy146, PMID 30107488. Randomized parallel intervention (n=164, overweight adults ≥50, 6 weeks). Four arms: full-fat Irish cheddar (120g) vs. reduced-fat cheddar + butter vs. butter + calcium caseinate + CaCO₃ vs. cheese after run-in. Full cheese matrix arm vs. deconstructed-components arm: LDL 2.97 vs. 3.43 mmol/L (p=0.026); total cholesterol 5.23 vs. 5.57 mmol/L (p=0.033). Stepwise matrix effect confirmed. Evidence tier: Moderate (parallel design, specific cheese type/population; COI concern: Feeney/Gibney group received dairy-adjacent funding per secondary analysis DOI 10.3389/fnut.2022.945723). *(Source: PMID 30107488 verified via PubMed 2026-06-23; DOI confirmed.)*
+
+- **Hjerpsted, Leedo & Tholstrup (2011), Am J Clin Nutr.** DOI 10.3945/ajcn.111.022426, PMID 22030228. Randomized crossover trial (n=49). Hard cheese providing 13% energy from fat vs. butter providing 13% energy from fat, each 6 weeks. Cheese resulted in lower total and LDL-cholesterol vs. butter; cheese did NOT raise LDL vs. baseline habitual diet despite higher sat-fat. Evidence tier: Moderate (small n, short duration, earliest clean RCT on matrix effect). *(Source: PMID 22030228 verified via PubMed 2026-06-23; DOI confirmed.)*
+
+- **Pradeilles et al. (2023), Advances in Nutrition.** DOI 10.1016/j.advnut.2023.09.003, PMID 37717700. Systematic review and meta-analysis of 7 RCTs (264 participants, fasting meta-analysis). Cheese vs. butter: cheese reduced fasting LDL-C by 0.19 mmol/L. Moderate-to-substantial heterogeneity. Postprandial evidence "very uncertain." Partial COI: one co-author (Markey) received Arla Food Ingredients funding. Evidence tier: Moderate (meta-analysis of small RCTs with heterogeneity, partial COI, surrogate endpoint). *(Source: PMID 37717700 verified via PubMed 2026-06-23; DOI confirmed.)*
+
+- **Lordan, Tsoupras, Mitra & Zabetakis (2018), Foods.** DOI 10.3390/foods7030029, PMID 29494487. Narrative review of dairy fats and cardiovascular disease. Cheese consumption does not significantly raise LDL in clinical studies vs. butter; proposes dairy food matrix mechanisms (calcium saponification of sat-FAs, MFGM phospholipids, fermentation bioactives). NOTE: This is published in Foods (not Nutrients) in 2018 (not 2019). The originally cited "Lordan 2019 Nutrients" entry carried two wrong identifiers (both resolving to unrelated papers in genetics/nutrition). Evidence tier: Weak (narrative review, mechanism partly in vitro, non-systematic). *(Source: PMID 29494487 verified via PubMed 2026-06-23.)*
+
+**Confidence calibration:** The dairy-fat matrix effect for hard cheese is Moderate for the LDL-attenuating direction (evidence tier corrected from Moderate-Strong to Moderate per Research Agent verification 2026-06-23: all three original PMIDs were wrong; the rebuilt citation base — Brassard 2017, Feeney 2018, Hjerpsted 2011, Pradeilles 2023 — supports Moderate, not Moderate-Strong, due to small aggregate n, surrogate endpoint, heterogeneity, and COI concerns). This does not mean cheese sat_fat is neutral — it means the BINARY application of the Israeli sat_fat red-label cap (designed for reformulable processed food) is architecturally wrong for a food whose fat composition is compositionally fixed. The correct framing is that hard cheese sat_fat is a different category of concern than engineered sat_fat, and should not trigger the reformulable-product 2-PLUS cap. The sat_fat red label should still register as a nutrient concern (preserved in the fat_quality dimension), but the hard-binary cap that prevents a score above 45 is disproportionate.
+
+**2. NOVA-based compositional gatekeeping**
+
+The NOVA framework (Monteiro et al., 2019, Public Health Nutrition, DOI 10.1017/S1368980018003762, PMID 30744710) classifies traditional hard cheese made from milk + salt + rennet + starter cultures as NOVA 1–2. NOVA 4 (ultra-processed) requires the addition of substances not normally used in culinary practice (emulsifying salts, hydrocolloid stabilizers, flavoring complexes, industrial sweeteners). A hard cheese with no such additives is definitionally not NOVA 4 by the framework's own criteria. Using a NOVA-4 styled cap structure (designed to penalize ultra-processing) against a NOVA-1 product produces an incoherent signal.
+
+This corroborates and extends EV-099's "Ruling A" finding: the NOVA reclassification is scientifically defensible; it was only blocked in EV-099 because the prior implementation lacked governance. This EV provides that governance.
+
+**3. USDA FDC SR Legacy sat_fat fraction data (label observability anchor)**
+
+Since Israeli hard cheese labels rarely declare sat_fat separately (only 2/30 products in the corpus have an explicit sat_fat panel value), the engine must use inference. The coefficient 0.62 × fat_g is grounded in:
+- USDA FDC SR Legacy Gouda (FDC ID 1008065): fat 27.4g, sat_fat 17.6g → fraction 64.2%
+- USDA FDC SR Legacy Emmental/Swiss (FDC ID 1008066): fat 27.8g, sat_fat 17.8g → fraction 64.0%
+- USDA FDC SR Legacy Parmesan (FDC ID 1008032): fat 28.6g, sat_fat 18.4g → fraction 64.3%
+- Source: USDA FoodData Central SR Legacy, retrieved 2026-06-23. (Directional reference; labelled values from direct scrape supersede when available, per EDPG firewall.)
+
+The 0.62 coefficient is directionally correct and conservative (actual fraction is 0.62–0.66). EV-099 confirmed this and ruled that the inference must be RETAINED, not removed. This EV builds the relief ON TOP of the retained inference — not instead of it.
+
+#### Hardening Changelog (C3 P297 + D7 required changes)
+
+The following five changes were mandated by the C3 adversarial challenge (P297) and the Product D7 co-sign, and are folded into this version. The original D6 spec is superseded in full by the hardened version below.
+
+**HC-1 (C3 P297): Grade-A block when sat-fat red label AND sodium red label both fire.**
+Rationale: a cheese with inferred sat_fat > 5g AND sodium > 600mg/100g has two genuine nutrient concerns. The projected A:1 for a Galboa 5% product (sat_fat ~3g, sodium 491mg) was the only defensible A under review. Any product triggering BOTH red labels cannot be A under the hardened predicate, regardless of NOVA or composition cleanliness.
+Implementation: added as the OUTERMOST grade cap after the base score is computed — see "Grade-A block predicate" below.
+
+**HC-2 (C3 P297): Ceiling = C (score ≤ 67) for standard full-fat (~28%) hard cheese with sodium ≥ 600mg/100g.**
+Rationale: a product at the Israeli sodium red-label boundary (>600mg) with full-fat hard cheese profile (~28%, inferred sat_fat ~17.4g) has two structural nutrient concerns regardless of NOVA purity. B requires meaningfully better profile on at least one of sodium, energy, or fat. The prior spec allowed NOVA-1 low-sodium 28%-fat products to reach B; the hardened spec sets the B/C cutoff thresholds explicitly.
+Implementation: added as separate explicit tier thresholds in the qualification predicate and scoring logic — see "B-eligibility thresholds" below.
+
+**HC-3 (C3 P297): Full anti-gaming blocker list — ingredient tokens + E-numbers for engineered/processed disqualifiers.**
+Rationale: the prior loophole-guard list covered obvious Hebrew-label fat markers but was incomplete for processed cheese analog markers (caseinates, modified starch, gums, citrate/phosphate emulsifiers, carrageenan) and for the product subtype predicate (explicitly excluding spread/processed slice/analogue/"cheese product").
+Implementation: the prior E condition is replaced by a comprehensive three-tier blocker list — see "Full anti-gaming blocker list" below.
+
+**HC-4 (Product D7): `category_id == "hard_cheeses"` as the OUTERMOST predicate.**
+Rationale: the prior spec stated scope as `dairy_protein` (the router bucket). The router also sends yogurt and kefir to `dairy_protein`. If the flag ever fires before the router disambiguates, or if a router change reassigns hard cheeses without updating this flag, the predicate would silently apply to the wrong category. The outermost guard must be the explicit category_id, not the router's implicit bucket.
+Implementation: the predicate chain is reordered so category_id is evaluated first — see "Qualification predicate" below.
+
+**HC-5 (Product D7): Preservation confirmation for non-negotiable retained elements.**
+Rationale: D7 explicitly required that the following elements remain exactly as specified in the original D6, with no drift in hardening: (a) the sat_fat nutrient penalty in fat_quality is PRESERVED; (b) the 0.62 × fat_g inference is RETAINED; (c) the single sodium red label (sodium > 600mg fires a regulatory_quality penalty) remains active; (d) the non-relieved guardrails G1–G5 remain exactly as before, with only G5 expanded per HC-3.
+These are confirmed unchanged below; the hardening modifies the A-block, the B/C tier cutoffs, and the blocker list only.
+
+#### Rule Specification: BARI_HC_DAIRY_SATFAT_V1 (Hardened — Build-Ready)
+
+**Flag:** `BARI_HC_DAIRY_SATFAT_V1` (environment variable, default OFF)
+
+**Category scope:** `category_id == "hard_cheeses"` AND `product_type IN {"yellow", "hard_grating", "hard"}` (see predicate P0 below — category_id guard is outermost; the `dairy_protein` router bucket is NOT the scope criterion)
+
+---
+
+**Qualification predicate (ordered boolean logic — ALL conditions must hold, evaluated in this order):**
+
+**P0 — Category identity guard (OUTERMOST — evaluated before any other predicate)**
+
+```
+category_id == "hard_cheeses"
+AND product_type IN {"yellow", "hard_grating", "hard"}
+```
+
+This guard fires first. If P0 is false, the flag has no effect regardless of any other signal. This prevents the flag from applying to yogurt, kefir, labneh, or any other `dairy_protein` product that routes through the same bucket. It also prevents any future router change from silently expanding the flag's scope.
+
+**P1 — NOVA gate**
+
+```
+nova_proxy <= 2
+```
+
+NOVA 1–2 = minimal/minor processing. NOVA 3 (anti-caking agents in grated cheese) and NOVA 4 (processed cheese emulsifiers) are not endemic-fat scenarios and receive no relief.
+
+**P2 — Processed subpool gate**
+
+```
+subpool != "processed"
+```
+
+Processed cheese subpool always contains emulsifying salts (phosphates, citrates) — these change the food matrix. No relief for the processed subpool regardless of NOVA score.
+
+**P3 — Sanitized ingredient count**
+
+```
+sanitized_ingredient_count <= 6
+```
+
+Ingredient complexity gate. A hard cheese with more than 6 ingredients has non-standard additives that disqualify it from endemic-fat relief. (Standard hard cheese: milk/cream + salt + rennet + starter cultures + optional enzyme = 4–5 ingredients; 6 is the upper bound allowing one additional natural component such as annatto or truffle.)
+
+**P4 — Sodium hard backstop (non-relieved)**
+
+```
+sodium_mg < 850
+```
+
+Non-relieved absolute guard. Products at or above 850mg/100g sodium have structural sodium excess that the endemic-fat relief must not mask. This backstop is independent of and cumulative with the sodium red-label cap in the scoring logic.
+
+**P5 — Full anti-gaming blocker (ALL sub-conditions must be false)**
+
+See "Full anti-gaming blocker list" section below. If any token or E-number in that list is present in the ingredient text, P5 = false and the product is disqualified.
+
+**COMBINED predicate:** P0 AND P1 AND P2 AND P3 AND P4 AND P5
+
+---
+
+**Full anti-gaming blocker list (P5 — HC-3)**
+
+A product is disqualified (P5 = false) if the ingredient text contains ANY of the following. The engine must perform case-insensitive substring match on the normalized Hebrew + Latin ingredient string after standard whitespace normalization.
+
+**Tier A — Engineered fats (added non-dairy fat sources)**
+
+| Token (Hebrew / Latin) | Notes |
+|------------------------|-------|
+| `שמן דקל` / `palm oil` | Palm oil — engineered fat |
+| `שמן חמניות` / `sunflower oil` | Sunflower oil |
+| `שמן קנולה` / `canola oil` / `rapeseed oil` | Canola / rapeseed |
+| `שמן סויה` / `soybean oil` / `soya oil` | Soybean oil |
+| `שמן שיאה` / `shea` | Shea butter / shea oil |
+| `שמן צמחי` / `vegetable oil` / `vegetable fat` | Generic vegetable oil/fat |
+| `מרגרינה` / `margarine` | Margarine |
+| `שמן קוקוס` / `coconut oil` | Coconut oil |
+| `שמן מוקשה` / `hydrogenated` / `partially hydrogenated` | Hydrogenated fat |
+| `אינטר-אסטריפיקציה` / `interesterified` | Interesterified fat |
+| `שמנת מוספת` | Added cream (fat augmentation beyond intrinsic) |
+| `חמאה מוספת` | Added butter |
+
+**Tier B — Protein concentrate / structurally engineered dairy components**
+
+These indicate industrial protein manipulation that is incompatible with the minimal-processing claim underlying the endemic-fat relief:
+
+| Token (Hebrew / Latin) | Notes |
+|------------------------|-------|
+| `קזאינט` / `caseinate` / `sodium caseinate` / `calcium caseinate` | Caseinate — not endemic |
+| `תרכיז חלבון חלב` / `milk protein concentrate` / `MPC` | Milk protein concentrate |
+| `תרכיז חלבון מי גבינה` / `whey protein concentrate` / `WPC` | Whey protein concentrate |
+| `בידוד חלבון מי גבינה` / `whey protein isolate` / `WPI` | Whey protein isolate |
+
+**Tier C — Structural additives, stabilizers, and emulsifiers (ingredient text tokens)**
+
+| Token (Hebrew / Latin) | Notes |
+|------------------------|-------|
+| `עמילן מתוקן` / `עמילן משונה` / `modified starch` | Modified starch — structural agent |
+| `עמילן` / `starch` | Generic starch (if not part of a cheese name) — flagged conservatively; build lane to implement as whole-word match excluding compound cheese names |
+| `קרגינן` / `carrageenan` / `E407` | Carrageenan / Irish moss |
+| `גואר` / `guar` / `guar gum` / `E412` | Guar gum |
+| `ג'לטין` / `gelatin` | Gelatin |
+| `אגר` / `agar` / `E406` | Agar |
+| `לוקוסט בין גאם` / `locust bean gum` / `carob gum` / `E410` | Locust bean gum |
+| `קסנתן` / `xanthan` / `xanthan gum` / `E415` | Xanthan gum |
+| `מלחי התכה` / `melting salts` / `emulsifying salts` | Processed-cheese emulsifying salts (compound token) |
+| `פוליפוספט` / `polyphosphate` | Polyphosphate |
+| `ציטרט נתרן` / `sodium citrate` / `E331` | Sodium citrate |
+| `ציטרט אשלגן` / `potassium citrate` / `E332` | Potassium citrate |
+| `ציטרט סידן` / `calcium citrate` / `E333` | Calcium citrate |
+| `פוספט נתרן` / `sodium phosphate` / `E339` | Sodium phosphate |
+| `פוספט סידן` / `calcium phosphate` / `E341` | Calcium phosphate |
+| `פירופוספט` / `diphosphate` / `E450` | Diphosphate / pyrophosphate |
+| `טריפוספט` / `triphosphate` / `E451` | Triphosphate |
+| `פוליפוספטים` / `polyphosphates` / `E452` | Polyphosphates |
+
+**E-number shorthand (engine may match E-number strings directly):**
+
+```
+BLOCKED_E_NUMBERS = {
+    "E331", "E332", "E333",   # citrates
+    "E339", "E340", "E341",   # phosphates
+    "E407",                    # carrageenan
+    "E406",                    # agar
+    "E410",                    # locust bean gum
+    "E412",                    # guar gum
+    "E415",                    # xanthan gum
+    "E450", "E451", "E452",    # di/tri/polyphosphates
+}
+```
+
+**Product subtype exclusion (checked via `subpool` / `product_type` field, not ingredient text):**
+
+The following `product_type` / `subpool` values are NEVER eligible regardless of all other predicates. The engine must check this independently of P5 ingredient matching:
+
+```
+BLOCKED_SUBTYPES = {
+    "processed",          # processed cheese — NOVA 4, emulsifying salts
+    "spread",             # cheese spread
+    "processed_slice",    # individually wrapped processed slices
+    "analogue",           # non-dairy cheese analogue
+    "cheese_product",     # "מוצר גבינה" / cheese preparation
+    "cheese_preparation", # "תכשיר גבינה"
+    "cheese_substitute",  # "תחליף גבינה"
+}
+```
+
+Any product where `product_type` or `subpool` is in `BLOCKED_SUBTYPES` is disqualified at P2, and ALSO by explicit subtype check at P5 as a redundant guard.
+
+---
+
+**Mechanism (what the flag does when ON, for qualifying products):**
+
+| Component | Action | Precedent |
+|-----------|--------|-----------|
+| `ISRAELI_RED_LABELS_2_PLUS` reformulable count | sat_fat excluded from reformulable count (identical to `EV-REDLABEL-005` endemic sat_fat exclusion for `dairy_protein`/`whole_food_fat`) | EV-REDLABEL-005 / EV-REDLABEL-006 |
+| `HP_FAT_SODIUM_COMBO` penalty | Suppressed for qualifying hard-cheese products (same as TASK-373 whole-food snack bar relief) | BARI_SNACK_WHOLEFOOD_V1 precedent |
+| R5 `seed_pen` in fat_quality dimension | Reduced from 5 → 0 for qualifying products (endemic dairy fat is not an engineering choice) | New; analogous to `EV-048` butter whole_food_fat gate |
+| sat_fat red_label_pen in fat_quality dimension | PRESERVED. The sat_fat red label still penalizes the fat_quality dimension (product has genuinely high sat_fat; the relief is about the BINARY CAP, not about pretending sat_fat doesn't exist) | Intentional distinction from full exemption — HC-5 |
+| regulatory_quality dimension | sat_fat excluded from reformulable count → regulatory_quality scored as if 1 less red label | Consistent with reformulable-count logic |
+| sat_fat inference (0.62 × fat_g) | RETAINED (EV-099 Ruling B is non-negotiable; the inference must be on when sat_fat panel value is absent) | EV-099 — HC-5 |
+
+---
+
+**B-eligibility thresholds (HC-2) — explicit tier cutoffs:**
+
+Under the hardened spec, B (score 65–74) requires a materially better profile than the standard full-fat Israeli yellow cheese. The engine MUST enforce these tier cutoffs after the base weighted score and before grade assignment:
+
+| Tier | Condition | Score ceiling | Grade ceiling |
+|------|-----------|--------------|---------------|
+| B-eligible | sodium_mg < 550 AND kcal < 350 AND fat_g < 25 | 100 (no additional ceiling) | Up to A if also A-eligible |
+| B-eligible | sodium_mg < 600 AND (kcal < 380 OR fat_g < 22) | 74 | B (cannot reach A from this tier) |
+| C-ceiling (standard full-fat) | sodium_mg >= 600 OR fat_g >= 25 | 67 | C |
+
+Rationale for each tier:
+
+- **B-eligible tier 1 (sodium < 550, kcal < 350, fat < 25%):** This covers reduced-fat and genuinely low-sodium products. At sodium < 550mg the sodium red-label threshold does not fire; at fat < 25% the inferred sat_fat drops below ~15.5g — meaningfully lower than the 28% reference. These products may reach B or A depending on NOVA and composition cleanliness.
+- **B-eligible tier 2 (sodium < 600, reduced kcal OR reduced fat):** A product that avoids the sodium red label (sodium < 600mg) but still has full fat, or has lower energy density — qualifies for B but is capped at 74 (cannot reach A) because the remaining nutrient profile is not exceptional. Example: Gush Halav 28% at 510mg sodium, 345 kcal — borderline B.
+- **C-ceiling (sodium >= 600 OR fat >= 25%):** This is the standard Israeli hard cheese profile. At 28% fat and 640mg sodium the binding cap is the single-sodium-red-label cap (63) or score 67, whichever is lower. Grade C is the correct ceiling for this profile under the hardened spec.
+
+Note: the sodium caps from the prior spec (na_cap = 60 for sodium >= 700; na_cap = 63 for sodium >= 600) remain active and are cumulative with these tier ceilings — the binding constraint is `min(wds, na_cap, tier_ceiling, cal_backstop)`.
+
+---
+
+**Grade-A block predicate (HC-1):**
+
+After the base weighted score is computed and all caps/ceilings applied, a final A-block check is applied:
+
+```
+IF (sat_fat_effective > 5.0 AND sodium_mg > 600):
+    BLOCK GRADE A — score is capped at 74 (top of grade B)
+```
+
+Where `sat_fat_effective = sat_labelled if sat_labelled is not None else 0.62 * fat_g`.
+
+This predicate fires independently of the B-eligibility tier — it is the last gate before grade assignment and cannot be bypassed by any other relief mechanism. Its effect:
+
+- A product with inferred sat_fat 17.4g (28% fat) and sodium 640mg: sat_fat > 5 AND sodium > 600 → A blocked → maximum grade B regardless of NOVA, composition, or any other signal.
+- A product with measured/inferred sat_fat ≤ 5g AND sodium ≤ 600mg: A-block does NOT fire — these products may legitimately reach A if their base score and B-eligibility tier support it.
+- The A:1 in the original projection (Galboa 5%, sat_fat ~3g, sodium 491mg): sat_fat 3 ≤ 5 AND sodium 491 ≤ 600 → A-block does NOT fire → A remains possible if base score supports it.
+- Goat Gouda NOVA1 (30% fat, sodium 659mg): sat_fat ~18.6g > 5 AND sodium 659 > 600 → A blocked → caps at 74/B.
+
+Rationale: a product with both sat_fat and sodium above their respective Israeli red-label thresholds has two genuine nutrient concerns that are both confirmed by the label. The dairy-matrix effect attenuates the BINARY CAP (2-PLUS penalty) but does not neutralize both concerns simultaneously to the point of warranting Bari's top grade. Grade A is reserved for products where the nutritional architecture is genuinely exceptional — a dual-red-label hard cheese is not that.
+
+---
+
+**Non-relieved guardrails (cannot be overridden by the flag — HC-5 preserved):**
+
+| Guardrail | Threshold | Rationale |
+|-----------|-----------|-----------|
+| G1. Sodium hard backstop | `sodium_mg >= 850`: no relief (qualification blocked at P4) | High sodium is a reformulable concern; products at ≥850mg have structural sodium excess |
+| G2. NOVA gate | `nova > 2`: no relief (qualification blocked at P1) | NOVA 3–4 products have added industrial processing; dairy-matrix effect argument applies to minimally processed hard cheese only |
+| G3. Processed subpool | always disqualified (qualification blocked at P2 and P5 subtype check) | Emulsifying salts change the food matrix; cheese-matrix LDL-attenuation evidence does not apply to processed cheese analogs |
+| G4. Calorie density backstop | `kcal >= 380`: score capped at 67 (top of C grade band) | Hard cheeses above 380 kcal/100g are materially calorie-dense even by cheese-category standards; backstop prevents A/B for calorie-dense products. Cumulative with sodium caps and B/C tier ceilings |
+| G5. Anti-gaming blocker | Full token + E-number list per HC-3 (expanded from original G5) | Ensures only genuine minimally-processed hard cheeses qualify; expanded to cover protein concentrates, starch, gums, citrate/phosphate emulsifiers by name and E-number |
+
+---
+
+#### Grade Distribution Projection (Hardened)
+
+**Method:** Band estimate from cap/penalty structure analysis using bsip1 corpus data (not an engine re-run). Sat_fat inference restored (0.62 × fat_g) per EV-099 Ruling B. Endemic relief applied per the HARDENED predicate (category_id guard + A-block + B/C tier ceilings + full blocker list). Source data: direct product scrape from yochananof storefront (bsip1_outputs, run_hard_cheeses_yohananof_001). Projection script: `02_products/hard_cheeses/project_hc_rule_v2.py` (updated to reflect hardened predicate).
+
+**Current scored distribution (run_hard_cheeses_003_shelfrel, n=30):** A:2 / B:23 / C:3 / D:2
+
+| Projected grade band | Count (n=30) | Key cluster |
+|---------------------|--------------|-------------|
+| A | 1 | Galboa 5% (sat_fat ~3.1g ≤ 5g, sodium 491mg ≤ 600mg — A-block does NOT fire; tier-1 eligible; base score 75.8/A) |
+| B | 11 | 2 × Emek 9% light (sodium ~491–495mg, tier-1 eligible, 73.8/B) + 2 × Gush Halav 28% (sodium 510mg, tier-2 ceiling 67/B) + Tal HaEmek 32% (sodium 550mg, C-ceiling=fat≥25, cal backstop=67/B) + 6 NOVA-3 products (no relief, stay at current B scores 69–76) |
+| C | 17 | Standard 28%/640mg yellow cheese (na_cap=63, C-ceiling=67 → 63/C) + Noam 9% at 620mg (C-ceiling + A-block → 63/C) + Noam 22% at 670mg (C-ceiling + A-block → 63/C) + Noam 28% NOVA1 at 660mg (63/C) + Grana Padano (sodium 600mg, na_cap=63, G4 backstop → 63/C) + Dutch Gouda 800–831mg (na_cap=60/C) + Gouda Goat Dutch 800mg (60/C) + Baby Bell 710mg (60/C) |
+| D | 1 | Processed cheese 13% (blocked_subtype / NOVA 4: no relief) |
+| OFF-excluded | 1 | Gouda Pesto (OFF-contaminated data, excluded per TASK-238) |
+
+**Product-level binding logic for key cases:**
+
+- **Galboa 5% (A):** tier-1 (na 491 < 550, kcal 177 < 350, fat 5 < 25) → ceiling=100; A-block=off (sat 3.1 ≤ 5); base=75.8 → 75.8/A.
+- **Emek 9% light (sodium 491–495mg, B):** tier-1 eligible; A-block=off (sat 5.6 > 5 but sodium ≤ 600 — AND requires BOTH); base=73.8 → 73.8/B. (Sat > 5 but sodium single red-label only — one concern, not two; A-block is the dual-concern gate, not a single-sat-fat gate.)
+- **Noam 9% light (sodium 620mg, C):** A-block fires (sat 5.6 > 5 AND na 620 > 600); C-ceiling fires (na ≥ 600 → 67); na_cap=63 (na ≥ 600); binding = min(base, 63, 67, 74) = 63/C.
+- **Gush Halav 28% (sodium 510mg, B):** A-block=off (na 510 ≤ 600); tier-2 ceiling=67 (fat 28 ≥ 25 → C-ceiling, not tier-2); na_cap=100; cal backstop=100 (kcal 345 < 380); binding = min(base ~75, 100, 67, 100) = 67/B. (C-ceiling fires at fat ≥ 25, overriding tier-2 intent — Gush Halav lands at 67/B, the B/C boundary, because fat ≥ 25 puts it in C-ceiling zone but sodium < 600 keeps na_cap off.)
+- **Standard 28%/640mg NOVA2 (C):** A-block fires; C-ceiling fires (na ≥ 600 → 67); na_cap=63; binding = min(base ~75, 63, 67, 74) = 63/C.
+- **Tal HaEmek 32%/550mg (B):** A-block=off (na 550 ≤ 600); C-ceiling fires (fat 32 ≥ 25 → 67); G4 backstop fires (kcal 397 ≥ 380 → 67); binding = min(base ~75, 100, 67, 67) = 67/B.
+
+**Verified projection (script output, `project_hc_rule_v2.py` exit code 0):**
+
+```
+CURRENT grade dist (run_hard_cheeses_003_shelfrel, n=30):  {'A': 2, 'B': 23, 'C': 3, 'D': 2}
+PROJECTED grade dist (hardened predicate, n=30):           {'A': 1, 'B': 11, 'C': 17, 'D': 1}
+```
+
+Grade movers (14 products): 2 A→C (both current A products are full-fat 28–30%/640–660mg, A-block fires + C-ceiling) + 12 B→C (standard 28%/640mg products: C-ceiling at sodium ≥ 600) + 1 B→A (Galboa 5%) + 1 D→C (Baby Bell NOVA1: endemic relief qualifies, C-ceiling binds at 60/C).
+
+**Projection uncertainty:** ±5 points. Actual scores require an engine re-run with the flag on. The A:1 count (Galboa 5%) is robust — tier-1 eligible and A-block off. Build lane should confirm Emek 9% light sodium values from direct scrape: if any product has sodium > 600mg, A-block would fire and it would fall to C.
+
+#### Comparison to Alternatives Considered
+
+**Option (b): BARI_HC_NOVA1_V1 (TASK-286 original proposal)**
+
+The parked TASK-286 proposal was specifically a NOVA-1 reclassification rule: relabel short-ingredient dairy as NOVA 1 and suppress the sat_fat inference. EV-099 blocked this because: (i) the sat_fat inference must be retained per Ruling B; (ii) NOVA reclassification without inference correction doesn't fix the scoring collapse — a NOVA 1 product with 2 red labels still caps at 45 under BSIP2-HC-002. This EV supersedes that approach with a more precise mechanism: the sat_fat INFERENCE is retained AND the resulting sat_fat red label is excluded from the 2-PLUS cap for qualifying hard cheeses. The outcome is the same scoring relief the NOVA-1 rule was reaching for, but implemented through a governed endemic-sat-fat path rather than through NOVA reclassification.
+
+**Option (c): Extend REDLABEL_ENDEMIC_SATFAT_CATEGORIES to include hard cheeses**
+
+The existing `REDLABEL_ENDEMIC_SATFAT_CATEGORIES = {"dairy_protein", "whole_food_fat"}` already covers dairy_protein, and hard cheeses route to `dairy_protein`. This means `BARI_REDLABEL_V1` (currently OFF for hard cheeses) already has the endemic sat_fat exclusion mechanism built in. However, activating `BARI_REDLABEL_V1` on hard cheeses is a much broader scoring change than the flag proposed here — it activates the full continuous red-label model across the category, not just the endemic-fat relief. The correct path is to implement `BARI_HC_DAIRY_SATFAT_V1` as a surgical flag that activates only the endemic-fat relief components (2-plus cap exclusion + HP suppression + seed_pen reduction), independently of the full `BARI_REDLABEL_V1` model.
+
+**Chosen option: Extend the intrinsic-fat-relief machinery (precedent from BARI_SNACK_WHOLEFOOD_V1)**
+
+Same category of solution as TASK-373 snacks: intrinsic vs. engineered fat distinction, NOVA-gated predicate, HP suppression, calorie backstop, loophole guards for added fats. The snack precedent is structurally identical (coconut fat excluded from the NOVA-1 path because lauric/myristic acids are LDL-raising despite being "natural"; here processed-cheese subpool excluded because emulsifying salts change the matrix). The machinery is proven and the governance path is clear.
+
+#### Evidence Tier Summary
+
+| Claim | Evidence tier | Source |
+|-------|--------------|--------|
+| Hard cheese produces attenuated LDL vs butter at identical sat_fat | Moderate | Brassard 2017 PMID 28251937; Feeney 2018 PMID 30107488; Hjerpsted 2011 PMID 22030228; Pradeilles 2023 PMID 37717700 (meta-analysis 7 RCTs). Note: tier corrected from Moderate-Strong — all three originally cited studies carried wrong identifiers (citation sweep 2026-06-23); one cited paper does not exist in PubMed; rebuilt citation base warrants Moderate not Moderate-Strong. |
+| Fermented dairy bioactives (K2, bioactive peptides) modulate LDL response | Weak | Lordan et al. 2018 PMID 29494487 (Foods, narrative review). Note: tier corrected from Moderate — original citation carried wrong identifiers resolving to unrelated papers; real Lordan et al. paper is a narrative review in Foods 2018, which warrants Weak not Moderate. |
+| NOVA 1-2 classification for milk+salt+rennet+cultures hard cheese | Strong | Monteiro 2019 PMID 30744710, DOI 10.1017/S1368980018003762 (Public Health Nutrition). Note: prior identifiers corrected 2026-06-23 — both the original PMID and DOI resolved to unrelated papers. |
+| USDA FDC sat_fat fraction 0.62-0.66 for hard yellow cheeses | Strong | USDA FDC SR Legacy FDC IDs 1008065, 1008066, 1008032 |
+| Israeli sat_fat red-label threshold 5g/100g | Authoritative | Israeli Ministry of Health food labelling regulation |
+| Israeli sodium red-label threshold 600mg/100g | Authoritative | Israeli Ministry of Health food labelling regulation |
+
+**Overall evidence tier for the proposed rule:** Moderate. The dairy-matrix effect is consistent in direction across multiple independent RCTs and a 2023 meta-analysis, but effect sizes are modest, aggregate n is small, all trials are short, and COI concerns are present in multiple studies. Evidence tier corrected from Moderate-Strong following citation integrity sweep (2026-06-23): all three originally cited PMIDs were wrong, and the rebuilt citation base warrants Moderate not Moderate-Strong per Research Agent verification in HC_DAIRY_SATFAT_EVIDENCE_VERIFICATION.md. The NOVA classification is definitional for this product category (Strong). The flag is conservative (default OFF, NOVA gate, sodium backstop, calorie backstop, A-block for dual-red-label products, C-ceiling for standard full-fat) and does not suppress the sat_fat concern from the scoring architecture — it only lifts the binary cap that treats cheese identically to NOVA-4 engineered food.
+
+#### What Is Not Done (design-only)
+
+This is a hardened design-only D6 spec. The following steps are DOWNSTREAM and NOT done here:
+
+1. Engine implementation (`score_engine.py` edit: `BARI_HC_DAIRY_SATFAT_V1` flag + predicate logic + cap/penalty modifications + A-block + B/C tier ceilings + full blocker list from HC-3)
+2. Constants additions (blocker token lists, E-number set, BLOCKED_SUBTYPES, sodium backstop constant, calorie backstop threshold, B-eligibility tier thresholds)
+3. Re-score of the 30-product corpus with the flag on (required for final verification of projection)
+4. Red-team gate on re-scored outputs
+5. Owner go-live decision (TASK-286 / TASK-380 completion)
+6. Resolving the 2 OFF-contaminated barcodes (7290102302864, 7290014455252) via direct re-scrape
+
+| Field | Value |
+|-------|-------|
+| **label_observability** | Fully label-observable. All predicate signals (category_id, product_type, ingredient count, ingredient text including E-number strings, fat_g panel value, sodium_mg panel value, NOVA proxy) are derivable from the direct-scrape label. sat_fat inference (0.62 × fat_g) is the standard EV-099 Ruling-B path — no external source enters the scoring. EDPG firewall preserved. |
+| **anti_rule_accumulation** | This extends the existing endemic-sat-fat machinery (EV-REDLABEL-005/006 + EV-048) rather than adding a parallel system. It reuses the snack wholefood predicate pattern (BARI_SNACK_WHOLEFOOD_V1) for the HP-suppression mechanism. No new architectural layer is introduced. HC-3 expands an existing guard list rather than adding a new mechanism. |
+| **should_affect_score_now** | false — flag default OFF; requires engine build |
+| **published_scores_moved** | 0 (design-only) |
+| **rollback** | Set `BARI_HC_DAIRY_SATFAT_V1=off` (default) → engine byte-identical to current state |
+| **co_sign** | D6: Nutrition Agent (2026-06-23, TASK-380). D7: Product Agent — approved direction 2026-06-23; hardening changes (HC-1 through HC-5) are within the approved direction scope; no additional D7 re-sign required per Product Agent ruling unless the build lane deviates from this spec. |
 
 ---
 
