@@ -47,6 +47,11 @@ const GRANOLA_PROTEIN_METRIC = {
   scaleMax: 25,
   good: 15,
   poor: 10,
+  // Match the sugar bar: mid-band (10–15g) protein values otherwise render as a faint
+  // neutral bar (#B5BBB6 on #ECECE7). Darker neutral fill keeps both bars visible
+  // for the glancing reader (owner live-review note, TASK-385). Granola-scoped only —
+  // the shared PROTEIN_METRIC is untouched so other categories don't change.
+  neutralBarFill: "#7A817C",
 } as const;
 
 const GRANOLA_METRIC_SPECS = [GRANOLA_SUGAR_METRIC, GRANOLA_PROTEIN_METRIC] as const;

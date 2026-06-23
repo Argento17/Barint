@@ -44,6 +44,14 @@ export interface MetricSpec {
   lowerIsBetter?: boolean;
   /** spoken units for the aria-label, e.g. "גרם" / "תוספי מזון". */
   ariaUnit: string;
+  /**
+   * Optional override fill colour for the neutral bar segment only.
+   * Use when the category-default TONE.neutral (#B5BBB6) is too close to the
+   * track colour (#ECECE7) to be legible — e.g. granola sugar, whose mid-band
+   * (8–18g) would otherwise render as an almost-invisible bar.
+   * Has no effect on good/poor segments or pip metrics.
+   */
+  neutralBarFill?: string;
 }
 
 // ── Category presets (MILK_RECOMMENDATION §1: the set is category-scoped) ──────────
@@ -217,6 +225,9 @@ export const GRANOLA_SUGAR_METRIC: MetricSpec = {
   poor: 18,
   lowerIsBetter: true,
   ariaUnit: "גרם סוכר ל-100 גרם",
+  // Mid-band (8–18g) neutral bars were near-invisible (#B5BBB6 on #ECECE7, ~2:1 contrast).
+  // Darken the neutral segment only — still informational grey, not alarm-red (§4.3).
+  neutralBarFill: "#7A817C",
 };
 
 // Display rounding: raw per-100g values can carry full float precision (e.g. fiber
@@ -283,7 +294,10 @@ function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
               className="block h-full rounded-full"
               style={{
                 width: `${Math.max(0, Math.min(100, (value / spec.scaleMax) * 100))}%`,
-                background: TONE[tone],
+                background:
+                  tone === "neutral" && spec.neutralBarFill
+                    ? spec.neutralBarFill
+                    : TONE[tone],
               }}
             />
           ) : null}

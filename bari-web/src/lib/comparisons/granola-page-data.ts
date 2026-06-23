@@ -36,7 +36,7 @@ const { meta: granolaCorpusMeta, products: _granolaProductsRaw } =
 const granolaProducts: BariProductVM[] = _granolaProductsRaw.map((p) => ({
   ...p,
   metrics: {
-    protein_g: p.metrics?.protein_g ?? null,
+    protein_g: p.expansion?.nutrition?.protein ?? null,
     sugar_g: p.expansion?.nutrition?.sugar ?? null,
   },
 }));
@@ -54,10 +54,10 @@ export const granolaHero = {
 } as const;
 
 export const granolaPrologueSentences = [
-  "בדקנו 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — משופרסל, קרפור ויוחננוף; קטגוריה שהופרדה מדגני הבוקר כי ההרכב והעיבוד שלה שונים.",
-  "אף מוצר לא הגיע ל-A: 4 ב-B, 8 ב-C, 7 ב-D — ו-3 נחתו ב-E.",
-  "הטוב ביותר מגיע ל-69.7/B; הנמוך ל-31.4/E — פער של 38.3 נקודות על אותו מדף, לעיתים תחת שם דומה.",
-  "מה שמפריד בין מוצר ל-B למוצר ל-D הוא כמות הסוכר, השומן והסירופ בפועל — לא תדמית הבריאות.",
+  "גרנולה נראית כמו ארוחת בוקר בריאה — אבל על המדף היא הרבה פעמים דגנים עם שמן, סירופ ופירות מסוכרים.",
+  "בדקנו 22 מוצרים מהמדף הישראלי: אף אחד לא הגיע ל-A. 4 הגיעו ל-B, 8 ל-C, 7 ל-D — ו-3 נחתו ב-E.",
+  "הפער בין הטוב ביותר (69.7/B) לנמוך ביותר (31.4/E) הוא 38.3 נקודות — על אותו מדף, לעיתים תחת שם דומה.",
+  "מה שמפריד בין B ל-D הוא לא האריזה: זה סוג השמן, סוג הממתיק, והאם הפירות כבר הגיעו מסוכרים.",
 ] as const;
 
 export const granolaCategoryNote =
