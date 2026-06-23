@@ -28,6 +28,7 @@ const STATIC_PATHS = [
   "/hashvaot/snack-bars",
   "/hashvaot/snacks",
   "/blog",
+  "/blog/sugar-alcohols",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
