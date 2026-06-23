@@ -61,25 +61,32 @@ export function ComparisonTable({
 
   // Precompute the in-list band dividers in corpus order (Invariant 1). A divider is
   // shown on the first row whose score band differs from the row above it.
+  //
+  // TASK-365: standard competition ranking — tied products share the same rank number.
+  // e.g. if three products share score 50, they all show rank N and the next distinct
+  // score resumes at N+3 (not N+1). Unscored products (score === null) never get a rank.
   const rows = useMemo(() => {
     const withBand = products.map((product, index) => ({
       product,
       index,
       band: bandOf(product.score),
     }));
-    // TASK-365: standard competition ranking — tied products share the same rank number.
-    // Walk in corpus order (already score-sorted); the first product at each distinct score
-    // claims the next rank slot (= products seen so far + 1), so e.g. 12 products at score 50
-    // all show the same rank and the next distinct score resumes after the tie.
+
+    // Build a score → competition rank map. Walk in corpus order (already score-sorted);
+    // track the next rank slot = number of products seen so far + 1.
     const scoreToRank = new Map<number, number>();
     let nextRank = 1;
     for (const { product } of withBand) {
       if (product.score == null) continue;
-      if (!scoreToRank.has(product.score)) scoreToRank.set(product.score, nextRank);
+      if (!scoreToRank.has(product.score)) {
+        scoreToRank.set(product.score, nextRank);
+      }
       nextRank++;
     }
+
     return withBand.map((row, i) => ({
       ...row,
+      // rank: the competition rank for this product's score (0 = unscored, don't show).
       competitionRank:
         row.product.score != null ? (scoreToRank.get(row.product.score) ?? 0) : 0,
       showDivider: i === 0 || withBand[i - 1].band.id !== row.band.id,
@@ -114,6 +121,15 @@ export function ComparisonTable({
                   {band.label}
                 </span>
                 <span className="bari-cmp-divider-line" />
+              </div>
+            ) : null}
+            {product.bandNote ? (
+              <div
+                className="px-4 py-2 text-[0.75rem] leading-[1.5] text-[#7A7A7A]"
+                style={{ borderTop: "1px dashed #E0DDD5", backgroundColor: "#FAFAF8" }}
+                aria-label={product.bandNote}
+              >
+                {product.bandNote}
               </div>
             ) : null}
             <ComparisonRow

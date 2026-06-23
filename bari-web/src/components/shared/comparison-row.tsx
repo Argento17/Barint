@@ -178,6 +178,63 @@ export const ComparisonRow = memo(function ComparisonRow({
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
             {product.name}
           </span>
+          {product.claimShortfallFlag ? (
+            <span
+              className="mt-1 inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5"
+              style={{ backgroundColor: "#FBF8EE", borderColor: "#ECE3C8" }}
+              aria-label={product.claimShortfallFlag}
+            >
+              <span
+                className="text-[10px] leading-none"
+                aria-hidden
+                style={{ color: "#6B5A1E" }}
+              >
+                ⚠
+              </span>
+              <span
+                className="text-[10px] font-semibold leading-none"
+                style={{ color: "#6B5A1E" }}
+              >
+                {product.claimShortfallFlag}
+              </span>
+            </span>
+          ) : null}
+          {product.absorbedMgPill ? (
+            <span
+              className="mt-1 inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5"
+              style={{ backgroundColor: "#F0F4F1", borderColor: "#C6D4CB" }}
+              title="הערכה לפי שיעורי ספיגה ממוצעים במחקרים — לא מדידה של מוצר זה."
+              aria-label={product.absorbedMgPill}
+            >
+              <span
+                className="text-[10px] font-semibold leading-none"
+                style={{ color: "#3A6B50" }}
+              >
+                {product.absorbedMgPill}
+              </span>
+            </span>
+          ) : null}
+          {product.valueFlag ? (
+            <span
+              className="mt-1 inline-flex items-center gap-1 rounded-full border px-1.5 py-0.5"
+              style={{ backgroundColor: "#FBF1F0", borderColor: "#E6C9C5" }}
+              aria-label={product.valueFlag}
+            >
+              <span
+                className="text-[10px] leading-none"
+                aria-hidden
+                style={{ color: "#843329" }}
+              >
+                ✕
+              </span>
+              <span
+                className="text-[10px] font-semibold leading-none"
+                style={{ color: "#843329" }}
+              >
+                {product.valueFlag}
+              </span>
+            </span>
+          ) : null}
           {verdict ? (
             <p className="mt-[5px] text-[0.8rem] leading-[1.45] text-[#3C443F]">
               {verdict}

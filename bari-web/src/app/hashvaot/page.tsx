@@ -170,8 +170,8 @@ export default function HashvaotIndexPage() {
             תוספי תזונה
           </h2>
           <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
-            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה, ציונים בקטגוריה זו טרם
-            אושרו לפרסום צרכני.
+            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
+            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
           </p>
           <Link
             href="/hashvaot/supplements"
