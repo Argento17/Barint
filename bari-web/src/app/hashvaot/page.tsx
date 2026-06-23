@@ -164,29 +164,6 @@ export default function HashvaotIndexPage() {
           />
         </div>
 
-        {/* ── Supplements — separate from the food grid ── */}
-        <div className="mt-16 border-t border-[#1A1D24]/[0.08] pt-12">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
-            תוספי תזונה
-          </h2>
-          <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
-            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
-            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
-          </p>
-          <Link
-            href="/hashvaot/supplements"
-            className={cn(
-              "mt-5 inline-flex items-center gap-2 rounded-xl border border-[#1A1D24]/10 bg-white/70 px-5 py-3.5",
-              "text-sm font-semibold text-[#111318] shadow-sm backdrop-blur-sm",
-              "transition-[transform,box-shadow] duration-300 hover:-translate-y-px hover:border-[#1F8F6A]/30 hover:shadow-md",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
-            )}
-          >
-            <span>השוואות תוספי תזונה</span>
-            <ArrowLeft className="size-4 rotate-180 text-[#1F8F6A]" aria-hidden />
-          </Link>
-        </div>
-
         <Link
           href="/"
           className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[#4E5663] transition-colors hover:text-[#111318]"
