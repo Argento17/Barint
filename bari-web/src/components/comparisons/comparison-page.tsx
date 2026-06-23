@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
@@ -28,32 +28,70 @@ const PARTIAL_PAGE_DISCLOSURE =
 // "הערת קטגוריה — <topic>" followed by a newline and the body text. Split and render
 // each paragraph independently so all paragraphs are visible with correct RTL spacing.
 // A single-paragraph note (no "\n\n") renders identically to the previous <p> approach.
-function CategoryNoteBox({ note }: { note: string }) {
+//
+// TASK-384 FIX: collapseMobile prop — on mobile (<md), shows only the first paragraph
+// with a "קרא עוד" toggle; remaining paragraphs expand inline. Content stays in DOM for
+// SEO. Desktop (md+) is always fully expanded regardless of the prop.
+function CategoryNoteBox({ note, collapseMobile = false }: { note: string; collapseMobile?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
   const paragraphs = note.split(/\n\n+/);
+  const hasMore = collapseMobile && paragraphs.length > 1;
+
   return (
     <div
       className="rounded-[9px] border border-[#ECE3C8] bg-[#FBF8EE] px-3 py-2 text-[12px] leading-normal text-[#6A6147]"
       dir="rtl"
     >
       {paragraphs.map((para, i) => {
+        // On mobile with collapse active: hide paragraphs after the first unless expanded.
+        // md+ always shown (handled via className).
+        const hiddenOnMobile = hasMore && i > 0 && !expanded;
+
         // A heading line ends at the first "\n" within the paragraph.
         const newlineIdx = para.indexOf("\n");
         if (newlineIdx !== -1) {
           const heading = para.slice(0, newlineIdx).trim();
           const body = para.slice(newlineIdx + 1).trim();
           return (
-            <p key={i} className={i > 0 ? "mt-3" : undefined}>
+            <p
+              key={i}
+              className={cn(
+                i > 0 ? "mt-3" : undefined,
+                hiddenOnMobile ? "hidden md:block" : undefined
+              )}
+            >
               <span className="block font-semibold">{heading}</span>
               {body}
             </p>
           );
         }
         return (
-          <p key={i} className={i > 0 ? "mt-3" : undefined}>
+          <p
+            key={i}
+            className={cn(
+              i > 0 ? "mt-3" : undefined,
+              hiddenOnMobile ? "hidden md:block" : undefined
+            )}
+          >
             {para.trim()}
           </p>
         );
       })}
+
+      {/* Expand/collapse toggle — mobile only, only when collapseMobile is active */}
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className={cn(
+            "mt-2 text-[11px] font-semibold text-[#1F8F6A] hover:underline focus:outline-none",
+            "md:hidden" // desktop: toggle never shown — content always visible
+          )}
+          aria-expanded={expanded}
+        >
+          {expanded ? "הצג פחות ▲" : "קרא עוד ▼"}
+        </button>
+      )}
     </div>
   );
 }
@@ -90,6 +128,25 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
    *  to /research/glass-box at the end of the methodology footer. When W5 is OFF, byte-identical to HEAD. */
   glassBoxMethodologyLink?: boolean;
   /**
+   * TASK-384 FIX: when true, the categoryNote collapses to its first paragraph on mobile
+   * (< md breakpoint) with a "קרא עוד" toggle. Content stays in DOM for SEO.
+   * Desktop is always fully expanded. Default: false (all existing callers unchanged).
+   */
+  collapseMobileNote?: boolean;
+  /**
+   * TASK-384 FIX: when true, prologueSentences collapse to the first 2 on mobile
+   * (< md breakpoint) with a "קרא עוד" toggle. Desktop always shows all sentences.
+   * Default: false (all existing callers unchanged).
+   */
+  collapseMobilePrologue?: boolean;
+  /**
+   * TASK-384 FIX: when true, suppresses the default auto-open of the first product row.
+   * Normally initialExpandedProductId=null falls back to opening filteredProducts[0].
+   * Set this to prevent that fallback and start with all rows collapsed.
+   * Default: false (all existing callers unchanged).
+   */
+  noAutoExpand?: boolean;
+  /**
    * Optional escape hatch for categories that need custom product rendering (e.g. section
    * grouping). When provided, replaces the default <ComparisonTable> call entirely.
    * Receives the filtered product list and the resolved initialExpandedProductId so the
@@ -118,6 +175,9 @@ export function ComparisonPage<TFilterId extends string = string>({
   category,
   glassBoxMethodologyLink = false,
   renderProducts,
+  collapseMobileNote = false,
+  collapseMobilePrologue = false,
+  noAutoExpand = false,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -129,13 +189,17 @@ export function ComparisonPage<TFilterId extends string = string>({
 
   // Corpus order is preserved by filterProducts (Invariant 1); pick the first visible
   // product as the initially-open row when the chosen one is filtered out.
+  // TASK-384: noAutoExpand suppresses the fallback to filteredProducts[0] so all rows
+  // start collapsed — prevents a tall expanded row blocking the fold on mobile.
   const expandedProductId = useMemo(
-    () =>
-      initialExpandedProductId &&
-      filteredProducts.some((p) => p.id === initialExpandedProductId)
+    () => {
+      if (noAutoExpand && !initialExpandedProductId) return null;
+      return initialExpandedProductId &&
+        filteredProducts.some((p) => p.id === initialExpandedProductId)
         ? initialExpandedProductId
-        : (filteredProducts[0]?.id ?? null),
-    [filteredProducts, initialExpandedProductId]
+        : (filteredProducts[0]?.id ?? null);
+    },
+    [filteredProducts, initialExpandedProductId, noAutoExpand]
   );
 
   // FIX-3: compute threshold once against the full (unfiltered) product list so the
@@ -152,7 +216,11 @@ export function ComparisonPage<TFilterId extends string = string>({
         )}
       >
         <CategoryHero eyebrow={hero.eyebrow} title={hero.title} metadata={metadataLine} wide />
-        <CategoryPrologue sentences={[...prologueSentences]} wide />
+        <CategoryPrologue
+          sentences={[...prologueSentences]}
+          wide
+          collapseMobile={collapseMobilePrologue}
+        />
 
         {blogLink ? (
           <div className={cn("px-4 pb-1", comparisonWebSectionPaddingClass())}>
@@ -167,7 +235,7 @@ export function ComparisonPage<TFilterId extends string = string>({
 
         {categoryNote ? (
           <div className={cn("px-4 pb-1", comparisonWebSectionPaddingClass())}>
-            <CategoryNoteBox note={categoryNote} />
+            <CategoryNoteBox note={categoryNote} collapseMobile={collapseMobileNote} />
           </div>
         ) : null}
 

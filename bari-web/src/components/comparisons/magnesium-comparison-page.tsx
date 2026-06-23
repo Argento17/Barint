@@ -51,6 +51,9 @@ export function MagnesiumComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="magnesium"
+      collapseMobileNote
+      collapseMobilePrologue
+      noAutoExpand
     />
   );
 }
