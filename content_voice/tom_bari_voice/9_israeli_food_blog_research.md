@@ -80,6 +80,7 @@ Reading two investigations side by side gave the single most useful calibration.
 - **Status:** comprehensive first pass complete (recipe / dietitian / investigative / reference strands all mapped; the decisive good-vs-bad register contrast captured).
 - **Not done:** deep-read of a TheMarker/Calcalist *cakes* consumer test (cereal was found; a cakes equivalent should be pulled before cakes copy ships). Haaretz/premium pieces are paywalled — headlines captured, bodies not.
 - **Maintenance:** when Research Agent runs a fresh pull, log new references here inline with URLs (citations discipline). Re-run before each new category to catch a recent Israeli consumer test of that specific shelf.
+- **Standing feed (2026-06-23):** the daily **Hebrew Health Scan** routine (`01_framework/operations/hebrew_health_scan/`, TASK-381) reads 1–2 IL health articles/day and proposes **append blocks** to this file as Lane A register keepers (emulate/avoid technique, never copied phrasing — same firewall as above). Blocks are applied by the Content Agent through the normal flow, not by the routine. Lane B of the same routine sends evidence findings to the Nutrition Agent's Horizon-Scan (KB/EV), never here.
 
 ## 5. Sources
 - [TheMarker — דגני בוקר: איפה יש יותר סוכר מעוגיות וחטיפים](https://www.themarker.com/consumer/1.2624181)
