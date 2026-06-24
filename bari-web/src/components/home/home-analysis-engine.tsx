@@ -4,8 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   BrainCircuit,
   CircleGauge,
+  Flame,
   FlaskConical,
-  GitCompareArrows,
   Leaf,
   type LucideIcon,
   Scale,
@@ -24,45 +24,45 @@ const leftInsights = [
   {
     icon: Leaf,
     title: "איכות רכיבים",
-    text: "עד כמה רשימת הרכיבים פשוטה ומבוססת רכיבים מוכרים",
+    text: "מפרידים בין אוכל אמיתי לבין תוספים שרק ממלאים את הרשימה",
   },
   {
     icon: FlaskConical,
     title: "רמת עיבוד",
-    text: "עד כמה המוצר עבר עיבוד תעשייתי",
+    text: "ככל שהמוצר רחוק יותר ממזון בצורתו הבסיסית, כך הוא יורד",
   },
   {
-    icon: Scale,
-    title: "איזון תזונתי",
-    text: "איזון בין חלבון, סיבים, סוכר, שומן וערכים נוספים",
+    icon: Flame,
+    title: "צירופים שמפתים לאכול עוד",
+    text: "מזהים שילובים כמו שומן עם סוכר או שומן עם מלח — הצירופים שידוע שמקשים להפסיק",
   },
 ] as const satisfies readonly InsightItem[];
 
 const rightInsights = [
   {
-    icon: GitCompareArrows,
-    title: "יתרונות מול חסרונות",
-    text: "נקודות חיוביות לצד דברים שכדאי לשים לב אליהם",
+    icon: Scale,
+    title: "לא מענישים פעמיים",
+    text: "אם בעיה אחת חוזרת בכמה מקומות, היא נספרת פעם אחת — בלי לנפח את הציון",
   },
   {
     icon: CircleGauge,
     title: "השוואה למוצרים דומים",
-    text: "איך המוצר עומד ביחס למוצרים דומים בקטגוריה",
+    text: "כל מוצר נמדד מול האחרים בקטגוריה שלו, כך שהציון משקף איפה הוא עומד בין השווים לו",
   },
   {
     icon: ShieldCheck,
-    title: "איכות מידע",
-    text: "עד כמה הניתוח מבוסס על מידע מלא ואמין",
+    title: "מה אנחנו יודעים ומה לא",
+    text: "כשהמידע חלקי, הציון לא יכול להיות גבוה — ואנחנו אומרים את זה בגלוי",
   },
 ] as const satisfies readonly InsightItem[];
 
 const engineSignals = [
   "איכות רכיבים",
   "רמת עיבוד",
-  "איזון תזונתי",
-  "יתרונות מול חסרונות",
+  "צירופים שמפתים לאכול עוד",
+  "לא מענישים פעמיים",
   "השוואה למוצרים דומים",
-  "איכות מידע",
+  "מה אנחנו יודעים ומה לא",
 ] as const;
 
 const enginePaths = [
@@ -155,7 +155,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">מנוע הניתוח של Bari</p>
             <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של בריא</h3>
             <p className="mt-2 text-sm font-medium text-[#4E5663]">
-              ניתוח רב־ממדי • חישוב דינמי
+              קוראים את המוצר לעומק ומחזירים ציון אחד ברור
             </p>
           </div>
           <motion.div
@@ -272,7 +272,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: reduceMotion ? 0 : 0.55 + index * 0.08, duration: reduceMotion ? 0 : 0.45 }}
-              className="rounded-full border border-black/[0.08] bg-[#FFFFFF]/46 px-3 py-2 text-center text-[0.66rem] font-semibold text-[#4E5663]"
+              className="rounded-xl border border-black/[0.08] bg-[#FFFFFF]/46 px-3 py-2 text-center text-[0.66rem] font-semibold text-[#4E5663]"
             >
               {signal}
             </motion.div>
