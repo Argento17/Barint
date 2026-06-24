@@ -25,7 +25,7 @@
 | Prompt | `01_framework/operations/hebrew_health_scan/daily_run_prompt_v1.md` |
 | Sources | `01_framework/operations/hebrew_health_scan/source_registry_v1.yaml` |
 | Output template | `01_framework/operations/hebrew_health_scan/output_template_v1.md` |
-| Output | **Run history (no files written / no commit)** — cloud routines here have git dropped (`git push` 403s every run; see [[scheduled_routines_state]] + Project Comp's redesign). Read the digest at claude.ai/code/routines. `daily_scans/` is for optional manual/local runs only. |
+| Output | **Two sinks (loop closed 2026-06-24):** (1) the run-history digest at claude.ai/code/routines, and (2) structured keeper rows in the shared Notion "Bari Routine Log" (data_source `77bd20b8-fd7f-4486-b477-475a387f6b5e`). The cloud routine still writes NO repo files / commits NOTHING (git dropped — `git push` 403s; see [[scheduled_routines_state]]). The **apply** step that folds Lane A keepers into the voice corpus runs LOCALLY via `apply_scan_keepers.py` (the cloud routine cannot commit). `daily_scans/` holds the per-day keeper/result JSON + the applied-index dedup sidecar. |
 | Tools needed | WebSearch + WebFetch (public web only), Read |
 | Expected runtime | ~8–15 min (only 1–2 articles) |
 | Owner | **content-agent (Lane A)** + **nutrition-agent (Lane B)** |
@@ -37,14 +37,37 @@ the firewalls are holding (no copied phrasing, no inherited data, COI/anti-model
 
 ---
 
-## 2. Outputs and where they go (both feed TASK-374's program, per owner)
+## 2. The closed loop (read → extract → firewall → apply) — owner directive 2026-06-24 "make it work"
 
-- **Daily digest** → emitted to the **run history** (no file written; honest empty days included). The
-  digest text carries everything below; a human/agent applies anything worth keeping.
-- **Lane A keepers** → emitted as a ready-to-paste **append block** for
-  `content_voice/tom_bari_voice/9_israeli_food_blog_research.md`. Applied by the Content Agent through
-  the normal flow — the routine never edits the voice corpus unilaterally. Material register shifts that
-  would change `2_voice_fingerprint.md` go through the Tom's Voice program, not this routine.
+The routine is now a TRAINING LOOP for the Content Agent's Hebrew, not a suggestion box. Two halves:
+
+**(A) Extractor = the cloud routine** (read-only; inline prompt updated 2026-06-24):
+- **HARD READ-GATE:** a keeper may only come from an article whose BODY was actually read. A
+  section/index page (cards + headlines) is not an article; headline/snippet-only inference is a
+  FAILED run, not a keeper. (This fixes the 06-24 defect: both keepers carried "full article not read".)
+- **Reliably-fetchable sources tried first:** efsharibari.health.gov.il, clalit.co.il, maccabi4u.co.il
+  return full Hebrew body; ynet/mako/n12/walla/israelhayom article pages sometimes 403 → move on, never
+  degrade to the snippet. (Verified 2026-06-24: gov.il/Clalit/Ynet-article ✅; mako *section* = cards only.)
+- Logs Lane A keepers (Finding must start `EMULATE:`/`AVOID:`) to the Notion "Bari Routine Log".
+
+**(B) Applier = `apply_scan_keepers.py`** (LOCAL; the cloud routine cannot commit):
+- Reads the new Lane A Notion rows, runs a **deterministic no-harvest firewall**, and appends survivors
+  to **§6 of `content_voice/tom_bari_voice/9_israeli_food_blog_research.md`** with provenance + firewall
+  verdict. Three outcomes: **APPLY** (clean → Notion row → Actioned), **HOLD** (borderline → left New for
+  a human/Adversarial QA), **REJECT** (violation → Dropped).
+- Firewall rules: bucket = `Content-Hebrew skills`; Finding framed `EMULATE:`/`AVOID:`; no verbatim
+  Hebrew run > 7 words (a harvested sentence); ≤ 14 Hebrew words total. `--selftest` PASS.
+- **Governance:** owner directed automatic application 2026-06-24, superseding the calibration-hold
+  ("collect, don't apply, until Adversarial QA"). The deterministic firewall + the HOLD escape-hatch
+  replace the blanket human hold. This is **internal voice-training reference, not consumer copy** — the
+  two-gate content sign-off still governs every consumer-facing string. Material shifts to
+  `2_voice_fingerprint.md` still go through the Tom's Voice program, not this routine.
+
+**Operating the apply step:** the cloud routine extracts to Notion daily; the apply runs locally. Until a
+headless local scheduler is wired, the apply is run during the daily `/orchestrate` pass (read Notion via
+MCP → write `daily_scans/keepers_<date>.json` → `apply_scan_keepers.py` → commit → mark rows Actioned via
+MCP). A fully-headless option (Windows Scheduled Task + a Notion integration token) is available on request.
+
 - **Lane B keepers** → listed for the **Nutrition Agent**, who runs the formal Horizon-Scan decision
   (KB stub / `EV-###` proposal / decline). The routine writes neither the KB nor the evidence registry.
 

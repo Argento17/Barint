@@ -50,10 +50,29 @@ register) + Evidence Horizon-Scan (Nutrition Agent). **Memory:** [[scheduled_rou
 - Prompt embedded **inline** (self-contained); read-only tools (WebSearch/WebFetch/Read) → no commit
   attempts, output to run history. Repo files are the versioned source-of-truth, not a runtime dependency.
 
+## D2 — loop closed (2026-06-24, owner directive "make it work")
+Owner clarified the purpose: this is a TRAINING LOOP that reads real Hebrew writing and *implements*
+register lessons into the Content Agent's skill — not a radar that proposes to Notion and waits. Two
+defects found and fixed:
+1. **It wasn't reading articles.** Both 06-24 keepers carried "full article not read — snippet only"
+   (Ynet article 403'd). Fixed: cloud prompt now has a **HARD READ-GATE** (body-confirmed or no keeper) +
+   **reliably-fetchable sources first** (gov.il/Clalit/Maccabi return full body; verified 2026-06-24).
+   Cloud inline prompt updated via `RemoteTrigger` (working body shape: `job_config.ccr` with
+   `environment_id`+`session_context`+`events:[{data:{message:{role,content}}}]`; extra event fields 400).
+2. **It never implemented.** Keepers sat in Notion as `WATCH/New`. Built **`apply_scan_keepers.py`** —
+   reads Lane A Notion rows, runs a deterministic no-harvest firewall (bucket=Content-Hebrew skills;
+   EMULATE/AVOID framing; no Hebrew verbatim run > 7 words; ≤ 14 Hebrew words total), and appends
+   survivors to **§6 of file 9**. APPLY / HOLD / REJECT. `--selftest` PASS.
+- **Proven end-to-end on the 2 real 06-24 keepers:** both APPLY → written to file 9 §6 → Notion rows
+  flipped to `Actioned`. Re-run = DUPLICATE (idempotent via `daily_scans/applied_index.json`).
+- **Governance change:** owner directed automatic application, superseding the calibration-hold. The
+  deterministic firewall + HOLD escape-hatch replace the blanket Adversarial-QA hold for Lane A. File 9
+  is internal voice-training reference, NOT consumer copy — two-gate sign-off still governs consumer strings.
+
 ## NOT done (follow-ups)
-- **First 3 runs = calibration** — Adversarial QA reviews firewall adherence (0 copied phrasing, 0
-  inherited data, COI/anti-model handling) before any Lane A keeper is applied to file 9 or any Lane B
-  candidate reaches the KB. After QA sign-off → normal mode.
-- **Optional:** push the 5 spec files to `Argento17/Barint @ master` (owner-gated) so the versioned
+- **Headless apply scheduler.** The cloud routine extracts to Notion daily, but the apply runs locally
+  (cloud can't commit). Currently run during the daily `/orchestrate` pass. A fully-headless option
+  (Windows Scheduled Task + Notion integration token) is available on owner request.
+- **Optional:** push the spec files to `Argento17/Barint @ master` (owner-gated) so the versioned
   source-of-truth is shared; not required for the routine to run.
 - Keep the inline cron prompt in sync with `daily_run_prompt_v1.md` on any edit.
