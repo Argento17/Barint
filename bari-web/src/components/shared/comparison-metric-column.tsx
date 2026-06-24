@@ -230,6 +230,30 @@ export const GRANOLA_SUGAR_METRIC: MetricSpec = {
   neutralBarFill: "#7A817C",
 };
 
+// Cereals sugar metric (TASK-387): sugar is the primary discriminator on the cereals
+// shelf — the range (3.8–29.9g/100g) is wider than granola's (4.8–25g). Most products
+// cluster at 16–29g; only 2 products score below 8g. The GRANOLA_SUGAR_METRIC thresholds
+// are reused (good≤8, poor≥18) because the MoH 17.5g/100g red-label anchor is relevant
+// here too, and the shelf biology is the same category of food. scaleMax=32 rather than
+// 28 — the 29.9g top product needs a few points of headroom to avoid false-clipping.
+//   good  ≤8g  — genuinely low-sugar for a breakfast cereal (only 2 products clear this).
+//   poor  ≥18g — at/above the Israeli MoH red-label threshold (amber only, §4.3).
+// lowerIsBetter: true. aria unit is per-100g (solids). neutralBarFill matches granola —
+// the mid-band (8–18g) neutral bars would otherwise be near-invisible on the track.
+export const CEREALS_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 32,
+  good: 8,
+  poor: 18,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+  neutralBarFill: "#7A817C",
+};
+
 // Display rounding: raw per-100g values can carry full float precision (e.g. fiber
 // 7.66666666666667 from a back-computed panel). Round to at most 1 decimal and drop a
 // trailing ".0" so the value fits the 62px cell and never overflows into the next metric.
