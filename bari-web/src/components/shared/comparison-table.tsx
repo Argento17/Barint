@@ -22,6 +22,8 @@ export function ComparisonTable({
   initialExpandedProductId = null,
   category,
   suppressPartialBadges = false,
+  clampVerdictLines,
+  compactDividers = false,
 }: {
   products: BariProductVM[];
   metricSpecs: readonly MetricSpec[];
@@ -33,6 +35,18 @@ export function ComparisonTable({
   /** FIX-3: when true, per-product partial confidence badges are suppressed (≥50%
    *  of products are partial — the badge carries no signal). */
   suppressPartialBadges?: boolean;
+  /**
+   * TASK-384A: passed through to ComparisonRow — clamps the rowVerdict paragraph to
+   * this many lines. When undefined (default), no clamp is applied; all existing
+   * categories are byte-identical to before.
+   */
+  clampVerdictLines?: number;
+  /**
+   * TASK-384A: when true, reduces band-divider vertical padding from 9px to 5px so
+   * an extra row fits above the fold on compact mobile viewports. Prop-gated —
+   * default false leaves all other category pages byte-identical.
+   */
+  compactDividers?: boolean;
 }) {
   const [open, setOpen] = useState<Set<string>>(
     () => new Set(initialExpandedProductId ? [initialExpandedProductId] : [])
@@ -115,7 +129,14 @@ export function ComparisonTable({
         {rows.map(({ product, band, showDivider, competitionRank }) => (
           <Fragment key={product.id}>
             {showDivider ? (
-              <div className="bari-cmp-divider" aria-hidden>
+              <div
+                className="bari-cmp-divider"
+                aria-hidden
+                // TASK-384A: prop-gated compact padding — reduces divider from ~33px to
+                // ~25px so an extra row fits above the fold on 390px mobile. Only active
+                // when compactDividers=true (magnesium only); all other pages unchanged.
+                style={compactDividers ? { paddingTop: "5px", paddingBottom: "5px" } : undefined}
+              >
                 <span className="bari-cmp-divider-line" />
                 <span className="bari-cmp-divider-label" style={{ color: band.tone }}>
                   {band.label}
@@ -141,6 +162,7 @@ export function ComparisonTable({
               registerRow={registerRow}
               category={category}
               suppressPartialBadge={suppressPartialBadges}
+              clampVerdictLines={clampVerdictLines}
             />
           </Fragment>
         ))}

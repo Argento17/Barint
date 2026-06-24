@@ -156,6 +156,25 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
     filteredProducts: BariProductVM[],
     expandedProductId: string | null
   ) => React.ReactNode;
+  /**
+   * TASK-384A: optional slot rendered between the categoryNote box and the product table,
+   * inside the white card, with standard section padding. Use for category-specific
+   * informational panels (e.g. magnesium safety box). Absent → no extra content.
+   * All existing callers are unaffected (default undefined).
+   */
+  headerSlot?: React.ReactNode;
+  /**
+   * TASK-384A: when set, clamps each product's rowVerdict paragraph to this many lines.
+   * Prop-gated — when undefined (default), all existing category pages are unchanged.
+   * Pass 2 for magnesium so long verdicts don't push rows below the fold on mobile.
+   */
+  clampVerdictLines?: number;
+  /**
+   * TASK-384A: when true, reduces band-divider padding from 9px to 5px so a 3rd row
+   * fits above the fold on 390px mobile. Prop-gated — default false leaves all other
+   * category pages byte-identical.
+   */
+  compactDividers?: boolean;
 }
 
 /** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
@@ -178,6 +197,9 @@ export function ComparisonPage<TFilterId extends string = string>({
   collapseMobileNote = false,
   collapseMobilePrologue = false,
   noAutoExpand = false,
+  headerSlot,
+  clampVerdictLines,
+  compactDividers = false,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -252,6 +274,15 @@ export function ComparisonPage<TFilterId extends string = string>({
           </div>
         ) : null}
 
+        {/* TASK-384A: category-specific header slot (e.g. magnesium safety box).
+            Rendered between the disclosure note and the product table, inside the
+            white card with standard section padding. Absent on all other pages. */}
+        {headerSlot ? (
+          <div className={cn("px-4 pb-2", comparisonWebSectionPaddingClass())}>
+            {headerSlot}
+          </div>
+        ) : null}
+
         {/* FIX-5: filter boxes hidden until a proper taxonomy is designed. The
             CategoryShelfLenses component is kept in the tree but not rendered. */}
 
@@ -265,6 +296,8 @@ export function ComparisonPage<TFilterId extends string = string>({
             initialExpandedProductId={expandedProductId}
             category={category}
             suppressPartialBadges={suppressPartialBadges}
+            clampVerdictLines={clampVerdictLines}
+            compactDividers={compactDividers}
           />
         )}
 

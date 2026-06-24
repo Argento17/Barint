@@ -3,8 +3,12 @@
 // Magnesium supplement comparison page wrapper.
 // Cloned from cereals-comparison-page.tsx.
 // No shelf filters for the prototype (empty lens set — filterProducts passes all through).
+//
+// TASK-384A: MagnesiumSafetyBox injected above the ComparisonPage prologue area.
+// It uses the collapseMobileNote collapse pattern already in place for the category note.
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { MagnesiumSafetyBox } from "@/components/shared/magnesium-safety-box";
 import type { BariProductVM } from "@/lib/view-models";
 
 export interface MagnesiumComparisonPageProps {
@@ -54,6 +58,9 @@ export function MagnesiumComparisonPage({
       collapseMobileNote
       collapseMobilePrologue
       noAutoExpand
+      headerSlot={<MagnesiumSafetyBox />}
+      clampVerdictLines={2}
+      compactDividers
     />
   );
 }

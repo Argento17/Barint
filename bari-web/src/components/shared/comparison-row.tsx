@@ -135,6 +135,7 @@ export const ComparisonRow = memo(function ComparisonRow({
   registerRow,
   category,
   suppressPartialBadge = false,
+  clampVerdictLines,
 }: {
   product: BariProductVM;
   rank: number;
@@ -147,6 +148,12 @@ export const ComparisonRow = memo(function ComparisonRow({
   /** FIX-3: when true, suppress the per-product partial confidence badge (page-level
    *  disclosure is shown instead when ≥50% of the page's products are partial). */
   suppressPartialBadge?: boolean;
+  /**
+   * TASK-384A: when set, clamps the rowVerdict paragraph to this many lines via
+   * CSS -webkit-line-clamp. When undefined (default), behavior is unchanged —
+   * no other category is affected. Use 2 for magnesium (verdicts fit 2 lines @390px).
+   */
+  clampVerdictLines?: number;
 }) {
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -236,7 +243,19 @@ export const ComparisonRow = memo(function ComparisonRow({
             </span>
           ) : null}
           {verdict ? (
-            <p className="mt-[5px] text-[0.8rem] leading-[1.45] text-[#3C443F]">
+            <p
+              className={cn(
+                "mt-[5px] text-[0.8rem] leading-[1.45] text-[#3C443F]",
+                // TASK-384A: prop-gated clamp — only active when clampVerdictLines is set.
+                // Use Tailwind line-clamp utilities (sets -webkit-line-clamp + overflow:hidden
+                // as a class, not an inline style, so React does not strip it).
+                // line-clamp-1 through line-clamp-6 are Tailwind core utilities.
+                clampVerdictLines === 1 && "line-clamp-1",
+                clampVerdictLines === 2 && "line-clamp-2",
+                clampVerdictLines === 3 && "line-clamp-3",
+                clampVerdictLines === 4 && "line-clamp-4",
+              )}
+            >
               {verdict}
             </p>
           ) : product.rowReason ? (
@@ -325,6 +344,7 @@ export const ComparisonRow = memo(function ComparisonRow({
                 bariInterpretation={product.bariInterpretation}
                 rank={product.rank}
                 categoryTotal={product.categoryTotal}
+                magnesiumBadges={product.magnesiumBadges}
               />
             ) : null}
           </div>
