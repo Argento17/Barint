@@ -272,6 +272,13 @@ export interface MagnesiumBadgesVM {
 export interface BariProductVM {
   id: string;
   name: string;
+  /**
+   * Brand name for the product (e.g. "ARENSTO", "לינדט", "טובלרון").
+   * null / absent → no brand surface. When present, the UI suppresses it if the
+   * brand token is already visible in `name` (case-insensitive substring match).
+   * Display-only — never a score input. Field name matches the pipeline JSON key.
+   */
+  brand?: string | null;
   imageUrl: string | null;
   score: number | null;
   grade: BariGrade | null;

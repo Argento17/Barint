@@ -184,6 +184,19 @@ export const ComparisonRow = memo(function ComparisonRow({
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
             {product.name}
+            {product.brand &&
+            !product.name
+              .toLowerCase()
+              .includes(product.brand.toLowerCase()) ? (
+              <span
+                className="ms-1.5 font-normal tracking-normal"
+                style={{ color: "#8A918C", fontSize: "0.78rem" }}
+                aria-hidden
+              >
+                ·{" "}
+                <span dir="ltr">{product.brand}</span>
+              </span>
+            ) : null}
           </span>
           {product.claimShortfallFlag ? (
             <span

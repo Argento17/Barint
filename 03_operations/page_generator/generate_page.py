@@ -525,6 +525,14 @@ def build_product(barcode, trace, corpus_rec, config, boundary_policy):
     if corpus_rec:
         name = (corpus_rec.get("canonical_name_he") or "").strip()
 
+    # Brand from corpus (TASK-392: was missing from generator, causing empty brand on all
+    # generator-produced pages; brand is sourced from BSIP1 corpus_rec.brand — direct scrape)
+    brand = None
+    if corpus_rec:
+        brand_val = corpus_rec.get("brand")
+        if brand_val and str(brand_val).strip():
+            brand = str(brand_val).strip()
+
     # imageUrl from corpus
     image_url = None
     if corpus_rec:
@@ -570,6 +578,7 @@ def build_product(barcode, trace, corpus_rec, config, boundary_policy):
     product = {
         "id": product_id,
         "name": name,
+        "brand": brand,  # TASK-392: populated from corpus_rec.brand (direct scrape)
         "imageUrl": image_url,
         "score": raw_score,
         "grade": grade,
