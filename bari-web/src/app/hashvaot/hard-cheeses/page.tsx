@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת גבינות קשות וצהובות | Bari",
   description:
-    "השוואת 37 גבינות קשות מהמדף הישראלי — ציון Bari, חלבון, שומן ונתרן ל-100 גרם. מידע, לא המלצה.",
+    "השוואת 24 גבינות קשות מהמדף הישראלי — ציון Bari, חלבון, שומן ונתרן ל-100 גרם. מידע, לא המלצה.",
 };
 
 export default function HardCheesesComparisonRoute() {
