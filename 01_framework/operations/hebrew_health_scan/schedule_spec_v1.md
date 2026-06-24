@@ -63,10 +63,19 @@ The routine is now a TRAINING LOOP for the Content Agent's Hebrew, not a suggest
   two-gate content sign-off still governs every consumer-facing string. Material shifts to
   `2_voice_fingerprint.md` still go through the Tom's Voice program, not this routine.
 
-**Operating the apply step:** the cloud routine extracts to Notion daily; the apply runs locally. Until a
-headless local scheduler is wired, the apply is run during the daily `/orchestrate` pass (read Notion via
-MCP → write `daily_scans/keepers_<date>.json` → `apply_scan_keepers.py` → commit → mark rows Actioned via
-MCP). A fully-headless option (Windows Scheduled Task + a Notion integration token) is available on request.
+**Operating the apply step (HEADLESS — wired 2026-06-24):** a Windows Scheduled Task
+**"Bari - Hebrew Health Scan apply"** runs `drain_and_apply.py` daily at **09:15 local** (after the
+~08:30 cloud run). It queries the Notion "Bari Routine Log" (DB `fb50a533316440c4a571f9bb32206e48`)
+for `Routine=Hebrew Health Scan · Status=New · Bucket=Content-Hebrew skills`, runs each through
+`apply_scan_keepers` (firewall → file 9 §6), then writes back: APPLY → `Actioned`, REJECT → `Dropped`,
+HOLD/SKIP → left `New`. Commits the file-9 change locally (cloud can't commit). Logs to
+`daily_scans/drain_log.txt`. Offline `--selftest` PASS; `--dry-run` available; live HTTP exercised once
+the token exists.
+- **AUTH (one-time owner step):** a Notion internal-integration secret in `NOTION_TOKEN` env var OR
+  `%USERPROFILE%\.bari\notion_token` (setup readme at `~/.bari/README_notion_token.txt`). Until present,
+  the task runs harmlessly and logs "token not configured". The cloud routine's own Notion writes use its
+  OAuth connector and are unaffected.
+- The `/orchestrate` MCP-based drain remains a valid manual fallback if the task is disabled.
 
 - **Lane B keepers** → listed for the **Nutrition Agent**, who runs the formal Horizon-Scan decision
   (KB stub / `EV-###` proposal / decline). The routine writes neither the KB nor the evidence registry.

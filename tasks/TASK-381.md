@@ -69,10 +69,17 @@ defects found and fixed:
   deterministic firewall + HOLD escape-hatch replace the blanket Adversarial-QA hold for Lane A. File 9
   is internal voice-training reference, NOT consumer copy — two-gate sign-off still governs consumer strings.
 
+## D3 — headless scheduler wired (2026-06-24)
+- **`drain_and_apply.py`** + Windows Scheduled Task **"Bari - Hebrew Health Scan apply"** (daily 09:15
+  local, verified `LastTaskResult=0`). Notion REST client (stdlib urllib): queries the Bari Routine Log
+  for New Lane-A keepers, runs the firewall via `apply_scan_keepers`, writes back Actioned/Dropped, and
+  commits file 9 locally. Offline `--selftest` PASS (mock Notion JSON → mapper → firewall → verdicts);
+  token-missing path exits 0 with a clear log (no error spam). `daily_scans/drain_log.txt` gitignored.
+- **ONE open owner step:** mint a Notion integration token + share the DB + drop the secret in
+  `%USERPROFILE%\.bari\notion_token` (readme written there). Live HTTP is exercised once the token exists
+  — that path is the only part not yet run against the real API.
+
 ## NOT done (follow-ups)
-- **Headless apply scheduler.** The cloud routine extracts to Notion daily, but the apply runs locally
-  (cloud can't commit). Currently run during the daily `/orchestrate` pass. A fully-headless option
-  (Windows Scheduled Task + Notion integration token) is available on owner request.
 - **Optional:** push the spec files to `Argento17/Barint @ master` (owner-gated) so the versioned
   source-of-truth is shared; not required for the routine to run.
 - Keep the inline cron prompt in sync with `daily_run_prompt_v1.md` on any edit.
