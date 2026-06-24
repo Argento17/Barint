@@ -22,6 +22,7 @@ interface CakesRawNutrition {
 interface CakesRawProduct {
   id: string;
   name: string;
+  brand?: string | null;
   barcode?: string;
   imageUrl?: string | null;
   score: number | null;
@@ -108,6 +109,7 @@ export const cakesHardCookiesProducts: BariProductVM[] = _typedRaw.products.map(
     return {
       id: p.id,
       name: p.name,
+      brand: p.brand ?? null,
       imageUrl: p.imageUrl ?? null,
       score: p.score,
       grade: p.grade,
