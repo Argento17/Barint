@@ -59,7 +59,7 @@ export function MagnesiumComparisonPage({
       collapseMobilePrologue
       noAutoExpand
       headerSlot={<MagnesiumSafetyBox />}
-      clampVerdictLines={2}
+      clampVerdictLines={3}
       compactDividers
     />
   );
