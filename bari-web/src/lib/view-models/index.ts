@@ -95,6 +95,8 @@ export interface BariProductMetricsVM {
   sugar_g?: number | null;
   /** Sodium mg per 100g — salty-snacks' second headline after fiber (TASK-227). Real per-label value. */
   sodium_mg?: number | null;
+  /** Saturated fat g per 100g — cookies-coffee second headline metric (TASK-393). Real per-label value. */
+  fat_saturated_g?: number | null;
 }
 
 // ─── Row reason (v2 — comparison_ui_reference_v2 §3.3) ───────────────────────────

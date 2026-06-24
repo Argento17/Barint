@@ -23,7 +23,8 @@ type MetricNumberKey =
   | "additive_count"
   | "base_pct"
   | "sugar_g"
-  | "sodium_mg";
+  | "sodium_mg"
+  | "fat_saturated_g";
 
 export interface MetricSpec {
   key: MetricNumberKey;
@@ -251,6 +252,27 @@ export const CEREALS_SUGAR_METRIC: MetricSpec = {
   poor: 18,
   lowerIsBetter: true,
   ariaUnit: "גרם סוכר ל-100 גרם",
+  neutralBarFill: "#7A817C",
+};
+
+// Cookies-coffee saturated-fat metric (TASK-393): shelf range 0.4–17.0g/100g,
+// median ≈9g. Scale 0–20 gives the 17g top outlier a near-full bar with ~3g headroom.
+//   good  ≤5g  — below Israeli MoH red-label threshold for saturated fat in biscuits.
+//   poor  ≥10g — EU amber traffic-light / high end of the biscuit shelf.
+// lowerIsBetter: true. aria unit per-100g (solids).
+// neutralBarFill matches granola/cereals: mid-band bars (5–10g) would otherwise
+// render near-invisible on the track (#B5BBB6 on #ECECE7, ~2:1 contrast).
+export const COOKIES_COFFEE_SAT_FAT_METRIC: MetricSpec = {
+  key: "fat_saturated_g",
+  label: "שומן רווי",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 20,
+  good: 5,
+  poor: 10,
+  lowerIsBetter: true,
+  ariaUnit: "גרם שומן רווי ל-100 גרם",
   neutralBarFill: "#7A817C",
 };
 

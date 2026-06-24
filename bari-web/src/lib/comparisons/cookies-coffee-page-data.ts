@@ -47,10 +47,12 @@ const cookiesCoffeeProducts: BariProductVM[] = _cookiesCoffeeProductsRaw.map(
     imageUrl: p.imageUrl ?? null,
     d4_additives: p.d4_additives ?? [],
     metrics: {
-      // sugar is the headline row metric (thesis: sugar+sat-fat, NOT sodium).
+      // sugar + sat-fat are the two headline row metrics (page thesis: sugar+sat-fat, NOT sodium).
       // protein_g is required by BariProductMetricsVM; set null as it is not a cookie differentiator.
       protein_g: null,
       sugar_g: p.expansion?.nutrition?.sugar ?? null,
+      // satFat is camelCase in the JSON (expansion.nutrition.satFat); map to fat_saturated_g (TASK-393).
+      fat_saturated_g: p.expansion?.nutrition?.satFat ?? null,
     },
   })
 );
