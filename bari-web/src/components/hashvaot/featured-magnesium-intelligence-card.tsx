@@ -48,7 +48,7 @@ export function FeaturedMagnesiumIntelligenceCard({ href, description }: Props) 
       <ComparisonIntelligenceHero
         badge="מעודכן"
         categoryTags="מגנזיום · תוספי תזונה · ישראל"
-        title="קונים תוסף מגנזיום? הנה מה שהמספר הגדול על האריזה לא אומר לכם"
+        title="קונים תוסף מגנזיום? הצורה הכימית היא שקובעת כמה מהמגנזיום ייספג בגוף — הרבה יותר מהספרה הגדולה על האריזה"
         description={description}
         insightLines={lines}
         stats={[
