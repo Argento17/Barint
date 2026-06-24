@@ -75,9 +75,12 @@ defects found and fixed:
   for New Lane-A keepers, runs the firewall via `apply_scan_keepers`, writes back Actioned/Dropped, and
   commits file 9 locally. Offline `--selftest` PASS (mock Notion JSON → mapper → firewall → verdicts);
   token-missing path exits 0 with a clear log (no error spam). `daily_scans/drain_log.txt` gitignored.
-- **ONE open owner step:** mint a Notion integration token + share the DB + drop the secret in
-  `%USERPROFILE%\.bari\notion_token` (readme written there). Live HTTP is exercised once the token exists
-  — that path is the only part not yet run against the real API.
+- **Token configured + live round-trip verified 2026-06-24:** owner minted the integration ("Bari
+  Routine Log apply") + shared the DB; secret saved to `%USERPROFILE%\.bari\notion_token`. End-to-end
+  test against the REAL Notion API: a throwaway REJECT row was fetched → firewall REJECT → Notion
+  `Status=Dropped` (verified) → test row archived; file 9 untouched (REJECT does not apply). Loop is
+  fully autonomous: cloud extracts to Notion 08:30 IL → scheduled task drains+applies 09:15 IL. No open
+  owner steps. (Optional: rotate the token since it was pasted in chat.)
 
 ## NOT done (follow-ups)
 - **Optional:** push the spec files to `Argento17/Barint @ master` (owner-gated) so the versioned
