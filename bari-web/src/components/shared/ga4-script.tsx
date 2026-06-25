@@ -18,7 +18,10 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 import { getStoredConsent, onConsentChange } from "@/lib/consent";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+// GA4 Measurement ID. Default is the production property (bari.digital);
+// a Vercel `NEXT_PUBLIC_GA_ID` env var overrides it if ever set. A GA
+// Measurement ID is not a secret — it is exposed in every visitor's browser.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-2KBNY4XZHS";
 
 declare global {
   interface Window {
