@@ -175,6 +175,14 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
    * category pages byte-identical.
    */
   compactDividers?: boolean;
+  /**
+   * TASK-374: when true, force the page-level partial-data disclosure banner AND
+   * suppress the per-row partial confidence dots, regardless of the ≥50% threshold.
+   * Used by supplement pages (e.g. magnesium) where the per-row dots read as score
+   * misalignment; the page-level banner carries the disclosure instead. Default false
+   * → all existing category pages byte-identical.
+   */
+  forcePartialDisclosure?: boolean;
 }
 
 /** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
@@ -200,6 +208,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   headerSlot,
   clampVerdictLines,
   compactDividers = false,
+  forcePartialDisclosure = false,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -226,7 +235,8 @@ export function ComparisonPage<TFilterId extends string = string>({
 
   // FIX-3: compute threshold once against the full (unfiltered) product list so the
   // page-level disclosure appears regardless of which shelf lens is active.
-  const suppressPartialBadges = partialThresholdMet(products);
+  const suppressPartialBadges =
+    forcePartialDisclosure || partialThresholdMet(products);
 
   return (
     <div className="min-h-screen bg-[#EFEFEB] sm:py-8 lg:py-10" dir="rtl">

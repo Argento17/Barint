@@ -61,6 +61,7 @@ export function MagnesiumComparisonPage({
       headerSlot={<MagnesiumSafetyBox />}
       clampVerdictLines={3}
       compactDividers
+      forcePartialDisclosure
     />
   );
 }

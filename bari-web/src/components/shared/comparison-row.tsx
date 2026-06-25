@@ -179,7 +179,11 @@ export const ComparisonRow = memo(function ComparisonRow({
           {rank > 0 ? rank : null}
         </span>
         <span className="bari-cmp-thumbcell">
-          <BariProductThumbnail product={product} size="fill" />
+          <BariProductThumbnail
+            product={product}
+            size="fill"
+            blendWhite={category === "magnesium"}
+          />
         </span>
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
