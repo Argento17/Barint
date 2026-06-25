@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { NotMedicalAdvice } from "@/components/shared/not-medical-advice";
 import { OPEN_PREFERENCES_EVENT } from "@/components/shared/consent-manager";
 
@@ -16,9 +17,10 @@ export function SiteFooter() {
     >
       <nav aria-label="קישורים משפטיים" className="mb-3 flex flex-wrap gap-x-5 gap-y-1.5">
         {/*
-          LAUNCH-SAFE GUARD: the /nagisut, /privacy, /terms pages still contain
-          un-approved placeholder legal text, so they are noindexed AND not linked
-          from the footer yet. Re-enable these links when the approved copy lands.
+          Legal links enabled for owner review. The /nagisut, /privacy, /terms
+          pages remain noindexed (robots: noindex) while they still hold draft
+          placeholder text, so Google will not index them until approved copy lands.
+        */}
         <Link
           href="/nagisut"
           className="text-[12px] text-[#6B7070] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
@@ -37,7 +39,6 @@ export function SiteFooter() {
         >
           תנאי שימוש
         </Link>
-        */}
         {/* CMP re-open link — dispatches a custom event picked up by ConsentManager */}
         <button
           type="button"
