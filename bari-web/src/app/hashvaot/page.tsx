@@ -17,6 +17,7 @@ import { FeaturedChocolateBarsIntelligenceCard } from "@/components/hashvaot/fea
 import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
+import { FeaturedMagnesiumIntelligenceCard } from "@/components/hashvaot/featured-magnesium-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
@@ -78,16 +79,18 @@ export default function HashvaotIndexPage() {
   const eCount = cakesHardCookiesProducts.filter((p) => p.grade === "E").length;
   const cakesTopScore = Math.max(...cakesHardCookiesProducts.map((p) => p.score ?? 0)).toFixed(1);
   const cakesDescription = `בדקנו ${cakesHardCookiesProducts.length} עוגות מהמדף הישראלי — אף מוצר לא הגיע ל-A או ל-B. ${cCount} קיבלו C (הציון הגבוה ביותר הוא ${cakesTopScore}), ${dCount} קיבלו D ו-${eCount} קיבלו E. ציון C הוא תקרת הקטגוריה, לא הישג.`;
+  const magnesiumDescription =
+    "בדקנו 18 תוספי מגנזיום מהמדף הישראלי, והצורה הכימית היא שמכריעה: ציטראט וביסגליצינט נספגים טוב יותר, ולכן הם שמובילים את הדירוג, בעוד שהאוקסיד הזול והנפוץ יושב בתחתית — הגוף פשוט קולט ממנו פחות. ארבעה מוצרי אוקסיד אף חורגים מהגבול העליון לתוספים ומקבלים אזהרת מינון ברורה. מה שהציון מודד הוא כמה מגנזיום הגוף סופג בפועל, וזה תלוי בצורה הרבה יותר מאשר בספרה שעל הקופסה.";
 
   return (
-    <div
+    <main
       className={cn(
         "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
       )}
     >
       <HomeContainer className="py-14 md:py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#167A58]/90">
           Bari comparisons
         </p>
         <h1 className="mt-3 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
@@ -115,6 +118,23 @@ export default function HashvaotIndexPage() {
             </Link>
             — המאמר משלים את מנוע ההשוואה, לא מחליף אותו.
           </p>
+        </div>
+
+        {/* ── Supplements — separate section (different scoring logic), surfaced high
+            on the page so it isn't buried below the food grid. Links straight to the
+            magnesium comparison (no intermediate landing). ── */}
+        <div className="mt-12 space-y-6">
+          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
+            תוספי תזונה
+          </h2>
+          <p className="max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
+            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
+            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
+          </p>
+          <FeaturedMagnesiumIntelligenceCard
+            href="/hashvaot/magnesium"
+            description={magnesiumDescription}
+          />
         </div>
 
         <div className="mt-12 space-y-6">
@@ -164,29 +184,6 @@ export default function HashvaotIndexPage() {
           />
         </div>
 
-        {/* ── Supplements — separate from the food grid ── */}
-        <div className="mt-16 border-t border-[#1A1D24]/[0.08] pt-12">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
-            תוספי תזונה
-          </h2>
-          <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
-            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
-            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
-          </p>
-          <Link
-            href="/hashvaot/supplements"
-            className={cn(
-              "mt-5 inline-flex items-center gap-2 rounded-xl border border-[#1A1D24]/10 bg-white/70 px-5 py-3.5",
-              "text-sm font-semibold text-[#111318] shadow-sm backdrop-blur-sm",
-              "transition-[transform,box-shadow] duration-300 hover:-translate-y-px hover:border-[#1F8F6A]/30 hover:shadow-md",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
-            )}
-          >
-            <span>השוואות תוספי תזונה</span>
-            <ArrowLeft className="size-4 rotate-180 text-[#167A58]" aria-hidden />
-          </Link>
-        </div>
-
         <Link
           href="/"
           className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[#4E5663] transition-colors hover:text-[#111318]"
@@ -195,6 +192,6 @@ export default function HashvaotIndexPage() {
           חזרה לדף הבית
         </Link>
       </HomeContainer>
-    </div>
+    </main>
   );
 }

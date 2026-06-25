@@ -131,7 +131,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // compound_transparency: back-calculated ~1547mg citrate compound; label states 250mg elemental directly
       'תרכובת: ~1,547 מ"ג ציטראט (חישוב לאחר) — המינון המוצג הוא המגנזיום היסודי לפי הכתוב על התווית'
     ),
-    insightLine: "250 מ\"ג ציטראט — מינון גבוה בצורה עם ספיגה גבוהה יחסית. ציון B.",
+    insightLine: "ציטראט אמיתי במינון של 250 מ\"ג — צורה שהגוף יודע לספוג, ובאחד המינונים הגבוהים בקטגוריה.",
     rowVerdict:
       "ציטראט עם ויטמין B6 — מינון משמעותי בצורה עם ספיגה גבוהה יחסית.",
     confidence: "verified",
@@ -172,7 +172,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // compound_transparency: back-calculated ~1773mg bisglycinate; label states 250mg elemental directly
       'תרכובת: ~1,773 מ"ג ביסגליצינט (חישוב לאחר) — המינון המוצג הוא המגנזיום היסודי לפי הכתוב על התווית'
     ),
-    insightLine: "250 מ\"ג ביסגליצינט — ספיגה גבוהה יחסית, ידידותי יחסית לקיבה. ציון B.",
+    insightLine: "ביסגליצינט ב-250 מ\"ג — ספיגה גבוהה יחסית, ומכיוון שהוא עדין יותר לקיבה הוא נוח גם לרגישים.",
     rowVerdict:
       "מינון גבוה בצורה עם ספיגה גבוהה יחסית — ביסגליצינט נחשב עדין יותר לקיבה.",
     confidence: "verified",
@@ -210,7 +210,7 @@ export const magnesiumProducts: BariProductVM[] = [
       "מאומת", FLAGS_UNIVERSAL,
       'תרכובת: ~1,238 מ"ג ציטראט (חישוב לאחר) — המינון המוצג הוא המגנזיום היסודי לפי הכתוב על התווית'
     ),
-    insightLine: "200 מ\"ג ציטראט — ספיגה גבוהה יחסית, מתחת לסף EFSA. ציון B.",
+    insightLine: "ציטראט ב-200 מ\"ג שיושב מתחת לסף אי-הנוחות העיכולית — בחירה נוחה במיוחד אם הבטן שלך רגישה.",
     rowVerdict:
       "ציטראט במינון שמתחת לסף אי-הנוחות העיכולית — אפשרות טובה לרגישי בטן.",
     confidence: "verified",
@@ -245,7 +245,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // label two-line confirmed: 785mg bisglycinate compound / 168mg elemental
       'תרכובת: 785 מ"ג ביסגליצינט (מצוין על התווית) — 168 מ"ג מגנזיום אלמנטרי'
     ),
-    insightLine: "168 מ\"ג ביסגליצינט — ספיגה גבוהה יחסית, מינון סביר. ציון B.",
+    insightLine: "ביסגליצינט במינון צנוע של 168 מ\"ג — מצוין לשגרה יומית, אבל מוגבל כשצריך לסגור פער תזונתי גדול.",
     rowVerdict:
       "ביסגליצינט במינון צנוע — נוח לשגרה היומית, מוגבל כשיש פער תזונתי גדול.",
     confidence: "verified",
@@ -283,7 +283,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // label two-line confirmed: 450mg hydroxide compound / 190mg elemental
       'תרכובת: 450 מ"ג הידרוקסיד (מצוין על התווית) — 190 מ"ג מגנזיום אלמנטרי'
     ),
-    insightLine: "190 מ\"ג הידרוקסיד — ספיגה בינונית. טענת העוויתות לא מגובה במחקר. ציון C.",
+    insightLine: "השם מבטיח הקלה בעוויתות, אבל בגדול קוקריין 2020 לא מצא לכך תמיכה — ומדובר בהידרוקסיד בספיגה בינונית.",
     rowVerdict:
       "שם המוצר מבטיח הקלה בעוויתות — קוקריין 2020 לא מצא תמיכה לטענה הזו.",
     confidence: "partial",
@@ -320,9 +320,9 @@ export const magnesiumProducts: BariProductVM[] = [
       // label two-line confirmed (Albion): 600mg bisglycinate compound / 122mg elemental
       'תרכובת: 600 מ"ג ביסגליצינט Albion (מצוין על התווית) — 122 מ"ג מגנזיום אלמנטרי'
     ),
-    insightLine: "ביסגליצינט — צורה טובה, אבל 122 מ\"ג יסודי הם מתחת לציון B. ציון C.",
+    insightLine: "600 כמוסות על הקופסה מרשימות את העין, אבל המינון היומי הוא רק 122 מ\"ג יסודי — נמוך מול ה-250 מ\"ג של מוצרי הצורה הטובה שמעליו, והביסגליצינט לא מספיק כדי לפצות.",
     rowVerdict:
-      "600 כמוסות על הקופסה מרשימות — אבל המינון היסודי לכמוסה נמוך יחסית.",
+      "600 כמוסות מרשימות על הקופסה, אבל המינון היומי היסודי נמוך יחסית — 122 מ\"ג מול 250 בצמרת.",
     confidence: "verified",
     expansion: {
       nutrition: null,
@@ -356,9 +356,9 @@ export const magnesiumProducts: BariProductVM[] = [
       // label two-line confirmed: 850mg malate compound / 136mg elemental
       'תרכובת: 850 מ"ג מלאט (מצוין על התווית) — 136 מ"ג מגנזיום אלמנטרי'
     ),
-    insightLine: "136 מ\"ג מלאט — ספיגה בינונית, מינון בינוני. ציון C.",
+    insightLine: "מלאט ב-136 מ\"ג יושב בדיוק באמצע — נספג טוב יותר מאוקסיד, אבל לא מגיע לציטראט, וגם המינון בינוני.",
     rowVerdict:
-      "מלאט — מעל אוקסיד בספיגה, מתחת לציטראט. מינון ומיקום: שניהם באמצע.",
+      "מלאט נספג טוב יותר מאוקסיד אך פחות מציטראט, והמינון יושב בדיוק באמצע.",
     confidence: "partial",
     expansion: {
       nutrition: null,
@@ -393,9 +393,9 @@ export const magnesiumProducts: BariProductVM[] = [
       // label declares compound mass only: 700mg malate; elemental ~135mg derived (×0.195)
       'תרכובת: 700 מ"ג מלאט (מצוין על התווית) — ~135 מ"ג מגנזיום אלמנטרי (חישוב כימי, טווח 133–137 מ"ג)'
     ),
-    insightLine: "כ-135 מ\"ג מלאט — ספיגה בינונית, מינון יסודי לא מוצהר ישירות. ציון C.",
+    insightLine: "כמו טינק מלאט במהותו, אלא שהתווית כאן מציינת את מסת התרכובת ולא את היסודי, כך שכ-135 מ\"ג זה ערך שמתקבל מחישוב ולא נתון שמופיע ישירות על האריזה.",
     rowVerdict:
-      "כמו טינק מלאט — אבל התווית מציינת תרכובת, לא יסודי. המינון טעון חישוב.",
+      "דומה לטינק מלאט, אך התווית מציינת את התרכובת ולא את היסודי — כך שהמינון טעון חישוב.",
     confidence: "partial",
     expansion: {
       nutrition: null,
@@ -434,7 +434,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // compound_mass_mg null (blend undisclosed)
       null
     ),
-    insightLine: "מוצר משולב (סידן, מגנזיום, D3) — יחס הצורות לא מפורסם; ספיגה אינה ניתנת להערכה. ציון D.",
+    insightLine: "מוצר משולב של סידן, מגנזיום ו-D3 שבו יחס הצורות לא מפורסם — ולכן אי אפשר באמת להעריך כמה מגנזיום נספג כאן.",
     rowVerdict:
       "תערובת אוקסיד-ציטראט שיחסיה לא מפורסמים — ספיגה בפועל לא ניתנת להערכה.",
     confidence: "partial",
@@ -471,7 +471,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // label two-line confirmed: 950mg taurate compound / 76mg elemental
       'תרכובת: 950 מ"ג טאוראט (מצוין על התווית) — 76 מ"ג מגנזיום אלמנטרי'
     ),
-    insightLine: "76 מ\"ג טאוראט — מינון נמוך מרוב המוצרים בקטגוריה. ציון D.",
+    insightLine: "טאוראט בספיגה בינונית, אבל עם 76 מ\"ג יסודי המינון נמוך מרוב המדף — קטן מדי כדי לסגור פער משמעותי.",
     rowVerdict:
       "טאוראט עם ספיגה בינונית ו-76 מ\"ג יסודי — שילוב חלש בקטגוריה הזו.",
     confidence: "partial",
@@ -522,7 +522,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // back-calculated: 520/0.6031 = ~862mg MgO; label states 520mg elemental directly
       'תרכובת: ~862 מ"ג אוקסיד מגנזיום (חישוב לאחר) — 520 מ"ג מגנזיום יסודי לפי הכתוב על התווית (אומת)'
     ),
-    insightLine: "אוקסיד 520 מ\"ג יסודי — ספיגה נמוכה יחסית ומינון מעל הגבול המומלץ לתוספים. ציון D עם אזהרת מינון.",
+    insightLine: "הפורמולה הנפוצה ביותר, וגם המטעה ביותר: 520 מ\"ג אוקסיד נשמע הרבה, אבל זו הצורה שנספגת הכי פחות והמינון חוצה את התקרה המומלצת לתוספים.",
     rowVerdict:
       "הפורמולה הנפוצה ביותר — אוקסיד נספג פחות, אז הספרה הגדולה מטעה.",
     confidence: "verified",
@@ -561,7 +561,7 @@ export const magnesiumProducts: BariProductVM[] = [
       "מאומת", FLAGS_UL_EXCEED,
       'תרכובת: ~862 מ"ג אוקסיד מגנזיום (חישוב לאחר) — 520 מ"ג מגנזיום יסודי לפי הכתוב על התווית (אומת NRV%)'
     ),
-    insightLine: "אוקסיד 520 מ\"ג יסודי — ספיגה נמוכה יחסית ומינון מעל הגבול המומלץ לתוספים. ציון D עם אזהרת מינון.",
+    insightLine: "520 נראה מרשים על האריזה, אבל זו דווקא הצורה שנספגת הכי פחות במדף — ובמינון הזה היא כבר מעל הגבול המומלץ לתוספים.",
     rowVerdict:
       "520 מרשים על האריזה — אבל אוקסיד הוא הצורה שנספגת הכי פחות בקטגוריה.",
     confidence: "verified",
@@ -600,9 +600,9 @@ export const magnesiumProducts: BariProductVM[] = [
       "מאומת", FLAGS_UL_EXCEED,
       'תרכובת: 750 מ"ג אוקסיד מגנזיום (מצוין על התווית) — 450 מ"ג מגנזיום יסודי (אומת NRV%)'
     ),
-    insightLine: "אוקסיד 450 מ\"ג יסודי — ספיגה נמוכה יחסית ומינון מעל הגבול המומלץ לתוספים. ציון D עם אזהרת מינון.",
+    insightLine: "השם אומר UP, אבל מה שמעלה את ערך המגנזיום זו הצורה ולא הכמות — וכאן מדובר באוקסיד ב-450 מ\"ג, מעל התקרה המומלצת לתוספים.",
     rowVerdict:
-      "השם אומר UP — אבל מה שמעלה ערך מגנזיום הוא הצורה, לא הכמות. כאן: אוקסיד.",
+      "השם מבטיח UP, אבל את ערך המגנזיום קובעת הצורה ולא הכמות — וכאן הבסיס הוא אוקסיד.",
     confidence: "verified",
     expansion: {
       nutrition: null,
@@ -639,7 +639,7 @@ export const magnesiumProducts: BariProductVM[] = [
       "מאומת", FLAGS_UL_EXCEED,
       'תרכובת: ~747 מ"ג אוקסיד מגנזיום (חישוב לאחר) — 450 מ"ג מגנזיום יסודי לפי הכתוב על התווית (אומת NRV%)'
     ),
-    insightLine: "אוקסיד 450 מ\"ג יסודי עם צמחי מרגוע — ספיגה נמוכה יחסית ומינון מעל הגבול המומלץ לתוספים. ציון D עם אזהרת מינון.",
+    insightLine: "האשווגנדה והוולריאן הם בעיקר שיווק — הבסיס נשאר אוקסיד ב-450 מ\"ג, ספיגה נמוכה ומינון מעל הגבול המומלץ לתוספים.",
     rowVerdict:
       "האשווגנדה והולריאן הם שיווק — הבסיס הוא עדיין אוקסיד עם ספיגה נמוכה.",
     confidence: "verified",
@@ -683,7 +683,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // back-calculated: 88/0.1410 = ~624mg bisglycinate compound; label states 88mg elemental
       'תרכובת: ~624 מ"ג ביסגליצינט (חישוב לאחר) — 88 מ"ג מגנזיום יסודי לפי הכתוב על התווית'
     ),
-    insightLine: "88 מ\"ג ביסגליצינט עם טענת 'נאנו ליפוזומלי' — הטענה לא נתמכת בעדות מדעית מספקת. ציון E.",
+    insightLine: "כל הסיפור כאן בנוי על טענת 'נאנו ליפוזומלי' שלא עומדת בבדיקת הראיות — ומתחתיה רק 88 מ\"ג ביסגליצינט, מינון נמוך.",
     rowVerdict:
       "כל הטיעון בנוי על הטכנולוגיה הנאנו-ליפוזומלית — שלא עמדה בבדיקת הראיות.",
     confidence: "partial",
@@ -722,7 +722,7 @@ export const magnesiumProducts: BariProductVM[] = [
       // UNRESOLVED: no elemental dose → no flags
       FLAGS_UNRESOLVED
     ),
-    insightLine: "לא ניתן לדרג — נתוני תווית חסרים",
+    insightLine: "לא ניתן לדרג, כי התווית לא מבהירה אם 520 מ\"ג הם מגנזיום יסודי או אוקסיד, וההבדל הזה משנה הכול.",
     rowVerdict:
       "לא ניתן לדרג — האם 520 מ\"ג הם יסודי או אוקסיד? המינון לא ניתן לאימות.",
     confidence: "insufficient",
@@ -750,7 +750,7 @@ export const magnesiumProducts: BariProductVM[] = [
       "לא ניתן לחישוב",
       FLAGS_UNRESOLVED
     ),
-    insightLine: "לא ניתן לדרג — נתוני תווית חסרים",
+    insightLine: "לא ניתן לדרג — 160 מ\"ג שיכולים להיות יסודי או תרכובת, פער שמגיע עד פי 3.5.",
     rowVerdict:
       "לא ניתן לדרג — 160 מ\"ג: יסודי או תרכובת? הפער מגיע לפי 3.5.",
     confidence: "insufficient",
@@ -778,7 +778,7 @@ export const magnesiumProducts: BariProductVM[] = [
       "לא ניתן לחישוב",
       FLAGS_UNRESOLVED
     ),
-    insightLine: "לא ניתן לדרג — נתוני תווית חסרים",
+    insightLine: "לא ניתן לדרג — שלוש צורות בתערובת אחת שיחסיהן לא פורסמו, כך שאי אפשר להעריך כמה באמת נספג.",
     rowVerdict:
       "לא ניתן לדרג — יחסי שלוש הצורות לא פורסמו; ספיגה לא ניתנת להערכה.",
     confidence: "insufficient",
