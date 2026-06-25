@@ -12,15 +12,20 @@ import { FeaturedJuicesIntelligenceCard } from "@/components/hashvaot/featured-j
 import { FeaturedMilkIntelligenceCard } from "@/components/hashvaot/featured-milk-intelligence-card";
 import { FeaturedSnacksIntelligenceCard } from "@/components/hashvaot/featured-snacks-intelligence-card";
 import { FeaturedProteinBarsIntelligenceCard } from "@/components/hashvaot/featured-protein-bars-intelligence-card";
+import { FeaturedChocolateTabletsIntelligenceCard } from "@/components/hashvaot/featured-chocolate-tablets-intelligence-card";
+import { FeaturedChocolateBarsIntelligenceCard } from "@/components/hashvaot/featured-chocolate-bars-intelligence-card";
 import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
+import { FeaturedMagnesiumIntelligenceCard } from "@/components/hashvaot/featured-magnesium-intelligence-card";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
 import { breadProducts } from "@/lib/comparisons/bread-comparison-page-data";
 import { snacksProducts } from "@/lib/comparisons/snacks-comparison-page-data";
 import { proteinBarsProducts } from "@/lib/comparisons/protein-bars-comparison-page-data";
+import { chocolateTabletsProducts } from "@/lib/comparisons/chocolate-tablets-comparison-page-data";
+import { chocolateBarsProducts } from "@/lib/comparisons/chocolate-bars-comparison-page-data";
 import { hummusProducts, hummusPrologueSentences } from "@/lib/comparisons/hummus-comparison-page-data";
 import { cheeseProducts, cheesePrologueSentences } from "@/lib/comparisons/cheese-page-data";
 import { cerealsProducts } from "@/lib/comparisons/cereals-page-data";
@@ -41,6 +46,8 @@ export const metadata: Metadata = {
 };
 
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
+const CHOCOLATE_TABLETS_COMPARISON_HREF = "/hashvaot/chocolate-tablets";
+const CHOCOLATE_BARS_COMPARISON_HREF = "/hashvaot/chocolate-bars";
 const GRANOLA_COMPARISON_HREF = "/hashvaot/granola";
 const HARD_CHEESES_COMPARISON_HREF = "/hashvaot/hard-cheeses";
 const HUMMUS_COMPARISON_HREF = "/hashvaot/hummus";
@@ -59,6 +66,8 @@ export default function HashvaotIndexPage() {
   const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
   const snacksDescription = `דוח השוואה לחטיפי הדגנים: ${snacksProducts.length} חטיפי דגנים בדף ההשוואה, מתוך מדף החטיפים שנסרק בשופרסל.`;
   const proteinBarsDescription = `דוח השוואה לחטיפי החלבון: ${proteinBarsProducts.length} חטיפים עם 25–34 גרם חלבון ל-100 גרם — והמחיר ההנדסי שמגיע איתם. קטגוריה נפרדת מחטיפי הדגנים.`;
+  const chocolateTabletsDescription = `בדקנו ${chocolateTabletsProducts.length} טבלאות שוקולד: מריר 90% עד שוקולד לבן ממולא. הציון הגבוה ביותר הוא C — כל השוקולד הוא ממתק, אבל הפער בין 2 גרם סוכר ל-65 גרם הוא אמיתי.`;
+  const chocolateBarsDescription = `בדקנו ${chocolateBarsProducts.length} חטיפי שוקולד: כולם ציון E, 45–60 גרם סוכר ל-100 גרם. ההבדל היחיד הוא בין חטיף עם בוטנים לחטיף שהוא רק סוכר ושמן מתחת לציפוי.`;
   const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
   const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
@@ -70,6 +79,8 @@ export default function HashvaotIndexPage() {
   const eCount = cakesHardCookiesProducts.filter((p) => p.grade === "E").length;
   const cakesTopScore = Math.max(...cakesHardCookiesProducts.map((p) => p.score ?? 0)).toFixed(1);
   const cakesDescription = `בדקנו ${cakesHardCookiesProducts.length} עוגות מהמדף הישראלי — אף מוצר לא הגיע ל-A או ל-B. ${cCount} קיבלו C (הציון הגבוה ביותר הוא ${cakesTopScore}), ${dCount} קיבלו D ו-${eCount} קיבלו E. ציון C הוא תקרת הקטגוריה, לא הישג.`;
+  const magnesiumDescription =
+    "בדקנו 18 תוספי מגנזיום מהמדף הישראלי, והצורה הכימית היא שמכריעה: ציטראט וביסגליצינט נספגים טוב יותר, ולכן הם שמובילים את הדירוג, בעוד שהאוקסיד הזול והנפוץ יושב בתחתית — הגוף פשוט קולט ממנו פחות. ארבעה מוצרי אוקסיד אף חורגים מהגבול העליון לתוספים ומקבלים אזהרת מינון ברורה. מה שהציון מודד הוא כמה מגנזיום הגוף סופג בפועל, וזה תלוי בצורה הרבה יותר מאשר בספרה שעל הקופסה.";
 
   return (
     <main
@@ -109,6 +120,23 @@ export default function HashvaotIndexPage() {
           </p>
         </div>
 
+        {/* ── Supplements — separate section (different scoring logic), surfaced high
+            on the page so it isn't buried below the food grid. Links straight to the
+            magnesium comparison (no intermediate landing). ── */}
+        <div className="mt-12 space-y-6">
+          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
+            תוספי תזונה
+          </h2>
+          <p className="max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
+            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
+            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
+          </p>
+          <FeaturedMagnesiumIntelligenceCard
+            href="/hashvaot/magnesium"
+            description={magnesiumDescription}
+          />
+        </div>
+
         <div className="mt-12 space-y-6">
           <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
             ניתוח עדכני
@@ -136,6 +164,8 @@ export default function HashvaotIndexPage() {
           <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
           <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
           <FeaturedProteinBarsIntelligenceCard href="/hashvaot/protein-bars" description={proteinBarsDescription} />
+          <FeaturedChocolateTabletsIntelligenceCard href={CHOCOLATE_TABLETS_COMPARISON_HREF} description={chocolateTabletsDescription} />
+          <FeaturedChocolateBarsIntelligenceCard href={CHOCOLATE_BARS_COMPARISON_HREF} description={chocolateBarsDescription} />
           <FeaturedHummusIntelligenceCard
             href={HUMMUS_COMPARISON_HREF}
             description={hummusDescription}
@@ -156,7 +186,7 @@ export default function HashvaotIndexPage() {
 
         <Link
           href="/"
-          className="mt-12 inline-flex items-center gap-2 text-sm font-semibold text-[#4E5663] transition-colors hover:text-[#111318]"
+          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[#4E5663] transition-colors hover:text-[#111318]"
         >
           <ArrowLeft className="size-4" aria-hidden />
           חזרה לדף הבית

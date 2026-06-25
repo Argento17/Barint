@@ -10,6 +10,7 @@ export function BariProductThumbnail({
   size = "md",
   className,
   eager = false,
+  blendWhite = false,
 }: {
   product: BariProductVM;
   /** "fill" → the thumbnail fills its parent box (parent controls the size, e.g. a
@@ -20,6 +21,11 @@ export function BariProductThumbnail({
    *  paint instead of being deferred by `loading="lazy"` until a scroll/interaction
    *  nudges layout (the reported "image missing until I re-trigger it" behavior). */
   eager?: boolean;
+  /** When true, drop the framed card (border/fill/shadow) and multiply-blend the
+   *  photo so its baked-in white background dissolves into the page. Used for
+   *  retail product shots that ship on solid white (e.g. supplements). Default
+   *  false → every other category renders byte-identical. */
+  blendWhite?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const dim =
@@ -35,7 +41,8 @@ export function BariProductThumbnail({
     return (
       <div
         className={cn(
-          `relative ${dim} shrink-0 overflow-hidden rounded-2xl border border-black/[0.06] bg-gradient-to-b from-[#FFFFFF] to-[#F7F7F2] shadow-sm`,
+          `relative ${dim} shrink-0 overflow-hidden rounded-2xl`,
+          blendWhite ? "" : "border border-black/[0.06] bg-[#F7F7F2] shadow-sm",
           className
         )}
       >
@@ -43,6 +50,7 @@ export function BariProductThumbnail({
           src={product.imageUrl}
           alt=""
           className="h-full w-full object-contain p-2"
+          style={blendWhite ? { mixBlendMode: "multiply" } : undefined}
           sizes={
             size === "sm"
               ? "48px"
