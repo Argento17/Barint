@@ -27,7 +27,7 @@ const copyrightYear = 2026;
 
 export function HomeFooter() {
   return (
-    <footer className="border-t border-black/[0.08] bg-[#F7F7F2] py-14 text-[#4E5663] md:py-16">
+    <footer className="relative z-10 isolate border-t border-black/[0.08] bg-[#F7F7F2] py-14 text-[#4E5663] md:py-16">
       <HomeContainer>
         <div className="flex flex-col items-center justify-between gap-8 text-center md:flex-row md:text-right">
           <div className="space-y-3">
