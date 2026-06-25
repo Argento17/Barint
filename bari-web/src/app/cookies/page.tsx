@@ -45,8 +45,7 @@ export default function CookiesPage() {
               עד כשנתיים.
             </li>
             <li>
-              <code>_ga_&lt;מזהה&gt;</code> (בפורמט <code>_ga_*</code>) — משמשת
-              לשמירת מצב מדידת ה-Session עבור האתר.
+              <code>_ga_*</code> — משמשת לשמירת מצב מדידת ה-Session עבור האתר.
             </li>
           </ul>
           <p className="mt-2">

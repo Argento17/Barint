@@ -86,9 +86,9 @@ export default function NagisutPage() {
             ונעשה כמיטב יכולתנו לטפל בפנייתכם בהקדם:
           </p>
           <ul className="mt-2 list-disc space-y-1 pr-5">
-            <li>שם רכז/אחראי הנגישות: 【שם — טום】</li>
-            <li>דוא&quot;ל: 【email】</li>
-            <li>טלפון: 【phone】</li>
+            <li>שם רכז/אחראי הנגישות: תום בר-חיים</li>
+            <li>דוא&quot;ל: tbarhaim@gmail.com</li>
+            <li>טלפון: 054-2626673</li>
           </ul>
           <p className="mt-2">
             בפנייתכם, נודה אם תתארו את הבעיה שבה נתקלתם, את העמוד שבו אירעה, ואת סוג
@@ -99,7 +99,7 @@ export default function NagisutPage() {
 
         <section>
           <h2 className="mb-2 text-base font-bold text-[#111318]">תאריך עדכון אחרון</h2>
-          <p>תאריך עדכון אחרון של הצהרה זו: 【תאריך】.</p>
+          <p>תאריך עדכון אחרון של הצהרה זו: 25.06.2026.</p>
         </section>
       </div>
     </div>
