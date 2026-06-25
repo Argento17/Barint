@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { ConsentManager } from "@/components/shared/consent-manager";
 import { GA4Script } from "@/components/shared/ga4-script";
+import { SiteStructuredData } from "@/components/seo/site-structured-data";
 import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +26,10 @@ export const metadata: Metadata = {
   title: "Bari — אינטליגנציית מזון ישראלית",
   description:
     "אינטליגנציית מזון ישראלית: אלגוריתמים, דירוגים והשוואות שקופות שמבוססות על נתונים.",
+  // Self-referential canonical, resolved per-route against metadataBase
+  // (e.g. /hashvaot/hummus → https://bari.digital/hashvaot/hummus). Inherited
+  // by every page that does not set its own `alternates`.
+  alternates: { canonical: "./" },
   openGraph: {
     title: "Bari — אינטליגנציית מזון ישראלית",
     description:
@@ -63,6 +68,7 @@ export default function RootLayout({
         <HomeFooter />
         <ConsentManager />
         <GA4Script />
+        <SiteStructuredData />
       </body>
     </html>
   );
