@@ -6,7 +6,7 @@ import { OPEN_PREFERENCES_EVENT } from "@/components/shared/consent-manager";
 
 /**
  * TASK 2 — Site-wide footer.
- * Contains legal links (/nagisut, /privacy, /terms) and the not-medical-advice disclaimer.
+ * Contains legal links (/nagisut, /privacy, /terms, /cookies, /disclaimer) and the not-medical-advice disclaimer.
  */
 export function SiteFooter() {
   return (
@@ -38,6 +38,18 @@ export function SiteFooter() {
           className="text-[12px] text-[#6B7070] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
         >
           תנאי שימוש
+        </Link>
+        <Link
+          href="/cookies"
+          className="text-[12px] text-[#6B7070] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
+        >
+          מדיניות עוגיות
+        </Link>
+        <Link
+          href="/disclaimer"
+          className="text-[12px] text-[#6B7070] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
+        >
+          כתב ויתור רפואי
         </Link>
         {/* CMP re-open link — dispatches a custom event picked up by ConsentManager */}
         <button
