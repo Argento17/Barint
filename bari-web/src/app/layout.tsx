@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { HomeFooter } from "@/components/home/home-footer";
 import { ConsentManager } from "@/components/shared/consent-manager";
 import { GA4Script } from "@/components/shared/ga4-script";
 import { SITE_URL } from "@/lib/site-url";
@@ -60,7 +60,7 @@ export default function RootLayout({
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
+        <HomeFooter />
         <ConsentManager />
         <GA4Script />
       </body>

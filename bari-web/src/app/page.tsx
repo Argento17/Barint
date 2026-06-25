@@ -3,7 +3,6 @@ import { Heebo } from "next/font/google";
 import { HomeAnalysisEngine } from "@/components/home/home-analysis-engine";
 import { HomeComparisons } from "@/components/home/home-comparisons";
 import { HomeFinalCta } from "@/components/home/home-final-cta";
-import { HomeFooter } from "@/components/home/home-footer";
 import { HomeGuides } from "@/components/home/home-guides";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeMethodology } from "@/components/home/home-methodology";
@@ -32,7 +31,6 @@ export default function HomePage() {
         <HomeGuides />
         <HomeNewsletter />
         <HomeFinalCta />
-        <HomeFooter />
       </div>
     </div>
   );
