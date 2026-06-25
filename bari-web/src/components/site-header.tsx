@@ -53,7 +53,7 @@ export function SiteHeader() {
               <Link href="/#newsletter">
                 <span className="relative z-10 inline-flex items-center gap-2">
                   הרשמו לניוזלטר
-                  <span className="nav-newsletter-dot size-1.5 rounded-full bg-[#1F8F6A]" aria-hidden />
+                  <span className="nav-newsletter-dot size-1.5 rounded-full bg-[#167A58]" aria-hidden />
                 </span>
               </Link>
             </Button>
@@ -94,7 +94,7 @@ export function SiteHeader() {
                 >
                   <span className="relative z-10 inline-flex items-center justify-center gap-2">
                     הרשמו לניוזלטר
-                    <span className="nav-newsletter-dot size-1.5 rounded-full bg-[#1F8F6A]" aria-hidden />
+                    <span className="nav-newsletter-dot size-1.5 rounded-full bg-[#167A58]" aria-hidden />
                   </span>
                 </Link>
               </nav>

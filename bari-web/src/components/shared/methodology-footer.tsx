@@ -30,14 +30,14 @@ export function MethodologyFooter({
         {lines.map((line, index) => {
           const isLast = index === lines.length - 1;
           return (
-            <p key={`${index}-${line.slice(0, 14)}`} className="text-[11px] leading-relaxed text-[#8A908B]">
+            <p key={`${index}-${line.slice(0, 14)}`} className="text-[11px] leading-relaxed text-[#6B7070]">
               {line}
               {isLast && showMethodologyLink && (
                 <>
                   {" "}
                   <Link
                     href="/research/glass-box"
-                    className="text-[#1F8F6A] underline underline-offset-2"
+                    className="text-[#167A58] underline underline-offset-2"
                   >
                     פירוט המתודולוגיה
                   </Link>

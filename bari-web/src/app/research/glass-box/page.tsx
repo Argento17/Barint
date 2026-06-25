@@ -98,7 +98,7 @@ export default function GlassBoxMethodologyPage() {
             חלק מהמוצרים ירדו בציון. לא כעונש — אלא מפני שהנחה שלא הייתה אמורה להיות שם הוסרה. הפירוט המלא נמצא בדף{" "}
             <Link
               href="/hashvaot/hummus"
-              className="text-[#1F8F6A] underline underline-offset-2"
+              className="text-[#167A58] underline underline-offset-2"
             >
               החומוס
             </Link>

@@ -36,7 +36,7 @@ function ArticleHero() {
         </Link>
 
         <div className="flex max-w-3xl flex-col justify-center text-right">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
             {hero.eyebrow}
           </p>
           <h1 className="mt-3 text-balance text-3xl font-extrabold leading-[1.1] tracking-tighter text-[#111318] md:text-4xl lg:text-5xl">
@@ -161,14 +161,14 @@ function TakeawaySection() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
             <Link
               href={PROTEIN_BARS_HREF}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1F8F6A] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#167A58] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
             >
               לניתוח חטיפי החלבון
               <ChevronLeft className="size-4" aria-hidden />
             </Link>
             <Link
               href={HASHVAOT_HREF}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#1F8F6A]/30 bg-transparent px-6 py-3 text-sm font-bold text-[#1F8F6A] transition-colors duration-200 hover:bg-[#1F8F6A]/8"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#1F8F6A]/30 bg-transparent px-6 py-3 text-sm font-bold text-[#167A58] transition-colors duration-200 hover:bg-[#1F8F6A]/8"
             >
               כל קטגוריות ברי
               <ChevronLeft className="size-4" aria-hidden />
@@ -185,7 +185,7 @@ function TakeawaySection() {
 // ---------------------------------------------------------------------------
 export function SugarAlcoholsArticle() {
   return (
-    <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+    <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <article>
         {/* 1. Hero */}
         <ArticleHero />
@@ -234,7 +234,7 @@ export function SugarAlcoholsArticle() {
           <footer className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 border-t border-black/6 pt-8">
             <Link
               href={HASHVAOT_HREF}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F8F6A] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#167A58] hover:underline"
             >
               כל ניתוחי המדף
               <ChevronLeft className="size-4" aria-hidden />
@@ -248,6 +248,6 @@ export function SugarAlcoholsArticle() {
           </footer>
         </HomeContainer>
       </article>
-    </main>
+    </div>
   );
 }

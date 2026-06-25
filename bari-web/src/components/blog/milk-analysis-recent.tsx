@@ -31,7 +31,7 @@ export function MilkAnalysisRecent() {
             transition={{ delay: i * 0.04 }}
             className="flex flex-col rounded-[1.1rem] border border-black/[0.07] bg-[#FFFFFF] p-5"
           >
-            <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{item.category}</p>
+            <p className="text-[0.65rem] font-bold text-[#167A58]">{item.category}</p>
             <h3 className="mt-2 text-base font-extrabold leading-snug text-[#111318]">
               {item.title}
             </h3>
@@ -44,7 +44,7 @@ export function MilkAnalysisRecent() {
             ) : (
               <Link
                 href={item.href}
-                className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#1F8F6A] hover:underline"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
               >
                 {item.cta}
                 <ChevronLeft className="size-4" aria-hidden />
@@ -56,7 +56,7 @@ export function MilkAnalysisRecent() {
 
       <Link
         href="/blog"
-        className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#1F8F6A] hover:underline"
+        className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#167A58] hover:underline"
       >
         לכל הניתוחים בבלוג
         <ChevronLeft className="size-4" aria-hidden />

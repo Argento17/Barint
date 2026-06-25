@@ -126,7 +126,7 @@ export function MilkAnalysisScatter() {
   return (
     <section id="shelf-map" className="scroll-mt-24">
       <header className="mb-6 md:mb-8">
-        <p className="text-sm font-bold text-[#1F8F6A]">תובנה מרכזית</p>
+        <p className="text-sm font-bold text-[#167A58]">תובנה מרכזית</p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">
           {scatter.title}
         </h2>
@@ -167,7 +167,7 @@ export function MilkAnalysisScatter() {
                   <span>{scatter.yLow}</span>
                 </div>
 
-                <div className="pointer-events-none absolute left-12 top-3 z-10 rounded-full border border-[#1F8F6A]/14 bg-[#1F8F6A]/8 px-2.5 py-1 text-[11px] font-bold text-[#1F8F6A]">
+                <div className="pointer-events-none absolute left-12 top-3 z-10 rounded-full border border-[#1F8F6A]/14 bg-[#1F8F6A]/8 px-2.5 py-1 text-[11px] font-bold text-[#167A58]">
                   יותר חלבון · פחות עיבוד
                 </div>
                 <div className="pointer-events-none absolute bottom-3 right-3 z-10 rounded-full border border-black/[0.08] bg-[#111318]/[0.05] px-2.5 py-1 text-[11px] font-semibold text-[#4E5663]">
@@ -305,7 +305,7 @@ export function MilkAnalysisScatter() {
                   />
 
                   <div className="min-w-0 flex-1">
-                    <p className="text-[0.65rem] font-bold text-[#1F8F6A]">
+                    <p className="text-[0.65rem] font-bold text-[#167A58]">
                       {active.product.productTypeLabel}
                     </p>
                     <h3 className="mt-1 text-base font-extrabold leading-snug text-[#111318]">
@@ -369,7 +369,7 @@ export function MilkAnalysisScatter() {
               key={note.title}
               className="rounded-[1rem] border border-black/[0.06] bg-[#F7F7F2]/50 p-4 text-right"
             >
-              <p className="text-xs font-bold text-[#1F8F6A]">{note.title}</p>
+              <p className="text-xs font-bold text-[#167A58]">{note.title}</p>
               <p className="mt-1.5 text-sm leading-snug text-[#4E5663]">{note.text}</p>
             </li>
           ))}

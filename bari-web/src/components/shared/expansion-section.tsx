@@ -900,6 +900,7 @@ function IngredientText({ ingredients }: { ingredients: string }) {
       <span>{preview}</span>
       <button
         type="button"
+        className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
         onClick={(e) => {
           e.stopPropagation();
           setExpanded(true);
@@ -908,7 +909,7 @@ function IngredientText({ ingredients }: { ingredients: string }) {
           marginInlineStart: "6px",
           fontSize: "12px",
           fontWeight: 600,
-          color: "#1F8F6A", // literal hex — var(--bari-green) does not resolve in this CSS scope
+          color: "#167A58", // literal hex — var(--bari-green) does not resolve in this CSS scope
           background: "transparent",
           border: "none",
           cursor: "pointer",
@@ -1031,6 +1032,7 @@ function ExpansionFooter({
       ) : null}
       <button
         type="button"
+        className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
         onClick={(e) => {
           e.stopPropagation();
           onCollapse();

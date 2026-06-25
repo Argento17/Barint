@@ -38,7 +38,7 @@ export function HomeHero() {
         <div className="mx-auto max-w-5xl text-center">
           <Badge
             variant="outline"
-            className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#1F8F6A] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
+            className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#167A58] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
             asChild
           >
             <Link href="#analysis-engine">
@@ -60,7 +60,7 @@ export function HomeHero() {
           <div className="reveal-up delay-300 mt-7 flex flex-col items-center justify-center gap-3 sm:mt-11 sm:flex-row sm:gap-4">
             <Button
               size="lg"
-              className="group h-12 w-full rounded-2xl border border-[#1F8F6A]/10 bg-[#1F8F6A] px-8 text-base font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#1F8F6A] hover:shadow-xl hover:shadow-slate-900/10 sm:w-auto"
+              className="group h-12 w-full rounded-2xl border border-[#1F8F6A]/10 bg-[#167A58] px-8 text-base font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#167A58] hover:shadow-xl hover:shadow-slate-900/10 sm:w-auto"
               asChild
             >
               <a href="#analysis-engine" className="inline-flex items-center justify-center gap-2">

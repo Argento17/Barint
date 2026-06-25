@@ -146,7 +146,7 @@ export function ComparisonTable({
             ) : null}
             {product.bandNote ? (
               <div
-                className="px-4 py-2 text-[0.75rem] leading-[1.5] text-[#7A7A7A]"
+                className="px-4 py-2 text-[0.75rem] leading-[1.5] text-[#666666]"
                 style={{ borderTop: "1px dashed #E0DDD5", backgroundColor: "#FAFAF8" }}
                 aria-label={product.bandNote}
               >

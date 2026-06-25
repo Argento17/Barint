@@ -84,7 +84,7 @@ function CategoryNoteBox({ note, collapseMobile = false }: { note: string; colla
           type="button"
           onClick={() => setExpanded((v) => !v)}
           className={cn(
-            "mt-2 text-[11px] font-semibold text-[#1F8F6A] hover:underline focus:outline-none",
+            "mt-2 text-[11px] font-semibold text-[#167A58] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]",
             "md:hidden" // desktop: toggle never shown — content always visible
           )}
           aria-expanded={expanded}
@@ -248,7 +248,7 @@ export function ComparisonPage<TFilterId extends string = string>({
           <div className={cn("px-4 pb-1", comparisonWebSectionPaddingClass())}>
             <a
               href={blogLink.href}
-              className="text-[13px] font-semibold text-[#1F8F6A] hover:underline"
+              className="text-[13px] font-semibold text-[#167A58] hover:underline"
             >
               {blogLink.label}
             </a>

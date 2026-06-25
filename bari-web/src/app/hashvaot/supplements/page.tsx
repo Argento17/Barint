@@ -25,7 +25,7 @@ const MAGNESIUM_DESCRIPTION =
 
 export default function SupplementsIndexPage() {
   return (
-    <main
+    <div
       className={cn(
         "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
@@ -69,6 +69,6 @@ export default function SupplementsIndexPage() {
           </Link>
         </div>
       </HomeContainer>
-    </main>
+    </div>
   );
 }

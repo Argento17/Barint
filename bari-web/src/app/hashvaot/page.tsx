@@ -41,7 +41,7 @@ import { siteHeaderOffsetClass } from "@/lib/site-layout";
 export const metadata: Metadata = {
   title: "השוואות | Bari",
   description:
-    "השוואות אינטליגנציית מזון אינטראקטיביות — ניתוח רב-פרמטרי של מוצרים דומים.",
+    "ברי משווה מוצרי מזון ותוספים ישראליים לפי נתונים, לא תדמית — מגנזיום, לחם, גבינות, חטיפים ועוד. מידע, לא המלצה.",
 };
 
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
@@ -80,7 +80,7 @@ export default function HashvaotIndexPage() {
   const cakesDescription = `בדקנו ${cakesHardCookiesProducts.length} עוגות מהמדף הישראלי — אף מוצר לא הגיע ל-A או ל-B. ${cCount} קיבלו C (הציון הגבוה ביותר הוא ${cakesTopScore}), ${dCount} קיבלו D ו-${eCount} קיבלו E. ציון C הוא תקרת הקטגוריה, לא הישג.`;
 
   return (
-    <main
+    <div
       className={cn(
         "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
@@ -109,7 +109,7 @@ export default function HashvaotIndexPage() {
             רוצים את הסיפור מאחורי הממצאים?{" "}
             <Link
               href="/blog/milk-analysis"
-              className="font-semibold text-[#1F8F6A] underline-offset-2 hover:underline"
+              className="font-semibold text-[#167A58] underline-offset-2 hover:underline"
             >
               קראו את הניתוח בבלוג
             </Link>
@@ -183,7 +183,7 @@ export default function HashvaotIndexPage() {
             )}
           >
             <span>השוואות תוספי תזונה</span>
-            <ArrowLeft className="size-4 rotate-180 text-[#1F8F6A]" aria-hidden />
+            <ArrowLeft className="size-4 rotate-180 text-[#167A58]" aria-hidden />
           </Link>
         </div>
 
@@ -195,6 +195,6 @@ export default function HashvaotIndexPage() {
           חזרה לדף הבית
         </Link>
       </HomeContainer>
-    </main>
+    </div>
   );
 }

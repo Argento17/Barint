@@ -20,7 +20,7 @@ export function HomeTrust() {
     <section className="bg-[#F7F7F2] py-12 md:py-16" id="trust">
       <HomeContainer>
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
             שקיפות
           </p>
           <h2 className="mt-3 text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">

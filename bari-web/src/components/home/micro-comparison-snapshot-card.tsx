@@ -20,13 +20,13 @@ const ARCHETYPE_BADGE: Record<
   EditorialArchetype | "comparison",
   string
 > = {
-  comparison: "bg-[#E8F5EF] text-[#1F8F6A]",
+  comparison: "bg-[#E8F5EF] text-[#167A58]",
   investigation: "bg-[#FEF9EC] text-[#92400E]",
   "category-report": "bg-[#F1F5F9] text-[#475569]",
   ingredient: "bg-[#F0FAFA] text-[#0E7490]",
   methodology: "bg-[#F1F5F9] text-[#475569]",
   "what-surprised-us": "bg-[#FFF1F2] text-[#9F1239]",
-  "product-spotlight": "bg-[#E8F5EF] text-[#1F8F6A]",
+  "product-spotlight": "bg-[#E8F5EF] text-[#167A58]",
 };
 
 function CardHeader({
@@ -79,7 +79,7 @@ function ProductMiniColumn({
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
-              alt=""
+              alt={product.name}
               fill
               className="object-contain"
               sizes="40px"
@@ -87,7 +87,7 @@ function ProductMiniColumn({
           ) : null}
         </div>
         <div className="min-w-0 flex-1 text-right">
-          <p className="text-[0.6rem] font-bold text-[#1F8F6A]">{product.brand}</p>
+          <p className="text-[0.6rem] font-bold text-[#167A58]">{product.brand}</p>
           <p className="line-clamp-2 text-xs font-extrabold leading-snug text-[#111318]">
             {product.name}
           </p>
@@ -103,7 +103,7 @@ function ProductMiniColumn({
         {product.strengths.map((s) => (
           <li
             key={s}
-            className="text-[0.65rem] font-semibold leading-snug text-[#4E5663] before:ml-1 before:text-[#1F8F6A] before:content-['·']"
+            className="text-[0.65rem] font-semibold leading-snug text-[#4E5663] before:ml-1 before:text-[#167A58] before:content-['·']"
           >
             {s}
           </li>
@@ -133,14 +133,14 @@ function ComparisonCardLayout({ card }: { card: ComparisonCard }) {
         </div>
 
         <div className="rounded-lg border-r-[3px] border-[#1F8F6A] bg-[#F7F7F2]/80 px-3 py-2.5">
-          <p className="text-[0.65rem] font-bold text-[#1F8F6A]">פער מרכזי</p>
+          <p className="text-[0.65rem] font-bold text-[#167A58]">פער מרכזי</p>
           <p className="mt-1 text-sm font-medium leading-relaxed text-[#111318]">
             {card.tradeoff}
           </p>
         </div>
       </div>
 
-      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
+      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#167A58] opacity-80 transition-opacity group-hover:opacity-100">
         לפרטים
         <ChevronLeft className="size-3.5" aria-hidden />
       </p>
@@ -179,7 +179,7 @@ function EditorialCardLayout({ card }: { card: EditorialCard }) {
         ) : null}
       </div>
 
-      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
+      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#167A58] opacity-80 transition-opacity group-hover:opacity-100">
         לפרטים
         <ChevronLeft className="size-3.5" aria-hidden />
       </p>

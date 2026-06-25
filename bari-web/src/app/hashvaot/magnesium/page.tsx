@@ -16,7 +16,7 @@ import {
 } from "@/lib/comparisons/magnesium-page-data";
 
 export const metadata: Metadata = {
-  title: "תוספי מגנזיום | Bari",
+  title: "השוואת תוספי מגנזיום | Bari",
   description:
     "השוואת 18 תוספי מגנזיום מהמדף הישראלי — ציון Bari לפי מינון יסודי, צורת ספיגה ועדות מדעית. מידע, לא המלצה.",
 };

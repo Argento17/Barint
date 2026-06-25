@@ -10,13 +10,13 @@ const ORIGIN_COLORS: Record<string, string> = {
 };
 
 const RETAILER_COLORS: Record<string, string> = {
-  שופרסל: "bg-[#E8F4F0] text-[#1F8F6A]",
+  שופרסל: "bg-[#E8F4F0] text-[#167A58]",
   יוחננוף: "bg-[#EEF2FB] text-[#3B5BAD]",
 };
 
 function Cell({ value }: { value: boolean }) {
   return value ? (
-    <CheckCircle2 className="mx-auto size-4 text-[#1F8F6A]" aria-label="כן" />
+    <CheckCircle2 className="mx-auto size-4 text-[#167A58]" aria-label="כן" />
   ) : (
     <XCircle className="mx-auto size-4 text-[#C0392B]/70" aria-label="לא" />
   );

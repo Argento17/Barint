@@ -256,7 +256,7 @@ export default function AdminPage() {
         </aside>
 
         {/* editor */}
-        <main>
+        <div>
           {notice && <Banner kind={notice.kind}>{notice.text}</Banner>}
 
           {!loaded && <p className="text-neutral-400">בחר קטגוריה כדי לערוך.</p>}
@@ -289,7 +289,7 @@ export default function AdminPage() {
               </div>
             </>
           )}
-        </main>
+        </div>
       </div>
     </Shell>
   );

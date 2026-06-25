@@ -95,7 +95,7 @@ export function HomeComparisons() {
       <HomeContainer>
         <div className="reveal-up mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl space-y-3 text-right">
-            <p className="text-sm font-bold text-[#1F8F6A]">ניתוחי קטגוריה · מוצרים אמיתיים</p>
+            <p className="text-sm font-bold text-[#167A58]">ניתוחי קטגוריה · מוצרים אמיתיים</p>
             <h2 className="text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
               מוצרים שנראים דומים — לא תמיד אותו דבר
             </h2>
@@ -104,7 +104,7 @@ export function HomeComparisons() {
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-3">
-            <Button variant="ghost" className="gap-2 text-[#1F8F6A]" asChild>
+            <Button variant="ghost" className="gap-2 text-[#167A58]" asChild>
               <Link href="/hashvaot" className="font-semibold">
                 כל ההשוואות
                 <ChevronLeft className="size-5" aria-hidden />
@@ -130,7 +130,7 @@ export function HomeComparisons() {
           <button
             type="button"
             onClick={() => moveCarousel("left")}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-[#1F8F6A]/20 bg-[#1F8F6A] text-[#F7F7F2] shadow-sm"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-[#1F8F6A]/20 bg-[#167A58] text-[#F7F7F2] shadow-sm"
             aria-label="הזזת הקרוסלה שמאלה"
           >
             <ChevronLeft className="size-5" aria-hidden />

@@ -24,7 +24,7 @@ export default function HomePage() {
         "home-canvas relative text-[#111318] antialiased selection:bg-[#2FAE82]/20"
       )}
     >
-      <main lang="he" className="relative">
+      <div lang="he" className="relative">
         <HomeHero />
         <HomeAnalysisEngine />
         <HomeMethodology />
@@ -33,7 +33,7 @@ export default function HomePage() {
         <HomeNewsletter />
         <HomeFinalCta />
         <HomeFooter />
-      </main>
+      </div>
     </div>
   );
 }

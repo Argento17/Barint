@@ -53,7 +53,7 @@ export function CategoryPrologue({
           type="button"
           onClick={() => setExpanded((v) => !v)}
           className={cn(
-            "mt-1 text-[11px] font-semibold text-[#1F8F6A] hover:underline focus:outline-none",
+            "mt-1 text-[11px] font-semibold text-[#167A58] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]",
             "md:hidden"
           )}
           aria-expanded={expanded}

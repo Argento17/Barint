@@ -41,7 +41,7 @@ export function BariProductThumbnail({
       >
         <img
           src={product.imageUrl}
-          alt=""
+          alt={product.name}
           className="h-full w-full object-contain p-2"
           sizes={
             size === "sm"

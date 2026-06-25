@@ -128,7 +128,7 @@ function InsightCard({
           <h3 className="text-2xl font-extrabold tracking-[-0.045em] text-[#111318]">{item.title}</h3>
           <p className="mt-3 text-sm leading-relaxed text-[#5A6170]">{item.text}</p>
         </div>
-        <div className="grid size-10 shrink-0 place-items-center rounded-full border border-black/[0.08] bg-[#F7F7F2] text-[#1F8F6A]">
+        <div className="grid size-10 shrink-0 place-items-center rounded-full border border-black/[0.08] bg-[#F7F7F2] text-[#167A58]">
           <Icon className="size-[1.125rem]" aria-hidden />
         </div>
       </div>
@@ -152,7 +152,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
       <div className="relative z-10">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">מנוע הניתוח של Bari</p>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">מנוע הניתוח של Bari</p>
             <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של בריא</h3>
             <p className="mt-2 text-sm font-medium text-[#4E5663]">
               ניתוח רב־ממדי • חישוב דינמי
@@ -163,7 +163,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
             transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
             className="grid size-12 place-items-center rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/60"
           >
-            <BrainCircuit className="size-6 text-[#1F8F6A]" aria-hidden />
+            <BrainCircuit className="size-6 text-[#167A58]" aria-hidden />
           </motion.div>
         </div>
 
@@ -305,7 +305,7 @@ export function HomeAnalysisEngine() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mx-auto mb-12 max-w-3xl text-center"
         >
-          <p className="text-sm font-bold text-[#1F8F6A]">מנוע הניתוח</p>
+          <p className="text-sm font-bold text-[#167A58]">מנוע הניתוח</p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
             איך Bari מנתחת מוצרים
           </h2>

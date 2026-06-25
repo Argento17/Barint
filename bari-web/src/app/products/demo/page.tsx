@@ -186,24 +186,24 @@ const nutritionAccent: Record<
   { stroke: string; glow: string; icon: string }
 > = {
   amber: {
-    stroke: "text-[#1F8F6A]",
+    stroke: "text-[#167A58]",
     glow: "shadow-slate-900/20",
-    icon: "bg-[#1F8F6A]/10 text-[#1F8F6A] ring-black/[0.08]",
+    icon: "bg-[#1F8F6A]/10 text-[#167A58] ring-black/[0.08]",
   },
   emerald: {
     stroke: "text-[#2FAE82]",
     glow: "shadow-slate-900/20",
-    icon: "bg-[#2FAE82]/10 text-[#1F8F6A] ring-black/[0.08]",
+    icon: "bg-[#2FAE82]/10 text-[#167A58] ring-black/[0.08]",
   },
   sage: {
-    stroke: "text-[#1F8F6A]",
+    stroke: "text-[#167A58]",
     glow: "shadow-slate-900/10",
-    icon: "bg-[#1F8F6A]/10 text-[#1F8F6A] ring-black/[0.08]",
+    icon: "bg-[#1F8F6A]/10 text-[#167A58] ring-black/[0.08]",
   },
   rose: {
-    stroke: "text-[#1F8F6A]",
+    stroke: "text-[#167A58]",
     glow: "shadow-slate-900/20",
-    icon: "bg-[#1F8F6A]/10 text-[#1F8F6A] ring-black/[0.08]",
+    icon: "bg-[#1F8F6A]/10 text-[#167A58] ring-black/[0.08]",
   },
 };
 
@@ -211,17 +211,17 @@ const signalStyles = {
   green: {
     dot: "bg-[#2FAE82]",
     glow: "shadow-[0_0_20px_rgba(47,174,130,0.06)]",
-    chip: "bg-[#2FAE82]/10 text-[#1F8F6A] ring-black/[0.08]",
+    chip: "bg-[#2FAE82]/10 text-[#167A58] ring-black/[0.08]",
   },
   yellow: {
-    dot: "bg-[#1F8F6A]",
+    dot: "bg-[#167A58]",
     glow: "shadow-[0_0_20px_rgba(47,174,130,0.06)]",
-    chip: "bg-[#1F8F6A]/10 text-[#1F8F6A] ring-black/[0.08]",
+    chip: "bg-[#1F8F6A]/10 text-[#167A58] ring-black/[0.08]",
   },
   red: {
-    dot: "bg-[#1F8F6A]",
+    dot: "bg-[#167A58]",
     glow: "shadow-[0_0_20px_rgba(47,174,130,0.06)]",
-    chip: "bg-[#1F8F6A]/10 text-[#1F8F6A] ring-black/[0.08]",
+    chip: "bg-[#1F8F6A]/10 text-[#167A58] ring-black/[0.08]",
   },
 };
 
@@ -357,12 +357,12 @@ export default function ProductPage() {
       className={cn(
         hebrew.className,
         "bari-product-demo relative min-h-screen overflow-x-hidden text-[#111318] antialiased",
-        "selection:bg-[#2FAE82]/20 selection:text-[#1F8F6A]"
+        "selection:bg-[#2FAE82]/20 selection:text-[#167A58]"
       )}
     >
       <MeshBackdrop />
 
-      <main
+      <div
         dir="rtl"
         lang="he"
         className="relative mx-auto max-w-6xl px-5 pb-24 pt-14 sm:px-8 sm:pb-28 sm:pt-16 md:px-10 md:pt-20"
@@ -381,7 +381,7 @@ export default function ProductPage() {
           <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(240px,0.85fr)] lg:items-center lg:gap-16">
             <div className="flex min-w-0 flex-col gap-8">
               <div className="flex flex-wrap items-center gap-2">
-                <Badge className="h-7 rounded-full border-0 bg-[#1F8F6A] px-3 text-[11px] font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/25 transition duration-300 hover:bg-[#1F8F6A] hover:shadow-slate-900/35">
+                <Badge className="h-7 rounded-full border-0 bg-[#167A58] px-3 text-[11px] font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/25 transition duration-300 hover:bg-[#167A58] hover:shadow-slate-900/35">
                   חטיף · קטגוריה
                 </Badge>
                 <Badge
@@ -413,7 +413,7 @@ export default function ProductPage() {
                   <SheetTrigger asChild>
                     <Button
                       size="lg"
-                      className="group h-12 rounded-2xl bg-[#1F8F6A] px-8 text-sm font-semibold text-[#F7F7F2] shadow-[0_16px_40px_-12px_rgba(47,174,130,0.06)] transition-all duration-500 ease-out hover:-translate-y-0.5 hover:bg-[#1F8F6A] hover:shadow-[0_22px_48px_-10px_rgba(47,174,130,0.06)] active:translate-y-0"
+                      className="group h-12 rounded-2xl bg-[#167A58] px-8 text-sm font-semibold text-[#F7F7F2] shadow-[0_16px_40px_-12px_rgba(47,174,130,0.06)] transition-all duration-500 ease-out hover:-translate-y-0.5 hover:bg-[#167A58] hover:shadow-[0_22px_48px_-10px_rgba(47,174,130,0.06)] active:translate-y-0"
                     >
                       <GitCompareArrows className="size-4 transition-transform duration-500 group-hover:-rotate-6" />
                       השוואת מוצרים
@@ -535,11 +535,11 @@ export default function ProductPage() {
             <CardHeader className="relative flex flex-col gap-10 border-0 pb-2 pt-10 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:pt-12">
               <div className="max-w-md space-y-4 text-center sm:text-right">
                 <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1F8F6A]/10 px-3 py-1 text-[11px] font-semibold text-[#1F8F6A] ring-1 ring-black/[0.08]">
-                    <span className="size-1.5 rounded-full bg-[#1F8F6A] shadow-[0_0_10px_rgba(47,174,130,0.06)]" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1F8F6A]/10 px-3 py-1 text-[11px] font-semibold text-[#167A58] ring-1 ring-black/[0.08]">
+                    <span className="size-1.5 rounded-full bg-[#167A58] shadow-[0_0_10px_rgba(47,174,130,0.06)]" />
                     מודל פעיל
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#2FAE82]/10 px-3 py-1 text-[11px] font-semibold text-[#1F8F6A] ring-1 ring-black/[0.08]">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#2FAE82]/10 px-3 py-1 text-[11px] font-semibold text-[#167A58] ring-1 ring-black/[0.08]">
                     <span className="size-1.5 rounded-full bg-[#2FAE82] shadow-[0_0_10px_rgba(47,174,130,0.06)]" />
                     נתונים סטטיים
                   </span>
@@ -595,7 +595,7 @@ export default function ProductPage() {
           <Card className="group flex flex-col border-0 bg-[#FFFFFF]/58 shadow-[0_24px_48px_-28px_rgba(17,19,24,0.58)] ring-1 ring-black/[0.08] backdrop-blur-xl transition duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_32px_56px_-24px_rgba(17,19,24,0.62)] lg:col-span-4 lg:rounded-[2rem]">
             <CardHeader className="border-0 pb-2 pt-8 sm:px-8 sm:pt-10">
               <div className="flex items-start gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-[#2FAE82]/10 text-[#1F8F6A] ring-1 ring-black/[0.08] shadow-inner shadow-slate-900/20">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-[#2FAE82]/10 text-[#167A58] ring-1 ring-black/[0.08] shadow-inner shadow-slate-900/20">
                   <ShieldCheck className="size-5" strokeWidth={1.6} />
                 </span>
                 <div>
@@ -697,7 +697,7 @@ export default function ProductPage() {
             />
             <Badge
               variant="outline"
-              className="h-8 w-fit shrink-0 self-start rounded-full border-black/[0.08] bg-[#2FAE82]/10 px-4 text-xs font-semibold text-[#1F8F6A] shadow-sm sm:self-auto"
+              className="h-8 w-fit shrink-0 self-start rounded-full border-black/[0.08] bg-[#2FAE82]/10 px-4 text-xs font-semibold text-[#167A58] shadow-sm sm:self-auto"
             >
               סדר יורד לפי משקל
             </Badge>
@@ -764,7 +764,7 @@ export default function ProductPage() {
                 value="processing"
                 className="overflow-hidden rounded-2xl border-0 bg-[#FFFFFF]/60 shadow-sm ring-1 ring-black/[0.08] transition duration-300 hover:bg-[#FFFFFF]/78"
               >
-                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#1F8F6A] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
+                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#167A58] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
                   עיבוד ומבנה מוצר
                 </AccordionTrigger>
                 <AccordionContent className="px-5 pb-6 sm:px-6">
@@ -790,7 +790,7 @@ export default function ProductPage() {
                 value="sugar"
                 className="overflow-hidden rounded-2xl border-0 bg-[#FFFFFF]/60 shadow-sm ring-1 ring-black/[0.08] transition duration-300 hover:bg-[#FFFFFF]/78"
               >
-                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#1F8F6A] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
+                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#167A58] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
                   פרופיל סוכרים
                 </AccordionTrigger>
                 <AccordionContent className="px-5 pb-6 sm:px-6">
@@ -825,7 +825,7 @@ export default function ProductPage() {
                 value="additives"
                 className="overflow-hidden rounded-2xl border-0 bg-[#FFFFFF]/60 shadow-sm ring-1 ring-black/[0.08] transition duration-300 hover:bg-[#FFFFFF]/78"
               >
-                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#1F8F6A] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
+                <AccordionTrigger className="px-5 py-5 text-start text-base font-semibold text-[#111318] transition-colors hover:text-[#167A58] hover:no-underline sm:px-6 [&_[data-slot=accordion-trigger-icon]]:ms-auto [&_[data-slot=accordion-trigger-icon]]:ml-0">
                   תוספים ורשויות מאשרות
                 </AccordionTrigger>
                 <AccordionContent className="px-5 pb-6 sm:px-6">
@@ -873,7 +873,7 @@ export default function ProductPage() {
             <p className="text-[11px] text-[#4E5663]">נתונים לצורכי השוואה ומחקר צרכן</p>
           </div>
         </footer>
-      </main>
+      </div>
     </div>
   );
 }

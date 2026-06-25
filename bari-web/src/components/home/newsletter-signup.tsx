@@ -93,7 +93,7 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="newsletter-cta-attention h-12 shrink-0 rounded-2xl border border-[#1F8F6A]/10 bg-[#1F8F6A] px-8 font-semibold text-[#F7F7F2] shadow-md shadow-slate-900/10 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#1F8F6A] hover:shadow-lg hover:shadow-slate-900/25 disabled:cursor-wait disabled:animate-none disabled:opacity-80"
+          className="newsletter-cta-attention h-12 shrink-0 rounded-2xl border border-[#1F8F6A]/10 bg-[#167A58] px-8 font-semibold text-[#F7F7F2] shadow-md shadow-slate-900/10 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#167A58] hover:shadow-lg hover:shadow-slate-900/25 disabled:cursor-wait disabled:animate-none disabled:opacity-80"
         >
           {isSubmitting ? "נרשמים..." : "הירשמו לניוזלטר"}
         </Button>
@@ -101,7 +101,7 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
 
       {feedback ? (
         <p
-          className={`mt-3 text-sm ${feedback.ok ? "text-[#1F8F6A]" : "text-[#7A3434]"}`}
+          className={`mt-3 text-sm ${feedback.ok ? "text-[#167A58]" : "text-[#7A3434]"}`}
           role="status"
           aria-live="polite"
         >
@@ -114,7 +114,7 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
 
 export function NewsletterIcon() {
   return (
-    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#1F8F6A]/[0.035] text-[#1F8F6A] shadow-md shadow-slate-900/20">
+    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#1F8F6A]/[0.035] text-[#167A58] shadow-md shadow-slate-900/20">
       <Mail className="size-8" aria-hidden />
     </div>
   );

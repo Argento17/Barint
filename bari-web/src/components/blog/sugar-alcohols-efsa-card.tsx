@@ -65,7 +65,7 @@ export function SugarAlcoholsEfsaCard() {
             href={efsaCard.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1F8F6A] hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#167A58] hover:underline"
           >
             {efsaCard.ctaLabel}
             <ExternalLink className="size-3.5" aria-hidden />

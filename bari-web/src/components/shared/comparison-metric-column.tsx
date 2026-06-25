@@ -307,19 +307,19 @@ function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
   return (
     <div className="w-[62px] shrink-0" role="group" aria-label={ariaLabel}>
       <div className="flex items-baseline justify-between gap-1">
-        <span className="text-[0.6rem] font-medium leading-none text-[#9AA09B]" aria-hidden>
+        <span className="text-[0.6rem] font-medium leading-none text-[#5E6560]" aria-hidden>
           {spec.label}
         </span>
         <span
           className="text-[0.74rem] font-bold leading-none tabular-nums"
-          style={{ color: hasValue ? "#4A524E" : "#9AA09B" }}
+          style={{ color: hasValue ? "#4A524E" : "#5E6560" }}
           aria-hidden
         >
           {hasValue ? (
             <>
               {formatMetricValue(value)}
               {spec.unit ? (
-                <i className="text-[0.56rem] font-medium not-italic text-[#9AA09B]">
+                <i className="text-[0.56rem] font-medium not-italic text-[#5E6560]">
                   {spec.unit === "%" ? "%" : ` ${spec.unit}`}
                 </i>
               ) : null}

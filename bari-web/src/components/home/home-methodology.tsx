@@ -386,7 +386,7 @@ function SignalBenchmarkRow({
     >
       <div className="mb-2 flex items-center justify-between gap-4">
         <div>
-          <div className="text-sm font-bold text-[#111318] transition-colors duration-300 group-hover:text-[#1F8F6A]">
+          <div className="text-sm font-bold text-[#111318] transition-colors duration-300 group-hover:text-[#167A58]">
             {row.label}
           </div>
           <div className="mt-0.5 text-xs text-[#5E6560] transition-colors duration-300 group-hover:text-[#4E5663]">
@@ -394,7 +394,7 @@ function SignalBenchmarkRow({
           </div>
         </div>
         <div className="text-left">
-          <div className="text-sm font-extrabold text-[#1F8F6A]">{row.value}</div>
+          <div className="text-sm font-extrabold text-[#167A58]">{row.value}</div>
           <div className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[#4E5663]">Bari</div>
         </div>
       </div>
@@ -402,7 +402,7 @@ function SignalBenchmarkRow({
       <div className="relative h-3 overflow-visible rounded-full bg-[#F7F7F2]/75 shadow-inner shadow-slate-900/25">
         <div className="absolute inset-y-0 end-0 w-full overflow-hidden rounded-full">
           <motion.div
-            className="h-full rounded-full bg-[#1F8F6A]/60 transition-[width,background-color,box-shadow] ease-out group-hover:bg-[#1F8F6A] group-hover:shadow-[0_0_18px_rgba(47,174,130,0.06)]"
+            className="h-full rounded-full bg-[#1F8F6A]/60 transition-[width,background-color,box-shadow] ease-out group-hover:bg-[#167A58] group-hover:shadow-[0_0_18px_rgba(47,174,130,0.06)]"
             initial={false}
             animate={{ width: inView ? (reduceMotion ? `${row.value}%` : fillMotion) : "0%" }}
             transition={{
@@ -415,7 +415,7 @@ function SignalBenchmarkRow({
         </div>
 
         <motion.div
-          className="absolute z-10 size-3 rounded-full border-2 border-[#F7F7F2] bg-[#1F8F6A] shadow-sm shadow-slate-900/10 transition-colors duration-300 group-hover:bg-[#1F8F6A]"
+          className="absolute z-10 size-3 rounded-full border-2 border-[#F7F7F2] bg-[#167A58] shadow-sm shadow-slate-900/10 transition-colors duration-300 group-hover:bg-[#167A58]"
           initial={false}
           animate={
             inView
@@ -448,7 +448,7 @@ function SignalBenchmarkRow({
 
       <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-[#5E6560]">
         <span>חלש</span>
-        <span className="transition-colors duration-300 group-hover:text-[#1F8F6A]">קו קטגוריה</span>
+        <span className="transition-colors duration-300 group-hover:text-[#167A58]">קו קטגוריה</span>
         <span>חזק</span>
       </div>
     </motion.div>
@@ -532,7 +532,7 @@ export function HomeMethodology() {
                   ניתוח רב־ממדי של מוצר
                 </h3>
               </div>
-              <div className="rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
+              <div className="rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#167A58]">
                 8 פרמטרים
               </div>
             </div>
@@ -546,7 +546,7 @@ export function HomeMethodology() {
 
             <div className="mt-5 rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/68 p-4 shadow-sm shadow-slate-900/20">
               <div className="mb-2 flex items-center gap-2 text-sm font-extrabold text-[#111318]">
-                <Sparkles className="size-4 text-[#1F8F6A]" aria-hidden />
+                <Sparkles className="size-4 text-[#167A58]" aria-hidden />
                 {activeSignalData.axis}
               </div>
               <p className="text-sm leading-relaxed text-[#4E5663]">{activeSignalData.detail}</p>
@@ -583,7 +583,7 @@ export function HomeMethodology() {
                       transitionDuration: reduceMotion ? "0ms" : undefined,
                     }}
                   >
-                    <Icon className="mb-3 size-5 text-[#1F8F6A]" aria-hidden />
+                    <Icon className="mb-3 size-5 text-[#167A58]" aria-hidden />
                     <h4 className="text-sm font-extrabold text-[#111318]">{card.title}</h4>
                     <p className="mt-2 text-xs leading-relaxed text-[#5E6560]">{card.text}</p>
                   </div>

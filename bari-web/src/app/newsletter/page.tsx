@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function NewsletterPage() {
   return (
-    <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+    <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <section className="relative overflow-hidden py-20 md:py-24">
         <div className="pointer-events-none absolute inset-0 bg-transparent" aria-hidden />
         <HomeContainer className="max-w-4xl">
@@ -38,6 +38,6 @@ export default function NewsletterPage() {
           </div>
         </HomeContainer>
       </section>
-    </main>
+    </div>
   );
 }

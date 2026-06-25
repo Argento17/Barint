@@ -20,11 +20,11 @@ export interface ScoreBand {
 // product's divider always agrees with the number shown on its chip — e.g. 49.7
 // displays as "50" and therefore belongs in 50–59, not under "מתחת ל-50".
 export const SCORE_BANDS: readonly ScoreBand[] = [
-  { id: "b80", label: "80+", min: 80, max: Infinity, tone: "#1F8F6A" },
-  { id: "b70", label: "70–79", min: 70, max: 80, tone: "#3FA07E" },
-  { id: "b60", label: "60–69", min: 60, max: 70, tone: "#9A9A5E" },
-  { id: "b50", label: "50–59", min: 50, max: 60, tone: "#C49A4A" },
-  { id: "b00", label: "מתחת ל-50", min: 0, max: 50, tone: "#C77F5A" },
+  { id: "b80", label: "80+", min: 80, max: Infinity, tone: "#167A58" },
+  { id: "b70", label: "70–79", min: 70, max: 80, tone: "#2E7D60" },
+  { id: "b60", label: "60–69", min: 60, max: 70, tone: "#6E6E3A" },
+  { id: "b50", label: "50–59", min: 50, max: 60, tone: "#8A6A28" },
+  { id: "b00", label: "מתחת ל-50", min: 0, max: 50, tone: "#9A5230" },
 ];
 
 const UNSCORED_BAND: ScoreBand = {
@@ -32,7 +32,7 @@ const UNSCORED_BAND: ScoreBand = {
   label: "ללא ציון",
   min: -Infinity,
   max: -Infinity,
-  tone: "#B5BBB6",
+  tone: "#6B716C",
 };
 
 /** The band a score falls into. `null` (unscored / insufficient) → its own trailing band. */

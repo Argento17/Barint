@@ -59,7 +59,7 @@ export function SugarAlcoholsChart1() {
                 >
                   {row.name}
                   {row.highlight && (
-                    <span className="mr-2 inline-block rounded-full bg-[#1F8F6A] px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-white">
+                    <span className="mr-2 inline-block rounded-full bg-[#167A58] px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-white">
                       הנפוץ ביותר
                     </span>
                   )}
@@ -88,7 +88,7 @@ export function SugarAlcoholsChart1() {
                   {row.name}
                 </p>
                 {row.highlight && (
-                  <span className="mt-1 inline-block rounded-full bg-[#1F8F6A] px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-white">
+                  <span className="mt-1 inline-block rounded-full bg-[#167A58] px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-white">
                     הנפוץ ביותר
                   </span>
                 )}

@@ -49,7 +49,7 @@ function ComparisonHero() {
 
       <HomeContainer className="relative grid gap-10 py-14 md:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.95fr)] md:items-center md:py-20">
         <div>
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[#1F8F6A]">
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[#167A58]">
             BREAD INVESTIGATION
           </p>
           <h1 className="mt-4 text-4xl font-extrabold tracking-[-0.055em] text-[#111318] md:text-[3.35rem] md:leading-[1.02]">
@@ -176,7 +176,7 @@ function ComparisonTable({ products }: { products: BreadProduct[] }) {
                     >
                       <BreadShelfProductImage product={product} size="sm" className="shrink-0" />
                       <div className="min-w-0">
-                        <p className="font-extrabold leading-snug text-[#111318] group-hover:text-[#1F8F6A]">
+                        <p className="font-extrabold leading-snug text-[#111318] group-hover:text-[#167A58]">
                           {product.name_he}
                         </p>
                         <p className="mt-1 text-xs text-[#7A817C]">{product.category_label_he}</p>
@@ -248,7 +248,7 @@ function InsightBlocks() {
 function PairCard({ pair }: { pair: (typeof breadComparisonPairs)[number] }) {
   return (
     <article className="rounded-[1.35rem] border border-black/[0.08] bg-[#FFFFFF]/95 p-5 shadow-[0_18px_50px_-38px_rgba(17,19,24,0.28)]">
-      <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">{pair.kicker}</p>
+      <p className="text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[#167A58]">{pair.kicker}</p>
       <h3 className="mt-2 text-xl font-extrabold tracking-[-0.03em] text-[#111318]">{pair.title}</h3>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {[pair.left, pair.right].map((product) => (
@@ -347,7 +347,7 @@ export function BreadComparisonDashboard() {
   );
 
   return (
-    <main
+    <div
       className={cn(
         "relative min-h-screen overflow-hidden bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
@@ -367,7 +367,7 @@ export function BreadComparisonDashboard() {
                 מוצגים כעת {visibleProducts.length} מוצרים מתוך {breadScoredProducts.length} שקיבלו ציון.
               </p>
             </div>
-            <Link href={BREAD_BLOG_HREF} className="text-sm font-semibold text-[#1F8F6A] hover:underline">
+            <Link href={BREAD_BLOG_HREF} className="text-sm font-semibold text-[#167A58] hover:underline">
               לסיפור המלא בכתבה
             </Link>
           </div>
@@ -383,7 +383,7 @@ export function BreadComparisonDashboard() {
                   className={cn(
                     "rounded-full border px-3.5 py-2 text-sm font-semibold transition-colors",
                     active
-                      ? "border-[#1F8F6A]/30 bg-[#1F8F6A] text-[#F7F7F2]"
+                      ? "border-[#1F8F6A]/30 bg-[#167A58] text-[#F7F7F2]"
                       : "border-black/[0.08] bg-[#FFFFFF]/85 text-[#4E5663] hover:border-[#1F8F6A]/20 hover:text-[#111318]"
                   )}
                 >
@@ -431,7 +431,7 @@ export function BreadComparisonDashboard() {
         <footer className="flex flex-col gap-4 border-t border-black/[0.06] pt-10 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href={BREAD_BLOG_HREF}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#1F8F6A] hover:underline"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#167A58] hover:underline"
           >
             לקריאת הכתבה הראשית
             <ChevronLeft className="size-4" aria-hidden />
@@ -441,6 +441,6 @@ export function BreadComparisonDashboard() {
           </Link>
         </footer>
       </HomeContainer>
-    </main>
+    </div>
   );
 }

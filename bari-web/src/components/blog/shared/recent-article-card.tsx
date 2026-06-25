@@ -38,7 +38,7 @@ export function RecentArticleCard({
       ) : (
         <Link
           href={href}
-          className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#1F8F6A] hover:underline"
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#167A58] hover:underline"
         >
           {cta}
           <ChevronLeft className="size-3.5" aria-hidden />

@@ -8,7 +8,7 @@ export function ComparisonIntelligenceBackdrop() {
 
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full text-[#1F8F6A]"
+      className="pointer-events-none absolute inset-0 h-full w-full text-[#167A58]"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden
     >
@@ -92,7 +92,7 @@ export function ComparisonAnalysisParticles({
       {seeds.map((left, i) => (
         <motion.span
           key={i}
-          className="absolute size-[2.5px] rounded-full bg-[#1F8F6A]"
+          className="absolute size-[2.5px] rounded-full bg-[#167A58]"
           style={{ left: `${left}%`, top: `${22 + (i % 4) * 14}%` }}
           animate={
             reduceMotion ? { opacity: 0.12 } : { opacity: [0.08, 0.22, 0.1, 0.18, 0.08] }

@@ -44,7 +44,7 @@ export function MilkAnalysisShelfSpectrum() {
                 imageClassName="p-0.5"
                 imageSizes="56px"
               />
-              <p className="mt-3 text-[0.65rem] font-bold uppercase tracking-wide text-[#1F8F6A]">
+              <p className="mt-3 text-[0.65rem] font-bold uppercase tracking-wide text-[#167A58]">
                 {anchor.title}
               </p>
               <p className="mt-1 text-sm font-extrabold leading-snug text-[#111318]">

@@ -48,7 +48,7 @@ function RowReason({ product }: { product: BariProductVM }) {
     <div className="mt-[5px] flex flex-col gap-0.5">
       {positive ? (
         <p className="truncate text-[0.8rem] leading-[1.45] text-[#3C443F]">
-          <span className="font-extrabold text-[#1F8F6A]" aria-hidden>
+          <span className="font-extrabold text-[#167A58]" aria-hidden>
             +{" "}
           </span>
           {positive}
@@ -85,14 +85,14 @@ function GradeCell({ product }: { product: BariProductVM }) {
       >
         <span
           className={cn(rowTokens.scoreClass, rowTokens.scoreSize.sm)}
-          style={{ color: "#9AA09B" }}
+          style={{ color: "#6B7070" }}
           aria-hidden
         >
           —
         </span>
         <span
           className={cn(rowTokens.labelClass, rowTokens.labelSize.sm)}
-          style={{ color: "#9AA09B" }}
+          style={{ color: "#6B7070" }}
           aria-hidden
         >
           {GLASS_BOX_WITHHOLD_LABEL}
@@ -190,7 +190,7 @@ export const ComparisonRow = memo(function ComparisonRow({
               .includes(product.brand.toLowerCase()) ? (
               <span
                 className="ms-1.5 font-normal tracking-normal"
-                style={{ color: "#8A918C", fontSize: "0.78rem" }}
+                style={{ color: "#5E6560", fontSize: "0.78rem" }}
                 aria-hidden
               >
                 ·{" "}

@@ -151,7 +151,7 @@ function ScienceSection({
                       href={c.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#1F8F6A] hover:underline"
+                      className="mt-1 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#167A58] hover:underline"
                     >
                       קישור למקור
                       <ExternalLink className="size-3" aria-hidden />
@@ -198,7 +198,7 @@ function RecentArticleCard({
       ) : (
         <Link
           href={href}
-          className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#1F8F6A] hover:underline"
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#167A58] hover:underline"
         >
           {cta}
           <ChevronLeft className="size-3.5" aria-hidden />
@@ -259,7 +259,7 @@ function YogurtExternalResearch() {
                       href={finding.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#1F8F6A] hover:underline"
+                      className="mt-3 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#167A58] hover:underline"
                     >
                       קישור למקור
                       <ExternalLink className="size-3" aria-hidden />
@@ -283,7 +283,7 @@ export function YogurtArticle() {
   const article = yogurtArticle;
 
   return (
-    <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+    <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <article>
         {/* Hero */}
         <YogurtArticleHero />
@@ -505,7 +505,7 @@ export function YogurtArticle() {
                 </div>
                 <Link
                   href={HASHVAOT_HREF}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1F8F6A] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#167A58] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
                 >
                   {article.conclusion.cta}
                   <ChevronLeft className="size-4" aria-hidden />
@@ -532,7 +532,7 @@ export function YogurtArticle() {
           <footer className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 border-t border-black/6 pt-8">
             <Link
               href={HASHVAOT_HREF}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F8F6A] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#167A58] hover:underline"
             >
               כל ניתוחי המדף
               <ArrowLeft className="size-4" aria-hidden />
@@ -546,6 +546,6 @@ export function YogurtArticle() {
           </footer>
         </HomeContainer>
       </article>
-    </main>
+    </div>
   );
 }

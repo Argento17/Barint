@@ -295,7 +295,7 @@ export function confidenceTone(level: BreadConfidenceLevel) {
     case "full":
       return {
         pill: "border-[#1F8F6A]/18 bg-[#E8F5EF] text-[#176F53]",
-        dot: "bg-[#1F8F6A]",
+        dot: "bg-[#167A58]",
       };
     case "partial":
       return {

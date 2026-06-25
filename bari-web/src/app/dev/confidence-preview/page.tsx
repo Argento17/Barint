@@ -171,7 +171,7 @@ const FIXTURES: BariProductVM[] = [
 
 export default function ConfidencePreviewPage() {
   return (
-    <main dir="rtl" className="mx-auto max-w-[420px] px-3 py-6">
+    <div dir="rtl" className="mx-auto max-w-[420px] px-3 py-6">
       <h1 className="mb-1 text-lg font-extrabold text-[#111318]">
         תצוגת מצבי ביטחון (dev)
       </h1>
@@ -184,6 +184,6 @@ export default function ConfidencePreviewPage() {
         metricSpecs={[]}
         showRank={false}
       />
-    </main>
+    </div>
   );
 }

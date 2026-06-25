@@ -51,7 +51,7 @@ function FindingCard({
       </h3>
       <p className="mt-3 text-base leading-relaxed text-[#111318]">{finding}</p>
       <p className="mt-4 text-sm leading-relaxed text-[#4E5663]">
-        <span className="font-bold text-[#1F8F6A]">למה זה משנה · </span>
+        <span className="font-bold text-[#167A58]">למה זה משנה · </span>
         {whyItMatters}
       </p>
     </motion.li>
@@ -82,7 +82,7 @@ function ComparisonCta({
       <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div className="max-w-xl space-y-2 text-right">
           {variant === "primary" ? (
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#1F8F6A]">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#167A58]">
               <Layers3 className="size-4" aria-hidden />
               השוואות · אינטראקטיבי
             </p>
@@ -110,8 +110,8 @@ function ComparisonCta({
           className={cn(
             "inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5",
             variant === "final"
-              ? "bg-[#1F8F6A] text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25"
-              : "bg-[#1F8F6A] text-[#F7F7F2] shadow-sm shadow-[#1F8F6A]/20"
+              ? "bg-[#167A58] text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25"
+              : "bg-[#167A58] text-[#F7F7F2] shadow-sm shadow-[#1F8F6A]/20"
           )}
         >
           {button}
@@ -153,7 +153,7 @@ function PreviewCard({
           imageSizes="60px"
         />
         <div className="min-w-0 flex-1">
-          <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{product.productTypeLabel}</p>
+          <p className="text-[0.65rem] font-bold text-[#167A58]">{product.productTypeLabel}</p>
           <h3 className="mt-1 text-base font-extrabold leading-snug text-[#111318]">{title}</h3>
           <div className="mt-3 flex items-center gap-2">
             <span className="text-[0.65rem] font-bold text-[#7A817C]">ציון Bari</span>
@@ -189,7 +189,7 @@ export function MilkAnalysisArticle() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+    <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <article>
         <MilkAnalysisHero />
 
@@ -315,7 +315,7 @@ export function MilkAnalysisArticle() {
               <ol className="mt-4 grid gap-3 md:grid-cols-3">
                 {article.methodology.steps.map((step, i) => (
                   <li key={step.title} className="list-none text-sm">
-                    <span className="font-mono text-xs font-bold text-[#1F8F6A]">
+                    <span className="font-mono text-xs font-bold text-[#167A58]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <p className="mt-1 font-bold text-[#111318]">{step.title}</p>
@@ -343,7 +343,7 @@ export function MilkAnalysisArticle() {
           <footer className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 border-t border-black/[0.06] pt-8">
             <Link
               href={MILK_COMPARISON_HREF}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F8F6A] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#167A58] hover:underline"
             >
               דוח ההשוואה המלא
               <ArrowLeft className="size-4" aria-hidden />
@@ -354,6 +354,6 @@ export function MilkAnalysisArticle() {
           </footer>
         </HomeContainer>
       </article>
-    </main>
+    </div>
   );
 }

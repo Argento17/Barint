@@ -85,7 +85,7 @@ export function ProductThumbnail({
           <div
             className={cn("mb-2 h-10 w-10 rounded-full bg-gradient-to-b opacity-[0.16]", accent)}
           />
-          <p className="text-[0.5rem] font-bold tracking-[0.04em] text-[#1F8F6A]">
+          <p className="text-[0.5rem] font-bold tracking-[0.04em] text-[#167A58]">
             {product.productTypeLabel}
           </p>
           {!compact ? (

@@ -469,6 +469,10 @@
   .bari-cmp-rowhead:hover {
     background: rgba(31, 143, 106, 0.03);
   }
+  .bari-cmp-rowhead:focus-visible {
+    outline: 2px solid #167A58;
+    outline-offset: -2px;
+  }
 
   .bari-cmp-rank {
     display: none;
