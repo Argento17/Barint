@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "כתב ויתור רפואי | Bari",
   description: "כתב הוויתור הרפואי של אתר Bari — התכנים נועדו למידע ועריכה בלבד ואינם ייעוץ רפואי או תזונתי.",
-  robots: { index: false, follow: false },
 };
 
 /**

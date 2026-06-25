@@ -11,10 +11,8 @@ import { absoluteUrl } from "@/lib/site-url";
  * `app/blog/*` route folders) rather than derived, so a route appears here only
  * once its page is actually reachable. Verified against the on-disk page.tsx set.
  *
- * Excluded by design: /nagisut, /privacy, /terms — these legal shells still hold
- * un-approved placeholder copy and are noindexed, so they must NOT be in the sitemap.
- *
- * Priorities: home 1.0 · hub 0.9 · comparison pages 0.8 · blog 0.7.
+ * Priorities: home 1.0 · hub 0.9 · comparison pages 0.8 · blog 0.7 ·
+ * methodology 0.6 · legal pages 0.3.
  */
 
 const HOME_PATHS = ["/"] as const;
@@ -55,6 +53,16 @@ const BLOG_PATHS = [
   "/blog/yogurt",
 ] as const;
 
+// Methodology + legal pages (now public/approved).
+const LEGAL_PATHS = [
+  "/methodology",
+  "/nagisut",
+  "/privacy",
+  "/terms",
+  "/cookies",
+  "/disclaimer",
+] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
@@ -70,5 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...HUB_PATHS.map((p) => entry(p, 0.9)),
     ...COMPARISON_PATHS.map((p) => entry(p, 0.8)),
     ...BLOG_PATHS.map((p) => entry(p, 0.7)),
+    ...LEGAL_PATHS.map((p) => entry(p, p === "/methodology" ? 0.6 : 0.3)),
   ];
 }

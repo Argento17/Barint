@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "מדיניות עוגיות | Bari",
   description: "הודעת העוגיות (Cookies) של אתר Bari — אילו עוגיות נשמרות ולשם מה, וכיצד לבטל או לחסום אותן.",
-  robots: { index: false, follow: false },
 };
 
 /**
@@ -67,7 +66,7 @@ export default function CookiesPage() {
               לדפדפן, הזמין בכתובת: https://tools.google.com/dlpage/gaoptout
             </li>
             <li>
-              【בגרסה B — מנגנון opt-in】 דרך מסך <strong>&quot;ניהול העדפות&quot;</strong>{" "}
+              דרך מסך <strong>&quot;ניהול העדפות&quot;</strong>{" "}
               של באנר העוגיות באתר.
             </li>
           </ul>
@@ -81,13 +80,7 @@ export default function CookiesPage() {
         <section>
           <h2 className="mb-2 text-base font-bold text-[#111318]">מנגנון ההסכמה לעוגיות</h2>
           <p>
-            【החלטה פתוחה לבעל האתר/עורך הדין — בחירת מנגנון העוגיות: גרסה A (הודעה
-            פסיבית רכה — באנר יידוע + ביטול דרך הדפדפן, ללא חסימה; הנוהג הישראלי
-            הנוכחי) או גרסה B (הסכמה אקטיבית / opt-in CMP בעל 3 כפתורים — &quot;קבל
-            הכל&quot; / &quot;דחה הכל&quot; / &quot;ניהול העדפות&quot;, לפי עמדת
-            הרשות להגנת הפרטיות מפברואר 2026, שבה עוגיות שאינן הכרחיות נטענות רק
-            לאחר הסכמה). עבור אתר חדש המושק כעת, הפוסטורה ההגנתית המומלצת בטיוטה היא
-            גרסה B.】
+            אתר זה מיישם מנגנון <strong>הסכמה אקטיבית (opt-in)</strong>: עוגיות אנליטיקה ושיווק, לרבות Google Analytics, נטענות אך ורק לאחר שנתתם הסכמה מפורשת. בכניסה לאתר מוצג באנר עוגיות עם שלוש אפשרויות — &quot;קבל הכל&quot;, &quot;דחה הכל&quot; ו&quot;ניהול העדפות&quot;. עד למתן הסכמה, עוגיות שאינן הכרחיות אינן נטענות. ניתן לשנות או לבטל את ההסכמה בכל עת דרך &quot;הגדרות עוגיות&quot; בתחתית האתר.
           </p>
         </section>
       </div>
