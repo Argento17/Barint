@@ -1509,6 +1509,57 @@ GLASSBOX_W2_ADDITIVES: dict = {
     },
 
     # ── EV-102 — New entries (D7 co-signed 2026-06-21, TASK-367) ──────────────────────
+    # ── TASK-410 — E220 sulphite-family standalone entry (D7 co-signed 2026-06-26) ────
+    # Adds explicit E220–E228 pattern coverage DECOUPLED from the live E224 entry so
+    # activation on juices/cakes does NOT shadow or modify live cookies_coffee E224 scoring.
+    # Wiring: new standalone entry + sulphite_family_key dedup in compute_d4_score_penalty
+    # ensures E220 + E224 co-presence on a single product counts as ONE contested additive.
+    # Evidence: additive_260626_batch_dossier_v1.md (EFSA 2022 ADI withdrawal + SI 1145
+    # mandatory allergen labelling; two independent non-observational harm pathways).
+    # cosmetic_mup=False: sulphites are a preservative, not a sensory restorer.
+    "E220": {
+        "name_he": "דו תחמוצת הגופרית / סולפיטים E220–E228",
+        "name_en": "Sulphur dioxide and sulphite family (E220–E228)",
+        "display_e_number": "E220–E228",
+        # TASK-410 / additive_260626_batch_dossier_v1: sulphite family tier = contested.
+        # Two non-observational pathways: (a) declared allergen — sulphite-induced asthmatic
+        # bronchospasm, Israel SI 1145 mandates bolded warning ≥10 mg/kg SO₂-equiv;
+        # (b) systemic — EFSA 2022 withdrew group ADI, BMDL 38 mg SO₂-eq/kg,
+        # MOE < 80 at typical juice/dried-fruit/wine intake. Operative citation:
+        # EFSA Journal 2022 DOI 10.2903/j.efsa.2022.7594 (verified genuine, C0 gate 2026-06-26).
+        "tier": "contested",
+        "function_he": "חומר משמר / נוגד חמצון — דו תחמוצת הגופרית ומשפחת הסולפיטים; סימון אלרגן חובה (SI 1145)",
+        "match_patterns_he": [
+            # SO₂ Hebrew forms (spacing and hyphen variants)
+            "דו תחמוצת הגופרית",
+            "דו-תחמוצת הגופרית",
+            "דו תחמוצת-הגופרית",
+            "דו-תחמוצת-הגופרית",
+            # E220 sulphur dioxide
+            "E220", "e220",
+            # E221 sodium sulphite
+            "E221", "e221", "נתרן סולפיט", "סולפיט נתרן",
+            # E222 sodium bisulphite
+            "E222", "e222", "נתרן ביסולפיט", "ביסולפיט נתרן",
+            # E223 sodium metabisulphite
+            "E223", "e223", "נתרן מטביסולפיט", "מטביסולפיט נתרן",
+            # E225 potassium sulphite
+            "E225", "e225", "אשלגן סולפיט",
+            # E226 calcium sulphite
+            "E226", "e226", "סידן סולפיט",
+            # E227 calcium bisulphite
+            "E227", "e227", "סידן ביסולפיט",
+            # E228 potassium bisulphite
+            "E228", "e228", "אשלגן ביסולפיט",
+        ],
+        "cosmetic_mup": False,  # preservative — not a sensory restorer
+        # TASK-410 D7 co-signed 2026-06-26 (Nutrition + Product).
+        # Proportionate: −2 pts per product, 0 grade changes on juices.
+        # sulphite_family_key links to E224 for dedup in compute_d4_score_penalty.
+        "score_eligible": True,
+        "score_eligible_reason": "TASK-410 D7 co-signed 2026-06-26; EFSA 2022 ADI withdrawal + SI 1145 allergen mandate (additive_260626_batch_dossier_v1)",
+        "sulphite_family_key": "sulphite",
+    },
     "E224": {
         # CH-1 fix (Red-Team 2026-06-22, Nutrition DEC-CH-1): this entry detects the
         # SULPHITE GROUP — its patterns include the generic words "סולפיט"/"סולפיטים" and
@@ -1518,6 +1569,7 @@ GLASSBOX_W2_ADDITIVES: dict = {
         # (name_he + display_e_number); detection patterns + tier + score_eligible UNCHANGED
         # → same products, same −2, zero score move. All sulphites share the contested basis
         # (EFSA 2022 group ADI withdrawal + mandatory allergen labelling).
+        # TASK-410: sulphite_family_key added for dedup — no other change to this entry.
         "name_he": "סולפיטים (תרכובת לא מפורטת)",
         "name_en": "Sulphites (E220–E228 group; specific compound not identified on label)",
         "display_e_number": "E220–E228",
@@ -1536,6 +1588,8 @@ GLASSBOX_W2_ADDITIVES: dict = {
         # Strong independent regulatory basis (EFSA MOE below threshold + allergen mandate).
         "score_eligible": True,
         "score_eligible_reason": "EFSA 2022 ADI withdrawal + MOE below safety threshold + mandatory allergen labelling",
+        # TASK-410: dedup key — E220+E224 co-presence = ONE sulphite signal, not two.
+        "sulphite_family_key": "sulphite",
     },
     "E392": {
         "name_he": "תמציות רוזמרין",

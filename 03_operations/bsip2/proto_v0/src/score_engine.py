@@ -958,10 +958,20 @@ def compute_d4_score_penalty(ingredient_text: str, l3: dict) -> tuple[int, str]:
 
     score_eligible_contested = []
     cosmetic_mup_any = []
+    # TASK-410: deduplicate sulphite-family entries so E220+E224 co-presence on a
+    # product counts as ONE contested additive (+2 pts), not two (+4 pts).
+    # Any pair of entries in GLASSBOX_W2_ADDITIVES that share the same non-None
+    # sulphite_family_key value are deduplicated to first-encountered ordering.
+    _seen_family_keys: set = set()
     for f in findings:
         e_num = f["e_number"]
         entry = GLASSBOX_W2_ADDITIVES.get(e_num, {})
         if f["tier"] == "contested" and entry.get("score_eligible", False):
+            fkey = entry.get("sulphite_family_key")
+            if fkey is not None:
+                if fkey in _seen_family_keys:
+                    continue   # deduplicated — same sulphite family already counted
+                _seen_family_keys.add(fkey)
             score_eligible_contested.append(e_num)
         if f.get("cosmetic_mup", False):
             cosmetic_mup_any.append(e_num)
