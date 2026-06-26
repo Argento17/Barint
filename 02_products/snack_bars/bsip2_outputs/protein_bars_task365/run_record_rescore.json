@@ -1,0 +1,372 @@
+{
+  "run_id": "protein_bars_task365_rescore_20260621_134052",
+  "task": "TASK-365",
+  "type": "RESCORE_INPLACE",
+  "generated_at": "2026-06-21T13:40:52.920848Z",
+  "lens": "BARI_PROTEIN_BAR_V1",
+  "lens_active": true,
+  "cond2_branch": "RECAL_P0_ON=False",
+  "corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+  "corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
+  "corpus_product_count": 33,
+  "scored_count": 33,
+  "error_count": 0,
+  "score_distribution": {
+    "mean": 52.8,
+    "median": 50,
+    "min": 45,
+    "max": 70,
+    "grade_histogram": {
+      "B": 2,
+      "C": 28,
+      "D": 3
+    }
+  },
+  "fixes_applied": {
+    "bev014_additive_markers_suppressed": true,
+    "collagen_peptide_tokens_added": true,
+    "egg_isolate_family_added": true,
+    "elif_bug_fixed": true,
+    "pb024_routing_fixed": true,
+    "pb023_name_typo_fixed": true,
+    "grade_boundary_proportionality": true
+  },
+  "acceptance_invariants": {
+    "INV_A_maltitol_vs_erythritol": {
+      "status": "SKIP",
+      "note": "maltitol_products=24, erythritol_products=0"
+    },
+    "INV_B_glycerol_penalty": {
+      "status": "PASS",
+      "glycerol_count": 26,
+      "avg_glycerol_score": 52.9,
+      "avg_non_glycerol_score": 52.4,
+      "note": "All glycerol products received total_pb_penalty >= 8"
+    },
+    "INV_C_protein_quantity_move_le5": {
+      "status": "PASS",
+      "scores_by_protein_g": {
+        "10.0": 40.2,
+        "15.0": 44.6,
+        "20.0": 45,
+        "30.0": 45
+      },
+      "max_move_points": 4.8,
+      "required_max": 5,
+      "note": "Varying protein_g from 10→30g on 'חטיף חלבון שוקולד דובאי'"
+    },
+    "INV_D_cap_hierarchy": {
+      "status": "PASS",
+      "maltitol_cap_check": "24 products all <=62: True",
+      "tier2_cap_check": "0 products all <=66: True",
+      "artificial_cap_check": "0 products all <=70: True",
+      "note": "Cap hierarchy: maltitol(62) < tier2(66) < artificial(70) < erythritol(uncapped)"
+    },
+    "INV_E_BEV014_no_double_count": {
+      "status": "PASS",
+      "collagen_products": 6,
+      "double_fire_issues": 0,
+      "cond2_branch": "RECAL_P0_ON=False",
+      "note": "RECAL_P0_ON inactive — penalty applies (discount not active, no double-fire)"
+    },
+    "INV_F_calorie_density_no_cliff": {
+      "status": "PASS",
+      "score_at_379kcal": 72,
+      "score_at_381kcal": 71,
+      "diff": 1,
+      "required_max_diff": 2,
+      "note": "protein_bar calorie table boundary check around 380 kcal"
+    },
+    "INV_G_routing_protein_name": {
+      "status": "PASS",
+      "checked_products_with_protein_in_name": 27,
+      "routing_fails": [],
+      "note": "Products with 'חלבון'/'פרוטאין'/'protein' in name must route to protein_bar subtype. Products lacking protein token in name (brand-only detection) are excluded from this check."
+    },
+    "INV_H_absolute_floor": {
+      "status": "PASS",
+      "below_floor_count": 0,
+      "below_floor_products": []
+    },
+    "INV_I_worst_cap_wins": {
+      "status": "PASS",
+      "combined_maltitol_artificial": 15,
+      "note": "maltitol(62) beats sucralose(70) — worst cap wins"
+    },
+    "_overall": {
+      "status": "PASS",
+      "all_checked": true,
+      "skipped": 1
+    }
+  },
+  "cond2_collagen_check": {
+    "status": "PASS",
+    "collagen_products_checked": 6,
+    "double_fire_issues": 0,
+    "issues": []
+  },
+  "ingredient_completeness_gate": {
+    "status": "PASS",
+    "truncations_found": 0,
+    "truncated_barcodes": []
+  },
+  "score_stability_check": {
+    "status": "PASS",
+    "pb008_before": {
+      "score": 51.5,
+      "grade": "C",
+      "insightLine": "4.4 גרם סוכר על האריזה — אבל זה מלטיטול שהחליף סוכר, לא סוכר שנעלם."
+    },
+    "pb008_after": {
+      "score": 51.5,
+      "grade": "C",
+      "collagen_detected": true,
+      "wholefood_protein_detected": true
+    },
+    "pb008_analysis": {
+      "collagen_detected": true,
+      "wholefood_bonus_suppressed": true,
+      "note": "collagen penalty should fire; wholefood bonus suppressed — collagen wins"
+    }
+  },
+  "c1_verification": {
+    "status": "PASS",
+    "note": "maltitol cap (62) and sweetener cap (70) remain binding after BEV-014 suppression",
+    "products_above_b_boundary": []
+  },
+  "pb024_routing_check": {
+    "barcode": "7290018703304",
+    "name": "אול אין קרם עוגיות",
+    "category": "snack_bar_granola",
+    "category_subtype": "protein_bar",
+    "status": "PASS"
+  },
+  "off_check": "PASS - no Open Food Facts",
+  "copy_fields_intact": 33,
+  "copy_fields_expected": 33,
+  "tied_group_map": [
+    {
+      "score_range": "68.6–70",
+      "count": 2,
+      "products": [
+        {
+          "barcode": "7290112497994",
+          "name": "גרנולה פרוטאין+אגוזים",
+          "score": 70,
+          "grade": "B"
+        },
+        {
+          "barcode": "7290017516295",
+          "name": "חטיף חלבון אגוזי לוז",
+          "score": 68.6,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "score_range": "55–56.9",
+      "count": 5,
+      "products": [
+        {
+          "barcode": "7290121166850",
+          "name": "חטיף חלבון וניל קראנץ'",
+          "score": 56.9,
+          "grade": "C"
+        },
+        {
+          "barcode": "8410076610379",
+          "name": "נייטשר פרוטאין שוקולד",
+          "score": 55,
+          "grade": "C"
+        },
+        {
+          "barcode": "8410076610386",
+          "name": "נייטשר פרוטאין קרמל מלוח",
+          "score": 55,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019766025",
+          "name": "אול אין סופט פיסטוק",
+          "score": 55,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290119371129",
+          "name": "חטיף חלבון שוקולד עוגיות",
+          "score": 55,
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "score_range": "54–54",
+      "count": 7,
+      "products": [
+        {
+          "barcode": "7290119371112",
+          "name": "חטיף חלבון קרמל ואגוזים",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019401018",
+          "name": "חטיף פרוטאין קרם עוגיות",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019401049",
+          "name": "חטיף פרוטאין שוקולד קרמל",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290015130035",
+          "name": "WIN חטיף חלבון קרם קרמל",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290015130042",
+          "name": "WIN חטיף חלבון קרם קרמל",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018703991",
+          "name": "עוגיית חלבון דאבל שוקולד",
+          "score": 54,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018703984",
+          "name": "עוגיית חלבון שוקולד צ'יפ",
+          "score": 54,
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "score_range": "49.7–51.5",
+      "count": 15,
+      "products": [
+        {
+          "barcode": "7290015130028",
+          "name": "WIN חטיף חלבון קרם חלב",
+          "score": 51.5,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290117384572",
+          "name": "חטיף חלבון קרם עוגיות",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290117384589",
+          "name": "חטיף חלבון קרמל מלוח",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290117384596",
+          "name": "חטיף חלבון פאי קינמון",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290121160582",
+          "name": "חטיף חלבון חמאת בוטנים",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290121161916",
+          "name": "חטיף חלבון טריפל שוקולד",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290121161930",
+          "name": "חטיף חלבון טעם בננה טופי",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019766018",
+          "name": "אול אין חלבון סופט עוגיות",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018703304",
+          "name": "אול אין קרם עוגיות",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018703076",
+          "name": "אול אין דאבל שוקולד",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018043899",
+          "name": "אול אין בוטנים קרמל",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290018043134",
+          "name": "אול אין שוק.לבן עוגיות",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019310235",
+          "name": "אול אין ונילה קראנץ",
+          "score": 50,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019766230",
+          "name": "חטיף חלבון אסטרה סופט",
+          "score": 49.8,
+          "grade": "C"
+        },
+        {
+          "barcode": "7290019401544",
+          "name": "חטיף פרוטאין עוגיות טופי",
+          "score": 49.7,
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "score_range": "45–45",
+      "count": 3,
+      "products": [
+        {
+          "barcode": "7290112915382",
+          "name": "חטיף חלבון שוקולד דובאי",
+          "score": 45,
+          "grade": "D"
+        },
+        {
+          "barcode": "7290112913487",
+          "name": "חטיף חלבון קרם אגוזים",
+          "score": 45,
+          "grade": "D"
+        },
+        {
+          "barcode": "7290112915351",
+          "name": "חטיף חלבון קרמל מלוח",
+          "score": 45,
+          "grade": "D"
+        }
+      ]
+    }
+  ],
+  "frontend_output": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_combined_frontend_v2.json"
+}
