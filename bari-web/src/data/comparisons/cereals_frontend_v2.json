@@ -1,40 +1,27 @@
 {
   "_meta": {
-    "generated": "2026-06-24T00:00:00+00:00",
-    "run_id": "run_cereals_task387_25g",
-    "category": "breakfast-cereals",
-    "product_count": 20,
-    "scored_count": 20,
-    "schema": "BariProductVM[]",
-    "version": "v2",
-    "provenance": "TASK-210 multi-retailer expansion (cleaned). Shufersal pool (37 products): frozen from cereals_frontend_v1.json / run_cereals_008. New retailer pool (1 net-new product): run_cereals_multiretailer_001 — Carrefour. Source: Israeli price-transparency feeds (il_prices) + OFF candidate panels (EDPG). BSIP0 filters applied (F1-F4). 19 granola-subpool products removed (belong to /granolas corpus — 18 already in granola_frontend_v1.json; 1 orphan גרנולה בתוספת חלבון pending granola pipeline). 7 cross-retailer duplicate IDs removed (kept shufersal baseline). Score range: 32-74.7. Grade dist: B:2 C:7 D:9 E:2, דייסת דגנים מעורבים (porridge), קורנפלקס (no-image generic), מארז קורנפלקס של אלופים (bundle pack).",
-    "retailer_breakdown": {
-      "shufersal": 20
+    "run_id": "task409_rederive_cereals_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output"
+    ],
+    "flag_vector": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
     },
-    "dedup_notes": {
-      "cross_retailer_overlaps_removed": 16,
-      "cross_retailer_duplicates_carrefour_yohananof": 2,
-      "baseline": "run_cereals_005 / run_cereals_008 (66 Shufersal barcodes)"
-    },
-    "excluded_off_products": {
-      "reason": "OFF-sourced (panel_source=open_food_facts, run_cereals_carrefour_001) — TASK-238 OFF ban; excluded from display per QA C1 (cereals_qa_report_v1.md). Source BSIP records retained, not erased. | P35 second pass (2026-06-12): +6 barcodes with clean Shufersal images but OFF-sourced nutrition panels (run_cereals_carrefour_001) the first purge missed.",
-      "barcodes": [
-        "7613037686906",
-        "7613033548192",
-        "3560071016074",
-        "42400108153",
-        "5900020046833",
-        "5900020041142",
-        "7290116537351",
-        "4005528115218",
-        "7290017325910",
-        "7290116535371",
-        "7290112494351",
-        "7290112495228",
-        "8445290964595",
-        "884912126115"
-      ]
-    }
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "ts": "2026-06-26T15:58:10",
+    "corpus_records": 20,
+    "scored": 20,
+    "failed_barcodes": [],
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending"
   },
   "products": [
     {
@@ -162,7 +149,7 @@
       "id": "bsip1_cereal_7297488199590",
       "name": "פצפוצי אורז תפוח",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XYD78_Z_P_7297488199590_1.png",
-      "score": 59.0,
+      "score": 61.8,
       "grade": "C",
       "insightLine": "שלושה רכיבים — אורז לבן (95%), סוכר, מלח — אבל אורז לבן הוא לא אורז מלא, והפער בסיבים ניכר.",
       "confidence": "partial",
@@ -220,7 +207,7 @@
       "id": "bsip1_cereal_7296073642046",
       "name": "קורנפלקס ללא גלוטן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PET56_Z_P_7296073642046_1.png",
-      "score": 55.4,
+      "score": 58.2,
       "grade": "C",
       "insightLine": "ללא גלוטן מתאר היעדר — הבסיס קמח תירס מעובד, הסיבים דלים, מתחלב ברשימה.",
       "confidence": "partial",
@@ -398,7 +385,7 @@
       "id": "bsip1_cereal_7290107647731",
       "name": "דגני בוקר קוקומן חום לבן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TUY54_Z_P_7290107647731_1.png",
-      "score": 54.3,
+      "score": 55.0,
       "grade": "C",
       "insightLine": "71% דגנים נשמע טוב; הסוכר רכיב שני ברשימה, והנתרן הגבוה ביותר בין דגני הילדים.",
       "confidence": "partial",
@@ -467,7 +454,7 @@
       "id": "bsip1_cereal_72968",
       "name": "דגני בוקר סיני מיניס",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CXL32_Z_P_72968_1.png",
-      "score": 50.0,
+      "score": 55.0,
       "grade": "C",
       "insightLine": "מוצר ילדים עם רמת סוכר שחוצה את סף הסימון האדום, נתרן גבוה וסביבת רכיבים ארוכה.",
       "confidence": "partial",
@@ -641,7 +628,7 @@
       "id": "bsip1_cereal_7290107647854",
       "name": "דגני בוקר שוגי",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TZR60_Z_P_7290107647854_1.png",
-      "score": 46.8,
+      "score": 49.7,
       "grade": "D",
       "insightLine": "82% קמח תירס מעובד, הנתרן הגבוה ביותר בקטגוריה, ואין נתוני סיבים — הוויטמינים הוספו מבחוץ.",
       "confidence": "partial",
@@ -974,7 +961,7 @@
       "id": "bsip1_cereal_7296073705567",
       "name": "טבעות דגנים בטעם דבש",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDW64_Z_P_7296073705567_1.png",
-      "score": 41.0,
+      "score": 46.0,
       "grade": "D",
       "insightLine": "השם מבטיח דבש, אבל יש כאן רק 2% דבש ברשימה, ושלושה מקורות סוכר מוסף מוסיפים את יתר המתיקות.",
       "confidence": "partial",
@@ -1050,7 +1037,7 @@
       "id": "bsip1_cereal_7296073642022",
       "name": "דגני בוקר טבעות דבש לל\"ג",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PDV50_Z_P_7296073642022_1.png",
-      "score": 40.0,
+      "score": 41.8,
       "grade": "D",
       "insightLine": "ללא גלוטן — הצהרה שמכסה בסיס של 65% גריסי תירס, סיבים מהנמוכים בקטגוריה ושלושה מקורות סוכר.",
       "confidence": "partial",
@@ -1291,8 +1278,8 @@
       "id": "bsip1_cereal_7296073705574",
       "name": "ריבועי דגנים עם קינמון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FED62_Z_P_7296073705574_1.png",
-      "score": 32.0,
-      "grade": "E",
+      "score": 36.8,
+      "grade": "D",
       "insightLine": "42% חיטה מלאה ראשונה ברשימה — הבטחה טובה; סוכר לבן שני ופרוקטוז חמישי, והקינמון שבשם הוא 0.6%.",
       "confidence": "partial",
       "expansion": {
@@ -1335,7 +1322,7 @@
         "confidenceLabel": "נתונים בבדיקה",
         "servingNote": "ל-100 גרם"
       },
-      "rowVerdict": "42% חיטה מלאה ראשונה — אבל הרכיב השני הוא סוכר לבן, ופרוקטוז מוסף חמישי. הקינמון שבשם הוא 0.6% — הרכיב השביעי. הבסיס נראה מבטיח, אבל הבחירות סביבו — סוכר שני, פרוקטוז נוסף, קינמון זניח וצפיפות קלורית חריגה — הן שמכריעות, והתוצאה היא ציון בתחתית.",
+      "rowVerdict": "42% חיטה מלאה ראשונה — אבל הרכיב השני הוא סוכר לבן, ופרוקטוז מוסף חמישי. הקינמון שבשם הוא 0.6% — הרכיב השביעי. 440 קלוריות ל-100 גרם, הגבוהות בקטגוריה, ו-26 גרם סוכר. הבסיס נראה מבטיח, אבל הבחירות סביבו מכריעות. ציון D.",
       "_subpool": "standard_cereal",
       "_isChildrens": false,
       "_wholeGrainClaim": true,

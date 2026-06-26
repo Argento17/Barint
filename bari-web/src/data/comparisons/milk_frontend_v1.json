@@ -1,27 +1,28 @@
 {
   "_meta": {
-    "generated": "2026-06-17T00:00:00+00:00",
-    "category": "milk",
-    "run_id": "run_005_headpin",
-    "product_count": 18,
-    "scored_count": 18,
-    "schema": "milk-v1",
-    "version": "v1",
-    "task": "TASK-321D — milk baseline extraction (bespoke TS → comparison JSON)",
-    "source": "src/lib/comparisons/milk-comparison-page-data.ts + src/data/milk-comparison.json",
-    "provenance": "direct product scrape (Yochananof storefront); frozen run_005_headpin (top=85/A for whole/natural/goat dairy)",
-    "grade_distribution": {
-      "A": 3,
-      "B": 1,
-      "C": 4,
-      "D": 9,
-      "E": 1
+    "run_id": "task409_rederive_milk_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output"
+    ],
+    "flag_vector": {
+      "BARI_RECAL_P0": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
     },
-    "off_used": false,
-    "copy_status": "EXTRACTED_FROM_BESPOKE_TS",
-    "retailer": "yochananof",
-    "note": "Additive-only extraction — milk bespoke JSON does not carry structured d4_additives or full per-product nutrition panel (fat/satFat/carbs/sodium). Those gaps will be filled by a clean BSIP0 rescore in TASK-321 Wave 3.",
-    "spine_reconciled": "run_006 blessed-engine rescore 2026-06-18 (milk freeze lifted); scores spine-driven, copy carried+reauthored"
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "ts": "2026-06-26T15:58:10",
+    "corpus_records": 18,
+    "scored": 18,
+    "failed_barcodes": [],
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending"
   },
   "page_copy": {
     "hero": {
@@ -171,14 +172,15 @@
       "d4_additives": [],
       "rank": 1,
       "categoryTotal": 18,
-      "brand": "תנובה"
+      "brand": "תנובה",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290019790259",
       "name": "חלב טבעי 4% 1 ליטר",
       "barcode": "7290019790259",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001979025910-03-2024_07-59-53.jpg",
-      "score": 85.0,
+      "score": 85,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
@@ -228,14 +230,15 @@
       "d4_additives": [],
       "rank": 1,
       "categoryTotal": 18,
-      "brand": "מחלבות רמת הגולן"
+      "brand": "מחלבות רמת הגולן",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290102392094",
       "name": "חלב עיזים בקרטון 1 ליטר",
       "barcode": "7290102392094",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729010239209402-26-2026_07-22-01.jpg",
-      "score": 85.0,
+      "score": 85,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
@@ -285,7 +288,8 @@
       "d4_additives": [],
       "rank": 1,
       "categoryTotal": 18,
-      "brand": "משק צוריאל"
+      "brand": "משק צוריאל",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290114313865",
@@ -342,7 +346,8 @@
       "d4_additives": [],
       "rank": 4,
       "categoryTotal": 18,
-      "brand": "טרה"
+      "brand": "טרה",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290116936116",
@@ -400,14 +405,15 @@
       "d4_additives": [],
       "rank": 5,
       "categoryTotal": 18,
-      "brand": "תנובה אלטרנטיב"
+      "brand": "תנובה אלטרנטיב",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290110324926",
       "name": "משקה סויה ללא תוספת סוכר",
       "barcode": "7290110324926",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110324926_s1_1509-24-2020_12-46-31.jpg",
-      "score": 56.7,
+      "score": 56.9,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
@@ -469,14 +475,15 @@
       ],
       "rank": 6,
       "categoryTotal": 18,
-      "brand": "תנובה אלטרנטיב"
+      "brand": "תנובה אלטרנטיב",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290107932134",
       "name": "חלב בבקבוק 1% מועשר- מהדרין",
       "barcode": "7290107932134",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/4/344072_7290107932134.jpg",
-      "score": 53.5,
+      "score": 55.5,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
@@ -530,20 +537,21 @@
       ],
       "rank": 7,
       "categoryTotal": 18,
-      "brand": "יטבתה"
+      "brand": "יטבתה",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290014760141",
       "name": "משקה שקדים",
       "barcode": "7290014760141",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290014760141_s1_1505-19-2021_06-53-14.jpg",
-      "score": 49.7,
-      "grade": "D",
+      "score": 51.5,
+      "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
       "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
       "insightLine": "אחרי המים, הרכיב השני ברשימה הוא סוכר — 6 ג׳ ל-100 מ״ל — והשקדים עצמם רק 4%.",
-      "rowVerdict": "ברשימת הרכיבים הסוכר מופיע שני, מיד אחרי המים, בכ-6 ג׳ ל-100 מ״ל, ואילו השקדים עצמם הם 4% בלבד. במילים אחרות זה משקה ממותק עם נגיעת שקדים הרבה יותר מאשר משקה שקדים. בדיוק הסוכר המוסף הזה הוא שמפריד בינו לבין הגרסאות הצמחיות הלא-ממותקות שמעליו בטבלה.",
+      "rowVerdict": "ברשימת הרכיבים הסוכר מופיע שני, מיד אחרי המים, בכ-6 ג׳ ל-100 מ״ל, ואילו השקדים עצמם הם 4% בלבד. במילים אחרות זה משקה ממותק עם נגיעת שקדים הרבה יותר מאשר משקה שקדים. בדיוק הסוכר המוסף הזה הוא שמפריד בינו לבין גרסאות צמחיות ללא סוכר מוסף, שמשיגות ציון גבוה יותר. ציון C.",
       "expansion": {
         "nutrition": {
           "energyKcal": 56.0,
@@ -559,7 +567,7 @@
         "confidenceLabel": "נתונים מלאים",
         "servingNote": "ל-100 מ״ל",
         "positiveSignals": [
-          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+          "מועשר בסידן ובוויטמינים E, B12, B2, D"
         ],
         "limitingFactors": [
           "סוכר מוסף 6 ג׳ ל-100 מ״ל — הרכיב השני ברשימה, אחרי המים",
@@ -591,7 +599,8 @@
       ],
       "rank": 12,
       "categoryTotal": 18,
-      "brand": "תנובה אלטרנטיב"
+      "brand": "תנובה אלטרנטיב",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7394376620904",
@@ -655,7 +664,8 @@
       ],
       "rank": 8,
       "categoryTotal": 18,
-      "brand": "אוטלי"
+      "brand": "אוטלי",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290119385560",
@@ -721,7 +731,8 @@
       ],
       "rank": 9,
       "categoryTotal": 18,
-      "brand": "אלפרו"
+      "brand": "אלפרו",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7394376619939",
@@ -784,7 +795,8 @@
       ],
       "rank": 10,
       "categoryTotal": 18,
-      "brand": "אוטלי"
+      "brand": "אוטלי",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7394376621451",
@@ -847,7 +859,8 @@
       ],
       "rank": 10,
       "categoryTotal": 18,
-      "brand": "אוטלי"
+      "brand": "אוטלי",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_5411188124689",
@@ -901,7 +914,8 @@
       "d4_additives": [],
       "rank": 12,
       "categoryTotal": 18,
-      "brand": "אלפרו"
+      "brand": "אלפרו",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_8000215204554",
@@ -954,20 +968,21 @@
       "d4_additives": [],
       "rank": 14,
       "categoryTotal": 18,
-      "brand": "ויטאריז"
+      "brand": "ויטאריז",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_7290110325619",
       "name": "משקה שיבולת שועל",
       "barcode": "7290110325619",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110325619_s1_1505-19-2021_06-53-08.jpg",
-      "score": 47.6,
-      "grade": "D",
+      "score": 51.7,
+      "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
       "confidence_tooltip_he": "כל הנתונים התזונתיים ורשימת הרכיבים נסרקו ישירות מהמוצר.",
       "insightLine": "שיבולת שועל בלי תפקיד ברור — לא 'בריסטה' ולא 'ללא סוכר', ונשאר דליל עם 1.3 ג׳ חלבון ל-100 מ״ל.",
-      "rowVerdict": "משקה שיבולת שועל יומיומי שמנסה להיות הכל: מועשר בסידן וויטמינים, עם שמן קנולה ומייצב, ובסוף נשאר דליל — 1.3 ג׳ חלבון ל-100 מ״ל, בעיקר מים ופחמימה מהדגן. אין לו לא הקצף של בריסטה ולא ה'ללא סוכר' שמצדיקים את שכניו, וכך הוא נופל בין הכיסאות.",
+      "rowVerdict": "משקה שיבולת שועל יומיומי שמנסה להיות הכל: מועשר בסידן וויטמינים, עם שמן קנולה ומייצב, ובסוף נשאר דליל — 1.3 ג׳ חלבון ל-100 מ״ל, בעיקר מים ופחמימה מהדגן. אין לו לא הקצף של בריסטה ולא ה'ללא סוכר' שמצדיקים את שכניו, וכך הוא נופל בין הכיסאות. ציון C.",
       "expansion": {
         "nutrition": {
           "energyKcal": 55.0,
@@ -983,7 +998,8 @@
         "confidenceLabel": "נתונים מלאים",
         "servingNote": "ל-100 מ״ל",
         "positiveSignals": [
-          "אין תווית אדומה ישראלית בבדיקה לפי 100 גרם"
+          "נתרן 40 מ״ג ל-100 מ״ל — מהנמוכים במדף",
+          "מועשר בסידן ובוויטמינים B12, D, E"
         ],
         "limitingFactors": [
           "1.3 ג׳ חלבון בלבד ל-100 מ״ל — דל בחלבון, בעיקר מים ופחמימה מהדגן",
@@ -1015,7 +1031,8 @@
       ],
       "rank": 15,
       "categoryTotal": 18,
-      "brand": "תנובה אלטרנטיב"
+      "brand": "תנובה אלטרנטיב",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_8000215204219",
@@ -1071,7 +1088,8 @@
       "d4_additives": [],
       "rank": 16,
       "categoryTotal": 18,
-      "brand": "ויטאריז"
+      "brand": "ויטאריז",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_5411188112709",
@@ -1139,14 +1157,15 @@
       ],
       "rank": 17,
       "categoryTotal": 18,
-      "brand": "אלפרו"
+      "brand": "אלפרו",
+      "confidence_level": "sufficient"
     },
     {
       "id": "milk_5411188300328",
       "name": "אלפרו שוקו משקה סויה",
       "barcode": "5411188300328",
       "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/5/355900_5411188300328_4.jpg",
-      "score": 31.5,
+      "score": 33.5,
       "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "נתונים מלאים",
@@ -1222,7 +1241,8 @@
       ],
       "rank": 18,
       "categoryTotal": 18,
-      "brand": "אלפרו"
+      "brand": "אלפרו",
+      "confidence_level": "sufficient"
     }
   ]
 }
