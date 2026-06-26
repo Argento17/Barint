@@ -6,6 +6,7 @@ import { breadArticlesBySlug } from "@/lib/blog/bread-analysis-content";
 const article = breadArticlesBySlug["bread-everyday"];
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: article.metaTitle,
   description: article.metaDescription,
   openGraph: {

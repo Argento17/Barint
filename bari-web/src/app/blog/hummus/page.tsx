@@ -8,6 +8,7 @@ import { HummusArticle } from "@/components/blog/hummus-article";
 // URL slug: /blog/hummus (category name, no encoding issues)
 // Structured data: Article schema (JSON-LD) — implemented in layout
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "64 מוצרי חומוס בשופרסל. פער של 46 נקודות. | Bari",
   description:
     "סרקנו את מדף החומוס בשופרסל — 64 מוצרים. אחוז הטחינה הוא הגורם שמסביר הכי הרבה את הפערים. הנתרן משתנה פי-50 על אותו מדף.",

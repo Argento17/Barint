@@ -39,18 +39,13 @@ const COMPARISON_PATHS = [
   "/hashvaot/supplements",
 ] as const;
 
-// Blog routes — one per live `app/blog/<slug>/page.tsx` folder.
+// Blog routes — only the curated, launch-ready articles are indexed. The
+// bread/hummus/yogurt/lechem articles + the bread-analysis redirect are
+// de-listed (and marked noindex on the page) per owner ruling 2026-06-26.
 const BLOG_PATHS = [
-  "/blog/bread-analysis",
-  "/blog/bread-everyday",
-  "/blog/bread-standouts",
-  "/blog/bread-wellness-gap",
-  "/blog/hummus",
-  "/blog/lechem",
   "/blog/milk-analysis",
   "/blog/shemen-zayit",
   "/blog/sugar-alcohols",
-  "/blog/yogurt",
 ] as const;
 
 // Methodology + legal pages (now public/approved).

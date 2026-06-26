@@ -9,6 +9,7 @@ import { YogurtArticle } from "@/components/blog/yogurt-article";
 // Structured data: Article schema (JSON-LD) — implemented in layout
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "19 יוגורטים. שתי רשתות. מה שמניע את הציונים. | Bari",
   description:
     "סרקנו 19 יוגורטים משופרסל ויוחננוף. יוגורט לבן פשוט הגיע ל-A. יוגורט 0% שומן בטעם תות — C. מה באמת מבדיל בין הגביעים.",

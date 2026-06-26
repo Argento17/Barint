@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { BreadArticle } from "@/components/blog/bread-article";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   // SEO brief (TASK-200): see C:\Bari\03_operations\seo\bread_seo_brief_v1.md
   // Primary keyword: לחם מלא ישראל (high intent, informational/commercial)
   // Secondary: לחם מחמצת ישראל, לחם שיפון ישראל, מה ההבדל בין לחמים, לחם בריא שופרסל
