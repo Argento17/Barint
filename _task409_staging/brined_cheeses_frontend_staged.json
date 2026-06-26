@@ -1,0 +1,1817 @@
+{
+  "_meta": {
+    "run_id": "task409_rederive_brined_cheeses_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\.claude\\worktrees\\task409\\03_operations\\bsip1\\run_brined_cheeses_002\\output"
+    ],
+    "flag_vector": {
+      "BARI_RECAL_P0": "on",
+      "BARI_RECAL_P0_YOGURT_TRIM": "off",
+      "BARI_GRAD_SODIUM_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_TASK144_FIXES": "off",
+      "BARI_TASK250_CONF": "off",
+      "BARI_GLASSBOX_D5D6": "off",
+      "BARI_GLASSBOX_W15": "off",
+      "BARI_GLASSBOX_W2": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on"
+    },
+    "engine_sha": "dcac4bf4f0e61405daf2d8a63ec93531d47b0d4e",
+    "task": "TASK-409 clean+traceable re-derive",
+    "ts": "2026-06-26T15:43:57",
+    "corpus_records": 36,
+    "scored": 36,
+    "failed_barcodes": []
+  },
+  "products": [
+    {
+      "id": "bc-001",
+      "name": "קוביות פטה עיזים מעודנת 5% — מחלבות גד",
+      "barcode": "7290019635826",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GRR58_Z_P_7290019635826_1.png",
+      "score": 83.3,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שלושה רכיבים, חלב עיזים — הפשטות הזו מביאה את הציון הגבוה ביותר במדף.",
+      "rowVerdict": "פטה עיזים 5% מחלבות גד מגיעה לראש הקטגוריה בזכות הרשימה הקצרה ביותר האפשרית: חלב עיזים מפוסטר, מלח, חומר משמר אחד. אין מייצבים, אין רכיבי חלב נוספים. הנתרן נמצא ליד חציון המדף — ולכן אינו מוסיף חיסרון מעבר לבסיס.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 117.0,
+          "protein": 15.0,
+          "sugar": 3.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 950.0
+        },
+        "ingredients": "חלב עזים מפוסטר, מלח, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (15g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (950mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 1,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-004",
+      "name": "גבינה צפתית 5% שומן — מחלבות גד",
+      "barcode": "554457",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NEG30_Z_P_554457_1.png",
+      "score": 82.7,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "הנתרן הנמוך ביותר בין כל גבינות ה-A — ורק שלושה רכיבים.",
+      "rowVerdict": "צפתית 5% מחלבות גד. הנתרן (600 מ\"ג) נמוך משמעותית מחציון המדף — ולכן הגבינה הזו נמלטת מחיסרון פער הנתרן. עם זאת, 600 מ\"ג מחייב חיסרון בסיסי מינימלי, כפי שכל גבינה בטווח הזה מקבלת. שלושה רכיבים, עיבוד מינימלי.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 117.0,
+          "protein": 12.0,
+          "sugar": 6.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 600.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": null
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 2,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-005",
+      "name": "גבינה צפתית מעודנת 5% — מחלבות גד",
+      "barcode": "554532",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NHD24_Z_P_554532_1.png",
+      "score": 82.7,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "גרסת 'מעודנת' — ציון וטביעת אצבע תזונתית זהים לחלוטין לגרסה הסטנדרטית.",
+      "rowVerdict": "צפתית מעודנת 5% מחלבות גד. כל נתון — שומן, חלבון, נתרן, רשימת רכיבים — זהה לגרסה הסטנדרטית של אותה מחלבה. ברי לא מצאה הבדל מהותי בין השתיים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 117.0,
+          "protein": 12.0,
+          "sugar": 6.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 600.0
+        },
+        "ingredients": "חלב מפוסטר, מלח, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": null
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 2,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-003",
+      "name": "בולגרית מסורתית 5% — שופרסל",
+      "barcode": "7296073641940",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PAR58_Z_P_7296073641940_1.png",
+      "score": 82.0,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 5% ישירה: חלב, מלח, משמר אחד — ללא תוספות.",
+      "rowVerdict": "בולגרית מסורתית 5%. שלושה רכיבים, נתרן ליד חציון המדף, חלבון של 16 גרם. מה שמבדיל אותה מהמובילות: חלבון מעט נמוך יותר ורמת אמון בסיסית נמוכה יותר מגרסת 5% עם מקורות כפולים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 117.0,
+          "protein": 16.0,
+          "sugar": 2.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (16g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 4,
+      "categoryTotal": 36,
+      "brand": "שופרסל"
+    },
+    {
+      "id": "bc-002",
+      "name": "גבינה בולגרית 5% — משק צוריאל",
+      "barcode": "7290102397334",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AYP50_Z_P_7290102397334_1.png",
+      "score": 81.5,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שלושה רכיבים, חלבון מהגבוהים בקבוצת ה-A — אבל גם הנתרן הגבוה ביותר ב-A.",
+      "rowVerdict": "בולגרית 5% של משק צוריאל. החוזק ברשימה הנקייה ועוצמת החלבון. החיסרון: נתרן של 1,550 מ\"ג — הגבוה ביותר בין כל גבינות ה-A, וכ-550 מ\"ג מעל חציון המדף. הפער הזה מוריד מהציון אבל לא מסחרר את הדירוג.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 133.0,
+          "protein": 20.5,
+          "sugar": 1.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1550.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (20.5g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1550mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 5,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    },
+    {
+      "id": "bc-008",
+      "name": "פטה מעודנת עיזים 5% — מחלבות גד",
+      "barcode": "7290011499303",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IKM48_Z_P_7290011499303_1.png",
+      "score": 80.4,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלב עיזים עם מלח ים טבעי — גרסה נקייה, חלבון טוב, נתרן ליד החציון.",
+      "rowVerdict": "פטה עיזים 5% מעודנת של מחלבות גד. מלח ים טבעי, E202 כמשמר בודד, 15 גרם חלבון. הנתרן (950 מ\"ג) קרוב לחציון המדף ולא מוסיף חיסרון מעבר לבסיס.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 177.0,
+          "protein": 15.0,
+          "sugar": 3.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 950.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח ים טבעי, חומר משמר E202",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (15g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (950mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 6,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-007",
+      "name": "גבינה בולגרית 5% שומן — מחלבת רמת הגולן",
+      "barcode": "2133162",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/INR18_Z_P_2133162_1.png",
+      "score": 80.3,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלבון מהגבוהים בקבוצת ה-A (21 גרם) — עם נתרן גבוה שמאזן.",
+      "rowVerdict": "בולגרית 5%. חלבון של 21 גרם — הגבוה ביותר בין כל גבינות ה-A. הנתרן עומד על 1,300 מ\"ג, כ-300 מ\"ג מעל חציון המדף, ומוסיף חיסרון קל.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 137.0,
+          "protein": 21.0,
+          "sugar": 0.5,
+          "fat": 5.0,
+          "satFat": 3.6,
+          "fiber": null,
+          "sodium": 1300.0
+        },
+        "ingredients": "חלב בקר מפוסטר, רכיבי חלב, מלח, חומר משמר (E202ׂ)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (21g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1300mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 7,
+      "categoryTotal": 36,
+      "brand": "מחלבת רמת הגולן"
+    },
+    {
+      "id": "bc-009",
+      "name": "בולגרית מעודנת 5% שומן — מחלבת רמת הגולן",
+      "barcode": "2133889",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JPQ34_Z_P_2133889_1.png",
+      "score": 78.9,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שני תוספים (E575 + E202) — הרכב מורכב יותר מרוב הבולגריות 5%.",
+      "rowVerdict": "בולגרית 5% — אותה כמות שומן כמו השאר, אבל שני תוספים: E575 (גלוקונו-דלתא-לקטון, מווסת חומציות) ו-E202. זה הרכב מורכב יותר מרוב הבולגריות 5% בקטגוריה, והפרש הציון לעומתן נובע בעיקר מכאן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 109.0,
+          "protein": 13.0,
+          "sugar": 3.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 1200.0
+        },
+        "ingredients": "חלב בקר ,רכיבי חלב,מווסת חומציות(E575),מלח, חומר משמר(E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (13g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1200mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E575",
+          "name_he": "גלוקונו-דלתא-לקטון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות",
+          "explanation_he": "נגזרת גלוקוז שמחמיצה את החלב ומסייעת לקרישה; סימן לייצור מהיר."
+        }
+      ],
+      "rank": 8,
+      "categoryTotal": 36,
+      "brand": "מחלבת רמת הגולן"
+    },
+    {
+      "id": "bc-010",
+      "name": "בולגרית מעודנת 5% — שופרסל",
+      "barcode": "7296073641964",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PBP64_Z_P_7296073641964_1.png",
+      "score": 78.7,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חמאה ברשימת הרכיבים ושני תוספים — נדיר לבולגרית 5%.",
+      "rowVerdict": "בולגרית מעודנת 5%. ייחודית ברשימת הרכיבים: חמאה מופיעה לצד חלב, פלוס שני תוספים (E575, E202). השילוב הזה מבדיל אותה מבולגריות 5% פשוטות ומוריד את הציון לגבול ה-B.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 111.0,
+          "protein": 12.5,
+          "sugar": 4.0,
+          "fat": 5.0,
+          "satFat": 3.3,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב, חלבוני חלב, מווסת חומציות (E575), חמאה, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12.5g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E575",
+          "name_he": "גלוקונו-דלתא-לקטון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות",
+          "explanation_he": "נגזרת גלוקוז שמחמיצה את החלב ומסייעת לקרישה; סימן לייצור מהיר."
+        }
+      ],
+      "rank": 9,
+      "categoryTotal": 36,
+      "brand": "שופרסל"
+    },
+    {
+      "id": "bc-013",
+      "name": "קוביות בולגרית מעודנת 13% — יורו מחלבות אירופה",
+      "barcode": "7290108509106",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UAT48_Z_P_7290108509106_1.png",
+      "score": 78.6,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שלושה רכיבים בלבד (חלב, מלח, תרבית לקטית) עם 12 גרם חלבון. 720 מ\"ג נתרן — ערך שמשקף את מי הכבישה.",
+      "rowVerdict": "176 קלוריות ל-100 גרם עם 12 גרם חלבון. רשימת שלושה רכיבים בלבד — חלב מפוסטר, מלח, תרבית לקטית. 13 גרם שומן (8.5 גרם רווי) ו-720 מ\"ג נתרן — ערכים של גבינה בכבישה.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 176.0,
+          "protein": 12.0,
+          "sugar": 2.8,
+          "fat": 13.0,
+          "satFat": 8.5,
+          "fiber": null,
+          "sodium": 720.0
+        },
+        "ingredients": "חלב מפוסטר, מלח,תרבית לקטית  מקריש",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": null
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [],
+      "rank": 10,
+      "categoryTotal": 36,
+      "brand": "יורו מחלבות אירופה"
+    },
+    {
+      "id": "bc-006",
+      "name": "קוביות בולגרית מעודנת 5% — מחלבות גד",
+      "barcode": "7290011499129",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IDU54_Z_P_7290011499129_1.png",
+      "score": 78.0,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "גרסת 5% השומן עם 10 גרם חלבון ורשימת שלושה רכיבים. 1010 מ\"ג נתרן — הגבוה ביותר בסדרת הבולגרית.",
+      "rowVerdict": "93 קלוריות ל-100 גרם עם 10 גרם חלבון ו-5 גרם שומן — גרסת השומן הנמוכה בסדרה. שלושה רכיבים בלבד. 1010 מ\"ג נתרן — ערך שמשקף את מי הכבישה, הגבוה ביותר בבולגריות.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 93.0,
+          "protein": 10.0,
+          "sugar": 2.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1010.0
+        },
+        "ingredients": "חלב מפוסטר, מלח ים, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (10g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1010mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 11,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-012",
+      "name": "גבינה בולגרית מעודנת 5% — מחלבות גד",
+      "barcode": "7290011499327",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILK54_Z_P_7290011499327_1.png",
+      "score": 76.2,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שלושה רכיבים ברורים — אבל נתרן של 1,010 מ\"ג מוסיף חיסרון מינימלי ביחס לחציון.",
+      "rowVerdict": "בולגרית מעודנת 5% של מחלבות גד. חלב בקר מפוסטר, מלח ים טבעי, E202. הירידה מ-A לא נובעת מהרכב — הרכב נקי — אלא מנתרן שחורג קמעה מהחציון ו-10 גרם חלבון, מהנמוכים בגרסאות 5%.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 93.0,
+          "protein": 10.0,
+          "sugar": 2.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1010.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח ים טבעי, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (10g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1010mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 12,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-011",
+      "name": "גבינה בולגרית מסורתית 5% — מחלבות גד",
+      "barcode": "7290011499105",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ICW48_Z_P_7290011499105_1.png",
+      "score": 75.4,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 5% עם נתרן גבוה יחסית (1,200 מ\"ג) שמוריד אותה מהקבוצה הגבוהה.",
+      "rowVerdict": "בולגרית מסורתית 5% של מחלבות גד. הרכב נקי עם חומר משמר אחד, אבל נתרן של 1,200 מ\"ג — 200 מ\"ג מעל חציון המדף, מה שמוסיף חיסרון מדרג. חלבון של 10 גרם, נמוך ביחס לבולגריות 5% אחרות.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 93.0,
+          "protein": 10.0,
+          "sugar": 2.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1200.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (10g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1200mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 13,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-029",
+      "name": "פטה עיזים 20% שומן — מחלבות גד",
+      "barcode": "7290011499358",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMP58_Z_P_7290011499358_1.png",
+      "score": 75.3,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "פטה עיזים 20% עם נתרן נמוך יחסית למדף — הגבוהה בין הפטות 20%.",
+      "rowVerdict": "פטה עיזים 20% של מחלבות גד. שלושה רכיבים, 14 גרם חלבון. הנתרן (770 מ\"ג) נמוך מחציון המדף, ולכן אינו מוסיף חיסרון. מה שמגביל: 20% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 242.0,
+          "protein": 14.0,
+          "sugar": 0.8,
+          "fat": 20.0,
+          "satFat": 13.3,
+          "fiber": null,
+          "sodium": 770.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (20g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 14,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-014",
+      "name": "בולגרית של פעם 16% — מחלבת רמת הגולן",
+      "barcode": "7290019790402",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BIX50_Z_P_7290019790402_1.png",
+      "score": 74.3,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "16% שומן עם 16 גרם חלבון — יחס חלבון-שומן טוב לגבינה 16%.",
+      "rowVerdict": "בולגרית של פעם 16% מחלבת רמת הגולן. חלבון גבוה יחסית לפרופיל שומן זה (16 גרם), חומר משמר אחד, עיבוד מינימלי. הנתרן (1,300 מ\"ג) מוסיף חיסרון — 300 מ\"ג מעל חציון המדף.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 210.0,
+          "protein": 16.0,
+          "sugar": 0.5,
+          "fat": 16.0,
+          "satFat": 10.6,
+          "fiber": null,
+          "sodium": 1300.0
+        },
+        "ingredients": "חלב בקר מפוסטר, רכיבי חלב, מלח, חומר משמר (202-E)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (16g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1300mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [],
+      "rank": 15,
+      "categoryTotal": 36,
+      "brand": "מחלבת רמת הגולן"
+    },
+    {
+      "id": "bc-031",
+      "name": "גבינה צפתית בטעמים — מחלבת המושבה",
+      "barcode": "4861360",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OIJ28_Z_P_4861360_1.png",
+      "score": 73.6,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שום ושמיר כרכיבים ממשיים, חלבון גבוה לצפתית מתובלת — מדד העיבוד מגביל.",
+      "rowVerdict": "צפתית מתובלת עם שום ושמיר בכמויות ממשיות — לא רק טעם, אלא רכיבים שנמצאים ברשימה ונמדדים. קרוב ל-19 גרם חלבון, גבוה. מדד עיבוד גבוה יותר (תיבול ותוספים) מגביל את הציון, אבל החלבון עוזר לשמור על B. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 135.0,
+          "protein": 18.5,
+          "sugar": null,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 850.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, שום 1.8%, שמיר 0.97%, חומר משמר E202, אנזים",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (18.5g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "חסרים נתוני סוכר — לוח התזונה לא מלא"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 16,
+      "categoryTotal": 36,
+      "brand": "מחלבת המושבה"
+    },
+    {
+      "id": "bc-015",
+      "name": "פטה עיזים מעודנת 16% — מחלבות גד",
+      "barcode": "7290017065663",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ARG52_Z_P_7290017065663_1.png",
+      "score": 73.5,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "פטה עיזים 16% — שלושה רכיבים, עיבוד מינימלי, נתרן ליד החציון.",
+      "rowVerdict": "פטה עיזים מעודנת 16% של מחלבות גד. שלושה רכיבים, עיבוד מינימלי. הנתרן (950 מ\"ג) קרוב לחציון ולא מוסיף חיסרון מיוחד. מה שמוריד אותה מה-A: אחוז השומן (16%) לעומת גרסאות 5%.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 212.0,
+          "protein": 14.0,
+          "sugar": 3.0,
+          "fat": 16.0,
+          "satFat": 10.7,
+          "fiber": null,
+          "sodium": 950.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח , חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (950mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 17,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-016",
+      "name": "בולגרית מעודנת 5% — משק צוריאל",
+      "barcode": "2107798",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XAD34_Z_P_2107798_1.png",
+      "score": 72.5,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "מייצבים (אגר + גומי זרעי חרובים) — יוצאת דופן ביחס לבולגריות 5% פשוטות.",
+      "rowVerdict": "בולגרית 5% של בל-גאל עם שני מייצבים שאינם מופיעים ברוב הבולגריות 5%: אגר וגומי זרעי חרובים. ה-5% שומן בלבד לא מספיק לפצות על הרשימה המורכבת. מדד העיבוד שלה גבוה יותר מרוב הבולגריות 5%.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 108.0,
+          "protein": 12.0,
+          "sugar": 2.5,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": 2.4,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מי מלח, מייצבים (אגר, גומי זרעי חרובים), סיבים תזונתיים, חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E406",
+          "name_he": "אגר",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "פוליסכריד מאצות ים; מייצב מרקם ומונע הפרדת נוזלים בגבינה."
+        },
+        {
+          "e_number": "E410",
+          "name_he": "גומי זרעי חרובים",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "שרף ממזרע עץ החרוב; מווסת מרקם, מופיע יחד עם אגר."
+        }
+      ],
+      "rank": 18,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    },
+    {
+      "id": "bc-025",
+      "name": "בולגרית מסורתית 16% — שופרסל",
+      "barcode": "7296073641957",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PBI66_Z_P_7296073641957_1.png",
+      "score": 72.0,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 16% פשוטה: שלושה רכיבים, רשימה נקייה, נתרן ליד החציון.",
+      "rowVerdict": "בולגרית מסורתית 16%. שלושה רכיבים, E202 כמשמר בודד, כ-14 גרם חלבון. הנתרן (1,000 מ\"ג) בדיוק על החציון ולא מוסיף חיסרון מעבר לבסיס. ה-B נובע מ-16% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 206.0,
+          "protein": 13.5,
+          "sugar": 2.0,
+          "fat": 16.0,
+          "satFat": 10.6,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (13.5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 19,
+      "categoryTotal": 36,
+      "brand": "שופרסל"
+    },
+    {
+      "id": "bc-027",
+      "name": "פטה כבשים 20% — שופרסל",
+      "barcode": "7296073641902",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZF56_Z_P_7296073641902_1.png",
+      "score": 71.7,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלב כבשים, שלושה רכיבים — 20% שומן עם נתרן בינוני.",
+      "rowVerdict": "פטה כבשים 20%. שלושה רכיבים, כ-15 גרם חלבון. הנתרן (1,100 מ\"ג) גבוה מהחציון ב-100 מ\"ג — חיסרון קטן. ה-B נובע בעיקר מאחוז השומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 240.0,
+          "protein": 14.5,
+          "sugar": 0.5,
+          "fat": 20.0,
+          "satFat": 13.0,
+          "fiber": null,
+          "sodium": 1100.0
+        },
+        "ingredients": "חלב כבשים, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14.5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1100mg ל-100g)",
+          "שומן גבוה (20g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 20,
+      "categoryTotal": 36,
+      "brand": "שופרסל"
+    },
+    {
+      "id": "bc-028",
+      "name": "גבינה פטה כבשים 20% — מחלבות גד",
+      "barcode": "7290011499051",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAU48_Z_P_7290011499051_1.png",
+      "score": 71.6,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "פטה כבשים 20% של מחלבות גד — שלושה רכיבים, נתרן קרוב לחציון.",
+      "rowVerdict": "פטה כבשים 20% של מחלבות גד. שלושה רכיבים, 14 גרם חלבון, נתרן (930 מ\"ג) מעט מתחת לחציון. מה שמגביל: 20% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 236.0,
+          "protein": 14.0,
+          "sugar": 0.0,
+          "fat": 20.0,
+          "satFat": 13.3,
+          "fiber": null,
+          "sodium": 930.0
+        },
+        "ingredients": "חלב כבשים מפוסטר, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (930mg ל-100g)",
+          "שומן גבוה (20g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 21,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-018",
+      "name": "פטה עיזים 16% שומן — מחלבות רמת הגולן",
+      "barcode": "7290019790808",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BYN60_Z_P_7290019790808_1.png",
+      "score": 71.6,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלבון גבוה לפטה 16%, אבל נתרן של 1,400 מ\"ג גבוה מהחציון.",
+      "rowVerdict": "פטה עיזים 16% מחלבות רמת הגולן. חלבון של 17 גרם — גבוה לגבינה 16%. הנתרן (1,400 מ\"ג) גבוה מחציון המדף ב-400 מ\"ג ומוסיף חיסרון מדרג. שלושה רכיבים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 214.0,
+          "protein": 17.0,
+          "sugar": 0.5,
+          "fat": 16.0,
+          "satFat": 11.0,
+          "fiber": null,
+          "sodium": 1400.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח, חומר משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (17g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1400mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 21,
+      "categoryTotal": 36,
+      "brand": "מחלבות רמת הגולן"
+    },
+    {
+      "id": "bc-024",
+      "name": "פטה כבשים 20% שומן — מחלבת רמת הגולן",
+      "barcode": "7290019790112",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AXT48_Z_P_7290019790112_1.png",
+      "score": 70.5,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלב כבשים, שלושה רכיבים — אבל נתרן של 1,500 מ\"ג גבוה מאוד ביחס למדף.",
+      "rowVerdict": "פטה כבשים 20% מחלבת רמת הגולן. שלושה רכיבים נקיים, חלב כבשים בלבד. שני לחצים מצטברים: 20% שומן ונתרן של 1,500 מ\"ג — 500 מ\"ג מעל חציון המדף. כל אחד מהם גורם לחיסרון; ביחד הם מציבים את הגבינה בתחתית ה-B.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 246.0,
+          "protein": 16.0,
+          "sugar": 0.5,
+          "fat": 20.0,
+          "satFat": 13.0,
+          "fiber": null,
+          "sodium": 1500.0
+        },
+        "ingredients": "חלב כבשים , מלח, חומר משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (16g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1500mg ל-100g)",
+          "שומן גבוה (20g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 23,
+      "categoryTotal": 36,
+      "brand": "מחלבת רמת הגולן"
+    },
+    {
+      "id": "bc-017",
+      "name": "בולגרית 24% — משק צוריאל",
+      "barcode": "7290114314015",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BEM38_Z_P_7290114314015_1.png",
+      "score": 70.3,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "'24%' כנראה מתייחס לשומן בחומר היבש — ברי עובדת תמיד עם הנתון הממשי שעל התווית.",
+      "rowVerdict": "שם המוצר 'בולגרית 24%' מציין — לפי הבנת ברי — אחוז שומן בחומר היבש, מדד תעשייתי שאינו שווה ערך לשומן ממשי ב-100 גרם. מה שעל התווית: 14 גרם שומן, שלושה רכיבים, כ-15 גרם חלבון. הנתרן (1,400 מ\"ג) גבוה מהחציון ב-400 מ\"ג — והוא הגורם המרכזי שמוריד את הציון.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 275.0,
+          "protein": 14.8,
+          "sugar": 0.0,
+          "fat": 14.0,
+          "satFat": 9.6,
+          "fiber": null,
+          "sodium": 1400.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14.8g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1400mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 24,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    },
+    {
+      "id": "bc-030",
+      "name": "גבינה בולגרית 16% שומן — מחלבות גד",
+      "barcode": "7290011499112",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IDD46_Z_P_7290011499112_1.png",
+      "score": 70.2,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 16% עם שלושה רכיבים, אבל נתרן של 1,200 מ\"ג מוסיף חיסרון.",
+      "rowVerdict": "בולגרית 16% של מחלבות גד. שלושה רכיבים, כ-13 גרם חלבון. הנתרן (1,200 מ\"ג) גבוה מהחציון ב-200 מ\"ג — חיסרון מדרגתי בנוסף לבסיס.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 202.0,
+          "protein": 12.5,
+          "sugar": 2.0,
+          "fat": 16.0,
+          "satFat": 10.6,
+          "fiber": null,
+          "sodium": 1200.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12.5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1200mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 25,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-032",
+      "name": "קוביות בולגרית מעודנת 16% — מחלבות גד",
+      "barcode": "7290019635222",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FUL48_Z_P_7290019635222_1.png",
+      "score": 67.0,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 16% בקוביות, רשימה נקייה — 10 גרם חלבון ונתרן של 1,010 מ\"ג מעל החציון.",
+      "rowVerdict": "קוביות בולגרית 16% של מחלבות גד. שלושה רכיבים, עיבוד מינימלי — הרכב נקי. מה שמוריד: 10 גרם חלבון בלבד ונתרן של 1,010 מ\"ג, מעט מעל החציון.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 192.0,
+          "protein": 10.0,
+          "sugar": 2.0,
+          "fat": 16.0,
+          "satFat": 10.6,
+          "fiber": null,
+          "sodium": 1010.0
+        },
+        "ingredients": "חלב מפוסטר, מלח ים, חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (10g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1010mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 26,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-035",
+      "name": "בולגרית מעודנת 24% — מחלבות גד",
+      "barcode": "7290017065236",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AAV48_Z_P_7290017065236_1.png",
+      "score": 66.3,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "'24%' כנראה מתייחס לשומן בחומר היבש — על התווית: 14 גרם שומן, 4 רכיבים.",
+      "rowVerdict": "בולגרית 24% של מחלבות גד. ארבעה רכיבים: חלב, שמנת, מלח, פוטסיום סורבט. בתווית מופיע 'מלח (27%)' — הנתרן המדוד על התווית: 1,010 מ\"ג, על החציון, ואינו מוסיף חיסרון מעבר לבסיס. ה-B נובע מהשומן הגבוה יחסית.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 274.0,
+          "protein": 11.0,
+          "sugar": 3.5,
+          "fat": 24.0,
+          "satFat": 16.0,
+          "fiber": null,
+          "sodium": 1010.0
+        },
+        "ingredients": "חלב מפוסטר, שמנת מפוסטרת, מלח (27%), חומר משמר (פוטסיום סורבט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (11g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1010mg ל-100g)",
+          "שומן גבוה (24g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 27,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-037",
+      "name": "גבינה מלוחה חמד 16% — פיראוס",
+      "barcode": "48413",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SPA20_Z_P_48413_1.png",
+      "score": 66.3,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלב בקר כמרכיב עיקרי, רכיבי חלב ומשמר אחד — 20 גרם חלבון עוזרים.",
+      "rowVerdict": "גבינה מלוחה חמד 16%. חלב בקר ברוב הגדול של הרשימה, רכיבי חלב נוספים, E202 כמשמר. 20 גרם חלבון גבוהים לפרופיל שומן זה. הנתרן (1,065 מ\"ג) גבוה מעט מהחציון. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 234.0,
+          "protein": 20.0,
+          "sugar": null,
+          "fat": 16.0,
+          "satFat": 10.0,
+          "fiber": null,
+          "sodium": 1065.0
+        },
+        "ingredients": "חלב בקר (93.5%), רכיבי חלב, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (20g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1065mg ל-100g)",
+          "חסרים נתוני סוכר — לוח התזונה לא מלא"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 27,
+      "categoryTotal": 36,
+      "brand": "פיראוס"
+    },
+    {
+      "id": "bc-038",
+      "name": "גבינת חלומי 23% — יורו מחלבות אירופה",
+      "barcode": "7290108509755",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UZS58_Z_P_7290108509755_1.png",
+      "score": 64.6,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "22 גרם חלבון — הגבוה ביותר בין הגבינות במדף. 23 גרם שומן (כ-14 גרם רווי) ו-1000 מ\"ג נתרן מכבישה.",
+      "rowVerdict": "301 קלוריות ל-100 גרם עם 22 גרם חלבון. 23 גרם שומן, מהם כ-14 גרם רווי — שומן רווי גבוה הוא הגורם המגביל לצד 1000 מ\"ג נתרן מכבישה. שלושה רכיבים ברשימה.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 301.0,
+          "protein": 22.0,
+          "sugar": 1.6,
+          "fat": 23.0,
+          "satFat": 14.2,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב מפוסטר (פרה,כבשים,עיזים) ,מלח, מקריש",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (22g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)",
+          "שומן גבוה (23g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [],
+      "rank": 29,
+      "categoryTotal": 36,
+      "brand": "יורו מחלבות אירופה"
+    },
+    {
+      "id": "bc-036",
+      "name": "גבינת טמרה מלוחה בקר 17% — מחלבת רג'ב",
+      "barcode": "3075805",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YZE28_Z_P_3075805_1.png",
+      "score": 62.5,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שני רכיבים בלבד — אבל הנתרן הגבוה ביותר במדף, 628 מ\"ג מעל החציון.",
+      "rowVerdict": "גבינת טמרה מלוחה — שני רכיבים בלבד: חלב ומלח. אין כלום מיותר. ובכל זאת C. הסיבה: 1,628 מ\"ג נתרן — הגבוה ביותר במדף, 628 מ\"ג מעל חציון המדף. הכבישה הממושכת מקבלת חיסרון כפול: בסיסי ופער. גם שומן של 17% ו-257 קק\"ל מוסיפים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 257.0,
+          "protein": 19.0,
+          "sugar": 0.0,
+          "fat": 17.0,
+          "satFat": 11.7,
+          "fiber": null,
+          "sodium": 1628.0
+        },
+        "ingredients": "חלב בקר מפוסטר , מלח",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (19g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן גבוה (1628mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [],
+      "rank": 30,
+      "categoryTotal": 36,
+      "brand": "מחלבת רג'ב"
+    },
+    {
+      "id": "bc-039",
+      "name": "חלומי בקר — משק צוריאל",
+      "barcode": "7290102393718",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VPN52_Z_P_7290102393718_1.png",
+      "score": 62.5,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלומי בקר עם שלושה רכיבים — 28 גרם שומן ו-356 קק\"ל מסבירים את ה-C.",
+      "rowVerdict": "חלומי בקר של משק צוריאל. שלושה רכיבים, 24 גרם חלבון — טוב. אבל חלומי הוא גבינה בייעוד צלייה: 28 גרם שומן ו-356 קק\"ל ל-100 גרם, הגבוהים בקטגוריה. הצפיפות הקלורית היא מה שמוריד לתחתית ה-C.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 356.0,
+          "protein": 24.0,
+          "sugar": 2.0,
+          "fat": 28.0,
+          "satFat": 17.0,
+          "fiber": null,
+          "sodium": 980.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (24g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (980mg ל-100g)",
+          "שומן גבוה (28g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 30,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    },
+    {
+      "id": "bc-041",
+      "name": "חלומי בקר 24% — שופרסל",
+      "barcode": "7296073641919",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZW64_Z_P_7296073641919_1.png",
+      "score": 62.5,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "חלומי בקר 24% — שלושה רכיבים, אבל 310 קק\"ל הם מהגבוהים בקטגוריה.",
+      "rowVerdict": "חלומי בקר 24%. שלושה רכיבים, 22 גרם חלבון, רשימה נקייה. 24% שומן ו-310 קק\"ל ל-100 גרם — גבוה לקטגוריה.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 310.0,
+          "protein": 22.0,
+          "sugar": 1.4,
+          "fat": 24.0,
+          "satFat": 15.6,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (22g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)",
+          "שומן גבוה (24g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 30,
+      "categoryTotal": 36,
+      "brand": "שופרסל"
+    },
+    {
+      "id": "bc-044",
+      "name": "גבינת חלומי 24% — מחלבות גד",
+      "barcode": "7290011499365",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMW56_Z_P_7290011499365_1.png",
+      "score": 56.6,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "E-252 (אשלגן ניטראט) לצד E-202 — שני חומרי משמר, אחד מהם מסוג הניטראטים.",
+      "rowVerdict": "חלומי 24% של מחלבות גד. שני חומרי משמר: E-202 (פוטסיום סורבט) ו-E-252 (אשלגן ניטראט). E-252 שייך לקבוצת הניטראטים — שונה מהותית מ-E-202, ונדיר בגבינות מלוחות. 24% שומן, 304 קק\"ל.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 304.0,
+          "protein": 21.0,
+          "sugar": 1.0,
+          "fat": 24.0,
+          "satFat": 16.0,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, חומרים משמרים (E-202, E-252)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (21g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)",
+          "שומן גבוה (24g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E252",
+          "name_he": "אשלגן ניטראט",
+          "tier": "dose-dependent",
+          "function_he": "חומר משמר",
+          "explanation_he": "מלח ניטרט שעוכב חיידקים מזיקים; שייך לקבוצת הניטרטים, מאושר בכמויות מוגבלות."
+        }
+      ],
+      "rank": 33,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד"
+    },
+    {
+      "id": "bc-043",
+      "name": "בולגרית מעודנת 16% — משק צוריאל",
+      "barcode": "7290114312707",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGE44_Z_P_7290114312707_1.png",
+      "score": 54.8,
+      "grade": "C",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "מייצבים (אגר + גומי זרעי חרובים) + 16% שומן + מדד עיבוד גבוה — שילוב שמוריד.",
+      "rowVerdict": "בולגרית 16% של משק צוריאל עם שני מייצבים: אגר וגומי זרעי חרובים. מדד עיבוד גבוה יותר מהגרסה ה-5% המקבילה. 7.3 גרם חלבון — נמוך מאוד לקטגוריה. שלושת הגורמים יחד — עיבוד, מייצבים ו-7.3 גרם חלבון — הם מה שמסביר את הציון.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 187.0,
+          "protein": 7.3,
+          "sugar": 1.9,
+          "fat": 16.0,
+          "satFat": 9.6,
+          "fiber": 3.0,
+          "sodium": 950.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מי מלח, רכיבי חלב, מייצבים (אגר, גומי זרעי חרובים), סיבים תזונתיים, חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": null,
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (950mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E406",
+          "name_he": "אגר",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "פוליסכריד מאצות ים; מייצב מרקם ומונע הפרדת נוזלים בגבינה."
+        },
+        {
+          "e_number": "E410",
+          "name_he": "גומי זרעי חרובים",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "שרף ממזרע עץ החרוב; מווסת מרקם, מופיע יחד עם אגר."
+        }
+      ],
+      "rank": 34,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    },
+    {
+      "id": "bc-048",
+      "name": "כדורי פטה בשמן מתובל — גבינות ניצן",
+      "barcode": "369617",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTA32_Z_P_369617_1.png",
+      "score": 48.5,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "פטה טבולה בשמן צמחי — מוצר שונה מהותית מגבינה מלוחה רגילה.",
+      "rowVerdict": "כדורי פטה בשמן מתובל. השמן הצמחי שמוסף לגבינה הופך את המוצר למשהו אחר לחלוטין: 31 גרם שומן, 355 קק\"ל, מייצבים, עיבוד גבוה. 8 גרם חלבון בלבד — הנמוך ביותר בין גבינות השמן. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 355.0,
+          "protein": 8.0,
+          "sugar": null,
+          "fat": 31.0,
+          "satFat": 6.0,
+          "fiber": null,
+          "sodium": 800.0
+        },
+        "ingredients": "חלב מפוסטר,שמן צמחי,שמן זית,מלח,תבלינים,ח.משמר (E-202)",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": null,
+        "limitingFactors": [
+          "שומן גבוה (31g ל-100g)",
+          "חסרים נתוני סוכר — לוח התזונה לא מלא"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 35,
+      "categoryTotal": 36,
+      "brand": "גבינות ניצן"
+    },
+    {
+      "id": "bc-047",
+      "name": "בולגרית שום+עשבי תיבול 16% — משק צוריאל",
+      "barcode": "7290114312486",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YXR48_Z_P_7290114312486_1.png",
+      "score": 46.0,
+      "grade": "D",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "10 רכיבים, מדד עיבוד גבוה, תקרת עיבוד — הציון הנמוך ביותר בין הבולגריות.",
+      "rowVerdict": "בולגרית מתובלת של משק צוריאל: 10 רכיבים כולל מייצבים, מי מלח, סיבים תזונתיים, שום ועשבים. מדד עיבוד גבוה — ועוצר בתקרה. 7 גרם חלבון בלבד. עיבוד גבוה, מייצבים ו-7 גרם חלבון הם הגורמים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 188.0,
+          "protein": 7.0,
+          "sugar": 2.3,
+          "fat": 16.0,
+          "satFat": 9.6,
+          "fiber": 3.1,
+          "sodium": 950.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מי מלח, רכיבי חלב, מייצבים (אגר, גומי זרעי חרובים), מלח, סיבים תזונתיים, שום (0.3%), עשבי תיבול (0.2%), חומר משמר (פוטסיום סורבאט)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": null,
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (950mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        },
+        {
+          "e_number": "E406",
+          "name_he": "אגר",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "פוליסכריד מאצות ים; מייצב מרקם ומונע הפרדת נוזלים בגבינה."
+        },
+        {
+          "e_number": "E410",
+          "name_he": "גומי זרעי חרובים",
+          "tier": "functional",
+          "function_he": "מייצב / מסמיך",
+          "explanation_he": "שרף ממזרע עץ החרוב; מווסת מרקם, מופיע יחד עם אגר."
+        }
+      ],
+      "rank": 36,
+      "categoryTotal": 36,
+      "brand": "משק צוריאל"
+    }
+  ]
+}

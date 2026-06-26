@@ -1,0 +1,41 @@
+{
+  "_comment": "Protein bars category config. Corpus: protein_combined_corpus_task365_33_20260621_fix.json (33 products, all Shufersal, 2 discarded per missing_data_discard_rule). Scoring: batch_run_protein_bars_task365.py — no standard BSIP1 pipeline run; scored inline from corpus JSON directly using BARI_PROTEIN_BAR_V1 lens. No bsip1 trace subdir within the run dir. corpus_dirs and run_products_dir both point to the protein_bars_task365 run directory (the authoritative data dir for this run). run_id = protein_bars_task365_fix33_20260621_124433. Score distribution: B=2, C=26, D=5; mean=53.0, median=50, min=45, max=70. Live page displays 16/33 curated products — the 17 non-displayed are CORPUS_NOT_DISPLAYED in the diff. OFF check = PASS (all Shufersal direct scrape, shufersal_code present on all 33). QUARANTINE: no standard BSIP1 trace dir; scoring done via batch_run_protein_bars_task365.py from corpus JSON directly.",
+  "category": "protein_bars",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365",
+  "baseline_json": "C:\\Bari\\.claude\\worktrees\\task409\\bari-web\\src\\data\\comparisons\\protein_combined_frontend_v2.json",
+  "_reproduce_note": "TASK-409: baseline_json pinned to worktree path (protein_combined_frontend_v2.json) for reproducible re-derive in this branch. Original live file was protein_bars_frontend_v1.json at C:\\Bari\\bari-web\\src\\data\\comparisons\\. Corpus uses lens-only scoring (batch_run_protein_bars_task365.py) — no standard BSIP1 trace dir.",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_PROTEIN_BAR_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_FAT_TECH_V1": "off",
+      "BARI_GLASSBOX_W4": "off",
+      "BARI_FIBER_FERMENT_V1": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": null,
+    "corpus_filter": null,
+    "_source": "batch_run_protein_bars_task365.py (lens-only scoring from corpus JSON; no standard BSIP1 pipeline run)",
+    "_corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+    "_corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
+    "_run_record": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365\\run_record.json"
+  },
+  "exclusions": [],
+  "extension_fields": [],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}
