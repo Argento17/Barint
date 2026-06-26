@@ -1,7 +1,7 @@
 import breadArticleData from "@/data/blog/bread-article.json";
 
 export const BREAD_BLOG_HREF = "/blog/lechem";
-export const BREAD_HASHVAOT_HREF = "/hashvaot/lechem";
+export const BREAD_HASHVAOT_HREF = "/hashvaot/bread";
 
 /**
  * Article content object for the bread deep-dive.

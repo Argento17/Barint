@@ -20,7 +20,7 @@
  */
 
 export const SUGAR_ALCOHOLS_HREF = "/blog/sugar-alcohols";
-export const PROTEIN_BARS_HREF = "/hashvaot/snack-bars";
+export const PROTEIN_BARS_HREF = "/hashvaot/protein-bars";
 export const HASHVAOT_HREF = "/hashvaot";
 
 // ---------------------------------------------------------------------------
