@@ -1,17 +1,26 @@
 "use client";
 
 /**
- * GA4 consent-gated script loader.
+ * GA4 consent-gated loader (strict opt-in posture).
  *
- * Strategy: Google Consent Mode v2 + deferred injection.
- *  1. On mount, set gtag consent defaults to denied (no cookies written).
- *  2. If the user already accepted analytics → inject the GA4 <Script> immediately
- *     and call gtag('consent','update',{analytics_storage:'granted'}).
- *  3. If the user later accepts via the CMP → inject the script dynamically and
- *     update consent state. No reload required.
- *  4. If NEXT_PUBLIC_GA_ID is absent → entire component is a no-op.
+ * Sequence:
+ *  1. On mount: initialise dataLayer + a *canonical* gtag stub (pushes the
+ *     `arguments` object, which is what gtag.js expects when it later drains the
+ *     queue — pushing a plain array silently breaks command processing) and set
+ *     Consent Mode v2 defaults to denied. No gtag.js, no cookies yet.
+ *  2. Read stored consent; subscribe to future CMP changes.
+ *  3. Only once analytics consent is granted is the GA4 <Script> injected.
+ *     Its `onLoad` — i.e. after the real library is present AND consent is
+ *     granted — fires consent→granted, then `js`, then `config`. The first
+ *     pageview hit is therefore sent deterministically, not via fragile
+ *     queue-replay timing (the previous version queued `config` before the
+ *     library loaded and no `/collect` hit ever fired).
+ *  4. If consent is later withdrawn, push consent→denied (library stays loaded;
+ *     Consent Mode suppresses further data).
+ *  5. If GA_ID is absent → entire component is a no-op.
  *
- * anonymize_ip is always set to true.
+ * anonymize_ip is set on config (no-op in GA4, which anonymises by default, but
+ * kept explicit).
  */
 
 import Script from "next/script";
@@ -33,67 +42,55 @@ declare global {
 }
 
 export function GA4Script() {
-  const [analyticsGranted, setAnalyticsGranted] = useState(false);
+  const [granted, setGranted] = useState(false);
 
   useEffect(() => {
     if (!GA_ID) return;
 
-    // Step 1 — initialise dataLayer + gtag stub before the script tag so that
-    // consent defaults are set before any GA4 hit is sent.
+    // Canonical gtag stub — MUST push the `arguments` object, not a plain
+    // array, or gtag.js will not process the queued commands.
     window.dataLayer = window.dataLayer ?? [];
-    function gtag(...args: unknown[]) {
-      window.dataLayer.push(args);
-    }
-    // Only assign if not already defined (e.g. by a prior render)
     if (!window.gtag) {
-      window.gtag = gtag;
+      window.gtag = function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer.push(arguments);
+      };
     }
 
-    // Step 2 — set consent defaults (denied) unconditionally.
+    // Consent Mode v2 — deny everything before any tag loads.
     window.gtag("consent", "default", {
       analytics_storage: "denied",
       ad_storage: "denied",
       ad_user_data: "denied",
       ad_personalization: "denied",
-      wait_for_update: 500,
     });
-    window.gtag("js", new Date());
-    window.gtag("config", GA_ID, { anonymize_ip: true });
 
-    // Step 3 — check existing consent and apply immediately if already granted.
+    // Apply the stored choice, then react to future CMP changes.
     const stored = getStoredConsent();
-    if (stored?.analytics) {
-      setAnalyticsGranted(true);
-      window.gtag("consent", "update", { analytics_storage: "granted" });
-    }
+    if (stored?.analytics) setGranted(true);
 
-    // Step 4 — listen for future consent updates.
     const unsub = onConsentChange((record) => {
-      if (record.analytics) {
-        setAnalyticsGranted(true);
-        window.gtag("consent", "update", { analytics_storage: "granted" });
-      } else {
-        // User withdrew analytics consent — update mode but do NOT delete the
-        // script (GA4 Consent Mode handles data suppression server-side).
+      setGranted(record.analytics);
+      if (!record.analytics && typeof window.gtag === "function") {
         window.gtag("consent", "update", { analytics_storage: "denied" });
       }
     });
-
     return unsub;
   }, []);
 
-  // Do nothing if GA_ID is absent
-  if (!GA_ID) return null;
-
-  // Only inject the actual GA4 <Script> after the user consented.
-  // Until then the gtag stub + consent defaults are enough to satisfy
-  // Google's "consent defaults must precede the gtag.js request" requirement.
-  if (!analyticsGranted) return null;
+  if (!GA_ID || !granted) return null;
 
   return (
     <Script
+      id="ga4-gtag"
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       strategy="afterInteractive"
+      onLoad={() => {
+        // Library is loaded and consent is granted — send the first hit now.
+        window.gtag("consent", "update", { analytics_storage: "granted" });
+        window.gtag("js", new Date());
+        window.gtag("config", GA_ID, { anonymize_ip: true });
+      }}
     />
   );
 }
