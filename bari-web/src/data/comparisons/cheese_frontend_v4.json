@@ -1,57 +1,30 @@
 {
   "_meta": {
-    "category": "cheese-spreads",
-    "config_sha256": "6c41313efa6991b13fb2d12a176c79feafdca308f7425f24490f477b32775a78",
-    "exclusions": [
-      {
-        "barcode": "4127800",
-        "product_id": "bsip1_cheese_4127800",
-        "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"
-      },
-      {
-        "barcode": "4127817",
-        "product_id": "bsip1_cheese_4127817",
-        "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"
-      },
-      {
-        "barcode": "4127862",
-        "product_id": "bsip1_cheese_4127862",
-        "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"
-      },
-      {
-        "barcode": "47942",
-        "product_id": "bsip1_cheese_47942",
-        "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"
-      },
-      {
-        "barcode": "48185",
-        "product_id": "bsip1_cheese_48185",
-        "reason": "G8 data-sanity: nutrition-panel text bled into ingredients field — discard per missing-data-discard rule"
-      },
-      {
-        "barcode": "7290014217492",
-        "product_id": "bsip1_cheese_7290014217492",
-        "reason": "out_of_scope: non_cheese_seasoning_blend (TASK-153 mis-route — תערובת תיבול, not cheese/spread)"
-      }
+    "run_id": "task409_rederive_cheese_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output"
     ],
-    "generated": "2026-06-17T18:22:52Z",
-    "generator_version": "1.2.0",
-    "product_count": 53,
-    "retailer_breakdown": {
-      "shufersal": 53
+    "flag_vector": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off"
     },
-    "schema": "BariProductVM[]",
-    "schema_version": "v3",
-    "scored_count": 59,
-    "source_paths": {
-      "corpus_dirs": [
-        "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output"
-      ],
-      "run_products_dir": [
-        "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_004\\products"
-      ]
-    },
-    "subpool_filter": null
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "ts": "2026-06-26T15:58:10",
+    "corpus_records": 53,
+    "scored": 53,
+    "failed_barcodes": [],
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
+    "generated": "2026-06-26T15:58:10",
+    "category": "cheese",
+    "product_count": 48
   },
   "products": [
     {
@@ -319,7 +292,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "טבורוג 5% מציג את תשואת החלבון הגבוהה ביותר בקטגוריה — 17 גרם ל-100 גרם, עם סודיום נמוך יוצא דופן של 30 מ\"ג. תוסף אחד ועיבוד מסוים מורידים מעט מהציון.",
-      "score": 81.2,
+      "score": 81.3,
       "source_traceability_status": "resolved",
       "brand": "כפרייה"
     },
@@ -1339,7 +1312,7 @@
         }
       ],
       "expansion": {
-        "comparisonContext": "נמוך מגרסת הבסיס הנקייה () בגלל עיבוד מסוים ותוסף אחד.",
+        "comparisonContext": "נמוך מגרסת הבסיס הנקייה בגלל עיבוד מסוים ותוסף אחד.",
         "confidenceLabel": "נתונים בבדיקה",
         "consumerExplanation": {
           "context": "גבינה לבנה 5% עם שמיר ושום — גרסה מתובלת של הגבינה הבסיסית.",
@@ -1641,7 +1614,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינה לבנה 5% מהדרין — אותם ערכים תזונתיים כמו גבינה לבנה 5% עיבוד נמוך, אך מסווגת עיבוד מסוים. הסיווג מוריד את הציון מעט, גם ללא תוספים מזוהים.",
-      "score": 73.5,
+      "score": 75.7,
       "source_traceability_status": "resolved",
       "brand": "טרה"
     },
@@ -1775,7 +1748,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "קוטג 5% מהדרין — 10 גרם חלבון, 97 קלוריות, עיבוד מסוים. הסיווג והסודיום (320 מ\"ג) מורידים את הציון מגרסאות עיבוד נמוך המקבילות.",
-      "score": 72.5,
+      "score": 74.7,
       "source_traceability_status": "resolved",
       "brand": "טרה"
     },
@@ -2597,7 +2570,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינה לבנה 5% עם זיתים — 7.8 גרם חלבון, 92 קלוריות, אך נושאת שלושה תוספים, כולל E-466 (CMC) השנוי במחלוקת — וזה מה שמושך את הציון כלפי מטה.",
-      "score": 66.0,
+      "score": 68.2,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ארוחה עם זיתים ועגבנייה",
@@ -2877,15 +2850,15 @@
         "positiveSignals": [],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "C",
+      "grade": "B",
       "id": "bsip1_cheese_7290011194246",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZDN46_Z_P_7290011194246_1.png",
-      "insightLine": "קוטג 5% עם 10 גרם חלבון ו-97 קלוריות — אך E407 (קרגינאן), מייצב שעדויות מוקדמות לגביו שנויות במחלוקת, מוריד אותו ל-C.",
+      "insightLine": "קוטג' שמבטיח פשטות אבל מגיע עם שלושה מייצבים — ביניהם אחד שנוי במחלוקת. הפרופיל הבסיסי חזק (10 גרם חלבון, 97 קלוריות), והתוספים הם מה שמפריד בינו לבין הגרסאות הנקיות.",
       "name": "קוטג' 5% שומן",
       "novaGroup": 3,
       "retailer": "shufersal",
-      "rowVerdict": "קוטג 5% עם פרופיל תזונתי טוב: 10 גרם חלבון, 97 קלוריות בלבד. אבל הוא מכיל E407 (קרגינאן), מייצב שעדויות מוקדמות לגביו שנויות במחלוקת, ולצדו עוד שני מייצבים — וזה מה שמציב אותו ב-C, נמוך מגרסאות קוטג 5% ללא תוספים.",
-      "score": 64.9,
+      "rowVerdict": "קוטג 5% עם פרופיל תזונתי טוב: 10 גרם חלבון, 97 קלוריות בלבד. שלושה מייצבים ברשימה — ביניהם קרגינאן, שעדויות מוקדמות לגביו שנויות במחלוקת. בשכנות לגרסאות נקיות יותר זה הציון שמשקף את הפשרה. ציון B.",
+      "score": 67.1,
       "source_traceability_status": "resolved",
       "brand": "שטראוס"
     },
@@ -2983,7 +2956,7 @@
         }
       ],
       "expansion": {
-        "comparisonContext": "ציון C בגלל שילוב שומן-סודיום גבוה ורשימת רכיבים ארוכה.",
+        "comparisonContext": "שומן-סודיום גבוה מגבילים — אבל חלבון טוב ורכיבים ממקור אמיתי (חלב עיזים, עשבי תיבול, שום) מצדיקים ציון B.",
         "confidenceLabel": "נתונים בבדיקה",
         "consumerExplanation": {
           "context": "גבינת עזים 17% עם שום ועשבי תיבול — גבינה מרוכזת ומתובלת.",
@@ -3012,15 +2985,15 @@
         "positiveSignals": [],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "C",
+      "grade": "B",
       "id": "bsip1_cheese_3523230065467",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SAU46_Z_P_3523230065467_1.png",
-      "insightLine": "גבינת עזים מתובלת — חלבון טוב, שומן וסודיום גבוהים",
+      "insightLine": "ממרח עיזים אמיתי עם עומק טעם — חלב עיזים כבסיס, עשבי תיבול ושום, 10 גרם חלבון. מי שמחפש את העומק הזה צריך לדעת שהוא מגיע עם 17 גרם שומן וסודיום גבוה.",
       "name": "גבינת עזים שום+עשב תיבול",
       "novaGroup": 3,
       "retailer": "shufersal",
-      "rowVerdict": "גבינת עזים שום ועשבי תיבול — 10 גרם חלבון, 197 קלוריות, 17 גרם שומן, סודיום 480 מ\"ג. עיבוד מסוים, רשימת רכיבים ארוכה והשומן הגבוה מושכים את הציון כלפי מטה.",
-      "score": 63.8,
+      "rowVerdict": "גבינת עזים עם שום ועשבי תיבול — 10 גרם חלבון, חלב עיזים (81%) כבסיס, ועשבי תיבול אמיתיים. המגבלה ברורה: 17 גרם שומן (12 גרם רווי) וסודיום 480 מ\"ג. גבינה מרוכזת ומתובלת — מי שמחפש ממרח עם עומק, ידע שהפרופיל כבד. ציון B.",
+      "score": 68.0,
       "source_traceability_status": "resolved",
       "brand": "סואניון"
     },
@@ -3418,7 +3391,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "פילדלפיה לייט 13% — גבינת ממרח קלילה ונקייה מתוספים מדאיגים, אבל בלי הרבה חלבון בתמורה ל-158 הקלוריות. השומן הבינוני-גבוה הוא מה שמציב אותה ב-C.",
-      "score": 60.6,
+      "score": 62.8,
       "source_traceability_status": "resolved",
       "brand": "פילדלפיה"
     },
@@ -3563,7 +3536,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת עזים 5% גד — 5.1 גרם חלבון בלבד ל-100 גרם, שני תוספים (אחד שנוי במחלוקת), סודיום 393 מ\"ג. צפיפות חלבון נמוכה מאוד ביחס לקטגוריה.",
-      "score": 53.7,
+      "score": 55.7,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "מי שמחפש גבינת עיזים",
@@ -3707,7 +3680,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 20% עם זיתים — 5.8 גרם חלבון, 220 קלוריות, 20 גרם שומן. מכילה קרגינאן (E407 — מייצב שנוי במחלוקת). ציון C: שומן גבוה, צפיפות חלבון נמוכה מרוב הגבינות הלבנות.",
-      "score": 53.4,
+      "score": 55.6,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח על לחם קרוב לשבת",
@@ -3846,7 +3819,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 16% — 6.1 גרם חלבון, 194 קלוריות, 16 גרם שומן, סודיום 400 מ\"ג. ציון C: צפיפות קלורית גבוהה, שומן גבוה. פרופיל חלבון נופל מרוב הגבינות הלבנות בקטגוריה.",
-      "score": 54.7,
+      "score": 57.0,
       "source_traceability_status": "resolved",
       "brand": "מחלבות גד"
     },
@@ -4112,7 +4085,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת גורגונזולה 24% — 7 גרם חלבון, 258 קלוריות, 24 גרם שומן. ציון C: שומן גבוה מאוד, קלוריות גבוהות, רשימת רכיבים ארוכה.",
-      "score": 51.2,
+      "score": 55.5,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "מי שאוהב טעם גורגונזולה",
@@ -4228,7 +4201,7 @@
         }
       ],
       "expansion": {
-        "comparisonContext": "ציון D למרות חלבון טוב — עיבוד מורכב, כולל E-466 (CMC) השנוי במחלוקת, מגביל משמעותית.",
+        "comparisonContext": "חלבון טוב ל-110 קלוריות — אבל עיבוד מורכב ותוספים שנויים במחלוקת מגבילים את הציון. C מייצג את הפשרה בין הפרופיל הבסיסי לבין ההרכב המורכב.",
         "confidenceLabel": "נתונים מאומתים",
         "consumerExplanation": {
           "context": "גבינה לבנה 5% עם תערובת תיבול בייגלס: בצל, שום, פרג, קצח.",
@@ -4258,142 +4231,17 @@
         "positiveSignals": [],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "D",
+      "grade": "C",
       "id": "bsip1_cheese_7290119375219",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AEE56_Z_P_7290119375219_1.png",
-      "insightLine": "גבינה 5% עם תיבול בייגלס — 9.5 גרם חלבון ו-110 קלוריות, אך עיבוד מורכב ו-E466 (CMC) שעדויות מוקדמות לגביו שנויות במחלוקת מורידים אותה ל-D.",
+      "insightLine": "גבינה 5% שנראית קלה על הנייר — 9.5 גרם חלבון ל-110 קלוריות. אבל התיבול התעשייתי, שמן הקנולה והמייצב השנוי במחלוקת הם מה שמושך אותה מטה.",
       "name": "גבינה 5% עם תבלין בייגלס",
       "novaGroup": 4,
       "retailer": "shufersal",
-      "rowVerdict": "גבינה 5% עם 9.5 גרם חלבון ו-110 קלוריות. אבל זה עיבוד מורכב — תערובת תיבול עם שמן קנולה ולקטוז מוסף — ובעיקר E466 (CMC), מייצב שעדויות מוקדמות לגביו שנויות במחלוקת. צירוף זה מציב אותה ב-D.",
-      "score": 48.9,
+      "rowVerdict": "גבינה 5% עם 9.5 גרם חלבון ו-110 קלוריות — פרופיל בסיסי טוב. אבל זה עיבוד מורכב: תערובת תיבול עם שמן קנולה ולקטוז מוסף, ובתוכה מייצב שעדויות מוקדמות לגביו שנויות במחלוקת. שלושה מייצבים ביחד עם תיבול תעשייתי מושכים את הציון מטה. ציון C.",
+      "score": 56.2,
       "source_traceability_status": "resolved",
       "brand": "סימפוניה"
-    },
-    {
-      "barcode": "554983",
-      "bariInterpretation": [
-        {
-          "interpretation": "עיבוד נמוך.",
-          "key": "processing_quality",
-          "label": "רמת עיבוד",
-          "score": 64.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "ללא תוספים מזוהים.",
-          "key": "additive_quality",
-          "label": "תוספים",
-          "score": 100.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "nutrient_density",
-          "label": "ערך תזונתי",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "protein_quality",
-          "label": "חלבון",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "87 קלוריות.",
-          "key": "calorie_density",
-          "label": "צפיפות קלורית",
-          "score": 80.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "glycemic_quality",
-          "label": "איכות גליקמית",
-          "score": 87.5,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני שומן לא אומתו.",
-          "key": "fat_quality",
-          "label": "איכות שומן",
-          "score": 78.8,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "satiety_support",
-          "label": "תחושת שובע",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "ללא חריגות.",
-          "key": "regulatory_quality",
-          "label": "איכות רגולטורית",
-          "score": 95.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "whole_food_integrity",
-          "label": "שלמות מזון",
-          "score": 85.0,
-          "strength": "חזק"
-        }
-      ],
-      "bestUseCases": [
-        "רכיבים פשוטים"
-      ],
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "לאבנה 5% — נתוני חלבון ושומן לא ניתן היה לאמת מהאריזה.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "ציון מוגבל בגלל נתונים חלקיים — לא ניתן להשוות מול מוצרים עם נתונים מלאים.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": {
-          "context": "גבינת לאבנה 5% — גבינה מסוננת. נתוני חלבון ושומן לא אומתו.",
-          "good": [
-            "87 קלוריות ל-100 גרם — נמוך יחסית",
-            "עיבוד נמוך"
-          ],
-          "takeaway": "נתוני חלבון ושומן לא אומתו — לא ניתן לבצע השוואה מלאה.",
-          "watchOut": [
-            "נתוני חלבון ושומן לא אומתו",
-            "סודיום 400 מ\"ג"
-          ],
-          "whyRated": "הציון מוגבל כי חלק מהנתונים לא אומתו."
-        },
-        "ingredients": null,
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 87.0,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": 400.0,
-          "sugar": 1.0
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "C",
-      "id": "bsip1_cheese_554983",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NYM34_Z_P_554983_1.png",
-      "insightLine": "לאבנה 5% — נתוני חלבון ושומן לא אומתו",
-      "name": "גבינה לאבנה5%  א.ח.נוכרי",
-      "novaGroup": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "נתוני חלבון ושומן לא נמצאו לאריזה זו. ניתן לאמת: 87 קלוריות ל-100 גרם, סודיום 400 מ\"ג. הציון מוגבל כי חלק מהנתונים לא אומתו.",
-      "score": 50,
-      "source_traceability_status": "resolved",
-      "brand": "מחלבות גד"
     },
     {
       "barcode": "7290108502541",
@@ -4537,7 +4385,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 18% טבעי — 6.2 גרם חלבון, 238 קלוריות, 22 גרם שומן. מכילה CMC (E466) וקרגינאן — שני תוספים שנויים במחלוקת. ציון D.",
-      "score": 43.6,
+      "score": 47.7,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח שמנת לאפייה",
@@ -4680,7 +4528,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "פילדלפיה 12% שום ועשבי תיבול — 5.9 גרם חלבון, 148 קלוריות, 12 גרם שומן, קרגינאן (E407). ציון D.",
-      "score": 45.3,
+      "score": 47.5,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח לחם קל",
@@ -4688,506 +4536,6 @@
         "מי שאוהב שום ועשבי תיבול"
       ],
       "brand": "פילדלפיה"
-    },
-    {
-      "barcode": "554969",
-      "bariInterpretation": [
-        {
-          "interpretation": "עיבוד נמוך.",
-          "key": "processing_quality",
-          "label": "רמת עיבוד",
-          "score": 64.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "ללא תוספים מזוהים.",
-          "key": "additive_quality",
-          "label": "תוספים",
-          "score": 100.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "nutrient_density",
-          "label": "ערך תזונתי",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "protein_quality",
-          "label": "חלבון",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "302 קלוריות.",
-          "key": "calorie_density",
-          "label": "צפיפות קלורית",
-          "score": 40.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "glycemic_quality",
-          "label": "איכות גליקמית",
-          "score": 83.8,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "20 גרם שומן רווי — גבוה.",
-          "key": "fat_quality",
-          "label": "איכות שומן",
-          "score": 50.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "satiety_support",
-          "label": "תחושת שובע",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "ללא חריגות.",
-          "key": "regulatory_quality",
-          "label": "איכות רגולטורית",
-          "score": 60.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "whole_food_integrity",
-          "label": "שלמות מזון",
-          "score": 85.0,
-          "strength": "חזק"
-        }
-      ],
-      "bestUseCases": [
-        "רכיבים פשוטים"
-      ],
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "גבינת שמנת 30% — נתוני חלבון ושומן לא ניתן היה לאמת.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "ציון מוגבל בגלל נתונים חלקיים.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": {
-          "context": "גבינת שמנת 30% — ממרח שמן. נתוני חלבון ושומן כולל לא אומתו.",
-          "good": [
-            "302 קלוריות — אמות מידה"
-          ],
-          "takeaway": "נתוני חלבון ושומן לא אומתו — לא ניתן לבצע השוואה מלאה.",
-          "watchOut": [
-            "נתוני חלבון ושומן לא אומתו",
-            "302 קלוריות",
-            "סודיום 370 מ\"ג"
-          ],
-          "whyRated": "הציון מוגבל כי חלק מהנתונים לא אומתו."
-        },
-        "ingredients": null,
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 302.0,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": 370.0,
-          "sugar": 2.5
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_cheese_554969",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NXY38_Z_P_554969_1.png",
-      "insightLine": "גבינת שמנת 30% — נתוני חלבון ושומן לא אומתו",
-      "name": "גבינת שמנת 30%",
-      "novaGroup": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "נתוני חלבון ושומן לא נמצאו לאריזה זו. ניתן לאמת: 302 קלוריות ל-100 גרם, 20 גרם שומן רווי, סודיום 370 מ\"ג. הציון מוגבל כי חלק מהנתונים לא אומתו.",
-      "score": 46.1,
-      "source_traceability_status": "resolved",
-      "brand": "מחלבות גד"
-    },
-    {
-      "barcode": "554976",
-      "bariInterpretation": [
-        {
-          "interpretation": "עיבוד נמוך.",
-          "key": "processing_quality",
-          "label": "רמת עיבוד",
-          "score": 64.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "ללא תוספים מזוהים.",
-          "key": "additive_quality",
-          "label": "תוספים",
-          "score": 100.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "nutrient_density",
-          "label": "ערך תזונתי",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "protein_quality",
-          "label": "חלבון",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "302 קלוריות.",
-          "key": "calorie_density",
-          "label": "צפיפות קלורית",
-          "score": 40.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "glycemic_quality",
-          "label": "איכות גליקמית",
-          "score": 83.8,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "19 גרם שומן רווי.",
-          "key": "fat_quality",
-          "label": "איכות שומן",
-          "score": 50.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "satiety_support",
-          "label": "תחושת שובע",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "ללא חריגות.",
-          "key": "regulatory_quality",
-          "label": "איכות רגולטורית",
-          "score": 60.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "whole_food_integrity",
-          "label": "שלמות מזון",
-          "score": 85.0,
-          "strength": "חזק"
-        }
-      ],
-      "bestUseCases": [
-        "רכיבים פשוטים"
-      ],
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "גבינת שמנת 30% עם זיתים — נתוני חלבון לא אומתו.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "ציון מוגבל בגלל נתונים חלקיים.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": {
-          "context": "גבינת שמנת 30% עם זיתים. נתוני חלבון ושומן כולל לא אומתו.",
-          "good": [
-            "זיתים מוסיפים אומגה-9"
-          ],
-          "takeaway": "נתוני חלבון ושומן לא אומתו.",
-          "watchOut": [
-            "נתוני חלבון ושומן לא אומתו",
-            "302 קלוריות",
-            "סודיום 400 מ\"ג"
-          ],
-          "whyRated": "הציון מוגבל כי חלק מהנתונים לא אומתו."
-        },
-        "ingredients": null,
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 302.0,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": 400.0,
-          "sugar": 2.5
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_cheese_554976",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NYF36_Z_P_554976_1.png",
-      "insightLine": "גבינת שמנת 30% עם זיתים — נתוני חלבון ושומן לא אומתו",
-      "name": "גבינת שמנת 30% עם זיתים",
-      "novaGroup": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "נתוני חלבון ושומן לא נמצאו לאריזה זו. ניתן לאמת: 302 קלוריות ל-100 גרם, 19 גרם שומן רווי, סודיום 400 מ\"ג. הציון מוגבל כי חלק מהנתונים לא אומתו.",
-      "score": 46.1,
-      "source_traceability_status": "resolved",
-      "brand": "מחלבות גד"
-    },
-    {
-      "barcode": "5992889",
-      "bariInterpretation": [
-        {
-          "interpretation": "עיבוד נמוך.",
-          "key": "processing_quality",
-          "label": "רמת עיבוד",
-          "score": 64.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "ללא תוספים מזוהים.",
-          "key": "additive_quality",
-          "label": "תוספים",
-          "score": 100.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "nutrient_density",
-          "label": "ערך תזונתי",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "protein_quality",
-          "label": "חלבון",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "302 קלוריות.",
-          "key": "calorie_density",
-          "label": "צפיפות קלורית",
-          "score": 40.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "glycemic_quality",
-          "label": "איכות גליקמית",
-          "score": 84.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "20 גרם שומן רווי.",
-          "key": "fat_quality",
-          "label": "איכות שומן",
-          "score": 50.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "satiety_support",
-          "label": "תחושת שובע",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "ללא חריגות.",
-          "key": "regulatory_quality",
-          "label": "איכות רגולטורית",
-          "score": 60.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "whole_food_integrity",
-          "label": "שלמות מזון",
-          "score": 85.0,
-          "strength": "חזק"
-        }
-      ],
-      "bestUseCases": [
-        "רכיבים פשוטים"
-      ],
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "גבינת שמנת שום שמיר 30% — נתוני חלבון לא אומתו.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "ציון מוגבל בגלל נתונים חלקיים.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": {
-          "context": "גבינת שמנת 30% עם שום ושמיר. נתוני חלבון ושומן כולל לא אומתו.",
-          "good": [
-            "302 קלוריות"
-          ],
-          "takeaway": "נתוני חלבון ושומן לא אומתו.",
-          "watchOut": [
-            "נתוני חלבון ושומן לא אומתו",
-            "302 קלוריות",
-            "סודיום 365 מ\"ג"
-          ],
-          "whyRated": "הציון מוגבל כי חלק מהנתונים לא אומתו."
-        },
-        "ingredients": null,
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 302.0,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": 365.0,
-          "sugar": 2.4
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_cheese_5992889",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YES50_Z_P_5992889_1.png",
-      "insightLine": "גבינת שמנת שום שמיר 30% — נתוני חלבון ושומן לא אומתו",
-      "name": "גבינת שמנת שום שמיר 30%",
-      "novaGroup": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "נתוני חלבון ושומן לא נמצאו לאריזה זו. ניתן לאמת: 302 קלוריות ל-100 גרם, 20 גרם שומן רווי, סודיום 365 מ\"ג. הציון מוגבל כי חלק מהנתונים לא אומתו.",
-      "score": 46.1,
-      "source_traceability_status": "resolved",
-      "brand": "מחלבות גד"
-    },
-    {
-      "barcode": "7296073453123",
-      "bariInterpretation": [
-        {
-          "interpretation": "עיבוד נמוך.",
-          "key": "processing_quality",
-          "label": "רמת עיבוד",
-          "score": 64.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "ללא תוספים מזוהים.",
-          "key": "additive_quality",
-          "label": "תוספים",
-          "score": 100.0,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "nutrient_density",
-          "label": "ערך תזונתי",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתוני חלבון לא אומתו.",
-          "key": "protein_quality",
-          "label": "חלבון",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "302 קלוריות.",
-          "key": "calorie_density",
-          "label": "צפיפות קלורית",
-          "score": 40.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "glycemic_quality",
-          "label": "איכות גליקמית",
-          "score": 83.8,
-          "strength": "חזק"
-        },
-        {
-          "interpretation": "20 גרם שומן רווי.",
-          "key": "fat_quality",
-          "label": "איכות שומן",
-          "score": 50.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "satiety_support",
-          "label": "תחושת שובע",
-          "score": 0.0,
-          "strength": "נמוך"
-        },
-        {
-          "interpretation": "ללא חריגות.",
-          "key": "regulatory_quality",
-          "label": "איכות רגולטורית",
-          "score": 60.0,
-          "strength": "בינוני"
-        },
-        {
-          "interpretation": "נתונים חלקיים.",
-          "key": "whole_food_integrity",
-          "label": "שלמות מזון",
-          "score": 85.0,
-          "strength": "חזק"
-        }
-      ],
-      "bestUseCases": [
-        "רכיבים פשוטים"
-      ],
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "גבינת שמנת 30% — נתוני חלבון לא אומתו.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "ציון מוגבל בגלל נתונים חלקיים.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": {
-          "context": "גבינת שמנת 30%. נתוני חלבון ושומן כולל לא אומתו.",
-          "good": [
-            "302 קלוריות"
-          ],
-          "takeaway": "נתוני חלבון ושומן לא אומתו.",
-          "watchOut": [
-            "נתוני חלבון ושומן לא אומתו",
-            "302 קלוריות",
-            "סודיום 370 מ\"ג"
-          ],
-          "whyRated": "הציון מוגבל כי חלק מהנתונים לא אומתו."
-        },
-        "ingredients": null,
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 302.0,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": 370.0,
-          "sugar": 2.5
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_cheese_7296073453123",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VSM52_Z_P_7296073453123_1.png",
-      "insightLine": "גבינת שמנת 30% — נתוני חלבון ושומן לא אומתו",
-      "name": "גבינת שמנת 30% שומן",
-      "novaGroup": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "נתוני חלבון ושומן לא נמצאו לאריזה זו. ניתן לאמת: 302 קלוריות ל-100 גרם, 20 גרם שומן רווי, סודיום 370 מ\"ג. הציון מוגבל כי חלק מהנתונים לא אומתו.",
-      "score": 46.1,
-      "source_traceability_status": "resolved",
-      "brand": "מחלבות גד"
     },
     {
       "barcode": "7622201139278",
@@ -5330,7 +4678,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "פילדלפיה 25% — 3.7 גרם חלבון, 249 קלוריות, 25 גרם שומן. קרגינאן. סודיום נמוך יחסית (243 מ\"ג) אך שומן גבוה וחלבון מינימלי.",
-      "score": 43.5,
+      "score": 45.6,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח בוקר שבת",
@@ -5601,7 +4949,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת עם חלפיניו — 4.3 גרם חלבון, 247 קלוריות, 24 גרם שומן, סודיום 481 מ\"ג. ציון D: שומן גבוה, קלוריות גבוהות, סודיום גבוה.",
-      "score": 44.8,
+      "score": 45.0,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "מי שאוהב חריף",
@@ -5745,7 +5093,7 @@
       "novaGroup": 4,
       "retailer": "shufersal",
       "rowVerdict": "גבינה 5% עם בצל מקורמל — עיבוד מורכב: מכילה E-466 (CMC), שמן קנולה, סוכר ולקטוז מוסף. 8.7 גרם חלבון ו-109 קלוריות — פרופיל תזונתי בסיסי טוב, אך עיבוד גבוה.",
-      "score": 42.6,
+      "score": 44.9,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח עם בצל מקורמל",
@@ -5875,7 +5223,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 25% עשבי תיבול — 4.4 גרם חלבון, 255 קלוריות, 25 גרם שומן, סודיום 400 מ\"ג. ציון D: שומן גבוה, קלוריות גבוהות. פרופיל חלבון נופל מרוב הגבינות הלבנות בקטגוריה.",
-      "score": 44.5,
+      "score": 44.7,
       "source_traceability_status": "resolved",
       "brand": "נפוליאון"
     },
@@ -6014,7 +5362,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת זיתים 5% — רק 2.8 גרם חלבון ל-100 גרם. שלושה תוספים כולל סמיכים ומייצבים, שמן קנולה. למרות שומן נמוך, צפיפות חלבון מינימלית.",
-      "score": 44.3,
+      "score": 48.5,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח עם זיתים",
@@ -6690,7 +6038,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת פלפל פיקנטי 25% — 4.4 גרם חלבון, 256 קלוריות, 25 גרם שומן, סודיום 386 מ\"ג. ציון D: שומן גבוה, קלוריות גבוהות.",
-      "score": 42.7,
+      "score": 42.9,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "מי שאוהב חריף",
@@ -6826,7 +6174,7 @@
       "novaGroup": 3,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 25% עם זעתר — 4.3 גרם חלבון, 254 קלוריות, 25 גרם שומן, סודיום 361 מ\"ג. ציון D: שומן גבוה מאוד.",
-      "score": 41.7,
+      "score": 42.0,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח עם זעתר",
@@ -6978,7 +6326,7 @@
       "novaGroup": 4,
       "retailer": "shufersal",
       "rowVerdict": "גבינת שמנת 30% טבעי — עיבוד מורכב: קרגינאן, עמילן מעובד E1422, חומרי טעם וריח. 5.5 גרם חלבון, 302 קלוריות, 30 גרם שומן. ציון E.",
-      "score": 31.6,
+      "score": 33.8,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח שמנת לאפייה",
@@ -7077,7 +6425,7 @@
         }
       ],
       "expansion": {
-        "comparisonContext": "ציון E — עיבוד מורכב, שמן קנולה, חומרי טעם.",
+        "comparisonContext": "עיבוד מורכב, שמן קנולה וחומרי טעם — שילוב שמושך את הציון לתחתית הקטגוריה. D הוא ציון שמשקף גבינה שמנת מתובלת תעשייתית.",
         "confidenceLabel": "נתונים בבדיקה",
         "consumerExplanation": {
           "context": "גבינת שמנת 24% עם תערובת סלסה: פלפלים, עגבניות, שמן קנולה.",
@@ -7107,15 +6455,15 @@
         "positiveSignals": [],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "E",
+      "grade": "D",
       "id": "bsip1_cheese_7290019635581",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GIG56_Z_P_7290019635581_1.png",
-      "insightLine": "גבינת שמנת סלסה — עיבוד מורכב, חומרי טעם, שמן קנולה",
+      "insightLine": "השם מבטיח גבינה, אבל זו בעיקר שומן: 24 גרם שומן מול 5 גרם חלבון, עם שמן קנולה, תערובת פלפלים וחומרי טעם. ממרח טעם, לא מקור חלבון.",
       "name": "גבינת שמנת סלסה 24%",
       "novaGroup": 4,
       "retailer": "shufersal",
-      "rowVerdict": "גבינת שמנת סלסה 24% — עיבוד מורכב: תערובת פלפלים, שמן קנולה, חומרי טעם וריח. 5 גרם חלבון, 256 קלוריות, 24 גרם שומן. ציון E.",
-      "score": 32.8,
+      "rowVerdict": "גבינת שמנת סלסה 24% — עיבוד מורכב: תערובת פלפלים (10.5%), שמן קנולה, חומרי טעם וריח. 5 גרם חלבון בלבד, 256 קלוריות, 24 גרם שומן. בצד התחתון של הקטגוריה — שומן גבוה, חלבון נמוך, ותוספים תעשייתיים. ציון D.",
+      "score": 37.0,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח עם סלסה",
@@ -7266,8 +6614,8 @@
       "name": "גבינת שמנת ריבת בצל 24%",
       "novaGroup": 4,
       "retailer": "shufersal",
-      "rowVerdict": "גבינת שמנת ריבת בצל 24% — הציון הנמוך ביותר בקטגוריה (): עיבוד מורכב, סוכר חום, גלוקוז, אבקת קקאו, עמילן מעובד. ריבת בצל מהווה 20% מהאריזה.",
-      "score": 23.2,
+      "rowVerdict": "גבינת שמנת ריבת בצל 24% — הציון הנמוך ביותר בקטגוריה: עיבוד מורכב, סוכר חום, גלוקוז, אבקת קקאו, עמילן מעובד. ריבת בצל מהווה 20% מהאריזה.",
+      "score": 23.4,
       "source_traceability_status": "resolved",
       "bestUseCases": [
         "ממרח עם ריבת בצל",

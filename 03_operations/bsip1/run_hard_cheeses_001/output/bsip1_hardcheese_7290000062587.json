@@ -40,10 +40,9 @@
   "sodium_mg": 1010.0,
   "dietary_fiber_g": null,
   "calcium_mg": 490.0,
-  "ingredients_text_he": "גבינה טבעית (58%), מים, שמן דקלים, נתרן פוספט (E339), נתרן ציטרט (E331), מלח, קרגינן (E407), חומצת לימון (E330), צבע (E160a)",
+  "ingredients_text_he": "גבינה טבעית, מים, שמן דקלים, נתרן פוספט, E339, נתרן ציטרט, E331, מלח, קרגינן, E407, חומצת לימון, E330, צבע, E160a",
   "ingredients_list": [
     "גבינה טבעית",
-    "58%",
     "מים",
     "שמן דקלים",
     "נתרן פוספט",
@@ -120,5 +119,120 @@
     "verification_status": "candidate"
   },
   "enrichment_timestamp": "2026-06-07T09:00:19.320912+00:00",
-  "run_id": "run_hard_cheeses_001"
+  "run_id": "run_hard_cheeses_001",
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 15,
+    "clean_count": 14,
+    "dropped": [
+      "58%"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "גבינה טבעית (58%), מים, שמן דקלים, נתרן פוספט (E339), נתרן ציטרט (E331), מלח, קרגינן (E407), חומצת לימון (E330), צבע (E160a)",
+    "original_ingredients_list": [
+      "גבינה טבעית",
+      "58%",
+      "מים",
+      "שמן דקלים",
+      "נתרן פוספט",
+      "E339",
+      "נתרן ציטרט",
+      "E331",
+      "מלח",
+      "קרגינן",
+      "E407",
+      "חומצת לימון",
+      "E330",
+      "צבע",
+      "E160a"
+    ]
+  },
+  "ingredients_raw": "גבינה טבעית, מים, שמן דקלים, נתרן פוספט, E339, נתרן ציטרט, E331, מלח, קרגינן, E407, חומצת לימון, E330, צבע, E160a",
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "גבינה טבעית",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "מים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "שמן דקלים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "נתרן פוספט",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "E339",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "נתרן ציטרט",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "E331",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "קרגינן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "E407",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "חומצת לימון",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "E330",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "צבע",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "E160a",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ]
 }

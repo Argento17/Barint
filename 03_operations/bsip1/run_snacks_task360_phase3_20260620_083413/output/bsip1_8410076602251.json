@@ -29,10 +29,9 @@
     "protein_g": 8.4
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54.8%), סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו , אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, חומרי טעם וריח, מתפיח (סודיום הידרוג'ן קרבונט).n",
+  "ingredients_text_he": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54, סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו, אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, חומרי טעם וריח, מתפיח (סודיום הידרוג'ן קרבונט)",
   "ingredients_list": [
     "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54",
-    "8%)",
     "סוכר לבן",
     "שמנים צמחיים מזוככים",
     "חתיכות בטעם שוקולד (8%) [סוכר לבן",
@@ -85,7 +84,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_8410076602251.json",
-  "ingredients_raw": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54.8%), סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו , אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, חומרי טעם וריח, מתפיח (סודיום הידרוג'ן קרבונט).n",
+  "ingredients_raw": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54, סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו, אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, חומרי טעם וריח, מתפיח (סודיום הידרוג'ן קרבונט)",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -94,20 +93,84 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54",
-    "8%)",
-    "סוכר לבן",
-    "שמנים צמחיים מזוככים",
-    "חתיכות בטעם שוקולד (8%) [סוכר לבן",
-    "חמאת קקאו",
-    "עיסת קקאו",
-    "אבקת גרעיני חמנייה",
-    "מתחלב (לציטין)",
-    "חומרי טעם וריח]",
-    "מולסה",
-    "מלח",
-    "חומרי טעם וריח",
-    "מתפיח (סודיום הידרוג'ן קרבונט)"
+    {
+      "position": 1,
+      "text": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "סוכר לבן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "שמנים צמחיים מזוככים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "חתיכות בטעם שוקולד (8%) [סוכר לבן",
+      "percentage_declared": 8.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "חמאת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "עיסת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "אבקת גרעיני חמנייה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מתחלב (לציטין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "חומרי טעם וריח]",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "מולסה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "חומרי טעם וריח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "מתפיח (סודיום הידרוג'ן קרבונט)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -135,5 +198,32 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 14,
+    "clean_count": 13,
+    "dropped": [
+      "8%)"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54.8%), סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו , אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, חומרי טעם וריח, מתפיח (סודיום הידרוג'ן קרבונט).n",
+    "original_ingredients_list": [
+      "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54",
+      "8%)",
+      "סוכר לבן",
+      "שמנים צמחיים מזוככים",
+      "חתיכות בטעם שוקולד (8%) [סוכר לבן",
+      "חמאת קקאו",
+      "עיסת קקאו",
+      "אבקת גרעיני חמנייה",
+      "מתחלב (לציטין)",
+      "חומרי טעם וריח]",
+      "מולסה",
+      "מלח",
+      "חומרי טעם וריח",
+      "מתפיח (סודיום הידרוג'ן קרבונט)"
+    ]
+  }
 }

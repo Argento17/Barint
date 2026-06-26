@@ -36,7 +36,7 @@
   "sodium_mg": 370.0,
   "dietary_fiber_g": null,
   "cholesterol_mg": null,
-  "ingredients_text_he": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר",
+  "ingredients_text_he": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח",
   "ingredients_list": [
     "קמח חיטה (מכיל גלוטן)",
     "סוכר",
@@ -44,8 +44,7 @@
     "סירופ סוכר מקורמל",
     "חומר תפיחה E500",
     "קמח סויה",
-    "מלח",
-    "קינמון. *שמן ד קל בר קיימא מאושר"
+    "מלח"
   ],
   "ingredient_count": 8,
   "ingredient_text_quality": "good",
@@ -89,7 +88,7 @@
   },
   "enrichment_timestamp": "2026-06-14T05:34:09.445628+00:00",
   "run_id": "run_cookies_001",
-  "ingredients_raw": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר",
+  "ingredients_raw": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -137,12 +136,6 @@
     {
       "position": 7,
       "text": "מלח",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 8,
-      "text": "קינמון. *שמן ד קל בר קיימא מאושר",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -202,5 +195,26 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "enrichment_warnings": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 8,
+    "clean_count": 7,
+    "dropped": [
+      "קינמון. *שמן ד קל בר קיימא מאושר"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים (שמן דקלים*, שמן לפתית), סירופ סוכר מקורמל, חומר תפיחה E500, קמח סויה, מלח, קינמון. *שמן ד קל בר קיימא מאושר",
+    "original_ingredients_list": [
+      "קמח חיטה (מכיל גלוטן)",
+      "סוכר",
+      "שמנים צמחיים (שמן דקלים*, שמן לפתית)",
+      "סירופ סוכר מקורמל",
+      "חומר תפיחה E500",
+      "קמח סויה",
+      "מלח",
+      "קינמון. *שמן ד קל בר קיימא מאושר"
+    ]
+  }
 }

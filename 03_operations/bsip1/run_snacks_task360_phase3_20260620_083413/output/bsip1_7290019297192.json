@@ -29,7 +29,7 @@
     "protein_g": 7.6
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2.6%, לתת שעורה (מכיל גלוטן), שוקולד מריר 2.2% (עיסת קקאו, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0.4%, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
+  "ingredients_text_he": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2, לתת שעורה (מכיל גלוטן), שוקולד מריר 2, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
   "ingredients_list": [
     "פתיתי שיבולת שועל ( מכיל גלוטן) 45%",
     "שמן דקלים",
@@ -38,16 +38,13 @@
     "קמח תירס",
     "סירופ גלוקוז",
     "שקדים 2",
-    "6%",
     "לתת שעורה (מכיל גלוטן)",
     "שוקולד מריר 2",
-    "2% (עיסת קקאו",
     "חמאת קקאו",
     "סוכר",
     "מתחלב (E322)",
     "חומרי טעם וריח",
     "אבקת קקאו 0",
-    "4%",
     "מלח",
     "מתחחב (E322) חומר תפיחה (E500II)",
     "ח ומרי טעם וריח",
@@ -94,7 +91,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290019297192.json",
-  "ingredients_raw": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2.6%, לתת שעורה (מכיל גלוטן), שוקולד מריר 2.2% (עיסת קקאו, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0.4%, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
+  "ingredients_raw": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2, לתת שעורה (מכיל גלוטן), שוקולד מריר 2, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -103,27 +100,114 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "פתיתי שיבולת שועל ( מכיל גלוטן) 45%",
-    "שמן דקלים",
-    "סוכר חום",
-    "אורז תפוח 5%",
-    "קמח תירס",
-    "סירופ גלוקוז",
-    "שקדים 2",
-    "6%",
-    "לתת שעורה (מכיל גלוטן)",
-    "שוקולד מריר 2",
-    "2% (עיסת קקאו",
-    "חמאת קקאו",
-    "סוכר",
-    "מתחלב (E322)",
-    "חומרי טעם וריח",
-    "אבקת קקאו 0",
-    "4%",
-    "מלח",
-    "מתחחב (E322) חומר תפיחה (E500II)",
-    "ח ומרי טעם וריח",
-    "מינימום מוצקי קקאו בשוקולד: 53%"
+    {
+      "position": 1,
+      "text": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%",
+      "percentage_declared": 45.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "שמן דקלים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סוכר חום",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "אורז תפוח 5%",
+      "percentage_declared": 5.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "קמח תירס",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "סירופ גלוקוז",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "שקדים 2",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "לתת שעורה (מכיל גלוטן)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "שוקולד מריר 2",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "חמאת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "מתחלב (E322)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 13,
+      "text": "חומרי טעם וריח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "אבקת קקאו 0",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "מתחחב (E322) חומר תפיחה (E500II)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 17,
+      "text": "ח ומרי טעם וריח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 18,
+      "text": "מינימום מוצקי קקאו בשוקולד: 53%",
+      "percentage_declared": 53.0,
+      "has_subgroup": false
+    }
   ],
   "extracted_additives": [
     "E322",
@@ -154,5 +238,41 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 21,
+    "clean_count": 18,
+    "dropped": [
+      "6%",
+      "2% (עיסת קקאו",
+      "4%"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "פתיתי שיבולת שועל ( מכיל גלוטן) 45%, שמן דקלים, סוכר חום, אורז תפוח 5%, קמח תירס, סירופ גלוקוז, שקדים 2.6%, לתת שעורה (מכיל גלוטן), שוקולד מריר 2.2% (עיסת קקאו, חמאת קקאו, סוכר, מתחלב (E322), חומרי טעם וריח, אבקת קקאו 0.4%, מלח, מתחחב (E322) חומר תפיחה (E500II), ח ומרי טעם וריח, מינימום מוצקי קקאו בשוקולד: 53%",
+    "original_ingredients_list": [
+      "פתיתי שיבולת שועל ( מכיל גלוטן) 45%",
+      "שמן דקלים",
+      "סוכר חום",
+      "אורז תפוח 5%",
+      "קמח תירס",
+      "סירופ גלוקוז",
+      "שקדים 2",
+      "6%",
+      "לתת שעורה (מכיל גלוטן)",
+      "שוקולד מריר 2",
+      "2% (עיסת קקאו",
+      "חמאת קקאו",
+      "סוכר",
+      "מתחלב (E322)",
+      "חומרי טעם וריח",
+      "אבקת קקאו 0",
+      "4%",
+      "מלח",
+      "מתחחב (E322) חומר תפיחה (E500II)",
+      "ח ומרי טעם וריח",
+      "מינימום מוצקי קקאו בשוקולד: 53%"
+    ]
+  }
 }

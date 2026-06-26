@@ -29,14 +29,13 @@
     "protein_g": 27.0
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8.4%), חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרי ת), חומר משמר (פוטסיום סורבט).",
+  "ingredients_text_he": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8, חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרי ת), חומר משמר (פוטסיום סורבט)",
   "ingredients_list": [
     "סירופ סיבי עולש",
     "חלבון אפונה (33%)",
     "אגוזי לוז טחונים (51%)",
     "תמרים",
     "אבקת קקאו (8",
-    "4%)",
     "חומר הלחה (גליצרול)",
     "מווסת חומציות (חומצה ציטרי ת)",
     "חומר משמר (פוטסיום סורבט)"
@@ -82,7 +81,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290017516295.json",
-  "ingredients_raw": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8.4%), חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרי ת), חומר משמר (פוטסיום סורבט).",
+  "ingredients_raw": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8, חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרי ת), חומר משמר (פוטסיום סורבט)",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -91,15 +90,54 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "סירופ סיבי עולש",
-    "חלבון אפונה (33%)",
-    "אגוזי לוז טחונים (51%)",
-    "תמרים",
-    "אבקת קקאו (8",
-    "4%)",
-    "חומר הלחה (גליצרול)",
-    "מווסת חומציות (חומצה ציטרי ת)",
-    "חומר משמר (פוטסיום סורבט)"
+    {
+      "position": 1,
+      "text": "סירופ סיבי עולש",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "חלבון אפונה (33%)",
+      "percentage_declared": 33.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "אגוזי לוז טחונים (51%)",
+      "percentage_declared": 51.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "תמרים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "אבקת קקאו (8",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "חומר הלחה (גליצרול)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "מווסת חומציות (חומצה ציטרי ת)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 8,
+      "text": "חומר משמר (פוטסיום סורבט)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -127,5 +165,27 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 9,
+    "clean_count": 8,
+    "dropped": [
+      "4%)"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8.4%), חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרי ת), חומר משמר (פוטסיום סורבט).",
+    "original_ingredients_list": [
+      "סירופ סיבי עולש",
+      "חלבון אפונה (33%)",
+      "אגוזי לוז טחונים (51%)",
+      "תמרים",
+      "אבקת קקאו (8",
+      "4%)",
+      "חומר הלחה (גליצרול)",
+      "מווסת חומציות (חומצה ציטרי ת)",
+      "חומר משמר (פוטסיום סורבט)"
+    ]
+  }
 }

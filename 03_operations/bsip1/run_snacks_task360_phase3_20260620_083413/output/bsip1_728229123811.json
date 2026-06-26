@@ -29,14 +29,13 @@
     "protein_g": 4.0
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה), טארו, גזר לבן), שמנים צמחיים, תערובת לטעם (5.2%) (מלח שולחן, מלטודקסטרין, סוכר קנה גולמי, א בקת בצל, תבלינים, אבקת שום, אבקת חלב דלת שומן, חומרי טעם וריח, אבקת חומץ (מלטודקסטרין, חומץ), מחזק טעם (חומצה סיטרית), תמצית שמרים),  צבע מאכל (אדום סלק).",
+  "ingredients_text_he": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה), טארו, גזר לבן), שמנים צמחיים, תערובת לטעם (5, מלטודקסטרין, סוכר קנה גולמי, א בקת בצל, תבלינים, אבקת שום, אבקת חלב דלת שומן, חומרי טעם וריח, אבקת חומץ (מלטודקסטרין, חומץ), מחזק טעם (חומצה סיטרית), תמצית שמרים), צבע מאכל (אדום סלק)",
   "ingredients_list": [
     "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה)",
     "טארו",
     "גזר לבן)",
     "שמנים צמחיים",
     "תערובת לטעם (5",
-    "2%) (מלח שולחן",
     "מלטודקסטרין",
     "סוכר קנה גולמי",
     "א בקת בצל",
@@ -92,7 +91,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_728229123811.json",
-  "ingredients_raw": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה), טארו, גזר לבן), שמנים צמחיים, תערובת לטעם (5.2%) (מלח שולחן, מלטודקסטרין, סוכר קנה גולמי, א בקת בצל, תבלינים, אבקת שום, אבקת חלב דלת שומן, חומרי טעם וריח, אבקת חומץ (מלטודקסטרין, חומץ), מחזק טעם (חומצה סיטרית), תמצית שמרים),  צבע מאכל (אדום סלק).",
+  "ingredients_raw": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה), טארו, גזר לבן), שמנים צמחיים, תערובת לטעם (5, מלטודקסטרין, סוכר קנה גולמי, א בקת בצל, תבלינים, אבקת שום, אבקת חלב דלת שומן, חומרי טעם וריח, אבקת חומץ (מלטודקסטרין, חומץ), מחזק טעם (חומצה סיטרית), תמצית שמרים), צבע מאכל (אדום סלק)",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -101,24 +100,108 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה)",
-    "טארו",
-    "גזר לבן)",
-    "שמנים צמחיים",
-    "תערובת לטעם (5",
-    "2%) (מלח שולחן",
-    "מלטודקסטרין",
-    "סוכר קנה גולמי",
-    "א בקת בצל",
-    "תבלינים",
-    "אבקת שום",
-    "אבקת חלב דלת שומן",
-    "חומרי טעם וריח",
-    "אבקת חומץ (מלטודקסטרין",
-    "חומץ)",
-    "מחזק טעם (חומצה סיטרית)",
-    "תמצית שמרים)",
-    "צבע מאכל (אדום סלק)"
+    {
+      "position": 1,
+      "text": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה)",
+      "percentage_declared": 64.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "טארו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "גזר לבן)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "שמנים צמחיים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "תערובת לטעם (5",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "מלטודקסטרין",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "סוכר קנה גולמי",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "א בקת בצל",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "תבלינים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "אבקת שום",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "אבקת חלב דלת שומן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "חומרי טעם וריח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "אבקת חומץ (מלטודקסטרין",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 14,
+      "text": "חומץ)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "מחזק טעם (חומצה סיטרית)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 16,
+      "text": "תמצית שמרים)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 17,
+      "text": "צבע מאכל (אדום סלק)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -146,5 +229,36 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 18,
+    "clean_count": 17,
+    "dropped": [
+      "2%) (מלח שולחן"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה), טארו, גזר לבן), שמנים צמחיים, תערובת לטעם (5.2%) (מלח שולחן, מלטודקסטרין, סוכר קנה גולמי, א בקת בצל, תבלינים, אבקת שום, אבקת חלב דלת שומן, חומרי טעם וריח, אבקת חומץ (מלטודקסטרין, חומץ), מחזק טעם (חומצה סיטרית), תמצית שמרים),  צבע מאכל (אדום סלק).",
+    "original_ingredients_list": [
+      "ירקות שורש (64%) (תפוח אדמה מתוק (בטטה)",
+      "טארו",
+      "גזר לבן)",
+      "שמנים צמחיים",
+      "תערובת לטעם (5",
+      "2%) (מלח שולחן",
+      "מלטודקסטרין",
+      "סוכר קנה גולמי",
+      "א בקת בצל",
+      "תבלינים",
+      "אבקת שום",
+      "אבקת חלב דלת שומן",
+      "חומרי טעם וריח",
+      "אבקת חומץ (מלטודקסטרין",
+      "חומץ)",
+      "מחזק טעם (חומצה סיטרית)",
+      "תמצית שמרים)",
+      "צבע מאכל (אדום סלק)"
+    ]
+  }
 }
