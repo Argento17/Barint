@@ -1,10 +1,12 @@
 {
   "_comment": "Snacks category config. Corpus: run_001 (106 products, Yochananof/multi). Run: run_snack_bars_001/products (53 trace dirs). The live page displays 18 curated products out of 48 scored — the run contains all 53 (48 scored + others). Category is snack_bars in the engine. The _internal_cluster extension field is present in live JSON but stripped by the page-data layer. Discovered via: snacks.ts imports snacks-comparison-page-data.ts which imports snacks_frontend_v5.json; run record run_snackbars_007_headpin corpus points to run_001 (53 products, corpus_n=53); BSIP2 trace dirs in run_snack_bars_001/products (53 dirs). NOTE: snacks applies editorial curation (18/48 displayed) — the generator will produce all 53 trace products, the 35 non-displayed are LIVE_DEBT in the diff.",
   "category": "snacks",
+  "run_id": "score_bars_task362_20260620_143230",
   "corpus_dirs": [
-    "C:\\Bari\\03_operations\\bsip1\\run_001\\output"
+    "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output"
   ],
   "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\run_snack_bars_001\\products",
+  "_run_products_dir_note": "AUTHORITATIVE reproducer is corpus_dirs (score_bars_task362.../output) re-scored at the flags below = 18/21 reproduce vs snacks_frontend_v5 (0 grade moves; the 3 drifters carry _task405_clean and rose with the ingredient clean). The bsip2 traces under score_bars_task362.../products have a broken nested layout (bsip1_<bc>/products/...); run_snack_bars_001 traces predate the score_bars_task362 corpus and do NOT match v5. Re-derive must regenerate bsip2 from corpus_dirs, not read stale traces.",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\snacks_frontend_v5.json",
   "retailer_scope": ["yohananof", "carrefour"],
   "subpool_filter": null,
@@ -21,12 +23,13 @@
       "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
       "BARI_REDLABEL_V1": "off",
       "BARI_SODIUM_CEREAL": "off",
-      "BARI_FAT_TECH_V1": "on"
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_D4_SCORE_V1": "on"
     },
     "shelf_rel": null,
-    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_001\\output",
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output",
     "corpus_filter": null,
-    "_source": "batch_run_snack_bars_001.py (no shelf-rel enrollment)"
+    "_source": "score_bars_task362_20260620_143230 (canonical corpus). VERIFIED 2026-06-26 working-tree harness: 18/21 reproduce vs snacks_frontend_v5, 0 grade moves, maxd 4.0; the 3 drifters all carry _task405_clean (ingredient-clean raised them). Supersedes the earlier unverified '21/21' claim. Other chat's origin/master '0/21' was the stale pre-edit master binding, not this corpus."
   },
   "exclusions": [],
   "extension_fields": ["_internal_cluster"],

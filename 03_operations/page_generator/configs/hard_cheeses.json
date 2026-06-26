@@ -1,6 +1,8 @@
 {
   "_comment": "Hard cheeses category config. Score provenance PROVEN: run_hard_cheeses_003_shelfrel matches all 30 live barcodes with 0 score mismatches (verified 2026-06-16 by barcode-level comparison vs hard_cheeses_frontend_v2.json). The live page _meta.run_id='run_hard_cheeses_yohananof_001' is STALE (red-team RT-1 confirmed; run_summary.json in run_003_shelfrel confirms grade dist A:2/B:23/C:3/D:2 matching the actual live products). Corpus: bsip1_outputs (68 records, all 30 live barcodes covered). OFF BLOCKER: barcodes 7290102302864 (Gouda Pesto) and 7290014455252 (Grana Padano) carry open_food_facts_fallback as provenance.source — both are displayed live products. Generator will auto-exclude them (TASK-238 hard rule), producing 28 products vs 30 live. These two products are a launch blocker and must be re-scraped from a direct source before this config can achieve full parity. Run universe = 30 (no additional exclusions: run_003_shelfrel contains exactly the 30 live products). EXCLUDE run_hardcheese_redlabel_v1_001 (UNSHIPPED experimental, 0/28 bogus scores).",
   "category": "hard-cheeses",
+  "run_id": "run_hard_cheeses_003_shelfrel",
+  "_v2_v3_divergence_FLAG": "VERIFIED 2026-06-26: with the flags below (REDLABEL_V1+HC002_NOVA1 on), run_hard_cheeses_003_shelfrel reproduces hard_cheeses_frontend_v2.json 23/23 EXACTLY (0 drift, 0 grade moves) — v2 IS this branch's served file (route imports hard_cheeses_frontend_v2.json) and its provenance is now proven. The other chat's master-native '15/23' was master's config with REDLABEL_V1 off. SEPARATE UNRESOLVED ISSUE: origin/master serves hard_cheeses_frontend_v3.json (24 products, a DIFFERENT scoring — e.g. 71.4->60.0, 70.1->39.0; NOT a 2pt drift). run_003 does NOT reproduce v3. v3-vs-v2 is a publish-TARGET decision touching published scores (tripwire-1), NOT a binding repair — escalated to owner/orchestrator, not silently adopted here.",
   "corpus_dirs": [
     "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs"
   ],
@@ -19,7 +21,8 @@
       "BARI_RECAL_P0": "on",
       "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
       "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
-      "BARI_REDLABEL_V1": "off",
+      "BARI_REDLABEL_V1": "on",
+      "BARI_HC002_NOVA1": "on",
       "BARI_SODIUM_CEREAL": "off",
       "BARI_GRAD_SODIUM_V1": "off"
     },
@@ -31,7 +34,7 @@
     },
     "bsip1_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
     "corpus_filter": null,
-    "_source": "run_hard_cheeses_003_shelfrel (BARI_SHELF_RELATIVE_V1+BARI_FAT_TECH_V1, redlabel OFF) — proven provenance of the live page (barcode-level 0 mismatches 2026-06-16). NOTE: a redlabel-v2 migration was started 2026-06-19 (config edited to point at run_hc_redlabel_v2_001 with BARI_REDLABEL_V1=on) but that run was never produced/committed and the live JSON was never regenerated; config reverted to the actually-served 003 state. Completing redlabel-v2 is a separate score-moving go-live (/rescore), not a conformance repair."
+    "_source": "run_hard_cheeses_003_shelfrel with BARI_REDLABEL_V1=on + BARI_HC002_NOVA1=on — proven 23/23 reproduce (TASK-395 re-verification 2026-06-25)"
   },
   "exclusions": [
     {"barcode": "7290102302864", "reason": "OFF-CONTAMINATED: nutrition from open_food_facts_fallback (TASK-238 hard rule). Removed from live page; re-add only after direct re-scrape."},
