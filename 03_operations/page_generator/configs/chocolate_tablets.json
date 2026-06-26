@@ -1,0 +1,41 @@
+{
+  "_comment": "Chocolate tablets category config. Shared corpus with chocolate_bars: both use the same BSIP0 raw (choc_bsip0_raw_20260621T093256.json, 146 records, Shufersal) and the same task391 BSIP1/BSIP2 runs (121 scored products: 92 tablets + 29 bars). subpool_filter selects the 'chocolate_tablet' subcategory as classified by classify_chocolate() in plausibility_gate.py — tablet markers (טבלת, טבלה, tablet brands like Milka/Lindt/Toblerone) plus default for non-countline products. run_id = fresh_rescore_task391_20260624_113405. Flags from flag_snapshot: BARI_GLASSBOX_W4=True, BARI_FIBER_FERMENT_V1=True, BARI_SHELF_RELATIVE_V1=True, BARI_FAT_TECH_V1=True; all others False. Live page displays 35/92 tablets — the 57 non-displayed are CORPUS_NOT_DISPLAYED in the diff (all E-grade products curated out by editorial curation). OFF check = PASS (all Shufersal direct scrape).",
+  "category": "chocolate_tablets",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\fresh_rescore_task391_20260624_113405\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\chocolate_tablets_frontend_v1.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": {
+    "field": "category",
+    "value": "chocolate_tablet",
+    "source": "fresh_rescore_task391_20260624_113405 manifest chocolate_tablet list; classify_chocolate() in plausibility_gate.py"
+  },
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_GLASSBOX_W4": "on",
+      "BARI_FIBER_FERMENT_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_PROTEIN_BAR_V1": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output",
+    "corpus_filter": null,
+    "_source": "fresh_rescore_task391.py (BSIP0 -> BSIP1 -> BSIP2 pipeline; 121 total scored; tablets=92)"
+  },
+  "exclusions": [],
+  "extension_fields": [],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}
