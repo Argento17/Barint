@@ -29,10 +29,9 @@
     "protein_g": 5.5
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "קמח חיטה (מכיל גלוטן), 33% מילוי בטעם שוקולד [פרוקטוז, חומר הלחה (גליצרין), דקסטרוזה, סירופ גלוקוזה- פרוקטוזה, שוקולד (מסת קקאו, סוכ ר, אבקת קקאו, מתחלב (לציטין סויה), חומרי טעם), עמילן מעובד, חומרים מסמיכים (תאית, מסטיק תאית), אבקת קקאו, חומר טעם], סוכר, צ????",
+  "ingredients_text_he": "קמח חיטה (מכיל גלוטן), חומר הלחה (גליצרין), דקסטרוזה, סירופ גלוקוזה- פרוקטוזה, שוקולד (מסת קקאו, סוכ ר, אבקת קקאו, מתחלב (לציטין סויה), חומרי טעם), עמילן מעובד, חומרים מסמיכים (תאית, מסטיק תאית), אבקת קקאו, חומר טעם], סוכר, צ????",
   "ingredients_list": [
     "קמח חיטה (מכיל גלוטן)",
-    "33% מילוי בטעם שוקולד [פרוקטוז",
     "חומר הלחה (גליצרין)",
     "דקסטרוזה",
     "סירופ גלוקוזה- פרוקטוזה",
@@ -88,7 +87,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290014525313.json",
-  "ingredients_raw": "קמח חיטה (מכיל גלוטן), 33% מילוי בטעם שוקולד [פרוקטוז, חומר הלחה (גליצרין), דקסטרוזה, סירופ גלוקוזה- פרוקטוזה, שוקולד (מסת קקאו, סוכ ר, אבקת קקאו, מתחלב (לציטין סויה), חומרי טעם), עמילן מעובד, חומרים מסמיכים (תאית, מסטיק תאית), אבקת קקאו, חומר טעם], סוכר, צ????",
+  "ingredients_raw": "קמח חיטה (מכיל גלוטן), חומר הלחה (גליצרין), דקסטרוזה, סירופ גלוקוזה- פרוקטוזה, שוקולד (מסת קקאו, סוכ ר, אבקת קקאו, מתחלב (לציטין סויה), חומרי טעם), עמילן מעובד, חומרים מסמיכים (תאית, מסטיק תאית), אבקת קקאו, חומר טעם], סוכר, צ????",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -97,23 +96,102 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "קמח חיטה (מכיל גלוטן)",
-    "33% מילוי בטעם שוקולד [פרוקטוז",
-    "חומר הלחה (גליצרין)",
-    "דקסטרוזה",
-    "סירופ גלוקוזה- פרוקטוזה",
-    "שוקולד (מסת קקאו",
-    "סוכ ר",
-    "אבקת קקאו",
-    "מתחלב (לציטין סויה)",
-    "חומרי טעם)",
-    "עמילן מעובד",
-    "חומרים מסמיכים (תאית",
-    "מסטיק תאית)",
-    "אבקת קקאו",
-    "חומר טעם]",
-    "סוכר",
-    "צ????"
+    {
+      "position": 1,
+      "text": "קמח חיטה (מכיל גלוטן)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "חומר הלחה (גליצרין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "דקסטרוזה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "סירופ גלוקוזה- פרוקטוזה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "שוקולד (מסת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "סוכ ר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "אבקת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מתחלב (לציטין סויה)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "חומרי טעם)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "עמילן מעובד",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "חומרים מסמיכים (תאית",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 12,
+      "text": "מסטיק תאית)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "אבקת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "חומר טעם]",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "צ????",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -141,5 +219,35 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 17,
+    "clean_count": 16,
+    "dropped": [
+      "33% מילוי בטעם שוקולד [פרוקטוז"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "קמח חיטה (מכיל גלוטן), 33% מילוי בטעם שוקולד [פרוקטוז, חומר הלחה (גליצרין), דקסטרוזה, סירופ גלוקוזה- פרוקטוזה, שוקולד (מסת קקאו, סוכ ר, אבקת קקאו, מתחלב (לציטין סויה), חומרי טעם), עמילן מעובד, חומרים מסמיכים (תאית, מסטיק תאית), אבקת קקאו, חומר טעם], סוכר, צ????",
+    "original_ingredients_list": [
+      "קמח חיטה (מכיל גלוטן)",
+      "33% מילוי בטעם שוקולד [פרוקטוז",
+      "חומר הלחה (גליצרין)",
+      "דקסטרוזה",
+      "סירופ גלוקוזה- פרוקטוזה",
+      "שוקולד (מסת קקאו",
+      "סוכ ר",
+      "אבקת קקאו",
+      "מתחלב (לציטין סויה)",
+      "חומרי טעם)",
+      "עמילן מעובד",
+      "חומרים מסמיכים (תאית",
+      "מסטיק תאית)",
+      "אבקת קקאו",
+      "חומר טעם]",
+      "סוכר",
+      "צ????"
+    ]
+  }
 }

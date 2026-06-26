@@ -29,7 +29,7 @@
     "protein_g": 29.0
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "חלבוני חלב 28%, חומר הלחה (גליצרול), ממתיקים (מלטיטול, סוכרלוז), חומר מילוי (פולידקסטרוז), חמאת קקאו, אבקת חלב מלא, מים, הידרוליזט ג לוטן חיטה (גלוטן), חתיכות שקדים קלויות 4%, שמן חמניות, מסת קקאו, סיבי תירס מסיסים, שבבי קוקוס מיובשים 1.5%, חומרי טעם וריח, אבקת קקא ו דל שומן, מתחלב (לציטין). כלל מוצקי הקקאו בשוקולד: 33.9%",
+  "ingredients_text_he": "חלבוני חלב 28%, חומר הלחה (גליצרול), ממתיקים (מלטיטול, סוכרלוז), חומר מילוי (פולידקסטרוז), חמאת קקאו, אבקת חלב מלא, מים, הידרוליזט ג לוטן חיטה (גלוטן), חתיכות שקדים קלויות 4%, שמן חמניות, מסת קקאו, סיבי תירס מסיסים, שבבי קוקוס מיובשים 1, חומרי טעם וריח, אבקת קקא ו דל שומן, מתחלב (לציטין), כלל מוצקי הקקאו בשוקולד: 33",
   "ingredients_list": [
     "חלבוני חלב 28%",
     "חומר הלחה (גליצרול)",
@@ -45,12 +45,10 @@
     "מסת קקאו",
     "סיבי תירס מסיסים",
     "שבבי קוקוס מיובשים 1",
-    "5%",
     "חומרי טעם וריח",
     "אבקת קקא ו דל שומן",
     "מתחלב (לציטין)",
-    "כלל מוצקי הקקאו בשוקולד: 33",
-    "9%"
+    "כלל מוצקי הקקאו בשוקולד: 33"
   ],
   "allergens_contains": [],
   "allergens_may_contain": [],
@@ -91,7 +89,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290019766247.json",
-  "ingredients_raw": "חלבוני חלב 28%, חומר הלחה (גליצרול), ממתיקים (מלטיטול, סוכרלוז), חומר מילוי (פולידקסטרוז), חמאת קקאו, אבקת חלב מלא, מים, הידרוליזט ג לוטן חיטה (גלוטן), חתיכות שקדים קלויות 4%, שמן חמניות, מסת קקאו, סיבי תירס מסיסים, שבבי קוקוס מיובשים 1.5%, חומרי טעם וריח, אבקת קקא ו דל שומן, מתחלב (לציטין). כלל מוצקי הקקאו בשוקולד: 33.9%",
+  "ingredients_raw": "חלבוני חלב 28%, חומר הלחה (גליצרול), ממתיקים (מלטיטול, סוכרלוז), חומר מילוי (פולידקסטרוז), חמאת קקאו, אבקת חלב מלא, מים, הידרוליזט ג לוטן חיטה (גלוטן), חתיכות שקדים קלויות 4%, שמן חמניות, מסת קקאו, סיבי תירס מסיסים, שבבי קוקוס מיובשים 1, חומרי טעם וריח, אבקת קקא ו דל שומן, מתחלב (לציטין), כלל מוצקי הקקאו בשוקולד: 33",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -100,26 +98,114 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "חלבוני חלב 28%",
-    "חומר הלחה (גליצרול)",
-    "ממתיקים (מלטיטול",
-    "סוכרלוז)",
-    "חומר מילוי (פולידקסטרוז)",
-    "חמאת קקאו",
-    "אבקת חלב מלא",
-    "מים",
-    "הידרוליזט ג לוטן חיטה (גלוטן)",
-    "חתיכות שקדים קלויות 4%",
-    "שמן חמניות",
-    "מסת קקאו",
-    "סיבי תירס מסיסים",
-    "שבבי קוקוס מיובשים 1",
-    "5%",
-    "חומרי טעם וריח",
-    "אבקת קקא ו דל שומן",
-    "מתחלב (לציטין)",
-    "כלל מוצקי הקקאו בשוקולד: 33",
-    "9%"
+    {
+      "position": 1,
+      "text": "חלבוני חלב 28%",
+      "percentage_declared": 28.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "חומר הלחה (גליצרול)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 3,
+      "text": "ממתיקים (מלטיטול",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "סוכרלוז)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "חומר מילוי (פולידקסטרוז)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "חמאת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "אבקת חלב מלא",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "הידרוליזט ג לוטן חיטה (גלוטן)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 10,
+      "text": "חתיכות שקדים קלויות 4%",
+      "percentage_declared": 4.0,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "שמן חמניות",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "מסת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "סיבי תירס מסיסים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "שבבי קוקוס מיובשים 1",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "חומרי טעם וריח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "אבקת קקא ו דל שומן",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 17,
+      "text": "מתחלב (לציטין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 18,
+      "text": "כלל מוצקי הקקאו בשוקולד: 33",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -147,5 +233,39 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 20,
+    "clean_count": 18,
+    "dropped": [
+      "5%",
+      "9%"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "חלבוני חלב 28%, חומר הלחה (גליצרול), ממתיקים (מלטיטול, סוכרלוז), חומר מילוי (פולידקסטרוז), חמאת קקאו, אבקת חלב מלא, מים, הידרוליזט ג לוטן חיטה (גלוטן), חתיכות שקדים קלויות 4%, שמן חמניות, מסת קקאו, סיבי תירס מסיסים, שבבי קוקוס מיובשים 1.5%, חומרי טעם וריח, אבקת קקא ו דל שומן, מתחלב (לציטין). כלל מוצקי הקקאו בשוקולד: 33.9%",
+    "original_ingredients_list": [
+      "חלבוני חלב 28%",
+      "חומר הלחה (גליצרול)",
+      "ממתיקים (מלטיטול",
+      "סוכרלוז)",
+      "חומר מילוי (פולידקסטרוז)",
+      "חמאת קקאו",
+      "אבקת חלב מלא",
+      "מים",
+      "הידרוליזט ג לוטן חיטה (גלוטן)",
+      "חתיכות שקדים קלויות 4%",
+      "שמן חמניות",
+      "מסת קקאו",
+      "סיבי תירס מסיסים",
+      "שבבי קוקוס מיובשים 1",
+      "5%",
+      "חומרי טעם וריח",
+      "אבקת קקא ו דל שומן",
+      "מתחלב (לציטין)",
+      "כלל מוצקי הקקאו בשוקולד: 33",
+      "9%"
+    ]
+  }
 }

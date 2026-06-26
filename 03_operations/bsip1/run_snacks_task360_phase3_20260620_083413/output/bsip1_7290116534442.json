@@ -29,13 +29,12 @@
     "protein_g": 8.5
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "קרם חלבי (36%) [סוכר, שמן צמחי, אבקת חלב רזה (10%), אבקת חלב מלא (1.8%), מתחלב (לצטין), חומר טעם וריח], סוכר, חמאת קקאו, אבקת חלב מל א, עיסת קקאו, אבקת חלב רזה, מתחלבים (לציטין, E476), ונילין.",
+  "ingredients_text_he": "קרם חלבי (36%) [סוכר, שמן צמחי, אבקת חלב רזה (10%), אבקת חלב מלא (1, מתחלב (לצטין), חומר טעם וריח], סוכר, חמאת קקאו, אבקת חלב מל א, עיסת קקאו, אבקת חלב רזה, מתחלבים (לציטין, E476), ונילין",
   "ingredients_list": [
     "קרם חלבי (36%) [סוכר",
     "שמן צמחי",
     "אבקת חלב רזה (10%)",
     "אבקת חלב מלא (1",
-    "8%)",
     "מתחלב (לצטין)",
     "חומר טעם וריח]",
     "סוכר",
@@ -86,7 +85,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290116534442.json",
-  "ingredients_raw": "קרם חלבי (36%) [סוכר, שמן צמחי, אבקת חלב רזה (10%), אבקת חלב מלא (1.8%), מתחלב (לצטין), חומר טעם וריח], סוכר, חמאת קקאו, אבקת חלב מל א, עיסת קקאו, אבקת חלב רזה, מתחלבים (לציטין, E476), ונילין.",
+  "ingredients_raw": "קרם חלבי (36%) [סוכר, שמן צמחי, אבקת חלב רזה (10%), אבקת חלב מלא (1, מתחלב (לצטין), חומר טעם וריח], סוכר, חמאת קקאו, אבקת חלב מל א, עיסת קקאו, אבקת חלב רזה, מתחלבים (לציטין, E476), ונילין",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -95,21 +94,90 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "קרם חלבי (36%) [סוכר",
-    "שמן צמחי",
-    "אבקת חלב רזה (10%)",
-    "אבקת חלב מלא (1",
-    "8%)",
-    "מתחלב (לצטין)",
-    "חומר טעם וריח]",
-    "סוכר",
-    "חמאת קקאו",
-    "אבקת חלב מל א",
-    "עיסת קקאו",
-    "אבקת חלב רזה",
-    "מתחלבים (לציטין",
-    "E476)",
-    "ונילין"
+    {
+      "position": 1,
+      "text": "קרם חלבי (36%) [סוכר",
+      "percentage_declared": 36.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "שמן צמחי",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "אבקת חלב רזה (10%)",
+      "percentage_declared": 10.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "אבקת חלב מלא (1",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "מתחלב (לצטין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "חומר טעם וריח]",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "חמאת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "אבקת חלב מל א",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "עיסת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "אבקת חלב רזה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "מתחלבים (לציטין",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 13,
+      "text": "E476)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "ונילין",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
   ],
   "extracted_additives": [
     "E476"
@@ -139,5 +207,33 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 15,
+    "clean_count": 14,
+    "dropped": [
+      "8%)"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "קרם חלבי (36%) [סוכר, שמן צמחי, אבקת חלב רזה (10%), אבקת חלב מלא (1.8%), מתחלב (לצטין), חומר טעם וריח], סוכר, חמאת קקאו, אבקת חלב מל א, עיסת קקאו, אבקת חלב רזה, מתחלבים (לציטין, E476), ונילין.",
+    "original_ingredients_list": [
+      "קרם חלבי (36%) [סוכר",
+      "שמן צמחי",
+      "אבקת חלב רזה (10%)",
+      "אבקת חלב מלא (1",
+      "8%)",
+      "מתחלב (לצטין)",
+      "חומר טעם וריח]",
+      "סוכר",
+      "חמאת קקאו",
+      "אבקת חלב מל א",
+      "עיסת קקאו",
+      "אבקת חלב רזה",
+      "מתחלבים (לציטין",
+      "E476)",
+      "ונילין"
+    ]
+  }
 }

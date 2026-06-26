@@ -29,7 +29,7 @@
     "protein_g": 4.8
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A,D,E, 1B, 2B,????",
+  "ingredients_text_he": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A, ????",
   "ingredients_list": [
     "שוקולד מריר (74%) (סוכר",
     "מסת קקאו",
@@ -47,8 +47,6 @@
     "חומרי טעם (מכילים לקטוז)",
     "מלח",
     "ויטמינים (A",
-    "1B",
-    "2B",
     "????"
   ],
   "allergens_contains": [],
@@ -90,7 +88,7 @@
   "missing_fields": [],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_8423207208703.json",
-  "ingredients_raw": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A,D,E, 1B, 2B,????",
+  "ingredients_raw": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A, ????",
   "ingredients_raw_provenance": {
     "source": "shufersal_product_page_html",
     "bsip0_status": "bsip0_scrape",
@@ -99,25 +97,108 @@
     "note": "TASK-360 Phase 3 — JSON API discovery + HTML detail page scrape"
   },
   "ingredient_order": [
-    "שוקולד מריר (74%) (סוכר",
-    "מסת קקאו",
-    "חמאת קקאו",
-    "מתחלב: לציטין סויה",
-    "חומרי טעם)",
-    "דגנים (19%) (קמח תירס",
-    "קמח אורז)",
-    "סיבים תזונתיים (סיבי  אפונה",
-    "סיבי שיטה)",
-    "סוכר",
-    "עמילן תירס",
-    "אבקת קקאו",
-    "מתחלב: לציטין סויה",
-    "חומרי טעם (מכילים לקטוז)",
-    "מלח",
-    "ויטמינים (A",
-    "1B",
-    "2B",
-    "????"
+    {
+      "position": 1,
+      "text": "שוקולד מריר (74%) (סוכר",
+      "percentage_declared": 74.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 2,
+      "text": "מסת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "חמאת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "מתחלב: לציטין סויה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "חומרי טעם)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "דגנים (19%) (קמח תירס",
+      "percentage_declared": 19.0,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "קמח אורז)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "סיבים תזונתיים (סיבי  אפונה",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 9,
+      "text": "סיבי שיטה)",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 11,
+      "text": "עמילן תירס",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "אבקת קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "מתחלב: לציטין סויה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "חומרי טעם (מכילים לקטוז)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 15,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "ויטמינים (A",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 17,
+      "text": "????",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
@@ -145,5 +226,38 @@
   "nova_proxy": null,
   "nova_confidence": null,
   "nova_confidence_band": null,
-  "nova_notes": []
+  "nova_notes": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 19,
+    "clean_count": 17,
+    "dropped": [
+      "1B",
+      "2B"
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "שוקולד מריר (74%) (סוכר, מסת קקאו, חמאת קקאו, מתחלב: לציטין סויה, חומרי טעם), דגנים (19%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי  אפונה, סיבי שיטה), סוכר, עמילן תירס, אבקת קקאו, מתחלב: לציטין סויה, חומרי טעם (מכילים לקטוז), מלח, ויטמינים (A,D,E, 1B, 2B,????",
+    "original_ingredients_list": [
+      "שוקולד מריר (74%) (סוכר",
+      "מסת קקאו",
+      "חמאת קקאו",
+      "מתחלב: לציטין סויה",
+      "חומרי טעם)",
+      "דגנים (19%) (קמח תירס",
+      "קמח אורז)",
+      "סיבים תזונתיים (סיבי  אפונה",
+      "סיבי שיטה)",
+      "סוכר",
+      "עמילן תירס",
+      "אבקת קקאו",
+      "מתחלב: לציטין סויה",
+      "חומרי טעם (מכילים לקטוז)",
+      "מלח",
+      "ויטמינים (A",
+      "1B",
+      "2B",
+      "????"
+    ]
+  }
 }

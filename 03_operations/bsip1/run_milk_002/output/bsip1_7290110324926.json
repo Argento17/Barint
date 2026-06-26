@@ -26,7 +26,7 @@
     "protein_g": 3.3
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v),E-452(i),E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12,B2 ו- D (B2-0.24 מ\"ג, B12-מק\"ג 0.4, D-0.75 מק\"ג ל-100 גרם).",
+  "ingredients_text_he": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v), E-452(i), E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12, B12-מק\"ג 0.4",
   "ingredients_list": [
     "מיצוי פולי סויה (99.4%) (מים",
     "פולי סויה 6.4%)",
@@ -37,9 +37,7 @@
     "מלח",
     "מייצב: ג''לאן גאם",
     "ויטמינים B12",
-    "B2 ו- D (B2-0.24 מ\"ג",
-    "B12-מק\"ג 0.4",
-    "D-0.75 מק\"ג ל-100 גרם)."
+    "B12-מק\"ג 0.4"
   ],
   "allergens_contains": [
     "אגוזים",
@@ -84,7 +82,7 @@
   ],
   "inferred_fields": [],
   "audit_ref": "bsip1_audit_7290110324926.json",
-  "ingredients_raw": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v),E-452(i),E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12,B2 ו- D (B2-0.24 מ\"ג, B12-מק\"ג 0.4, D-0.75 מק\"ג ל-100 גרם).",
+  "ingredients_raw": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v), E-452(i), E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12, B12-מק\"ג 0.4",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -95,21 +93,63 @@
   "ingredient_order": [
     {
       "position": 1,
-      "text": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%)",
+      "text": "מיצוי פולי סויה (99.4%) (מים",
       "percentage_declared": 99.4,
       "has_subgroup": true
     },
     {
       "position": 2,
+      "text": "פולי סויה 6.4%)",
+      "percentage_declared": 6.4,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
       "text": "תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן)",
       "percentage_declared": 0.1,
       "has_subgroup": true
     },
     {
-      "position": 3,
-      "text": "מווסתי חומציות:[(E-450 (v),E-452(i),E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12,B2 ו- D (B2-0.24 מ\"ג, B12-מק\"ג 0.4, D-0.75 מק\"ג ל-100 גרם).",
+      "position": 4,
+      "text": "מווסתי חומציות:[(E-450 (v)",
       "percentage_declared": null,
       "has_subgroup": true
+    },
+    {
+      "position": 5,
+      "text": "E-452(i)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 6,
+      "text": "E-500(i)]",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 7,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 8,
+      "text": "מייצב: ג''לאן גאם",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "ויטמינים B12",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 10,
+      "text": "B12-מק\"ג 0.4",
+      "percentage_declared": null,
+      "has_subgroup": false
     }
   ],
   "extracted_additives": [
@@ -145,5 +185,31 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "enrichment_warnings": [],
+  "_task405_clean": {
+    "ts": "2026-06-26T15:39:38",
+    "task": "TASK-405 ingredient-pollution clean (de-chain F1)",
+    "raw_count": 12,
+    "clean_count": 10,
+    "dropped": [
+      "B2 ו- D (B2-0.24 מ\"ג",
+      "D-0.75 מק\"ג ל-100 גרם)."
+    ],
+    "truncated": [],
+    "original_ingredients_text_he": "מיצוי פולי סויה (99.4%) (מים, פולי סויה 6.4%), תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן), מווסתי חומציות:[(E-450 (v),E-452(i),E-500(i)], מלח, מייצב: ג''לאן גאם, ויטמינים B12,B2 ו- D (B2-0.24 מ\"ג, B12-מק\"ג 0.4, D-0.75 מק\"ג ל-100 גרם).",
+    "original_ingredients_list": [
+      "מיצוי פולי סויה (99.4%) (מים",
+      "פולי סויה 6.4%)",
+      "תוסף תזונה: סידן קרבונט (מתוכו 0.1% סידן)",
+      "מווסתי חומציות:[(E-450 (v)",
+      "E-452(i)",
+      "E-500(i)]",
+      "מלח",
+      "מייצב: ג''לאן גאם",
+      "ויטמינים B12",
+      "B2 ו- D (B2-0.24 מ\"ג",
+      "B12-מק\"ג 0.4",
+      "D-0.75 מק\"ג ל-100 גרם)."
+    ]
+  }
 }
