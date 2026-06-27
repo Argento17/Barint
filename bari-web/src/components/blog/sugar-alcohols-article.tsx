@@ -170,7 +170,7 @@ function TakeawaySection() {
               href={HASHVAOT_HREF}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[#1F8F6A]/30 bg-transparent px-6 py-3 text-sm font-bold text-[#167A58] transition-colors duration-200 hover:bg-[#1F8F6A]/8"
             >
-              כל קטגוריות ברי
+              כל קטגוריות בארי
               <ChevronLeft className="size-4" aria-hidden />
             </Link>
           </div>
