@@ -78,7 +78,7 @@ for (const c of comparisons) {
 // 4. category_report cards have scoreSpread, NO product images
 const catReports = cards.filter((c) => c.type === "category_report");
 for (const c of catReports) {
-  check(`category_report "${c.id}" has scoreSpread`, Boolean(c.scoreSpread));
+  check(`category_report "${c.id}" has gradeDistribution`, Boolean(c.gradeDistribution));
   check(
     `category_report "${c.id}" has no leftProduct/rightProduct/spotlightProduct`,
     !c.leftProduct && !c.rightProduct && !c.spotlightProduct
@@ -91,6 +91,10 @@ for (const c of ingredients) {
   check(
     `ingredient "${c.id}" has ingredientTokens`,
     Array.isArray(c.ingredientTokens) && c.ingredientTokens.length > 0
+  );
+  check(
+    `ingredient "${c.id}" visualMode is ingredient_mask`,
+    c.visualMode === "ingredient_mask"
   );
   check(
     `ingredient "${c.id}" has no product images`,

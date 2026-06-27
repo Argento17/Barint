@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -11,12 +11,13 @@ interface CarouselCardImageProps {
   imageAlt: string;
   sizes?: string;
   className?: string;
+  accent?: string;
 }
 
 /**
- * Product pack image with skeleton pulse loader and branded SVG fallback.
- * Keyed by productId — never by array index.
- * Uses object-contain so pack shapes are never distorted.
+ * Product pack image with rounded pedestal, skeleton pulse, and branded SVG fallback.
+ * Keyed by productId. object-contain preserves pack shapes.
+ * accent tints the pedestal background for brand colour coherence.
  */
 export function CarouselCardImage({
   productId,
@@ -24,6 +25,7 @@ export function CarouselCardImage({
   imageAlt,
   sizes = "80px",
   className,
+  accent,
 }: CarouselCardImageProps) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
@@ -31,30 +33,32 @@ export function CarouselCardImage({
   const src = !imageUrl || errored ? CAROUSEL_PRODUCT_FALLBACK : imageUrl;
 
   return (
-    <div key={productId} className={cn("relative", className)}>
-      {/* Skeleton pulse — visible until image loaded */}
-      {!loaded && (
-        <div
-          className="absolute inset-0 animate-pulse rounded-md bg-black/[0.06]"
-          aria-hidden
-        />
-      )}
-      <Image
-        src={src}
-        alt={imageAlt}
-        fill
-        className={cn(
-          "object-contain transition-opacity duration-300",
-          loaded ? "opacity-100" : "opacity-0"
+    <div
+      key={productId}
+      className="rounded-2xl bg-gradient-to-b from-white/50 to-black/[0.04] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+      style={accent ? { backgroundColor: accent + "0a" } : undefined}
+    >
+      <div className={cn("relative", className)}>
+        {!loaded && (
+          <div className="absolute inset-0 animate-pulse rounded-md bg-black/[0.06]" aria-hidden />
         )}
-        sizes={sizes}
-        onLoad={() => setLoaded(true)}
-        onError={() => {
-          setErrored(true);
-          setLoaded(true);
-        }}
-        priority={false}
-      />
+        <Image
+          src={src}
+          alt={imageAlt}
+          fill
+          className={cn(
+            "object-contain transition-opacity duration-300",
+            loaded ? "opacity-100" : "opacity-0"
+          )}
+          sizes={sizes}
+          onLoad={() => setLoaded(true)}
+          onError={() => {
+            setErrored(true);
+            setLoaded(true);
+          }}
+          priority={false}
+        />
+      </div>
     </div>
   );
 }

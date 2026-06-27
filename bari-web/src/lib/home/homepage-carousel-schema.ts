@@ -1,11 +1,9 @@
-﻿/**
+/**
  * Strict schema for homepage carousel cards.
  * Single source of truth — import types from here, never from the data file.
  */
 
 export const CAROUSEL_PRODUCT_FALLBACK = "/home/carousel-product-fallback.svg";
-
-// ── Card type & visual mode ──────────────────────────────────────────────────
 
 export type CardType =
   | "comparison"
@@ -15,14 +13,28 @@ export type CardType =
   | "methodology"
   | "product_spotlight";
 
+export type GradeLetter = "A" | "B" | "C" | "D" | "E";
+
+export type GradeDistribution = {
+  count: number;
+  label: string;
+  low: number;
+  high: number;
+  spread: number;
+  grades: Record<GradeLetter, number>;
+  gradeOrder: GradeLetter[];
+};
+
+export type CategoryChartVariant = "grade_histogram" | "grade_skew" | "grade_stacked";
+
 export type VisualMode =
   | "product_duel"
   | "product_single"
-  | "score_spread"
-  | "ingredient_tokens"
+  | "grade_histogram"
+  | "grade_skew"
+  | "grade_stacked"
+  | "ingredient_mask"
   | "supplement_molecule";
-
-// ── Product reference (used in comparison + spotlight) ───────────────────────
 
 export type ProductRef = {
   productId: string;
@@ -35,16 +47,13 @@ export type ProductRef = {
   imageStatus: "verified" | "unverified" | "missing";
 };
 
-// ── Score spread (category_report only) ─────────────────────────────────────
-
+/** @deprecated use gradeDistribution */
 export type ScoreSpread = {
   low: number;
   high: number;
   count: number;
   label: string;
 };
-
-// ── Unified card shape ───────────────────────────────────────────────────────
 
 export type CarouselCard = {
   id: string;
@@ -58,14 +67,14 @@ export type CarouselCard = {
   href: string;
   accent: string;
   fallbackVisual?: string;
-  // comparison + spotlight
   leftProduct?: ProductRef;
   rightProduct?: ProductRef;
   spotlightProduct?: ProductRef;
-  // category_report
+  gradeDistribution?: GradeDistribution;
+  chartVariant?: CategoryChartVariant;
   scoreSpread?: ScoreSpread;
-  // ingredient_investigation
   ingredientTokens?: string[];
-  // supplement_report
+  ingredientSpotlightProductId?: string;
+  ingredientMaskCount?: number;
   supplementStat?: { value: string; label: string };
 };

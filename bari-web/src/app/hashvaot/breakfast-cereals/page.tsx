@@ -16,7 +16,14 @@ export const metadata: Metadata = {
     "השוואת 37 מוצרי דגני בוקר מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
-export default function BreakfastCerealsComparisonRoute() {
+export default async function BreakfastCerealsComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
     <CerealsComparisonPage
       products={cerealsProducts}
@@ -25,6 +32,7 @@ export default function BreakfastCerealsComparisonRoute() {
       prologueSentences={cerealsPrologueSentences}
       methodologyLines={cerealsMethodologyLines}
       categoryNote={cerealsCategoryNote}
+      initialExpandedProductId={initialExpandedProductId}
     />
   );
 }

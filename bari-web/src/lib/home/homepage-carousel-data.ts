@@ -1,15 +1,15 @@
-﻿/**
- * Homepage carousel — 9 cards using the strict CarouselCard schema.
- * Rules enforced here:
- *  - comparison → visualMode:product_duel, products keyed by productId, pack images only
- *  - category_report → visualMode:score_spread, NO product images
- *  - ingredient_investigation → visualMode:ingredient_tokens, NO photos
- *  - supplement_report → visualMode:supplement_molecule, NO external bottle URLs
- *  - product_spotlight → visualMode:product_single, one pack by productId
+/**
+ * Homepage carousel -- 9 cards using the strict CarouselCard schema.
  */
 
 import type { CarouselCard } from "./homepage-carousel-schema";
 import { CAROUSEL_PRODUCT_FALLBACK } from "./homepage-carousel-schema";
+import {
+  CEREALS_GRADE_DIST,
+  SNACKS_GRADE_DIST,
+  GRANOLA_GRADE_DIST,
+  CEREALS_SUGAR_MASK_STATS,
+} from "./homepage-carousel-category-stats";
 
 const CL =
   "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/";
@@ -19,7 +19,7 @@ const YO =
 export { CAROUSEL_PRODUCT_FALLBACK };
 
 export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
-  // ── Comparison 1: Bread ────────────────────────────────────────────────────
+  // -- Comparison 1: Bread -------------------------------------------------------
   {
     id: "comparison-bread-sourdough-vs-cracker",
     type: "comparison",
@@ -27,7 +27,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     eyebrow: "השוואה",
     category: "לחם ומאפים",
     title: "מחמצת קמח מלא מול קרקר שומשום",
-    evidence: "פרש 31 נקודות: קמח מלא ראשון אצל המחמצת, קמח מזוקק אצל הקרקר.",
+    evidence: "הפרש 31 נקודות: קמח מלא ראשון אצל המחמצת, קמח מזוקק אצל הקרקר.",
     metric: "89 מול 58",
     href: "/hashvaot/bread",
     accent: "#6B7B5E",
@@ -54,7 +54,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     },
   },
 
-  // ── Comparison 2: Milk ─────────────────────────────────────────────────────
+  // -- Comparison 2: Milk --------------------------------------------------------
   {
     id: "comparison-milk-whole-vs-soy",
     type: "comparison",
@@ -89,7 +89,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     },
   },
 
-  // ── Comparison 3: Granola ──────────────────────────────────────────────────
+  // -- Comparison 3: Granola -----------------------------------------------------
   {
     id: "comparison-granola-premium-vs-bottom",
     type: "comparison",
@@ -97,7 +97,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     eyebrow: "השוואה",
     category: "גרנולה",
     title: "גרנולה דני וגלית מול שוק קולינרי",
-    evidence: "38 נקודות פרש: שיבולת שועל ראשונה אצל דני וגלית, סוכר ראשון אצל שוק קולינרי.",
+    evidence: "38 נקודות הפרש: שיבולת שועל ראשונה אצל דני וגלית, סוכר ראשון אצל שוק קולינרי.",
     metric: "70 מול 31",
     href: "/hashvaot/granola",
     accent: "#8B7355",
@@ -124,7 +124,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     },
   },
 
-  // ── Product spotlight: Tahini bread ───────────────────────────────────────
+  // -- Product spotlight: Tahini bread -------------------------------------------
   {
     id: "spotlight-bread-tahini",
     type: "product_spotlight",
@@ -149,67 +149,78 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     },
   },
 
-  // ── Category report: Cereals ───────────────────────────────────────────────
+  // -- Category report: Cereals (grade_histogram) --------------------------------
   {
     id: "category-report-cereals",
     type: "category_report",
-    visualMode: "score_spread",
+    visualMode: "grade_histogram",
     eyebrow: "דוח קטגוריה",
     category: "דגני בוקר",
     title: "20 דגנים — אפילו הטוב ביותר לא A",
     evidence: "הסוכר שולט: גם המוביל מסתיים ב-B+. אין ציון A בכל המדף.",
-    metric: "פרש 44.5 נקודות",
+    metric: "הפרש " + CEREALS_GRADE_DIST.spread + " נקודות · " + CEREALS_GRADE_DIST.grades.A + " ציוני A",
     href: "/hashvaot/breakfast-cereals",
     accent: "#7A8C5E",
-    scoreSpread: { low: 30, high: 75, count: 20, label: "דגני בוקר" },
+    gradeDistribution: CEREALS_GRADE_DIST,
   },
 
-  // ── Category report: Snacks ────────────────────────────────────────────────
+  // -- Category report: Snacks (grade_skew) --------------------------------------
   {
     id: "category-report-snacks",
     type: "category_report",
-    visualMode: "score_spread",
+    visualMode: "grade_skew",
     eyebrow: "דוח קטגוריה",
     category: "חטיפים",
-    title: "21 חטיפים: פרש 52 נקודות",
-    evidence: "67 עד 15 — אותה קטגוריה, עולמות שונים. המוביל: תמרים וקינמון בלבד.",
-    metric: "ציון 15–67",
+    title: SNACKS_GRADE_DIST.count + " חטיפים: הפרש " + SNACKS_GRADE_DIST.spread + " נקודות",
+    evidence: Math.round(SNACKS_GRADE_DIST.high) + " עד " + Math.round(SNACKS_GRADE_DIST.low) + " — אותה קטגוריה, עולמות שונים. המוביל: תמרים וקינמון בלבד.",
+    metric: "הפרש " + SNACKS_GRADE_DIST.spread + " נקודות",
     href: "/hashvaot/snacks",
     accent: "#BC6A33",
-    scoreSpread: { low: 15, high: 67, count: 21, label: "חטיפים" },
+    gradeDistribution: SNACKS_GRADE_DIST,
   },
 
-  // ── Category report: Granola ───────────────────────────────────────────────
+  // -- Category report: Granola (grade_stacked) ----------------------------------
   {
     id: "category-report-granola",
     type: "category_report",
-    visualMode: "score_spread",
+    visualMode: "grade_stacked",
     eyebrow: "דוח קטגוריה",
     category: "גרנולה",
     title: "22 גרנולות: מי באמת בריא?",
     evidence: "אם הסוכר מקדים שיבולת שועל — זה ממתק, לא גרנולה.",
-    metric: "ציון 31–70",
+    metric: "ציון " + GRANOLA_GRADE_DIST.low + "–" + GRANOLA_GRADE_DIST.high,
     href: "/hashvaot/granola",
     accent: "#8B7355",
-    scoreSpread: { low: 31, high: 70, count: 22, label: "גרנולות" },
+    gradeDistribution: GRANOLA_GRADE_DIST,
   },
 
-  // ── Ingredient investigation ───────────────────────────────────────────────
+  // -- Ingredient investigation (ingredient_mask) --------------------------------
   {
     id: "ingredient-cereal-sugar-aliases",
     type: "ingredient_investigation",
-    visualMode: "ingredient_tokens",
+    visualMode: "ingredient_mask",
     eyebrow: "חקירת מרכיב",
     category: "דגני בוקר",
     title: "סוכר תחת שלוש מסכות",
-    evidence: "מלטוז, ממתיק גלוקוז-פרוקטוז ודבש — שלושה שמות, מקור סוכר אחד ב-20 דגנים.",
-    metric: "20 מוצרים נבדקו",
-    href: "/hashvaot/breakfast-cereals",
+    evidence:
+      CEREALS_SUGAR_MASK_STATS.withMultipleSugarSources +
+      " מוצרים מכילים שני מקורות סוכר ומעלה מתוך " +
+      CEREALS_SUGAR_MASK_STATS.surveyed +
+      " דגני בוקר שנבדקו.",
+    metric:
+      CEREALS_SUGAR_MASK_STATS.surveyed + " מוצרים נבדקו",
+    href: "/hashvaot/breakfast-cereals?product=bsip1_cereal_7296073705567",
     accent: "#7A8C5E",
-    ingredientTokens: ["מלטוז", "ממתיק גלוקוז-פרוקטוז", "דבש"],
+    ingredientTokens: [
+      "סוכר לבן",
+      "סירופ גלוקוז-פרוקטוז",
+      "דבש",
+    ],
+    ingredientSpotlightProductId: CEREALS_SUGAR_MASK_STATS.spotlightProductId,
+    ingredientMaskCount: CEREALS_SUGAR_MASK_STATS.withMultipleSugarSources,
   },
 
-  // ── Supplement report: Magnesium ───────────────────────────────────────────
+  // -- Supplement report: Magnesium ----------------------------------------------
   {
     id: "supplement-magnesium-form",
     type: "supplement_report",
