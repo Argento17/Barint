@@ -25,14 +25,14 @@ const MAGNESIUM_DESCRIPTION =
 
 export default function SupplementsIndexPage() {
   return (
-    <div
+    <main
       className={cn(
         "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
       )}
     >
       <HomeContainer className="py-14 md:py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#167A58]/90">
           Bari comparisons · תוספי תזונה
         </p>
         <h1 className="mt-3 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
@@ -58,7 +58,7 @@ export default function SupplementsIndexPage() {
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E5663] transition-colors hover:text-[#111318]"
           >
             <ArrowLeft className="size-4" aria-hidden />
-            חזרה להשוואות המזון
+            חזרה לכל הקטגוריות
           </Link>
           <Link
             href="/"
@@ -69,6 +69,6 @@ export default function SupplementsIndexPage() {
           </Link>
         </div>
       </HomeContainer>
-    </div>
+    </main>
   );
 }
