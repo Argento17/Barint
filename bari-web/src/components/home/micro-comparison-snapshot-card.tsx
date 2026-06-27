@@ -3,23 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { motion } from "framer-motion";
 
 import type {
   ComparisonCard,
   EditorialArchetype,
   EditorialCard,
-  HomepageCard,
 } from "@/lib/home/micro-comparison-snapshots";
+import type { CardVisual, HomepageCardWithVisual } from "@/lib/home/homepage-carousel-data";
 import { formatScore } from "@/lib/format/numbers";
 import { cn } from "@/lib/utils";
 
-const CARD_SHELL =
-  "group block h-full min-h-[17rem] w-[84vw] max-w-[32rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] p-4 shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[30rem] md:min-h-[18rem] md:p-5 flex flex-col";
+// ── Shell + tokens ────────────────────────────────────────────────────────────
 
-const ARCHETYPE_BADGE: Record<
-  EditorialArchetype | "comparison",
-  string
-> = {
+const CARD_SHELL =
+  "group block h-full min-h-[19rem] w-[84vw] max-w-[32rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[30rem] md:min-h-[20rem] flex flex-col";
+
+const CONTENT_PAD = "px-4 py-3 md:px-5 flex flex-col flex-1";
+
+const ARCHETYPE_BADGE: Record<EditorialArchetype | "comparison", string> = {
   comparison: "bg-[#E8F5EF] text-[#1F8F6A]",
   investigation: "bg-[#FEF9EC] text-[#92400E]",
   "category-report": "bg-[#F1F5F9] text-[#475569]",
@@ -28,6 +30,106 @@ const ARCHETYPE_BADGE: Record<
   "what-surprised-us": "bg-[#FFF1F2] text-[#9F1239]",
   "product-spotlight": "bg-[#E8F5EF] text-[#1F8F6A]",
 };
+
+// ── Hero band ─────────────────────────────────────────────────────────────────
+
+function HeroBand({
+  visual,
+  archetype,
+}: {
+  visual: CardVisual;
+  archetype: string;
+}) {
+  const isSpotlight = archetype === "product-spotlight";
+  const isComparison = archetype === "comparison";
+  const hasPhoto = Boolean(visual.photo);
+  const hasProductImages =
+    visual.productImages && visual.productImages.length > 0;
+
+  return (
+    <div
+      className="relative h-36 w-full overflow-hidden"
+      style={{ backgroundColor: visual.accent + "22" }}
+    >
+      {/* Category photo background */}
+      {hasPhoto && (
+        <Image
+          src={visual.photo!}
+          alt=""
+          fill
+          className={cn(
+            "object-cover",
+            hasProductImages ? "opacity-30" : "opacity-60"
+          )}
+          sizes="(max-width: 768px) 84vw, 32rem"
+          priority={false}
+        />
+      )}
+
+      {/* Bottom gradient fade to card bg */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+        style={{
+          background: `linear-gradient(to bottom, transparent, #FFFFFF)`,
+        }}
+      />
+
+      {/* Accent colour tint overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${visual.accent}33 0%, transparent 60%)`,
+        }}
+      />
+
+      {/* Product images */}
+      {hasProductImages && (
+        <motion.div
+          className={cn(
+            "absolute inset-0 flex items-center justify-center",
+            isSpotlight ? "pb-2" : "gap-4"
+          )}
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+          {visual.productImages!.map((url, i) => (
+            <div
+              key={url}
+              className={cn(
+                "relative shrink-0 drop-shadow-lg",
+                isSpotlight
+                  ? "h-28 w-20"
+                  : isComparison
+                  ? "h-24 w-16"
+                  : "h-20 w-14",
+                isComparison && i === 1 && "-mt-5"
+              )}
+            >
+              <Image
+                src={url}
+                alt=""
+                fill
+                className="object-contain"
+                sizes={isSpotlight ? "80px" : "64px"}
+              />
+            </div>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Photo-only hover zoom */}
+      {hasPhoto && !hasProductImages && (
+        <motion.div
+          className="absolute inset-0"
+          whileHover={{ scale: 1.06 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+      )}
+    </div>
+  );
+}
+
+// ── Shared header ─────────────────────────────────────────────────────────────
 
 function CardHeader({
   category,
@@ -59,6 +161,8 @@ function CardHeader({
     </div>
   );
 }
+
+// ── Comparison product column ─────────────────────────────────────────────────
 
 function ProductMiniColumn({
   product,
@@ -113,85 +217,91 @@ function ProductMiniColumn({
   );
 }
 
-function ComparisonCardLayout({ card }: { card: ComparisonCard }) {
+// ── Layouts ───────────────────────────────────────────────────────────────────
+
+function ComparisonCardLayout({ card }: { card: HomepageCardWithVisual & { archetype: "comparison" } }) {
   return (
     <Link href={card.href} className={CARD_SHELL}>
-      <CardHeader
-        category={card.category}
-        badgeLabel="השוואה"
-        title={card.title}
-        archetype="comparison"
-      />
-
-      <div className="mt-4 flex flex-1 flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <ProductMiniColumn product={card.leftProduct} side="left" />
-          <span className="shrink-0 text-xs font-extrabold text-[#5E6560]" aria-hidden>
-            מול
-          </span>
-          <ProductMiniColumn product={card.rightProduct} side="right" />
-        </div>
-
-        <div className="rounded-lg border-r-[3px] border-[#1F8F6A] bg-[#F7F7F2]/80 px-3 py-2.5">
-          <p className="text-[0.65rem] font-bold text-[#1F8F6A]">פער מרכזי</p>
-          <p className="mt-1 text-sm font-medium leading-relaxed text-[#111318]">
-            {card.tradeoff}
-          </p>
-        </div>
-      </div>
-
-      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
-        לפרטים
-        <ChevronLeft className="size-3.5" aria-hidden />
-      </p>
-    </Link>
-  );
-}
-
-function EditorialCardLayout({ card }: { card: EditorialCard }) {
-  return (
-    <Link href={card.href} className={CARD_SHELL}>
-      <CardHeader
-        category={card.category}
-        badgeLabel={card.eyebrow}
-        title={card.title}
-        archetype={card.archetype}
-      />
-
-      <div className="mt-4 flex flex-1 flex-col gap-3">
-        {card.stat ? (
-          <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold tabular-nums tracking-[-0.04em] text-[#111318]">
-              {card.stat.value}
+      <HeroBand visual={card.visual} archetype="comparison" />
+      <div className={CONTENT_PAD}>
+        <CardHeader
+          category={card.category}
+          badgeLabel="השוואה"
+          title={card.title}
+          archetype="comparison"
+        />
+        <div className="mt-3 flex flex-1 flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <ProductMiniColumn product={card.leftProduct} side="left" />
+            <span className="shrink-0 text-xs font-extrabold text-[#5E6560]" aria-hidden>
+              מול
             </span>
-            <span className="text-xs font-semibold text-[#5E6560]">{card.stat.label}</span>
+            <ProductMiniColumn product={card.rightProduct} side="right" />
           </div>
-        ) : null}
-
-        <div className="rounded-lg border-r-[3px] border-[#1F8F6A] bg-[#F7F7F2]/80 px-3 py-2.5">
-          <p className="text-sm font-semibold leading-relaxed text-[#111318]">
-            {card.finding}
-          </p>
+          <div className="rounded-lg border-r-[3px] border-[#1F8F6A] bg-[#F7F7F2]/80 px-3 py-2.5">
+            <p className="text-[0.65rem] font-bold text-[#1F8F6A]">פער מרכזי</p>
+            <p className="mt-1 text-sm font-medium leading-relaxed text-[#111318]">
+              {card.tradeoff}
+            </p>
+          </div>
         </div>
-
-        {card.context ? (
-          <p className="text-xs text-[#5E6560]">{card.context}</p>
-        ) : null}
+        <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
+          לפרטים
+          <ChevronLeft className="size-3.5" aria-hidden />
+        </p>
       </div>
-
-      <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
-        לפרטים
-        <ChevronLeft className="size-3.5" aria-hidden />
-      </p>
     </Link>
   );
 }
 
-export function HomepageCardItem({ card }: { card: HomepageCard }) {
+function EditorialCardLayout({ card }: { card: HomepageCardWithVisual & { archetype: Exclude<HomepageCardWithVisual["archetype"], "comparison"> } }) {
+  const ev = card as EditorialCard & { visual: CardVisual };
+  return (
+    <Link href={card.href} className={CARD_SHELL}>
+      {card.visual && (
+        <HeroBand visual={card.visual} archetype={card.archetype} />
+      )}
+      <div className={CONTENT_PAD}>
+        <CardHeader
+          category={card.category}
+          badgeLabel={ev.eyebrow}
+          title={card.title}
+          archetype={card.archetype as EditorialArchetype}
+        />
+        <div className="mt-3 flex flex-1 flex-col gap-3">
+          {ev.stat ? (
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-extrabold tabular-nums tracking-[-0.04em] text-[#111318]">
+                {ev.stat.value}
+              </span>
+              <span className="text-xs font-semibold text-[#5E6560]">{ev.stat.label}</span>
+            </div>
+          ) : null}
+          <div className="rounded-lg border-r-[3px] border-[#1F8F6A] bg-[#F7F7F2]/80 px-3 py-2.5">
+            <p className="text-sm font-semibold leading-relaxed text-[#111318]">
+              {ev.finding}
+            </p>
+          </div>
+          {ev.context ? (
+            <p className="text-xs text-[#5E6560]">{ev.context}</p>
+          ) : null}
+        </div>
+        <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 transition-opacity group-hover:opacity-100">
+          לפרטים
+          <ChevronLeft className="size-3.5" aria-hidden />
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+// ── Public export ─────────────────────────────────────────────────────────────
+
+export function HomepageCardItem({ card }: { card: HomepageCardWithVisual }) {
   if (card.archetype === "comparison") {
     return <ComparisonCardLayout card={card} />;
   }
-  return <EditorialCardLayout card={card} />;
+  return <EditorialCardLayout card={card as HomepageCardWithVisual & { archetype: Exclude<HomepageCardWithVisual["archetype"], "comparison"> }} />;
 }
 
 /** @deprecated Use HomepageCardItem */
