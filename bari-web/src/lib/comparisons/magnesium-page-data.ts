@@ -22,7 +22,30 @@
 //
 // Content status: passed naturalness gate (0 HIGH) + red-team gate (TASK-384A). Go-live ready.
 
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { BariProductVM, MagnesiumBadgesVM } from "@/lib/view-models";
+
+/** Brand strings from supplement SKU name_he / IL label (real_corpus_v3 skus_full). */
+const MAGNESIUM_BRAND_BY_ID: Record<string, string> = {
+  "7290013464248": "סופהרב",
+  "7290019444480": "אלטמן",
+  "7290011899967": "אלטמן",
+  "7290018439043": "נוטריקר",
+  "7290010207640": "NT L.C.",
+  "7290001943700": "פול-מג הדס",
+  "7290015318532": "טינק",
+  "7290001066973": "נוטריקר",
+  "0033984005181": "סולגר",
+  "7290018439579": "נוטריקר",
+  "7290001065662": "נוטריקר",
+  "7290017218564": "אלטמן",
+  "7290013142894": "אלטמן",
+  "7290019444206": "אלטמן",
+  "7290001065594": "נוטריקר",
+  "7290015318426": "טינק",
+  "7290015429245": "אמורפיקיור",
+  "7290118816065": "סופהרב",
+};
 
 // ─── Magnesium badge helpers (TASK-384A) ─────────────────────────────────────
 // Per-product MagnesiumBadgesVM values.
@@ -111,7 +134,7 @@ export const magnesiumMethodologyLines = [
 // imageUrl: brand/retailer sites only. NO Open Food Facts. NO OFF.
 // Content two-gate sign-off complete (TASK-384A).
 
-export const magnesiumProducts: BariProductVM[] = [
+const magnesiumProductsRaw: BariProductVM[] = [
   // ─── B (4 products) ──────────────────────────────────────────────────────
   // Sort: score desc. 72.8 tie → Supherb first (citrate, 250mg), Altman bisgly second.
   {
@@ -793,5 +816,12 @@ export const magnesiumProducts: BariProductVM[] = [
     },
   },
 ];
+
+export const magnesiumProducts: BariProductVM[] = magnesiumProductsRaw.map((product) =>
+  normalizeProductBrandDisplay({
+    ...product,
+    brand: MAGNESIUM_BRAND_BY_ID[product.id] ?? product.brand,
+  })
+);
 
 // Supherb Max 550 (7290118818205) — DISCARDED. Missing-data discard rule. NOT displayed.
