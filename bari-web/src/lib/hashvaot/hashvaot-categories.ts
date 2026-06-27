@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Hashvaot category registry.
  * DRAFT subtext below is pending Content + QA sign-off.
  */
@@ -28,11 +28,11 @@ export const PERSONAL_CARE_COMING_SOON_SUBTEXT =
 export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
   {
     id: "supermarket",
-    title: "מוצרי סופרמרקט",
+    title: "מוצרי סופרמרקט אמיתיים",
     status: "live",
     countLabel: "16 השוואות",
     href: "/hashvaot/supermarket",
-    description: "חלב, לחם, דגני בוקר, גבינות, חטיפים ועוד — מהמדף הישראלי.",
+    description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
     accent: "#BC6A33",
     heroStat: { value: "16", label: "השוואות פעילות" },
   },
@@ -42,9 +42,9 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     status: "live",
     countLabel: "1 השוואה",
     href: "/hashvaot/supplements",
-    description: "תוספים מנותחים לפי ספיגה בפועל, לא לפי הכמות שעל הקופסה.",
+    description: "תוספי תזונה מנותחים באופן שונה ממוצרי מזון — ספיגה, אפקטיביות ועוד",
     accent: "#4A7B8C",
-    heroStat: { value: "18", label: "מוצרי מגנזיום נבדקו" },
+    heroStat: { value: "1", label: "השוואות פעילות" },
   },
   {
     id: "raw-foods",
