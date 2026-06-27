@@ -22,6 +22,7 @@
 //
 // Content status: passed naturalness gate (0 HIGH) + red-team gate (TASK-384A). Go-live ready.
 
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { BariProductVM, MagnesiumBadgesVM } from "@/lib/view-models";
 
 // ─── Magnesium badge helpers (TASK-384A) ─────────────────────────────────────
@@ -111,12 +112,13 @@ export const magnesiumMethodologyLines = [
 // imageUrl: brand/retailer sites only. NO Open Food Facts. NO OFF.
 // Content two-gate sign-off complete (TASK-384A).
 
-export const magnesiumProducts: BariProductVM[] = [
+const magnesiumProductsRaw: BariProductVM[] = [
   // ─── B (4 products) ──────────────────────────────────────────────────────
   // Sort: score desc. 72.8 tie → Supherb first (citrate, 250mg), Altman bisgly second.
   {
     id: "7290013464248",
-    name: "סופהרב מגנזיום ציטראט+B6 בדץ 60 טבליות",
+    name: "מגנזיום ציטראט+B6 בדץ 60 טבליות",
+    brand: "סופהרב",
     // Source: teva-call.co.il
     imageUrl: "https://www.teva-call.co.il/wp-content/uploads/2015/11/7290013464248-510x510.webp",
     score: 73,
@@ -157,7 +159,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290019444480",
-    name: "אלטמן מגנזיום ביסגליצינט 250 קפליות",
+    name: "מגנזיום ביסגליצינט 250 קפליות",
+    brand: "אלטמן",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2026/01/7290019444480.png",
     score: 73,
@@ -197,7 +200,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290011899967",
-    name: "אלטמן מגנזיום ציטראט 120 קפליות",
+    name: "מגנזיום ציטראט 120 קפליות",
+    brand: "אלטמן",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2020/08/7290011899967.jpg",
     score: 69,
@@ -230,7 +234,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290018439043",
-    name: "נוטריקר מגנזיום WELL כמוסות 90",
+    name: "מגנזיום WELL כמוסות 90",
+    brand: "נוטריקר",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2020/09/7290018439043.png",
     score: 66,
@@ -268,7 +273,8 @@ export const magnesiumProducts: BariProductVM[] = [
   // Sort: score desc: NT-LC 63.9, Full-Mag Hadas 62.2, Tink Malate 60.6, Nutricare Malate 59.3
   {
     id: "7290010207640",
-    name: "NT L.C. כמוסות מגנזיום אנטי לג קרמפס",
+    name: "כמוסות מגנזיום אנטי לג קרמפס",
+    brand: "NT L.C.",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2021/01/7290010207640.png",
     score: 64,
@@ -306,7 +312,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290001943700",
-    name: "פול-מג הדס ביסגליצינט 600 כמוסות",
+    name: "ביסגליצינט 600 כמוסות",
+    brand: "פול-מג הדס",
     // Source: vitamins4all.co.il — using existing image URL pattern for this barcode
     imageUrl: null,
     score: 62,
@@ -342,7 +349,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290015318532",
-    name: "טינק מגנזיום מלאט 60 כמוסות",
+    name: "מגנזיום מלאט 60 כמוסות",
+    brand: "טינק",
     // Source: biogaya.co.il
     imageUrl: "https://www.biogaya.co.il/media/catalog/product/7/2/7290015318532_1.jpg",
     score: 61,
@@ -377,7 +385,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290001066973",
-    name: "נוטריקר מגנזיום מלאט 90 כמוסות",
+    name: "מגנזיום מלאט 90 כמוסות",
+    brand: "נוטריקר",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2025/11/7290001066973-1.jpg",
     score: 59,
@@ -417,7 +426,8 @@ export const magnesiumProducts: BariProductVM[] = [
   // Solgar UNRESOLVED form → D/48.9 (blend_dominant). Taurate D/46.2 (blend_dominant).
   {
     id: "0033984005181",
-    name: "סולגר סידן ומגנזיום +D ויטמין 150 טבליות",
+    name: "סידן ומגנזיום +D ויטמין 150 טבליות",
+    brand: "סולגר",
     // Source: solgar.co.il
     imageUrl: "https://www.solgar.co.il/wp-content/uploads/2022/12/%D7%A1%D7%99%D7%93%D7%9F-%D7%95%D7%9E%D7%92%D7%A0%D7%96%D7%99%D7%95%D7%9D-%D7%91%D7%AA%D7%95%D7%A1%D7%A4%D7%AA-%D7%95%D7%99%D7%98%D7%9E%D7%99%D7%9F-D3.png",
     score: 49,
@@ -456,7 +466,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290018439579",
-    name: "נוטריקר מגנזיום טאוראט 90 כמוסות",
+    name: "מגנזיום טאוראט 90 כמוסות",
+    brand: "נוטריקר",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2022/02/7290018439579.webp",
     score: 46,
@@ -502,7 +513,8 @@ export const magnesiumProducts: BariProductVM[] = [
   // bandNote on first UL_EXCEED product to signal the sub-group.
   {
     id: "7290001065662",
-    name: "נוטריקר מגנזיום אוקסיד 520 100 כמוסות",
+    name: "מגנזיום אוקסיד 520 100 כמוסות",
+    brand: "נוטריקר",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/05/7290001065662.webp",
     score: 49,
@@ -545,7 +557,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290017218564",
-    name: "אלטמן מגנזיום 520 60 כמוסות",
+    name: "מגנזיום 520 60 כמוסות",
+    brand: "אלטמן",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/08/7290017218564-2.webp",
     score: 49,
@@ -584,7 +597,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290013142894",
-    name: "אלטמן מגנזיום UP 60 כמוסות",
+    name: "מגנזיום UP 60 כמוסות",
+    brand: "אלטמן",
     // Source: altman.co.il
     imageUrl: "https://www.altman.co.il/wp-content/uploads/batc/_i/bd7e8878-3115-4e63-9646-d28e5d617979.webp",
     score: 49,
@@ -623,7 +637,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290019444206",
-    name: "אלטמן מגנזיום באלאנס 60 כמוסות",
+    name: "מגנזיום באלאנס 60 כמוסות",
+    brand: "אלטמן",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2025/05/7290019444206.webp",
     score: 49,
@@ -667,7 +682,8 @@ export const magnesiumProducts: BariProductVM[] = [
   // Score capped at 34.0. "nano liposomal" claim insufficient evidence.
   {
     id: "7290001065594",
-    name: "נוטריקר נאנו מגנזיום ליפוזומלי 60 כמוסות",
+    name: "נאנו מגנזיום ליפוזומלי 60 כמוסות",
+    brand: "נוטריקר",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/07/%D7%A0%D7%90%D7%A0%D7%95-%D7%9E%D7%92%D7%A0%D7%96%D7%99%D7%95%D7%9D-Copy.webp",
     score: 34,
@@ -706,7 +722,8 @@ export const magnesiumProducts: BariProductVM[] = [
   // Per spec requirement 6: render cleanly, no fake grade, no blank/broken card.
   {
     id: "7290015318426",
-    name: "טינק מגנזיום אוקסיד 520 90 כמוסות",
+    name: "מגנזיום אוקסיד 520 90 כמוסות",
+    brand: "טינק",
     // Source: tinc.co.il
     imageUrl: "https://www.tinc.co.il/GoopSitesFiles/83206/User/catalog_941469-l.jpg?637595154336530000",
     score: null,
@@ -738,7 +755,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290015429245",
-    name: "אמורפיקיור pH מגנזיום 60 קפסולות",
+    name: "pH מגנזיום 60 קפסולות",
+    brand: "אמורפיקיור",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2023/12/7290015429245-1.jpg",
     score: null,
@@ -766,7 +784,8 @@ export const magnesiumProducts: BariProductVM[] = [
   },
   {
     id: "7290118816065",
-    name: "סופהרב TRIOMAG מגנזיום 60 כמוסות",
+    name: "TRIOMAG מגנזיום 60 כמוסות",
+    brand: "סופהרב",
     // Source: vitamins4all.co.il
     imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2026/01/7290118816065-1.jpg",
     score: null,
@@ -793,5 +812,9 @@ export const magnesiumProducts: BariProductVM[] = [
     },
   },
 ];
+
+export const magnesiumProducts: BariProductVM[] = magnesiumProductsRaw.map((product) =>
+  normalizeProductBrandDisplay(product)
+);
 
 // Supherb Max 550 (7290118818205) — DISCARDED. Missing-data discard rule. NOT displayed.

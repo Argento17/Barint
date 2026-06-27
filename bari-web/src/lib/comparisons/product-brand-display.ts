@@ -27,6 +27,17 @@ export function stripBrandFromName(name: string, brand: string): string {
     if (withoutSep) return withoutSep;
   }
 
+  // Brand glued to adjacent text (e.g. "לינדט70%מילד", "שוק.לינדט").
+  const glued = new RegExp(escapeRegExp(trimmedBrand), "gi");
+  if (glued.test(trimmedName)) {
+    const cleaned = trimmedName
+      .replace(glued, "")
+      .replace(/^שוק\.\s*/i, "שוקולד ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (cleaned) return cleaned;
+  }
+
   // Brand token embedded mid-title (e.g. "בריסטה אלפרו 500").
   const inline = new RegExp(`\\s+${escapeRegExp(trimmedBrand)}(?=\\s|$)`, "i");
   if (inline.test(trimmedName)) {
