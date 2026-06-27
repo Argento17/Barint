@@ -1,257 +1,226 @@
-/**
- * Homepage carousel cards with real product data from published frontend JSONs.
- * Self-contained types — no circular imports with micro-comparison-snapshots.ts.
+﻿/**
+ * Homepage carousel — 9 cards using the strict CarouselCard schema.
+ * Rules enforced here:
+ *  - comparison → visualMode:product_duel, products keyed by productId, pack images only
+ *  - category_report → visualMode:score_spread, NO product images
+ *  - ingredient_investigation → visualMode:ingredient_tokens, NO photos
+ *  - supplement_report → visualMode:supplement_molecule, NO external bottle URLs
+ *  - product_spotlight → visualMode:product_single, one pack by productId
  */
 
-export type CardVisual = {
-  accent: string;
-  photo?: string;
-  productImages?: string[];
-};
+import type { CarouselCard } from "./homepage-carousel-schema";
+import { CAROUSEL_PRODUCT_FALLBACK } from "./homepage-carousel-schema";
 
-type ComparisonProductData = {
-  name: string;
-  brand: string;
-  score: number;
-  imageUrl?: string;
-  strengths: [string, string];
-};
+const CL =
+  "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/";
+const YO =
+  "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/";
 
-type ComparisonCardWithVisual = {
-  archetype: "comparison";
-  id: string;
-  category: string;
-  title: string;
-  href: string;
-  tradeoff: string;
-  leftProduct: ComparisonProductData;
-  rightProduct: ComparisonProductData;
-  visual: CardVisual;
-};
+export { CAROUSEL_PRODUCT_FALLBACK };
 
-type EditorialArchetype =
-  | "investigation"
-  | "category-report"
-  | "ingredient"
-  | "methodology"
-  | "what-surprised-us"
-  | "product-spotlight";
-
-type EditorialCardWithVisual = {
-  archetype: EditorialArchetype;
-  id: string;
-  category: string;
-  title: string;
-  href: string;
-  eyebrow: string;
-  finding: string;
-  context?: string;
-  stat?: { value: string; label: string };
-  visual: CardVisual;
-};
-
-export type HomepageCardWithVisual =
-  | ComparisonCardWithVisual
-  | EditorialCardWithVisual;
-
-const CL = "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/";
-const YO = "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/";
-
-export const HOMEPAGE_CAROUSEL_CARDS: HomepageCardWithVisual[] = [
+export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
+  // ── Comparison 1: Bread ────────────────────────────────────────────────────
   {
-    archetype: "comparison",
-    id: "bread-sourdough-vs-cracker",
+    id: "comparison-bread-sourdough-vs-cracker",
+    type: "comparison",
+    visualMode: "product_duel",
+    eyebrow: "השוואה",
     category: "לחם ומאפים",
     title: "מחמצת קמח מלא מול קרקר שומשום",
+    evidence: "פרש 31 נקודות: קמח מלא ראשון אצל המחמצת, קמח מזוקק אצל הקרקר.",
+    metric: "89 מול 58",
     href: "/hashvaot/bread",
-    tradeoff: "המחמצת — 89 נקודות, 90% קמח מלא; הקרקר — 58, קמח מזוקק ותוספות.",
+    accent: "#6B7B5E",
+    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
     leftProduct: {
+      productId: "bsip1_bread_481203",
+      barcode: "481203",
       name: "לחם מחמצת קמח מלא",
       brand: "ארנה",
       score: 89,
       imageUrl: CL + "IUU18_Z_P_481203_1.png",
-      strengths: ["קמח מלא ראשון ברשימה", "מחמצת שיפון אמיתית"],
+      imageAlt: "לחם מחמצת קמח מלא ארנה",
+      imageStatus: "verified",
     },
     rightProduct: {
-      name: "קרקר שומשום אסם",
+      productId: "bsip1_bread_74252",
+      barcode: "74252",
+      name: "קרקר שומשום",
       brand: "אסם",
       score: 58,
       imageUrl: CL + "EUV20_Z_P_74252_1.png",
-      strengths: ["נוח לנשיאה", "קל לכמת"],
-    },
-    visual: {
-      accent: "#6B7B5E",
-      photo: "/hashvaot/themes/bread.jpg",
-      productImages: [
-        CL + "IUU18_Z_P_481203_1.png",
-        CL + "EUV20_Z_P_74252_1.png",
-      ],
+      imageAlt: "קרקר שומשום אסם",
+      imageStatus: "verified",
     },
   },
 
+  // ── Comparison 2: Milk ─────────────────────────────────────────────────────
   {
-    archetype: "comparison",
-    id: "dairy-vs-plant",
+    id: "comparison-milk-whole-vs-soy",
+    type: "comparison",
+    visualMode: "product_duel",
+    eyebrow: "השוואה",
     category: "חלב ותחליפים",
-    title: "חלב מלא מול סויה ללא סוכר",
+    title: "חלב מלא מול משקה סויה",
+    evidence: "חלב — רכיב יחיד; סויה — 3 רכיבים, צפיפות תזונתית נמוכה יותר.",
+    metric: "85 מול 64",
     href: "/hashvaot/milk-comparison",
-    tradeoff: "חלב — רכיב יחיד, ציון A; סויה — 3 רכיבים בלבד אך צפיפות תזונתית נמוכה מורידה לציון C.",
+    accent: "#4A7B8C",
+    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
     leftProduct: {
-      name: "חלב מלא בטעם של פעם",
+      productId: "milk_7290000051352",
+      barcode: "7290000051352",
+      name: "חלב מלא",
       brand: "תנובה",
       score: 85,
       imageUrl: YO + "7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
-      strengths: ["רכיב יחיד: חלב", "ציון A במדף"],
+      imageAlt: "חלב מלא תנובה",
+      imageStatus: "verified",
     },
     rightProduct: {
+      productId: "milk_7290116936116",
+      barcode: "7290116936116",
       name: "משקה סויה ללא סוכרים",
       brand: "תנובה אלטרנטיב",
       score: 64,
       imageUrl: YO + "7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
-      strengths: ["3 רכיבים בלבד", "ללא סוכר מוסף"],
-    },
-    visual: {
-      accent: "#4A7B8C",
-      photo: "/hashvaot/themes/milk.jpg",
-      productImages: [
-        YO + "7/2/7290000051352_s1_1502-12-2026_14-38-30.jpg",
-        YO + "7/2/7290116936116_s1_1512-04-2025_13-57-05.jpg",
-      ],
+      imageAlt: "משקה סויה ללא סוכרים תנובה אלטרנטיב",
+      imageStatus: "verified",
     },
   },
 
+  // ── Comparison 3: Granola ──────────────────────────────────────────────────
   {
-    archetype: "comparison",
-    id: "granola-premium-vs-bottom",
+    id: "comparison-granola-premium-vs-bottom",
+    type: "comparison",
+    visualMode: "product_duel",
+    eyebrow: "השוואה",
     category: "גרנולה",
     title: "גרנולה דני וגלית מול שוק קולינרי",
+    evidence: "38 נקודות פרש: שיבולת שועל ראשונה אצל דני וגלית, סוכר ראשון אצל שוק קולינרי.",
+    metric: "70 מול 31",
     href: "/hashvaot/granola",
-    tradeoff: "38 נקודות מפרידות: שיבולת שועל ראשונה אצל דני וגלית; סוכר לפני שיבולת שועל אצל שוק קולינרי.",
+    accent: "#8B7355",
+    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
     leftProduct: {
+      productId: "bsip1_cereal_7290017962047",
+      barcode: "7290017962047",
       name: "גרנולה חמוציות ושקדים",
       brand: "דני וגלית",
       score: 70,
       imageUrl: CL + "ARO54_Z_P_7290017962047_1.png",
-      strengths: ["שיבולת שועל ראשונה", "ללא סירופ תירס"],
+      imageAlt: "גרנולה חמוציות ושקדים דני וגלית",
+      imageStatus: "verified",
     },
     rightProduct: {
+      productId: "bsip1_cereal_1343845",
+      barcode: "1343845",
       name: "גרנולה עם פירות",
       brand: "שוק קולינרי",
       score: 31,
       imageUrl: CL + "KXI28_Z_P_1343845_1.png",
-      strengths: ["מחיר נגיש", "פרי גלוי"],
-    },
-    visual: {
-      accent: "#8B7355",
-      photo: "/hashvaot/themes/granola.jpg",
-      productImages: [
-        CL + "ARO54_Z_P_7290017962047_1.png",
-        CL + "KXI28_Z_P_1343845_1.png",
-      ],
+      imageAlt: "גרנולה עם פירות שוק קולינרי",
+      imageStatus: "verified",
     },
   },
 
+  // ── Product spotlight: Tahini bread ───────────────────────────────────────
   {
-    archetype: "product-spotlight",
-    id: "bread-tahini-spotlight",
-    category: "לחם ומאפים",
-    title: "לחם טחינה פרוס — ציון 95",
-    href: "/hashvaot/bread",
+    id: "spotlight-bread-tahini",
+    type: "product_spotlight",
+    visualMode: "product_single",
     eyebrow: "מוצר מוביל",
-    finding: "הציון הגבוה ביותר מבין 29 לחמים: קמח מלא ראשון, טחינה טבעית, ללא סוכר מוסף ורשימה נקייה.",
-    context: "מתוך 29 מוצרים שנסרקו",
-    stat: { value: "95", label: "ציון Bari" },
-    visual: {
-      accent: "#6B7B5E",
-      productImages: [CL + "JDU46_Z_P_7290016245325_1.png"],
+    category: "לחם ומאפים",
+    title: "לחם טחינה — ציון 95",
+    evidence: "הציון הגבוה ביותר מבין 29 לחמים: קמח מלא ראשון, טחינה טבעית, ללא סוכר.",
+    metric: "95 / A",
+    href: "/hashvaot/bread",
+    accent: "#6B7B5E",
+    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
+    spotlightProduct: {
+      productId: "bsip1_bread_7290016245325",
+      barcode: "7290016245325",
+      name: "לחם טחינה פרוס",
+      brand: "לחם ארץ",
+      score: 95,
+      imageUrl: CL + "JDU46_Z_P_7290016245325_1.png",
+      imageAlt: "לחם טחינה פרוס לחם ארץ",
+      imageStatus: "verified",
     },
   },
 
+  // ── Category report: Cereals ───────────────────────────────────────────────
   {
-    archetype: "category-report",
-    id: "cereals-report",
-    category: "דגני בוקר",
-    title: "20 דגנים — ואף אחד לא A",
-    href: "/hashvaot/breakfast-cereals",
+    id: "category-report-cereals",
+    type: "category_report",
+    visualMode: "score_spread",
     eyebrow: "דוח קטגוריה",
-    finding: "פרש ציונים 74.7–30.2 — הטוב ביותר B+, אין ציון A בכל המדף. הסוכר שולט ברשימה.",
-    context: "20 מוצרים · פרש 44.5 נקודות",
-    stat: { value: "20", label: "מוצרים" },
-    visual: {
-      accent: "#7A8C5E",
-      photo: "/hashvaot/themes/breakfast-cereals.jpg",
-      productImages: [
-        CL + "KAG24_Z_P_5010029000061_1.png",
-        CL + "ERH84_Z_P_7297488098688_1.png",
-      ],
-    },
+    category: "דגני בוקר",
+    title: "20 דגנים — אפילו הטוב ביותר לא A",
+    evidence: "הסוכר שולט: גם המוביל מסתיים ב-B+. אין ציון A בכל המדף.",
+    metric: "פרש 44.5 נקודות",
+    href: "/hashvaot/breakfast-cereals",
+    accent: "#7A8C5E",
+    scoreSpread: { low: 30, high: 75, count: 20, label: "דגני בוקר" },
   },
 
+  // ── Category report: Snacks ────────────────────────────────────────────────
   {
-    archetype: "category-report",
-    id: "snacks-report",
+    id: "category-report-snacks",
+    type: "category_report",
+    visualMode: "score_spread",
+    eyebrow: "דוח קטגוריה",
     category: "חטיפים",
     title: "21 חטיפים: פרש 52 נקודות",
+    evidence: "67 עד 15 — אותה קטגוריה, עולמות שונים. המוביל: תמרים וקינמון בלבד.",
+    metric: "ציון 15–67",
     href: "/hashvaot/snacks",
-    eyebrow: "דוח קטגוריה",
-    finding: "67 עד 15 — אותה קטגוריה, עולמות שונים. המוביל: תמרים וקינמון בלבד.",
-    context: "21 מוצרים · ציון 67–15",
-    stat: { value: "21", label: "מוצרים" },
-    visual: {
-      accent: "#BC6A33",
-      photo: "/hashvaot/themes/snacks.jpg",
-      productImages: [CL + "DPB48_Z_P_7290100659090_1.png"],
-    },
+    accent: "#BC6A33",
+    scoreSpread: { low: 15, high: 67, count: 21, label: "חטיפים" },
   },
 
+  // ── Category report: Granola ───────────────────────────────────────────────
   {
-    archetype: "category-report",
-    id: "granola-category-report",
+    id: "category-report-granola",
+    type: "category_report",
+    visualMode: "score_spread",
+    eyebrow: "דוח קטגוריה",
     category: "גרנולה",
-    title: "22 גרנולות: פרש 38 נקודות",
+    title: "22 גרנולות: מי באמת בריא?",
+    evidence: "אם הסוכר מקדים שיבולת שועל — זה ממתק, לא גרנולה.",
+    metric: "ציון 31–70",
     href: "/hashvaot/granola",
-    eyebrow: "דוח קטגוריה",
-    finding: "אם הסוכר מקדים את שיבולת השועל ברשימת הרכיבים — זה ממתק בשם גרנולה, לא גרנולה.",
-    context: "22 מוצרים · ציון 70–31",
-    stat: { value: "22", label: "מוצרים" },
-    visual: {
-      accent: "#8B7355",
-      photo: "/hashvaot/themes/granola.jpg",
-      productImages: [
-        CL + "ARO54_Z_P_7290017962047_1.png",
-        CL + "KXI28_Z_P_1343845_1.png",
-      ],
-    },
+    accent: "#8B7355",
+    scoreSpread: { low: 31, high: 70, count: 22, label: "גרנולות" },
   },
 
+  // ── Ingredient investigation ───────────────────────────────────────────────
   {
-    archetype: "ingredient",
-    id: "cereal-sugar-aliases",
-    category: "חקירת מרכיב",
-    title: "מלטוז, ממתיק גלוקוז-פרוקטוז, דבש — סוכר תחת שלוש מסכות",
+    id: "ingredient-cereal-sugar-aliases",
+    type: "ingredient_investigation",
+    visualMode: "ingredient_tokens",
+    eyebrow: "חקירת מרכיב",
+    category: "דגני בוקר",
+    title: "סוכר תחת שלוש מסכות",
+    evidence: "מלטוז, ממתיק גלוקוז-פרוקטוז ודבש — שלושה שמות, מקור סוכר אחד ב-20 דגנים.",
+    metric: "20 מוצרים נבדקו",
     href: "/hashvaot/breakfast-cereals",
-    eyebrow: "תובנת מרכיב",
-    finding: "בדגנים עם תווית «דגנים מלאים»: מלטוז, ממתיק גלוקוז-פרוקטוז ודבש מופיעים כרכיבים שלישי-רביעי — שלושה שמות, מקור סוכר אחד.",
-    context: "מתוך בדיקת 20 מוצרי דגני בוקר",
-    visual: {
-      accent: "#7A8C5E",
-      photo: "/hashvaot/themes/breakfast-cereals.jpg",
-    },
+    accent: "#7A8C5E",
+    ingredientTokens: ["מלטוז", "ממתיק גלוקוז-פרוקטוז", "דבש"],
   },
 
+  // ── Supplement report: Magnesium ───────────────────────────────────────────
   {
-    archetype: "investigation",
-    id: "magnesium-investigation",
-    category: "תוספי תזונה",
-    title: "18 מגנזיומים — הצורה הכימית מכריעה",
-    href: "/hashvaot/magnesium",
+    id: "supplement-magnesium-form",
+    type: "supplement_report",
+    visualMode: "supplement_molecule",
     eyebrow: "חקירת קטגוריה",
-    finding: "מגנזיום גליצינאט, ציטראט, תחמוצת — אותו מינרל, ספיגה שונה לחלוטין. הצורה הכימית קובעת יותר מהמינון.",
-    context: "18 מוצרים מוכרים בישראל",
-    stat: { value: "18", label: "מוצרים" },
-    visual: {
-      accent: "#4A7B8C",
-      photo: "/hashvaot/themes/magnesium.jpg",
-    },
+    category: "תוספי תזונה",
+    title: "18 מגנזיומים — הצורה קובעת",
+    evidence: "גליצינאט, ציטראט, תחמוצת — אותו מינרל, ספיגה שונה לחלוטין.",
+    metric: "18 מוצרים",
+    href: "/hashvaot/magnesium",
+    accent: "#4A7B8C",
+    supplementStat: { value: "18", label: "מוצרים" },
   },
 ];
