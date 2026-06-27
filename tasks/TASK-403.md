@@ -2,14 +2,27 @@
 id: TASK-403
 title: E133 (Brilliant Blue) false EU-warning claim — additive registry data-accuracy
 owner: data-agent
-status: IN_PROGRESS
+status: RETURNED
 priority: MEDIUM
 created_at: 2026-06-26
+returned_at: 2026-06-27
 depends_on: []
 blocks: []
-category_id: null
+category_id: cereals
 blocker: ""
-dispatched: "2026-06-27 unattended orchestrate — native Data Agent (Sonnet), worktree-isolated, ground+audit+fix-at-source, NO deploy. Deploy + two-gate parked for owner supervised morning."
+dispatched: "2026-06-27 unattended orchestrate — native Data Agent (Sonnet), worktree-isolated."
+orchestrator_verification: >
+  RETURNED + orchestrator-VERIFIED 2026-06-27. Worktree agent-a9b4737962e4b80e8, branch
+  worktree-agent-a9b4737962e4b80e8, commit 80f9b183. Verified: (1) worktree diff is ONLY
+  cereals_frontend_v2.json (surgical); (2) E133 blast radius = exactly 1 live file / 1 product
+  (Trix 7613030979647) — confirmed by grep across live comparisons (E133 absent from the W2
+  canonical registry; the false text was baked into the cereals JSON, not registry-sourced as the
+  finding assumed); (3) new E133 text at :1240 cites Reg. 1333/2008 Annex V, false
+  EFSA-hyperactivity + mandatory-warning claim removed; (4) remaining warning string at :1254 is
+  E110 (Sunset Yellow — genuinely Southampton Six), correctly LEFT untouched. Grounding solid
+  (McCann 2007 PMID 17825405; six = E102/104/110/122/124/129; E133 excluded).
+  NOT CLOSED: consumer-facing copy → needs the two-gate (Content + Adversarial QA) + owner deploy.
+  PARKED for owner supervised morning. Low-risk (1-product factual correction).
 summary: >
   E133 (Brilliant Blue) false EU-warning claim — additive registry data-accuracy
 ---

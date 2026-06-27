@@ -7,7 +7,9 @@
 
 ### 2026-06-27 — UNATTENDED 3AM orchestrate pass
 - **Registry hygiene (deployed train-run work):** **TASK-409 CLOSED** (deployed `97400f8d5`, 12-cat clean re-derive, 7 frontends, engine untouched, two-gate clean) + **TASK-410 CLOSED** (deployed `646da02c9`; 3 juice sulphite movers verified in deployed JSON: 39.8/D, 38.1/D, 30.3/E = return block exactly). TASK-413 confirmed already closed (`8761cf863`). All moved to `tasks/closed/`. No score moved by orchestrator; deploys were the owner-authorized train run.
-- **DISPATCHED (native Sonnet, worktree-isolated, NO deploy):** **TASK-403** (E133 false EU-warning — ground Southampton-Six + audit whole additive registry + fix at source; copy-only, no score impact; `a9b4737962e4b80e8`) · **TASK-407** (`חומר משמר` preservative lexicon variant — BUILD + MEASURE score impact; tripwire-1 ship decision parked; `a37a0618aaa7b3be5`).
+- **DISPATCHED → RETURNED + VERIFIED (native Sonnet, worktree-isolated, NO deploy):**
+  - **TASK-403** (E133 false EU-warning) — worktree `80f9b183`. VERIFIED: diff=ONLY cereals JSON, blast radius **1 product** (Trix 7613030979647), new text cites Reg 1333/2008 Annex V, E110(correct) untouched, grounding solid (E133 ∉ Southampton Six). Copy-only, no score impact. **PARKED:** two-gate + owner deploy.
+  - **TASK-407** (`חומר משמר` lexicon) — worktree `929e236de`. VERIFIED: edit at signal_extractor.py:135, **no frontend JSON changed → no score moved**. Measured (NOT re-scored): 194 carry variant, 168 already-detected, **26 net-new / 7 est. grade-crossers @ −4pt**. **Tripwire-1 → PARKED** owner ship decision; needs a real re-score to confirm the 7 moves.
 - **PARKED for owner (tripwire/consumer-facing):** TASK-412 hard-cheeses governed sat-fat port (tripwire-1 go/no-go + cloud lane) · TASK-407 ship (moves scores) · TASK-403 deploy (two-gate + push). **BLOCKED:** TASK-406 (round-trip = de-chain re-shadow) · TASK-402 (engine→master in task-374 reconciliation). **QUEUED supervised:** de-chain TASK-395 Steps 2–5, hard-cheeses re-derive (C1-CURSOR), approved deploys.
 - Digest: `tasks/digests/2026-06-27-orchestrate.md`.
 

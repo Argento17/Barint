@@ -11,7 +11,7 @@ tasks I could verify against origin/master.
 
 ---
 
-## Dispatched
+## Dispatched (returned + orchestrator-verified)
 - **TASK-403** (E133 false EU-warning, data-accuracy/copy) → native **Data Agent** (Sonnet),
   worktree-isolated, background `a9b4737962e4b80e8`. Ground Southampton-Six → audit the WHOLE
   additive registry for mis-attributed EU warnings → fix E133 (+ any others) at source → stage.
@@ -21,7 +21,20 @@ tasks I could verify against origin/master.
   score impact only. **Tripwire-1** (adds preservative detection → moves published scores) →
   build+measure done unattended, **ship decision parked for owner**. No deploy.
 
-*(Both still running at digest time; results appended on return.)*
+**RESULTS (both verified by orchestrator):**
+- **TASK-403** → worktree `worktree-agent-a9b4737962e4b80e8` @ `80f9b183`. Diff = ONLY
+  `cereals_frontend_v2.json` (surgical). E133 blast radius = **exactly 1 live product** (Trix
+  `7613030979647`); the false text was baked into the cereals JSON, NOT registry-sourced (E133
+  absent from the W2 registry). New text at :1240 cites Reg. 1333/2008 Annex V, false claim removed;
+  E110 warning at :1254 (genuinely Southampton Six) correctly untouched. Grounding solid (McCann
+  2007 PMID 17825405; six = E102/104/110/122/124/129). **No score impact.** RETURNED-verified → PARKED (two-gate + deploy).
+- **TASK-407** → worktree `worktree-agent-a37a0618aaa7b3be5` @ `929e236de`. Variant at
+  `signal_extractor.py:135`; **NO frontend JSON changed → no published score moved.** Measurement
+  (NOT re-scored): 194 live products carry the variant, 168 already detected, **26 net-new** across
+  7 shelves, **7 estimated grade-crossers at an assumed −4pt** (bread 2079217 B→C, 481197 A→B;
+  brined 7290114314015 B→C, 2107798 B→C; cheese 7290112342102 D→E; granola_v1 7290011668587 C→D;
+  hummus 7290011800642 C→D). 2133889 already-detected via E202. **Tripwire-1.** RETURNED-verified →
+  PARKED (owner ship decision; a real BSIP2 re-score is needed to confirm the 7 estimated grade moves).
 
 ## Closed (with evidence)
 - **TASK-410** (juices D4 sulphite activation) → **CLOSED**. Deployed origin/master `646da02c9`
