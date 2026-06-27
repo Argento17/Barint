@@ -22,6 +22,8 @@ export function ComparisonTable({
   initialExpandedProductId = null,
   category,
   suppressPartialBadges = false,
+  clampVerdictLines,
+  compactDividers = false,
 }: {
   products: BariProductVM[];
   metricSpecs: readonly MetricSpec[];
@@ -33,6 +35,18 @@ export function ComparisonTable({
   /** FIX-3: when true, per-product partial confidence badges are suppressed (≥50%
    *  of products are partial — the badge carries no signal). */
   suppressPartialBadges?: boolean;
+  /**
+   * TASK-384A: passed through to ComparisonRow — clamps the rowVerdict paragraph to
+   * this many lines. When undefined (default), no clamp is applied; all existing
+   * categories are byte-identical to before.
+   */
+  clampVerdictLines?: number;
+  /**
+   * TASK-384A: when true, reduces band-divider vertical padding from 9px to 5px so
+   * an extra row fits above the fold on compact mobile viewports. Prop-gated —
+   * default false leaves all other category pages byte-identical.
+   */
+  compactDividers?: boolean;
 }) {
   const [open, setOpen] = useState<Set<string>>(
     () => new Set(initialExpandedProductId ? [initialExpandedProductId] : [])
@@ -71,14 +85,34 @@ export function ComparisonTable({
 
   // Precompute the in-list band dividers in corpus order (Invariant 1). A divider is
   // shown on the first row whose score band differs from the row above it.
+  //
+  // TASK-365: standard competition ranking — tied products share the same rank number.
+  // e.g. if three products share score 50, they all show rank N and the next distinct
+  // score resumes at N+3 (not N+1). Unscored products (score === null) never get a rank.
   const rows = useMemo(() => {
     const withBand = products.map((product, index) => ({
       product,
       index,
       band: bandOf(product.score),
     }));
+
+    // Build a score → competition rank map. Walk in corpus order (already score-sorted);
+    // track the next rank slot = number of products seen so far + 1.
+    const scoreToRank = new Map<number, number>();
+    let nextRank = 1;
+    for (const { product } of withBand) {
+      if (product.score == null) continue;
+      if (!scoreToRank.has(product.score)) {
+        scoreToRank.set(product.score, nextRank);
+      }
+      nextRank++;
+    }
+
     return withBand.map((row, i) => ({
       ...row,
+      // rank: the competition rank for this product's score (0 = unscored, don't show).
+      competitionRank:
+        row.product.score != null ? (scoreToRank.get(row.product.score) ?? 0) : 0,
       showDivider: i === 0 || withBand[i - 1].band.id !== row.band.id,
     }));
   }, [products]);
@@ -102,10 +136,17 @@ export function ComparisonTable({
           </div>
         ) : null}
 
-        {rows.map(({ product, index, band, showDivider }) => (
+        {rows.map(({ product, band, showDivider, competitionRank }) => (
           <Fragment key={product.id}>
             {showDivider ? (
-              <div className="bari-cmp-divider" aria-hidden>
+              <div
+                className="bari-cmp-divider"
+                aria-hidden
+                // TASK-384A: prop-gated compact padding — reduces divider from ~33px to
+                // ~25px so an extra row fits above the fold on 390px mobile. Only active
+                // when compactDividers=true (magnesium only); all other pages unchanged.
+                style={compactDividers ? { paddingTop: "5px", paddingBottom: "5px" } : undefined}
+              >
                 <span className="bari-cmp-divider-line" />
                 <span className="bari-cmp-divider-label" style={{ color: band.tone }}>
                   {band.label}
@@ -113,15 +154,25 @@ export function ComparisonTable({
                 <span className="bari-cmp-divider-line" />
               </div>
             ) : null}
+            {product.bandNote ? (
+              <div
+                className="px-4 py-2 text-[0.75rem] leading-[1.5] text-[#666666]"
+                style={{ borderTop: "1px dashed #E0DDD5", backgroundColor: "#FAFAF8" }}
+                aria-label={product.bandNote}
+              >
+                {product.bandNote}
+              </div>
+            ) : null}
             <ComparisonRow
               product={product}
-              rank={showRank ? index + 1 : 0}
+              rank={showRank ? competitionRank : 0}
               open={open.has(product.id)}
               onToggle={onToggle}
               metricSpecs={metricSpecs}
               registerRow={registerRow}
               category={category}
               suppressPartialBadge={suppressPartialBadges}
+              clampVerdictLines={clampVerdictLines}
             />
           </Fragment>
         ))}
