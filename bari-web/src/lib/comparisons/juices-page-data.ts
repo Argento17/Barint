@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import rawCorpus from "@/data/comparisons/juices_frontend_v3.json";
 
 import type { ComparisonCorpusMeta } from "@/lib/comparisons/corpus";
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
 import {
   filterJuicesProducts,
@@ -52,7 +53,7 @@ export const juicesCorpusMeta: ComparisonCorpusMeta = {
 // expansion section component doesn't crash on undefined.confidenceLabel.
 export const juicesProducts: BariProductVM[] = juicesRaw.products.map((p) => {
   const base = p as unknown as BariProductVM;
-  return {
+  return normalizeProductBrandDisplay({
     ...base,
     expansion: base.expansion ?? {
       nutrition: null,
@@ -69,7 +70,7 @@ export const juicesProducts: BariProductVM[] = juicesRaw.products.map((p) => {
       protein_g: null,
       sugar_g: p.sugarPer100ml ?? null,
     },
-  };
+  });
 });
 
 function formatJuicesMetadataLine(): string {
@@ -89,15 +90,15 @@ export const juicesHero = {
 } as const;
 
 export const juicesPrologueSentences = [
-  "מדף המיצים בסופרמרקט: שורות של בקבוקים צבעוניים, תמונות פרי על כל אריזה, ושלושה מילים שמסכמות את המדף — \"מיץ\", \"נקטר\", \"משקה פירות\".",
-  "אז זהו — שלא תמיד הסיפור שעל האריזה מתאים לסיפור שברשימת הרכיבים.",
-  'כולם נראים דומה: בקבוק, צבע, שם פרי. אבל ה\"100% מיץ\" הוא רכיב אחד — הפרי. ה\"נקטר\" הוא בין 25% ל-99% פרי, מים, ולרוב גם סוכר לבן מוסף. ה\"משקה פירות\" יכול להכיל פחות מ-10% פרי: השאר הוא מים, סוכר ורכז.',
-  "בארי לא שאלה אם \"מותר\" לשתות מיץ. בארי שאלה: כמה פרי יש בבקבוק, ומה עוד יש שם?",
+  "המדף נראה אחיד: פרי על האריזה, צבעים טבעיים, שמות מרגיעים. בפועל, \"מיץ\", \"נקטר\" ו\"משקה פירות\" הם שלוש רמות שונות לגמרי של פרי, מים ותוספות.",
+  "\"100% מיץ\" פירושו פרי בלבד — לא מים, לא סוכר, לא רכז. \"נקטר\" פירושו בין 25% ל-99% פרי, עם מים ולרוב גם סוכר לבן מוסף. \"משקה פירות\" יכול להכיל פחות מ-10% פרי — השאר מים, סוכר, רכז וחומרי טעם.",
+  "גם מיץ 100% סחוט הוא לא ניטרלי: הוא מספק את כל הסוכר שהיה בפרי, בלי הסיבים שהיו מאיטים את ספיגתו. זה לא פגם — זו פשוט הגדרת הנוזל. הציון מבוסס על כמה פרי יש בפועל, האם נוסף סוכר, ורמת העיבוד.",
+  "בארי שאלה: כמה פרי יש בבקבוק, ומה עוד יש שם?",
 ] as const;
 
 // Category caveat — visible without scroll on mobile (spec requirement).
 export const juicesCategoryNote =
-  'הערת קטגוריה — גם מיץ 100% הוא סוכר נוזלי\n\nגם מיץ פרי סחוט 100% מספק סוכר — כ-8–13 גרם ל-100 מ"ל — ללא הסיבים שיש בפרי שלם. זה לא פגם ביצרן, זה אופי הנוזל: הסיבים נשארים בתפוז, לא עוברים לכוס. ציון Bari מבוסס על המרחק מהפרי עצמו — כמה פרי בפועל, האם נוסף סוכר, מה רמת העיבוד.\n\nהתווית "נקטר" פירושה 25%–99% פרי — השאר מים ולרוב סוכר לבן מוסף. "משקה פירות" יכול להכיל פחות מ-25% פרי בכלל. בחלק מהמוצרים שבסקירה יש פחות מ-10% פרי: מה שנראה ושומר על טעם הפרי הוא חומרי טעם וריח ורכז, לא הפרי עצמו. שלושת המינוחים יכולים לשבת על אותו מדף, באריזות בגודל זהה.';
+  'הערת קטגוריה — גם מיץ 100% הוא סוכר נוזלי\n\nמיץ פרי סחוט 100% מכיל את כל הסוכר שהיה בפרי — ללא הסיבים שמאיטים את ספיגתו בפרי שלם. הסיבים נשארים בתפוז, לא עוברים לכוס. זה אופי הנוזל, לא פגם ביצרן. ציון Bari מבוסס על שלושה דברים: כמה פרי אמיתי בפועל, האם נוסף סוכר, ורמת העיבוד.\n\nטווח הפרי על המדף הזה: מ-100% פרי שלם (ציון A) ועד פחות מ-10% פרי עם חומרי טעם ורכז (ציון E). שלושת המינוחים — "מיץ", "נקטר", "משקה פירות" — יכולים לשבת על אותו מדף, באריזות בגודל זהה.';
 
 export const juicesMethodologyLines = [
   "בדקנו מיצים ומשקאות פירות מיוחננוף — ריכוז פרי בפועל, ערכי תזונה ורמת עיבוד, לא רק סוכר.",
@@ -109,7 +110,7 @@ export const juicesMethodologyLines = [
 export const juicesComparisonMetadata: Metadata = {
   title: "השוואת מיצים ומשקאות פירות | Bari",
   description:
-    "השוואת 65 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ\"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 17 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ\"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.",
 };
 
 function isJuicesShelfFilterId(filter: string): filter is JuicesShelfFilterId {

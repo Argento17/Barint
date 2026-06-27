@@ -48,7 +48,7 @@ function RowReason({ product }: { product: BariProductVM }) {
     <div className="mt-[5px] flex flex-col gap-0.5">
       {positive ? (
         <p className="truncate text-[0.8rem] leading-[1.45] text-[#3C443F]">
-          <span className="font-extrabold text-[#1F8F6A]" aria-hidden>
+          <span className="font-extrabold text-[#167A58]" aria-hidden>
             +{" "}
           </span>
           {positive}
@@ -85,14 +85,14 @@ function GradeCell({ product }: { product: BariProductVM }) {
       >
         <span
           className={cn(rowTokens.scoreClass, rowTokens.scoreSize.sm)}
-          style={{ color: "#9AA09B" }}
+          style={{ color: "#6B7070" }}
           aria-hidden
         >
           —
         </span>
         <span
           className={cn(rowTokens.labelClass, rowTokens.labelSize.sm)}
-          style={{ color: "#9AA09B" }}
+          style={{ color: "#6B7070" }}
           aria-hidden
         >
           {GLASS_BOX_WITHHOLD_LABEL}
@@ -171,7 +171,11 @@ export const ComparisonRow = memo(function ComparisonRow({
         type="button"
         className="bari-cmp-rowhead"
         aria-expanded={open}
-        aria-label={product.name}
+        aria-label={
+          product.brand?.trim()
+            ? `${product.name}, ${product.brand.trim()}`
+            : product.name
+        }
         onClick={() => onToggle(product.id)}
         onKeyDown={onKeyDown}
       >
@@ -188,17 +192,13 @@ export const ComparisonRow = memo(function ComparisonRow({
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
             {product.name}
-            {product.brand &&
-            !product.name
-              .toLowerCase()
-              .includes(product.brand.toLowerCase()) ? (
+            {product.brand?.trim() ? (
               <span
-                className="ms-1.5 font-normal tracking-normal"
-                style={{ color: "#8A918C", fontSize: "0.78rem" }}
-                aria-hidden
+                className="ms-2 inline font-semibold tracking-normal text-[#167A58]"
+                style={{ fontSize: "0.9rem" }}
               >
-                ·{" "}
-                <span dir="ltr">{product.brand}</span>
+                <span aria-hidden>· </span>
+                <span dir="auto">{product.brand.trim()}</span>
               </span>
             ) : null}
           </span>
