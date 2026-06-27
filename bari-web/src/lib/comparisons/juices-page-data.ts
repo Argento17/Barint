@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import rawCorpus from "@/data/comparisons/juices_frontend_v3.json";
 
 import type { ComparisonCorpusMeta } from "@/lib/comparisons/corpus";
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
 import {
   filterJuicesProducts,
@@ -52,7 +53,7 @@ export const juicesCorpusMeta: ComparisonCorpusMeta = {
 // expansion section component doesn't crash on undefined.confidenceLabel.
 export const juicesProducts: BariProductVM[] = juicesRaw.products.map((p) => {
   const base = p as unknown as BariProductVM;
-  return {
+  return normalizeProductBrandDisplay({
     ...base,
     expansion: base.expansion ?? {
       nutrition: null,
@@ -69,7 +70,7 @@ export const juicesProducts: BariProductVM[] = juicesRaw.products.map((p) => {
       protein_g: null,
       sugar_g: p.sugarPer100ml ?? null,
     },
-  };
+  });
 });
 
 function formatJuicesMetadataLine(): string {

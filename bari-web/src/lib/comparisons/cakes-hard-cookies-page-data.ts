@@ -4,6 +4,7 @@ import {
   formatComparisonMetadataLine,
   type ComparisonCorpusMeta,
 } from "@/lib/comparisons/corpus";
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { BariProductVM, BariNutritionVM, BariConfidence } from "@/lib/view-models";
 
 // ─── Types for the raw JSON shape ─────────────────────────────────────────────
@@ -106,7 +107,7 @@ export const cakesHardCookiesCorpusMeta: ComparisonCorpusMeta = {
 export const cakesHardCookiesProducts: BariProductVM[] = _typedRaw.products.map(
   (p): BariProductVM => {
     const rawNutrition = p.expansion?.nutrition as CakesRawNutrition | null;
-    return {
+    return normalizeProductBrandDisplay({
       id: p.id,
       name: p.name,
       brand: p.brand ?? null,
@@ -134,7 +135,7 @@ export const cakesHardCookiesProducts: BariProductVM[] = _typedRaw.products.map(
         protein_g: null,
         sugar_g: rawNutrition?.sugar_g ?? null,
       },
-    };
+    });
   }
 );
 
