@@ -171,7 +171,11 @@ export const ComparisonRow = memo(function ComparisonRow({
         type="button"
         className="bari-cmp-rowhead"
         aria-expanded={open}
-        aria-label={product.name}
+        aria-label={
+          product.brand?.trim()
+            ? `${product.name}, ${product.brand.trim()}`
+            : product.name
+        }
         onClick={() => onToggle(product.id)}
         onKeyDown={onKeyDown}
       >
@@ -188,17 +192,13 @@ export const ComparisonRow = memo(function ComparisonRow({
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
             {product.name}
-            {product.brand &&
-            !product.name
-              .toLowerCase()
-              .includes(product.brand.toLowerCase()) ? (
+            {product.brand?.trim() ? (
               <span
-                className="ms-1.5 font-normal tracking-normal"
-                style={{ color: "#5E6560", fontSize: "0.78rem" }}
-                aria-hidden
+                className="ms-2 inline font-semibold tracking-normal text-[#167A58]"
+                style={{ fontSize: "0.9rem" }}
               >
-                ·{" "}
-                <span dir="ltr">{product.brand}</span>
+                <span aria-hidden>· </span>
+                <span dir="auto">{product.brand.trim()}</span>
               </span>
             ) : null}
           </span>

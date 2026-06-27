@@ -1,3 +1,4 @@
+import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { BariProductVM } from "@/lib/view-models";
 
 /** Shared corpus metadata shape for v2 frontend JSON exports. */
@@ -66,10 +67,12 @@ export function loadComparisonCorpus<TMeta extends ComparisonCorpusMeta>(
 ): LoadedComparisonCorpus<TMeta> {
   return {
     meta: raw._meta,
-    products: stripInternalProductFields(raw.products).map((product, i) => ({
-      ...product,
-      grade: normalizeGrade(raw.products[i]),
-    })),
+    products: stripInternalProductFields(raw.products).map((product, i) =>
+      normalizeProductBrandDisplay({
+        ...product,
+        grade: normalizeGrade(raw.products[i]),
+      })
+    ),
   };
 }
 

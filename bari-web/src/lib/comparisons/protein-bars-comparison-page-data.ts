@@ -30,12 +30,6 @@ const proteinBarsProductsRaw = enrichRowSurface(loaded.products as BariProductVM
 // satisfy the BariProductMetricsVM type (protein_g: number | null, not undefined).
 const proteinBarsProducts = proteinBarsProductsRaw.map((p) => ({
   ...p,
-  // TASK-365 (owner re-critique): the comparison row renders product.name. The corpus
-  // carries the brand-less name_he in `name` and the brand-prefixed title in
-  // `displayTitle` (canonical brand, de-duplicated). Surface displayTitle as the row
-  // title so the brand is visible (owner: brand-in-title is mandatory). Scoped to this
-  // page — does not touch other categories' row binding.
-  name: (p as { displayTitle?: string }).displayTitle?.trim() || p.name,
   metrics: {
     protein_g: p.expansion.nutrition?.protein ?? null,
     sugar_g: p.expansion.nutrition?.sugar ?? null,
