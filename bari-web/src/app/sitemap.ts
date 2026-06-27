@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
 import { absoluteUrl } from "@/lib/site-url";
 
@@ -19,14 +19,18 @@ const STATIC_PATHS = [
   "/hashvaot/brined-cheeses",
   "/hashvaot/cakes",
   "/hashvaot/cheese",
+  "/hashvaot/chocolate-bars",
+  "/hashvaot/chocolate-tablets",
   "/hashvaot/cookies-coffee",
   "/hashvaot/granola",
   "/hashvaot/hard-cheeses",
   "/hashvaot/hummus",
   "/hashvaot/juices",
+  "/hashvaot/magnesium",
   "/hashvaot/milk-comparison",
-  "/hashvaot/snack-bars",
+  "/hashvaot/protein-bars",
   "/hashvaot/snacks",
+  "/hashvaot/supplements",
   "/blog",
 ] as const;
 

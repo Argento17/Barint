@@ -18,6 +18,10 @@ import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/fea
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
 import { FeaturedMagnesiumIntelligenceCard } from "@/components/hashvaot/featured-magnesium-intelligence-card";
+import {
+  HashvaotGroupSection,
+  HashvaotComparisonCardGrid,
+} from "@/components/hashvaot/hashvaot-group-section";
 import { HomeContainer } from "@/components/home/section-frame";
 import { BREAD_COMPARISON_HREF } from "@/lib/blog/bread-analysis-content";
 import { SNACK_COMPARISON_HREF } from "@/lib/blog/snack-analysis-content";
@@ -42,7 +46,7 @@ import { siteHeaderOffsetClass } from "@/lib/site-layout";
 export const metadata: Metadata = {
   title: "השוואות | Bari",
   description:
-    "השוואות אינטליגנציית מזון אינטראקטיביות — ניתוח רב-פרמטרי של מוצרים דומים.",
+    "השוואות אינטראקטיביות מהמדף — מזון, תוספים ועוד. ניתוח רב-פרמטרי של מוצרים דומים.",
 };
 
 const CEREALS_COMPARISON_HREF = "/hashvaot/breakfast-cereals";
@@ -58,29 +62,37 @@ const BRINED_CHEESES_COMPARISON_HREF = "/hashvaot/brined-cheeses";
 const CAKES_COMPARISON_HREF = "/hashvaot/cakes";
 const COOKIES_COFFEE_COMPARISON_HREF = "/hashvaot/cookies-coffee";
 
+// DRAFT — pending Content + QA sign-off
+const RAW_FOODS_COMING_SOON_SUBTEXT =
+  "ירקות, פירות, דגנים וקטניות — לפני שמישהו אורז אותם.";
+
+// DRAFT — pending Content + QA sign-off
+const PERSONAL_CARE_COMING_SOON_SUBTEXT =
+  "קרמים, שמפו ומוצרי טיפוח — ניתוח מרכיבים ותוויות, כמו בכל קטגוריה אחרת.";
+
 export default function HashvaotIndexPage() {
-  const cerealsDescription = `רוב דגני הבוקר במדף נושאים תווית «דגנים מלאים» — אבל לא כולם מצדיקים אותה. בדקנו ${cerealsProducts.length} מוצרים: אף אחד לא הגיע ל-A, הציון הגבוה ביותר הוא 75/B, וחמישה מוצרים מיועדים לילדים. גרנולה ומוזלי הופרדו לקטגוריה משלהם.`;
-  const granolaDescription = `גרנולה ומוזלי נראים כמו בחירת הבריאות של המדף — אבל ${granolaProducts.length} המוצרים שבדקנו נעים בין 76/B ל-29/E, פער של 47 נקודות. הציון תלוי בכמות הסוכר, השומן והסירופ בפועל, לא בתדמית.`;
+  const cerealsDescription = `\u05e8\u05d5\u05d1 \u05d3\u05d2\u05e0\u05d9 \u05d4\u05d1\u05d5\u05e7\u05e8 \u05d1\u05de\u05d3\u05e3 \u05e0\u05d5\u05e9\u05d0\u05d9\u05dd \u05ea\u05d5\u05d5\u05d9\u05ea \u00ab\u05d3\u05d2\u05e0\u05d9\u05dd \u05de\u05dc\u05d0\u05d9\u05dd\u00bb \u2014 \u05d0\u05d1\u05dc \u05dc\u05d0 \u05db\u05d5\u05dc\u05dd \u05de\u05e6\u05d3\u05d9\u05e7\u05d9\u05dd \u05d0\u05d5\u05ea\u05d4. \u05d1\u05d3\u05e7\u05e0\u05d5 ${cerealsProducts.length} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd: \u05d0\u05e3 \u05d0\u05d7\u05d3 \u05dc\u05d0 \u05d4\u05d2\u05d9\u05e2 \u05dc-A, \u05d4\u05e6\u05d9\u05d5\u05df \u05d4\u05d2\u05d1\u05d5\u05d4 \u05d1\u05d9\u05d5\u05ea\u05e8 \u05d4\u05d5\u05d0 75/B, \u05d5\u05d7\u05de\u05d9\u05e9\u05d4 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05de\u05d9\u05d5\u05e2\u05d3\u05d9\u05dd \u05dc\u05d9\u05dc\u05d3\u05d9\u05dd. \u05d2\u05e8\u05e0\u05d5\u05dc\u05d4 \u05d5\u05de\u05d5\u05d6\u05dc\u05d9 \u05d4\u05d5\u05e4\u05e8\u05d3\u05d5 \u05dc\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4 \u05de\u05e9\u05dc\u05d4\u05dd.`;
+  const granolaDescription = `\u05d2\u05e8\u05e0\u05d5\u05dc\u05d4 \u05d5\u05de\u05d5\u05d6\u05dc\u05d9 \u05e0\u05e8\u05d0\u05d9\u05dd \u05db\u05de\u05d5 \u05d1\u05d7\u05d9\u05e8\u05ea \u05d4\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea \u05e9\u05dc \u05d4\u05de\u05d3\u05e3 \u2014 \u05d0\u05d1\u05dc ${granolaProducts.length} \u05d4\u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05e9\u05d1\u05d3\u05e7\u05e0\u05d5 \u05e0\u05e2\u05d9\u05dd \u05d1\u05d9\u05df 76/B \u05dc-29/E, \u05e4\u05e2\u05e8 \u05e9\u05dc 47 \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea. \u05d4\u05e6\u05d9\u05d5\u05df \u05ea\u05dc\u05d5\u05d9 \u05d1\u05db\u05de\u05d5\u05ea \u05d4\u05e1\u05d5\u05db\u05e8, \u05d4\u05e9\u05d5\u05de\u05df \u05d5\u05d4\u05e1\u05d9\u05e8\u05d5\u05e4 \u05d1\u05e4\u05e2\u05d5\u05dc, \u05dc\u05d0 \u05d1\u05ea\u05d3\u05de\u05d9\u05ea.`;
   const productCount = milkProducts.length;
-  const milkDescription = `השוואה בין ${productCount} מוצרי חלב ומשקאות חלב פופולריים בישראל — כולל חלב פרה, סויה, שיבולת שועל, שקדים ומוצרים עתירי חלבון. Bari מנתחת רכיבים, ערכים תזונתיים, רמת עיבוד ותוספים כדי להציג את הטריידאופים בין המוצרים.`;
-  const breadDescription = `דוח השוואה מאוחד ללחם, פיתות וקרקרים: 256 מוצרים נסרקו, 81 קיבלו מספיק נתונים לניתוח מהימן, ו-${breadProducts.length} נבחרו להצגה העריכתית בדף.`;
-  const snacksDescription = `דוח השוואה לחטיפי הדגנים: ${snacksProducts.length} חטיפי דגנים בדף ההשוואה, מתוך מדף החטיפים שנסרק בשופרסל.`;
-  const proteinBarsDescription = `דוח השוואה לחטיפי החלבון: ${proteinBarsProducts.length} חטיפים עם 25–34 גרם חלבון ל-100 גרם — והמחיר ההנדסי שמגיע איתם. קטגוריה נפרדת מחטיפי הדגנים.`;
-  const chocolateTabletsDescription = `בדקנו ${chocolateTabletsProducts.length} טבלאות שוקולד: מריר 90% עד שוקולד לבן ממולא. הציון הגבוה ביותר הוא C — כל השוקולד הוא ממתק, אבל הפער בין 2 גרם סוכר ל-65 גרם הוא אמיתי.`;
-  const chocolateBarsDescription = `בדקנו ${chocolateBarsProducts.length} חטיפי שוקולד: כולם ציון E, 45–60 גרם סוכר ל-100 גרם. ההבדל היחיד הוא בין חטיף עם בוטנים לחטיף שהוא רק סוכר ושמן מתחת לציפוי.`;
-  const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} מוצרים בדף ההשוואה.`;
-  const cheeseDescription = `${cheesePrologueSentences[0]} ממרחי גבינת השמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי שבהם — עד 30 אחוז. ${cheeseProducts.length} מוצרים בדף ההשוואה.`;
-  const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מוצר אחד הגיע ל-A — סחוט תפוזים טרי. גם מיץ 100% הוא סוכר נוזלי: 7–17 גרם ל-100 מ"ל ללא סיבים וללא תחושת שובע.`;
-  const hardCheesesDescription = `בדקנו ${hardCheesesProducts.length} גבינות קשות וצהובות: 24 קיבלו B, שתיים קיבלו C ושתיים קיבלו D — אף גבינה לא הגיעה ל-A. תקרת הקטגוריה היא B. גאודה ממרכיבים מינימליים מובילת המדף; גבינות 'לייט' ומעובדות עם מייצבים מקבלות ציון נמוך יותר.`;
-  const brinedCheesesDescription = `${brinedCheesesPrologueSentences[0]} ${brinedCheesesProducts.length} מוצרים בדף ההשוואה.`;
-  const cookiesCoffeeDescription = `ביסקוויטים מתוקים מעובדים, מלווי הקפה של המדף הישראלי. ${cookiesCoffeeProducts.length} מוצרים נבדקו — ציון C הוא תקרת הקטגוריה. ההבדלים: סוג השומן, כמות הסוכר, מורכבות רשימת הרכיבים.`;
+  const milkDescription = `\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4 \u05d1\u05d9\u05df ${productCount} \u05de\u05d5\u05e6\u05e8\u05d9 \u05d7\u05dc\u05d1 \u05d5\u05de\u05e9\u05e7\u05d0\u05d5\u05ea \u05d7\u05dc\u05d1 \u05e4\u05d5\u05e4\u05d5\u05dc\u05e8\u05d9\u05d9\u05dd \u05d1\u05d9\u05e9\u05e8\u05d0\u05dc \u2014 \u05db\u05d5\u05dc\u05dc \u05d7\u05dc\u05d1 \u05e4\u05e8\u05d4, \u05e1\u05d5\u05d9\u05d4, \u05e9\u05d9\u05d1\u05d5\u05dc\u05ea \u05e9\u05d5\u05e2\u05dc, \u05e9\u05e7\u05d3\u05d9\u05dd \u05d5\u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05e2\u05ea\u05d9\u05e8\u05d9 \u05d7\u05dc\u05d1\u05d5\u05df. Bari \u05de\u05e0\u05ea\u05d7\u05ea \u05e8\u05db\u05d9\u05d1\u05d9\u05dd, \u05e2\u05e8\u05db\u05d9\u05dd \u05ea\u05d6\u05d5\u05e0\u05ea\u05d9\u05d9\u05dd, \u05e8\u05de\u05ea \u05e2\u05d9\u05d1\u05d5\u05d3 \u05d5\u05ea\u05d5\u05e1\u05e4\u05d9\u05dd \u05db\u05d3\u05d9 \u05dc\u05d4\u05e6\u05d9\u05d2 \u05d0\u05ea \u05d4\u05d8\u05e8\u05d9\u05d9\u05d3\u05d0\u05d5\u05e4\u05d9\u05dd \u05d1\u05d9\u05df \u05d4\u05de\u05d5\u05e6\u05e8\u05d9\u05dd.`;
+  const breadDescription = `\u05d3\u05d5\u05d7 \u05d4\u05e9\u05d5\u05d5\u05d0\u05d4 \u05de\u05d0\u05d5\u05d7\u05d3 \u05dc\u05dc\u05d7\u05dd, \u05e4\u05d9\u05ea\u05d5\u05ea \u05d5\u05e7\u05e8\u05e7\u05e8\u05d9\u05dd: 256 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05e0\u05e1\u05e8\u05e7\u05d5, 81 \u05e7\u05d9\u05d1\u05dc\u05d5 \u05de\u05e1\u05e4\u05d9\u05e7 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05dc\u05e0\u05d9\u05ea\u05d5\u05d7 \u05de\u05d4\u05d9\u05de\u05df, \u05d5-${breadProducts.length} \u05e0\u05d1\u05d7\u05e8\u05d5 \u05dc\u05d4\u05e6\u05d2\u05d4 \u05d4\u05e2\u05e8\u05d9\u05db\u05ea\u05d9\u05ea \u05d1\u05d3\u05e3.`;
+  const snacksDescription = `\u05d3\u05d5\u05d7 \u05d4\u05e9\u05d5\u05d5\u05d0\u05d4 \u05dc\u05d7\u05d8\u05d9\u05e4\u05d9 \u05d4\u05d3\u05d2\u05e0\u05d9\u05dd: ${snacksProducts.length} \u05d7\u05d8\u05d9\u05e4\u05d9 \u05d3\u05d2\u05e0\u05d9\u05dd \u05d1\u05d3\u05e3 \u05d4\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4, \u05de\u05ea\u05d5\u05da \u05de\u05d3\u05e3 \u05d4\u05d7\u05d8\u05d9\u05e4\u05d9\u05dd \u05e9\u05e0\u05e1\u05e7\u05e8 \u05d1\u05e9\u05d5\u05e4\u05e8\u05e1\u05dc.`;
+  const proteinBarsDescription = `\u05d3\u05d5\u05d7 \u05d4\u05e9\u05d5\u05d5\u05d0\u05d4 \u05dc\u05d7\u05d8\u05d9\u05e4\u05d9 \u05d4\u05d7\u05dc\u05d1\u05d5\u05df: ${proteinBarsProducts.length} \u05d7\u05d8\u05d9\u05e4\u05d9\u05dd \u05e2\u05dd 25\u201334 \u05d2\u05e8\u05dd \u05d7\u05dc\u05d1\u05d5\u05df \u05dc-100 \u05d2\u05e8\u05dd \u2014 \u05d5\u05d4\u05de\u05d7\u05d9\u05e8 \u05d4\u05d4\u05e0\u05d3\u05e1\u05d9 \u05e9\u05de\u05d2\u05d9\u05e2 \u05d0\u05d9\u05ea\u05dd. \u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4 \u05e0\u05e4\u05e8\u05d3\u05ea \u05de\u05d7\u05d8\u05d9\u05e4\u05d9 \u05d4\u05d3\u05d2\u05e0\u05d9\u05dd.`;
+  const chocolateTabletsDescription = `\u05d1\u05d3\u05e7\u05e0\u05d5 ${chocolateTabletsProducts.length} \u05d8\u05d1\u05dc\u05d0\u05d5\u05ea \u05e9\u05d5\u05e7\u05d5\u05dc\u05d3: \u05de\u05e8\u05d9\u05e8 90% \u05e2\u05d3 \u05e9\u05d5\u05e7\u05d5\u05dc\u05d3 \u05dc\u05d1\u05df \u05de\u05de\u05d5\u05dc\u05d0. \u05d4\u05e6\u05d9\u05d5\u05df \u05d4\u05d2\u05d1\u05d5\u05d4 \u05d1\u05d9\u05d5\u05ea\u05e8 \u05d4\u05d5\u05d0 C \u2014 \u05db\u05dc \u05d4\u05e9\u05d5\u05e7\u05d5\u05dc\u05d3 \u05d4\u05d5\u05d0 \u05de\u05de\u05ea\u05e7, \u05d0\u05d1\u05dc \u05d4\u05e4\u05e2\u05e8 \u05d1\u05d9\u05df 2 \u05d2\u05e8\u05dd \u05e1\u05d5\u05db\u05e8 \u05dc-65 \u05d2\u05e8\u05dd \u05d4\u05d5\u05d0 \u05d0\u05de\u05d9\u05ea\u05d9.`;
+  const chocolateBarsDescription = `\u05d1\u05d3\u05e7\u05e0\u05d5 ${chocolateBarsProducts.length} \u05d7\u05d8\u05d9\u05e4\u05d9 \u05e9\u05d5\u05e7\u05d5\u05dc\u05d3: \u05db\u05d5\u05dc\u05dd \u05e6\u05d9\u05d5\u05df E, 45\u201360 \u05d2\u05e8\u05dd \u05e1\u05d5\u05db\u05e8 \u05dc-100 \u05d2\u05e8\u05dd. \u05d4\u05d4\u05d1\u05d3\u05dc \u05d4\u05d9\u05d7\u05d9\u05d3\u05d9 \u05d4\u05d5\u05d0 \u05d1\u05d9\u05df \u05d7\u05d8\u05d9\u05e3 \u05e2\u05dd \u05d1\u05d5\u05d8\u05e0\u05d9\u05dd \u05dc\u05d7\u05d8\u05d9\u05e3 \u05e9\u05d4\u05d5\u05d0 \u05e8\u05e7 \u05e1\u05d5\u05db\u05e8 \u05d5\u05e9\u05de\u05df \u05de\u05ea\u05d7\u05ea \u05dc\u05e6\u05d9\u05e4\u05d5\u05d9.`;
+  const hummusDescription = `${hummusPrologueSentences[0]} ${hummusProducts.length} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d3\u05e3 \u05d4\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4.`;
+  const cheeseDescription = `${cheesePrologueSentences[0]} \u05de\u05de\u05e8\u05d7\u05d9 \u05d2\u05d1\u05d9\u05e0\u05ea \u05d4\u05e9\u05de\u05e0\u05ea \u05e0\u05d5\u05e4\u05dc\u05d9\u05dd \u05e0\u05de\u05d5\u05da \u05d9\u05d5\u05ea\u05e8 \u05d1\u05e8\u05d2\u05e2 \u05e9\u05e1\u05d5\u05e4\u05e8\u05d9\u05dd \u05d0\u05ea \u05d4\u05e9\u05d5\u05de\u05df \u05d4\u05d0\u05de\u05d9\u05ea\u05d9 \u05e9\u05d1\u05d4\u05dd \u2014 \u05e2\u05d3 30 \u05d0\u05d7\u05d5\u05d6. ${cheeseProducts.length} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d3\u05e3 \u05d4\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4.`;
+  const juicesDescription = `\u05d1\u05d3\u05e7\u05e0\u05d5 ${juicesProducts.length} \u05de\u05d9\u05e6\u05d9\u05dd \u05d5\u05de\u05e9\u05e7\u05d0\u05d5\u05ea \u05e4\u05d9\u05e8\u05d5\u05ea: \u05de\u05d9\u05e5 100%, \u05e0\u05e7\u05d8\u05e8\u05d9\u05dd, \u05e9\u05d9\u05d9\u05e7\u05d9\u05dd \u05d5\u05e1\u05d7\u05d5\u05d8\u05d9 \u05e7\u05e8. \u05e8\u05e7 \u05de\u05d5\u05e6\u05e8 \u05d0\u05d7\u05d3 \u05d4\u05d2\u05d9\u05e2 \u05dc-A \u2014 \u05e1\u05d7\u05d5\u05d8 \u05ea\u05e4\u05d5\u05d6\u05d9\u05dd \u05d8\u05e8\u05d9. \u05d2\u05dd \u05de\u05d9\u05e5 100% \u05d4\u05d5\u05d0 \u05e1\u05d5\u05db\u05e8 \u05e0\u05d5\u05d6\u05dc\u05d9: 7\u201317 \u05d2\u05e8\u05dd \u05dc-100 \u05de\u201c\u05dc \u05dc\u05dc\u05d0 \u05e1\u05d9\u05d1\u05d9\u05dd \u05d5\u05dc\u05dc\u05d0 \u05ea\u05d7\u05d5\u05e9\u05ea \u05e9\u05d5\u05d1\u05e2.`;
+  const hardCheesesDescription = `\u05d1\u05d3\u05e7\u05e0\u05d5 ${hardCheesesProducts.length} \u05d2\u05d1\u05d9\u05e0\u05d5\u05ea \u05e7\u05e9\u05d5\u05ea \u05d5\u05e6\u05d4\u05d5\u05d1\u05d5\u05ea: 24 \u05e7\u05d9\u05d1\u05dc\u05d5 B, \u05e9\u05ea\u05d9\u05d9\u05dd \u05e7\u05d9\u05d1\u05dc\u05d5 C \u05d5\u05e9\u05ea\u05d9\u05d9\u05dd \u05e7\u05d9\u05d1\u05dc\u05d5 D \u2014 \u05d0\u05e3 \u05d2\u05d1\u05d9\u05e0\u05d4 \u05dc\u05d0 \u05d4\u05d2\u05d9\u05e2\u05d4 \u05dc-A. \u05ea\u05e7\u05e8\u05d9\u05ea \u05d4\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4 \u05d4\u05d9\u05d0 B. \u05d2\u05d0\u05d5\u05d3\u05d4 \u05de\u05de\u05e8\u05db\u05d9\u05d1\u05d9\u05dd \u05de\u05d9\u05e0\u05d9\u05de\u05dc\u05d9\u05d9\u05dd \u05de\u05d5\u05d1\u05d9\u05dc\u05ea \u05d4\u05de\u05d3\u05e3; \u05d2\u05d1\u05d9\u05e0\u05d5\u05ea \u05dc\u05d9\u05d9\u05d8 \u05d5\u05de\u05e2\u05d5\u05d1\u05d3\u05d5\u05ea \u05e2\u05dd \u05de\u05d9\u05d9\u05e6\u05d1\u05d9\u05dd \u05de\u05e7\u05d1\u05dc\u05d5\u05ea \u05e6\u05d9\u05d5\u05df \u05e0\u05de\u05d5\u05da \u05d9\u05d5\u05ea\u05e8.`;
+  const brinedCheesesDescription = `${brinedCheesesPrologueSentences[0]} ${brinedCheesesProducts.length} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d3\u05e3 \u05d4\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4.`;
+  const cookiesCoffeeDescription = `\u05d1\u05d9\u05e1\u05e7\u05d5\u05d5\u05d9\u05d8\u05d9\u05dd \u05de\u05ea\u05d5\u05e7\u05d9\u05dd \u05de\u05e2\u05d5\u05d1\u05d3\u05d9\u05dd, \u05de\u05dc\u05d5\u05d5\u05d9 \u05d4\u05e7\u05e4\u05d4 \u05e9\u05dc \u05d4\u05de\u05d3\u05e3 \u05d4\u05d9\u05e9\u05e8\u05d0\u05dc\u05d9. ${cookiesCoffeeProducts.length} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05e0\u05d1\u05d3\u05e7\u05d5 \u2014 \u05e6\u05d9\u05d5\u05df C \u05d4\u05d5\u05d0 \u05ea\u05e7\u05e8\u05d9\u05ea \u05d4\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4. \u05d4\u05d4\u05d1\u05d3\u05dc\u05d9\u05dd: \u05e1\u05d5\u05d2 \u05d4\u05e9\u05d5\u05de\u05df, \u05db\u05de\u05d5\u05ea \u05d4\u05e1\u05d5\u05db\u05e8, \u05de\u05d5\u05e8\u05db\u05d1\u05d5\u05ea \u05e8\u05e9\u05d9\u05de\u05ea \u05d4\u05e8\u05db\u05d9\u05d1\u05d9\u05dd.`;
   const cCount = cakesHardCookiesProducts.filter((p) => p.grade === "C").length;
   const dCount = cakesHardCookiesProducts.filter((p) => p.grade === "D").length;
   const eCount = cakesHardCookiesProducts.filter((p) => p.grade === "E").length;
   const cakesTopScore = Math.max(...cakesHardCookiesProducts.map((p) => p.score ?? 0)).toFixed(1);
-  const cakesDescription = `בדקנו ${cakesHardCookiesProducts.length} עוגות מהמדף הישראלי — אף מוצר לא הגיע ל-A או ל-B. ${cCount} קיבלו C (הציון הגבוה ביותר הוא ${cakesTopScore}), ${dCount} קיבלו D ו-${eCount} קיבלו E. ציון C הוא תקרת הקטגוריה, לא הישג.`;
+  const cakesDescription = `\u05d1\u05d3\u05e7\u05e0\u05d5 ${cakesHardCookiesProducts.length} \u05e2\u05d5\u05d2\u05d5\u05ea \u05de\u05d4\u05de\u05d3\u05e3 \u05d4\u05d9\u05e9\u05e8\u05d0\u05dc\u05d9 \u2014 \u05d0\u05e3 \u05de\u05d5\u05e6\u05e8 \u05dc\u05d0 \u05d4\u05d2\u05d9\u05e2 \u05dc-A \u05d0\u05d5 \u05dc-B. ${cCount} \u05e7\u05d9\u05d1\u05dc\u05d5 C (\u05d4\u05e6\u05d9\u05d5\u05df \u05d4\u05d2\u05d1\u05d5\u05d4 \u05d1\u05d9\u05d5\u05ea\u05e8 \u05d4\u05d5\u05d0 ${cakesTopScore}), ${dCount} \u05e7\u05d9\u05d1\u05dc\u05d5 D \u05d5-${eCount} \u05e7\u05d9\u05d1\u05dc\u05d5 E. \u05e6\u05d9\u05d5\u05df C \u05d4\u05d5\u05d0 \u05ea\u05e7\u05e8\u05d9\u05ea \u05d4\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4, \u05dc\u05d0 \u05d4\u05d9\u05e9\u05d2.`;
   const magnesiumDescription =
-    "בדקנו 18 תוספי מגנזיום מהמדף הישראלי, והצורה הכימית היא שמכריעה: ציטראט וביסגליצינט נספגים טוב יותר, ולכן הם שמובילים את הדירוג, בעוד שהאוקסיד הזול והנפוץ יושב בתחתית — הגוף פשוט קולט ממנו פחות. ארבעה מוצרי אוקסיד אף חורגים מהגבול העליון לתוספים ומקבלים אזהרת מינון ברורה. מה שהציון מודד הוא כמה מגנזיום הגוף סופג בפועל, וזה תלוי בצורה הרבה יותר מאשר בספרה שעל הקופסה.";
+    "\u05d1\u05d3\u05e7\u05e0\u05d5 18 \u05ea\u05d5\u05e1\u05e4\u05d9 \u05de\u05d2\u05e0\u05d6\u05d9\u05d5\u05dd \u05de\u05d4\u05de\u05d3\u05e3 \u05d4\u05d9\u05e9\u05e8\u05d0\u05dc\u05d9, \u05d5\u05d4\u05e6\u05d5\u05e8\u05d4 \u05d4\u05db\u05d9\u05de\u05d9\u05ea \u05d4\u05d9\u05d0 \u05e9\u05de\u05db\u05e8\u05d9\u05e2\u05d4: \u05e6\u05d9\u05d8\u05e8\u05d0\u05d8 \u05d5\u05d1\u05d9\u05e1\u05d2\u05dc\u05d9\u05e6\u05d9\u05e0\u05d8 \u05e0\u05e1\u05e4\u05d2\u05d9\u05dd \u05d8\u05d5\u05d1 \u05d9\u05d5\u05ea\u05e8, \u05d5\u05dc\u05db\u05df \u05d4\u05dd \u05e9\u05de\u05d5\u05d1\u05d9\u05dc\u05d9\u05dd \u05d0\u05ea \u05d4\u05d3\u05d9\u05e8\u05d5\u05d2, \u05d1\u05e2\u05d5\u05d3 \u05e9\u05d4\u05d0\u05d5\u05e7\u05e1\u05d9\u05d3 \u05d4\u05d6\u05d5\u05dc \u05d5\u05d4\u05e0\u05e4\u05d5\u05e5 \u05d9\u05d5\u05e9\u05d1 \u05d1\u05ea\u05d7\u05ea\u05d9\u05ea \u2014 \u05d4\u05d2\u05d5\u05e3 \u05e4\u05e9\u05d5\u05d8 \u05e7\u05d5\u05dc\u05d8 \u05de\u05de\u05e0\u05d5 \u05e4\u05d7\u05d5\u05ea. \u05d0\u05e8\u05d1\u05e2\u05d4 \u05de\u05d5\u05e6\u05e8\u05d9 \u05d0\u05d5\u05e7\u05e1\u05d9\u05d3 \u05d0\u05e3 \u05d7\u05d5\u05e8\u05d2\u05d9\u05dd \u05de\u05d4\u05d2\u05d1\u05d5\u05dc \u05d4\u05e2\u05dc\u05d9\u05d5\u05df \u05dc\u05ea\u05d5\u05e1\u05e4\u05d9\u05dd \u05d5\u05de\u05e7\u05d1\u05dc\u05d9\u05dd \u05d0\u05d6\u05d4\u05e8\u05ea \u05de\u05d9\u05e0\u05d5\u05df \u05d1\u05e8\u05d5\u05e8\u05d4. \u05de\u05d4 \u05e9\u05d4\u05e6\u05d9\u05d5\u05df \u05de\u05d5\u05d3\u05d3 \u05d4\u05d5\u05d0 \u05db\u05de\u05d4 \u05de\u05d2\u05e0\u05d6\u05d9\u05d5\u05dd \u05d4\u05d2\u05d5\u05e3 \u05e1\u05d5\u05e4\u05d2 \u05d1\u05e4\u05e2\u05d5\u05dc, \u05d5\u05d6\u05d4 \u05ea\u05dc\u05d5\u05d9 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d4\u05e8\u05d1\u05d4 \u05d9\u05d5\u05ea\u05e8 \u05de\u05d0\u05e9\u05e8 \u05d1\u05e1\u05e4\u05e8\u05d4 \u05e9\u05e2\u05dc \u05d4\u05e7\u05d5\u05e4\u05e1\u05d4.";
 
   return (
     <main
@@ -94,95 +106,139 @@ export default function HashvaotIndexPage() {
           Bari comparisons
         </p>
         <h1 className="mt-3 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
-          השוואות אינטליגנציית מזון
+          השוואות מהמדף
         </h1>
         <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663]">
-          חוויות השוואה אינטראקטיביות — לא מאמרים סטטיים. כל דף בוחן מוצרים דומים לפי פרמטרים
-          ומציג טריידאופים בהקשר הנכון.
+          חוויות השוואה אינטראקטיביות — לא מאמרים סטטיים. כל דף בוחן מוצרים דומים לפי פרמטרים ומציג טריידאופים בהקשר הנכון.
         </p>
 
-        <div className="mt-12 space-y-6">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
-            השוואה מומלצת
-          </h2>
+        {/* Section 1: Supermarket food comparisons */}
+        <HashvaotGroupSection
+          sectionId="supermarket"
+          title="מוצרי סופרמרקט"
+          countLabel="16 השוואות"
+          status="live"
+        >
+          <HashvaotComparisonCardGrid
+            lead={
+              <>
+                <FeaturedMilkIntelligenceCard
+                  href={MILK_COMPARISON_HREF}
+                  description={milkDescription}
+                />
+                <p className="text-sm text-[#4E5663]">
+                  רוצים את הסיפור מאחורי הממצאים?{" "}
+                  <Link
+                    href="/blog/milk-analysis"
+                    className="font-semibold text-[#1F8F6A] underline-offset-2 hover:underline"
+                  >
+                    קראו את הניתוח בבלוג
+                  </Link>
+                  — המאמר משלים את מנוע ההשוואה, לא מחליף אותו.
+                </p>
+              </>
+            }
+          >
+            <FeaturedBreakfastCerealsIntelligenceCard
+              href={CEREALS_COMPARISON_HREF}
+              description={cerealsDescription}
+            />
+            <FeaturedGranolaIntelligenceCard
+              href={GRANOLA_COMPARISON_HREF}
+              description={granolaDescription}
+            />
+            <FeaturedBrinedCheesesIntelligenceCard
+              href={BRINED_CHEESES_COMPARISON_HREF}
+              description={brinedCheesesDescription}
+            />
+            <FeaturedCookiesCoffeeIntelligenceCard
+              href={COOKIES_COFFEE_COMPARISON_HREF}
+              description={cookiesCoffeeDescription}
+            />
+            <FeaturedCakesHardCookiesIntelligenceCard
+              href={CAKES_COMPARISON_HREF}
+              description={cakesDescription}
+            />
+            <FeaturedBreadIntelligenceCardLite
+              href={BREAD_COMPARISON_HREF}
+              description={breadDescription}
+            />
+            <FeaturedSnacksIntelligenceCard
+              href={SNACK_COMPARISON_HREF}
+              description={snacksDescription}
+            />
+            <FeaturedProteinBarsIntelligenceCard
+              href="/hashvaot/protein-bars"
+              description={proteinBarsDescription}
+            />
+            <FeaturedChocolateTabletsIntelligenceCard
+              href={CHOCOLATE_TABLETS_COMPARISON_HREF}
+              description={chocolateTabletsDescription}
+            />
+            <FeaturedChocolateBarsIntelligenceCard
+              href={CHOCOLATE_BARS_COMPARISON_HREF}
+              description={chocolateBarsDescription}
+            />
+            <FeaturedHummusIntelligenceCard
+              href={HUMMUS_COMPARISON_HREF}
+              description={hummusDescription}
+            />
+            <FeaturedCheeseIntelligenceCard
+              href={CHEESE_COMPARISON_HREF}
+              description={cheeseDescription}
+            />
+            <FeaturedHardCheesesIntelligenceCard
+              href={HARD_CHEESES_COMPARISON_HREF}
+              description={hardCheesesDescription}
+            />
+            <FeaturedJuicesIntelligenceCard
+              href={JUICES_COMPARISON_HREF}
+              description={juicesDescription}
+            />
+          </HashvaotComparisonCardGrid>
+        </HashvaotGroupSection>
 
-          <FeaturedMilkIntelligenceCard href={MILK_COMPARISON_HREF} description={milkDescription} />
-
-          <p className="text-sm text-[#4E5663]">
-            רוצים את הסיפור מאחורי הממצאים?{" "}
-            <Link
-              href="/blog/milk-analysis"
-              className="font-semibold text-[#1F8F6A] underline-offset-2 hover:underline"
-            >
-              קראו את הניתוח בבלוג
-            </Link>
-            — המאמר משלים את מנוע ההשוואה, לא מחליף אותו.
-          </p>
-        </div>
-
-        {/* ── Supplements — separate section (different scoring logic), surfaced high
-            on the page so it isn't buried below the food grid. Links straight to the
-            magnesium comparison (no intermediate landing). ── */}
-        <div className="mt-12 space-y-6">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
-            תוספי תזונה
-          </h2>
-          <p className="max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
-            תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב
-            הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
-          </p>
+        {/* Section 2: Supplements -- separate scoring logic */}
+        <HashvaotGroupSection
+          sectionId="supplements"
+          title="תוספים"
+          countLabel="1 השוואה"
+          status="live"
+          intro={
+            <p className="max-w-xl text-pretty text-sm leading-relaxed text-[#4E5663]">
+              תוספי תזונה מנותחים בנפרד ממזון — לוגיקת הדירוג שונה: הציון מודד כמה מהרכיב הגוף סופג בפועל, לא הכמות שכתובה על האריזה.
+            </p>
+          }
+        >
           <FeaturedMagnesiumIntelligenceCard
             href="/hashvaot/magnesium"
             description={magnesiumDescription}
           />
-        </div>
+        </HashvaotGroupSection>
 
-        <div className="mt-12 space-y-6">
-          <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#7A817C]">
-            ניתוח עדכני
-          </h2>
-          <FeaturedBreakfastCerealsIntelligenceCard
-            href={CEREALS_COMPARISON_HREF}
-            description={cerealsDescription}
-          />
-          <FeaturedGranolaIntelligenceCard
-            href={GRANOLA_COMPARISON_HREF}
-            description={granolaDescription}
-          />
-          <FeaturedBrinedCheesesIntelligenceCard
-            href={BRINED_CHEESES_COMPARISON_HREF}
-            description={brinedCheesesDescription}
-          />
-          <FeaturedCookiesCoffeeIntelligenceCard
-            href={COOKIES_COFFEE_COMPARISON_HREF}
-            description={cookiesCoffeeDescription}
-          />
-          <FeaturedCakesHardCookiesIntelligenceCard
-            href={CAKES_COMPARISON_HREF}
-            description={cakesDescription}
-          />
-          <FeaturedBreadIntelligenceCardLite href={BREAD_COMPARISON_HREF} description={breadDescription} />
-          <FeaturedSnacksIntelligenceCard href={SNACK_COMPARISON_HREF} description={snacksDescription} />
-          <FeaturedProteinBarsIntelligenceCard href="/hashvaot/protein-bars" description={proteinBarsDescription} />
-          <FeaturedChocolateTabletsIntelligenceCard href={CHOCOLATE_TABLETS_COMPARISON_HREF} description={chocolateTabletsDescription} />
-          <FeaturedChocolateBarsIntelligenceCard href={CHOCOLATE_BARS_COMPARISON_HREF} description={chocolateBarsDescription} />
-          <FeaturedHummusIntelligenceCard
-            href={HUMMUS_COMPARISON_HREF}
-            description={hummusDescription}
-          />
-          <FeaturedCheeseIntelligenceCard
-            href={CHEESE_COMPARISON_HREF}
-            description={cheeseDescription}
-          />
-          <FeaturedHardCheesesIntelligenceCard
-            href={HARD_CHEESES_COMPARISON_HREF}
-            description={hardCheesesDescription}
-          />
-          <FeaturedJuicesIntelligenceCard
-            href={JUICES_COMPARISON_HREF}
-            description={juicesDescription}
-          />
-        </div>
+        {/* Section 3: Raw foods -- coming soon */}
+        <HashvaotGroupSection
+          sectionId="raw-foods"
+          title="מזון גולמי"
+          status="building"
+          comingSoon={{
+            // DRAFT -- pending Content + QA sign-off
+            subtext: RAW_FOODS_COMING_SOON_SUBTEXT,
+            ariaLabel: "קטגוריית מזון גולמי — בבנייה, עדיין לא זמינה",
+          }}
+        />
+
+        {/* Section 4: Personal care -- coming soon */}
+        <HashvaotGroupSection
+          sectionId="personal-care"
+          title="טיפוח אישי"
+          status="building"
+          comingSoon={{
+            // DRAFT -- pending Content + QA sign-off
+            subtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
+            ariaLabel: "קטגוריית טיפוח אישי — בבנייה, עדיין לא זמינה",
+          }}
+        />
 
         <Link
           href="/"
