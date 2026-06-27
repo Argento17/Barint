@@ -237,6 +237,8 @@ export interface BariProcessingSignalVM {
 export interface BariProductVM {
   id: string;
   name: string;
+  /** Brand / manufacturer display name. Optional; absent on older datasets. */
+  brand?: string | null;
   imageUrl: string | null;
   score: number | null;
   grade: BariGrade | null;
@@ -325,7 +327,30 @@ export interface BariProductVM {
     | { key: string; label: string; score: number; strength: string; interpretation: string }
     | { dimension: string; score: number; label_he: string; explanation_he: string }
   >;
+  /** TASK-384A: short Hebrew badge string for magnesium dose warning. Display-only. */
+  claimShortfallFlag?: string | null;
+  /** TASK-384A: pre-rendered Hebrew pill showing estimated absorbed mg. Display-only. */
+  absorbedMgPill?: string | null;
+  /** TASK-384A: short Hebrew badge string for value-for-money warning. Display-only. */
+  valueFlag?: string | null;
+    /** TASK-384A: optional safety note shown at a band boundary in the expansion. Display-only. */
+  bandNote?: string | null;
+  /** TASK-384A: full magnesium badge grid data for the expansion panel. Display-only. */
+  magnesiumBadges?: MagnesiumBadgesVM | null;
 }
+// ─── Magnesium supplement badges (TASK-384A) ─────────────────────────────────────────
+// Per-product badge data for the 6-slot expansion grid.
+// All fields are pre-rendered Hebrew strings from the pipeline.
+export interface MagnesiumBadgesVM {
+  elemental_mg_label: string;
+  form_label: string;
+  bav_label: string;
+  suitability_label: string;
+  label_confidence_label: string;
+  safety_flags: string[];
+  compound_transparency?: string | null;
+}
+
 
 // ─── Filter ───────────────────────────────────────────────────────────────────
 // id is opaque to the UI — never branch on its value.

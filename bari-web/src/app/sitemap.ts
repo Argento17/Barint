@@ -30,6 +30,7 @@ const STATIC_PATHS = [
   "/hashvaot/milk-comparison",
   "/hashvaot/protein-bars",
   "/hashvaot/snacks",
+  "/hashvaot/supermarket",
   "/hashvaot/supplements",
   "/blog",
 ] as const;
