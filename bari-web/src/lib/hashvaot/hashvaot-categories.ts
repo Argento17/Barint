@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Hashvaot category registry.
  * DRAFT subtext below is pending Content + QA sign-off.
  */
@@ -13,6 +13,8 @@ export interface HashvaotCategory {
   href?: string;
   description?: string;
   comingSoonSubtext?: string;
+  accent: string;
+  heroStat?: { value: string; label: string };
 }
 
 // DRAFT — pending Content + QA sign-off
@@ -31,6 +33,8 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     countLabel: "16 השוואות",
     href: "/hashvaot/supermarket",
     description: "חלב, לחם, דגני בוקר, גבינות, חטיפים ועוד — מהמדף הישראלי.",
+    accent: "#BC6A33",
+    heroStat: { value: "16", label: "השוואות פעילות" },
   },
   {
     id: "supplements",
@@ -39,6 +43,8 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     countLabel: "1 השוואה",
     href: "/hashvaot/supplements",
     description: "תוספים מנותחים לפי ספיגה בפועל, לא לפי הכמות שעל הקופסה.",
+    accent: "#4A7B8C",
+    heroStat: { value: "18", label: "מוצרי מגנזיום נבדקו" },
   },
   {
     id: "raw-foods",
@@ -46,6 +52,7 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     status: "building",
     href: "/hashvaot/raw-foods",
     comingSoonSubtext: RAW_FOODS_COMING_SOON_SUBTEXT,
+    accent: "#7A8C5E",
   },
   {
     id: "personal-care",
@@ -53,6 +60,7 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     status: "building",
     href: "/hashvaot/personal-care",
     comingSoonSubtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
+    accent: "#8B7BA8",
   },
 ];
 
