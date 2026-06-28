@@ -2,24 +2,24 @@ import { NextResponse } from "next/server";
 
 import { isAuthed } from "@/lib/admin/auth";
 import { applyProse, BLOG_DIR, blogDoc } from "@/lib/admin/blog";
+import { getSiteContentEntry, PAGE_CHROME_FILE } from "@/lib/admin/content-registry";
 import { applyEdits, LIVE_COMPARISON_FILES } from "@/lib/admin/fields";
+import { applySiteEdits, extractPageChromeFields, extractSiteFields } from "@/lib/admin/site-fields";
 import {
   getComparisonFile,
   getRepoJson,
   githubConfigured,
   putComparisonFile,
   putRepoJson,
+  getSiteContentFile,
+  putSiteContentFile,
 } from "@/lib/admin/github";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Body: { kind?: "comparison" | "blog", slug, edits: { [itemId]: { [path]: value } } }
- *
- * Re-fetches the live file, applies only whitelisted/prose edits (the apply
- * helpers reject everything else — scores and links can never be written), then
- * commits. The commit triggers a Vercel rebuild → live in ~2 min.
+ * Body: { kind?: "comparison" | "blog" | "page_chrome" | "site", slug, edits: { [itemId]: { [path]: value } } }
  */
 export async function POST(request: Request) {
   if (!(await isAuthed())) {
@@ -47,9 +47,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
   }
 
-  return kind === "blog"
-    ? saveBlog(slug, edits as Record<string, unknown>)
-    : saveComparison(slug, edits as Record<string, unknown>);
+  const docKind = typeof kind === "string" ? kind : "comparison";
+
+  if (docKind === "blog") return saveBlog(slug, edits as Record<string, unknown>);
+  if (docKind === "site") return saveSite(slug, edits as Record<string, unknown>);
+  if (docKind === "page_chrome") return savePageChrome(slug, edits as Record<string, unknown>);
+  return saveComparison(slug, edits as Record<string, unknown>);
 }
 
 async function saveBlog(slug: string, edits: Record<string, unknown>) {
@@ -79,6 +82,68 @@ async function saveBlog(slug: string, edits: Record<string, unknown>) {
   const message = `Admin blog edit: ${slug} — ${result.applied} field(s) [TASK-350]`;
   try {
     const { commitSha } = await putRepoJson(repoPath, data, sha, message);
+    return NextResponse.json({ ok: true, applied: result.applied, productsTouched: 1, rejected: result.rejected, commitSha });
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });
+  }
+}
+
+async function saveSite(slug: string, edits: Record<string, unknown>) {
+  const entry = getSiteContentEntry(slug);
+  if (!entry) {
+    return NextResponse.json({ ok: false, error: "unknown_site_id" }, { status: 404 });
+  }
+  let data: Record<string, unknown>;
+  let sha: string;
+  try {
+    ({ data, sha } = await getSiteContentFile(entry.file));
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+  }
+  const fieldEdits = edits[slug];
+  if (!fieldEdits || typeof fieldEdits !== "object") {
+    return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
+  }
+  const allowed = new Set(extractSiteFields(data).map((f) => f.path));
+  const result = applySiteEdits(data, fieldEdits as Record<string, unknown>, allowed);
+  if (result.applied === 0) {
+    return NextResponse.json({ ok: false, error: "no_valid_edits", rejected: result.rejected }, { status: 400 });
+  }
+  const message = `Admin site edit: ${slug} — ${result.applied} field(s)`;
+  try {
+    const { commitSha } = await putSiteContentFile(entry.file, data, sha, message);
+    return NextResponse.json({ ok: true, applied: result.applied, productsTouched: 1, rejected: result.rejected, commitSha });
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });
+  }
+}
+
+async function savePageChrome(slug: string, edits: Record<string, unknown>) {
+  let data: Record<string, unknown>;
+  let sha: string;
+  try {
+    ({ data, sha } = await getSiteContentFile(PAGE_CHROME_FILE));
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+  }
+  const pages = data as Record<string, Record<string, unknown>>;
+  const chrome = pages[slug];
+  if (!chrome) {
+    return NextResponse.json({ ok: false, error: "unknown_slug" }, { status: 404 });
+  }
+  const fieldEdits = edits[slug];
+  if (!fieldEdits || typeof fieldEdits !== "object") {
+    return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
+  }
+  const allowed = new Set(extractPageChromeFields(chrome).map((f) => f.path));
+  const result = applySiteEdits(chrome, fieldEdits as Record<string, unknown>, allowed);
+  if (result.applied === 0) {
+    return NextResponse.json({ ok: false, error: "no_valid_edits", rejected: result.rejected }, { status: 400 });
+  }
+  pages[slug] = chrome;
+  const message = `Admin page chrome edit: ${slug} — ${result.applied} field(s)`;
+  try {
+    const { commitSha } = await putSiteContentFile(PAGE_CHROME_FILE, data, sha, message);
     return NextResponse.json({ ok: true, applied: result.applied, productsTouched: 1, rejected: result.rejected, commitSha });
   } catch (err) {
     return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });

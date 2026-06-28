@@ -14,6 +14,7 @@
  */
 const API = "https://api.github.com";
 const DIR = "bari-web/src/data/comparisons";
+export const SITE_CONTENT_REPO_DIR = "bari-web/src/data/site-content";
 
 function cfg() {
   const token = process.env.ADMIN_GITHUB_TOKEN || "";
@@ -109,4 +110,17 @@ export function putComparisonFile(
   message: string,
 ): Promise<{ commitSha: string }> {
   return putRepoJson(`${DIR}/${file}`, data, sha, message);
+}
+
+export function getSiteContentFile(file: string): Promise<FetchedFile> {
+  return getRepoJson<FetchedFile["data"]>(`${SITE_CONTENT_REPO_DIR}/${file}`);
+}
+
+export function putSiteContentFile(
+  file: string,
+  data: unknown,
+  sha: string,
+  message: string,
+): Promise<{ commitSha: string }> {
+  return putRepoJson(`${SITE_CONTENT_REPO_DIR}/${file}`, data, sha, message);
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { isAuthed } from "@/lib/admin/auth";
 import { LIVE_BLOG_DOCS } from "@/lib/admin/blog";
+import { listComparisonEntries, SITE_CONTENT_ENTRIES } from "@/lib/admin/content-registry";
 import { LIVE_COMPARISON_FILES } from "@/lib/admin/fields";
 import { getComparisonFile } from "@/lib/admin/github";
 
@@ -40,5 +41,19 @@ export async function GET() {
     route: d.route,
   }));
 
-  return NextResponse.json({ comparisons, blog });
+  const pageChrome = listComparisonEntries().map((e) => ({
+    kind: "page_chrome" as const,
+    slug: e.slug,
+    nameHe: e.nameHe,
+  }));
+
+  const site = SITE_CONTENT_ENTRIES.map((entry) => ({
+    kind: "site" as const,
+    id: entry.id,
+    slug: entry.id,
+    nameHe: entry.labelHe,
+    file: entry.file,
+  }));
+
+  return NextResponse.json({ comparisons, blog, pageChrome, site });
 }

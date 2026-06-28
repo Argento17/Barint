@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "title": "",
+    "description": ""
+  },
+  "eyebrow": "Bari comparisons",
+  "title": "{hub.title}",
+  "lead": "",
+  "backLinkLabel": "import { HomeContainer } from \"@/components/home/section-frame\";\nimport { HashvaotCategoryBox } from \"@/components/hashvaot/hashvaot-category-box\";\nimport { HASHVAOT_CATEGORIES } from \"@/lib/hashvaot/hashvaot-categories\";\nimport hubContent from \"@/data/site-content/hashvaot-hub.json\";\nimport { cn } from \"@/lib/utils\";\nimport { siteHeaderOffsetClass } from \"@/lib/site-layout\";\n\nconst hub = hubContent as {\n  metadata: Metadata;\n  eyebrow: string;\n  title: string;\n  lead: string;\n  backLinkLabel: string;\n};\n\nexport const metadata: Metadata = hub.metadata;\n\nexport default function HashvaotIndexPage() {\n  return ("
+}
