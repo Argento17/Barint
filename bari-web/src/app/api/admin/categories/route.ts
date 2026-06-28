@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { isAuthed } from "@/lib/admin/auth";
+import { LIVE_BLOG_DOCS } from "@/lib/admin/blog";
+import { listComparisonEntries, SITE_CONTENT_ENTRIES } from "@/lib/admin/content-registry";
 import { LIVE_COMPARISON_FILES } from "@/lib/admin/fields";
 import { getComparisonFile } from "@/lib/admin/github";
 
@@ -13,23 +15,45 @@ export async function GET() {
   }
 
   const slugs = Object.keys(LIVE_COMPARISON_FILES).sort();
-  const categories = await Promise.all(
+  const comparisons = await Promise.all(
     slugs.map(async (slug) => {
       const file = LIVE_COMPARISON_FILES[slug];
       try {
         const { data } = await getComparisonFile(file);
         const meta = data._meta ?? {};
         return {
+          kind: "comparison" as const,
           slug,
           file,
           nameHe: typeof meta.name_he === "string" ? meta.name_he : slug,
           productCount: (data.products ?? []).length,
         };
       } catch {
-        return { slug, file, nameHe: slug, productCount: 0, unavailable: true };
+        return { kind: "comparison" as const, slug, file, nameHe: slug, productCount: 0, unavailable: true };
       }
     }),
   );
 
-  return NextResponse.json({ categories });
+  const blog = LIVE_BLOG_DOCS.map((d) => ({
+    kind: "blog" as const,
+    slug: d.slug,
+    nameHe: d.labelHe,
+    route: d.route,
+  }));
+
+  const pageChrome = listComparisonEntries().map((e) => ({
+    kind: "page_chrome" as const,
+    slug: e.slug,
+    nameHe: e.nameHe,
+  }));
+
+  const site = SITE_CONTENT_ENTRIES.map((entry) => ({
+    kind: "site" as const,
+    id: entry.id,
+    slug: entry.id,
+    nameHe: entry.labelHe,
+    file: entry.file,
+  }));
+
+  return NextResponse.json({ comparisons, blog, pageChrome, site });
 }

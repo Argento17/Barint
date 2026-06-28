@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const dynamic = "force-dynamic";
 
-// ---- Shared types (mirror the API responses) ----
 type FieldKind = "text" | "list";
 
 interface EditableField {
@@ -22,17 +21,19 @@ interface EditableProduct {
   fields: EditableField[];
 }
 
+type DocKind = "comparison" | "blog" | "page_chrome" | "site";
+
 interface CategorySummary {
+  kind: DocKind;
   slug: string;
-  file: string;
   nameHe: string;
-  productCount: number;
+  productCount?: number;
   unavailable?: boolean;
 }
 
 interface LoadedCategory {
+  kind: DocKind;
   slug: string;
-  file: string;
   sha: string;
   nameHe: string;
   products: EditableProduct[];
@@ -40,7 +41,6 @@ interface LoadedCategory {
 
 type Draft = Record<string, Record<string, string | string[]>>;
 
-// ---- Helpers ----
 function sameValue(a: string | string[], b: string | string[]): boolean {
   return JSON.stringify(a) === JSON.stringify(b);
 }
@@ -48,13 +48,13 @@ function sameValue(a: string | string[], b: string | string[]): boolean {
 export default function AdminPage() {
   const [status, setStatus] = useState<"loading" | "login" | "ready">("loading");
   const [githubReady, setGithubReady] = useState(true);
-
-  // login
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  // data
-  const [categories, setCategories] = useState<CategorySummary[]>([]);
+  const [comparisons, setComparisons] = useState<CategorySummary[]>([]);
+  const [blogDocs, setBlogDocs] = useState<CategorySummary[]>([]);
+  const [pageChromeDocs, setPageChromeDocs] = useState<CategorySummary[]>([]);
+  const [siteDocs, setSiteDocs] = useState<CategorySummary[]>([]);
   const [loaded, setLoaded] = useState<LoadedCategory | null>(null);
   const [draft, setDraft] = useState<Draft>({});
   const [busy, setBusy] = useState(false);
@@ -64,10 +64,12 @@ export default function AdminPage() {
     const res = await fetch("/api/admin/categories");
     if (!res.ok) return;
     const data = await res.json();
-    setCategories(data.categories ?? []);
+    setComparisons(data.comparisons ?? []);
+    setBlogDocs(data.blog ?? []);
+    setPageChromeDocs(data.pageChrome ?? []);
+    setSiteDocs(data.site ?? []);
   }, []);
 
-  // ---- session bootstrap ----
   useEffect(() => {
     void (async () => {
       try {
@@ -86,7 +88,6 @@ export default function AdminPage() {
     })();
   }, [loadCategories]);
 
-  // ---- actions ----
   async function doLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoginError("");
@@ -102,7 +103,7 @@ export default function AdminPage() {
       setGithubReady(Boolean(session.githubConfigured));
       await loadCategories();
     } else if (res.status === 503) {
-      setLoginError("העורך לא מוגדר עדיין (חסרים סודות בשרת).");
+      setLoginError("העורך לא מוגד עדיין (חסרים סודות בשרת).");
     } else {
       setLoginError("סיסמה שגויה.");
     }
@@ -115,16 +116,16 @@ export default function AdminPage() {
     setStatus("login");
   }
 
-  async function openCategory(slug: string) {
+  async function openCategory(slug: string, kind: DocKind) {
     setNotice(null);
     setBusy(true);
     setLoaded(null);
     setDraft({});
     try {
-      const res = await fetch(`/api/admin/load?slug=${encodeURIComponent(slug)}`);
+      const res = await fetch(`/api/admin/load?kind=${kind}&slug=${encodeURIComponent(slug)}`);
       const data = await res.json();
       if (data.ok) setLoaded(data as LoadedCategory);
-      else setNotice({ kind: "err", text: "טעינת הקטגוריה נכשלה." });
+      else setNotice({ kind: "err", text: "הטעינה נכשלה." });
     } finally {
       setBusy(false);
     }
@@ -137,7 +138,6 @@ export default function AdminPage() {
     }));
   }
 
-  // dirty edits = draft values that differ from the loaded originals
   const dirtyEdits = useMemo<Draft>(() => {
     if (!loaded) return {};
     const originals = new Map<string, Map<string, string | string[]>>();
@@ -171,16 +171,15 @@ export default function AdminPage() {
       const res = await fetch("/api/admin/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: loaded.slug, edits: dirtyEdits }),
+        body: JSON.stringify({ kind: loaded.kind, slug: loaded.slug, edits: dirtyEdits }),
       });
       const data = await res.json();
       if (data.ok) {
         setNotice({
           kind: "ok",
-          text: `נשמר ופורסם — ${data.applied} שינוי(ים). העדכון יעלה לאתר תוך כ-2 דקות.`,
+          text: `נשמר ופורסם — ${data.applied} שינוי(ים). העדכון יעלה לאתר תוך כידי 2 דקות.`,
         });
-        // refresh so the editor reflects the committed values as the new baseline
-        await openCategory(loaded.slug);
+        await openCategory(loaded.slug, loaded.kind);
       } else if (data.error === "github_not_configured") {
         setNotice({ kind: "err", text: "הפרסום ל-GitHub לא מוגדר בשרת." });
       } else {
@@ -193,9 +192,12 @@ export default function AdminPage() {
     }
   }
 
-  // ---- render ----
   if (status === "loading") {
-    return <Shell><p className="text-neutral-500">טוען…</p></Shell>;
+    return (
+      <Shell wide>
+        <p className="text-neutral-500">טוען…</p>
+      </Shell>
+    );
   }
 
   if (status === "login") {
@@ -222,7 +224,7 @@ export default function AdminPage() {
   }
 
   return (
-    <Shell>
+    <Shell wide>
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-xl font-semibold">עורך התוכן של Bari</h1>
         <button onClick={doLogout} className="text-sm text-neutral-500 underline">יציאה</button>
@@ -234,28 +236,36 @@ export default function AdminPage() {
         </Banner>
       )}
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-[220px_1fr]">
-        {/* category list */}
-        <aside className="space-y-1">
-          {categories.map((c) => (
-            <button
-              key={c.slug}
-              onClick={() => openCategory(c.slug)}
-              disabled={c.unavailable}
-              className={`block w-full rounded-md px-3 py-2 text-right text-sm ${
-                loaded?.slug === c.slug ? "bg-neutral-900 text-white" : "hover:bg-neutral-100"
-              } ${c.unavailable ? "opacity-40" : ""}`}
-            >
-              {c.nameHe}
-              <span className="mr-1 text-xs opacity-60">({c.productCount})</span>
-            </button>
-          ))}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[240px_1fr]">
+        <aside className="max-h-[calc(100vh-8rem)] space-y-4 overflow-y-auto">
+          <CategoryGroup
+            title="השוואות"
+            items={comparisons}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
+          <CategoryGroup
+            title="בלוג"
+            items={blogDocs}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
+          <CategoryGroup
+            title="כותרות עמודי השוואה"
+            items={pageChromeDocs}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
+          <CategoryGroup
+            title="דפי אתר"
+            items={siteDocs}
+            loadedKey={loaded ? `${loaded.kind}:${loaded.slug}` : undefined}
+            onOpen={openCategory}
+          />
         </aside>
 
-        {/* editor */}
-        <main>
+        <div>
           {notice && <Banner kind={notice.kind}>{notice.text}</Banner>}
-
           {!loaded && <p className="text-neutral-400">בחר קטגוריה כדי לערוך.</p>}
 
           {loaded && (
@@ -263,7 +273,7 @@ export default function AdminPage() {
               <div className="sticky top-0 z-10 mb-4 flex items-center justify-between border-b border-neutral-200 bg-white/90 py-3 backdrop-blur">
                 <div>
                   <h2 className="text-lg font-medium">{loaded.nameHe}</h2>
-                  <p className="text-xs text-neutral-400">{loaded.file}</p>
+                  <p className="text-xs text-neutral-400">{loaded.slug}</p>
                 </div>
                 <button
                   onClick={save}
@@ -281,14 +291,51 @@ export default function AdminPage() {
                     product={p}
                     draft={draft[p.id] ?? {}}
                     onChange={(path, value) => setField(p.id, path, value)}
+                    showScore={loaded.kind === "comparison"}
                   />
                 ))}
               </div>
             </>
           )}
-        </main>
+        </div>
       </div>
     </Shell>
+  );
+}
+
+function CategoryGroup({
+  title,
+  items,
+  loadedKey,
+  onOpen,
+}: {
+  title: string;
+  items: CategorySummary[];
+  loadedKey?: string;
+  onOpen: (slug: string, kind: DocKind) => void;
+}) {
+  if (items.length === 0) return null;
+  return (
+    <div>
+      <h2 className="mb-1 px-3 text-xs font-semibold tracking-wide text-neutral-400">{title}</h2>
+      <div className="space-y-1">
+        {items.map((c) => (
+          <button
+            key={`${c.kind}:${c.slug}`}
+            onClick={() => onOpen(c.slug, c.kind)}
+            disabled={c.unavailable}
+            className={`block w-full rounded-md px-3 py-2 text-right text-sm ${
+              loadedKey === `${c.kind}:${c.slug}` ? "bg-neutral-900 text-white" : "hover:bg-neutral-100"
+            } ${c.unavailable ? "opacity-40" : ""}`}
+          >
+            {c.nameHe}
+            {typeof c.productCount === "number" && (
+              <span className="mr-1 text-xs opacity-60">({c.productCount})</span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -296,18 +343,23 @@ function ProductBlock({
   product,
   draft,
   onChange,
+  showScore,
 }: {
   product: EditableProduct;
   draft: Record<string, string | string[]>;
   onChange: (path: string, value: string | string[]) => void;
+  showScore?: boolean;
 }) {
   return (
     <section className="rounded-lg border border-neutral-200 p-4">
       <header className="mb-3 flex items-baseline justify-between">
         <h3 className="font-medium">{product.name || product.id}</h3>
-        <span className="text-xs text-neutral-400">
-          {product.score ?? "—"} · {product.grade ?? "—"} <span className="opacity-60">(לא ניתן לעריכה)</span>
-        </span>
+        {showScore && product.score !== null && (
+          <span className="text-xs text-neutral-400">
+            {product.score} · {product.grade ?? "—"}{" "}
+            <span className="opacity-60">(לא ניתן לעריכה)</span>
+          </span>
+        )}
       </header>
 
       {product.fields.length === 0 && (
@@ -326,7 +378,13 @@ function ProductBlock({
                   rows={Math.max(2, (current as string[]).length)}
                   value={(current as string[]).join("\n")}
                   onChange={(e) =>
-                    onChange(f.path, e.target.value.split("\n").map((s) => s).filter((s, i, arr) => !(s === "" && i === arr.length - 1)))
+                    onChange(
+                      f.path,
+                      e.target.value
+                        .split("\n")
+                        .map((s) => s)
+                        .filter((s, i, arr) => !(s === "" && i === arr.length - 1)),
+                    )
                   }
                   className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm leading-relaxed"
                 />
@@ -347,10 +405,10 @@ function ProductBlock({
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, wide }: { children: React.ReactNode; wide?: boolean }) {
   return (
     <div dir="rtl" lang="he" className="min-h-screen bg-white px-4 py-8 text-neutral-900">
-      <div className="mx-auto max-w-4xl">{children}</div>
+      <div className={wide ? "mx-auto max-w-6xl" : "mx-auto max-w-4xl"}>{children}</div>
     </div>
   );
 }
