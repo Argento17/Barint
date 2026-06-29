@@ -1,5 +1,5 @@
 ﻿/**
- * Homepage carousel -- 7 cards using the strict CarouselCard schema.
+ * Homepage carousel -- 5 cards using the strict CarouselCard schema.
  */
 
 import type { CarouselCard } from "./homepage-carousel-schema";
@@ -15,76 +15,6 @@ const CL =
 export { CAROUSEL_PRODUCT_FALLBACK };
 
 export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
-  // -- Comparison 1: Bread -------------------------------------------------------
-  {
-    id: "comparison-bread-sourdough-vs-cracker",
-    type: "comparison",
-    visualMode: "product_duel",
-    eyebrow: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4",
-    category: "\u05DC\u05D7\u05DD \u05D5\u05DE\u05D0\u05E4\u05D9\u05DD",
-    title: "\u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05DE\u05D5\u05DC \u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD",
-    evidence: "\u05D1\u05E7\u05E8\u05E7\u05E8: \u05E7\u05DE\u05D7 \u05DE\u05D6\u05D5\u05E7\u05E7 \u05DC\u05E4\u05E0\u05D9 \u05D4\u05E9\u05D5\u05DE\u05E9\u05D5\u05DD; \u05D1\u05DE\u05D7\u05DE\u05E6\u05EA: \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05D5\u05EA\u05E1\u05D9\u05E1\u05D4 \u05DE\u05DE\u05E9\u05D9\u05EA. 31 \u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05E9\u05E0\u05E7\u05D1\u05E2\u05D5\u05EA \u05D1\u05E8\u05DB\u05D9\u05D1 \u05D4\u05E8\u05D0\u05E9\u05D5\u05DF.",
-    metric: "89 \u05DE\u05D5\u05DC 58",
-    href: "/hashvaot/bread",
-    accent: "#6B7B5E",
-    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
-    leftProduct: {
-      productId: "bsip1_bread_481203",
-      barcode: "481203",
-      name: "\u05DC\u05D7\u05DD \u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0",
-      brand: "\u05D0\u05E8\u05E0\u05D4",
-      score: 89,
-      imageUrl: CL + "IUU18_Z_P_481203_1.png",
-      imageAlt: "\u05DC\u05D7\u05DD \u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05D0\u05E8\u05E0\u05D4",
-      imageStatus: "verified",
-    },
-    rightProduct: {
-      productId: "bsip1_bread_74252",
-      barcode: "74252",
-      name: "\u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD",
-      brand: "\u05D0\u05E1\u05DD",
-      score: 58,
-      imageUrl: CL + "EUV20_Z_P_74252_1.png",
-      imageAlt: "\u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD \u05D0\u05E1\u05DD",
-      imageStatus: "verified",
-    },
-  },
-
-  // -- Comparison 2: Hummus duel (replaces milk) ---------------------------------
-  {
-    id: "comparison-hummus-tahini-rich-vs-lean",
-    type: "comparison",
-    visualMode: "product_duel",
-    eyebrow: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4",
-    category: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05D5\u05DE\u05DE\u05E8\u05D7\u05D9\u05DD",
-    title: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA \u05DE\u05D5\u05DC \u05DE\u05E1\u05D1\u05D7\u05D4",
-    evidence: "31% \u05D8\u05D7\u05D9\u05E0\u05D4 \u05DE\u05D5\u05DC 10% \u2014 \u05D0\u05D5\u05EA\u05D5 \u05DE\u05D3\u05E3, \u05D4\u05E4\u05E8\u05E9 20 \u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05E9\u05E0\u05E7\u05D1\u05E2 \u05D1\u05D9\u05D7\u05E1 \u05D4\u05D8\u05D7\u05D9\u05E0\u05D4 \u05DC\u05D7\u05D5\u05DE\u05D5\u05E1.",
-    metric: "71 \u05DE\u05D5\u05DC 51",
-    href: "/hashvaot/hummus",
-    accent: "#8B7355",
-    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
-    leftProduct: {
-      productId: "bsip1_7296073725404",
-      barcode: "7296073725404",
-      name: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA",
-      brand: "\u05D0\u05E1\u05DD",
-      score: 71,
-      imageUrl: CL + "IMV56_Z_P_7296073725404_1.png",
-      imageAlt: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA",
-      imageStatus: "verified",
-    },
-    rightProduct: {
-      productId: "bsip1_7296073725398",
-      barcode: "7296073725398",
-      name: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05D1\u05D7\u05D4",
-      brand: "\u05D0\u05E1\u05DD",
-      score: 51,
-      imageUrl: CL + "IMP68_Z_P_7296073725398_1.png",
-      imageAlt: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05D1\u05D7\u05D4",
-      imageStatus: "verified",
-    },
-  },
-
   // -- Comparison 3: Granola -----------------------------------------------------
   {
     id: "comparison-granola-premium-vs-bottom",
