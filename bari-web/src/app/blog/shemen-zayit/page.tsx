@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
+import { absoluteUrl } from "@/lib/site-url";
 import { OliveOilArticle } from "@/components/blog/olive-oil-article";
 
 export const metadata: Metadata = {
@@ -20,5 +22,14 @@ export const metadata: Metadata = {
 };
 
 export default function OliveOilBlogPage() {
-  return <OliveOilArticle />;
+  return (
+    <>
+    <BlogArticleSeo
+      title={"13 מוצרי שמן זית בשופרסל. אפס גילויים על תאריך הקציר."}
+      description={"סרקנו את מלאי שמן הזית בשופרסל — 13 מוצרים. אף אחד לא מצהיר על תאריך קציר. מה \\"}
+      url={absoluteUrl("/blog/shemen-zayit")}
+    />
+      <OliveOilArticle />
+    </>
+  );
 }

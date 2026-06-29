@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { HummusComparisonPage } from "@/components/comparisons/hummus-comparison-page";
 import {
   hummusHero,
@@ -13,9 +14,18 @@ import {
 
 export const metadata: Metadata = hummusComparisonMetadata;
 
-export default function HummusComparisonRoute() {
+export default async function HummusComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
-    <HummusComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/hummus" products={hummusProducts} faqKey="hummus" />
+      <HummusComparisonPage
       products={hummusProducts}
       metadataLine={hummusMetadataLine}
       hero={hummusHero}
@@ -23,6 +33,9 @@ export default function HummusComparisonRoute() {
       methodologyLines={hummusMethodologyLines}
       categoryNote={hummusCategoryNote}
       glassBoxMethodologyLink
-    />
+      initialExpandedProductId={initialExpandedProductId}
+
+      />
+    </>
   );
 }

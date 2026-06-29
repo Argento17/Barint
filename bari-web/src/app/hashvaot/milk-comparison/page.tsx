@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { MilkComparisonPage } from "@/components/comparisons/milk-comparison-page";
 import {
   milkBlogLink,
@@ -14,9 +15,18 @@ import {
 
 export const metadata: Metadata = milkComparisonMetadata;
 
-export default function MilkComparisonRoute() {
+export default async function MilkComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
-    <MilkComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/milk-comparison" products={milkVmProducts} />
+      <MilkComparisonPage
       products={milkVmProducts}
       metadataLine={milkMetadataLine}
       hero={milkHero}
@@ -24,6 +34,9 @@ export default function MilkComparisonRoute() {
       methodologyLines={milkMethodologyLines}
       categoryNote={milkCategoryNote}
       blogLink={milkBlogLink}
-    />
+      initialExpandedProductId={initialExpandedProductId}
+
+      />
+    </>
   );
 }

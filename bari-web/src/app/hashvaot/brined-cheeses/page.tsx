@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { BrinedCheesesComparisonPage } from "@/components/comparisons/brined-cheeses-comparison-page";
 import {
   brinedCheesesCategoryNote,
@@ -9,8 +10,6 @@ import {
   brinedCheesesPrologueSentences,
   brinedCheesesProducts,
 } from "@/lib/comparisons/brined-cheeses-page-data";
-import { buildFaqScript } from "@/lib/seo/faq-schema";
-import rawFaqSchema from "@/data/seo/brined_cheeses_faq_schema.json";
 
 export const metadata: Metadata = {
   title: "השוואת גבינות מלוחות | Bari",
@@ -18,17 +17,26 @@ export const metadata: Metadata = {
     "השוואת 36 גבינות מלוחות מהמדף הישראלי — ציון Bari, נתרן, חלבון ושומן ל-100 גרם. מידע, לא המלצה.",
 };
 
-export default function BrinedCheesesComparisonRoute() {
+export default async function BrinedCheesesComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: buildFaqScript(rawFaqSchema) }} />
+      <ComparisonPageSeo pagePath="/hashvaot/brined-cheeses" products={brinedCheesesProducts} faqKey="brined_cheeses" />
       <BrinedCheesesComparisonPage
-        products={brinedCheesesProducts}
-        metadataLine={brinedCheesesMetadataLine}
-        hero={brinedCheesesHero}
-        prologueSentences={brinedCheesesPrologueSentences}
-        methodologyLines={brinedCheesesMethodologyLines}
-        categoryNote={brinedCheesesCategoryNote}
+      products={brinedCheesesProducts}
+      metadataLine={brinedCheesesMetadataLine}
+      hero={brinedCheesesHero}
+      prologueSentences={brinedCheesesPrologueSentences}
+      methodologyLines={brinedCheesesMethodologyLines}
+      categoryNote={brinedCheesesCategoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+
       />
     </>
   );

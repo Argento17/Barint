@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
+import { absoluteUrl } from "@/lib/site-url";
 import { YogurtArticle } from "@/components/blog/yogurt-article";
 
 // SEO brief (TASK-201): see C:\Bari\03_operations\seo\yogurt_seo_brief_v1.md
@@ -21,5 +23,14 @@ export const metadata: Metadata = {
 };
 
 export default function YogurtBlogPage() {
-  return <YogurtArticle />;
+  return (
+    <>
+    <BlogArticleSeo
+      title={"19 יוגורטים. שתי רשתות. מה שמניע את הציונים."}
+      description={"סרקנו 19 יוגורטים משופרסל ויוחננוף. יוגורט לבן פשוט הגיע ל-A. יוגורט 0% שומן בטעם תות — C. מה באמת מבדיל בין הגביעים."}
+      url={absoluteUrl("/blog/yogurt")}
+    />
+      <YogurtArticle />
+    </>
+  );
 }

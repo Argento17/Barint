@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SITE_URL } from "@/lib/site-url";
+import { JsonLdScript } from "@/components/seo/json-ld-script";
+import { buildSiteJsonLd } from "@/lib/seo/organization-schema";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -36,6 +38,9 @@ export default function RootLayout({
       className={cn("h-full scroll-smooth", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
+        {buildSiteJsonLd().map((schema) => (
+          <JsonLdScript key={schema["@type"] as string} data={schema} />
+        ))}
         <SiteHeader />
         {children}
       </body>

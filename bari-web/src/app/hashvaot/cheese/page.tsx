@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { CheeseComparisonPage } from "@/components/comparisons/cheese-comparison-page";
 import {
   cheeseHero,
@@ -13,15 +14,27 @@ import {
 
 export const metadata: Metadata = cheeseComparisonMetadata;
 
-export default function CheeseComparisonRoute() {
+export default async function CheeseComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
-    <CheeseComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/cheese" products={cheeseProducts} />
+      <CheeseComparisonPage
       products={cheeseProducts}
       metadataLine={cheeseMetadataLine}
       hero={cheeseHero}
       prologueSentences={cheesePrologueSentences}
       methodologyLines={cheeseMethodologyLines}
       categoryNote={cheeseCategoryNote}
-    />
+      initialExpandedProductId={initialExpandedProductId}
+
+      />
+    </>
   );
 }
