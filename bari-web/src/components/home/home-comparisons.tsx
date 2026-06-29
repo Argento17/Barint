@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -95,24 +95,24 @@ export function HomeComparisons() {
       <HomeContainer>
         <div className="reveal-up mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl space-y-3 text-right">
-            <p className="text-sm font-bold text-[#167A58]">ניתוחי קטגוריה · מוצרים אמיתיים</p>
+            <p className="text-sm font-bold text-[#167A58]">{"\u05E0\u05D9\u05EA\u05D5\u05D7\u05D9 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u00B7 \u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05D0\u05DE\u05D9\u05EA\u05D9\u05D9\u05DD"}</p>
             <h2 className="text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
-              מוצרים שנראים דומים — לא תמיד אותו דבר
+              {"\u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05E9\u05E0\u05E8\u05D0\u05D9\u05DD \u05D3\u05D5\u05DE\u05D9\u05DD \u2014 \u05DC\u05D0 \u05EA\u05DE\u05D9\u05D3 \u05D0\u05D5\u05EA\u05D5 \u05D3\u05D1\u05E8"}
             </h2>
             <p className="text-pretty text-base leading-relaxed text-[#4E5663]">
-              חלב, לחם, גרנולה, דגנים — השוואות, ממצאים ופירוט מבני לפי קטגוריה.
+              {"\u05D7\u05DC\u05D1, \u05DC\u05D7\u05DD, \u05D2\u05E8\u05E0\u05D5\u05DC\u05D4, \u05D3\u05D2\u05E0\u05D9\u05DD \u2014 \u05D4\u05E9\u05D5\u05D5\u05D0\u05D5\u05EA, \u05DE\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05E4\u05D9\u05E8\u05D5\u05D8 \u05DE\u05D1\u05E0\u05D9 \u05DC\u05E4\u05D9 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4."}
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-3">
             <Button variant="ghost" className="gap-2 text-[#167A58]" asChild>
               <Link href="/hashvaot" className="font-semibold">
-                כל ההשוואות
+                {"\u05DB\u05DC \u05D4\u05D4\u05E9\u05D5\u05D5\u05D0\u05D5\u05EA"}
                 <ChevronLeft className="size-5" aria-hidden />
               </Link>
             </Button>
             <Button variant="ghost" className="gap-2 text-[#4E5663]" asChild>
               <Link href="/blog" className="font-semibold">
-                לבלוג
+                {"\u05DC\u05D1\u05DC\u05D5\u05D2"}
               </Link>
             </Button>
           </div>
@@ -123,7 +123,7 @@ export function HomeComparisons() {
             type="button"
             onClick={() => moveCarousel("right")}
             className="inline-flex size-10 items-center justify-center rounded-full border border-black/[0.08] bg-[#FFFFFF] text-[#4E5663] shadow-sm transition hover:border-[#1F8F6A]/20"
-            aria-label="הזזת הקרוסלה ימינה"
+            aria-label="\u05D4\u05D6\u05D6\u05EA \u05D4\u05E7\u05E8\u05D5\u05E1\u05DC\u05D4 \u05D9\u05DE\u05D9\u05E0\u05D4"
           >
             <ChevronRight className="size-5" aria-hidden />
           </button>
@@ -131,7 +131,7 @@ export function HomeComparisons() {
             type="button"
             onClick={() => moveCarousel("left")}
             className="inline-flex size-10 items-center justify-center rounded-full border border-[#1F8F6A]/20 bg-[#167A58] text-[#F7F7F2] shadow-sm"
-            aria-label="הזזת הקרוסלה שמאלה"
+            aria-label="\u05D4\u05D6\u05D6\u05EA \u05D4\u05E7\u05E8\u05D5\u05E1\u05DC\u05D4 \u05E9\u05DE\u05D0\u05DC\u05D4"
           >
             <ChevronLeft className="size-5" aria-hidden />
           </button>
@@ -149,7 +149,7 @@ export function HomeComparisons() {
         />
 
         <div ref={emblaRef} className="overflow-hidden" dir="rtl">
-          <div className="flex gap-4 px-5 sm:px-6">
+          <div className="flex gap-6 px-5 sm:px-6">
             {carouselItems.map((snapshot, index) => (
               <div key={`${snapshot.id}-${index}`} className="flex flex-[0_0_auto]">
                 <HomepageCardItem card={snapshot} />

@@ -1,7 +1,9 @@
-/**
+﻿/**
  * Visual band components keyed by visualMode.
- * product_duel / product_single  -> h-36, CarouselCardImage with accent pedestal
- * grade_histogram / grade_skew / grade_stacked / ingredient_mask -> h-40, no photos
+ * product_duel / product_single  -> h-40, CarouselCardImage with accent pedestal
+ * grade_histogram / grade_skew / grade_stacked -> h-40, no photos
+ * claim_split -> h-40, two panel split
+ * ingredient_mask -> h-40, no photos
  * supplement_molecule -> h-36, abstract SVG
  */
 
@@ -27,7 +29,7 @@ function VisualBand({
   accent,
   children,
   className,
-  heightClass = "h-36",
+  heightClass = "h-40",
 }: {
   accent: string;
   children: React.ReactNode;
@@ -57,36 +59,38 @@ export function ProductDuelVisual({ card }: { card: CarouselCard }) {
 
   return (
     <VisualBand accent={card.accent}>
-      <div className="flex flex-col items-center gap-1">
-        <CarouselCardImage
-          productId={left.productId}
-          imageUrl={left.imageUrl}
-          imageAlt={left.imageAlt}
-          sizes="64px"
-          className="h-24 w-16"
-          accent={card.accent}
-        />
-        <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
-          {left.brand}
-        </span>
-      </div>
-      <div className="mx-3 flex flex-col items-center gap-0.5">
-        <div className="h-8 w-px bg-black/10" />
-        <span className="text-[0.6rem] font-extrabold text-[#5E6560]">VS</span>
-        <div className="h-8 w-px bg-black/10" />
-      </div>
-      <div className="flex flex-col items-center gap-1">
-        <CarouselCardImage
-          productId={right.productId}
-          imageUrl={right.imageUrl}
-          imageAlt={right.imageAlt}
-          sizes="64px"
-          className="h-24 w-16 -mt-4"
-          accent={card.accent}
-        />
-        <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
-          {right.brand}
-        </span>
+      <div className="flex items-end justify-center gap-4 px-4 w-full" dir="ltr">
+        <div className="flex flex-1 flex-col items-center gap-1">
+          <CarouselCardImage
+            productId={left.productId}
+            imageUrl={left.imageUrl}
+            imageAlt={left.imageAlt}
+            sizes="64px"
+            className="h-28 w-16"
+            accent={card.accent}
+          />
+          <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
+            {left.brand}
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-0.5 shrink-0 pb-6">
+          <div className="h-8 w-px bg-black/10" />
+          <span className="text-[0.6rem] font-extrabold text-[#5E6560]">VS</span>
+          <div className="h-8 w-px bg-black/10" />
+        </div>
+        <div className="flex flex-1 flex-col items-center gap-1">
+          <CarouselCardImage
+            productId={right.productId}
+            imageUrl={right.imageUrl}
+            imageAlt={right.imageAlt}
+            sizes="64px"
+            className="h-28 w-16"
+            accent={card.accent}
+          />
+          <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
+            {right.brand}
+          </span>
+        </div>
       </div>
       <div
         className="pointer-events-none absolute inset-0"
@@ -128,12 +132,12 @@ export function GradeHistogramVisual({ card }: { card: CarouselCard }) {
 
   const counts = GRADES.map((g) => dist.grades[g] ?? 0);
   const maxCount = Math.max(...counts, 1);
-  const MAX_BAR_H = 72;
+  const MAX_BAR_H = 88;
 
   return (
     <VisualBand accent={card.accent} heightClass="h-40">
       <div className="flex w-full flex-col items-center gap-1 px-3">
-        <div className="flex w-full items-end justify-center gap-1.5">
+        <div className="flex w-full items-end justify-center gap-2.5">
           {GRADES.map((g, i) => {
             const count = counts[i];
             const isMax = count > 0 && count === maxCount;
@@ -150,7 +154,7 @@ export function GradeHistogramVisual({ card }: { card: CarouselCard }) {
                   {count}
                 </span>
                 <div
-                  className="w-7 rounded-t transition-all"
+                  className="w-11 rounded-t transition-all"
                   style={{
                     height: barH,
                     backgroundColor: GRADE_COLORS[g],
@@ -167,7 +171,7 @@ export function GradeHistogramVisual({ card }: { card: CarouselCard }) {
           })}
         </div>
         <p className="mt-1 text-center text-[0.55rem] font-semibold text-[#5E6560]">
-          {dist.count} {dist.label}{" · "}{"הפרש"} {dist.spread}
+          {dist.count} {dist.label}{" \u00B7 "}{"\u05D4\u05E4\u05E8\u05E9"} {dist.spread}
         </p>
       </div>
     </VisualBand>
@@ -205,7 +209,7 @@ export function GradeSkewVisual({ card }: { card: CarouselCard }) {
               className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[0.55rem] font-bold text-white"
               style={{ backgroundColor: GRADE_COLORS[g] }}
             >
-              {g}{" · "}{dist.grades[g]}
+              {g}{" \u00B7 "}{dist.grades[g]}
             </span>
           ))}
         </div>
@@ -290,7 +294,7 @@ function TokenPill({ token, accent }: { token: string; accent: string }) {
 
 export function IngredientMaskVisual({ card }: { card: CarouselCard }) {
   const tokens = card.ingredientTokens ?? [];
-  const centerLabel = "סוכר";
+  const centerLabel = "\u05E1\u05D5\u05DB\u05E8";
 
   return (
     <VisualBand accent={card.accent} heightClass="h-40">
@@ -343,7 +347,7 @@ export function SupplementMoleculeVisual({ card }: { card: CarouselCard }) {
   const stat = card.supplementStat;
 
   return (
-    <VisualBand accent={card.accent}>
+    <VisualBand accent={card.accent} heightClass="h-36">
       <svg viewBox="0 0 140 100" className="absolute inset-0 h-full w-full opacity-20" aria-hidden>
         <line x1="30" y1="50" x2="55" y2="30" stroke={card.accent} strokeWidth="1.5" />
         <line x1="55" y1="30" x2="85" y2="30" stroke={card.accent} strokeWidth="1.5" />
@@ -376,6 +380,60 @@ export function SupplementMoleculeVisual({ card }: { card: CarouselCard }) {
   );
 }
 
+// -- claim_split ---------------------------------------------------------------
+
+export function ClaimSplitVisual({ card }: { card: CarouselCard }) {
+  const split = card.claimSplit;
+  if (!split) return null;
+
+  return (
+    <VisualBand accent={card.accent} heightClass="h-40">
+      <div className="flex w-full h-full gap-0" dir="rtl">
+        {/* Pack claim panel -- green/approved */}
+        <div
+          className="flex flex-1 flex-col items-center justify-center gap-2 px-3 py-4 border-l border-black/[0.06]"
+          style={{ backgroundColor: "#1F8F6A12" }}
+        >
+          <span className="text-[0.5rem] font-bold uppercase tracking-widest text-[#1F8F6A]">
+            {"\u05DB\u05D9\u05EA\u05D5\u05D1 \u05D7\u05D6\u05D9\u05EA"}
+          </span>
+          <div
+            className="rounded-lg border-2 px-3 py-2 text-center"
+            style={{ borderColor: "#1F8F6A55", backgroundColor: "#1F8F6A18" }}
+          >
+            <p className="text-sm font-extrabold leading-tight text-[#1F8F6A]" dir="rtl">
+              {split.packClaim}
+            </p>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+            <path d="M4 10l4 4 8-8" stroke="#1F8F6A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        {/* First ingredient panel -- warning/red */}
+        <div
+          className="flex flex-1 flex-col items-center justify-center gap-2 px-3 py-4"
+          style={{ backgroundColor: "#BC6A3312" }}
+        >
+          <span className="text-[0.5rem] font-bold uppercase tracking-widest text-[#BC6A33]">
+            {"\u05E8\u05DB\u05D9\u05D1 \u05E8\u05D0\u05E9\u05D5\u05DF"}
+          </span>
+          <div
+            className="rounded-lg border-2 px-3 py-2 text-center"
+            style={{ borderColor: "#BC6A3355", backgroundColor: "#BC6A3318" }}
+          >
+            <p className="text-sm font-extrabold leading-tight text-[#BC6A33]" dir="rtl">
+              {split.firstIngredient}
+            </p>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+            <path d="M6 6l8 8M14 6l-8 8" stroke="#BC6A33" strokeWidth="2.5" strokeLinecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </VisualBand>
+  );
+}
+
 // -- Router --------------------------------------------------------------------
 
 export function CardVisualBand({ card }: { card: CarouselCard }) {
@@ -394,6 +452,8 @@ export function CardVisualBand({ card }: { card: CarouselCard }) {
       return <IngredientMaskVisual card={card} />;
     case "supplement_molecule":
       return <SupplementMoleculeVisual card={card} />;
+    case "claim_split":
+      return <ClaimSplitVisual card={card} />;
     default:
       return null;
   }

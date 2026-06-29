@@ -3,21 +3,16 @@
  * Checks: unique ids, hrefs, product constraints, alt text, spread/tokens presence.
  */
 
-import { readFileSync } from "fs";
 import { fileURLToPath, pathToFileURL } from "url";
 import path from "path";
-import { createRequire } from "module";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
 
-// ── Load data via dynamic import (TS compiled to .js via tsx if available) ──
-// We read the raw .ts and parse the HOMEPAGE_CAROUSEL_CARDS array by importing
-// the compiled JS from next build cache — or fall back to source parse.
+// -- Load data via dynamic import (TS compiled to .js via tsx if available) --
 
 let cards;
 try {
-  // Try to import via tsx (if available)
   const { HOMEPAGE_CAROUSEL_CARDS } = await import(
     pathToFileURL(
       path.resolve(projectRoot, "src/lib/home/homepage-carousel-data.ts")
@@ -25,12 +20,11 @@ try {
   );
   cards = HOMEPAGE_CAROUSEL_CARDS;
 } catch {
-  // Fallback: read and eval via node --input-type
   console.error("Could not import TS directly. Run with: node --loader tsx scripts/validate-homepage-carousel.mjs");
   process.exit(1);
 }
 
-// ── QA checks ────────────────────────────────────────────────────────────────
+// -- QA checks ────────────────────────────────────────────────────────────────
 
 let pass = 0;
 let fail = 0;
@@ -53,7 +47,7 @@ const uniqueIds = new Set(ids);
 check("All card ids are unique", uniqueIds.size === ids.length,
   ids.length - uniqueIds.size + " duplicate(s)");
 
-// 2. Unique hrefs (warn only — some cards share a page)
+// 2. Unique hrefs (warn only -- some cards share a page)
 const hrefs = cards.map((c) => c.href);
 const uniqueHrefs = new Set(hrefs);
 console.log(`  i hrefs unique: ${uniqueHrefs.size}/${hrefs.length} (duplicates allowed for same-page cards)`);
@@ -75,10 +69,14 @@ for (const c of comparisons) {
   );
 }
 
-// 4. category_report cards have scoreSpread, NO product images
+// 4. category_report cards: gradeDistribution required except claim_split; no product images
 const catReports = cards.filter((c) => c.type === "category_report");
 for (const c of catReports) {
-  check(`category_report "${c.id}" has gradeDistribution`, Boolean(c.gradeDistribution));
+  if (c.visualMode === "claim_split") {
+    check(`category_report (claim_split) "${c.id}" has claimSplit`, Boolean(c.claimSplit));
+  } else {
+    check(`category_report "${c.id}" has gradeDistribution`, Boolean(c.gradeDistribution));
+  }
   check(
     `category_report "${c.id}" has no leftProduct/rightProduct/spotlightProduct`,
     !c.leftProduct && !c.rightProduct && !c.spotlightProduct
@@ -141,8 +139,14 @@ for (const c of cards) {
 }
 
 // 10. Total card count
-check("Total cards === 9", cards.length === 9, `got ${cards.length}`);
+check("Total cards === 7", cards.length === 7, `got ${cards.length}`);
 
-// ── Summary ───────────────────────────────────────────────────────────────────
+// 11. No removed card ids present
+const removedIds = ["category-report-snacks", "supplement-magnesium-form", "ingredient-cereal-sugar-aliases", "comparison-milk-whole-vs-soy"];
+for (const rid of removedIds) {
+  check(`Removed card "${rid}" is absent`, !ids.includes(rid));
+}
+
+// -- Summary ───────────────────────────────────────────────────────────────────
 console.log(`\n=== Results: ${pass} passed, ${fail} failed ===\n`);
 process.exit(fail > 0 ? 1 : 0);

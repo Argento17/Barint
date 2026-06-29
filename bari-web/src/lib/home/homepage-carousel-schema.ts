@@ -1,6 +1,6 @@
-/**
+﻿/**
  * Strict schema for homepage carousel cards.
- * Single source of truth — import types from here, never from the data file.
+ * Single source of truth -- import types from here, never from the data file.
  */
 
 export const CAROUSEL_PRODUCT_FALLBACK = "/home/carousel-product-fallback.svg";
@@ -34,7 +34,13 @@ export type VisualMode =
   | "grade_skew"
   | "grade_stacked"
   | "ingredient_mask"
-  | "supplement_molecule";
+  | "supplement_molecule"
+  | "claim_split";
+
+export type ClaimSplit = {
+  packClaim: string;
+  firstIngredient: string;
+};
 
 export type ProductRef = {
   productId: string;
@@ -77,4 +83,5 @@ export type CarouselCard = {
   ingredientSpotlightProductId?: string;
   ingredientMaskCount?: number;
   supplementStat?: { value: string; label: string };
+  claimSplit?: ClaimSplit;
 };
