@@ -1,18 +1,33 @@
 {
   "_meta": {
-    "version": "chocolate-tablets_frontend_task362",
-    "category": "chocolate-tablets",
-    "product_count": 35,
-    "generated": "2026-06-21T00:00:00+00:00",
-    "copy_status": "COPY_AUTHORED_PENDING_REDTEAM",
-    "engine_unchanged": false,
-    "off_check": "PASS - no Open Food Facts",
-    "grade_distribution": {
-      "C": 6,
-      "D": 9,
-      "E": 20
+    "run_id": "task409_rederive_chocolate_tablets_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output"
+    ],
+    "flag_vector": {
+      "BARI_GLASSBOX_W4": "on",
+      "BARI_FIBER_FERMENT_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_PROTEIN_BAR_V1": "off"
     },
-    "task391_note": "ct-004/ct-005/ct-006 removed: ingredients=None, missing-data discard rule. Scores were artifact (50/C blocked by missing ingredients)."
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "ts": "2026-06-26T15:58:10",
+    "corpus_records": 33,
+    "scored": 33,
+    "failed_barcodes": [],
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
+    "generated": "2026-06-26T15:58:10",
+    "category": "chocolate-tablets",
+    "product_count": 35
   },
   "products": [
     {
@@ -165,7 +180,7 @@
     {
       "id": "ct-003",
       "barcode": "3046920029759",
-      "name": "שוקולד מריר לינדט 90%",
+      "name": "שוקולד מריר 90%",
       "name_he": "שוקולד מריר לינדט 90%",
       "brand": "לינדט",
       "score": 51.2,
@@ -377,7 +392,7 @@
     {
       "id": "ct-007",
       "barcode": "4000539280740",
-      "name": "שוקולד מריר לינדט 78%",
+      "name": "שוקולד מריר 78%",
       "name_he": "שוקולד מריר לינדט 78%",
       "brand": "לינדט",
       "score": 50.0,
@@ -735,7 +750,7 @@
     {
       "id": "ct-012",
       "barcode": "3046920028363",
-      "name": "שוקולד מריר לינדט 85%",
+      "name": "שוקולד מריר 85%",
       "name_he": "שוקולד מריר לינדט 85%",
       "brand": "לינדט",
       "score": 43.8,
@@ -800,7 +815,7 @@
     {
       "id": "ct-013",
       "barcode": "7290105961525",
-      "name": "שוקולד ספלנדיד מריר 85%",
+      "name": "שוקולד מריר 85%",
       "name_he": "שוקולד ספלנדיד מריר 85%",
       "brand": "ספלנדיד",
       "score": 43.3,
@@ -864,7 +879,7 @@
       "name": "שוקולד מריר 85%",
       "name_he": "שוקולד מריר 85%",
       "brand": "היידי",
-      "score": 42.5,
+      "score": 46.9,
       "grade": "D",
       "rank": 13,
       "categoryTotal": 35,
@@ -1085,7 +1100,7 @@
     {
       "id": "ct-017",
       "barcode": "4000539280726",
-      "name": "שוקולד מריר לינדט70%מילד",
+      "name": "שוקולד מריר 70% מילד",
       "name_he": "שוקולד מריר לינדט70%מילד",
       "brand": "לינדט",
       "score": 32.0,
@@ -1158,7 +1173,7 @@
     {
       "id": "ct-018",
       "barcode": "7610400075770",
-      "name": "שוק.לינדט מריר אגוזי לוז",
+      "name": "שוקולד מריר אגוזי לוז",
       "name_he": "שוק.לינדט מריר אגוזי לוז",
       "brand": "לינדט",
       "score": 32.0,
@@ -1442,7 +1457,7 @@
     {
       "id": "ct-035",
       "barcode": "3046920028004",
-      "name": "שוקולד מריר לינדט 70%",
+      "name": "שוקולד מריר 70%",
       "name_he": "שוקולד מריר לינדט 70%",
       "brand": "לינדט",
       "score": 28.7,
@@ -1739,7 +1754,7 @@
     {
       "id": "ct-023",
       "barcode": "3046920028752",
-      "name": "שוקולד מריר לינדט מנטה",
+      "name": "שוקולד מריר מנטה",
       "name_he": "שוקולד מריר לינדט מנטה",
       "brand": "לינדט",
       "score": 23.0,
@@ -1811,10 +1826,10 @@
     {
       "id": "ct-024",
       "barcode": "3046920029674",
-      "name": "שוקולד מריר לינדט מלח",
+      "name": "שוקולד מריר מלח",
       "name_he": "שוקולד מריר לינדט מלח",
       "brand": "לינדט",
-      "score": 22.4,
+      "score": 22.5,
       "grade": "E",
       "rank": 26,
       "categoryTotal": 35,
@@ -1959,10 +1974,10 @@
     {
       "id": "ct-026",
       "barcode": "7610008641001",
-      "name": "טבלת טורינו חלב",
+      "name": "טבלת חלב",
       "name_he": "טבלת טורינו חלב",
       "brand": "טורינו",
-      "score": 19.4,
+      "score": 23.9,
       "grade": "E",
       "rank": 28,
       "categoryTotal": 35,
@@ -2038,7 +2053,7 @@
       "name": "מריר",
       "name_he": "טובלרון מריר",
       "brand": "טובלרון",
-      "score": 17.4,
+      "score": 17.5,
       "grade": "E",
       "rank": 29,
       "categoryTotal": 35,
@@ -2264,7 +2279,7 @@
       "name": "חלב 100 גרם",
       "name_he": "טובלרון חלב 100 גרם",
       "brand": "טובלרון",
-      "score": 14.8,
+      "score": 15.7,
       "grade": "E",
       "rank": 32,
       "categoryTotal": 35,
@@ -2333,7 +2348,7 @@
     {
       "id": "ct-031",
       "barcode": "7622202265648",
-      "name": "שוקולד לבן מילקה",
+      "name": "שוקולד לבן",
       "name_he": "שוקולד לבן מילקה",
       "brand": "מילקה",
       "score": 14.1,
@@ -2408,7 +2423,7 @@
       "name": "שוקולד חלב וקרמל מלוח",
       "name_he": "שוקולד חלב וקרמל מלוח",
       "brand": "מקס ברנר",
-      "score": 14.0,
+      "score": 14.2,
       "grade": "E",
       "rank": 34,
       "categoryTotal": 35,

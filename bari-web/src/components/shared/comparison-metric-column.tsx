@@ -23,7 +23,8 @@ type MetricNumberKey =
   | "additive_count"
   | "base_pct"
   | "sugar_g"
-  | "sodium_mg";
+  | "sodium_mg"
+  | "fat_saturated_g";
 
 export interface MetricSpec {
   key: MetricNumberKey;
@@ -44,6 +45,14 @@ export interface MetricSpec {
   lowerIsBetter?: boolean;
   /** spoken units for the aria-label, e.g. "גרם" / "תוספי מזון". */
   ariaUnit: string;
+  /**
+   * Optional override fill colour for the neutral bar segment only.
+   * Use when the category-default TONE.neutral (#B5BBB6) is too close to the
+   * track colour (#ECECE7) to be legible — e.g. granola sugar, whose mid-band
+   * (8–18g) would otherwise render as an almost-invisible bar.
+   * Has no effect on good/poor segments or pip metrics.
+   */
+  neutralBarFill?: string;
 }
 
 // ── Category presets (MILK_RECOMMENDATION §1: the set is category-scoped) ──────────
@@ -129,6 +138,39 @@ export const SODIUM_METRIC: MetricSpec = {
   ariaUnit: 'מ״ג נתרן ל-100 גרם',
 };
 
+// Protein-bar protein variant (TASK-365): shelf range is 23–36 g/100g, so the generic
+// 0–20 scaleMax pegs every product at 100%. A 40g ceiling lets 23g read as ~58%
+// and 36g as 90%, preserving meaningful bar differentiation. Good threshold raised to
+// match the high-protein context of this shelf (≥28g). Poor threshold = 25g (below
+// the shelf median). aria unit stays per-100g (primary comparison basis).
+export const PROTEIN_BAR_PROTEIN_METRIC: MetricSpec = {
+  key: "protein_g",
+  label: "חלבון",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 40,
+  good: 28,
+  poor: 25,
+  ariaUnit: "גרם חלבון ל-100 גרם",
+};
+
+// Protein-bar sugar variant (TASK-365): shelf sugar range is 1.7–35g per 100g —
+// the generic scaleMax=15 clips the high end (several bars at 27–35g). A 40g ceiling
+// keeps the high-sugar bars visible without false-clipping. Lower is better;
+// ≤4g (most bars cluster here) = good; ≥15g = amber signal worth showing.
+export const PROTEIN_BAR_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  render: "bar",
+  scaleMax: 40,
+  good: 4,
+  poor: 15,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+};
+
 export const ADDITIVES_METRIC: MetricSpec = {
   key: "additive_count",
   label: "תוספים",
@@ -163,6 +205,77 @@ export const SUGAR_METRIC: MetricSpec = {
   ariaUnit: "גרם סוכר ל-100 מ״ל",
 };
 
+// Granola sugar metric (TASK-385): replaces FIBER_METRIC as the category headline.
+// Fiber is gameable via added chicory/inulin and creates fiber-vs-grade inversions on
+// this shelf (products with 14g fiber land at B; products with 5g also land at B).
+// Sugar is a real differentiator: shelf range 4.8–25g/100g.
+//   scaleMax 28 — gives the 25g outlier a near-full bar without false-clipping.
+//   good  ≤8g  — few products clear this; marks the genuinely low-sugar products.
+//   poor  ≥18g — at/above the Israeli MoH 17.5g/100g red-label threshold (§4.3:
+//                shown in amber only, never alarm-red — limits are information, not alarms).
+// lowerIsBetter: true — a shorter bar = better for this metric.
+// aria unit is per-100g (solids, not per-100ml).
+export const GRANOLA_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 28,
+  good: 8,
+  poor: 18,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+  // Mid-band (8–18g) neutral bars were near-invisible (#B5BBB6 on #ECECE7, ~2:1 contrast).
+  // Darken the neutral segment only — still informational grey, not alarm-red (§4.3).
+  neutralBarFill: "#7A817C",
+};
+
+// Cereals sugar metric (TASK-387): sugar is the primary discriminator on the cereals
+// shelf — the range (3.8–29.9g/100g) is wider than granola's (4.8–25g). Most products
+// cluster at 16–29g; only 2 products score below 8g. The GRANOLA_SUGAR_METRIC thresholds
+// are reused (good≤8, poor≥18) because the MoH 17.5g/100g red-label anchor is relevant
+// here too, and the shelf biology is the same category of food. scaleMax=32 rather than
+// 28 — the 29.9g top product needs a few points of headroom to avoid false-clipping.
+//   good  ≤8g  — genuinely low-sugar for a breakfast cereal (only 2 products clear this).
+//   poor  ≥18g — at/above the Israeli MoH red-label threshold (amber only, §4.3).
+// lowerIsBetter: true. aria unit is per-100g (solids). neutralBarFill matches granola —
+// the mid-band (8–18g) neutral bars would otherwise be near-invisible on the track.
+export const CEREALS_SUGAR_METRIC: MetricSpec = {
+  key: "sugar_g",
+  label: "סוכר",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 32,
+  good: 8,
+  poor: 18,
+  lowerIsBetter: true,
+  ariaUnit: "גרם סוכר ל-100 גרם",
+  neutralBarFill: "#7A817C",
+};
+
+// Cookies-coffee saturated-fat metric (TASK-393): shelf range 0.4–17.0g/100g,
+// median ≈9g. Scale 0–20 gives the 17g top outlier a near-full bar with ~3g headroom.
+//   good  ≤5g  — below Israeli MoH red-label threshold for saturated fat in biscuits.
+//   poor  ≥10g — EU amber traffic-light / high end of the biscuit shelf.
+// lowerIsBetter: true. aria unit per-100g (solids).
+// neutralBarFill matches granola/cereals: mid-band bars (5–10g) would otherwise
+// render near-invisible on the track (#B5BBB6 on #ECECE7, ~2:1 contrast).
+export const COOKIES_COFFEE_SAT_FAT_METRIC: MetricSpec = {
+  key: "fat_saturated_g",
+  label: "שומן רווי",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 20,
+  good: 5,
+  poor: 10,
+  lowerIsBetter: true,
+  ariaUnit: "גרם שומן רווי ל-100 גרם",
+  neutralBarFill: "#7A817C",
+};
+
 // Display rounding: raw per-100g values can carry full float precision (e.g. fiber
 // 7.66666666666667 from a back-computed panel). Round to at most 1 decimal and drop a
 // trailing ".0" so the value fits the 62px cell and never overflows into the next metric.
@@ -194,19 +307,19 @@ function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
   return (
     <div className="w-[62px] shrink-0" role="group" aria-label={ariaLabel}>
       <div className="flex items-baseline justify-between gap-1">
-        <span className="text-[0.6rem] font-medium leading-none text-[#9AA09B]" aria-hidden>
+        <span className="text-[0.6rem] font-medium leading-none text-[#5E6560]" aria-hidden>
           {spec.label}
         </span>
         <span
           className="text-[0.74rem] font-bold leading-none tabular-nums"
-          style={{ color: hasValue ? "#4A524E" : "#9AA09B" }}
+          style={{ color: hasValue ? "#4A524E" : "#5E6560" }}
           aria-hidden
         >
           {hasValue ? (
             <>
               {formatMetricValue(value)}
               {spec.unit ? (
-                <i className="text-[0.56rem] font-medium not-italic text-[#9AA09B]">
+                <i className="text-[0.56rem] font-medium not-italic text-[#5E6560]">
                   {spec.unit === "%" ? "%" : ` ${spec.unit}`}
                 </i>
               ) : null}
@@ -227,7 +340,10 @@ function Metric({ spec, value }: { spec: MetricSpec; value: number | null }) {
               className="block h-full rounded-full"
               style={{
                 width: `${Math.max(0, Math.min(100, (value / spec.scaleMax) * 100))}%`,
-                background: TONE[tone],
+                background:
+                  tone === "neutral" && spec.neutralBarFill
+                    ? spec.neutralBarFill
+                    : TONE[tone],
               }}
             />
           ) : null}

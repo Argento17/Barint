@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import rawCorpus from "@/data/comparisons/granola_frontend_v1.json";
+import rawCorpus from "@/data/comparisons/granola_frontend_v2.json";
 
 import {
   formatComparisonMetadataLine,
@@ -25,15 +25,19 @@ function isGranolaShelfFilterId(filter: string): filter is GranolaShelfFilterId 
 const { meta: granolaCorpusMeta, products: _granolaProductsRaw } =
   loadComparisonCorpus(rawCorpus as ComparisonCorpusRaw);
 
-// Populate fiber_g metric from the nutrition panel (already present in the expansion
-// object). The base corpus loader doesn't wire nutrition fields into metrics, so we
-// do it here once, at load time. Null is preserved when fiber is absent.
-// We reassign only fiber_g; protein_g keeps its original value (required by the VM).
+// Populate sugar_g and protein_g metrics from the nutrition panel (already present in
+// the expansion object). TASK-385: sugar replaces fiber as the granola headline metric
+// (fiber is gameable via added chicory/inulin and creates fiber-vs-grade inversions).
+// The base corpus loader doesn't wire nutrition fields into metrics, so we do it here
+// once, at load time. Null is preserved when either field is absent.
+// protein_g: shelf range 8.7–23.7g — the GRANOLA_METRIC_SPECS passes a granola-tuned
+//   PROTEIN_METRIC override (scaleMax 25) to handle the 23.7g top without clipping.
+// sugar_g: shelf range 4.8–25g — calibrated via GRANOLA_SUGAR_METRIC (scaleMax 28).
 const granolaProducts: BariProductVM[] = _granolaProductsRaw.map((p) => ({
   ...p,
   metrics: {
-    protein_g: p.metrics?.protein_g ?? null,
-    fiber_g: p.expansion?.nutrition?.fiber ?? null,
+    protein_g: p.expansion?.nutrition?.protein ?? null,
+    sugar_g: p.expansion?.nutrition?.sugar ?? null,
   },
 }));
 
@@ -46,23 +50,24 @@ export const granolaMetadataLine = formatComparisonMetadataLine(
 
 export const granolaHero = {
   eyebrow: "גרנולה ומוזלי",
-  title: "גרנולה ומוזלי: 22 מוצרים, פער של 32.7 נקודות",
+  title: "גרנולה ומוזלי: 22 מוצרים, פער של 38.3 נקודות",
 } as const;
 
 export const granolaPrologueSentences = [
-  "בדקנו 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — משופרסל, קרפור ויוחננוף; קטגוריה שהופרדה מדגני הבוקר כי ההרכב והעיבוד שלה שונים.",
-  "אף מוצר לא הגיע ל-A: 7 ב-B, 7 ב-C ו-8 ב-D — אף לא אחד ב-E.",
-  "הטוב ביותר מגיע ל-72.4/B; הנמוך ל-39.7/D — פער של 32.7 נקודות על אותו מדף, לעיתים תחת שם דומה.",
-  "מה שמפריד בין מוצר ל-B למוצר ל-D הוא כמות הסוכר, השומן והסירופ בפועל — לא תדמית הבריאות.",
+  "גרנולה נראית כמו ארוחת בוקר בריאה — אבל על המדף היא הרבה פעמים דגנים עם שמן, סירופ ופירות מסוכרים.",
+  "בדקנו 22 מוצרים מהמדף הישראלי: אף אחד לא הגיע ל-A. 4 הגיעו ל-B, 8 ל-C, 7 ל-D — ו-3 נחתו ב-E.",
+  "הפער בין הטוב ביותר (69.7/B) לנמוך ביותר (31.4/E) הוא 38.3 נקודות — על אותו מדף, לעיתים תחת שם דומה.",
+  "מה שמפריד בין B ל-D הוא לא האריזה: זה סוג השמן, סוג הממתיק, והאם הפירות כבר הגיעו מסוכרים.",
 ] as const;
 
 export const granolaCategoryNote =
-  "גרנולה ומוזלי הם דגן אפוי עם שמן וממתיק — לכן רובם עתירים יותר בקלוריות, סוכר ושומן ממרבית דגני הבוקר. הציון משווה אותם זה לזה; קריאת ערכי התזונה למנה חשובה כאן במיוחד.";
+  "רוב הגרנולות במדף הישראלי נבנו סביב טעם, לא סביב תזונה: שמן, ממתיק ופריכות הם הנוסחה. רק 4 מתוך 22 מוצרים בבדיקה הגיעו ל-B — 8 נחתו על D. מ-25 גרם סוכר ל-100 גרם מטה, משרד הבריאות מחייב הדגשת אזהרה — שמוצר בבדיקה הגיע אליה. מה שמפריד בין תחתית המדף לאמצעו הוא לא רק כמות הסוכר: שמן דקלים, סירופ גלוקוז, פירות מסוכרים מראש וצבעי מאכל הם הסימנים שמגדירים את הגרנולות בדרגות D ו-E.";
 
 export const granolaMethodologyLines = [
   "בדקנו 22 מוצרי גרנולה ומוזלי משלוש רשתות — שופרסל, קרפור ויוחננוף — רכיבים, ערכי תזונה ורמת עיבוד, לא רק קלוריות.",
   "הציונים יחסיים לקטגוריה; בסקירה זו אף מוצר לא הגיע ל-A.",
   "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין.",
+  "הסוכר והחלבון מוצגים כשני מדדים מרכזיים — אבל הציון משקלל גם עיבוד, רכיבים, שומן וקלוריות ותוספים, כך שמוצר דל-סוכר עדיין יכול לקבל ציון נמוך.",
 ] as const;
 
 export const granolaComparisonMetadata: Metadata = {

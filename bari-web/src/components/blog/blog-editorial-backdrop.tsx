@@ -9,7 +9,7 @@ export function BlogEditorialBackdrop() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       <svg
-        className="absolute inset-0 h-full w-full text-[#1F8F6A]"
+        className="absolute inset-0 h-full w-full text-[#167A58]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>

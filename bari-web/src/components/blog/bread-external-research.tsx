@@ -58,7 +58,7 @@ export function BreadExternalResearch() {
               href={keyFinding.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#1F8F6A] hover:underline"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#167A58] hover:underline"
             >
               {keyFinding.source}
               <ExternalLink className="size-3" aria-hidden />

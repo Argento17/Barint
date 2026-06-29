@@ -2,7 +2,7 @@
   "_meta": {
     "generated": "2026-06-17T00:00:00+00:00",
     "category": "cookies_coffee",
-    "run_id": "run_cookies_005+run_cakes_001_cookies",
+    "run_id": "run_cookies_task393_d4on",
     "product_count": 119,
     "scored_count": 119,
     "schema": "BariProductVM[]",
@@ -175,6 +175,29 @@
           "note": "Score was from run_cakes_pilot_ev098; canonical source is run_cakes_001 (grade unchanged E→E)"
         }
       ]
+    },
+    "task393_rescore": {
+      "flag_change": "BARI_D4_SCORE_V1=on (cookies brought to live D4 state)",
+      "grade_moves": [
+        {
+          "bc": "7290018893845",
+          "old": "D",
+          "new": "E"
+        },
+        {
+          "bc": "313184",
+          "old": "D",
+          "new": "E"
+        }
+      ],
+      "score_updates": 24,
+      "copy_updates": {
+        "rowVerdict": 5,
+        "insightLine": 3,
+        "consumerTakeaway": 9,
+        "comparisonContext": 0
+      },
+      "source_staging": "C:\\Bari\\02_products\\cookies_coffee\\staging\\task393_rescore\\cookies_coffee_task393_staged.json"
     }
   },
   "page_copy": {
@@ -194,11 +217,11 @@
       ]
     },
     "methodology": {
-      "text": "המחיר, השם ואחוז השומן שעל חזית האריזה לא מספרים את הסיפור. ברי בודקת מה האמיתי: כמה שומן רווי, כמה סוכר, כמה רכיבים ברשימה, ואיזה שומן — חמאה, שמן דקל, שמן מוקשה.",
+      "text": "המחיר, השם ואחוז השומן שעל חזית האריזה לא מספרים את הסיפור. בארי בודקת מה האמיתי: כמה שומן רווי, כמה סוכר, כמה רכיבים ברשימה, ואיזה שומן — חמאה, שמן דקל, שמן מוקשה.",
       "sourceNote": "ביסקוויט שחוצה גם את סף הסוכר (מעל שבע עשרה וחצי גרם ל-100 גרם) וגם את סף השומן הרווי (מעל 5 גרם ל-100 גרם) מקבל ציון נמוך יותר מביסקוויט שחוצה רק אחד מהם.",
       "lastUpdated": "2026-06-13",
       "lines": [
-        "המחיר, השם ואחוז השומן שעל חזית האריזה לא מספרים את הסיפור. ברי בודקת מה האמיתי: כמה שומן רווי, כמה סוכר, כמה רכיבים ברשימה, ואיזה שומן — חמאה, שמן דקל, שמן מוקשה.",
+        "המחיר, השם ואחוז השומן שעל חזית האריזה לא מספרים את הסיפור. בארי בודקת מה האמיתי: כמה שומן רווי, כמה סוכר, כמה רכיבים ברשימה, ואיזה שומן — חמאה, שמן דקל, שמן מוקשה.",
         "ביסקוויט שחוצה גם את סף הסוכר (מעל שבע עשרה וחצי גרם ל-100 גרם) וגם את סף השומן הרווי (מעל 5 גרם ל-100 גרם) מקבל ציון נמוך יותר מביסקוויט שחוצה רק אחד מהם.",
         "כל מוצר שמוצג כאן עבר אימות ישיר: נתוני תזונה ורשימת רכיבים ממקור ישיר. מוצר שלא אומת לא מופיע."
       ]
@@ -397,7 +420,7 @@
           "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
         }
       ],
-      "consumerTakeaway": "עוגיות בטעם חמאה עם 416 קלוריות ו-8 גרם שומן רווי ל-100 גרם. השומן הרווי הוא המגבלה הבלעדית — ללא תוספים.",
+      "consumerTakeaway": "עוגיות עם פרופיל נקי ושמן מוקשה כמגביל הבלעדי — השומן הרווי מכריע כאן, הסוכר בסדר.",
       "consumerExplanation": "הציון C נובע משומן רווי גבוה (8 גרם). בניגוד לעוגיות רבות אחרות, אין כאן תוספים, צבעים, או מתחלבים.",
       "bariInterpretation": [
         {
@@ -525,7 +548,7 @@
       "retailer": "shufersal",
       "novaGroup": 2,
       "d4_additives": [],
-      "consumerTakeaway": "עוגיית דגנים עם שיבולת שועל ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם עם בסיס דגן שלם.",
+      "consumerTakeaway": "עוגיית דגנים עם שיבולת שועל כרכיב ראשון — בסיס דגן שלם שנדיר בקטגוריה הזאת.",
       "consumerExplanation": "מגיעה ל-C בזכות בסיס שיבולת שועל ודגנים מלאים עם חלבון וסיבים גבוהים. 471 קלוריות ל-100 גרם הן הגורם המגביל.",
       "bariInterpretation": [
         {
@@ -638,7 +661,7 @@
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
       "insightLine": "שקדים 18% עם חמוציות — שומן רווי נמוך, נתון הסוכר לא אומת.",
-      "rowVerdict": "עוגיות פירות היער של דני וגלית מגיעות ל-C עם שקדים 18% כרכיב מוביל וחמוציות ברשימה. שמן הקנולה כמקור שומן והשומן הרווי נמוך מאוד לקטגוריה. נתון הסוכר לא אומת מהמקור הישיר — ברי מציגה את מה שאומת. פרופיל הידוע שלו מוצדק ל-C.",
+      "rowVerdict": "עוגיות פירות היער של דני וגלית מגיעות ל-C עם שקדים 18% כרכיב מוביל וחמוציות ברשימה. שמן הקנולה כמקור שומן והשומן הרווי נמוך מאוד לקטגוריה. נתון הסוכר לא אומת מהמקור הישיר — בארי מציגה את מה שאומת. פרופיל הידוע שלו מוצדק ל-C.",
       "expansion": {
         "nutrition": {
           "energyKcal": 420.0,
@@ -737,7 +760,7 @@
     },
     {
       "id": "ck-7290020030184",
-      "name": "עוגיות מזרחיות עם זעתר 400 גרם אחוה",
+      "name": "עוגיות מזרחיות עם זעתר 400 גרם",
       "barcode": "7290020030184",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290020030184_s1_1506-23-2025_19-10-34.jpg&w=256&q=75",
       "score": 54.0,
@@ -856,7 +879,7 @@
     },
     {
       "id": "ck-7290122781359",
-      "name": "מיני עוגיות קלאסי פיטנס 80 גרם פיטנס",
+      "name": "מיני עוגיות קלאסי 80 גרם",
       "barcode": "7290122781359",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F3%2F13233648_729012278135901-13-2026_14-17-59.jpg&w=256&q=75",
       "score": 53.4,
@@ -2325,7 +2348,7 @@
       "name": "עוגיות מושלגות",
       "barcode": "7290013740472",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VTH46_Z_P_7290013740472_1.png",
-      "score": 45.6,
+      "score": 43.6,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -2640,7 +2663,7 @@
     },
     {
       "id": "ck-7290013156921",
-      "name": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם ג'ייקוב אנד אס",
+      "name": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם",
       "barcode": "7290013156921",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290013156921_s1_1506-17-2021_20-01-03.jpg&w=256&q=75",
       "score": 40.0,
@@ -2869,7 +2892,7 @@
     },
     {
       "id": "ck-7290000061245",
-      "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם אסם",
+      "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם",
       "barcode": "7290000061245",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12329757_7290000061245.jpg&w=256&q=75",
       "score": 37.4,
@@ -3163,7 +3186,7 @@
     },
     {
       "id": "ck-7290013156006",
-      "name": "עוגיות מיני מרוקאיות 350 גרם בבקה",
+      "name": "עוגיות מיני מרוקאיות 350 גרם",
       "barcode": "7290013156006",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290013156006_s1_1506-17-2021_20-01-40.jpg&w=256&q=75",
       "score": 36.2,
@@ -3173,7 +3196,7 @@
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
       "insightLine": "מרגרינה כרכיב שני — שני ספים חצויים, עוגייה מרוקאית תעשייתית.",
-      "rowVerdict": "עוגיות המיני מרוקאיות של בבקה מגיעות ל-D. מרגרינה מופיעה לפני הביצים ברשימה. גם סוכר וגם שומן רווי חוצים את הסף — שילוב שמביא ל-D ולא ל-C.",
+      "rowVerdict": "עוגיות המיני מרוקאיות של בבקה מגיעות ל-D. מרגרינה מופיעה לפני הביצים ברשימה. גם סוכר וגם שומן רווי חוצים את הסף — שני מגבילים פועלים יחד, ולכן D ולא פחות מזה.",
       "expansion": {
         "nutrition": {
           "energyKcal": 435.0,
@@ -3419,10 +3442,10 @@
     },
     {
       "id": "ck-5317194",
-      "name": "ביסקוויט בטעם וניל הדר",
+      "name": "ביסקוויט בטעם וניל",
       "barcode": "5317194",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MQL30_Z_P_5317194_1.png",
-      "score": 37.8,
+      "score": 35.8,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -3686,7 +3709,7 @@
       "name": "ביסקוויט בטעם שוקו",
       "barcode": "7290011489625",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCG54_Z_P_7290011489625_1.png",
-      "score": 37.7,
+      "score": 35.7,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -3819,7 +3842,7 @@
       "name": "עוגיות ריפ'את",
       "barcode": "7290119041152",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZZL42_Z_P_7290119041152_1.png",
-      "score": 37.6,
+      "score": 35.6,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -3982,7 +4005,7 @@
       "name": "עוגיות מרוקאיות עגול",
       "barcode": "7290119041107",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZXS42_Z_P_7290119041107_1.png",
-      "score": 37.6,
+      "score": 35.6,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -4145,7 +4168,7 @@
       "name": "עוגיות סגנון מרוקאי",
       "barcode": "7290119041053",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZVQ42_Z_P_7290119041053_1.png",
-      "score": 37.6,
+      "score": 35.6,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -4432,14 +4455,14 @@
       "name": "פתי בר בטעם חמאה",
       "barcode": "7290018893845",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BBY64_Z_P_7290018893845_1.png",
-      "score": 36.4,
-      "grade": "D",
+      "score": 34.4,
+      "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "insightLine": "שמן חמניות בלבד — שומן רווי נמוך מאוד לביסקוויט, למרות שמו.",
-      "rowVerdict": "פתי בר בטעם חמאה של צ'וקטה הוא ביסקוויט ששמנו שמן חמניות — אין חמאה ברשימה; לכן השומן הרווי נמוך מאוד לקטגוריה, והוא מה שמחזיק אותו ב-D. סיבי אפונה ברשימה מוסיפים סיבים. הסוכר חוצה את הסף, וסירופ גלוקוז-פרוקטוז ברשימה. סולפיט ברשימה.",
+      "insightLine": "שמן חמניות בלבד — שומן רווי נמוך, אך סולפיט ברשימה, אלרגן מוצהר, מוריד ל-E.",
+      "rowVerdict": "פתי בר בטעם חמאה של צ'וקטה הוא ביסקוויט ששמנו שמן חמניות — אין חמאה ברשימה. השומן הרווי נמוך מאוד לקטגוריה, ובכל זאת הציון נחת על E. הסיבה: סולפיט ברשימה (מעכב חמצון) — אלרגן מוצהר שעלול לעורר רגישות, שבארי מסמנת כבעייתי. הסוכר חוצה את הסף, וסירופ גלוקוז-פרוקטוז ברשימה. סיבי אפונה הם נגיעה חיובית שלא מספיקה לשנות את התמונה.",
       "expansion": {
         "nutrition": {
           "energyKcal": 431.0,
@@ -4570,14 +4593,14 @@
       "name": "עוגיות גן חיות טעם וניל",
       "barcode": "313184",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UGN20_Z_P_313184_1.png",
-      "score": 35.3,
-      "grade": "D",
+      "score": 33.3,
+      "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
-      "insightLine": "עוגיות ילדים עם סוכר בדיוק על הסף — שומן רווי נמוך יחסית.",
-      "rowVerdict": "עוגיות גן חיות בצורות חיות הן ביסקוויט ילדים פשוט: הסוכר יושב בדיוק על סף התווית האדומה — שלא כמו רוב השכנים, שרחוקים מצד ה-E. שומן הרווי נמוך לקטגוריה. שמנים צמחיים כלליים ברשימה (ללא פירוט), סולפיט. נתוני סיבים חסרים.",
+      "insightLine": "עוגיות ילדים עם פרופיל מתון — סולפיט ברשימה, אלרגן מוצהר, מוריד ל-E.",
+      "rowVerdict": "עוגיות גן חיות בצורות חיות הן ביסקוויט ילדים פשוט. הסוכר מתון ולא חוצה אף סף, והשומן הרווי נמוך לקטגוריה — פרופיל בסיסי שלא היה אמור להגיע ל-E. מה ששקל את הכף הוא סולפיט ברשימה (חומר לטיפול בקמח): אלרגן מוצהר שעלול לעורר רגישות, שבארי מסמנת כבעייתי. שמנים צמחיים כלליים ברשימה ללא פירוט.",
       "expansion": {
         "nutrition": {
           "energyKcal": 447.0,
@@ -4650,7 +4673,7 @@
           "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
         }
       ],
-      "consumerTakeaway": "עוגיית ילדים עם שומן רווי נמוך לקטגוריה — שמנים צמחיים כלליים וסוכר על הסף.",
+      "consumerTakeaway": "עוגיות ילדים עם סוכר מתון ושומן רווי נמוך — אבל סולפיט ברשימה, אלרגן מוצהר שבארי מסמנת כבעייתי, הוא מה שמוריד אותן ל-E.",
       "consumerExplanation": "סוכר אינברטי לצד סוכר רגיל, שמנים צמחיים כלליים וסולפיט — פרופיל של מוצר ייצור מסיבי. 18 גרם סוכר ל-100 גרם בדיוק על הסף.",
       "bariInterpretation": [
         {
@@ -5042,10 +5065,10 @@
     },
     {
       "id": "ck-7290118423904",
-      "name": "קראנץ שוקו וניל עוגיות 200 גרם קרמוגית",
+      "name": "קראנץ שוקו וניל עוגיות 200 גרם",
       "barcode": "7290118423904",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12579334_7290118423904.jpg&w=256&q=75",
-      "score": 34.2,
+      "score": 32.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -5207,7 +5230,7 @@
     },
     {
       "id": "ck-7290106571945",
-      "name": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס 180 גרם פ",
+      "name": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר 180 גרם פ",
       "barcode": "7290106571945",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F6%2F9%2F6928374_7290106571945.jpg&w=256&q=75",
       "score": 32.2,
@@ -5411,10 +5434,10 @@
     },
     {
       "id": "ck-7290118422617",
-      "name": "קראנץ קרם וניל עוגיות 200 גרם קרמוגית",
+      "name": "קראנץ קרם וניל עוגיות 200 גרם",
       "barcode": "7290118422617",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12564721_7290118422617.jpg&w=256&q=75",
-      "score": 33.7,
+      "score": 31.7,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -5579,7 +5602,7 @@
       "name": "קראנץ אגוזי לוז",
       "barcode": "7290019293804",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/USZ54_Z_P_7290019293804_1.png",
-      "score": 33.1,
+      "score": 31.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -5726,7 +5749,7 @@
     },
     {
       "id": "ck-8410376037784",
-      "name": "עוגיות סנדוויץ' שוקולד גולון",
+      "name": "עוגיות סנדוויץ' שוקולד",
       "barcode": "8410376037784",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F8%2F4%2F8410376037784_s104-07-2020_14-44-40.jpg&w=256&q=75",
       "score": 30.1,
@@ -5735,7 +5758,7 @@
       "confidence_label_he": "ניתוח חלקי",
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
-      "insightLine": "ממתיק מלטיטול ושמן דקל — E מצד שני כיוונים.",
+      "insightLine": "ממתיק מלטיטול במקום סוכר, אבל שמן דקל ושומן רווי גבוה נשארים — וזה מה שקובע.",
       "rowVerdict": "עוגיות הסנדוויץ שוקולד של גולון מגיעות ל-E. מלטיטול כממתיק עיקרי — פוליאול שעלול לגרום לאי נוחות עיכולית — לצד שמן דקל כמקור שומן. שומן הרווי גבוה. קקאו 12% בקרם.",
       "expansion": {
         "nutrition": {
@@ -6272,7 +6295,7 @@
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
       "insightLine": "56% קמח מלא ושוקולד מריר 8% — סוכר גבוה ועיבוד תעשייתי שולחים ל-E.",
-      "rowVerdict": "עוגיות המיני שוקולד האלה מגיעות ל-E. 56% קמח מלא ושוקולד מריר אמיתי — שני מאפיינים שלא נפוצים. הבעיה: סוכר גבוה שחוצה את הסף, גלוטן מוסף ורשימת חומרי עיבוד ארוכה. C היה דורש פחות סוכר.",
+      "rowVerdict": "עוגיות המיני שוקולד האלה מגיעות ל-E. 56% קמח מלא ושוקולד מריר אמיתי — שני מאפיינים שלא נפוצים במדף הזה. הבעיה: סוכר גבוה שחוצה את הסף, גלוטן מוסף ורשימת חומרי עיבוד ארוכה שמגיעה ל-E על אף הבסיס הטוב.",
       "expansion": {
         "nutrition": {
           "energyKcal": 466.0,
@@ -6459,7 +6482,7 @@
     },
     {
       "id": "ck-7290106571921",
-      "name": "עוגיות פיטנס חמוציות 180 גרם פיטנס",
+      "name": "עוגיות חמוציות 180 גרם",
       "barcode": "7290106571921",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F6%2F9%2F6928373_7290106571921.jpg&w=256&q=75",
       "score": 28.0,
@@ -6709,7 +6732,7 @@
           "explanation_he": "חומר תפיחה מסורתי; מתנדף לחלוטין באפייה."
         }
       ],
-      "consumerTakeaway": "ללא גלוטן לא מסמל פרופיל בריא — 19 גרם סוכר ועיבוד גבוה.",
+      "consumerTakeaway": "ללא גלוטן לא מסמל פרופיל בריא — סוכר גבוה ועיבוד מוגבר הם הסיפור האמיתי.",
       "consumerExplanation": "קמח אורז, קמח תירס ושמן חמנייה 14% — בסיס טוב יחסית ל'ללא גלוטן'. אבל 19 גרם סוכר ל-100 גרם, קקאו 3% (נמוך) ו-E500, E503 מסמנים E. שבבי שוקולד 22% כוללים חמאת קקאו — יתרון קטן.",
       "bariInterpretation": [
         {
@@ -6795,7 +6818,7 @@
       "name": "מאגדת מיני קראנץ עוגיות",
       "barcode": "7290019816034",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NGT50_Z_P_7290019816034_1.png",
-      "score": 29.1,
+      "score": 27.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -7378,7 +7401,7 @@
     },
     {
       "id": "ck-7290019870470",
-      "name": "עוגיות סנדוויץ עם קרם בטעם שוקו צ'וקטה 176 גרם צ'וקטה",
+      "name": "עוגיות סנדוויץ עם קרם בטעם שוקו 176 גרם",
       "barcode": "7290019870470",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290019870470_s104-13-2026_20-00-24.jpg&w=256&q=75",
       "score": 26.1,
@@ -8146,7 +8169,7 @@
     },
     {
       "id": "ck-311708",
-      "name": "עוגיות מחיטה מלאה מן",
+      "name": "עוגיות מחיטה מלאה",
       "barcode": "311708",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SBT20_Z_P_311708_1.png",
       "score": 23.0,
@@ -8411,10 +8434,10 @@
     },
     {
       "id": "ck-7290017724171",
-      "name": "מארז עוגיות אקלר סנדוויץ ריבה ללא סוכר הללס",
+      "name": "מארז עוגיות אקלר סנדוויץ ריבה ללא סוכר",
       "barcode": "7290017724171",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290017724171_s1_1506-20-2021_20-00-22.jpg&w=256&q=75",
-      "score": 24.2,
+      "score": 22.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -8716,7 +8739,7 @@
     },
     {
       "id": "ck-4006529002170",
-      "name": "עוגיות גולד רינג 400 גרם ללא מיתוג",
+      "name": "עוגיות גולד רינג 400 גרם",
       "barcode": "4006529002170",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F4%2F0%2F4006529002170_s1_1505-22-2024_19-10-43.jpg&w=256&q=75",
       "score": 21.8,
@@ -9380,7 +9403,7 @@
       "name": "עוגיות בוטנים כשל\"פ",
       "barcode": "7290123330488",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BDX50_Z_P_7290123330488_1.png",
-      "score": 23.3,
+      "score": 21.3,
       "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -10081,7 +10104,7 @@
           "explanation_he": "התווית מציינת 'מתחלב' ללא שם ספציפי — הסיווג המדויק אינו ידוע מהתווית."
         }
       ],
-      "consumerTakeaway": "שמן דקל, גלוקוז-פרוקטוז, מלטודקסטרין, 33 גרם סוכר — E.",
+      "consumerTakeaway": "שמן דקל, סירופ גלוקוז-פרוקטוז, ממתיק המלטודקסטרין — סוכר גבוה מאוד ועיבוד כבד.",
       "consumerExplanation": "שמן דקל כרכיב שלישי, גלוקוז-פרוקטוז ומלטודקסטרין יחד מסמנים עיבוד תעשייתי גבוה. 33 גרם סוכר ל-100 גרם. לציטין חמניות — תוסף נסבל.",
       "bariInterpretation": [
         {
@@ -10186,7 +10209,7 @@
     },
     {
       "id": "ck-7290105364784",
-      "name": "קראנץ' שוקולד לבן פרה",
+      "name": "קראנץ' שוקולד לבן",
       "barcode": "7290105364784",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F3%2F6%2F365664_7290105364784.jpg&w=256&q=75",
       "score": 18.4,
@@ -10492,7 +10515,7 @@
     },
     {
       "id": "ck-5410126006049",
-      "name": "ביסקוויט לוטוס טעם קרמל",
+      "name": "ביסקוויט טעם קרמל",
       "barcode": "5410126006049",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KIK38_Z_P_5410126006049_1.png",
       "score": 18.4,
@@ -10634,7 +10657,7 @@
     },
     {
       "id": "ck-5410126806250",
-      "name": "עוגיות לוטוס",
+      "name": "עוגיות",
       "barcode": "5410126806250",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YBJ40_Z_P_5410126806250_1.png",
       "score": 18.4,
@@ -10918,7 +10941,7 @@
     },
     {
       "id": "ck-8710502405204",
-      "name": "עוגיות ממולאות קרם שוקולד מרבה",
+      "name": "עוגיות ממולאות קרם שוקולד",
       "barcode": "8710502405204",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F8%2F7%2F871050240520405-15-2023_12-54-17.jpg&w=256&q=75",
       "score": 17.4,
@@ -11111,7 +11134,7 @@
     },
     {
       "id": "ck-8710502139017",
-      "name": "עוגיות טריפל שוקולד ציפס מרבה",
+      "name": "עוגיות טריפל שוקולד ציפס",
       "barcode": "8710502139017",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F8%2F7%2F871050213901705-15-2023_11-36-01.jpg&w=256&q=75",
       "score": 18.1,
@@ -11305,7 +11328,7 @@
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
       "insightLine": "שמן דקל ברשימה, שומן רווי לא אומת — סוכר גבוה מסביר את ה-E.",
-      "rowVerdict": "עוגיות החמאה של מן מגיעות ל-E. שמן דקל כמקור שומן. נתון השומן הרווי לא אומת מהמקור הישיר. הסוכר הגבוה הוא מה שמסביר את הציון. ברי מציגה את מה שנמצא ואומת.",
+      "rowVerdict": "עוגיות החמאה של מן מגיעות ל-E. שמן דקל כמקור שומן. נתון השומן הרווי לא אומת מהמקור הישיר. הסוכר הגבוה הוא מה שמסביר את הציון. בארי מציגה את מה שנמצא ואומת.",
       "expansion": {
         "nutrition": {
           "energyKcal": 478.0,
@@ -12330,7 +12353,7 @@
       "confidence_tooltip_he": "חסרים נתוני תזונה מהותיים; הציון מבוסס על נתונים חלקיים.",
       "confidence_sub_reason": "missing_nutrition",
       "insightLine": "שוקולד מריר 19% — חמאה ומרגרינה יחד מסבירים את שומן הרווי.",
-      "rowVerdict": "קוקיס שוקולד מריר מגיע ל-E. שוקולד מריר 19% הוא יתרון אמיתי לקטגוריה. חמאה ומרגרינה מופיעות יחד — מקורות שומן שונים, האחד איכותי, השני תעשייתי. 'מריר' לא מחזיר את הציון ל-D.",
+      "rowVerdict": "קוקיס שוקולד מריר מגיע ל-E. שוקולד מריר 19% הוא יתרון אמיתי לקטגוריה. חמאה ומרגרינה מופיעות יחד — מקורות שומן שונים, האחד איכותי, השני תעשייתי. ה'מריר' מוסיף עומק בטעם; הסוכר הגבוה והשומן הרווי מכריעים את הציון.",
       "expansion": {
         "nutrition": {
           "energyKcal": 490.0,
@@ -12565,7 +12588,7 @@
           "explanation_he": "אבקת אפייה; גורם לבצק לתפוח בחום."
         }
       ],
-      "consumerTakeaway": "קקאו לא שינה את הנוסחה — חמאה, מרגרינה, 39 גרם סוכר.",
+      "consumerTakeaway": "קקאו לא שינה את הנוסחה — חמאה ומרגרינה יחד, וסוכר גבוה מאוד מכריעים את התמונה.",
       "consumerExplanation": "הוספת קקאו לגרסת השוקולד המריר יצרה קוקיס עם 39 גרם סוכר ל-100 גרם — יותר מהגרסה המריר. אותם חמאה ומרגרינה (E200, E202) ו-14 גרם שומן רווי.",
       "bariInterpretation": [
         {
@@ -13012,7 +13035,7 @@
     },
     {
       "id": "ck-7622300489427",
-      "name": "עוגיות אוראו בציפוי שוקולד לבן 246 גרם אוראו",
+      "name": "עוגיות בציפוי שוקולד לבן 246 גרם",
       "barcode": "7622300489427",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F6%2F7622300489427_s1_1505-26-2020_23-00-13.jpg&w=256&q=75",
       "score": 16.5,
@@ -13204,7 +13227,7 @@
     },
     {
       "id": "ck-8000500366073",
-      "name": "ביסקוויט נוטלה",
+      "name": "ביסקוויט",
       "barcode": "8000500366073",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ICG38_Z_P_8000500366073_1.png",
       "score": 16.2,
@@ -13378,7 +13401,7 @@
     },
     {
       "id": "ck-7622210137234",
-      "name": "עוגיות אוראו דאבל קרם וניל אוראו",
+      "name": "עוגיות דאבל קרם וניל",
       "barcode": "7622210137234",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F6%2F7622210137234_s1_1501-22-2024_09-20-57.jpg&w=256&q=75",
       "score": 16.0,
@@ -13551,7 +13574,7 @@
     },
     {
       "id": "ck-5901414200411",
-      "name": "עוגיות היט מיניס עם שוקולד 130 גרם בלזן",
+      "name": "עוגיות היט מיניס עם שוקולד 130 גרם",
       "barcode": "5901414200411",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F5%2F9%2F5901414200411_s103-05-2020_10-10-07.jpg&w=256&q=75",
       "score": 15.8,
@@ -14333,7 +14356,7 @@
           "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
         }
       ],
-      "consumerTakeaway": "חמאה ואגוזי מלך אמיתיים — אבל 40 גרם סוכר ושמן צמחי קודמים.",
+      "consumerTakeaway": "חמאה ואגוזי מלך אמיתיים ברשימה — אבל שמן צמחי קודם ברשימה והסוכר גבוה מאוד.",
       "consumerExplanation": "חמאה ואגוזי מלך 2% מבדילים את המוצר הזה ממרבית הקטגוריה. אבל סוכר כרכיב ראשון ושמן צמחי שני, 40 גרם סוכר ו-13 גרם שומן רווי ל-100 גרם — E.",
       "bariInterpretation": [
         {
@@ -14633,7 +14656,7 @@
       "name": "עוגיות שוקולד צ'יפס",
       "barcode": "46214930207",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WIQ38_Z_P_46214930207_1.png",
-      "score": 14.5,
+      "score": 15.8,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -14862,7 +14885,7 @@
     },
     {
       "id": "ck-7622300489434",
-      "name": "עוגיות אוראו בציפוי שוקולד חלב 246 גרם אוראו",
+      "name": "עוגיות בציפוי שוקולד חלב 246 גרם",
       "barcode": "7622300489434",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F6%2F7622300489434_s1_1502-20-2024_18-10-09.jpg&w=256&q=75",
       "score": 15.3,
@@ -15063,7 +15086,7 @@
     },
     {
       "id": "ck-7290019870463",
-      "name": "עוגיות סנדוויץ עם קרם בטעם וניל צ'וקטה 176 גרם צ'וקטה",
+      "name": "עוגיות סנדוויץ עם קרם בטעם וניל 176 גרם",
       "barcode": "7290019870463",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290019870463_s108-11-2024_10-59-58.jpg&w=256&q=75",
       "score": 15.2,
@@ -15400,7 +15423,7 @@
     },
     {
       "id": "ck-7622201401900",
-      "name": "עוגיות מילקה סנסיישן אוראו 156 גרם מילקה",
+      "name": "עוגיות סנסיישן אוראו 156 גרם",
       "barcode": "7622201401900",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F6%2F7622201401900_s1_1503-03-2024_18-10-46.jpg&w=256&q=75",
       "score": 15.2,
@@ -15837,7 +15860,7 @@
           "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
         }
       ],
-      "consumerTakeaway": "ביצים ואבקת חלב מלא בצד שמן דקל — 34 גרם סוכר במוצר.",
+      "consumerTakeaway": "ביצים ואבקת חלב מלא בצד שמן דקל — נגיעות איכות שלא מספיקות מול סוכר גבוה.",
       "consumerExplanation": "ביצים ואבקת חלב מלא הם נגיעות איכות אמיתיות. אבל שמן דקל כרכיב שלישי, 34 גרם סוכר ו-13 גרם שומן רווי ל-100 גרם, ונתרן 330 מ\"ג — E.",
       "bariInterpretation": [
         {
@@ -15966,7 +15989,7 @@
     },
     {
       "id": "ck-7622201809188",
-      "name": "ביסקוויט מילקה",
+      "name": "ביסקוויט",
       "barcode": "7622201809188",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UGR54_Z_P_7622201809188_1.png",
       "score": 14.0,
@@ -16370,7 +16393,7 @@
     },
     {
       "id": "ck-7290000075143",
-      "name": "עוגיות שוקוצ'יפס קלאסי 200 גרם אסם",
+      "name": "עוגיות שוקוצ'יפס קלאסי 200 גרם",
       "barcode": "7290000075143",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12329508_7290000075143.jpg&w=256&q=75",
       "score": 14.6,
@@ -16573,7 +16596,7 @@
       "name": "עוגיות רולדה תמרים",
       "barcode": "7290119043897",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EBA60_Z_P_7290119043897_1.png",
-      "score": 17.4,
+      "score": 13.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -16822,7 +16845,7 @@
       "name": "קראנץ סנדויץ שוקולד",
       "barcode": "7290019816232",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NOJ50_Z_P_7290019816232_1.png",
-      "score": 15.0,
+      "score": 13.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -16998,7 +17021,7 @@
     },
     {
       "id": "ck-7622210453327",
-      "name": "עוגיות מילקה סנסיישן 156 גרם מילקה",
+      "name": "עוגיות סנסיישן 156 גרם",
       "barcode": "7622210453327",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F6%2F7622210453327_s1_1502-22-2024_18-10-16.jpg&w=256&q=75",
       "score": 10.5,
@@ -17242,7 +17265,7 @@
       "name": "עוגיות נסיכה מיקס",
       "barcode": "7290119040650",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGD44_Z_P_7290119040650_1.png",
-      "score": 15.2,
+      "score": 11.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -17441,7 +17464,7 @@
       "name": "עוגיות נסיכה בטעם תות",
       "barcode": "7290119040605",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZEK44_Z_P_7290119040605_1.png",
-      "score": 15.2,
+      "score": 11.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -17814,7 +17837,7 @@
       "name": "קראנץ מיני אלפחורס",
       "barcode": "7290019816058",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NHR56_Z_P_7290019816058_1.png",
-      "score": 12.6,
+      "score": 10.6,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -18042,7 +18065,7 @@
       "name": "עינוגים קוקיס עוגיות",
       "barcode": "7290101111986",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XOD46_Z_P_7290101111986_1.png",
-      "score": 12.1,
+      "score": 10.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "ניתוח חלקי",
@@ -18130,7 +18153,7 @@
           "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים."
         }
       ],
-      "consumerTakeaway": "ביסקוויט בקרם עם שמן קוקוס מוקשה — 25 גרם סוכר, שומן רווי גבוה.",
+      "consumerTakeaway": "ביסקוויט בקרם עם שמן קוקוס מוקשה — שומן רווי גבוה מאוד וסוכר גבוה מכריעים את הציון.",
       "consumerExplanation": "ביסקוויט 41% עם שוקולד מכיל E503, E500, לציטין סויה. הקרם מכיל מים, שמן קוקוס מוקשה, חמאה, שומן חלב, E471, E410, E412. שמן קוקוס מוקשה הוא מקור לשומן רווי גבוה. 25 גרם סוכר.",
       "bariInterpretation": [
         {
@@ -18231,7 +18254,7 @@
       "name": "פתי בר ללא גלוטן שוקו",
       "barcode": "7290109354996",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIZ64_Z_P_7290109354996_1.png",
-      "score": 10.7,
+      "score": 8.7,
       "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -18393,7 +18416,7 @@
       "name": "עוגיות פרח עם ריבת תות",
       "barcode": "7290119040179",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YOA50_Z_P_7290119040179_1.png",
-      "score": 12.5,
+      "score": 8.5,
       "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -18607,7 +18630,7 @@
       "name": "פתי בר ללא גלוטן קלאסי",
       "barcode": "7290109354972",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIB58_Z_P_7290109354972_1.png",
-      "score": 10,
+      "score": 8,
       "grade": "E",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",

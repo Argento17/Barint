@@ -8,6 +8,7 @@
 // It uses the collapseMobileNote collapse pattern already in place for the category note.
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
+import { MagnesiumSafetyBox } from "@/components/shared/magnesium-safety-box";
 import type { BariProductVM } from "@/lib/view-models";
 
 export interface MagnesiumComparisonPageProps {
@@ -54,6 +55,13 @@ export function MagnesiumComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="magnesium"
+      collapseMobileNote
+      collapseMobilePrologue
+      noAutoExpand
+      headerSlot={<MagnesiumSafetyBox />}
+      clampVerdictLines={3}
+      compactDividers
+      forcePartialDisclosure
     />
   );
 }

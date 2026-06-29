@@ -21,10 +21,11 @@ export function BariProductThumbnail({
    *  paint instead of being deferred by `loading="lazy"` until a scroll/interaction
    *  nudges layout (the reported "image missing until I re-trigger it" behavior). */
   eager?: boolean;
-  /** When true, drop the framed card (border/fill/shadow) and multiply-blend the
-   *  photo so its baked-in white background dissolves into the page. Used for
-   *  retail product shots that ship on solid white (e.g. supplements). Default
-   *  false → every other category renders byte-identical. */
+  /** When true, swap the tile's cream fill (#F7F7F2) for pure white so the photo's
+   *  baked-in white background dissolves into the tile — no mismatched "white box
+   *  inside a cream tile" look. Border + shadow are retained so the card edge stays
+   *  defined (pharmacy/e-commerce style). Used for retail supplement shots.
+   *  Default false → every other category renders byte-identical. */
   blendWhite?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
@@ -42,15 +43,16 @@ export function BariProductThumbnail({
       <div
         className={cn(
           `relative ${dim} shrink-0 overflow-hidden rounded-2xl`,
-          blendWhite ? "" : "border border-black/[0.06] bg-[#F7F7F2] shadow-sm",
+          blendWhite
+            ? "border border-black/[0.06] bg-white shadow-sm"
+            : "border border-black/[0.06] bg-[#F7F7F2] shadow-sm",
           className
         )}
       >
         <img
           src={product.imageUrl}
-          alt=""
+          alt={product.name}
           className="h-full w-full object-contain p-2"
-          style={blendWhite ? { mixBlendMode: "multiply" } : undefined}
           sizes={
             size === "sm"
               ? "48px"
@@ -69,21 +71,29 @@ export function BariProductThumbnail({
     );
   }
 
+  // No-photo fallback. Matches the framed-tile surface (border + fill + shadow) of the
+  // photo tiles so a product without an image reads as a calm, consistent tile rather
+  // than a dark block among the photo tiles. When blendWhite is active (supplements) the
+  // fallback uses white to match the white photo tiles; otherwise cream (#F7F7F2).
+  // The product name is already shown in the row's name cell, so the tile carries only a
+  // faint neutral mark; aria-label keeps the name available to assistive tech.
   return (
     <div
       className={cn(
-        `relative ${dim} shrink-0 overflow-hidden rounded-2xl border border-black/[0.06] bg-gradient-to-b from-[#111318] to-[#2D3138] shadow-sm`,
+        `relative ${dim} shrink-0 overflow-hidden rounded-2xl border border-black/[0.06] shadow-sm`,
+        blendWhite ? "bg-white" : "bg-[#F7F7F2]",
         className
       )}
-      aria-hidden
+      aria-label={product.name}
     >
-      <div className="flex h-full flex-col items-center justify-center px-1 text-center">
-        <p className="text-[0.55rem] font-bold uppercase tracking-[0.08em] text-white/70">
-          Bari
-        </p>
-        <p className="mt-0.5 line-clamp-2 text-[0.6rem] font-semibold leading-tight text-white">
-          {product.name.split(" ").slice(0, 3).join(" ")}
-        </p>
+      <div className="flex h-full items-center justify-center">
+        <span
+          aria-hidden
+          className="select-none text-[1.25rem] leading-none"
+          style={{ color: "rgba(17,19,24,0.18)" }}
+        >
+          ✦
+        </span>
       </div>
     </div>
   );

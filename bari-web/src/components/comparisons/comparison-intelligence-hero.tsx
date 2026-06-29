@@ -74,7 +74,7 @@ export function ComparisonIntelligenceHero({
 
   const ctaClassName = cn(
     "relative isolate inline-flex items-center gap-2 overflow-hidden rounded-2xl border border-[#1F8F6A]/38",
-    "bg-[#1F8F6A] px-6 py-3.5 text-sm font-bold text-[#FAFAFA]",
+    "bg-[#167A58] px-6 py-3.5 text-sm font-bold text-[#FAFAFA]",
     "shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_40px_-16px_rgba(31,143,106,0.58)]",
     "transition-[transform,box-shadow] duration-500",
     !asLinkChild &&
@@ -147,7 +147,7 @@ export function ComparisonIntelligenceHero({
 
       <div className="relative z-[1] px-6 pb-10 pt-8 sm:px-8 lg:px-11 lg:py-11">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span className="rounded-md border border-[#1F8F6A]/14 bg-[#1F8F6A]/[0.06] px-2 py-0.5 text-[0.58rem] font-extrabold tracking-wide text-[#1F8F6A]">
+          <span className="rounded-md border border-[#1F8F6A]/14 bg-[#1F8F6A]/[0.06] px-2 py-0.5 text-[0.58rem] font-extrabold tracking-wide text-[#167A58]">
             {badge}
           </span>
           <span className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[#8A928A]">

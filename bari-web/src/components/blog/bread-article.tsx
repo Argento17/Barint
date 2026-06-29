@@ -21,7 +21,7 @@ export function BreadArticle() {
   const article = breadArticle;
 
   return (
-    <main className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+    <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
       <article>
         {/* Hero */}
         <BreadArticleHero />
@@ -228,7 +228,7 @@ export function BreadArticle() {
                 </div>
                 <Link
                   href={BREAD_HASHVAOT_HREF}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1F8F6A] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#167A58] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-md shadow-[#1F8F6A]/25 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5"
                 >
                   {article.conclusion.cta}
                   <ChevronLeft className="size-4" aria-hidden />
@@ -255,7 +255,7 @@ export function BreadArticle() {
           <footer className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 border-t border-black/6 pt-8">
             <Link
               href={BREAD_HASHVAOT_HREF}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F8F6A] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#167A58] hover:underline"
             >
               לניתוח הלחם המלא
               <ArrowLeft className="size-4" aria-hidden />
@@ -266,6 +266,6 @@ export function BreadArticle() {
           </footer>
         </HomeContainer>
       </article>
-    </main>
+    </div>
   );
 }

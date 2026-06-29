@@ -6,7 +6,10 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
-import { SUGAR_METRIC } from "@/components/shared/comparison-metric-column";
+import {
+  SUGAR_METRIC,
+  COOKIES_COFFEE_SAT_FAT_METRIC,
+} from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
@@ -40,9 +43,10 @@ const cookiesCoffeeShelfFilters = {
   filterProducts: (products: BariProductVM[]) => products,
 };
 
-// Sugar per 100g is the headline row metric — the thesis is sugar+sat-fat, NOT sodium.
-// Cookies shelf median is ~21.5g. Scale 0–45 covers the full range (max observed 44.3g).
-// The SUGAR_METRIC default (scaleMax:15, good:5, poor:10) is tuned for drinks; override for biscuits.
+// Sugar + saturated-fat are the two headline row metrics — the thesis is sugar+sat-fat, NOT sodium.
+// Sugar: shelf median ~21.5g. Scale 0–45 covers the full range (max observed 44.3g).
+//   The SUGAR_METRIC default (scaleMax:15, good:5, poor:10) is tuned for drinks; override for biscuits.
+// Sat-fat: shelf range 0.4–17.0g, median ~9g. See COOKIES_COFFEE_SAT_FAT_METRIC for calibration.
 const COOKIES_COFFEE_METRIC_SPECS = [
   {
     ...SUGAR_METRIC,
@@ -50,7 +54,9 @@ const COOKIES_COFFEE_METRIC_SPECS = [
     scaleMax: 45,
     good: 10,
     poor: 25,
+    neutralBarFill: "#7A817C" as string,
   },
+  COOKIES_COFFEE_SAT_FAT_METRIC,
 ] as const;
 
 /**

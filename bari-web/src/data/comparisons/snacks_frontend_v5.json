@@ -6,16 +6,56 @@
     "generated": "2026-06-20T00:00:00+00:00",
     "copy_status": "PARTIAL_PENDING_COPY",
     "engine_unchanged": true,
-    "off_check": "PASS - no Open Food Facts"
+    "off_check": "PASS - no Open Food Facts",
+    "task413_rederive": {
+      "run_id": "task413_rederive",
+      "corpus_dir": "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output",
+      "corpus_n": 51,
+      "live_display_n": 21,
+      "flags": {
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_D4_SCORE_V1": "on",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_REDLABEL_V1": "off"
+      },
+      "reproduce_count": "19/21",
+      "grade_moves": 0,
+      "score_updates_applied": 3,
+      "grade_updates_applied": 0,
+      "score_moved_detail": [
+        {
+          "bc": "7290100659090",
+          "old": 66.8,
+          "new": 66.9
+        },
+        {
+          "bc": "6009684861000",
+          "old": 26.0,
+          "new": 30.0
+        },
+        {
+          "bc": "8423207208703",
+          "old": 24.4,
+          "new": 24.6
+        }
+      ],
+      "copy_policy": "copy-preserving: live v5 copy carried unchanged; 2 score-movers copy verified clean",
+      "copy_claim_check": {
+        "6009684861000": "CLEAN — 'יותר' in comparisonContext is ingredient-character claim, not score-rank",
+        "8423207208703": "CLEAN — 'ראשון' in rowVerdict refers to ingredient position, not score rank"
+      }
+    }
   },
   "products": [
     {
       "id": "snk-001",
       "barcode": "7290100659090",
-      "name": "חטיף FREE תמרים וקינמון",
+      "name": "חטיף תמרים וקינמון",
       "name_he": "חטיף FREE תמרים וקינמון",
       "brand": "FREE",
-      "score": 66.8,
+      "score": 66.9,
       "grade": "B",
       "rank": 1,
       "categoryTotal": 21,
@@ -143,7 +183,7 @@
     {
       "id": "snk-003",
       "barcode": "7290105436382",
-      "name": "חטיפי FREE תמרים קשיו",
+      "name": "חטיפי תמרים קשיו",
       "name_he": "חטיפי FREE תמרים קשיו",
       "brand": "FREE",
       "score": 47.0,
@@ -273,7 +313,7 @@
     {
       "id": "snk-005",
       "barcode": "7290105431516",
-      "name": "חטיפי FREE תמרים ובוטנים",
+      "name": "חטיפי תמרים ובוטנים",
       "name_he": "חטיפי FREE תמרים ובוטנים",
       "brand": "FREE",
       "score": 42.8,
@@ -868,7 +908,7 @@
       "name": "חטיף גרנולה דבש ומייפל",
       "name_he": "חטיף גרנולה דבש ומייפל",
       "brand": "השוק הקולינרי",
-      "score": 26.0,
+      "score": 30.0,
       "grade": "E",
       "rank": 12,
       "categoryTotal": 21,
@@ -941,10 +981,10 @@
     {
       "id": "snk-014",
       "barcode": "8423207208703",
-      "name": "חטיף דגנים שוקולד מריר · סלים דליס",
+      "name": "חטיף דגנים שוקולד מריר ·",
       "name_he": "חטיף דגנים שוקולד מריר · סלים דליס",
       "brand": "סלים דליס",
-      "score": 24.4,
+      "score": 24.6,
       "grade": "E",
       "rank": 14,
       "categoryTotal": 21,
@@ -1331,7 +1371,7 @@
     {
       "id": "snk-019",
       "barcode": "4011800633516",
-      "name": "חטיף דגנים שוקולד מריר · קורני",
+      "name": "חטיף דגנים שוקולד מריר ·",
       "name_he": "חטיף דגנים שוקולד מריר · קורני",
       "brand": "קורני",
       "score": 15.9,

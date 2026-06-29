@@ -1,38 +1,37 @@
 {
   "_meta": {
-    "generated": "2026-06-17T00:00:00+00:00",
-    "category": "cakes",
-    "run_id": "run_cakes_shelfrel_001",
-    "product_count": 65,
-    "scored_count": 65,
-    "schema": "cakes-hard-cookies-v1",
-    "version": "v1",
-    "task": "TASK-283 Wave 1 — cakes-only subset after category split",
-    "provenance": "2-retailer direct scrape (Shufersal + Yochananof); OFF banned; nutrition+ingredients from storefront only",
-    "grade_distribution": {
-      "D": 2,
-      "E": 63
-    },
-    "off_used": false,
-    "copy_status": "COMPLETE",
-    "multi_retailer_confirmed": 1,
-    "has_phvo_count": 20,
-    "held_out": [
-      {
-        "barcode": "7290013145406",
-        "reason": "confectionery/scope unclear — not cake, not cookie"
-      }
+    "run_id": "task409_rederive_cakes_20260626",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output"
     ],
-    "additive_fix": "d4_additives now sourced from extracted_additives (not detected_additives)",
-    "run_id_corrected_from": "run_cakes_001",
-    "run_id_correction_note": "TASK-244 audit: all 65 FE scores match run_cakes_shelfrel_001 (65/65 exact); run_cakes_001 gives 29 mismatches and 3 grade flips. Canonical source is run_cakes_hard_cookies_shelfrel_001 (BARI_SHELF_RELATIVE_V1=on, BARI_FAT_TECH_V1=on, generated 2026-06-15T15:47:02Z). _meta.run_id label was wrong; scores and grades are unchanged."
+    "flag_vector": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_GRAD_SODIUM_V1": "off"
+    },
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "ts": "2026-06-26T15:58:10",
+    "corpus_records": 83,
+    "scored": 83,
+    "failed_barcodes": [],
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
+    "generated": "2026-06-26T15:58:10",
+    "category": "cakes-hard-cookies",
+    "product_count": 63
   },
   "page_copy": {
     "hero": {
       "title": "עוגות",
       "tagline": "במדף הזה אין מצטיינות. יש רק בחירות שפחות מתחפשות.",
-      "productCount": 65,
-      "scoredCount": 65
+      "productCount": 63,
+      "scoredCount": 63
     },
     "prologue": {
       "sentences": [
@@ -48,13 +47,13 @@
     },
     "caveat": {
       "title": "הערת קטגוריה",
-      "body": "כל 65 המוצרים בדף זה הם עוגות תעשייתיות. אין כאן ציון A ואין ציון B — הקטגוריה כולה נסרקה ושוקללה, והתוצאה היא מדף של קינוחים עמוסים בסוכר ושומן מעובד. ההשוואה מאפשרת לבחור עם עיניים פקוחות, לא לבחור בריא."
+      "body": "כל 63 המוצרים בדף זה הם עוגות תעשייתיות. אין כאן ציון A ואין ציון B — הקטגוריה כולה נסרקה ושוקללה, והתוצאה היא מדף של קינוחים עמוסים בסוכר ושומן מעובד. ההשוואה מאפשרת לבחור עם עיניים פקוחות, לא לבחור בריא."
     },
     "filters": [
       {
         "id": "all",
         "label_he": "הכל",
-        "count": 65
+        "count": 63
       },
       {
         "id": "least_bad",
@@ -64,7 +63,7 @@
       {
         "id": "has_phvo",
         "label_he": "עם שומן צמחי מוקשה (20)",
-        "count": 20
+        "count": 18
       },
       {
         "id": "no_phvo",
@@ -84,14 +83,14 @@
       "name": "עוגת גבינה אפויה ללת\"ס",
       "barcode": "7290119030095",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JQE46_Z_P_7290119030095_1.png",
-      "score": 48.5,
-      "grade": "D",
+      "score": 50.5,
+      "grade": "C",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
       "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
       "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "עוגת הגבינה האפויה דלת הסוכר ביותר במדף — שלושה גרם. אך המתחלב E471, שעדויות מוקדמות לגביו שנויות במחלוקת, מוריד אותה ל-D.",
-      "rowVerdict": "עדיין עוגת הגבינה האפויה הנמוכה ביותר בסוכר בקטגוריה — כשלושה גרם, ועובדה זו אמיתית ומשמעותית. אבל לצד תוספי ייצוב רבים מופיע גם E471 (מונו ודיגליצרידים), תוסף שעדויות מוקדמות לגביו שנויות במחלוקת — וזה מה שמציב אותה ב-D, בטריטוריית הקינוח התעשייתי.",
+      "insightLine": "דלת הסוכר מבין עוגות הגבינה האפויות — שלושה גרם בלבד. לצד פרופיל חלבון טוב (10 גרם) יושבת רשימת תוספי ייצוב ארוכה, כולל מתחלב שנוי במחלוקת.",
+      "rowVerdict": "מבין עוגות הגבינה האפויות, זו דלת הסוכר ביותר — כשלושה גרם בלבד, עם 10 גרם חלבון. הסוכר הנמוך ופרופיל הקלוריות המתון (186 קלוריות) הם יתרונות אמיתיים. אבל מולם יושבת רשימת תוספי ייצוב ארוכה, ובתוכה מתחלב שעדויות מוקדמות לגביו שנויות במחלוקת. ציון C.",
       "expansion": {
         "nutrition": {
           "energyKcal": 186.0,
@@ -106,9 +105,15 @@
         "ingredients": "גבינה לבנה (30%), ביצים מפוסטרות, סוכר, שמנת חמוצה(10%), קמח חיטה לבן (מכיל גלוטן), קורנפלור, מים, אובלט (מים)), חומרים מתחלבים (E43 3, E477,E471), חומר הלחה (E1520), מייצב צמחי (E570), חומר מסמיך (E422), מווסת חומציות (E525), חומר משמר (E202), חומצת מאכל (E330), ח ומרי טעם וריח, חומר משמר (E202).",
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "הקל ביותר במדף הזה, בזכות הורדת הסוכר לרמה חריגה כלפי מטה."
+        "positiveSignals": [
+          "שלושה גרם סוכר בלבד — דל הסוכר מבין עוגות הגבינה האפויות",
+          "10 גרם חלבון ל-100 גרם — גבוה לעוגה, בזכות הגבינה הלבנה (30%)",
+          "186 קלוריות ל-100 גרם — מתון יחסית לקטגוריה"
+        ],
+        "limitingFactors": [
+          "רשימת תוספי ייצוב ארוכה, כולל מתחלב שנוי במחלוקת",
+          "עדיין מוצר מעובד — לא קינוח ביתי"
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 3,
@@ -156,17 +161,13 @@
           "explanation_he": "אלכוהול סוכר שומר לחות ומשמש כממס לתמציות; נחשב בטוח לחלוטין."
         }
       ],
-      "consumerTakeaway": "דלת סוכר באמת — הציון הגבוה ביותר בקטגוריה משקף את זה.",
-      "consumerExplanation": "גבינה לבנה אמיתית (30%), ביצים, שמנת — יחד עם 10 תוספי ייצוב. הסוכר הנמוך ביותר בקטגוריה.",
-      "bariInterpretation": "הציון הגבוה ביותר בקטגוריה נובע בעיקר מרמת הסוכר הנמוכה ביותר. עדיין מוצר מעובד עם תוספים רבים.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 1,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "תופינים"
     },
     {
@@ -174,7 +175,7 @@
       "name": "עוגות אישיות קרם שוקולד",
       "barcode": "7296073346340",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TTL54_Z_P_7296073346340_1.png",
-      "score": 35.0,
+      "score": 37.0,
       "grade": "D",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -197,8 +198,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "קלוריות נמוכות לא מספרות את כל הסיפור — שמן קוקוס כפול ועיבוד כבד הורידו אותה לD."
+        "limitingFactors": []
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -246,17 +246,13 @@
           "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות."
         }
       ],
-      "consumerTakeaway": "הציון הנמוך ביותר בקטגוריה לא בגלל קלוריות — בגלל איכות ההרכב.",
-      "consumerExplanation": "שמן קוקוס פעמיים — בציפוי ובקרם. 7 תוספים. הקלוריות הנמוכות לא מסתירות את מקור השומן.",
-      "bariInterpretation": "ציון D נובע משמן קוקוס כמקור שומן כפול ועיבוד כבד. הקלוריות הנמוכות לא מפצות.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 2,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "VINCI"
     },
     {
@@ -270,8 +266,8 @@
       "confidence_label_he": "נתונים חלקיים",
       "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
       "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "מרגרינת סויה ושמן צמחי עם 7.4 גרם שומן רווי ל-100 גרם, ו-15 רכיבים עם מספר מקורות סוכר מוסף.",
-      "rowVerdict": "295 קלוריות ל-100 גרם עם 7.4 גרם שומן רווי. מרגרינת סויה היא בסיס השומן. רשימה של 15 רכיבים עם מספר מקורות סוכר מוסף — הגורמים שמעצבים את הציון.",
+      "insightLine": "מרגרינת סויה ושמן צמחי, 7.4 גרם שומן רווי ל-100 גרם, וסוכר שמגיע מכמה כיוונים.",
+      "rowVerdict": "295 קלוריות ל-100 גרם עם 7.4 גרם שומן רווי. מרגרינת סויה היא בסיס השומן, ולצידה רשימה של 15 רכיבים וסוכר מוסף שמגיע מכמה מקורות. כל אלה מושכים את הציון למטה.",
       "expansion": {
         "nutrition": {
           "energyKcal": 295.0,
@@ -289,8 +285,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שמן מוקשה ו-236 מ\"ג נתרן — שטרודל שמרחיק את עצמו מהגרסה הביתית."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 3,
@@ -324,19 +319,13 @@
           "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
         }
       ],
-      "consumerTakeaway": "עוגת גבינה מוכנה עם בסיס שומן ממרגרינה ושמן צמחי. 295 קלוריות ו-7.4 גרם שומן רווי ל-100 גרם.",
-      "consumerExplanation": "הציון E משקף שומן רווי גבוה מממרגרינת סויה ושמן צמחי, בשילוב מספר מקורות סוכר מוסף ורשימה של 15 רכיבים.",
-      "bariInterpretation": "שומן רווי 7.4 גרם ממרגרינת סויה הוא הגורם המגביל המרכזי. רשימת 15 רכיבים עם מקורות סוכר מוסף מרובים.",
-      "bestUseCases": [
-        "אין המלצת שימוש — ציון E"
-      ],
       "_category_routed": "dairy_protein",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 3,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -369,8 +358,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "שומן רווי גבוה: 8.0 ג'/100 ג'"
-        ],
-        "bottomLine": "לייט בשם, חסר בנתונים — שומן רווי גבוה בלי אפשרות לאמוד את הסוכר."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -439,25 +427,21 @@
           "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל."
         }
       ],
-      "consumerTakeaway": "נתוני סוכר חסרים — לא ניתן לאמוד את ההרכב המלא.",
-      "consumerExplanation": "שומן רווי גבוה (8 גרם) ו-149 מ\"ג נתרן. נתוני סוכר לא נמצאו — ההרכב המלא לא ידוע.",
-      "bariInterpretation": "נתוני סוכר חסרים משפיעים על הציון. שומן רווי גבוה לעוגה שנקראת לייט.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 4,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "עדן קינוחים"
     },
     {
       "id": "cake_7290006983787",
-      "name": "עוגת הבית שוקולד צ'יפס 400 גרם עוגות הבית",
+      "name": "עוגת הבית שוקולד צ'יפס 400 גרם",
       "barcode": "7290006983787",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F6%2F9%2F6916334_7290006983787_1.jpg&w=256&q=75",
-      "score": 28.4,
+      "score": 30.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -480,8 +464,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "הכי קלוריות-נמוך בקטגוריה, אבל 15 תוספים שמגדירים את גבולות הביתי."
+        "limitingFactors": []
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -564,17 +547,13 @@
           "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
         }
       ],
-      "consumerTakeaway": "126 קלוריות — הנמוך ביותר — אבל 15 תוספים מסבירים את הפשרה.",
-      "consumerExplanation": "הקלוריות הנמוכות ביותר בקטגוריה — אבל 15 תוספים הם המחיר של הקלילות הזו.",
-      "bariInterpretation": "קלוריות נמוכות מאוד, אבל עיבוד כבד מאוד (15 תוספים) מורידים את הציון.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
       "rank": 5,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "עוגות הבית"
     },
     {
@@ -582,14 +561,14 @@
       "name": "עוגת גבינה אפויה",
       "barcode": "7290119045013",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FRY42_Z_P_7290119045013_1.png",
-      "score": 28.0,
+      "score": 32.0,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
       "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
       "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "כ-21 גרם סוכר ושבע קטגוריות תוספים — פרופיל הרכב זהה לסדרת הגבינה של תופינים.",
-      "rowVerdict": "203 קלוריות ל-100 גרם. סוכר גבוה (כ-21 גרם ל-100 גרם) ושבע קטגוריות תוספים כולל מתחלב E433 — הרכב זהה לסדרת רנסנס. הסוכר הגבוה הוא הגורם המגביל.",
+      "insightLine": "גבינה לבנה אמיתית (24%), אבל כ-21 גרם סוכר ושבע קטגוריות תוספים.",
+      "rowVerdict": "203 קלוריות ל-100 גרם. יש כאן גבינה לבנה אמיתית (24%), אבל גם כ-21 גרם סוכר ושבע קטגוריות תוספים — הרכב טיפוסי לעוגות גבינה אפויות מהמדף. הסוכר הוא מה שמושך את הציון למטה.",
       "expansion": {
         "nutrition": {
           "energyKcal": 203.0,
@@ -605,8 +584,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "גבינה אמיתית בתוך עיבוד כבד — 10 תוספים ו-20 גרם סוכר."
+        "limitingFactors": []
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -661,19 +639,13 @@
           "explanation_he": "פוליסורבאט 80 הוא מתחלב סינתטי; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
         }
       ],
-      "consumerTakeaway": "עוגת גבינה אפויה עם סוכר גבוה (כ-21 גרם ל-100 גרם) ושבע קטגוריות תוספים.",
-      "consumerExplanation": "הציון E משקף ריכוז סוכר גבוה ושבע קטגוריות תוספים — פרופיל הרכב דומה לסדרת רנסנס.",
-      "bariInterpretation": "סוכר גבוה ושבע קטגוריות תוספים כולל E433 — הגורמים המגבילים.",
-      "bestUseCases": [
-        "אין המלצת שימוש — ציון E"
-      ],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 6,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "BAKERY"
     },
     {
@@ -681,7 +653,7 @@
       "name": "עוגת גבינה רנסנס",
       "barcode": "7290016162264",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QHD46_Z_P_7290016162264_1.png",
-      "score": 28.0,
+      "score": 32.0,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -704,8 +676,7 @@
         "confidenceLabel": "נתונים חלקיים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
-        "limitingFactors": [],
-        "bottomLine": "נוסחה זהה לעוגת הגבינה האפויה — השם רנסנס לא מייצג שינוי בהרכב."
+        "limitingFactors": []
       },
       "retailer": "shufersal+yohananof",
       "novaGroup": 4,
@@ -760,20 +731,14 @@
           "explanation_he": "פוליסורבאט 80 הוא מתחלב סינתטי; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
         }
       ],
-      "consumerTakeaway": "עוגת גבינה מוכנה עם סוכר גבוה (כ-21 גרם ל-100 גרם) ושבע קטגוריות תוספים.",
-      "consumerExplanation": "הציון E משקף ריכוז סוכר גבוה ושבע קטגוריות תוספים ברשימת הרכיבים, כולל מתחלב E433.",
-      "bariInterpretation": "סוכר גבוה ושבע קטגוריות תוספים כולל מתחלב E433 — הגורמים המגבילים.",
-      "bestUseCases": [
-        "אין המלצת שימוש — ציון E"
-      ],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal",
         "yohananof"
       ],
-      "rank": 6,
-      "categoryTotal": 65,
+      "rank": 7,
+      "categoryTotal": 63,
       "brand": "תופינים"
     },
     {
@@ -806,8 +771,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "שומן רווי גבוה: 10.0 ג'/100 ג'"
-        ],
-        "bottomLine": "שומן רווי גבוה אבל רשימת תוספים קצרה — עוגת גבינה בסיסית עם עיבוד בינוני."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -862,17 +826,13 @@
           "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל."
         }
       ],
-      "consumerTakeaway": "10 גרם שומן רווי — גבוה, אבל רק 3 תוספים — נקי יחסית.",
-      "consumerExplanation": "10 גרם שומן רווי עם נתרן נמוך מאוד ורק 3 תוספים — עוגת גבינה כבדה בשומן אך קצרה ברשימת הנוספות.",
-      "bariInterpretation": "שומן רווי גבוה עם נתרן נמוך מאוד ותוספים מעטים — ציון E אמצעי.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 6,
-      "categoryTotal": 65,
+      "rank": 8,
+      "categoryTotal": 63,
       "brand": "עדן קינוחים"
     },
     {
@@ -905,8 +865,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 31.4 ג'/100 ג'"
-        ],
-        "bottomLine": "נתרן גבוה מאוד למאפין פירות — 405 מ\"ג גבוה יותר ממרבית מוצרי המאפייה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -919,17 +878,13 @@
           "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
         }
       ],
-      "consumerTakeaway": "405 מ\"ג נתרן — גבוה מאוד לקינוח שמציג עצמו כמאפין פרי.",
-      "consumerExplanation": "405 מ\"ג נתרן — גבוה מאוד למאפין פרי. 2 תוספים בלבד, אבל הנתרן הוא החריגה האמיתית.",
-      "bariInterpretation": "נתרן גבוה מאוד וסוכר גבוה ביחד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 9,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -963,8 +918,7 @@
         "limitingFactors": [
           "סוכר גבוה: 28.9 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שמן מוקשה ו-29 גרם סוכר — פס גבינה שכבד יותר ממה שהשם מרמז."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -977,17 +931,13 @@
           "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-29 גרם סוכר — גבינה אמיתית עם פשרה בשומן.",
-      "consumerExplanation": "גבינה אמיתית בתוך פס עם שמן מוקשה ו-29 גרם סוכר. הגבינה תורמת חלבון; המרגרינה מוסיפה שומן שגרוע ממנה.",
-      "bariInterpretation": "שמן מוקשה ו-29 גרם סוכר נותנים ציון E, למרות הקלוריות הבינוניות.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 10,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -1021,8 +971,7 @@
         "limitingFactors": [
           "סוכר גבוה: 30.9 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 403.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "מאפין קפה-בייקרי על הנייר, קינוח מעובד בפועל — הנתרן מגיע ממקורות שאינם הגדיה שלך."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1042,17 +991,13 @@
           "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
         }
       ],
-      "consumerTakeaway": "הנתרן כאן גבוה מהצפוי למאפין — קרוב לרבע מהכמות היומית.",
-      "consumerExplanation": "458 מ\"ג נתרן חריג בכל קבוצת המאפינים. האגוזים אמיתיים ומינוריים — הסוכר והמלח הם הסיפור.",
-      "bariInterpretation": "שילוב של צפיפות קלורית גבוהה, סוכר מוגבר ונתרן חריג מביא אותו לאחד הציונים הנמוכים בקבוצת המאפין.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 11,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -1086,8 +1031,7 @@
         "limitingFactors": [
           "סוכר גבוה: 36.2 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 401.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "הגבוה ביותר בסוכר בין מאפיני הוניל — הוניל הוא בעיקר מתיקות."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1100,17 +1044,13 @@
           "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
         }
       ],
-      "consumerTakeaway": "הסוכר הגבוה ביותר בקבוצת המאפינים — 36 גרם ל-100 גרם.",
-      "consumerExplanation": "הסוכר הגבוה ביותר בקבוצת המאפינים ו-440 מ\"ג נתרן. הוניל מגיע מחומרי טעם, לא מוניל אמיתי.",
-      "bariInterpretation": "סוכר קיצוני ונתרן גבוה ביחד נותנים אחד הציונים הנמוכים בקבוצת המאפין.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 12,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -1118,7 +1058,7 @@
       "name": "עוגת פס אוכמניות",
       "barcode": "1361207",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KPC20_Z_P_1361207_1.png",
-      "score": 21.8,
+      "score": 23.8,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -1144,8 +1084,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 10.9 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "עוגת פס עם ארומה נעימה, אבל שומן הרווי הוא בין הגבוהים בקטגוריה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1207,22 +1146,18 @@
           "explanation_he": "חומצה מאלית היא חומצה טבעית הקיימת גם בתפוחים ובפירות, ומשמשת לאיזון טעם."
         }
       ],
-      "consumerTakeaway": "שומן רווי גבוה מהממוצע בקטגוריה — עוגת פס שמנה מהרגיל.",
-      "consumerExplanation": "286 קלוריות ו-11 גרם שומן רווי, עם שמן צמחי מוקשה (מרגרינה).",
-      "bariInterpretation": "השומן הרווי הגבוה והאיכות הנמוכה של מקורות השומן מורידים את הציון מתחת לממוצע.",
-      "bestUseCases": [],
       "_category_routed": "default",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 13,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "נטלי"
     },
     {
       "id": "cake_7290018893661",
-      "name": "עוגות ספוג אישיות מצופות שוקולד מריר במילוי קרם קקאו צ'וקטה",
+      "name": "עוגות ספוג אישיות מצופות שוקולד מריר במילוי קרם קקאו",
       "barcode": "7290018893661",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290018893661_s111-16-2025_20-31-41.jpg&w=256&q=75",
       "score": 18.6,
@@ -1252,8 +1187,7 @@
           "סוכר גבוה: 37.3 ג'/100 ג'",
           "שומן רווי גבוה: 16.3 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 430.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "הציפוי המריר לא מדלל את השומן — אחד הכבדים בקלוריות ובשומן רווי בקטגוריה."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 3,
@@ -1280,202 +1214,21 @@
           "explanation_he": "פוספטים; EFSA מציינת צריכה מצטברת כשיקול — ראה ADI קבוצתי."
         }
       ],
-      "consumerTakeaway": "430 קלוריות ו-16 גרם שומן רווי — כבד מאוד, גם ביחס לעוגות אחרות כאן.",
-      "consumerExplanation": "16 גרם שומן רווי ו-37 גרם סוכר — אחד הכבדים בקטגוריה כולה. הציפוי המריר לא משנה את ההרכב.",
-      "bariInterpretation": "צפיפות קלורית גבוהה מאוד, שומן רווי גבוה וסוכר גבוה ביחד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
       "rank": 14,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "צ'וקטה"
-    },
-    {
-      "id": "cake_4504670",
-      "name": "מיני שטרודל במילוי שקדים",
-      "barcode": "4504670",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GRN26_Z_P_4504670_2.png",
-      "score": 18.4,
-      "grade": "E",
-      "confidence": "partial",
-      "confidence_label_he": "נתונים חלקיים",
-      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
-      "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "מיני שטרודל שקדים: 776 מ\"ג נתרן — הכי מלוח בכל הקטגוריה",
-      "rowVerdict": "776 מ\"ג נתרן — הגבוה ביותר בכל הקטגוריה, על מוצר שנמכר כקינוח. שקדים ומשמש נשמעים פרותיים; הנתרן לא.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 341.0,
-          "fat": 22.5,
-          "satFat": 12.0,
-          "carbs": 27.9,
-          "sugar": 1.8,
-          "protein": 6.7,
-          "sodium": 776.0,
-          "fiber": null
-        },
-        "ingredients": "קמח חיטה (גלוטן), מרגרינה (סויה)(צבע מאכל (בטא קרוטן)), מים, גבינה קשה כחושה (12%)(חלב), שמנת חמוצה, שמנת צמחית (מים, סוכר, שומן דקל ים מוקשה, מלח, חומרי טעם וריח, מייצבים (E466, E461, E410, E407), מתחלבים (E322, E435, E471), צבע מאכל (E160b)), ביצים, זיתים ירוקים (2%), שמן קוקוס, שמן סויה, עמילנים מעובדים (E1442, E1414, E1450, E1412), מלח, סוכר, סיבים תזונתיים (אינולין), מתפיחים (E500 ,E450), חומרי טעם וריח, עמילן תירס, חומר משמר (E202), מווסתי חומציות (E333, E330), צבע מאכל (E171). מכיל ביצים",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "שומן רווי גבוה: 12.0 ג'/100 ג'",
-          "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "776 מ\"ג נתרן — הגבוה ביותר בכל 65 המוצרים. קינוח שמתנהג כמו אוכל מלוח."
-      },
-      "retailer": "shufersal",
-      "novaGroup": 4,
-      "d4_additives": [
-        {
-          "e_number": "E3xx",
-          "name_he": "מווסתי חומציות (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "מווסתי חומציות",
-          "explanation_he": "התווית מציינת 'מווסתי חומציות' ללא שמות ספציפיים."
-        },
-        {
-          "e_number": "E1xx",
-          "name_he": "צבע מאכל (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "צבע מאכל",
-          "explanation_he": "התווית מציינת 'צבע מאכל' ללא שם ספציפי."
-        },
-        {
-          "e_number": "E4xx",
-          "name_he": "מתחלבים (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "מתחלבים",
-          "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
-        },
-        {
-          "e_number": "E1395",
-          "name_he": "אינולין",
-          "tier": "functional",
-          "function_he": "סיב פרה-ביוטי",
-          "explanation_he": "סיב מסיס (פרה-ביוטי) מעולת ירושלים/שורש עולש; ידוע כמיטיב למיקרוביום."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
-        },
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "likely-neutral",
-          "function_he": "מתחלב",
-          "explanation_he": "מתחלב טבעי מסויה או חמניות; מסייע לתחמיץ שמן ומים במאפים."
-        },
-        {
-          "e_number": "E407",
-          "name_he": "קרגינן",
-          "tier": "contested",
-          "function_he": "מייצב / חומר מסמיך ממקור אצות",
-          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
-        },
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר",
-          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נמצא בשימוש נרחב ובטוח ברמות מקובלות."
-        },
-        {
-          "e_number": "E160",
-          "name_he": "בטא-קרוטן / קרוטנואידים",
-          "tier": "functional",
-          "function_he": "צבע מאכל",
-          "explanation_he": "פיגמנטים טבעיים ממקור צמחי; ללא דאגות בטיחות ידועות בכמויות צבע."
-        },
-        {
-          "e_number": "E330",
-          "name_he": "חומצת לימון",
-          "tier": "functional",
-          "function_he": "מווסת חומציות",
-          "explanation_he": "חומצה נפוצה מהצומח; מאזנת pH ומעכבת חמצון. בטוח."
-        },
-        {
-          "e_number": "E500",
-          "name_he": "סודיום ביקרבונט",
-          "tier": "functional",
-          "function_he": "חומר תפיחה",
-          "explanation_he": "אבקת אפייה; גורם לבצק לתפוח בחום."
-        },
-        {
-          "e_number": "E450",
-          "name_he": "דיפוספט",
-          "tier": "dose-dependent",
-          "function_he": "חומר תפיחה / מייצב",
-          "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
-        },
-        {
-          "e_number": "E160a",
-          "name_he": "בטא-קרוטן",
-          "tier": "functional",
-          "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
-          "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
-        },
-        {
-          "e_number": "E466",
-          "name_he": "קרבוקסי מתיל צלולוז",
-          "tier": "contested",
-          "function_he": "מייצב / מסמיך על בסיס צלולוז",
-          "explanation_he": "CMC (E466) הוא חומר מייצב שנחקר בניסוי קליני שהראה שינויים בהרכב מיקרוביום המעי; הדיון המדעי בנושא פעיל ואינו מוכרע."
-        },
-        {
-          "e_number": "E410",
-          "name_he": "לוקוסט-בין גאם",
-          "tier": "functional",
-          "function_he": "מייצב טבעי ממקור חרוב",
-          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים."
-        },
-        {
-          "e_number": "E1422",
-          "name_he": "עמילן מעובד",
-          "tier": "likely-neutral",
-          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
-          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
-        },
-        {
-          "e_number": "E333",
-          "name_he": "סידן ציטרט",
-          "tier": "functional",
-          "function_he": "מלח ציטרט — מקור סידן / מייצב",
-          "explanation_he": "ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן."
-        },
-        {
-          "e_number": "E171",
-          "name_he": "טיטניום דיוקסיד",
-          "tier": "contested",
-          "function_he": "צבע מאכל לבן — אסור באיחוד האירופי (2022); מורשה בארה\"ב/קנדה/אוסטרליה",
-          "explanation_he": "טיטניום דיוקסיד הוא צבע לבן; האיחוד האירופי אסר אותו ב-2022 לאחר ש-EFSA לא שללה חשש גנוטוקסי; ארה\"ב וקנדה עדיין מתירות."
-        }
-      ],
-      "consumerTakeaway": "776 מ\"ג נתרן — יותר מחצי מהכמות היומית המומלצת בביס אחד.",
-      "consumerExplanation": "776 מ\"ג נתרן — הגבוה ביותר מכל 65 המוצרים. שמן מוקשה בבצק ו-16 תוספים.",
-      "bariInterpretation": "נתרן קיצוני בכל הקטגוריה, שמן מוקשה ועיבוד כבד מאוד נותנים ציון E נמוך.",
-      "bestUseCases": [],
-      "_category_routed": "whole_food_fat",
-      "_has_phvo": true,
-      "_source_retailers": [
-        "shufersal"
-      ],
-      "rank": 15,
-      "categoryTotal": 65,
-      "brand": "bakery  by Gidron"
     },
     {
       "id": "cake_7290119039746",
       "name": "עוגת פס דובוש דולצ'ה",
       "barcode": "7290119039746",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XXJ58_Z_P_7290119039746_1.png",
-      "score": 18.1,
+      "score": 26.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -1500,8 +1253,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 32.7 ג'/100 ג'"
-        ],
-        "bottomLine": "21 תוספים ו-32 גרם סוכר — הדובוש התעשייתי רחוק מהמקור."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1647,17 +1399,13 @@
           "explanation_he": "טיטניום דיוקסיד הוא צבע לבן; האיחוד האירופי אסר אותו ב-2022 לאחר ש-EFSA לא שללה חשש גנוטוקסי; ארה\"ב וקנדה עדיין מתירות."
         }
       ],
-      "consumerTakeaway": "32 גרם סוכר ו-21 תוספים — עיבוד כבד מאחורי שם קלאסי.",
-      "consumerExplanation": "21 תוספים ו-33 גרם סוכר. הדובוש אמור לכלול ביצים, חמאה, שוקולד — כאן 8 מתחלבים שונים.",
-      "bariInterpretation": "עיבוד כבד מאוד ו-32 גרם סוכר נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "default",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 16,
-      "categoryTotal": 65,
+      "rank": 15,
+      "categoryTotal": 63,
       "brand": "תופינים"
     },
     {
@@ -1665,7 +1413,7 @@
       "name": "עוגת שטרודל תפוחי עץ",
       "barcode": "5718038",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HPN32_Z_P_5718038_1.png",
-      "score": 17.5,
+      "score": 22.9,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -1690,8 +1438,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שטרודל עם עיבוד כבד ושמן מוקשה — מרחק מהמקור הביתי גדול מהשם מרמז."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1823,17 +1570,13 @@
           "explanation_he": "DATEM הוא חומר עזר לאפייה המסייע לגלוטן להתפתח ולשמור על מרקם הלחם; שמו הטכני מופיע לעתים רחוקות על תוויות לחם ישראליות."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-17 תוספים מציבים את זה רחוק מהשטרודל הביתי.",
-      "consumerExplanation": "שמן צמחי מוקשה במילוי. 235 מ\"ג נתרן — גבוה לעוגה מתוקה. 17 תוספים.",
-      "bariInterpretation": "שמן מוקשה, עיבוד כבד ונתרן גבוה יחסית לקטגוריה מורידים את הציון.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 17,
-      "categoryTotal": 65,
+      "rank": 16,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -1866,8 +1609,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 35.1 ג'/100 ג'"
-        ],
-        "bottomLine": "סוכר ונתרן גבוהים ביחד — בין הכבדים בקבוצת המאפין."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -1887,17 +1629,13 @@
           "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
         }
       ],
-      "consumerTakeaway": "גבוה בסוכר וגבוה בנתרן — שני הגורמים ביחד.",
-      "consumerExplanation": "493 מ\"ג נתרן — חריג גם בקבוצת המאפינים. 3 תוספים בלבד, אבל הנתרן והסוכר הם הסיפור.",
-      "bariInterpretation": "סוכר גבוה מאוד ונתרן גבוה מאוד ביחד מביאים לאחד הציונים הנמוכים בקבוצת המאפין.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 18,
-      "categoryTotal": 65,
+      "rank": 17,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -1905,7 +1643,7 @@
       "name": "עוגת דבש",
       "barcode": "7290119042302",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BRR40_Z_P_7290119042302_1.png",
-      "score": 15.8,
+      "score": 17.8,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -1930,8 +1668,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 31.0 ג'/100 ג'"
-        ],
-        "bottomLine": "הדבש בשם, לא בכוס — 5% דבש עם 31 גרם סוכר כולל מדבר בעד עצמו."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2014,17 +1751,13 @@
           "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
         }
       ],
-      "consumerTakeaway": "5% דבש בלבד — רוב המתיקות מגיעה מסוכר רגיל, לא מדבש.",
-      "consumerExplanation": "5% דבש בלבד — רוב המתיקות מגיעה מסוכר רגיל. 11 תוספים. הדבש הוא שיווקי.",
-      "bariInterpretation": "סוכר גבוה ועיבוד כבד עם תרומת דבש זניחה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 19,
-      "categoryTotal": 65,
+      "rank": 18,
+      "categoryTotal": 63,
       "brand": "מתוקים"
     },
     {
@@ -2032,7 +1765,7 @@
       "name": "עוגות אישיות קרם חלב",
       "barcode": "7296073346333",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TTE56_Z_P_7296073346333_1.png",
-      "score": 14.1,
+      "score": 16.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -2059,8 +1792,7 @@
           "סוכר גבוה: 36.3 ג'/100 ג'",
           "שומן רווי גבוה: 13.2 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 421.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "קרם חלב בשם, עוגה כבדה בפועל — שומן רווי וסוכר גבוהים ביחד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2108,22 +1840,18 @@
           "explanation_he": "חומר תפיחה מסורתי; מתנדף לחלוטין באפייה."
         }
       ],
-      "consumerTakeaway": "13 גרם שומן רווי ו-36 גרם סוכר — כבד מהרגיל גם לעוגות אישיות.",
-      "consumerExplanation": "שומן רווי וסוכר גבוהים ביחד, בשמן קוקוס כמקור עיקרי. 8 תוספים — לא ארוך, אבל הרשימה מגדירה מוצר שרחוק מחלב אמיתי.",
-      "bariInterpretation": "שומן רווי גבוה, סוכר גבוה ו-421 קלוריות נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 20,
-      "categoryTotal": 65,
+      "rank": 19,
+      "categoryTotal": 63,
       "brand": "VINCI"
     },
     {
       "id": "cake_7290018893487",
-      "name": "עוגות אישיות קוקוס צ'וקטה צ'וקטה",
+      "name": "עוגות אישיות קוקוס",
       "barcode": "7290018893487",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290018893487_s312-15-2021_14-23-59.jpg&w=256&q=75",
       "score": 14.0,
@@ -2153,8 +1881,7 @@
           "סוכר גבוה: 35.7 ג'/100 ג'",
           "שומן רווי גבוה: 18.7 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 442.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "שומן רווי בין הגבוהים בקטגוריה — הקוקוס הוא מקור השומן, לא עיטור."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -2195,17 +1922,13 @@
           "explanation_he": "חומר תפיחה מסורתי; מתנדף לחלוטין באפייה."
         }
       ],
-      "consumerTakeaway": "19 גרם שומן רווי — הגבוה ביותר כמעט בכל הקטגוריה.",
-      "consumerExplanation": "19 גרם שומן רווי מגיע בעיקר מגלעיני דקל וקוקוס. 36 גרם סוכר — הגבוה השני בקטגוריה.",
-      "bariInterpretation": "שומן רווי קיצוני ו-442 קלוריות נותנים ציון E נמוך מאוד.",
-      "bestUseCases": [],
       "_category_routed": "beverage",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 21,
-      "categoryTotal": 65,
+      "rank": 20,
+      "categoryTotal": 63,
       "brand": "צ'וקטה"
     },
     {
@@ -2213,7 +1936,7 @@
       "name": "עוגת שמרים שוקולד",
       "barcode": "7290106578821",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YPA56_Z_P_7290106578821_1.png",
-      "score": 12.9,
+      "score": 14.9,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -2238,8 +1961,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 26.0 ג'/100 ג'"
-        ],
-        "bottomLine": "עוגת שמרים עם עיבוד כבד — הארומה ביתית, ההרכב פחות."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2371,17 +2093,13 @@
           "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל."
         }
       ],
-      "consumerTakeaway": "17 תוספים ו-377 קלוריות — עיבוד כבד מאחורי שם ביתי.",
-      "consumerExplanation": "17 תוספים ו-26 גרם סוכר מאחורי הארומה הביתית. הבצק השמרי מסביר את הטקסטורה; הרשימה מסבירה את הציון.",
-      "bariInterpretation": "עיבוד כבד וצפיפות קלורית גבוהה מורידים את הציון.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 22,
-      "categoryTotal": 65,
+      "rank": 21,
+      "categoryTotal": 63,
       "brand": "עוגת הבית"
     },
     {
@@ -2389,7 +2107,7 @@
       "name": "מיני שטרודל חלבה שוקולד",
       "barcode": "4504687",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GSE34_Z_P_4504687_2.png",
-      "score": 12.6,
+      "score": 18.6,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -2415,8 +2133,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 12.0 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "נתרן גבוה מאוד עם שמן מוקשה — החלבה והשוקולד לא פוצים על זה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2527,17 +2244,13 @@
           "explanation_he": "ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן."
         }
       ],
-      "consumerTakeaway": "637 מ\"ג נתרן — שלישי בנתרן בכל הקטגוריה, על מוצר שנמכר כקינוח.",
-      "consumerExplanation": "637 מ\"ג נתרן ושמן מוקשה בבצק. החלבה והשוקולד הם השמות — הנתרן הוא המציאות.",
-      "bariInterpretation": "נתרן קיצוני, שמן מוקשה ועיבוד כבד נותנים ציון נמוך מאוד.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 23,
-      "categoryTotal": 65,
+      "rank": 22,
+      "categoryTotal": 63,
       "brand": "bakery  by Gidron"
     },
     {
@@ -2545,7 +2258,7 @@
       "name": "מיני שטרודל קרם פטיסייר",
       "barcode": "4504649",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GQS32_Z_P_4504649_2.png",
-      "score": 12.5,
+      "score": 20.5,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -2571,8 +2284,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 11.4 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "הגבוה ביותר בנתרן בכל הקטגוריה — 700 מ\"ג ל-100 גרם זה חריג בכל סולם."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2704,194 +2416,13 @@
           "explanation_he": "טיטניום דיוקסיד הוא צבע לבן; האיחוד האירופי אסר אותו ב-2022 לאחר ש-EFSA לא שללה חשש גנוטוקסי; ארה\"ב וקנדה עדיין מתירות."
         }
       ],
-      "consumerTakeaway": "700 מ\"ג נתרן זה לא קינוח — ביס אחד שמגיע לחצי מהנתרן היומי.",
-      "consumerExplanation": "700 מ\"ג נתרן — קיצוני בכל מושג. שמן מוקשה בבצק ורמת נתרן שמתאימה לפיצה.",
-      "bariInterpretation": "נתרן קיצוני, שמן מוקשה ועיבוד כבד מביאים אותו לציון נמוך מאוד בקטגוריה.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 24,
-      "categoryTotal": 65,
-      "brand": "bakery  by Gidron"
-    },
-    {
-      "id": "cake_4504656",
-      "name": "מיני שטרודל תפוח עץ",
-      "barcode": "4504656",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GQZ30_Z_P_4504656_1.png",
-      "score": 12.5,
-      "grade": "E",
-      "confidence": "partial",
-      "confidence_label_he": "נתונים חלקיים",
-      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
-      "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "מיני שטרודל תפוח עץ: 529 מ\"ג נתרן בצנצנת קטנה",
-      "rowVerdict": "נתרן גבוה במיוחד על מיני שטרודל — מספר שדורש הסבר. התפוחים נוכחים, אבל אחרי שמן מוקשה ורשימת מייצבים ארוכה. הגודל הקטן לא מוריד את עומס הנתרן.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 325.0,
-          "fat": 22.2,
-          "satFat": 11.7,
-          "carbs": 27.7,
-          "sugar": 2.2,
-          "protein": 4.0,
-          "sodium": 529.0,
-          "fiber": null
-        },
-        "ingredients": "קמח חיטה(גלוטן), מלית חצילים (24%)(חצילים, מלח), מרגרינה (סויה) (צבע מאכל (בטא קרוטן)), מים, שמנת צמחית (מים, סוכר, שומן דקלים מוקשה , מלח, חומרי טעם וריח, מייצבים (E466, E461, E410, E407), מתחלבים (E322, E435, E471), צבע מאכל (E160b)), שמן סויה, שמן קוקוס, ביצים, עמילני תירס מעובדים (E1450, E1414, E1442), מלח, סוכר, סיבים תזונתיים (אינולין), מתפיחים (E450, E500), שום, חומרי טעם וריח, עמילן תיר ס, מווסתי חומציות (E333, E330), חומר משמר (E202), צבע מאכל (E171) מכיל ביצים",
-        "confidenceLabel": "נתונים חלקיים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [],
-        "limitingFactors": [
-          "שומן רווי גבוה: 11.7 ג'/100 ג'",
-          "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "נתרן גבוה מאוד לקינוח — גודל מיני לא מייצג עומס מיני."
-      },
-      "retailer": "shufersal",
-      "novaGroup": 4,
-      "d4_additives": [
-        {
-          "e_number": "E3xx",
-          "name_he": "מווסתי חומציות (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "מווסתי חומציות",
-          "explanation_he": "התווית מציינת 'מווסתי חומציות' ללא שמות ספציפיים."
-        },
-        {
-          "e_number": "E1xx",
-          "name_he": "צבע מאכל (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "צבע מאכל",
-          "explanation_he": "התווית מציינת 'צבע מאכל' ללא שם ספציפי."
-        },
-        {
-          "e_number": "E4xx",
-          "name_he": "מתחלבים (מין לא מפורט)",
-          "tier": "disclosure-gap",
-          "function_he": "מתחלבים",
-          "explanation_he": "התווית מציינת 'מתחלבים' ללא שמות ספציפיים — הסיווג המדויק אינו ידוע."
-        },
-        {
-          "e_number": "E1395",
-          "name_he": "אינולין",
-          "tier": "functional",
-          "function_he": "סיב פרה-ביוטי",
-          "explanation_he": "סיב מסיס (פרה-ביוטי) מעולת ירושלים/שורש עולש; ידוע כמיטיב למיקרוביום."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
-        },
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "likely-neutral",
-          "function_he": "מתחלב",
-          "explanation_he": "מתחלב טבעי מסויה או חמניות; מסייע לתחמיץ שמן ומים במאפים."
-        },
-        {
-          "e_number": "E407",
-          "name_he": "קרגינן",
-          "tier": "contested",
-          "function_he": "מייצב / חומר מסמיך ממקור אצות",
-          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
-        },
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר",
-          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נמצא בשימוש נרחב ובטוח ברמות מקובלות."
-        },
-        {
-          "e_number": "E160",
-          "name_he": "בטא-קרוטן / קרוטנואידים",
-          "tier": "functional",
-          "function_he": "צבע מאכל",
-          "explanation_he": "פיגמנטים טבעיים ממקור צמחי; ללא דאגות בטיחות ידועות בכמויות צבע."
-        },
-        {
-          "e_number": "E330",
-          "name_he": "חומצת לימון",
-          "tier": "functional",
-          "function_he": "מווסת חומציות",
-          "explanation_he": "חומצה נפוצה מהצומח; מאזנת pH ומעכבת חמצון. בטוח."
-        },
-        {
-          "e_number": "E500",
-          "name_he": "סודיום ביקרבונט",
-          "tier": "functional",
-          "function_he": "חומר תפיחה",
-          "explanation_he": "אבקת אפייה; גורם לבצק לתפוח בחום."
-        },
-        {
-          "e_number": "E450",
-          "name_he": "דיפוספט",
-          "tier": "dose-dependent",
-          "function_he": "חומר תפיחה / מייצב",
-          "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
-        },
-        {
-          "e_number": "E160a",
-          "name_he": "בטא-קרוטן",
-          "tier": "functional",
-          "function_he": "צבע מאכל כתום/צהוב — קרוטנואיד פרו-ויטמין A",
-          "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
-        },
-        {
-          "e_number": "E466",
-          "name_he": "קרבוקסי מתיל צלולוז",
-          "tier": "contested",
-          "function_he": "מייצב / מסמיך על בסיס צלולוז",
-          "explanation_he": "CMC (E466) הוא חומר מייצב שנחקר בניסוי קליני שהראה שינויים בהרכב מיקרוביום המעי; הדיון המדעי בנושא פעיל ואינו מוכרע."
-        },
-        {
-          "e_number": "E410",
-          "name_he": "לוקוסט-בין גאם",
-          "tier": "functional",
-          "function_he": "מייצב טבעי ממקור חרוב",
-          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים."
-        },
-        {
-          "e_number": "E1422",
-          "name_he": "עמילן מעובד",
-          "tier": "likely-neutral",
-          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
-          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
-        },
-        {
-          "e_number": "E333",
-          "name_he": "סידן ציטרט",
-          "tier": "functional",
-          "function_he": "מלח ציטרט — מקור סידן / מייצב",
-          "explanation_he": "ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן."
-        },
-        {
-          "e_number": "E171",
-          "name_he": "טיטניום דיוקסיד",
-          "tier": "contested",
-          "function_he": "צבע מאכל לבן — אסור באיחוד האירופי (2022); מורשה בארה\"ב/קנדה/אוסטרליה",
-          "explanation_he": "טיטניום דיוקסיד הוא צבע לבן; האיחוד האירופי אסר אותו ב-2022 לאחר ש-EFSA לא שללה חשש גנוטוקסי; ארה\"ב וקנדה עדיין מתירות."
-        }
-      ],
-      "consumerTakeaway": "נתרן גבוה מאוד ושמן מוקשה — הגודל הקטן מטעה.",
-      "consumerExplanation": "529 מ\"ג נתרן ושמן מוקשה בבצק. הגודל הקטן מטעה — העומס לא קטן.",
-      "bariInterpretation": "נתרן חריג לקטגוריה, שמן מוקשה ועיבוד כבד מורידים את הציון.",
-      "bestUseCases": [],
-      "_category_routed": "sauce_spread",
-      "_has_phvo": true,
-      "_source_retailers": [
-        "shufersal"
-      ],
-      "rank": 24,
-      "categoryTotal": 65,
+      "rank": 23,
+      "categoryTotal": 63,
       "brand": "bakery  by Gidron"
     },
     {
@@ -2899,7 +2430,7 @@
       "name": "עוגת מאפין אגוזים עם ציפוי",
       "barcode": "7296073431893",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QHY62_Z_P_7296073431893_1.png",
-      "score": 12.4,
+      "score": 14.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -2925,8 +2456,7 @@
         "limitingFactors": [
           "סוכר גבוה: 30.5 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 401.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "נתרן גבוה לקינוח עם שם ביתי — האגוזים לא מספיקים לשנות את הסיפור."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -2995,17 +2525,13 @@
           "explanation_he": "פוספטים הם מלחי זרחן המשמשים לייצוב מרקם מוצרי חלב; הצריכה המצטברת מכלל המזון ראויה לתשומת לב."
         }
       ],
-      "consumerTakeaway": "322 מ\"ג נתרן ו-401 קלוריות — גבוה לשני הפרמטרים.",
-      "consumerExplanation": "322 מ\"ג נתרן ו-30 גרם סוכר. האגוזים (2%) מינוריים — ה-9 תוספים הם הסיפור.",
-      "bariInterpretation": "נתרן גבוה, סוכר גבוה וקלוריות גבוהות ביחד נותנים ציון נמוך.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 26,
-      "categoryTotal": 65,
+      "rank": 24,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -3013,7 +2539,7 @@
       "name": "עוגת מאפין שיש",
       "barcode": "7296073132936",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QBP58_Z_P_7296073132936_1.png",
-      "score": 12.2,
+      "score": 14.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3038,8 +2564,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 28.9 ג'/100 ג'"
-        ],
-        "bottomLine": "מאפין כבד בסוכר ובנתרן — השיש הוא עיצובי בלבד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3129,17 +2654,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "29 גרם סוכר ו-253 מ\"ג נתרן — עומס כפול.",
-      "consumerExplanation": "29 גרם סוכר ו-253 מ\"ג נתרן. השיש הוא ויזואלי — 15 התוספים הם ההרכב.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 27,
-      "categoryTotal": 65,
+      "rank": 25,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -3147,7 +2668,7 @@
       "name": "עוגת קרנץ אגוזים וקינמון",
       "barcode": "4170103",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FTO16_Z_P_4170103_1.png",
-      "score": 12.1,
+      "score": 14.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3174,8 +2695,7 @@
           "סוכר גבוה: 25.6 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים",
           "צפיפות קלורית גבוהה: 409.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "קרנץ עם שמן מוקשה — הפריכות הביתית מגיעה מעיבוד, לא מחמאה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3286,25 +2806,21 @@
           "explanation_he": "DATEM הוא חומר עזר לאפייה המסייע לגלוטן להתפתח ולשמור על מרקם הלחם; שמו הטכני מופיע לעתים רחוקות על תוויות לחם ישראליות."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-14 תוספים מאחורי הארומה הביתית.",
-      "consumerExplanation": "שמן מוקשה (דקל + מרגרינה). אגוזי לוז (3%) בלבד ברשימה — ועדיין 14 תוספים.",
-      "bariInterpretation": "שמן מוקשה ועיבוד כבד מורידים את הציון.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 28,
-      "categoryTotal": 65,
+      "rank": 26,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
       "id": "cake_7290006775023",
-      "name": "עוגה אנגלית 450 גרם אחוה",
+      "name": "עוגה אנגלית 450 גרם",
       "barcode": "7290006775023",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290006775023_s1_1506-28-2021_20-00-44.jpg&w=256&q=75",
-      "score": 11.8,
+      "score": 17.8,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3331,8 +2847,7 @@
           "סוכר גבוה: 25.0 ג'/100 ג'",
           "שומן רווי גבוה: 8.0 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 417.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "עוגה אנגלית עם עיבוד כבד — 3 צבעי מאכל ושמן דקלים הם לא פירות קנדייד."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -3457,17 +2972,13 @@
           "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
         }
       ],
-      "consumerTakeaway": "שמן דקלים, 3 צבעי מאכל ועיבוד כבד — פחות קלאסי ממה שנדמה.",
-      "consumerExplanation": "שמן דקלים כשומן עיקרי, שלושה צבעי מאכל ו-18 תוספים. הפירות הקנדייד שבשם קיימים ומינוריים.",
-      "bariInterpretation": "עיבוד כבד מאוד, שמן דקלים וצבעי מאכל מרובים נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 29,
-      "categoryTotal": 65,
+      "rank": 27,
+      "categoryTotal": 63,
       "brand": "אחוה"
     },
     {
@@ -3502,8 +3013,7 @@
           "סוכר גבוה: 39.0 ג'/100 ג'",
           "שומן רווי גבוה: 11.5 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 432.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "בראוניז כבד גם כשמרגיש מיוחד — 39 גרם סוכר הוא הגבוה ביותר בקטגוריה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3565,17 +3075,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "39 גרם סוכר — הסוכר הגבוה ביותר בקטגוריה כולה. פינוק מרוכז.",
-      "consumerExplanation": "הסוכר הגבוה ביותר בקטגוריה — 39 גרם. שומן רווי גבוה ו-8 תוספים.",
-      "bariInterpretation": "הסוכר הגבוה ביותר בקטגוריה, שומן רווי גבוה ו-432 קלוריות נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 29,
-      "categoryTotal": 65,
+      "rank": 28,
+      "categoryTotal": 63,
       "brand": "עוגת הבית"
     },
     {
@@ -3583,7 +3089,7 @@
       "name": "עוגת מאפין תפוז",
       "barcode": "7296073140184",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AUJ52_Z_P_7296073140184_1.png",
-      "score": 11.6,
+      "score": 13.6,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3608,8 +3114,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 30.8 ג'/100 ג'"
-        ],
-        "bottomLine": "מאפין כבד בסוכר ובנתרן — הטעם התפוזי לא מקל על ההרכב."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3678,17 +3183,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "31 גרם סוכר ו-258 מ\"ג נתרן — כבד בשני הגורמים.",
-      "consumerExplanation": "31 גרם סוכר ו-258 מ\"ג נתרן. הטעם התפוזי מגיע מחומרי טעם, לא מתפוז. 9 תוספים.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 31,
-      "categoryTotal": 65,
+      "rank": 29,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -3696,7 +3197,7 @@
       "name": "5עוגות מאפין בטעם שוקולד",
       "barcode": "9397642",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QUT40_Z_P_9397642_1.png",
-      "score": 10.6,
+      "score": 12.6,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3721,8 +3222,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 26.8 ג'/100 ג'"
-        ],
-        "bottomLine": "חמישייה עם עומס אחיד — הכמות לא מקלה על ההרכב."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3798,17 +3298,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "כל יחידה עם אותו עומס — 27 גרם סוכר ו-241 מ\"ג נתרן.",
-      "consumerExplanation": "27 גרם סוכר ו-241 מ\"ג נתרן לכל יחידה. 12 תוספים — הכמות לא מחלקת את העומס.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 32,
-      "categoryTotal": 65,
+      "rank": 30,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -3816,7 +3312,7 @@
       "name": "עוגת גבינה שמנת ופירורים",
       "barcode": "7290111534010",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WTF34_Z_P_7290111534010_1.png",
-      "score": 10.5,
+      "score": 18.5,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -3842,8 +3338,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 13.0 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "עוגת גבינה עם שמן מוקשה ושומן רווי גבוה מאוד — אחת הכבדות בקטגוריה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -3975,17 +3470,13 @@
           "explanation_he": "פוליסורבאט 80 הוא מתחלב סינתטי; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
         }
       ],
-      "consumerTakeaway": "שומן רווי גבוה מאוד ושמן מוקשה — כבד מהרגיל גם לעוגת גבינה.",
-      "consumerExplanation": "13 גרם שומן רווי ו-21 תוספים — כבד מהרגיל גם לעוגת גבינה. שמן מוקשה במקום חמאה אמיתית.",
-      "bariInterpretation": "שמן מוקשה, שומן רווי גבוה ועיבוד כבד מאוד נותנים ציון נמוך.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 33,
-      "categoryTotal": 65,
+      "rank": 31,
+      "categoryTotal": 63,
       "brand": "תופינים"
     },
     {
@@ -3993,14 +3484,14 @@
       "name": "עוגת מאפין תפוח עץ",
       "barcode": "7296073431909",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QIO60_Z_P_7296073431909_1.png",
-      "score": 10.4,
+      "score": 12.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
       "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה של המוצר. הציון מתבסס על הנתונים שנמצאו.",
       "confidence_sub_reason": "נתוני תזונה חלקיים מהסריקה הישירה",
-      "insightLine": "תפוח עץ לא נמצא ברשימת הרכיבים — מרגרינה ומייצבים כן",
-      "rowVerdict": "תפוח עץ לא נמצא ברשימת הרכיבים. מה שנמצא: מרגרינה, צימוקים (4%), ומייצבים שמחזיקים את הטקסטורה בלי פרי אמיתי.",
+      "insightLine": "מחית תפוח עץ 8% — לא פרי טרי, ולצידה מרגרינה ומייצבים",
+      "rowVerdict": "התפוח כאן הוא מחית (8%), לא פרי טרי, ולצידו מרגרינה, צימוקים (4%) ומייצבים שמחזיקים את המרקם. עם 32 גרם סוכר ל-100 גרם, זו עוגה לכל דבר.",
       "expansion": {
         "nutrition": {
           "energyKcal": 376.0,
@@ -4018,8 +3509,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 31.5 ג'/100 ג'"
-        ],
-        "bottomLine": "תפוח עץ בשם, סוכר ונתרן גבוהים בפועל."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4102,17 +3592,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "32 גרם סוכר ו-280 מ\"ג נתרן — הפרי לא מקל על ההרכב.",
-      "consumerExplanation": "32 גרם סוכר ו-280 מ\"ג נתרן. תפוח עץ לא נמצא ברשימת הרכיבים — 12 תוספים ייצגו את הטעם.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 34,
-      "categoryTotal": 65,
+      "rank": 32,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -4120,7 +3606,7 @@
       "name": "עוגת מאפין תפוז",
       "barcode": "2472223",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QCM22_Z_P_2472223_1.png",
-      "score": 10.2,
+      "score": 12.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4146,8 +3632,7 @@
         "limitingFactors": [
           "סוכר גבוה: 29.6 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שמן מוקשה ו-320 מ\"ג נתרן — מאפין תפוז כבד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4223,17 +3708,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה, 320 מ\"ג נתרן ו-30 גרם סוכר — עמוס.",
-      "consumerExplanation": "שמן מוקשה (מרגרינה) ברשימה. 320 מ\"ג נתרן — גבוה לכל מאפין, קל וחומר לתפוז.",
-      "bariInterpretation": "שמן מוקשה, נתרן גבוה וסוכר גבוה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "whole_food_fat",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 35,
-      "categoryTotal": 65,
+      "rank": 33,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -4241,7 +3722,7 @@
       "name": "תפוז",
       "barcode": "6983794",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAL46_Z_P_6983794_1.png",
-      "score": 10.0,
+      "score": 12.0,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4267,8 +3748,7 @@
         "limitingFactors": [
           "סוכר גבוה: 28.0 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 410.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "גרסת תפוז של עיבוד כבד — 310 מ\"ג נתרן ו-16 תוספים."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4358,17 +3838,13 @@
           "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
         }
       ],
-      "consumerTakeaway": "310 מ\"ג נתרן ו-28 גרם סוכר — אותה נוסחה בטעם אחר.",
-      "consumerExplanation": "28 גרם סוכר ו-310 מ\"ג נתרן — אותה נוסחה כמו בטעם השוקולד, בטעם שונה.",
-      "bariInterpretation": "נתרן גבוה, סוכר גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "sauce_spread",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 36,
-      "categoryTotal": 65,
+      "rank": 34,
+      "categoryTotal": 63,
       "brand": "עוגת הבית"
     },
     {
@@ -4376,7 +3852,7 @@
       "name": "עוגת מאפין שוקו צ'יפס",
       "barcode": "7296073431879",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QHK66_Z_P_7296073431879_1.png",
-      "score": 10.0,
+      "score": 12.0,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4402,8 +3878,7 @@
         "limitingFactors": [
           "סוכר גבוה: 34.1 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שמן מוקשה, 34 גרם סוכר ו-307 מ\"ג נתרן — בין הכבדים בקבוצת המאפין."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4458,17 +3933,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-34 גרם סוכר — כבד מהרגיל גם לשוקו צ'יפס.",
-      "consumerExplanation": "שמן מוקשה בתוך הציפס. 34 גרם סוכר ו-307 מ\"ג נתרן — כבד בשלושה פרמטרים.",
-      "bariInterpretation": "שמן מוקשה, סוכר גבוה ונתרן גבוה נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 36,
-      "categoryTotal": 65,
+      "rank": 35,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -4476,7 +3947,7 @@
       "name": "עוגת מאפין שוקולד צ'יפס",
       "barcode": "7296073132950",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QCD54_Z_P_7296073132950_1.png",
-      "score": 9.7,
+      "score": 11.7,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4502,8 +3973,7 @@
         "limitingFactors": [
           "סוכר גבוה: 32.2 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 406.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "מאפין כבד בסוכר ובנתרן — הצ'יפס הוא תוספת, לא ייחוד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4579,17 +4049,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "32 גרם סוכר ו-245 מ\"ג נתרן — עומס כפול.",
-      "consumerExplanation": "32 גרם סוכר ו-245 מ\"ג נתרן — שניהם גבוהים יחד. 12 תוספים.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 38,
-      "categoryTotal": 65,
+      "rank": 36,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -4597,7 +4063,7 @@
       "name": "עוגת קרנץ' בטעם שוקולד",
       "barcode": "4170097",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FTI28_Z_P_4170097_1.png",
-      "score": 9.7,
+      "score": 11.7,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4624,8 +4090,7 @@
           "סוכר גבוה: 27.9 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים",
           "צפיפות קלורית גבוהה: 400.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "שמן מוקשה מאחורי הפריכות — 28 גרם סוכר ו-7 גרם שומן רווי."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4708,17 +4173,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-28 גרם סוכר — קרנץ' כבד.",
-      "consumerExplanation": "שמן מוקשה ב-30% מלית השוקולד. 28 גרם סוכר ו-7 גרם שומן רווי.",
-      "bariInterpretation": "שמן מוקשה, סוכר גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 38,
-      "categoryTotal": 65,
+      "rank": 37,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -4726,7 +4187,7 @@
       "name": "עוגה בטעם שוקולד כשל\"פ — קקאו",
       "barcode": "7290123330884",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BTD50_Z_P_7290123330884_1.png",
-      "score": 9.6,
+      "score": 11.8,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4753,8 +4214,7 @@
           "סוכר גבוה: 30.0 ג'/100 ג'",
           "שומן רווי גבוה: 9.3 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 431.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "כשר לפסח לא אומר קל יותר — 310 מ\"ג נתרן ו-30 גרם סוכר."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 3,
@@ -4816,17 +4276,13 @@
           "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
         }
       ],
-      "consumerTakeaway": "הסימון הפסחי לא משנה את ההרכב — 310 מ\"ג נתרן ו-30 גרם סוכר.",
-      "consumerExplanation": "ללא קמח חיטה (כשל\"פ) — אבל 310 מ\"ג נתרן ו-30 גרם סוכר. הסימון לא מקל על ההרכב.",
-      "bariInterpretation": "נתרן גבוה, סוכר גבוה וצפיפות קלורית גבוהה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 40,
-      "categoryTotal": 65,
+      "rank": 38,
+      "categoryTotal": 63,
       "brand": "VOILA"
     },
     {
@@ -4834,7 +4290,7 @@
       "name": "עוגת שוקולד צ'יפס",
       "barcode": "6983787",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAE48_Z_P_6983787_1.png",
-      "score": 9.6,
+      "score": 11.6,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4860,8 +4316,7 @@
         "limitingFactors": [
           "סוכר גבוה: 31.0 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 421.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "סוכר ונתרן גבוהים — הציפס לא מגדיר את ההרכב."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -4944,17 +4399,13 @@
           "explanation_he": "פוספטים; EFSA (2019) מציינת שצריכה מצטברת עלולה להתקרב ל-ADI אצל צרכנים כבדים."
         }
       ],
-      "consumerTakeaway": "31 גרם סוכר ו-300 מ\"ג נתרן — עמוס בשני הפרמטרים.",
-      "consumerExplanation": "31 גרם סוכר ו-300 מ\"ג נתרן. הציפס הוא תוספת — 15 תוספים הם ההרכב.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 40,
-      "categoryTotal": 65,
+      "rank": 39,
+      "categoryTotal": 63,
       "brand": "עוגת הבית"
     },
     {
@@ -4962,7 +4413,7 @@
       "name": "עוגת מוס גבינה+תות שדה",
       "barcode": "7290016416961",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DBE52_Z_P_7290016416961_1.png",
-      "score": 9.5,
+      "score": 17.5,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -4989,8 +4440,7 @@
           "סוכר גבוה: 25.0 ג'/100 ג'",
           "שומן רווי גבוה: 10.1 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "28 תוספים — הרשימה הכי ארוכה בקטגוריה. הגבינה אמיתית; שאר הרכיבים פחות."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5192,17 +4642,13 @@
           "explanation_he": "פוליסורבאט 80 הוא מתחלב סינתטי; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
         }
       ],
-      "consumerTakeaway": "28 תוספים, שמן מוקשה וצבע E124 — הקינוח הקליל עם הרכב הכי כבד.",
-      "consumerExplanation": "28 תוספים — הרשימה הארוכה ביותר בקטגוריה. שמן מוקשה וצבע E124 מאחורי שם הגבינה.",
-      "bariInterpretation": "מספר תוספים קיצוני, שמן מוקשה ועיבוד כבד מאוד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 42,
-      "categoryTotal": 65,
+      "rank": 40,
+      "categoryTotal": 63,
       "brand": "תופינים"
     },
     {
@@ -5210,7 +4656,7 @@
       "name": "עוגת קרנץ' שוקולד",
       "barcode": "7296073431817",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QFA58_Z_P_7296073431817_1.png",
-      "score": 9.4,
+      "score": 11.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5237,8 +4683,7 @@
           "שומן רווי גבוה: 8.0 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים",
           "צפיפות קלורית גבוהה: 419.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "שמן מוקשה ו-419 קלוריות מאחורי הפריכות."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5328,17 +4773,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-419 קלוריות — הקרנץ' יקר תזונתית.",
-      "consumerExplanation": "שמן מוקשה (מרגרינה) ברשימה. ריבת תפוז (ממש) — אבל שאר ההרכב תעשייתי.",
-      "bariInterpretation": "שמן מוקשה, צפיפות קלורית גבוהה ועיבוד כבד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 43,
-      "categoryTotal": 65,
+      "rank": 41,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -5346,7 +4787,7 @@
       "name": "עוגת מאפין בטעם שוקולד",
       "barcode": "7296073132943",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QBW56_Z_P_7296073132943_1.png",
-      "score": 9.4,
+      "score": 11.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5371,8 +4812,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 29.1 ג'/100 ג'"
-        ],
-        "bottomLine": "מאפין ממוצע בקטגוריה — סוכר ונתרן ביחד, ללא ייחוד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5462,17 +4902,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "29 גרם סוכר ו-252 מ\"ג נתרן — בדיוק ממוצע הקטגוריה.",
-      "consumerExplanation": "29 גרם סוכר ו-252 מ\"ג נתרן — בלב הממוצע. 15 תוספים.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד — ציון E ממוצע לקבוצה.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 43,
-      "categoryTotal": 65,
+      "rank": 42,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -5480,7 +4916,7 @@
       "name": "עוגת מאפין בטעם תפוז",
       "barcode": "7296073431916",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QIV58_Z_P_7296073431916_1.png",
-      "score": 9.4,
+      "score": 11.4,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5506,8 +4942,7 @@
         "limitingFactors": [
           "סוכר גבוה: 31.1 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "הנתרן הגבוה ביותר בין מאפיני התפוז — 330 מ\"ג עם שמן מוקשה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5562,17 +4997,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "330 מ\"ג נתרן — הכי מלוח בין מאפיני התפוז.",
-      "consumerExplanation": "שמן מוקשה (מרגרינה) ברשימה. 330 מ\"ג נתרן — הכי מלוח בין מאפיני התפוז.",
-      "bariInterpretation": "נתרן גבוה, שמן מוקשה וסוכר גבוה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 43,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -5580,7 +5011,7 @@
       "name": "עוגת סבתא בטעם שוקולד",
       "barcode": "2472841",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RAG28_Z_P_2472841_1.png",
-      "score": 9.2,
+      "score": 11.2,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5606,8 +5037,7 @@
         "limitingFactors": [
           "סוכר גבוה: 25.9 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "21 תוספים ו-357 מ\"ג נתרן — שם סבתא רחוק מהמציאות."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5746,17 +5176,13 @@
           "explanation_he": "DATEM הוא חומר עזר לאפייה המסייע לגלוטן להתפתח ולשמור על מרקם הלחם; שמו הטכני מופיע לעתים רחוקות על תוויות לחם ישראליות."
         }
       ],
-      "consumerTakeaway": "21 תוספים, שמן מוקשה ו-357 מ\"ג נתרן — לא מה שסבתא מרמז.",
-      "consumerExplanation": "21 תוספים, שמן מוקשה ו-357 מ\"ג נתרן — שום סבתא לא אפתה כך.",
-      "bariInterpretation": "שמן מוקשה, נתרן גבוה מאוד ועיבוד כבד מאוד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 46,
-      "categoryTotal": 65,
+      "rank": 44,
+      "categoryTotal": 63,
       "brand": "bakery  by Gidron"
     },
     {
@@ -5764,7 +5190,7 @@
       "name": "שיש אסם",
       "barcode": "6983770",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HZN40_Z_P_6983770_1.png",
-      "score": 9.1,
+      "score": 11.1,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5790,8 +5216,7 @@
         "limitingFactors": [
           "סוכר גבוה: 29.0 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 412.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "שם הבית לא מתכתב עם 310 מ\"ג נתרן ו-13 תוספים."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5867,17 +5292,13 @@
           "explanation_he": "אבקת אפייה; גורם לבצק לתפוח בחום."
         }
       ],
-      "consumerTakeaway": "310 מ\"ג נתרן ו-29 גרם סוכר — עיבוד כבד מאחורי שם ביתי.",
-      "consumerExplanation": "310 מ\"ג נתרן ו-29 גרם סוכר. שם ביתי — 13 תוספים.",
-      "bariInterpretation": "נתרן גבוה, סוכר גבוה ועיבוד כבד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "default",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 47,
-      "categoryTotal": 65,
+      "rank": 45,
+      "categoryTotal": 63,
       "brand": "עוגת הבית"
     },
     {
@@ -5885,7 +5306,7 @@
       "name": "עוגה בטעם שוקולד כשל\"פ — נטיפים",
       "barcode": "7290123331034",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BYX38_Z_P_7290123331034_1.png",
-      "score": 8.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -5912,8 +5333,7 @@
           "סוכר גבוה: 31.0 ג'/100 ג'",
           "שומן רווי גבוה: 11.0 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 436.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "436 קלוריות — הגבוה ביותר בשתי גרסאות כשל\"פ, עם 283 מ\"ג נתרן."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -5982,17 +5402,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "436 קלוריות ו-283 מ\"ג נתרן — הכבדה מבין שתי גרסאות כשל\"פ.",
-      "consumerExplanation": "436 קלוריות — הגבוה ביותר בשתי גרסאות כשל\"פ. 12 תוספים ו-283 מ\"ג נתרן.",
-      "bariInterpretation": "קלוריות גבוהות, נתרן גבוה וסוכר גבוה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 48,
-      "categoryTotal": 65,
+      "rank": 46,
+      "categoryTotal": 63,
       "brand": "VOILA"
     },
     {
@@ -6000,7 +5416,7 @@
       "name": "עוגת שוקולד ללא גלוטן",
       "barcode": "7296073473664",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ACN64_Z_P_7296073473664_1.png",
-      "score": 8.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6027,8 +5443,7 @@
           "סוכר גבוה: 28.8 ג'/100 ג'",
           "שומן רווי גבוה: 13.4 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 448.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "ללא גלוטן, אבל עם 448 קלוריות ו-13 גרם שומן רווי — אחד הכבדים בקטגוריה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -6125,17 +5540,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "448 קלוריות ו-13 גרם שומן רווי — ללא גלוטן לא אומר קל יותר.",
-      "consumerExplanation": "שומן דקלים (לא מוקשה) + 13 גרם שומן רווי. ללא גלוטן לא פירושו קל יותר.",
-      "bariInterpretation": "קלוריות גבוהות מאוד, שומן רווי גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 48,
-      "categoryTotal": 65,
+      "rank": 47,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -6143,7 +5554,7 @@
       "name": "עוגת שוקוציפס ללא גלוטן",
       "barcode": "7296073473688",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ADL70_Z_P_7296073473688_1.png",
-      "score": 8.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6170,8 +5581,7 @@
           "סוכר גבוה: 31.9 ג'/100 ג'",
           "שומן רווי גבוה: 13.8 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 459.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "459 קלוריות ו-14 גרם שומן רווי — הכבדה מבין שתי עוגות ללא גלוטן."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -6268,17 +5678,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "459 קלוריות ו-14 גרם שומן רווי — הכי כבד בין עוגות ללא גלוטן.",
-      "consumerExplanation": "שוקולד צ'יפס (12%) אמיתי — אבל שומן דקלים + 14 גרם שומן רווי. הכבדה מבין עוגות ללא גלוטן.",
-      "bariInterpretation": "הקלוריות ושומן הרווי הגבוהים ביותר בקטגוריה ללא גלוטן נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 48,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "לה פזואלוס"
     },
     {
@@ -6286,7 +5692,7 @@
       "name": "עוגת פס דובדבנים",
       "barcode": "1361177",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KNY26_Z_P_1361177_1.png",
-      "score": 7.9,
+      "score": 15.9,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6311,8 +5717,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "שומן רווי גבוה: 9.6 ג'/100 ג'"
-        ],
-        "bottomLine": "פחות סוכר מהממוצע — אבל שומן רווי גבוה ועיבוד כבד."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -6416,25 +5821,21 @@
           "explanation_he": "פוליסורבאט 80 הוא מתחלב סינתטי; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו."
         }
       ],
-      "consumerTakeaway": "סוכר נמוך יחסית, אבל שומן רווי גבוה ועיבוד כבד מאזנים את זה.",
-      "consumerExplanation": "סוכר נמוך יחסית (11 גרם) — אבל 10 גרם שומן רווי, חמאה ו-17 תוספים. הדובדבן אמיתי.",
-      "bariInterpretation": "שומן רווי גבוה ועיבוד כבד מורידים את הציון למרות הסוכר הנמוך יחסית.",
-      "bestUseCases": [],
       "_category_routed": "default",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 51,
-      "categoryTotal": 65,
+      "rank": 49,
+      "categoryTotal": 63,
       "brand": "נטלי"
     },
     {
       "id": "cake_7290006775337",
-      "name": "עוגת שמרים פרג 400 גרם אחוה",
+      "name": "עוגת שמרים פרג 400 גרם",
       "barcode": "7290006775337",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290006775337_s1_1505-06-2020_23-01-02.jpg&w=256&q=75",
-      "score": 6.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6459,8 +5860,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 26.9 ג'/100 ג'"
-        ],
-        "bottomLine": "עוגת שמרים פרג עם 23 תוספים — הפרג ביתי, ייצוב פחות."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -6627,25 +6027,21 @@
           "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
         }
       ],
-      "consumerTakeaway": "23 תוספים ו-204 מ\"ג נתרן — עיבוד כבד מאחורי המלית המוכרת.",
-      "consumerExplanation": "23 תוספים. הפרג (7%) אמיתי — שאר הרשימה מספרת סיפור אחר.",
-      "bariInterpretation": "עיבוד כבד מאוד נותן ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 52,
-      "categoryTotal": 65,
+      "rank": 50,
+      "categoryTotal": 63,
       "brand": "אחוה"
     },
     {
       "id": "cake_7290013927996",
-      "name": "עוגת שמרים קרנאץ' בטעם שוקולד 400 גרם אחוה",
+      "name": "עוגת שמרים קרנאץ' בטעם שוקולד 400 גרם",
       "barcode": "7290013927996",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290013927996_s1_1507-26-2020_23-00-12.jpg&w=256&q=75",
-      "score": 6.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6671,8 +6067,7 @@
         "limitingFactors": [
           "סוכר גבוה: 30.2 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 423.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "עוגת שמרים עם 20 תוספים — ארומה ביתית, עיבוד תעשייתי."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -6818,25 +6213,21 @@
           "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
         }
       ],
-      "consumerTakeaway": "20 תוספים ו-423 קלוריות — עיבוד כבד מאחורי המאפה.",
-      "consumerExplanation": "20 תוספים, שוקולד מריר אמיתי (55% מוצקי קקאו) — ועדיין ציון E.",
-      "bariInterpretation": "עיבוד כבד מאוד וצפיפות קלורית גבוהה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 52,
-      "categoryTotal": 65,
+      "rank": 51,
+      "categoryTotal": 63,
       "brand": "אחוה"
     },
     {
       "id": "cake_7290006775085",
-      "name": "עוגת שמרים במילוי קרם בטעם שוקולד 400 גרם אחוה",
+      "name": "עוגת שמרים במילוי קרם בטעם שוקולד 400 גרם",
       "barcode": "7290006775085",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F7%2F2%2F7290006775085_s1_1505-06-2020_23-01-07.jpg&w=256&q=75",
-      "score": 6.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -6862,8 +6253,7 @@
         "limitingFactors": [
           "סוכר גבוה: 26.5 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 431.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "עוגת שמרים עם 19 תוספים ו-431 קלוריות — עיבוד מעל לשם."
+        ]
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -7002,17 +6392,13 @@
           "explanation_he": "בטא קרוטן הוא פיגמנט טבעי המשמש כצבע כתום-צהוב, ומקורו זהה לזה שבגזר ובירקות כתומים."
         }
       ],
-      "consumerTakeaway": "19 תוספים ו-431 קלוריות — מהכבדות בקטגוריית השמרים.",
-      "consumerExplanation": "19 תוספים. שוקולד מריר (55% מוצקי קקאו) אמיתי — אבל עדיין ציון E.",
-      "bariInterpretation": "עיבוד כבד מאוד וצפיפות קלורית גבוהה נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
       "rank": 52,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "אחוה"
     },
     {
@@ -7020,7 +6406,7 @@
       "name": "עוגת פס שביל החלב",
       "barcode": "7290013683595",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PPS58_Z_P_7290013683595_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7047,8 +6433,7 @@
           "סוכר גבוה: 32.4 ג'/100 ג'",
           "שומן רווי גבוה: 12.3 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 402.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "שומן רווי גבוה ונתרן גבוה — עוגת פס כבדה מהשם שמרמז."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7166,17 +6551,13 @@
           "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "12 גרם שומן רווי ו-299 מ\"ג נתרן — כבד מהצפוי לפס חלבי.",
-      "consumerExplanation": "12 גרם שומן רווי ו-299 מ\"ג נתרן — שמנת מתוקה ושמנת צמחית מוקשה ביחד.",
-      "bariInterpretation": "שומן רווי גבוה, נתרן גבוה וסוכר גבוה ביחד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dairy_protein",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 53,
+      "categoryTotal": 63,
       "brand": "גדרון"
     },
     {
@@ -7184,7 +6565,7 @@
       "name": "עוגת פס קפוצ'ינו",
       "barcode": "2472117",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PYK24_Z_P_2472117_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7210,8 +6591,7 @@
         "limitingFactors": [
           "סוכר גבוה: 28.3 ג'/100 ג'",
           "שומן רווי גבוה: 11.7 ג'/100 ג'"
-        ],
-        "bottomLine": "קפה בשם, שומן רווי גבוה ו-308 מ\"ג נתרן בפועל."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7329,17 +6709,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "12 גרם שומן רווי ו-308 מ\"ג נתרן — כבד למרות הקפה.",
-      "consumerExplanation": "12 גרם שומן רווי ו-308 מ\"ג נתרן. 0.5% קפה נמס — הקפה הוא שיווק.",
-      "bariInterpretation": "שומן רווי גבוה, נתרן גבוה ועיבוד כבד מאוד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 54,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -7347,7 +6723,7 @@
       "name": "חמישיית מאפין שוקו צ'יפס",
       "barcode": "9397697",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QWW50_Z_P_9397697_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7373,8 +6749,7 @@
         "limitingFactors": [
           "סוכר גבוה: 32.4 ג'/100 ג'",
           "צפיפות קלורית גבוהה: 414.0 קק\"ל/100 ג'"
-        ],
-        "bottomLine": "חמישייה עם עומס גבוה לכל יחידה — 32 גרם סוכר ו-251 מ\"ג נתרן."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7492,17 +6867,13 @@
           "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
         }
       ],
-      "consumerTakeaway": "כל יחידה עם 32 גרם סוכר ו-251 מ\"ג נתרן — הכמות לא מקלה.",
-      "consumerExplanation": "32 גרם סוכר ו-251 מ\"ג נתרן לכל יחידה. 18 תוספים. הכמות לא מחלקת את העומס.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד מאוד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
       "rank": 55,
-      "categoryTotal": 65,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -7510,7 +6881,7 @@
       "name": "עוגת פס שוקולד",
       "barcode": "2472087",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PXG30_Z_P_2472087_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7536,8 +6907,7 @@
         "limitingFactors": [
           "סוכר גבוה: 33.2 ג'/100 ג'",
           "שומן רווי גבוה: 8.2 ג'/100 ג'"
-        ],
-        "bottomLine": "פס שוקולד עם עומס ממוצע גבוה — 33 גרם סוכר ו-283 מ\"ג נתרן."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7655,17 +7025,13 @@
           "explanation_he": "אלגינט נתרן הוא מסמיך שמקורו באצות חומות; הוא אינו נספג כמותו ומתנהג כמו סיב מסיס."
         }
       ],
-      "consumerTakeaway": "33 גרם סוכר ו-283 מ\"ג נתרן — עומס כפול.",
-      "consumerExplanation": "שוקולד מריר (16.5%) בשכבת מלית. 33 גרם סוכר ו-283 מ\"ג נתרן.",
-      "bariInterpretation": "סוכר גבוה, נתרן גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 56,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -7673,7 +7039,7 @@
       "name": "עוגת מוס היער השחור",
       "barcode": "7290012244032",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SBX36_Z_P_7290012244032_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7698,8 +7064,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 28.0 ג'/100 ג'"
-        ],
-        "bottomLine": "622 מ\"ג נתרן על מוס יער שחור — שני הגבוה בנתרן בכל הקטגוריה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7831,17 +7196,13 @@
           "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים."
         }
       ],
-      "consumerTakeaway": "622 מ\"ג נתרן — נתרן קיצוני על עוגה שנמכרת כקינוח אירופאי.",
-      "consumerExplanation": "622 מ\"ג נתרן — שני הגבוה בנתרן בכל הקטגוריה. דובדבן (5%) אמיתי, אבל הנתרן לא מוסבר.",
-      "bariInterpretation": "נתרן קיצוני ועיבוד כבד מאוד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 57,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -7849,7 +7210,7 @@
       "name": "עוגת פס היער השחור",
       "barcode": "2472148",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PZP28_Z_P_2472148_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -7875,8 +7236,7 @@
         "limitingFactors": [
           "סוכר גבוה: 29.5 ג'/100 ג'",
           "שומן רווי גבוה: 10.1 ג'/100 ג'"
-        ],
-        "bottomLine": "נתרן גבוה בשתי גרסאות יער שחור — גם כפס וגם כמוס."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -7987,17 +7347,13 @@
           "explanation_he": "לקטט סידן הוא מלח סידן של חומצת חלב, המשמש לאיזון ולהעשרה בסידן; לקטט הוא תוצר טבעי בגוף."
         }
       ],
-      "consumerTakeaway": "307 מ\"ג נתרן ו-10 גרם שומן רווי — כבד גם בגרסת הפס.",
-      "consumerExplanation": "307 מ\"ג נתרן ו-17 תוספים. הדובדבן (3%) נוכח — הנתרן פחות מוסבר.",
-      "bariInterpretation": "נתרן גבוה, שומן רווי גבוה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 58,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -8005,7 +7361,7 @@
       "name": "עוגת פס מוס טירמיסו",
       "barcode": "7290015726528",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VSB54_Z_P_7290015726528_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -8031,8 +7387,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 9.3 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "טירמיסו עם שמן מוקשה — הקינוח האיטלקי מגיע עם ייצוב תעשייתי."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -8136,17 +7491,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה ו-216 מ\"ג נתרן — לא הטירמיסו שממנו שמעת.",
-      "consumerExplanation": "שמן מוקשה (שמנת צמחית) ומרגרינה ביחד. גבינה לבנה (25%) אמיתית — אבל שאר הרשימה מסייגת.",
-      "bariInterpretation": "שמן מוקשה ועיבוד כבד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 59,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -8154,7 +7505,7 @@
       "name": "עוגת מוס גבינה פרורים",
       "barcode": "7290012244056",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SCV42_Z_P_7290012244056_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -8180,8 +7531,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 9.1 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "נמוך בקלוריות יחסית, אבל שמן מוקשה ועיבוד כבד עדיין נוכחים."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -8285,17 +7635,13 @@
           "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות."
         }
       ],
-      "consumerTakeaway": "שמן מוקשה עם 261 קלוריות — קל יחסית, אבל לא נקי.",
-      "consumerExplanation": "גבינה לבנה (27.6%) אמיתית — אבל שמן מוקשה (שמנת צמחית) ומרגרינה עדיין בפנים.",
-      "bariInterpretation": "שמן מוקשה ועיבוד כבד נותנים ציון E, למרות הקלוריות הנמוכות יחסית.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 60,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -8303,7 +7649,7 @@
       "name": "עוגת פס מוס בלגי פרווה",
       "barcode": "7290015726535",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VSI52_Z_P_7290015726535_1.png",
-      "score": 4.0,
+      "score": 10,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -8329,8 +7675,7 @@
         "limitingFactors": [
           "שומן רווי גבוה: 18.2 ג'/100 ג'",
           "שומן צמחי מוקשה / מרגרינה ברשימת הרכיבים"
-        ],
-        "bottomLine": "שומן רווי הגבוה ביותר בכל הקטגוריה — 18 גרם ל-100 גרם."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 4,
@@ -8476,17 +7821,13 @@
           "explanation_he": "CMC (E466) הוא חומר מייצב שנחקר בניסוי קליני שהראה שינויים בהרכב מיקרוביום המעי; הדיון המדעי בנושא פעיל ואינו מוכרע."
         }
       ],
-      "consumerTakeaway": "18 גרם שומן רווי — הגבוה ביותר בכל 65 המוצרים בקטגוריה.",
-      "consumerExplanation": "18 גרם שומן רווי — הגבוה ביותר בכל 65 המוצרים בקטגוריה. שוקולד מריר (18.5%) אמיתי, אבל שומן קוקוס ודקל מוקשה הם הבסיס.",
-      "bariInterpretation": "שומן רווי הגבוה ביותר בקטגוריה ועיבוד כבד מאוד נותנים ציון E.",
-      "bestUseCases": [],
       "_category_routed": "dessert",
       "_has_phvo": true,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 55,
-      "categoryTotal": 65,
+      "rank": 61,
+      "categoryTotal": 63,
       "brand": "שופרסל"
     },
     {
@@ -8494,7 +7835,7 @@
       "name": "עוגת שמרים בטעם שוקולד",
       "barcode": "7290123330280",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AVX40_Z_P_7290123330280_1.png",
-      "score": 2.5,
+      "score": 10.5,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -8519,8 +7860,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 29.0 ג'/100 ג'"
-        ],
-        "bottomLine": "עוגת שמרים עם עיבוד כבד — 365 מ\"ג נתרן ו-20 תוספים."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 3,
@@ -8680,17 +8020,13 @@
           "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "365 מ\"ג נתרן ו-20 תוספים — בצק שמרי עם עיבוד כבד.",
-      "consumerExplanation": "365 מ\"ג נתרן ו-20 תוספים. הבצק השמרי לא הופך את הרשימה לפשוטה.",
-      "bariInterpretation": "נתרן גבוה מאוד ועיבוד כבד מאוד נותנים ציון E נמוך.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 64,
-      "categoryTotal": 65,
+      "rank": 62,
+      "categoryTotal": 63,
       "brand": "שלונסקי"
     },
     {
@@ -8698,7 +8034,7 @@
       "name": "עוגת שמרים בריוש שוקולד",
       "barcode": "7290123330334",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AXZ40_Z_P_7290123330334_1.png",
-      "score": 2.5,
+      "score": 10.5,
       "grade": "E",
       "confidence": "partial",
       "confidence_label_he": "נתונים חלקיים",
@@ -8723,8 +8059,7 @@
         "positiveSignals": [],
         "limitingFactors": [
           "סוכר גבוה: 29.0 ג'/100 ג'"
-        ],
-        "bottomLine": "בריוש בשם בלבד — 365 מ\"ג נתרן ו-20 תוספים זהים לגרסה הרגילה."
+        ]
       },
       "retailer": "shufersal",
       "novaGroup": 3,
@@ -8884,17 +8219,13 @@
           "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "365 מ\"ג נתרן ו-20 תוספים — הבריוש הוא רק שם שיווקי.",
-      "consumerExplanation": "365 מ\"ג נתרן ו-20 תוספים — זהה לעוגת השמרים הסמוכה. הבריוש הוא רק שם.",
-      "bariInterpretation": "נתרן גבוה מאוד ועיבוד כבד מאוד — ציון E זהה לאח הקרוב.",
-      "bestUseCases": [],
       "_category_routed": "snack_bar_granola",
       "_has_phvo": false,
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 64,
-      "categoryTotal": 65,
+      "rank": 63,
+      "categoryTotal": 63,
       "brand": "שלונסקי"
     }
   ]

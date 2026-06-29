@@ -8,29 +8,30 @@ import type { CarouselCard } from "@/lib/home/homepage-carousel-schema";
 import { CardVisualBand } from "./carousel-card-visuals";
 import { cn } from "@/lib/utils";
 
-// ── Card shell ────────────────────────────────────────────────────────────────
+// -- Card shell ────────────────────────────────────────────────────────────────
 
 const CARD_SHELL =
-  "group block h-full min-h-[18rem] w-[84vw] max-w-[32rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[30rem] flex flex-col";
+  "group block h-full min-h-[18rem] w-[92vw] max-w-[38rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[36rem] flex flex-col";
 
 const CONTENT_PAD = "px-4 py-3 md:px-5 flex flex-col flex-1";
 
-// ── Eyebrow badge colours ─────────────────────────────────────────────────────
+// -- Eyebrow badge colours ─────────────────────────────────────────────────────
 
 const BADGE_COLORS: Record<string, string> = {
-  השוואה: "bg-[#E8F5EF] text-[#1F8F6A]",
-  "מוצר מוביל": "bg-[#E8F5EF] text-[#1F8F6A]",
-  "דוח קטגוריה": "bg-[#F1F5F9] text-[#475569]",
-  "חקירת מרכיב": "bg-[#F0FAFA] text-[#0E7490]",
-  "חקירת קטגוריה": "bg-[#FEF9EC] text-[#92400E]",
-  מתודולוגיה: "bg-[#F1F5F9] text-[#475569]",
+  "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4": "bg-[#E8F5EF] text-[#1F8F6A]",
+  "\u05DE\u05D5\u05E6\u05E8 \u05DE\u05D5\u05D1\u05D9\u05DC": "bg-[#E8F5EF] text-[#1F8F6A]",
+  "\u05D3\u05D5\u05D7 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4": "bg-[#F1F5F9] text-[#475569]",
+  "\u05DE\u05DE\u05E6\u05D0 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4": "bg-[#FEF3C7] text-[#92400E]",
+  "\u05D7\u05E7\u05D9\u05E8\u05EA \u05DE\u05E8\u05DB\u05D9\u05D1": "bg-[#F0FAFA] text-[#0E7490]",
+  "\u05D7\u05E7\u05D9\u05E8\u05EA \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4": "bg-[#FEF9EC] text-[#92400E]",
+  "\u05DE\u05EA\u05D5\u05D3\u05D5\u05DC\u05D5\u05D2\u05D9\u05D4": "bg-[#F1F5F9] text-[#475569]",
 };
 
 function badgeClass(eyebrow: string): string {
   return BADGE_COLORS[eyebrow] ?? "bg-[#F1F5F9] text-[#475569]";
 }
 
-// ── Score row (comparison only) ───────────────────────────────────────────────
+// -- Score row (comparison only) ───────────────────────────────────────────────
 
 function CompactScoreRow({ card }: { card: CarouselCard }) {
   if (!card.leftProduct || !card.rightProduct) return null;
@@ -43,7 +44,7 @@ function CompactScoreRow({ card }: { card: CarouselCard }) {
         <span className="text-xl font-extrabold tabular-nums text-[#111318]">{left.score}</span>
         <span className="truncate text-[0.65rem] font-semibold text-[#4E5663]">{left.brand}</span>
       </div>
-      <span className="shrink-0 text-[0.6rem] font-extrabold text-[#5E6560]">מול</span>
+      <span className="shrink-0 text-[0.6rem] font-extrabold text-[#5E6560]">{"\u05DE\u05D5\u05DC"}</span>
       <div className="flex flex-1 items-baseline justify-end gap-1.5 min-w-0">
         <span className="truncate text-[0.65rem] font-semibold text-[#4E5663]">{right.brand}</span>
         <span className="text-xl font-extrabold tabular-nums text-[#111318]">{right.score}</span>
@@ -52,7 +53,7 @@ function CompactScoreRow({ card }: { card: CarouselCard }) {
   );
 }
 
-// ── Card layout ───────────────────────────────────────────────────────────────
+// -- Card layout ───────────────────────────────────────────────────────────────
 
 export function HomepageCardItem({ card }: { card: CarouselCard }) {
   return (
@@ -62,7 +63,7 @@ export function HomepageCardItem({ card }: { card: CarouselCard }) {
       className="h-full"
     >
       <Link href={card.href} className={CARD_SHELL}>
-        {/* Visual band — type-specific, no theme photos */}
+        {/* Visual band -- type-specific, no theme photos */}
         <CardVisualBand card={card} />
 
         {/* Card body */}
@@ -110,7 +111,7 @@ export function HomepageCardItem({ card }: { card: CarouselCard }) {
 
           {/* Footer link */}
           <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-70 transition-opacity group-hover:opacity-100">
-            לפרטים
+            {"\u05DC\u05E4\u05E8\u05D8\u05D9\u05DD"}
             <ChevronLeft className="size-3.5" aria-hidden />
           </p>
         </div>

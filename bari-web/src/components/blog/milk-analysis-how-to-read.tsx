@@ -29,7 +29,7 @@ export function MilkAnalysisHowToRead() {
                 transition={{ delay: i * 0.05 }}
                 className="border-b border-black/[0.05] last:border-0"
               >
-                <th className="w-[28%] bg-[#F7F7F2]/80 px-4 py-4 align-top text-xs font-extrabold text-[#1F8F6A] md:px-5">
+                <th className="w-[28%] bg-[#F7F7F2]/80 px-4 py-4 align-top text-xs font-extrabold text-[#167A58] md:px-5">
                   {row.label}
                 </th>
                 <td className="px-4 py-4 leading-relaxed text-[#4E5663] md:px-5">

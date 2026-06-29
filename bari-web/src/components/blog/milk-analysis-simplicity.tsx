@@ -86,7 +86,7 @@ function SimplicityProductRow({
           imageSizes="44px"
         />
         <div className="min-w-0 flex-1 text-right">
-          <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{product.productTypeLabel}</p>
+          <p className="text-[0.65rem] font-bold text-[#167A58]">{product.productTypeLabel}</p>
           <p className="text-sm font-extrabold text-[#111318]">{title}</p>
         </div>
       </div>
@@ -98,7 +98,7 @@ function SimplicityProductRow({
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-black/[0.06]">
           <motion.div
-            className="h-full rounded-full bg-[#1F8F6A]"
+            className="h-full rounded-full bg-[#167A58]"
             initial={reduceMotion ? { width: `${widthPct}%` } : { width: 0 }}
             whileInView={{ width: `${widthPct}%` }}
             viewport={{ once: true }}

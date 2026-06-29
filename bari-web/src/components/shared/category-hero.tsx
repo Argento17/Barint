@@ -32,7 +32,7 @@ export function CategoryHero({
       >
         {title}
       </h1>
-      <p className={cn("mt-1 text-[12px] leading-snug text-[#6A716E]", wide && "lg:text-[13px]")}>
+      <p className={cn("mt-1 text-[12px] leading-snug text-[#4E5663]", wide && "lg:text-[13px]")}>
         {metadata}
       </p>
     </header>

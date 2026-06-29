@@ -1,9 +1,9 @@
 export const BARI_COMPARISON_TOKENS = {
   gradePalette: {
     A: { accent: "#1E7A4F", bg: "#E7F4EC", text: "#155C3C", border: "#1E7A4F33", dot: "top" },
-    B: { accent: "#5F7D17", bg: "#F0F3DF", text: "#4C6314", border: "#5F7D1733", dot: "upper" },
-    C: { accent: "#A87A0C", bg: "#FBF3D8", text: "#7E5800", border: "#A87A0C33", dot: "middle" },
-    D: { accent: "#D85C1C", bg: "#FCEAD9", text: "#9A4012", border: "#D85C1C33", dot: "lower" },
+    B: { accent: "#546E14", bg: "#F0F3DF", text: "#4C6314", border: "#546E1433", dot: "upper" },
+    C: { accent: "#8A6300", bg: "#FBF3D8", text: "#7E5800", border: "#8A630033", dot: "middle" },
+    D: { accent: "#B04510", bg: "#FCEAD9", text: "#9A4012", border: "#B0451033", dot: "lower" },
     E: { accent: "#A52121", bg: "#F7E3E1", text: "#7A1A1A", border: "#A5212133", dot: "bottom" },
   },
   rows: {
@@ -16,7 +16,7 @@ export const BARI_COMPARISON_TOKENS = {
     stripeEvenClass: "bg-[#F9F9F9]",
   },
   typography: {
-    sectionEyebrow: "font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80",
+    sectionEyebrow: "font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#167A58]/80",
     sectionTitle: "mt-2 text-2xl font-extrabold tracking-[-0.04em] md:text-3xl",
     sectionMeta: "mt-2 max-w-xl text-sm leading-relaxed text-[#4E5663]",
   },

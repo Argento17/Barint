@@ -26,7 +26,7 @@ export function ScoreChip({
           borderInlineStart: "3px solid #9A9FA6",
         }}
       >
-        <span className="text-[11px] font-semibold text-[#9A9FA6]">—</span>
+        <span className="text-[11px] font-semibold text-[#6B7280]">—</span>
       </div>
     );
   }

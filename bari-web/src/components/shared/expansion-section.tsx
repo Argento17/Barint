@@ -12,6 +12,7 @@ import type {
   BariNutritionVM,
   BariProcessingSignalVM,
   BariProductVM,
+  MagnesiumBadgesVM,
 } from "@/lib/view-models";
 import {
   GLASS_BOX_DISCLOSURE_HEADING,
@@ -21,6 +22,7 @@ import {
 import { NewAdditivePanel } from "@/components/shared/AdditivePanel";
 import { ProcessingSignalNote } from "@/components/shared/processing-signal-note";
 import { DeepDiveSection, hasDeepDiveContent } from "@/components/shared/deep-dive-section";
+import { MagnesiumBadgeGrid } from "@/components/shared/magnesium-badge-grid";
 
 // ─── Label constants (verbatim — spec §1, non-negotiable) ─────────────────────
 const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
@@ -898,6 +900,7 @@ function IngredientText({ ingredients }: { ingredients: string }) {
       <span>{preview}</span>
       <button
         type="button"
+        className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
         onClick={(e) => {
           e.stopPropagation();
           setExpanded(true);
@@ -906,7 +909,7 @@ function IngredientText({ ingredients }: { ingredients: string }) {
           marginInlineStart: "6px",
           fontSize: "12px",
           fontWeight: 600,
-          color: "#1F8F6A", // literal hex — var(--bari-green) does not resolve in this CSS scope
+          color: "#167A58", // literal hex — var(--bari-green) does not resolve in this CSS scope
           background: "transparent",
           border: "none",
           cursor: "pointer",
@@ -1029,6 +1032,7 @@ function ExpansionFooter({
       ) : null}
       <button
         type="button"
+        className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
         onClick={(e) => {
           e.stopPropagation();
           onCollapse();
@@ -1099,6 +1103,7 @@ export function ExpansionSection({
   bariInterpretation,
   rank,
   categoryTotal,
+  magnesiumBadges,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -1121,6 +1126,9 @@ export function ExpansionSection({
   rank?: number;
   /** TASK-346: total products in category corpus (denominator for rank). */
   categoryTotal?: number;
+  /** TASK-384A: magnesium structured badge data. Rendered as a 6-badge grid in the
+   *  expansion. Only present on magnesium category products; absent → no badge grid. */
+  magnesiumBadges?: MagnesiumBadgesVM;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
 
@@ -1199,6 +1207,16 @@ export function ExpansionSection({
         <div style={{ paddingTop: "4px" }}>
           <p style={{ fontSize: "13px", lineHeight: 1.55, color: "#2F3531" }}>{rowVerdict}</p>
         </div>
+      ) : null}
+
+      {/* ── Magnesium badge grid (TASK-384A) ─────────────────────────────── */}
+      {/* Only renders when magnesiumBadges is present (magnesium category only).
+          Placed after the assessment section so the +/− evaluation stays first.
+          Absent on all other categories → byte-identical to previous behaviour. */}
+      {magnesiumBadges ? (
+        <Section label="פרטי המוצר">
+          <MagnesiumBadgeGrid badges={magnesiumBadges} />
+        </Section>
       ) : null}
 
       {/* ── Section 2: Shelf context ─────────────────────────────────────── */}

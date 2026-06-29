@@ -73,7 +73,7 @@ function LeadMention({
   return (
     <article className="rounded-[1rem] border border-black/[0.07] bg-[#FFFFFF]/88 px-4 py-3">
       {kicker ? (
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]">
+        <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#167A58]">
           {kicker}
         </p>
       ) : null}
@@ -133,7 +133,7 @@ function ComparisonSide({
       <div className="flex items-start gap-3">
         <BreadShelfProductImage product={product} size="sm" className="shrink-0" />
         <div className="min-w-0 flex-1">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]">{side.label}</p>
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#167A58]">{side.label}</p>
           <h3 className="mt-1 text-base font-extrabold tracking-[-0.03em] text-[#111318]">{product.name_he}</h3>
           {side.evidence ? (
             <p className="mt-2 text-sm leading-6 text-[#313834]">{side.evidence}</p>
@@ -143,7 +143,7 @@ function ComparisonSide({
       <ul className="mt-3 space-y-2 border-t border-black/[0.06] pt-3 text-sm leading-6 text-[#4E5663]">
         {side.points.map((point) => (
           <li key={point} className="flex gap-2">
-            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#1F8F6A]" aria-hidden />
+            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#167A58]" aria-hidden />
             <span>{point}</span>
           </li>
         ))}
@@ -185,7 +185,7 @@ function ArticleBlock({
     case "insight":
       return (
         <section className={cn("rounded-[1.25rem] border p-5 md:p-6", toneStyles[block.tone ?? "neutral"])}>
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#1F8F6A]">{block.eyebrow}</p>
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#167A58]">{block.eyebrow}</p>
           <div className="mt-2 grid gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
             <div>
               <h2 className="text-[1.7rem] font-extrabold tracking-[-0.045em] text-[#111318]">{block.title}</h2>
@@ -229,7 +229,7 @@ function ArticleBlock({
       return (
         <section className="rounded-[1.25rem] border border-black/[0.08] bg-[#FFFFFF]/92 p-5 md:p-6">
           {block.eyebrow ? (
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#1F8F6A]">{block.eyebrow}</p>
+            <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#167A58]">{block.eyebrow}</p>
           ) : null}
           <h2 className="mt-2 text-[1.7rem] font-extrabold tracking-[-0.045em] text-[#111318]">{block.title}</h2>
           {block.intro ? (
@@ -321,7 +321,7 @@ function ArticleBlock({
 
 export function BreadEditorialArticle({ article }: { article: BreadArticleContent }) {
   return (
-    <main
+    <div
       className={cn(
         "relative min-h-screen overflow-hidden bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
@@ -343,7 +343,7 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
 
       <HomeContainer className="relative py-8 md:py-10 lg:py-12">
         <header className="max-w-5xl border-b border-black/[0.06] pb-6 md:pb-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[#1F8F6A]">
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[#167A58]">
             {article.eyebrow}
           </p>
           <h1 className="mt-4 text-4xl font-extrabold tracking-[-0.055em] text-[#111318] md:text-[3.2rem] md:leading-[1.05]">
@@ -382,7 +382,7 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
           </div>
           {article.leadMentions?.length ? (
             <aside className="self-start rounded-[1.1rem] border border-black/[0.08] bg-[#FFFFFF]/86 p-4">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#1F8F6A]">
+              <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#167A58]">
                 מוצרים שחזרו בקריאה
               </p>
               <div className="mt-3 space-y-3">
@@ -403,7 +403,7 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
         <footer className="mt-8 flex flex-col gap-4 border-t border-black/[0.06] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href={article.ctaHref}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#1F8F6A] hover:underline"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#167A58] hover:underline"
           >
             {article.ctaLabel}
             <ChevronLeft className="size-4" aria-hidden />
@@ -413,6 +413,6 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
           </Link>
         </footer>
       </HomeContainer>
-    </main>
+    </div>
   );
 }

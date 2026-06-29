@@ -59,7 +59,7 @@ export function OliveOilExternalResearch() {
               href={ucDavisStudy.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#1F8F6A] hover:underline"
+              className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#167A58] hover:underline"
             >
               למחקר המלא (PDF)
               <ExternalLink className="size-3.5" aria-hidden />

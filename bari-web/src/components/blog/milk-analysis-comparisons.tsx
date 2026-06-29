@@ -39,7 +39,7 @@ function InvestigationPanel({
           ) : null}
         </div>
         <div className="min-w-0 flex-1 text-right">
-          <p className="text-[0.65rem] font-bold text-[#1F8F6A]">{product.productTypeLabel}</p>
+          <p className="text-[0.65rem] font-bold text-[#167A58]">{product.productTypeLabel}</p>
           <h4 className="mt-0.5 text-sm font-extrabold leading-snug text-[#111318] md:text-base">
             {title}
           </h4>
@@ -132,7 +132,7 @@ function ComparisonBlock({
 
       <dl className="mt-6 space-y-3 border-t border-black/[0.06] pt-5 text-sm">
         <div>
-          <dt className="font-bold text-[#1F8F6A]">למה התפצלו</dt>
+          <dt className="font-bold text-[#167A58]">למה התפצלו</dt>
           <dd className="mt-1 leading-relaxed text-[#4E5663]">{narrative.divergence}</dd>
         </div>
         <div>

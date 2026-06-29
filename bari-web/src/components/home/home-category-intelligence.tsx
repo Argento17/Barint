@@ -56,7 +56,7 @@ export function HomeCategoryIntelligence() {
     <section className="border-y border-black/[0.06] bg-[#FFFFFF] py-14 md:py-20" id="categories">
       <HomeContainer>
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
             מפת קטגוריות
           </p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
@@ -80,7 +80,7 @@ export function HomeCategoryIntelligence() {
                   <span
                     className={
                       cat.status === "זמין"
-                        ? "shrink-0 rounded-full bg-[#1F8F6A] px-2 py-0.5 text-[0.65rem] font-bold text-[#F7F7F2]"
+                        ? "shrink-0 rounded-full bg-[#167A58] px-2 py-0.5 text-[0.65rem] font-bold text-[#F7F7F2]"
                         : "shrink-0 rounded-full border border-black/[0.08] bg-[#FFFFFF] px-2 py-0.5 text-[0.65rem] font-bold text-[#5E6560]"
                     }
                   >
@@ -88,7 +88,7 @@ export function HomeCategoryIntelligence() {
                   </span>
                 </div>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4E5663]">{cat.hint}</p>
-                <p className="mt-4 flex items-center gap-1 text-xs font-bold text-[#1F8F6A] opacity-80 group-hover:opacity-100">
+                <p className="mt-4 flex items-center gap-1 text-xs font-bold text-[#167A58] opacity-80 group-hover:opacity-100">
                   {cat.status === "זמין" ? "לניתוח" : "למידע"}
                   <ChevronLeft className="size-3.5" aria-hidden />
                 </p>

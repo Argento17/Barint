@@ -19,7 +19,7 @@ export function OliveOilArticleHero() {
         </Link>
 
         <div className="flex max-w-3xl flex-col justify-center text-right">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
             {hero.eyebrow}
           </p>
           <h1 className="mt-3 text-balance text-3xl font-extrabold leading-[1.1] tracking-tighter text-[#111318] md:text-4xl lg:text-5xl">

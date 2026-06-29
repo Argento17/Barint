@@ -13,7 +13,7 @@ export function HomeFlagshipAnalysis() {
       <HomeContainer>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div className="text-right">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1F8F6A]">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#167A58]">
               חקירה מובילה · לא הזהות היחידה
             </p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#111318] md:text-4xl">
@@ -27,7 +27,7 @@ export function HomeFlagshipAnalysis() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/blog/milk-analysis"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1F8F6A] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-sm transition hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#167A58] px-6 py-3 text-sm font-bold text-[#F7F7F2] shadow-sm transition hover:-translate-y-0.5"
               >
                 קריאת הניתוח
                 <ChevronLeft className="size-4" aria-hidden />
@@ -51,7 +51,7 @@ export function HomeFlagshipAnalysis() {
                   {p.image_url ? (
                     <img
                       src={p.image_url}
-                      alt=""
+                      alt={p.name_he}
                       className="h-full w-full object-contain drop-shadow-md"
                       sizes="56px"
                       loading="lazy"

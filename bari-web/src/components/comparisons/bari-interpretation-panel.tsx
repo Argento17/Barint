@@ -4,7 +4,7 @@ import type { BariInterpretationPillar } from "@/lib/comparisons/milk-types";
 import { cn } from "@/lib/utils";
 
 const STRENGTH_STYLES: Record<string, { bar: string; text: string }> = {
-  חזק: { bar: "bg-[#1F8F6A]", text: "text-[#1F8F6A]" },
+  חזק: { bar: "bg-[#167A58]", text: "text-[#167A58]" },
   בינוני: { bar: "bg-[#5A9E7E]", text: "text-[#4E5663]" },
   חלש: { bar: "bg-[#C4A574]", text: "text-[#7A817C]" },
   נמוך: { bar: "bg-[#C97B6B]", text: "text-[#7A817C]" },

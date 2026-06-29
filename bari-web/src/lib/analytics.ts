@@ -37,13 +37,13 @@ export function fireEvent(
     console.debug("[bari:event]", name, properties ?? {});
   }
 
-  // Provider hook — replace the body of this `if` block when wiring a real provider.
-  // Example (Plausible):
-  //   window.plausible?.(name, { props: properties });
-  // Example (PostHog):
-  //   posthog.capture(name, properties);
-  // Example (GA4):
-  //   window.gtag?.("event", name, properties);
-  //
-  // Until a provider is wired, events are silent in production.
+  // GA4 provider (consent-gated). gtag is only present once GA4Script has injected
+  // it AND the user granted analytics consent, so this is a safe no-op otherwise.
+  // Guard on `typeof window` for SSR and optional-chain `gtag` for absence.
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", name, properties ?? {});
+  }
+
+  // Other providers (Plausible/PostHog) can be wired here following the same
+  // consent-gated, optional-chained pattern. Until then they stay silent.
 }

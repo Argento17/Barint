@@ -3,7 +3,6 @@ import { Heebo } from "next/font/google";
 import { HomeAnalysisEngine } from "@/components/home/home-analysis-engine";
 import { HomeComparisons } from "@/components/home/home-comparisons";
 import { HomeFinalCta } from "@/components/home/home-final-cta";
-import { HomeFooter } from "@/components/home/home-footer";
 import { HomeGuides } from "@/components/home/home-guides";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeMethodology } from "@/components/home/home-methodology";
@@ -24,7 +23,7 @@ export default function HomePage() {
         "home-canvas relative text-[#111318] antialiased selection:bg-[#2FAE82]/20"
       )}
     >
-      <main lang="he" className="relative">
+      <div lang="he" className="relative">
         <HomeHero />
         <HomeAnalysisEngine />
         <HomeMethodology />
@@ -32,8 +31,7 @@ export default function HomePage() {
         <HomeGuides />
         <HomeNewsletter />
         <HomeFinalCta />
-        <HomeFooter />
-      </main>
+      </div>
     </div>
   );
 }

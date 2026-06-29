@@ -13,7 +13,7 @@ export function HomeGuides() {
       <HomeContainer>
         <div className="relative mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl text-right">
-            <p className="text-sm font-bold text-[#1F8F6A]">ניתוחים אחרונים</p>
+            <p className="text-sm font-bold text-[#167A58]">ניתוחים אחרונים</p>
             <h2 className="mt-2 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
               מהמדף ומהמעבדה
             </h2>
@@ -24,7 +24,7 @@ export function HomeGuides() {
           </div>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1 text-sm font-bold text-[#1F8F6A] hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
           >
             כל הניתוחים
             <ChevronLeft className="size-4" aria-hidden />
@@ -41,7 +41,7 @@ export function HomeGuides() {
                   : "flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
               }
             >
-              <p className="text-xs font-bold text-[#1F8F6A]">{article.categoryLabel}</p>
+              <p className="text-xs font-bold text-[#167A58]">{article.categoryLabel}</p>
               <h3 className="mt-2 text-lg font-extrabold leading-snug text-[#111318]">
                 {article.title}
               </h3>
@@ -54,7 +54,7 @@ export function HomeGuides() {
               ) : (
                 <Link
                   href={article.href}
-                  className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#1F8F6A] hover:underline"
+                  className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
                 >
                   {article.cta}
                   <ChevronLeft className="size-4" aria-hidden />

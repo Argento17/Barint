@@ -39,7 +39,7 @@ function LedgerRow({ article, index }: { article: BlogArticleCard; index: number
       {/* Right-edge green bar */}
       {!soon && (
         <span
-          className="pointer-events-none absolute inset-y-0 right-0 w-0.5 bg-[#1F8F6A] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-y-0 right-0 w-0.5 bg-[#167A58] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           aria-hidden
         />
       )}
@@ -49,7 +49,7 @@ function LedgerRow({ article, index }: { article: BlogArticleCard; index: number
         className={cn(
           "font-mono font-bold leading-none pt-1",
           "text-[18px] sm:text-[22px]",
-          isFeatured ? "text-[#1F8F6A]" : "text-[#AAB0AC]"
+          isFeatured ? "text-[#167A58]" : "text-[#AAB0AC]"
         )}
       >
         {num}
@@ -65,7 +65,7 @@ function LedgerRow({ article, index }: { article: BlogArticleCard; index: number
             "mt-2 font-extrabold leading-snug tracking-[-0.03em] text-[#111318]",
             "text-[18px] sm:text-[20px]",
             isFeatured && "sm:text-[26px]",
-            !soon && "transition-colors duration-300 group-hover:text-[#1F8F6A]"
+            !soon && "transition-colors duration-300 group-hover:text-[#167A58]"
           )}
         >
           {article.title}
@@ -79,7 +79,7 @@ function LedgerRow({ article, index }: { article: BlogArticleCard; index: number
       <div className="hidden sm:flex items-center">
         {article.stat ? (
           <div className="font-mono">
-            <span className="block text-[27px] font-extrabold leading-none text-[#1F8F6A]">
+            <span className="block text-[27px] font-extrabold leading-none text-[#167A58]">
               {article.stat.value}
             </span>
             <span className="block mt-0.5 text-[11px] text-[#7A817C]">
@@ -93,7 +93,7 @@ function LedgerRow({ article, index }: { article: BlogArticleCard; index: number
         ) : null}
         {!soon && (
           <ChevronLeft
-            className="size-[18px] text-[#1F8F6A] opacity-55 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-[3px]"
+            className="size-[18px] text-[#167A58] opacity-55 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-x-[3px]"
             style={{ marginInlineStart: "auto" }}
             aria-hidden
           />
@@ -137,7 +137,7 @@ function BariLabsStrip() {
         aria-hidden
       />
       <div className="relative max-w-2xl text-right">
-        <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-[#1F8F6A]">
+        <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-[#167A58]">
           Bari Labs
         </p>
         <h2
@@ -174,7 +174,7 @@ export function BlogIndexPage() {
   );
 
   return (
-    <main
+    <div
       className={cn(
         "relative min-h-screen overflow-hidden bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
@@ -185,7 +185,7 @@ export function BlogIndexPage() {
       <HomeContainer className="relative py-12 md:py-16 lg:py-20">
         {/* Hero */}
         <header className="max-w-3xl border-b border-black/[0.06] pb-10 md:pb-12">
-          <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.32em] text-[#1F8F6A]">
+          <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.32em] text-[#167A58]">
             {blogIndex.eyebrow}
           </p>
           <h1 className="mt-5 text-4xl font-extrabold tracking-[-0.055em] text-[#111318] md:text-[3.25rem] md:leading-[1.05]">
@@ -225,7 +225,7 @@ export function BlogIndexPage() {
                     className={cn(
                       "rounded-full border px-3.5 py-2 text-sm font-semibold transition-[background-color,border-color,color,box-shadow] duration-300",
                       active
-                        ? "border-[#1F8F6A]/30 bg-[#1F8F6A] text-[#F7F7F2] shadow-sm shadow-[#1F8F6A]/15"
+                        ? "border-[#1F8F6A]/30 bg-[#167A58] text-[#F7F7F2] shadow-sm shadow-[#1F8F6A]/15"
                         : "border-black/[0.08] bg-[#FFFFFF]/80 text-[#4E5663] hover:border-[#1F8F6A]/20 hover:text-[#111318]"
                     )}
                   >
@@ -256,7 +256,7 @@ export function BlogIndexPage() {
         <footer className="mt-12 flex flex-col gap-4 border-t border-black/[0.06] pt-10 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-md text-sm leading-relaxed text-[#7A817C]">
             {blogIndex.comparisonsNote}{" "}
-            <Link href={blogIndex.comparisonsHref} className="font-semibold text-[#1F8F6A] hover:underline">
+            <Link href={blogIndex.comparisonsHref} className="font-semibold text-[#167A58] hover:underline">
               השוואות
             </Link>
             .
@@ -270,6 +270,6 @@ export function BlogIndexPage() {
           </Link>
         </footer>
       </HomeContainer>
-    </main>
+    </div>
   );
 }

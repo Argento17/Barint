@@ -4,8 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   BrainCircuit,
   CircleGauge,
-  Flame,
   FlaskConical,
+  GitCompareArrows,
   Leaf,
   type LucideIcon,
   Scale,
@@ -24,45 +24,45 @@ const leftInsights = [
   {
     icon: Leaf,
     title: "איכות רכיבים",
-    text: "מפרידים בין אוכל אמיתי לבין תוספים שרק ממלאים את הרשימה",
+    text: "עד כמה רשימת הרכיבים פשוטה ומבוססת רכיבים מוכרים",
   },
   {
     icon: FlaskConical,
     title: "רמת עיבוד",
-    text: "ככל שהמוצר רחוק יותר ממזון בצורתו הבסיסית, כך הוא יורד",
+    text: "עד כמה המוצר עבר עיבוד תעשייתי",
   },
   {
-    icon: Flame,
-    title: "צירופים שמפתים לאכול עוד",
-    text: "מזהים שילובים כמו שומן עם סוכר או שומן עם מלח — הצירופים שידוע שמקשים להפסיק",
+    icon: Scale,
+    title: "איזון תזונתי",
+    text: "איזון בין חלבון, סיבים, סוכר, שומן וערכים נוספים",
   },
 ] as const satisfies readonly InsightItem[];
 
 const rightInsights = [
   {
-    icon: Scale,
-    title: "לא מענישים פעמיים",
-    text: "אם בעיה אחת חוזרת בכמה מקומות, היא נספרת פעם אחת — בלי לנפח את הציון",
+    icon: GitCompareArrows,
+    title: "יתרונות מול חסרונות",
+    text: "נקודות חיוביות לצד דברים שכדאי לשים לב אליהם",
   },
   {
     icon: CircleGauge,
     title: "השוואה למוצרים דומים",
-    text: "כל מוצר נמדד מול האחרים בקטגוריה שלו, כך שהציון משקף איפה הוא עומד בין השווים לו",
+    text: "איך המוצר עומד ביחס למוצרים דומים בקטגוריה",
   },
   {
     icon: ShieldCheck,
-    title: "מה אנחנו יודעים ומה לא",
-    text: "כשהמידע חלקי, הציון לא יכול להיות גבוה — ואנחנו אומרים את זה בגלוי",
+    title: "איכות מידע",
+    text: "עד כמה הניתוח מבוסס על מידע מלא ואמין",
   },
 ] as const satisfies readonly InsightItem[];
 
 const engineSignals = [
   "איכות רכיבים",
   "רמת עיבוד",
-  "צירופים שמפתים לאכול עוד",
-  "לא מענישים פעמיים",
+  "איזון תזונתי",
+  "יתרונות מול חסרונות",
   "השוואה למוצרים דומים",
-  "מה אנחנו יודעים ומה לא",
+  "איכות מידע",
 ] as const;
 
 const enginePaths = [
@@ -128,7 +128,7 @@ function InsightCard({
           <h3 className="text-2xl font-extrabold tracking-[-0.045em] text-[#111318]">{item.title}</h3>
           <p className="mt-3 text-sm leading-relaxed text-[#5A6170]">{item.text}</p>
         </div>
-        <div className="grid size-10 shrink-0 place-items-center rounded-full border border-black/[0.08] bg-[#F7F7F2] text-[#1F8F6A]">
+        <div className="grid size-10 shrink-0 place-items-center rounded-full border border-black/[0.08] bg-[#F7F7F2] text-[#167A58]">
           <Icon className="size-[1.125rem]" aria-hidden />
         </div>
       </div>
@@ -152,10 +152,10 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
       <div className="relative z-10">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]">מנוע הניתוח של Bari</p>
-            <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של בריא</h3>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">מנוע הניתוח של Bari</p>
+            <h3 className="mt-2 text-3xl font-extrabold tracking-[-0.05em]">המנוע של בארי</h3>
             <p className="mt-2 text-sm font-medium text-[#4E5663]">
-              קוראים את המוצר לעומק ומחזירים ציון אחד ברור
+              ניתוח רב־ממדי • חישוב דינמי
             </p>
           </div>
           <motion.div
@@ -163,12 +163,12 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
             transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
             className="grid size-12 place-items-center rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/60"
           >
-            <BrainCircuit className="size-6 text-[#1F8F6A]" aria-hidden />
+            <BrainCircuit className="size-6 text-[#167A58]" aria-hidden />
           </motion.div>
         </div>
 
         <div className="relative mx-auto aspect-[1.25] max-w-[32rem]">
-          <svg className="size-full overflow-visible" viewBox="0 0 440 330" role="img" aria-label="המנוע של בריא">
+          <svg className="size-full overflow-visible" viewBox="0 0 440 330" role="img" aria-label="המנוע של בארי">
             <defs>
               <radialGradient id="bari-engine-center" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="rgba(31,143,106,0.68)" />
@@ -272,7 +272,7 @@ function EngineNetwork({ reduceMotion }: { reduceMotion: boolean }) {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: reduceMotion ? 0 : 0.55 + index * 0.08, duration: reduceMotion ? 0 : 0.45 }}
-              className="rounded-xl border border-black/[0.08] bg-[#FFFFFF]/46 px-3 py-2 text-center text-[0.66rem] font-semibold text-[#4E5663]"
+              className="rounded-full border border-black/[0.08] bg-[#FFFFFF]/46 px-3 py-2 text-center text-[0.66rem] font-semibold text-[#4E5663]"
             >
               {signal}
             </motion.div>
@@ -305,7 +305,7 @@ export function HomeAnalysisEngine() {
           transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mx-auto mb-12 max-w-3xl text-center"
         >
-          <p className="text-sm font-bold text-[#1F8F6A]">מנוע הניתוח</p>
+          <p className="text-sm font-bold text-[#167A58]">מנוע הניתוח</p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
             איך Bari מנתחת מוצרים
           </h2>

@@ -29,7 +29,7 @@ export function MatrixIntegrityBadge({
           {Math.round(matrix.matrix_integrity_score)}
         </span>
         <span className="text-[#7A817C]">שלמות מטריצה</span>
-        {!compact ? <span className="text-[#1F8F6A]">· {levelHe}</span> : null}
+        {!compact ? <span className="text-[#167A58]">· {levelHe}</span> : null}
         <Info className="size-3 text-[#7A817C]" aria-hidden />
       </span>
       <span

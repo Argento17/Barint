@@ -27,10 +27,14 @@ export function enrichRowSurface(products: BariProductVM[]): BariProductVM[] {
   return products.map((product) => ({
     ...product,
     metrics: { protein_g: product.expansion.nutrition?.protein ?? null },
-    // The collapsed row shows the authored 2-line interpretive verdict (written into
-    // insightLine, TASK-168). Routing it through rowVerdict renders it in the multi-line
-    // verdict slot instead of the single-line truncated insightLine.
-    rowVerdict: product.insightLine,
+    // The collapsed row shows the authored 2-line interpretive verdict in the multi-line
+    // rowVerdict slot. Prefer a distinctly-authored rowVerdict when present (the protein
+    // content model authors insightLine + rowVerdict as separate fields); fall back to the
+    // insightLine for legacy categories where the verdict lives in insightLine (TASK-168).
+    rowVerdict:
+      typeof product.rowVerdict === "string" && product.rowVerdict.trim()
+        ? product.rowVerdict
+        : product.insightLine,
   }));
 }
 
@@ -40,10 +44,16 @@ export function enrichRowSurface(products: BariProductVM[]): BariProductVM[] {
  * (TASK-167). Kept as a passthrough so callers don't have to change.
  */
 export function enrichRowReasonOnly(products: BariProductVM[]): BariProductVM[] {
-  // No metric bar (e.g. snacks, all nutrition null), but route the authored verdict to the
-  // multi-line rowVerdict slot (TASK-168) so the collapsed row shows it in full.
+  // No metric bar (e.g. snacks, all nutrition null). The collapsed row renders rowVerdict
+  // (the multi-line interpretive verdict, like every other category). KEEP the corpus's
+  // authored rowVerdict when present — earlier this clobbered it with the short insightLine,
+  // which discarded the authored judgment entirely (owner caught it 2026-06-21). Fall back
+  // to insightLine only for products that have no distinct rowVerdict.
   return products.map((product) => ({
     ...product,
-    rowVerdict: product.insightLine,
+    rowVerdict:
+      typeof product.rowVerdict === "string" && product.rowVerdict.trim()
+        ? product.rowVerdict
+        : product.insightLine,
   }));
 }

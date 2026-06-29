@@ -80,7 +80,7 @@ export function ScienceSection({ science, eyebrow }: { science: ScienceData; eye
                       href={c.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#1F8F6A] hover:underline"
+                      className="mt-1 inline-flex items-center gap-1 text-[0.65rem] font-semibold text-[#167A58] hover:underline"
                     >
                       קישור למקור
                       <ExternalLink className="size-3" aria-hidden />

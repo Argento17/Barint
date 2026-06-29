@@ -95,6 +95,8 @@ export interface BariProductMetricsVM {
   sugar_g?: number | null;
   /** Sodium mg per 100g — salty-snacks' second headline after fiber (TASK-227). Real per-label value. */
   sodium_mg?: number | null;
+  /** Saturated fat g per 100g — cookies-coffee second headline metric (TASK-393). Real per-label value. */
+  fat_saturated_g?: number | null;
 }
 
 // ─── Row reason (v2 — comparison_ui_reference_v2 §3.3) ───────────────────────────
@@ -228,6 +230,41 @@ export interface BariProcessingSignalVM {
   confidence_note?: string | null;
 }
 
+// ─── Magnesium Badge VM (TASK-384A) ──────────────────────────────────────────
+// Per-product structured badge data for the magnesium category expansion panel.
+// All fields are pre-authored Hebrew strings sourced from:
+//   - magnesium_label_interpretation_v1.json (elemental_mg, form, label_confidence)
+//   - magnesium-page-data.ts BAV class comments (bav_label)
+//   - magnesium_clinical_content_spec_v2.md §2 (suitability_label)
+// Display-only — never a score input. Absent on all other categories.
+//
+// Safety flags: derived from dose + form:
+//   - כליות + תרופות: universal (all scored products + UNRESOLVED = show both)
+//   - מינון גבוה + שלשול: only for oxide products with elemental_mg > 350 (UL_EXCEED)
+//   - UNRESOLVED products: no elemental dose known → empty flags array
+//
+// DRAFT: all Hebrew strings are DRAFT pending Content two-gate sign-off before deploy.
+export interface MagnesiumBadgesVM {
+  /** Badge 1: administered elemental mg per daily serving, or null for UNRESOLVED */
+  elemental_mg_label: string; // e.g. "250 מ\"ג" or "לא ברור"
+  /** Badge 2: magnesium form in Hebrew */
+  form_label: string; // e.g. "ציטראט"
+  /** Badge 3: bioavailability class in Hebrew (from BAV display map) */
+  bav_label: string; // e.g. "ספיגה גבוהה יחסית"
+  /** Badge 4: suitability label (DRAFT from spec §2 summary labels) */
+  suitability_label: string; // e.g. "כללי" or "כללי — מינון טוב בצורה מעולה"
+  /** Badge 5: label confidence in Hebrew (from label_interpretation_v1.json) */
+  label_confidence_label: string; // "מאומת" | "חלקי" | "לא ניתן לחישוב"
+  /** Badge 6: safety flag pills (derived — see derivation rules above) */
+  safety_flags: string[]; // e.g. ["כליות", "תרופות"] or ["כליות", "תרופות", "מינון גבוה", "שלשול"]
+  /**
+   * Optional compound mass transparency line shown in expansion only (not headline).
+   * Sourced from label — null when compound_mass_mg is null in the interpretation table.
+   * HARD: this is label-interpretation context, never the headline elemental dose.
+   */
+  compound_transparency?: string | null;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
@@ -237,7 +274,12 @@ export interface BariProcessingSignalVM {
 export interface BariProductVM {
   id: string;
   name: string;
-  /** Brand / manufacturer display name. Optional; absent on older datasets. */
+  /**
+   * Brand name for the product (e.g. "ARENSTO", "לינדט", "טובלרון").
+   * null / absent → no brand surface. When present, the UI suppresses it if the
+   * brand token is already visible in `name` (case-insensitive substring match).
+   * Display-only — never a score input. Field name matches the pipeline JSON key.
+   */
   brand?: string | null;
   imageUrl: string | null;
   score: number | null;
@@ -297,6 +339,50 @@ export interface BariProductVM {
    */
   categoryTotal?: number;
 
+  /**
+   * Consumer warning flag shown as a small inline badge near the product name.
+   * Present when the product delivers LESS than the dose researched for its own
+   * matched claim (PDR < 1.0×). Plain Hebrew consumer text — never a score input.
+   * Absent → no badge rendered.
+   * Example: "מתחת למינון לייעוד שלו — ~כ-11 מ\"ג נספגים"
+   */
+  claimShortfallFlag?: string;
+
+  /**
+   * Optional short note displayed in a subtle inline strip immediately ABOVE this
+   * product row. Use to explain a sub-group boundary within a grade band (e.g. hidden
+   * composition products sorted last). Plain Hebrew consumer text — never a score input.
+   * Absent → no strip rendered. Authored inline; no token needed (uses existing muted styling).
+   */
+  bandNote?: string;
+
+  /**
+   * Absorbed-mg display pill. Shows the estimated absorbed magnesium per recommended
+   * daily serving. Format: «נספג: ~כ-X מ"ג». Population-average estimate — not a
+   * per-product lab measurement. Absent → no pill rendered. Do NOT show for products
+   * with unresolved form/dose (cap_1_insufficient_evidence products).
+   * Tooltip text is authored inline in the component: «הערכה לפי שיעורי ספיגה ממוצעים
+   * במחקרים — לא מדידה של מוצר זה.»
+   */
+  absorbedMgPill?: string;
+
+  /**
+   * Value flag pill. Shows when a product is in the top price quartile AND delivers
+   * absorbed magnesium below the shelf median. Plain Hebrew consumer text.
+   * Format: «תמורה גרועה למחיר — ₪XXX, ~כ-X מ"ג נספג»
+   * Absent → no pill rendered. Same visual style as claimShortfallFlag (warm amber).
+   */
+  valueFlag?: string;
+
+  /**
+   * TASK-384A: Magnesium structured badge data. Optional — present only on magnesium
+   * category products. Rendered as a 6-badge grid in the expansion panel by
+   * MagnesiumBadgeGrid. Absent / flag-off → no badge grid rendered (byte-identical to
+   * today for all other categories). Presentation only — never a score input.
+   * All Hebrew strings are DRAFT pending Content two-gate sign-off.
+   */
+  magnesiumBadges?: MagnesiumBadgesVM;
+
   // ─── Deep-Dive fields (TASK-332) ─────────────────────────────────────────────
   // Carry per-product authored depth from the pipeline. Absent on categories whose
   // JSON predates these fields (e.g. bread v3) — UI degrades gracefully (sections hidden).
@@ -327,30 +413,7 @@ export interface BariProductVM {
     | { key: string; label: string; score: number; strength: string; interpretation: string }
     | { dimension: string; score: number; label_he: string; explanation_he: string }
   >;
-  /** TASK-384A: short Hebrew badge string for magnesium dose warning. Display-only. */
-  claimShortfallFlag?: string | null;
-  /** TASK-384A: pre-rendered Hebrew pill showing estimated absorbed mg. Display-only. */
-  absorbedMgPill?: string | null;
-  /** TASK-384A: short Hebrew badge string for value-for-money warning. Display-only. */
-  valueFlag?: string | null;
-    /** TASK-384A: optional safety note shown at a band boundary in the expansion. Display-only. */
-  bandNote?: string | null;
-  /** TASK-384A: full magnesium badge grid data for the expansion panel. Display-only. */
-  magnesiumBadges?: MagnesiumBadgesVM | null;
 }
-// ─── Magnesium supplement badges (TASK-384A) ─────────────────────────────────────────
-// Per-product badge data for the 6-slot expansion grid.
-// All fields are pre-rendered Hebrew strings from the pipeline.
-export interface MagnesiumBadgesVM {
-  elemental_mg_label: string;
-  form_label: string;
-  bav_label: string;
-  suitability_label: string;
-  label_confidence_label: string;
-  safety_flags: string[];
-  compound_transparency?: string | null;
-}
-
 
 // ─── Filter ───────────────────────────────────────────────────────────────────
 // id is opaque to the UI — never branch on its value.
