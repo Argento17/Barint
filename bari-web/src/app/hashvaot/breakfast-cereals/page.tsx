@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { CerealsComparisonPage } from "@/components/comparisons/cereals-comparison-page";
 import {
   cerealsHero,
@@ -25,7 +26,9 @@ export default async function BreakfastCerealsComparisonRoute({
   const initialExpandedProductId = params.product ?? null;
 
   return (
-    <CerealsComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/breakfast-cereals" products={cerealsProducts} faqKey="breakfast_cereals" />
+      <CerealsComparisonPage
       products={cerealsProducts}
       metadataLine={cerealsMetadataLine}
       hero={cerealsHero}
@@ -33,6 +36,8 @@ export default async function BreakfastCerealsComparisonRoute({
       methodologyLines={cerealsMethodologyLines}
       categoryNote={cerealsCategoryNote}
       initialExpandedProductId={initialExpandedProductId}
-    />
+
+      />
+    </>
   );
 }

@@ -5,6 +5,7 @@
 
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { MagnesiumComparisonPage } from "@/components/comparisons/magnesium-comparison-page";
 import {
   magnesiumHero,
@@ -21,8 +22,17 @@ export const metadata: Metadata = {
     "השוואת 18 תוספי מגנזיום מהמדף הישראלי — ציון Bari לפי מינון יסודי, צורת ספיגה ועדות מדעית. מידע, לא המלצה.",
 };
 
-export default function MagnesiumComparisonRoute() {
+export default async function MagnesiumComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/magnesium" products={magnesiumProducts} />
     <MagnesiumComparisonPage
       products={magnesiumProducts}
       metadataLine={magnesiumMetadataLine}
@@ -30,6 +40,9 @@ export default function MagnesiumComparisonRoute() {
       prologueSentences={magnesiumPrologueSentences}
       methodologyLines={magnesiumMethodologyLines}
       categoryNote={magnesiumCategoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+
     />
+    </>
   );
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
+import { absoluteUrl } from "@/lib/site-url";
 import { BreadEditorialArticle } from "@/components/blog/bread-editorial-article";
 import { breadArticlesBySlug } from "@/lib/blog/bread-analysis-content";
 
@@ -17,5 +19,14 @@ export const metadata: Metadata = {
 };
 
 export default function BreadWellnessGapArticlePage() {
-  return <BreadEditorialArticle article={article} />;
+  return (
+    <>
+    <BlogArticleSeo
+      title={article.metaTitle}
+      description={article.metaDescription}
+      url={absoluteUrl("/blog/bread-wellness-gap")}
+    />
+      <BreadEditorialArticle article={article} />
+    </>
+  );
 }

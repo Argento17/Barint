@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { ChocolateTabletsComparisonPage } from "@/components/comparisons/chocolate-tablets-comparison-page";
 import {
   chocolateTabletsComparisonMetadata,
@@ -13,8 +14,17 @@ import {
 
 export const metadata: Metadata = chocolateTabletsComparisonMetadata;
 
-export default function ChocolateTabletsComparisonRoute() {
+export default async function ChocolateTabletsComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/chocolate-tablets" products={chocolateTabletsProducts} />
     <ChocolateTabletsComparisonPage
       products={chocolateTabletsProducts}
       metadataLine={chocolateTabletsMetadataLine}
@@ -22,6 +32,9 @@ export default function ChocolateTabletsComparisonRoute() {
       prologueSentences={chocolateTabletsPrologueSentences}
       methodologyLines={chocolateTabletsMethodologyLines}
       categoryNote={chocolateTabletsCategoryNote}
+      initialExpandedProductId={initialExpandedProductId}
+
     />
+    </>
   );
 }

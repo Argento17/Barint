@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { CakesHardCookiesComparisonPage } from "@/components/comparisons/cakes-hard-cookies-comparison-page";
 import {
   cakesHardCookiesCategoryNote,
@@ -19,9 +20,18 @@ export const metadata: Metadata = {
     "השוואת 65 עוגות מהמדף הישראלי — ציון Bari, סוכר, שומן רווי ורשימת רכיבים. מידע, לא המלצה.",
 };
 
-export default function CakesComparisonRoute() {
+export default async function CakesComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
-    <CakesHardCookiesComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/cakes" products={cakesHardCookiesProducts} />
+      <CakesHardCookiesComparisonPage
       products={cakesHardCookiesProducts}
       metadataLine={cakesHardCookiesMetadataLine}
       hero={cakesHardCookiesHero}
@@ -31,6 +41,9 @@ export default function CakesComparisonRoute() {
       lensOptions={cakesHardCookiesLensOptions}
       phvoIds={cakesHardCookiesPhvoIds}
       highSugarIds={cakesHardCookiesHighSugarIds}
-    />
+      initialExpandedProductId={initialExpandedProductId}
+
+      />
+    </>
   );
 }

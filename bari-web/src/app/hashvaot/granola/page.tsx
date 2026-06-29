@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { GranolaComparisonPage } from "@/components/comparisons/granola-comparison-page";
 import {
   granolaHero,
@@ -16,15 +17,27 @@ export const metadata: Metadata = {
     "השוואת 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
-export default function GranolaComparisonRoute() {
+export default async function GranolaComparisonRoute({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const params = await searchParams;
+  const initialExpandedProductId = params.product ?? null;
+
   return (
-    <GranolaComparisonPage
+    <>
+      <ComparisonPageSeo pagePath="/hashvaot/granola" products={granolaProducts} faqKey="granola" />
+      <GranolaComparisonPage
       products={granolaProducts}
       metadataLine={granolaMetadataLine}
       hero={granolaHero}
       prologueSentences={granolaPrologueSentences}
       methodologyLines={granolaMethodologyLines}
       categoryNote={granolaCategoryNote}
-    />
+      initialExpandedProductId={initialExpandedProductId}
+
+      />
+    </>
   );
 }
