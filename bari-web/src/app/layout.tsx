@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   // (e.g. /hashvaot/hummus → https://bari.digital/hashvaot/hummus). Inherited
   // by every page that does not set its own `alternates`.
   alternates: { canonical: "./" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
     title: "Bari — אינטליגנציית מזון ישראלית",
     description:
