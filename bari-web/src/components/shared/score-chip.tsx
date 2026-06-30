@@ -16,6 +16,7 @@ export function ScoreChip({
   if (score == null || grade == null) {
     return (
       <div
+        role="img"
         aria-label="ללא ציון"
         className="inline-flex shrink-0 flex-col items-center justify-center rounded-lg text-center"
         style={{
@@ -38,6 +39,7 @@ export function ScoreChip({
 
   return (
     <div
+      role="img"
       aria-label={`ציון ${Math.round(score)}, דרגה ${grade}`}
       className="relative inline-flex shrink-0 flex-col items-center justify-center rounded-lg text-center"
       style={{

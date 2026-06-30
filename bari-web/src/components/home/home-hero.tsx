@@ -1,98 +1,114 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { Search } from "lucide-react";
 
-import { BariSignalMark } from "@/components/brand/bari-brand-logo";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-import { heroTrust } from "./content";
-import { PlantHeroBackground } from "./plant-hero-background";
-import { HomeContainer } from "./section-frame";
+import { HERO_COPY } from "@/lib/home/hero-copy";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
+
+import { HeroProductStage } from "./hero-product-stage";
+import { HomeContainer } from "./section-frame";
 
 export function HomeHero() {
   return (
     <section
       className={cn(
-        "relative flex min-h-[72vh] items-center overflow-hidden border-b border-black/[0.06] md:min-h-[78vh]",
+        "relative overflow-hidden border-b border-black/[0.06] bg-[#F7F7F2]",
         siteHeaderOffsetClass
       )}
     >
+      {/* Dual radial gradient atmosphere -- sage top-left, warm cream bottom-right */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-transparent"
+        className="pointer-events-none absolute inset-0 -z-10"
         aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 60% at 18% 38%, rgba(47,174,130,0.09) 0%, transparent 65%), radial-gradient(ellipse 55% 50% at 88% 78%, rgba(245,243,236,0.95) 0%, transparent 70%)",
+        }}
       />
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <PlantHeroBackground />
-      </div>
-      <div
-        className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-[#2FAE82]/[0.035] blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -start-16 top-24 -z-10 size-[22rem] rounded-full bg-[#F7F7F2]/70 blur-3xl"
-        aria-hidden
-      />
-      <HomeContainer className="py-[4.5rem] md:py-24">
-        <div className="mx-auto max-w-5xl text-center">
-          <Badge
-            variant="outline"
-            className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#167A58] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
-            asChild
-          >
-            <Link href="#analysis-engine">
-              <BariSignalMark className="size-4" />
-              ניתוח מוצרים · המדף הישראלי
-            </Link>
-          </Badge>
 
-          <h1 className="reveal-up delay-100 text-balance bg-gradient-to-l from-[#111318] via-[#111318] to-[#4E5663] bg-clip-text text-4xl font-extrabold leading-[1.08] tracking-[-0.045em] text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            Bari מנתחת מוצרי מזון
-            <br />
-            ומזהה את מה שחשוב באמת
-          </h1>
-
-          <p className="reveal-up delay-200 mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663] md:text-xl md:leading-relaxed">
-            פלטפורמה שמפרקת מוצרים מהמדף — רכיבים, עיבוד והקשר קטגוריאלי, לא נתון בודד.
-          </p>
-
-          <div className="reveal-up delay-300 mt-7 flex flex-col items-center justify-center gap-3 sm:mt-11 sm:flex-row sm:gap-4">
-            <Button
-              size="lg"
-              className="group h-12 w-full rounded-2xl border border-[#1F8F6A]/10 bg-[#167A58] px-8 text-base font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#167A58] hover:shadow-xl hover:shadow-slate-900/10 sm:w-auto"
-              asChild
-            >
-              <a href="#analysis-engine" className="inline-flex items-center justify-center gap-2">
-                איך Bari מנתחת מוצרים
-                <ChevronLeft
-                  className="size-5 transition-transform group-hover:-translate-x-0.5"
-                  aria-hidden
-                />
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-12 w-full rounded-2xl border-black/[0.08] bg-[#FFFFFF]/68 px-8 text-base font-semibold text-[#111318] shadow-sm shadow-slate-900/10 backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10 sm:w-auto"
-              asChild
-            >
-              <Link href="/hashvaot">השוואות מהמדף</Link>
-            </Button>
+      <HomeContainer>
+        <div
+          className="hero-v5-grid py-14 md:py-[62px]"
+          style={{
+            direction: "ltr",
+            display: "grid",
+            gridTemplateAreas: "'visual copy'",
+            gridTemplateColumns: "minmax(340px, 1.05fr) minmax(300px, 0.95fr)",
+            gap: "4rem",
+            minHeight: "580px",
+            alignItems: "center",
+          }}
+        >
+          {/* Visual column -- LEFT */}
+          <div style={{ gridArea: "visual" }} className="flex items-center justify-center">
+            <div className="w-full max-w-[560px]">
+              <HeroProductStage />
+            </div>
           </div>
 
-          <div className="reveal-up delay-300 mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-9 gap-y-4 text-sm text-[#4E5663] sm:mt-16">
-            {heroTrust.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.label} className="flex items-center gap-2">
-                  <Icon className="size-5 shrink-0 text-[#2FAE82]" aria-hidden />
-                  <span className="font-medium">{item.label}</span>
-                </div>
-              );
-            })}
+          {/* Copy column -- RIGHT, reset to RTL for Hebrew */}
+          <div
+            style={{ gridArea: "copy", direction: "rtl" }}
+            className="flex flex-col items-start gap-7 text-right"
+          >
+            {/* Eyebrow */}
+            <p className="text-[0.78rem] font-bold uppercase tracking-widest text-[#167A58]">
+              {HERO_COPY.heroEyebrow}
+            </p>
+
+            {/* H1 -- very large, clamp(48px, 6.5vw, 82px) per v5 spec */}
+            <h1
+              className="text-balance font-extrabold leading-[1.02] tracking-[-0.045em] text-[#111318]"
+              style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
+            >
+              <span className="block">{HERO_COPY.headline1}</span>
+              <span className="block text-[#167A58]">
+                בארי בודקת את
+                <br />
+                הרכיבים.
+              </span>
+            </h1>
+
+            {/* Subline */}
+            <p
+              className="text-pretty leading-relaxed text-[#4E5663]"
+              style={{ fontSize: "1.2rem", maxWidth: "36rem" }}
+            >
+              {HERO_COPY.subline}
+            </p>
+
+            {/* CTA block */}
+            <div className="flex w-full max-w-[390px] flex-col items-stretch gap-3">
+              <Button
+                size="lg"
+                className="rounded-2xl border border-[#1F8F6A]/10 bg-gradient-to-r from-[#167A58] to-[#1A9168] px-8 font-bold text-[#F7F7F2] shadow-[0_20px_48px_-16px_rgba(22,122,88,0.55)] transition-[box-shadow,transform] duration-500 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_56px_-16px_rgba(22,122,88,0.65)]"
+                style={{ height: "70px", fontSize: "1.05rem" }}
+                asChild
+              >
+                <Link href="/hashvaot" className="inline-flex items-center justify-center gap-2">
+                  <Search className="size-5" aria-hidden />
+                  {HERO_COPY.primaryCta}
+                </Link>
+              </Button>
+
+              <p className="text-center text-sm font-semibold text-[#5E6560]">
+                {HERO_COPY.secondaryCta}
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* Mobile override: stack copy first then visual */}
+        <style>{`
+          @media (max-width: 767px) {
+            .hero-v5-grid {
+              grid-template-areas: 'copy' 'visual' !important;
+              grid-template-columns: 1fr !important;
+              min-height: auto !important;
+            }
+          }
+        `}</style>
       </HomeContainer>
     </section>
   );
