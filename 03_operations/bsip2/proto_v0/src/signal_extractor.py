@@ -140,7 +140,13 @@ ADDITIVE_MARKER_PATTERNS = [
     # Acidity regulators
     (r"מווסת חומציות|חומצה ציטרית|חומצת לימון|E-330|E330|E-331|E331|E-332|E332|E-333|E333|E-334|E334", "acidity_regulator"),
     # Colors
-    (r"צבע מאכל|E-1[0-9]{2}|E-[0-9]{3}(?= )|קרוטן|קרמל|כורכום|טרטרזין|אנתוציאנין", "color"),
+    # FIX-TASK412-I1 (2026-06-27): E-1[0-9]{2} → E-1[0-9]{2}(?!\d) to prevent
+    # matching a 3-digit prefix inside a 4-digit E-number (e.g. "E-110" in "E-1105").
+    # E-1105 is lysozyme (preservative) — the prior pattern generated a false-positive
+    # "color" hit on Grana Padano (7290014455245), causing phantom NOVA-3 classification.
+    # The negative lookahead (?!\d) ensures E-1XY only matches when not followed by
+    # another digit. The preservative pattern already matches E-1105 via its own rule.
+    (r"צבע מאכל|E-1[0-9]{2}(?!\d)|E-[0-9]{3}(?= )|קרוטן|קרמל|כורכום|טרטרזין|אנתוציאנין", "color"),
     # Flavor enhancers / artificial flavors — strongest NOVA 4 signal
     (r"חומרי טעם וריח|טעמים מלאכותיים|ונילין|ואניל|E-621|E621|E-627|E627|E-631|E631|E-635|E635", "flavor_enhancer"),
     # Leavening agents (weaker signal)
@@ -1158,8 +1164,44 @@ def extract_signals(product: dict) -> dict:
             break
 
     # Added sugar sources (for SC classification and MULTIPLE_ADDED_SUGAR_MARKERS)
-    added_sugar_matches = [m for m in ADDED_SUGAR_MARKERS_HE
-                          if m in full_text and m != "דבש"]  # honey is SC-2 adjacent
+    # FIX-TASK412-I2 (2026-06-27): Suppress "סוכר" hits that originate exclusively from
+    # nutrition-panel bleed phrases rather than ingredient declarations.
+    # The Hebrew nutrition panel uses "סוכרים מתוך פחמימות" ("of which sugars, from
+    # carbohydrates") and "מתוכן סוכרים" ("of which sugars") — both are labelling
+    # boilerplate, not ingredient entries. When the scraper fails to separate the
+    # ingredient list from the nutrition panel (common in Israeli retail page scrapes),
+    # "סוכרים" bleeds into full_text and fires a false-positive for the "סוכר" marker,
+    # blocking R4 demotion for plain-dairy products (e.g. 5 Noam yellow cheeses that
+    # carry annatto/β-carotene as their only additive).
+    # Suppression logic: after removing known nutrition-panel sugar phrases from the
+    # detection text, re-check whether "סוכר" still appears. If it does not, suppress.
+    # This is narrowly scoped to "סוכר" only (the most ambiguous marker); all other
+    # ADDED_SUGAR_MARKERS_HE are chemically specific terms (e.g. "סירופ גלוקוזה",
+    # "פרוקטוזה", "דקסטרוזה") that do not appear in nutrition-panel boilerplate.
+    _NUTRITION_PANEL_SUGAR_BLEED = [
+        "סוכרים מתוך פחמימות",  # "of which sugars, from carbohydrates" (nutrition table)
+        "מתוכן סוכרים",          # "of which sugars" (alternative nutrition table phrasing)
+        "מתוכם סוכרים",          # variant: "of which sugars"
+        "מזה סוכרים",            # variant: "of which sugars"
+        "מהם סוכרים",            # variant: "of which sugars"
+        "סוכרים:",               # "sugars:" header in nutrition table
+    ]
+    def _sugar_marker_is_bleed_only(text: str) -> bool:
+        """True if the only 'סוכר' hit is from nutrition-panel boilerplate, not ingredient."""
+        stripped = text
+        for phrase in _NUTRITION_PANEL_SUGAR_BLEED:
+            stripped = stripped.replace(phrase, "")
+        return "סוכר" not in stripped
+
+    added_sugar_matches = []
+    for m in ADDED_SUGAR_MARKERS_HE:
+        if m == "דבש":  # honey is SC-2 adjacent; handled separately
+            continue
+        if m not in full_text:
+            continue
+        if m == "סוכר" and _sugar_marker_is_bleed_only(full_text):
+            continue  # FIX-TASK412-I2: suppress nutrition-panel bleed false positive
+        added_sugar_matches.append(m)
     added_sugar_count = len(added_sugar_matches)
 
     # Fruit concentrate (SC-4 signal)
