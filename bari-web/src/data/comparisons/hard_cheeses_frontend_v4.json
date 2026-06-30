@@ -1,0 +1,1568 @@
+{
+  "_meta": {
+    "generated": "2026-06-27T03:51:03Z",
+    "category": "hard-cheeses",
+    "product_count": 31,
+    "scored_count": 31,
+    "schema": "BariProductVM[]",
+    "schema_version": "v4",
+    "source_run": "run_hc_task412_rt4_fix",
+    "task": "TASK-412",
+    "copy_stage": "v4",
+    "copy_status": "DRAFT v4 — round-4 re-derive on rt4_fix; self-gated; awaiting independent re-gate",
+    "flag_vector": {
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_RECAL_P0": "on",
+      "BARI_HC002_NOVA1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "on",
+      "BARI_REDLABEL_V1": "on",
+      "BARI_HC_DAIRY_SATFAT_V1": "on"
+    },
+    "generator_version": "1.4.0",
+    "retailer_breakdown": {
+      "shufersal": 24,
+      "yohananof": 7
+    },
+    "exclusions": [
+      {
+        "barcode": "2370246",
+        "product_id": "HC-2370246",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "4122348",
+        "product_id": "HC-4122348",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "4122683",
+        "product_id": "HC-4122683",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "4125776",
+        "product_id": "HC-4125776",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "4126674",
+        "product_id": "HC-4126674",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "474830",
+        "product_id": "HC-474830",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "55350",
+        "product_id": "HC-55350",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "57088",
+        "product_id": "HC-57088",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "57118",
+        "product_id": "HC-57118",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290000057088",
+        "product_id": "bsip1_hardcheese_7290000057088",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290000057118",
+        "product_id": "bsip1_hardcheese_7290000057118",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290004122270",
+        "product_id": "bsip1_hardcheese_7290004122270",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290004122683",
+        "product_id": "bsip1_hardcheese_7290004122683",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290004125776",
+        "product_id": "bsip1_hardcheese_7290004125776",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290004137311",
+        "product_id": "bsip1_hardcheese_7290004137311",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290014455252",
+        "product_id": "HC-7290014455252",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290014763395",
+        "product_id": "HC-7290014763395",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290016818642",
+        "product_id": "HC-7290016818642",
+        "reason": "contaminant: ravioli product (pasta, not a cheese); subpool misclassification"
+      },
+      {
+        "barcode": "7290019635314",
+        "product_id": "HC-7290019635314",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102394463",
+        "product_id": "bsip1_hardcheese_7290102394463",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102394821",
+        "product_id": "HC-7290102394821",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102394845",
+        "product_id": "HC-7290102394845",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102395378",
+        "product_id": "HC-7290102395378",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102395408",
+        "product_id": "HC-7290102395408",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102395422",
+        "product_id": "HC-7290102395422",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102396672",
+        "product_id": "HC-7290102396672",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290102397204",
+        "product_id": "HC-7290102397204",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290108501346",
+        "product_id": "HC-7290108501346",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290108502725",
+        "product_id": "HC-7290108502725",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290110320867",
+        "product_id": "HC-7290110320867",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7290117265918",
+        "product_id": "bsip1_hardcheese_7290117265918",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073719786",
+        "product_id": "HC-7296073719786",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073731832",
+        "product_id": "HC-7296073731832",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073731849",
+        "product_id": "HC-7296073731849",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073731863",
+        "product_id": "HC-7296073731863",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073731870",
+        "product_id": "HC-7296073731870",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "7296073731887",
+        "product_id": "HC-7296073731887",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "8606615",
+        "product_id": "HC-8606615",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "8606622",
+        "product_id": "HC-8606622",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "8606950",
+        "product_id": "HC-8606950",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "9954234",
+        "product_id": "HC-9954234",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "9954241",
+        "product_id": "HC-9954241",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "9954258",
+        "product_id": "HC-9954258",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "9954357",
+        "product_id": "HC-9954357",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      },
+      {
+        "barcode": "9955538",
+        "product_id": "HC-9955538",
+        "reason": "curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative"
+      }
+    ],
+    "fixes": [
+      "FIX-TASK412-I1: E-1105 phantom color fix",
+      "FIX-TASK412-I2: Nutrition-panel sugar bleed suppression",
+      "FIX-V4: confidence remap high->full medium->partial",
+      "FIX-V4: ingredient bleed strip",
+      "FIX-V4: null imageUrl resolved (Yohananof scraped + placeholder)",
+      "FIX-V5: rt4_fix sodium cap 63->67 (A:1/B:24/C:6)",
+      "FIX-V5: exclusions passed through (45 entries, RT-2 fix)",
+      "FIX-V5b: RT-5 partial override REMOVED per D7 co-sign (5079665 stays full)"
+    ]
+  },
+  "page_copy": {
+    "heroTitle": "איזו גבינה צהובה שווה את המקום בסלסלה?",
+    "prologue": "הגבינות הצהובות והקשות הן הקניה האוטומטית — מגיעים לקצה המקרר, לוקחים את אותה האריזה, ויוצאים. אבל מתחת לדמיון החיצוני יש כאן תמונה אחת ברורה: רוב הגבינות במדף מתקבצות יחד בציון B מוצק, כי השומן הרווי שבהן הוא הגורם הכובל — הוא חלק טבעי ממטריצת החלב, וברי לא מעניש אותו כמו שומן שהוסף בייצור. מה שכן יוצר הפרשים בתוך הקבוצה הוא הניואנסים: כמה מלח, כמה נקייה רשימת הרכיבים, וכמה גבוה השומן הרווי. גבינה אחת בלבד יוצאת מהמקבץ — גלבוע 5%, שהיא באמת דלת-שומן ויושבת לבדה בראש.",
+    "categoryCaveat": "הערת קטגוריה: למה רוב הגבינות הצהובות מקובצות יחד ב-B? כל הגבינות כאן חולקות אופי דומה — מטריצת חלב עשירה בשומן רווי, שהוא חלק טבעי מהמוצר ולא שומן שהוסף בייצור. ברי לא מעניש את השומן הזה כמו שומן מוסף, אבל השומן הרווי הוא עדיין הגורם הכובל שמחזיק את רוב המדף בציון B מוצק וקרוב זה לזה. בתוך הטווח הצר הזה, ניואנסים הם שמזיזים גבינה למעלה או למטה: רשימת רכיבים נקייה יותר, נתרן נמוך יותר ושומן רווי נמוך יותר מטים לכיוון הגבוה; ריבוי תוספים, נתרן גבוה יותר ושומן רווי גבוה יותר מטים לכיוון הנמוך. אף גורם בודד אינו מכריע בפני עצמו, אלא המשקל המצטבר שלהם יחד. הגבינה היחידה שהגיעה ל-A במדף הזה היא גלבוע 5%, שהיא באמת דלת-שומן ולכן יושבת בנפרד משאר המדף."
+  },
+  "products": [
+    {
+      "barcode": "7290110324872",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "במדף שרובו גבינות 28% עתירות שומן, הגלבוע 5% היא היוצאת-דופן: מורידה את השומן בלי לוותר על חלבון. ביחס לכל שאר המדף היא יושבת לבדה ב-A, בעיקר בזכות החלבון הגבוה והשומן הנמוך שמבדילים אותה משאר המדף עם פרופיל שומן רווי דומה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "177 קלוריות ל-100 גרם, גבינה קלה שחסרה את עושר הטעם של גבינה מלאה"
+        ],
+        "nutrition": {
+          "energyKcal": 177.0,
+          "fat": 5.0,
+          "fiber": null,
+          "protein": 33.0,
+          "sodium": 491.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "5% שומן בלבד, נמוך בהרבה מרוב הצהובות בסקירה",
+          "33 גרם חלבון ל-100 גרם, מהגבוהים במדף",
+          "491 מיליגרם נתרן ל-100 גרם, מתחת לסף האזהרה",
+          "רשימת רכיבים קצרה: חלב, מלח, צבע אנאטו, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_hardcheese_7290110324872",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290110324872_s1_1501-20-2021_15-46-37.jpg",
+      "insightLine": "הגבינה הרזה במדף: 5% שומן בלבד עם 33 גרם חלבון ל-100 גרם, שילוב שרוב הצהובות כאן לא מגיעות אליו.",
+      "name": "פרוסות גבינת גלבוע 5% 200 גרם",
+      "rank": 1,
+      "retailer": "yohananof",
+      "rowVerdict": "ראש הטבלה, וברור למה: פרוסה דלת-שומן עם 33 גרם חלבון, מהגבוהים בסקירה שמונה 31 גבינות. הנתרן עומד על 491 מיליגרם ל-100 גרם, סביר ביחס לרוב הצהובות כאן, וזה משלים את הפרופיל המנצח. זו לא פשרה אלא מוצר שונה לגמרי, ולכן הוא יושב לבדו ב-A.",
+      "score": 81.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290004122348",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "זו אחת משתי גרסאות 9% בסקירה, הפרוסה והחריצה, כמעט זהות בפרופיל. ההבדל מהגלבוע שמעליה הוא בעיקר בחלבון, שאצל הגלבוע גבוה מעט יותר.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "202 קלוריות ל-100 גרם, גבינה קלה שחסרה את עושר הטעם של גבינה מלאה"
+        ],
+        "nutrition": {
+          "energyKcal": 202.0,
+          "fat": 9.0,
+          "fiber": null,
+          "protein": 30.0,
+          "sodium": 495.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "9% שומן, כשליש מהגבינה הרגילה",
+          "30 גרם חלבון ל-100 גרם",
+          "495 מיליגרם נתרן, מתחת לסף האזהרה",
+          "רשימת רכיבים פשוטה: חלב, מלח, צבע, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290004122348",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004122348_s1_1512-16-2025_12-32-23.jpg",
+      "insightLine": "גרסת ה-9% של עמק: כשליש מהשומן של הצהובה הרגילה, עם 30 גרם חלבון שנשארים במקום.",
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
+      "rank": 2,
+      "retailer": "yohananof",
+      "rowVerdict": "מיד אחרי הרזה ביותר. אותה פרוסת עמק מוכרת, אבל ב-9% שומן במקום 28%, כך שהיא נשארת קלה ושומרת על 30 גרם חלבון ל-100 גרם. הנתרן עומד על 495 מיליגרם, דומה לגלבוע שמעליה, וההפרש בין השתיים קטן יחסית.",
+      "score": 78.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "5384356",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בין כל גבינות ה-28% בסקירה, לזו הנתרן הנמוך ביותר, ובזה טמון ציונה הגבוה יחסית לאחיותיה השמנות. מי שרוצה גבינה מלאה עם נתרן מאופק ימצא כאן את אחת האפשרויות הטובות במדף.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב פרה מפוסטר,מלח,מגביר חוזק: קלציום כלוריד,תרבית לקטית,מקריש מכיל חלב",
+        "limitingFactors": [
+          "363 קלוריות ל-100 גרם, גבינה עשירה המתאימה לכמות מדודה"
+        ],
+        "nutrition": {
+          "energyKcal": 363.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 27.0,
+          "sodium": 472.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "472 מיליגרם נתרן ל-100 גרם, מהנמוכים בקרב הגבינות המלאות בסקירה",
+          "27 גרם חלבון ל-100 גרם",
+          "הרכב קצר: חלב, מלח, תרבית לקטית, מקריש, ללא צבע וללא חומר משמר",
+          "28% שומן, מטריצה חלבית אמיתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-5384356",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HZP34_Z_P_5384356_1.png",
+      "insightLine": "אמנטל 28% עם הנתרן הנמוך ביותר בקרב הגבינות המלאות, 472 מיליגרם ל-100 גרם.",
+      "name": "גבינה חצי קשה אמנטל 28%",
+      "rank": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה מלאה אמיתית עם הרכב מינימלי — חלב, מלח, תרבית לקטית ומקריש — ורמת נתרן שנמוכה בצורה יוצאת-דופן ביחס לרוב הצהובות ה-28% שסביבה. השומן הוא 28% אמיתי מחלב, ואין בזה הפתעה; מה שמפתיע הוא הנתרן הנמוך, שמשאיר אותה גבוה בטריטוריית B למרות השומן המלא.",
+      "score": 74.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "52311",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "ממוקמת בין גרסאות ה-9% לגאודה המלאה: שומן נמוך מהמלאה אך גבוה מהרזות, עם חלבון שמחזיק ברמת הרזות. הנתרן המאופק (530 מ\"ג) הוא שמקדם אותה לעומת חלק מהגאודות המלאות שסביבה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "256 קלוריות ל-100 גרם, נמוך מהמלאה וגבוה מהרזה"
+        ],
+        "nutrition": {
+          "energyKcal": 256.0,
+          "fat": 15.0,
+          "fiber": null,
+          "protein": 30.0,
+          "sodium": 530.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "15% שומן, הרבה פחות מהגאודה המלאה",
+          "30 גרם חלבון ל-100 גרם",
+          "530 מיליגרם נתרן, מתחת לסף האזהרה",
+          "הרכב קצר: חלב, מלח, צבע אנאטו, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-52311",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YIY12_Z_P_52311_1.png",
+      "insightLine": "עמק 15%: מחצית השומן של הגבינה המלאה, עם חלבון שנשאר גבוה ונתרן שנשאר מתחת לסף.",
+      "name": "גבינה צהובה עמק15% פרוס",
+      "rank": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינת ביניים בפרופיל אמיתי: 15% שומן זה כבר לא רזה אבל גם לא הגבינה המלאה. יחד עם זאת, 30 גרם חלבון ל-100 גרם, אותה רמה כמו גרסאות ה-9%, והנתרן עומד על 530 מיליגרם, מתחת לסף. הרכב פשוט וצפוי.",
+      "score": 73.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "9150162",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כמעט זהה לגאודה הפרוסה 28% שבהמשך המדף: אותו שומן, חלבון ונתרן. הפרש הציון ביניהן מינורי ונובע מניואנסים קטנים בנתונים.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר,מלח,תרבית גבינה,מקריש רנט,מגביר חוזק :קלציום כלוריד מכיל חלב",
+        "limitingFactors": [
+          "640 מיליגרם נתרן ל-100 גרם, על הגבול העליון",
+          "352 קלוריות ל-100 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "הרכב קלאסי: חלב, מלח, תרבית, מקריש",
+          "25 גרם חלבון ל-100 גרם",
+          "28% שומן, מטריצה חלבית אמיתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-9150162",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OSH24_Z_P_9150162_1.png",
+      "insightLine": "גאודה חצי קשה 28% עם הרכב גבינה קלאסי ונתרן 640 מיליגרם, על הגבול העליון של ה-B.",
+      "name": "גאודה חצי קשה 28% שומן",
+      "rank": 5,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה 28% עם רשימת רכיבים של גבינה אמיתית — חלב, מלח, תרבית, מקריש וקלציום כלוריד שמסייע לתהליך. הנתרן עומד על 640 מיליגרם ל-100 גרם, על הגבול העליון, אך הגבינה נשארת מוצק בתוך ה-B. הרכב ישר ללא הפתעות.",
+      "score": 72.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "4137311",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מקבילה קרובה מאוד לגרסת הפרוסות: שתי גבינות 9% עם פרופיל כמעט זהה. הפרש הציונים ביניהן מינורי, והבחירה היא עניין של פורמט ואריזה בלבד, שכן הפרופיל התזונתי שלהן זהה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "201 קלוריות ל-100 גרם, גבינה קלה שחסרה את עושר הטעם של גבינה מלאה"
+        ],
+        "nutrition": {
+          "energyKcal": 201.0,
+          "fat": 9.0,
+          "fiber": null,
+          "protein": 30.0,
+          "sodium": 491.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "9% שומן, כשליש מהגבינה המלאה",
+          "30 גרם חלבון ל-100 גרם",
+          "491 מיליגרם נתרן, מתחת לסף האזהרה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-4137311",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JGI20_Z_P_4137311_1.png",
+      "insightLine": "9% שומן, 30 גרם חלבון, 491 מיליגרם נתרן, כמעט זהה לגרסה הפרוסה ברמת פרופיל דומה.",
+      "name": "גבינה צהובה 9% מופחתת",
+      "rank": 6,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה צהובה 9% עם אותם מספרים שמכירים מגרסת הפרוסות: שומן נמוך, חלבון גבוה, נתרן שנשאר מתחת לסף. ההבדלים בין שתי גרסאות ה-9% בסקירה מינוריים, פחות מ-5 מיליגרם נתרן ל-100 גרם ביניהן.",
+      "score": 70.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290117265888",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בין הגאודות המגורדות, זו מגיעה עם הרכב סביר ונתרן שנמצא על הגבול. מי שמחפש גאודה מגורדת לבישול ימצא כאן אפשרות B מוצקה, עם נתרן גבוה יחסית ששווה לשים אליו לב.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב: קלציום כלוריד, חומר מונע התגיישות: E460",
+        "limitingFactors": [
+          "640 מיליגרם נתרן ל-100 גרם, על הסף העליון",
+          "352 קלוריות, 28% שומן, גבינה עשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "25 גרם חלבון ל-100 גרם",
+          "פורמט מגורד, נוח לבישול ולפיזור",
+          "ללא חומרי שימור, מקריש ותרביות בלבד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290117265888",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290117265888_s108-12-2024_15-24-12.jpg",
+      "insightLine": "גאודה מגורדת יוחננוף: 28% שומן, נתרן 640 מיליגרם על הסף, עם תאית כנוגד-התגיישות.",
+      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+      "rank": 7,
+      "retailer": "yohananof",
+      "rowVerdict": "גאודה מגורדת עם הרכב מאוזן יחסית — חלב, מלח, תרביות, מקריש ותאית שמונעת התגיישות, תוסף סטנדרטי בגבינות מגורדות. הנתרן עומד על 640 מיליגרם, על הגבול העליון, והיא נשארת בצד ה-B. נוחה לשימוש יומיומי בבישול.",
+      "score": 70.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290116931524",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מבין הגאודות הפרוסות בסקירה, לגבינה זו יש הכי הרבה חומרי שימור, שלושה לעומת אחד או אפס ברוב האחרות. הנתרן (540 מ\"ג) דווקא סביר, והעומס על הרשימה מגיע ממקום אחר.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומרים משמרים (E-202, E-234, E-235)",
+        "limitingFactors": [
+          "שלושה חומרי שימור ברשימה, הכי הרבה בסקירה",
+          "364 קלוריות, 30% שומן, גבינה מלאה ועשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 364.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 23.5,
+          "sodium": 540.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "540 מיליגרם נתרן, מתחת לסף האזהרה",
+          "23.5 גרם חלבון ל-100 גרם",
+          "גבינה אמיתית על בסיס חלב בקר מפוסטר"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290116931524",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZFX50_Z_P_7290116931524_1.png",
+      "insightLine": "גאודה פרוסות עם שלושה חומרי שימור ברשימה, יוצאת-דופן ביחס לרוב הגאודות כאן שמסתפקות באחד.",
+      "name": "פרוסות גאודה",
+      "rank": 8,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה צהובה רגילה — 30% שומן, 540 מיליגרם נתרן ל-100 גרם, 23.5 גרם חלבון. הסייג הבולט הוא שלושה חומרי שימור, שהופכים אותה לחריגה ברשימת הרכיבים ביחס לרוב הגאודות בסקירה. הבסיס עדיין גבינה אמיתית, והנתרן שלה דווקא מתחת לסף.",
+      "score": 70.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073731856",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מקבילה קרובה מאוד לגאודה 28% שלפניה: הפרש ציון של 0.4 נקודות בלבד. הבחירה ביניהן היא שאלה של מותג ואריזה בלבד, שכן הפרופיל התזונתי כמעט זהה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, תרבית גבינה, מקריש רנט, חומר מייצב :קלציום כלוריד. מכיל חלב",
+        "limitingFactors": [
+          "640 מיליגרם נתרן ל-100 גרם, על הסף העליון",
+          "352 קלוריות ל-100 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "הרכב גבינה קלאסי: חלב, מלח, תרבית, מקריש",
+          "25 גרם חלבון ל-100 גרם",
+          "28% שומן מחלב"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7296073731856",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SAZ64_Z_P_7296073731856_1.png",
+      "insightLine": "גאודה פרוסה 28% עם הרכב נקי ונתרן 640 מיליגרם, על הגבול העליון של ה-B.",
+      "name": "גבינת גאודה פרוסה 28%",
+      "rank": 9,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה פרוסה עם הרכב יסודי — חלב, מלח, תרבית, מקריש וקלציום כלוריד. כמעט זהה לגאודה 28% שלפניה במדף: אותו שומן, חלבון ונתרן. 640 מיליגרם נתרן מציבים אותה על הגבול העליון, אך עדיין בתוך ה-B.",
+      "score": 67.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "3073781199918",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות בלב הטבלה. כל הגבינות בקבוצה הזו דומות תזונתית, עם שומן רווי דומה שמחזיק אותן באותו B מוצק; הסדר הפנימי משקף הפרשים קטנים בלבד.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב פרה מפוסטר(98%), מלח, תרבית לקטית, רנט",
+        "limitingFactors": [
+          "710 מיליגרם נתרן ל-100 גרם, גבוה ביחס לרוב המדף"
+        ],
+        "nutrition": {
+          "energyKcal": 305.0,
+          "fat": 24.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 710.0,
+          "sugar": 0.1
+        },
+        "positiveSignals": [
+          "הרכב קלאסי: חלב, מלח, תרבית לקטית, רנט",
+          "24% שומן, רמת ביניים",
+          "23 גרם חלבון ל-100 גרם",
+          "פורמט מנות: 5 כדורים של 20 גרם"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_3073781199918",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/3/0/3073781199918.jpg",
+      "insightLine": "בייבי בל 24%: הרכב נקי וקלאסי, נתרן 710 מיליגרם, מתקבצת עם המקבץ הרחב של ה-67 נקודות.",
+      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
+      "rank": 10,
+      "retailer": "yohananof",
+      "rowVerdict": "גבינה חצי-קשה נקייה — חלב, מלח, תרבית לקטית ורנט. הנקודה שכדאי לדעת היא הנתרן הגבוה, 710 מיליגרם ל-100 גרם. בהקשר של 31 גבינות היא יושבת בלב המקבץ הגדול שתקוע ב-67 נקודות — גבינות דומות עם שומן רווי דומה שמחזיק אותן באותו B.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "5079658",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות: דומה תזונתית לשכנותיה, עם שומן רווי דומה שמחזיק אותה באותו B מוצק. בתוך משפחת נעם זו הגרסה המלאה לצד ה-22% וה-9%, והשומן הגבוה ממקם אותה בתחתית השלוש.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן). מכיל חלב",
+        "limitingFactors": [
+          "660 מיליגרם נתרן ל-100 גרם, גבוה יחסית למדף",
+          "346 קלוריות, 28% שומן, גבינה עשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 346.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.5,
+          "sodium": 660.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "הרכב פשוט: חלב, מלח, בטא קרוטן, ללא חומרי שימור",
+          "23.5 גרם חלבון ל-100 גרם",
+          "28% שומן, מטריצה חלבית אמיתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-5079658",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGL40_Z_P_5079658_1.png",
+      "insightLine": "נעם 28% חריץ: גבינה מלאה עם הרכב של שלושה רכיבים, B מוצק עם פרופיל שומן רווי דומה לשאר המדף.",
+      "name": "נעם גבינה צהובה28% חריץ",
+      "rank": 11,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינת נעם 28% בחריץ עם הרכב פשוט — חלב, מלח ובטא קרוטן, ללא חומרי שימור. 28% שומן ו-346 קלוריות מסמנים גבינה מלאה במלוא מובן המילה, והנתרן עומד על 660 מיליגרם ל-100 גרם, גבוה יחסית. עם זאת היא נוחתת ב-B מוצק, בלב מקבץ הגבינות הדומות עם שומן רווי דומה.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "5079665",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מבין גבינות ה-9% בסקירה, לזו הנתרן הגבוה ביותר, 620 מ\"ג לעומת כ-490 אצל גרסאות עמק. השומן הנמוך זהה, וההפרש בנתרן הוא שמבחין ביניהן, אך כולן נשארות ב-B.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (בטא קרוטן). מכיל חלב",
+        "limitingFactors": [
+          "620 מיליגרם נתרן ל-100 גרם, גבוה ביחס לגרסאות ה-9% של עמק"
+        ],
+        "nutrition": {
+          "energyKcal": 201.0,
+          "fat": 9.0,
+          "fiber": null,
+          "protein": 30.0,
+          "sodium": 620.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "9% שומן בלבד, כשליש מהגבינה המלאה",
+          "30 גרם חלבון ל-100 גרם",
+          "הרכב קצר: חלב, מלח, בטא קרוטן"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-5079665",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGS38_Z_P_5079665_1.png",
+      "insightLine": "נועם 9% חריץ: שומן נמוך וחלבון גבוה, B מוצק שנהנה מ-9% שומן בלבד.",
+      "name": "נועם גבינה צהובה9% חריץ",
+      "rank": 12,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה 9% עם פרופיל שומן וחלבון מצוין: 9 גרם שומן ו-30 גרם חלבון ל-100 גרם. הנתרן עומד על 620 מיליגרם, גבוה מגרסאות ה-9% של עמק שנשארות מתחת ל-500, אך השומן הנמוך מחזיק אותה ב-B מוצק. רשימת רכיבים קצרה ושקופה.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "5079672",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בתוך משפחת נעם זו הגרסה ה-22% לצד ה-28% וה-9%. כל השלוש נוחתות ב-B מוצק; ה-22% מציעה שומן נמוך יותר, אך הנתרן הגבוה שלה מאזן את היתרון הזה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנאטו).n. מכיל חלב",
+        "limitingFactors": [
+          "670 מיליגרם נתרן ל-100 גרם, מהגבוהים במדף"
+        ],
+        "nutrition": {
+          "energyKcal": 298.0,
+          "fat": 22.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 670.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "22% שומן, קל יחסית למדף",
+          "298 קלוריות ל-100 גרם",
+          "25 גרם חלבון ל-100 גרם",
+          "הרכב מינימלי: חלב, מלח, אנאטו"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-5079672",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGZ36_Z_P_5079672_1.png",
+      "insightLine": "נעם 22% משקל: שומן מתון וקלוריות נמוכות יחסית, B מוצק עם נתרן גבוה יותר מהממוצע.",
+      "name": "נעם גבינה צהובה22% משקל",
+      "rank": 13,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה 22% קלה יחסית: 298 קלוריות ו-22 גרם שומן ל-100 גרם, עם הרכב מינימלי של חלב, מלח ואנאטו. הנתרן עומד על 670 מיליגרם, מהגבוהים במדף, אך השומן המתון מחזיק אותה ב-B מוצק לצד הגבינות הדומות.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290004122195",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות, עם פרופיל תזונתי דומה לשכנותיה באותו B מוצק. הנתרן הנמוך יחסית שלה הוא היתרון שמייחד אותה בתוך הקבוצה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "345 קלוריות, 28% שומן, גבינה עשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 345.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 510.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "510 מיליגרם נתרן, נמוך לגבינה 28%",
+          "23 גרם חלבון ל-100 גרם",
+          "כשרות מהדרין",
+          "חלב מגוש חלב"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290004122195",
+      "imageUrl": "https://media.shufersal.co.il/product_images/default/Z_P_default.png",
+      "insightLine": "גוש חלב מהדרין 28%: חלב ישראלי, כשרות מהדרין, נתרן 510 מיליגרם, מהנמוכים בקבוצת ה-28%.",
+      "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 200 גרם",
+      "rank": 14,
+      "retailer": "yohananof",
+      "rowVerdict": "גבינה צהובה 28% עם כשרות מהדרין ממקור גוש חלב. ההרכב פשוט ומוכר: חלב, מלח, אנאטו וחומר משמר אחד. הנתרן עומד על 510 מיליגרם ל-100 גרם, נמוך יחסית לרוב הצהובות המלאות כאן, והיא יושבת ב-B מוצק עם שאר הגבינות הדומות.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290014455245",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בין גרסאות הגרנה פדנו בסקירה, המשולש מגיע עם חלבון מעט גבוה יותר (33 לעומת 32 גרם) ושומן גבוה יותר (29 לעומת 19 גרם), וחומר משמר מביצים שלא מופיע בגרסה המגורדת. שתיהן יושבות במקבץ ה-B; מי שמחפש את החלבון הגבוה ורגיש לביצים יעדיף את הגרסה המגורדת.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר, מלח, אנזים מגבין, חומר משמר - ליזוזים (E-1105 (ביצים)) מכיל ביצים",
+        "limitingFactors": [
+          "חומר משמר ליזוזים (E-1105, מביצים), אלרגן לרגישים לביצים",
+          "29 גרם שומן, 393 קלוריות, גבינה עשירה",
+          "600 מיליגרם נתרן ל-100 גרם, רמה גבוהה יחסית"
+        ],
+        "nutrition": {
+          "energyKcal": 393.0,
+          "fat": 29.0,
+          "fiber": null,
+          "protein": 33.0,
+          "sodium": 600.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "33 גרם חלבון ל-100 גרם, מהגבוהים בסקירה יחד עם גלבוע 5%",
+          "גרנה פדנו אמיתי, גבינה איטלקית מסורתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290014455245",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NCO48_Z_P_7290014455245_1.png",
+      "insightLine": "גרנה פדנו משולש: 33 גרם חלבון, מהגבוהים בסקירה יחד עם גלבוע 5%, עם ליזוזים מביצים שחשוב לדעת עליו.",
+      "name": "גרנה פדנו משולש",
+      "rank": 15,
+      "retailer": "shufersal",
+      "rowVerdict": "גרנה פדנו בפורמט משולש עם 33 גרם חלבון ל-100 גרם, מהגבוהים בסקירה יחד עם גלבוע 5%. 29 גרם שומן ו-600 מיליגרם נתרן. הנקודה שמייחדת אותה היא חומר המשמר ליזוזים (E-1105, מביצים), אלרגן שצריך להיות ברדאר של מי שרגיש לביצים. גבינה איטלקית אמיתית עם חלבון גבוה, שנוחתת ב-B מוצק לצד הגבינות הדומות.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290017065434",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות בלב הטבלה. הנתרן הגבוה שלה בולט בקבוצה, אך לכולן פרופיל שומן רווי דומה באותו B מוצק, והסדר הפנימי משקף הפרשים קטנים בלבד.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנטו). מכיל חלב",
+        "limitingFactors": [
+          "831 מיליגרם נתרן ל-100 גרם, מהגבוהים בין הגבינות עם רכיבים ידועים",
+          "368 קלוריות, 30% שומן"
+        ],
+        "nutrition": {
+          "energyKcal": 368.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 831.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "הרכב פשוט: חלב, מלח, אנאטו בלבד",
+          "23 גרם חלבון ל-100 גרם",
+          "גאודה הולנדית מקורית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_7290017065434",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001706543402-19-2020_14-50-32.jpg",
+      "insightLine": "גאודה הולנדית 30% עם הרכב פשוט ונתרן 831 מיליגרם, הגבוה בין הגבינות עם רשימת רכיבים מלאה.",
+      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+      "rank": 16,
+      "retailer": "yohananof",
+      "rowVerdict": "גאודה מלאה עם הרכב פשוט — חלב, מלח וצבע אנאטו. ההרכב עצמו נקי; מה שמייחד אותה הוא הנתרן הגבוה, 831 מיליגרם ל-100 גרם, מהגבוהים בין הגבינות שיש להן רשימת רכיבים מלאה בסקירה. למרות זאת היא נוחתת ב-B מוצק, בלב מקבץ הגבינות הדומות.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290019635192",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בין כל הגבינות בסקירה, לזו הרשימה הקצרה ביותר, חלב עיזים ומלח בלבד. הניקיון הזה הוא יתרונה הבולט בתוך מקבץ ה-67 נקודות, שבו לכל הגבינות פרופיל תזונתי דומה באותו B.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב עיזים מפוסטר, מלח. מכיל חלב עיזים עלול להכיל חלב עיזים",
+        "limitingFactors": [
+          "659 מיליגרם נתרן ל-100 גרם, גבוה יחסית למדף",
+          "30% שומן, 365 קלוריות, גבינה עשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 365.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 22.0,
+          "sodium": 659.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "שני רכיבים בלבד: חלב עיזים ומלח, ללא שום תוסף",
+          "22 גרם חלבון ל-100 גרם",
+          "גבינת עיזים אמיתית עם טעם מובהק"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290019635192",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FTH54_Z_P_7290019635192_1.png",
+      "insightLine": "גאודה עיזים פרוסה עם שני רכיבים בלבד, חלב עיזים ומלח, B מוצק עם פרופיל נקי בתכלית.",
+      "name": "גאודה עיזים פרוס 30%שומן",
+      "rank": 17,
+      "retailer": "shufersal",
+      "rowVerdict": "ההרכב הקצר ביותר בסקירה: חלב עיזים ומלח, ללא שום תוסף. זו גבינת עיזים מלאה (30% שומן) עם פרופיל נקי בתכלית. הנתרן עומד על 659 מיליגרם ל-100 גרם, גבוה יחסית, אך הניקיון הבולט מחזיק אותה ב-B מוצק לצד הגבינות הדומות.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290020467393",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות, עם פרופיל תזונתי דומה לשכנותיה באותו B מוצק. החלבון הגבוה יחסית שלה הוא נקודת היתרון, גם אם רשימת הרכיבים החסרה משאירה אי-ודאות מסוימת.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "660 מיליגרם נתרן ל-100 גרם, גבוה יחסית למדף",
+          "רשימת הרכיבים לא הגיעה מהסריקה, כך שאי-אפשר לאמת את פרופיל התוספים"
+        ],
+        "nutrition": {
+          "energyKcal": 352.0,
+          "fat": 27.3,
+          "fiber": null,
+          "protein": 26.0,
+          "sodium": 660.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "26 גרם חלבון ל-100 גרם",
+          "27 גרם שומן, נמוך יחסית לגאודות מלאות"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290020467393",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OVA52_Z_P_7290020467393_1.png",
+      "insightLine": "גאודה מאסדם אמנטל הולנדי: 26 גרם חלבון, נתרן 660 מיליגרם, רשימת רכיבים שלא הגיעה מהסריקה.",
+      "name": "גאודה מאסדם אמנטל הולנדי",
+      "rank": 18,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה מאסדם אמנטל עם פרופיל תזונתי שנמדד: 27 גרם שומן, 26 גרם חלבון ו-660 מיליגרם נתרן ל-100 גרם. רשימת הרכיבים לא הגיעה מהסריקה, כך שהציון מבוסס על הנתונים התזונתיים בלבד. היא יושבת ב-B מוצק לצד שאר הגבינות הדומות במקבץ.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290114311601",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות, עם פרופיל תזונתי דומה לשכנותיה באותו B. ההרכב הנקי שלה, בלי חומרי שימור, הוא היתרון שמייחד אותה בתוך הקבוצה.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל (אנאטו). מכיל חלב",
+        "limitingFactors": [
+          "368 קלוריות, 30% שומן, גבינה עשירה"
+        ],
+        "nutrition": {
+          "energyKcal": 368.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 24.5,
+          "sodium": 580.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלב, מלח, אנאטו, ללא חומרי שימור כלל",
+          "580 מיליגרם נתרן, מהנמוכים יחסית בקבוצה",
+          "24.5 גרם חלבון ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290114311601",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XPQ36_Z_P_7290114311601_1.png",
+      "insightLine": "גאודה נעם 30% עם חלב, מלח ואנאטו בלבד, ללא חומרי שימור, נתרן 580 מיליגרם.",
+      "name": "גאודה נעם 30%",
+      "rank": 19,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה מלאה עם הרכב של שלושה רכיבים — חלב, מלח ואנאטו, ללא חומרי שימור. הנתרן עומד על 580 מיליגרם ל-100 גרם, מהנמוכים יחסית בקבוצה. הניקיון הזה הוא היתרון שמחזיק אותה ב-B מוצק בלב המקבץ.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290114312813",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות, אך ההרכב הנקי והנתרן הנמוך שלה הם היתרון הבולט בתוך הקבוצה. לכולן פרופיל שומן רווי דומה באותו B מוצק.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב מפוסטר, מלח, צבע מאכל  (בטא קרוטן)n. מכיל חלב",
+        "limitingFactors": [
+          "372 קלוריות, 30% שומן, גבינה עשירה המיועדת לכמות מדודה"
+        ],
+        "nutrition": {
+          "energyKcal": 372.0,
+          "fat": 30.0,
+          "fiber": null,
+          "protein": 25.5,
+          "sodium": 490.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "שלושה רכיבים בלבד: חלב, מלח, בטא קרוטן, ללא חומרי שימור",
+          "490 מיליגרם נתרן, מהנמוכים בקבוצה",
+          "25.5 גרם חלבון ל-100 גרם",
+          "אריזה בפתיחה חוזרת"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290114312813",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZKG42_Z_P_7290114312813_1.png",
+      "insightLine": "אמנטל נועם עם שלושה רכיבים בלבד: חלב, מלח ובטא קרוטן, מהנקיים במקבץ.",
+      "name": "אמנטל נועם פתיחה חוזרת",
+      "rank": 20,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינת אמנטל עם רשימת רכיבים מינימלית — חלב, מלח וצבע בטא קרוטן, בלי חומרי שימור. הנתרן עומד על 490 מיליגרם, מהנמוכים בקבוצה, מה שמשאיר אותה גבוה בתוך ה-B למרות 30% שומן. אריזה בפתיחה חוזרת היא תוספת מעשית.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "8606974",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות, עם פרופיל תזונתי דומה לשכנותיה באותו B. החלבון הגבוה יחסית שלה הוא נקודת היתרון, גם אם רשימת הרכיבים החסרה משאירה אי-ודאות מסוימת.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "680 מיליגרם נתרן ל-100 גרם, גבוה יחסית למדף",
+          "רשימת הרכיבים לא הגיעה מהסריקה"
+        ],
+        "nutrition": {
+          "energyKcal": 377.0,
+          "fat": 29.7,
+          "fiber": null,
+          "protein": 28.4,
+          "sodium": 680.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "28.4 גרם חלבון ל-100 גרם, גבוה לגאודה 30%",
+          "29.7 גרם שומן"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-8606974",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/REL40_Z_P_8606974_1.png",
+      "insightLine": "גאודה גוסטו 30%: 28 גרם חלבון, נתרן 680 מיליגרם, רשימת רכיבים שלא הגיעה מהסריקה.",
+      "name": "גבינת גאודה גוסטו 30%",
+      "rank": 21,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה 30% של גוסטו עם 28 גרם חלבון ל-100 גרם, גבוה יחסית לגאודה מלאה, ונתרן של 680 מיליגרם. רשימת הרכיבים לא הגיעה מהסריקה, כך שהציון מבוסס על הנתונים התזונתיים בלבד. היא נוחתת ב-B מוצק לצד הגבינות הדומות במקבץ.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "8711528211138",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "מתקבצת עם שאר גבינות ה-67 נקודות. ההרכב הנקי שלה דוחף לכיוון הגבוה, בעוד השומן והנתרן הגבוהים מאזנים; לכולן פרופיל שומן רווי דומה באותו B מוצק.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב עיזים מפוסטר (97.7%),מלח,רנט,תרבית לקטית. ציפוי הגבינה לא למאכל",
+        "limitingFactors": [
+          "800 מיליגרם נתרן ל-100 גרם, גבוה ביחס למדף",
+          "34% שומן, 397 קלוריות, מהעשירות בסקירה"
+        ],
+        "nutrition": {
+          "energyKcal": 397.0,
+          "fat": 34.0,
+          "fiber": null,
+          "protein": 24.0,
+          "sodium": 800.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "97.7% חלב עיזים, הרכב שקוף ואמיתי",
+          "רשימת רכיבים קצרה: חלב, מלח, תרבית, מקריש",
+          "24 גרם חלבון ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_hardcheese_8711528211138",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/8/7/871152821113805-09-2023_14-48-33.jpg",
+      "insightLine": "גאודת עיזים מיובאת עם 97.7% חלב עיזים, הרכב נקי לצד 34% שומן ו-800 מיליגרם נתרן.",
+      "name": "גבינת גאודה עיזים.",
+      "rank": 22,
+      "retailer": "yohananof",
+      "rowVerdict": "גבינת עיזים עשירה עם הרכב נקי — 97.7% חלב עיזים, מלח, תרבית לקטית ומקריש. השומן גבוה (34%, מהגבוהים בסקירה) והנתרן עומד על 800 מיליגרם ל-100 גרם. גבינה אמיתית ונקייה שנוחתת ב-B מוצק, אך עשירה ומלוחה שמתאימה לכמות מדודה.",
+      "score": 67.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073735151",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "בין גרסאות הגרנה פדנו בסקירה, זו המגורדת עם חלבון גבוה ושומן נמוך יחסית. הגרסה המשולשת מגיעה עם 33 גרם חלבון אך 29 גרם שומן וחומר משמר מביצים, פרופיל שונה. שתיהן יושבות במקבץ ה-B.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "600 מיליגרם נתרן ל-100 גרם, רמה גבוהה יחסית",
+          "רשימת הרכיבים לא הגיעה מהסריקה"
+        ],
+        "nutrition": {
+          "energyKcal": 393.0,
+          "fat": 19.0,
+          "fiber": null,
+          "protein": 32.0,
+          "sodium": 600.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "32 גרם חלבון ל-100 גרם, מהגבוהים בסקירה",
+          "19 גרם שומן בלבד, נמוך לגרנה פדנו",
+          "393 קלוריות, צפוי לגבינה קשה איטלקית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7296073735151",
+      "imageUrl": "https://media.shufersal.co.il/product_images/default/Z_P_default.png",
+      "insightLine": "גרנה פדנו מגורד: 32 גרם חלבון מהגבוהים בסקירה, רשימת רכיבים שלא הגיעה מהסריקה.",
+      "name": "גבינה גרנה פדנו מגורד",
+      "rank": 23,
+      "retailer": "shufersal",
+      "rowVerdict": "גרנה פדנו מגורד עם פרופיל חלבון יוצא-דופן: 32 גרם ל-100 גרם, מהגבוהים בסקירה כולה. השומן נמוך יחסית לגבינה מסוג זה, 19 גרם, והנתרן עומד על 600 מיליגרם. רשימת הרכיבים לא הגיעה מהסריקה, כך שהציון מבוסס על הנתונים התזונתיים בלבד, והיא נוחתת ב-B מוצק.",
+      "score": 66.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290014760448",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "ממוקמת בין הגרסאות הרזות לגאודה המלאה: 22% שומן עם נתרן שנשאר מתחת לסף. הציון משקף פרופיל ממוצע ללא מאפיין בולט בכיוון כלשהו.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "298 קלוריות ל-100 גרם",
+          "החלבון אינו בולט לעומת גרסאות ה-9% שמגיעות ל-30 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 298.0,
+          "fat": 22.0,
+          "fiber": null,
+          "protein": 25.0,
+          "sodium": 495.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "22% שומן, פחות מהגבינה המלאה",
+          "495 מיליגרם נתרן, מתחת לסף",
+          "25 גרם חלבון ל-100 גרם",
+          "הרכב פשוט: חלב, מלח, אנאטו, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290014760448",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WPD52_Z_P_7290014760448_1.png",
+      "insightLine": "גבינה צהובה 22%: שומן בינוני, נתרן 495 מיליגרם, הרכב פשוט, מיקום סביר בלב המדף.",
+      "name": "גבינה צהובה 22%",
+      "rank": 24,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה צהובה 22% עם הרכב צפוי ונקי — חלב, מלח, אנאטו וחומר משמר אחד. הנתרן (495 מיליגרם ל-100 גרם) מתחת לסף, השומן (22%) בינוני, החלבון (25 גרם) סביר. גבינה ישרה בלי בולט מיוחד לטובה או לרעה.",
+      "score": 65.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290014760912",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כמה גאודות מלאות בסקירה מגיעות עם נתרן נמוך עוד יותר (472 עד 490 מ\"ג), מה שממקם אותה ב-25, בתחתית ה-B. ההרכב עצמו פשוט וצפוי.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "345 קלוריות, 28% שומן, גבינה עשירה",
+          "גבינות עם נתרן נמוך עוד יותר (472 מ\"ג) קיימות מעליה"
+        ],
+        "nutrition": {
+          "energyKcal": 345.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 510.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "510 מיליגרם נתרן ל-100 גרם, מתחת לסף",
+          "23 גרם חלבון",
+          "הרכב פשוט וצפוי",
+          "כשרות מהדרין"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "HC-7290014760912",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XGZ48_Z_P_7290014760912_1.png",
+      "insightLine": "גבינה מהדרין 28%: נתרן 510 מיליגרם מחזיק אותה ב-B, אך גבינות מלאות עם נתרן נמוך עוד יותר קיימות מעליה.",
+      "name": "גבינה צהובה 28% מהדרין",
+      "rank": 25,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה מהדרין 28% עם הרכב זהה לרוב הצהובות — חלב, מלח, אנאטו, חומר משמר אחד. הנתרן (510 מיליגרם ל-100 גרם) מתחת לסף, והיא נשארת ב-B. עם 31 גבינות בסקירה, כמה גאודות מלאות מגיעות עם נתרן נמוך יותר (472 עד 490 מיליגרם), מה שמסביר את מיקומה ב-25.",
+      "score": 65.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "8606608",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "הנתרן הגבוה ביותר בסקירה כולה, גבוה אפילו מהגאודה ההולנדית (831 מ\"ג). הפסטו כנראה תורם לעומס הנתרן, אך ללא רשימת רכיבים אי-אפשר לאמת את מקורו.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "880 מיליגרם נתרן ל-100 גרם, הגבוה ביותר בסקירה",
+          "31 גרם שומן, 375 קלוריות",
+          "רשימת הרכיבים לא הגיעה מהסריקה"
+        ],
+        "nutrition": {
+          "energyKcal": 375.0,
+          "fat": 31.3,
+          "fiber": null,
+          "protein": 23.2,
+          "sodium": 880.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "23.2 גרם חלבון ל-100 גרם",
+          "טעם ייחודי, פסטו אדום"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-8606608",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QQJ34_Z_P_8606608_1.png",
+      "insightLine": "גאודה פסטו אדום 32%: נתרן 880 מיליגרם, הגבוה בסקירה, רשימת רכיבים שלא הגיעה מהסריקה.",
+      "name": "גבינת גאודה פסטו אדום32%",
+      "rank": 26,
+      "retailer": "shufersal",
+      "rowVerdict": "גאודה בטעם פסטו עם 31 גרם שומן ו-880 מיליגרם נתרן ל-100 גרם, הנתרן הגבוה ביותר בכל הסקירה. רשימת הרכיבים לא הגיעה מהסריקה, כך שאי-אפשר לאמת את פרופיל הטעמים והתוספים של הפסטו. השילוב של שומן גבוה ונתרן גבוה ממקם אותה ב-C.",
+      "score": 63.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "4122270",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אחת מכמה גבינות 28% בסקירה עם נתרן 640 מיליגרם, פרופיל שכיח על הגבול בין ה-B ל-C. ההרכב סטנדרטי, והנתרן הוא ההבדל ביחס לגאודות המלאות שממוקמות גבוה יותר.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "640 מיליגרם נתרן ל-100 גרם",
+          "344 קלוריות, 28% שומן"
+        ],
+        "nutrition": {
+          "energyKcal": 344.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "23 גרם חלבון ל-100 גרם",
+          "הרכב פשוט: חלב, מלח, אנאטו, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-4122270",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MZV18_Z_P_4122270_1.png",
+      "insightLine": "גבינה צהובה 28% פרוסה: פרופיל סטנדרטי, נתרן 640 מיליגרם — C, בין הגבינות הנמוכות בסקירה.",
+      "name": "גבינה צהובה פרוס 28%",
+      "rank": 27,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה צהובה 28% עם הרכב צפוי — חלב, מלח, אנאטו, חומר משמר אחד. הנתרן עומד על 640 מיליגרם ל-100 גרם, והשילוב שלו עם השומן המלא ממקם אותה ב-C. אין כאן מאפיין חריג לרעה, פרט לנתרן שמבחין אותה מהגאודות עם 472 עד 530 מיליגרם שממוקמות מעליה.",
+      "score": 62.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110320850",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "ביחס לשאר גבינות העמק בסקירה, הגרסה הזו מוסיפה תאית ומגיעה בפורמט שונה. הנתרן (640 מ\"ג) זהה לגרסאות ה-28% האחרות, והיא יושבת בסף ה-C יחד איתן.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, חומר מונע התגיישות (תאית), צבע מאכל: אנאטו (ממקור צמחי), חומר משמר (E-202)",
+        "limitingFactors": [
+          "640 מיליגרם נתרן ל-100 גרם",
+          "תאית כנוגד-התגיישות, מוסיפה לרשימת הרכיבים",
+          "344 קלוריות, 28% שומן"
+        ],
+        "nutrition": {
+          "energyKcal": 344.0,
+          "fat": 28.0,
+          "fiber": null,
+          "protein": 23.0,
+          "sodium": 640.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "23 גרם חלבון ל-100 גרם",
+          "פורמט פתיתים, נוח לפיזור על סלטים ופסטות"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-7290110320850",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WDF38_Z_P_7290110320850_1.png",
+      "insightLine": "פתיתי עמק 28%: אותה גבינה מוכרת בפורמט פתיתים, עם תאית כרכיב נוסף למניעת התגיישות.",
+      "name": "פתיתי עמק 28%",
+      "rank": 28,
+      "retailer": "shufersal",
+      "rowVerdict": "עמק 28% בפורמט פתיתים, מוכן לפיזור ישיר. ההרכב דומה לגבינות ה-28% האחרות אך כולל תאית כנוגד-התגיישות, סטנדרטי לפורמט הזה. השילוב של 640 מיליגרם נתרן עם 28% שומן ממקם אותה ב-C.",
+      "score": 62.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "53219",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "הנתרן שלה נמוך מגבינות B רבות בסקירה, אך השומן הגבוה (32%) ועדר נתוני הרכיבים ממקמים אותה ב-C. עם נתוני רכיבים מלאים, הציון היה עשוי להיראות אחרת.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "32% שומן, 396 קלוריות, מהעשירות בסקירה",
+          "רשימת הרכיבים לא הגיעה מהסריקה"
+        ],
+        "nutrition": {
+          "energyKcal": 396.0,
+          "fat": 32.0,
+          "fiber": null,
+          "protein": 27.0,
+          "sodium": 490.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "490 מיליגרם נתרן, נמוך ומתחת לסף",
+          "27 גרם חלבון ל-100 גרם"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-53219",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZRW20_Z_P_53219_1.png",
+      "insightLine": "גבינה צהובה 32%: נתרן 490 מיליגרם נמוך, אך שומן גבוה ורשימת רכיבים שלא הגיעה מהסריקה.",
+      "name": "גבינה צהובה 32%",
+      "rank": 29,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה 32% עם נתרן מפתיע: 490 מיליגרם ל-100 גרם, נמוך יחסית אפילו לגבינות 28%. למרות זאת היא ב-C, בשילוב השומן הגבוה (32%) ועדר נתוני רכיבים שמגביל את האמינות. אצלה הנתרן אינו הבעיה.",
+      "score": 62,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110323301",
+      "categoryTotal": 31,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מלאים",
+      "confidence_sub_reason": "medium_nova_confidence",
+      "confidence_tooltip_he": "",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "הנתרן שלה (550 מ\"ג) סביר, אך מול אפשרויות 28% עם פרופיל קל יותר, ה-32% שומן הוא שמגדיר את הציון ומשאיר אותה ב-C.",
+        "confidenceLabel": "נתונים מלאים",
+        "ingredients": "חלב בקר מפוסטר, מלח, צבע מאכל : אנאטו (ממקור צמחי), חומר משמר (E-202). מתכון חדש",
+        "limitingFactors": [
+          "32% שומן, 397 קלוריות, מהעשירות בסקירה",
+          "השומן הגבוה הוא שמגדיר את ה-C על אף הנתרן הסביר"
+        ],
+        "nutrition": {
+          "energyKcal": 397.0,
+          "fat": 32.0,
+          "fiber": null,
+          "protein": 27.0,
+          "sodium": 550.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "550 מיליגרם נתרן, מתחת לסף",
+          "27 גרם חלבון ל-100 גרם",
+          "הרכב פשוט: חלב, מלח, אנאטו, חומר משמר אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-7290110323301",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTM32_Z_P_7290110323301_1.png",
+      "insightLine": "טל העמק 32%: גבינה עשירה עם הרכב נקי, השומן הגבוה הוא שמגדיר את מיקומה ב-C.",
+      "name": "גבינה צהובה טל העמק 32%",
+      "rank": 30,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינת 32% שומן עם הרכב נקי — חלב, מלח, אנאטו, חומר משמר אחד — ונתרן 550 מיליגרם, מתחת לסף. ההרכב עצמו נקי, אך 32% שומן, מהגבוהים בסקירה, ממקמים אותה ב-C מול אפשרויות 28% עם פרופיל קל יותר.",
+      "score": 62,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073453482",
+      "categoryTotal": 31,
+      "confidence": "partial",
+      "confidence_label_he": "חסרים נתוני רכיבים",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "רשימת הרכיבים לא הגיעה מהסריקה. הציון מבוסס על הנתונים התזונתיים בלבד ועשוי להתעדכן כשתתווסף רשימת רכיבים מאומתת.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כמעט זהה לגבינה 32% האחרת בסקירה בכל הנתונים התזונתיים. ההפרש בציון ביניהן אפסי, וכנראה מדובר במוצרים דומים מאוד או באריזות שונות של אותה גבינה.",
+        "confidenceLabel": "חסרים נתוני רכיבים",
+        "ingredients": null,
+        "limitingFactors": [
+          "32% שומן, 396 קלוריות",
+          "רשימת הרכיבים לא הגיעה מהסריקה"
+        ],
+        "nutrition": {
+          "energyKcal": 396.0,
+          "fat": 32.0,
+          "fiber": null,
+          "protein": 27.0,
+          "sodium": 490.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "490 מיליגרם נתרן, נמוך ומתחת לסף",
+          "27 גרם חלבון"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "HC-7296073453482",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGH60_Z_P_7296073453482_1.png",
+      "insightLine": "גבינה 32% פרוסה: נתרן נמוך, שומן גבוה, רשימת רכיבים שלא הגיעה מהסריקה, פרופיל דומה לגרסה האחרת.",
+      "name": "גבינה צהובה 32% פרוס",
+      "rank": 31,
+      "retailer": "shufersal",
+      "rowVerdict": "גבינה 32% פרוסה עם פרופיל תזונתי כמעט זהה לגרסה האחרת: 396 קלוריות, 32 גרם שומן, 27 גרם חלבון, 490 מיליגרם נתרן. רשימת הרכיבים לא הגיעה מהסריקה. הנתרן נמוך, אך השומן הגבוה ועדר הנתונים ממקמים אותה ב-C.",
+      "score": 62,
+      "source_traceability_status": "resolved"
+    }
+  ]
+}
