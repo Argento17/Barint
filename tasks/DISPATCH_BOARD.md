@@ -3,6 +3,42 @@
 
 ---
 
+## 🧭 CURRENT REALITY — post-port reconciliation (2026-07-01)
+**⚠️ Everything below the next `---` is PRE-PORT HISTORY (frozen ~2026-06-19). Its 🔵 RUNNING/DISPATCHED markers are VOID** — they described a local brain-tree that has since been ported to origin and reset. Read this block for live state, not the history.
+
+- **Tree state:** local `master` == `origin/master` (0 ahead / 0 behind). The owner's 2026-07-01 "targeted port to origin, then reset local" is **done** — the port landed via merged PRs #27–#32 (repro-provenance, repro-phase2, agentos-routines, content-gate, hc-engine-reproduce). Origin is now canonical AND local. Working tree carries untracked pre-port scratch only.
+- **Registry reconciled this session (bookkeeping only, no code/tree writes):**
+  - **TASK-409** (corpus traceability / provenance reconciliation) — was UNREGISTERED but is TASK-395's `depends_on`; **registered CLOSED** on committed evidence (repro commit series + PRs #30–#32 patched every non-reproducing category to committed-trace scores). Linchpin done.
+  - **TASK-395E** (provenance repair) → **CLOSED** (subsumed by 409's landed repro commits).
+  - **TASK-406** (provenance manifest) → **CLOSED** (superseded; interim local artifact, real fix shipped via 409 patches; its D4-flag deliverable was half-done — never in rescore_all.py history).
+  - **TASK-405** (ingredient de-pollution) → **CLOSED** (assess+clean DoD met locally; score-neutral, deliberately NOT ported — origin keeps raw source + runtime sanitization).
+  - **56 CLOSED-in-root files archived** to `tasks/closed/` (50 moved + 6 dedup). Root now: **10 BLOCKED · 68 IN_PROGRESS · 8 RETURNED**.
+- **TASK-395 (de-chain engine) — BLOCKED, dependency now satisfied.** 409 landed → the only remaining forward move is **activation**, a score-moving owner-gated go/no-go across all 12 categories (tripwire-1). Recommended first activation step: a confirming full round-trip/conformance pass (409 closed on committed-PR evidence, not a fresh gate run this session).
+- **Still genuinely open (verified NOT ported / partial):**
+  - **TASK-395F** — forward C0 data-integrity firewall (sanitation + provenance contract gate at one page-generator point). NOT built/committed. Ready to dispatch (cloud C1) once owner confirms it's still wanted post-port.
+  - **TASK-412** — hard-cheeses rework: sat-fat module port LANDED (66c282053, PR #27); Tom's-Voice copy + render + red-team REMAIN.
+  - **TASK-414** — sucralose heated-vs-non-heated EV candidate (opened 2026-07-01).
+  - **TASK-408 series** — routine auto-action pipelines (foundation/routing/research/voice/blog/introspection).
+  - **TASK-401** — Project Pop go-live readiness (consumer-facing = owner-gated wall).
+- **NEXT READY MOVE decision → surfaced to owner** (the 68 IN_PROGRESS are largely pre-port and need a lane-by-lane pass before more can be safely closed; the top-of-ladder forward moves — de-chain activation, go-live — are owner-gated tripwires). See the run report.
+
+### 🟢 DISPATCHED 2026-07-01 (owner: open de-chain activation + 7 rendered-review fixes IN PARALLEL) — 4 bg lanes, file-disjoint
+- **Track 1 — TASK-395 de-chain activation EVAL → Nutrition Agent (bg).** Owner opened activation (tripwire-1). Analysis+shadow only vs the committed clean baseline (409): confirm repro → re-shadow OFF/ON → per-category movement + inversion-invariant → D6/D7 + conformance + drift + re-audit → per-category go/no-go. No live flip / no deploy — orchestrator brings go/no-go to owner.
+- **Track 2 rendered-review fixes (7 items) → 3 disjoint native lanes on main tree (no cloud CLI concurrent → tree safe):**
+  - **TASK-415 → Frontend Agent (bg):** #3 remove brined legacy charts, #5 /hashvaot card size-align, #6 delete "תובנות מרכזיות" callout box from cards. .tsx only (brined-cheeses-prologue-visualizations / comparison-intelligence-hero / featured-*-cards). Build-verify on return.
+  - **TASK-417 → Data Agent (bg):** #1 sort cereals_frontend_v2.json by score, #7 source REAL hummus brands (no invention / OFF-ban; null if absent), #4 cookies_coffee — identify partial/missing-material-data products + PROPOSE discard list per [[missing_data_discard_rule]] (return for confirm; removal is consumer-facing). JSON only.
+  - **TASK-416 → Content lane (Sonnet, bg):** #2 rewrite ALL category titles simpler + one key insight + NO numbers (also kills stale card counts). Title/config text only (hashvaot-categories.ts/.json, comparison-pages.json). DRAFT → must clear BOTH content + Adversarial QA gates before owner sees final.
+- **Verify-on-return:** tripwire diff (0 score/grade) on every lane; build exit-0 on frontend; brand provenance = real-scrape on hummus; discard list evidence-checked vs the rule; titles two-gated. Nothing deploys without owner.
+
+### Progress 2026-07-01 (owner: "use C1/C2/C3 lanes, be efficient" — routing corrected mid-run)
+- **TASK-415 (frontend) ✅ RETURNED + orchestrator-VERIFIED.** git diff = only the 2 intended .tsx; brined viz import+usage removed (charts gone), insights callout removed (props kept @deprecated for 14 callers), min-h-[22rem] uniform floor; build exit 0 / 16 routes; 0 data/score. Held in staging (deploy owner-gated). Dead file brined-cheeses-prologue-visualizations.tsx now unreferenced (follow-up delete).
+- **De-chain activation (TASK-395) — OWNER RULING: HOLD.** Eval verified (Stage0 byte-clean; Stage0+D4 = 224 down-moves, 7 grade movers, 0 large, 0 inversions; Chokita 26.1>Petit 21.4 UNRESOLVED — needs Stage 2). Owner chose "hold activation; fix repro + build Stage 2." No flag flipped.
+  - **TASK-418 → C1-CURSOR (P259 authored, fires when 416/417 free the main tree):** score-neutral repro repair of granola (2 movers +16/+20 + manifest v1→v2) + hard_cheeses (conformance path bug `C:\Bariari-web` + v4 baseline).
+  - **TASK-419 → C3 (P258 DISPATCHED bg):** Stage 2 continuous-NOVA-replacement feasibility challenge (the workstream that actually resolves the inversion). depends_on 418.
+- **Routing note:** future build/data → router C1/C2/C3 (Grok/Gemini/Cursor/DeepSeek/ChatGPT), not native Agent-tool. Copy stays Sonnet. Cloud lanes git-stash the whole tree → never fire onto main tree while a native writer is mid-flight (isolate/sequence).
+
+---
+
 ## 🥇 BARI GOLD SET — expert-rubric ACCURACY gate, sibling to Shadow1 (owner: "use orchestrator, C1+C2+C3 all the time", 2026-06-19)
 TASK-349 (HIGH). Shadow1 (TASK-253) catches whether a score CHANGED (stability); the Gold Set catches whether a score is RIGHT (accuracy) vs reviewed ground truth. Inspired by LifeSciBench rubric-per-dimension + ≥90% reviewer agreement. **Hard boundary: changes NO published score and NO engine code — disagreements are FINDINGS routed to Nutrition, never auto-fixes (tripwire-1 safe).** Plan: Phase 0 (explore) → schema+seed (~30 reviewed products) → `gold_check.py` harness (exit 0/1/2) → CI wire. **Build phase will use repo-writing cloud CLIs (Grok/Gemini/Cursor) → MUST protect the dirty tree first (commit scratch or worktree, [[lane_dispatch_wipes_shared_tree]]); Phase 0 deliberately uses only non-tree-touching lanes.**
 - **P233 → TASK-349 → C2 (DeepSeek) — ✅ RETURNED + orchestrator-VERIFIED (2026-06-19).** Per-corpus grade dist + top-5/bottom-5 by score from APPROVED baseline. **Independently re-derived in Python (704/704 products, 12 corpora): milk/snack_bars/yogurt grade-dists + top5 + bottom5 match C2 exactly** (incl. correct `insufficient_data` handling). Candidate shortlist sound → feeds P235 seed. C2 was correct this time (verified, not trusted). Sub-move of TASK-349 (not closed; Phase 0 still in flight).
