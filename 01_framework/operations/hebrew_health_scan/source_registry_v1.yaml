@@ -1,0 +1,276 @@
+# Hebrew Health Scan — Source Registry v1
+# ============================================================================
+# Purpose: the curated source universe the daily Hebrew Health Scan reads to
+# serve TWO firewalled lanes:
+#   LANE A (voice)    — calibrate Bari's natural-Hebrew REGISTER (Project Tom's
+#                       Voice, TASK-374). Output = register notes (emulate/avoid),
+#                       NEVER harvested phrasings. (Charter rejects RAG over blog
+#                       text; file 9 firewall: "blogs teach how Israelis talk about
+#                       food, never what's in a product.")
+#   LANE B (evidence) — run each finding through the Nutrition Agent's Evidence
+#                       Horizon-Scan (label-derivability + already-modelled test).
+#                       Output = KB stub / EV proposal / corroboration / declined.
+#                       NEVER inherit a blog number/ingredient (OFF ban + file 9).
+#
+# Owner-supplied list (2026-06-23), curated to lanes by the Nutrition + Content
+# agents. 9 of 14 already exist in the Project Comp registry — cross-referenced via
+# `comp_ref` (do NOT duplicate Comp's discourse-monitoring job; this is a different
+# routine with a different output).
+#
+# Field contract (per source):
+#   id, url, language, source_type, owner_listed(true),
+#   voice_lane(high|medium|low|anti_model), evidence_lane(high|medium|low|none),
+#   commercial_coi(none|moderate|high : reason), comp_ref(il-### | none),
+#   topics[], register_note, firewall_flag
+#
+# Core principle: a credible CLINICAL source can be weak VOICE; a well-written
+# MAINSTREAM source can be weak EVIDENCE. The two lanes are scored separately —
+# never let one stand in for the other.
+# ============================================================================
+
+meta:
+  version: v1
+  built: 2026-06-23
+  serves: ["TASK-374 (Tom's Voice — register)", "Evidence Horizon-Scan (Nutrition Agent)"]
+  source_count: 14
+  curation_method: "owner list 2026-06-23; lane-mapped + COI-flagged by Nutrition+Content; cross-ref to comp source_registry_v1.yaml"
+  hard_firewalls:
+    - "LANE A is register-calibration ONLY. No phrasing is copied into generation. Output = emulate/avoid notes appended to content_voice/tom_bari_voice/9_israeli_food_blog_research.md."
+    - "LANE B inherits NO data. Blogs are popular_science_secondary pointers, never a value of record. Facts come only from a product's own BSIP0 scrape (OFF ban). A finding moves a score only via EV-### + D7 (+ owner if it touches published scores)."
+    - "Dietitian/prescriptive register ('מומלץ', 'כדאי להפחית') is the ANTI-voice (file 9 §2). Read those sources to REJECT the tone, not to emulate it."
+    - "Commercial-COI sources (supplement retailer, food manufacturer, diet-program brand) get their evidence_lane discounted to ~none; read them as 'what the market is being sold', a SIGNAL not a finding."
+
+# ============================================================================
+# A. EVIDENCE-STRONG (clinical / institutional) — Lane B primary
+#    Still secondary sources; label-derivability firewall always applies.
+# ============================================================================
+sources:
+
+  - id: hhs-01
+    url: https://efsharibari.health.gov.il/eat-healthy/
+    language: he
+    source_type: regulator
+    owner_listed: true
+    voice_lane: low            # institutional/policy register — REFERENCE register, not Tom's voice to emulate
+    evidence_lane: high        # MoH national dietary guidance — strongest evidence in this set
+    commercial_coi: none
+    comp_ref: il-001
+    topics: [dietary_guidance, ultra_processed, sugar, fiber, food_rainbow, kids_food]
+    register_note: >
+      Official MoH "אפשרי בריא". Use for what Israeli consumers are formally TAUGHT (label
+      literacy, food-rainbow framing) — Bari builds on this literacy. Register is institutional,
+      NOT a voice model. Evidence note: MoH *guidance* is policy-credible; MoH *composition data*
+      (Tzameret) stays DIRECTIONAL-ONLY per owner directive — never a value of record.
+    firewall_flag: "guidance ok as consensus pointer; Tzameret numbers directional-only; no number inherited."
+
+  - id: hhs-02
+    url: https://www.clalit.co.il
+    language: he
+    source_type: public_health
+    owner_listed: true
+    voice_lane: medium         # institutional middlebrow — file 9 cites Clalit label-reading as familiar literacy
+    evidence_lane: medium      # largest HMO, clinical content, consumer-pitched
+    commercial_coi: none
+    comp_ref: il-006
+    topics: [weight_loss, sugar, fiber, kids_food, label_reading, GLP1]
+    register_note: >
+      Clalit HMO consumer education. Good read on the mainstream IL "how to read a label" register
+      Bari extends. Practitioner/institutional voice — describe-and-show is partial here; still leans
+      advice-giving, so read tone with the emulate/avoid lens.
+    firewall_flag: "clinical secondary; corroborate before any finding informs KB/EV."
+
+  - id: hhs-03
+    url: https://www.maccabi4u.co.il
+    language: he
+    source_type: public_health
+    owner_listed: true
+    voice_lane: medium
+    evidence_lane: medium      # HMO clinical content (new — not in Comp registry; Comp had Leumit/Clalit)
+    commercial_coi: none
+    comp_ref: none
+    topics: [weight_loss, sugar, fiber, kids_food, supplements]
+    topics_note: "Maccabi HMO; sibling to Clalit. NEW to the Bari source universe."
+    register_note: >
+      Maccabi HMO consumer nutrition content. Same role as Clalit — clinical secondary for Lane B,
+      institutional register for Lane A (emulate the clarity, avoid the prescriptive 'מומלץ' tilt).
+    firewall_flag: "clinical secondary; corroborate before any finding informs KB/EV."
+
+# ============================================================================
+# B. MAINSTREAM MEDIA — Lane A primary (register), Lane B weak (pointers only)
+#    These set the mass IL nutrition register. Evidence = report-of-research, not
+#    research. Watch the file-9 dual register: emulate the 'בדקנו N סוגים'
+#    consumer-investigation arc; REJECT the 'ניסוי על מיליארדים' scare arc.
+# ============================================================================
+
+  - id: hhs-04
+    url: https://www.ynet.co.il/wellness
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: high           # DUAL: best-case investigative arc to emulate; scare genre to reject
+    evidence_lane: low
+    commercial_coi: none
+    comp_ref: il-008
+    topics: [ultra_processed, sugar, protein, GLP1, weight_loss, additives, micronutrients]
+    register_note: >
+      Largest IL portal wellness desk; sets the mainstream narrative. CRITICAL dual-register source
+      (file 9 §2): the 'בדקנו 10 סוגים' product-test arc is a Tom-voice EMULATE model; the
+      'מיליארדים בניסוי / מקרב להתקף לב' scare arc is the AVOID anti-model the banned-phrase firewall
+      exists to block. The iodine article (skhbnlkmzg, KB-006) came from here.
+    firewall_flag: "report-of-research only; never a value of record; route any claim through Horizon-Scan."
+
+  - id: hhs-05
+    url: https://www.mako.co.il/health-wellness/healthy-nutrition
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: high
+    evidence_lane: low
+    commercial_coi: none
+    comp_ref: il-009
+    topics: [ultra_processed, sugar, protein, sweeteners, weight_loss]
+    register_note: "Keshet portal nutrition desk. Mainstream register signal; cross-check every claim against evidence sources."
+    firewall_flag: "report-of-research only; route claims through Horizon-Scan."
+
+  - id: hhs-06
+    url: https://www.n12.co.il
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: high           # broadcast-news register (new — not in Comp)
+    evidence_lane: low
+    commercial_coi: none
+    comp_ref: none
+    topics: [ultra_processed, sugar, weight_loss, GLP1, food_safety]
+    register_note: >
+      Channel 12 / N12 news health. NEW to the Bari universe. Broadcast-news register — punchy,
+      headline-driven; mine for natural spoken-Hebrew rhythm but watch for the scare-headline tilt.
+    firewall_flag: "report-of-research only; route claims through Horizon-Scan."
+
+  - id: hhs-07
+    url: https://www.walla.co.il
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: high
+    evidence_lane: low
+    commercial_coi: none
+    comp_ref: il-011           # Comp tracked only the kids-nutrition sub-section
+    topics: [ultra_processed, sugar, protein, kids_food, weight_loss]
+    register_note: "Walla portal health (Comp tracked only the kids sub-section /category/587). General mainstream register."
+    firewall_flag: "report-of-research only; route claims through Horizon-Scan."
+
+  - id: hhs-08
+    url: https://www.israelhayom.co.il/news/health
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: high           # file 9 cited Israel Hayom's cereal consumer-test as an investigation example
+    evidence_lane: low
+    commercial_coi: none
+    comp_ref: none
+    topics: [ultra_processed, sugar, weight_loss, food_safety, kids_food]
+    register_note: >
+      Israel Hayom newspaper health desk. NEW to the universe. File 9 already cites its cereal
+      consumer-test as a structured-investigation example — emulate that arc.
+    firewall_flag: "report-of-research only; route claims through Horizon-Scan."
+
+  - id: hhs-09
+    url: https://www.agogo.co.il/
+    language: he
+    source_type: mainstream_health_media
+    owner_listed: true
+    voice_lane: medium         # wellness/lifestyle register (new)
+    evidence_lane: low
+    commercial_coi: "moderate : wellness/lifestyle portal, some sponsored/native content typical of the genre"
+    comp_ref: none
+    topics: [wellness, weight_loss, sugar, supplements, lifestyle]
+    register_note: >
+      Wellness/lifestyle portal. NEW. Mine lifestyle/wellness register with care — genre carries
+      sponsored content; check each piece for a commercial tilt before trusting any claim.
+    firewall_flag: "lifestyle genre; evidence weak; watch sponsored content; route claims through Horizon-Scan."
+
+# ============================================================================
+# C. DIETITIAN / DIET-PROGRAM — Lane A = ANTI-VOICE model (file 9 §2);
+#    Lane B weak + commercial COI. Read to REJECT the prescriptive tone.
+# ============================================================================
+
+  - id: hhs-10
+    url: https://www.dietamir.co.il/%D7%9E%D7%90%D7%9E%D7%A8%D7%99%D7%9D
+    language: he
+    source_type: diet_program_brand
+    owner_listed: true
+    voice_lane: anti_model     # prescriptive diet-program register — the tone Bari does NOT use
+    evidence_lane: low
+    commercial_coi: "high : commercial diet-program brand (sells a weight-loss program)"
+    comp_ref: none
+    topics: [weight_loss, dieting, sugar, calories]
+    register_note: >
+      'Diet Amir' diet-program articles. Strong ANTI-voice: prescriptive, program-selling
+      ('כדאי/מומלץ/הפחיתו'). Read to recognize-and-reject the counseling register (file 9 §2 Strand B).
+    firewall_flag: "commercial diet brand; evidence discounted to ~none; SIGNAL of what dieters are sold."
+
+  - id: hhs-11
+    url: https://tali-diet.co.il/category/%D7%9E%D7%92%D7%96%D7%99%D7%9F-%D7%AA%D7%96%D7%95%D7%A0%D7%94/
+    language: he
+    source_type: diet_program_brand
+    owner_listed: true
+    voice_lane: anti_model
+    evidence_lane: low
+    commercial_coi: "high : commercial diet-program brand magazine"
+    comp_ref: none
+    topics: [weight_loss, dieting, nutrition_magazine, sugar]
+    register_note: "'Tali Diet' nutrition magazine. Dietitian/diet-program register = anti-voice; occasional evidence pointer at most."
+    firewall_flag: "commercial diet brand; evidence discounted to ~none."
+
+  - id: hhs-12
+    url: https://eatwell.co.il/
+    language: he
+    source_type: nutrition_blog
+    owner_listed: true
+    voice_lane: medium         # consumer healthy-eating register; check for prescriptive drift
+    evidence_lane: low
+    commercial_coi: "moderate : commercial healthy-eating site (likely product/program ties)"
+    comp_ref: none
+    topics: [healthy_eating, sugar, clean_label, weight_loss]
+    register_note: >
+      'EatWell' Hebrew healthy-eating blog. Mixed register — mine consumer healthy-eating idiom, but
+      it drifts prescriptive (Strand B); verify any commercial tilt per piece.
+    firewall_flag: "blog tier; evidence weak; route claims through Horizon-Scan; watch commercial ties."
+
+# ============================================================================
+# D. COMMERCIAL COI (retailer / manufacturer) — Lane B = NONE (vested interest);
+#    read ONLY as 'what the market is being sold' signal. Never a finding.
+# ============================================================================
+
+  - id: hhs-13
+    url: https://www.pharmaguri.co.il/?CategoryID=431
+    language: he
+    source_type: retailer_pharmacy
+    owner_listed: true
+    voice_lane: low
+    evidence_lane: none        # supplement RETAILER — sells the products it writes about
+    commercial_coi: "high : pharmacy/parapharmacy retailer selling supplements & health products"
+    comp_ref: none
+    topics: [supplements, vitamins, minerals, health_products]
+    register_note: >
+      'Pharma Guri' pharmacy retailer content (category 431). STRONG conflict of interest: it sells
+      what it describes. Evidence = none. Useful ONLY as a signal of what supplement claims the IL
+      market is being sold (cross-reference DSLD for any actual supplement-actives question).
+    firewall_flag: "retailer COI; ZERO evidence weight; supplement claims need DSLD, never this source."
+
+  - id: hhs-14
+    url: https://www.tnuva.co.il/research-magazine/
+    language: he
+    source_type: brand_manufacturer
+    owner_listed: true
+    voice_lane: low
+    evidence_lane: none        # dairy MANUFACTURER 'research magazine' — vested interest, esp. dairy/protein
+    commercial_coi: "high : dominant IL dairy manufacturer publishing its own 'research magazine'"
+    comp_ref: il-017
+    topics: [protein, high_protein_dairy, dairy, sugar]
+    register_note: >
+      Tnuva 'research magazine'. CLEAREST conflict of interest in the set — a dairy manufacturer's
+      own publication, with a vested interest in dairy/protein framing. Evidence = none (marketing,
+      never evidence, even when it cites studies). Read as a competitor/market SIGNAL only.
+    firewall_flag: "manufacturer COI; ZERO evidence weight; treat dairy/protein claims as marketing."
