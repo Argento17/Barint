@@ -7,7 +7,7 @@ priority: HIGH
 created_at: 2026-07-01
 closed_at: 2026-07-01
 close_reason: >
-  W2 functionally complete + shipped. Gold set REBUILT (was lost in reset), adjudicated (7 divergence/6 defect applied), scaled 30->80 across 15 corpora, protective merge-blocking gate live (gold_check --baseline blocks only on regressions; verified both ways), content_regression.py content arm shipped, + fixed a latent Hebrew subprocess crash. Stopped scaling at 80 (not 150) deliberately: diminishing returns vs adjudication debt. Optional follow-ups (adjudicate 27 new fails, scale to 150, wire content CI judge) noted. All tripwire-clean, pushed to master.
+  W2 COMPLETE + shipped. Gold set REBUILT (was lost in reset), adjudicated (7 divergence/6 defect applied), scaled 30->150 (FULL target) across 15 corpora via incremental append-and-validate, protective merge-blocking gate live (gold_check --baseline blocks only on regressions; verified both ways), content_regression.py content arm shipped, + fixed a latent Hebrew subprocess crash. 150 entries valid, 143 scorable/7 unverifiable, 87-entry accepted baseline (56 new fails non-blocking pending adjudication). Optional follow-up: adjudicate the 56 new fails, wire content CI judge. All tripwire-clean, pushed to master.
 depends_on: [TASK-420]
 blocks: []
 category_id: null
@@ -38,16 +38,10 @@ note, not a data dependency (0 real OFF). 4 UNVERIFIABLE = corpus dirs absent in
 1. **Nutrition adjudication — ✅ DONE + applied.** `adjudication_v0.md`: 13 → 7 engine_divergence (accept) / 6 seed_defect / 0 ambiguous. Found the seed was systematically low on brined cheeses (3 interacting flags un-pre-computed). Applied the 6 corrected bands to the seed (G-007/G-010 clamped to C's cutoff for R5). gold_check now PASS:16 FAIL:7 (was 10/13), agreement 50%→73%. The 7 remaining FAILs are the accepted divergences.
 2. **Merge-BLOCKING protective gate — ✅ DONE.** Added `gold_check --baseline / --write-baseline`: blocks (exit 1) ONLY on a REGRESSION (an accepted PASS/ADVISORY entry newly FAILing), never on standing accepted divergences. Captured `accepted_baseline_v0.json`; `shadow_gate.yml` flipped to `--baseline` mode. Verified: real baseline → exit 0; simulated PASS→FAIL → exit 1 BLOCK naming the entry.
 3. **content_regression.py — ✅ DONE + shipped** (content arm; freezes milk/brined/cereals golden copy, flags drift via pluggable judge).
-4. **Scale seed 30 → 80 — ✅ DONE (target was ~150; stopped at 80, see below).** Grew to 80 blind-authored entries across 15 corpora (added cheese, hard_cheeses, juices, cookies_coffee). Schema-valid, 0 engine-leak, 0 OFF. Baseline re-captured at 49 accepted (all PASS/ADV + 7 adjudicated divergences); the 27 new un-reviewed FAILs are non-blocking pending adjudication. Two single-shot dispatch attempts failed (context loss; 32k output cap); the incremental append-and-validate pattern persisted the 50 new entries.
+4. **Scale seed 30 → 150 — ✅ DONE (FULL target reached).** 150 blind-authored entries across 15 corpora. Valid JSON, original 30 intact, 0 engine-leak, 0 real OFF; validate_goldset exit 0; gold_check scores 143/150 (7 unverifiable = corpus absent; "missing field" lines are pre-existing non-fatal loader warnings). Baseline re-captured at 87 accepted (all PASS/ADV + 7 adjudicated divergences); 56 new un-reviewed FAILs are non-blocking pending adjudication. Took 3 dispatch attempts — the first two failed (context loss; 32k output cap), the third (robust incremental append-and-validate) completed to 150.
 
-**Net: the protective gold-set gate is FUNCTIONAL and merge-blocking at 80 entries (2.7× the floor, 15 corpora).**
-
-## Stopped at 80 not 150 — deliberate (2026-07-01)
-Diminishing returns: repeated dispatches hit agent output limits, and each new entry adds
-un-adjudicated-disagreement debt (27 already pending). The gate's VALUE (block regressions) is
-fully delivered at 80. Judged chasing 150 not worth the risk/cost vs marginal coverage.
+**Net: the protective gold-set gate is FUNCTIONAL and merge-blocking at the full 150 entries, 15 corpora.**
 
 ## Bounded follow-ups (optional, not blockers)
-- Adjudicate the 27 new-entry FAILs (Nutrition) → move accepted ones into the baseline.
-- If wider coverage is wanted later: continue the incremental scale 80 → 150 (the pattern works, ~50/dispatch).
+- Adjudicate the 56 new-entry FAILs (Nutrition) → move accepted ones into the baseline (raises the protected set from 87).
 - Wire content_regression.py into a CI step with a live rubric-judge lane (harness is ready).
