@@ -38,14 +38,19 @@ def load_traces(trace_dir):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", required=True)
-    ap.add_argument("--traces", required=True, help="run_dir/products containing */bsip2_trace.json")
+    ap.add_argument("--traces", required=True, nargs="+", help="one or more run_dir/products dirs containing */bsip2_trace.json; first match wins on barcode collision")
     ap.add_argument("--http", action="store_true", help="also HTTP-check every imageUrl (slow)")
     a = ap.parse_args()
 
     d = json.load(open(a.json, encoding="utf-8"))
     prods = d["products"]
     pc = d.get("page_copy", {})
-    tr = load_traces(a.traces)
+    # Load traces from all provided dirs; first dir wins on barcode collision
+    tr = {}
+    for tdir in a.traces:
+        for bc, t in load_traces(tdir).items():
+            if bc not in tr:
+                tr[bc] = t
     fails, warns = [], []
 
     # 1. score == trace

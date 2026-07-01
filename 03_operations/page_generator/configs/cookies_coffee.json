@@ -1,5 +1,5 @@
 {
-  "_comment": "Cookies-coffee category config. Source: run_cookies_005 (58 Shufersal biscuit traces) + run_cakes_001 (167 cakes/biscuits traces, cookies-subset used). Live page v2 displays 118 products: 56 from run_cookies_005 (2 discarded) + 62 from run_cakes_001 (105 excluded as out-of-scope cakes or not-curated). Corpus: run_cookies_001 bsip1 (58 cookies records) + run_cakes_001 bsip1 (167 cakes records). First-listed corpus wins on barcode collision; first-listed run wins on trace collision.",
+  "_comment": "Cookies-coffee category config. Source: run_cookies_005 (58 Shufersal biscuit traces) + run_cakes_001 (167 cakes/biscuits traces, cookies-subset used) + run_cookies_001 (trace source for barcode 80083764 only — TASK-409 traceability fix). Live page v2 displays 119 products: 56 from run_cookies_005 (2 discarded) + 62 from run_cakes_001 (105 excluded as out-of-scope cakes or not-curated) + 1 from run_cookies_001 (80083764, oat-grain cookie, scored 55.0/C, excluded from run_004/005 due to snack_bar_granola routing but valid cookie-shelf product). Corpus: run_cookies_001 bsip1 (58 cookies records) + run_cakes_001 bsip1 (167 cakes records). First-listed corpus wins on barcode collision; first-listed run wins on trace collision.",
   "category": "cookies_coffee",
   "corpus_dirs": [
     "C:\\\\Bari\\\\03_operations\\\\bsip1\\\\run_cookies_001\\\\output",
@@ -7,7 +7,8 @@
   ],
   "run_products_dir": [
     "C:\\\\Bari\\\\02_products\\\\cookies_coffee\\\\bsip2_outputs\\\\run_cookies_005\\\\products",
-    "C:\\\\Bari\\\\02_products\\\\cakes_hard_cookies\\\\bsip2_outputs\\\\run_cakes_001\\\\products"
+    "C:\\\\Bari\\\\02_products\\\\cakes_hard_cookies\\\\bsip2_outputs\\\\run_cakes_001\\\\products",
+    "C:\\\\Bari\\\\02_products\\\\cookies_coffee\\\\bsip2_outputs\\\\run_cookies_001\\\\products"
   ],
   "baseline_json": "C:\\\\Bari\\\\bari-web\\\\src\\\\data\\\\comparisons\\\\cookies_coffee_frontend_v2.json",
   "retailer_scope": [
