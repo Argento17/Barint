@@ -69,11 +69,12 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
   }
 
   return (
-    <div className="mx-auto mb-4 max-w-xl">
+    <div className="relative mx-auto mb-4 max-w-xl">
       <form
-        className="flex flex-col gap-3 sm:flex-row"
+        className="flex flex-col gap-3 sm:flex-row sm:items-stretch"
         onSubmit={handleSubmit}
         aria-label="הרשמה לניוזלטר"
+        dir="rtl"
       >
         <Input
           type="email"
@@ -84,7 +85,7 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
           placeholder="you@example.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="h-12 rounded-2xl border-black/[0.08] bg-[#FFFFFF]/80 text-left text-sm text-[#111318] shadow-inner shadow-slate-900/25 placeholder:text-[#7A817C] focus-visible:ring-[#1F8F6A]/25"
+          className="h-14 flex-1 rounded-full border-black/8 bg-white px-5 text-left text-sm text-[#111318] placeholder:text-[#7A817C] focus-visible:border-[#1F8F6A]/40 focus-visible:ring-[#1F8F6A]/25"
           disabled={isSubmitting}
           autoComplete="email"
           aria-invalid={feedback?.code === "invalid_email"}
@@ -93,7 +94,7 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="newsletter-cta-attention h-12 shrink-0 rounded-2xl border border-[#1F8F6A]/10 bg-[#167A58] px-8 font-semibold text-[#F7F7F2] shadow-md shadow-slate-900/10 transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#167A58] hover:shadow-lg hover:shadow-slate-900/25 disabled:cursor-wait disabled:animate-none disabled:opacity-80"
+          className="newsletter-cta-attention h-14 shrink-0 rounded-full border border-[#1F8F6A]/10 bg-[#1F8F6A] px-7 font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_40px_-16px_rgba(31,143,106,0.58)] transition-[transform,box-shadow,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#176F53] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_44px_-16px_rgba(31,143,106,0.66)] disabled:cursor-wait disabled:animate-none disabled:opacity-80"
         >
           {isSubmitting ? "נרשמים..." : "הירשמו לניוזלטר"}
         </Button>
@@ -114,8 +115,8 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
 
 export function NewsletterIcon() {
   return (
-    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl border border-black/[0.08] bg-[#1F8F6A]/[0.035] text-[#167A58] shadow-md shadow-slate-900/20">
-      <Mail className="size-8" aria-hidden />
+    <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-xl border border-black/8 bg-[#1F8F6A]/[0.06] text-[#1F8F6A] shadow-sm">
+      <Mail className="size-8" strokeWidth={1.75} aria-hidden />
     </div>
   );
 }

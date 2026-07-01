@@ -4,6 +4,7 @@ import { ChevronLeft } from "lucide-react";
 import { featuredArticle, secondaryArticles } from "@/lib/blog/blog-index-content";
 
 import { HomeContainer } from "./section-frame";
+import { MascotClip } from "./mascot-clip";
 
 export function HomeGuides() {
   const teasers = [featuredArticle, ...secondaryArticles.slice(0, 3)];
@@ -22,13 +23,21 @@ export function HomeGuides() {
               מופיע כאן; שאר הקטגוריות נפתחות בהדרגה.
             </p>
           </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
-          >
-            כל הניתוחים
-            <ChevronLeft className="size-4" aria-hidden />
-          </Link>
+          <div className="flex items-center gap-2 md:flex-col md:items-center md:gap-1">
+            {/* OLI scans a product — mastered on the #F7F7F2 section color, plays plain */}
+            <MascotClip
+              src="/mascots/clips/oli-scan.mp4"
+              plain
+              className="mx-auto hidden aspect-video w-80 md:block"
+            />
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
+            >
+              כל הניתוחים
+              <ChevronLeft className="size-4" aria-hidden />
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">

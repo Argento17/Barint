@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -210,6 +211,16 @@ export function FoodDyesArticle() {
                 </p>
               ))}
           </div>
+
+          {/* ATOM inspects industrial food dyes — small transparent illustration */}
+          <Image
+            src="/blog/food-dyes/atom-food-dyes.png"
+            alt=""
+            width={1000}
+            height={633}
+            className="pointer-events-none mx-auto mt-8 h-auto w-full max-w-sm"
+            aria-hidden
+          />
         </HomeContainer>
 
         {/* Regulatory gap — law vs voluntary vs warning label */}
