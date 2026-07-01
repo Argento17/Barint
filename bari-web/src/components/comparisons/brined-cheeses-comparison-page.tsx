@@ -7,7 +7,6 @@ import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import { SODIUM_METRIC } from "@/components/shared/comparison-metric-column";
-import { BrinedCheesesPrologueVisualizations } from "@/components/comparisons/brined-cheeses-prologue-visualizations";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
@@ -176,10 +175,6 @@ export function BrinedCheesesComparisonPage({
 
         {/* Prologue */}
         <CategoryPrologue sentences={[...prologueSentences]} wide />
-
-        {/* PART B — Three charts (spec §PART B) — injected after prologue prose, before table.
-            Drift amendment: charts in prologue are owner-sanctioned for the golden standard. */}
-        <BrinedCheesesPrologueVisualizations products={filteredProducts} />
 
         {/* 1px separator between prologue/note block and table (Part C spec) */}
         <div
