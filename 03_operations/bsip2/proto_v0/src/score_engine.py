@@ -262,6 +262,17 @@ BARI_GRAD_SODIUM_V1 = os.environ.get("BARI_GRAD_SODIUM_V1", "off").lower() == "o
 # Rollback: set BARI_FIBER_FERMENT_V1=off in the batch runner.
 BARI_FIBER_FERMENT_V1 = os.environ.get("BARI_FIBER_FERMENT_V1", "on").lower() != "off"
 
+# P278 / TASK-432 (2026-07-01): excludes trace-level/stabilizer-context fiber matches
+# (functional_fiber_trace_only=True — undeclared fiber grams and/or explicit
+# "מייצב"/"stabilizer" framing) from the EV-006 functional-fiber bonus. Ruling: a
+# hydrocolloid used as a stabilizer at trace concentration, with no measurable fiber
+# on the label, confers no meaningful satiety/glycemic-dampening benefit and should
+# not earn the same bonus as a genuine fiber-fortified product. DEFAULT OFF — engine
+# byte-identical with flag off (proven: 0.000 delta, 17/17 juices, P278 return).
+# Activation requires Nutrition + Product D7 co-sign (owner tripwire: moves published
+# scores). Rollback: leave BARI_FIBER_TRACE_GATE_V1 unset/off.
+BARI_FIBER_TRACE_GATE_V1 = os.environ.get("BARI_FIBER_TRACE_GATE_V1", "off").lower() == "on"
+
 # TASK-266 / EV-056 — Shelf-relative sodium surcharge for endemic-sodium dairy.
 # DEFAULT OFF → engine byte-identical to baseline.
 # Activates ONLY when BARI_GRAD_SODIUM_V1 is ON AND this flag is ON.
@@ -1764,7 +1775,12 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
              f" + wg({wg_bonus}) = {raw:.1f}{allulose_note}{sw_note}")
 
     # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    # P278/TASK-432: BARI_FIBER_TRACE_GATE_V1 suppresses the bonus for trace-level/
+    # stabilizer-context matches (undeclared fiber grams and/or "מייצב"/"stabilizer"
+    # framing) — presence-only text detection with no corroborating label evidence.
     ff_type = l3.get("functional_fiber_type", "none")
+    if BARI_FIBER_TRACE_GATE_V1 and l3.get("functional_fiber_trace_only"):
+        ff_type = "none"
     ff_bonus = 0
     ff_note = ""
     if ff_type != "none":
@@ -1782,6 +1798,8 @@ def _score_glycemic_quality_sprint1(nn: dict, l3: dict) -> tuple:
         score = round(min(100, score + ff_bonus), 1)
         ff_note = f" + EV-006 {ff_type}-fiber bonus({ff_bonus})"
         note += ff_note
+    elif BARI_FIBER_TRACE_GATE_V1 and l3.get("functional_fiber_trace_only"):
+        note += " [P278: functional_fiber bonus suppressed — trace-only/stabilizer-context match]"
 
     return score, note
 
@@ -2033,8 +2051,12 @@ def score_satiety_support(nn: dict, l3: dict | None = None) -> tuple[float, str]
     note = f"(protein×3 + fiber×5) / max(50,kcal) × 400 = ({prot}×3 + {fiber}×5) / {kcal} × 400 = {score}"
 
     # EV-006: capped functional fiber bonus (after existing total_fiber_g scoring)
+    # P278/TASK-432: BARI_FIBER_TRACE_GATE_V1 suppresses the bonus for trace-level/
+    # stabilizer-context matches — see score_glycemic_quality note above.
     if l3:
         ff_type = l3.get("functional_fiber_type", "none")
+        if BARI_FIBER_TRACE_GATE_V1 and l3.get("functional_fiber_trace_only"):
+            ff_type = "none"
         ff_bonus = 0
         if ff_type != "none":
             if ff_type in ("viscous", "both"):

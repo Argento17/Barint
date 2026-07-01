@@ -449,6 +449,16 @@ PREBIOTIC_FIBER_PATTERNS = {
 _HIGH_FERMENTABILITY_KEYS     = frozenset({"inulin", "fos", "gos", "chicory", "arabinoxylan", "resistant_starch"})
 _MODERATE_FERMENTABILITY_KEYS = frozenset({"phgg", "resistant_dextrin", "arabinogalactan", "acacia"})
 
+# P278 / TASK-432 (2026-07-01): stabilizer-context wording that, when found adjacent to
+# a matched fiber term, marks the match as declared-purpose=stabilizer rather than a
+# fiber-content claim. Reuses the same vocabulary ADDITIVE_MARKER_PATTERNS already uses
+# to detect "stabilizer"/"thickener" function class (lines ~131-133) — no new lexicon,
+# just reused for a second purpose. Gated by BARI_FIBER_TRACE_GATE_V1 (default OFF).
+STABILIZER_CONTEXT_MARKERS = [
+    "מייצב", "מייצבים", "מסמיך", "מסמיכים",
+    "stabilizer", "stabiliser", "stabilizers", "thickener", "thickeners",
+]
+
 # Disambiguation guards for functional fiber detection
 # PHGG markers — if any fire, native_guar is suppressed from viscous class
 PHGG_MARKERS = [
@@ -515,8 +525,15 @@ def _detect_allulose(text: str) -> bool:
     return any(p.lower() in text.lower() for p in ALLULOSE_PATTERNS)
 
 
-def _detect_functional_fiber(text: str) -> dict:
+def _detect_functional_fiber(text: str, dietary_fiber_g: float | None = None) -> dict:
     """Detect EV-006 functional fiber types from ingredient text.
+
+    Args:
+        text: full ingredient text.
+        dietary_fiber_g: label-declared dietary fiber per 100g, if present. Used only
+            to compute the informational `functional_fiber_trace_only` flag below —
+            does NOT change functional_fiber_detected/type (P278: always computed,
+            score_engine gates consumption on BARI_FIBER_TRACE_GATE_V1).
 
     Returns:
         dict with keys:
@@ -525,6 +542,14 @@ def _detect_functional_fiber(text: str) -> dict:
             functional_fiber_terms_matched: list[str]
             functional_fiber_viscous_terms: list[str]
             functional_fiber_prebiotic_terms: list[str]
+            functional_fiber_trace_only: bool — P278/TASK-432: True when the matched
+                fiber term(s) appear only in stabilizer/thickener declared-purpose
+                context AND/OR the label declares no measurable dietary fiber
+                (None or <0.5g/100g, the EU/IL non-disclosure threshold). Signals a
+                likely false-positive fiber-quality claim (trace-level hydrocolloid
+                used as a stabilizer, not a fiber source). Always computed;
+                score_engine gates consumption on BARI_FIBER_TRACE_GATE_V1
+                (default OFF — informational only until activated).
     """
     text_lower = text.lower()
     matched_terms = []
@@ -608,6 +633,47 @@ def _detect_functional_fiber(text: str) -> dict:
     else:
         prebiotic_fermentability_tier = "none"
 
+    # P278 / TASK-432: trace-only false-positive detection (informational — always
+    # computed; score_engine gates consumption on BARI_FIBER_TRACE_GATE_V1).
+    #
+    # Design note (fixed during P278 shadow QA): an earlier version of this gate
+    # scanned for stabilizer/thickener wording ANYWHERE in the ingredient text,
+    # which produced false positives on multi-ingredient products where a genuine,
+    # substantial, explicitly-declared fiber source (e.g. "סיבים תזונתיים (אינולין)"
+    # 8.8g/100g) co-occurred with an UNRELATED stabilizer/thickener additive
+    # elsewhere in the list (e.g. "מסמיך (אקציה גאם)" for texture). That whole-text
+    # scan wrongly marked the genuine inulin match as trace_only too. Fixed to be
+    # TERM-LOCAL: only suppress the specific matched term whose own textual
+    # neighborhood (±40 chars) contains stabilizer/thickener wording, or which has
+    # no other declared-fiber corroboration on the label.
+    #
+    # A fiber_type is "trace_only" only if EVERY term that contributed to it is
+    # individually trace-only — i.e. if ANY contributing term is a genuine,
+    # non-stabilizer-context match (or the product declares fiber grams high enough
+    # to plausibly correspond to more than a trace amount), the bonus is preserved.
+    _WINDOW = 40
+
+    def _term_is_trace_only(term: str) -> bool:
+        idx = text_lower.find(term.lower())
+        if idx == -1:
+            return False  # matched via a different case-variant; treat as not-provably-trace
+        window = text_lower[max(0, idx - _WINDOW): idx + len(term) + _WINDOW]
+        local_stabilizer_context = any(m.lower() in window for m in STABILIZER_CONTEXT_MARKERS)
+        return local_stabilizer_context
+
+    fiber_undeclared = dietary_fiber_g is None or dietary_fiber_g < 0.5
+
+    contributing_terms = matched_terms  # union of viscous_matched + prebiotic_matched
+    if not contributing_terms:
+        functional_fiber_trace_only = False
+    else:
+        all_terms_trace_only = all(_term_is_trace_only(t) for t in contributing_terms)
+        # Trace-only fires when every contributing term sits in stabilizer/thickener
+        # context AND the label corroborates with no measurable declared fiber. A
+        # term with genuine declared fiber (>=0.5g/100g) is never suppressed even if
+        # it also happens to sit near stabilizer wording (label evidence wins).
+        functional_fiber_trace_only = all_terms_trace_only and fiber_undeclared
+
     return {
         "functional_fiber_detected": fiber_type != "none",
         "functional_fiber_type": fiber_type,
@@ -615,6 +681,7 @@ def _detect_functional_fiber(text: str) -> dict:
         "functional_fiber_viscous_terms": sorted(set(viscous_matched)),
         "functional_fiber_prebiotic_terms": sorted(set(prebiotic_matched)),
         "prebiotic_fermentability_tier": prebiotic_fermentability_tier,
+        "functional_fiber_trace_only": functional_fiber_trace_only,
     }
 
 
@@ -1075,7 +1142,8 @@ def extract_signals(product: dict) -> dict:
     has_whole_grain = bool(whole_grain_matches)
 
     # EV-006 — Functional fiber detection (FFV-v1 vocabulary)
-    functional_fiber = _detect_functional_fiber(ing_text)
+    # P278/TASK-432: pass declared dietary_fiber_g for the trace-only false-positive flag.
+    functional_fiber = _detect_functional_fiber(ing_text, nn.get("dietary_fiber_g"))
 
     # R-04: plain dairy detection (first three ingredients) — computed here (ahead of the
     # protein-source block) because TASK-144 Fix 3 dairy-source typing depends on it.
@@ -1387,6 +1455,7 @@ def extract_signals(product: dict) -> dict:
         "functional_fiber_terms_matched":        functional_fiber["functional_fiber_terms_matched"],
         "functional_fiber_viscous_terms":        functional_fiber["functional_fiber_viscous_terms"],
         "functional_fiber_prebiotic_terms":      functional_fiber["functional_fiber_prebiotic_terms"],
+        "functional_fiber_trace_only":           functional_fiber["functional_fiber_trace_only"],
         # TASK-133 (F1/F2/F4) — ingredient identity + fragmentation (magnitudes applied downstream)
         "tax_emulsifier_concern":                tax_emulsifier_concern,      # F1: carrageenan/CMC/P80 (up)
         "tax_emulsifier_benign":                 tax_emulsifier_benign,       # F1: lecithin (toward neutral)
