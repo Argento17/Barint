@@ -8,7 +8,18 @@ import {
   proteinBarsCorpusMeta,
   proteinBarsProducts,
 } from "@/lib/comparisons/protein-bars-comparison-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("protein_bars").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -16,14 +27,14 @@ type Props = {
 };
 
 const PROTEIN_BARS_INSIGHT_LINES = [
-  "הציון הגבוה בקטגוריה — 72/B — לא הולך לחטיף עם הכי הרבה חלבון",
-  "25–34 גרם חלבון מגיעים כמעט תמיד עם ממתיקים ותחליפי סוכר",
+  "הציון הגבוה בקטגוריה לא הולך לחטיף עם הכי הרבה חלבון",
+  "חלבון גבוה מגיע כמעט תמיד עם ממתיקים ותחליפי סוכר",
   "חטיף חלבון מהונדס לעיתים מקבל ציון נמוך מחטיף תמרים פשוט",
 ] as const;
 
 export function FeaturedProteinBarsIntelligenceCard({ href, description }: Props) {
   const insightLines = proteinBarsProducts.map((product) => product.insightLine).filter(Boolean);
-  const lines = insightLines.length > 0 ? insightLines : PROTEIN_BARS_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : PROTEIN_BARS_INSIGHT_LINES).map(stripCardDigits);
 
   return (
     <Link
@@ -36,8 +47,8 @@ export function FeaturedProteinBarsIntelligenceCard({ href, description }: Props
       <ComparisonIntelligenceHero
         badge="דוח חדש"
         categoryTags="חטיפי חלבון · שופרסל"
-        title="השוואת חטיפי חלבון"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: proteinBarsProducts.length, label: "בדף ההשוואה" },

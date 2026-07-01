@@ -8,7 +8,18 @@ import {
   snacksCorpusMeta,
   snacksProducts,
 } from "@/lib/comparisons/snacks-comparison-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("snacks").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -16,15 +27,15 @@ type Props = {
 };
 
 const SNACKS_INSIGHT_LINES = [
-  "הציון הגבוה ביותר בקטגוריה — 70/B — לא הלך לאף אחד מהשמות המוכרים",
-  "חטיפי תמרים עם 3–4 מרכיבים מובילים את המדף בפשטות מבנית",
+  "הציון הגבוה בקטגוריה לא הלך לאף אחד מהשמות המוכרים",
+  "חטיפי תמרים עם רכיבים ספורים מובילים את המדף בפשטות מבנית",
   "תווית אדומה על סוכר לא אומרת תמיד ציון נמוך — מקור הסוכר נכנס לחישוב",
   "חטיפי חלבון מעובדים לעיתים מקבלים ציון נמוך יותר מחטיפי תמרים פשוטים",
 ] as const;
 
 export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
   const insightLines = snacksProducts.map((product) => product.insightLine).filter(Boolean);
-  const lines = insightLines.length > 0 ? insightLines : SNACKS_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : SNACKS_INSIGHT_LINES).map(stripCardDigits);
 
   return (
     <Link
@@ -37,8 +48,8 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
       <ComparisonIntelligenceHero
         badge="דוח חדש"
         categoryTags="חטיפי דגנים · שופרסל"
-        title="השוואת חטיפי דגנים"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: 655, label: "מוצרים נסרקו" },

@@ -9,7 +9,18 @@ import {
   milkVmProducts,
   milkPrologueSentences,
 } from "@/lib/comparisons/milk-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("milk").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -27,7 +38,7 @@ const MILK_INSIGHT_LINES = [
 
 export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
   const insightLines = milkVmProducts.map((product) => product.insightLine).filter(Boolean);
-  const lines = insightLines.length > 0 ? insightLines : MILK_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : MILK_INSIGHT_LINES).map(stripCardDigits);
   const cardDescription = description ?? milkPrologueSentences[0];
 
   return (
@@ -41,8 +52,8 @@ export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
       <ComparisonIntelligenceHero
         badge="ניתוח מובייל"
         categoryTags="חלב · תחליפי חלב · משקאות חלבון"
-        title="השוואת חלב ותחליפי חלב"
-        description={cardDescription}
+        title={CARD_HERO.title}
+        description={stripCardDigits(cardDescription)}
         insightLines={lines}
         stats={[
           { value: milkCorpusMeta.product_count, label: "מוצרים נבדקו" },

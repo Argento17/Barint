@@ -6,10 +6,20 @@ import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-
 import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   cookiesCoffeeCorpusMeta,
-  cookiesCoffeeHero,
   cookiesCoffeeProducts,
 } from "@/lib/comparisons/cookies-coffee-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("cookies_coffee").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -26,8 +36,7 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
   const insightLines = cookiesCoffeeProducts
     .map((product) => product.insightLine)
     .filter(Boolean);
-  const lines =
-    insightLines.length > 0 ? insightLines : COOKIES_COFFEE_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : COOKIES_COFFEE_INSIGHT_LINES).map(stripCardDigits);
 
   const cCount = cookiesCoffeeProducts.filter((p) => p.grade === "C").length;
   const dCount = cookiesCoffeeProducts.filter((p) => p.grade === "D").length;
@@ -44,8 +53,8 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
       <ComparisonIntelligenceHero
         badge="חדש"
         categoryTags="ביסקוויטים · לוטוס · ליים · קרמבו · מריה"
-        title={cookiesCoffeeHero.title}
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: cookiesCoffeeProducts.length, label: "מוצרים נותחו" },
@@ -57,7 +66,6 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
         asLinkChild
         theme={{
           accent: "#C4975A",
-          // Stock CATEGORY image only — product images are banned on cards (owner ruling 2026-06-14).
           photo: "/hashvaot/themes/cookies-coffee.jpg",
         }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

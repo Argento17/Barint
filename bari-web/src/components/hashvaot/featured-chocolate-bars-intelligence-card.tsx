@@ -8,7 +8,18 @@ import {
   chocolateBarsCorpusMeta,
   chocolateBarsProducts,
 } from "@/lib/comparisons/chocolate-bars-comparison-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("chocolate_bars").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -17,13 +28,13 @@ type Props = {
 
 const CHOCOLATE_BARS_INSIGHT_LINES = [
   "כל החטיפים מקבלים E — אבל יש הבדל בין ממתק עם בוטנים לממתק של סוכר בלבד",
-  "45–60 גרם סוכר ל-100 גרם הוא הטווח שמגדיר את כל המדף הזה",
-  "המילה 'חטיף' היא שיווק — זהו מדף ממתקים לכל דבר",
+  "הסוכר, השמן והסירופ קובעים את הציון — לא שם המוצר",
+  "המילה חטיף היא שיווק — זהו מדף ממתקים לכל דבר",
 ] as const;
 
 export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Props) {
   const insightLines = chocolateBarsProducts.map((product) => product.insightLine).filter(Boolean);
-  const lines = insightLines.length > 0 ? insightLines : CHOCOLATE_BARS_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : CHOCOLATE_BARS_INSIGHT_LINES).map(stripCardDigits);
 
   return (
     <Link
@@ -36,8 +47,8 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
       <ComparisonIntelligenceHero
         badge="דוח חדש"
         categoryTags="חטיפי שוקולד · שופרסל"
-        title="השוואת חטיפי שוקולד"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: chocolateBarsProducts.length, label: "בדף ההשוואה" },

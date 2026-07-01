@@ -7,7 +7,18 @@ import {
   BREAD_REPORT_STATS,
   breadComparisonPairs,
 } from "@/lib/comparisons/bread-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("bread").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -32,8 +43,8 @@ export function FeaturedBreadIntelligenceCardLite({ href, description }: Props) 
       <ComparisonIntelligenceHero
         badge="דוח חדש"
         categoryTags="לחם · פיתה · קרקרים"
-        title="מה באמת יש בלחם שלכם?"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={BREAD_INSIGHT_LINES}
         stats={[
           { value: BREAD_REPORT_STATS.scanned, label: "מוצרים נסרקו" },

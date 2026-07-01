@@ -10,11 +10,22 @@ import {
   granolaCorpusMeta,
   granolaProducts,
 } from "@/lib/comparisons/granola-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
+const CARD_HERO = getComparisonPageChrome("granola").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
+
 const INSIGHT_LINES = [
-  "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-76/B",
-  "פער של 47 נקודות בין הגבוה לנמוך",
+  "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-B",
+  "פער גדול בין הגבוה לנמוך",
   "הסוכר, השומן והסירופ קובעים את הציון — לא תדמית הבריאות",
   "גרנולת חלבון מול מוזלי פירות — אותו מדף, ציונים רחוקים",
 ] as const;
@@ -36,8 +47,8 @@ export function FeaturedGranolaIntelligenceCard({ href, description }: Props) {
       <ComparisonIntelligenceHero
         badge="קטגוריה חדשה"
         categoryTags="גרנולה · מוזלי · דגן אפוי"
-        title="גרנולה ומוזלי: 53 מוצרים, פער של 47 נקודות"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={INSIGHT_LINES}
         stats={[
           { value: granolaProducts.length, label: "מוצרים נותחו" },

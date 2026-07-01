@@ -6,10 +6,20 @@ import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-
 import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   brinedCheesesCorpusMeta,
-  brinedCheesesHero,
   brinedCheesesProducts,
 } from "@/lib/comparisons/brined-cheeses-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("brined_cheeses").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -18,8 +28,8 @@ type Props = {
 
 const BRINED_CHEESES_INSIGHT_LINES = [
   "שלושה רכיבים מול שמונה — הפער הכי גדול בקטגוריה הוא רשימת הרכיבים",
-  "A בקטגוריה זו לא אומר 'נמוך בנתרן' — אלא הטוב ביותר שאפשר בגבינה מלוחה",
-  "פטה עיזים 5% מובילה — חלב, מלח ומשמר אחד בלבד",
+  "A בקטגוריה זו לא אומר נמוך בנתרן — אלא הטוב ביותר שאפשר בגבינה מלוחה",
+  "פטה עיזים מובילה — חלב, מלח ומשמר אחד בלבד",
   "גבינה עם נתרן קיצוני גם יחסית למדף מקבלת חיסרון נוסף",
 ] as const;
 
@@ -27,8 +37,7 @@ export function FeaturedBrinedCheesesIntelligenceCard({ href, description }: Pro
   const insightLines = brinedCheesesProducts
     .map((product) => product.insightLine)
     .filter(Boolean);
-  const lines =
-    insightLines.length > 0 ? insightLines : BRINED_CHEESES_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : BRINED_CHEESES_INSIGHT_LINES).map(stripCardDigits);
 
   const aCount = brinedCheesesProducts.filter((p) => p.grade === "A").length;
   const bCount = brinedCheesesProducts.filter((p) => p.grade === "B").length;
@@ -45,8 +54,8 @@ export function FeaturedBrinedCheesesIntelligenceCard({ href, description }: Pro
       <ComparisonIntelligenceHero
         badge="חדש"
         categoryTags="בולגרית · פטה · צפתית · חלומי"
-        title={brinedCheesesHero.title}
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: brinedCheesesProducts.length, label: "מוצרים נותחו" },
@@ -58,7 +67,6 @@ export function FeaturedBrinedCheesesIntelligenceCard({ href, description }: Pro
         asLinkChild
         theme={{
           accent: "#7FA8B8",
-          // Stock CATEGORY image only — product images are banned on cards (owner ruling 2026-06-14).
           photo: "/hashvaot/themes/brined-cheeses.jpg",
         }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

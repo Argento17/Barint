@@ -8,7 +8,18 @@ import {
   juicesCorpusMeta,
   juicesProducts,
 } from "@/lib/comparisons/juices-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("juices").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
@@ -17,16 +28,16 @@ type Props = {
 
 const JUICES_INSIGHT_LINES = [
   "A אחד בכל הקטגוריה — סחוט תפוזים טרי בלבד",
-  "גם סחוט קר מגיע ל-C: סוכר נוזלי מנצח את ה'בריאות' על האריזה",
-  "נקטרים עם 25–99% פרי נופלים ל-C ו-D — הפרי הדומיננטי הוא סוכר",
-  "טווח הסוכר במיץ 100%: 1.75–16.8 גרם ל-100 מ\"ל — פער עצום בתוך אותה קטגוריה",
+  "גם סחוט קר מגיע ל-C: סוכר נוזלי מנצח את הבריאות על האריזה",
+  "נקטרים עם חלק מהפרי בלבד נופלים ל-C ו-D — הפרי הדומיננטי הוא סוכר",
+  "גם בין מיצי הפרי המלאים יש פער עצום בכמות הסוכר — לא כל פרי שווה",
 ] as const;
 
 export function FeaturedJuicesIntelligenceCard({ href, description }: Props) {
   const insightLines = juicesProducts
     .map((product) => product.insightLine)
     .filter(Boolean);
-  const lines = insightLines.length > 0 ? insightLines : JUICES_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : JUICES_INSIGHT_LINES).map(stripCardDigits);
 
   const aCount = juicesProducts.filter((p) => p.grade === "A").length;
   const scoredCount = juicesProducts.filter((p) => p.score != null).length;
@@ -42,8 +53,8 @@ export function FeaturedJuicesIntelligenceCard({ href, description }: Props) {
       <ComparisonIntelligenceHero
         badge="חדש"
         categoryTags="מיצים · נקטרים · משקאות פירות"
-        title="מיצים ומשקאות פירות: מה בין סחוט טרי למשקה פירות?"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: juicesProducts.length, label: "מוצרים נותחו" },

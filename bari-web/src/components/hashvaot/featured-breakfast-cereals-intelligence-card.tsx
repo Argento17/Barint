@@ -10,14 +10,25 @@ import {
   cerealsCorpusMeta,
   cerealsProducts,
 } from "@/lib/comparisons/cereals-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("cereals").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 const INSIGHT_LINES = [
   "תווית «דגנים מלאים» מופיעה על מוצרים שמדורגים D",
   "שיבולת שועל בגרסה העבה — רכיב אחד, ציון B גבוה",
-  "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-75/B",
-  "טענת «דגנים מלאים» על 20 מוצרים — לא בכולם הסדר תומך בה",
-  "חמישה מוצרים מיועדים לילדים",
+  "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-B",
+  "טענת «דגנים מלאים» על חלק מהמדף — לא בכולם הסדר תומך בה",
+  "יש מוצרים שמיועדים לילדים",
   "גרנולה, מוזלי ושיבולת שועל אינם בעמוד זה",
 ] as const;
 
@@ -38,8 +49,8 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
       <ComparisonIntelligenceHero
         badge="ניתוח חדש"
         categoryTags="דגני בוקר · שיבולת שועל · קורנפלקס"
-        title="דגני בוקר: 37 מוצרים, אף אחד לא מגיע ל-A"
-        description={description}
+        title={CARD_HERO.title}
+        description={stripCardDigits(description)}
         insightLines={INSIGHT_LINES}
         stats={[
           { value: cerealsProducts.length, label: "מוצרים נותחו" },

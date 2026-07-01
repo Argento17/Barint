@@ -9,25 +9,33 @@ import {
   cheeseProducts,
   cheesePrologueSentences,
 } from "@/lib/comparisons/cheese-page-data";
+import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
+
+const CARD_HERO = getComparisonPageChrome("cheese").hero;
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 
 type Props = {
   href: string;
   description?: string;
 };
 
-// TASK-152: reviewed & refined by Content Agent against the insight-line spec
-// (4 sub-pools; cream-cheese spreads fall once real fat is counted, EV-029).
 const CHEESE_CARD_INSIGHT_LINES = [
   "ארבע קבוצות במדף: קוטג', גבינה לבנה / קוורק, ממרחי גבינת שמנת ולבנה",
-  "הקוטג' והגבינות הלבנות מובילות — חלבון של עד 11.5 גרם ל-100 גרם",
+  "הקוטג' והגבינות הלבנות מובילות — חלבון גבוה ל-100 גרם",
   "ממרחי גבינת שמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי",
   "במדף הזה 'הכי טוב' הוא B — אף מוצר לא מגיע ל-A",
 ] as const;
 
 export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? cheesePrologueSentences[0];
-
   const displayedCount = cheeseProducts.length;
   const scoredCount = cheeseProducts.filter((product) => product.score != null).length;
   const aGradeCount = cheeseProducts.filter((product) => product.grade === "A").length;
@@ -43,8 +51,8 @@ export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
       <ComparisonIntelligenceHero
         badge="חדש"
         categoryTags="גבינות לבנות וממרחים · שופרסל"
-        title="גבינה לבנה: מה מפריד גבינה מממרח?"
-        description={cardDescription}
+        title={CARD_HERO.title}
+        description={stripCardDigits(cardDescription)}
         insightLines={CHEESE_CARD_INSIGHT_LINES}
         stats={[
           { value: displayedCount, label: "מוצרים בהשוואה" },
@@ -53,11 +61,6 @@ export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(cheeseCorpusMeta.generated)}
         asLinkChild
-        // Cottage/white-cheese cream accent + category-true fresh-white-cheese photo
-        // (white cheese balls in oil/brine). Brings the index card to visual parity
-        // with the other featured boxes, all of which carry a /hashvaot/themes photo.
-        // milk.jpg was previously rejected (read as the wrong dairy product); this
-        // asset reads unambiguously as fresh white cheese, not milk or yogurt.
         theme={{ accent: "#D8CBB0", photo: "/hashvaot/themes/cheese.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
