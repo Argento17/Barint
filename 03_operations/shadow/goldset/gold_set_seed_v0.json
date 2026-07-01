@@ -1519,6 +1519,2537 @@
     "reviewed_by": "pending-red-team",
     "agreement": "pending"
    }
+  },
+  {
+   "id": "G-011",
+   "pid": "bsip1_cereal_7290011131975",
+   "corpus": "granola",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     55
+    ],
+    "dimensions": {
+     "fat_quality": "medium",
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Granola fruit mix; sugars 21g (red label >17.5g); palm oil; glucose syrup; E220 sulfite preservative; 396 kcal; fiber 7g moderate",
+     "rationale": "Green fruit granola with sugar 21g firing Israeli red label. First ingredient glucose syrup. Palm oil (fat_tech concern). Sulfite preservative (E220) on dried fruit. Multiple added sugar sources (glucose syrup, brown sugar, inverted sugar, date syrup). Despite moderate fiber 7g and protein 9g, the sugar red label + palm oil + high glycemic load place this in C-D. Calorie density 396 kcal mid-band for granola.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290011131975; run_cereals_008"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-012",
+   "pid": "bsip1_brinedcheese_7290011499327",
+   "corpus": "brined_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "medium",
+     "fat_quality": "medium",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Low-fat Bulgarian brined cheese 5%; sodium 1010mg (above shelf median ~600mg but below 1200mg peak); fat 5g sat_fat 3g; protein 10g; E-202 preservative",
+     "rationale": "Gad low-fat Bulgarian: 3 ingredients (pasteurized milk, sea salt, E-202). NOVA 2. Sat_fat 3g well below 5g red-label. Sodium 1010mg — above 700mg absolute threshold fires graduated penalty under BARI_GRAD_SODIUM_V1. Shelf-relative sodium: 1010mg is at/above median for brined cheeses (~940mg) so no shelf-relative relief. Protein 10g at only 93 kcal is excellent density. DAIRY_PROTEIN_REWEIGHT_V1 rewards high protein:calorie ratio. Ambiguous: graduated sodium penalty vs excellent protein density. Expected B-C range.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290011499327; run_brined_cheeses_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-013",
+   "pid": "bsip1_brinedcheese_7290011499051",
+   "corpus": "brined_cheeses",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     60
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Sheep feta 20%; sat_fat 13.3g (2.7x red-label threshold); sodium 930mg; protein 14g; 236 kcal; E-202 preservative only",
+     "rationale": "Gad sheep feta 20%: sat_fat 13.3g fires red label (>5g). Sodium 930mg: graduated penalty fires but below 1000mg hard threshold. 236 kcal mid-band for dairy_protein. DAIRY_PROTEIN_REWEIGHT_V1 gives some protein credit (14g), but sat_fat red label dominates. Single preservative (E-202) — additive count low. Brined-cheese lesson: flag-heavy corpus inflates scores vs absolute math; C-D expected not E.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290011499051; run_brined_cheeses_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-014",
+   "pid": "bsip1_cheese_47942",
+   "corpus": "cheese",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     58,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "medium",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Tnuva 9% white cheese; 2 ingredients (milk, salt); sat_fat 5.4g (at red-label boundary); protein 8.5g; sodium 200mg (very low); 127 kcal",
+     "rationale": "Extremely clean label: milk + salt only, NOVA 1. Sodium 200mg very low — no sodium penalty. Sat_fat 5.4g is at the 5g threshold boundary: if engine rounds to >5g fires red label; if <=5g no penalty. Sugar_g null on label (cottage-type, lactose only). Protein 8.5g at 127 kcal — solid density. No additives at all. Expected B: sat_fat boundary is the main uncertainty; clean label otherwise strong.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 47942; run_cheese_003"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-015",
+   "pid": "bsip1_cheese_7290019635116",
+   "corpus": "cheese",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     58
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Gad olive cream cheese 5%; 4 additive classes (acidity regulator, stabilizer x2, thickener, inulin); sugars 3.8g added; sodium 400mg; 96 kcal; carrageenan present",
+     "rationale": "Cream cheese spread with starch, inulin, citric acid, xanthan, carrageenan, cellulose. 4+ additive categories — ADDITIVE_MARKERS_3_PLUS cap (72) fires, then NOVA_PROXY_3_PROCESSED may stack. Carrageenan is a medium-risk emulsifier. A-ceiling eligibility fails (added sugar present via sweetener, engineered additives, no culture). protein 2.8g very low. Expected C-D.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290019635116; run_cheese_003"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-016",
+   "pid": "bsip1_7290115202434",
+   "corpus": "hummus",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C"
+    ],
+    "score_range": [
+     50,
+     62
+    ],
+    "dimensions": {
+     "fat_quality": "medium",
+     "glycemic_quality": "high",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Za'atar hummus; chickpeas 67%, tahini 15%, canola+olive oil; protein 7.8g; sodium 395mg; 206 kcal; 1 preservative (potassium sorbate); unspecified vegetable oils",
+     "rationale": "Standard Israeli prepared hummus with zaatar seasoning. Chickpea 67% is solid base. Tahini 15% adds good fat from sesame. Canola+olive oil mixture — partially favorable fat profile but unspecified residual. Sodium 395mg near shelf median ~390mg, minimal shelf-relative penalty. One preservative (potassium sorbate). 206 kcal — high for hummus archetype (fat from oils raises calorie density). Expected C: calorie density penalty + oil fat-tech concern.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290115202434; canonical_hummus corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-017",
+   "pid": "bsip1_cakes_7290013145406",
+   "corpus": "cakes",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "E"
+    ],
+    "score_range": [
+     0,
+     25
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "White chocolate chips; sugars 70.9g (red label, 4x threshold); sat_fat 21.7g (red label, 4.3x); 508 kcal; protein 0.02g (essentially zero); palm/coconut fat",
+     "rationale": "Pure confectionery ingredient with no nutritional value. Sugars 70.9g is 4x the 17.5g red-label (highest possible glycemic penalty). Sat_fat 21.7g is 4.3x the 5g threshold. Two extreme red labels. Calorie density 508 kcal worst dessert tier. Protein 0.02g is effectively zero. Shelf-relative sugar surcharge fires at 70.9g vs Q3 ~33g. NOVA 4. Multiple caps stack to extreme E.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290013145406; run_cakes_001"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-018",
+   "pid": "bsip1_4011800000349",
+   "corpus": "snack_bars",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "fat_quality": "medium",
+     "glycemic_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Corny chocolate-caramel cereal bar; glucose syrup first ingredient; trans_fat 0.5g; sugars 5.7g but glucose syrup dominant; NOVA 4; 97 kcal (low calorie density - only redeeming factor); palm oil + coconut fat",
+     "rationale": "Industrial Corny bar. Glucose syrup is first ingredient (high-glycemic base). Trans fat 0.5g fires HIGH_TRANS_FAT flag. Palm oil and coconut fat (fat_tech concerns). NOVA 4 with multiple processing markers (glycerol stabilizer, flavor, lecithin). Calorie density only 97 kcal/100g — unusual for a cereal bar, favorable calorie tier. Sugar 5.7g below red-label but glucose syrup dominance means glycemic penalty applies. Expected C-D: trans fat + NOVA 4 cap offset by low calorie density.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 4011800000349; run_001"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-019",
+   "pid": "bsip1_brinedcheese_2511229",
+   "corpus": "brined_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     68
+    ],
+    "dimensions": {
+     "fat_quality": "medium",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Hamoshava Bulgarian 16%; sat_fat 9g (red label, 1.8x); sodium 940mg (graduated penalty but below 1000mg hard cap); protein 15g excellent; 200 kcal; ingredients absent from label",
+     "rationale": "Medium-fat Bulgarian with excellent protein (15g at 200 kcal). Sat_fat 9g fires red label. Sodium 940mg: graduated penalty under BARI_GRAD_SODIUM_V1=on; shelf-relative at ~1000mg median gives near-zero relief. No ingredient list in BSIP1 (ingredient_count=0) — NOVA proxy set low (NOVA_PROXY=2 at confidence 0.3). DAIRY_PROTEIN_REWEIGHT_V1 elevates protein weight, partially offsetting fat penalty. Brined-cheese corpus behavior: sat_fat + sodium penalties soften shelf-relatively. Expected B-C.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 2511229; run_brined_cheeses_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-020",
+   "pid": "bsip1_3643714",
+   "corpus": "hummus",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B"
+    ],
+    "score_range": [
+     65,
+     78
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "glycemic_quality": "high",
+     "fat_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Dry chickpeas (raw/bulk); protein 16.6g; fat 6.3g; fiber high; sodium 12mg (extremely low); no additives; 380 kcal; ingredients absent (UNVERIFIABLE for additive check)",
+     "rationale": "Bulk dry chickpeas — a raw whole food. Protein 16.6g excellent. Sodium 12mg near zero. Fat 6.3g entirely unsaturated. No ingredients list available in BSIP1 (null) but product identity is raw chickpeas. Zero additive score maximum. 380 kcal is high for a dry legume by weight but per-prepared-serving calorie density is favorable. Expected B: calorie density per-100g dry weight artificially high; NOVA-1 raw food; excellent protein + fiber vs shelf. Ingredient absent flag = UNVERIFIABLE for additive score but label identity strongly implies none.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 3643714; canonical_hummus corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch1)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-011",
+   "pid": "bsip1_cereal_7290011131388",
+   "corpus": "granola",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "D",
+     "E"
+    ],
+    "score_range": [
+     25,
+     49
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "fat_quality": "low",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Apple-cinnamon crunchy muesli; sugars 30g (red label, 1.7x threshold); palm oil; sat_fat 3.8g; 394 kcal; sodium 380mg; soy lecithin; glucose syrup",
+     "rationale": "Green apple-cinnamon muesli. Sugars 30g fires Israeli red label (>17.5g). Palm oil is fat_tech concern. Multiple sugar sources: glucose syrup, brown sugar, raisins (concentrated fruit sugar). Despite oat base (39%) high glycemic from processed sugars. Sat_fat 3.8g below threshold but palm contribution. Sodium 380mg moderate. Expected D-E: sugar red label + palm oil + high calorie density 394 kcal in worst granola tier.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290011131388; run_cereals_008"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-012",
+   "pid": "bsip1_cereal_7290014471443",
+   "corpus": "granola",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "fat_quality": "medium",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Shuk Kulinary nut granola; sugars 20g (red label >17.5g); palm oil; glucose syrup; E322 lecithin; 371 kcal; fiber 6g; protein 9g; nuts 4.5%",
+     "rationale": "Nut granola with palm oil (fat_tech concern) and glucose syrup as second ingredient by weight. Sugars 20g fires red label. Despite real nuts (hazelnuts 2%, almonds 1.5%, walnuts 1%) at only 4.5% total — negligible nutritional contribution from nuts. Lecithin E322 is mild additive. Sodium 20mg very low. Fiber 6g and protein 9g are moderate positives. Expected C-D: sugar red label + palm dominate.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290014471443; run_cereals_008"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-013",
+   "pid": "bsip1_cereal_7290112497994",
+   "corpus": "granola",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "B"
+    ],
+    "score_range": [
+     65,
+     78
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "glycemic_quality": "high",
+     "fat_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Telma protein+ granola; protein 23.7g (exceptional for granola); sugars 9g (well below 17.5g red-label); whole oat 51%; soy protein isolate; fiber 8.3g; tahini; nuts 9%; no palm oil; 431 kcal",
+     "rationale": "High-protein granola with oat 51% + soy protein concentrate+isolate giving 23.7g protein — dramatically above granola average (~9g). Sugars only 9g — well below red label. Fat 12.7g with sat_fat 3.1g (below threshold). Sodium 65mg very low. Fiber 8.3g strong. No palm oil — fat from tahini, seeds, nuts, silan. Soy protein isolate is NOVA-3 processing marker. Despite isolate, no synthetic additives. Expected B: excellent macros + low sugar; calorie density 431 kcal and soy isolate prevent A.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290112497994; run_cereals_008"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2-fix)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-014",
+   "pid": "bsip1_7290110324773",
+   "corpus": "milk",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     58
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "fat_quality": "high",
+     "calorie_density": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Tnuva Go27 high-protein milk drink vanilla 2%; protein 7.4g at 67 kcal; 3 additive classes (E500 acidity reg, E471 emulsifier, E407 carrageenan); monk fruit; flavors",
+     "rationale": "Engineered functional milk drink. Protein concentrate added (4.6% milk protein). Three additive categories: E500 acidity regulator, E471 emulsifier (mono/diglycerides), E407 carrageenan (NOVA 4 marker). Flavoring + monk fruit sweetener. NOVA 4 classification. ADDITIVE_MARKERS_3_PLUS cap (72) fires. Carrageenan is identity concern (CMC/P80 class). Despite solid protein density (7.4g at 67 kcal), additive stack pulls score down. Expected C-D.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290110324773; run_milk_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-015",
+   "pid": "bsip1_7290114313285",
+   "corpus": "milk",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "D"
+    ],
+    "score_range": [
+     35,
+     49
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "fat_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Muller protein banana drink 0% fat; protein isolate first ingredient; carrageenan + locust bean gum stabilizers; sucralose sweetener; food coloring (beta-carotene); artificial flavor",
+     "rationale": "Ultra-processed protein supplement masquerading as milk drink. Protein concentrate is first ingredient (not real milk). Sucralose sweetener (artificial). Carrageenan + locust bean gum stabilizer stack. Beta-carotene food coloring. Artificial banana flavor. NOVA 4. Multiple additive classes: sweetener, stabilizers x2, flavor, color. ADDITIVE_MARKERS_5_PLUS cap stack likely. Energy_kcal null in BSIP1 (missing field). Despite high protein density, additive/processing stack is severe. Expected D.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290114313285; run_milk_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "A-011",
+   "pid": "bsip1_cereal_7290013433244",
+   "corpus": "granola",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "glycemic_quality": "medium",
+     "fat_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Ambiguous: granola without confirmed nutrition (pid 7290013433244 from run_cereals_008); expected similar to G-005 (7290013433336 same brand/series) — likely B-C depending on sugar_g vs 17.5g threshold",
+     "rationale": "This PID is a close variant of G-005 (barcode 7290013433336 vs 7290013433244 — same Teva/Superfood brand series). Nutrition likely similar: ~400 kcal, sugars ~13-18g depending on flavor variant. If sugars <17.5g no red label → B range. If sugars >=17.5g → C. Core ambiguity: sugar is the swing variable, which determines red-label fire. Fiber and protein expected solid from oat + seed base. Expected B-C without confirmed per-100g sugar.",
+     "basis": "direct product scrape (variant of G-005 series)",
+     "citation": "Shufersal BSIP1, barcode 7290013433244; run_cereals_008"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "A-012",
+   "pid": "bsip1_brinedcheese_2511236",
+   "corpus": "brined_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     68
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Hamoshava Bulgarian variant (barcode 2511236); ambiguous because nutrition may overlap with 2511229 (16%) or differ — expected similar B-C profile",
+     "rationale": "Close barcode variant of G-019 (2511229). If same fat% (16%), same scoring trajectory: sat_fat red label, sodium ~940mg graduated penalty, protein ~15g. Ambiguous tier because some variants in this series are 5% or 24% fat — fat% not confirmed in this specific PID's BSIP1 record. Expected B-C for 16% variant; would slide to C-D if this is the 24% variant. Brined-cheese corpus inflation note: penalty softer shelf-relatively than absolute math suggests.",
+     "basis": "direct product scrape (Hamoshava Bulgarian variant series)",
+     "citation": "Shufersal BSIP1, barcode 2511236; run_brined_cheeses_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "A-013",
+   "pid": "bsip1_7290114313865",
+   "corpus": "milk",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     70
+    ],
+    "dimensions": {
+     "additive_quality": "medium",
+     "fat_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Muller protein strawberry variant (7290114313865); ambiguous — protein concentrate base + sweetener stack but exact additive count by BSIP1 uncertain; expected C-D with range widened for B if additives <3",
+     "rationale": "Companion to P-015 (banana variant). Strawberry Muller protein drink. Structurally identical: protein isolate first, sweetener (sucralose likely), flavoring, stabilizers. Ambiguous because the exact BSIP1 for this barcode was not directly read — nutrition panel may differ slightly from banana. If additive count is exactly 3 (not 5+), the cap stack is lighter → could reach B. Expected B-C range reflects this uncertainty.",
+     "basis": "direct product scrape (Muller protein variant series)",
+     "citation": "Yohananof BSIP1, barcode 7290114313865; run_milk_002"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "A-014",
+   "pid": "bsip1_cheese_7290019635369",
+   "corpus": "cheese",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     60
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "fat_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Gad cream cheese spread variant (7290019635369) — close to G-015 (7290019635116 olive variant) but likely plain or different flavoring; ambiguity is whether additive count is >=3 or <3",
+     "rationale": "In the same Gad cream cheese 5% line as G-015. If plain (fewer flavor additives than the olive variant), additive count may be exactly 3 vs 4. ADDITIVE_MARKERS_3_PLUS fires at 3+, so both variants trigger the cap. Main uncertainty: sodium level may differ depending on flavor. Carrageenan likely present in all variants of this line. Expected C-D consistent with G-015.",
+     "basis": "direct product scrape (Gad cream cheese 5% variant series)",
+     "citation": "Shufersal BSIP1, barcode 7290019635369; run_cheese_003"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "A-015",
+   "pid": "bsip1_cheese_7290019635376",
+   "corpus": "cheese",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C"
+    ],
+    "score_range": [
+     50,
+     64
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "fat_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Gad cream cheese 5% herb variant (7290019635376); ambiguous because herb flavoring may add or not add synthetic additives vs plain variant",
+     "rationale": "Adjacent Gad cream cheese 5% variant, likely herb flavor. If herb flavoring is natural (no E-number synthetic flavor), additive count stays at 3-4 from stabilizers/thickeners — same cap fires. If synthetic flavor additive is added, count rises to 5+ (ADDITIVE_MARKERS_5_PLUS = harsher cap). Ambiguous on which flavor class applies. Core nutrition (milk, starch, stabilizers) expected identical to G-015. Expected C: anchored to G-015 profile with slight upward uncertainty if additive count does not reach 5+.",
+     "basis": "direct product scrape (Gad cream cheese 5% herb variant)",
+     "citation": "Shufersal BSIP1, barcode 7290019635376; run_cheese_003"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch2)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-021",
+   "pid": "bsip1_yogurt_7290110321031",
+   "corpus": "yogurt",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "A"
+    ],
+    "score_range": [
+     80,
+     88
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "medium",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Yoplaite GO high-protein yogurt; 3 ingredients (milk, milk proteins 7.4%, milk powder); protein 10g at 72 kcal; zero additives; NOVA 2; sugars_g null (lactose only)",
+     "rationale": "Very high-protein plain yogurt. Only 3 real dairy ingredients — no additives, no flavoring, no stabilizers. Protein 10g at 72 kcal is exceptional dairy protein density. Sugars null (expected ~4-5g lactose, well below red label). Fat 2g, sodium 69mg both very low. NOVA 2 (minimal processing, concentrated proteins). Live cultures implied but not confirmed in ingredient list. Under RECAL_P0=on + YOGURT_TRIM=on yogurt flags, expected A floor. No fermentation bonus claimed (cultures not confirmed in text). Expected A.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290110321031; run_yogurt_006"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-022",
+   "pid": "bsip1_yogurt_7290102393039",
+   "corpus": "yogurt",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Muller Mix yogurt with chocolate rice pops; sugars 13.5g (elevated, near red-label zone); added glucose syrup in chocolate inclusions; 131 kcal (elevated); protein 5.6g (low)",
+     "rationale": "Flavored yogurt with chocolate-inclusions (10.5%). Sugars 13.5g from added components (glucose syrup, sucrose in chocolate). Calorie density 131 kcal mid-tier for dairy but elevated vs plain. Protein 5.6g depressed (diluted by sugary inclusions). Added flavoring. NOVA 3-4 due to flavoring + glucose syrup in chocolate. Despite BIO live cultures marker in ingredients, the added-sugar glycemic load and NOVA-3 classification prevent A. Expected C-D.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290102393039; run_yogurt_006"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-023",
+   "pid": "bsip1_cookies_7290013740052",
+   "corpus": "cookies_coffee",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     55
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "medium",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Racheli jam flower cookies; sat_fat 10.3g (red label, 2.1x threshold); sugars 13.3g (below red-label); 443 kcal; unspecified vegetable fats (fat_tech concern); fiber 1.1g (low); artificial strawberry flavor",
+     "rationale": "Jam-filled shortbread cookie. Sat_fat 10.3g fires red label (2.1x threshold). Unspecified 'vegetable fats' = fat_tech concern (potential palm/hydrogenated). Sugars 13.3g below 17.5g threshold. Calorie density 443 kcal in highest dessert band. Low fiber 1.1g. Artificial strawberry flavor marker. NOVA 4. One red label (sat_fat). Expected C-D: sat_fat red label + fat_tech + high calorie density.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290013740052; run_cookies_001"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-024",
+   "pid": "bsip1_cookies_7290013740694",
+   "corpus": "cookies_coffee",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "D",
+     "E"
+    ],
+    "score_range": [
+     20,
+     45
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Alfajores cookie (dulce de leche); sat_fat 8.8g (red label, 1.8x); sugars 21g (red label, 1.2x); 416 kcal; margarine (hydrogenated fat); multiple E-codes in dulce de leche (E-202, E-406, E-500); artificial flavor",
+     "rationale": "Two Israeli red labels: sat_fat 8.8g and sugars 21g both fire. Margarine in ingredients = hydrogenated/partially hydrogenated fat, worst fat_tech class. Dulce de leche filling contains E-202 (preservative), E-406 (agar), E-500 (sodium bicarbonate), plus glucose. Multiple additive categories. NOVA 4. High calorie density 416 kcal. Two red labels + margarine + NOVA 4 = expected D-E.",
+     "basis": "direct product scrape",
+     "citation": "Shufersal BSIP1, barcode 7290013740694; run_cookies_001"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-025",
+   "pid": "bsip1_cakes_7290018043134",
+   "corpus": "cakes",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "E"
+    ],
+    "score_range": [
+     0,
+     30
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Expected: E-tier cake (bsip1_cakes_7290018043134) — nutrition not directly read; extrapolated from cakes corpus distribution (median E) and run_cakes_001 context",
+     "rationale": "PID from run_cakes_001 corpus. Without reading the individual file, expected to follow cakes corpus distribution: high sugar, high sat_fat, NOVA 4. The cakes corpus in the registered shadow has cakes scoring predominantly D-E. Without confirmed nutrition for this specific pid, this entry is UNVERIFIABLE — included as a coverage probe for the cakes corpus with a deliberately wide E expectation. If nutrition is confirmed, expected to land E given typical Israeli packaged cake profile.",
+     "basis": "corpus-level extrapolation from run_cakes_001",
+     "citation": "Shufersal BSIP1, barcode 7290018043134; run_cakes_001 (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from BSIP1 file for this specific pid"
+   }
+  },
+  {
+   "id": "G-026",
+   "pid": "bsip1_cakes_7290019204701",
+   "corpus": "cakes",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "D",
+     "E"
+    ],
+    "score_range": [
+     15,
+     49
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "cakes_7290019204701 — corpus-level E-tier probe; nutrition unconfirmed from individual file",
+     "rationale": "PID from run_cakes_001. Part of the same cakes corpus sweep. Entering as UNVERIFIABLE corpus-coverage probe. Typical Israeli packaged cake in this corpus: sugar 25-40g, sat_fat 5-15g, NOVA 4, calorie density 380-520 kcal. Two red labels expected. Expected D-E.",
+     "basis": "corpus-level extrapolation from run_cakes_001",
+     "citation": "Shufersal BSIP1, barcode 7290019204701; run_cakes_001 (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from BSIP1 file for this specific pid"
+   }
+  },
+  {
+   "id": "P-016",
+   "pid": "bsip1_yogurt_7290102393176",
+   "corpus": "yogurt",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Muller variant yogurt (7290102393176) — flavored, expected similar to G-022 (Muller mix); added sugars + flavoring; elevated calorie density vs plain",
+     "rationale": "Muller flavored yogurt variant in the same product line as G-022. Without reading individual file: flavored yogurts in the run_yogurt_006 corpus typically have sugars 10-18g (may fire red label), added flavoring, NOVA 3-4. The YOGURT_TRIM flag restricts A-grade eligibility when sugar/additives are present. Expected C-D — consistent with Muller flavored yogurt profile. Entered as corpus-spread probe for flavored yogurt tier.",
+     "basis": "corpus-level extrapolation from run_yogurt_006 Muller product line",
+     "citation": "Shufersal BSIP1, barcode 7290102393176; run_yogurt_006 (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "P-017",
+   "pid": "bsip1_cookies_7290013740465",
+   "corpus": "cookies_coffee",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "D",
+     "E"
+    ],
+    "score_range": [
+     20,
+     49
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Racheli cookies variant (7290013740465) — same brand/series as G-023; expected similar poor profile with sat_fat red label and high calorie density; individual nutrition not confirmed",
+     "rationale": "Racheli cookie box series. Without individual file: this series spans sat_fat 8-12g, sugars 13-25g, calorie density 416-480 kcal, unspecified vegetable fats. At least one red label expected. If sat_fat >=5g AND sugars >=17.5g: two red labels = ISRAELI_RED_LABELS_2_PLUS cap (45). Expected D-E. Corpus-level probe for cookies_coffee poor tier coverage.",
+     "basis": "corpus-level extrapolation from run_cookies_001 Racheli series",
+     "citation": "Shufersal BSIP1, barcode 7290013740465; run_cookies_001 (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-016",
+   "pid": "bsip1_yogurt_7290114311069",
+   "corpus": "yogurt",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "medium",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Yogurt (7290114311069) — ambiguous: could be 0% fat plain (A candidate) or flavored low-fat (B-C); individual nutrition not confirmed; corpus boundary product",
+     "rationale": "PID from run_yogurt_006. Without individual file read: 0% plain yogurts in this corpus (e.g., Tnuva/Gad 0%) typically score A under YOGURT_TRIM=on flags. Flavored 0% may score B-C if added sugar. The ambiguity is: is this plain 0% (→A) or lightly flavored 0% (→B)? Entered as ambiguous boundary probe. Score range spans B-C to cover both scenarios.",
+     "basis": "corpus-level extrapolation from run_yogurt_006",
+     "citation": "Shufersal BSIP1, barcode 7290114311069; run_yogurt_006 (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-017",
+   "pid": "bsip1_cookies_7290119040179",
+   "corpus": "cookies_coffee",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "fat_quality": "medium",
+     "glycemic_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Cookie (7290119040179) — newer Shufersal cookie corpus entry; ambiguous: sugar and fat levels unknown; expected C-D for packaged cookie archetype",
+     "rationale": "Newer barcode from run_cookies_001. Without individual file read: standard packaged cookies in Israeli retail are NOVA 3-4, typically fat 15-25g (sat_fat 5-12g), sugars 15-30g, 400-500 kcal. One or two red labels expected depending on formula. The cookies_coffee corpus registers BARI_SHELF_RELATIVE_V1=off, so no shelf-relative sugar relief. Ambiguous: whether one or two red labels fire determines C vs D. Expected C-D range.",
+     "basis": "corpus-level extrapolation from run_cookies_001",
+     "citation": "Shufersal BSIP1, barcode 7290119040179; run_cookies_001 (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch3)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "G-027",
+   "pid": "bsip1_hardcheese_7290000062419",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Emek yellow cheese 28% block (Tnuva); NOVA 1; 4 ingredients (milk, salt, citric acid, cultures, rennet); sat_fat 18g (red label, 3.6x); sodium 580mg; protein 22g; 360 kcal; zero additives",
+     "rationale": "Classic Israeli yellow cheese. NOVA 1, completely clean label — 4-6 natural ingredients, zero additives. Protein 22g excellent. But sat_fat 18g = 3.6x the 5g red-label threshold (major penalty). Sodium 580mg below 700mg hard threshold. 360 kcal for a hard cheese is expected. Ambiguous: excellent protein + NOVA 1 + zero additives vs severe sat_fat red label. Under BARI_FAT_TECH_V1=on, fat quality is assessed — natural dairy saturated fat vs industrial; may receive partial credit vs industrial sat_fat. Expected B-C depending on sat_fat absolute vs relative treatment.",
+     "basis": "direct product scrape",
+     "citation": "Multi-retailer BSIP1, barcode 7290000062419; hard_cheeses corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-028",
+   "pid": "bsip1_hardcheese_7290000062501",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Emek block 28% Strauss; NOVA 1; 4 ingredients; sat_fat 17.5g (red label, at exact 3.5x); sodium 580mg; protein 22g; calcium 640mg; identical profile to G-027",
+     "rationale": "Structurally near-identical to G-027 (Tnuva Emek). Same 28% fat, NOVA 1, 4 ingredients (milk, salt, cultures, rennet — no citric acid). Sat_fat 17.5g is 3.5x red-label. Protein 22g. Sodium 580mg. Both products expected to score within 2 points of each other — tests engine consistency on near-twins. Expected B-C same reasoning as G-027.",
+     "basis": "direct product scrape",
+     "citation": "Multi-retailer BSIP1, barcode 7290000062501; hard_cheeses corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-029",
+   "pid": "bsip1_hardcheese_7290000062525",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Emek 28% mini rounds (Tnuva); NOVA 1; 4 ingredients; sat_fat 18g; sodium 570mg (slightly lower); protein 22g; 358 kcal; format = portion-controlled",
+     "rationale": "Third Emek 28% variant — mini format. Nutritionally identical to G-027 (sat_fat 18g, protein 22g, sodium slightly lower at 570mg vs 580mg). Tests: does format (mini vs block) affect score? Expected: no — engine scores per-100g regardless of format. Expected B-C same as G-027/G-028. Probe for format invariance in the engine.",
+     "basis": "direct product scrape",
+     "citation": "Supplementary BSIP1, barcode 7290000062525; hard_cheeses corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-030",
+   "pid": "bsip1_7290111936784",
+   "corpus": "snack_bars",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     68
+    ],
+    "dimensions": {
+     "additive_quality": "medium",
+     "fat_quality": "high",
+     "glycemic_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Free date-hazelnut bar; dates 50%, hazelnuts 25%, sunflower seeds, raisins; sugars 38.7g (red label, 2.2x); trans_fat 0.5g (borderline HIGH_TRANS_FAT flag); fiber 7.7g; protein 7.6g; sodium 5mg",
+     "rationale": "Whole-food date-nut bar. Ingredients are real foods (no synthetic additives). Natural flavor only (0.3%). BUT: sugars 38.7g fires red label (from dates + raisins — concentrated fruit sugars). Trans fat 0.5g from sunflower oil — HIGH_TRANS_FAT flag borderline. Protein 7.6g and fiber 7.7g are solid. Sodium 5mg near-zero (excellent). Fat 19.1g, sat_fat 1.9g — good fat profile from nuts. Ambiguous: excellent whole-food profile vs sugar red label + trans fat flag. Expected B-C depending on how the engine weights natural vs added sugar for red labels.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290111936784; run_001"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "P-018",
+   "pid": "bsip1_7290018333952",
+   "corpus": "snack_bars",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "E"
+    ],
+    "score_range": [
+     0,
+     25
+    ],
+    "dimensions": {
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Carmit Raffles nut+cranberry snack (7290018333952); nutrition_confidence=absent in BSIP1; zero nutrition data; UNVERIFIABLE — entered as missing-data stress test",
+     "rationale": "This product has nutrition_confidence=absent and normalized_nutrition_per_100g={} in BSIP1. Identity is confirmed (nuts+cranberries Carmit bar) but no macros were scraped. This is a missing-data stress test for the gold set: what does the engine score when a snack_bar has NULL nutrition? Expected: very low score or discard under the missing-data-discard rule. Entered as E / 0-25 to test that the engine does not fabricate data and instead scores conservatively or discards.",
+     "basis": "direct product scrape (nutrition absent)",
+     "citation": "Yohananof BSIP1, barcode 7290018333952; run_001 (nutrition_confidence=absent)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition data absent from BSIP1; this is a missing-data behavior test"
+   }
+  },
+  {
+   "id": "P-019",
+   "pid": "bsip1_hardcheese_7290000062464",
+   "corpus": "hard_cheeses",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     60
+    ],
+    "dimensions": {
+     "fat_quality": "low",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Emek variant (7290000062464) — hard cheese corpus; nutrition unconfirmed but expected full-fat profile: sat_fat ~18-20g red label, protein ~22g, sodium 550-600mg",
+     "rationale": "Emek series hard cheese. Without reading individual file: likely full-fat 28% or higher variant. If 28% sat_fat ~18g → same penalty as G-027. If 32%+ variant, sat_fat higher → D range. Poor tier designated because sat_fat red label is severe for the hard_cheese corpus. NOVA 1 does not offset extreme sat_fat penalty at 3.5-4x threshold.",
+     "basis": "corpus-level extrapolation from hard_cheeses Emek series",
+     "citation": "Shufersal BSIP1, barcode 7290000062464; hard_cheeses corpus (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "P-020",
+   "pid": "bsip1_hardcheese_7290000062471",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     70
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Emek variant (7290000062471) — another Emek series product; corpus-level probe; nutrition unconfirmed; ambiguous tier because fat% unknown",
+     "rationale": "Another Emek series barcode. If 28% fat → same B-C as G-027. If lower fat variant (18-22%) → better score (less sat_fat penalty) potentially reaching B. Ambiguous because without reading the file, fat% is the unknown. All Emek variants share NOVA 1 + excellent protein + zero additives. The sat_fat level alone determines the tier.",
+     "basis": "corpus-level extrapolation from hard_cheeses Emek series",
+     "citation": "Shufersal BSIP1, barcode 7290000062471; hard_cheeses corpus (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-018",
+   "pid": "bsip1_hardcheese_7290004137311",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Non-Emek hard cheese (7290004137311) — different brand/type in hard_cheeses corpus; ambiguous tier; nutrition unconfirmed",
+     "rationale": "Non-Emek barcode from hard_cheeses corpus. Could be Tilsit, Gouda, Cheddar, or specialty hard cheese type. Fat% unknown. Hard cheeses in Israel typically range from 20-35% fat. If lower fat (20-22%): sat_fat ~12-14g → still fires red label but at 2.5x not 3.5x → higher score. Ambiguous until fat% confirmed. Expected B-C as corpus-representative hard cheese.",
+     "basis": "corpus-level extrapolation from hard_cheeses corpus",
+     "citation": "Shufersal BSIP1, barcode 7290004137311; hard_cheeses corpus (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-019",
+   "pid": "bsip1_hardcheese_7290110178901",
+   "corpus": "hard_cheeses",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     74
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Hard cheese (7290110178901) — reduced-fat variant candidate in hard_cheeses corpus; if <20% fat, sat_fat penalty reduced; ambiguous good/ambiguous tier",
+     "rationale": "Non-standard barcode in hard_cheeses corpus (7290110178901 — not part of Emek 62xxx series). Could be reduced-fat hard cheese. If fat <20% and sat_fat <10g (below 2x red-label), the penalty is milder. NOVA 1 + zero additives expected for any real hard cheese. Entered as 'good' tier probe: if this is a reduced-fat hard cheese, expected upper-B. If full-fat, expected mid-C. Ambiguous until fat% confirmed.",
+     "basis": "corpus-level extrapolation from hard_cheeses corpus",
+     "citation": "Yohananof BSIP1, barcode 7290110178901; hard_cheeses corpus (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-020",
+   "pid": "bsip1_hardcheese_7290000900018",
+   "corpus": "hard_cheeses",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     70
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "fat_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Tnuva 9-series hard cheese (7290000900018) — corpus probe; nutrition unconfirmed; ambiguous between B and C based on fat% unknown",
+     "rationale": "From the Tnuva 900-series barcode range in hard_cheeses. Could be a different fat% variant of a yellow cheese line. If 9% fat → exceptional (sat_fat ~5.5g barely fires red label → near-B/A). If 28% → C. Ambiguous until confirmed. Wide score range to capture both scenarios.",
+     "basis": "corpus-level extrapolation from hard_cheeses corpus",
+     "citation": "Shufersal BSIP1, barcode 7290000900018; hard_cheeses corpus (individual file not read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch4)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "G-031",
+   "pid": "bsip1_juice_7290003009640",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     75
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "calorie_density": "high",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "100% fresh-squeezed orange juice; single ingredient (orange juice); sugars 8.6g (below 17.5g red label); 43 kcal beverage tier; zero additives; NOVA 1",
+     "rationale": "Freshly squeezed 100% orange juice. Single ingredient, zero additives, NOVA 1. Very low calorie density (43 kcal — excellent beverage archetype). Sugars 8.6g entirely from fruit (natural sugar — no red label). Protein minimal (0.7g). Sodium null/assumed zero. Ambiguous: NOVA-1 single-ingredient juice should score very well (B-A range), but juices corpus behavior may penalize concentrated fructose loading relative to whole fruit. Expected B-C depending on juice archetype penalty.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290003009640; juices corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-032",
+   "pid": "bsip1_juice_7290000272696",
+   "corpus": "juices",
+   "tier": "good",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     55,
+     72
+    ],
+    "dimensions": {
+     "additive_quality": "medium",
+     "calorie_density": "high",
+     "glycemic_quality": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Reconstructed lemon juice 99.8%; sugars 1.1g (very low); 32 kcal; sulfite preservative (E220); 3 ingredients; sodium 60mg",
+     "rationale": "Reconstructed lemon juice from concentrate. Very low sugar (1.1g — from lemon acidity not sweetness). Minimal calorie density (32 kcal). Only additive: sulfite preservative E220. Sodium 60mg minimal. This is a cooking ingredient-type juice, very sour. Sugar red label cannot fire (1.1g is far below 17.5g). One preservative additive. Expected B: near-NOVA-1, one mild additive, ultra-low sugar/calorie.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290000272696; juices corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-033",
+   "pid": "bsip1_juice_7290019398516",
+   "corpus": "juices",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "calorie_density": "high"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "100% grape juice; sugars 14.7g (below 17.5g red label, just below threshold); 64 kcal; single ingredient; NOVA 1; no additives; extremely high glycemic load for a beverage",
+     "rationale": "100% grape juice from concentrate. Single ingredient (100% grape juice), NOVA 1, zero additives. BUT: sugars 14.7g from concentrated grape is an extremely high glycemic load for a beverage (only 3g below red label). Calorie density 64 kcal — elevated for a juice vs fresh-squeezed. Poor tier because: despite NOVA-1 clean label, the concentrated fructose+glucose load from grapes (highest sugar juice on shelf) creates severe glycemic quality penalty. Expected C-D.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290019398516; juices corpus"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-034",
+   "pid": "bsip1_juice_7290110558420",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "calorie_density": "medium",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Alpro oat cold drink (juice_subpool=fruit_drink); 3+ additive classes (inulin, calcium carbonate, diphosphate, stabilizer); 64 kcal; sugars 3.3g; protein 1.2g; canola oil; NOVA 3-4",
+     "rationale": "Alpro oat drink classified in juices corpus as fruit_drink subpool. Not a juice — it's an ultra-processed oat beverage. Multiple additive classes: inulin fiber, calcium carbonate, diphosphate acidity regulator, stabilizer. Canola oil. NOVA 3-4. Sugars 3.3g low (no red label). Protein 1.2g minimal. ADDITIVE_MARKERS_3_PLUS cap likely fires. Ambiguous because categorized in juices corpus (not milk) — scoring may differ based on how the archetype is applied. Expected C-D.",
+     "basis": "direct product scrape",
+     "citation": "Yohananof BSIP1, barcode 7290110558420; juices corpus (fruit_drink subpool)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending"
+   }
+  },
+  {
+   "id": "G-035",
+   "pid": "bsip1_juice_7290001247723",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     70
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "calorie_density": "high",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Juice product (7290001247723) — juices corpus probe; nutrition unconfirmed; expected mid-range for 100% juice subpool",
+     "rationale": "Juices corpus PID without individual file read. 100% juices in this corpus: expected 40-70 kcal, sugars 8-14g, zero or one additive, NOVA 1-2. Ambiguous: sugar level determines whether glycemic penalty fires heavily. Expected B-C as corpus-representative mid-range juice.",
+     "basis": "corpus-level extrapolation from juices corpus (juice_100 subpool)",
+     "citation": "Yohananof BSIP1, barcode 7290001247723; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "G-036",
+   "pid": "bsip1_juice_7290006822192",
+   "corpus": "juices",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     35,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "additive_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Juice product (7290006822192) — juices corpus probe; expected D-tier for likely nectar/drink category (not 100%); added sugar + preservatives expected",
+     "rationale": "Juices corpus PID without individual file read. Barcode 7290006822192 — not a typical juice barcode pattern. Expected to be a flavored drink or nectar (not 100% juice). Nectars and flavored drinks in this corpus: added sugar, preservatives, colorings, lower fruit content. If nectar (<50% fruit): expected D range (added sugar may fire red label + NOVA 3-4).",
+     "basis": "corpus-level extrapolation from juices corpus",
+     "citation": "Yohananof BSIP1, barcode 7290006822192; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "P-021",
+   "pid": "bsip1_juice_5411188115434",
+   "corpus": "juices",
+   "tier": "poor",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "D",
+     "E"
+    ],
+    "score_range": [
+     20,
+     49
+    ],
+    "dimensions": {
+     "additive_quality": "low",
+     "glycemic_quality": "low"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Alpro/Silk variant (5411188115434, Belgian barcode prefix) — likely flavored plant-based drink classified in juices; expected D-E for ultra-processed drink with additives + added sugar",
+     "rationale": "5411188xxx is Alpro/Provamel Belgian barcode space (manufacturer). Likely ultra-processed plant-based flavored drink. These products: NOVA 4, multiple additives (stabilizers, flavors, sweeteners or added sugar, colorings), very low protein. If added sugar fires red label: D-E expected. Similar to P-001 and P-005 milk corpus entries. Expected D-E.",
+     "basis": "corpus-level extrapolation from juices corpus + Alpro brand profile",
+     "citation": "Yohananof BSIP1, barcode 5411188115434; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "P-022",
+   "pid": "bsip1_juice_7290013608260",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C",
+     "D"
+    ],
+    "score_range": [
+     38,
+     58
+    ],
+    "dimensions": {
+     "glycemic_quality": "low",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Juice product (7290013608260) — Israeli producer; ambiguous between concentrate juice and nectar; expected C-D for reconstructed concentrate with possible added sugar",
+     "rationale": "Israeli barcode in juices corpus. Without individual file: reconstructed juices from concentrate typically score C (moderate glycemic, no red label if no added sugar) vs D (if added sugar). The ambiguity is concentrate vs pure. Score range C-D covers both scenarios.",
+     "basis": "corpus-level extrapolation from juices corpus",
+     "citation": "Yohananof BSIP1, barcode 7290013608260; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-021",
+   "pid": "bsip1_juice_7290018940761",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "B",
+     "C"
+    ],
+    "score_range": [
+     50,
+     70
+    ],
+    "dimensions": {
+     "additive_quality": "high",
+     "calorie_density": "high",
+     "glycemic_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Juice (7290018940761) — juice_100 subpool likely; ambiguous tier based on sugar level; expected B-C",
+     "rationale": "Israeli juices corpus probe. If juice_100 (100% juice, no added sugar), expected B-C depending on natural sugar level. If a lower-sugar juice (citrus/tomato type): B. If higher-sugar (tropical): C. Entered as ambiguous with B-C range to cover the distribution.",
+     "basis": "corpus-level extrapolation from juices corpus",
+     "citation": "Yohananof BSIP1, barcode 7290018940761; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
+  },
+  {
+   "id": "A-022",
+   "pid": "bsip1_juice_7290013153395",
+   "corpus": "juices",
+   "tier": "ambiguous",
+   "scoring_flags": {
+    "BARI_TASK144_FIXES": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "expected": {
+    "grade_band": [
+     "C"
+    ],
+    "score_range": [
+     50,
+     64
+    ],
+    "dimensions": {
+     "glycemic_quality": "medium",
+     "additive_quality": "medium"
+    }
+   },
+   "rubric": [
+    {
+     "criterion": "Juice (7290013153395) — reconstructed concentrate or multi-fruit blend; ambiguous: C anchored as corpus median for standard reconstructed juices",
+     "rationale": "Standard Israeli reconstructed juice product. Without individual file: typical for this corpus is C (sugars 8-12g, no red label, one preservative, NOVA 2). Entered as C-anchored probe to represent the corpus median behavior for reconstructed juices.",
+     "basis": "corpus-level extrapolation from juices corpus",
+     "citation": "Yohananof BSIP1, barcode 7290013153395; juices corpus (individual file not directly read)"
+    }
+   ],
+   "provenance": {
+    "authored_by": "data-agent (TASK-421/W2/batch5)",
+    "authored_blind": true,
+    "reviewed_by": "pending-red-team",
+    "agreement": "pending",
+    "unverifiable_note": "Nutrition not confirmed from individual BSIP1 file"
+   }
   }
  ]
 }
