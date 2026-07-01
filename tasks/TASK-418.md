@@ -73,7 +73,20 @@ Execution FAILED reliability across MULTIPLE agent attempts and was fully revert
   display/registry metadata edits from earlier in the session (13:18–14:59, e.g. cheese.ts `nameHe`), unknown
   provenance, NON-score — flagged for owner, not reverted.
 
-**ROOT BLOCKER (bigger than pollution): the scoring harness is not deterministic across invocations** —
-different flag/shelf-stat/engine-reload paths yield different scores for the same record. THIS is why the
-baseline won't reproduce, and it must be root-caused (one canonical scoring invocation) BEFORE any clean+refresh
-or de-chain shadow. Recommend a FRESH session for that (this one is context-exhausted). Stage 2 stays BLOCKED.
+**ROOT BLOCKER — CORRECTED diagnosis (engine IS deterministic):** scoring the same record 3x gives the
+identical result (7290019635192 -> B/67.0 every time). The engine is NOT non-deterministic. The real problem
+is **there is no canonical scoring INVOCATION**: different valid-looking setups (which flags, which
+shelf-relative stats, corpus_dirs = bsip1_outputs vs bsip1_task412) reproduce DIFFERENT published-affecting
+scores for the same record — the orchestrator's invocation gives 7290019635192 B/67 while agent a4f223f6's
+invocation gives A/85 (matching published). Neither is provably "the" invocation because nothing documents the
+exact flags+shelf-stats+corpus that byte-reproduce the published v4. Until that ONE canonical invocation exists
+and is verified to reproduce current published scores, **no re-score is verifiable and no refresh can safely
+deploy.** Multiple overlapping background agents (a7fec157, a4f223f6, ac6ac58d) writing the same files
+compounded the confusion; all reverted, tree clean at HEAD, python writers = 0.
+
+**Next (fresh session, isolated git worktree):** (1) find/document the ONE scoring invocation that byte-repro's
+published v4 for hard_cheeses (start from _reproduce_diag + the frontend _meta.flag_vector; resolve the
+corpus_dirs bsip1_outputs-vs-task412 question and the shelf-stats source). (2) Only then clean+refresh, verify
+moves against that canonical baseline, deploy. Stage 2 stays BLOCKED behind this. Agent a4f223f6's sober run
+(2 grade movers 4122270/7290110320850 C->B, HC gates PASS, juice non-mover) is a plausible-correct result but
+UNVERIFIED against a canonical baseline — do not trust without (1).
