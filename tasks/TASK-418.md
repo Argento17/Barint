@@ -33,3 +33,27 @@ conformance tests re-flow, not reproduction-to-baseline.
 **This is the Phase-0 reproducible-baseline prerequisite for the whole de-chain program (D7 co-sign,
 non-negotiable). TASK-419 (Stage 2) stays BLOCKED until hard_cheeses + cheese + cereals reproduce or
 the owner rules on any tripwire product.** Diagnosis dispatched: P267 (read-only, C1-CURSOR).
+
+## Update 2026-07-01 (later) — root cause is CORPUS POLLUTION, not simple flag drift
+Diagnosis (Data Agent, verified by orchestrator) + a follow-on catch reframed this:
+
+- **cheese (2) + cereals (1):** published scores were computed on ingredient lists polluted with
+  retailer disclaimers ("אין להסתמך על הפירוט המופיע באתר" etc.) and nutrition-panel bleed ("ערכים
+  תזונתיים…") COUNTED AS INGREDIENTS, which inflated the ingredient count / fired false sugar markers
+  and depressed the score. TASK-405 (cheese) + TASK-412 I2 (sugar bleed, not flag-gated) already
+  cleaned these engine/data-side, so the clean engine now scores them HIGHER. **Owner approved
+  2026-07-01: REFRESH all 3** (cheese `3523230065467` C63.8→B68, `7290019635581` E32.8→D37; cereals
+  `7290017894911` D46→C50). All upward, all from since-fixed pollution.
+
+- **hard_cheeses:** the first fix attempt (Data Agent) "reproduced" the published 62.6/62.0 for
+  `7290110320850` / `7290110323301` by RE-INSTALLING the polluted task412 corpus — literally counting
+  three retailer-disclaimer lines + a bled nutrition panel as ingredients so the endemic-relief gate
+  (≤6 ingredients) fails and the penalty applies. Orchestrator REJECTED and REVERTED this (git checkout
+  + clean): pinning a score on re-injected known-bad data is the opposite of the clean-corpus policy.
+  Correct reading: those two hard_cheeses published scores are ALSO stale/defective — clean corpus
+  scores them 66.0 / 74.0 (up). `7290110324872` (A81.6→B75.6) is a genuine flag-only miss (config
+  lacks `BARI_HC_DAIRY_SATFAT_V1` + `BARI_DAIRY_SAT_FAT_INFER`, both ON in v4 `_meta`) — score-neutral.
+
+- **Scope:** 322 / 2527 bsip1 records corpus-wide carry the pollution signature. The live-published
+  subset that would actually MOVE on cleaning is smaller but > 3. This is a systemic corpus-hygiene
+  issue, not a handful of products. **Awaiting owner scope decision** on how wide to run clean+refresh.
