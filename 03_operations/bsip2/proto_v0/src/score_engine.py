@@ -215,6 +215,17 @@ BARI_HC_DAIRY_SATFAT_V1 = os.environ.get("BARI_HC_DAIRY_SATFAT_V1", "off").lower
 # d3_processing_signal is emitted.
 BARI_GLASSBOX_W4 = os.environ.get("BARI_GLASSBOX_W4", "on").lower() != "off"  # SHIPPED 2026-06-05 (TASK-181S)
 
+# TASK-385 / EV-105 — Granola severe sugar cap for >=25g products.
+# DEFAULT OFF → engine byte-identical to baseline (granola_frontend_v2 OFF baseline).
+# When ON: adds HIGH_SUGAR_25G_GRANOLA_SEVERE cap (cap=50) for snack_bar_granola
+# products with sugar >= 25g. This tightens the existing HIGH_SUGAR_25G_PLUS (cap=60)
+# specifically for granola where 25g sugar is the category-worst outlier and the
+# >=25g boundary is a meaningful qualitative break vs the shelf median (~10–18g).
+# Scoped to snack_bar_granola ONLY — zero blast on any other category (condition
+# includes explicit category guard).
+# D7 co-signed: Nutrition Agent + Product Agent (EV-105, 2026-06-23).
+BARI_GRAN_SUGAR_25G_V1 = os.environ.get("BARI_GRAN_SUGAR_25G_V1", "off").lower() == "on"
+
 # TASK-189 / EV-049 — Graduated sodium treatment for granola/cereal.
 # DEFAULT OFF → engine byte-identical to run_cereals_006 baseline.
 # When ON: graduated SODIUM_LOAD penalty (4-band: <150→0, 150–299→−2, 300–449→−5,
@@ -2326,6 +2337,11 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     check_cap("HIGH_CAL_HIGH_SUGAR_MODERATE", kcal >= 470 and sugar >= sugar_threshold_20, 60, sugar_caps_fired)
     _h25_cap = 68 if sc2_or_plain_dairy else 60
     check_cap("HIGH_SUGAR_25G_PLUS",          sugar >= sugar_threshold_25, _h25_cap, sugar_caps_fired)
+    # TASK-385 / EV-105: granola-specific >=25g severe cap. Tighter than HIGH_SUGAR_25G_PLUS (60→50)
+    # for granola where 25g is the category-worst outlier (shelf median ~10–18g).
+    # Scoped guard: snack_bar_granola AND BARI_GRAN_SUGAR_25G_V1 → zero blast on non-granola.
+    if BARI_GRAN_SUGAR_25G_V1:
+        check_cap("HIGH_SUGAR_25G_GRANOLA_SEVERE", is_snack_bar and sugar >= 25, 50, sugar_caps_fired)
     check_cap("SNACK_BAR_HIGH_CAL_SUGAR",     is_snack_bar and kcal >= 470 and sugar >= sugar_threshold_15, 60, sugar_caps_fired)
     _snack_sugar_cap = 63 if sc2_or_plain_dairy else 55
     check_cap("SNACK_BAR_RED_SUGAR_LABEL",    is_snack_bar and red_label_sugar, _snack_sugar_cap, sugar_caps_fired)
@@ -3354,6 +3370,7 @@ def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
     # SRC-01: Classify binding caps as Class A (mismatch) or Class B (physiological)
     class_b_caps = {
         "HIGH_CAL_HIGH_SUGAR_SEVERE", "HIGH_CAL_HIGH_SUGAR_MODERATE", "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",  # TASK-385 / EV-105 granola-scoped tighter cap
         "SNACK_BAR_HIGH_CAL_SUGAR", "SNACK_BAR_RED_SUGAR_LABEL",
         "ISRAELI_RED_LABEL_1_SUGAR", "ISRAELI_RED_LABELS_2_PLUS",
         "REFORMULABLE_LABELS_2_PLUS",  # BARI_REDLABEL_V1 replacement for ISRAELI_RED_LABELS_2_PLUS
