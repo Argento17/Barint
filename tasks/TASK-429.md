@@ -2,9 +2,19 @@
 id: TASK-429
 title: Pin the ONE canonical scoring invocation that byte-reproduces published scores (Phase-0 baseline)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-07-01
+closed_at: 2026-07-01
+close_reason: >
+  All 5 DoD items verified against artifacts by the orchestrator. Canonical HC invocation pinned and PROVEN
+  to byte-reproduce hard_cheeses_frontend_v4 (31/31, max abs drift 0.000, 0 grade moves, 0 missing) by two
+  independent harnesses (provenance/hard_cheeses_reproduce_harness.py canonical + config-driven _reproduce_diag
+  with widened loader). Forks resolved with evidence: corpus=bsip1_task412 (bsip1_outputs mis-scored 4/12 =
+  the A/85-vs-B/67 contradiction); shelf-stats=frozen EV-090 constants. Config updated score-neutral. Generalize:
+  cheese/cereals/milk residual drift is owner-gated TASK-418 data refresh, not an invocation gap. Landed on
+  master at 0a303e34. Open follow-up (flagged, out of Phase-0 scope): widen the production generate_page corpus
+  loader to accept file_type='bsip1_enriched' so the standard path reproduces HC without a bespoke harness.
 depends_on: []
 blocks: [TASK-418, TASK-419]
 category_id: null
