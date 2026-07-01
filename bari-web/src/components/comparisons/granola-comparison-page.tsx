@@ -36,7 +36,7 @@ const granolaShelfFilters = {
 //
 // SUGAR (GRANOLA_SUGAR_METRIC): lowerIsBetter; shelf range 4.8–25g/100g; scaleMax 28
 //   so the 25g outlier reads near-full without false-clipping. ≤8g = good; ≥18g = amber
-//   (the Israeli MoH 17.5g red-label threshold as the "poor" anchor). Per §4.3: amber
+//   (the Bari's own informational high-sugar flag (NOT MoH; real MoH Stage-2 solid sugar cutoff is 10g/100g — EV-108/TASK-442) as the "poor" anchor). Per §4.3: amber
 //   only — limits are information, not alarms.
 //
 // PROTEIN: shelf range 8.7–23.7g/100g. The shared PROTEIN_METRIC has scaleMax=20 which

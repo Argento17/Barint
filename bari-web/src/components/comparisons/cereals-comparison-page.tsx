@@ -35,7 +35,7 @@ const cerealsShelfFilters = {
 //
 // SUGAR (CEREALS_SUGAR_METRIC): shelf range 3.8–29.9g/100g. Most products cluster at
 //   16–29g; only 2 products fall below 8g. scaleMax=32 gives the 29.9g top product room
-//   without clipping. Thresholds match the Israeli MoH anchor (≤8g good, ≥18g amber).
+//   without clipping. Thresholds are Bari's own informational flags (NOT MoH — real MoH Stage-2 solid sugar cutoff is 10g/100g; EV-108/TASK-442) (≤8g good, ≥18g amber).
 //   1 product (barcode 7297488098688) has sugar=null → bar shows "—" (correct).
 //
 // PROTEIN (CEREALS_PROTEIN_METRIC): cereals protein range is 5.0–12.0g/100g — much
